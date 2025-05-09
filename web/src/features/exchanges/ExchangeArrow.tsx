@@ -1,6 +1,5 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useHeaderHeight } from 'hooks/headerHeight';
 import { useSetAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
@@ -28,7 +27,6 @@ function ExchangeArrow({
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
-  const headerHeight = useHeaderHeight();
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -114,10 +112,9 @@ function ExchangeArrow({
   const scaledZoom = 100 * baseZoom;
 
   // Setting the top position from the arrow tooltip preventing overflowing to top.
-  let tooltipClassName =
-    'max-h-[256px] max-w-[512px] md:flex rounded-2xl border-neutral-200 bg-white dark:bg-gray-900 dark:border-gray-700 dark:border';
+  let tooltipClassName = 'max-h-[256px] max-w-[512px] md:flex';
   if (!isMobile) {
-    tooltipClassName += y - 76 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
+    tooltipClassName += y < 140 ? ' top-[76px]' : ' top-[-76px]';
   }
 
   if (
@@ -141,10 +138,16 @@ function ExchangeArrow({
 
   return (
     <TooltipWrapper
-      tooltipClassName={tooltipClassName}
-      tooltipContent={<ExchangeTooltip exchangeData={data} isMobile={isMobile} />}
+      tooltipContent={
+        <ExchangeTooltip
+          exchangeData={data}
+          isMobile={isMobile}
+          className={tooltipClassName}
+        />
+      }
       side={isMobile ? 'top' : 'right'}
-      sideOffset={10}
+      sideOffset={isMobile ? 10 : 0}
+      tooltipId={`exchange-${key}`}
     >
       <picture
         style={{

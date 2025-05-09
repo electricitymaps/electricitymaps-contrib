@@ -84,22 +84,25 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 141.68
+        value: 394.88
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 178.1
+        value: 402.29
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 226.56
+        value: 517.67
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 198.36
+        value: 467.49
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 202.4
+        value: 474.77
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 262.45
+        value: 595.12
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 505.45
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -127,22 +130,25 @@ emissionFactors:
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 141.68
+        value: 120.46
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 178.1
+        value: 149.65
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 226.56
+        value: 190.51
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 198.36
+        value: 169.7
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 202.4
+        value: 168.17
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 262.45
+        value: 215.81
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 183.6
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -270,6 +276,21 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.3677736527078204
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.02195398329650652
+        nuclear: 0.0
+        oil: 0.5178817428592677
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.4601475232281346
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

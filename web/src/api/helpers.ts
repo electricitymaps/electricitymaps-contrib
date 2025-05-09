@@ -113,14 +113,10 @@ export const TIME_RANGE_TO_BACKEND_PATH: Record<TimeRange, string> = {
 
 export const getParameters = (
   shouldQueryHistorical: boolean | '' | undefined,
-  is1HourAppDelay: boolean,
   targetDatetime?: string
 ) => {
   if (shouldQueryHistorical) {
     return `?targetDate=${targetDatetime}`;
-  }
-  if (is1HourAppDelay) {
-    return '?delay=0';
   }
   return '';
 };

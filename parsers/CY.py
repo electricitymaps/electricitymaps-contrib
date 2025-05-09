@@ -92,10 +92,14 @@ class CyprusParser:
             url_date = target_datetime.astimezone(TIMEZONE).strftime("%d-%m-%Y")
             url = HISTORICAL_SOURCE.format(url_date)
 
-        res = self.session.get(url)
-        assert (
-            res.status_code == 200
-        ), f"CY parser: GET {url} returned {res.status_code}"
+        # Add User-Agent headers to mimic a browser and avoid 403 errors
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        res = self.session.get(url, headers=headers)
+        assert res.status_code == 200, (
+            f"CY parser: GET {url} returned {res.status_code}"
+        )
 
         html = BeautifulSoup(res.text, "lxml")
 

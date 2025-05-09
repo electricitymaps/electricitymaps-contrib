@@ -4,7 +4,7 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
@@ -37,7 +37,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
     return (
       <NotEnoughDataMessage
         title="country-history.carbonintensity"
-        id={Charts.CARBON_CHART}
+        id={Charts.CARBON_INTENSITY_CHART}
       />
     );
   }
@@ -48,7 +48,9 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         badge={badge}
         unit={'gCO₂eq / kWh'}
         isEstimated={Boolean(text)}
-        id={Charts.CARBON_CHART}
+        id={Charts.CARBON_INTENSITY_CHART}
+        className="mb-0.5"
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <AreaGraph
         testId="details-carbon-graph"

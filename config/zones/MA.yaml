@@ -65,16 +65,54 @@ capacity:
 contributors:
   - veqtrus
 country: MA
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 627.78
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 619.71
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 627.78
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 619.71
 fallbackZoneMixes:
-  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~MAR
   powerOriginRatios:
-    value:
-      coal: 0.4157
-      gas: 0.2443
-      hydro: 0.0379
-      oil: 0.114
-      solar: 0.0474
-      wind: 0.1409
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0010306354360311342
+        coal: 0.6460411407976566
+        gas: 0.02567974068347357
+        geothermal: 4.037909845698592e-09
+        hydro: 0.01992247514144871
+        hydro discharge: 0.0014164747707403162
+        nuclear: 0.011118840595286986
+        oil: 0.09302437212908383
+        solar: 0.04140740469202105
+        unknown: 0.029049155261980826
+        wind: 0.13130975196780073
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 7.114393621822565e-08
+        biomass: 0.0012889783243091681
+        coal: 0.6378568831495809
+        gas: 0.024544952734452185
+        geothermal: 3.976990223379074e-09
+        hydro: 0.022709171837901387
+        hydro discharge: 0.001755133500306001
+        nuclear: 0.013596236564253327
+        oil: 0.09184644052949957
+        solar: 0.04602936580239592
+        unknown: 0.028736370118761283
+        wind: 0.13163639894593068
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

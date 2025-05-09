@@ -138,7 +138,7 @@ fallbackZoneMixes:
         nuclear: 0.0
         oil: 0.0
         solar: 0.0
-        unknown: 0.9999999991671333
+        unknown: 0.9999999990496002
         wind: 0.0
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'

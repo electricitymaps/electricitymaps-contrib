@@ -15,12 +15,6 @@
     "noParserInfo": "У нас пока нет данных для данного региона.<br/> Хотите помочь нам исправить это? Вы поможете помочь <a href='{{link}}' target='_blank'>добавив данные для этого региона</a>.",
     "now": "Сейчас"
   },
-  "time-controller": {
-    "3mo": "по дням",
-    "12mo": "по месяцам",
-    "all_months": "по месяцам",
-    "all_years": "по годам"
-  },
   "ranking-panel": {
     "title": "Влияние зон на климат",
     "subtitle": "Сортированы по интенсивности CO₂ (CO₂эк/кВт⋅ч)",
@@ -93,9 +87,6 @@
     "AG": {
       "zoneName": "Антигуа и Барбуда"
     },
-    "AI": {
-      "zoneName": "Ангилья"
-    },
     "AL": {
       "zoneName": "Албания"
     },
@@ -105,14 +96,8 @@
     "AO": {
       "zoneName": "Ангола"
     },
-    "AQ": {
-      "zoneName": "Антарктида"
-    },
     "AR": {
       "zoneName": "Аргентина"
-    },
-    "AS": {
-      "zoneName": "Американское Самоа"
     },
     "AT": {
       "zoneName": "Австрия"
@@ -190,9 +175,6 @@
     "BO": {
       "zoneName": "Боливия"
     },
-    "BQ": {
-      "zoneName": "Бонайр, Синт Эстатиус и Саба"
-    },
     "BR": {
       "zoneName": "Бразилия"
     },
@@ -217,9 +199,6 @@
     },
     "BT": {
       "zoneName": "Бутан"
-    },
-    "BV": {
-      "zoneName": "Остров Буве"
     },
     "BW": {
       "zoneName": "Ботсвана"
@@ -285,9 +264,6 @@
       "countryName": "Канада",
       "zoneName": "Юкон"
     },
-    "CC": {
-      "zoneName": "Кокосовые острова"
-    },
     "CD": {
       "zoneName": "Демократическая Республика Конго"
     },
@@ -302,9 +278,6 @@
     },
     "CI": {
       "zoneName": "Кот-д'Ивуар"
-    },
-    "CK": {
-      "zoneName": "Острова Кука"
     },
     "CL-SEA": {
       "countryName": "Чили",
@@ -334,9 +307,6 @@
     },
     "CW": {
       "zoneName": "Кюрасао"
-    },
-    "CX": {
-      "zoneName": "Остров Рождества"
     },
     "CY": {
       "zoneName": "Кипр"
@@ -454,9 +424,6 @@
     "GB-NIR": {
       "zoneName": "Северная Ирландия"
     },
-    "GD": {
-      "zoneName": "Гренада"
-    },
     "GE": {
       "zoneName": "Грузия"
     },
@@ -539,109 +506,9 @@
       "countryName": "Индия",
       "zoneName": "Острова Андаман и Никобар"
     },
-    "IN-AP": {
-      "countryName": "Индия",
-      "zoneName": "Андхра-Прадеш"
-    },
-    "IN-AR": {
-      "countryName": "Индия",
-      "zoneName": "Аруначал-Прадеш"
-    },
-    "IN-AS": {
-      "countryName": "Индия",
-      "zoneName": "Ассам"
-    },
-    "IN-BR": {
-      "countryName": "Индия",
-      "zoneName": "Бихар"
-    },
-    "IN-CT": {
-      "countryName": "Индия",
-      "zoneName": "Чхаттисгарха"
-    },
-    "IN-DL": {
-      "countryName": "Индия",
-      "zoneName": "Дели"
-    },
-    "IN-GA": {
-      "countryName": "Индия",
-      "zoneName": "Гоа"
-    },
-    "IN-GJ": {
-      "countryName": "Индия",
-      "zoneName": "Гуджарат"
-    },
     "IN-HP": {
       "countryName": "Индия",
       "zoneName": "Химачал-Прадеш"
-    },
-    "IN-HR": {
-      "countryName": "Индия",
-      "zoneName": "Харьяна"
-    },
-    "IN-JH": {
-      "countryName": "Индия",
-      "zoneName": "Джаркханд"
-    },
-    "IN-JK": {
-      "countryName": "Индия",
-      "zoneName": "Джамму и Кашмир"
-    },
-    "IN-KA": {
-      "countryName": "Индия",
-      "zoneName": "Карнатака"
-    },
-    "IN-KL": {
-      "countryName": "Индия",
-      "zoneName": "Керала"
-    },
-    "IN-MH": {
-      "countryName": "Индия",
-      "zoneName": "Махараштра"
-    },
-    "IN-ML": {
-      "countryName": "Индия",
-      "zoneName": "Мегалая"
-    },
-    "IN-MN": {
-      "countryName": "Индия",
-      "zoneName": "Манипур"
-    },
-    "IN-MP": {
-      "countryName": "Индия",
-      "zoneName": "Мадхья-Прадеш"
-    },
-    "IN-MZ": {
-      "countryName": "Индия",
-      "zoneName": "Мизорам"
-    },
-    "IN-NL": {
-      "countryName": "Индия",
-      "zoneName": "Нагаленд"
-    },
-    "IN-OR": {
-      "countryName": "Индия",
-      "zoneName": "Орисса"
-    },
-    "IN-PB": {
-      "countryName": "Индия",
-      "zoneName": "Пенджаб"
-    },
-    "IN-PY": {
-      "countryName": "Индия",
-      "zoneName": "Пондишерри"
-    },
-    "IN-RJ": {
-      "countryName": "Индия",
-      "zoneName": "Раджастхан"
-    },
-    "IN-SK": {
-      "countryName": "Индия",
-      "zoneName": "Сикким"
-    },
-    "IN-TR": {
-      "countryName": "Индия",
-      "zoneName": "Трипура"
     },
     "IN-UP": {
       "countryName": "Индия",
@@ -650,10 +517,6 @@
     "IN-UT": {
       "countryName": "Индия",
       "zoneName": "Уттаракханд"
-    },
-    "IN-WB": {
-      "countryName": "Индия",
-      "zoneName": "Западная Бенгалия"
     },
     "IO": {
       "zoneName": "Британская территория в Индийском океане"
@@ -691,14 +554,8 @@
     "KH": {
       "zoneName": "Камбоджа"
     },
-    "KI": {
-      "zoneName": "Кирибати"
-    },
     "KM": {
       "zoneName": "Коморские острова"
-    },
-    "KN": {
-      "zoneName": "Сент-Китс и Невис"
     },
     "KP": {
       "zoneName": "Северная Корея"
@@ -763,9 +620,6 @@
     "MG": {
       "zoneName": "Мадагаскар"
     },
-    "MH": {
-      "zoneName": "Маршалловы Острова"
-    },
     "MK": {
       "zoneName": "Северная Македония"
     },
@@ -780,9 +634,6 @@
     },
     "MO": {
       "zoneName": "Макао"
-    },
-    "MP": {
-      "zoneName": "Северные Марианские острова"
     },
     "MQ": {
       "zoneName": "Мартиника"
@@ -831,9 +682,6 @@
     "NE": {
       "zoneName": "Нигер"
     },
-    "NF": {
-      "zoneName": "Остров Норфолк"
-    },
     "NG": {
       "zoneName": "Нигерия"
     },
@@ -848,12 +696,6 @@
     },
     "NP": {
       "zoneName": "Непал"
-    },
-    "NR": {
-      "zoneName": "Науру"
-    },
-    "NU": {
-      "zoneName": "Ниуэ"
     },
     "NZ": {
       "zoneName": "Новая Зеландия"
@@ -892,9 +734,6 @@
     },
     "PM": {
       "zoneName": "Сен-Пьер и Микелон"
-    },
-    "PN": {
-      "zoneName": "Питкэрн"
     },
     "PR": {
       "zoneName": "Пуэрто-Рико"
@@ -973,9 +812,6 @@
     "SG": {
       "zoneName": "Сингапур"
     },
-    "SH": {
-      "zoneName": "Острова Святой Елены, Вознесения и Тристан-да-Кунья"
-    },
     "SI": {
       "zoneName": "Словения"
     },
@@ -987,9 +823,6 @@
     },
     "SL": {
       "zoneName": "Сьерра-Леоне"
-    },
-    "SM": {
-      "zoneName": "Сан-Марино"
     },
     "SN": {
       "zoneName": "Сенегал"
@@ -1009,18 +842,11 @@
     "SV": {
       "zoneName": "Сальвадор"
     },
-    "SX": {
-      "countryName": "Синт-Мартен",
-      "zoneName": "Нидерланды"
-    },
     "SY": {
       "zoneName": "Сирия"
     },
     "SZ": {
       "zoneName": "Свазиленд"
-    },
-    "TC": {
-      "zoneName": "Острова Теркс и Кайкос"
     },
     "TD": {
       "zoneName": "Чад"
@@ -1036,9 +862,6 @@
     },
     "TJ": {
       "zoneName": "Таджикистан"
-    },
-    "TK": {
-      "zoneName": "Токелау"
     },
     "TL": {
       "zoneName": "Тимор-Лешти"
@@ -1058,9 +881,6 @@
     "TT": {
       "zoneName": "Тринидад и Тобаго"
     },
-    "TV": {
-      "zoneName": "Тувалу"
-    },
     "TW": {
       "zoneName": "Тайвань"
     },
@@ -1077,27 +897,17 @@
     "UG": {
       "zoneName": "Уганда"
     },
-    "UM": {
-      "zoneName": "Малые отдаленные острова Соединенных Штатов"
-    },
     "UY": {
       "zoneName": "Уругвай"
     },
     "UZ": {
       "zoneName": "Узбекистан"
     },
-    "VA": {
-      "zoneName": "Ватикан"
-    },
     "VC": {
       "zoneName": "Сент-Винсент и Гренадины"
     },
     "VE": {
       "zoneName": "Венесуэла"
-    },
-    "VG": {
-      "countryName": "Виргинские острова",
-      "zoneName": "Великобритания"
     },
     "VI": {
       "countryName": "Виргинские острова",
@@ -1108,9 +918,6 @@
     },
     "VU": {
       "zoneName": "Вануату"
-    },
-    "WF": {
-      "zoneName": "Уоллис и Футуна"
     },
     "WS": {
       "zoneName": "Самоа"
@@ -1160,18 +967,6 @@
     "GB-ZET": {
       "countryName": "Великобритания",
       "zoneName": "Шетландские острова"
-    },
-    "IN-DN": {
-      "countryName": "Индия",
-      "zoneName": "Дадра и Нагар-Хавели"
-    },
-    "IN-TN": {
-      "countryName": "Индия",
-      "zoneName": "Тамил Наду"
-    },
-    "IQ-KUR": {
-      "countryName": "Ирак",
-      "zoneName": "Курдистан"
     },
     "IT-CNO": {
       "countryName": "Италия",
@@ -1288,38 +1083,6 @@
     "NO-NO5": {
       "countryName": "Норвегия",
       "zoneName": "Западная Норвегия"
-    },
-    "US-HI-HA": {
-      "countryName": "США",
-      "zoneName": "Гаваи"
-    },
-    "US-HI-KA": {
-      "countryName": "США",
-      "zoneName": "Кауаи"
-    },
-    "US-HI-KH": {
-      "countryName": "США",
-      "zoneName": "Кахулаве"
-    },
-    "US-HI-LA": {
-      "countryName": "США",
-      "zoneName": "Ланаи"
-    },
-    "US-HI-MA": {
-      "countryName": "США",
-      "zoneName": "Мауи"
-    },
-    "US-HI-MO": {
-      "countryName": "США",
-      "zoneName": "Молокаи"
-    },
-    "US-HI-NI": {
-      "countryName": "США",
-      "zoneName": "Ниихау"
-    },
-    "US-HI-OA": {
-      "countryName": "США",
-      "zoneName": "Оаху"
     }
   },
   "mobile-main-menu": {

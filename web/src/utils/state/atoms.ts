@@ -88,10 +88,7 @@ export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
-export const hasOnboardingBeenSeenAtom = atomWithStorage(
-  'onboardingSeen',
-  localStorage.getItem('onboardingSeen') ?? false
-);
+export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', true);
 
 export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
   'estimationFeedbackSeen',
@@ -114,11 +111,8 @@ export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false)
 
 export const hasSeenUsSurveyCardAtom = atomWithStorage('hasSeenUsSurveyCard', false);
 
-export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
-  'rankingPanelAccordionCollapsed',
-  false
-);
-
 export const futurePriceCollapsedAtom = atom<boolean>(true);
 
 export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
+
+export const openTooltipIdAtom = atom<string | null>(null);

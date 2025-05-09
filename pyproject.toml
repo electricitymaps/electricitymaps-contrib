@@ -27,8 +27,8 @@ openpyxl = { version = "^3.1.2", optional = true }
 pydataxm = { version = "^0.3.2", optional = true }
 ruamel-yaml = "^0.17.24"
 pycountry = { version = "^22.3.5", optional = true }
-ruff = "0.4.3"
-tzdata = "^2025.1"
+ruff = "0.11.2"
+tzdata = "^2025.2"
 numpy = "^1.24.4"
 odfpy = { version = "^1.4.1", optional = true }
 
@@ -73,7 +73,12 @@ click = "^8.0.0"
 
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "parsers/test", "electricitymap/contrib/lib/tests"]
+testpaths = [
+    "tests",
+    "parsers/test",
+    "parsers/lib/tests",
+    "electricitymap/contrib/lib/tests",
+]
 addopts = "--color=yes --durations=10"
 
 
@@ -122,7 +127,6 @@ select = [
     "E4",
     "E7",
     "E9",
-    "E999",
     "F",
     "UP",
     "I",
@@ -131,7 +135,7 @@ select = [
     "B",
     "A",
     "C4",
-    "SIM"
+    "SIM",
 ]
 ignore = [
     "B008", # This flags every parser we have, let's ignore it for now

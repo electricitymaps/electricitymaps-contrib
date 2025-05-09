@@ -22,6 +22,9 @@ const config = {
       spacing: {
         15: '3.75rem',
       },
+      padding: {
+        safe: 'env(safe-area-inset-top)',
+      },
       screens: {
         xs: '475px',
       },
@@ -53,6 +56,10 @@ const config = {
         'brand-brown': '#702214',
         'price-light': '#18214F',
         'price-dark': '#848EC0',
+        secondary: {
+          DEFAULT: colors.neutral[600],
+          dark: colors.gray[300],
+        },
         success: {
           DEFAULT: colors.emerald[800],
           dark: colors.emerald[500],
@@ -64,6 +71,14 @@ const config = {
         danger: {
           DEFAULT: colors.red[700],
           dark: colors.red[400],
+        },
+        sunken: {
+          DEFAULT: colors.neutral[100],
+          dark: colors.neutral[800],
+        },
+        stroke: {
+          DEFAULT: colors.neutral[200],
+          dark: colors.neutral[800],
         },
       },
       minWidth: { 18: '4.5rem' },

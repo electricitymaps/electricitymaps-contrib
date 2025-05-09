@@ -5,6 +5,7 @@ import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
 import InfoIconWithPadding from './InfoIconWithPadding';
+import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 /**
@@ -49,7 +50,13 @@ function CarbonIntensitySquare({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
+      <TooltipWrapper
+        tooltipContent={
+          <LabelTooltip className="max-w-[200px]">{tooltipContent}</LabelTooltip>
+        }
+        side="bottom"
+        sideOffset={8}
+      >
         <div className="relative flex flex-col items-center">
           <div className="size-20 p-1">
             <animated.div

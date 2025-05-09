@@ -92,9 +92,8 @@ const renderTickValue = (
 
   return shouldDisplayLive ? (
     <g>
-      <circle cx="-1em" cy="1.15em" r="2" fill="red" />
       <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold" textAnchor="middle">
-        LIVE
+        Live
       </text>
     </g>
   ) : (

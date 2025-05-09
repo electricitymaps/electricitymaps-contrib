@@ -1,14 +1,12 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { useFeatureFlag } from 'features/feature-flags/api';
 import { useShare } from 'hooks/useShare';
-import { useAtomValue } from 'jotai';
+import { useEvents, useSocialShareEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { ExternalLink, FileDownIcon, Link } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFacebook, FaLinkedin, FaReddit, FaSquareXTwitter } from 'react-icons/fa6';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { getTrackByShareType, ShareType } from 'utils/analytics';
 import {
   baseUrl,
   Charts,
@@ -16,7 +14,6 @@ import {
   DEFAULT_TOAST_DURATION,
 } from 'utils/constants';
 import { hasMobileUserAgent as hasMobileUA } from 'utils/helpers';
-import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
 
 import { MemoizedShareIcon } from './ShareIcon';
 import { TimeDisplay } from './TimeDisplay';
@@ -45,14 +42,38 @@ export function MoreOptionsDropdown({
   const { zoneId } = useParams();
   const { t } = useTranslation();
   const [toastMessage, setToastMessage] = useState('');
-  const { isOpen, onDismiss, onToggleDropdown } = useDropdownCtl();
+  const { isOpen, onToggleDropdown } = useDropdownCtl();
   const reference = useToastReference();
   const { copyToClipboard, share } = useShare();
+
   const downloadUrl = `https://portal.electricitymaps.com/datasets/${zoneId}?utm_source=app&utm_medium=download_button&utm_campaign=csv_download`;
 
-  const summary = t('more-options-dropdown.summary');
+  const trackEvent = useTrackEvent();
+  const { trackCsvLink } = useEvents(trackEvent);
+  const {
+    trackSocialShareDirectLink,
+    trackSocialShareFacebook,
+    trackSocialShareLinkedIn,
+    trackSocialShareReddit,
+    trackSocialShareX,
+  } = useSocialShareEvents(trackEvent, id === 'zone' ? undefined : id);
 
-  const handleTrackShares = getTrackByShareType(id);
+  const handleCsvDownloadClick = useCallback(() => {
+    window.open(downloadUrl, '_blank');
+    trackCsvLink();
+  }, [downloadUrl, trackCsvLink]);
+
+  const handleCsvDownloadKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (event.key === 'Enter') {
+        window.open(downloadUrl, '_blank');
+        trackCsvLink();
+      }
+    },
+    [downloadUrl, trackCsvLink]
+  );
+
+  const summary = t('more-options-dropdown.summary');
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -63,7 +84,7 @@ export function MoreOptionsDropdown({
     return {
       copyShareUrl: () => {
         copyToClipboard(shareUrl, toastMessageCallback);
-        handleTrackShares[ShareType.COPY]();
+        trackSocialShareDirectLink();
       },
       onShare: () => {
         share(
@@ -74,10 +95,9 @@ export function MoreOptionsDropdown({
           },
           toastMessageCallback
         );
-        handleTrackShares[ShareType.SHARE]();
       },
     };
-  }, [reference, shareUrl, summary, share, copyToClipboard, handleTrackShares]);
+  }, [reference, shareUrl, summary, share, copyToClipboard, trackSocialShareDirectLink]);
 
   const dropdownTitle = title || t('more-options-dropdown.title');
 
@@ -91,7 +111,7 @@ export function MoreOptionsDropdown({
         <DropdownMenu.Trigger>{children}</DropdownMenu.Trigger>
         <DropdownMenu.Content
           className={twMerge(
-            'border-gray z-30 my-3 w-64 min-w-60 rounded-2xl border bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+            'z-30 my-3 w-64 min-w-60 rounded-2xl border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300',
             hasMobileUserAgent ? 'mx-7' : '-translate-x-[42%]'
           )}
         >
@@ -104,10 +124,8 @@ export function MoreOptionsDropdown({
             <DropdownMenu.Label className=" flex justify-between">
               <button
                 className="flex w-full justify-between p-2"
-                onClick={() => window.open(downloadUrl, '_blank')}
-                onKeyDown={(event) =>
-                  event.key === 'Enter' && window.open(downloadUrl, '_blank')
-                }
+                onClick={handleCsvDownloadClick}
+                onKeyDown={handleCsvDownloadKeyDown}
               >
                 <div className="my-auto flex items-center">
                   <FileDownIcon size={DEFAULT_ICON_SIZE} />
@@ -117,18 +135,18 @@ export function MoreOptionsDropdown({
                 </div>
                 <ExternalLink
                   size={DEFAULT_ICON_SIZE}
-                  className="text-gray-500 opacity-80"
+                  className="text-neutral-500 opacity-80"
                 />
               </button>
             </DropdownMenu.Label>
-            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-gray-700" />
+            <DropdownMenu.Separator className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
             <DropdownMenu.Group className="flex cursor-pointer flex-col px-2">
               <DropdownMenu.Item className={dropdownItemStyle}>
                 <div className="flex flex-col">
                   <div className="align-items flex justify-between">
                     <h2 className="self-start text-sm">{dropdownTitle}</h2>
                   </div>
-                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-gray-300" />
+                  <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
                 </div>
               </DropdownMenu.Item>
               <DropdownMenu.Item className={dropdownItemStyle} onSelect={copyShareUrl}>
@@ -149,7 +167,7 @@ export function MoreOptionsDropdown({
                     data-testid="twitter-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={handleTrackShares[ShareType.TWITTER]}
+                    onClick={trackSocialShareX}
                     href={`https://twitter.com/intent/tweet?&url=${shareUrl}&text=${encodeURI(
                       summary
                     )}&hashtags=electricitymaps`}
@@ -163,7 +181,7 @@ export function MoreOptionsDropdown({
                     data-testid="facebook-chart-share"
                     target="_blank"
                     rel="noopener"
-                    onClick={handleTrackShares[ShareType.FACEBOOK]}
+                    onClick={trackSocialShareFacebook}
                     href={`https://facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${encodeURI(
                       summary
                     )}`}
@@ -178,7 +196,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={handleTrackShares[ShareType.LINKEDIN]}
+                    onClick={trackSocialShareLinkedIn}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaLinkedin size={DEFAULT_ICON_SIZE} />
@@ -190,7 +208,7 @@ export function MoreOptionsDropdown({
                     href={`https://www.reddit.com/web/submit?url=${shareUrl}`}
                     target="_blank"
                     rel="noopener"
-                    onClick={handleTrackShares[ShareType.REDDIT]}
+                    onClick={trackSocialShareReddit}
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaReddit size={DEFAULT_ICON_SIZE} />
@@ -214,7 +232,7 @@ export function MoreOptionsDropdown({
   );
 }
 
-const useDropdownCtl = () => {
+export const useDropdownCtl = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useMemo(
     () => ({
@@ -226,11 +244,3 @@ const useDropdownCtl = () => {
 
   return { isOpen, ...methods };
 };
-
-export function useShowMoreOptions() {
-  const isMoreOptionsEnabled = useFeatureFlag('more-options-dropdown');
-  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isConsumption = useAtomValue(isConsumptionAtom);
-
-  return isMoreOptionsEnabled && !displayByEmissions && isConsumption;
-}

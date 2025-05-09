@@ -4,15 +4,15 @@ This is a capacitor project that builds the mobile apps from the web directory
 
 ## Prerequisites
 
+- Setup Ruby environment: Use [`rbenv`](https://github.com/rbenv/rbenv) to manage versions, and make sure you install and set `3.1.2` as the default
 - Follow this guide: https://capacitorjs.com/docs/getting-started/environment-setup (but skip the Android SDK part)
-- install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
   - Also go to Tools > SDK Manager and install SDK v29
 - Follow the steps here: https://www.brainfever.co.uk/2022/02/04/build-tool-32-1-0-rc1-is-missing-dx-at/
   - instead of last step, add the following to your `.zshrc` file:
   ```bash
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
+  export JAVA_HOME='/Applications/Android Studio.app/Contents/jbr/Contents/Home'
   export PATH=$JAVA_HOME/bin:$PATH
   export PATH=$PATH:/Library/Android/sdk/platform-tools
   export PATH=$PATH:/Library/Android/sdk/tools
@@ -77,10 +77,18 @@ See [fastlane/README.md](./fastlane/README.md) for more information.
    - `android/electricitymap.keystore`
    - `android/keystore.properties`
    - `fastlane/fastlane-key.json`
+     - rename `fastlane/fastlane-key.json` to `gc_keys.json`
 3. Update keys in `.env.default`:
    - Add your own Apple ID
    - Open https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable
    - Ask internally for the team ids
+4. Run `fastlane match appstore` to create or install the certificate and provisioning profile
+5. Ensure your match provisioning profile has the correct certificate:
+
+- Find your match provisoning profile in the [developer portal](https://developer.apple.com/account/resources/profiles/list):
+  - Select a `match AppStore ...` item and confirm your name in the "Created By" field
+- Confirm your match provisioning profile has the correct certificate:
+  - Click "Edit" in right-hand corner, select correct certificate (probably most recent), and save
 
 ### Making a beta build
 
@@ -121,3 +129,8 @@ With:
 `source="$(readlink -f "${source}")"`
 
 </details>
+
+<details>
+  <summary>Podfile.lock being updated with cocoapods version</summary>
+
+Install latest version of cocoapods with `gem install cocoapods`. If your version is higher, please test and commit the new change.

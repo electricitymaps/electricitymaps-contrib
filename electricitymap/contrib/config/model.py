@@ -98,9 +98,10 @@ class Parsers(ParsersBaseModel):
     consumptionForecast: str | None
     generationForecast: str | None
     productionPerModeForecast: str | None
+    dayaheadLocationalMarginalPrice: str | None
+    realtimeLocationalMarginalPrice: str | None
     price: str | None
     production: str | None
-    productionPerUnit: str | None
     productionCapacity: str | None
 
 
@@ -115,7 +116,6 @@ class Delays(StrictBaseModel):
     price: PositiveInt | None
     production: PositiveInt | None
     productionPerModeForecast: PositiveInt | None
-    productionPerUnit: PositiveInt | None
 
 
 class Zone(StrictBaseModelWithAlias):

@@ -181,7 +181,10 @@ emissionFactors:
         value: 364.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 361.6
+        value: 365.29
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 366.8
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
@@ -200,7 +203,10 @@ emissionFactors:
         value: 364.84
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 361.6
+        value: 365.29
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 366.8
     unknown:
       _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
         22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
@@ -293,12 +299,27 @@ fallbackZoneMixes:
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.17617510676147885
+        hydro: 0.17166990487663167
         hydro discharge: 0.0
-        nuclear: 0.19522456692239287
+        nuclear: 0.19333188004437157
         oil: 0.0
-        solar: 0.0026566151248421047
-        unknown: 0.6259436997628433
+        solar: 0.002289276607717642
+        unknown: 0.6327089276344565
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.17622762721165375
+        hydro discharge: 0.0
+        nuclear: 0.18627943313791046
+        oil: 0.0
+        solar: 0.0021536301209946376
+        unknown: 0.635339299328092
         wind: 0.0
 parsers:
   consumption: ENTSOE.fetch_consumption
@@ -312,4 +333,18 @@ region: Europe
 sources:
   IEA 2015:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
+subZoneNames:
+  - RU-1
+  - RU-2
+  - RU-AS
+  - RU-EU
+  - RU-FE
+  - RU-KGD
+bypassedSubZones:
+  - RU-1
+  - RU-2
+  - RU-AS
+  - RU-EU
+  - RU-FE
+  - RU-KGD
 timezone: Europe/Moscow

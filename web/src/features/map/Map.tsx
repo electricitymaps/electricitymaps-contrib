@@ -1,6 +1,7 @@
 import { App } from '@capacitor/app';
 import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
+import { SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -447,7 +448,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
       style={{
-        minWidth: '100vw',
+        minWidth: `calc(100vw - ${SIDEBAR_WIDTH})`,
         height: '100vh',
         position: 'absolute',
       }}

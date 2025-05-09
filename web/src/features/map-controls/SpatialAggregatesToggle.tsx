@@ -1,8 +1,8 @@
 import ToggleButton from 'components/ToggleButton';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom } from 'jotai';
 import { memo, type ReactElement, useCallback } from 'react';
-import trackEvent from 'utils/analytics';
-import { SpatialAggregate, TrackEvent } from 'utils/constants';
+import { SpatialAggregate } from 'utils/constants';
 import { spatialAggregateAtom } from 'utils/state/atoms';
 
 const options = [
@@ -18,35 +18,32 @@ const options = [
   },
 ];
 
-function SpatialAggregatesToggle(): ReactElement {
+function SpatialAggregatesToggle({
+  transparentBackground = false,
+}: {
+  transparentBackground?: boolean;
+}): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(spatialAggregateAtom);
+  const trackEvent = useTrackEvent();
+  const { trackZoneMode } = useEvents(trackEvent);
+
   const onSetCurrentMode = useCallback(
-    (option: string) => {
-      if (
-        (option === SpatialAggregate.ZONE && currentMode === SpatialAggregate.ZONE) ||
-        (option === SpatialAggregate.COUNTRY && currentMode === SpatialAggregate.COUNTRY)
-      ) {
+    (option: SpatialAggregate | '') => {
+      if (option === '') {
         return;
       }
-      trackEvent(TrackEvent.SPATIAL_AGGREGATE_CLICKED, { spatialAggregate: option });
-      setCurrentMode(
-        currentMode === SpatialAggregate.COUNTRY
-          ? SpatialAggregate.ZONE
-          : SpatialAggregate.COUNTRY
-      );
+      trackZoneMode(option);
+      setCurrentMode(option);
     },
-    [currentMode, setCurrentMode]
+    [setCurrentMode, trackZoneMode]
   );
 
   return (
     <ToggleButton
       options={options}
-      tooltipKey="tooltips.aggregateInfo"
-      selectedOption={
-        currentMode === SpatialAggregate.ZONE ? options[1].value : options[0].value
-      }
+      selectedOption={currentMode}
       onToggle={onSetCurrentMode}
-      transparentBackground
+      transparentBackground={transparentBackground}
     />
   );
 }

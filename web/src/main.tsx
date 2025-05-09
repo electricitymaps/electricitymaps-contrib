@@ -9,8 +9,10 @@ import { captureException } from '@sentry/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
+import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
 import { zoneExists } from 'features/panels/zone/util';
+import { PostHog, PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -31,7 +33,14 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
+declare global {
+  interface Window {
+    posthog?: PostHog;
+  }
+}
+
 const isProduction = import.meta.env.PROD;
+
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -42,6 +51,13 @@ if (isProduction) {
       scope.setUser({ id: getSentryUuid() }); // Set the user context with a random UUID for Sentry so we can correlate errors with users anonymously
       scope.setTag('browser.locale', window.navigator.language); // Set the language tag for Sentry to correlate errors with the user's language
       return scope;
+    },
+    beforeSend(event) {
+      // Ignore all plausible-related errors
+      if (JSON.stringify(event).toLowerCase().includes('plausible')) {
+        return null;
+      }
+      return event;
     },
   });
 }
@@ -77,7 +93,7 @@ window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent
   window.location.reload();
 });
 
-const RankingPanel = lazy(() => import('features/panels/ranking-panel/RankingPanel'));
+const SearchPanel = lazy(() => import('features/panels/search-panel/SearchPanel'));
 const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
 
 /**
@@ -233,7 +249,7 @@ const router = createBrowserRouter([
         path: '/map/:urlTimeRange?/:resolution?/:urlDatetime?',
         element: (
           <TimeRangeAndResolutionGuardWrapper>
-            <RankingPanel />
+            <SearchPanel />
           </TimeRangeAndResolutionGuardWrapper>
         ),
       },
@@ -242,7 +258,13 @@ const router = createBrowserRouter([
         element: (
           <ValidZoneIdGuardWrapper>
             <TimeRangeAndResolutionGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
+              <Suspense
+                fallback={
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-36 sm:h-auto">
+                    <LoadingSpinner />
+                  </GlassContainer>
+                }
+              >
                 <ZoneDetails />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>
@@ -262,17 +284,29 @@ const router = createBrowserRouter([
 ]);
 
 const container = document.querySelector('#root');
+
 if (container) {
   const root = createRoot(container);
+
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
+          <PostHogWrapper>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </PostHogWrapper>
         </HelmetProvider>
       </I18nextProvider>
     </StrictMode>
   );
+}
+
+function PostHogWrapper({ children }: { children: JSX.Element }) {
+  const posthog = window?.posthog;
+  if (!posthog) {
+    return children;
+  }
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }

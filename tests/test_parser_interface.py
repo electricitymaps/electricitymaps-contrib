@@ -25,10 +25,11 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "exchange": _EXCHANGE_FUNCTION_ARGS,
     "exchangeForecast": _EXCHANGE_FUNCTION_ARGS,
     "generationForecast": _PARSER_FUNCTION_ARGS,
+    "dayaheadLocationalMarginalPrice": _PARSER_FUNCTION_ARGS,
+    "realtimeLocationalMarginalPrice": _PARSER_FUNCTION_ARGS,
     "price": _PARSER_FUNCTION_ARGS,
     "production": _PARSER_FUNCTION_ARGS,
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
-    "productionPerUnit": _PARSER_FUNCTION_ARGS,
     "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
@@ -48,10 +49,11 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "exchange": _RETURN_PARSER_TYPE,
     "exchangeForecast": _RETURN_PARSER_TYPE,
     "generationForecast": _RETURN_PARSER_TYPE,
+    "dayaheadLocationalMarginalPrice": _RETURN_PARSER_TYPE,
+    "realtimeLocationalMarginalPrice": _RETURN_PARSER_TYPE,
     "price": _RETURN_PARSER_TYPE,
     "production": _RETURN_PARSER_TYPE,
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
-    "productionPerUnit": _RETURN_PARSER_TYPE,
     "productionCapacity": _RETURN_PARSER_TYPE,
 }
 
@@ -154,7 +156,7 @@ class ParserInterfaceTestcase(unittest.TestCase):
 
     def test_unused_files(self):
         parser_files_used = {
-            f'{f.function_name.rsplit(".", 1)[0]}.py'
+            f"{f.function_name.rsplit('.', 1)[0]}.py"
             for f in self.zone_parser_functions
         }
 

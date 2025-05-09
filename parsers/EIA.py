@@ -384,7 +384,7 @@ PRODUCTION_MIX = (
     f"{BASE_URL}/fuel-type-data/data/"
     "?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly"
 )
-EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
+EXCHANGE = f"{BASE_URL}/interchange-data/data/?data[]=value{{}}&frequency=hourly"
 
 FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
     "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
@@ -488,10 +488,10 @@ def create_production_storage(
 
     # have to have early returns because of downstream validation in ProductionBreakdownList
     if fuel_type == "hydro_storage":
-        storage_mix.add_value("hydro", production_value)
+        storage_mix.add_value("hydro", -production_value)
         return None, storage_mix
     elif fuel_type == "battery_storage":
-        storage_mix.add_value("battery", production_value)
+        storage_mix.add_value("battery", -production_value)
         return None, storage_mix
     else:
         production_mix.add_value(
@@ -542,6 +542,24 @@ def fetch_production_mix(
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
             for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
+
+        # hardcoded exception
+        # parser is double counting "geothermal" and "unknown"
+        # we set unknown to 0.0 and keep geothermal as is
+        # see GMM-555 for details
+        if zone_key == "US-CAL-IID" and production_mode == "unknown":
+            first_appearance = datetime(
+                year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc
+            )
+            last_apperance = datetime(
+                year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc
+            )
+            for event in production_and_storage_values:
+                if (
+                    event["datetime"] >= first_appearance
+                    and event["datetime"] <= last_apperance
+                ):
+                    event["value"] = 0.0
 
         for point in production_and_storage_values:
             production_mix, storage_mix = create_production_storage(

@@ -6,7 +6,7 @@ from collections.abc import Set
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
-from typing import Any, Optional
+from typing import Any
 
 import pandas as pd
 from pydantic import BaseModel, PrivateAttr, ValidationError, validator
@@ -16,9 +16,9 @@ from electricitymap.contrib.config import (
     RETIRED_ZONES_CONFIG,
     ZONES_CONFIG,
 )
-from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import ProductionModes, StorageModes
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -153,7 +153,7 @@ class ProductionMix(Mix):
         and to check for negative values and set them to None.
         This method also keeps track of the modes that have been corrected.
         """
-        if name not in PRODUCTION_MODES:
+        if name not in ProductionModes.values():
             raise AttributeError(f"Unknown production mode: {name}")
         if value is not None and value < 0:
             self._corrected_negative_values.add(name)
@@ -202,11 +202,12 @@ class ProductionMix(Mix):
         """
         merged_production_mix = cls()
         for production_mix in production_mixes:
-            for mode in set(PRODUCTION_MODES).intersection(
-                production_mix.__fields_set__
-            ):
-                value = getattr(production_mix, mode)
-                merged_production_mix.add_value(mode, value)
+            # Process all set production modes
+            for mode in ProductionModes.values():
+                if mode in production_mix.__fields_set__:
+                    merged_production_mix.add_value(mode, getattr(production_mix, mode))
+
+            # Update corrected negative values
             merged_production_mix._corrected_negative_values.update(
                 production_mix.corrected_negative_modes
             )
@@ -250,7 +251,7 @@ class StorageMix(Mix):
         """
         Overriding the setattr method to raise an error if the mode is unknown.
         """
-        if name not in STORAGE_MODES:
+        if name not in StorageModes.values():
             raise AttributeError(f"Unknown storage mode: {name}")
         return super().__setattr__(name, value)
 
@@ -261,12 +262,11 @@ class StorageMix(Mix):
         The values are summed.
         """
         merged_storage_mix = cls()
-        for storage_mix_to_merge in storage_mixes:
-            for mode in set(STORAGE_MODES).intersection(
-                storage_mix_to_merge.__fields_set__
-            ):
-                value = getattr(storage_mix_to_merge, mode)
-                merged_storage_mix.add_value(mode, value)
+        for storage_mix in storage_mixes:
+            for mode in StorageModes.values():
+                if mode in storage_mix.__fields_set__:
+                    merged_storage_mix.add_value(mode, getattr(storage_mix, mode))
+
         return merged_storage_mix
 
     @classmethod
@@ -328,7 +328,7 @@ class Event(BaseModel, ABC):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"
             )
-        return v
+        return v.replace(second=0, microsecond=0)
 
     @staticmethod
     @abstractmethod
@@ -421,7 +421,7 @@ class Exchange(Event):
         return v
 
     @validator("netFlow")
-    def _validate_value(cls, v: float):
+    def _validate_value(cls, v: float | None):
         if v is None:
             raise ValueError(f"Exchange cannot be None: {v}")
         if math.isnan(v):
@@ -439,7 +439,7 @@ class Exchange(Event):
         source: str,
         netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["Exchange"]:
+    ) -> "Exchange | None":
         try:
             return Exchange(
                 zoneKey=zoneKey,
@@ -501,7 +501,7 @@ class TotalProduction(Event):
     value: float | None
 
     @validator("value")
-    def _validate_value(cls, v: float):
+    def _validate_value(cls, v: float | None):
         if v is None:
             raise ValueError(f"Total production cannot be None: {v}")
         if math.isnan(v):
@@ -521,7 +521,7 @@ class TotalProduction(Event):
         source: str,
         value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["TotalProduction"]:
+    ) -> "TotalProduction | None":
         try:
             return TotalProduction(
                 zoneKey=zoneKey,
@@ -600,7 +600,7 @@ class ProductionBreakdown(AggregatableEvent):
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["ProductionBreakdown"]:
+    ) -> "ProductionBreakdown | None":
         try:
             # Log warning if production has been corrected.
             if production is not None and production.has_corrected_negative_values:
@@ -710,7 +710,7 @@ class ProductionBreakdown(AggregatableEvent):
             "sourceType": self.sourceType,
             "correctedModes": []
             if self.production is None
-            else list(self.production._corrected_negative_values),
+            else list(map(str, self.production._corrected_negative_values)),
         }
 
 
@@ -742,7 +742,7 @@ class TotalConsumption(Event):
         source: str,
         consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["TotalConsumption"]:
+    ) -> "TotalConsumption | None":
         try:
             return TotalConsumption(
                 zoneKey=zoneKey,
@@ -808,7 +808,7 @@ class Price(Event):
         price: float | None,
         currency: str,
         sourceType: EventSourceType = EventSourceType.measured,
-    ) -> Optional["Price"]:
+    ) -> "Price | None":
         try:
             return Price(
                 zoneKey=zoneKey,
@@ -834,6 +834,61 @@ class Price(Event):
             "zoneKey": self.zoneKey,
             "currency": self.currency,
             "price": self.price,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
+
+
+class LocationalMarginalPrice(Price):
+    node: str
+
+    @validator("node")
+    def _validate_node(cls, v: str) -> str:
+        clean_value = v.strip()
+        if not clean_value:
+            raise ValueError(f"Node cannot be an invalid string: {v}")
+        if clean_value != v:
+            raise ValueError(f"Node should not contain leading or trailing spaces: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        node: str,
+        sourceType: EventSourceType = EventSourceType.measured,
+    ) -> "LocationalMarginalPrice | None":
+        try:
+            return LocationalMarginalPrice(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                price=price,
+                currency=currency,
+                node=node,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating Locational Marginal Price Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "Locational Marginal Price",
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "currency": self.currency,
+            "price": self.price,
+            "node": self.node,
             "source": self.source,
             "sourceType": self.sourceType,
         }

@@ -10,8 +10,9 @@ from requests import Session
 from electricitymap.contrib.config import CONFIG_DIR, ZONE_PARENT
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.config.reading import read_zones_config
+from electricitymap.contrib.lib.data_types import ParserDataType
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.parsers import PARSER_KEY_TO_DICT
+from parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from scripts.utils import write_zone_config
 
 logger = getLogger(__name__)
@@ -20,7 +21,7 @@ ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 CAPACITY_MODES = PRODUCTION_MODES + [f"{mode} storage" for mode in STORAGE_MODES]
 
 
-CAPACITY_PARSERS = PARSER_KEY_TO_DICT["productionCapacity"]
+CAPACITY_PARSERS = PARSER_DATA_TYPE_TO_DICT[ParserDataType.PRODUCTION_CAPACITY]
 
 # Get productionCapacity source to zones mapping
 CAPACITY_PARSER_SOURCE_TO_ZONES = {}
@@ -79,7 +80,6 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
     """Update the capacity config for a zone"""
     if zone_key not in ZONES_CONFIG:
         raise ValueError(f"Zone {zone_key} does not exist in the zones config")
-
     _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
     if "capacity" in _new_zone_config:
         capacity = _new_zone_config["capacity"]
@@ -90,7 +90,7 @@ def update_zone_capacity_config(zone_key: ZoneKey, data: dict) -> None:
         else:
             capacity = generate_zone_capacity_config(capacity, data)
     else:
-        capacity = {key: [value] for key, value in data.items()}
+        capacity = {key: [value] for key, value in data.items() if value["value"] > 0}
 
     _new_zone_config["capacity"] = capacity
 
@@ -112,6 +112,10 @@ def generate_zone_capacity_config(
     updated_capacity_config = deepcopy(capacity_config)
     for mode in existing_capacity_modes:
         if isinstance(capacity_config[mode], float | int):
+            if (
+                data[mode]["value"] == 0
+            ):  # Remove data points with 0 value if the existing capacity is a single value
+                continue
             updated_capacity_config[mode] = [data[mode]]
         elif isinstance(capacity_config[mode], list):
             updated_capacity_config[mode] = generate_zone_capacity_list(
@@ -120,7 +124,7 @@ def generate_zone_capacity_config(
         else:
             raise ValueError(f"Invalid capacity config type for {mode}")
 
-    new_modes = [m for m in data if m not in capacity_config]
+    new_modes = [m for m in data if m not in capacity_config and data[m]["value"] > 0]
     for mode in new_modes:
         updated_capacity_config[mode] = [data[mode]]
     return updated_capacity_config

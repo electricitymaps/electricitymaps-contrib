@@ -1,3 +1,5 @@
+import { SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
+
 export const getSafeTooltipPosition = (
   mousePositionX: number,
   mousePositionY: number,
@@ -5,17 +7,18 @@ export const getSafeTooltipPosition = (
   tooltipWidth: number,
   tooltipHeight: number
 ) => {
-  const ToolTipFlipBoundaryX = tooltipWidth + 30;
-  const ToolTipFlipBoundaryY = tooltipHeight - 40;
-  const xOffset = 10;
-  const yOffset = tooltipHeight - 40;
+  const sidebarWidth = Number.parseInt(SIDEBAR_WIDTH.replace('px', ''));
+  const ToolTipFlipBoundaryX = tooltipWidth + 80;
+  const ToolTipFlipBoundaryY = tooltipHeight + 16;
+  const xOffset = sidebarWidth + 10;
+  const yOffset = tooltipHeight + 16;
 
   const tooltipPosition = {
     x: mousePositionX + xOffset,
     y: mousePositionY - yOffset,
   };
   if (screenWidth - mousePositionX < ToolTipFlipBoundaryX) {
-    tooltipPosition.x = mousePositionX - tooltipWidth;
+    tooltipPosition.x = mousePositionX - tooltipWidth + sidebarWidth - 10;
   }
   if (mousePositionY < ToolTipFlipBoundaryY) {
     tooltipPosition.y = mousePositionY;

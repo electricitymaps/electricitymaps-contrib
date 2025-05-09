@@ -18,7 +18,7 @@ SOURCE = "Ember, Yearly electricity data"
 SPECIFIC_MODE_MAPPING = {
     "AR": {"other fossil": "unknown"},
     "BD": {"other fossil": "oil"},
-    "BO": {"other fossil": "unknown"},
+    "BO": {"other fossil": "unknown", "gas": "unknown"},
     "CO": {"other fossil": "oil"},
     "CR": {"other fossil": "oil", "other renewables": "geothermal"},
     "CY": {"other fossil": "oil"},
@@ -90,13 +90,13 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
 
     if isinstance(row[category_col], str):
         mode = row[category_col].lower()
-        if mode in ENERGIES:
-            production_mode = mode
-        elif (
+        if (
             row["zone_key"] in SPECIFIC_MODE_MAPPING
             and mode in SPECIFIC_MODE_MAPPING[row["zone_key"]]
         ):
             production_mode = SPECIFIC_MODE_MAPPING[row["zone_key"]][mode]
+        elif mode in ENERGIES:
+            production_mode = mode
         elif mode in ember_mapper:
             production_mode = ember_mapper[mode]
         else:
@@ -109,6 +109,10 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
 
 
 def format_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
+    if ember_df.empty:
+        logger.warning("Empty Ember data received")
+        return ember_df
+    logger.info("Formatting Ember data")
     ember_df.query(
         'variable != "Clean" and variable != "Fossil" and variable != "Wind and solar"',
         inplace=True,
@@ -154,7 +158,7 @@ def get_capacity_dict_from_df(df_capacity: pd.DataFrame) -> dict[str, Any]:
         for _i, data in df_zone.iterrows():
             mode_capacity = {}
             mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
-            mode_capacity["value"] = round(float(data["capacity_mw"]), 0)
+            mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
             mode_capacity["source"] = SOURCE
             zone_capacity[data["mode"]] = mode_capacity
         all_capacity[zone] = zone_capacity
@@ -176,6 +180,7 @@ def fetch_production_capacity_for_all_zones(
 def fetch_production_capacity(
     target_datetime: datetime, zone_key: ZoneKey, session: Session
 ) -> dict[str, Any] | None:
+    """Get capacity data for a specific zone. The unit is the MW"""
     all_capacity = fetch_production_capacity_for_all_zones(
         target_datetime=target_datetime, session=session, zone_key=zone_key
     )

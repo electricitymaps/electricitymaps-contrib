@@ -497,6 +497,7 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Great Britain ⇄ North Ireland: ["Moyle": 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
 - [Great Britain ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-available-from-nord-pool)
 - Great Britain ⇄ Ireland: ["East-West Interconnector": 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
+- Great Britain ⇄ Ireland: ["Greenlink Interconnector": 500 MW](https://en.wikipedia.org/wiki/Greenlink)
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/HVDC_Cross-Channel), ["ElecLink": 1000 MW](https://www.getlinkgroup.com/en/our-group/eleclink/) & ["IFA2": 1000 MW](https://en.wikipedia.org/wiki/IFA-2)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
 - Great Britain ⇄ Orkney: ["33kV SHEPD cables": 40 MW](https://www.ofgem.gov.uk/sites/default/files/docs/2018/12/orkney_final_needs_case_consultation.pdf)

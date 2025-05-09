@@ -4,5 +4,53 @@ bounding_box:
   - - 24.560840608406096
     - -3.9032530649304604
 country: AO
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 176.83
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 176.83
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 176.83
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 176.83
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.10893289709207192
+        geothermal: 0.0
+        hydro: 0.70428882343253
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.1622255605690663
+        solar: 0.02455261358974591
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.10893206031944175
+        geothermal: 0.0
+        hydro: 0.7042911878765116
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.16222413992273907
+        solar: 0.024552889130142887
+        unknown: 0.0
+        wind: 0.0
 region: Africa
 timezone: Africa/Luanda

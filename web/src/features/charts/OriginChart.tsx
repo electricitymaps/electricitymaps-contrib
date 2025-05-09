@@ -8,7 +8,7 @@ import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
-import { ChartTitle } from './ChartTitle';
+import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
@@ -97,7 +97,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        id={Charts.ORIGIN_CHART}
+        id={Charts.ELECTRICITY_MIX_CHART}
         title={`country-history.${titleDisplayMode}${titleMixMode}`}
       />
     );
@@ -110,7 +110,8 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
         badge={badge}
         isEstimated={Boolean(text)}
         unit={valueAxisLabel}
-        id={Charts.ORIGIN_CHART}
+        id={Charts.ELECTRICITY_MIX_CHART}
+        subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative ">
         <AreaGraph
@@ -132,7 +133,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       </div>
       {isConsumptionAndAggregatedResolution && (
         <div
-          className="prose my-1 rounded bg-gray-200 p-2 text-xs leading-snug dark:bg-gray-800 dark:text-white dark:prose-a:text-white"
+          className="prose my-1 rounded bg-neutral-200 p-2 text-xs leading-snug dark:bg-neutral-800 dark:text-white dark:prose-a:text-white"
           dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
         />
       )}

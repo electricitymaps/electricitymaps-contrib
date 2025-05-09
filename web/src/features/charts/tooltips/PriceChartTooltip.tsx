@@ -19,11 +19,12 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
     priceObject?.value,
     priceObject?.currency
   );
-  const currencySymbol = getSymbolFromCurrency(currency) ?? '?';
   const price = Number.isFinite(value) ? value : '?';
+  const currencySymbol = getSymbolFromCurrency(currency) ?? '?';
+  const currencySymbolToDisplay = price === '?' ? '' : currencySymbol;
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-64">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-64">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
@@ -32,7 +33,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{price}</b>
-        {currencySymbol} / {unit}
+        {currencySymbolToDisplay} / {unit}
       </p>
     </div>
   );

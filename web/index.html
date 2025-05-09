@@ -30,7 +30,6 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
     <!-- Mobile linking -->
-    <meta name="apple-itunes-app" content="app-id=1224594248" />
     <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymaps.com" />
     <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/app.electricitymaps.com" />
     <link rel="alternate" href="ios-app://1224594248/https/app.electricitymaps.com" />
@@ -99,11 +98,10 @@
     <link rel="preconnect" href="https://app-backend.electricitymaps.com/" />
     <link rel="preconnect" href="https://o192958.ingest.sentry.io" />
     <link rel="preconnect" href="https://plausible.io" />
-
+    <link rel="preconnect" href="https://yo.electricitymaps.com" />
     <!-- Preload font files to improve performance-->
     <link rel="preload" href="/fonts/Poppins-Medium.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossorigin />
-
     <!-- Plausible -->
     <script defer data-domain="app.electricitymaps.com" src="https://plausible.io/js/plausible.local.js"></script>
     <!-- Polyfill for .at() -->
@@ -132,9 +130,34 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
+    <!-- Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-P2QJ3KDQ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- CookieYes Banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e8dc92a5b54e1aaf957f6897/script.js"></script>
+    <!-- End CookieYes banner -->
+
     <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QJ3KDQ" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <noscript>
       <img src="/images/electricity-maps-logo.svg" alt="Electricity Maps logo" />
       <div>

@@ -40,6 +40,7 @@
     "no-constructor-return": "error",
     "no-implicit-coercion": "error",
     "prefer-regex-literals": "error",
+    "import/no-named-as-default": "warn",
     "no-restricted-syntax": [
       "error",
       {

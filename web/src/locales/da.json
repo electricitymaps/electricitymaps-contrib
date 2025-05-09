@@ -90,7 +90,6 @@
       "licensing": "Elpriser er utilgængelige for dette område på grund af licensbetingelser"
     },
     "emissionFactorDataSourcesTooltip": "CO₂-udledningsfaktorerne for elproduktionen kan stamme fra flere forskellige kilder. Dette sker, fordi flere faktorer, såsom maskin-specifikke data, generation og nogen gange også reservekilder, er inkluderet i udledningsberegningerne.",
-    "disabledBreakdownChartReason": "Deaktiveret i forbrugs-tilstand. Skift til produktions-tilstand for at se diagrammet",
     "dataIsDelayed": "Data for dette område kan være op til {{hours}} timer forsinket. Reeltidsdata kan ikke vises.",
     "estimated": "estimeret",
     "aggregated": "aggregeret",
@@ -103,11 +102,7 @@
     "now": "Nu",
     "by-source": {
       "emissions": "CO₂-udledning",
-      "electricity-production": "Elproduktion",
-      "electricity-consumption": "Elforbrug",
-      "total-emissions": "Samlede CO₂-udledninger",
-      "total-electricity-production": "Samlet elproduktion",
-      "total-electricity-consumption": "Samlet elforbrug"
+      "total-emissions": "Samlede CO₂-udledninger"
     },
     "graph-legends": {
       "installed-capacity": "Installeret kapacitet",
@@ -182,18 +177,8 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "Timevis data for:",
-      "3mo": "Daglig data for:",
-      "12mo": "Månedlig data for:",
-      "all_months": "Månedlig data for:",
-      "all_years": "Årlig data for:"
-    },
-    "3mo": "daglig",
-    "72h": "timevis",
-    "12mo": "månedlig",
-    "all_months": "månedlig",
-    "all_years": "årlig"
+    "navigate": "Navigere",
+    "live": "Live"
   },
   "left-panel": {
     "applied-methodologies": {
@@ -455,9 +440,6 @@
     "AG": {
       "zoneName": "Antigua og Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albanien"
     },
@@ -467,14 +449,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarktis"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "Amerikansk Samoa"
     },
     "AT": {
       "zoneName": "Østrig"
@@ -575,9 +551,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius og Saba"
-    },
     "BR": {
       "zoneName": "Brasilien"
     },
@@ -602,9 +575,6 @@
     },
     "BT": {
       "zoneName": "Bhutan"
-    },
-    "BV": {
-      "zoneName": "Bouvetøen"
     },
     "BW": {
       "zoneName": "Botswana"
@@ -670,9 +640,6 @@
       "countryName": "Canada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Cocosøerne"
-    },
     "CD": {
       "zoneName": "Den Demokratiske Republik Congo"
     },
@@ -687,9 +654,6 @@
     },
     "CI": {
       "zoneName": "Elfenbenskysten"
-    },
-    "CK": {
-      "zoneName": "Cookøerne"
     },
     "CL-CHP": {
       "countryName": "Chile",
@@ -727,9 +691,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Juleøerne"
     },
     "CY": {
       "zoneName": "Cypern"
@@ -887,9 +848,6 @@
       "countryName": "Storbritannien",
       "zoneName": "Shetland Islands"
     },
-    "GD": {
-      "zoneName": "Grenada"
-    },
     "GE": {
       "zoneName": "Georgien"
     },
@@ -995,117 +953,9 @@
       "countryName": "Indien",
       "zoneName": "Andaman og Nicobar-øerne"
     },
-    "IN-AP": {
-      "countryName": "Indien",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Indien",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Indien",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Indien",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Indien",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indien",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Indien",
-      "zoneName": "Dadra og Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Indien",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indien",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Indien",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Indien",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Indien",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indien",
-      "zoneName": "Jammu og Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Indien",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Indien",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Indien",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Indien",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Indien",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Indien",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Indien",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Indien",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Indien",
-      "zoneName": "Odisha"
-    },
-    "IN-PB": {
-      "countryName": "Indien",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Indien",
-      "zoneName": "Puducherry"
-    },
-    "IN-RJ": {
-      "countryName": "Indien",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Indien",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Indien",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Indien",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indien",
@@ -1115,19 +965,11 @@
       "countryName": "Indien",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Indien",
-      "zoneName": "West Bengal"
-    },
     "IO": {
       "zoneName": "Det Britiske Territorium i Det Indiske Ocean"
     },
     "IQ": {
       "zoneName": "Irak"
-    },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -1223,14 +1065,8 @@
     "KH": {
       "zoneName": "Cambodja"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Comorerne"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts og Nevis"
     },
     "KP": {
       "zoneName": "Nordkorea"
@@ -1295,9 +1131,6 @@
     "MG": {
       "zoneName": "Madagaskar"
     },
-    "MH": {
-      "zoneName": "Marshalløerne"
-    },
     "MK": {
       "zoneName": "Nordmakedonien"
     },
@@ -1312,9 +1145,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Nordmarianerne"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -1399,9 +1229,6 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolk Island"
-    },
     "NG": {
       "zoneName": "Nigeria"
     },
@@ -1436,12 +1263,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "New Zealand"
@@ -1496,9 +1317,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre og Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1591,9 +1409,6 @@
     "SG": {
       "zoneName": "Singapore"
     },
-    "SH": {
-      "zoneName": "Sankt Helena, Ascension og Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenien"
     },
@@ -1605,9 +1420,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1627,18 +1439,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Syrien"
     },
     "SZ": {
       "zoneName": "Eswatini"
-    },
-    "TC": {
-      "zoneName": "Turks- og Caicosøerne"
     },
     "TD": {
       "zoneName": "Tchad"
@@ -1654,9 +1459,6 @@
     },
     "TJ": {
       "zoneName": "Tadsjikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Østtimor"
@@ -1676,9 +1478,6 @@
     "TT": {
       "zoneName": "Trinidad og Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Taiwan"
     },
@@ -1694,9 +1493,6 @@
     },
     "UG": {
       "zoneName": "Uganda"
-    },
-    "UM": {
-      "zoneName": "USA's ydre småøer"
     },
     "US": {
       "zoneName": "USA"
