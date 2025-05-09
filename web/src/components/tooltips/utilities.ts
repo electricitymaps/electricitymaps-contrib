@@ -30,16 +30,14 @@ export const getSafeTooltipPosition = (
 export const getOffsetTooltipPosition = ({
   mousePositionX,
   mousePositionY,
-  tooltipHeight,
   isBiggerThanMobile,
 }: {
   mousePositionX: number;
   mousePositionY: number;
-  tooltipHeight: number;
   isBiggerThanMobile: boolean;
 }) => {
-  const xOffset = 10;
-  const yOffset = tooltipHeight - 40;
+  const xOffset = 15;
+  const yOffset = 10;
 
   // For smaller screens we translate the tooltip to the top
   if (!isBiggerThanMobile) {

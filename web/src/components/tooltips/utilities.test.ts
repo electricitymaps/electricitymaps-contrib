@@ -34,7 +34,6 @@ describe('getOffsetTooltipPosition', () => {
     const result = getOffsetTooltipPosition({
       mousePositionX: 100,
       mousePositionY: 100,
-      tooltipHeight: 50,
       isBiggerThanMobile: false,
     });
     expect(result).toEqual({ x: 0, y: 0 });
@@ -44,19 +43,17 @@ describe('getOffsetTooltipPosition', () => {
     const result = getOffsetTooltipPosition({
       mousePositionX: 100,
       mousePositionY: 100,
-      tooltipHeight: 50,
       isBiggerThanMobile: true,
     });
-    expect(result).toEqual({ x: 110, y: 90 });
+    expect(result).toEqual({ x: 115, y: 90 });
   });
 
   it('should adjust the tooltip position when it exceeds the screen height for bigger screens', () => {
     const result = getOffsetTooltipPosition({
       mousePositionX: 100,
       mousePositionY: 30,
-      tooltipHeight: 50,
       isBiggerThanMobile: true,
     });
-    expect(result).toEqual({ x: 110, y: 20 });
+    expect(result).toEqual({ x: 115, y: 20 });
   });
 });

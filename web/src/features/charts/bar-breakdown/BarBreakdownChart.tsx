@@ -83,7 +83,6 @@ function BarBreakdownChart({
       const position = getOffsetTooltipPosition({
         mousePositionX: clientX || 0,
         mousePositionY: clientY || 0,
-        tooltipHeight: displayByEmissions ? 190 : 360,
         isBiggerThanMobile,
       });
 
