@@ -26,50 +26,59 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 18370.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 19140.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 954250.0
+      value: 954630.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 977080.0
+      value: 977460.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 1018390.0
+      value: 1019240.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 1046920.0
+      value: 1048340.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 1071840.0
+      value: 1073250.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 1096470.0
+      value: 1100720.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 1140180.0
+      value: 1146470.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1174540.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 72360.0
+      value: 74850.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 80720.0
+      value: 83360.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 90200.0
+      value: 93320.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 98530.0
+      value: 101930.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 108440.0
+      value: 111990.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 119110.0
+      value: 123310.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 131150.0
+      value: 133280.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 152990.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -92,6 +101,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 370600.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 385000.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -114,6 +126,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 56910.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 60810.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -136,6 +151,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 609920.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 887930.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -158,6 +176,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 14900.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 15440.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -180,6 +201,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 441890.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 521750.0
 country: CN
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
