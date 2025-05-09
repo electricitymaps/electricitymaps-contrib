@@ -68,6 +68,34 @@ def fetch_production(
             )
         if objData["name"].str.contains("Biofuel").any():
             objData.loc[objData["name"].str.contains("Biofuel"), "fueltype"] = "Biofuel"
+    if objData["fueltype"].str.contains("ENERGYSTORAGESYSTEM").any():
+        if objData["additional_1"].str.contains("Pumped Hydro").any():
+            objData.loc[
+                objData["additional_1"].str.contains("Pumped Hydro"), "fueltype"
+            ] = "HYDRO_DISCHARGE"
+        if objData["additional_1"].str.contains("Battery").any():
+            objData.loc[objData["additional_1"].str.contains("Battery"), "fueltype"] = (
+                "BATTERY_DISCHARGE"
+            )
+
+    # For the load we need to invert the sign
+    # to be consistent with the rest of the parsers
+    if objData["fueltype"].str.contains("ENERGYSTORAGESYSTEMLOAD").any():
+        if objData["additional_1"].str.contains("Pumped Hydro").any():
+            pumped_hydro_mask = objData["additional_1"].str.contains("Pumped Hydro")
+            objData.loc[
+                objData[pumped_hydro_mask].str.contains("Pumped Hydro"), "fueltype"
+            ] = "HYDRO_PUMPING"
+            # Invert the sign for pumped hydro load
+            objData.loc[pumped_hydro_mask, "output"] = -objData.loc[
+                pumped_hydro_mask, "output"
+            ]
+        if objData["additional_1"].str.contains("Battery").any():
+            battery_mask = objData["additional_1"].str.contains("Battery")
+            objData.loc[objData[battery_mask].str.contains("Battery"), "fueltype"] = (
+                "BATTERY_CHARGING"
+            )
+            objData.loc[battery_mask, "output"] = -objData.loc[battery_mask, "output"]
 
     assert not objData.capacity.isna().all(), (
         "capacity data is entirely NaN - input column order may have changed"
@@ -106,7 +134,8 @@ def fetch_production(
         "unknown": ["COGEN"],
     }
     STORAGE_MODE_MAPPING = {
-        "hydro": ["PUMPINGLOAD", "PUMPINGGEN"],
+        "hydro": ["HYDRO_PUMPING", "HYDRO_DISCHARGE"],
+        "battery": ["BATTERY_CHARGING", "BATTERY_DISCHARGE"],
     }
 
     production_breakdown = ProductionBreakdownList(logger)
