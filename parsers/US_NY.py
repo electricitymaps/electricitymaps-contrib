@@ -50,10 +50,11 @@ mapping = {
 }
 
 
-def read_csv_data(url: str) -> pd.DataFrame:
+def read_csv_data(session: Session, url: str) -> pd.DataFrame:
     """Gets csv data from a url and returns a dataframe."""
 
-    csv_data = pd.read_csv(url)
+    response = session.get(url)
+    csv_data = pd.read_csv(BytesIO(response.content))
 
     return csv_data
 
@@ -138,7 +139,7 @@ def fetch_production(
     if (datetime.now(tz=TIMEZONE) - target_datetime).days <= 9:
         mix_url = f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_date}rtfuelmix.csv"
         try:
-            raw_data = read_csv_data(mix_url)
+            raw_data = read_csv_data(session, mix_url)
         except HTTPError:
             # this can happen when target_datetime has no data available
             return []
@@ -176,9 +177,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
-    url = (
-        "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"
-    )
+    session = session or Session()
 
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
@@ -218,10 +217,10 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     ny_date = target_datetime.strftime("%Y%m%d")
-    exchange_url = url.format(ny_date)
+    exchange_url = f"http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{ny_date}ExternalLimitsFlows.csv"
 
     try:
-        exchange_data = read_csv_data(exchange_url)
+        exchange_data = read_csv_data(session, exchange_url)
     except HTTPError:
         # this can happen when target_datetime has no data available
         return []
@@ -275,7 +274,7 @@ def fetch_consumption_forecast(
     if (datetime.now(tz=TIMEZONE) - target_datetime).days <= 9:
         target_url = f"http://mis.nyiso.com/public/csv/isolf/{ny_date}isolf.csv"
         try:
-            df = read_csv_data(target_url)
+            df = read_csv_data(session, target_url)
         except HTTPError:
             # this can happen when target_datetime has no data available
             return []
