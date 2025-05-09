@@ -26,6 +26,9 @@ capacity:
     - datetime: '2021-04-01'
       source: EIA.gov
       value: 3977.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 3353.6
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -46,6 +49,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 11.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 10.6
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
