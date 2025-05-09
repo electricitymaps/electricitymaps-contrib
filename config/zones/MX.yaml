@@ -129,7 +129,7 @@ contributors:
   - consideRatio
 country: MX
 delays:
-  production: 1080
+  production: 1080 # = 45 * 24 Mexico is known for having a maximum delay of 45 days
 emissionFactors:
   direct:
     unknown:

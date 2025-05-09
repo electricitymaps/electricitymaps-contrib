@@ -122,7 +122,7 @@ contributors:
   - consideRatio
 country: CO
 delays:
-  production: 84
+  production: 84 # As of 2025-03-17, Colombia's recent maximum delay is 3.5 days
 emissionFactors:
   lifecycle:
     battery discharge:
