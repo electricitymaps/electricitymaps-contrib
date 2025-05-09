@@ -4,6 +4,10 @@ bounding_box:
   - - 28.5580814959
     - 44.2349230007
 capacity:
+  battery storage:
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 220.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -43,6 +47,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 699.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 729.0
   geothermal:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -69,6 +76,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 2349.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2347.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -80,6 +90,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 2080.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2000.0
   oil:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -109,6 +122,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4055.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4873.0
   unknown:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -123,6 +139,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 705.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 711.0
 contributors:
   - yurukov
   - ultibo
