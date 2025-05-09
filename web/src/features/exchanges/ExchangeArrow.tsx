@@ -1,6 +1,5 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useHeaderHeight } from 'hooks/headerHeight';
 import { useSetAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
@@ -28,7 +27,6 @@ function ExchangeArrow({
 }: ExchangeArrowProps) {
   const { co2intensity, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
-  const headerHeight = useHeaderHeight();
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -116,7 +114,7 @@ function ExchangeArrow({
   // Setting the top position from the arrow tooltip preventing overflowing to top.
   let tooltipClassName = 'max-h-[256px] max-w-[512px] md:flex';
   if (!isMobile) {
-    tooltipClassName += y - 140 < headerHeight ? ' top-[76px]' : ' top-[-76px]';
+    tooltipClassName += y < 140 ? ' top-[76px]' : ' top-[-76px]';
   }
 
   if (

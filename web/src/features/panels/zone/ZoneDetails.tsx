@@ -1,10 +1,10 @@
-import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
 import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -45,6 +45,9 @@ export default function ZoneDetails(): JSX.Element {
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
   const hasEstimationPill =
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+
+  const trackEvent = useTrackEvent();
+  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -87,7 +90,11 @@ export default function ZoneDetails(): JSX.Element {
               estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
-          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          <ApiButton
+            backgroundClasses="mt-3 mb-1"
+            type="primary"
+            onClick={trackCtaMiddle}
+          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -100,7 +107,7 @@ export default function ZoneDetails(): JSX.Element {
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
             <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <ApiButton size="sm" />
+            <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>
@@ -117,6 +124,8 @@ export default function ZoneDetails(): JSX.Element {
       timeRange,
       displayByEmissions,
       t,
+      trackCtaForecast,
+      trackCtaMiddle,
     ]
   );
 
@@ -130,18 +139,20 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const isIosCapacitor =
-    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0">
+    <GlassContainer
+      className={twMerge(
+        'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
+        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
+      )}
+    >
       <section className="h-full w-full">
         <ZoneHeader zoneId={zoneId} isEstimated={false} />
         <div
           id="panel-scroller"
           className={twMerge(
             // TODO: Can we set the height here without using calc and specific zone-header value?
-            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4',
-            isIosCapacitor ? 'pb-72' : 'pb-32'
+            'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
           )}
         >
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (

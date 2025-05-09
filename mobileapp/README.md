@@ -77,10 +77,18 @@ See [fastlane/README.md](./fastlane/README.md) for more information.
    - `android/electricitymap.keystore`
    - `android/keystore.properties`
    - `fastlane/fastlane-key.json`
+     - rename `fastlane/fastlane-key.json` to `gc_keys.json`
 3. Update keys in `.env.default`:
    - Add your own Apple ID
    - Open https://appleid.apple.com/account/manage and create an App-Specific Password to be used for the FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variable
    - Ask internally for the team ids
+4. Run `fastlane match appstore` to create or install the certificate and provisioning profile
+5. Ensure your match provisioning profile has the correct certificate:
+
+- Find your match provisoning profile in the [developer portal](https://developer.apple.com/account/resources/profiles/list):
+  - Select a `match AppStore ...` item and confirm your name in the "Created By" field
+- Confirm your match provisioning profile has the correct certificate:
+  - Click "Edit" in right-hand corner, select correct certificate (probably most recent), and save
 
 ### Making a beta build
 

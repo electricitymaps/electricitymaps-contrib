@@ -95,11 +95,17 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2024-03-08'
+      source: TBS News
+      value: 60.0
+      _comment: https://www.tbsnews.net/bangladesh/energy/countrys-first-commercial-wind-power-plant-starts-production-810678
+
 contributors:
   - systemcatch
   - alixunderplatz
   - MuffinCompiler
   - consideRatio
+  - VIKTORVAV99
 country: BD
 delays:
   production: 10
