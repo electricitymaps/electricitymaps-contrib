@@ -17,17 +17,17 @@ capacity:
       value: 350.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 360.0
+      value: 370.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 460.0
+      value: 470.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 30.0
+      value: 50.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

@@ -15,6 +15,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 4260.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4090.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -62,6 +65,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1860.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2130.0
 contributors:
   - veqtrus
 country: MA
