@@ -4,7 +4,6 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
 import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
 import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
-import { useHeaderHeight } from 'hooks/headerHeight';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
@@ -67,7 +66,6 @@ function BarBreakdownChart({
     x: number;
     y: number;
   } | null>(null);
-  const headerHeight = useHeaderHeight();
 
   const titleText = useBarBreakdownChartTitle();
   const estimationMethod = currentZoneDetail?.estimationMethod;
@@ -111,7 +109,7 @@ function BarBreakdownChart({
   if (!currentZoneDetail) {
     return (
       <RoundedCard ref={ref}>
-        <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
+        <ChartTitle className="opacity-40" id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -138,7 +136,7 @@ function BarBreakdownChart({
             />
           ) : undefined
         }
-        id={Charts.BAR_BREAKDOWN_CHART}
+        id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART}
       />
       <div className="mb-4">
         <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
@@ -155,7 +153,7 @@ function BarBreakdownChart({
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
               left: tooltipData?.x,
-              top: tooltipData?.y <= headerHeight ? headerHeight : tooltipData?.y,
+              top: tooltipData?.y,
             }}
           >
             <BreakdownChartTooltip

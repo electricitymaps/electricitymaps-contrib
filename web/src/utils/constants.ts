@@ -49,40 +49,15 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
+// TODO: rename chart components and files to match
 export enum Charts {
-  PRICE_CHART = 'price_chart',
-  ORIGIN_CHART = 'origin_chart',
-  BAR_BREAKDOWN_CHART = 'bar_breakdown_chart',
-  CARBON_CHART = 'carbon_chart',
+  CARBON_INTENSITY_CHART = 'carbon_intensity_chart',
   EMISSION_CHART = 'emission_chart',
-  NET_EXCHANGE_CHART = 'net_exchange_chart',
-  LOAD_CHART = 'load_chart',
-}
-
-export enum TrackEvent {
-  APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
-  APP_BANNER_DISMISSED = 'App Banner Dismissed',
-  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
-  SHARE_CHART = 'Share Chart',
-  FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
-  PRODUCTION_CONSUMPTION_CLICKED = 'Production Consumption Clicked',
-  HEADER_LINK_CLICKED = 'HeaderLink Clicked',
-  SIDEBAR_LINK_CLICKED = 'SidebarLink Clicked',
-  LANGUAGE_SELECTED = 'Language Selected',
-  ESTIMATION_CARD_EXPANDED = 'EstimationCard Expanded',
-  CONTRIBUTE_ON_GITHUB_BUTTON_CLICKED = 'Contribute On GitHub Button Clicked',
-  COLORBLIND_MODE_TOGGLED = 'Colorblind Mode Toggled',
-  SPATIAL_AGGREGATE_CLICKED = 'Spatial Aggregate Clicked',
-  THEME_SELECTED = 'Theme Selected',
-  PANEL_PRODUCTION_BUTTON_CLICKED = 'PanelProductionButton Clicked',
-  PANEL_EMISSION_BUTTON_CLICKED = 'PanelEmissionButton Clicked',
-  ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED = 'EstimationCard Methodology Link Clicked',
-  METHODOLOGIES_AND_DATA_SOURCES_EXPANDED = 'Methodologies and Data Sources Expanded',
-  SOLAR_ENABLED = 'Solar Enabled',
-  SOLAR_DISABLED = 'Solar Disabled',
-  WIND_ENABLED = 'Wind Enabled',
-  WIND_DISABLED = 'Wind Disabled',
-  HISTORICAL_NAVIGATION = 'Historical Navigation',
+  ELECTRTICITY_FLOW_CHART = 'electricity_flow_chart',
+  ELECTRICITY_LOAD_CHART = 'electricity_load_chart',
+  ELECTRICITY_MIX_CHART = 'electricity_mix_chart',
+  ELECTRICITY_MIX_OVERVIEW_CHART = 'electricity_mix_overview_chart',
+  ELECTRICITY_PRICE_CHART = 'electricity_price_chart',
 }
 
 // color of different production modes are based on various industry standards

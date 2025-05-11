@@ -4,16 +4,16 @@
 
 from collections import defaultdict
 from datetime import datetime, timedelta
+from io import BytesIO
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
-from urllib.error import HTTPError
+from zipfile import ZipFile
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-
-# Pumped storage is present but is not split into a separate category.
 from requests import Session
+from requests.exceptions import HTTPError
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
@@ -23,6 +23,8 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from parsers.lib.config import refetch_frequency
+
+# Pumped storage is present but is not split into a separate category.
 
 # Dual Fuel systems can run either Natural Gas or Oil, they represent
 # significantly more capacity in NY State than plants that can only
@@ -47,10 +49,25 @@ mapping = {
 }
 
 
-def read_csv_data(url: str):
+def read_csv_data(session: Session, url: str) -> pd.DataFrame:
     """Gets csv data from a url and returns a dataframe."""
 
-    csv_data = pd.read_csv(url)
+    response = session.get(url)
+    response.raise_for_status()
+
+    csv_data = pd.read_csv(BytesIO(response.content))
+
+    return csv_data
+
+
+def read_zip_data(session: Session, url: str, csv_file: str) -> pd.DataFrame:
+    """Gets zip data from a url (with a session), extracts a csv file and returns a dataframe."""
+
+    response = session.get(url)
+    response.raise_for_status()
+
+    zip_file = ZipFile(BytesIO(response.content))
+    csv_data = pd.read_csv(zip_file.open(csv_file))
 
     return csv_data
 
@@ -111,24 +128,33 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given zone."""
+    session = session or Session()
+
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     else:
         # assume passed in correct timezone
         target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
 
-    if (datetime.now(tz=TIMEZONE) - target_datetime).days > 9:
-        raise NotImplementedError(
-            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
-        )
-
     ny_date = target_datetime.strftime("%Y%m%d")
-    mix_url = f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_date}rtfuelmix.csv"
-    try:
-        raw_data = read_csv_data(mix_url)
-    except HTTPError:
-        # this can happen when target_datetime has no data available
-        return []
+    if (datetime.now(tz=TIMEZONE) - target_datetime).days <= 9:
+        mix_url = f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_date}rtfuelmix.csv"
+        try:
+            raw_data = read_csv_data(session, mix_url)
+        except HTTPError:
+            # this can happen when target_datetime has no data available
+            return []
+    else:
+        mix_csv = f"{ny_date}rtfuelmix.csv"
+        ny_zip_date = target_datetime.strftime("%Y%m01")
+        mix_zip_url = (
+            f"http://mis.nyiso.com/public/csv/rtfuelmix/{ny_zip_date}rtfuelmix_csv.zip"
+        )
+        try:
+            raw_data = read_zip_data(session, mix_zip_url, mix_csv)
+        except (HTTPError, KeyError):
+            # this can happen when target_datetime has no data available
+            return []
 
     clean_data = data_parser(raw_data, logger)
 
@@ -152,11 +178,9 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known power exchange (in MW) between two zones."""
-    url = (
-        "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"
-    )
+    session = session or Session()
 
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
 
     # In the source CSV, positive is flow into NY, negative is flow out of NY.
     # In Electricity Map, A->B means flow to B is positive.
@@ -194,13 +218,13 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     ny_date = target_datetime.strftime("%Y%m%d")
-    exchange_url = url.format(ny_date)
+    exchange_url = f"http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{ny_date}ExternalLimitsFlows.csv"
 
     try:
-        exchange_data = read_csv_data(exchange_url)
+        exchange_data = read_csv_data(session, exchange_url)
     except HTTPError:
         # this can happen when target_datetime has no data available
-        return None
+        return []
 
     new_england_exs = exchange_data.loc[
         exchange_data["Interface Name"].isin(relevant_exchanges)
@@ -247,17 +271,25 @@ def fetch_consumption_forecast(
         # assume passed in correct timezone
         target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
 
-    if (
-        datetime.now(tz=TIMEZONE) - target_datetime
-    ).days > 9:  # TODO: If datetime is previous to 9 days, it need to be implemented
-        raise NotImplementedError(
-            "you can get data older than 9 days at the url http://mis.nyiso.com/public/"
-        )
     ny_date = target_datetime.strftime("%Y%m%d")
-
-    # Request to the url
-    target_url = f"http://mis.nyiso.com/public/csv/isolf/{ny_date}isolf.csv"
-    df = pd.read_csv(target_url)
+    if (datetime.now(tz=TIMEZONE) - target_datetime).days <= 9:
+        target_url = f"http://mis.nyiso.com/public/csv/isolf/{ny_date}isolf.csv"
+        try:
+            df = read_csv_data(session, target_url)
+        except HTTPError:
+            # this can happen when target_datetime has no data available
+            return []
+    else:
+        target_csv = f"{ny_date}isolf.csv"
+        ny_zip_date = target_datetime.strftime("%Y%m01")
+        target_zip_url = (
+            f"http://mis.nyiso.com/public/csv/isolf/{ny_zip_date}isolf_csv.zip"
+        )
+        try:
+            df = read_zip_data(session, target_zip_url, target_csv)
+        except (HTTPError, KeyError):
+            # this can happen when target_datetime has no data available
+            return []
 
     # Add events consumption_list
     all_consumption_events = (

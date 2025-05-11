@@ -11,6 +11,9 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 51.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 101.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -21,6 +24,12 @@ capacity:
     - datetime: '2022-12-01'
       source: EIA.gov
       value: 216.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 213.3
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 218.1
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -52,6 +61,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4846.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 4871.8
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -122,6 +134,9 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 1307.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1308.8
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov

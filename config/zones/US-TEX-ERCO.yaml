@@ -116,6 +116,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 7455.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 7607.8
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 7847.7
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -126,6 +132,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 160.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 137.0
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -224,6 +233,12 @@ capacity:
     - datetime: '2024-10-01'
       source: EIA.gov
       value: 66877.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 67065.0
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 67159.2
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -256,6 +271,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 854.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 853.3
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -368,6 +386,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 22172.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 22814.5
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 23210.4
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -448,6 +472,9 @@ capacity:
     - datetime: '2024-08-01'
       source: EIA.gov
       value: 38466.1
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 38969.6
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch
@@ -761,9 +788,11 @@ fallbackZoneMixes:
 parsers:
   consumption: US_ERCOT.fetch_consumption
   consumptionForecast: US_ERCOT.fetch_consumption_forecast
+  dayaheadLocationalMarginalPrice: US_ERCOT.fetch_dayahead_locational_marginal_price
   production: US_ERCOT.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_ERCOT.fetch_wind_solar_forecasts
+  realtimeLocationalMarginalPrice: US_ERCOT.fetch_realtime_locational_marginal_price
 region: Americas
 sources:
   INCER ACV:

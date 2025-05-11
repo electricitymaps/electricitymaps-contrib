@@ -48,7 +48,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
       <ChartTitle
         titleText={t(`country-history.netExchange.${timeRange}`)}
         unit={valueAxisLabel}
-        id={Charts.NET_EXCHANGE_CHART}
+        id={Charts.ELECTRTICITY_FLOW_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">

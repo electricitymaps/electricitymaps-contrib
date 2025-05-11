@@ -4,20 +4,18 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface ApiButtonProps
-  extends Omit<
-    ButtonProps,
-    'icon' | 'children' | 'href' | 'type' | 'onClick' | 'foregroundClasses'
-  > {
+  extends Omit<ButtonProps, 'icon' | 'children' | 'href' | 'type' | 'foregroundClasses'> {
   iconSize?: number;
   type?: 'primary' | 'link' | 'secondary';
 }
 
-function ApiButton({ iconSize = 20, type, ...restProps }: ApiButtonProps) {
+function ApiButton({ iconSize = 20, type, onClick, ...restProps }: ApiButtonProps) {
   const { t } = useTranslation();
   return (
     <Button
       icon={<CloudCog size={iconSize} />}
       type={type}
+      onClick={onClick}
       href="https://electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=api-cta"
       {...restProps}
     >
