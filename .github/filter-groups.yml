@@ -17,6 +17,8 @@ json:
 
 python:
   - '**.py'
+  - 'poetry.toml'
   - 'pyproject.toml'
   - 'poetry.lock'
-  - '.poetry-version'
+  - '.python-version'
+  - 'parsers.dockerfile'
