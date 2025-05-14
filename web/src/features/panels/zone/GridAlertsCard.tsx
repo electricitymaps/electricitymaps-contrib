@@ -32,7 +32,8 @@ export default function GridAlertsCard({
           <a
             href="https://github.com/electricitymaps/electricitymaps-contrib/issues/8121"
             target="_blank"
-            className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500" rel="noopener"
+            className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
+            rel="noopener"
           >
             shape the feature
           </a>{' '}
@@ -40,7 +41,8 @@ export default function GridAlertsCard({
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSdVgjBHiune743TVvPyR1ydE4oY8znbO5jZHNyTbsT_dXCsvg/formResponse"
             target="_blank"
-            className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500" rel="noopener"
+            className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
+            rel="noopener"
           >
             ideas and experience
           </a>
