@@ -9,5 +9,8 @@
   },
   "python.testing.pytestArgs": [".", "--ignore", "electricitymap/contrib/parsers"],
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true
+  "python.testing.pytestEnabled": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
