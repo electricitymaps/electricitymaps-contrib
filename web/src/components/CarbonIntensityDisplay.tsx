@@ -1,16 +1,36 @@
-import { useCo2ColorScale } from 'hooks/theme';
+import { useColorScale } from 'hooks/theme';
 import { CarbonUnits } from 'utils/units';
 
-function Square({ co2Intensity }: { co2Intensity: number }) {
-  const co2ColorScale = useCo2ColorScale();
+export function Square({ value }: { value: number }) {
+  const colorScale = useColorScale();
 
   return (
     <div
       className="h-2 w-2"
       style={{
-        backgroundColor: co2Intensity > 0 ? co2ColorScale(co2Intensity) : '#D4D9DE',
+        backgroundColor: value > 0 ? colorScale(value) : '#D4D9DE',
       }}
     />
+  );
+}
+
+export function RenewablePercentageDisplay({
+  value,
+  className,
+  withSquare = false,
+}: {
+  value: number | undefined;
+  className?: string;
+  withSquare?: boolean;
+}) {
+  const valueAsNumber = value || 0;
+  return (
+    <>
+      {withSquare && <Square value={valueAsNumber} />}
+      <p className={className}>
+        <b>{value == null ? '?' : Math.round(valueAsNumber)}</b>&nbsp;%
+      </p>
+    </>
   );
 }
 
@@ -26,7 +46,7 @@ export function CarbonIntensityDisplay({
   const intensityAsNumber = co2Intensity || 0;
   return (
     <>
-      {withSquare && <Square co2Intensity={intensityAsNumber} />}
+      {withSquare && <Square value={intensityAsNumber} />}
       <p className={className}>
         <b>{co2Intensity == null ? '?' : Math.round(intensityAsNumber)}</b>&nbsp;
         {CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}

@@ -1,12 +1,15 @@
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
+import { ScaleQuantize } from 'd3-scale';
 import { mapMovingAtom } from 'features/map/mapAtoms';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useEffect } from 'react';
 import { resolvePath } from 'react-router-dom';
 import { ExchangeArrowData } from 'types';
+import { getZoneValueForColor } from 'utils/helpers';
+import { mapColorSourceAtom } from 'utils/state/atoms';
 
 import ExchangeTooltip from './ExchangeTooltip';
-import { quantizedCo2IntensityScale, quantizedExchangeSpeedScale } from './scales';
+import { quantizedExchangeSpeedScale } from './scales';
 
 interface ExchangeArrowProps {
   data: ExchangeArrowData;
@@ -15,6 +18,7 @@ interface ExchangeArrowProps {
   map: maplibregl.Map;
   colorBlindMode: boolean;
   isMobile: boolean;
+  quantizedColorScale: ScaleQuantize<number, string>;
 }
 
 function ExchangeArrow({
@@ -24,9 +28,11 @@ function ExchangeArrow({
   map,
   colorBlindMode,
   isMobile,
+  quantizedColorScale,
 }: ExchangeArrowProps) {
-  const { co2intensity, lonlat, netFlow, rotation, key } = data;
+  const { originZoneData, lonlat, netFlow, rotation, key } = data;
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
 
   useEffect(() => {
     const cancelWheel = (event: Event) => event.preventDefault();
@@ -130,10 +136,11 @@ function ExchangeArrow({
   }
 
   const prefix = colorBlindMode ? 'colorblind-' : '';
-  const intensity = quantizedCo2IntensityScale(co2intensity);
+  const valueForColor = getZoneValueForColor(originZoneData, true, mapColorSource);
+  const quantisedValueForColor = quantizedColorScale(valueForColor);
   const speed = quantizedExchangeSpeedScale(absFlow);
   const imageSource = resolvePath(
-    `images/arrows/${prefix}arrow-${intensity}-animated-${speed}`
+    `images/arrows/${prefix}arrow-${quantisedValueForColor}-animated-${speed}`
   ).pathname;
 
   return (

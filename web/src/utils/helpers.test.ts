@@ -10,16 +10,16 @@ import { zoneDetailMock } from 'stories/mockData';
 import { ZoneDetail } from 'types';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TimeRange } from './constants';
+import { MapColorSource, TimeRange } from './constants';
 import {
   dateToDatetimeString,
-  getCarbonIntensity,
   getDestinationPath,
   getFossilFuelRatio,
   getLocalTime,
   getNetExchange,
   getProductionCo2Intensity,
   getRenewableRatio,
+  getZoneValueForColor,
   useNavigateWithParameters,
 } from './helpers';
 
@@ -104,17 +104,29 @@ describe('getCarbonIntensity', () => {
   // Tests for consumption
   describe('consumption', () => {
     it('returns carbon intensity when carbon intensity is not null', () => {
-      const actual = getCarbonIntensity({ c: { ci: 100 }, p: { ci: 200 } }, true);
+      const actual = getZoneValueForColor(
+        { c: { ci: 100 }, p: { ci: 200 } },
+        true,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toEqual(100);
     });
 
     it('returns NaN when carbon intensity is null', () => {
-      const actual = getCarbonIntensity({ c: { fr: null }, p: { fr: null } }, true);
+      const actual = getZoneValueForColor(
+        { c: { fr: null }, p: { fr: null } },
+        true,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when carbon intensity is undefined', () => {
-      const actual = getCarbonIntensity({ c: {}, p: {} }, true);
+      const actual = getZoneValueForColor(
+        { c: {}, p: {} },
+        true,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toBeNaN();
     });
   });
@@ -122,17 +134,29 @@ describe('getCarbonIntensity', () => {
   // Tests for production
   describe('production', () => {
     it('returns carbon intensity when carbon intensity is not null', () => {
-      const actual = getCarbonIntensity({ c: { ci: 100 }, p: { ci: 200 } }, false);
+      const actual = getZoneValueForColor(
+        { c: { ci: 100 }, p: { ci: 200 } },
+        false,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toEqual(200);
     });
 
     it('returns NaN when carbon intensity is null', () => {
-      const actual = getCarbonIntensity({ c: { fr: null }, p: { fr: null } }, false);
+      const actual = getZoneValueForColor(
+        { c: { fr: null }, p: { fr: null } },
+        false,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toBeNaN();
     });
 
     it('returns NaN when carbon intensity is undefined', () => {
-      const actual = getCarbonIntensity({ c: {}, p: {} }, false);
+      const actual = getZoneValueForColor(
+        { c: {}, p: {} },
+        false,
+        MapColorSource.CARBON_INTENSITY
+      );
       expect(actual).toBeNaN();
     });
   });

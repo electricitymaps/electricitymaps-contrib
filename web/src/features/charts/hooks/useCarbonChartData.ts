@@ -1,14 +1,15 @@
 import useGetZone from 'api/getZone';
-import { useCo2ColorScale } from 'hooks/theme';
+import { useColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
-import { getCarbonIntensity } from 'utils/helpers';
+import { MapColorSource } from 'utils/constants';
+import { getZoneValueForColor } from 'utils/helpers';
 import { isConsumptionAtom } from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
 export function useCarbonChartData() {
   const { data, isLoading, isError } = useGetZone();
-  const co2ColorScale = useCo2ColorScale();
+  const co2ColorScale = useColorScale();
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (isLoading || isError || !data) {
@@ -20,12 +21,13 @@ export function useCarbonChartData() {
       datetime: new Date(datetimeString),
       layerData: {
         carbonIntensity:
-          getCarbonIntensity(
+          getZoneValueForColor(
             {
               c: { ci: value.co2intensity },
               p: { ci: value.co2intensityProduction },
             },
-            isConsumption
+            isConsumption,
+            MapColorSource.CARBON_INTENSITY
           ) || 0,
       },
       meta: value,

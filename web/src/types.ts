@@ -5,8 +5,9 @@ import type {
   MultiPolygon,
   Polygon,
 } from '@turf/turf';
+import { ScaleLinear } from 'd3-scale';
 import { LineString, MultiLineString, Point } from 'geojson';
-import { EstimationMethods, TimeRange } from 'utils/constants';
+import { EstimationMethods, MapColorSource, TimeRange } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
@@ -59,13 +60,13 @@ export interface StateZoneData {
 
 export interface StateExchangeData {
   /** The carbon intensity of the exchange */
-  ci: number;
+  // ci: number; // <---- we should remove this from backend, it's redundant and never read!!!
   /** The net flow of the exchange */
   f: number;
 }
 
 export interface ExchangeArrowData {
-  co2intensity: number;
+  originZoneData: StateZoneData | undefined;
   netFlow: number;
   rotation: number;
   lonlat: [number, number];
@@ -211,10 +212,7 @@ export interface StatesGeometry extends Feature<LineString | MultiLineString | P
 }
 
 export interface MapTheme {
-  co2Scale: {
-    steps: number[];
-    colors: string[];
-  };
+  colorScale: { [key in MapColorSource]: ScaleLinear<string, string, string> };
   oceanColor: string;
   strokeWidth: number;
   strokeColor: string;

@@ -332,7 +332,8 @@
     "windpotential": "Wind power potential",
     "solarpotential": "Solar power potential",
     "colorblindmode": "Color blind mode",
-    "carbonintensity": "Carbon intensity"
+    "carbonintensity": "Carbon intensity",
+    "renewablepercentage": "Renewable percentage"
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",
@@ -343,6 +344,7 @@
     },
     "crossborderexport": "Cross-border export",
     "carbonintensityexport": "Carbon intensity of export",
+    "renewablepercentageexport": "Renewables in export",
     "ofinstalled": "of installed capacity",
     "utilizing": "utilizing",
     "representing": "representing",

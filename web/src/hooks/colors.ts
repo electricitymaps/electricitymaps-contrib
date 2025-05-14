@@ -1,14 +1,33 @@
+import { scaleLinear } from 'd3-scale';
 import { MapTheme } from 'types';
+import { MapColorSource } from 'utils/constants';
 
-const defaultCo2Scale = {
-  steps: [0, 150, 600, 800, 1100, 1500],
-  colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02', '#000'],
-};
+function generateCo2Scale(cleanest: number, dirtiest: number, unknownColor: string) {
+  return scaleLinear<string>()
+    .domain(
+      [0, 150, 600, 800, 1100, 1500].map(
+        (value) => (value / 1500) * (dirtiest - cleanest) + cleanest
+      )
+    )
+    .range(['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02', '#000'])
+    .unknown(unknownColor)
+    .clamp(true);
+}
 
-const colorblindCo2Scale = {
-  steps: [0, 150, 600, 800, 1100, 1500],
-  colors: ['#FFFFB0', '#E3BF66', '#BB833C', '#8B4D2B', '#4E241F', '#000'],
-};
+function generateColorblindScale(
+  cleanest: number,
+  dirtiest: number,
+  unknownColor: string
+) {
+  const steps = [0, 150, 600, 800, 1100, 1500].map(
+    (value) => (value / 1500) * (dirtiest - cleanest) + cleanest
+  );
+  return scaleLinear<string>()
+    .domain(steps)
+    .range(['#FFFFB0', '#E3BF66', '#BB833C', '#8B4D2B', '#4E241F', '#000'])
+    .unknown(unknownColor)
+    .clamp(true);
+}
 
 interface Colors {
   colorblindDark: MapTheme;
@@ -18,7 +37,10 @@ interface Colors {
 }
 export const colors: Colors = {
   colorblindDark: {
-    co2Scale: colorblindCo2Scale,
+    colorScale: {
+      [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#7A878D'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#7A878D'),
+    },
     oceanColor: '#343D4C',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
@@ -27,7 +49,10 @@ export const colors: Colors = {
     nonClickableFill: '#7A878D',
   },
   dark: {
-    co2Scale: defaultCo2Scale,
+    colorScale: {
+      [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#7A878D'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateCo2Scale(100, 0, '#7A878D'),
+    },
     oceanColor: '#262626',
     strokeWidth: 0.15,
     strokeColor: '#6D6D6D',
@@ -36,7 +61,10 @@ export const colors: Colors = {
     nonClickableFill: '#7A878D',
   },
   colorblindBright: {
-    co2Scale: colorblindCo2Scale,
+    colorScale: {
+      [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#D4D9DE'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#D4D9DE'),
+    },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
     strokeColor: '#FAFAFA',
@@ -45,7 +73,10 @@ export const colors: Colors = {
     nonClickableFill: '#D4D9DE',
   },
   bright: {
-    co2Scale: defaultCo2Scale,
+    colorScale: {
+      [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#D4D9DE'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateCo2Scale(100, 0, '#D4D9DE'),
+    },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
     strokeColor: '#FAFAFA',

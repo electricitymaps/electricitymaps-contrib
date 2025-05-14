@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
-import { useCo2ColorScale } from '../hooks/theme';
+import { useColorScale } from '../hooks/theme';
 import InfoIconWithPadding from './InfoIconWithPadding';
 import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
@@ -40,7 +40,7 @@ function CarbonIntensitySquare({
   tooltipContent,
 }: CarbonIntensitySquareProps) {
   const { t } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
+  const co2ColorScale = useColorScale();
   const [{ backgroundColor }] = useSpring(
     {
       backgroundColor: co2ColorScale(intensity),

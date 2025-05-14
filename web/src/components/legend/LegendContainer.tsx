@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import { memo, type ReactElement } from 'react';
 import { isSolarLayerEnabledAtom, isWindLayerEnabledAtom } from 'utils/state/atoms';
 
-import Co2Legend from './Co2Legend';
+import Co2Legend from './MapColorLegend';
 import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';
 

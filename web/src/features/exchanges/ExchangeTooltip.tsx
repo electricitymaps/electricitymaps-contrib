@@ -1,4 +1,7 @@
-import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
+import {
+  CarbonIntensityDisplay,
+  RenewablePercentageDisplay,
+} from 'components/CarbonIntensityDisplay';
 import GlassContainer from 'components/GlassContainer';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
@@ -6,8 +9,10 @@ import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ExchangeArrowData } from 'types';
+import { MapColorSource } from 'utils/constants';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { getZoneValueForColor } from 'utils/helpers';
+import { isConsumptionAtom, isHourlyAtom, mapColorSourceAtom } from 'utils/state/atoms';
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
@@ -22,7 +27,14 @@ export default function ExchangeTooltip({
 }: ExchangeTooltipProperties): ReactElement {
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
-  const { key, netFlow, co2intensity } = exchangeData;
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
+  const { key, netFlow } = exchangeData;
+  const value = getZoneValueForColor(
+    exchangeData.originZoneData,
+    isConsumption,
+    mapColorSource
+  );
 
   const isExporting = netFlow > 0;
   const roundedNetFlow = Math.abs(Math.round(netFlow));
@@ -30,6 +42,16 @@ export default function ExchangeTooltip({
   const zoneTo = key.split('->')[isExporting ? 1 : 0];
 
   const divClass = `${isMobile ? 'flex-col' : 'flex'} items-center pb-2`;
+
+  let translationKey;
+  if (mapColorSource == MapColorSource.CARBON_INTENSITY) {
+    translationKey = 'tooltips.carbonintensityexport';
+  } else if (mapColorSource == MapColorSource.RENEWABLE_PERCENTAGE) {
+    translationKey = 'tooltips.renewablepercentageexport';
+  } else {
+    throw new Error('Invalid map color source');
+  }
+
   return (
     <GlassContainer
       className={twMerge('relative h-auto  rounded-2xl px-3 py-2', className)}
@@ -49,11 +71,15 @@ export default function ExchangeTooltip({
             <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           </div>
         </div>
-        {t('tooltips.carbonintensityexport')}:
+        {t(translationKey)}:
         <div className="pt-1">
-          {co2intensity > 0 ? (
+          {value > 0 ? (
             <div className="inline-flex items-center gap-x-1">
-              <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
+              {mapColorSource == MapColorSource.CARBON_INTENSITY ? (
+                <CarbonIntensityDisplay withSquare co2Intensity={value} />
+              ) : (
+                <RenewablePercentageDisplay withSquare value={value} />
+              )}
             </div>
           ) : (
             <p className="text-neutral-400">{t('tooltips.temporarilyUnavailable')}</p>

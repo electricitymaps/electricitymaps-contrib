@@ -253,3 +253,9 @@ export enum EstimationMethods {
 export const isTSAModel = (estimationMethod?: EstimationMethods) =>
   estimationMethod === EstimationMethods.TSA ||
   estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;
+
+export enum MapColorSource {
+  CARBON_INTENSITY = 'CARBON_INTENSITY',
+  RENEWABLE_PERCENTAGE = 'RENEWABLE_PERCENTAGE',
+  ELECTRICITY_PRICE = 'ELECTRICITY_PRICE',
+}

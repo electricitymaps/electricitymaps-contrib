@@ -1,7 +1,7 @@
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { CountryFlag } from 'components/Flag';
 import { MetricRatio } from 'components/MetricRatio';
-import { useCo2ColorScale } from 'hooks/theme';
+import { useColorScale } from 'hooks/theme';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
@@ -187,7 +187,7 @@ export function BreakdownChartTooltipContent({
   estimationMethod,
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
+  const co2ColorScale = useColorScale();
   const isHourly = useAtomValue(isHourlyAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions

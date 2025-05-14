@@ -1,6 +1,6 @@
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { useCo2ColorScale } from 'hooks/theme';
+import { useColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { memo, useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
@@ -47,7 +47,7 @@ function BarElectricityBreakdownChart({
   width,
   graphUnit,
 }: BarElectricityBreakdownChartProps) {
-  const co2ColorScale = useCo2ColorScale();
+  const co2ColorScale = useColorScale();
   const { productionY, exchangeHeight } = getDataBlockPositions(
     productionData.length,
     exchangeData

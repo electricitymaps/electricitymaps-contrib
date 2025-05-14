@@ -1,10 +1,9 @@
-import { scaleLinear } from 'd3-scale';
 import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { MapTheme } from 'types';
 import { useMediaQuery } from 'utils';
-import { ThemeOptions } from 'utils/constants';
-import { colorblindModeAtom, themeAtom } from 'utils/state/atoms';
+import { MapColorSource, ThemeOptions } from 'utils/constants';
+import { colorblindModeAtom, mapColorSourceAtom, themeAtom } from 'utils/state/atoms';
 
 import { colors } from './colors';
 
@@ -36,15 +35,12 @@ export function useTheme(): MapTheme {
   }, [isDarkModeEnabled, isColorBlindModeEnabled]) as MapTheme;
 }
 
-export function useCo2ColorScale() {
+export function useColorScale() {
   const theme = useTheme();
-  return useMemo(() => getCo2ColorScale(theme), [theme]);
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
+  return useMemo(() => getColorScale(theme, mapColorSource), [theme, mapColorSource]);
 }
 
-export function getCo2ColorScale(theme: MapTheme) {
-  return scaleLinear<string>()
-    .domain(theme.co2Scale.steps)
-    .range(theme.co2Scale.colors)
-    .unknown(theme.clickableFill)
-    .clamp(true);
+export function getColorScale(theme: MapTheme, mapColorSource: MapColorSource) {
+  return theme.colorScale[mapColorSource];
 }

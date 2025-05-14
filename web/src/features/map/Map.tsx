@@ -14,18 +14,19 @@ import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import {
-  getCarbonIntensity,
+  getZoneValueForColor,
   useNavigateWithParameters,
   useUserLocation,
 } from 'utils/helpers';
 import {
   isConsumptionAtom,
+  mapColorSourceAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   userLocationAtom,
 } from 'utils/state/atoms';
 
-import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import { useColorScale, useTheme } from '../../hooks/theme';
 import BackgroundLayer from './map-layers/BackgroundLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
@@ -72,10 +73,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
-  const getCo2colorScale = useCo2ColorScale();
+  const getColorScale = useColorScale();
   const navigate = useNavigateWithParameters();
   const theme = useTheme();
   const isConsumption = useAtomValue(isConsumptionAtom);
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
   const spatialAggregate = useAtomValue(spatialAggregateAtom);
   // Calculate layer styles only when the theme changes
@@ -181,9 +183,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
       const zone = data?.datetimes[selectedDatetimeString]?.z[zoneId];
-      const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
-      const fillColor = co2intensity
-        ? getCo2colorScale(co2intensity)
+      const fillColor = zone
+        ? getColorScale(getZoneValueForColor(zone, isConsumption, mapColorSource))
         : theme.clickableFill;
       const existingColor = map.getFeatureState({
         source: ZONE_SOURCE,
@@ -205,7 +206,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   }, [
     map,
     data,
-    getCo2colorScale,
+    getColorScale,
     isLoadingMap,
     isSourceLoaded,
     spatialAggregate,
@@ -216,6 +217,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     theme.clickableFill,
     selectedDatetimeString,
     isConsumption,
+    mapColorSource,
   ]);
 
   useEffect(() => {
