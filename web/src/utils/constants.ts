@@ -55,6 +55,7 @@ export enum Charts {
   EMISSION_CHART = 'emission_chart',
   ELECTRTICITY_FLOW_CHART = 'electricity_flow_chart',
   ELECTRICITY_LOAD_CHART = 'electricity_load_chart',
+  ELECTRICITY_GRID_ALERT = 'electricity_grid_alert_chart',
   ELECTRICITY_MIX_CHART = 'electricity_mix_chart',
   ELECTRICITY_MIX_OVERVIEW_CHART = 'electricity_mix_overview_chart',
   ELECTRICITY_PRICE_CHART = 'electricity_price_chart',

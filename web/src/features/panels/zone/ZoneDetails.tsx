@@ -24,6 +24,7 @@ import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import EstimationCard from './EstimationCard';
+import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
@@ -103,6 +104,11 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
 
+          <GridAlertsCard
+            datetimes={datetimes}
+            timeRange={timeRange}
+            displayByEmissions={displayByEmissions}
+          />
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
