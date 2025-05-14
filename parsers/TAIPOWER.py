@@ -84,7 +84,7 @@ def fetch_production(
         if objData["additional_1"].str.contains("Pumped Hydro").any():
             pumped_hydro_mask = objData["additional_1"].str.contains("Pumped Hydro")
             objData.loc[
-                objData[pumped_hydro_mask].str.contains("Pumped Hydro"), "fueltype"
+                pumped_hydro_mask, "fueltype"
             ] = "HYDRO_PUMPING"
             # Invert the sign for pumped hydro load
             objData.loc[pumped_hydro_mask, "output"] = -objData.loc[
