@@ -92,9 +92,8 @@ def fetch_production(
             ]
         if objData["additional_1"].str.contains("Battery").any():
             battery_mask = objData["additional_1"].str.contains("Battery")
-            objData.loc[objData[battery_mask].str.contains("Battery"), "fueltype"] = (
-                "BATTERY_CHARGING"
-            )
+            objData.loc[battery_mask, "fueltype"] = "BATTERY_CHARGING"
+            
             objData.loc[battery_mask, "output"] = -objData.loc[battery_mask, "output"]
 
     assert not objData.capacity.isna().all(), (
