@@ -139,7 +139,7 @@ function generateArrows(prefix, scaleTheme) {
           const webpOutput = `../public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.webp`;
           console.log(`Converting to WebP: ${path.resolve(webpOutput)}`);
 
-          const webpArguments = [gifOutput, '-quality', '75', webpOutput];
+          const webpArguments = [gifOutput, '-quality', '50', webpOutput];
 
           const webpChild = child_process.spawn('magick', webpArguments);
 
