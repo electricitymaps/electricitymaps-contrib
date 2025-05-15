@@ -28,12 +28,12 @@ const ensureDirectoryExists = (directoryPath) => {
 };
 
 // Make sure template and output directories exist
-ensureDirectoryExists('scripts/arrows/arrow-highlights');
-ensureDirectoryExists('../web/public/images/arrows');
+ensureDirectoryExists('arrows/arrow-highlights');
+ensureDirectoryExists('../public/images/arrows');
 
 // Check if ImageMagick is installed
 try {
-  const result = child_process.execSync('convert -version', { encoding: 'utf8' });
+  const result = child_process.execSync('magick -version', { encoding: 'utf8' });
   console.log(`ImageMagick found: ${result.trim().split('\n')[0]}`);
 } catch {
   console.error('ImageMagick not found! Please install with: brew install imagemagick');
@@ -52,7 +52,7 @@ function generateArrows(prefix, scaleTheme) {
   }
 
   // Check if arrow template exists
-  const templatePath = 'scripts/arrows/arrow-template.png';
+  const templatePath = 'arrows/arrow-template.png';
   if (!fs.existsSync(templatePath)) {
     console.error(`Template file not found: ${templatePath}`);
     console.error('Make sure you are running the script from the web directory');
@@ -63,7 +63,7 @@ function generateArrows(prefix, scaleTheme) {
 
   for (const [co2value, color] of Object.entries(colors)) {
     // generate specific color
-    const outputPath = `../web/public/images/arrows/${prefix}arrow-${co2value}.png`;
+    const outputPath = `../public/images/arrows/${prefix}arrow-${co2value}.png`;
     console.log(`\nGenerating arrow for value ${co2value} with color ${color}`);
     console.log(`Output path: ${path.resolve(outputPath)}`);
 
@@ -76,7 +76,7 @@ function generateArrows(prefix, scaleTheme) {
 
     console.log(`Running: convert ${convertArguments.join(' ')}`);
 
-    const baseArrowProcess = child_process.spawn('convert', convertArguments);
+    const baseArrowProcess = child_process.spawn('magick', convertArguments);
 
     baseArrowProcess.stderr.on('data', (data) => {
       console.error(`Base arrow stderr: ${data}`);
@@ -93,7 +93,7 @@ function generateArrows(prefix, scaleTheme) {
 
       // Apply highlight and generate GIF
       for (const [index, speed] of [10, 6, 2].entries()) {
-        const gifOutput = `../web/public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.gif`;
+        const gifOutput = `../public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.gif`;
 
         console.log(
           `Generating animated gif: ${path.resolve(gifOutput)} with speed ${speed}`
@@ -113,13 +113,13 @@ function generateArrows(prefix, scaleTheme) {
           '0',
           '-page',
           `45x77+${outlineSize}+${outlineSize}`,
-          'scripts/arrows/arrow-highlights/*.png',
+          'arrows/arrow-highlights/*.png',
           '-layers',
           'coalesce',
           gifOutput,
         ];
 
-        const child = child_process.spawn('convert', convertArguments);
+        const child = child_process.spawn('magick', convertArguments);
 
         child.stderr.on('data', (data) => {
           console.error(`GIF stderr: ${data}`);
@@ -136,12 +136,12 @@ function generateArrows(prefix, scaleTheme) {
           );
 
           // Generate WebP version from the GIF
-          const webpOutput = `../web/public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.webp`;
+          const webpOutput = `../public/images/arrows/${prefix}arrow-${co2value}-animated-${index}.webp`;
           console.log(`Converting to WebP: ${path.resolve(webpOutput)}`);
 
           const webpArguments = [gifOutput, '-quality', '75', webpOutput];
 
-          const webpChild = child_process.spawn('convert', webpArguments);
+          const webpChild = child_process.spawn('magick', webpArguments);
 
           webpChild.stderr.on('data', (data) => {
             console.error(`WebP stderr: ${data}`);
@@ -164,7 +164,7 @@ function generateArrows(prefix, scaleTheme) {
               }
             });
 
-            const outlineFile = `../web/public/images/arrows/${prefix}arrow-${co2value}-outline.png`;
+            const outlineFile = `../public/images/arrows/${prefix}arrow-${co2value}-outline.png`;
             fs.unlink(outlineFile, (error) => {
               if (error && error.code !== 'ENOENT') {
                 console.error(`Error deleting ${outlineFile}:`, error);
