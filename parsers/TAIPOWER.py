@@ -83,9 +83,7 @@ def fetch_production(
     if objData["fueltype"].str.contains("ENERGYSTORAGESYSTEMLOAD").any():
         if objData["additional_1"].str.contains("Pumped Hydro").any():
             pumped_hydro_mask = objData["additional_1"].str.contains("Pumped Hydro")
-            objData.loc[
-                pumped_hydro_mask, "fueltype"
-            ] = "HYDRO_PUMPING"
+            objData.loc[pumped_hydro_mask, "fueltype"] = "HYDRO_PUMPING"
             # Invert the sign for pumped hydro load
             objData.loc[pumped_hydro_mask, "output"] = -objData.loc[
                 pumped_hydro_mask, "output"
@@ -93,7 +91,7 @@ def fetch_production(
         if objData["additional_1"].str.contains("Battery").any():
             battery_mask = objData["additional_1"].str.contains("Battery")
             objData.loc[battery_mask, "fueltype"] = "BATTERY_CHARGING"
-            
+
             objData.loc[battery_mask, "output"] = -objData.loc[battery_mask, "output"]
 
     assert not objData.capacity.isna().all(), (
