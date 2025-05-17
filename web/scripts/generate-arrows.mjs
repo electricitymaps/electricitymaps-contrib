@@ -76,7 +76,7 @@ function generateArrows(prefix, scaleTheme) {
 
     console.log(`Running: convert ${convertArguments.join(' ')}`);
 
-    const baseArrowProcess = child_process.spawn('magick', convertArguments);
+    const baseArrowProcess = child_process.spawn('convert', convertArguments);
 
     baseArrowProcess.stderr.on('data', (data) => {
       console.error(`Base arrow stderr: ${data}`);
@@ -119,7 +119,7 @@ function generateArrows(prefix, scaleTheme) {
           gifOutput,
         ];
 
-        const child = child_process.spawn('magick', convertArguments);
+        const child = child_process.spawn('convert', convertArguments);
 
         child.stderr.on('data', (data) => {
           console.error(`GIF stderr: ${data}`);
