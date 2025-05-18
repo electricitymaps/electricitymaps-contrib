@@ -1,37 +1,43 @@
+import useGetState from 'api/getState';
 import useGetZone from 'api/getZone';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
+import { usePriceColorScale } from 'hooks/theme';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 
 import { convertPrice } from '../bar-breakdown/utils';
 import { AreaGraphElement } from '../types';
 
-export function getFills(data: AreaGraphElement[]) {
+export function getPriceColorScale(data: AreaGraphElement[]) {
   const prices = Object.values(data).map((d) => d.layerData.price);
   const priceMaxValue = d3Max<number>(prices) ?? 0;
   const priceMinValue = d3Min<number>(prices) ?? 0;
 
-  const priceColorScale = scaleLinear<string>()
+  return scaleLinear<string>()
     .domain([priceMinValue, 0, priceMaxValue])
     .range(['gray', 'lightgray', '#616161']);
-
-  const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
-    priceColorScale(d.data.layerData[key]);
-
-  const markerFill = (key: string) => (d: { data: AreaGraphElement }) =>
-    priceColorScale(d.data.layerData[key]);
-
-  return { layerFill, markerFill };
 }
 
 export function usePriceChartData() {
-  const { data: zoneData, isLoading, isError } = useGetZone();
+  const { data: zoneDetails, isLoading, isError } = useGetZone();
+  const { zoneId } = useParams<RouteParameters>();
+  // Detect if we should use the map's price color scale
+  const mapPriceColorScale = usePriceColorScale();
+  const { data } = useGetState();
+  if (data?.datetimes == null || zoneId == null) {
+    return { isLoading, isError };
+  }
+  const shouldUseMapColorScale = Object.values(data?.datetimes)?.some(
+    (value) => value?.z[zoneId].pr != null
+  );
 
-  if (isLoading || isError || !zoneData) {
+  if (isLoading || isError || !zoneDetails) {
     return { isLoading, isError };
   }
 
-  const firstZoneState = Object.values(zoneData.zoneStates)[0].price;
+  const firstZoneState = Object.values(zoneDetails.zoneStates)[0].price;
   // We assume that if the first element has price disabled, all of them do
   const priceDisabledReason = firstZoneState?.disabledReason;
 
@@ -40,7 +46,7 @@ export function usePriceChartData() {
     firstZoneState?.currency
   );
 
-  const chartData = Object.entries(zoneData.zoneStates).map(
+  const chartData = Object.entries(zoneDetails.zoneStates).map(
     ([datetimeString, value]) => ({
       datetime: new Date(datetimeString),
       layerData: {
@@ -51,12 +57,19 @@ export function usePriceChartData() {
     })
   );
 
-  const futurePrice = zoneData.futurePrice;
+  const futurePrice = zoneDetails.futurePrice;
 
   const currencySymbol: string = getSymbolFromCurrency(currency?.toUpperCase());
   const valueAxisLabel = `${currencySymbol || '?'} / ${unit}`;
 
-  const { layerFill, markerFill } = getFills(chartData);
+  const priceColorScale = shouldUseMapColorScale
+    ? mapPriceColorScale
+    : getPriceColorScale(chartData);
+  const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
+    priceColorScale(d.data.layerData[key]);
+
+  const markerFill = (key: string) => (d: { data: AreaGraphElement }) =>
+    priceColorScale(d.data.layerData[key]);
 
   const layerKeys = ['price'];
 

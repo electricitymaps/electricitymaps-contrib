@@ -45,7 +45,7 @@ function generateColorblindScale(
 function generateZeroCentredScale(scaleExtrema: number, unknownColor: string) {
   return scaleLinear<string>()
     .domain([-scaleExtrema, -0.0001, 0, scaleExtrema])
-    .range(['#244ba5', '#96afe8', '#fedc76', '#efb301'])
+    .range(['#053061', '#a6cfe3', '#faccb4', '#67001f'])
     .unknown(unknownColor)
     .clamp(true);
 }

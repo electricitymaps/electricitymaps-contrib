@@ -27,7 +27,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     estimatedPercentage,
   } = zoneDetail;
   const intensity = getZoneValueForColor(
-    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction }, pr: null },
     isConsumption,
     MapColorSource.CARBON_INTENSITY
   );

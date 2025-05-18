@@ -46,6 +46,11 @@ export function useCo2ColorScale() {
   return theme.colorScale[MapColorSource.CARBON_INTENSITY];
 }
 
+export function usePriceColorScale() {
+  const theme = useTheme();
+  return theme.colorScale[MapColorSource.ELECTRICITY_PRICE];
+}
+
 export function getColorScale(theme: MapTheme, mapColorSource: MapColorSource) {
   return theme.colorScale[mapColorSource];
 }

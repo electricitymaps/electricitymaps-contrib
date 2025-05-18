@@ -56,6 +56,8 @@ export interface StateZoneData {
   ep?: number | null;
   /** Represents if the zone has a outage message or not */
   o?: boolean | null;
+  /** Day-ahead price */
+  pr: number | null;
 }
 
 export interface StateExchangeData {

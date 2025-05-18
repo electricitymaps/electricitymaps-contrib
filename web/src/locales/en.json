@@ -334,7 +334,7 @@
     "colorblindmode": "Color blind mode",
     "carbonintensity": "Carbon intensity",
     "renewablepercentage": "Renewable percentage",
-    "electricityprice": "Current day-ahead price"
+    "electricityprice": "Day-ahead price"
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",
