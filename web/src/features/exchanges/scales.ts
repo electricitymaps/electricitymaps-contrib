@@ -17,6 +17,9 @@ export const colorValueDomain: { [key in MapColorSource]: number[] } = {
 
 export function generateQuantizedColorScale(mapColorSource: MapColorSource) {
   let domain = colorValueDomain[mapColorSource];
+  if (!domain) {
+    return;
+  }
   let range = arrowfileColors;
   // scaleQuantize only supports ascending domains
   if (domain[0] > domain[1]) {

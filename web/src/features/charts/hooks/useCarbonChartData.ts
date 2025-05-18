@@ -1,5 +1,5 @@
 import useGetZone from 'api/getZone';
-import { useColorScale } from 'hooks/theme';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { MapColorSource } from 'utils/constants';
 import { getZoneValueForColor } from 'utils/helpers';
@@ -9,7 +9,7 @@ import { AreaGraphElement } from '../types';
 
 export function useCarbonChartData() {
   const { data, isLoading, isError } = useGetZone();
-  const co2ColorScale = useColorScale();
+  const co2ColorScale = useCo2ColorScale();
   const isConsumption = useAtomValue(isConsumptionAtom);
 
   if (isLoading || isError || !data) {

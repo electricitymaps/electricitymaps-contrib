@@ -1,7 +1,7 @@
 import useGetZone from 'api/getZone';
 import { max as d3Max } from 'd3-array';
 import type { ScaleLinear } from 'd3-scale';
-import { useColorScale } from 'hooks/theme';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'react-router-dom';
 import {
@@ -41,7 +41,7 @@ export const getLayerFill =
 
 export default function useOriginChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-  const co2ColorScale = useColorScale();
+  const co2ColorScale = useCo2ColorScale();
   const { zoneId } = useParams<RouteParameters>();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);

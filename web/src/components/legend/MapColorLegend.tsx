@@ -7,9 +7,19 @@ import { mapColorSourceAtom } from 'utils/state/atoms';
 import { CarbonUnits } from 'utils/units';
 
 import ColorBar from './ColorBar';
-import { LegendItem } from './LegendItem';
 
-function Co2Legend(): ReactElement {
+const translationKeys: { [key in MapColorSource]: string } = {
+  [MapColorSource.CARBON_INTENSITY]: 'legends.carbonintensity',
+  [MapColorSource.RENEWABLE_PERCENTAGE]: 'legends.renewablepercentage',
+  [MapColorSource.ELECTRICITY_PRICE]: 'legends.electricityprice',
+};
+const units: { [key in MapColorSource]: string } = {
+  [MapColorSource.CARBON_INTENSITY]: CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR,
+  [MapColorSource.RENEWABLE_PERCENTAGE]: '%',
+  [MapColorSource.ELECTRICITY_PRICE]: '€/MWh',
+};
+
+function Legend(): ReactElement {
   const { t } = useTranslation();
   const colorScale = useColorScale();
   const [mapColorSource, setSelectedColorSource] = useAtom(mapColorSourceAtom);
@@ -18,29 +28,24 @@ function Co2Legend(): ReactElement {
     setSelectedColorSource(event.target.value);
   };
 
-  let translationKey, unit;
-  if (mapColorSource == MapColorSource.CARBON_INTENSITY) {
-    translationKey = 'legends.carbonintensity';
-    unit = CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR;
-  } else if (mapColorSource == MapColorSource.RENEWABLE_PERCENTAGE) {
-    translationKey = 'legends.renewablepercentage';
-    unit = '%';
-  } else {
-    throw new Error('Invalid map color source');
-  }
-
   return (
-    <>
-      <label htmlFor="metric-select">Metric:</label>
-      <select id="metric-select" value={mapColorSource} onChange={handleDropdownChange}>
-        <option value={MapColorSource.CARBON_INTENSITY}>Carbon Intensity</option>
-        <option value={MapColorSource.RENEWABLE_PERCENTAGE}>Renewable Percentage</option>
+    <div className="text-center">
+      <select
+        className="font-sm whitespace-nowrap py-1 text-center font-poppins text-sm"
+        value={mapColorSource}
+        onChange={handleDropdownChange}
+      >
+        {Object.entries(translationKeys).map(([key, value]) => (
+          <option key={key} value={key}>
+            {t(value)} ({units[key]})
+          </option>
+        ))}
       </select>
-      <LegendItem label={t(translationKey)} unit={unit}>
-        <ColorBar colorScale={colorScale} ticksCount={6} id={'co2'} />
-      </LegendItem>
-    </>
+      <div className="px-2 pt-2">
+        <ColorBar colorScale={colorScale} ticksCount={6} id={'legend'} />
+      </div>
+    </div>
   );
 }
 
-export default memo(Co2Legend);
+export default memo(Legend);

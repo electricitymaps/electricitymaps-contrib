@@ -1,6 +1,6 @@
 import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
-import { useColorScale } from 'hooks/theme';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 
@@ -20,7 +20,7 @@ interface CarbonChartProps {
 function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
-  const co2ColorScale = useColorScale();
+  const co2ColorScale = useCo2ColorScale();
 
   if (isLoading || isError || !data) {
     return null;

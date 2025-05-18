@@ -37,6 +37,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
       {!isMapMoving &&
         map &&
         isConsumption &&
+        quantizedColorScale != null &&
         arrows.map((arrow) => (
           <ExchangeArrow
             key={arrow.key}

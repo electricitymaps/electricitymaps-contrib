@@ -1,10 +1,11 @@
 /* eslint-disable unicorn/no-null */
 import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
-import { useColorScale } from 'hooks/theme';
+import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
+import { MapColorSource } from 'utils/constants';
 import { getZoneValueForColor, round } from 'utils/helpers';
-import { isConsumptionAtom, mapColorSourceAtom, timeRangeAtom } from 'utils/state/atoms';
+import { isConsumptionAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -13,8 +14,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   const timeRange = useAtomValue(timeRangeAtom);
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
-  const co2ColorScale = useColorScale();
-  const mapColorSource = useAtomValue(mapColorSourceAtom);
+  const co2ColorScale = useCo2ColorScale();
 
   if (!zoneDetail) {
     return null;
@@ -29,7 +29,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   const intensity = getZoneValueForColor(
     { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
     isConsumption,
-    mapColorSource
+    MapColorSource.CARBON_INTENSITY
   );
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
   const hasEstimationPill =

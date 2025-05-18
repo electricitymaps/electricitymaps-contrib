@@ -1,9 +1,14 @@
-import { useColorScale } from 'hooks/theme';
+import { ScaleLinear } from 'd3-scale';
+import { useCo2ColorScale, useColorScale } from 'hooks/theme';
 import { CarbonUnits } from 'utils/units';
 
-export function Square({ value }: { value: number }) {
-  const colorScale = useColorScale();
-
+export function Square({
+  value,
+  colorScale,
+}: {
+  value: number;
+  colorScale: ScaleLinear<string, string, string>;
+}) {
   return (
     <div
       className="h-2 w-2"
@@ -14,7 +19,7 @@ export function Square({ value }: { value: number }) {
   );
 }
 
-export function RenewablePercentageDisplay({
+export function OtherPercentageDisplay({
   value,
   className,
   withSquare = false,
@@ -24,9 +29,10 @@ export function RenewablePercentageDisplay({
   withSquare?: boolean;
 }) {
   const valueAsNumber = value || 0;
+  const colorScale = useColorScale();
   return (
     <>
-      {withSquare && <Square value={valueAsNumber} />}
+      {withSquare && <Square value={valueAsNumber} colorScale={colorScale} />}
       <p className={className}>
         <b>{value == null ? '?' : Math.round(valueAsNumber)}</b>&nbsp;%
       </p>
@@ -44,9 +50,10 @@ export function CarbonIntensityDisplay({
   withSquare?: boolean;
 }) {
   const intensityAsNumber = co2Intensity || 0;
+  const colorScale = useCo2ColorScale();
   return (
     <>
-      {withSquare && <Square value={intensityAsNumber} />}
+      {withSquare && <Square value={intensityAsNumber} colorScale={colorScale} />}
       <p className={className}>
         <b>{co2Intensity == null ? '?' : Math.round(intensityAsNumber)}</b>&nbsp;
         {CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}

@@ -41,6 +41,11 @@ export function useColorScale() {
   return useMemo(() => getColorScale(theme, mapColorSource), [theme, mapColorSource]);
 }
 
+export function useCo2ColorScale() {
+  const theme = useTheme();
+  return theme.colorScale[MapColorSource.CARBON_INTENSITY];
+}
+
 export function getColorScale(theme: MapTheme, mapColorSource: MapColorSource) {
   return theme.colorScale[mapColorSource];
 }

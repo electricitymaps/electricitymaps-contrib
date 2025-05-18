@@ -14,6 +14,19 @@ function generateCo2Scale(cleanest: number, dirtiest: number, unknownColor: stri
     .clamp(true);
 }
 
+function generateRenewableScale(
+  cleanest: number,
+  dirtiest: number,
+  unknownColor: string
+) {
+  const extent = Math.abs(dirtiest - cleanest);
+  return scaleLinear<string>()
+    .domain([cleanest, extent / 2, dirtiest])
+    .range(['#244ba5', '#96afe8', '#fedc76', '#381D02'])
+    .unknown(unknownColor)
+    .clamp(true);
+}
+
 function generateColorblindScale(
   cleanest: number,
   dirtiest: number,
@@ -29,6 +42,14 @@ function generateColorblindScale(
     .clamp(true);
 }
 
+function generateZeroCentredScale(scaleExtrema: number, unknownColor: string) {
+  return scaleLinear<string>()
+    .domain([-scaleExtrema, -0.0001, 0, scaleExtrema])
+    .range(['#244ba5', '#96afe8', '#fedc76', '#efb301'])
+    .unknown(unknownColor)
+    .clamp(true);
+}
+
 interface Colors {
   colorblindDark: MapTheme;
   dark: MapTheme;
@@ -40,6 +61,7 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#7A878D'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#7A878D'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#7A878D'),
     },
     oceanColor: '#343D4C',
     strokeWidth: 0.15,
@@ -51,7 +73,8 @@ export const colors: Colors = {
   dark: {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#7A878D'),
-      [MapColorSource.RENEWABLE_PERCENTAGE]: generateCo2Scale(100, 0, '#7A878D'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateRenewableScale(100, 0, '#7A878D'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#7A878D'),
     },
     oceanColor: '#262626',
     strokeWidth: 0.15,
@@ -64,6 +87,7 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#D4D9DE'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#D4D9DE'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#D4D9DE'),
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
@@ -75,7 +99,8 @@ export const colors: Colors = {
   bright: {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#D4D9DE'),
-      [MapColorSource.RENEWABLE_PERCENTAGE]: generateCo2Scale(100, 0, '#D4D9DE'),
+      [MapColorSource.RENEWABLE_PERCENTAGE]: generateRenewableScale(100, 0, '#D4D9DE'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#D4D9DE'),
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,

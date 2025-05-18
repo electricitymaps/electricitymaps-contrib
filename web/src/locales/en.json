@@ -333,7 +333,8 @@
     "solarpotential": "Solar power potential",
     "colorblindmode": "Color blind mode",
     "carbonintensity": "Carbon intensity",
-    "renewablepercentage": "Renewable percentage"
+    "renewablepercentage": "Renewable percentage",
+    "electricityprice": "Current day-ahead price"
   },
   "tooltips": {
     "carbonintensity": "Carbon intensity",

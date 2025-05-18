@@ -1,6 +1,6 @@
 import {
   CarbonIntensityDisplay,
-  RenewablePercentageDisplay,
+  OtherPercentageDisplay,
 } from 'components/CarbonIntensityDisplay';
 import GlassContainer from 'components/GlassContainer';
 import { ZoneName } from 'components/ZoneName';
@@ -78,7 +78,7 @@ export default function ExchangeTooltip({
               {mapColorSource == MapColorSource.CARBON_INTENSITY ? (
                 <CarbonIntensityDisplay withSquare co2Intensity={value} />
               ) : (
-                <RenewablePercentageDisplay withSquare value={value} />
+                <OtherPercentageDisplay withSquare value={value} />
               )}
             </div>
           ) : (

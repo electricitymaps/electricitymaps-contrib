@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai';
 import { memo, type ReactElement } from 'react';
 import { isSolarLayerEnabledAtom, isWindLayerEnabledAtom } from 'utils/state/atoms';
 
-import Co2Legend from './MapColorLegend';
+import Legend from './MapColorLegend';
 import SolarLegend from './SolarLegend';
 import WindLegend from './WindLegend';
 
@@ -15,7 +15,7 @@ function LegendContainer(): ReactElement {
     <GlassContainer className="pointer-events-auto relative  min-w-64 max-w-min flex-col gap-2  p-2">
       {isSolarLayerEnabled && <SolarLegend />}
       {isWindLayerEnabled && <WindLegend />}
-      <Co2Legend />
+      <Legend />
     </GlassContainer>
   );
 }
