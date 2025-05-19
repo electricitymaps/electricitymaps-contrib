@@ -23,6 +23,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 810.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1680.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

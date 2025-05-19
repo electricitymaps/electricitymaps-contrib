@@ -8,6 +8,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 100.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -58,6 +61,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1830.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2022.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2023.1
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov

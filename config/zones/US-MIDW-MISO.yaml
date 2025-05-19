@@ -38,6 +38,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 135.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 198.0
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 212.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -75,6 +81,12 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 2240.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2171.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2186.4
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -130,6 +142,12 @@ capacity:
     - datetime: '2024-10-01'
       source: EIA.gov
       value: 48025.1
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 46306.2
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 46599.2
   gas:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -230,6 +248,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 81755.1
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 83455.8
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 83136.6
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -259,6 +283,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 2446.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2447.9
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2449.4
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -319,6 +349,12 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 3889.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 3864.0
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 3879.2
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -461,6 +497,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 13095.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 14043.3
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 14498.5
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -474,6 +516,9 @@ capacity:
     - datetime: '2023-04-01'
       source: EIA.gov
       value: 489.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 495.5
   wind:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -541,6 +586,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 32139.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 32433.5
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 32487.9
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch

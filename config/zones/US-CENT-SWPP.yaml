@@ -30,6 +30,9 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 327.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 324.2
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -43,6 +46,9 @@ capacity:
     - datetime: '2023-03-01'
       source: EIA.gov
       value: 21367.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 20999.3
   gas:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -74,6 +80,12 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 35064.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 34980.9
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 35050.8
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -145,6 +157,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 2242.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2249.7
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2173.3
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -224,6 +242,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 819.4
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 869.6
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -292,6 +313,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 33629.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 33624.7
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 33931.9
 comment: Southwest Power Pool
 contributors:
   - systemcatch
@@ -626,10 +653,10 @@ fallbackZoneMixes:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_SPP.fetch_load_forecast
+  dayaheadLocationalMarginalPrice: US_SPP.fetch_dayahead_locational_marginal_price
   production: US_SPP.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
-  dayaheadLocationalMarginalPrice: US_SPP.fetch_dayahead_locational_marginal_price
   realtimeLocationalMarginalPrice: US_SPP.fetch_realtime_locational_marginal_price
 region: Americas
 sources:

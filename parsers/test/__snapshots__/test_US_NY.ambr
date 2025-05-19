@@ -1,0 +1,6049 @@
+# serializer version: 1
+# name: test_snapshot_fetch_consumption_forecast
+  list([
+    dict({
+      'consumption': 18054.0,
+      'datetime': FakeDatetime(2025, 2, 19, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17636.0,
+      'datetime': FakeDatetime(2025, 2, 19, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17402.0,
+      'datetime': FakeDatetime(2025, 2, 19, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17330.0,
+      'datetime': FakeDatetime(2025, 2, 19, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17590.0,
+      'datetime': FakeDatetime(2025, 2, 19, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18364.0,
+      'datetime': FakeDatetime(2025, 2, 19, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19717.0,
+      'datetime': FakeDatetime(2025, 2, 19, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20557.0,
+      'datetime': FakeDatetime(2025, 2, 19, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20540.0,
+      'datetime': FakeDatetime(2025, 2, 19, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20263.0,
+      'datetime': FakeDatetime(2025, 2, 19, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19987.0,
+      'datetime': FakeDatetime(2025, 2, 19, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19700.0,
+      'datetime': FakeDatetime(2025, 2, 19, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19465.0,
+      'datetime': FakeDatetime(2025, 2, 19, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19458.0,
+      'datetime': FakeDatetime(2025, 2, 19, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19555.0,
+      'datetime': FakeDatetime(2025, 2, 19, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20068.0,
+      'datetime': FakeDatetime(2025, 2, 19, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20822.0,
+      'datetime': FakeDatetime(2025, 2, 19, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21587.0,
+      'datetime': FakeDatetime(2025, 2, 19, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 22028.0,
+      'datetime': FakeDatetime(2025, 2, 19, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21836.0,
+      'datetime': FakeDatetime(2025, 2, 19, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21329.0,
+      'datetime': FakeDatetime(2025, 2, 19, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20559.0,
+      'datetime': FakeDatetime(2025, 2, 19, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19565.0,
+      'datetime': FakeDatetime(2025, 2, 19, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18621.0,
+      'datetime': FakeDatetime(2025, 2, 19, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17823.0,
+      'datetime': FakeDatetime(2025, 2, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17415.0,
+      'datetime': FakeDatetime(2025, 2, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17175.0,
+      'datetime': FakeDatetime(2025, 2, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17096.0,
+      'datetime': FakeDatetime(2025, 2, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17337.0,
+      'datetime': FakeDatetime(2025, 2, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18100.0,
+      'datetime': FakeDatetime(2025, 2, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19411.0,
+      'datetime': FakeDatetime(2025, 2, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20373.0,
+      'datetime': FakeDatetime(2025, 2, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20688.0,
+      'datetime': FakeDatetime(2025, 2, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20671.0,
+      'datetime': FakeDatetime(2025, 2, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20560.0,
+      'datetime': FakeDatetime(2025, 2, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20357.0,
+      'datetime': FakeDatetime(2025, 2, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20167.0,
+      'datetime': FakeDatetime(2025, 2, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20086.0,
+      'datetime': FakeDatetime(2025, 2, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20054.0,
+      'datetime': FakeDatetime(2025, 2, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20311.0,
+      'datetime': FakeDatetime(2025, 2, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20754.0,
+      'datetime': FakeDatetime(2025, 2, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21315.0,
+      'datetime': FakeDatetime(2025, 2, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21706.0,
+      'datetime': FakeDatetime(2025, 2, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 21504.0,
+      'datetime': FakeDatetime(2025, 2, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20988.0,
+      'datetime': FakeDatetime(2025, 2, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20218.0,
+      'datetime': FakeDatetime(2025, 2, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19221.0,
+      'datetime': FakeDatetime(2025, 2, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18284.0,
+      'datetime': FakeDatetime(2025, 2, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17508.0,
+      'datetime': FakeDatetime(2025, 2, 21, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17062.0,
+      'datetime': FakeDatetime(2025, 2, 21, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16783.0,
+      'datetime': FakeDatetime(2025, 2, 21, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16686.0,
+      'datetime': FakeDatetime(2025, 2, 21, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16911.0,
+      'datetime': FakeDatetime(2025, 2, 21, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17639.0,
+      'datetime': FakeDatetime(2025, 2, 21, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18938.0,
+      'datetime': FakeDatetime(2025, 2, 21, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19828.0,
+      'datetime': FakeDatetime(2025, 2, 21, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19944.0,
+      'datetime': FakeDatetime(2025, 2, 21, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19651.0,
+      'datetime': FakeDatetime(2025, 2, 21, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19302.0,
+      'datetime': FakeDatetime(2025, 2, 21, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18939.0,
+      'datetime': FakeDatetime(2025, 2, 21, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18596.0,
+      'datetime': FakeDatetime(2025, 2, 21, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18444.0,
+      'datetime': FakeDatetime(2025, 2, 21, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18451.0,
+      'datetime': FakeDatetime(2025, 2, 21, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18880.0,
+      'datetime': FakeDatetime(2025, 2, 21, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19665.0,
+      'datetime': FakeDatetime(2025, 2, 21, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20441.0,
+      'datetime': FakeDatetime(2025, 2, 21, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20866.0,
+      'datetime': FakeDatetime(2025, 2, 21, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20672.0,
+      'datetime': FakeDatetime(2025, 2, 21, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 20207.0,
+      'datetime': FakeDatetime(2025, 2, 21, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19629.0,
+      'datetime': FakeDatetime(2025, 2, 21, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18887.0,
+      'datetime': FakeDatetime(2025, 2, 21, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18099.0,
+      'datetime': FakeDatetime(2025, 2, 21, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17339.0,
+      'datetime': FakeDatetime(2025, 2, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16906.0,
+      'datetime': FakeDatetime(2025, 2, 22, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16631.0,
+      'datetime': FakeDatetime(2025, 2, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16482.0,
+      'datetime': FakeDatetime(2025, 2, 22, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16521.0,
+      'datetime': FakeDatetime(2025, 2, 22, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16822.0,
+      'datetime': FakeDatetime(2025, 2, 22, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17359.0,
+      'datetime': FakeDatetime(2025, 2, 22, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17864.0,
+      'datetime': FakeDatetime(2025, 2, 22, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18233.0,
+      'datetime': FakeDatetime(2025, 2, 22, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18187.0,
+      'datetime': FakeDatetime(2025, 2, 22, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17911.0,
+      'datetime': FakeDatetime(2025, 2, 22, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17618.0,
+      'datetime': FakeDatetime(2025, 2, 22, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17287.0,
+      'datetime': FakeDatetime(2025, 2, 22, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16735.0,
+      'datetime': FakeDatetime(2025, 2, 22, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16828.0,
+      'datetime': FakeDatetime(2025, 2, 22, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17387.0,
+      'datetime': FakeDatetime(2025, 2, 22, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18299.0,
+      'datetime': FakeDatetime(2025, 2, 22, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18984.0,
+      'datetime': FakeDatetime(2025, 2, 22, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19438.0,
+      'datetime': FakeDatetime(2025, 2, 22, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19267.0,
+      'datetime': FakeDatetime(2025, 2, 22, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18874.0,
+      'datetime': FakeDatetime(2025, 2, 22, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18335.0,
+      'datetime': FakeDatetime(2025, 2, 22, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17694.0,
+      'datetime': FakeDatetime(2025, 2, 22, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17015.0,
+      'datetime': FakeDatetime(2025, 2, 22, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16375.0,
+      'datetime': FakeDatetime(2025, 2, 23, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15968.0,
+      'datetime': FakeDatetime(2025, 2, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15711.0,
+      'datetime': FakeDatetime(2025, 2, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15581.0,
+      'datetime': FakeDatetime(2025, 2, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15628.0,
+      'datetime': FakeDatetime(2025, 2, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15889.0,
+      'datetime': FakeDatetime(2025, 2, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16309.0,
+      'datetime': FakeDatetime(2025, 2, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16693.0,
+      'datetime': FakeDatetime(2025, 2, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16964.0,
+      'datetime': FakeDatetime(2025, 2, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16907.0,
+      'datetime': FakeDatetime(2025, 2, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16763.0,
+      'datetime': FakeDatetime(2025, 2, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16723.0,
+      'datetime': FakeDatetime(2025, 2, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16592.0,
+      'datetime': FakeDatetime(2025, 2, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16544.0,
+      'datetime': FakeDatetime(2025, 2, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16720.0,
+      'datetime': FakeDatetime(2025, 2, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17257.0,
+      'datetime': FakeDatetime(2025, 2, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18053.0,
+      'datetime': FakeDatetime(2025, 2, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18689.0,
+      'datetime': FakeDatetime(2025, 2, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19211.0,
+      'datetime': FakeDatetime(2025, 2, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19062.0,
+      'datetime': FakeDatetime(2025, 2, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18686.0,
+      'datetime': FakeDatetime(2025, 2, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18114.0,
+      'datetime': FakeDatetime(2025, 2, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17412.0,
+      'datetime': FakeDatetime(2025, 2, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16694.0,
+      'datetime': FakeDatetime(2025, 2, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16031.0,
+      'datetime': FakeDatetime(2025, 2, 24, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15695.0,
+      'datetime': FakeDatetime(2025, 2, 24, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15514.0,
+      'datetime': FakeDatetime(2025, 2, 24, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15480.0,
+      'datetime': FakeDatetime(2025, 2, 24, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 15766.0,
+      'datetime': FakeDatetime(2025, 2, 24, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16601.0,
+      'datetime': FakeDatetime(2025, 2, 24, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17973.0,
+      'datetime': FakeDatetime(2025, 2, 24, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18983.0,
+      'datetime': FakeDatetime(2025, 2, 24, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19206.0,
+      'datetime': FakeDatetime(2025, 2, 24, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18980.0,
+      'datetime': FakeDatetime(2025, 2, 24, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18661.0,
+      'datetime': FakeDatetime(2025, 2, 24, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18360.0,
+      'datetime': FakeDatetime(2025, 2, 24, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18022.0,
+      'datetime': FakeDatetime(2025, 2, 24, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17875.0,
+      'datetime': FakeDatetime(2025, 2, 24, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17858.0,
+      'datetime': FakeDatetime(2025, 2, 24, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18173.0,
+      'datetime': FakeDatetime(2025, 2, 24, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18764.0,
+      'datetime': FakeDatetime(2025, 2, 24, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19364.0,
+      'datetime': FakeDatetime(2025, 2, 24, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19854.0,
+      'datetime': FakeDatetime(2025, 2, 24, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19650.0,
+      'datetime': FakeDatetime(2025, 2, 24, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 19113.0,
+      'datetime': FakeDatetime(2025, 2, 24, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 18341.0,
+      'datetime': FakeDatetime(2025, 2, 24, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 17349.0,
+      'datetime': FakeDatetime(2025, 2, 24, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'consumption': 16465.0,
+      'datetime': FakeDatetime(2025, 2, 24, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'US-NY-NYIS',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_production_more_than_9_days_in_past
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8406.0,
+        'hydro': 1576.0,
+        'nuclear': 3252.0,
+        'unknown': 215.0,
+        'wind': 268.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8225.0,
+        'hydro': 1565.0,
+        'nuclear': 3250.0,
+        'unknown': 213.0,
+        'wind': 265.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8091.0,
+        'hydro': 1569.0,
+        'nuclear': 3253.0,
+        'unknown': 216.0,
+        'wind': 259.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8028.0,
+        'hydro': 1572.0,
+        'nuclear': 3253.0,
+        'unknown': 206.0,
+        'wind': 259.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7984.0,
+        'hydro': 1550.0,
+        'nuclear': 3252.0,
+        'unknown': 202.0,
+        'wind': 257.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7909.0,
+        'hydro': 1531.0,
+        'nuclear': 3252.0,
+        'unknown': 213.0,
+        'wind': 257.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7854.0,
+        'hydro': 1555.0,
+        'nuclear': 3252.0,
+        'unknown': 208.0,
+        'wind': 258.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7822.0,
+        'hydro': 1565.0,
+        'nuclear': 3252.0,
+        'unknown': 203.0,
+        'wind': 260.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7812.0,
+        'hydro': 1567.0,
+        'nuclear': 3251.0,
+        'unknown': 203.0,
+        'wind': 254.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7827.0,
+        'hydro': 1550.0,
+        'nuclear': 3253.0,
+        'unknown': 197.0,
+        'wind': 252.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7852.0,
+        'hydro': 1502.0,
+        'nuclear': 3252.0,
+        'unknown': 198.0,
+        'wind': 251.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7905.0,
+        'hydro': 1530.0,
+        'nuclear': 3253.0,
+        'unknown': 195.0,
+        'wind': 245.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8144.0,
+        'hydro': 1672.0,
+        'nuclear': 3251.0,
+        'unknown': 231.0,
+        'wind': 240.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8289.0,
+        'hydro': 1693.0,
+        'nuclear': 3251.0,
+        'unknown': 234.0,
+        'wind': 239.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8291.0,
+        'hydro': 1660.0,
+        'nuclear': 3251.0,
+        'unknown': 233.0,
+        'wind': 236.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8227.0,
+        'hydro': 1642.0,
+        'nuclear': 3250.0,
+        'unknown': 234.0,
+        'wind': 240.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8152.0,
+        'hydro': 1629.0,
+        'nuclear': 3251.0,
+        'unknown': 233.0,
+        'wind': 250.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8081.0,
+        'hydro': 1593.0,
+        'nuclear': 3252.0,
+        'unknown': 236.0,
+        'wind': 256.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8002.0,
+        'hydro': 1583.0,
+        'nuclear': 3252.0,
+        'unknown': 235.0,
+        'wind': 263.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7944.0,
+        'hydro': 1574.0,
+        'nuclear': 3251.0,
+        'unknown': 233.0,
+        'wind': 261.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7870.0,
+        'hydro': 1581.0,
+        'nuclear': 3252.0,
+        'unknown': 233.0,
+        'wind': 259.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7775.0,
+        'hydro': 1599.0,
+        'nuclear': 3251.0,
+        'unknown': 223.0,
+        'wind': 254.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7732.0,
+        'hydro': 1575.0,
+        'nuclear': 3251.0,
+        'unknown': 200.0,
+        'wind': 248.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7716.0,
+        'hydro': 1554.0,
+        'nuclear': 3252.0,
+        'unknown': 202.0,
+        'wind': 238.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7704.0,
+        'hydro': 1514.0,
+        'nuclear': 3252.0,
+        'unknown': 201.0,
+        'wind': 231.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7687.0,
+        'hydro': 1535.0,
+        'nuclear': 3253.0,
+        'unknown': 204.0,
+        'wind': 229.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7672.0,
+        'hydro': 1557.0,
+        'nuclear': 3253.0,
+        'unknown': 194.0,
+        'wind': 227.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7671.0,
+        'hydro': 1561.0,
+        'nuclear': 3252.0,
+        'unknown': 193.0,
+        'wind': 234.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7671.0,
+        'hydro': 1542.0,
+        'nuclear': 3252.0,
+        'unknown': 192.0,
+        'wind': 240.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7669.0,
+        'hydro': 1506.0,
+        'nuclear': 3251.0,
+        'unknown': 195.0,
+        'wind': 250.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7658.0,
+        'hydro': 1459.0,
+        'nuclear': 3251.0,
+        'unknown': 198.0,
+        'wind': 264.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7640.0,
+        'hydro': 1422.0,
+        'nuclear': 3251.0,
+        'unknown': 202.0,
+        'wind': 271.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7636.0,
+        'hydro': 1412.0,
+        'nuclear': 3253.0,
+        'unknown': 203.0,
+        'wind': 273.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7633.0,
+        'hydro': 1431.0,
+        'nuclear': 3251.0,
+        'unknown': 204.0,
+        'wind': 276.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7613.0,
+        'hydro': 1422.0,
+        'nuclear': 3252.0,
+        'unknown': 200.0,
+        'wind': 279.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7584.0,
+        'hydro': 1444.0,
+        'nuclear': 3250.0,
+        'unknown': 202.0,
+        'wind': 282.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7552.0,
+        'hydro': 1481.0,
+        'nuclear': 3252.0,
+        'unknown': 204.0,
+        'wind': 287.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7553.0,
+        'hydro': 1486.0,
+        'nuclear': 3251.0,
+        'unknown': 203.0,
+        'wind': 282.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7547.0,
+        'hydro': 1497.0,
+        'nuclear': 3252.0,
+        'unknown': 197.0,
+        'wind': 277.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7524.0,
+        'hydro': 1520.0,
+        'nuclear': 3251.0,
+        'unknown': 199.0,
+        'wind': 274.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7528.0,
+        'hydro': 1518.0,
+        'nuclear': 3252.0,
+        'unknown': 198.0,
+        'wind': 281.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7545.0,
+        'hydro': 1499.0,
+        'nuclear': 3253.0,
+        'unknown': 191.0,
+        'wind': 284.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7560.0,
+        'hydro': 1487.0,
+        'nuclear': 3251.0,
+        'unknown': 193.0,
+        'wind': 285.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7557.0,
+        'hydro': 1485.0,
+        'nuclear': 3252.0,
+        'unknown': 197.0,
+        'wind': 288.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7553.0,
+        'hydro': 1490.0,
+        'nuclear': 3250.0,
+        'unknown': 194.0,
+        'wind': 284.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7568.0,
+        'hydro': 1508.0,
+        'nuclear': 3251.0,
+        'unknown': 199.0,
+        'wind': 281.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7606.0,
+        'hydro': 1501.0,
+        'nuclear': 3251.0,
+        'unknown': 201.0,
+        'wind': 269.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7584.0,
+        'hydro': 1488.0,
+        'nuclear': 3251.0,
+        'unknown': 204.0,
+        'wind': 263.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7521.0,
+        'hydro': 1437.0,
+        'nuclear': 3250.0,
+        'unknown': 199.0,
+        'wind': 263.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7435.0,
+        'hydro': 1450.0,
+        'nuclear': 3250.0,
+        'unknown': 198.0,
+        'wind': 260.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7458.0,
+        'hydro': 1468.0,
+        'nuclear': 3249.0,
+        'unknown': 202.0,
+        'wind': 256.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7504.0,
+        'hydro': 1493.0,
+        'nuclear': 3250.0,
+        'unknown': 197.0,
+        'wind': 252.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7522.0,
+        'hydro': 1485.0,
+        'nuclear': 3251.0,
+        'unknown': 197.0,
+        'wind': 241.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7551.0,
+        'hydro': 1480.0,
+        'nuclear': 3250.0,
+        'unknown': 199.0,
+        'wind': 232.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7563.0,
+        'hydro': 1447.0,
+        'nuclear': 3243.0,
+        'unknown': 200.0,
+        'wind': 228.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7556.0,
+        'hydro': 1452.0,
+        'nuclear': 3231.0,
+        'unknown': 201.0,
+        'wind': 223.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7576.0,
+        'hydro': 1478.0,
+        'nuclear': 3237.0,
+        'unknown': 203.0,
+        'wind': 221.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7593.0,
+        'hydro': 1425.0,
+        'nuclear': 3245.0,
+        'unknown': 207.0,
+        'wind': 234.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7600.0,
+        'hydro': 1428.0,
+        'nuclear': 3249.0,
+        'unknown': 211.0,
+        'wind': 249.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7599.0,
+        'hydro': 1456.0,
+        'nuclear': 3250.0,
+        'unknown': 204.0,
+        'wind': 254.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7710.0,
+        'hydro': 1583.0,
+        'nuclear': 3251.0,
+        'unknown': 199.0,
+        'wind': 257.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7849.0,
+        'hydro': 1717.0,
+        'nuclear': 3250.0,
+        'unknown': 199.0,
+        'wind': 255.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7927.0,
+        'hydro': 1736.0,
+        'nuclear': 3251.0,
+        'unknown': 202.0,
+        'wind': 255.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7994.0,
+        'hydro': 1710.0,
+        'nuclear': 3251.0,
+        'unknown': 200.0,
+        'wind': 264.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8005.0,
+        'hydro': 1704.0,
+        'nuclear': 3251.0,
+        'unknown': 198.0,
+        'wind': 272.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8067.0,
+        'hydro': 1725.0,
+        'nuclear': 3252.0,
+        'unknown': 199.0,
+        'wind': 277.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8132.0,
+        'hydro': 1748.0,
+        'nuclear': 3252.0,
+        'unknown': 201.0,
+        'wind': 277.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8176.0,
+        'hydro': 1776.0,
+        'nuclear': 3251.0,
+        'unknown': 201.0,
+        'wind': 279.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8216.0,
+        'hydro': 1832.0,
+        'nuclear': 3249.0,
+        'unknown': 197.0,
+        'wind': 281.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8285.0,
+        'hydro': 1950.0,
+        'nuclear': 3251.0,
+        'unknown': 199.0,
+        'wind': 277.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8361.0,
+        'hydro': 1984.0,
+        'nuclear': 3251.0,
+        'unknown': 194.0,
+        'wind': 273.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8359.0,
+        'hydro': 2158.0,
+        'nuclear': 3250.0,
+        'unknown': 198.0,
+        'wind': 269.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8534.0,
+        'hydro': 2426.0,
+        'nuclear': 3250.0,
+        'unknown': 203.0,
+        'wind': 269.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8888.0,
+        'hydro': 2575.0,
+        'nuclear': 3249.0,
+        'unknown': 207.0,
+        'wind': 273.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8913.0,
+        'hydro': 2634.0,
+        'nuclear': 3252.0,
+        'unknown': 209.0,
+        'wind': 276.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8885.0,
+        'hydro': 2768.0,
+        'nuclear': 3252.0,
+        'unknown': 207.0,
+        'wind': 271.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8877.0,
+        'hydro': 2930.0,
+        'nuclear': 3250.0,
+        'unknown': 201.0,
+        'wind': 268.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8883.0,
+        'hydro': 3075.0,
+        'nuclear': 3251.0,
+        'unknown': 193.0,
+        'wind': 271.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8884.0,
+        'hydro': 3174.0,
+        'nuclear': 3251.0,
+        'unknown': 196.0,
+        'wind': 277.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8896.0,
+        'hydro': 3275.0,
+        'nuclear': 3250.0,
+        'unknown': 202.0,
+        'wind': 284.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8974.0,
+        'hydro': 3282.0,
+        'nuclear': 3250.0,
+        'unknown': 207.0,
+        'wind': 288.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9092.0,
+        'hydro': 3329.0,
+        'nuclear': 3252.0,
+        'unknown': 210.0,
+        'wind': 290.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9223.0,
+        'hydro': 3384.0,
+        'nuclear': 3250.0,
+        'unknown': 215.0,
+        'wind': 289.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9152.0,
+        'hydro': 3357.0,
+        'nuclear': 3250.0,
+        'unknown': 210.0,
+        'wind': 290.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8990.0,
+        'hydro': 3391.0,
+        'nuclear': 3251.0,
+        'unknown': 213.0,
+        'wind': 298.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9009.0,
+        'hydro': 3397.0,
+        'nuclear': 3251.0,
+        'unknown': 210.0,
+        'wind': 304.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9037.0,
+        'hydro': 3425.0,
+        'nuclear': 3249.0,
+        'unknown': 235.0,
+        'wind': 301.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9032.0,
+        'hydro': 3439.0,
+        'nuclear': 3252.0,
+        'unknown': 226.0,
+        'wind': 298.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9026.0,
+        'hydro': 3394.0,
+        'nuclear': 3251.0,
+        'unknown': 228.0,
+        'wind': 294.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9046.0,
+        'hydro': 3432.0,
+        'nuclear': 3251.0,
+        'unknown': 231.0,
+        'wind': 289.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9079.0,
+        'hydro': 3444.0,
+        'nuclear': 3250.0,
+        'unknown': 239.0,
+        'wind': 280.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9097.0,
+        'hydro': 3452.0,
+        'nuclear': 3249.0,
+        'unknown': 249.0,
+        'wind': 273.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9094.0,
+        'hydro': 3488.0,
+        'nuclear': 3249.0,
+        'unknown': 270.0,
+        'wind': 268.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9116.0,
+        'hydro': 3498.0,
+        'nuclear': 3251.0,
+        'unknown': 302.0,
+        'wind': 268.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9180.0,
+        'hydro': 3486.0,
+        'nuclear': 3250.0,
+        'unknown': 306.0,
+        'wind': 258.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9216.0,
+        'hydro': 3485.0,
+        'nuclear': 3250.0,
+        'unknown': 313.0,
+        'wind': 253.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9304.0,
+        'hydro': 3427.0,
+        'nuclear': 3251.0,
+        'unknown': 336.0,
+        'wind': 245.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9339.0,
+        'hydro': 3406.0,
+        'nuclear': 3251.0,
+        'unknown': 352.0,
+        'wind': 235.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9289.0,
+        'hydro': 3364.0,
+        'nuclear': 3250.0,
+        'unknown': 369.0,
+        'wind': 229.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9158.0,
+        'hydro': 3266.0,
+        'nuclear': 3250.0,
+        'unknown': 383.0,
+        'wind': 217.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9058.0,
+        'hydro': 3164.0,
+        'nuclear': 3250.0,
+        'unknown': 388.0,
+        'wind': 215.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9025.0,
+        'hydro': 3153.0,
+        'nuclear': 3251.0,
+        'unknown': 403.0,
+        'wind': 211.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8960.0,
+        'hydro': 3147.0,
+        'nuclear': 3249.0,
+        'unknown': 409.0,
+        'wind': 209.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8873.0,
+        'hydro': 3137.0,
+        'nuclear': 3249.0,
+        'unknown': 419.0,
+        'wind': 207.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8801.0,
+        'hydro': 3175.0,
+        'nuclear': 3252.0,
+        'unknown': 424.0,
+        'wind': 206.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8763.0,
+        'hydro': 3182.0,
+        'nuclear': 3249.0,
+        'unknown': 439.0,
+        'wind': 202.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8767.0,
+        'hydro': 3119.0,
+        'nuclear': 3250.0,
+        'unknown': 447.0,
+        'wind': 202.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8901.0,
+        'hydro': 3028.0,
+        'nuclear': 3252.0,
+        'unknown': 437.0,
+        'wind': 208.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8941.0,
+        'hydro': 3126.0,
+        'nuclear': 3250.0,
+        'unknown': 436.0,
+        'wind': 216.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8895.0,
+        'hydro': 3218.0,
+        'nuclear': 3249.0,
+        'unknown': 451.0,
+        'wind': 223.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8870.0,
+        'hydro': 3159.0,
+        'nuclear': 3251.0,
+        'unknown': 466.0,
+        'wind': 226.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8880.0,
+        'hydro': 3172.0,
+        'nuclear': 3250.0,
+        'unknown': 476.0,
+        'wind': 235.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8911.0,
+        'hydro': 3179.0,
+        'nuclear': 3249.0,
+        'unknown': 474.0,
+        'wind': 236.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8903.0,
+        'hydro': 3155.0,
+        'nuclear': 3250.0,
+        'unknown': 481.0,
+        'wind': 246.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8931.0,
+        'hydro': 3151.0,
+        'nuclear': 3251.0,
+        'unknown': 482.0,
+        'wind': 258.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8928.0,
+        'hydro': 3153.0,
+        'nuclear': 3249.0,
+        'unknown': 489.0,
+        'wind': 270.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8898.0,
+        'hydro': 3174.0,
+        'nuclear': 3249.0,
+        'unknown': 490.0,
+        'wind': 290.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8845.0,
+        'hydro': 3151.0,
+        'nuclear': 3250.0,
+        'unknown': 492.0,
+        'wind': 299.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8807.0,
+        'hydro': 3107.0,
+        'nuclear': 3250.0,
+        'unknown': 490.0,
+        'wind': 308.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8820.0,
+        'hydro': 2974.0,
+        'nuclear': 3251.0,
+        'unknown': 489.0,
+        'wind': 318.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8749.0,
+        'hydro': 2773.0,
+        'nuclear': 3250.0,
+        'unknown': 479.0,
+        'wind': 317.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8563.0,
+        'hydro': 2683.0,
+        'nuclear': 3249.0,
+        'unknown': 470.0,
+        'wind': 331.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8436.0,
+        'hydro': 2692.0,
+        'nuclear': 3248.0,
+        'unknown': 481.0,
+        'wind': 346.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8375.0,
+        'hydro': 2653.0,
+        'nuclear': 3248.0,
+        'unknown': 474.0,
+        'wind': 368.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8265.0,
+        'hydro': 2650.0,
+        'nuclear': 3250.0,
+        'unknown': 475.0,
+        'wind': 379.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8140.0,
+        'hydro': 2681.0,
+        'nuclear': 3248.0,
+        'unknown': 466.0,
+        'wind': 390.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8088.0,
+        'hydro': 2666.0,
+        'nuclear': 3249.0,
+        'unknown': 471.0,
+        'wind': 383.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7989.0,
+        'hydro': 2626.0,
+        'nuclear': 3247.0,
+        'unknown': 481.0,
+        'wind': 392.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7960.0,
+        'hydro': 2609.0,
+        'nuclear': 3248.0,
+        'unknown': 493.0,
+        'wind': 394.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7917.0,
+        'hydro': 2593.0,
+        'nuclear': 3247.0,
+        'unknown': 557.0,
+        'wind': 411.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7817.0,
+        'hydro': 2595.0,
+        'nuclear': 3250.0,
+        'unknown': 565.0,
+        'wind': 428.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7689.0,
+        'hydro': 2604.0,
+        'nuclear': 3248.0,
+        'unknown': 527.0,
+        'wind': 433.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7548.0,
+        'hydro': 2562.0,
+        'nuclear': 3250.0,
+        'unknown': 531.0,
+        'wind': 436.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7479.0,
+        'hydro': 2490.0,
+        'nuclear': 3249.0,
+        'unknown': 535.0,
+        'wind': 432.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7487.0,
+        'hydro': 2499.0,
+        'nuclear': 3248.0,
+        'unknown': 522.0,
+        'wind': 431.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7546.0,
+        'hydro': 2549.0,
+        'nuclear': 3249.0,
+        'unknown': 518.0,
+        'wind': 432.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7585.0,
+        'hydro': 2569.0,
+        'nuclear': 3248.0,
+        'unknown': 507.0,
+        'wind': 433.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7536.0,
+        'hydro': 2609.0,
+        'nuclear': 3250.0,
+        'unknown': 505.0,
+        'wind': 432.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7545.0,
+        'hydro': 2655.0,
+        'nuclear': 3247.0,
+        'unknown': 511.0,
+        'wind': 425.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7556.0,
+        'hydro': 2682.0,
+        'nuclear': 3249.0,
+        'unknown': 511.0,
+        'wind': 424.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7569.0,
+        'hydro': 2751.0,
+        'nuclear': 3246.0,
+        'unknown': 511.0,
+        'wind': 424.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7591.0,
+        'hydro': 2768.0,
+        'nuclear': 3247.0,
+        'unknown': 505.0,
+        'wind': 436.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7599.0,
+        'hydro': 2770.0,
+        'nuclear': 3247.0,
+        'unknown': 496.0,
+        'wind': 436.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7626.0,
+        'hydro': 2728.0,
+        'nuclear': 3248.0,
+        'unknown': 488.0,
+        'wind': 426.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7607.0,
+        'hydro': 2700.0,
+        'nuclear': 3244.0,
+        'unknown': 473.0,
+        'wind': 416.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7577.0,
+        'hydro': 2717.0,
+        'nuclear': 3232.0,
+        'unknown': 475.0,
+        'wind': 415.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7557.0,
+        'hydro': 2737.0,
+        'nuclear': 3242.0,
+        'unknown': 466.0,
+        'wind': 411.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7508.0,
+        'hydro': 2778.0,
+        'nuclear': 3247.0,
+        'unknown': 469.0,
+        'wind': 420.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7451.0,
+        'hydro': 2745.0,
+        'nuclear': 3247.0,
+        'unknown': 467.0,
+        'wind': 432.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7476.0,
+        'hydro': 2781.0,
+        'nuclear': 3248.0,
+        'unknown': 472.0,
+        'wind': 440.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7537.0,
+        'hydro': 2808.0,
+        'nuclear': 3246.0,
+        'unknown': 471.0,
+        'wind': 447.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7626.0,
+        'hydro': 2792.0,
+        'nuclear': 3249.0,
+        'unknown': 477.0,
+        'wind': 450.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7716.0,
+        'hydro': 2768.0,
+        'nuclear': 3247.0,
+        'unknown': 473.0,
+        'wind': 450.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7728.0,
+        'hydro': 2735.0,
+        'nuclear': 3249.0,
+        'unknown': 453.0,
+        'wind': 456.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7775.0,
+        'hydro': 2713.0,
+        'nuclear': 3248.0,
+        'unknown': 449.0,
+        'wind': 462.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7776.0,
+        'hydro': 2661.0,
+        'nuclear': 3248.0,
+        'unknown': 454.0,
+        'wind': 464.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7744.0,
+        'hydro': 2627.0,
+        'nuclear': 3248.0,
+        'unknown': 465.0,
+        'wind': 471.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7710.0,
+        'hydro': 2638.0,
+        'nuclear': 3248.0,
+        'unknown': 464.0,
+        'wind': 457.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7689.0,
+        'hydro': 2648.0,
+        'nuclear': 3247.0,
+        'unknown': 456.0,
+        'wind': 479.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7650.0,
+        'hydro': 2620.0,
+        'nuclear': 3246.0,
+        'unknown': 448.0,
+        'wind': 487.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7606.0,
+        'hydro': 2649.0,
+        'nuclear': 3248.0,
+        'unknown': 442.0,
+        'wind': 494.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7575.0,
+        'hydro': 2668.0,
+        'nuclear': 3250.0,
+        'unknown': 433.0,
+        'wind': 499.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7560.0,
+        'hydro': 2716.0,
+        'nuclear': 3249.0,
+        'unknown': 418.0,
+        'wind': 523.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7560.0,
+        'hydro': 2730.0,
+        'nuclear': 3248.0,
+        'unknown': 416.0,
+        'wind': 545.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7601.0,
+        'hydro': 2718.0,
+        'nuclear': 3249.0,
+        'unknown': 404.0,
+        'wind': 564.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7635.0,
+        'hydro': 2722.0,
+        'nuclear': 3250.0,
+        'unknown': 408.0,
+        'wind': 603.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7643.0,
+        'hydro': 2724.0,
+        'nuclear': 3248.0,
+        'unknown': 404.0,
+        'wind': 608.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7682.0,
+        'hydro': 2696.0,
+        'nuclear': 3248.0,
+        'unknown': 389.0,
+        'wind': 636.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7754.0,
+        'hydro': 2699.0,
+        'nuclear': 3247.0,
+        'unknown': 389.0,
+        'wind': 659.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7833.0,
+        'hydro': 2733.0,
+        'nuclear': 3249.0,
+        'unknown': 392.0,
+        'wind': 673.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7884.0,
+        'hydro': 2729.0,
+        'nuclear': 3248.0,
+        'unknown': 368.0,
+        'wind': 695.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7882.0,
+        'hydro': 2684.0,
+        'nuclear': 3249.0,
+        'unknown': 365.0,
+        'wind': 714.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7861.0,
+        'hydro': 2657.0,
+        'nuclear': 3250.0,
+        'unknown': 340.0,
+        'wind': 742.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7860.0,
+        'hydro': 2674.0,
+        'nuclear': 3248.0,
+        'unknown': 322.0,
+        'wind': 763.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7849.0,
+        'hydro': 2704.0,
+        'nuclear': 3248.0,
+        'unknown': 323.0,
+        'wind': 755.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7857.0,
+        'hydro': 2737.0,
+        'nuclear': 3248.0,
+        'unknown': 331.0,
+        'wind': 681.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7879.0,
+        'hydro': 2811.0,
+        'nuclear': 3249.0,
+        'unknown': 333.0,
+        'wind': 644.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7976.0,
+        'hydro': 2806.0,
+        'nuclear': 3249.0,
+        'unknown': 309.0,
+        'wind': 666.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8097.0,
+        'hydro': 2763.0,
+        'nuclear': 3248.0,
+        'unknown': 299.0,
+        'wind': 681.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8147.0,
+        'hydro': 2677.0,
+        'nuclear': 3248.0,
+        'unknown': 293.0,
+        'wind': 711.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8098.0,
+        'hydro': 2560.0,
+        'nuclear': 3248.0,
+        'unknown': 286.0,
+        'wind': 695.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8035.0,
+        'hydro': 2544.0,
+        'nuclear': 3248.0,
+        'unknown': 276.0,
+        'wind': 623.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7993.0,
+        'hydro': 2661.0,
+        'nuclear': 3248.0,
+        'unknown': 272.0,
+        'wind': 555.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7970.0,
+        'hydro': 2703.0,
+        'nuclear': 3248.0,
+        'unknown': 263.0,
+        'wind': 557.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7978.0,
+        'hydro': 2667.0,
+        'nuclear': 3248.0,
+        'unknown': 258.0,
+        'wind': 563.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8067.0,
+        'hydro': 2651.0,
+        'nuclear': 3250.0,
+        'unknown': 258.0,
+        'wind': 581.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8168.0,
+        'hydro': 2625.0,
+        'nuclear': 3249.0,
+        'unknown': 265.0,
+        'wind': 588.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8209.0,
+        'hydro': 2603.0,
+        'nuclear': 3247.0,
+        'unknown': 267.0,
+        'wind': 584.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 37, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8233.0,
+        'hydro': 2631.0,
+        'nuclear': 3248.0,
+        'unknown': 264.0,
+        'wind': 591.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8249.0,
+        'hydro': 2671.0,
+        'nuclear': 3248.0,
+        'unknown': 261.0,
+        'wind': 592.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8264.0,
+        'hydro': 2696.0,
+        'nuclear': 3250.0,
+        'unknown': 251.0,
+        'wind': 598.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8260.0,
+        'hydro': 2691.0,
+        'nuclear': 3247.0,
+        'unknown': 256.0,
+        'wind': 598.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8281.0,
+        'hydro': 2685.0,
+        'nuclear': 3250.0,
+        'unknown': 258.0,
+        'wind': 595.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8317.0,
+        'hydro': 2831.0,
+        'nuclear': 3250.0,
+        'unknown': 252.0,
+        'wind': 597.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8421.0,
+        'hydro': 3057.0,
+        'nuclear': 3250.0,
+        'unknown': 253.0,
+        'wind': 614.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8555.0,
+        'hydro': 3138.0,
+        'nuclear': 3248.0,
+        'unknown': 256.0,
+        'wind': 645.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8636.0,
+        'hydro': 3238.0,
+        'nuclear': 3248.0,
+        'unknown': 231.0,
+        'wind': 638.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8767.0,
+        'hydro': 3261.0,
+        'nuclear': 3249.0,
+        'unknown': 231.0,
+        'wind': 642.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8816.0,
+        'hydro': 3233.0,
+        'nuclear': 3248.0,
+        'unknown': 234.0,
+        'wind': 731.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8814.0,
+        'hydro': 3222.0,
+        'nuclear': 3248.0,
+        'unknown': 230.0,
+        'wind': 782.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8807.0,
+        'hydro': 3176.0,
+        'nuclear': 3249.0,
+        'unknown': 227.0,
+        'wind': 802.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8848.0,
+        'hydro': 3158.0,
+        'nuclear': 3249.0,
+        'unknown': 235.0,
+        'wind': 813.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8852.0,
+        'hydro': 3165.0,
+        'nuclear': 3246.0,
+        'unknown': 240.0,
+        'wind': 900.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8883.0,
+        'hydro': 3159.0,
+        'nuclear': 3249.0,
+        'unknown': 242.0,
+        'wind': 996.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 46, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8870.0,
+        'hydro': 3138.0,
+        'nuclear': 3252.0,
+        'unknown': 242.0,
+        'wind': 989.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8875.0,
+        'hydro': 3097.0,
+        'nuclear': 3248.0,
+        'unknown': 236.0,
+        'wind': 984.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8943.0,
+        'hydro': 3078.0,
+        'nuclear': 3249.0,
+        'unknown': 234.0,
+        'wind': 964.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8996.0,
+        'hydro': 3123.0,
+        'nuclear': 3248.0,
+        'unknown': 229.0,
+        'wind': 960.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8968.0,
+        'hydro': 3135.0,
+        'nuclear': 3249.0,
+        'unknown': 211.0,
+        'wind': 971.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8935.0,
+        'hydro': 3022.0,
+        'nuclear': 3246.0,
+        'unknown': 213.0,
+        'wind': 986.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8896.0,
+        'hydro': 3165.0,
+        'nuclear': 3248.0,
+        'unknown': 218.0,
+        'wind': 964.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8971.0,
+        'hydro': 3197.0,
+        'nuclear': 3248.0,
+        'unknown': 219.0,
+        'wind': 972.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8910.0,
+        'hydro': 3296.0,
+        'nuclear': 3246.0,
+        'unknown': 221.0,
+        'wind': 993.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8996.0,
+        'hydro': 3341.0,
+        'nuclear': 3246.0,
+        'unknown': 211.0,
+        'wind': 974.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9089.0,
+        'hydro': 3362.0,
+        'nuclear': 3248.0,
+        'unknown': 212.0,
+        'wind': 984.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9131.0,
+        'hydro': 3387.0,
+        'nuclear': 3247.0,
+        'unknown': 208.0,
+        'wind': 1010.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9156.0,
+        'hydro': 3447.0,
+        'nuclear': 3247.0,
+        'unknown': 209.0,
+        'wind': 998.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9321.0,
+        'hydro': 3407.0,
+        'nuclear': 3247.0,
+        'unknown': 204.0,
+        'wind': 1013.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9358.0,
+        'hydro': 3436.0,
+        'nuclear': 3249.0,
+        'unknown': 204.0,
+        'wind': 1031.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9408.0,
+        'hydro': 3507.0,
+        'nuclear': 3247.0,
+        'unknown': 210.0,
+        'wind': 1032.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9488.0,
+        'hydro': 3657.0,
+        'nuclear': 3247.0,
+        'unknown': 213.0,
+        'wind': 1033.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9643.0,
+        'hydro': 3786.0,
+        'nuclear': 3248.0,
+        'unknown': 224.0,
+        'wind': 1044.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9672.0,
+        'hydro': 3722.0,
+        'nuclear': 3248.0,
+        'unknown': 225.0,
+        'wind': 1055.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9766.0,
+        'hydro': 3680.0,
+        'nuclear': 3246.0,
+        'unknown': 208.0,
+        'wind': 1055.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9775.0,
+        'hydro': 3665.0,
+        'nuclear': 3248.0,
+        'unknown': 207.0,
+        'wind': 1067.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9742.0,
+        'hydro': 3660.0,
+        'nuclear': 3248.0,
+        'unknown': 207.0,
+        'wind': 1079.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9726.0,
+        'hydro': 3647.0,
+        'nuclear': 3248.0,
+        'unknown': 202.0,
+        'wind': 1084.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9689.0,
+        'hydro': 3651.0,
+        'nuclear': 3248.0,
+        'unknown': 208.0,
+        'wind': 1098.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9641.0,
+        'hydro': 3651.0,
+        'nuclear': 3248.0,
+        'unknown': 212.0,
+        'wind': 1117.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9606.0,
+        'hydro': 3660.0,
+        'nuclear': 3247.0,
+        'unknown': 213.0,
+        'wind': 1120.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9584.0,
+        'hydro': 3666.0,
+        'nuclear': 3247.0,
+        'unknown': 211.0,
+        'wind': 1131.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9607.0,
+        'hydro': 3647.0,
+        'nuclear': 3247.0,
+        'unknown': 209.0,
+        'wind': 1158.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9668.0,
+        'hydro': 3442.0,
+        'nuclear': 3249.0,
+        'unknown': 204.0,
+        'wind': 1161.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9611.0,
+        'hydro': 3377.0,
+        'nuclear': 3250.0,
+        'unknown': 201.0,
+        'wind': 1175.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9505.0,
+        'hydro': 3413.0,
+        'nuclear': 3249.0,
+        'unknown': 212.0,
+        'wind': 1183.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9457.0,
+        'hydro': 3419.0,
+        'nuclear': 3248.0,
+        'unknown': 204.0,
+        'wind': 1191.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9435.0,
+        'hydro': 3433.0,
+        'nuclear': 3247.0,
+        'unknown': 196.0,
+        'wind': 1200.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 22, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9423.0,
+        'hydro': 3424.0,
+        'nuclear': 3248.0,
+        'unknown': 197.0,
+        'wind': 1203.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9423.0,
+        'hydro': 3441.0,
+        'nuclear': 3248.0,
+        'unknown': 202.0,
+        'wind': 1208.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9385.0,
+        'hydro': 3416.0,
+        'nuclear': 3247.0,
+        'unknown': 209.0,
+        'wind': 1236.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9320.0,
+        'hydro': 3399.0,
+        'nuclear': 3248.0,
+        'unknown': 209.0,
+        'wind': 1235.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9258.0,
+        'hydro': 3450.0,
+        'nuclear': 3247.0,
+        'unknown': 207.0,
+        'wind': 1242.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 42, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9265.0,
+        'hydro': 3391.0,
+        'nuclear': 3248.0,
+        'unknown': 205.0,
+        'wind': 1241.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9267.0,
+        'hydro': 3400.0,
+        'nuclear': 3249.0,
+        'unknown': 203.0,
+        'wind': 1220.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9298.0,
+        'hydro': 3410.0,
+        'nuclear': 3246.0,
+        'unknown': 197.0,
+        'wind': 1196.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9309.0,
+        'hydro': 3386.0,
+        'nuclear': 3246.0,
+        'unknown': 200.0,
+        'wind': 1219.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9317.0,
+        'hydro': 3393.0,
+        'nuclear': 3247.0,
+        'unknown': 205.0,
+        'wind': 1248.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9344.0,
+        'hydro': 3366.0,
+        'nuclear': 3248.0,
+        'unknown': 206.0,
+        'wind': 1269.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9542.0,
+        'hydro': 3332.0,
+        'nuclear': 3247.0,
+        'unknown': 214.0,
+        'wind': 1271.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9674.0,
+        'hydro': 3282.0,
+        'nuclear': 3247.0,
+        'unknown': 208.0,
+        'wind': 1265.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9646.0,
+        'hydro': 3275.0,
+        'nuclear': 3250.0,
+        'unknown': 207.0,
+        'wind': 1254.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9654.0,
+        'hydro': 3311.0,
+        'nuclear': 3247.0,
+        'unknown': 202.0,
+        'wind': 1251.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9662.0,
+        'hydro': 3276.0,
+        'nuclear': 3247.0,
+        'unknown': 201.0,
+        'wind': 1255.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9608.0,
+        'hydro': 3258.0,
+        'nuclear': 3247.0,
+        'unknown': 201.0,
+        'wind': 1262.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9576.0,
+        'hydro': 3243.0,
+        'nuclear': 3248.0,
+        'unknown': 203.0,
+        'wind': 1250.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9458.0,
+        'hydro': 3278.0,
+        'nuclear': 3247.0,
+        'unknown': 207.0,
+        'wind': 1240.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9404.0,
+        'hydro': 3288.0,
+        'nuclear': 3248.0,
+        'unknown': 206.0,
+        'wind': 1232.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9346.0,
+        'hydro': 3217.0,
+        'nuclear': 3247.0,
+        'unknown': 206.0,
+        'wind': 1230.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9260.0,
+        'hydro': 3211.0,
+        'nuclear': 3248.0,
+        'unknown': 205.0,
+        'wind': 1226.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9228.0,
+        'hydro': 3126.0,
+        'nuclear': 3248.0,
+        'unknown': 211.0,
+        'wind': 1215.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9174.0,
+        'hydro': 2923.0,
+        'nuclear': 3247.0,
+        'unknown': 213.0,
+        'wind': 1206.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 9019.0,
+        'hydro': 2820.0,
+        'nuclear': 3245.0,
+        'unknown': 208.0,
+        'wind': 1193.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8969.0,
+        'hydro': 2823.0,
+        'nuclear': 3246.0,
+        'unknown': 212.0,
+        'wind': 1174.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8956.0,
+        'hydro': 2911.0,
+        'nuclear': 3248.0,
+        'unknown': 212.0,
+        'wind': 1159.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8959.0,
+        'hydro': 2926.0,
+        'nuclear': 3248.0,
+        'unknown': 207.0,
+        'wind': 1150.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8936.0,
+        'hydro': 2877.0,
+        'nuclear': 3247.0,
+        'unknown': 208.0,
+        'wind': 1133.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8948.0,
+        'hydro': 2855.0,
+        'nuclear': 3247.0,
+        'unknown': 210.0,
+        'wind': 1122.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8952.0,
+        'hydro': 2839.0,
+        'nuclear': 3247.0,
+        'unknown': 203.0,
+        'wind': 1125.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8916.0,
+        'hydro': 2819.0,
+        'nuclear': 3247.0,
+        'unknown': 203.0,
+        'wind': 1131.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8902.0,
+        'hydro': 2810.0,
+        'nuclear': 3246.0,
+        'unknown': 203.0,
+        'wind': 1134.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8909.0,
+        'hydro': 2765.0,
+        'nuclear': 3247.0,
+        'unknown': 203.0,
+        'wind': 1137.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8894.0,
+        'hydro': 2670.0,
+        'nuclear': 3245.0,
+        'unknown': 200.0,
+        'wind': 1134.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8678.0,
+        'hydro': 2504.0,
+        'nuclear': 3248.0,
+        'unknown': 198.0,
+        'wind': 1123.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8351.0,
+        'hydro': 2421.0,
+        'nuclear': 3246.0,
+        'unknown': 198.0,
+        'wind': 1092.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8266.0,
+        'hydro': 2446.0,
+        'nuclear': 3248.0,
+        'unknown': 197.0,
+        'wind': 1082.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8294.0,
+        'hydro': 2429.0,
+        'nuclear': 3248.0,
+        'unknown': 198.0,
+        'wind': 1115.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8184.0,
+        'hydro': 2559.0,
+        'nuclear': 3246.0,
+        'unknown': 208.0,
+        'wind': 1109.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 8052.0,
+        'hydro': 2608.0,
+        'nuclear': 3248.0,
+        'unknown': 206.0,
+        'wind': 1103.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7987.0,
+        'hydro': 2600.0,
+        'nuclear': 3247.0,
+        'unknown': 204.0,
+        'wind': 1104.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7932.0,
+        'hydro': 2564.0,
+        'nuclear': 3248.0,
+        'unknown': 199.0,
+        'wind': 1105.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7865.0,
+        'hydro': 2513.0,
+        'nuclear': 3248.0,
+        'unknown': 197.0,
+        'wind': 1102.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7788.0,
+        'hydro': 2469.0,
+        'nuclear': 3248.0,
+        'unknown': 201.0,
+        'wind': 1112.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7767.0,
+        'hydro': 2379.0,
+        'nuclear': 3250.0,
+        'unknown': 197.0,
+        'wind': 1125.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7745.0,
+        'hydro': 2290.0,
+        'nuclear': 3249.0,
+        'unknown': 201.0,
+        'wind': 1124.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7673.0,
+        'hydro': 2261.0,
+        'nuclear': 3248.0,
+        'unknown': 204.0,
+        'wind': 1122.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7617.0,
+        'hydro': 2181.0,
+        'nuclear': 3247.0,
+        'unknown': 203.0,
+        'wind': 1117.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7606.0,
+        'hydro': 2138.0,
+        'nuclear': 3246.0,
+        'unknown': 204.0,
+        'wind': 1112.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7568.0,
+        'hydro': 2112.0,
+        'nuclear': 3245.0,
+        'unknown': 199.0,
+        'wind': 1109.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7526.0,
+        'hydro': 2109.0,
+        'nuclear': 3248.0,
+        'unknown': 197.0,
+        'wind': 1082.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7476.0,
+        'hydro': 2106.0,
+        'nuclear': 3247.0,
+        'unknown': 199.0,
+        'wind': 1049.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7432.0,
+        'hydro': 2079.0,
+        'nuclear': 3248.0,
+        'unknown': 196.0,
+        'wind': 1055.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7373.0,
+        'hydro': 2041.0,
+        'nuclear': 3248.0,
+        'unknown': 200.0,
+        'wind': 1048.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7323.0,
+        'hydro': 2063.0,
+        'nuclear': 3247.0,
+        'unknown': 202.0,
+        'wind': 1046.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7307.0,
+        'hydro': 2066.0,
+        'nuclear': 3247.0,
+        'unknown': 201.0,
+        'wind': 1071.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 20, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7307.0,
+        'hydro': 2023.0,
+        'nuclear': 3247.0,
+        'unknown': 199.0,
+        'wind': 1055.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 2, 21, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'production': dict({
+        'gas': 7355.0,
+        'hydro': 1945.0,
+        'nuclear': 3247.0,
+        'unknown': 209.0,
+        'wind': 1040.0,
+      }),
+      'source': 'nyiso.com',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NY-NYIS',
+    }),
+  ])
+# ---
