@@ -8,6 +8,7 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import {
   BookOpenIcon,
+  ChartNoAxesCombined,
   CodeXmlIcon,
   FileDownIcon,
   HelpCircleIcon,
@@ -43,6 +44,11 @@ const MENU_ITEMS = [
     label: 'Datasets',
     to: `${PORTAL_URL}/datasets`,
     icon: FileDownIcon,
+  },
+  {
+    label: 'Data Explorer',
+    to: `${PORTAL_URL}/data-explorer`,
+    icon: ChartNoAxesCombined,
   },
   {
     label: 'API',
