@@ -20,7 +20,7 @@ export default function GridAlertsCard({
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
         isMoreOptionsHidden={true}
       />
-      <div className="flex flex-col items-center gap-2 rounded-lg bg-stone-100 p-4 dark:bg-neutral-800">
+      <div className="flex flex-col items-center gap-2 rounded-lg bg-sunken p-4 dark:bg-sunken-dark">
         <img
           src="/images/empty_chart_illustration.svg"
           alt="Empty chart"
