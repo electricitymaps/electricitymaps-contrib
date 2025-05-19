@@ -14,7 +14,7 @@ type Props = {
   isEstimated?: boolean;
   id: Charts;
   subtitle?: React.ReactElement;
-  isMoreOptionsVisible?: boolean;
+  isMoreOptionsHidden?: boolean;
 };
 
 export function ChartTitle({
@@ -25,9 +25,9 @@ export function ChartTitle({
   isEstimated,
   id,
   subtitle,
-  isMoreOptionsVisible,
+  isMoreOptionsHidden,
 }: Props) {
-  const showMoreOptions = useFeatureFlag('more-options-dropdown');
+  const showMoreOptions = useFeatureFlag('more-options-dropdown') && !isMoreOptionsHidden;
   const url = useGetCurrentUrl();
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();
@@ -39,17 +39,16 @@ export function ChartTitle({
           {titleText}
         </h2>
         {badge}
-        {(isMoreOptionsVisible == null ? true : isMoreOptionsVisible) &&
-          showMoreOptions && (
-            <MoreOptionsDropdown
-              title={t(`more-options-dropdown.chart-title`)}
-              isEstimated={isEstimated}
-              id={id}
-              shareUrl={shareUrl}
-            >
-              <Ellipsis />
-            </MoreOptionsDropdown>
-          )}
+        {showMoreOptions && (
+          <MoreOptionsDropdown
+            title={t(`more-options-dropdown.chart-title`)}
+            isEstimated={isEstimated}
+            id={id}
+            shareUrl={shareUrl}
+          >
+            <Ellipsis />
+          </MoreOptionsDropdown>
+        )}
       </div>
       <div className="flex flex-row items-center justify-between">
         {subtitle}

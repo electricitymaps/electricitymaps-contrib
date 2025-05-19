@@ -1,6 +1,8 @@
 import { ChartSubtitle, ChartTitle } from 'features/charts/ChartTitle';
 import { RoundedCard } from 'features/charts/RoundedCard';
-import { Charts, TimeRange } from 'utils/constants';
+import { FaGithub } from 'react-icons/fa6';
+import { RiSurveyFill } from 'react-icons/ri';
+import { Charts, DEFAULT_ICON_SIZE, TimeRange } from 'utils/constants';
 
 export default function GridAlertsCard({
   datetimes,
@@ -16,7 +18,7 @@ export default function GridAlertsCard({
         titleText="Reported grid alerts"
         id={Charts.ELECTRICITY_GRID_ALERT}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
-        isMoreOptionsVisible={false}
+        isMoreOptionsHidden={true}
       />
       <div className="flex flex-col items-center gap-2 rounded-lg bg-gray-100 p-4">
         <div className="relative h-[76px] w-[76px] overflow-hidden">
@@ -35,7 +37,7 @@ export default function GridAlertsCard({
             className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
             rel="noopener"
           >
-            shape the feature
+            <FaGithub size={DEFAULT_ICON_SIZE} className="inline" /> shape this feature
           </a>{' '}
           or tell us about your{' '}
           <a
@@ -44,7 +46,7 @@ export default function GridAlertsCard({
             className="font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500"
             rel="noopener"
           >
-            ideas and experience
+            <RiSurveyFill className="inline" /> ideas and experience
           </a>
           .
         </p>
