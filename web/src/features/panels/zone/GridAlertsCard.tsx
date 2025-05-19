@@ -20,15 +20,17 @@ export default function GridAlertsCard({
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
         isMoreOptionsHidden={true}
       />
-      <div className="flex flex-col items-center gap-2 rounded-lg bg-gray-100 p-4">
-        <div className="relative h-[76px] w-[76px] overflow-hidden">
-          <div className="absolute left-[43.5px] top-[1px] h-[54px] w-[25px] rounded border border-[#CCC] bg-[#FAFAFA]" />
-          <div className="absolute left-[25.5px] top-[21px] h-[44px] w-[25px] rounded border border-[#CCC] bg-[#FAFAFA]" />
-          <div className="absolute left-[7.5px] top-[43px] h-[32px] w-[25px] rounded border border-[#CCC] bg-[#FAFAFA]" />
-          <div className="absolute left-[8.5px] top-[44.5px] h-[13px] w-[23px] rounded-sm bg-[#EAEAEA]" />
-          <div className="absolute left-[44.5px] top-[2.5px] h-[13px] w-[23px] rounded-sm bg-[#EAEAEA]" />
-          <div className="absolute left-[26.5px] top-[22.5px] h-[13px] w-[23px] rounded-sm bg-[#EAEAEA]" />
-        </div>
+      <div className="flex flex-col items-center gap-2 rounded-lg bg-stone-100 p-4 dark:bg-neutral-800">
+        <img
+          src="/images/empty_chart_illustration.svg"
+          alt="Empty chart"
+          className="mr-1 inline h-20 w-20 dark:hidden"
+        />
+        <img
+          src="/images/empty_chart_illustration_dark.svg"
+          alt="Empty chart"
+          className="mr-1 hidden h-20 w-20 dark:block"
+        />
         <p className="text-center text-xs">
           We&apos;re missing data. Help us{' '}
           <a
