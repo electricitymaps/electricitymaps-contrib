@@ -161,7 +161,7 @@ def fetch_production(
     technologies_parsed = parse_payload(logger, payload)
     storage_techs = sum_storage_techs(technologies_parsed)
 
-    return {
+    return [{
         "zoneKey": zone_key,
         "datetime": datetime.now(tz=ZoneInfo(tz)),
         "production": {
@@ -185,7 +185,7 @@ def fetch_production(
             * -1  # Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
         },
         "source": source,
-    }
+    }]
 
 
 if __name__ == "__main__":

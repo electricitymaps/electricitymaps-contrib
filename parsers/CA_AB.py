@@ -121,7 +121,7 @@ def fetch_production(
         }
         for row in csv.reader(response.text.split("\r\n\r\n")[3].splitlines())
     }
-    return validation.validate(
+    return [validation.validate(
         {
             "capacity": {
                 "gas": generation["COGENERATION"]["MC"]
@@ -154,7 +154,7 @@ def fetch_production(
         logger,
         floor=MINIMUM_PRODUCTION_THRESHOLD,
         remove_negative=True,
-    )
+    )]
 
 
 def get_csd_report_timestamp(report):

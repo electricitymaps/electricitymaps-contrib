@@ -65,13 +65,13 @@ def fetch_price(
         tzinfo=timezone.utc
     )
 
-    return {
+    return [{
         "datetime": date_time,
         "price": avg_price,
         "currency": "NZD",
         "source": "api.em6.co.nz",
         "zoneKey": zone_key,
-    }
+    }]
 
 
 def fetch_production(
