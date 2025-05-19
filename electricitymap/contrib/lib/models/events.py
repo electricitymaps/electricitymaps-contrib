@@ -892,3 +892,93 @@ class LocationalMarginalPrice(Price):
             "source": self.source,
             "sourceType": self.sourceType,
         }
+
+
+class GridAlertType(str, Enum):
+    informational = "informational"
+    action = "action"
+
+
+class GridAlertAudience(str, Enum):
+    all = "all"
+    customers = "customers"
+    marketParticipants = "market participants"
+    notDefined = "not defined"
+
+
+class GridAlert(Event):
+    alertType: GridAlertType
+    message: str
+    audience: GridAlertAudience
+    endDate: datetime | None
+
+    @validator("endDate")
+    def _validate_end_date(cls, v: datetime | None) -> datetime | None:
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @validator("message")
+    def _validate_message(cls, v: str) -> str:
+        if not v:
+            raise ValueError(f"Message cannot be empty: {v}")
+        return v
+
+    @validator("audience")
+    def _validate_audience(cls, v: GridAlertAudience) -> GridAlertAudience:
+        if v not in GridAlertAudience:
+            raise ValueError(f"Unknown audience: {v}")
+        return v
+
+    @validator("alertType")
+    def _validate_alert_type(cls, v: GridAlertType) -> GridAlertType:
+        if v not in GridAlertType:
+            raise ValueError(f"Unknown alert type: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        sourceType: EventSourceType,
+        source: str,
+        alertType: GridAlertType,
+        message: str,
+        audience: GridAlertAudience,
+        endDate: datetime | None,
+    ) -> "GridAlert | None":
+        try:
+            return GridAlert(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                sourceType=sourceType,
+                alertType=alertType,
+                message=message,
+                audience=audience,
+                endDate=endDate,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating Grid Alert Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "Grid Alert",
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "alertType": self.alertType,
+            "message": self.message,
+            "audience": self.audience,
+            "endDate": self.endDate,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }

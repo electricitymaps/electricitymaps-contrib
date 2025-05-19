@@ -103,6 +103,7 @@ class Parsers(ParsersBaseModel):
     price: str | None
     production: str | None
     productionCapacity: str | None
+    gridAlerts: str | None
 
 
 class Source(StrictBaseModel):
