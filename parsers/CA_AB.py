@@ -121,40 +121,42 @@ def fetch_production(
         }
         for row in csv.reader(response.text.split("\r\n\r\n")[3].splitlines())
     }
-    return [validation.validate(
-        {
-            "capacity": {
-                "gas": generation["COGENERATION"]["MC"]
-                + generation["COMBINED CYCLE"]["MC"]
-                + generation["GAS FIRED STEAM"]["MC"]
-                + generation["SIMPLE CYCLE"]["MC"],
-                "wind": generation["WIND"]["MC"],
-                "solar": generation["SOLAR"]["MC"],
-                "hydro": generation["HYDRO"]["MC"],
-                "biomass": generation["OTHER"]["MC"],
-                "battery storage": generation["ENERGY STORAGE"]["MC"],
+    return [
+        validation.validate(
+            {
+                "capacity": {
+                    "gas": generation["COGENERATION"]["MC"]
+                    + generation["COMBINED CYCLE"]["MC"]
+                    + generation["GAS FIRED STEAM"]["MC"]
+                    + generation["SIMPLE CYCLE"]["MC"],
+                    "wind": generation["WIND"]["MC"],
+                    "solar": generation["SOLAR"]["MC"],
+                    "hydro": generation["HYDRO"]["MC"],
+                    "biomass": generation["OTHER"]["MC"],
+                    "battery storage": generation["ENERGY STORAGE"]["MC"],
+                },
+                "datetime": get_csd_report_timestamp(response.text),
+                "production": {
+                    "gas": generation["COGENERATION"]["TNG"]
+                    + generation["COMBINED CYCLE"]["TNG"]
+                    + generation["GAS FIRED STEAM"]["TNG"]
+                    + generation["SIMPLE CYCLE"]["TNG"],
+                    "wind": generation["WIND"]["TNG"],
+                    "solar": generation["SOLAR"]["TNG"],
+                    "hydro": generation["HYDRO"]["TNG"],
+                    "biomass": generation["OTHER"]["TNG"],
+                },
+                "source": URL.netloc,
+                "storage": {
+                    "battery": generation["ENERGY STORAGE"]["TNG"],
+                },
+                "zoneKey": zone_key,
             },
-            "datetime": get_csd_report_timestamp(response.text),
-            "production": {
-                "gas": generation["COGENERATION"]["TNG"]
-                + generation["COMBINED CYCLE"]["TNG"]
-                + generation["GAS FIRED STEAM"]["TNG"]
-                + generation["SIMPLE CYCLE"]["TNG"],
-                "wind": generation["WIND"]["TNG"],
-                "solar": generation["SOLAR"]["TNG"],
-                "hydro": generation["HYDRO"]["TNG"],
-                "biomass": generation["OTHER"]["TNG"],
-            },
-            "source": URL.netloc,
-            "storage": {
-                "battery": generation["ENERGY STORAGE"]["TNG"],
-            },
-            "zoneKey": zone_key,
-        },
-        logger,
-        floor=MINIMUM_PRODUCTION_THRESHOLD,
-        remove_negative=True,
-    )]
+            logger,
+            floor=MINIMUM_PRODUCTION_THRESHOLD,
+            remove_negative=True,
+        )
+    ]
 
 
 def get_csd_report_timestamp(report):
