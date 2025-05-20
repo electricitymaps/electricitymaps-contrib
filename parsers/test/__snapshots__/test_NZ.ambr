@@ -1,20 +1,24 @@
 # serializer version: 1
 # name: test_snapshot_price_data
   list([
-    dict({
-      'currency': 'NZD',
-      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
-      'price': 79.8623076923077,
-      'source': 'api.em6.co.nz',
-      'zoneKey': 'NZ',
-    }),
-    dict({
-      'currency': 'NZD',
-      'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
-      'price': 79.8623076923077,
-      'source': 'api.em6.co.nz',
-      'zoneKey': 'NZ',
-    }),
+    list([
+      dict({
+        'currency': 'NZD',
+        'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+        'price': 79.8623076923077,
+        'source': 'api.em6.co.nz',
+        'zoneKey': 'NZ',
+      }),
+    ]),
+    list([
+      dict({
+        'currency': 'NZD',
+        'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
+        'price': 79.8623076923077,
+        'source': 'api.em6.co.nz',
+        'zoneKey': 'NZ',
+      }),
+    ]),
   ])
 # ---
 # name: test_snapshot_production_data

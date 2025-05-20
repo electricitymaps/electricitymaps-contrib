@@ -312,6 +312,13 @@
       "all_months": "Échanges nets mensuels",
       "all_years": "Échanges nets annuels"
     },
+    "electricityLoad": {
+      "72h": "Charge électrique horaire",
+      "3mo": "Charge électrique quotidienne",
+      "12mo": "Charge électrique mensuelle",
+      "all_months": "Charge électrique mensuelle",
+      "all_years": "Charge électrique annuelle"
+    },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
   },
@@ -359,7 +366,7 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
-    "netExchange": "Échange net",
+    "netExchange": "Échanges nets",
     "price": "Prix",
     "importing": "Important",
     "exporting": "Exportant",
@@ -805,7 +812,7 @@
       "zoneName": "Egypte"
     },
     "EH": {
-      "zoneName": "Sahara Occidental"
+      "zoneName": "Sahara occidental"
     },
     "ER": {
       "zoneName": "Érythrée"
