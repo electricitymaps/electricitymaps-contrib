@@ -17,23 +17,26 @@ interface DataCenter {
   zoneKey: string;
 }
 
-// Type assertion for the imported data with proper type safety
-const dataCenters: Record<string, DataCenter> = {};
-type RawDataCenter = {
+// Type for the raw data from JSON
+interface RawDataCenter {
   displayName: string;
+  lonlat: number[];
   provider: string;
   region: string;
   zoneKey: string;
-  lonlat: [number, number];
-};
+}
 
-for (const [key, value] of Object.entries(dataCentersData as Record<string, RawDataCenter>)) {
+// Type assertion for the imported data with proper type safety
+const dataCenters: Record<string, DataCenter> = {};
+for (const [key, value] of Object.entries(
+  dataCentersData as unknown as Record<string, RawDataCenter>
+)) {
   dataCenters[key] = {
     displayName: value.displayName,
     provider: value.provider,
     region: value.region,
     zoneKey: value.zoneKey,
-    lonlat: value.lonlat,
+    lonlat: value.lonlat as [number, number],
   };
 }
 
