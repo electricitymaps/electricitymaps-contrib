@@ -9,7 +9,7 @@ import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 import dataCentersData from '../../../config/data_centers.json';
 
 // Define the data center type
-interface DataCenter {
+export interface DataCenter {
   displayName: string;
   lonlat: [number, number];
   provider: string;
@@ -18,8 +18,8 @@ interface DataCenter {
 }
 
 // Type assertion for the imported data with proper type safety
-const dataCenters: Record<string, DataCenter> = {};
-type RawDataCenter = {
+export const dataCenters: Record<string, DataCenter> = {};
+export type RawDataCenter = {
   displayName: string;
   provider: string;
   region: string;
