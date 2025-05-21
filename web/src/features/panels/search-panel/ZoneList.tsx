@@ -10,16 +10,20 @@ interface ZonelistProperties {
 }
 
 export interface SearchResultRowType {
+  key: string;
   flagZoneId?: keyof GridState;
   displayName?: string;
   secondaryDisplayName?: string;
   englishDisplayName?: string;
+  link: string;
 }
 
 function SearchResultRow({
+  key,
   flagZoneId,
   displayName,
   secondaryDisplayName,
+  link,
   isSelected,
 }: SearchResultRowType & { isSelected: boolean }) {
   return (
@@ -27,8 +31,8 @@ function SearchResultRow({
       className={`group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10 ${
         isSelected ? 'bg-neutral-200/50 dark:bg-neutral-700/50' : ''
       }`}
-      key={flagZoneId}
-      to={`/zone/${flagZoneId}`}
+      key={key}
+      to={link}
       data-testid="zone-list-link"
     >
       {flagZoneId && (

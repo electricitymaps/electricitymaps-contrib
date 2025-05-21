@@ -24,9 +24,11 @@ export const getAllZones = (language: string) => {
   const searchData = {} as Record<string, SearchResultRowType>;
   for (const [key, value] of Object.entries(zoneData)) {
     searchData[key] = {
+      key: key,
       displayName: value.zoneName,
       secondaryDisplayName: value.countryName,
       flagZoneId: key as keyof GridState,
+      link: `/zones/${key}`,
     };
 
     // If current language is not English, also get English translations
@@ -83,6 +85,8 @@ export const getFilteredDataCenterList = (
       );
     })
     .map(([key, data]) => ({
+      key: key,
+      link: `/data-centers/${key}`,
       displayName: data.displayName,
       secondaryDisplayName: data.region,
     }));
