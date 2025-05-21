@@ -1,11 +1,13 @@
 import GlassContainer from 'components/GlassContainer';
 import { dataCenters } from 'features/data-centers/DataCenterLayer';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
+import { useAtomValue } from 'jotai';
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { metaTitleSuffix } from 'utils/constants';
+import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
 import {
   getAllZones,
@@ -21,6 +23,7 @@ export default function SearchPanel(): ReactElement {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const canonicalUrl = useGetCanonicalUrl();
+  const isDataCenterLayerEnabled = useAtomValue(isDataCenterLayerEnabledAtom);
 
   // Memoize the zone data to prevent unnecessary recalculations
   const zoneData = useMemo(() => getAllZones(i18n.language), [i18n.language]);
@@ -38,9 +41,11 @@ export default function SearchPanel(): ReactElement {
   const filteredList = useMemo(
     () => [
       ...getFilteredZoneList(searchTerm, zoneData),
-      ...getFilteredDataCenterList(searchTerm, dataCenters),
+      ...(isDataCenterLayerEnabled
+        ? getFilteredDataCenterList(searchTerm, dataCenters)
+        : []),
     ],
-    [searchTerm, zoneData]
+    [searchTerm, zoneData, isDataCenterLayerEnabled]
   );
 
   // Update selected index when filtered list changes
