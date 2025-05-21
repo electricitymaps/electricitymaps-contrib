@@ -11,7 +11,8 @@ interface ZonelistProperties {
 
 export interface SearchResultRowType {
   key: string;
-  flagZoneId?: keyof GridState;
+  flagZoneId?: keyof GridState; // will display a country flag
+  dataCenterIconId?: string; // will display a data center icon
   displayName?: string;
   secondaryDisplayName?: string;
   englishDisplayName?: string;
@@ -21,6 +22,7 @@ export interface SearchResultRowType {
 function SearchResultRow({
   key,
   flagZoneId,
+  dataCenterIconId,
   displayName,
   secondaryDisplayName,
   link,
@@ -39,6 +41,15 @@ function SearchResultRow({
         <CountryFlag
           zoneId={flagZoneId}
           size={18}
+          className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+        />
+      )}
+
+      {dataCenterIconId && (
+        <img
+          src={`/images/data-centers/${dataCenterIconId}.svg`}
+          height={18}
+          alt={dataCenterIconId}
           className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
         />
       )}

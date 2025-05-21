@@ -89,5 +89,6 @@ export const getFilteredDataCenterList = (
       link: `/data-centers/${key}`,
       displayName: data.displayName,
       secondaryDisplayName: data.region,
+      dataCenterIconId: data.provider.toLowerCase(),
     }));
 };
