@@ -14,6 +14,7 @@ from pydantic.utils import import_string
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
+    DATA_CENTERS_CONFIG,
     EXCHANGES_CONFIG,
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
@@ -340,3 +341,35 @@ CONFIG_MODEL = _load_config_model()
 CO2EQ_CONFIG_MODEL = CO2eqConfigModel(
     direct=CO2EQ_PARAMETERS_DIRECT, lifecycle=CO2EQ_PARAMETERS_LIFECYCLE
 )
+
+
+class DataCenter(StrictBaseModel):
+    displayName: str
+    lonlat: tuple[float, float] | None
+    provider: str
+    region: str
+    status: str
+    zoneKey: ZoneKey
+
+    @property
+    def ID(self) -> str:
+        return f"{self.provider}-{self.region}"
+
+
+class DataCenters(StrictBaseModel):
+    dataCenters: dict[str, DataCenter]
+
+    # check that the ID for each data center is unique and matches the key in the dataCenters dict
+    @root_validator
+    def check_ids(cls, values):
+        for dict_ID, data_center in values["dataCenters"].items():
+            if data_center.ID != dict_ID:
+                raise ValueError(f"Data center ID {data_center.ID} does not match the key {dict_ID}")
+        return values
+
+
+DATA_CENTERS_CONFIG_MODEL = DataCenters(dataCenters=DATA_CENTERS_CONFIG)
+
+
+if __name__ == "__main__":
+    print(DATA_CENTERS_CONFIG_MODEL)
