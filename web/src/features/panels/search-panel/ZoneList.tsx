@@ -21,7 +21,6 @@ export interface SearchResultRowType {
 }
 
 function SearchResultRow({
-  key,
   flagZoneId,
   dataCenterIconId,
   displayName,
@@ -34,7 +33,6 @@ function SearchResultRow({
       className={`group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10 ${
         isSelected ? 'bg-neutral-200/50 dark:bg-neutral-700/50' : ''
       }`}
-      key={key}
       to={link}
       data-testid="zone-list-link"
     >
@@ -102,7 +100,12 @@ export function VirtualizedSearchResultList({ data, selectedIndex }: ZonelistPro
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
               <SearchResultRow
-                {...data[virtualRow.index]}
+                key={data[virtualRow.index].key}
+                flagZoneId={data[virtualRow.index].flagZoneId}
+                dataCenterIconId={data[virtualRow.index].dataCenterIconId}
+                displayName={data[virtualRow.index].displayName}
+                secondaryDisplayName={data[virtualRow.index].secondaryDisplayName}
+                link={data[virtualRow.index].link}
                 isSelected={virtualRow.index === selectedIndex}
               />
             </div>
