@@ -27,6 +27,7 @@ import {
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import BackgroundLayer from './map-layers/BackgroundLayer';
+import SolarAssetsLayer from './map-layers/SolarAssetsLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
@@ -174,6 +175,15 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     map?.touchZoomRotate.disableRotation();
     map?.touchPitch.disable();
+
+    map.loadImage('/images/solar_asset.png', (error, image) => {
+      if (error) {
+        throw error;
+      }
+      if (image && !map.getImage('solar-asset-icon')) {
+        map.addImage('solar-asset-icon', image);
+      }
+    });
 
     if (!isSourceLoaded || isLoadingMap) {
       return;
@@ -457,6 +467,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <SolarAssetsLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
