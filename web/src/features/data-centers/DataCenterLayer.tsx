@@ -17,7 +17,8 @@ export interface DataCenter {
   zoneKey: string;
 }
 
-interface RawDataCenter {
+// Type for the raw data from JSON
+export interface RawDataCenter {
   displayName: string;
   lonlat: number[];
   provider: string;
@@ -26,7 +27,7 @@ interface RawDataCenter {
 }
 
 // Type assertion for the imported data with proper type safety
-const dataCenters: Record<string, DataCenter> = {};
+export const dataCenters: Record<string, DataCenter> = {};
 for (const [key, value] of Object.entries(
   dataCentersData as unknown as Record<string, RawDataCenter>
 )) {
