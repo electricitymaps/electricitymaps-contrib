@@ -35,6 +35,12 @@ jobs:
         if: steps.cache-web.outputs.cache-hit != 'true'
         run: pnpm install --frozen-lockfile
         working-directory: ./web
+      - name: Generate config files
+        working-directory: ./web
+        run: pnpm run create-generated-files
+      - name: Copy data centers
+        working-directory: ./web
+        run: pnpm run copy-data-centers
       - name: Build
         working-directory: ./web
         run: pnpm run build
