@@ -4,27 +4,31 @@
     "lonlat": [50.8503, 4.3517],
     "provider": "gcp",
     "region": "europe-west1",
-    "zoneKey": "BE"
+    "zoneKey": "BE",
+    "status": "active"
   },
   "gcp-us-central1": {
     "displayName": "us-central1 (Iowa)",
     "lonlat": [41.5908, -93.6208],
     "provider": "gcp",
     "region": "us-central1",
-    "zoneKey": "US-MIDW-MISO"
+    "zoneKey": "US-MIDW-MISO",
+    "status": "active"
   },
   "aws-us-east-1": {
     "displayName": "us-east-1 (Virginia)",
     "lonlat": [37.3382, -76.7483],
     "provider": "aws",
     "region": "us-east-1",
-    "zoneKey": "US-MIDA-PJM"
+    "zoneKey": "US-MIDA-PJM",
+    "status": "active"
   },
   "aws-us-east-2": {
     "displayName": "us-east-2 (Ohio)",
     "lonlat": [39.9526, -82.9959],
     "provider": "aws",
     "region": "us-east-2",
-    "zoneKey": "US-MIDW-MISO"
+    "zoneKey": "US-MIDW-MISO",
+    "status": "active"
   }
 }

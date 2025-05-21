@@ -46,4 +46,8 @@ def read_data_centers_config(config_dir) -> dict[str, Any]:
     for data_center_path in config_dir.joinpath("data_centers").glob("*.json"):
         with open(data_center_path, encoding="utf-8") as file:
             data_centers_config[data_center_path.stem] = json.load(file)
-    return data_centers_config
+    # Flatten
+    all_data_centers = {}
+    for data_centers in data_centers_config.values():
+        all_data_centers.update(data_centers)
+    return all_data_centers

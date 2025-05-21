@@ -9,6 +9,7 @@ from electricitymap.contrib.config.model import (
 from electricitymap.contrib.lib.data_types import ParserDataType
 
 
+
 class ConfigModelTestcase(unittest.TestCase):
     def test_pydantic_model(self):
         self.assertIn("DK-BHM->SE-SE4", CONFIG_MODEL.exchanges.keys())
@@ -74,7 +75,6 @@ class ConfigModelTestcase(unittest.TestCase):
         }
         all_parser_model_fields = set(dummy_exchange_parsers_model.__fields__.keys())
         self.assertEqual(all_parser_data_types, all_parser_model_fields)
-
 
 if __name__ == "__main__":
     unittest.main(buffer=True)
