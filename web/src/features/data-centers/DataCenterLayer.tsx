@@ -9,7 +9,7 @@ import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 import dataCentersData from '../../../config/data_centers.json';
 
 // Define the data center type
-interface DataCenter {
+export interface DataCenter {
   displayName: string;
   lonlat: [number, number];
   provider: string;
@@ -17,7 +17,6 @@ interface DataCenter {
   zoneKey: string;
 }
 
-// Type for the raw data from JSON
 interface RawDataCenter {
   displayName: string;
   lonlat: number[];

@@ -1,4 +1,5 @@
 import GlassContainer from 'components/GlassContainer';
+import { dataCenters } from 'features/data-centers/DataCenterLayer';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -6,10 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { metaTitleSuffix } from 'utils/constants';
 
-import { getAllZones, getFilteredList } from './getSearchData';
+import {
+  getAllZones,
+  getFilteredDataCenterList,
+  getFilteredZoneList,
+} from './getSearchData';
 import NoResults from './NoResults';
 import SearchBar from './SearchBar';
-import { VirtualizedZoneList } from './ZoneList';
+import { VirtualizedSearchResultList } from './ZoneList';
 
 export default function SearchPanel(): ReactElement {
   const { t, i18n } = useTranslation();
@@ -31,7 +36,10 @@ export default function SearchPanel(): ReactElement {
 
   // Memoize the filtered list to prevent unnecessary recalculations
   const filteredList = useMemo(
-    () => getFilteredList(searchTerm, zoneData),
+    () => [
+      ...getFilteredZoneList(searchTerm, zoneData),
+      ...getFilteredDataCenterList(searchTerm, dataCenters),
+    ],
     [searchTerm, zoneData]
   );
 
@@ -69,7 +77,10 @@ export default function SearchPanel(): ReactElement {
           )}
         >
           {searchTerm && filteredList.length === 0 && <NoResults />}
-          <VirtualizedZoneList data={filteredList} selectedIndex={selectedIndex} />
+          <VirtualizedSearchResultList
+            data={filteredList}
+            selectedIndex={selectedIndex}
+          />
         </div>
       </div>
     </GlassContainer>
