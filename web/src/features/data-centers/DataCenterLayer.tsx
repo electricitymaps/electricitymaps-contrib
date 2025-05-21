@@ -7,7 +7,6 @@ import useResizeObserver from 'use-resize-observer';
 import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
 import dataCentersData from '../../../config/data_centers.json';
-import { useTheme } from '../../hooks/theme';
 
 // Define the data center type
 interface DataCenter {
@@ -37,7 +36,6 @@ function DataCenterMarker({
   lonlat: [number, number];
   label: string;
 }) {
-  const theme = useTheme();
   // Convert geographic coordinates to pixel coordinates
   const point = map.project({ lng: lonlat[1], lat: lonlat[0] });
 
