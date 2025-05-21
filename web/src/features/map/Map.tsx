@@ -361,25 +361,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         (f) => f.layer.id === SOLAR_ASSETS_LAYER_ID
       );
 
-      if (clickedZoneFeature) {
-        const newZoneId = clickedZoneFeature.properties.zoneId;
-        if (selectedSolarAsset) {
-          map.setFeatureState(
-            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
-            { selected: false }
-          );
-          setSelectedSolarAsset(null);
-        }
-
-        if (selectedZoneId && selectedZoneId !== newZoneId) {
-          map.setFeatureState(
-            { source: ZONE_SOURCE, id: selectedZoneId },
-            { selected: false }
-          );
-        }
-
-        navigate({ to: '/zone', zoneId: newZoneId, keepHashParameters: false });
-      } else if (
+      // Prioritize solar asset click if available
+      if (
         clickedSolarAssetFeature &&
         clickedSolarAssetFeature.id !== undefined &&
         clickedSolarAssetFeature.properties
@@ -392,7 +375,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
             { source: ZONE_SOURCE, id: selectedZoneId },
             { selected: false, hover: false }
           );
-          navigate({ to: '/map', keepHashParameters: false });
+          // If a zone was selected (e.g. panel open), and we click an asset,
+          // navigate to base map to close zone panel implicitly.
+          if (pathZoneId) {navigate({ to: '/map', keepHashParameters: false });}
         }
 
         if (selectedSolarAsset && selectedSolarAsset.id !== assetId) {
@@ -410,6 +395,25 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           id: assetId,
           properties: assetProperties as Record<string, any>,
         });
+      } else if (clickedZoneFeature) {
+        // Only handle zone click if no solar asset was clicked
+        const newZoneId = clickedZoneFeature.properties.zoneId;
+        if (selectedSolarAsset) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
+            { selected: false }
+          );
+          setSelectedSolarAsset(null); // Clear selected asset if now clicking a zone
+        }
+
+        if (selectedZoneId && selectedZoneId !== newZoneId) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: selectedZoneId },
+            { selected: false }
+          );
+        }
+
+        navigate({ to: '/zone', zoneId: newZoneId, keepHashParameters: false });
       } else {
         // Clicked on map, but not on a zone or solar asset specifically
         // (e.g. clicking on a solar asset from a different layer, or empty space when features array is not empty but no specific handler matched)
@@ -456,7 +460,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const onMouseMove = useCallback(
     ({ features, point }: maplibregl.MapLayerMouseEvent) => {
       const map = mapReference?.getMap();
-      if (!map) {return;}
+      if (!map) {
+        return;
+      }
 
       const zoneFeature = features?.find((f) => f.source === ZONE_SOURCE);
       const solarAssetFeature = features?.find(
@@ -569,7 +575,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onMouseOut = useCallback(() => {
     const map = mapReference?.getMap();
-    if (!map) {return;}
+    if (!map) {
+      return;
+    }
 
     if (hoveredZone) {
       map.setFeatureState(
