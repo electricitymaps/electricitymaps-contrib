@@ -5,6 +5,37 @@ import { X } from 'lucide-react'; // Using Lucide X icon
 
 import { selectedSolarAssetAtom } from './mapAtoms';
 
+// Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to YYYY-MM-DD
+const formatDate = (dateString: string | undefined | null) => {
+  if (!dateString) {return 'N/A';}
+  try {
+    return new Date(dateString).toISOString().split('T')[0];
+  } catch {
+    return 'Invalid Date';
+  }
+};
+
+// Helper to get a color based on status - can be expanded
+const getStatusColor = (status: string | undefined) => {
+  if (!status) {return 'bg-gray-400';} // Default
+  switch (status.toLowerCase()) {
+    case 'operating': {
+      return 'bg-green-500';
+    }
+    case 'construction':
+    case 'planned': {
+      return 'bg-yellow-500';
+    }
+    case 'cancelled':
+    case 'retired': {
+      return 'bg-red-500';
+    }
+    default: {
+      return 'bg-gray-400';
+    }
+  }
+};
+
 export default function SolarAssetDataBox() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
   const setSelectedAsset = useSetAtom(selectedSolarAssetAtom); // For the close button
@@ -19,50 +50,117 @@ export default function SolarAssetDataBox() {
     setSelectedAsset(null);
   };
 
-  // Basic styling for the data box - REPLACED WITH TAILWIND + GlassContainer
-  // const style: React.CSSProperties = {
-  //   position: 'absolute',
-  //   top: '20px',
-  //   right: '20px',
-  //   width: '300px',
-  //   maxHeight: '400px',
-  //   overflowY: 'auto',
-  //   backgroundColor: 'white',
-  //   color: 'black',
-  //   padding: '15px',
-  //   borderRadius: '5px',
-  //   boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
-  //   zIndex: 999, // Below tooltip, but above map
-  // };
+  const name = properties.name || properties.ASSET_NAME || 'Unnamed Asset';
+  const capacityMw = Number.parseFloat(String(properties.capacity_mw));
+  const source = properties.source || 'N/A';
+  const commissionYear = properties.commission_year
+    ? String(Math.floor(Number(properties.commission_year)))
+    : null;
+  const capacityUpdateDate = formatDate(String(properties.capacity_update_date));
+  let status = properties.status ? String(properties.status) : 'Unknown'; // Get status
+
+  // Infer status if commission year is in the past and status is Unknown
+  if (commissionYear) {
+    const numericCommissionYear = Number.parseInt(commissionYear, 10);
+    const currentYear = new Date().getFullYear();
+    if (
+      !Number.isNaN(numericCommissionYear) &&
+      numericCommissionYear <= currentYear &&
+      status.toLowerCase() === 'unknown'
+    ) {
+      status = 'Operating';
+    }
+  }
+
+  const MIN_SCALE_MW = 0; // Changed from 20 to 0
+  const MAX_SCALE_MW = 200;
+  let capacityPercentage = 0;
+  if (!Number.isNaN(capacityMw)) {
+    // Ensure capacityPercentage is calculated correctly even if capacityMw is outside the scale
+    const normalizedCapacity = Math.max(0, capacityMw);
+    capacityPercentage = Math.min(100, (normalizedCapacity / MAX_SCALE_MW) * 100);
+    if (capacityMw < MIN_SCALE_MW) {capacityPercentage = 0;} // explicitly set to 0 if below min (though min is 0 now)
+  }
 
   return (
-    <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-80 flex-col p-4 shadow-lg">
-      <div className="mb-2 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Solar Asset Details
-        </h3>
+    <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-96 flex-col p-4 shadow-lg">
+      {/* Header with Name and Close Button */}
+      <div className="mb-1 flex items-start justify-between">
+        <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
+          {name}
+        </h2>
         <button
           onClick={handleClose}
-          className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           aria-label="Close"
         >
           {/* <XMarkIcon className="h-6 w-6" /> */}
           <X className="h-6 w-6" /> {/* Using Lucide X icon */}
         </button>
       </div>
-      <div className="max-h-80 overflow-y-auto text-sm text-gray-700 dark:text-gray-300">
-        {/* Render properties as a simple list for now */}
-        {Object.entries(properties).map(([key, value]) => (
+
+      {/* Status Badge */}
+      <div className="mb-3">
+        <span
+          className={`inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
+            status
+          )}`}
+        >
+          {status}
+        </span>
+      </div>
+
+      {/* Capacity Section */}
+      <div className="mb-4">
+        <div className="mb-1 flex justify-between text-sm text-gray-700 dark:text-gray-300">
+          <span>Capacity</span>
+          <span className="font-semibold text-gray-900 dark:text-gray-100">
+            {Number.isNaN(capacityMw) ? 'N/A' : `${capacityMw.toFixed(1)} MW`}
+          </span>
+        </div>
+        <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
           <div
-            key={key}
-            className="mb-1 border-b border-gray-200 pb-1 dark:border-gray-700"
-          >
-            <strong className="font-medium text-gray-900 dark:text-gray-100">
-              {key}:
-            </strong>{' '}
-            {String(value)}
+            className="h-2.5 rounded-full bg-green-500" // Bar color remains green for capacity
+            style={{ width: `${Number.isNaN(capacityMw) ? 0 : capacityPercentage}%` }}
+          />
+        </div>
+        <div className="mt-1 flex justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span>{MIN_SCALE_MW} MW</span>
+          <span>{MAX_SCALE_MW} MW</span>
+        </div>
+      </div>
+
+      {/* Details Section */}
+      <div className="space-y-1 border-t border-gray-200 pt-3 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-400">
+        {commissionYear && (
+          <div className="flex justify-between">
+            <span>Commission Year:</span>
+            <span className="font-medium text-gray-800 dark:text-gray-200">
+              {commissionYear}
+            </span>
           </div>
+        )}
+        <div className="flex justify-between">
+          <span>Capacity Data Updated:</span>
+          <span className="font-medium text-gray-800 dark:text-gray-200">
+            {capacityUpdateDate}
+          </span>
+        </div>
+        <div className="flex justify-between">
+          <span>Source:</span>
+          <span className="font-medium text-gray-800 dark:text-gray-200">{source}</span>
+        </div>
+        {/* Display other properties if needed, or remove this part
+        <h4 className="mt-3 font-semibold text-gray-700 dark:text-gray-300">All Properties:</h4>
+        {Object.entries(properties)
+          .filter(([key]) => !['name', 'ASSET_NAME', 'capacity_mw', 'source', 'commission_year', 'capacity_update_date'].includes(key))
+          .map(([key, value]) => (
+            <div key={key} className="flex justify-between">
+              <span className="truncate pr-1">{key}:</span>
+              <span className="truncate font-medium text-gray-800 dark:text-gray-200">{String(value)}</span>
+            </div>
         ))}
+        */}
       </div>
     </GlassContainer>
   );
