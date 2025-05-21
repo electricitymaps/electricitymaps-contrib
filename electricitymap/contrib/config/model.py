@@ -14,10 +14,10 @@ from pydantic.utils import import_string
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
+    DATA_CENTERS_CONFIG,
     EXCHANGES_CONFIG,
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
-    DATA_CENTERS_CONFIG,
 )
 from electricitymap.contrib.config.types import Point
 from electricitymap.contrib.lib.types import ZoneKey
