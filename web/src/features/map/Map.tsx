@@ -2,6 +2,7 @@ import { App } from '@capacitor/app';
 import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
 import { SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
+import DataCenterLayer from 'features/data-centers/DataCenterLayer';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -462,6 +463,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       </CustomLayer>
       <CustomLayer>
         <ExchangeLayer />
+      </CustomLayer>
+      <CustomLayer>
+        <DataCenterLayer />
       </CustomLayer>
       <CustomLayer>
         <SolarLayer />
