@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { PinnableIconProps } from './DataCenterIcons4';
-
 // --- Pin SVG Component with Blur Effect ---
 function PinIconSVG(): React.ReactElement {
   return (
@@ -46,6 +44,13 @@ interface IconWrapperProps {
   iconNominalHeight: number;
   withPin?: boolean;
   className?: string;
+}
+
+// Define PinnableIconProps interface
+interface PinnableIconProps {
+  withPin?: boolean;
+  className?: string;
+  size?: number;
 }
 
 const PIN_WIDTH = 28;
