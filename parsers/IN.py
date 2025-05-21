@@ -2,7 +2,7 @@
 
 """Parser for all of India"""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -452,7 +452,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = get_start_of_day(dt=datetime.now(timezone.utc))
+        target_datetime = get_start_of_day(dt=datetime.now(UTC))
     else:
         target_datetime = get_start_of_day(dt=target_datetime)
         if target_datetime < START_DATE_RENEWABLE_DATA:

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from requests_mock import GET, POST
@@ -14,7 +14,7 @@ def test_production(adapter, session, snapshot, zone_key: ZoneKey):
     """
     Reports have been reduced to 14 September 2023 00:00 to 13 September 2023 22:00 for ease
     """
-    target_datetime = datetime(2023, 9, 14, 0, 0, tzinfo=timezone.utc)
+    target_datetime = datetime(2023, 9, 14, 0, 0, tzinfo=UTC)
     with open(
         "parsers/test/mocks/IEMOP/list_reports_items.json", "rb"
     ) as list_reports_items:

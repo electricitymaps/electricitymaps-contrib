@@ -3,7 +3,7 @@ import datetime as dt
 import math
 from abc import ABC, abstractmethod
 from collections.abc import Set
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from enum import Enum
 from logging import Logger
 from typing import Any
@@ -20,7 +20,7 @@ from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import ProductionModes, StorageModes
 
-LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
+LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=dt.UTC)
 
 
 def _is_naive(t: dt.datetime) -> bool:
@@ -322,8 +322,8 @@ class Event(BaseModel, ABC):
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         if values.get(
             "sourceType", EventSourceType.measured
-        ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
-            timezone.utc
+        ) != EventSourceType.forecasted and v.astimezone(dt.UTC) > datetime.now(
+            dt.UTC
         ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted point: {v}"

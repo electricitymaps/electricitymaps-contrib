@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Literal
 
@@ -31,7 +31,7 @@ def fetch_data(
     exchange_type: Literal["exchange", "exchange_forecast"],
 ) -> list[dict]:
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(UTC)
 
     # NO-NO4 to SE-SE1
     SE1_dataList = EXCHANGE_FUNCTION_MAP[exchange_type](

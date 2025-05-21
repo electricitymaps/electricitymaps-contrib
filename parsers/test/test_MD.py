@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -19,7 +19,7 @@ from parsers.MD import (
 frozen_live_time = freeze_time("2024-04-11 06:32:00")
 
 # the target datetime corresponding to our mock historical API response
-historical_datetime = datetime(2021, 7, 25, 12, tzinfo=timezone.utc)
+historical_datetime = datetime(2021, 7, 25, 12, tzinfo=UTC)
 
 
 @frozen_live_time
@@ -135,17 +135,17 @@ def test_fetch_price_live(snapshot):
 @pytest.mark.parametrize(
     "historical_datetime",
     [
-        datetime(2000, 1, 1, tzinfo=timezone.utc),
-        datetime(2000, 4, 1, tzinfo=timezone.utc),
-        datetime(2001, 10, 1, tzinfo=timezone.utc),
-        datetime(2002, 9, 1, tzinfo=timezone.utc),
-        datetime(2005, 9, 1, tzinfo=timezone.utc),
-        datetime(2007, 8, 3, tzinfo=timezone.utc),
-        datetime(2010, 1, 19, tzinfo=timezone.utc),
-        datetime(2012, 5, 11, tzinfo=timezone.utc),
-        datetime(2015, 7, 31, tzinfo=timezone.utc),
-        datetime(2023, 12, 31, tzinfo=timezone.utc),
-        datetime(2024, 3, 21, tzinfo=timezone.utc),
+        datetime(2000, 1, 1, tzinfo=UTC),
+        datetime(2000, 4, 1, tzinfo=UTC),
+        datetime(2001, 10, 1, tzinfo=UTC),
+        datetime(2002, 9, 1, tzinfo=UTC),
+        datetime(2005, 9, 1, tzinfo=UTC),
+        datetime(2007, 8, 3, tzinfo=UTC),
+        datetime(2010, 1, 19, tzinfo=UTC),
+        datetime(2012, 5, 11, tzinfo=UTC),
+        datetime(2015, 7, 31, tzinfo=UTC),
+        datetime(2023, 12, 31, tzinfo=UTC),
+        datetime(2024, 3, 21, tzinfo=UTC),
     ],
 )
 def test_fetch_price_historical(snapshot, historical_datetime):

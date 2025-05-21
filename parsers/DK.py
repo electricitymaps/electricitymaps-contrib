@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
 from operator import itemgetter
@@ -146,7 +146,7 @@ def fetch_exchange(
             all_exchange_data.append(
                 zoneKey=sorted_keys,
                 datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
-                    tzinfo=timezone.utc
+                    tzinfo=UTC
                 ),
                 netFlow=flow(sorted_keys, datapoint),
                 source=SOURCE,
@@ -168,7 +168,7 @@ def fetch_wind_solar_forecasts(
 
     forecast = ProductionBreakdownList(logger=logger)
     for date_time_str, group in grouped_data:
-        date_time = datetime.fromisoformat(date_time_str).replace(tzinfo=timezone.utc)
+        date_time = datetime.fromisoformat(date_time_str).replace(tzinfo=UTC)
         productionMix = ProductionMix()
         for datapoint in group:
             productionMix.add_value(

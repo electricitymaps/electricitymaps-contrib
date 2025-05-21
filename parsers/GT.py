@@ -2,7 +2,7 @@
 
 import collections
 import enum
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -62,14 +62,14 @@ def _get_api_data(
 ) -> dict[datetime, dict]:
     """Get the one-hourly AMM API data for the desired UTC day + n days of backlog."""
 
-    now_utc = datetime.now(timezone.utc)
+    now_utc = datetime.now(UTC)
     hour_now_utc = now_utc.replace(minute=0, second=0, microsecond=0)
 
-    target_datetime_utc = target_datetime.astimezone(timezone.utc)
+    target_datetime_utc = target_datetime.astimezone(UTC)
 
     # The API expects local (TZ) timestamps and can only return one day of data
     # so might need to do multiple api calls if UTC day straddles multiple local days
-    target_day_utc = datetime.combine(target_datetime_utc, time(), tzinfo=timezone.utc)
+    target_day_utc = datetime.combine(target_datetime_utc, time(), tzinfo=UTC)
 
     target_day_utc_start = target_day_utc - timedelta(days=num_backlog_days)
     target_day_utc_end = target_day_utc + timedelta(days=1) - timedelta(microseconds=1)
@@ -113,7 +113,7 @@ def _get_api_data(
             # so each index represents the hour ahead and is in the range [0, 24),
             # e.g., hour 0 represents the period [00:00, 01:00).
             dt_local = local_day + timedelta(hours=int(row["hora"]) - 1)
-            dt_utc = dt_local.astimezone(timezone.utc)
+            dt_utc = dt_local.astimezone(UTC)
 
             # ignore data outside of range of interest
             if dt_utc < target_day_utc_start or dt_utc > target_day_utc_end:
@@ -140,9 +140,9 @@ def fetch_consumption(
 
     session = session or Session()
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     api_data = _get_api_data(
         session,
@@ -177,9 +177,9 @@ def fetch_production(
 
     session = session or Session()
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     api_data = _get_api_data(
         session,

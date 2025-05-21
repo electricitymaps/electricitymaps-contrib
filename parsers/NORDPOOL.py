@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
 
@@ -26,7 +26,7 @@ class NordpoolToken:
 
     @property
     def is_expired(self) -> bool:
-        return datetime.now(tz=timezone.utc) > self.expiration + timedelta(minutes=5)
+        return datetime.now(tz=UTC) > self.expiration + timedelta(minutes=5)
 
 
 CURRENT_TOKEN: NordpoolToken | None = None
@@ -104,8 +104,7 @@ def _generate_new_nordpool_token(session: Session) -> NordpoolToken:
     token_data = response.json()
     token = NordpoolToken(
         token=token_data["access_token"],
-        expiration=datetime.now(tz=timezone.utc)
-        + timedelta(seconds=token_data["expires_in"]),
+        expiration=datetime.now(tz=UTC) + timedelta(seconds=token_data["expires_in"]),
     )
 
     return token

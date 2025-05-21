@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 
@@ -46,9 +46,7 @@ def get_solar_capacity_at(target_datetime: datetime) -> float:
     )
 
     # mask all rows earlier than target date (use the earliest date in dataset if target date is even earlier)
-    dt = max(
-        target_datetime.astimezone(timezone.utc), historical_capacities.index.min()
-    )
+    dt = max(target_datetime.astimezone(UTC), historical_capacities.index.min())
     mask = historical_capacities.index <= dt
     return historical_capacities[mask].iloc[-1].loc["installed capacity in megawatts"]
 
@@ -104,9 +102,9 @@ def fetch_production(
     The total production is calculated as sum of the consumption, storage and net imports.
     """
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
     r = session or Session()

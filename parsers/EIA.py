@@ -9,7 +9,7 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 
@@ -548,12 +548,8 @@ def fetch_production_mix(
         # we set unknown to 0.0 and keep geothermal as is
         # see GMM-555 for details
         if zone_key == "US-CAL-IID" and production_mode == "unknown":
-            first_appearance = datetime(
-                year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc
-            )
-            last_apperance = datetime(
-                year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc
-            )
+            first_appearance = datetime(year=2025, month=1, day=1, hour=8, tzinfo=UTC)
+            last_apperance = datetime(year=2025, month=2, day=12, hour=7, tzinfo=UTC)
             for event in production_and_storage_values:
                 if (
                     event["datetime"] >= first_appearance
@@ -748,7 +744,7 @@ def _parse_hourly_interval(period: str):
     # or local-time.  We request UTC times using the 'frequency=hourly'
     # parameter, meaning that we can attach timezone.utc without performing
     # any timezone conversion.
-    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+    interval_end = interval_end_naive.replace(tzinfo=UTC)
 
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,

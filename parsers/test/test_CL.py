@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 from json import loads
 
@@ -24,7 +24,7 @@ def mock_response(adapter):
 
 
 def test_snapshot_historical_data(session, snapshot):
-    target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=timezone.utc)
+    target_datetime = datetime(2024, 2, 24, 0, 0, 0, tzinfo=UTC)
 
     assert snapshot == fetch_production(
         ZoneKey("CL-SEN"),

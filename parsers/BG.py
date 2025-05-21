@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from logging import Logger, getLogger
 
 from requests import Session
@@ -39,7 +39,7 @@ def fetch_production(
             PARSER, "This parser is not yet able to parse historical data", zone_key
         )
 
-    time = datetime.now(timezone.utc)
+    time = datetime.now(UTC)
     response = session.get(SOURCE_API_URL)
     if not response.ok:
         raise ParserException(

@@ -2,7 +2,7 @@
 
 # The datetime library is used to handle datetimes
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from logging import Logger, getLogger
 
 from bs4 import BeautifulSoup
@@ -61,9 +61,7 @@ def fetch_price(
             region_prices.append(price)
 
     avg_price = sum(region_prices) / len(region_prices)
-    date_time = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ").replace(
-        tzinfo=timezone.utc
-    )
+    date_time = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
 
     return [
         {
@@ -90,7 +88,7 @@ def fetch_production(
 
     obj = fetch(session)
 
-    date_time = datetime.fromtimestamp(obj["soPgenGraph"]["timestamp"], tz=timezone.utc)
+    date_time = datetime.fromtimestamp(obj["soPgenGraph"]["timestamp"], tz=UTC)
 
     region_key = "New Zealand"
     productions = obj["soPgenGraph"]["data"][region_key]

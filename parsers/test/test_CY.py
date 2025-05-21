@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from requests_mock import GET
@@ -9,7 +9,7 @@ from parsers.CY import HISTORICAL_SOURCE, REALTIME_SOURCE, fetch_production
 
 @pytest.fixture(autouse=True)
 def target_datetime():
-    yield datetime(2024, 3, 18, 0, 0, 0, tzinfo=timezone.utc)
+    yield datetime(2024, 3, 18, 0, 0, 0, tzinfo=UTC)
 
 
 @pytest.fixture(autouse=True)

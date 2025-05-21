@@ -2,7 +2,7 @@
 
 """Parser for the Southwest Power Pool area of the United States."""
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -215,7 +215,7 @@ def fetch_production(
     for dt, mix in processed_data:
         production_list.append(
             zoneKey=zone_key,
-            datetime=dt.replace(tzinfo=timezone.utc),
+            datetime=dt.replace(tzinfo=UTC),
             production=mix,
             source=SOURCE,
         )
@@ -253,7 +253,7 @@ def fetch_load_forecast(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=UTC)
         load = _NaN_safe_get(forecast, "STLF")
         if load is None:
             load = _NaN_safe_get(forecast, "MTLF")
@@ -309,7 +309,7 @@ def fetch_wind_solar_forecasts(
     for index in range(len(raw_data)):
         forecast = raw_data.loc[index].to_dict()
 
-        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
+        dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=UTC)
 
         # Get short term forecast if available, else medium term
         solar = _NaN_safe_get(forecast, "Solar Forecast MW")
@@ -417,13 +417,13 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    now = datetime.now(tz=timezone.utc)
+    now = datetime.now(tz=UTC)
     if target_datetime is None or target_datetime > now.date():
         target_datetime = now
         exchanges = fetch_live_exchange(
             zone_key1, zone_key2, session, target_datetime, logger
         )
-    elif target_datetime < datetime(2014, 3, 1, tzinfo=timezone.utc):
+    elif target_datetime < datetime(2014, 3, 1, tzinfo=UTC):
         raise NotImplementedError(
             "Exchange data is not available from this source before 03/2014"
         )
@@ -442,9 +442,9 @@ def fetch_realtime_locational_marginal_price(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
 
     prices = LocationalMarginalPriceList(logger)
     # Get data for target datetime and previous 30 minutes in 5 min intervals
@@ -462,7 +462,7 @@ def fetch_realtime_locational_marginal_price(
             prices.append(
                 zoneKey=zone_key,
                 datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
-                    tzinfo=timezone.utc
+                    tzinfo=UTC
                 ),
                 price=row["LMP"],
                 currency="USD",
@@ -482,7 +482,7 @@ def fetch_dayahead_locational_marginal_price(
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
 
     url = get_dayahead_url(target_datetime)
     raw_data = get_data(url, session)
@@ -496,7 +496,7 @@ def fetch_dayahead_locational_marginal_price(
         prices.append(
             zoneKey=zone_key,
             datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
-                tzinfo=timezone.utc
+                tzinfo=UTC
             ),
             price=row["LMP"],
             currency="USD",

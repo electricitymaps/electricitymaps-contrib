@@ -17,7 +17,7 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 
 import itertools
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from functools import lru_cache
 from logging import Logger, getLogger
@@ -332,7 +332,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
 
 def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(UTC)
     if isinstance(target_datetime, datetime):
         return np.abs((x[datetime_key] - target_datetime).seconds)
 
@@ -351,7 +351,7 @@ def query_ENTSOE(
     Returns a request object.
     """
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(UTC)
 
     if not isinstance(target_datetime, datetime):
         raise ParserException(

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from importlib import resources
 
 import pytest
@@ -33,5 +33,5 @@ def test_fetch_production_raises_parser_exception_on_historical_data(adapter, se
     with pytest.raises(
         ParserException, match="This parser is not yet able to parse historical data"
     ):
-        historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
+        historical_datetime = datetime.now(UTC) - timedelta(days=1)
         fetch_production(target_datetime=historical_datetime, session=session)

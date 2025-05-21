@@ -4,7 +4,7 @@ import gzip
 import json
 import time
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from io import BytesIO
 from logging import Logger, getLogger
@@ -253,7 +253,7 @@ def fetch_historical_production(
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+        target_datetime = target_datetime.replace(tzinfo=UTC)
 
     year = target_datetime.year
     month = target_datetime.strftime("%b")
@@ -349,8 +349,8 @@ def fetch_production(
 ) -> list:
     session = session or Session()
     if target_datetime is None or target_datetime > (
-        datetime.now(tz=timezone.utc) - timedelta(days=1)
-    ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
+        datetime.now(tz=UTC) - timedelta(days=1)
+    ).replace(tzinfo=target_datetime.tzinfo if target_datetime else UTC):
         production = fetch_live_production(
             zone_key=zone_key, session=session, logger=logger
         )

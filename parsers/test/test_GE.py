@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -32,7 +32,7 @@ def test_fetch_production_historical(adapter, session, snapshot):
 
     adapter.register_uri(GET, ANY, content=content)
 
-    historical_datetime = datetime(2020, 1, 1, tzinfo=timezone.utc)
+    historical_datetime = datetime(2020, 1, 1, tzinfo=UTC)
 
     assert snapshot == fetch_production(
         target_datetime=historical_datetime, session=session
