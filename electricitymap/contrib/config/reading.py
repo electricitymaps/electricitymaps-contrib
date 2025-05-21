@@ -1,4 +1,5 @@
 from typing import Any
+import json
 
 from ruamel.yaml import YAML
 
@@ -38,3 +39,10 @@ def read_exchanges_config(config_dir) -> dict[ZoneKey, Any]:
         with open(exchange_path, encoding="utf-8") as file:
             exchanges_config[exchange_key] = yaml.load(file)
     return exchanges_config
+
+def read_data_centers_config(config_dir) -> dict[str, Any]:
+    data_centers_config = {}
+    for data_center_path in config_dir.joinpath("data_centers").glob("*.json"):
+        with open(data_center_path, encoding="utf-8") as file:
+            data_centers_config[data_center_path.stem] = json.load(file)
+    return data_centers_config

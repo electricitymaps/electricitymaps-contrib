@@ -1,0 +1,16 @@
+{
+    "gcp-europe-west1": {
+        "displayName": "europe-west1 (Belgium)",
+        "lonlat": [50.8503, 4.3517],
+        "provider": "Google Cloud Platform",
+        "region": "europe-west1",
+        "zoneKey": "BE"
+    },
+    "gcp-us-central1": {
+        "displayName": "us-central1 (Iowa)",
+        "lonlat": [41.5908, -93.6208],
+        "provider": "Google Cloud Platform",
+        "region": "us-central1",
+        "zoneKey": "US-MIDW-MISO"
+    }
+}
