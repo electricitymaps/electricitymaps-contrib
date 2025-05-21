@@ -58,16 +58,10 @@ export default function SolarAssetsLayer() {
         source="solar-assets"
         layout={{
           'icon-image': 'solar-asset-icon',
-          'icon-size': 0.1,
+          'icon-size': ['interpolate', ['linear'], ['zoom'], 4, 0, 6, 0.3, 8, 0.8],
           'icon-allow-overlap': true,
           'icon-overlap': 'always',
-          'icon-ignore-placement': true, // Add this property
-          'text-field': ['get', 'name'],
-          'text-size': 10,
-          'text-letter-spacing': 0.12,
-          'text-transform': 'uppercase',
-          'text-font': ['poppins-semibold'],
-          'text-offset': [0, 3.5],
+          'icon-ignore-placement': true,
         }}
         paint={stateLabelPaint}
       />
