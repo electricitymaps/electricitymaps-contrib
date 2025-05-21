@@ -12,12 +12,13 @@ import { ZONE_SOURCE } from '../Map';
 export default function SolarAssetsLayer() {
   const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
   const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
-  const { dataArray } = useGetSolarAssets();
+  const { data: solarAssetsData } = useGetSolarAssets();
 
+  let dataForSource;
   if (isRenewablesLayerEnabled) {
-    const data = dataArray;
+    dataForSource = solarAssetsData;
   } else {
-    const data = dataArray?.[0];
+    dataForSource = Array.isArray(solarAssetsData) && solarAssetsData.length > 0 ? solarAssetsData[0] : null;
   }
 
   const theme = useTheme();
@@ -30,7 +31,7 @@ export default function SolarAssetsLayer() {
     'text-opacity': 0.9,
   };
   return (
-    <Source id="solar-assets" type="geojson" data={data}>
+    <Source id="solar-assets" type="geojson" data={dataForSource}>
       <Layer
         id="solar-assets-box"
         type="symbol"
