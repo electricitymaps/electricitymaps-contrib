@@ -320,6 +320,8 @@ jobs:
         run: pnpm run generate-zones-config
       - name: Generate world file
         run: pnpm run generate-world
+      - name: Copy data centers
+        run: pnpm run copy-data-centers
 
   build_storybook:
     name: Frontend / Build / Storybook
