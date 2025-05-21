@@ -4,6 +4,7 @@ import { DatabaseZap } from 'lucide-react';
 import React from 'react';
 import { useMap } from 'react-map-gl/maplibre';
 import useResizeObserver from 'use-resize-observer';
+import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
 import dataCentersData from '../../../config/data_centers.json';
 import { useTheme } from '../../hooks/theme';
@@ -59,9 +60,10 @@ function DataCenterMarker({
 function DataCenterLayer() {
   const { current: mapReference } = useMap();
   const isMapMoving = useAtomValue(mapMovingAtom);
+  const isLayerEnabled = useAtomValue(isDataCenterLayerEnabledAtom);
   const { ref } = useResizeObserver<HTMLDivElement>();
 
-  if (!mapReference || isMapMoving) {
+  if (!mapReference || isMapMoving || !isLayerEnabled) {
     return <div ref={ref} className="h-full w-full" />;
   }
 

@@ -61,6 +61,36 @@ function WeatherToggleSwitch({
   );
 }
 
+function DataCenterToggleSwitch() {
+  const { t } = useTranslation();
+  const [enabled, setEnabled] = useAtom(weatherButtonMap.dataCenter.enabledAtom);
+  const isEnabled = enabled === ToggleOptions.ON;
+  const Icon = weatherButtonMap.dataCenter.icon;
+
+  const onToggle = (newEnabled: boolean) => {
+    setEnabled(newEnabled ? ToggleOptions.ON : ToggleOptions.OFF);
+  };
+
+  return (
+    <div className="flex w-full items-center justify-between p-3">
+      <div className="flex items-center">
+        <Icon size={20} className="mr-2 text-secondary dark:text-secondary-dark" />
+        <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
+          {t('Data centers')}
+        </span>
+      </div>
+
+      <div className="relative">
+        <SwitchToggle
+          isEnabled={isEnabled}
+          onChange={onToggle}
+          ariaLabel={t('Toggle data centers layer')}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function LayersModalContent() {
   const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
 
@@ -68,6 +98,7 @@ export function LayersModalContent() {
     <div className="p-2">
       <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="solar" />
+      <DataCenterToggleSwitch />
       {!areWeatherLayersAllowed && (
         <p className="px-4 py-2 text-sm text-secondary dark:text-secondary-dark">
           Weather data not available for this aggregation, switch to real-time to see live
