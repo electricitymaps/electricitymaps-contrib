@@ -69,6 +69,7 @@ interface IconWrapperProps {
   iconNominalHeight: number;
   withPin?: boolean;
   className?: string;
+  yOffset?: number;
 }
 
 // Define PinnableIconProps interface
@@ -76,6 +77,7 @@ interface PinnableIconProps {
   withPin?: boolean;
   className?: string;
   size?: number;
+  yOffset?: number;
 }
 
 const PIN_WIDTH = 28;
@@ -90,13 +92,14 @@ function IconWrapper({
   iconNominalHeight,
   withPin,
   className,
+  yOffset = 0,
 }: IconWrapperProps): React.ReactElement {
   if (!withPin) {
     return <div className={className}>{iconElement}</div>;
   }
 
   const iconOffsetX = PIN_HEAD_CENTER_X - iconNominalWidth / 2;
-  const iconOffsetY = PIN_HEAD_CENTER_Y - iconNominalHeight / 2;
+  const iconOffsetY = PIN_HEAD_CENTER_Y - iconNominalHeight / 2 + yOffset;
 
   return (
     <div
@@ -344,7 +347,12 @@ function AwsIconSvgComponent(props: CloudIconSvgComponentProps): React.ReactElem
   );
 }
 
-export function Aws({ withPin, className, size }: PinnableIconProps): React.ReactElement {
+export function Aws({
+  withPin,
+  className,
+  size,
+  yOffset = 2,
+}: PinnableIconProps): React.ReactElement {
   const iconElement = withPin ? (
     <AwsIconSvgComponent
       width={AWS_ICON_NOMINAL_WIDTH}
@@ -361,6 +369,7 @@ export function Aws({ withPin, className, size }: PinnableIconProps): React.Reac
       iconNominalHeight={AWS_ICON_NOMINAL_HEIGHT}
       withPin={withPin}
       className={className}
+      yOffset={yOffset}
     />
   );
 }
