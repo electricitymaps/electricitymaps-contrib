@@ -7,6 +7,7 @@ import useResizeObserver from 'use-resize-observer';
 import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
 import dataCentersData from '../../../config/data_centers.json';
+import { Aws, Azure, Gcp } from './DataCenterIcons';
 
 // Define the data center type
 export interface DataCenter {
@@ -44,13 +45,35 @@ function DataCenterMarker({
   map,
   lonlat,
   label,
+  provider,
 }: {
   map: maplibregl.Map;
   lonlat: [number, number];
   label: string;
+  provider: string;
 }) {
   // Convert geographic coordinates to pixel coordinates
   const point = map.project({ lng: lonlat[1], lat: lonlat[0] });
+
+  // Select the appropriate icon based on the provider
+  const getProviderIcon = () => {
+    const providerLower = provider.toLowerCase();
+
+    if (providerLower.includes('aws') || providerLower.includes('amazon')) {
+      return <Aws size={20} withPin />;
+    }
+
+    if (providerLower.includes('gcp') || providerLower.includes('google')) {
+      return <Gcp size={20} withPin />;
+    }
+
+    if (providerLower.includes('azure') || providerLower.includes('microsoft')) {
+      return <Azure size={20} withPin />;
+    }
+
+    // Default fallback icon
+    return <DatabaseZap size={24} strokeWidth={2} />;
+  };
 
   return (
     <div
@@ -63,7 +86,7 @@ function DataCenterMarker({
       }}
       title={label}
     >
-      <DatabaseZap size={24} strokeWidth={2} />
+      {getProviderIcon()}
     </div>
   );
 }
@@ -89,7 +112,13 @@ function DataCenterLayer() {
       ref={ref}
     >
       {Object.entries(dataCenters).map(([key, dc]) => (
-        <DataCenterMarker key={key} map={map} lonlat={dc.lonlat} label={dc.displayName} />
+        <DataCenterMarker
+          key={key}
+          map={map}
+          lonlat={dc.lonlat}
+          label={dc.displayName}
+          provider={dc.provider}
+        />
       ))}
     </div>
   );
