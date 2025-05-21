@@ -17,7 +17,6 @@ from electricitymap.contrib.config import (
     EXCHANGES_CONFIG,
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
-    DATA_CENTERS_CONFIG,
 )
 from electricitymap.contrib.config.types import Point
 from electricitymap.contrib.lib.types import ZoneKey
@@ -341,23 +340,3 @@ CONFIG_MODEL = _load_config_model()
 CO2EQ_CONFIG_MODEL = CO2eqConfigModel(
     direct=CO2EQ_PARAMETERS_DIRECT, lifecycle=CO2EQ_PARAMETERS_LIFECYCLE
 )
-
-
-class DataCenter(StrictBaseModel):
-    displayName: str
-    lonlat: tuple[float, float] | None
-    provider: str
-    region: str
-    status: str
-    zoneKey: ZoneKey
-
-
-class DataCenters(StrictBaseModel):
-    dataCenters: dict[str, DataCenter]
-
-
-DATA_CENTERS_CONFIG_MODEL = DataCenters(dataCenters=DATA_CENTERS_CONFIG)
-
-
-if __name__ == "__main__":
-    print(DATA_CENTERS_CONFIG_MODEL)
