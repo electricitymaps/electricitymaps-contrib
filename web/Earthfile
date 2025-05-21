@@ -29,6 +29,7 @@ test:
   COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts .
   COPY --dir cypress ./
   RUN pnpm run create-generated-files
+  RUN pnpm run copy-data-centers
   RUN pnpm run validate
   # TODO: Enable Cypress tests later
   # RUN pnpm run cy:test-all
