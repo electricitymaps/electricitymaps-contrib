@@ -1,21 +1,34 @@
 import useGetSolarAssets from 'api/getSolarAssets';
 import { useTheme } from 'hooks/theme';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
+import {
+  isRenewablesLayerEnabledAtom,
+  renewablesLayerLoadingAtom,
+} from 'utils/state/atoms';
 
 import { ZONE_SOURCE } from '../Map';
 
 export default function SolarAssetsLayer() {
-  const { data } = useGetSolarAssets();
+  const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
+  const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
+  const { dataArray } = useGetSolarAssets();
+
+  if (isRenewablesLayerEnabled) {
+    const data = dataArray;
+  } else {
+    const data = dataArray?.[0];
+  }
+
   const theme = useTheme();
 
   const stateLabelPaint = {
-    'text-color': 'white',
+    'text-color': 'red',
     'text-halo-color': '#111827',
     'text-halo-width': 0.5,
     'text-halo-blur': 0.25,
     'text-opacity': 0.9,
   };
-
   return (
     <Source id="solar-assets" type="geojson" data={data}>
       <Layer
@@ -25,7 +38,7 @@ export default function SolarAssetsLayer() {
         source-layer="zones-clickable-layer" // Specify the source layer
         layout={{
           'icon-image': 'solar-asset-box',
-          'icon-size': 1.2,
+          'icon-size': 10,
           'icon-allow-overlap': true,
           'icon-overlap': 'always',
           'icon-ignore-placement': true,

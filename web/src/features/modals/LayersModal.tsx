@@ -17,7 +17,7 @@ function WeatherToggleSwitch({
   type,
 }: {
   allowed: boolean;
-  type: 'wind' | 'solar';
+  type: 'wind' | 'solar' | 'renewables';
 }) {
   const { t } = useTranslation();
   const [enabled, setEnabled] = useAtom(weatherButtonMap[type].enabledAtom);
@@ -68,6 +68,7 @@ export function LayersModalContent() {
     <div className="p-2">
       <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="wind" />
       <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="solar" />
+      <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="renewables" />
       {!areWeatherLayersAllowed && (
         <p className="px-4 py-2 text-sm text-secondary dark:text-secondary-dark">
           Weather data not available for this aggregation, switch to real-time to see live

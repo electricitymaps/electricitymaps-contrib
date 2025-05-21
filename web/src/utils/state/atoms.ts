@@ -81,8 +81,15 @@ export const isWindLayerEnabledAtom = atom<boolean>(
   (get) => get(windLayerAtom) === ToggleOptions.ON && get(areWeatherLayersAllowedAtom)
 );
 
+export const renewablesLayerAtom = atomWithStorage('renewable', ToggleOptions.OFF);
+export const isRenewablesLayerEnabledAtom = atom<boolean>(
+  (get) =>
+    get(renewablesLayerAtom) === ToggleOptions.ON && get(areWeatherLayersAllowedAtom)
+);
+
 export const solarLayerLoadingAtom = atom<boolean>(false);
 export const windLayerLoadingAtom = atom<boolean>(false);
+export const renewablesLayerLoadingAtom = atom<boolean>(false);
 
 export const displayByEmissionsAtom = atom<boolean>(false);
 
