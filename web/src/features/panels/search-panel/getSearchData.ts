@@ -26,7 +26,7 @@ export const getAllZones = (language: string) => {
     searchData[key] = {
       displayName: value.zoneName,
       secondaryDisplayName: value.countryName,
-      flagZoneId: key,
+      flagZoneId: key as keyof GridState,
     };
 
     // If current language is not English, also get English translations
@@ -58,13 +58,12 @@ export const getFilteredZoneList = (
       zoneKey.toString().toLowerCase().includes(searchLower) ||
       zone.displayName?.toLowerCase().includes(searchLower) ||
       zone.secondaryDisplayName?.toLowerCase().includes(searchLower) ||
-      zone.seoZoneName?.toLowerCase().includes(searchLower) ||
       zone.englishDisplayName?.toLowerCase().includes(searchLower)
     );
   });
 
   // Convert filtered entries to array of ZoneRowType
-  return filtered.map(([key, value]) => value);
+  return filtered.map(([_, value]) => value);
 };
 
 export const getFilteredDataCenterList = (
