@@ -97,7 +97,6 @@ export function VirtualizedSearchResultList({ data, selectedIndex }: ZonelistPro
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
               <SearchResultRow
-                key={virtualRow.index}
                 {...data[virtualRow.index]}
                 isSelected={virtualRow.index === selectedIndex}
               />
