@@ -20,6 +20,7 @@ prepare:
   COPY scripts/generateZonesConfig.ts ./scripts/generateZonesConfig.ts
   COPY scripts/register-tsNodeESM.js ./scripts/register-tsNodeESM.js
   COPY scripts/generateSitemap.js ./scripts/generateSitemap.js
+  COPY scripts/copyDataCenters.js ./scripts/copyDataCenters.js
   COPY --dir geo public src ./
 
 test:
@@ -42,6 +43,7 @@ build-staging:
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
   SAVE ARTIFACT ./config/usa_states.json AS LOCAL ./config/usa_states.json
   SAVE ARTIFACT ./config/excluded_aggregated_exchanges.json AS LOCAL ./config/excluded_aggregated_exchanges.json
+  SAVE ARTIFACT ./config/data_centers.json AS LOCAL ./config/data_centers.json
   # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
   SAVE ARTIFACT ./dist AS LOCAL ./dist
 
@@ -55,6 +57,7 @@ build:
   SAVE ARTIFACT ./config/world.json AS LOCAL ./config/world.json
   SAVE ARTIFACT ./config/usa_states.json AS LOCAL ./config/usa_states.json
   SAVE ARTIFACT ./config/excluded_aggregated_exchanges.json AS LOCAL ./config/excluded_aggregated_exchanges.json
+  SAVE ARTIFACT ./config/data_centers.json AS LOCAL ./config/data_centers.json
   # NOTE: We could consider dropping source maps from dist since it has already been uploaded to Sentry at this point
   SAVE ARTIFACT ./dist AS LOCAL ./dist
 

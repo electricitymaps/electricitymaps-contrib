@@ -19,10 +19,13 @@ interface DataCenter {
 
 // Type assertion for the imported data with proper type safety
 const dataCenters: Record<string, DataCenter> = {};
-for (const [key, value] of Object.entries(dataCentersData)) {
+for (const [key, value] of Object.entries(dataCentersData as Record<string, any>)) {
   // Convert array to tuple to ensure type safety
   dataCenters[key] = {
-    ...value,
+    displayName: value.displayName,
+    provider: value.provider,
+    region: value.region,
+    zoneKey: value.zoneKey,
     lonlat: value.lonlat as [number, number],
   };
 }
