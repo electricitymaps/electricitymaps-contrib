@@ -398,6 +398,9 @@ jobs:
       - name: Generate config files
         run: pnpm create-generated-files
         working-directory: ./web
+      - name: Copy data centers
+        run: pnpm run copy-data-centers
+        working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
         uses: actions/cache@v4
