@@ -1,27 +1,18 @@
 import useGetSolarAssets from 'api/getSolarAssets';
-import { useTheme } from 'hooks/theme';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
 import {
   isRenewablesLayerEnabledAtom,
-  renewablesLayerLoadingAtom,
 } from 'utils/state/atoms';
 
-import { ZONE_SOURCE } from '../Map';
 
 export default function SolarAssetsLayer() {
-  const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
   const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
   const { data: solarAssetsData } = useGetSolarAssets();
 
-  let dataForSource;
-  if (isRenewablesLayerEnabled) {
-    dataForSource = solarAssetsData;
-  } else {
-    dataForSource = Array.isArray(solarAssetsData) && solarAssetsData.length > 0 ? solarAssetsData[0] : null;
-  }
-
-  const theme = useTheme();
+  const dataForSource = isRenewablesLayerEnabled
+    ? solarAssetsData
+    : { type: 'FeatureCollection', features: [] };
 
   const stateLabelPaint = {
     'text-color': 'red',
@@ -31,28 +22,7 @@ export default function SolarAssetsLayer() {
     'text-opacity': 0.9,
   };
   return (
-    <Source id="solar-assets" type="geojson" data={dataForSource}>
-      <Layer
-        id="solar-assets-box"
-        type="symbol"
-        source={ZONE_SOURCE}
-        source-layer="zones-clickable-layer" // Specify the source layer
-        layout={{
-          'icon-image': 'solar-asset-box',
-          'icon-size': 10,
-          'icon-allow-overlap': true,
-          'icon-overlap': 'always',
-          'icon-ignore-placement': true,
-        }}
-        paint={{
-          'icon-color': [
-            'coalesce',
-            ['feature-state', 'color'],
-            ['get', 'color'],
-            theme.clickableFill,
-          ],
-        }}
-      />
+    <Source id="solar-assets" type="geojson" data={dataForSource} promoteId="name">
       <Layer
         id="solar-assets-points"
         type="symbol"
@@ -64,7 +34,21 @@ export default function SolarAssetsLayer() {
           'icon-overlap': 'always',
           'icon-ignore-placement': true,
         }}
-        paint={stateLabelPaint}
+        paint={{
+          ...stateLabelPaint,
+          'icon-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            0.7,
+            1,
+          ],
+          'icon-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#007bff',
+            stateLabelPaint['text-color'],
+          ],
+        }}
       />
     </Source>
   );
