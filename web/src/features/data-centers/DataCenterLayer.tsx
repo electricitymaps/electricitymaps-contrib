@@ -1,13 +1,12 @@
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtomValue } from 'jotai';
-import { DatabaseZap } from 'lucide-react';
 import React from 'react';
 import { useMap } from 'react-map-gl/maplibre';
 import useResizeObserver from 'use-resize-observer';
 import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
 import dataCentersData from '../../../config/data_centers.json';
-import { Aws, Azure, Gcp } from './DataCenterIcons';
+import { DataCenterIcon } from './DataCenterIcons';
 
 // Define the data center type
 export interface DataCenter {
@@ -55,26 +54,6 @@ function DataCenterMarker({
   // Convert geographic coordinates to pixel coordinates
   const point = map.project({ lng: lonlat[1], lat: lonlat[0] });
 
-  // Select the appropriate icon based on the provider
-  const getProviderIcon = () => {
-    const providerLower = provider.toLowerCase();
-
-    if (providerLower.includes('aws') || providerLower.includes('amazon')) {
-      return <Aws size={20} withPin />;
-    }
-
-    if (providerLower.includes('gcp') || providerLower.includes('google')) {
-      return <Gcp size={20} withPin />;
-    }
-
-    if (providerLower.includes('azure') || providerLower.includes('microsoft')) {
-      return <Azure size={20} withPin />;
-    }
-
-    // Default fallback icon
-    return <DatabaseZap size={24} strokeWidth={2} />;
-  };
-
   return (
     <div
       style={{
@@ -86,7 +65,7 @@ function DataCenterMarker({
       }}
       title={label}
     >
-      {getProviderIcon()}
+      <DataCenterIcon provider={provider} withPin />
     </div>
   );
 }

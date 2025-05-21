@@ -1,4 +1,29 @@
+import { DatabaseZap } from 'lucide-react';
 import React from 'react';
+
+interface DataCenterIconProps {
+  provider: string;
+  withPin?: boolean;
+}
+
+export function DataCenterIcon({ provider, withPin = false }: DataCenterIconProps) {
+  const providerLower = provider.toLowerCase();
+
+  if (providerLower.includes('aws') || providerLower.includes('amazon')) {
+    return <Aws size={20} withPin={withPin} />;
+  }
+
+  if (providerLower.includes('gcp') || providerLower.includes('google')) {
+    return <Gcp size={20} withPin={withPin} />;
+  }
+
+  if (providerLower.includes('azure') || providerLower.includes('microsoft')) {
+    return <Azure size={20} withPin={withPin} />;
+  }
+
+  // Default fallback icon
+  return <DatabaseZap size={24} strokeWidth={2} />;
+}
 
 // --- Pin SVG Component with Blur Effect ---
 function PinIconSVG(): React.ReactElement {

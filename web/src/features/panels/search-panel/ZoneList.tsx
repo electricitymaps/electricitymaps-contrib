@@ -1,6 +1,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
+import { DataCenterIcon } from 'features/data-centers/DataCenterIcons';
 import { useEffect, useRef } from 'react';
 import { GridState } from 'types';
 
@@ -45,14 +46,7 @@ function SearchResultRow({
         />
       )}
 
-      {dataCenterIconId && (
-        <img
-          src={`/images/data-centers/${dataCenterIconId}.svg`}
-          height={18}
-          alt={dataCenterIconId}
-          className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
-        />
-      )}
+      {dataCenterIconId && <DataCenterIcon provider={dataCenterIconId} />}
 
       <div className="flex min-w-0 grow flex-row items-center justify-between">
         <h3 className="min-w-0 truncate">{displayName}</h3>
