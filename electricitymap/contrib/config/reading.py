@@ -40,6 +40,7 @@ def read_exchanges_config(config_dir) -> dict[ZoneKey, Any]:
             exchanges_config[exchange_key] = yaml.load(file)
     return exchanges_config
 
+
 def read_data_centers_config(config_dir) -> dict[str, Any]:
     data_centers_config = {}
     for data_center_path in config_dir.joinpath("data_centers").glob("*.json"):
