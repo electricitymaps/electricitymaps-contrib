@@ -1,5 +1,5 @@
 VERSION 0.8
-FROM python:3.11
+FROM python:3.10
 WORKDIR /contrib
 
 linting-files:
