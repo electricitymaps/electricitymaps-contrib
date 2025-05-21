@@ -81,7 +81,8 @@ export const getFilteredDataCenterList = (
       const searchLower = searchTerm.toLowerCase();
       return (
         key.toLowerCase().includes(searchLower) ||
-        data.region.toLowerCase().includes(searchLower)
+        data.region.toLowerCase().includes(searchLower) ||
+        data.displayName.toLowerCase().includes(searchLower)
       );
     })
     .map(([key, data]) => ({
