@@ -1,0 +1,16 @@
+{
+    "aws-us-east-1": {
+        "displayName": "us-east-1 (Virginia)",
+        "lonlat": [37.3382, -76.7483],
+        "provider": "Amazon Web Services",
+        "region": "us-east-1",
+        "zoneKey": "US-MIDA-PJM"
+    },
+    "aws-us-east-2": {
+        "displayName": "us-east-2 (Ohio)",
+        "lonlat": [39.9526, -82.9959],
+        "provider": "Amazon Web Services",
+        "region": "us-east-2",
+        "zoneKey": "US-MIDW-MISO"
+    }
+}

@@ -6,6 +6,7 @@ from typing import Any
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.reading import (
+    read_data_centers_config,
     read_defaults,
     read_exchanges_config,
     read_zones_config,
@@ -24,6 +25,7 @@ CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resol
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
+DATA_CENTERS_CONFIG = read_data_centers_config(CONFIG_DIR)
 
 EU_ZONES = [
     "AT",
