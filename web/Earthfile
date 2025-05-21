@@ -29,12 +29,14 @@ test:
   COPY .gitignore .eslintrc.json .prettierrc.json viteEnvironment.d.ts testSetup.ts .
   COPY --dir cypress ./
   RUN pnpm run create-generated-files
+  RUN pnpm run copy-data-centers
   RUN pnpm run validate
   # TODO: Enable Cypress tests later
   # RUN pnpm run cy:test-all
 
 build-staging:
   FROM +prepare
+  RUN pnpm run copy-data-centers
   RUN pnpm run create-generated-files
   RUN pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 --secret VITE_POSTHOG_KEY=API_PORTAL_POSTHOG_KEY_STAGING pnpm run build
@@ -49,6 +51,7 @@ build-staging:
 
 build:
   FROM +prepare
+  RUN pnpm run copy-data-centers
   RUN pnpm run create-generated-files
   RUN pnpm version minor
   RUN --secret SENTRY_AUTH_TOKEN --secret VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9=ELECTRICITYMAPS_APP_PUBLIC_TOKEN_V9 --secret VITE_POSTHOG_KEY=API_PORTAL_POSTHOG_KEY pnpm run build

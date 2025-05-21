@@ -279,6 +279,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Generate config files
         run: pnpm create-generated-files
+      - name: Copy data centers
+        run: pnpm run copy-data-centers
       - name: Run TypeScript typechecking for app
         run: pnpm run typecheck
       - name: Run TypeScript typechecking for scripts
