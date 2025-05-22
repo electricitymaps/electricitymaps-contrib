@@ -358,7 +358,7 @@ class DataCenter(StrictBaseModel):
 
     @validator("status")
     def status_exists(cls, v):
-        AVAILABLE_STATUSES = ["active"]
+        AVAILABLE_STATUSES = ["operational"]
         if v not in AVAILABLE_STATUSES:
             raise ValueError(f"Data center status {v} is not one of the allowed statuses: {AVAILABLE_STATUSES}")
         return v
