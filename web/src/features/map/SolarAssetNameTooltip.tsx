@@ -5,28 +5,29 @@ import { hoveredSolarAssetInfoAtom, mapZoomAtom } from './mapAtoms';
 const MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP = 2.4;
 
 // Helper to get a color based on status - can be expanded
-// Copied from SolarAssetDataBox.tsx - consider moving to a shared util if used more widely
 const getStatusColor = (status: string | undefined) => {
   if (!status) {
-    return 'bg-gray-400';
-  } // Default
+    return 'bg-gray-400'; // Default grey for unknown for the circle
+  }
   switch (status.toLowerCase()) {
     case 'operating':
     case 'operational':
     case 'commissioned': {
       return 'bg-green-500';
-    }
-    case 'construction':
+    } // Green for operational
     case 'planned': {
+      return 'bg-blue-500';
+    } // Blue for planned
+    case 'construction': {
       return 'bg-yellow-500';
-    }
+    } // Yellow for construction
     case 'cancelled':
     case 'retired': {
       return 'bg-red-500';
-    }
+    } // Red for cancelled/retired
     default: {
       return 'bg-gray-400';
-    }
+    } // Default grey for any other status
   }
 };
 
@@ -71,29 +72,38 @@ export default function SolarAssetNameTooltip() {
         top: y + 15, // Offset from cursor
         transform: 'translateY(-100%)', // Position tooltip above cursor
       }}
-      className="pointer-events-none z-[1000] flex flex-col gap-1 rounded-md bg-white p-2 text-sm shadow-lg dark:bg-gray-800"
+      className="pointer-events-none z-[1000] flex w-max min-w-[150px] flex-col gap-1 rounded-md bg-white p-2 text-xs shadow-lg dark:bg-gray-800" // Use text-xs for tooltip, added w-max and min-w
     >
-      <div className="flex items-center gap-1.5 font-semibold text-gray-900 dark:text-gray-100">
-        <img
-          src="/images/solar_asset.png"
-          alt="Solar"
-          className="h-4 w-4" // Small icon for tooltip
-        />
-        <span>{assetName}</span>
-      </div>
-      <div className="flex items-center gap-2 pl-5">
-        {' '}
-        {/* Indent details slightly */}
+      {/* Solar Tag with Icon */}
+      <div className="mb-1 self-start">
         <span
-          className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
-            status
-          )}`}
+          className={`inline-flex items-center rounded-full bg-yellow-500 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white`}
         >
-          {status}
+          <img src="/images/solar_asset.png" alt="Solar" className="mr-1 h-3 w-3" />
+          Solar
         </span>
+      </div>
+
+      {/* Asset Name - Icon removed from here */}
+      <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+        {assetName}
+      </div>
+
+      {/* Status and Capacity line */}
+      <div className="flex items-center gap-2 text-[11px]">
+        {' '}
+        {/* Adjusted overall text size for this line */}
+        {/* Status with colored circle */}
+        <div className="flex items-center">
+          <span
+            className={`mr-1 h-2 w-2 rounded-full ${getStatusColor(status)}`}
+            aria-hidden="true"
+          />
+          <span className="text-gray-700 dark:text-gray-300">{status}</span>
+        </div>
         {!Number.isNaN(capacityMw) && (
-          <span className="text-xs text-gray-700 dark:text-gray-300">
-            {`${capacityMw.toFixed(1)} MW`}
+          <span className="text-gray-700 dark:text-gray-300">
+            &#8226; {`${capacityMw.toFixed(1)} MW`}
           </span>
         )}
       </div>
