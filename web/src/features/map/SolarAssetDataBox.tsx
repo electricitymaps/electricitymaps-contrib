@@ -23,7 +23,8 @@ const getStatusColor = (status: string | undefined) => {
     return 'bg-gray-400';
   } // Default
   switch (status.toLowerCase()) {
-    case 'operating': {
+    case 'operating':
+    case 'commissioned': {
       return 'bg-green-500';
     }
     case 'construction':
@@ -72,7 +73,7 @@ export default function SolarAssetDataBox() {
       numericCommissionYear <= currentYear &&
       status.toLowerCase() === 'unknown'
     ) {
-      status = 'Operating';
+      status = 'Commissioned';
     }
   }
 
