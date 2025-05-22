@@ -2,7 +2,7 @@ import useGetState from 'api/getState';
 import useGetZone from 'api/getZone';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max, min as d3Min } from 'd3-array';
-import { scaleLinear } from 'd3-scale';
+import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { usePriceColorScale } from 'hooks/theme';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
@@ -18,6 +18,15 @@ export function getPriceColorScale(data: AreaGraphElement[]) {
   return scaleLinear<string>()
     .domain([priceMinValue, 0, priceMaxValue])
     .range(['gray', 'lightgray', '#616161']);
+}
+
+export function getFills(colorScale: ScaleLinear<string, string, string>) {
+  const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
+    colorScale(d.data.layerData[key]);
+
+  const markerFill = (key: string) => (d: { data: AreaGraphElement }) =>
+    colorScale(d.data.layerData[key]);
+  return { layerFill, markerFill };
 }
 
 export function usePriceChartData() {
@@ -65,11 +74,8 @@ export function usePriceChartData() {
   const priceColorScale = shouldUseMapColorScale
     ? mapPriceColorScale
     : getPriceColorScale(chartData);
-  const layerFill = (key: string) => (d: { data: AreaGraphElement }) =>
-    priceColorScale(d.data.layerData[key]);
 
-  const markerFill = (key: string) => (d: { data: AreaGraphElement }) =>
-    priceColorScale(d.data.layerData[key]);
+  const { layerFill, markerFill } = getFills(priceColorScale);
 
   const layerKeys = ['price'];
 
