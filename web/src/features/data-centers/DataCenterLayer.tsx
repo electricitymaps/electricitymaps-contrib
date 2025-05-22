@@ -52,7 +52,7 @@ function DataCenterMarker({
   provider: string;
 }) {
   // Convert geographic coordinates to pixel coordinates
-  const point = map.project({ lng: lonlat[1], lat: lonlat[0] });
+  const point = map.project({ lng: lonlat[0], lat: lonlat[1] });
 
   return (
     <div
