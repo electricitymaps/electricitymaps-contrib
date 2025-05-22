@@ -36,7 +36,8 @@
     "validate-generated-files": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
     "validate": "run-p typecheck lint:ci format:ci test:ci validate-generated-files",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "upload-big-geojson-files": "pnpm node scripts/uploadGeoJSON.js"
   },
   "lint-staged": {
     "*": "prettier -uw --cache",
