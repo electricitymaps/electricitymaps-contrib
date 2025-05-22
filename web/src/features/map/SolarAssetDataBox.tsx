@@ -19,24 +19,26 @@ const formatDate = (dateString: string | undefined | null) => {
 // Helper to get a color based on status - can be expanded
 const getStatusColor = (status: string | undefined) => {
   if (!status) {
-    return 'bg-gray-400';
+    return 'bg-gray-400'; // Default grey for unknown for the circle
   } // Default
   switch (status.toLowerCase()) {
     case 'operating':
     case 'operational':
     case 'commissioned': {
-      return 'bg-green-500';
+      return 'bg-green-500'; // Green for operational
     }
-    case 'construction':
     case 'planned': {
-      return 'bg-yellow-500';
+      return 'bg-blue-500'; // Blue for planned
+    }
+    case 'construction': {
+      return 'bg-yellow-500'; // Yellow for construction
     }
     case 'cancelled':
     case 'retired': {
-      return 'bg-red-500';
+      return 'bg-red-500'; // Red for cancelled/retired
     }
     default: {
-      return 'bg-gray-400';
+      return 'bg-gray-400'; // Default grey for any other status
     }
   }
 };
@@ -78,20 +80,19 @@ export default function SolarAssetDataBox() {
 
   return (
     <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-96 flex-col p-4 shadow-lg">
-      {/* Energy Type Tag - Status badge was removed from this line */}
+      {/* Energy Type Tag - with icon */}
       <div className="mb-2 flex items-center justify-between">
         <span
-          className={`inline-block rounded-full bg-yellow-500 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white`}
+          className={`inline-flex items-center rounded-full bg-yellow-500 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white`}
         >
+          <img src="/images/solar_asset.png" alt="Solar" className="mr-1.5 h-3.5 w-3.5" />
           Solar
         </span>
-        {/* Status badge was correctly removed from here previously */}
       </div>
 
-      {/* Header with Name, Icon and Close Button */}
+      {/* Header with Name and Close Button - icon removed from here */}
       <div className="mb-1 flex items-start justify-between">
         <div className="flex items-center">
-          <img src="/images/solar_asset.png" alt="Solar Asset" className="mr-2 h-6 w-6" />
           <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
             {name}
           </h2>
@@ -119,13 +120,14 @@ export default function SolarAssetDataBox() {
         )}
         <div className="flex items-center justify-between">
           <span>Status:</span>
-          <span
-            className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
-              status
-            )}`}
-          >
-            {status}
-          </span>
+          {/* Status with colored circle */}
+          <div className="flex items-center">
+            <span
+              className={`mr-1.5 h-2.5 w-2.5 rounded-full ${getStatusColor(status)}`}
+              aria-hidden="true"
+            />
+            <span className="font-medium text-gray-800 dark:text-gray-200">{status}</span>
+          </div>
         </div>
         {commissionYear && (
           <div className="flex justify-between">
