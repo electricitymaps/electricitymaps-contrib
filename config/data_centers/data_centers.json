@@ -478,5 +478,245 @@
     "region": "southafricanorth",
     "zoneKey": "ZA",
     "status": "operational"
+  },
+  "aws-us-east-1": {
+    "provider": "aws",
+    "lonlat": [77.4291, 39.0067],
+    "displayName": "N. Virginia (us-east-1)",
+    "region": "us-east-1",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "aws-us-east-2": {
+    "provider": "aws",
+    "lonlat": [83.1406, 40.1025],
+    "displayName": "Ohio (us-east-2)",
+    "region": "us-east-2",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "aws-us-west-1": {
+    "provider": "aws",
+    "lonlat": [121.9552, 37.3541],
+    "displayName": "N. California (us-west-1)",
+    "region": "us-west-1",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "aws-us-west-2": {
+    "provider": "aws",
+    "lonlat": [119.7006, 45.8399],
+    "displayName": "Oregon (us-west-2)",
+    "region": "us-west-2",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "aws-af-south-1": {
+    "provider": "aws",
+    "lonlat": [18.4231, 33.9221],
+    "displayName": "Cape Town (af-south-1)",
+    "region": "af-south-1",
+    "zoneKey": "DK-DK2",
+    "status": "operational"
+  },
+  "aws-ap-east-1": {
+    "provider": "aws",
+    "lonlat": [114.1694, 22.3193],
+    "displayName": "Hong Kong (ap-east-1)",
+    "region": "ap-east-1",
+    "zoneKey": "HK",
+    "status": "operational"
+  },
+  "aws-ap-south-2": {
+    "provider": "aws",
+    "lonlat": [78.476, 17.366],
+    "displayName": "Hyderabad (ap-south-2)",
+    "region": "ap-south-2",
+    "zoneKey": "IN-SO",
+    "status": "operational"
+  },
+  "aws-ap-southeast-3": {
+    "provider": "aws",
+    "lonlat": [106.8229, 6.1944],
+    "displayName": "Jakarta (ap-southeast-3)",
+    "region": "ap-southeast-3",
+    "zoneKey": "DK-DK2",
+    "status": "operational"
+  },
+  "aws-ap-southeast-5": {
+    "provider": "aws",
+    "lonlat": [101.6841, 3.1319],
+    "displayName": "Malaysia (ap-southeast-5)",
+    "region": "ap-southeast-5",
+    "zoneKey": "MY-WM",
+    "status": "operational"
+  },
+  "aws-ap-southeast-4": {
+    "provider": "aws",
+    "lonlat": [144.9631, 37.8136],
+    "displayName": "Melbourne (ap-southeast-4)",
+    "region": "ap-southeast-4",
+    "zoneKey": "DK-DK2",
+    "status": "operational"
+  },
+  "aws-ap-south-1": {
+    "provider": "aws",
+    "lonlat": [72.8777, 19.076],
+    "displayName": "Mumbai (ap-south-1)",
+    "region": "ap-south-1",
+    "zoneKey": "IN-WE",
+    "status": "operational"
+  },
+  "aws-ap-northeast-3": {
+    "provider": "aws",
+    "lonlat": [135.5023, 34.6937],
+    "displayName": "Osaka (ap-northeast-3)",
+    "region": "ap-northeast-3",
+    "zoneKey": "JP-KN",
+    "status": "operational"
+  },
+  "aws-ap-northeast-2": {
+    "provider": "aws",
+    "lonlat": [126.9971, 37.5503],
+    "displayName": "Seoul (ap-northeast-2)",
+    "region": "ap-northeast-2",
+    "zoneKey": "KR",
+    "status": "operational"
+  },
+  "aws-ap-southeast-2": {
+    "provider": "aws",
+    "lonlat": [151.2093, 33.8688],
+    "displayName": "Sydney (ap-southeast-2)",
+    "region": "ap-southeast-2",
+    "zoneKey": "DK-DK2",
+    "status": "operational"
+  },
+  "aws-ap-southeast-7": {
+    "provider": "aws",
+    "lonlat": [100.5018, 13.7563],
+    "displayName": "Thailand (ap-southeast-7)",
+    "region": "ap-southeast-7",
+    "zoneKey": "TH",
+    "status": "operational"
+  },
+  "aws-ap-northeast-1": {
+    "provider": "aws",
+    "lonlat": [139.65, 35.6764],
+    "displayName": "Tokyo (ap-northeast-1)",
+    "region": "ap-northeast-1",
+    "zoneKey": "JP-TK",
+    "status": "operational"
+  },
+  "aws-ca-central-1": {
+    "provider": "aws",
+    "lonlat": [73.5674, 45.5019],
+    "displayName": "Central (ca-central-1)",
+    "region": "ca-central-1",
+    "zoneKey": "KZ",
+    "status": "operational"
+  },
+  "aws-ca-west-1": {
+    "provider": "aws",
+    "lonlat": [114.0719, 51.0447],
+    "displayName": "Calgary (ca-west-1)",
+    "region": "ca-west-1",
+    "zoneKey": "RU-2",
+    "status": "operational"
+  },
+  "aws-eu-central-1": {
+    "provider": "aws",
+    "lonlat": [8.6821, 50.1109],
+    "displayName": "Frankfurt (eu-central-1)",
+    "region": "eu-central-1",
+    "zoneKey": "DE",
+    "status": "operational"
+  },
+  "aws-eu-west-1": {
+    "provider": "aws",
+    "lonlat": [6.2603, 53.3498],
+    "displayName": "Ireland (eu-west-1)",
+    "region": "eu-west-1",
+    "zoneKey": "NL",
+    "status": "operational"
+  },
+  "aws-eu-west-2": {
+    "provider": "aws",
+    "lonlat": [0.1276, 51.5072],
+    "displayName": "London (eu-west-2)",
+    "region": "eu-west-2",
+    "zoneKey": "GB",
+    "status": "operational"
+  },
+  "aws-eu-south-1": {
+    "provider": "aws",
+    "lonlat": [9.1824, 45.4685],
+    "displayName": "Milan (eu-south-1)",
+    "region": "eu-south-1",
+    "zoneKey": "IT-NO",
+    "status": "operational"
+  },
+  "aws-eu-west-3": {
+    "provider": "aws",
+    "lonlat": [2.3514, 48.8575],
+    "displayName": "Paris (eu-west-3)",
+    "region": "eu-west-3",
+    "zoneKey": "FR",
+    "status": "operational"
+  },
+  "aws-eu-south-2": {
+    "provider": "aws",
+    "lonlat": [0.8247, 41.7737],
+    "displayName": "Spain (eu-south-2)",
+    "region": "eu-south-2",
+    "zoneKey": "ES",
+    "status": "operational"
+  },
+  "aws-eu-north-1": {
+    "provider": "aws",
+    "lonlat": [18.0656, 59.3327],
+    "displayName": "Stockholm (eu-north-1)",
+    "region": "eu-north-1",
+    "zoneKey": "SE-SE3",
+    "status": "operational"
+  },
+  "aws-eu-central-2": {
+    "provider": "aws",
+    "lonlat": [8.5417, 47.3769],
+    "displayName": "Zurich (eu-central-2)",
+    "region": "eu-central-2",
+    "zoneKey": "CH",
+    "status": "operational"
+  },
+  "aws-il-central-1": {
+    "provider": "aws",
+    "lonlat": [34.7818, 32.0853],
+    "displayName": "Tel Aviv (il-central-1)",
+    "region": "il-central-1",
+    "zoneKey": "IL",
+    "status": "operational"
+  },
+  "aws-mx-central-1": {
+    "provider": "aws",
+    "lonlat": [100.3899, 20.5888],
+    "displayName": "Central (mx-central-1)",
+    "region": "mx-central-1",
+    "zoneKey": "LA",
+    "status": "operational"
+  },
+  "aws-me-central-1": {
+    "provider": "aws",
+    "lonlat": [55.2708, 25.2048],
+    "displayName": "UAE (me-central-1)",
+    "region": "me-central-1",
+    "zoneKey": "AE",
+    "status": "operational"
+  },
+  "aws-sa-east-1": {
+    "provider": "aws",
+    "lonlat": [46.6396, 23.5558],
+    "displayName": "S\u00e3o Paulo (sa-east-1)",
+    "region": "sa-east-1",
+    "zoneKey": "SA",
+    "status": "operational"
   }
 }
