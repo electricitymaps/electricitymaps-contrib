@@ -110,5 +110,461 @@
     "region": "europe-west3",
     "zoneKey": "DE",
     "status": "operational"
+  },
+  "azure-westus3": {
+    "provider": "azure",
+    "lonlat": [-111.763275, 34.395342],
+    "displayName": "West US 3",
+    "region": "West US 3",
+    "zoneKey": "US-SW-AZPS",
+    "status": "operational"
+  },
+  "azure-westus2": {
+    "provider": "azure",
+    "lonlat": [-120.212613, 47.2868352],
+    "displayName": "West US 2",
+    "region": "West US 2",
+    "zoneKey": "US-NW-BPAT",
+    "status": "operational"
+  },
+  "azure-westus": {
+    "provider": "azure",
+    "lonlat": [-118.755997, 36.7014631],
+    "displayName": "West US",
+    "region": "West US",
+    "zoneKey": "US-CAL-CISO",
+    "status": "operational"
+  },
+  "azure-westcentralus": {
+    "provider": "azure",
+    "lonlat": [-107.568534, 43.1700264],
+    "displayName": "West Central US",
+    "region": "West Central US",
+    "zoneKey": "US-NW-PACE",
+    "status": "operational"
+  },
+  "azure-southcentralus": {
+    "provider": "azure",
+    "lonlat": [-96.87744141, 29.55434513],
+    "displayName": "South Central US",
+    "region": "South Central US",
+    "zoneKey": "US-TEX-ERCO",
+    "status": "operational"
+  },
+  "azure-northcentralus": {
+    "provider": "azure",
+    "lonlat": [-89.4337288, 40.0796606],
+    "displayName": "North Central US",
+    "region": "North Central US",
+    "zoneKey": "US-MIDW-MISO",
+    "status": "operational"
+  },
+  "azure-eastus3": {
+    "provider": "azure",
+    "lonlat": [-83.716858, 32.840464],
+    "displayName": "East US 3",
+    "region": "East US 3",
+    "zoneKey": "US-SE-SOCO",
+    "status": "non operational"
+  },
+  "azure-eastus2": {
+    "provider": "azure",
+    "lonlat": [-81.12304688, 36.66841892],
+    "displayName": "East US 2",
+    "region": "East US 2",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational"
+  },
+  "azure-eastus": {
+    "provider": "azure",
+    "lonlat": [-78.13476563, 38.75408328],
+    "displayName": "East US",
+    "region": "East US",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational"
+  },
+  "azure-centralus": {
+    "provider": "azure",
+    "lonlat": [-94.55932617, 41.4509614],
+    "displayName": "Central US",
+    "region": "Central US",
+    "zoneKey": "US-MIDW-MISO",
+    "status": "operational"
+  },
+  "azure-ukwest": {
+    "provider": "azure",
+    "lonlat": [-3.1791934, 51.4816546],
+    "displayName": "UK West",
+    "region": "UK West",
+    "zoneKey": "GB",
+    "status": "operational"
+  },
+  "azure-uksouth": {
+    "provider": "azure",
+    "lonlat": [-0.1276474, 51.5073219],
+    "displayName": "UK South",
+    "region": "UK South",
+    "zoneKey": "GB",
+    "status": "operational"
+  },
+  "azure-uaenorth": {
+    "provider": "azure",
+    "lonlat": [55.2707065, 25.2047397],
+    "displayName": "UAE North",
+    "region": "UAE North",
+    "zoneKey": "AE",
+    "status": "operational"
+  },
+  "azure-taiwannorth": {
+    "provider": "azure",
+    "lonlat": [121.4139, 25.039666],
+    "displayName": "Taiwan North",
+    "region": "Taiwan North",
+    "zoneKey": "TW",
+    "status": "non operational"
+  },
+  "azure-switzerlandnorth": {
+    "provider": "azure",
+    "lonlat": [8.8410422, 47.2744489],
+    "displayName": "Switzerland North",
+    "region": "Switzerland North",
+    "zoneKey": "CH",
+    "status": "operational"
+  },
+  "azure-swedencentral": {
+    "provider": "azure",
+    "lonlat": [17.138836, 60.667761],
+    "displayName": "Sweden Central",
+    "region": "Sweden Central",
+    "zoneKey": "SE-SE3",
+    "status": "operational"
+  },
+  "azure-spaincentral": {
+    "provider": "azure",
+    "lonlat": [-3.7035825, 40.4167047],
+    "displayName": "Spain Central",
+    "region": "Spain Central",
+    "zoneKey": "ES",
+    "status": "operational"
+  },
+  "azure-saudiarabiaeast": {
+    "provider": "azure",
+    "lonlat": [46.6753, 24.7136],
+    "displayName": "Saudi Arabia East",
+    "region": "Saudi Arabia East",
+    "zoneKey": "SA",
+    "status": "non operational"
+  },
+  "azure-qatarcentral": {
+    "provider": "azure",
+    "lonlat": [51.5264162, 26.2856329],
+    "displayName": "Qatar Central",
+    "region": "Qatar Central",
+    "zoneKey": "QA",
+    "status": "operational"
+  },
+  "azure-polandcentral": {
+    "provider": "azure",
+    "lonlat": [21.8067249, 52.2319581],
+    "displayName": "Poland Central",
+    "region": "Poland Central",
+    "zoneKey": "PL",
+    "status": "operational"
+  },
+  "azure-norwayeast": {
+    "provider": "azure",
+    "lonlat": [10.7389701, 59.9133301],
+    "displayName": "Norway East",
+    "region": "Norway East",
+    "zoneKey": "NO-NO1",
+    "status": "operational"
+  },
+  "azure-newzealandnorth": {
+    "provider": "azure",
+    "lonlat": [174.7631803, -36.852095],
+    "displayName": "New Zealand North",
+    "region": "New Zealand North",
+    "zoneKey": "NZ",
+    "status": "operational"
+  },
+  "azure-mexicocentral": {
+    "provider": "azure",
+    "lonlat": [-99.84756, 20.8542575],
+    "displayName": "Mexico Central",
+    "region": "Mexico Central",
+    "zoneKey": "MX",
+    "status": "operational"
+  },
+  "azure-malaysiawest": {
+    "provider": "azure",
+    "lonlat": [101.809256, 4.55035],
+    "displayName": "Malaysia West",
+    "region": "Malaysia West",
+    "zoneKey": "MY-WM",
+    "status": "non operational"
+  },
+  "azure-koreacentral": {
+    "provider": "azure",
+    "lonlat": [126.9782914, 37.5666791],
+    "displayName": "Korea Central",
+    "region": "Korea Central",
+    "zoneKey": "KR",
+    "status": "operational"
+  },
+  "azure-japanwest": {
+    "provider": "azure",
+    "lonlat": [135.490357, 34.6198813],
+    "displayName": "Japan West",
+    "region": "Japan West",
+    "zoneKey": "JP-KN",
+    "status": "operational"
+  },
+  "azure-japaneast": {
+    "provider": "azure",
+    "lonlat": [139.7594549, 37.6828387],
+    "displayName": "Japan East",
+    "region": "Japan East",
+    "zoneKey": "JP-TH",
+    "status": "operational"
+  },
+  "azure-italynorth": {
+    "provider": "azure",
+    "lonlat": [9.6905, 45.2668],
+    "displayName": "Italy North",
+    "region": "Italy North",
+    "zoneKey": "IT-NO",
+    "status": "operational"
+  },
+  "azure-israelcentral": {
+    "provider": "azure",
+    "lonlat": [35.8667654, 31.5313113],
+    "displayName": "Israel Central",
+    "region": "Israel Central",
+    "zoneKey": "JO",
+    "status": "operational"
+  },
+  "azure-indonesiacentral": {
+    "provider": "azure",
+    "lonlat": [106.827183, -6.1753942],
+    "displayName": "Indonesia Central",
+    "region": "Indonesia Central",
+    "zoneKey": "ID",
+    "status": "operational"
+  },
+  "azure-southcentralindia": {
+    "provider": "azure",
+    "lonlat": [78.5, 17.34],
+    "displayName": "India South Central",
+    "region": "India South Central",
+    "zoneKey": "IN-SO",
+    "status": "non operational"
+  },
+  "azure-southindia": {
+    "provider": "azure",
+    "lonlat": [80.270186, 13.0836939],
+    "displayName": "South India",
+    "region": "South India",
+    "zoneKey": "IN-SO",
+    "status": "operational"
+  },
+  "azure-centralindia": {
+    "provider": "azure",
+    "lonlat": [75.0544541, 18.521428],
+    "displayName": "Central India",
+    "region": "Central India",
+    "zoneKey": "IN-WE",
+    "status": "operational"
+  },
+  "azure-greececentral": {
+    "provider": "azure",
+    "lonlat": [23.7283052, 37.9839412],
+    "displayName": "Greece Central",
+    "region": "Greece Central",
+    "zoneKey": "GR",
+    "status": "non operational"
+  },
+  "azure-germanywestcentral": {
+    "provider": "azure",
+    "lonlat": [8.6820917, 50.2106444],
+    "displayName": "Germany West Central",
+    "region": "Germany West Central",
+    "zoneKey": "DE",
+    "status": "operational"
+  },
+  "azure-francecentral": {
+    "provider": "azure",
+    "lonlat": [2.3514616, 48.8566969],
+    "displayName": "France Central",
+    "region": "France Central",
+    "zoneKey": "FR",
+    "status": "operational"
+  },
+  "azure-finlandcentral": {
+    "provider": "azure",
+    "lonlat": [24.874774, 60.183027],
+    "displayName": "Finland Central",
+    "region": "Finland Central",
+    "zoneKey": "FI",
+    "status": "non operational"
+  },
+  "azure-westeurope": {
+    "provider": "azure",
+    "lonlat": [7.0480821, 52.5001698],
+    "displayName": "West Europe",
+    "region": "West Europe",
+    "zoneKey": "DE",
+    "status": "operational"
+  },
+  "azure-northeurope": {
+    "provider": "azure",
+    "lonlat": [-7.9794599, 52.865196],
+    "displayName": "North Europe",
+    "region": "North Europe",
+    "zoneKey": "IE",
+    "status": "operational"
+  },
+  "azure-denmarkeast": {
+    "provider": "azure",
+    "lonlat": [12.580776, 55.664858],
+    "displayName": "Denmark East",
+    "region": "Denmark East",
+    "zoneKey": "DK-DK2",
+    "status": "non operational"
+  },
+  "azure-chinanorth3": {
+    "provider": "azure",
+    "lonlat": [116.277987, 42.710633],
+    "displayName": "China North 3",
+    "region": "China North 3",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "azure-chinanorth2": {
+    "provider": "azure",
+    "lonlat": [118.3976563, 39.63107677],
+    "displayName": "China North 2",
+    "region": "China North 2",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "azure-chinanorth": {
+    "provider": "azure",
+    "lonlat": [116.0912391, 40.5065084],
+    "displayName": "China North",
+    "region": "China North",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "azure-chinaeast2": {
+    "provider": "azure",
+    "lonlat": [119.9265137, 30.57015912],
+    "displayName": "China East 2",
+    "region": "China East 2",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "azure-chinaeast": {
+    "provider": "azure",
+    "lonlat": [121.9692071, 31.2322758],
+    "displayName": "China East",
+    "region": "China East",
+    "zoneKey": "CN",
+    "status": "operational"
+  },
+  "azure-chilecentral": {
+    "provider": "azure",
+    "lonlat": [-70.8, -33.47],
+    "displayName": "Chile Central",
+    "region": "Chile Central",
+    "zoneKey": "CL-SEN",
+    "status": "non operational"
+  },
+  "azure-canadaeast": {
+    "provider": "azure",
+    "lonlat": [-71.2352226, 46.8259601],
+    "displayName": "Canada East",
+    "region": "Canada East",
+    "zoneKey": "CA-QC",
+    "status": "operational"
+  },
+  "azure-canadacentral": {
+    "provider": "azure",
+    "lonlat": [-79.3839347, 43.6534817],
+    "displayName": "Canada Central",
+    "region": "Canada Central",
+    "zoneKey": "CA-ON",
+    "status": "operational"
+  },
+  "azure-brazilsouth": {
+    "provider": "azure",
+    "lonlat": [-46.66992188, -23.74512587],
+    "displayName": "Brazil South",
+    "region": "Brazil South",
+    "zoneKey": "BR-CS",
+    "status": "operational"
+  },
+  "azure-belgiumcentral": {
+    "provider": "azure",
+    "lonlat": [5.06, 51.35],
+    "displayName": "Belgium Central",
+    "region": "Belgium Central",
+    "zoneKey": "BE",
+    "status": "non operational"
+  },
+  "azure-austriaeast": {
+    "provider": "azure",
+    "lonlat": [16.404751, 48.599753],
+    "displayName": "Austria East",
+    "region": "Austria East",
+    "zoneKey": "AT",
+    "status": "non operational"
+  },
+  "azure-australiacentral": {
+    "provider": "azure",
+    "lonlat": [149.1012676, -35.2975906],
+    "displayName": "Australia Central",
+    "region": "Australia Central",
+    "zoneKey": "AU-NSW",
+    "status": "operational"
+  },
+  "azure-australiasoutheast": {
+    "provider": "azure",
+    "lonlat": [144.9631608, -37.8142176],
+    "displayName": "Australia Southeast",
+    "region": "Australia Southeast",
+    "zoneKey": "AU-VIC",
+    "status": "operational"
+  },
+  "azure-australiaeast": {
+    "provider": "azure",
+    "lonlat": [146.921097, -31.253218],
+    "displayName": "Australia East",
+    "region": "Australia East",
+    "zoneKey": "AU-NSW",
+    "status": "operational"
+  },
+  "azure-southeastasia": {
+    "provider": "azure",
+    "lonlat": [105.3, 1.13],
+    "displayName": "Southeast Asia",
+    "region": "Southeast Asia",
+    "zoneKey": "DK-DK2",
+    "status": "operational"
+  },
+  "azure-eastasia": {
+    "provider": "azure",
+    "lonlat": [114.109497, 22.396427],
+    "displayName": "East Asia",
+    "region": "East Asia",
+    "zoneKey": "HK",
+    "status": "operational"
+  },
+  "azure-southafricanorth": {
+    "provider": "azure",
+    "lonlat": [28.047304, -26.204103],
+    "displayName": "South Africa North",
+    "region": "South Africa North",
+    "zoneKey": "ZA",
+    "status": "operational"
   }
 }
