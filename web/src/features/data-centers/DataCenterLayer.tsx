@@ -2,6 +2,8 @@ import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useAtomValue } from 'jotai';
 import React from 'react';
 import { useMap } from 'react-map-gl/maplibre';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { isDataCenterLayerEnabledAtom } from 'utils/state/atoms';
 
@@ -45,14 +47,33 @@ function DataCenterMarker({
   lonlat,
   label,
   provider,
+  region,
+  zoneKey,
+  timeRange,
+  resolution,
+  searchParams,
 }: {
   map: maplibregl.Map;
   lonlat: [number, number];
   label: string;
   provider: string;
+  region: string;
+  zoneKey: string;
+  timeRange: string;
+  resolution: string;
+  searchParams: URLSearchParams;
 }) {
+  const navigate = useNavigate();
   // Convert geographic coordinates to pixel coordinates
   const point = map.project({ lng: lonlat[0], lat: lonlat[1] });
+
+  const handleClick = () => {
+    const searchParametersString = searchParams.toString();
+    const queryString = searchParametersString ? `?${searchParametersString}` : '';
+    navigate(
+      `/data-center/${zoneKey}/${provider}/${region}/${timeRange}/${resolution}${queryString}`
+    );
+  };
 
   return (
     <div
@@ -64,6 +85,15 @@ function DataCenterMarker({
         cursor: 'pointer',
       }}
       title={label}
+      onClick={handleClick}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          handleClick();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${label} data center`}
     >
       <DataCenterIcon provider={provider} withPin />
     </div>
@@ -75,6 +105,8 @@ function DataCenterLayer() {
   const isMapMoving = useAtomValue(mapMovingAtom);
   const isLayerEnabled = useAtomValue(isDataCenterLayerEnabledAtom);
   const { ref } = useResizeObserver<HTMLDivElement>();
+  const { urlTimeRange = '72h', resolution = 'hourly' } = useParams<RouteParameters>();
+  const [searchParameters] = useSearchParams();
 
   if (!mapReference || isMapMoving || !isLayerEnabled) {
     return <div ref={ref} className="h-full w-full" />;
@@ -97,6 +129,11 @@ function DataCenterLayer() {
           lonlat={dc.lonlat}
           label={dc.displayName}
           provider={dc.provider}
+          region={dc.region}
+          zoneKey={dc.zoneKey}
+          timeRange={urlTimeRange}
+          resolution={resolution}
+          searchParams={searchParameters}
         />
       ))}
     </div>
