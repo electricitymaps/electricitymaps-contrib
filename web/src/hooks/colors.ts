@@ -139,7 +139,3 @@ export const colors: Colors = {
     nonClickableFill: '#D4D9DE',
   },
 };
-console.log(
-  colors.bright.colorScale[MapColorSource.RENEWABLE_PERCENTAGE](0),
-  colors.bright.colorScale[MapColorSource.RENEWABLE_PERCENTAGE](100)
-);
