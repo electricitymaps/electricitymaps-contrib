@@ -11,7 +11,7 @@ import {
 import { useBreakpoint } from 'utils/styling';
 
 import ExchangeArrow from './ExchangeArrow';
-import { generateQuantizedColorScale } from './scales';
+import { generateQuantizedExchangeColorScale } from './scales';
 
 function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const isMapMoving = useAtomValue(mapMovingAtom);
@@ -22,7 +22,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const mapColorSource = useAtomValue(mapColorSourceAtom);
   const quantizedColorScale = useMemo(
-    () => generateQuantizedColorScale(mapColorSource),
+    () => generateQuantizedExchangeColorScale(mapColorSource),
     [mapColorSource]
   );
 

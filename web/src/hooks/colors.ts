@@ -19,10 +19,16 @@ function generateRenewableScale(
   dirtiest: number,
   unknownColor: string
 ) {
-  const extent = Math.abs(dirtiest - cleanest);
+  // const extent = Math.abs(dirtiest - cleanest);
+  const colorRange = ['#309381', '#61AD9F', '#84BFB4', '#ACD4CC', '#D4E9E5']; // Alex
+  // const colorRange = ['#244ba5', '#96afe8', '#fedc76', '#381D02']; // Oli
   return scaleLinear<string>()
-    .domain([cleanest, extent / 2, dirtiest])
-    .range(['#244ba5', '#96afe8', '#fedc76', '#381D02'])
+    .domain(
+      colorRange.map(
+        (_, index) => (index / (colorRange.length - 1)) * (dirtiest - cleanest) + cleanest
+      )
+    )
+    .range(colorRange)
     .unknown(unknownColor)
     .clamp(true);
 }
@@ -110,3 +116,7 @@ export const colors: Colors = {
     nonClickableFill: '#D4D9DE',
   },
 };
+console.log(
+  colors.bright.colorScale[MapColorSource.RENEWABLE_PERCENTAGE](0),
+  colors.bright.colorScale[MapColorSource.RENEWABLE_PERCENTAGE](100)
+);

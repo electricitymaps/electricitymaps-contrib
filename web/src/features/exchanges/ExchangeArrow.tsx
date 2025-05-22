@@ -140,7 +140,7 @@ function ExchangeArrow({
   const quantisedValueForColor = quantizedColorScale(valueForColor);
   const speed = quantizedExchangeSpeedScale(absFlow);
   const imageSource = resolvePath(
-    `images/arrows/${prefix}arrow-${quantisedValueForColor}-animated-${speed}`
+    `images/arrows/${mapColorSource.toLowerCase()}-${prefix}arrow-${quantisedValueForColor}-animated-${speed}`
   ).pathname;
 
   return (
