@@ -4,4 +4,3 @@
 # Denote all files in the `parsers/test/mocks` directory as vendored.
 # This makes GitHub ignore them for language statistics.
 parsers/test/mocks/** linguist-vendored
-*.big.geojson filter=lfs diff=lfs merge=lfs -text
