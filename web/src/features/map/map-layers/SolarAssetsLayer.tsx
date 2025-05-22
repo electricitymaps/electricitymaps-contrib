@@ -24,7 +24,7 @@ export default function SolarAssetsLayer() {
   const theme = useTheme();
 
   const stateLabelPaint = {
-    'text-color': 'red',
+    'text-color': 'white',
     'text-halo-color': '#111827',
     'text-halo-width': 0.5,
     'text-halo-blur': 0.25,
@@ -39,7 +39,7 @@ export default function SolarAssetsLayer() {
         source-layer="zones-clickable-layer" // Specify the source layer
         layout={{
           'icon-image': 'solar-asset-box',
-          'icon-size': 10,
+          'icon-size': 1.2,
           'icon-allow-overlap': true,
           'icon-overlap': 'always',
           'icon-ignore-placement': true,

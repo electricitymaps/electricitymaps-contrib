@@ -21,6 +21,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 71.6
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 69.2
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -50,6 +53,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 15223.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 15122.7
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -64,6 +70,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1159.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1144.9
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -167,6 +176,9 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 2148.1
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2159.6
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov

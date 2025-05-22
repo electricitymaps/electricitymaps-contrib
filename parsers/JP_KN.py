@@ -51,7 +51,7 @@ def fetch_production(
 
     latest["production"]["nuclear"] = nuclear_mw
     latest["production"]["unknown"] = latest["production"]["unknown"] - nuclear_mw
-    return latest
+    return [latest]
 
 
 URL = (

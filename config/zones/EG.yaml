@@ -36,6 +36,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 52660.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 52270.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -65,6 +68,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1860.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2590.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -81,6 +87,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1890.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2200.0
 country: EG
 emissionFactors:
   lifecycle:

@@ -1,8 +1,7 @@
 import ToggleButton, { ToggleButtonOptions } from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import { memo, type ReactElement, useCallback } from 'react';
-import trackEvent from 'utils/analytics';
-import { LeftPanelToggleOptions, TrackEvent } from 'utils/constants';
+import { LeftPanelToggleOptions } from 'utils/constants';
 import { displayByEmissionsAtom } from 'utils/state/atoms';
 
 const options: ToggleButtonOptions<LeftPanelToggleOptions> = [
@@ -26,11 +25,6 @@ function EmissionToggle(): ReactElement {
       if (option === '') {
         return;
       }
-      trackEvent(
-        displayByEmissions
-          ? TrackEvent.PANEL_PRODUCTION_BUTTON_CLICKED
-          : TrackEvent.PANEL_EMISSION_BUTTON_CLICKED
-      );
       if (
         (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
         (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)

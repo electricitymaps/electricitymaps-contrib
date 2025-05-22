@@ -14,6 +14,7 @@ type Props = {
   isEstimated?: boolean;
   id: Charts;
   subtitle?: React.ReactElement;
+  isMoreOptionsHidden?: boolean;
 };
 
 export function ChartTitle({
@@ -24,8 +25,9 @@ export function ChartTitle({
   isEstimated,
   id,
   subtitle,
+  isMoreOptionsHidden,
 }: Props) {
-  const showMoreOptions = useFeatureFlag('more-options-dropdown');
+  const showMoreOptions = useFeatureFlag('more-options-dropdown') && !isMoreOptionsHidden;
   const url = useGetCurrentUrl();
   const shareUrl = id ? `${url}#${id}` : url;
   const { t } = useTranslation();

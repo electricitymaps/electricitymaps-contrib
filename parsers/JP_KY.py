@@ -115,7 +115,7 @@ def fetch_production(
         data["production"]["nuclear"] = nuclear
         data["production"]["unknown"] = unknown
 
-        return data
+        return [data]
     else:
         return []
 

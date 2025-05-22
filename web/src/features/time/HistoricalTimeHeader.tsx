@@ -7,8 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import trackEvent from 'utils/analytics';
-import { MAX_HISTORICAL_LOOKBACK_DAYS, TrackEvent } from 'utils/constants';
+import { MAX_HISTORICAL_LOOKBACK_DAYS } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { endDatetimeAtom } from 'utils/state/atoms';
 
@@ -40,9 +39,6 @@ function HistoricalTimeHeader({
     if (!endDatetime || !urlDatetime) {
       return;
     }
-    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-      direction: 'forward',
-    });
 
     const nextDay = addDays(endDatetime, 1);
 
@@ -59,9 +55,6 @@ function HistoricalTimeHeader({
     if (!endDatetime || !isWithinHistoricalLimit) {
       return;
     }
-    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-      direction: 'backward',
-    });
 
     const previousDay = subDays(endDatetime, 1);
 
@@ -69,9 +62,6 @@ function HistoricalTimeHeader({
   }
 
   function handleLatestClick() {
-    trackEvent(TrackEvent.HISTORICAL_NAVIGATION, {
-      direction: 'latest',
-    });
     navigate({ datetime: '' });
   }
 

@@ -110,10 +110,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: A third of the nuclear-related electricity production
-  is attributed to the balancing authority South Carolina Public Service Authority
-  (US-CAR-SC) due to an agreement between the two balancing authorities. Read more
-  on the zone definition wiki page.
+disclaimer: A third of the nuclear-related electricity production is attributed to
+  the balancing authority South Carolina Public Service Authority (US-CAR-SC) due
+  to an agreement between the two balancing authorities. Read more on the zone definition
+  wiki page.
 emissionFactors:
   direct:
     battery discharge:
