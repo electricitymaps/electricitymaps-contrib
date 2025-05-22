@@ -1,12 +1,17 @@
 import { mapMovingAtom } from 'features/map/mapAtoms';
 import { useExchangeArrowsData } from 'hooks/arrows';
 import { useAtomValue } from 'jotai';
-import React from 'react';
+import React, { useMemo } from 'react';
 import useResizeObserver from 'use-resize-observer';
-import { colorblindModeAtom, isConsumptionAtom } from 'utils/state/atoms';
+import {
+  colorblindModeAtom,
+  isConsumptionAtom,
+  mapColorSourceAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
 import ExchangeArrow from './ExchangeArrow';
+import { generateQuantizedExchangeColorScale } from './scales';
 
 function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const isMapMoving = useAtomValue(mapMovingAtom);
@@ -15,6 +20,11 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
   const arrows = useExchangeArrowsData();
   const isMobile = !useBreakpoint('md');
   const isConsumption = useAtomValue(isConsumptionAtom);
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
+  const quantizedColorScale = useMemo(
+    () => generateQuantizedExchangeColorScale(mapColorSource),
+    [mapColorSource]
+  );
 
   return (
     <div
@@ -27,6 +37,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
       {!isMapMoving &&
         map &&
         isConsumption &&
+        quantizedColorScale != null &&
         arrows.map((arrow) => (
           <ExchangeArrow
             key={arrow.key}
@@ -36,6 +47,7 @@ function ExchangeLayer({ map }: { map?: maplibregl.Map }) {
             viewportWidth={width}
             viewportHeight={height}
             isMobile={isMobile}
+            quantizedColorScale={quantizedColorScale}
           />
         ))}
     </div>

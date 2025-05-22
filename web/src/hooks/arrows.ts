@@ -65,20 +65,27 @@ export function filterExchanges(
   return [resultZones, resultCountries];
 }
 
+function getOriginZoneKey(exchangeKey: string, flow: number) {
+  const [zone1, zone2] = exchangeKey.split('->');
+  return flow >= 0 ? zone1 : zone2;
+}
+
 export function useExchangeArrowsData(): ExchangeArrowData[] {
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
   const { data } = useGetState();
 
   // Find outages in state data and hide exports from those zones
-  const zonesWithOutages = useMemo(() => {
-    const zoneData = data?.datetimes?.[selectedDatetimeString]?.z;
-    return zoneData
-      ? Object.entries(zoneData)
-          .filter(([, value]) => value.o)
-          .map(([zone]) => zone)
-      : [];
-  }, [data, selectedDatetimeString]);
+  const zoneData = data?.datetimes?.[selectedDatetimeString]?.z;
+  const zonesWithOutages = useMemo(
+    () =>
+      zoneData
+        ? Object.entries(zoneData)
+            .filter(([, value]) => value.o)
+            .map(([zone]) => zone)
+        : [],
+    [zoneData]
+  );
 
   const exchangesToUse: { [key: string]: StateExchangeData } = useMemo(() => {
     const exchanges = data?.datetimes?.[selectedDatetimeString]?.e;
@@ -100,15 +107,19 @@ export function useExchangeArrowsData(): ExchangeArrowData[] {
 
   const currentExchanges: ExchangeArrowData[] = useMemo(
     () =>
-      Object.entries(exchangesToUse).map(([key, value]) => ({
-        co2intensity: shouldHideExchangeIntensity(key, zonesWithOutages, value.f)
-          ? Number.NaN
-          : value.ci,
+      Object.entries(exchangesToUse).map(([exchangeKey, value]) => ({
+        originZoneData: shouldHideExchangeIntensity(
+          exchangeKey,
+          zonesWithOutages,
+          value.f
+        )
+          ? undefined
+          : zoneData?.[getOriginZoneKey(exchangeKey, value.f)],
         netFlow: value.f,
-        ...exchangesConfig[key],
-        key,
+        ...exchangesConfig[exchangeKey],
+        key: exchangeKey,
       })),
-    [exchangesToUse, zonesWithOutages]
+    [exchangesToUse, zonesWithOutages, zoneData]
   );
 
   return currentExchanges;

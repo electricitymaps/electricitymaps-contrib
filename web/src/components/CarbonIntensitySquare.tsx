@@ -1,7 +1,12 @@
 import { animated, useSpring } from '@react-spring/web';
+import { ScaleLinear } from 'd3-scale';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CarbonUnits } from 'utils/units';
+import {
+  MapColorSource,
+  mapColorSourceTranslationKeys,
+  unitsByMapColorSource,
+} from 'utils/constants';
 
 import { useCo2ColorScale } from '../hooks/theme';
 import InfoIconWithPadding from './InfoIconWithPadding';
@@ -30,22 +35,50 @@ const getTextColor = (rgbColor: string) => {
   return luminosity >= 0.384_741_302_385_683_16 ? 'black' : 'white';
 };
 
+function CarbonIntensitySquare({
+  intensity,
+  tooltipContent,
+}: CarbonIntensitySquareProps) {
+  const co2ColorScale = useCo2ColorScale();
+
+  return (
+    <ValueSquare
+      value={intensity}
+      colorScale={co2ColorScale}
+      tooltipContent={tooltipContent}
+      unitShort={'g'}
+      unitRest={unitsByMapColorSource[MapColorSource.CARBON_INTENSITY].slice(1)}
+      translationKey={mapColorSourceTranslationKeys[MapColorSource.CARBON_INTENSITY]}
+    />
+  );
+}
+
 interface CarbonIntensitySquareProps {
   intensity: number;
   tooltipContent?: string | JSX.Element;
 }
 
-function CarbonIntensitySquare({
-  intensity,
+export function ValueSquare({
+  value,
+  colorScale,
   tooltipContent,
-}: CarbonIntensitySquareProps) {
+  unitRest,
+  translationKey,
+  unitShort,
+}: {
+  value: number;
+  colorScale: ScaleLinear<string, string, string>;
+  tooltipContent?: string | JSX.Element;
+  unitRest: string;
+  translationKey: string;
+  unitShort: string;
+}) {
   const { t } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
   const [{ backgroundColor }] = useSpring(
     {
-      backgroundColor: co2ColorScale(intensity),
+      backgroundColor: colorScale(value),
     },
-    [co2ColorScale, intensity]
+    [colorScale, value]
   );
 
   return (
@@ -61,7 +94,7 @@ function CarbonIntensitySquare({
           <div className="size-20 p-1">
             <animated.div
               style={{
-                color: getTextColor(co2ColorScale(intensity)),
+                color: getTextColor(colorScale(value)),
                 backgroundColor,
               }}
               className="flex h-full w-full flex-col items-center justify-center rounded-2xl"
@@ -70,19 +103,19 @@ function CarbonIntensitySquare({
                 className="select-none text-base leading-none"
                 data-testid="co2-square-value"
               >
-                <span className="font-semibold">{Math.round(intensity) || '?'}</span>
-                <span className="text-xs font-semibold">g</span>
+                <span className="font-semibold">
+                  {Number.isFinite(value) ? Math.round(value) : '?'}
+                </span>
+                <span className="text-xs font-semibold">{unitShort}</span>
               </p>
-              <div className="text-xxs font-semibold leading-none">
-                {CarbonUnits.CO2EQ_PER_KILOWATT_HOUR}
-              </div>
+              <div className="text-xxs font-semibold leading-none">{unitRest}</div>
             </animated.div>
           </div>
           {tooltipContent && <InfoIconWithPadding />}
         </div>
       </TooltipWrapper>
       <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-        {t('country-panel.carbonintensity')}
+        {t(translationKey)}
       </p>
     </div>
   );

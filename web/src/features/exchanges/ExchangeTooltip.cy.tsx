@@ -1,11 +1,17 @@
+import { StateZoneData } from 'types';
+
 import ExchangeTooltip from './ExchangeTooltip';
 
+const originZoneData: StateZoneData = {
+  c: { ci: 120 },
+  p: { ci: 120 },
+};
 const data = {
   rotation: 90,
   lonlat: [75, 75] as [number, number],
   key: 'DK-DK1->DK-DK2',
   netFlow: 200,
-  co2intensity: 120,
+  originZoneData: originZoneData,
 };
 
 it('mounts', () => {

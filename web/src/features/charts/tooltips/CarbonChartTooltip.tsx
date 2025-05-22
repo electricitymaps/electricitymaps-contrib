@@ -3,7 +3,8 @@ import { CarbonIntensityDisplay } from 'components/CarbonIntensityDisplay';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
-import { getCarbonIntensity, round } from 'utils/helpers';
+import { MapColorSource } from 'utils/constants';
+import { getZoneValueForColor, round } from 'utils/helpers';
 import { isConsumptionAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
@@ -25,9 +26,10 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
     estimationMethod,
     estimatedPercentage,
   } = zoneDetail;
-  const intensity = getCarbonIntensity(
-    { c: { ci: co2intensity }, p: { ci: co2intensityProduction } },
-    isConsumption
+  const intensity = getZoneValueForColor(
+    { c: { ci: co2intensity }, p: { ci: co2intensityProduction }, pr: null },
+    isConsumption,
+    MapColorSource.CARBON_INTENSITY
   );
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
   const hasEstimationPill =

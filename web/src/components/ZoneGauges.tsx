@@ -2,7 +2,12 @@ import { useAtomValue } from 'jotai';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { getCarbonIntensity, getFossilFuelRatio, getRenewableRatio } from 'utils/helpers';
+import { MapColorSource } from 'utils/constants';
+import {
+  getFossilFuelRatio,
+  getRenewableRatio,
+  getZoneValueForColor,
+} from 'utils/helpers';
 import { isConsumptionAtom } from 'utils/state/atoms';
 
 import CarbonIntensitySquare from './CarbonIntensitySquare';
@@ -21,7 +26,11 @@ function ZoneGaugesWithCO2Square({
 }: ZoneGaugesWithCO2SquareProps) {
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
-  const intensity = getCarbonIntensity(zoneData, isConsumption);
+  const intensity = getZoneValueForColor(
+    zoneData,
+    isConsumption,
+    MapColorSource.CARBON_INTENSITY
+  );
   const renewable = getRenewableRatio(zoneData, isConsumption);
   const fossilFuelPercentage = getFossilFuelRatio(zoneData, isConsumption);
   return (

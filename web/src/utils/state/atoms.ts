@@ -8,6 +8,7 @@ import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
   HOURLY_TIME_INDEX,
+  MapColorSource,
   Mode,
   SpatialAggregate,
   ThemeOptions,
@@ -64,6 +65,7 @@ export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
+export const mapColorSourceAtom = atom<MapColorSource>(MapColorSource.CARBON_INTENSITY);
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
   (get) =>

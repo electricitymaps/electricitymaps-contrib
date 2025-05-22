@@ -3,7 +3,7 @@ import { zoneDetailMock } from 'stories/mockData';
 
 import { TimeRange } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
-import { getFills } from './hooks/usePriceChartData';
+import { getFills, getPriceColorScale } from './hooks/usePriceChartData';
 
 const meta: Meta<typeof AreaGraph> = {
   title: 'charts/PriceChart',
@@ -164,8 +164,8 @@ export const NegativePrices: Story = {
     data: negativePrices,
     layerKeys: ['price'],
     layerStroke: undefined,
-    layerFill: getFills(negativePrices).layerFill,
-    markerFill: getFills(negativePrices).markerFill,
+    layerFill: getFills(getPriceColorScale(negativePrices)).layerFill,
+    markerFill: getFills(getPriceColorScale(negativePrices)).markerFill,
     selectedTimeRange: TimeRange.H72,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),
@@ -196,8 +196,8 @@ export const MissingEntries: Story = {
     data: missingEntriesData,
     layerKeys: ['price'],
     layerStroke: undefined,
-    layerFill: getFills(missingEntriesData).layerFill,
-    markerFill: getFills(missingEntriesData).markerFill,
+    layerFill: getFills(getPriceColorScale(missingEntriesData)).layerFill,
+    markerFill: getFills(getPriceColorScale(missingEntriesData)).markerFill,
     selectedTimeRange: TimeRange.H72,
     height: '12em',
     datetimes: chartData.map((d) => d.datetime),

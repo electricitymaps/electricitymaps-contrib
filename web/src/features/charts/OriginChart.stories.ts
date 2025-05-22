@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { zoneDetailMock } from 'stories/mockData';
 
 import { colors } from '../../hooks/colors';
-import { getCo2ColorScale } from '../../hooks/theme';
-import { TimeRange } from '../../utils/constants';
+import { getColorScale } from '../../hooks/theme';
+import { MapColorSource, TimeRange } from '../../utils/constants';
 import AreaGraph from './elements/AreaGraph';
 import { getLayerFill } from './hooks/useOriginChartData';
 
@@ -494,7 +494,9 @@ const chartData = [
 
 const includesStorageData = [...chartData];
 
-const layerFill = getLayerFill(getCo2ColorScale(colors.bright));
+const layerFill = getLayerFill(
+  getColorScale(colors.bright, MapColorSource.CARBON_INTENSITY)
+);
 
 export const IncludesStorage: Story = {
   // More on args: https://storybook.js.org/docs/react/writing-stories/args

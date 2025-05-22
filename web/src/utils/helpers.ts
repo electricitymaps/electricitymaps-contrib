@@ -18,7 +18,7 @@ import {
 
 import zonesConfigJSON from '../../config/zones.json';
 import { CombinedZonesConfig } from '../../geo/types';
-import { historicalTimeRange, TimeRange } from './constants';
+import { historicalTimeRange, MapColorSource, TimeRange } from './constants';
 
 export function useGetZoneFromPath() {
   const { zoneId } = useParams<RouteParameters>();
@@ -177,15 +177,27 @@ export function getFossilFuelRatio(
 }
 
 /**
- * Returns the carbon intensity of a zone
- * @param isConsumption - Whether the percentage is for consumption or production
- * @param co2intensity - The carbon intensity for consumption
- * @param co2intensityProduction - The carbon intensity for production
+ * Returns the color that will be used to color a zone
  */
-export const getCarbonIntensity = (
-  zoneData: StateZoneData,
-  isConsumption: boolean
-): number => (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
+export function getZoneValueForColor(
+  zoneData: StateZoneData | undefined,
+  isConsumption: boolean,
+  mapColorSource: MapColorSource
+): number {
+  if (!zoneData) {
+    return Number.NaN;
+  }
+  if (mapColorSource === MapColorSource.CARBON_INTENSITY) {
+    return (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
+  }
+  if (mapColorSource === MapColorSource.RENEWABLE_PERCENTAGE) {
+    return ((isConsumption ? zoneData?.c?.rr : zoneData?.p?.rr) ?? Number.NaN) * 100;
+  }
+  if (mapColorSource === MapColorSource.ELECTRICITY_PRICE) {
+    return zoneData?.pr ?? Number.NaN;
+  }
+  throw new Error(`Unknown map color source: ${mapColorSource}`);
+}
 
 /**
  * Returns the renewable ratio of a zone
