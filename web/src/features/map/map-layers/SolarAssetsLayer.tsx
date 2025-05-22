@@ -18,7 +18,10 @@ export default function SolarAssetsLayer() {
   if (isRenewablesLayerEnabled) {
     dataForSource = solarAssetsData;
   } else {
-    dataForSource = Array.isArray(solarAssetsData) && solarAssetsData.length > 0 ? solarAssetsData[0] : null;
+    dataForSource =
+      Array.isArray(solarAssetsData) && solarAssetsData.length > 0
+        ? solarAssetsData[0]
+        : null;
   }
 
   const theme = useTheme();
@@ -30,6 +33,7 @@ export default function SolarAssetsLayer() {
     'text-halo-blur': 0.25,
     'text-opacity': 0.9,
   };
+  setIsLoadingRenewablesLayer(false);
   return (
     <Source id="solar-assets" type="geojson" data={dataForSource}>
       <Layer
