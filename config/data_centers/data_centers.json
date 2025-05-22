@@ -481,42 +481,42 @@
   },
   "aws-us-east-1": {
     "provider": "aws",
-    "lonlat": [77.4291, 39.0067],
+    "lonlat": [-77.4291, 39.0067],
     "displayName": "N. Virginia (us-east-1)",
     "region": "us-east-1",
-    "zoneKey": "CN",
+    "zoneKey": "US-MIDA-PJM",
     "status": "operational"
   },
   "aws-us-east-2": {
     "provider": "aws",
-    "lonlat": [83.1406, 40.1025],
+    "lonlat": [-83.1406, 40.1025],
     "displayName": "Ohio (us-east-2)",
     "region": "us-east-2",
-    "zoneKey": "CN",
+    "zoneKey": "US-MIDA-PJM",
     "status": "operational"
   },
   "aws-us-west-1": {
     "provider": "aws",
-    "lonlat": [121.9552, 37.3541],
+    "lonlat": [-121.9552, 37.3541],
     "displayName": "N. California (us-west-1)",
     "region": "us-west-1",
-    "zoneKey": "CN",
+    "zoneKey": "US-CAL-CISO",
     "status": "operational"
   },
   "aws-us-west-2": {
     "provider": "aws",
-    "lonlat": [119.7006, 45.8399],
+    "lonlat": [-119.7006, 45.8399],
     "displayName": "Oregon (us-west-2)",
     "region": "us-west-2",
-    "zoneKey": "CN",
+    "zoneKey": "US-NW-PACW",
     "status": "operational"
   },
   "aws-af-south-1": {
     "provider": "aws",
-    "lonlat": [18.4231, 33.9221],
+    "lonlat": [18.4231, -33.9221],
     "displayName": "Cape Town (af-south-1)",
     "region": "af-south-1",
-    "zoneKey": "DK-DK2",
+    "zoneKey": "ZA",
     "status": "operational"
   },
   "aws-ap-east-1": {
@@ -537,10 +537,10 @@
   },
   "aws-ap-southeast-3": {
     "provider": "aws",
-    "lonlat": [106.8229, 6.1944],
+    "lonlat": [106.8229, -6.1944],
     "displayName": "Jakarta (ap-southeast-3)",
     "region": "ap-southeast-3",
-    "zoneKey": "DK-DK2",
+    "zoneKey": "ID",
     "status": "operational"
   },
   "aws-ap-southeast-5": {
@@ -553,10 +553,10 @@
   },
   "aws-ap-southeast-4": {
     "provider": "aws",
-    "lonlat": [144.9631, 37.8136],
+    "lonlat": [144.9631, -37.8136],
     "displayName": "Melbourne (ap-southeast-4)",
     "region": "ap-southeast-4",
-    "zoneKey": "DK-DK2",
+    "zoneKey": "AU-VIC",
     "status": "operational"
   },
   "aws-ap-south-1": {
@@ -585,10 +585,10 @@
   },
   "aws-ap-southeast-2": {
     "provider": "aws",
-    "lonlat": [151.2093, 33.8688],
+    "lonlat": [151.2093, -33.8688],
     "displayName": "Sydney (ap-southeast-2)",
     "region": "ap-southeast-2",
-    "zoneKey": "DK-DK2",
+    "zoneKey": "AU-NSW",
     "status": "operational"
   },
   "aws-ap-southeast-7": {
@@ -609,18 +609,18 @@
   },
   "aws-ca-central-1": {
     "provider": "aws",
-    "lonlat": [73.5674, 45.5019],
+    "lonlat": [-73.5674, 45.5019],
     "displayName": "Central (ca-central-1)",
     "region": "ca-central-1",
-    "zoneKey": "KZ",
+    "zoneKey": "CA-QC",
     "status": "operational"
   },
   "aws-ca-west-1": {
     "provider": "aws",
-    "lonlat": [114.0719, 51.0447],
+    "lonlat": [-114.0719, 51.0447],
     "displayName": "Calgary (ca-west-1)",
     "region": "ca-west-1",
-    "zoneKey": "RU-2",
+    "zoneKey": "CA-AB",
     "status": "operational"
   },
   "aws-eu-central-1": {
@@ -633,15 +633,15 @@
   },
   "aws-eu-west-1": {
     "provider": "aws",
-    "lonlat": [6.2603, 53.3498],
+    "lonlat": [-6.2603, 53.3498],
     "displayName": "Ireland (eu-west-1)",
     "region": "eu-west-1",
-    "zoneKey": "NL",
+    "zoneKey": "IE",
     "status": "operational"
   },
   "aws-eu-west-2": {
     "provider": "aws",
-    "lonlat": [0.1276, 51.5072],
+    "lonlat": [-0.1276, 51.5072],
     "displayName": "London (eu-west-2)",
     "region": "eu-west-2",
     "zoneKey": "GB",
@@ -665,7 +665,7 @@
   },
   "aws-eu-south-2": {
     "provider": "aws",
-    "lonlat": [0.8247, 41.7737],
+    "lonlat": [-0.8247, 41.7737],
     "displayName": "Spain (eu-south-2)",
     "region": "eu-south-2",
     "zoneKey": "ES",
@@ -697,10 +697,10 @@
   },
   "aws-mx-central-1": {
     "provider": "aws",
-    "lonlat": [100.3899, 20.5888],
+    "lonlat": [-100.3899, 20.5888],
     "displayName": "Central (mx-central-1)",
     "region": "mx-central-1",
-    "zoneKey": "LA",
+    "zoneKey": "MX",
     "status": "operational"
   },
   "aws-me-central-1": {
@@ -713,10 +713,10 @@
   },
   "aws-sa-east-1": {
     "provider": "aws",
-    "lonlat": [46.6396, 23.5558],
+    "lonlat": [-46.6396, -23.5558],
     "displayName": "S\u00e3o Paulo (sa-east-1)",
     "region": "sa-east-1",
-    "zoneKey": "SA",
+    "zoneKey": "BR-CS",
     "status": "operational"
   }
 }
