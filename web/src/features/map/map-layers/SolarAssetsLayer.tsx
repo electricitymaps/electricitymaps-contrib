@@ -34,7 +34,7 @@ export default function SolarAssetsLayer() {
   };
   setIsLoadingRenewablesLayer(false);
   return (
-    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL}>
+    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL} promoteId="name">
       <Layer
         id="solar-assets-box"
         type="symbol"
