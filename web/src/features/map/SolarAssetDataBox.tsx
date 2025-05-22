@@ -79,7 +79,7 @@ export default function SolarAssetDataBox() {
   }
 
   return (
-    <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-96 flex-col p-4 shadow-lg">
+    <GlassContainer className="pointer-events-auto absolute left-3 top-3 z-[21] flex flex-col p-4 shadow-lg">
       {/* Energy Type Tag - with icon */}
       <div className="mb-2 flex items-center justify-between">
         <span

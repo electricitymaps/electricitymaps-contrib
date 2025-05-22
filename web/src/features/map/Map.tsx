@@ -42,7 +42,6 @@ import {
   selectedSolarAssetAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
-import SolarAssetDataBox from './SolarAssetDataBox';
 import SolarAssetNameTooltip from './SolarAssetNameTooltip';
 
 export const ZONE_SOURCE = 'zones-clickable';
@@ -377,7 +376,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           );
           // If a zone was selected (e.g. panel open), and we click an asset,
           // navigate to base map to close zone panel implicitly.
-          if (pathZoneId) {navigate({ to: '/map', keepHashParameters: false });}
+          if (pathZoneId) {
+            navigate({ to: '/map', keepHashParameters: false });
+          }
         }
 
         if (selectedSolarAsset && selectedSolarAsset.id !== assetId) {
@@ -674,7 +675,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         <SolarLayer />
       </CustomLayer>
       <ZoomControls />
-      <SolarAssetDataBox />
       <SolarAssetNameTooltip />
     </Map>
   );
