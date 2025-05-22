@@ -1,11 +1,12 @@
-import useGetSolarAssets from 'api/getSolarAssets';
 import { useTheme } from 'hooks/theme';
 import { Layer, Source } from 'react-map-gl/maplibre';
 
 import { ZONE_SOURCE } from '../Map';
 
+const SOLAR_ASSETS_URL =
+  'https://storage.googleapis.com/testing-gzipped-geojson/solar_assets.min.geojson.gz';
+
 export default function SolarAssetsLayer() {
-  const { data } = useGetSolarAssets();
   const theme = useTheme();
 
   const stateLabelPaint = {
@@ -17,7 +18,7 @@ export default function SolarAssetsLayer() {
   };
 
   return (
-    <Source id="solar-assets" type="geojson" data={data}>
+    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL}>
       <Layer
         id="solar-assets-box"
         type="symbol"
