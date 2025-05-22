@@ -321,16 +321,28 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     pathZoneId,
   ]);
 
-  // Center on solar asset from URL parameter
+  // Center on solar asset from URL parameter OR from zoneId path parameter
   useEffect(() => {
     if (!map || isError || !isSourceLoaded) {
       return;
     }
 
-    if (solarAssetId && !selectedSolarAsset) {
-      console.log(`[Map.tsx] Attempting to center on solar asset ID: ${solarAssetId}`);
+    let assetIdFromPath = null;
+    if (pathZoneId && pathZoneId.startsWith('solar-asset-')) {
+      assetIdFromPath = decodeURIComponent(pathZoneId.replace('solar-asset-', ''));
+    }
 
-      // Wait for the source to be loaded before trying to access the feature
+    const effectiveAssetId = assetIdFromPath || solarAssetId;
+
+    if (effectiveAssetId && !selectedSolarAsset) {
+      // If we are about to load a solar asset from the URL,
+      // consider this the primary action for the first load.
+      if (isFirstLoad) {setIsFirstLoad(false);}
+
+      console.log(
+        `[Map.tsx] Attempting to center on solar asset ID: ${effectiveAssetId}`
+      );
+
       const waitForSourceData = () => {
         if (map.isSourceLoaded(SOLAR_ASSETS_SOURCE)) {
           console.log(
@@ -338,27 +350,39 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           );
 
           try {
-            // Get the source data
-            const source = map.getSource(SOLAR_ASSETS_SOURCE) as maplibregl.GeoJSONSource;
-            if (!source) {
-              console.error(`Source "${SOLAR_ASSETS_SOURCE}" not found`);
-              return;
-            }
-
-            // Get the feature from the source data
+            // Get all features from the source
             const features = map.querySourceFeatures(SOLAR_ASSETS_SOURCE);
             console.log(
-              `[Map.tsx] Found ${features.length} features in source, looking for ID: ${solarAssetId}`
+              `[Map.tsx] Found ${features.length} features in source, looking for ID: ${effectiveAssetId}`
             );
 
-            const feature = features.find((f) => String(f.id) === solarAssetId);
+            // Debug: Log the IDs of the first few features to help diagnose
+            if (features.length > 0) {
+              console.log('[Map.tsx] Sample features:');
+              for (const f of features.slice(0, 3)) {
+                console.log(`Feature ID: ${f.id}, Name: ${f.properties?.name}`);
+              }
+            }
+
+            // Find the feature with matching ID
+            const feature = features.find(
+              (f) =>
+                String(f.id) === effectiveAssetId ||
+                String(f.properties?.name) === effectiveAssetId
+            );
 
             if (feature) {
-              console.log(`[Map.tsx] Found feature with ID ${solarAssetId}:`, feature);
+              console.log(
+                `[Map.tsx] Found feature with ID ${effectiveAssetId}:`,
+                feature
+              );
 
               // Set the feature state to selected
               map.setFeatureState(
-                { source: SOLAR_ASSETS_SOURCE, id: solarAssetId },
+                {
+                  source: SOLAR_ASSETS_SOURCE,
+                  id: feature.id || feature.properties.name,
+                },
                 { selected: true }
               );
 
@@ -371,39 +395,69 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
               if (coordinates) {
                 console.log(`[Map.tsx] Centering map on coordinates: ${coordinates}`);
 
-                // Center the map on the solar asset
+                // Center the map on the solar asset with a higher zoom level
                 map.flyTo({
                   center: coordinates,
-                  zoom: 4, // Higher zoom for solar assets
+                  zoom: 7, // Consistent zoom level with onClick
                   duration: 1000,
                 });
 
                 // Set the selected solar asset in state
                 setSelectedSolarAsset({
-                  id: solarAssetId,
+                  id: String(feature.id || feature.properties.name),
                   properties: feature.properties as Record<string, any>,
                 });
 
-                map.off('sourcedata', waitForSourceData);
+                map.setFeatureState(
+                  {
+                    source: SOLAR_ASSETS_SOURCE,
+                    id: feature.id || feature.properties.name,
+                  },
+                  { selected: true }
+                );
               } else {
                 console.error(
-                  `[Map.tsx] No valid coordinates found for feature with ID ${solarAssetId}`
+                  `[Map.tsx] No valid coordinates found for feature with ID ${effectiveAssetId}`
                 );
               }
             } else {
-              console.log(
-                `[Map.tsx] No feature found with ID ${solarAssetId} in the current view. This may be due to the feature being outside the current viewport.`
+              // If we can't find the feature in the current viewport,
+              // we need to try a different approach
+
+              // Check if we've already tried multiple times
+              const attempts = Number.parseInt(
+                map.getCanvas().dataset.searchAttempts || '0',
+                10
               );
 
-              // If we can't find the feature using querySourceFeatures (which only returns features in the current view),
-              // we could try an alternative approach like fetching the full GeoJSON data
-              // and finding the feature there, but that would require API access to the GeoJSON directly
+              if (attempts < 10) {
+                // Increment the attempt counter
+                map
+                  .getCanvas().dataset.searchAttempts = String(attempts + 1);
+
+                // Wait a bit longer for more data to load
+                console.log(
+                  `[Map.tsx] Asset not found yet, attempt ${attempts + 1}/10...`
+                );
+
+                // Keep listening for source data events
+                return;
+              } else {
+                console.error(
+                  `[Map.tsx] Could not find asset with ID ${effectiveAssetId} after multiple attempts`
+                );
+                map.off('sourcedata', waitForSourceData);
+              }
             }
           } catch (error) {
             console.error(`[Map.tsx] Error centering on solar asset:`, error);
+            map.off('sourcedata', waitForSourceData);
           }
         }
       };
+
+      // Reset the attempt counter
+      map.getCanvas().dataset.searchAttempts = '0';
 
       // Try immediately and also listen for sourcedata events
       waitForSourceData();
@@ -416,10 +470,13 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   }, [
     map,
     solarAssetId,
+    pathZoneId,
     isSourceLoaded,
     isError,
     selectedSolarAsset,
     setSelectedSolarAsset,
+    isFirstLoad,
+    setIsFirstLoad,
   ]);
 
   const onClick = useCallback(
@@ -438,13 +495,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         setHoveredSolarAssetInfo(null);
       }
 
+      // If clicking on empty space (no features)
       if (!features || features.length === 0) {
+        // Clear zone selection if there was one
         if (selectedZoneId) {
           map.setFeatureState(
             { source: ZONE_SOURCE, id: selectedZoneId },
             { selected: false }
           );
         }
+        // Clear solar asset selection if there was one
         if (selectedSolarAsset) {
           map.setFeatureState(
             { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
@@ -452,6 +512,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           );
           setSelectedSolarAsset(null);
         }
+        // Only clear URL parameters if we actually had a selection before
         if (pathZoneId || solarAssetId) {
           navigate({ to: '/map', keepHashParameters: false });
           // Clear the search parameter
@@ -502,19 +563,14 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           properties: assetProperties as Record<string, any>,
         });
 
-        // Update URL with solar asset ID - using URLSearchParams
-        const searchParameters = new URLSearchParams(window.location.search);
-        searchParameters.set('solarAssetId', String(assetId));
-        navigate({
-          to: '/map',
-          keepHashParameters: false,
-        });
-        // Update the URL without triggering a navigation
-        window.history.replaceState(
-          null,
-          '',
-          `${window.location.pathname}?${searchParameters.toString()}`
-        );
+        // Create a special identifier for the solar asset that can be parsed
+        const solarAssetParameter = `solar-asset-${encodeURIComponent(String(assetId))}`;
+
+        // Only update URL if we need to (prevents unnecessary navigation)
+        if (pathZoneId !== solarAssetParameter) {
+          // Navigate to the zone path with the solar asset ID as part of the path
+          navigate({ to: '/zone', zoneId: solarAssetParameter, keepHashParameters: false });
+        }
 
         // Center map on the solar asset if we have coordinates
         const coordinates =
@@ -538,6 +594,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
             { selected: false }
           );
           setSelectedSolarAsset(null); // Clear selected asset if now clicking a zone
+
+          // Clear the solar asset search parameter when switching to a zone
+          window.history.replaceState(null, '', window.location.pathname);
         }
 
         if (selectedZoneId && selectedZoneId !== newZoneId) {

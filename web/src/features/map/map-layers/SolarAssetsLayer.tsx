@@ -11,19 +11,29 @@ export default function SolarAssetsLayer() {
     ? solarAssetsData
     : { type: 'FeatureCollection', features: [] };
 
+  // Log the first feature to help debug ID issues
+  if (
+    solarAssetsData &&
+    typeof solarAssetsData === 'object' &&
+    'features' in solarAssetsData &&
+    Array.isArray(solarAssetsData.features) &&
+    solarAssetsData.features.length > 0
+  ) {
+    const firstFeature = solarAssetsData.features[0];
+    console.log('[SolarAssetsLayer] First feature:', {
+      id: firstFeature.id,
+      properties: firstFeature.properties,
+      name: firstFeature.properties?.name,
+    });
+  }
+
   console.log('[SolarAssetsLayer] isSolarAssetsLayerEnabled:', isSolarAssetsLayerEnabled);
   console.log('[SolarAssetsLayer] solarAssetsData:', solarAssetsData);
   console.log('[SolarAssetsLayer] dataForSource:', dataForSource);
 
-  const stateLabelPaint = {
-    'text-color': 'red',
-    'text-halo-color': '#111827',
-    'text-halo-width': 0.5,
-    'text-halo-blur': 0.25,
-    'text-opacity': 0.9,
-  };
   return (
     <Source id="solar-assets" type="geojson" data={dataForSource} promoteId="name">
+      {/* Main solar asset icon layer */}
       <Layer
         id="solar-assets-points"
         type="symbol"
@@ -36,7 +46,6 @@ export default function SolarAssetsLayer() {
           'icon-ignore-placement': true,
         }}
         paint={{
-          ...stateLabelPaint,
           'icon-opacity': [
             'case',
             ['boolean', ['feature-state', 'hover'], false],
@@ -46,9 +55,37 @@ export default function SolarAssetsLayer() {
           'icon-color': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            '#007bff',
-            stateLabelPaint['text-color'],
+            '#ffbb00',
+            '#ff4400',
+          ] as any,
+        }}
+      />
+
+      {/* Additional highlight layer for selected assets */}
+      <Layer
+        id="solar-assets-selected-highlight"
+        type="circle"
+        source="solar-assets"
+        filter={['boolean', ['feature-state', 'selected'], false]}
+        paint={{
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            4,
+            10,
+            6,
+            15,
+            8,
+            20,
+            10,
+            25,
           ],
+          'circle-color': '#ffbb00',
+          'circle-opacity': 0.3,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffbb00',
+          'circle-stroke-opacity': 0.8,
         }}
       />
     </Source>

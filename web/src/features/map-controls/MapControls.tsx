@@ -1,4 +1,4 @@
-import { BatteryCharging,Sun, Wind } from 'lucide-react';
+import { Aperture, Sun, Wind } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import {
   solarAssetsLayerAtom,
@@ -28,7 +28,7 @@ export const weatherButtonMap = {
     loadingAtom: solarLayerLoadingAtom,
   },
   'solar assets': {
-    icon: BatteryCharging,
+    icon: Aperture,
     iconSize: 20,
     enabledAtom: solarAssetsLayerAtom,
     loadingAtom: solarAssetsLayerLoadingAtom,

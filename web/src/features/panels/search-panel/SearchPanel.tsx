@@ -6,10 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { metaTitleSuffix } from 'utils/constants';
 
-import { getAllZones, getFilteredList } from './getSearchData';
+import {
+  getAllZones,
+  getCombinedSearchResults,
+  useGetSolarAssetsForSearch,
+} from './getSearchData';
 import NoResults from './NoResults';
 import SearchBar from './SearchBar';
-import { VirtualizedZoneList } from './ZoneList';
+import SearchResultList from './SearchResultList';
 
 export default function SearchPanel(): ReactElement {
   const { t, i18n } = useTranslation();
@@ -19,6 +23,9 @@ export default function SearchPanel(): ReactElement {
 
   // Memoize the zone data to prevent unnecessary recalculations
   const zoneData = useMemo(() => getAllZones(i18n.language), [i18n.language]);
+
+  // Get solar assets data for search
+  const { solarAssets, isLoading: isLoadingSolarAssets } = useGetSolarAssetsForSearch();
 
   const inputHandler = useCallback((inputEvent: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = inputEvent;
@@ -30,15 +37,15 @@ export default function SearchPanel(): ReactElement {
   }, []);
 
   // Memoize the filtered list to prevent unnecessary recalculations
-  const filteredList = useMemo(
-    () => getFilteredList(searchTerm, zoneData),
-    [searchTerm, zoneData]
+  const combinedResults = useMemo(
+    () => getCombinedSearchResults(searchTerm, zoneData, solarAssets),
+    [searchTerm, zoneData, solarAssets]
   );
 
   // Update selected index when filtered list changes
   useEffect(() => {
-    setSelectedIndex(filteredList.length > 0 ? 0 : -1);
-  }, [filteredList]);
+    setSelectedIndex(combinedResults.length > 0 ? 0 : -1);
+  }, [combinedResults]);
 
   return (
     <GlassContainer
@@ -59,7 +66,7 @@ export default function SearchPanel(): ReactElement {
           value={searchTerm}
           selectedIndex={selectedIndex}
           onSelectedIndexChange={setSelectedIndex}
-          totalResults={filteredList.length}
+          totalResults={combinedResults.length}
         />
 
         <div
@@ -68,8 +75,16 @@ export default function SearchPanel(): ReactElement {
             searchTerm && 'border-neutral-200/60 dark:border-neutral-700/60'
           )}
         >
-          {searchTerm && filteredList.length === 0 && <NoResults />}
-          <VirtualizedZoneList data={filteredList} selectedIndex={selectedIndex} />
+          {searchTerm &&
+            combinedResults.length === 0 &&
+            (isLoadingSolarAssets ? (
+              <div className="flex h-full items-center justify-center p-4 text-sm text-neutral-500">
+                {t('loading')}...
+              </div>
+            ) : (
+              <NoResults />
+            ))}
+          <SearchResultList data={combinedResults} selectedIndex={selectedIndex} />
         </div>
       </div>
     </GlassContainer>

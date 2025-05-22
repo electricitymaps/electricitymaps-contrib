@@ -1,6 +1,9 @@
 import GlassContainer from 'components/GlassContainer'; // Import GlassContainer
 import { useAtomValue, useSetAtom } from 'jotai';
 import { X } from 'lucide-react'; // Using Lucide X icon
+import { useLocation } from 'react-router-dom';
+import { TimeRange } from 'utils/constants';
+import { useNavigateWithParameters } from 'utils/helpers';
 
 import { selectedSolarAssetAtom } from './mapAtoms';
 
@@ -46,6 +49,8 @@ const getStatusColor = (status: string | undefined) => {
 export default function SolarAssetDataBox() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
   const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
+  const navigate = useNavigateWithParameters();
+  const location = useLocation();
 
   if (!selectedAsset) {
     return null;
@@ -55,16 +60,57 @@ export default function SolarAssetDataBox() {
 
   // Debug all properties to find potential URL fields
   console.log('[SolarAssetDataBox] All properties:', properties);
-  const possibleUrlFields = Object.entries(properties).filter(([key, value]) => (
+  const possibleUrlFields = Object.entries(properties).filter(
+    ([key, value]) =>
       typeof value === 'string' &&
       (value.startsWith('http://') ||
         value.startsWith('https://') ||
         value.startsWith('www.'))
-    ));
+  );
   console.log('[SolarAssetDataBox] Possible URL fields:', possibleUrlFields);
 
   const handleClose = () => {
     setSelectedAsset(null);
+
+    // Check if we're currently on a solar asset URL (identifiable by /zone/solar-asset-)
+    const isSolarAssetPath = location.pathname.includes('/zone/solar-asset-');
+
+    if (isSolarAssetPath) {
+      // Extract the current time range and resolution from the path
+      const pathParts = location.pathname.split('/');
+      let timeRange = TimeRange.H72; // Default to 72h
+      let resolution = 'hourly';
+
+      // Correctly find the index of the solar-asset-ID part
+      const solarAssetIdPathIndex = pathParts.findIndex((part) =>
+        part.startsWith('solar-asset-')
+      );
+
+      if (solarAssetIdPathIndex !== -1 && pathParts.length > solarAssetIdPathIndex + 2) {
+        // Time range is the part after solar-asset-ID, resolution is after time range
+        const pathTimeRange = pathParts[solarAssetIdPathIndex + 1];
+        const pathResolution = pathParts[solarAssetIdPathIndex + 2];
+
+        if (
+          pathTimeRange &&
+          Object.values(TimeRange).includes(pathTimeRange as TimeRange)
+        ) {
+          timeRange = pathTimeRange as TimeRange;
+        }
+        if (pathResolution) {
+          resolution = pathResolution;
+        }
+      }
+
+      // Use the navigate function to change the URL to the map view
+      // This ensures React Router is aware of the change for consistent state updates.
+      navigate({
+        to: '/map',
+        timeRange,
+        resolution,
+        keepHashParameters: true, // This preserves existing query params like ?remote=true
+      });
+    }
   };
 
   const name = properties.name || properties.ASSET_NAME || 'Unnamed Asset';
