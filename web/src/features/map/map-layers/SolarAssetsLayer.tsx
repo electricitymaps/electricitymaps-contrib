@@ -9,7 +9,7 @@ import {
 
 import { ZONE_SOURCE } from '../Map';
 
-const SOLAR_ASSETS_SOURCE =
+const SOLAR_ASSETS_URL =
   'https://storage.googleapis.com/testing-gzipped-geojson/solar_assets.min.geojson.gz';
 
 export default function SolarAssetsLayer() {
@@ -26,7 +26,7 @@ export default function SolarAssetsLayer() {
   }
 
   const stateLabelPaint = {
-    'text-color': 'red',
+    'text-color': 'white',
     'text-halo-color': '#111827',
     'text-halo-width': 0.5,
     'text-halo-blur': 0.25,
@@ -34,7 +34,7 @@ export default function SolarAssetsLayer() {
   };
   setIsLoadingRenewablesLayer(false);
   return (
-    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_SOURCE}>
+    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL}>
       <Layer
         id="solar-assets-box"
         type="symbol"
@@ -42,7 +42,7 @@ export default function SolarAssetsLayer() {
         source-layer="zones-clickable-layer" // Specify the source layer
         layout={{
           'icon-image': 'solar-asset-box',
-          'icon-size': 10,
+          'icon-size': 1.2,
           'icon-allow-overlap': true,
           'icon-overlap': 'always',
           'icon-ignore-placement': true,

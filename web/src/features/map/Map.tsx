@@ -662,6 +662,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <SolarAssetsLayer />
       <CustomLayer>
         <SolarAssetsLayer />
       </CustomLayer>
