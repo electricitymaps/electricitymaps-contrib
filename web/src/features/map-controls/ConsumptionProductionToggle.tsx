@@ -1,8 +1,7 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
 import { memo, type ReactElement, useCallback } from 'react';
-import trackEvent from 'utils/analytics';
-import { Mode, TrackEvent } from 'utils/constants';
+import { Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 const options = [
@@ -29,9 +28,6 @@ function ConsumptionProductionToggle({
       if (option === '') {
         return;
       }
-      trackEvent(TrackEvent.PRODUCTION_CONSUMPTION_CLICKED, {
-        productionConsumption: option,
-      });
       setCurrentMode(option);
     },
     [setCurrentMode]

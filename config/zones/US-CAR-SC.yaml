@@ -15,14 +15,23 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 218.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 219.5
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3650.1
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 3727.3
   gas:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1102.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1272.0
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -56,6 +65,9 @@ capacity:
     - datetime: '2023-11-01'
       source: EIA.gov
       value: 303.2
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 303.3
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -74,9 +86,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes a third of the nuclear related electricity
-  production from the balancing authority South Carolina Electric & Gas Company. Read
-  more on the zone definition wiki page.
+disclaimer: This zone includes a third of the nuclear related electricity production
+  from the balancing authority South Carolina Electric & Gas Company. Read more on
+  the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:

@@ -20,6 +20,9 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 130.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 140.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -32,6 +35,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2153.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1517.0
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -86,9 +92,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from
-  the generation-only balancing authority Griffith Energy, LLC. Read more on the zone
-  definition wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
+  page.
 emissionFactors:
   direct:
     battery discharge:

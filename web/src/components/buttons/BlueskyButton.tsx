@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaBluesky } from 'react-icons/fa6';
-import { ShareType, trackShare } from 'utils/analytics';
 import { baseUrl, DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface BlueskyButtonProps
@@ -13,7 +12,6 @@ interface BlueskyButtonProps
   isIconOnly?: boolean;
   isShareLink?: boolean;
 }
-const trackBlueskyShare = trackShare(ShareType.BLUESKY);
 
 export function BlueskyButton({
   isIconOnly,
@@ -34,7 +32,6 @@ export function BlueskyButton({
             })}`
           : undefined
       }
-      onClick={isShareLink ? trackBlueskyShare : undefined}
       icon={<FaBluesky size={iconSize} />}
       {...restProps}
     >

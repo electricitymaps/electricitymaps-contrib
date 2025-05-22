@@ -140,7 +140,7 @@ def test_fetch_production_success_without_solar(
             return_value=mock_exchange_data_night,
         ),
     ):
-        result = JP_KY.fetch_production()
+        result = JP_KY.fetch_production()[0]
 
         nuclear = 3119  # (119.7 + 96.1 + 96.1) * 10
         unknown = 5091  # 8010 - (-200) - 0 - nuclear
@@ -172,7 +172,7 @@ def test_fetch_production_success_with_solar(
             return_value=mock_exchange_data_day,
         ),
     ):
-        result = JP_KY.fetch_production()
+        result = JP_KY.fetch_production()[0]
 
         nuclear = 3119  # (119.7 + 96.1 + 96.1) * 10
         unknown = 3861  #  8680 - (-400) - 2100 - nuclear

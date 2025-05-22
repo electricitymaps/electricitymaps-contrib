@@ -12,7 +12,7 @@ def test_parsing_payload():
         fake_data = json.load(f)
     with patch("parsers.ajenti.SignalR.get_value") as f:
         f.return_value = fake_data
-        data = ajenti.fetch_production()
+        data = ajenti.fetch_production()[0]
 
     assert data["production"] is not None
     assert data["production"]["wind"] == 0.595

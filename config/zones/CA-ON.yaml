@@ -44,6 +44,7 @@ contributors:
   - felixvanoost
   - misterclean
   - christopheradlam
+  - alejandranavcas
 country: CA
 delays:
   production: 6
@@ -336,6 +337,8 @@ parsers:
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
   productionCapacity: CA_ON.fetch_production_capacity
+  consumptionForecast: CA_ON.fetch_consumption_forecast
+  productionPerModeForecast: CA_ON.fetch_wind_solar_forecasts
 region: Americas
 sources:
   ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation\

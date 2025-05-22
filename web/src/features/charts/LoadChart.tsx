@@ -33,7 +33,7 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
-        id={Charts.LOAD_CHART}
+        id={Charts.ELECTRICITY_LOAD_CHART}
         title="country-history.electricityload"
       />
     );
@@ -44,7 +44,7 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
       <ChartTitle
         titleText={t(`country-history.electricityLoad.${timeRange}`)}
         unit={valueAxisLabel}
-        id={Charts.LOAD_CHART}
+        id={Charts.ELECTRICITY_LOAD_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">

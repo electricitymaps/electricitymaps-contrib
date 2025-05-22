@@ -109,7 +109,7 @@ function BarBreakdownChart({
   if (!currentZoneDetail) {
     return (
       <RoundedCard ref={ref}>
-        <ChartTitle className="opacity-40" id={Charts.BAR_BREAKDOWN_CHART} />
+        <ChartTitle className="opacity-40" id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
@@ -136,7 +136,7 @@ function BarBreakdownChart({
             />
           ) : undefined
         }
-        id={Charts.BAR_BREAKDOWN_CHART}
+        id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART}
       />
       <div className="mb-4">
         <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />

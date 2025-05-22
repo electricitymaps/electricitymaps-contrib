@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    plausible?: unknown;
+  }
+}
+
 // Send a greeting message to the console for curious people
 export function createConsoleGreeting() {
   console.info(
