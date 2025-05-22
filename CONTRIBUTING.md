@@ -49,7 +49,7 @@ To get started with editing the parsers use the following steps:
 1. Run `poetry install -E parsers` to install all needed dependencies.
 2. Use `poetry run test_parser ZONE_KEY` to test any parser changes.
 
-Note: This requires you to have [Python 3.11][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
+Note: This requires you to have [Python 3.10][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
 
 - [Downloading Python][python install guide]
 - [poetry installation][poetry install guide]
