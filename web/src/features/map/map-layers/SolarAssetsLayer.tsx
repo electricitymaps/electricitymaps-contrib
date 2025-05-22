@@ -1,26 +1,12 @@
-import useGetSolarAssets from 'api/getSolarAssets';
 import { useTheme } from 'hooks/theme';
-import { useAtomValue, useSetAtom } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
-import {
-  isRenewablesLayerEnabledAtom,
-  renewablesLayerLoadingAtom,
-} from 'utils/state/atoms';
 
 import { ZONE_SOURCE } from '../Map';
 
+const SOLAR_ASSETS_URL =
+  'https://storage.googleapis.com/testing-gzipped-geojson/solar_assets.min.geojson.gz';
+
 export default function SolarAssetsLayer() {
-  const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
-  const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
-  const { data: solarAssetsData } = useGetSolarAssets();
-
-  let dataForSource;
-  if (isRenewablesLayerEnabled) {
-    dataForSource = solarAssetsData;
-  } else {
-    dataForSource = Array.isArray(solarAssetsData) && solarAssetsData.length > 0 ? solarAssetsData[0] : null;
-  }
-
   const theme = useTheme();
 
   const stateLabelPaint = {
@@ -31,7 +17,7 @@ export default function SolarAssetsLayer() {
     'text-opacity': 0.9,
   };
   return (
-    <Source id="solar-assets" type="geojson" data={dataForSource}>
+    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL}>
       <Layer
         id="solar-assets-box"
         type="symbol"
