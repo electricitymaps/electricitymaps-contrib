@@ -15,40 +15,37 @@ const BUCKET_NAME = 'geojson-assets';
 
 async function uploadFiles(paths) {
   for (const p of paths) {
-    compressFile(p);
-    await uploadFile(p);
-    cleanupFile(p);
+    const gzippedPath = p + '.gz';
+    await uploadFile(p, gzippedPath);
   }
 }
 
-function compressFile(inputPath) {
-  fs.readFile(inputPath, 'utf8', (error, data) => {
+async function uploadFile(inputPath) {
+  const data = fs.readFileSync(inputPath, 'utf8', (error, data) => {
     if (error) {
       console.error('Error reading file:', error);
       process.exit(1);
     }
-
-    const outputPath = inputPath + '.gz';
-    try {
-      const json = JSON.parse(data);
-      const minified = JSON.stringify(json);
-      const gzipped = zlib.gzipSync(minified);
-      fs.writeFileSync(outputPath, gzipped);
-      console.log(`✅ Minified and gzipped: ${outputPath}`);
-    } catch (error) {
-      console.error('Error parsing or compressing JSON:', error);
-      process.exit(1);
-    }
+    return data;
   });
-}
 
-async function uploadFile(inputPath) {
-  const storage = new Storage();
-  const inputFile = inputPath + '.gz';
-  const destinationFile = path.basename(inputFile);
+  const outputPath = inputPath + '.gz';
 
   try {
-    await storage.bucket(BUCKET_NAME).upload(inputFile, {
+    const json = JSON.parse(data);
+    const minified = JSON.stringify(json);
+    const gzipped = zlib.gzipSync(minified);
+    fs.writeFileSync(outputPath, gzipped);
+  } catch (error) {
+    console.error('Error processing file:', error);
+    process.exit(1);
+  }
+
+  const storage = new Storage();
+  const destinationFile = path.basename(outputPath);
+
+  try {
+    await storage.bucket(BUCKET_NAME).upload(outputPath, {
       destinationFile,
       metadata: {
         cacheControl: 'public, max-age=60',
@@ -57,20 +54,12 @@ async function uploadFile(inputPath) {
       },
     });
 
-    console.log(`${inputFile} uploaded to ${BUCKET_NAME} as ${destinationFile}`);
+    console.log(`${inputPath} uploaded to ${BUCKET_NAME} as ${destinationFile}`);
   } catch (error) {
     console.error('Upload failed:', error);
   }
-}
 
-function cleanupFile(inputPath) {
-  const inputFile = inputPath + '.gz';
-  fs.rm(inputFile, (error, _data) => {
-    if (error) {
-      console.error('Error deleting file:', error);
-      process.exit(1);
-    }
-  });
+  fs.rmSync(outputPath);
 }
 
 await uploadFiles([SOLAR_ASSETS_PATH, WIND_ASSESTS_PATH]);
