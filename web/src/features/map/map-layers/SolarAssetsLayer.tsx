@@ -1,4 +1,3 @@
-import useGetSolarAssets from 'api/getSolarAssets';
 import { useTheme } from 'hooks/theme';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { Layer, Source, useMap } from 'react-map-gl/maplibre';
@@ -12,8 +11,8 @@ import { ZONE_SOURCE } from '../Map';
 
 export default function SolarAssetsLayer() {
   const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
+
   const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
-  const { data: solarAssetsData } = useGetSolarAssets();
 
   const { current: mapReference } = useMap();
   const { ref } = useResizeObserver<HTMLDivElement>();
@@ -71,7 +70,21 @@ export default function SolarAssetsLayer() {
           'icon-overlap': 'always',
           'icon-ignore-placement': true,
         }}
-        paint={stateLabelPaint}
+        paint={{
+          ...stateLabelPaint,
+          'icon-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            0.7,
+            1,
+          ],
+          'icon-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#007bff',
+            stateLabelPaint['text-color'],
+          ],
+        }}
       />
     </Source>
   );

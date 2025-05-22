@@ -12,11 +12,11 @@ import { OnboardingModal } from 'components/modals/OnboardingModal';
 import { AppSidebar, SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ErrorComponent from 'features/error-boundary/ErrorBoundary';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { mapMovingAtom } from 'features/map/mapAtoms';
+import { mapMovingAtom, selectedSolarAssetAtom } from 'features/map/mapAtoms';
 import DateRedirectToast from 'features/time/DateRedirectToast';
 import { useDarkMode } from 'hooks/theme';
 import { useGetCanonicalUrl } from 'hooks/useGetCanonicalUrl';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import {
   lazy,
   ReactElement,
@@ -35,6 +35,7 @@ import { productionConsumptionAtom } from 'utils/state/atoms';
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
+const SolarAssetDataBox = lazy(() => import('features/map/SolarAssetDataBox'));
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -53,6 +54,7 @@ export default function App(): ReactElement {
   const location = useLocation();
   const navigate = useNavigateWithParameters();
   const setIsMapMoving = useSetAtom(mapMovingAtom);
+  const selectedSolarAsset = useAtomValue(selectedSolarAssetAtom);
 
   useEffect(() => {
     if (isIntercomEnabled) {
@@ -181,9 +183,17 @@ export default function App(): ReactElement {
                   <OnboardingModal />
                 </Suspense>
 
-                <Suspense>
-                  <LeftPanel />
-                </Suspense>
+                {selectedSolarAsset ? (
+                  <div className="pointer-events-none absolute inset-0 z-10 sm:flex sm:w-[calc(14vw_+_16rem)]">
+                    <Suspense>
+                      <SolarAssetDataBox />
+                    </Suspense>
+                  </div>
+                ) : (
+                  <Suspense>
+                    <LeftPanel />
+                  </Suspense>
+                )}
                 <Suspense>
                   <MapWrapper />
                 </Suspense>

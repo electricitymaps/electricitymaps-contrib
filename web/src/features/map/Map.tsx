@@ -9,7 +9,7 @@ import SolarLayer from 'features/weather-layers/solar/SolarLayer';
 import WindLayer from 'features/weather-layers/wind-layer/WindLayer';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
@@ -34,14 +34,19 @@ import CustomLayer from './map-utils/CustomLayer';
 import { useGetGeometries } from './map-utils/getMapGrid';
 import { getZoneIdFromLocation } from './map-utils/getZoneIdFromLocation';
 import {
+  hoveredSolarAssetInfoAtom,
   hoveredZoneAtom,
   loadingMapAtom,
   mapMovingAtom,
   mousePositionAtom,
+  selectedSolarAssetAtom,
 } from './mapAtoms';
 import { FeatureId } from './mapTypes';
+import SolarAssetNameTooltip from './SolarAssetNameTooltip';
 
 export const ZONE_SOURCE = 'zones-clickable';
+export const SOLAR_ASSETS_SOURCE = 'solar-assets';
+export const SOLAR_ASSETS_LAYER_ID = 'solar-assets-points';
 const SOUTHERN_LATITUDE_BOUND = -78;
 const NORTHERN_LATITUDE_BOUND = 85;
 const MAP_STYLE = {
@@ -67,6 +72,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
+  const [selectedSolarAsset, setSelectedSolarAsset] = useAtom(selectedSolarAssetAtom);
+  const setHoveredSolarAssetInfo = useSetAtom(hoveredSolarAssetInfoAtom);
+  const hoveredSolarAssetInfoValue = useAtomValue(hoveredSolarAssetInfoAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const setUserLocation = useSetAtom(userLocationAtom);
@@ -88,6 +96,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const userLocation = useUserLocation();
   const { zoneId: pathZoneId } = useParams<RouteParameters>();
   const [wasInBackground, setWasInBackground] = useState(false);
+  const previouslyHoveredAssetId = useRef<FeatureId | null>(null);
+
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
@@ -311,100 +321,281 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
 
   const onClick = useCallback(
     ({ features }: maplibregl.MapLayerMouseEvent) => {
-      if (!map || !features) {
+      const map = mapReference?.getMap();
+      if (!map) {
         return;
       }
-      const feature = features[0];
-
-      // Remove state from old feature if we are no longer hovering anything,
-      // or if we are hovering a different feature than the previous one
-      if (selectedZoneId && (!feature || selectedZoneId !== feature.id)) {
+      // Clear previously hovered asset on any click
+      if (previouslyHoveredAssetId.current) {
         map.setFeatureState(
-          { source: ZONE_SOURCE, id: selectedZoneId },
-          { selected: false }
+          { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+          { hover: false }
         );
+        previouslyHoveredAssetId.current = null;
+        setHoveredSolarAssetInfo(null);
       }
 
-      if (hoveredZone && (!feature || hoveredZone.featureId !== selectedZoneId)) {
+      if (!features || features.length === 0) {
+        if (selectedZoneId) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: selectedZoneId },
+            { selected: false }
+          );
+        }
+        if (selectedSolarAsset) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
+            { selected: false }
+          );
+          setSelectedSolarAsset(null);
+        }
+        if (pathZoneId) {
+          navigate({ to: '/map', keepHashParameters: false });
+        }
+        return;
+      }
+
+      const clickedZoneFeature = features.find((f) => f.source === ZONE_SOURCE);
+      const clickedSolarAssetFeature = features.find(
+        (f) => f.layer.id === SOLAR_ASSETS_LAYER_ID
+      );
+
+      // Prioritize solar asset click if available
+      if (
+        clickedSolarAssetFeature &&
+        clickedSolarAssetFeature.id !== undefined &&
+        clickedSolarAssetFeature.properties
+      ) {
+        const assetId = clickedSolarAssetFeature.id;
+        const assetProperties = clickedSolarAssetFeature.properties;
+
+        if (selectedZoneId) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: selectedZoneId },
+            { selected: false, hover: false }
+          );
+          // If a zone was selected (e.g. panel open), and we click an asset,
+          // navigate to base map to close zone panel implicitly.
+          if (pathZoneId) {
+            navigate({ to: '/map', keepHashParameters: false });
+          }
+        }
+
+        if (selectedSolarAsset && selectedSolarAsset.id !== assetId) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
+            { selected: false }
+          );
+        }
+
+        map.setFeatureState(
+          { source: SOLAR_ASSETS_SOURCE, id: assetId },
+          { selected: true }
+        );
+        setSelectedSolarAsset({
+          id: assetId,
+          properties: assetProperties as Record<string, any>,
+        });
+      } else if (clickedZoneFeature) {
+        // Only handle zone click if no solar asset was clicked
+        const newZoneId = clickedZoneFeature.properties.zoneId;
+        if (selectedSolarAsset) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
+            { selected: false }
+          );
+          setSelectedSolarAsset(null); // Clear selected asset if now clicking a zone
+        }
+
+        if (selectedZoneId && selectedZoneId !== newZoneId) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: selectedZoneId },
+            { selected: false }
+          );
+        }
+
+        navigate({ to: '/zone', zoneId: newZoneId, keepHashParameters: false });
+      } else {
+        // Clicked on map, but not on a zone or solar asset specifically
+        // (e.g. clicking on a solar asset from a different layer, or empty space when features array is not empty but no specific handler matched)
+        if (selectedZoneId) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: selectedZoneId },
+            { selected: false }
+          );
+        }
+        if (selectedSolarAsset) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: selectedSolarAsset.id },
+            { selected: false }
+          );
+          setSelectedSolarAsset(null);
+        }
+        if (pathZoneId) {
+          navigate({ to: '/map', keepHashParameters: false });
+        }
+      }
+
+      // This part seems to be duplicated from the start of the function for clearing hover, consider if still needed or if initial clear is enough
+      if (hoveredZone) {
         map.setFeatureState(
           { source: ZONE_SOURCE, id: hoveredZone.featureId },
           { hover: false }
         );
-      }
-      setHoveredZone(null);
-      if (feature?.properties) {
-        const zoneId = feature.properties.zoneId;
-        // Do not keep hash on navigate so that users are not scrolled to id element in new view
-        navigate({ to: '/zone', zoneId, keepHashParameters: false });
-      } else {
-        navigate({ to: '/map', keepHashParameters: false });
+        setHoveredZone(null);
       }
     },
-    [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
+    [
+      mapReference,
+      selectedZoneId,
+      hoveredZone,
+      setHoveredZone,
+      navigate,
+      selectedSolarAsset,
+      setSelectedSolarAsset,
+      pathZoneId,
+      setHoveredSolarAssetInfo,
+    ]
   );
 
-  // TODO: Consider if we need to ignore zone hovering if the map is dragging
   const onMouseMove = useCallback(
     ({ features, point }: maplibregl.MapLayerMouseEvent) => {
-      if (!map || !features) {
-        return;
-      }
-      const feature = features[0];
-      const isHoveringAZone = feature?.id !== undefined;
-      const isHoveringANewZone =
-        isHoveringAZone && hoveredZone?.featureId !== feature?.id;
-
-      // Reset currently hovered zone if we are no longer hovering anything
-      if (!isHoveringAZone && hoveredZone) {
-        setHoveredZone(null);
-        map.setFeatureState(
-          { source: ZONE_SOURCE, id: hoveredZone?.featureId },
-          { hover: false }
-        );
-      }
-
-      // Do no more if we are not hovering a zone
-      if (!isHoveringAZone) {
+      const map = mapReference?.getMap();
+      if (!map) {
         return;
       }
 
-      // Update mouse position to help position the tooltip
-      setMousePosition({
-        x: point.x,
-        y: point.y,
-      });
+      const zoneFeature = features?.find((f) => f.source === ZONE_SOURCE);
+      const solarAssetFeature = features?.find(
+        (f) => f.layer.id === SOLAR_ASSETS_LAYER_ID
+      );
 
-      // Update hovered zone if we are hovering a new zone
-      if (isHoveringANewZone) {
-        // Reset the old one first
+      setMousePosition({ x: point.x, y: point.y });
+
+      if (solarAssetFeature) {
+        console.log('[Map.tsx onMouseMove] Solar asset detected:', solarAssetFeature);
+        const properties = (solarAssetFeature.properties as Record<string, any>) || {};
+        const assetInfo = {
+          properties,
+          x: point.x,
+          y: point.y,
+        };
+        console.log('[Map.tsx onMouseMove] Setting hoveredSolarAssetInfo:', assetInfo);
+        setHoveredSolarAssetInfo(assetInfo);
+
         if (hoveredZone) {
           map.setFeatureState(
-            { source: ZONE_SOURCE, id: hoveredZone?.featureId },
+            { source: ZONE_SOURCE, id: hoveredZone.featureId },
             { hover: false }
           );
+          setHoveredZone(null);
         }
 
-        setHoveredZone({ featureId: feature.id, zoneId: feature.properties?.zoneId });
-        map.setFeatureState({ source: ZONE_SOURCE, id: feature.id }, { hover: true });
+        if (solarAssetFeature.id === undefined) {
+          if (previouslyHoveredAssetId.current) {
+            map.setFeatureState(
+              { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+              { hover: false }
+            );
+            previouslyHoveredAssetId.current = null;
+          }
+        } else {
+          const currentAssetId = solarAssetFeature.id;
+          if (previouslyHoveredAssetId.current !== currentAssetId) {
+            if (previouslyHoveredAssetId.current) {
+              map.setFeatureState(
+                { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+                { hover: false }
+              );
+            }
+            map.setFeatureState(
+              { source: SOLAR_ASSETS_SOURCE, id: currentAssetId },
+              { hover: true }
+            );
+            previouslyHoveredAssetId.current = currentAssetId;
+          }
+        }
+      } else if (zoneFeature && zoneFeature.id !== undefined) {
+        console.log('[Map.tsx onMouseMove] Zone feature detected:', zoneFeature);
+        const newHoveredZoneId = zoneFeature.id;
+        if (hoveredZone?.featureId !== newHoveredZoneId) {
+          if (hoveredZone) {
+            map.setFeatureState(
+              { source: ZONE_SOURCE, id: hoveredZone.featureId },
+              { hover: false }
+            );
+          }
+          setHoveredZone({
+            featureId: newHoveredZoneId,
+            zoneId: zoneFeature.properties?.zoneId,
+          });
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: newHoveredZoneId },
+            { hover: true }
+          );
+        }
+        if (previouslyHoveredAssetId.current) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+            { hover: false }
+          );
+          previouslyHoveredAssetId.current = null;
+        }
+        setHoveredSolarAssetInfo(null);
+        console.log('[Map.tsx onMouseMove] Zone hovered, clearing solar asset info.');
+      } else {
+        console.log(
+          '[Map.tsx onMouseMove] No specific feature hovered (neither zone nor solar asset).'
+        );
+        if (hoveredZone) {
+          map.setFeatureState(
+            { source: ZONE_SOURCE, id: hoveredZone.featureId },
+            { hover: false }
+          );
+          setHoveredZone(null);
+        }
+        if (previouslyHoveredAssetId.current) {
+          map.setFeatureState(
+            { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+            { hover: false }
+          );
+          previouslyHoveredAssetId.current = null;
+        }
+        setHoveredSolarAssetInfo(null);
+        console.log('[Map.tsx onMouseMove] Cleared all hover states.');
       }
     },
-    [map, hoveredZone, setHoveredZone, setMousePosition]
+    [
+      mapReference,
+      hoveredZone,
+      setHoveredZone,
+      setMousePosition,
+      setHoveredSolarAssetInfo,
+    ]
   );
 
   const onMouseOut = useCallback(() => {
+    const map = mapReference?.getMap();
     if (!map) {
       return;
     }
 
-    // Reset hovered state when mouse leaves map (e.g., cursor moving into panel)
-    if (hoveredZone?.featureId !== undefined) {
+    if (hoveredZone) {
       map.setFeatureState(
-        { source: ZONE_SOURCE, id: hoveredZone?.featureId },
+        { source: ZONE_SOURCE, id: hoveredZone.featureId },
         { hover: false }
       );
       setHoveredZone(null);
     }
-  }, [map, hoveredZone, setHoveredZone]);
+    if (previouslyHoveredAssetId.current) {
+      map.setFeatureState(
+        { source: SOLAR_ASSETS_SOURCE, id: previouslyHoveredAssetId.current },
+        { hover: false }
+      );
+      previouslyHoveredAssetId.current = null;
+    }
+    setHoveredSolarAssetInfo(null);
+  }, [mapReference, hoveredZone, setHoveredZone, setHoveredSolarAssetInfo]);
 
   const onError = useCallback(
     ({ error }: ErrorEvent) => {
@@ -441,8 +632,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         longitude: 6.528,
         zoom: 2.5,
       }}
-      interactiveLayerIds={['zones-clickable-layer', 'zones-hoverable-layer']}
-      cursor={hoveredZone ? 'pointer' : 'grab'}
+      interactiveLayerIds={[
+        'zones-clickable-layer',
+        'zones-hoverable-layer',
+        SOLAR_ASSETS_LAYER_ID,
+      ]}
+      cursor={hoveredZone || hoveredSolarAssetInfoValue ? 'pointer' : 'grab'}
       onClick={onClick}
       onLoad={onLoad}
       onError={onError}
@@ -480,6 +675,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         <SolarLayer />
       </CustomLayer>
       <ZoomControls />
+      <SolarAssetNameTooltip />
     </Map>
   );
 }
