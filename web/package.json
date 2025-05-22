@@ -36,7 +36,8 @@
     "validate-generated-files": "VERIFY_NO_UPDATES=1 pnpm run create-generated-files",
     "validate": "run-p typecheck lint:ci format:ci test:ci validate-generated-files",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "upload-big-geojson-files": "pnpm node scripts/uploadGeoJSON.js"
   },
   "lint-staged": {
     "*": "prettier -uw --cache",
@@ -57,6 +58,8 @@
     "@capacitor/app": "^6.0.2",
     "@capacitor/core": "^6.2.1",
     "@capacitor/share": "^6.0.3",
+    "@google-cloud/storage": "^7.16.0",
+    "@intercom/messenger-js-sdk": "^0.0.14",
     "@radix-ui/react-accordion": "^1.2.8",
     "@radix-ui/react-dialog": "^1.1.11",
     "@radix-ui/react-dropdown-menu": "^2.1.12",
@@ -70,7 +73,6 @@
     "@radix-ui/react-toggle": "^1.1.6",
     "@radix-ui/react-toggle-group": "^1.1.7",
     "@radix-ui/react-tooltip": "^1.2.4",
-    "@intercom/messenger-js-sdk": "^0.0.14",
     "@react-spring/web": "^9.7.5",
     "@sentry/react": "^8.55.0",
     "@tailwindcss/forms": "0.5.3",
