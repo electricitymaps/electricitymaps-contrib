@@ -363,8 +363,10 @@ class DataCenters(StrictBaseModel):
     @root_validator
     def check_ids(cls, values):
         for dict_ID, data_center in values["dataCenters"].items():
-            if data_center.ID != dict_ID:
-                raise ValueError(f"Data center ID {data_center.ID} does not match the key {dict_ID}")
+            if dict_ID != data_center.ID:
+                raise ValueError(
+                    f"Data center ID {data_center.ID} does not match the key {dict_ID}"
+                )
         return values
 
 
