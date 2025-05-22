@@ -159,14 +159,6 @@
     "zoneKey": "US-MIDW-MISO",
     "status": "operational"
   },
-  "azure-eastus3": {
-    "provider": "azure",
-    "lonlat": [-83.716858, 32.840464],
-    "displayName": "East US 3",
-    "region": "eastus3",
-    "zoneKey": "US-SE-SOCO",
-    "status": "non operational"
-  },
   "azure-eastus2": {
     "provider": "azure",
     "lonlat": [-81.12304688, 36.66841892],
@@ -215,14 +207,6 @@
     "zoneKey": "AE",
     "status": "operational"
   },
-  "azure-taiwannorth": {
-    "provider": "azure",
-    "lonlat": [121.4139, 25.039666],
-    "displayName": "Taiwan North",
-    "region": "taiwannorth",
-    "zoneKey": "TW",
-    "status": "non operational"
-  },
   "azure-switzerlandnorth": {
     "provider": "azure",
     "lonlat": [8.8410422, 47.2744489],
@@ -246,14 +230,6 @@
     "region": "spaincentral",
     "zoneKey": "ES",
     "status": "operational"
-  },
-  "azure-saudiarabiaeast": {
-    "provider": "azure",
-    "lonlat": [46.6753, 24.7136],
-    "displayName": "Saudi Arabia East",
-    "region": "saudiarabiaeast",
-    "zoneKey": "SA",
-    "status": "non operational"
   },
   "azure-qatarcentral": {
     "provider": "azure",
@@ -294,14 +270,6 @@
     "region": "mexicocentral",
     "zoneKey": "MX",
     "status": "operational"
-  },
-  "azure-malaysiawest": {
-    "provider": "azure",
-    "lonlat": [101.809256, 4.55035],
-    "displayName": "Malaysia West",
-    "region": "malaysiawest",
-    "zoneKey": "MY-WM",
-    "status": "non operational"
   },
   "azure-koreacentral": {
     "provider": "azure",
@@ -351,14 +319,6 @@
     "zoneKey": "ID",
     "status": "operational"
   },
-  "azure-southcentralindia": {
-    "provider": "azure",
-    "lonlat": [78.5, 17.34],
-    "displayName": "India South Central",
-    "region": "southcentralindia",
-    "zoneKey": "IN-SO",
-    "status": "non operational"
-  },
   "azure-southindia": {
     "provider": "azure",
     "lonlat": [80.270186, 13.0836939],
@@ -374,14 +334,6 @@
     "region": "centralindia",
     "zoneKey": "IN-WE",
     "status": "operational"
-  },
-  "azure-greececentral": {
-    "provider": "azure",
-    "lonlat": [23.7283052, 37.9839412],
-    "displayName": "Greece Central",
-    "region": "greececentral",
-    "zoneKey": "GR",
-    "status": "non operational"
   },
   "azure-germanywestcentral": {
     "provider": "azure",
@@ -399,14 +351,6 @@
     "zoneKey": "FR",
     "status": "operational"
   },
-  "azure-finlandcentral": {
-    "provider": "azure",
-    "lonlat": [24.874774, 60.183027],
-    "displayName": "Finland Central",
-    "region": "finlandcentral",
-    "zoneKey": "FI",
-    "status": "non operational"
-  },
   "azure-westeurope": {
     "provider": "azure",
     "lonlat": [7.0480821, 52.5001698],
@@ -422,14 +366,6 @@
     "region": "northeurope",
     "zoneKey": "IE",
     "status": "operational"
-  },
-  "azure-denmarkeast": {
-    "provider": "azure",
-    "lonlat": [12.580776, 55.664858],
-    "displayName": "Denmark East",
-    "region": "denmarkeast",
-    "zoneKey": "DK-DK2",
-    "status": "non operational"
   },
   "azure-chinanorth3": {
     "provider": "azure",
@@ -471,14 +407,6 @@
     "zoneKey": "CN",
     "status": "operational"
   },
-  "azure-chilecentral": {
-    "provider": "azure",
-    "lonlat": [-70.8, -33.47],
-    "displayName": "Chile Central",
-    "region": "chilecentral",
-    "zoneKey": "CL-SEN",
-    "status": "non operational"
-  },
   "azure-canadaeast": {
     "provider": "azure",
     "lonlat": [-71.2352226, 46.8259601],
@@ -502,22 +430,6 @@
     "region": "brazilsouth",
     "zoneKey": "BR-CS",
     "status": "operational"
-  },
-  "azure-belgiumcentral": {
-    "provider": "azure",
-    "lonlat": [5.06, 51.35],
-    "displayName": "Belgium Central",
-    "region": "belgiumcentral",
-    "zoneKey": "BE",
-    "status": "non operational"
-  },
-  "azure-austriaeast": {
-    "provider": "azure",
-    "lonlat": [16.404751, 48.599753],
-    "displayName": "Austria East",
-    "region": "austriaeast",
-    "zoneKey": "AT",
-    "status": "non operational"
   },
   "azure-australiacentral": {
     "provider": "azure",
