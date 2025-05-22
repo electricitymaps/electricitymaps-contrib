@@ -360,13 +360,17 @@ class DataCenter(StrictBaseModel):
     def status_exists(cls, v):
         AVAILABLE_STATUSES = ["operational"]
         if v not in AVAILABLE_STATUSES:
-            raise ValueError(f"Data center status {v} is not one of the allowed statuses: {AVAILABLE_STATUSES}")
+            raise ValueError(
+                f"Data center status {v} is not one of the allowed statuses: {AVAILABLE_STATUSES}"
+            )
         return v
 
     @validator("zoneKey")
     def zone_key_exists(cls, v):
-        if v not in ZONES_CONFIG.keys():
-            raise ValueError(f"Data center zone key {v} is not one of the allowed zone keys: {ZONES_CONFIG.keys()}")
+        if v not in ZONES_CONFIG:
+            raise ValueError(
+                f"Data center zone key {v} is not one of the allowed zone keys: {ZONES_CONFIG.keys()}"
+            )
         return v
 
 
@@ -377,8 +381,10 @@ class DataCenters(StrictBaseModel):
     @validator("data_centers")
     def ids_match_configs(cls, v):
         for dict_ID, data_center in v.items():
-            if data_center.ID != dict_ID:
-                raise ValueError(f"Data center ID {data_center.ID} does not match the key {dict_ID}")
+            if dict_ID != data_center.ID:
+                raise ValueError(
+                    f"Data center ID {data_center.ID} does not match the key {dict_ID}"
+                )
         return v
 
 

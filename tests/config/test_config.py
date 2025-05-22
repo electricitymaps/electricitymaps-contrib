@@ -58,5 +58,6 @@ class DataCentersConfigTestcase(unittest.TestCase):
         self.assertIn("gcp-europe-west1", config.DATA_CENTERS_CONFIG.keys())
         self.assertIn("aws-us-east-1", config.DATA_CENTERS_CONFIG.keys())
 
+
 if __name__ == "__main__":
     unittest.main(buffer=True)
