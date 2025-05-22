@@ -19,9 +19,7 @@ function generateRenewableScale(
   dirtiest: number,
   unknownColor: string
 ) {
-  // const extent = Math.abs(dirtiest - cleanest);
-  const colorRange = ['#309381', '#61AD9F', '#84BFB4', '#ACD4CC', '#D4E9E5']; // Alex
-  // const colorRange = ['#244ba5', '#96afe8', '#fedc76', '#381D02']; // Oli
+  const colorRange = ['#018F76', '#53B4A2', '#87CBBF', '#B8E1D9', '#DFF1EE'];
   return scaleLinear<string>()
     .domain(
       colorRange.map(
@@ -48,10 +46,15 @@ function generateColorblindScale(
     .clamp(true);
 }
 
-function generateZeroCentredScale(scaleExtrema: number, unknownColor: string) {
+function generateThreePointScale(
+  min: number,
+  center: number,
+  max: number,
+  unknownColor: string
+) {
   return scaleLinear<string>()
-    .domain([-scaleExtrema, -0.0001, 0, scaleExtrema])
-    .range(['#053061', '#a6cfe3', '#faccb4', '#67001f'])
+    .domain([min, center - 0.0001, center, max])
+    .range(['#6688CF', '#DEE5F5', '#F7C9C9', '#EC7E7E'])
     .unknown(unknownColor)
     .clamp(true);
 }
@@ -67,7 +70,12 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#7A878D'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#7A878D'),
-      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#7A878D'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateThreePointScale(
+        -100,
+        0,
+        500,
+        '#7A878D'
+      ),
     },
     oceanColor: '#343D4C',
     strokeWidth: 0.15,
@@ -80,7 +88,12 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#7A878D'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateRenewableScale(100, 0, '#7A878D'),
-      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#7A878D'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateThreePointScale(
+        -100,
+        0,
+        500,
+        '#7A878D'
+      ),
     },
     oceanColor: '#262626',
     strokeWidth: 0.15,
@@ -93,7 +106,12 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateColorblindScale(0, 1500, '#D4D9DE'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateColorblindScale(100, 0, '#D4D9DE'),
-      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#D4D9DE'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateThreePointScale(
+        -100,
+        0,
+        500,
+        '#D4D9DE'
+      ),
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
@@ -106,7 +124,12 @@ export const colors: Colors = {
     colorScale: {
       [MapColorSource.CARBON_INTENSITY]: generateCo2Scale(0, 1500, '#D4D9DE'),
       [MapColorSource.RENEWABLE_PERCENTAGE]: generateRenewableScale(100, 0, '#D4D9DE'),
-      [MapColorSource.ELECTRICITY_PRICE]: generateZeroCentredScale(500, '#D4D9DE'),
+      [MapColorSource.ELECTRICITY_PRICE]: generateThreePointScale(
+        -100,
+        0,
+        500,
+        '#D4D9DE'
+      ),
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.15,
