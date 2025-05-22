@@ -7,7 +7,9 @@ import { selectedSolarAssetAtom } from './mapAtoms';
 
 // Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to YYYY-MM-DD
 const formatDate = (dateString: string | undefined | null) => {
-  if (!dateString) {return 'N/A';}
+  if (!dateString) {
+    return 'N/A';
+  }
   try {
     return new Date(dateString).toISOString().split('T')[0];
   } catch {
@@ -17,7 +19,9 @@ const formatDate = (dateString: string | undefined | null) => {
 
 // Helper to get a color based on status - can be expanded
 const getStatusColor = (status: string | undefined) => {
-  if (!status) {return 'bg-gray-400';} // Default
+  if (!status) {
+    return 'bg-gray-400';
+  } // Default
   switch (status.toLowerCase()) {
     case 'operating': {
       return 'bg-green-500';
@@ -79,16 +83,25 @@ export default function SolarAssetDataBox() {
     // Ensure capacityPercentage is calculated correctly even if capacityMw is outside the scale
     const normalizedCapacity = Math.max(0, capacityMw);
     capacityPercentage = Math.min(100, (normalizedCapacity / MAX_SCALE_MW) * 100);
-    if (capacityMw < MIN_SCALE_MW) {capacityPercentage = 0;} // explicitly set to 0 if below min (though min is 0 now)
+    if (capacityMw < MIN_SCALE_MW) {
+      capacityPercentage = 0;
+    } // explicitly set to 0 if below min (though min is 0 now)
   }
 
   return (
     <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-96 flex-col p-4 shadow-lg">
-      {/* Header with Name and Close Button */}
+      {/* Header with Name, Icon and Close Button */}
       <div className="mb-1 flex items-start justify-between">
-        <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
-          {name}
-        </h2>
+        <div className="flex items-center">
+          <img
+            src="/images/solar_asset.png"
+            alt="Solar Asset"
+            className="mr-2 h-6 w-6" // Adjust size as needed
+          />
+          <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
+            {name}
+          </h2>
+        </div>
         <button
           onClick={handleClose}
           className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
