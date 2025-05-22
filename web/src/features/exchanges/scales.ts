@@ -12,7 +12,11 @@ export const arrowfilesIndices = Array.from(
 
 export function generateQuantizedExchangeColorScale(mapColorSource: MapColorSource) {
   // Assume the domain (i.e. values) are the same for colorblind and normal mode
-  let domain = extent(colors.bright.colorScale[mapColorSource].domain());
+  const rawDomain = extent(colors.bright.colorScale[mapColorSource].domain());
+  if (rawDomain[0] == null || rawDomain[1] == null) {
+    return;
+  }
+  let domain: number[] = [rawDomain[0], rawDomain[1]];
   if (
     ![MapColorSource.CARBON_INTENSITY, MapColorSource.RENEWABLE_PERCENTAGE].includes(
       mapColorSource

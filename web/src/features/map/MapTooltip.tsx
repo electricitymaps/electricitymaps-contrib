@@ -1,5 +1,6 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
+import { ValueSquare } from 'components/CarbonIntensitySquare';
 import EstimationBadge from 'components/EstimationBadge';
 import GlassContainer from 'components/GlassContainer';
 import NoDataBadge from 'components/NoDataBadge';
@@ -8,20 +9,28 @@ import { TimeDisplay } from 'components/TimeDisplay';
 import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
+import { useColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { EstimationMethods, isTSAModel } from 'utils/constants';
+import {
+  EstimationMethods,
+  isTSAModel,
+  MapColorSource,
+  mapColorSourceTranslationKeys,
+  unitsByMapColorSource,
+} from 'utils/constants';
 import { round } from 'utils/helpers';
-import { selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { mapColorSourceAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
 const emptyZoneData: StateZoneData = {
   p: {},
   c: {},
+  pr: null,
 };
 
 export const TooltipInner = memo(function TooltipInner({
@@ -31,28 +40,44 @@ export const TooltipInner = memo(function TooltipInner({
   zoneId: string;
   zoneData?: StateZoneData;
 }) {
+  const mapColorSource = useAtomValue(mapColorSourceAtom);
+  const colorScale = useColorScale();
   const hasZoneData = Boolean(zoneData);
   zoneData ??= emptyZoneData;
   const { em: estimationMethod, ep: estimationPercentage, o } = zoneData;
+
+  const isPrice = mapColorSource === MapColorSource.ELECTRICITY_PRICE;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
       <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-          <DataValidityBadge
-            hasOutage={Boolean(o)}
-            estimatedMethod={estimationMethod}
-            estimatedPercentage={round(estimationPercentage ?? 0, 0)}
-            hasZoneData={hasZoneData}
-          />
+          {!isPrice && (
+            <DataValidityBadge
+              hasOutage={Boolean(o)}
+              estimatedMethod={estimationMethod}
+              estimatedPercentage={round(estimationPercentage ?? 0, 0)}
+              hasZoneData={hasZoneData}
+            />
+          )}
         </div>
         <TimeDisplay
           zoneId={zoneId}
           className="self-start text-sm text-neutral-600 dark:text-neutral-400"
         />
       </div>
-      <ZoneGaugesWithCO2Square zoneData={zoneData} classNames="justify-evenly" />
+      {isPrice ? (
+        <ValueSquare
+          value={zoneData.pr == null ? Number.NaN : zoneData.pr}
+          colorScale={colorScale}
+          unitRest={unitsByMapColorSource[mapColorSource].slice(1)}
+          translationKey={mapColorSourceTranslationKeys[mapColorSource]}
+          unitShort={unitsByMapColorSource[mapColorSource].slice(0, 1)}
+        />
+      ) : (
+        <ZoneGaugesWithCO2Square zoneData={zoneData} classNames="justify-evenly" />
+      )}
     </div>
   );
 });

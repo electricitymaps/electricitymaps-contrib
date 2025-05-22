@@ -1,6 +1,8 @@
 import type { Duration } from 'date-fns';
 import { ElectricityModeType } from 'types';
 
+import { CarbonUnits } from './units';
+
 export const metaTitleSuffix = ' | App | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
@@ -260,3 +262,15 @@ export enum MapColorSource {
   RENEWABLE_PERCENTAGE = 'RENEWABLE_PERCENTAGE',
   ELECTRICITY_PRICE = 'ELECTRICITY_PRICE',
 }
+
+export const unitsByMapColorSource: { [key in MapColorSource]: string } = {
+  [MapColorSource.CARBON_INTENSITY]: CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR,
+  [MapColorSource.RENEWABLE_PERCENTAGE]: '%',
+  [MapColorSource.ELECTRICITY_PRICE]: '€/MWh',
+};
+
+export const mapColorSourceTranslationKeys: { [key in MapColorSource]: string } = {
+  [MapColorSource.CARBON_INTENSITY]: 'legends.carbonintensity',
+  [MapColorSource.RENEWABLE_PERCENTAGE]: 'legends.renewablepercentage',
+  [MapColorSource.ELECTRICITY_PRICE]: 'legends.electricityprice',
+};

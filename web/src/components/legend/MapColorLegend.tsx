@@ -2,30 +2,22 @@ import { useColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai';
 import { memo, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapColorSource } from 'utils/constants';
+import {
+  MapColorSource,
+  mapColorSourceTranslationKeys,
+  unitsByMapColorSource,
+} from 'utils/constants';
 import { mapColorSourceAtom } from 'utils/state/atoms';
-import { CarbonUnits } from 'utils/units';
 
 import ColorBar from './ColorBar';
-
-const translationKeys: { [key in MapColorSource]: string } = {
-  [MapColorSource.CARBON_INTENSITY]: 'legends.carbonintensity',
-  [MapColorSource.RENEWABLE_PERCENTAGE]: 'legends.renewablepercentage',
-  [MapColorSource.ELECTRICITY_PRICE]: 'legends.electricityprice',
-};
-const units: { [key in MapColorSource]: string } = {
-  [MapColorSource.CARBON_INTENSITY]: CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR,
-  [MapColorSource.RENEWABLE_PERCENTAGE]: '%',
-  [MapColorSource.ELECTRICITY_PRICE]: '€/MWh',
-};
 
 function Legend(): ReactElement {
   const { t } = useTranslation();
   const colorScale = useColorScale();
   const [mapColorSource, setSelectedColorSource] = useAtom(mapColorSourceAtom);
 
-  const handleDropdownChange = (event) => {
-    setSelectedColorSource(event.target.value);
+  const handleDropdownChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedColorSource(event.target.value as MapColorSource);
   };
 
   return (
@@ -35,9 +27,10 @@ function Legend(): ReactElement {
         value={mapColorSource}
         onChange={handleDropdownChange}
       >
-        {Object.entries(translationKeys).map(([key, value]) => (
+        {Object.entries(mapColorSourceTranslationKeys).map(([key, value]) => (
           <option key={key} value={key}>
-            {t(value)} ({units[key]})
+            {t(value)} ({unitsByMapColorSource[key as keyof typeof unitsByMapColorSource]}
+            )
           </option>
         ))}
       </select>

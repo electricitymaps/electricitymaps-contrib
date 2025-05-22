@@ -25,6 +25,7 @@ export function useCarbonChartData() {
             {
               c: { ci: value.co2intensity },
               p: { ci: value.co2intensityProduction },
+              pr: null,
             },
             isConsumption,
             MapColorSource.CARBON_INTENSITY
