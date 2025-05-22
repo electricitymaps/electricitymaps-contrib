@@ -1,17 +1,17 @@
 import useGetSolarAssets from 'api/getSolarAssets';
 import { useAtomValue } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
-import { isRenewablesLayerEnabledAtom } from 'utils/state/atoms';
+import { isSolarAssetsLayerEnabledAtom } from 'utils/state/atoms';
 
 export default function SolarAssetsLayer() {
-  const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
+  const isSolarAssetsLayerEnabled = useAtomValue(isSolarAssetsLayerEnabledAtom);
   const { data: solarAssetsData } = useGetSolarAssets();
 
-  const dataForSource = isRenewablesLayerEnabled
+  const dataForSource = isSolarAssetsLayerEnabled
     ? solarAssetsData
     : { type: 'FeatureCollection', features: [] };
 
-  console.log('[SolarAssetsLayer] isRenewablesLayerEnabled:', isRenewablesLayerEnabled);
+  console.log('[SolarAssetsLayer] isSolarAssetsLayerEnabled:', isSolarAssetsLayerEnabled);
   console.log('[SolarAssetsLayer] solarAssetsData:', solarAssetsData);
   console.log('[SolarAssetsLayer] dataForSource:', dataForSource);
 

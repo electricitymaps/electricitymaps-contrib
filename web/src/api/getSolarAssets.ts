@@ -5,7 +5,7 @@ import { getHeaders } from './helpers';
 
 const getSolarAssets = async (): Promise<any> => {
   const path: URL = new URL(
-    'https://storage.googleapis.com/testing-gzipped-geojson/solar_assets.min.geojson.gz'
+    'https://storage.googleapis.com/testing-gzipped-geojson/solar_power_plants.geojson'
   );
 
   const requestOptions: RequestInit = {
