@@ -12,6 +12,7 @@ const getStatusColor = (status: string | undefined) => {
   } // Default
   switch (status.toLowerCase()) {
     case 'operating':
+    case 'operational':
     case 'commissioned': {
       return 'bg-green-500';
     }
@@ -58,7 +59,7 @@ export default function SolarAssetNameTooltip() {
       numericCommissionYear <= currentYear &&
       status.toLowerCase() === 'unknown'
     ) {
-      status = 'Commissioned';
+      status = 'Operational';
     }
   }
 
@@ -72,8 +73,17 @@ export default function SolarAssetNameTooltip() {
       }}
       className="pointer-events-none z-[1000] flex flex-col gap-1 rounded-md bg-white p-2 text-sm shadow-lg dark:bg-gray-800"
     >
-      <div className="font-semibold text-gray-900 dark:text-gray-100">{assetName}</div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 font-semibold text-gray-900 dark:text-gray-100">
+        <img
+          src="/images/solar_asset.png"
+          alt="Solar"
+          className="h-4 w-4" // Small icon for tooltip
+        />
+        <span>{assetName}</span>
+      </div>
+      <div className="flex items-center gap-2 pl-5">
+        {' '}
+        {/* Indent details slightly */}
         <span
           className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
             status

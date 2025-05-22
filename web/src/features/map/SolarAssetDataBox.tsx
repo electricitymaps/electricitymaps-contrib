@@ -1,6 +1,5 @@
 import GlassContainer from 'components/GlassContainer'; // Import GlassContainer
 import { useAtomValue, useSetAtom } from 'jotai';
-// import { XMarkIcon } from '@heroicons/react/24/solid'; // For the close button
 import { X } from 'lucide-react'; // Using Lucide X icon
 
 import { selectedSolarAssetAtom } from './mapAtoms';
@@ -24,6 +23,7 @@ const getStatusColor = (status: string | undefined) => {
   } // Default
   switch (status.toLowerCase()) {
     case 'operating':
+    case 'operational':
     case 'commissioned': {
       return 'bg-green-500';
     }
@@ -43,7 +43,7 @@ const getStatusColor = (status: string | undefined) => {
 
 export default function SolarAssetDataBox() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
-  const setSelectedAsset = useSetAtom(selectedSolarAssetAtom); // For the close button
+  const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
 
   if (!selectedAsset) {
     return null;
@@ -62,43 +62,36 @@ export default function SolarAssetDataBox() {
     ? String(Math.floor(Number(properties.commission_year)))
     : null;
   const capacityUpdateDate = formatDate(String(properties.capacity_update_date));
-  let status = properties.status ? String(properties.status) : 'Unknown'; // Get status
+  let status = properties.status ? String(properties.status) : 'Unknown';
+  let isCommissionedInPast = false;
 
-  // Infer status if commission year is in the past and status is Unknown
   if (commissionYear) {
     const numericCommissionYear = Number.parseInt(commissionYear, 10);
     const currentYear = new Date().getFullYear();
-    if (
-      !Number.isNaN(numericCommissionYear) &&
-      numericCommissionYear <= currentYear &&
-      status.toLowerCase() === 'unknown'
-    ) {
-      status = 'Commissioned';
+    if (!Number.isNaN(numericCommissionYear) && numericCommissionYear <= currentYear) {
+      isCommissionedInPast = true;
+      if (status.toLowerCase() === 'unknown') {
+        status = 'Operational';
+      }
     }
-  }
-
-  const MIN_SCALE_MW = 0; // Changed from 20 to 0
-  const MAX_SCALE_MW = 200;
-  let capacityPercentage = 0;
-  if (!Number.isNaN(capacityMw)) {
-    // Ensure capacityPercentage is calculated correctly even if capacityMw is outside the scale
-    const normalizedCapacity = Math.max(0, capacityMw);
-    capacityPercentage = Math.min(100, (normalizedCapacity / MAX_SCALE_MW) * 100);
-    if (capacityMw < MIN_SCALE_MW) {
-      capacityPercentage = 0;
-    } // explicitly set to 0 if below min (though min is 0 now)
   }
 
   return (
     <GlassContainer className="pointer-events-auto absolute right-5 top-5 z-[999] flex w-96 flex-col p-4 shadow-lg">
+      {/* Energy Type Tag - Status badge was removed from this line */}
+      <div className="mb-2 flex items-center justify-between">
+        <span
+          className={`inline-block rounded-full bg-yellow-500 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white`}
+        >
+          Solar
+        </span>
+        {/* Status badge was correctly removed from here previously */}
+      </div>
+
       {/* Header with Name, Icon and Close Button */}
       <div className="mb-1 flex items-start justify-between">
         <div className="flex items-center">
-          <img
-            src="/images/solar_asset.png"
-            alt="Solar Asset"
-            className="mr-2 h-6 w-6" // Adjust size as needed
-          />
+          <img src="/images/solar_asset.png" alt="Solar Asset" className="mr-2 h-6 w-6" />
           <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
             {name}
           </h2>
@@ -108,73 +101,63 @@ export default function SolarAssetDataBox() {
           className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
           aria-label="Close"
         >
-          {/* <XMarkIcon className="h-6 w-6" /> */}
-          <X className="h-6 w-6" /> {/* Using Lucide X icon */}
+          <X className="h-6 w-6" />
         </button>
       </div>
 
-      {/* Status Badge */}
-      <div className="mb-3">
-        <span
-          className={`inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
-            status
-          )}`}
-        >
-          {status}
-        </span>
-      </div>
-
-      {/* Capacity Section */}
-      <div className="mb-4">
-        <div className="mb-1 flex justify-between text-sm text-gray-700 dark:text-gray-300">
-          <span>Capacity</span>
-          <span className="font-semibold text-gray-900 dark:text-gray-100">
-            {Number.isNaN(capacityMw) ? 'N/A' : `${capacityMw.toFixed(1)} MW`}
+      {/* Details Section */}
+      <div className="space-y-2 pt-3 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-400">
+        {/* Divider and Larger Font for Capacity */}
+        <div className="border-t border-gray-200 dark:border-gray-700" />
+        {!Number.isNaN(capacityMw) && (
+          <div className="flex justify-between text-sm">
+            <span className="font-bold">Capacity:</span>
+            <span className="font-bold text-gray-800 dark:text-gray-200">
+              {`${capacityMw.toFixed(1)} MW`}
+            </span>
+          </div>
+        )}
+        <div className="flex items-center justify-between">
+          <span>Status:</span>
+          <span
+            className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wider text-white ${getStatusColor(
+              status
+            )}`}
+          >
+            {status}
           </span>
         </div>
-        <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-          <div
-            className="h-2.5 rounded-full bg-green-500" // Bar color remains green for capacity
-            style={{ width: `${Number.isNaN(capacityMw) ? 0 : capacityPercentage}%` }}
-          />
-        </div>
-        <div className="mt-1 flex justify-between text-xs text-gray-500 dark:text-gray-400">
-          <span>{MIN_SCALE_MW} MW</span>
-          <span>{MAX_SCALE_MW} MW</span>
-        </div>
-      </div>
-
-      {/* Details Section */}
-      <div className="space-y-1 border-t border-gray-200 pt-3 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-400">
         {commissionYear && (
           <div className="flex justify-between">
-            <span>Commission Year:</span>
+            <span>
+              {isCommissionedInPast ? 'Operational since:' : 'Commission Year:'}
+            </span>
             <span className="font-medium text-gray-800 dark:text-gray-200">
               {commissionYear}
             </span>
           </div>
         )}
         <div className="flex justify-between">
+          <span>Source:</span>
+          {source.startsWith('http://') || source.startsWith('https://') ? (
+            <a
+              href={source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+            >
+              {source}
+            </a>
+          ) : (
+            <span className="font-medium text-gray-800 dark:text-gray-200">{source}</span>
+          )}
+        </div>
+        <div className="flex justify-between">
           <span>Capacity Data Updated:</span>
           <span className="font-medium text-gray-800 dark:text-gray-200">
             {capacityUpdateDate}
           </span>
         </div>
-        <div className="flex justify-between">
-          <span>Source:</span>
-          <span className="font-medium text-gray-800 dark:text-gray-200">{source}</span>
-        </div>
-        {/* Display other properties if needed, or remove this part
-        <h4 className="mt-3 font-semibold text-gray-700 dark:text-gray-300">All Properties:</h4>
-        {Object.entries(properties)
-          .filter(([key]) => !['name', 'ASSET_NAME', 'capacity_mw', 'source', 'commission_year', 'capacity_update_date'].includes(key))
-          .map(([key, value]) => (
-            <div key={key} className="flex justify-between">
-              <span className="truncate pr-1">{key}:</span>
-              <span className="truncate font-medium text-gray-800 dark:text-gray-200">{String(value)}</span>
-            </div>
-        ))}
-        */}
       </div>
     </GlassContainer>
   );
