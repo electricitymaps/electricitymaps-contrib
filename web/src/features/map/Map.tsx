@@ -341,30 +341,11 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         setIsFirstLoad(false);
       }
 
-      console.log(
-        `[Map.tsx] Attempting to center on solar asset ID: ${effectiveAssetId}`
-      );
-
       const waitForSourceData = () => {
         if (map.isSourceLoaded(SOLAR_ASSETS_SOURCE)) {
-          console.log(
-            `[Map.tsx] Source ${SOLAR_ASSETS_SOURCE} is loaded, searching for asset...`
-          );
-
           try {
             // Get all features from the source
             const features = map.querySourceFeatures(SOLAR_ASSETS_SOURCE);
-            console.log(
-              `[Map.tsx] Found ${features.length} features in source, looking for ID: ${effectiveAssetId}`
-            );
-
-            // Debug: Log the IDs of the first few features to help diagnose
-            if (features.length > 0) {
-              console.log('[Map.tsx] Sample features:');
-              for (const f of features.slice(0, 3)) {
-                console.log(`Feature ID: ${f.id}, Name: ${f.properties?.name}`);
-              }
-            }
 
             // Find the feature with matching ID
             const feature = features.find(
@@ -374,11 +355,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
             );
 
             if (feature) {
-              console.log(
-                `[Map.tsx] Found feature with ID ${effectiveAssetId}:`,
-                feature
-              );
-
               // Set the feature state to selected
               map.setFeatureState(
                 {
@@ -395,8 +371,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
                   : undefined;
 
               if (coordinates) {
-                console.log(`[Map.tsx] Centering map on coordinates: ${coordinates}`);
-
                 // Center the map on the solar asset with a higher zoom level
                 map.flyTo({
                   center: coordinates,
@@ -437,9 +411,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
                 map.getCanvas().dataset.searchAttempts = String(attempts + 1);
 
                 // Wait a bit longer for more data to load
-                console.log(
-                  `[Map.tsx] Asset not found yet, attempt ${attempts + 1}/10...`
-                );
 
                 // Keep listening for source data events
                 return;
@@ -671,14 +642,12 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setMousePosition({ x: point.x, y: point.y });
 
       if (solarAssetFeature) {
-        console.log('[Map.tsx onMouseMove] Solar asset detected:', solarAssetFeature);
         const properties = (solarAssetFeature.properties as Record<string, any>) || {};
         const assetInfo = {
           properties,
           x: point.x,
           y: point.y,
         };
-        console.log('[Map.tsx onMouseMove] Setting hoveredSolarAssetInfo:', assetInfo);
         setHoveredSolarAssetInfo(assetInfo);
 
         if (hoveredZone) {
@@ -714,7 +683,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           }
         }
       } else if (zoneFeature && zoneFeature.id !== undefined) {
-        console.log('[Map.tsx onMouseMove] Zone feature detected:', zoneFeature);
         const newHoveredZoneId = zoneFeature.id;
         if (hoveredZone?.featureId !== newHoveredZoneId) {
           if (hoveredZone) {
@@ -740,11 +708,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           previouslyHoveredAssetId.current = null;
         }
         setHoveredSolarAssetInfo(null);
-        console.log('[Map.tsx onMouseMove] Zone hovered, clearing solar asset info.');
       } else {
-        console.log(
-          '[Map.tsx onMouseMove] No specific feature hovered (neither zone nor solar asset).'
-        );
         if (hoveredZone) {
           map.setFeatureState(
             { source: ZONE_SOURCE, id: hoveredZone.featureId },
@@ -760,7 +724,6 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
           previouslyHoveredAssetId.current = null;
         }
         setHoveredSolarAssetInfo(null);
-        console.log('[Map.tsx onMouseMove] Cleared all hover states.');
       }
     },
     [
