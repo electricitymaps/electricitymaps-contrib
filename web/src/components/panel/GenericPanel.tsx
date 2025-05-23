@@ -93,6 +93,7 @@ function GenericPanel({
             </header>
           )}
 
+      {/* Prettier comment */}
       <div
         id="generic-panel-scroller"
         className={twMerge(
