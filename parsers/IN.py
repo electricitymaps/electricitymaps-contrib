@@ -464,6 +464,8 @@ def fetch_production(
     days_lookback_to_try = list(range(1, 8))
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
+
+        renewable_production = {}
         try:
             renewable_production = fetch_cea_production(
                 zone_key=zone_key,
@@ -474,26 +476,27 @@ def fetch_production(
             logger.warning(
                 f"{zone_key}: renewable production not available for {_target_datetime} - will compute production with conventional production only"
             )
-            renewable_production = {}
+
+        conventional_production = None
         try:
             conventional_production = fetch_npp_production(
                 zone_key=zone_key,
                 session=session,
                 target_datetime=_target_datetime,
             )
-        except ParserException as e:
+        except ParserException:
             logger.warning(
                 f"{zone_key}: conventional production not available for {_target_datetime} - do not return any production data"
             )
-            raise e
 
-        production = {**conventional_production, **renewable_production}
-        all_data_points += daily_to_hourly_production_data(
-            target_datetime=_target_datetime,
-            production=production,
-            zone_key=zone_key,
-            logger=logger,
-        )
+        if conventional_production is not None:
+            production = {**conventional_production, **renewable_production}
+            all_data_points += daily_to_hourly_production_data(
+                target_datetime=_target_datetime,
+                production=production,
+                zone_key=zone_key,
+                logger=logger,
+            )
     return all_data_points
 
 
