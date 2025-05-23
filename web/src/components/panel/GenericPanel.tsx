@@ -24,7 +24,6 @@ interface GenericPanelProps {
   // Prop for rendering a completely custom header
   renderFullHeader?: () => React.ReactNode;
 }
-// Alibi
 
 function GenericPanel({
   children,
