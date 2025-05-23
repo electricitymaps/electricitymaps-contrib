@@ -50,11 +50,11 @@ export default function DataCenterDetails(): JSX.Element {
   const { estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
 
-  // Memoize the zone data to prevent unnecessary recalculations
-  const parentZone = useMemo(
-    () => getAllZones(i18n.language)[zoneId].displayName,
-    [zoneId]
-  );
+  const parentZone =
+    useMemo(
+      () => (zoneId ? getAllZones(i18n.language)[zoneId].displayName : 'parent zone'),
+      [zoneId]
+    ) ?? 'parent zone';
 
   // Find the matching data center
   const dataCenterKey = useMemo(() => {
