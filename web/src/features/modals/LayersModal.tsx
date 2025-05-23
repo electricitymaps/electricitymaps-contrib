@@ -1,4 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import Badge from 'components/Badge';
 import GlassContainer from 'components/GlassContainer';
 import SwitchToggle from 'components/ToggleSwitch';
 import { weatherButtonMap } from 'features/map-controls/MapControls';
@@ -73,11 +74,12 @@ function DataCenterToggleSwitch() {
 
   return (
     <div className="flex w-full items-center justify-between p-3">
-      <div className="flex items-center">
-        <Icon size={20} className="mr-2 text-secondary dark:text-secondary-dark" />
+      <div className="flex items-center gap-2">
+        <Icon size={20} className="text-secondary dark:text-secondary-dark" />
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
           {t('Data centers')}
         </span>
+        <Badge pillText="Beta" />
       </div>
 
       <div className="relative">

@@ -17,6 +17,8 @@ export interface DataCenter {
   provider: string;
   region: string;
   zoneKey: string;
+  source: string;
+  operationalSince: string;
 }
 
 // Type for the raw data from JSON
@@ -26,6 +28,8 @@ export interface RawDataCenter {
   provider: string;
   region: string;
   zoneKey: string;
+  source: string;
+  operationalSince: string;
 }
 
 // Type assertion for the imported data with proper type safety
@@ -39,6 +43,8 @@ for (const [key, value] of Object.entries(
     region: value.region,
     zoneKey: value.zoneKey,
     lonlat: value.lonlat as [number, number],
+    source: value.source,
+    operationalSince: value.operationalSince,
   };
 }
 
