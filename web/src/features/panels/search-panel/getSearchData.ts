@@ -1,7 +1,9 @@
 import useGetSolarAssets from 'api/getSolarAssets';
 import { t } from 'i18next';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { GridState } from 'types';
+import { isSolarAssetsLayerEnabledAtom } from 'utils/state/atoms';
 
 import { ZoneRowType } from './ZoneList';
 
@@ -46,6 +48,7 @@ export const getAllZones = (language: string) => {
 
 // Hook to get all solar assets for search
 export const useGetSolarAssetsForSearch = () => {
+  const isSolarAssetsLayerEnabled = useAtomValue(isSolarAssetsLayerEnabledAtom);
   const { data: geoJsonData, isLoading, error } = useGetSolarAssets();
   const [solarAssets, setSolarAssets] = useState<SolarAssetRowType[]>([]);
 
@@ -57,7 +60,8 @@ export const useGetSolarAssetsForSearch = () => {
           (feature) =>
             feature?.properties?.name &&
             feature?.geometry?.type === 'Point' &&
-            Array.isArray(feature?.geometry?.coordinates)
+            Array.isArray(feature?.geometry?.coordinates) &&
+            isSolarAssetsLayerEnabled
         )
         .map((feature) => {
           // Ensure we use the correct ID format that matches what the map expects
@@ -81,7 +85,7 @@ export const useGetSolarAssetsForSearch = () => {
 
       setSolarAssets(assets);
     }
-  }, [geoJsonData]);
+  }, [geoJsonData, isSolarAssetsLayerEnabled]);
 
   return { solarAssets, isLoading, error };
 };
