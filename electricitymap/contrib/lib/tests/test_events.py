@@ -363,6 +363,7 @@ def test_create_grid_alerts():
         source="trust.me",
         sourceType=EventSourceType.measured,
         alertType=GridAlertType.action,
+        topic="test",
         message="This is a test message",
         audience=GridAlertAudience.all,
         endDate=None,
@@ -373,6 +374,7 @@ def test_create_grid_alerts():
     assert grid_alert.source == "trust.me"
     assert grid_alert.sourceType == EventSourceType.measured
     assert grid_alert.alertType == GridAlertType.action
+    assert grid_alert.topic == "test"
     assert grid_alert.message == "This is a test message"
     assert grid_alert.audience == GridAlertAudience.all
     assert grid_alert.endDate is None
@@ -386,6 +388,7 @@ def test_invalid_grid_alert_raises():
             source="trust.me",
             sourceType=EventSourceType.measured,
             alertType=GridAlertType.action,
+            topic="test",
             message="",
             audience=GridAlertAudience.all,
             endDate=None,

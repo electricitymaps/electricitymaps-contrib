@@ -897,6 +897,7 @@ class LocationalMarginalPrice(Price):
 class GridAlertType(str, Enum):
     informational = "informational"
     action = "action"
+    unclassified = "unclassified"
 
 
 class GridAlertAudience(str, Enum):
@@ -908,6 +909,7 @@ class GridAlertAudience(str, Enum):
 
 class GridAlert(Event):
     alertType: GridAlertType
+    topic: str | None
     message: str
     audience: GridAlertAudience
     endDate: datetime | None
@@ -946,6 +948,7 @@ class GridAlert(Event):
         sourceType: EventSourceType,
         source: str,
         alertType: GridAlertType,
+        topic: str | None,
         message: str,
         audience: GridAlertAudience,
         endDate: datetime | None,
@@ -957,6 +960,7 @@ class GridAlert(Event):
                 source=source,
                 sourceType=sourceType,
                 alertType=alertType,
+                topic=topic,
                 message=message,
                 audience=audience,
                 endDate=endDate,
@@ -976,6 +980,7 @@ class GridAlert(Event):
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "alertType": self.alertType,
+            "topic": self.topic,
             "message": self.message,
             "audience": self.audience,
             "endDate": self.endDate,
