@@ -6,7 +6,7 @@
     "region": "us-central1",
     "zoneKey": "US-CENT-SWPP",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-east1": {
@@ -16,7 +16,7 @@
     "region": "us-east1",
     "zoneKey": "US-CAR-SCEG",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-west1": {
@@ -26,7 +26,7 @@
     "region": "us-west1",
     "zoneKey": "US-NW-PACW",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-northamerica-northeast2": {
@@ -36,7 +36,7 @@
     "region": "northamerica-northeast2",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-east4": {
@@ -46,7 +46,7 @@
     "region": "us-east4",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west1": {
@@ -56,7 +56,7 @@
     "region": "europe-west1",
     "zoneKey": "BE",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-west2": {
@@ -66,7 +66,7 @@
     "region": "us-west2",
     "zoneKey": "US-SW-SRP",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west4": {
@@ -76,7 +76,7 @@
     "region": "europe-west4",
     "zoneKey": "NL",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-southamerica-west1": {
@@ -86,7 +86,7 @@
     "region": "southamerica-west1",
     "zoneKey": "CL-SEN",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-northeast1": {
@@ -96,7 +96,7 @@
     "region": "asia-northeast1",
     "zoneKey": "JP-TK",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-north1": {
@@ -106,7 +106,7 @@
     "region": "europe-north1",
     "zoneKey": "FI",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-southeast1": {
@@ -116,7 +116,7 @@
     "region": "asia-southeast1",
     "zoneKey": "SG",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-east1": {
@@ -126,7 +126,7 @@
     "region": "asia-east1",
     "zoneKey": "TW",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west3": {
@@ -136,7 +136,7 @@
     "region": "europe-west3",
     "zoneKey": "DE",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "azure-westus3": {
