@@ -1,8 +1,8 @@
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
 import HorizontalDivider from 'components/HorizontalDivider';
-import GenericPanel from 'components/panel/GenericPanel';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import GenericPanel from 'features/panels/InterfacePanel';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';

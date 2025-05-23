@@ -2,8 +2,8 @@ import { X } from 'lucide-react';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import GlassContainer from '../GlassContainer'; // Adjust path as needed
-import LoadingSpinner from '../LoadingSpinner'; // Adjust path as needed
+import GlassContainer from '../../components/GlassContainer'; // Adjust path as needed
+import LoadingSpinner from '../../components/LoadingSpinner'; // Adjust path as needed
 
 interface GenericPanelProps {
   children: React.ReactNode;

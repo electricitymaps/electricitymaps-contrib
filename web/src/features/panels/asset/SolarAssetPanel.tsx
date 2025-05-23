@@ -3,8 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useNavigateWithParameters } from 'utils/helpers';
 
-import GenericPanel from '../../../components/panel/GenericPanel';
 import { selectedSolarAssetAtom } from '../../map/mapAtoms';
+import GenericPanel from '../InterfacePanel';
 
 // Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to MonthName Day, Year
 const formatDate = (dateString: string | undefined | null) => {
