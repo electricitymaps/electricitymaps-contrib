@@ -1,4 +1,5 @@
 import useGetSolarAssets from 'api/getSolarAssets';
+import { MIN_ZOOM_FOR_ASSET_SYMBOL_APPEARING } from 'features/assets/utils';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
 import useResizeObserver from 'use-resize-observer';
@@ -27,7 +28,17 @@ export default function SolarAssetsLayer() {
         source="solar-assets"
         layout={{
           'icon-image': 'solar-asset-icon',
-          'icon-size': ['interpolate', ['linear'], ['zoom'], 4, 0, 6, 0.3, 8, 0.8],
+          'icon-size': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            MIN_ZOOM_FOR_ASSET_SYMBOL_APPEARING,
+            0,
+            6,
+            0.3,
+            8,
+            0.8,
+          ],
           'icon-allow-overlap': true,
           'icon-overlap': 'always',
           'icon-ignore-placement': true,

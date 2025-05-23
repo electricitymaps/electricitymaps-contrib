@@ -1,9 +1,7 @@
 import { useAtomValue } from 'jotai';
 
-import { getStatusColor } from '../assets/utils';
+import { getStatusColor,MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP } from '../assets/utils';
 import { hoveredSolarAssetInfoAtom, mapZoomAtom } from './mapAtoms';
-
-const MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP = 2.4;
 
 export default function SolarAssetNameTooltip() {
   const hoveredAssetInfo = useAtomValue(hoveredSolarAssetInfoAtom);
