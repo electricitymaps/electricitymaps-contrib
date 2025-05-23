@@ -21,7 +21,6 @@ export default function SolarAssetsLayer() {
 
   return (
     <Source id="solar-assets" type="geojson" data={solarAssetsData} promoteId="name">
-      {/* Main solar asset icon layer */}
       <Layer
         id="solar-assets-points"
         type="symbol"
@@ -45,7 +44,12 @@ export default function SolarAssetsLayer() {
             ['boolean', ['feature-state', 'selected'], false],
             '#ffbb00',
             '#ff4400',
-          ] as any,
+          ] as [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            string,
+            string
+          ],
         }}
       />
     </Source>
