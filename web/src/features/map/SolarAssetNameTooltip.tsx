@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 
-import { getStatusColor,MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP } from '../assets/utils';
+import { getStatusColor, MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP } from '../assets/utils';
 import { hoveredSolarAssetInfoAtom, mapZoomAtom } from './mapAtoms';
 
 export default function SolarAssetNameTooltip() {
@@ -17,24 +17,7 @@ export default function SolarAssetNameTooltip() {
   const { properties, x, y } = hoveredAssetInfo;
   const assetName = properties.name || properties.ASSET_NAME || 'Unnamed Asset';
   const capacityMw = Number.parseFloat(String(properties.capacity_mw));
-  const commissionYear = properties.commission_year
-    ? String(Math.floor(Number(properties.commission_year)))
-    : null;
-
-  let status = properties.status ? String(properties.status) : 'Unknown';
-
-  // Infer status if commission year is in the past and status is Unknown
-  if (commissionYear) {
-    const numericCommissionYear = Number.parseInt(commissionYear, 10);
-    const currentYear = new Date().getFullYear();
-    if (
-      !Number.isNaN(numericCommissionYear) &&
-      numericCommissionYear <= currentYear &&
-      status.toLowerCase() === 'unknown'
-    ) {
-      status = 'Operational';
-    }
-  }
+  const status = properties.status ? String(properties.status) : 'Unknown';
 
   return (
     <div
