@@ -5,7 +5,9 @@
     "displayName": "Southlands Campus (us-central1)",
     "region": "us-central1",
     "zoneKey": "US-CENT-SWPP",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-us-east1": {
     "provider": "gcp",
@@ -13,7 +15,9 @@
     "displayName": "Berkeley County (us-east1)",
     "region": "us-east1",
     "zoneKey": "US-CAR-SCEG",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-us-west1": {
     "provider": "gcp",
@@ -21,7 +25,9 @@
     "displayName": "The Dalles (us-west1)",
     "region": "us-west1",
     "zoneKey": "US-NW-PACW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-northamerica-northeast2": {
     "provider": "gcp",
@@ -29,7 +35,9 @@
     "displayName": "Fort Wayne Campus (northamerica-northeast2)",
     "region": "northamerica-northeast2",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-us-east4": {
     "provider": "gcp",
@@ -37,7 +45,9 @@
     "displayName": "Lancaster Data Center (us-east4)",
     "region": "us-east4",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-europe-west1": {
     "provider": "gcp",
@@ -45,7 +55,9 @@
     "displayName": "St Ghislain (europe-west1)",
     "region": "europe-west1",
     "zoneKey": "BE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-us-west2": {
     "provider": "gcp",
@@ -53,7 +65,9 @@
     "displayName": "Mesa Campus (us-west2)",
     "region": "us-west2",
     "zoneKey": "US-SW-SRP",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-europe-west4": {
     "provider": "gcp",
@@ -61,7 +75,9 @@
     "displayName": "Middenmeer (europe-west4)",
     "region": "europe-west4",
     "zoneKey": "NL",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-southamerica-west1": {
     "provider": "gcp",
@@ -69,7 +85,9 @@
     "displayName": "Quilicura (southamerica-west1)",
     "region": "southamerica-west1",
     "zoneKey": "CL-SEN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-asia-northeast1": {
     "provider": "gcp",
@@ -77,7 +95,9 @@
     "displayName": "Inzai (asia-northeast1)",
     "region": "asia-northeast1",
     "zoneKey": "JP-TK",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-europe-north1": {
     "provider": "gcp",
@@ -85,7 +105,9 @@
     "displayName": "Hamina Finland Data Center (europe-north1)",
     "region": "europe-north1",
     "zoneKey": "FI",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-asia-southeast1": {
     "provider": "gcp",
@@ -93,7 +115,9 @@
     "displayName": "Jurong West Campus (asia-southeast1)",
     "region": "asia-southeast1",
     "zoneKey": "SG",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-asia-east1": {
     "provider": "gcp",
@@ -101,7 +125,9 @@
     "displayName": "Changhua Taiwan Data Center (asia-east1)",
     "region": "asia-east1",
     "zoneKey": "TW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "gcp-europe-west3": {
     "provider": "gcp",
@@ -109,7 +135,9 @@
     "displayName": "Hanau Data Center (europe-west3)",
     "region": "europe-west3",
     "zoneKey": "DE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-westus3": {
     "provider": "azure",
@@ -117,7 +145,9 @@
     "displayName": "West US 3",
     "region": "westus3",
     "zoneKey": "US-SW-AZPS",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-westus2": {
     "provider": "azure",
@@ -125,7 +155,9 @@
     "displayName": "West US 2",
     "region": "westus2",
     "zoneKey": "US-NW-BPAT",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-westus": {
     "provider": "azure",
@@ -133,7 +165,9 @@
     "displayName": "West US",
     "region": "westus",
     "zoneKey": "US-CAL-CISO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-westcentralus": {
     "provider": "azure",
@@ -141,7 +175,9 @@
     "displayName": "West Central US",
     "region": "westcentralus",
     "zoneKey": "US-NW-PACE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-southcentralus": {
     "provider": "azure",
@@ -149,7 +185,9 @@
     "displayName": "South Central US",
     "region": "southcentralus",
     "zoneKey": "US-TEX-ERCO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-northcentralus": {
     "provider": "azure",
@@ -157,7 +195,9 @@
     "displayName": "North Central US",
     "region": "northcentralus",
     "zoneKey": "US-MIDW-MISO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-eastus2": {
     "provider": "azure",
@@ -165,7 +205,9 @@
     "displayName": "East US 2",
     "region": "eastus2",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-eastus": {
     "provider": "azure",
@@ -173,7 +215,9 @@
     "displayName": "East US",
     "region": "eastus",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-centralus": {
     "provider": "azure",
@@ -181,7 +225,9 @@
     "displayName": "Central US",
     "region": "centralus",
     "zoneKey": "US-MIDW-MISO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-ukwest": {
     "provider": "azure",
@@ -189,7 +235,9 @@
     "displayName": "UK West",
     "region": "ukwest",
     "zoneKey": "GB",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-uksouth": {
     "provider": "azure",
@@ -197,7 +245,9 @@
     "displayName": "UK South",
     "region": "uksouth",
     "zoneKey": "GB",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-uaenorth": {
     "provider": "azure",
@@ -205,7 +255,9 @@
     "displayName": "UAE North",
     "region": "uaenorth",
     "zoneKey": "AE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-switzerlandnorth": {
     "provider": "azure",
@@ -213,7 +265,9 @@
     "displayName": "Switzerland North",
     "region": "switzerlandnorth",
     "zoneKey": "CH",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-swedencentral": {
     "provider": "azure",
@@ -221,7 +275,9 @@
     "displayName": "Sweden Central",
     "region": "swedencentral",
     "zoneKey": "SE-SE3",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-spaincentral": {
     "provider": "azure",
@@ -229,7 +285,9 @@
     "displayName": "Spain Central",
     "region": "spaincentral",
     "zoneKey": "ES",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-qatarcentral": {
     "provider": "azure",
@@ -237,7 +295,9 @@
     "displayName": "Qatar Central",
     "region": "qatarcentral",
     "zoneKey": "QA",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-polandcentral": {
     "provider": "azure",
@@ -245,7 +305,9 @@
     "displayName": "Poland Central",
     "region": "polandcentral",
     "zoneKey": "PL",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-norwayeast": {
     "provider": "azure",
@@ -253,7 +315,9 @@
     "displayName": "Norway East",
     "region": "norwayeast",
     "zoneKey": "NO-NO1",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-newzealandnorth": {
     "provider": "azure",
@@ -261,7 +325,9 @@
     "displayName": "New Zealand North",
     "region": "newzealandnorth",
     "zoneKey": "NZ",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-mexicocentral": {
     "provider": "azure",
@@ -269,7 +335,9 @@
     "displayName": "Mexico Central",
     "region": "mexicocentral",
     "zoneKey": "MX",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-koreacentral": {
     "provider": "azure",
@@ -277,7 +345,9 @@
     "displayName": "Korea Central",
     "region": "koreacentral",
     "zoneKey": "KR",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-japanwest": {
     "provider": "azure",
@@ -285,7 +355,9 @@
     "displayName": "Japan West",
     "region": "japanwest",
     "zoneKey": "JP-KN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-japaneast": {
     "provider": "azure",
@@ -293,7 +365,9 @@
     "displayName": "Japan East",
     "region": "japaneast",
     "zoneKey": "JP-TH",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-italynorth": {
     "provider": "azure",
@@ -301,7 +375,9 @@
     "displayName": "Italy North",
     "region": "italynorth",
     "zoneKey": "IT-NO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-israelcentral": {
     "provider": "azure",
@@ -309,7 +385,9 @@
     "displayName": "Israel Central",
     "region": "israelcentral",
     "zoneKey": "JO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-indonesiacentral": {
     "provider": "azure",
@@ -317,7 +395,9 @@
     "displayName": "Indonesia Central",
     "region": "indonesiacentral",
     "zoneKey": "ID",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-southindia": {
     "provider": "azure",
@@ -325,7 +405,9 @@
     "displayName": "South India",
     "region": "southindia",
     "zoneKey": "IN-SO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-centralindia": {
     "provider": "azure",
@@ -333,7 +415,9 @@
     "displayName": "Central India",
     "region": "centralindia",
     "zoneKey": "IN-WE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-germanywestcentral": {
     "provider": "azure",
@@ -341,7 +425,9 @@
     "displayName": "Germany West Central",
     "region": "germanywestcentral",
     "zoneKey": "DE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-francecentral": {
     "provider": "azure",
@@ -349,7 +435,9 @@
     "displayName": "France Central",
     "region": "francecentral",
     "zoneKey": "FR",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-westeurope": {
     "provider": "azure",
@@ -357,7 +445,9 @@
     "displayName": "West Europe",
     "region": "westeurope",
     "zoneKey": "DE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-northeurope": {
     "provider": "azure",
@@ -365,7 +455,9 @@
     "displayName": "North Europe",
     "region": "northeurope",
     "zoneKey": "IE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-chinanorth3": {
     "provider": "azure",
@@ -373,7 +465,9 @@
     "displayName": "China North 3",
     "region": "chinanorth3",
     "zoneKey": "CN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-chinanorth2": {
     "provider": "azure",
@@ -381,7 +475,9 @@
     "displayName": "China North 2",
     "region": "chinanorth2",
     "zoneKey": "CN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-chinanorth": {
     "provider": "azure",
@@ -389,7 +485,9 @@
     "displayName": "China North",
     "region": "chinanorth",
     "zoneKey": "CN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-chinaeast2": {
     "provider": "azure",
@@ -397,7 +495,9 @@
     "displayName": "China East 2",
     "region": "chinaeast2",
     "zoneKey": "CN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-chinaeast": {
     "provider": "azure",
@@ -405,7 +505,9 @@
     "displayName": "China East",
     "region": "chinaeast",
     "zoneKey": "CN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-canadaeast": {
     "provider": "azure",
@@ -413,7 +515,9 @@
     "displayName": "Canada East",
     "region": "canadaeast",
     "zoneKey": "CA-QC",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-canadacentral": {
     "provider": "azure",
@@ -421,7 +525,9 @@
     "displayName": "Canada Central",
     "region": "canadacentral",
     "zoneKey": "CA-ON",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-brazilsouth": {
     "provider": "azure",
@@ -429,7 +535,9 @@
     "displayName": "Brazil South",
     "region": "brazilsouth",
     "zoneKey": "BR-CS",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-australiacentral": {
     "provider": "azure",
@@ -437,7 +545,9 @@
     "displayName": "Australia Central",
     "region": "australiacentral",
     "zoneKey": "AU-NSW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-australiasoutheast": {
     "provider": "azure",
@@ -445,7 +555,9 @@
     "displayName": "Australia Southeast",
     "region": "australiasoutheast",
     "zoneKey": "AU-VIC",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-australiaeast": {
     "provider": "azure",
@@ -453,7 +565,9 @@
     "displayName": "Australia East",
     "region": "australiaeast",
     "zoneKey": "AU-NSW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-southeastasia": {
     "provider": "azure",
@@ -461,7 +575,9 @@
     "displayName": "Southeast Asia",
     "region": "southeastasia",
     "zoneKey": "DK-DK2",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-eastasia": {
     "provider": "azure",
@@ -469,7 +585,9 @@
     "displayName": "East Asia",
     "region": "eastasia",
     "zoneKey": "HK",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "azure-southafricanorth": {
     "provider": "azure",
@@ -477,7 +595,9 @@
     "displayName": "South Africa North",
     "region": "southafricanorth",
     "zoneKey": "ZA",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-us-east-1": {
     "provider": "aws",
@@ -485,7 +605,9 @@
     "displayName": "N. Virginia (us-east-1)",
     "region": "us-east-1",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-us-east-2": {
     "provider": "aws",
@@ -493,7 +615,9 @@
     "displayName": "Ohio (us-east-2)",
     "region": "us-east-2",
     "zoneKey": "US-MIDA-PJM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-us-west-1": {
     "provider": "aws",
@@ -501,7 +625,9 @@
     "displayName": "N. California (us-west-1)",
     "region": "us-west-1",
     "zoneKey": "US-CAL-CISO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-us-west-2": {
     "provider": "aws",
@@ -509,7 +635,9 @@
     "displayName": "Oregon (us-west-2)",
     "region": "us-west-2",
     "zoneKey": "US-NW-PACW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-af-south-1": {
     "provider": "aws",
@@ -517,7 +645,9 @@
     "displayName": "Cape Town (af-south-1)",
     "region": "af-south-1",
     "zoneKey": "ZA",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-east-1": {
     "provider": "aws",
@@ -525,7 +655,9 @@
     "displayName": "Hong Kong (ap-east-1)",
     "region": "ap-east-1",
     "zoneKey": "HK",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-south-2": {
     "provider": "aws",
@@ -533,7 +665,9 @@
     "displayName": "Hyderabad (ap-south-2)",
     "region": "ap-south-2",
     "zoneKey": "IN-SO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-southeast-3": {
     "provider": "aws",
@@ -541,7 +675,9 @@
     "displayName": "Jakarta (ap-southeast-3)",
     "region": "ap-southeast-3",
     "zoneKey": "ID",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-southeast-5": {
     "provider": "aws",
@@ -549,7 +685,9 @@
     "displayName": "Malaysia (ap-southeast-5)",
     "region": "ap-southeast-5",
     "zoneKey": "MY-WM",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-southeast-4": {
     "provider": "aws",
@@ -557,7 +695,9 @@
     "displayName": "Melbourne (ap-southeast-4)",
     "region": "ap-southeast-4",
     "zoneKey": "AU-VIC",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-south-1": {
     "provider": "aws",
@@ -565,7 +705,9 @@
     "displayName": "Mumbai (ap-south-1)",
     "region": "ap-south-1",
     "zoneKey": "IN-WE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-northeast-3": {
     "provider": "aws",
@@ -573,7 +715,9 @@
     "displayName": "Osaka (ap-northeast-3)",
     "region": "ap-northeast-3",
     "zoneKey": "JP-KN",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-northeast-2": {
     "provider": "aws",
@@ -581,7 +725,9 @@
     "displayName": "Seoul (ap-northeast-2)",
     "region": "ap-northeast-2",
     "zoneKey": "KR",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-southeast-2": {
     "provider": "aws",
@@ -589,7 +735,9 @@
     "displayName": "Sydney (ap-southeast-2)",
     "region": "ap-southeast-2",
     "zoneKey": "AU-NSW",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-southeast-7": {
     "provider": "aws",
@@ -597,7 +745,9 @@
     "displayName": "Thailand (ap-southeast-7)",
     "region": "ap-southeast-7",
     "zoneKey": "TH",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ap-northeast-1": {
     "provider": "aws",
@@ -605,7 +755,9 @@
     "displayName": "Tokyo (ap-northeast-1)",
     "region": "ap-northeast-1",
     "zoneKey": "JP-TK",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ca-central-1": {
     "provider": "aws",
@@ -613,7 +765,9 @@
     "displayName": "Central (ca-central-1)",
     "region": "ca-central-1",
     "zoneKey": "CA-QC",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-ca-west-1": {
     "provider": "aws",
@@ -621,7 +775,9 @@
     "displayName": "Calgary (ca-west-1)",
     "region": "ca-west-1",
     "zoneKey": "CA-AB",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-central-1": {
     "provider": "aws",
@@ -629,7 +785,9 @@
     "displayName": "Frankfurt (eu-central-1)",
     "region": "eu-central-1",
     "zoneKey": "DE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-west-1": {
     "provider": "aws",
@@ -637,7 +795,9 @@
     "displayName": "Ireland (eu-west-1)",
     "region": "eu-west-1",
     "zoneKey": "IE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-west-2": {
     "provider": "aws",
@@ -645,7 +805,9 @@
     "displayName": "London (eu-west-2)",
     "region": "eu-west-2",
     "zoneKey": "GB",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-south-1": {
     "provider": "aws",
@@ -653,7 +815,9 @@
     "displayName": "Milan (eu-south-1)",
     "region": "eu-south-1",
     "zoneKey": "IT-NO",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-west-3": {
     "provider": "aws",
@@ -661,7 +825,9 @@
     "displayName": "Paris (eu-west-3)",
     "region": "eu-west-3",
     "zoneKey": "FR",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-south-2": {
     "provider": "aws",
@@ -669,7 +835,9 @@
     "displayName": "Spain (eu-south-2)",
     "region": "eu-south-2",
     "zoneKey": "ES",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-north-1": {
     "provider": "aws",
@@ -677,7 +845,9 @@
     "displayName": "Stockholm (eu-north-1)",
     "region": "eu-north-1",
     "zoneKey": "SE-SE3",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-eu-central-2": {
     "provider": "aws",
@@ -685,7 +855,9 @@
     "displayName": "Zurich (eu-central-2)",
     "region": "eu-central-2",
     "zoneKey": "CH",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-il-central-1": {
     "provider": "aws",
@@ -693,7 +865,9 @@
     "displayName": "Tel Aviv (il-central-1)",
     "region": "il-central-1",
     "zoneKey": "IL",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-mx-central-1": {
     "provider": "aws",
@@ -701,7 +875,9 @@
     "displayName": "Central (mx-central-1)",
     "region": "mx-central-1",
     "zoneKey": "MX",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-me-central-1": {
     "provider": "aws",
@@ -709,7 +885,9 @@
     "displayName": "UAE (me-central-1)",
     "region": "me-central-1",
     "zoneKey": "AE",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   },
   "aws-sa-east-1": {
     "provider": "aws",
@@ -717,6 +895,8 @@
     "displayName": "S\u00e3o Paulo (sa-east-1)",
     "region": "sa-east-1",
     "zoneKey": "BR-CS",
-    "status": "operational"
+    "status": "operational",
+    "source": "",
+    "operationalSince": null
   }
 }

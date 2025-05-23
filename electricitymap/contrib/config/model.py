@@ -347,8 +347,10 @@ CO2EQ_CONFIG_MODEL = CO2eqConfigModel(
 class DataCenter(StrictBaseModel):
     displayName: str
     lonlat: tuple[float, float] | None
+    operationalSince: date | None
     provider: str
     region: str
+    source: str
     status: str
     zoneKey: ZoneKey
 
