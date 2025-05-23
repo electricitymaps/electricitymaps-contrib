@@ -60,6 +60,7 @@ export default function SolarAssetDataBox() {
     return null;
   }
 
+  console.log('random');
   const { properties } = selectedAsset;
 
   // Debug all properties to find potential URL fields
