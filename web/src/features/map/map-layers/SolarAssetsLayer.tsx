@@ -48,34 +48,6 @@ export default function SolarAssetsLayer() {
           ] as any,
         }}
       />
-
-      {/* Additional highlight layer for selected assets */}
-      <Layer
-        id="solar-assets-selected-highlight"
-        type="circle"
-        source="solar-assets"
-        filter={['boolean', ['feature-state', 'selected'], false]}
-        paint={{
-          'circle-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            4,
-            10,
-            6,
-            15,
-            8,
-            20,
-            10,
-            25,
-          ],
-          'circle-color': '#ffbb00',
-          'circle-opacity': 0.3,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#ffbb00',
-          'circle-stroke-opacity': 0.8,
-        }}
-      />
     </Source>
   );
 }
