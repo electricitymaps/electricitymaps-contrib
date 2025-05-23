@@ -1,6 +1,9 @@
 import GlassContainer from 'components/GlassContainer'; // Import GlassContainer
 import { useAtomValue, useSetAtom } from 'jotai';
 import { X } from 'lucide-react'; // Using Lucide X icon
+import { useLocation } from 'react-router-dom';
+import { TimeRange } from 'utils/constants';
+import { useNavigateWithParameters } from 'utils/helpers';
 
 import { selectedSolarAssetAtom } from './mapAtoms';
 
@@ -46,6 +49,8 @@ const getStatusColor = (status: string | undefined) => {
 export default function SolarAssetDataBox() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
   const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
+  const navigate = useNavigateWithParameters();
+  const location = useLocation();
 
   if (!selectedAsset) {
     return null;
@@ -53,13 +58,101 @@ export default function SolarAssetDataBox() {
 
   const { properties } = selectedAsset;
 
+  // Debug all properties to find potential URL fields
+  console.log('[SolarAssetDataBox] All properties:', properties);
+  const possibleUrlFields = Object.entries(properties).filter(
+    ([key, value]) =>
+      typeof value === 'string' &&
+      (value.startsWith('http://') ||
+        value.startsWith('https://') ||
+        value.startsWith('www.'))
+  );
+  console.log('[SolarAssetDataBox] Possible URL fields:', possibleUrlFields);
+
   const handleClose = () => {
     setSelectedAsset(null);
+
+    // Check if we're currently on a solar asset URL (identifiable by /zone/solar-asset-)
+    const isSolarAssetPath = location.pathname.includes('/zone/solar-asset-');
+
+    if (isSolarAssetPath) {
+      // Extract the current time range and resolution from the path
+      const pathParts = location.pathname.split('/');
+      let timeRange = TimeRange.H72; // Default to 72h
+      let resolution = 'hourly';
+
+      // Correctly find the index of the solar-asset-ID part
+      const solarAssetIdPathIndex = pathParts.findIndex((part) =>
+        part.startsWith('solar-asset-')
+      );
+
+      if (solarAssetIdPathIndex !== -1 && pathParts.length > solarAssetIdPathIndex + 2) {
+        // Time range is the part after solar-asset-ID, resolution is after time range
+        const pathTimeRange = pathParts[solarAssetIdPathIndex + 1];
+        const pathResolution = pathParts[solarAssetIdPathIndex + 2];
+
+        if (
+          pathTimeRange &&
+          Object.values(TimeRange).includes(pathTimeRange as TimeRange)
+        ) {
+          timeRange = pathTimeRange as TimeRange;
+        }
+        if (pathResolution) {
+          resolution = pathResolution;
+        }
+      }
+
+      // Use the navigate function to change the URL to the map view
+      // This ensures React Router is aware of the change for consistent state updates.
+      navigate({
+        to: '/map',
+        timeRange,
+        resolution,
+        keepHashParameters: true, // This preserves existing query params like ?remote=true
+      });
+    }
   };
 
   const name = properties.name || properties.ASSET_NAME || 'Unnamed Asset';
   const capacityMw = Number.parseFloat(String(properties.capacity_mw));
   const source = properties.source || 'N/A';
+
+  // Try to find a URL from various possible fields
+  let sourceUrl = properties.source_url || properties.sourceUrl || properties.url || null;
+
+  // If source itself is a URL, use it
+  if (
+    typeof source === 'string' &&
+    (source.startsWith('http://') || source.startsWith('https://'))
+  ) {
+    sourceUrl = source;
+  }
+
+  // Handle URLs that start with www. but don't have a protocol
+  if (typeof sourceUrl === 'string' && sourceUrl.startsWith('www.')) {
+    sourceUrl = 'https://' + sourceUrl;
+  }
+
+  // For debugging - explicitly check if the URL is valid
+  let isValidUrl = false;
+  try {
+    if (sourceUrl) {
+      new URL(sourceUrl); // This will throw if the URL is invalid
+      isValidUrl = true;
+    }
+  } catch (error) {
+    console.error('[SolarAssetDataBox] Invalid URL:', sourceUrl, error);
+  }
+
+  console.log('[SolarAssetDataBox] Final sourceUrl:', sourceUrl, 'isValid:', isValidUrl);
+
+  // Hardcoded fallback URL for now - remove this when real URLs are working
+  if (!isValidUrl) {
+    sourceUrl =
+      'https://www.globalenergymonitor.org/projects/global-solar-power-tracker/';
+    isValidUrl = true;
+  }
+
   const commissionYear = properties.commission_year
     ? String(Math.floor(Number(properties.commission_year)))
     : null;
@@ -140,24 +233,33 @@ export default function SolarAssetDataBox() {
           </div>
         )}
         <div className="flex justify-between">
-          <span>Source:</span>
-          {source.startsWith('http://') || source.startsWith('https://') ? (
-            <a
-              href={source}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-blue-600 hover:underline dark:text-blue-400"
-            >
-              {source}
-            </a>
-          ) : (
-            <span className="font-medium text-gray-800 dark:text-gray-200">{source}</span>
-          )}
-        </div>
-        <div className="flex justify-between">
           <span>Capacity Data Updated:</span>
           <span className="font-medium text-gray-800 dark:text-gray-200">
             {capacityUpdateDate}
+          </span>
+        </div>
+
+        {/* Divider */}
+        <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
+
+        <div className="flex flex-row">
+          <span className="mr-1 font-medium">Source:</span>
+          <span className="font-medium text-gray-800 dark:text-gray-200">
+            Global Solar Power Tracker, Global Energy Monitor and TransitionZero, February
+            2025 release.
+            {isValidUrl && sourceUrl ? (
+              <>
+                <br />
+                <a
+                  href={sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  Global Energy Monitor Wiki page.
+                </a>
+              </>
+            ) : null}
           </span>
         </div>
       </div>

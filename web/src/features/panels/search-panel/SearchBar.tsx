@@ -81,12 +81,24 @@ function SearchBar({
         case 'Enter': {
           event.preventDefault();
           if (selectedIndex >= 0 && totalResults > 0) {
-            // Find the selected zone link and navigate to it
+            // Find the selected link and navigate to it
+            // Look for either zone-list-link or solar-asset-list-link
             const selectedLink = document.querySelector(
-              `[data-index="${selectedIndex}"] a[data-testid="zone-list-link"]`
+              `[data-index="${selectedIndex}"] a[data-testid="zone-list-link"], [data-index="${selectedIndex}"] a[data-testid="solar-asset-list-link"]`
             ) as HTMLAnchorElement;
+
             if (selectedLink) {
-              navigate(selectedLink.pathname);
+              // Check if it's a solar asset link
+              const isSolarAssetLink =
+                selectedLink.dataset.testid === 'solar-asset-list-link';
+
+              if (isSolarAssetLink) {
+                // For solar assets, navigate directly in the current tab
+                window.location.href = selectedLink.href;
+              } else {
+                // For zones, use the react-router navigation
+                navigate(selectedLink.pathname);
+              }
             }
           }
           break;

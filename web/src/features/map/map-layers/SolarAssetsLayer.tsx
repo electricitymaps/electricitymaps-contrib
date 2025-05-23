@@ -1,61 +1,39 @@
-import { useTheme } from 'hooks/theme';
-import { useAtomValue, useSetAtom } from 'jotai';
-import { Layer, Source, useMap } from 'react-map-gl/maplibre';
-import useResizeObserver from 'use-resize-observer';
-import {
-  isRenewablesLayerEnabledAtom,
-  renewablesLayerLoadingAtom,
-} from 'utils/state/atoms';
-
-import { ZONE_SOURCE } from '../Map';
-
-const SOLAR_ASSETS_URL =
-  'https://storage.googleapis.com/testing-gzipped-geojson/solar_assets.min.geojson.gz';
+import useGetSolarAssets from 'api/getSolarAssets';
+import { useAtomValue } from 'jotai';
+import { Layer, Source } from 'react-map-gl/maplibre';
+import { isSolarAssetsLayerEnabledAtom } from 'utils/state/atoms';
 
 export default function SolarAssetsLayer() {
-  const setIsLoadingRenewablesLayer = useSetAtom(renewablesLayerLoadingAtom);
+  const isSolarAssetsLayerEnabled = useAtomValue(isSolarAssetsLayerEnabledAtom);
+  const { data: solarAssetsData } = useGetSolarAssets();
 
-  const isRenewablesLayerEnabled = useAtomValue(isRenewablesLayerEnabledAtom);
+  const dataForSource = isSolarAssetsLayerEnabled
+    ? solarAssetsData
+    : { type: 'FeatureCollection', features: [] };
 
-  const { current: mapReference } = useMap();
-  const { ref } = useResizeObserver<HTMLDivElement>();
-  const theme = useTheme();
-
-  if (!mapReference || !isRenewablesLayerEnabled) {
-    return <div ref={ref} className="h-full w-full" />;
+  // Log the first feature to help debug ID issues
+  if (
+    solarAssetsData &&
+    typeof solarAssetsData === 'object' &&
+    'features' in solarAssetsData &&
+    Array.isArray(solarAssetsData.features) &&
+    solarAssetsData.features.length > 0
+  ) {
+    const firstFeature = solarAssetsData.features[0];
+    console.log('[SolarAssetsLayer] First feature:', {
+      id: firstFeature.id,
+      properties: firstFeature.properties,
+      name: firstFeature.properties?.name,
+    });
   }
 
-  const stateLabelPaint = {
-    'text-color': 'white',
-    'text-halo-color': '#111827',
-    'text-halo-width': 0.5,
-    'text-halo-blur': 0.25,
-    'text-opacity': 0.9,
-  };
-  setIsLoadingRenewablesLayer(false);
+  console.log('[SolarAssetsLayer] isSolarAssetsLayerEnabled:', isSolarAssetsLayerEnabled);
+  console.log('[SolarAssetsLayer] solarAssetsData:', solarAssetsData);
+  console.log('[SolarAssetsLayer] dataForSource:', dataForSource);
+
   return (
-    <Source id="solar-assets" type="geojson" data={SOLAR_ASSETS_URL} promoteId="name">
-      <Layer
-        id="solar-assets-box"
-        type="symbol"
-        source={ZONE_SOURCE}
-        source-layer="zones-clickable-layer" // Specify the source layer
-        layout={{
-          'icon-image': 'solar-asset-box',
-          'icon-size': 1.2,
-          'icon-allow-overlap': true,
-          'icon-overlap': 'always',
-          'icon-ignore-placement': true,
-        }}
-        paint={{
-          'icon-color': [
-            'coalesce',
-            ['feature-state', 'color'],
-            ['get', 'color'],
-            theme.clickableFill,
-          ],
-        }}
-      />
+    <Source id="solar-assets" type="geojson" data={dataForSource} promoteId="name">
+      {/* Main solar asset icon layer */}
       <Layer
         id="solar-assets-points"
         type="symbol"
@@ -68,7 +46,6 @@ export default function SolarAssetsLayer() {
           'icon-ignore-placement': true,
         }}
         paint={{
-          ...stateLabelPaint,
           'icon-opacity': [
             'case',
             ['boolean', ['feature-state', 'hover'], false],
@@ -78,9 +55,37 @@ export default function SolarAssetsLayer() {
           'icon-color': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
-            '#007bff',
-            stateLabelPaint['text-color'],
+            '#ffbb00',
+            '#ff4400',
+          ] as any,
+        }}
+      />
+
+      {/* Additional highlight layer for selected assets */}
+      <Layer
+        id="solar-assets-selected-highlight"
+        type="circle"
+        source="solar-assets"
+        filter={['boolean', ['feature-state', 'selected'], false]}
+        paint={{
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            4,
+            10,
+            6,
+            15,
+            8,
+            20,
+            10,
+            25,
           ],
+          'circle-color': '#ffbb00',
+          'circle-opacity': 0.3,
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffbb00',
+          'circle-stroke-opacity': 0.8,
         }}
       />
     </Source>
