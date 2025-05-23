@@ -101,13 +101,15 @@ function GenericPanel({
           contentClassName // This should now define the padding e.g. 'p-3 md:p-4'
         )}
       >
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : error ? (
-          <div className="p-3 text-center text-red-500 md:p-4">{error}</div>
-        ) : (
-          children
-        )}
+        {(() => {
+          if (isLoading) {
+            return <LoadingSpinner />;
+          }
+          if (error) {
+            return <div className="p-3 text-center text-red-500 md:p-4">{error}</div>;
+          }
+          return children;
+        })()}
       </div>
     </GlassContainer>
   );
