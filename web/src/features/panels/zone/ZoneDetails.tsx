@@ -10,7 +10,7 @@ import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation,useParams } from 'react-router-dom'; // Added useNavigate
+import { Navigate, useLocation, useParams } from 'react-router-dom'; // Added useNavigate
 // Import for title
 // import { twMerge } from 'tailwind-merge'; // GenericPanel handles twMerge for its own classes
 import { RouteParameters } from 'types';
