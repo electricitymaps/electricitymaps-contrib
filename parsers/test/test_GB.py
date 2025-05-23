@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -34,5 +34,5 @@ def test_fetch_price_historical(adapter, session, snapshot):
         .read_text(),
     )
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=UTC)
     assert snapshot == fetch_price(target_datetime=historical_datetime, session=session)

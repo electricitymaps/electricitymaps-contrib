@@ -5,7 +5,7 @@
 
 import io
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -52,7 +52,7 @@ def get_json_data(
 
     epoch_time = str(int(time.time()))
 
-    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+    target_datetime = target_datetime or datetime.now(tz=UTC)
     target_ne = target_datetime.astimezone(tz=ZoneInfo("America/New_York"))
     target_ne_day = target_ne.strftime("%m/%d/%Y")
 
@@ -244,9 +244,9 @@ def fetch_consumption_forecast(
     session = session or Session()
 
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     target_datetime = target_datetime.astimezone(tz=ZoneInfo("America/New_York"))
     postdata = {
@@ -285,9 +285,9 @@ def fetch_wind_solar_forecasts(
 
     # Datetime
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     target_datetime = target_datetime.astimezone(tz=ZoneInfo("America/New_York"))
     if (

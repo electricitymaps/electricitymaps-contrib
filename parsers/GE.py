@@ -1,7 +1,7 @@
 """Fetch the status of the Georgian electricity grid."""
 
 import urllib.parse
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -40,13 +40,13 @@ def fetch_production(
     session = session or Session()
 
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
 
     # Get the production mix for every hour on the (UTC) day of interest.
-    day = datetime.combine(target_datetime, time(), tzinfo=timezone.utc)
+    day = datetime.combine(target_datetime, time(), tzinfo=UTC)
     timestamp_from, timestamp_to = (
         day,
         day + timedelta(days=1) - timedelta(seconds=1),
@@ -105,7 +105,7 @@ def fetch_production(
 
             production_breakdown_list.append(
                 zoneKey=zone_key,
-                datetime=dt.astimezone(timezone.utc),
+                datetime=dt.astimezone(UTC),
                 source=SOURCE,
                 production=production_mix,
             )
@@ -135,7 +135,7 @@ def fetch_exchange(
             zone_key1, zone_key2, session, target_datetime, logger
         )
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     # The API uses the convention of positive net flow into GE.
     # TODO: remove `verify=False` ASAP.
     response = session.get(f"{URL_STRING}/map", verify=False)
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     print(fetch_production())
 
     print("fetch_production(target_datetime=datetime.datetime(2020, 1, 1)) ->")
-    print(fetch_production(target_datetime=datetime(2020, 1, 1, tzinfo=timezone.utc)))
+    print(fetch_production(target_datetime=datetime(2020, 1, 1, tzinfo=UTC)))
 
     for neighbour in ["AM", "AZ", "RU-1", "TR"]:
         print(f"fetch_exchange('GE', {neighbour}) ->")

@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from importlib import resources
 
 import pytest
@@ -41,7 +41,7 @@ def test_fetch_production_historical(adapter, session, snapshot, zone, utc_offse
     """
 
     month = 2 if utc_offset == "SDT" else 7
-    target_datetime = datetime(2023, month, 16, 12, tzinfo=timezone.utc)
+    target_datetime = datetime(2023, month, 16, 12, tzinfo=UTC)
 
     adapter.register_uri(
         GET,

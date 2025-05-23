@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from functools import reduce
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -268,7 +268,7 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
-    today = target_datetime if target_datetime else datetime.now(timezone.utc)
+    today = target_datetime if target_datetime else datetime.now(UTC)
 
     date = today.date().isoformat()
     r = session or Session()

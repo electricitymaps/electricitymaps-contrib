@@ -3,7 +3,7 @@ This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 from warnings import warn
 
@@ -38,8 +38,8 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
 
 
 def validate_reasonable_time(item, k):
-    data_dt = item["datetime"].astimezone(timezone.utc)
-    now = datetime.now(timezone.utc)
+    data_dt = item["datetime"].astimezone(UTC)
+    now = datetime.now(UTC)
 
     if data_dt.year < 2000:
         raise ValidationError(

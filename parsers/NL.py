@@ -1,5 +1,5 @@
 from copy import copy
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 
 import pandas as pd
@@ -11,7 +11,7 @@ from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
-UTC = timezone.utc
+UTC = UTC
 
 
 @refetch_frequency(timedelta(days=1))

@@ -1,7 +1,7 @@
 """Parser that uses the RTE-FRANCE API"""
 
 import xml.etree.ElementTree as ET
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -31,9 +31,9 @@ def fetch_price(
     return prices from day-ahead market data.
     """
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     target_datetime = (
-        now if target_datetime is None else target_datetime.astimezone(timezone.utc)
+        now if target_datetime is None else target_datetime.astimezone(UTC)
     )
     is_today = target_datetime.date() == now.date()
 
@@ -68,7 +68,7 @@ def fetch_price(
                 "Exception when parsing price API response: missing 'date' for daily market data.",
                 zone_key,
             )
-        day = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        day = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=UTC)
 
         for daily_zone_data in daily_market_data:
             zone_code = daily_zone_data.get("perimetre")
@@ -116,6 +116,6 @@ if __name__ == "__main__":
         print(f"fetch_price({zone_key}) ->")
         print(fetch_price(ZoneKey(zone_key)))
 
-    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
+    historical_datetime = datetime(2022, 7, 16, 12, tzinfo=UTC)
     print(f"fetch_price(target_datetime={historical_datetime.isoformat()}) ->")
     print(fetch_price(target_datetime=historical_datetime))

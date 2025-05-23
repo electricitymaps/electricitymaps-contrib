@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from importlib import resources
 
 import numpy as np
@@ -40,7 +40,7 @@ def test_sum_vector():
 
 
 def test_filter_production_objs():
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     objs = [
         {
             "datetime": now - timedelta(hours=1),
