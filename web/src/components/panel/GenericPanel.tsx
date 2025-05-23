@@ -103,11 +103,11 @@ function GenericPanel({
       >
         {isLoading ? (
           <LoadingSpinner />
-        ) : (error ? (
+        ) : error ? (
           <div className="p-3 text-center text-red-500 md:p-4">{error}</div>
         ) : (
           children
-        ))}
+        )}
       </div>
     </GlassContainer>
   );
