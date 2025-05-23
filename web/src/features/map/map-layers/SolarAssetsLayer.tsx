@@ -66,7 +66,6 @@ export default function SolarAssetsLayer() {
         id="solar-assets-selected-highlight"
         type="circle"
         source="solar-assets"
-        filter={['boolean', ['feature-state', 'selected'], false]}
         paint={{
           'circle-radius': [
             'interpolate',
@@ -82,10 +81,20 @@ export default function SolarAssetsLayer() {
             25,
           ],
           'circle-color': '#ffbb00',
-          'circle-opacity': 0.3,
+          'circle-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0.3,
+            0,
+          ],
           'circle-stroke-width': 2,
           'circle-stroke-color': '#ffbb00',
-          'circle-stroke-opacity': 0.8,
+          'circle-stroke-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0.8,
+            0,
+          ],
         }}
       />
     </Source>
