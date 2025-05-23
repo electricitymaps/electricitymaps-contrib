@@ -1,38 +1,26 @@
 import useGetSolarAssets from 'api/getSolarAssets';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Layer, Source } from 'react-map-gl/maplibre';
-import { isSolarAssetsLayerEnabledAtom } from 'utils/state/atoms';
+import useResizeObserver from 'use-resize-observer';
+import {
+  isSolarAssetsLayerEnabledAtom,
+  solarAssetsLayerLoadingAtom,
+} from 'utils/state/atoms';
 
 export default function SolarAssetsLayer() {
+  const setIsLoadingSolarLayer = useSetAtom(solarAssetsLayerLoadingAtom);
   const isSolarAssetsLayerEnabled = useAtomValue(isSolarAssetsLayerEnabledAtom);
   const { data: solarAssetsData } = useGetSolarAssets();
+  const { ref } = useResizeObserver<HTMLDivElement>();
 
-  const dataForSource = isSolarAssetsLayerEnabled
-    ? solarAssetsData
-    : { type: 'FeatureCollection', features: [] };
-
-  // Log the first feature to help debug ID issues
-  if (
-    solarAssetsData &&
-    typeof solarAssetsData === 'object' &&
-    'features' in solarAssetsData &&
-    Array.isArray(solarAssetsData.features) &&
-    solarAssetsData.features.length > 0
-  ) {
-    const firstFeature = solarAssetsData.features[0];
-    console.log('[SolarAssetsLayer] First feature:', {
-      id: firstFeature.id,
-      properties: firstFeature.properties,
-      name: firstFeature.properties?.name,
-    });
+  if (!isSolarAssetsLayerEnabled) {
+    return <div ref={ref} className="h-full w-full" />;
   }
 
-  console.log('[SolarAssetsLayer] isSolarAssetsLayerEnabled:', isSolarAssetsLayerEnabled);
-  console.log('[SolarAssetsLayer] solarAssetsData:', solarAssetsData);
-  console.log('[SolarAssetsLayer] dataForSource:', dataForSource);
+  setIsLoadingSolarLayer(false);
 
   return (
-    <Source id="solar-assets" type="geojson" data={dataForSource} promoteId="name">
+    <Source id="solar-assets" type="geojson" data={solarAssetsData} promoteId="name">
       {/* Main solar asset icon layer */}
       <Layer
         id="solar-assets-points"
