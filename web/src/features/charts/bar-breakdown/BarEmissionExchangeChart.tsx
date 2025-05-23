@@ -1,4 +1,6 @@
+import { Group } from '@visx/group';
 import { ScaleLinear } from 'd3-scale';
+import { MouseEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { useIsMobile } from 'utils/styling';
@@ -24,13 +26,19 @@ export default function BarEmissionExchangeChart({
   co2Scale: ScaleLinear<number, number, never>;
   formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
-  onExchangeRowMouseOver: (
-    rowKey: ZoneKey,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
-  ) => void;
+  onExchangeRowMouseOver: (rowKey: ZoneKey, event: React.MouseEvent<SVGElement>) => void;
 }) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+
+  const handleExchangeRowMouseOver = useCallback(
+    (zoneKey: ZoneKey): MouseEventHandler<SVGElement> =>
+      (event) => {
+        onExchangeRowMouseOver(zoneKey, event);
+      },
+    [onExchangeRowMouseOver]
+  );
+
   if (!exchangeData || exchangeData.length === 0) {
     return null;
   }
@@ -44,7 +52,7 @@ export default function BarEmissionExchangeChart({
           axisLegendTextLeft={t('country-panel.graph-legends.exported')}
           axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
-        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
+        <Group top={EXCHANGE_PADDING}>
           {exchangeData.map((d, index) => (
             <ExchangeRow
               key={d.zoneKey}
@@ -53,7 +61,7 @@ export default function BarEmissionExchangeChart({
               width={width}
               scale={co2Scale}
               value={d.exchange}
-              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
+              onMouseOver={handleExchangeRowMouseOver(d.zoneKey)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={isMobile}
             >
@@ -65,7 +73,7 @@ export default function BarEmissionExchangeChart({
               />
             </ExchangeRow>
           ))}
-        </g>
+        </Group>
       </svg>
     </div>
   );

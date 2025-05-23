@@ -80,6 +80,10 @@ const config = {
           DEFAULT: colors.neutral[200],
           dark: colors.neutral[800],
         },
+        elevation: {
+          DEFAULT: colors.neutral[200],
+          dark: colors.neutral[800],
+        },
       },
       minWidth: { 18: '4.5rem' },
     },
