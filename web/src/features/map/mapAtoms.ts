@@ -17,10 +17,10 @@ export const selectedSolarAssetAtom = atom<{
   properties: Record<string, any>;
 } | null>(null);
 
-export const mapZoomAtom = atom<number>(2.5); // Default initial zoom
+export const mapZoomAtom = atom<number>(2.5);
 
 export interface HoveredSolarAssetInfo {
-  properties: Record<string, any>; // Using Record<string, any> for generic properties
+  properties: Record<string, string | number>;
   x: number;
   y: number;
 }
