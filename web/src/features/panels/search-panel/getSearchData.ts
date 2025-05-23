@@ -14,7 +14,16 @@ export interface ZoneRowType {
   englishZoneName?: string;
 }
 
+// Cache for zone data to avoid expensive translation lookups
+let zoneDataCache: Record<string, SearchResultRowType> | null = null;
+let cachedLanguage = '';
+
 export const getAllZones = (language: string) => {
+  // Return cached data if available and language hasn't changed
+  if (zoneDataCache && cachedLanguage === language) {
+    return zoneDataCache;
+  }
+
   // Get all zone data directly from translations
   const zoneData = t('zoneShortName', { returnObjects: true }) as Record<
     string,
@@ -28,7 +37,7 @@ export const getAllZones = (language: string) => {
       displayName: value.zoneName,
       secondaryDisplayName: value.countryName,
       flagZoneId: key as keyof GridState,
-      link: `/zones/${key}`,
+      link: `/zone/${key}`,
     };
 
     // If current language is not English, also get English translations
@@ -40,6 +49,10 @@ export const getAllZones = (language: string) => {
       searchData[key].englishDisplayName = englishZoneData[key].zoneName;
     }
   }
+
+  // Cache the results
+  zoneDataCache = searchData;
+  cachedLanguage = language;
 
   return searchData;
 };
@@ -87,7 +100,7 @@ export const getFilteredDataCenterList = (
     })
     .map(([key, data]) => ({
       key: key,
-      link: `/data-centers/${key}`,
+      link: `/data-center/${data.zoneKey}/${data.provider}/${data.region}`,
       displayName: data.displayName,
       secondaryDisplayName: data.region,
       dataCenterIconId: data.provider.toLowerCase(),
