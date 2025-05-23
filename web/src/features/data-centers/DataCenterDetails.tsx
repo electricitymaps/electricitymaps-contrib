@@ -1,16 +1,19 @@
 import useGetZone from 'api/getZone';
-import ApiButton from 'components/buttons/ApiButton';
 import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
-import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { TimeDisplay } from 'components/TimeDisplay';
+import CarbonChart from 'features/charts/CarbonChart';
+import EmissionChart from 'features/charts/EmissionChart';
+import OriginChart from 'features/charts/OriginChart';
+import { RoundedCard } from 'features/charts/RoundedCard';
 import DataCenterHeader from 'features/data-centers/DataCenterHeader';
 import { dataCenters } from 'features/data-centers/DataCenterLayer';
-import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
+import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
@@ -22,17 +25,20 @@ import {
   timeRangeAtom,
 } from 'utils/state/atoms';
 
-import AreaGraphContainer from '../panels/zone/AreaGraphContainer';
 import Attribution from '../panels/zone/Attribution';
 import DisplayByEmissionToggle from '../panels/zone/DisplayByEmissionToggle';
 import EstimationCard from '../panels/zone/EstimationCard';
-import GridAlertsCard from '../panels/zone/GridAlertsCard';
 import MethodologyCard from '../panels/zone/MethodologyCard';
 import NoInformationMessage from '../panels/zone/NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from '../panels/zone/util';
 
+// NL/gcp/europe-west4
+// TODO: look up zone name
+// TODO: look up data center info
+
 export default function DataCenterDetails(): JSX.Element {
-  const { zoneId, provider, region } = useParams<RouteParameters>();
+  const { zoneId, provider, region, resolution, urlTimeRange, urlDatetime } =
+    useParams<RouteParameters>();
   const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
@@ -43,10 +49,8 @@ export default function DataCenterDetails(): JSX.Element {
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
+  const { estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
 
   // Find the matching data center
   const dataCenterKey = useMemo(() => {
@@ -64,9 +68,6 @@ export default function DataCenterDetails(): JSX.Element {
   const dataCenterName = dataCenterKey
     ? dataCenters[dataCenterKey].displayName
     : undefined;
-
-  const trackEvent = useTrackEvent();
-  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -101,7 +102,6 @@ export default function DataCenterDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <EstimationCard
               zoneKey={zoneId}
@@ -109,30 +109,42 @@ export default function DataCenterDetails(): JSX.Element {
               estimatedPercentage={roundedEstimatedPercentage}
             />
           )}
-          <ApiButton
-            backgroundClasses="mt-3 mb-1"
-            type="primary"
-            onClick={trackCtaMiddle}
-          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
-            <AreaGraphContainer
-              datetimes={datetimes}
-              timeRange={timeRange}
-              displayByEmissions={displayByEmissions}
-            />
+            <>
+              {displayByEmissions ? (
+                <EmissionChart datetimes={datetimes} timeRange={timeRange} />
+              ) : (
+                <CarbonChart datetimes={datetimes} timeRange={timeRange} />
+              )}
+              <OriginChart
+                displayByEmissions={displayByEmissions}
+                datetimes={datetimes}
+                timeRange={timeRange}
+              />
+            </>
           )}
-
-          <GridAlertsCard
-            datetimes={datetimes}
-            timeRange={timeRange}
-            displayByEmissions={displayByEmissions}
-          />
+          <RoundedCard>
+            <div className="flex items-center gap-1 py-2">
+              <h2>{t('Data Center Info')}</h2>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between">
+                <span>Parent zone:</span>
+                <span>parent zone name</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Operating since:</span>
+                <span>operating since</span>
+              </div>
+            </div>
+            <HorizontalDivider />
+            <p className="flex justify-between text-xs">
+              <span>Source:</span>
+              <span>tbd</span>
+            </p>
+          </RoundedCard>
           <MethodologyCard />
           <HorizontalDivider />
-          <div className="flex items-center justify-between gap-2">
-            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <ApiButton size="sm" onClick={trackCtaForecast} />
-          </div>
           <Attribution zoneId={zoneId} />
         </DataCenterDetailsContent>
       ),
@@ -141,15 +153,12 @@ export default function DataCenterDetails(): JSX.Element {
       zoneDataStatus,
       isLoading,
       isError,
-      hasEstimationPill,
       zoneMessage,
       roundedEstimatedPercentage,
       datetimes,
       timeRange,
       displayByEmissions,
       t,
-      trackCtaForecast,
-      trackCtaMiddle,
     ]
   );
 
@@ -184,6 +193,20 @@ export default function DataCenterDetails(): JSX.Element {
             'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
           )}
         >
+          {/* TODO: handle misisng link information */}
+          <Link
+            className="text-xs underline"
+            to={`/zone/${zoneId}/${urlTimeRange}/${resolution}/${urlDatetime ?? ''}`}
+          >
+            See parent zone for more information
+          </Link>
+          <RoundedCard className="my-2 pb-4">
+            <div className="flex flex-col py-2">
+              <h2>{t('Overview')}</h2>
+              <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
+            </div>
+            <ZoneHeaderGauges zoneKey={zoneId} />
+          </RoundedCard>
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
           )}
