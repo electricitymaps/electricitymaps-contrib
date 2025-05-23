@@ -35,7 +35,7 @@ import { productionConsumptionAtom } from 'utils/state/atoms';
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
-const SolarAssetDataBox = lazy(() => import('features/map/SolarAssetDataBox'));
+const SolarAssetPanel = lazy(() => import('features/panels/asset/SolarAssetPanel'));
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -186,7 +186,7 @@ export default function App(): ReactElement {
                 {selectedSolarAsset ? (
                   <div className="pointer-events-none absolute inset-0 z-10 sm:flex sm:w-[calc(14vw_+_16rem)]">
                     <Suspense>
-                      <SolarAssetDataBox />
+                      <SolarAssetPanel />
                     </Suspense>
                   </div>
                 ) : (

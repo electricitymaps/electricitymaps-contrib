@@ -3,8 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { useNavigateWithParameters } from 'utils/helpers';
 
-import GenericPanel from '../../components/panel/GenericPanel';
-import { selectedSolarAssetAtom } from './mapAtoms';
+import GenericPanel from '../../../components/panel/GenericPanel';
+import { selectedSolarAssetAtom } from '../../map/mapAtoms';
 
 // Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to MonthName Day, Year
 const formatDate = (dateString: string | undefined | null) => {
@@ -50,7 +50,7 @@ const getStatusColor = (status: string | undefined) => {
   }
 };
 
-export default function SolarAssetDataBox() {
+export default function SolarAssetPanel() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
   const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
   const navigate = useNavigateWithParameters();
@@ -64,7 +64,7 @@ export default function SolarAssetDataBox() {
   const { properties } = selectedAsset;
 
   // Debug all properties to find potential URL fields
-  console.log('[SolarAssetDataBox] All properties:', properties);
+  console.log('[SolarAssetPanel] All properties:', properties);
   const possibleUrlFields = Object.entries(properties).filter(
     ([_, value]) =>
       typeof value === 'string' &&
@@ -72,7 +72,7 @@ export default function SolarAssetDataBox() {
         value.startsWith('https://') ||
         value.startsWith('www.'))
   );
-  console.log('[SolarAssetDataBox] Possible URL fields:', possibleUrlFields);
+  console.log('[SolarAssetPanel] Possible URL fields:', possibleUrlFields);
 
   const handleClose = () => {
     setSelectedAsset(null);
@@ -118,10 +118,10 @@ export default function SolarAssetDataBox() {
       isValidUrl = true;
     }
   } catch (error) {
-    console.error('[SolarAssetDataBox] Invalid URL:', sourceUrl, error);
+    console.error('[SolarAssetPanel] Invalid URL:', sourceUrl, error);
   }
 
-  console.log('[SolarAssetDataBox] Final sourceUrl:', sourceUrl, 'isValid:', isValidUrl);
+  console.log('[SolarAssetPanel] Final sourceUrl:', sourceUrl, 'isValid:', isValidUrl);
 
   // Hardcoded fallback URL for now - remove this when real URLs are working
   if (!isValidUrl) {
