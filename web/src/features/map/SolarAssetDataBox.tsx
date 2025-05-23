@@ -7,13 +7,18 @@ import { useNavigateWithParameters } from 'utils/helpers';
 
 import { selectedSolarAssetAtom } from './mapAtoms';
 
-// Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to YYYY-MM-DD
+// Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to MonthName Day, Year
 const formatDate = (dateString: string | undefined | null) => {
   if (!dateString) {
     return 'N/A';
   }
   try {
-    return new Date(dateString).toISOString().split('T')[0];
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
   } catch {
     return 'Invalid Date';
   }
