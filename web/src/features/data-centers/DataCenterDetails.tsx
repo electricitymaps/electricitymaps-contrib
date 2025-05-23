@@ -9,12 +9,14 @@ import OriginChart from 'features/charts/OriginChart';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import DataCenterHeader from 'features/data-centers/DataCenterHeader';
 import { dataCenters } from 'features/data-centers/DataCenterLayer';
+import { getAllZones } from 'features/panels/search-panel/getSearchData';
 import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import i18n from 'translation/i18n';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
 import { round } from 'utils/helpers';
@@ -32,10 +34,6 @@ import MethodologyCard from '../panels/zone/MethodologyCard';
 import NoInformationMessage from '../panels/zone/NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from '../panels/zone/util';
 
-// NL/gcp/europe-west4
-// TODO: look up zone name
-// TODO: look up data center info
-
 export default function DataCenterDetails(): JSX.Element {
   const { zoneId, provider, region, resolution, urlTimeRange, urlDatetime } =
     useParams<RouteParameters>();
@@ -51,6 +49,12 @@ export default function DataCenterDetails(): JSX.Element {
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+
+  // Memoize the zone data to prevent unnecessary recalculations
+  const parentZone = useMemo(
+    () => getAllZones(i18n.language)[zoneId].displayName,
+    [zoneId]
+  );
 
   // Find the matching data center
   const dataCenterKey = useMemo(() => {
@@ -123,26 +127,7 @@ export default function DataCenterDetails(): JSX.Element {
               />
             </>
           )}
-          <RoundedCard>
-            <div className="flex items-center gap-1 py-2">
-              <h2>{t('Data Center Info')}</h2>
-            </div>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between">
-                <span>Parent zone:</span>
-                <span>parent zone name</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Operating since:</span>
-                <span>operating since</span>
-              </div>
-            </div>
-            <HorizontalDivider />
-            <p className="flex justify-between text-xs">
-              <span>Source:</span>
-              <span>tbd</span>
-            </p>
-          </RoundedCard>
+          <DataCenterCard dataCenterId={`${provider}-${region}`} zone={parentZone} />
           <MethodologyCard />
           <HorizontalDivider />
           <Attribution zoneId={zoneId} />
@@ -158,7 +143,9 @@ export default function DataCenterDetails(): JSX.Element {
       datetimes,
       timeRange,
       displayByEmissions,
-      t,
+      parentZone,
+      provider,
+      region,
     ]
   );
 
@@ -198,7 +185,7 @@ export default function DataCenterDetails(): JSX.Element {
             className="text-xs underline"
             to={`/zone/${zoneId}/${urlTimeRange}/${resolution}/${urlDatetime ?? ''}`}
           >
-            See parent zone for more information
+            See {parentZone} for more information
           </Link>
           <RoundedCard className="my-2 pb-4">
             <div className="flex flex-col py-2">
@@ -283,3 +270,36 @@ const useScrollHashIntoView = (isLoading: boolean) => {
     }
   }, [anchor, isLoading, pathname, search]);
 };
+
+export interface DataCenterCardProps {
+  dataCenterId: string;
+  zone: string;
+}
+
+export function DataCenterCard({ dataCenterId, zone }: DataCenterCardProps) {
+  const { t } = useTranslation();
+  const { operationalSince, source } = dataCenters[dataCenterId];
+
+  return (
+    <RoundedCard>
+      <div className="flex items-center gap-1 py-2">
+        <h2>{t('Data Center Info')}</h2>
+      </div>
+      <div className="space-y-2 text-xs">
+        <div className="flex justify-between">
+          <span>Parent zone:</span>
+          <span>{zone}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Operating since:</span>
+          <span>{operationalSince || 'TBD'}</span>
+        </div>
+      </div>
+      <HorizontalDivider />
+      <p className="flex justify-between text-xs">
+        <span>Source:</span>
+        <span>{source || 'TBD'}</span>
+      </p>
+    </RoundedCard>
+  );
+}
