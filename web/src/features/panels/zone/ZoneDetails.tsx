@@ -1,21 +1,16 @@
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
-// import GlassContainer from 'components/GlassContainer'; // Replaced by GenericPanel
 import HorizontalDivider from 'components/HorizontalDivider';
-// Original ZoneHeader related imports - will be used in customHeaderContent
-import GenericPanel from 'components/panel/GenericPanel'; // Import GenericPanel
-// import LoadingSpinner from 'components/LoadingSpinner'; // Handled by GenericPanel
+import GenericPanel from 'components/panel/GenericPanel';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation, useParams } from 'react-router-dom'; // Added useNavigate
-// Import for title
-// import { twMerge } from 'tailwind-merge'; // GenericPanel handles twMerge for its own classes
+import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
-import { round } from 'utils/helpers'; // Removed getCountryCode
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   selectedDatetimeStringAtom,
@@ -31,9 +26,7 @@ import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
-// import ZoneHeader from './ZoneHeader'; // Replaced by GenericPanel and customHeaderContent
 import ZoneHeader from './ZoneHeader';
-// We'll use this inside customHeaderContent, or parts of it
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -79,7 +72,6 @@ export default function ZoneDetails(): JSX.Element {
     () =>
       zoneId &&
       zoneDataStatus && (
-        // This ZoneDetailsContent is a local helper, not GenericPanel
         <ZoneDetailsContentInternal zoneDataStatus={zoneDataStatus}>
           <BarBreakdownChart hasEstimationPill={hasEstimationPillValue} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
@@ -139,7 +131,6 @@ export default function ZoneDetails(): JSX.Element {
 
   const panelError = isError ? t('country-panel.zoneerror') : null;
 
-  // Check if estimationMethod needs to be passed to ZoneHeader
   const isEstimatedForHeader = Boolean(estimationMethod);
 
   return (
@@ -147,20 +138,17 @@ export default function ZoneDetails(): JSX.Element {
       renderFullHeader={() => (
         <ZoneHeader zoneId={zoneId} isEstimated={isEstimatedForHeader} />
       )}
-      headerHeight="64px" // Approximate height of ZoneHeader for scroll calculation
+      headerHeight="64px"
       isLoading={isLoading && !data}
       error={panelError}
-      contentClassName="px-3 pb-32 pt-2.5 sm:pb-4" // Original padding for ZoneDetails content
+      contentClassName="px-3 pb-32 pt-2.5 sm:pb-4"
     >
       {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
-      {/* zoneDetailsContent already handles its own isLoading/isError/NoInfo for its *content* area */}
-      {/* GenericPanel handles overall panel loading/error */}
       {zoneDetailsContent}
     </GenericPanel>
   );
 }
 
-// Renamed to avoid conflict with any external ZoneDetailsContent component if it existed.
 function ZoneDetailsContentInternal({
   children,
   zoneDataStatus,
@@ -168,14 +156,11 @@ function ZoneDetailsContentInternal({
   children: React.ReactNode;
   zoneDataStatus: ZoneDataStatus | false;
 }): JSX.Element {
-  // The parent GenericPanel handles top-level isLoading and isError.
-  // This component now only needs to worry about NO_INFORMATION for its specific content.
   if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
     return <NoInformationMessage />;
   }
   if (zoneDataStatus === false) {
-    // Case where zoneId was null, should ideally not reach here if parent handles !zoneId
-    return <NoInformationMessage />; // Or some other placeholder/error
+    return <NoInformationMessage />;
   }
 
   return children as JSX.Element;
@@ -200,7 +185,7 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         });
       }
     } else {
-      const element = document.querySelector('#generic-panel-scroller'); // GenericPanel uses this ID
+      const element = document.querySelector('#generic-panel-scroller');
       if (element) {
         element.scrollTop = 0;
       }
