@@ -1,18 +1,21 @@
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
-import GlassContainer from 'components/GlassContainer';
+// import GlassContainer from 'components/GlassContainer'; // Replaced by GenericPanel
 import HorizontalDivider from 'components/HorizontalDivider';
-import LoadingSpinner from 'components/LoadingSpinner';
+// Original ZoneHeader related imports - will be used in customHeaderContent
+import GenericPanel from 'components/panel/GenericPanel'; // Import GenericPanel
+// import LoadingSpinner from 'components/LoadingSpinner'; // Handled by GenericPanel
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation, useParams } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
+import { Navigate, useLocation,useParams } from 'react-router-dom'; // Added useNavigate
+// Import for title
+// import { twMerge } from 'tailwind-merge'; // GenericPanel handles twMerge for its own classes
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
-import { round } from 'utils/helpers';
+import { round } from 'utils/helpers'; // Removed getCountryCode
 import {
   displayByEmissionsAtom,
   selectedDatetimeStringAtom,
@@ -28,7 +31,9 @@ import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
+// import ZoneHeader from './ZoneHeader'; // Replaced by GenericPanel and customHeaderContent
 import ZoneHeader from './ZoneHeader';
+// We'll use this inside customHeaderContent, or parts of it
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -44,7 +49,7 @@ export default function ZoneDetails(): JSX.Element {
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod, estimatedPercentage } = selectedData || {};
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
+  const hasEstimationPillValue = // Renamed to avoid conflict with ZoneHeader prop if used directly
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
 
   const trackEvent = useTrackEvent();
@@ -54,8 +59,6 @@ export default function ZoneDetails(): JSX.Element {
     if (hasSubZones === null) {
       return;
     }
-    // When first hitting the map (or opening a zone from the search panel),
-    // set the correct matching view mode (zone or country).
     if (hasSubZones && !isSubZone) {
       setViewMode(SpatialAggregate.COUNTRY);
     }
@@ -72,18 +75,13 @@ export default function ZoneDetails(): JSX.Element {
   );
   const zoneMessage = data?.zoneMessage;
 
-  // We isolate the component which is independant of `selectedData`
-  // in order to avoid re-rendering it needlessly
   const zoneDetailsContent = useMemo(
     () =>
       zoneId &&
       zoneDataStatus && (
-        <ZoneDetailsContent
-          isLoading={isLoading}
-          isError={isError}
-          zoneDataStatus={zoneDataStatus}
-        >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+        // This ZoneDetailsContent is a local helper, not GenericPanel
+        <ZoneDetailsContentInternal zoneDataStatus={zoneDataStatus}>
+          <BarBreakdownChart hasEstimationPill={hasEstimationPillValue} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <EstimationCard
               zoneKey={zoneId}
@@ -103,7 +101,6 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
-
           <GridAlertsCard
             datetimes={datetimes}
             timeRange={timeRange}
@@ -116,14 +113,12 @@ export default function ZoneDetails(): JSX.Element {
             <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />
-        </ZoneDetailsContent>
+        </ZoneDetailsContentInternal>
       ),
     [
       zoneId,
       zoneDataStatus,
-      isLoading,
-      isError,
-      hasEstimationPill,
+      hasEstimationPillValue,
       zoneMessage,
       roundedEstimatedPercentage,
       datetimes,
@@ -138,71 +133,49 @@ export default function ZoneDetails(): JSX.Element {
   if (!zoneId) {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
-
-  // TODO: App-backend should not return an empty array as "data" if the zone does not
-  // exist.
   if (Array.isArray(data)) {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
+  const panelError = isError ? t('country-panel.zoneerror') : null;
+
+  // Check if estimationMethod needs to be passed to ZoneHeader
+  const isEstimatedForHeader = Boolean(estimationMethod);
+
   return (
-    <GlassContainer
-      className={twMerge(
-        'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
-        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
+    <GenericPanel
+      renderFullHeader={() => (
+        <ZoneHeader zoneId={zoneId} isEstimated={isEstimatedForHeader} />
       )}
+      headerHeight="64px" // Approximate height of ZoneHeader for scroll calculation
+      isLoading={isLoading && !data}
+      error={panelError}
+      contentClassName="px-3 pb-32 pt-2.5 sm:pb-4" // Original padding for ZoneDetails content
     >
-      <section className="h-full w-full">
-        <ZoneHeader zoneId={zoneId} isEstimated={false} />
-        <div
-          id="panel-scroller"
-          className={twMerge(
-            // TODO: Can we set the height here without using calc and specific zone-header value?
-            'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
-          )}
-        >
-          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
-            <DisplayByEmissionToggle />
-          )}
-          {zoneDetailsContent}
-        </div>
-      </section>
-    </GlassContainer>
+      {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}
+      {/* zoneDetailsContent already handles its own isLoading/isError/NoInfo for its *content* area */}
+      {/* GenericPanel handles overall panel loading/error */}
+      {zoneDetailsContent}
+    </GenericPanel>
   );
 }
 
-function ZoneDetailsContent({
-  isLoading,
-  isError,
+// Renamed to avoid conflict with any external ZoneDetailsContent component if it existed.
+function ZoneDetailsContentInternal({
   children,
   zoneDataStatus,
 }: {
-  isLoading: boolean;
-  isError: boolean;
   children: React.ReactNode;
-  zoneDataStatus: ZoneDataStatus;
+  zoneDataStatus: ZoneDataStatus | false;
 }): JSX.Element {
-  if (isLoading) {
-    return (
-      <div className="relative mt-[10vh]">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div
-        data-testid="no-parser-message"
-        className={`flex h-full w-full items-center justify-center text-sm`}
-      >
-        🤖 Unknown server error 🤖
-      </div>
-    );
-  }
-
+  // The parent GenericPanel handles top-level isLoading and isError.
+  // This component now only needs to worry about NO_INFORMATION for its specific content.
   if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
     return <NoInformationMessage />;
+  }
+  if (zoneDataStatus === false) {
+    // Case where zoneId was null, should ideally not reach here if parent handles !zoneId
+    return <NoInformationMessage />; // Or some other placeholder/error
   }
 
   return children as JSX.Element;
@@ -216,10 +189,8 @@ const useScrollHashIntoView = (isLoading: boolean) => {
     if (isLoading) {
       return;
     }
-
     const chartIds = Object.values<string>(Charts);
-    const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
-
+    const anchorId = anchor.slice(1).toLowerCase();
     if (anchor && chartIds.includes(anchorId)) {
       const anchorElement = anchor ? document.querySelector(anchor) : null;
       if (anchorElement) {
@@ -229,8 +200,7 @@ const useScrollHashIntoView = (isLoading: boolean) => {
         });
       }
     } else {
-      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
-      const element = document.querySelector('#panel-scroller');
+      const element = document.querySelector('#generic-panel-scroller'); // GenericPanel uses this ID
       if (element) {
         element.scrollTop = 0;
       }

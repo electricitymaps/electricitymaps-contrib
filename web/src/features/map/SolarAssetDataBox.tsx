@@ -1,10 +1,9 @@
-import GlassContainer from 'components/GlassContainer'; // Import GlassContainer
 import { useAtomValue, useSetAtom } from 'jotai';
-import { X } from 'lucide-react'; // Using Lucide X icon
+import { ArrowLeft } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import { TimeRange } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 
+import GenericPanel from '../../components/panel/GenericPanel';
 import { selectedSolarAssetAtom } from './mapAtoms';
 
 // Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to MonthName Day, Year
@@ -66,7 +65,7 @@ export default function SolarAssetDataBox() {
   // Debug all properties to find potential URL fields
   console.log('[SolarAssetDataBox] All properties:', properties);
   const possibleUrlFields = Object.entries(properties).filter(
-    ([key, value]) =>
+    ([_, value]) =>
       typeof value === 'string' &&
       (value.startsWith('http://') ||
         value.startsWith('https://') ||
@@ -76,45 +75,17 @@ export default function SolarAssetDataBox() {
 
   const handleClose = () => {
     setSelectedAsset(null);
+    // Check if we are on a path that implies an asset is selected in the URL structure.
+    // This logic might need adjustment depending on final routing for assets.
+    const isAssetPath =
+      location.pathname.includes('/solar-asset/') ||
+      location.pathname.includes('/zone/solar-asset-');
 
-    // Check if we're currently on a solar asset URL (identifiable by /zone/solar-asset-)
-    const isSolarAssetPath = location.pathname.includes('/zone/solar-asset-');
-
-    if (isSolarAssetPath) {
-      // Extract the current time range and resolution from the path
-      const pathParts = location.pathname.split('/');
-      let timeRange = TimeRange.H72; // Default to 72h
-      let resolution = 'hourly';
-
-      // Correctly find the index of the solar-asset-ID part
-      const solarAssetIdPathIndex = pathParts.findIndex((part) =>
-        part.startsWith('solar-asset-')
-      );
-
-      if (solarAssetIdPathIndex !== -1 && pathParts.length > solarAssetIdPathIndex + 2) {
-        // Time range is the part after solar-asset-ID, resolution is after time range
-        const pathTimeRange = pathParts[solarAssetIdPathIndex + 1];
-        const pathResolution = pathParts[solarAssetIdPathIndex + 2];
-
-        if (
-          pathTimeRange &&
-          Object.values(TimeRange).includes(pathTimeRange as TimeRange)
-        ) {
-          timeRange = pathTimeRange as TimeRange;
-        }
-        if (pathResolution) {
-          resolution = pathResolution;
-        }
-      }
-
-      // Use the navigate function to change the URL to the map view
-      // This ensures React Router is aware of the change for consistent state updates.
-      navigate({
-        to: '/map',
-        timeRange,
-        resolution,
-        keepHashParameters: true, // This preserves existing query params like ?remote=true
-      });
+    if (isAssetPath) {
+      // Navigate to the base map view, preserving current map parameters if possible
+      // This part is a simplified navigation, assuming we want to go back to /map
+      // and that navigate hook handles existing params like timeRange, resolution.
+      navigate({ to: '/map', keepHashParameters: true });
     }
   };
 
@@ -176,55 +147,42 @@ export default function SolarAssetDataBox() {
     }
   }
 
+  const backButton = (
+    <button
+      onClick={handleClose}
+      className="self-center p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+      aria-label="Back to map"
+      data-testid="solar-asset-data-box-back-button"
+    >
+      <ArrowLeft className="h-5 w-5" />
+    </button>
+  );
+
   return (
-    <GlassContainer className="pointer-events-auto absolute left-3 top-3 z-[21] flex flex-col p-4 shadow-lg">
-      {/* Energy Type Tag - with icon */}
-      <div className="mb-2 flex items-center justify-between">
-        <span
-          className={`inline-flex items-center rounded-full bg-yellow-500 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white`}
-        >
-          <img src="/images/solar_asset.png" alt="Solar" className="mr-1.5 h-3.5 w-3.5" />
-          Solar
-        </span>
-      </div>
-
-      {/* Header with Name and Close Button - icon removed from here */}
-      <div className="mb-1 flex items-start justify-between">
-        <div className="flex items-center">
-          <h2 className="pr-2 text-xl font-bold text-gray-800 dark:text-gray-100">
-            {name}
-          </h2>
-        </div>
-        <button
-          onClick={handleClose}
-          className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-          aria-label="Close"
-        >
-          <X className="h-6 w-6" />
-        </button>
-      </div>
-
-      {/* Details Section */}
-      <div className="space-y-2 pt-3 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-400">
-        {/* Divider and Larger Font for Capacity */}
-        <div className="border-t border-gray-200 dark:border-gray-700" />
+    <GenericPanel
+      title={name}
+      iconSrc="/images/solar_asset.png"
+      customHeaderStartContent={backButton}
+      contentClassName="p-3 md:p-4"
+    >
+      {/* Content for the solar asset details */}
+      <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
         {!Number.isNaN(capacityMw) && (
-          <div className="flex justify-between text-sm">
-            <span className="font-bold">Capacity:</span>
-            <span className="font-bold text-gray-800 dark:text-gray-200">
+          <div className="flex justify-between font-medium">
+            <span>Capacity:</span>
+            <span className="text-gray-900 dark:text-gray-100">
               {`${capacityMw.toFixed(1)} MW`}
             </span>
           </div>
         )}
         <div className="flex items-center justify-between">
           <span>Status:</span>
-          {/* Status with colored circle */}
           <div className="flex items-center">
             <span
               className={`mr-1.5 h-2.5 w-2.5 rounded-full ${getStatusColor(status)}`}
               aria-hidden="true"
             />
-            <span className="font-medium text-gray-800 dark:text-gray-200">{status}</span>
+            <span className="font-medium text-gray-900 dark:text-gray-100">{status}</span>
           </div>
         </div>
         {commissionYear && (
@@ -232,27 +190,28 @@ export default function SolarAssetDataBox() {
             <span>
               {isCommissionedInPast ? 'Operational since:' : 'Commission Year:'}
             </span>
-            <span className="font-medium text-gray-800 dark:text-gray-200">
+            <span className="font-medium text-gray-900 dark:text-gray-100">
               {commissionYear}
             </span>
           </div>
         )}
-        <div className="flex justify-between">
-          <span>Capacity Data Updated:</span>
-          <span className="font-medium text-gray-800 dark:text-gray-200">
-            {capacityUpdateDate}
-          </span>
-        </div>
+        {capacityUpdateDate && capacityUpdateDate !== 'N/A' && (
+          <div className="flex justify-between">
+            <span>Capacity Data Updated:</span>
+            <span className="font-medium text-gray-900 dark:text-gray-100">
+              {capacityUpdateDate}
+            </span>
+          </div>
+        )}
 
-        {/* Divider */}
-        <div className="my-2 border-t border-gray-200 dark:border-gray-700" />
+        <div className="border-t border-gray-200 pt-2 dark:border-gray-700" />
 
-        <div className="flex flex-row">
-          <span className="mr-1 font-medium">Source:</span>
-          <span className="font-medium text-gray-800 dark:text-gray-200">
+        <div>
+          <span className="mr-1 font-semibold">Source:</span>
+          <span className="text-gray-900 dark:text-gray-100">
             Global Solar Power Tracker, Global Energy Monitor and TransitionZero, February
             2025 release.
-            {isValidUrl && sourceUrl ? (
+            {isValidUrl && sourceUrl && (
               <>
                 <br />
                 <a
@@ -261,13 +220,13 @@ export default function SolarAssetDataBox() {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline dark:text-blue-400"
                 >
-                  Global Energy Monitor Wiki page.
+                  Learn more at Global Energy Monitor.
                 </a>
               </>
-            ) : null}
+            )}
           </span>
         </div>
       </div>
-    </GlassContainer>
+    </GenericPanel>
   );
 }
