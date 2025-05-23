@@ -13,6 +13,8 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
     LocationalMarginalPrice,
+    Node,
+    NodeList,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -308,22 +310,34 @@ def test_prices_can_be_in_future():
         currency="EUR",
     )
 
+def test_node():
+    test_node = Node(
+        node="SPPNORTH_HUB",
+        price=1,
+        currency="USD",
+    )
+
+    assert test_node.node == "SPPNORTH_HUB"
+    assert test_node.price == 1
+    assert test_node.currency == "USD"
 
 def test_create_locational_marginal_price():
+    logger = logging.Logger("test")
+    node_list = NodeList(logger=logger)
+    node_list.append(
+        node="SPPNORTH_HUB",
+        price=1,
+        currency="USD",
+    )
     lmp = LocationalMarginalPrice(
         zoneKey=ZoneKey("US-CENT-SWPP"),
         datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
-        price=1,
+        nodes=node_list,
         source="trust.me",
-        currency="USD",
-        node="SPPNORTH_HUB",
     )
     assert lmp.zoneKey == ZoneKey("US-CENT-SWPP")
     assert lmp.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
-    assert lmp.price == 1
     assert lmp.source == "trust.me"
-    assert lmp.currency == "USD"
-    assert lmp.node == "SPPNORTH_HUB"
 
 
 @pytest.mark.parametrize(
@@ -1015,3 +1029,5 @@ def test_update_storage_with_empty_and_new_empty():
     assert final_mix is not None
     assert final_mix.hydro is None
     assert final_mix.battery is None
+
+

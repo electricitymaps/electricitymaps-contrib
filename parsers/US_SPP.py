@@ -20,6 +20,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    NodeList,
     ProductionMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
@@ -456,22 +457,24 @@ def fetch_realtime_locational_marginal_price(
             logger.warning(f"Empty response for {check_datetime}")
             continue
 
-        grouped = raw_data.groupby(["Pnode", "GMTIntervalEnd"]).first()
+        # Group by timestamp (GMTIntervalEnd)
+        for interval_end, group in raw_data.groupby("GMTIntervalEnd"):
+            # Create a NodeList for this timestamp
+            nodes = NodeList(logger)
 
-        for (node, interval_end), row in grouped.iterrows():
+            # Add each node in this group to the NodeList
+            for _, row in group.iterrows():
+                nodes.append(node=row["Pnode"], price=row["LMP"], currency="USD")
+
+            # Add the NodeList to the LocationalMarginalPriceList for this timestamp
+            timestamp = datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
+                tzinfo=timezone.utc
+            )
             prices.append(
-                zoneKey=zone_key,
-                datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
-                    tzinfo=timezone.utc
-                ),
-                price=row["LMP"],
-                currency="USD",
-                node=node,
-                source=SOURCE,
+                zoneKey=zone_key, datetime=timestamp, source=SOURCE, nodes=nodes
             )
 
-    price_list = prices.to_list()
-    return price_list
+    return prices.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -489,23 +492,28 @@ def fetch_dayahead_locational_marginal_price(
     if raw_data.empty:
         logger.warning(f"Empty response for {target_datetime}")
         return []
-    # filter by column "Settlement Location" so it only includes SPPNORTH_HUB
-    grouped = raw_data.groupby(["Pnode", "GMTIntervalEnd"]).first()
-    prices = LocationalMarginalPriceList(logger)
-    for (node, interval_end), row in grouped.iterrows():
-        prices.append(
-            zoneKey=zone_key,
-            datetime=datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
-                tzinfo=timezone.utc
-            ),
-            price=row["LMP"],
-            currency="USD",
-            node=node,
-            source=SOURCE,
-        )
 
-    price_list = prices.to_list()
-    return price_list
+    # Group by timestamp (GMTIntervalEnd)
+    prices = LocationalMarginalPriceList(logger)
+
+    # Process each timestamp group
+    for interval_end, group in raw_data.groupby("GMTIntervalEnd"):
+        # Create a NodeList for this timestamp
+        nodes = NodeList(logger)
+
+        # Add each node in this group to the NodeList
+        for _, row in group.iterrows():
+            nodes.append(
+                node=row["Settlement Location"], price=row["LMP"], currency="USD"
+            )
+
+        # Add the NodeList to the LocationalMarginalPriceList for this timestamp
+        timestamp = datetime.strptime(interval_end, "%m/%d/%Y %H:%M:%S").replace(
+            tzinfo=timezone.utc
+        )
+        prices.append(zoneKey=zone_key, datetime=timestamp, source=SOURCE, nodes=nodes)
+
+    return prices.to_list()
 
 
 def get_closest_5_minutes_datetime(target_datetime: datetime) -> datetime:
