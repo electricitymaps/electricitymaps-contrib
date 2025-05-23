@@ -6,7 +6,7 @@
     "region": "us-central1",
     "zoneKey": "US-CENT-SWPP",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-east1": {
@@ -16,7 +16,7 @@
     "region": "us-east1",
     "zoneKey": "US-CAR-SCEG",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-west1": {
@@ -26,7 +26,7 @@
     "region": "us-west1",
     "zoneKey": "US-NW-PACW",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-northamerica-northeast2": {
@@ -36,7 +36,7 @@
     "region": "northamerica-northeast2",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-east4": {
@@ -46,7 +46,7 @@
     "region": "us-east4",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west1": {
@@ -56,7 +56,7 @@
     "region": "europe-west1",
     "zoneKey": "BE",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-us-west2": {
@@ -66,7 +66,7 @@
     "region": "us-west2",
     "zoneKey": "US-SW-SRP",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west4": {
@@ -76,7 +76,7 @@
     "region": "europe-west4",
     "zoneKey": "NL",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-southamerica-west1": {
@@ -86,7 +86,7 @@
     "region": "southamerica-west1",
     "zoneKey": "CL-SEN",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-northeast1": {
@@ -96,7 +96,7 @@
     "region": "asia-northeast1",
     "zoneKey": "JP-TK",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-north1": {
@@ -106,7 +106,7 @@
     "region": "europe-north1",
     "zoneKey": "FI",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-southeast1": {
@@ -116,7 +116,7 @@
     "region": "asia-southeast1",
     "zoneKey": "SG",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-asia-east1": {
@@ -126,7 +126,7 @@
     "region": "asia-east1",
     "zoneKey": "TW",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "gcp-europe-west3": {
@@ -136,7 +136,7 @@
     "region": "europe-west3",
     "zoneKey": "DE",
     "status": "operational",
-    "source": "",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
   "azure-westus3": {
@@ -146,8 +146,8 @@
     "region": "westus3",
     "zoneKey": "US-SW-AZPS",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2021"
   },
   "azure-westus2": {
     "provider": "azure",
@@ -156,8 +156,8 @@
     "region": "westus2",
     "zoneKey": "US-NW-BPAT",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2007"
   },
   "azure-westus": {
     "provider": "azure",
@@ -166,8 +166,8 @@
     "region": "westus",
     "zoneKey": "US-CAL-CISO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2012"
   },
   "azure-westcentralus": {
     "provider": "azure",
@@ -176,8 +176,8 @@
     "region": "westcentralus",
     "zoneKey": "US-NW-PACE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
   },
   "azure-southcentralus": {
     "provider": "azure",
@@ -186,8 +186,8 @@
     "region": "southcentralus",
     "zoneKey": "US-TEX-ERCO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2008"
   },
   "azure-northcentralus": {
     "provider": "azure",
@@ -196,8 +196,8 @@
     "region": "northcentralus",
     "zoneKey": "US-MIDW-MISO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2009"
   },
   "azure-eastus2": {
     "provider": "azure",
@@ -206,8 +206,8 @@
     "region": "eastus2",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2012"
   },
   "azure-eastus": {
     "provider": "azure",
@@ -216,8 +216,8 @@
     "region": "eastus",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-centralus": {
     "provider": "azure",
@@ -226,8 +226,8 @@
     "region": "centralus",
     "zoneKey": "US-MIDW-MISO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-ukwest": {
     "provider": "azure",
@@ -236,8 +236,8 @@
     "region": "ukwest",
     "zoneKey": "GB",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
   },
   "azure-uksouth": {
     "provider": "azure",
@@ -246,8 +246,8 @@
     "region": "uksouth",
     "zoneKey": "GB",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
   },
   "azure-uaenorth": {
     "provider": "azure",
@@ -256,8 +256,8 @@
     "region": "uaenorth",
     "zoneKey": "AE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
   },
   "azure-switzerlandnorth": {
     "provider": "azure",
@@ -266,8 +266,8 @@
     "region": "switzerlandnorth",
     "zoneKey": "CH",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
   },
   "azure-swedencentral": {
     "provider": "azure",
@@ -276,8 +276,8 @@
     "region": "swedencentral",
     "zoneKey": "SE-SE3",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2021"
   },
   "azure-spaincentral": {
     "provider": "azure",
@@ -286,8 +286,8 @@
     "region": "spaincentral",
     "zoneKey": "ES",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
   },
   "azure-qatarcentral": {
     "provider": "azure",
@@ -296,8 +296,8 @@
     "region": "qatarcentral",
     "zoneKey": "QA",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2022"
   },
   "azure-polandcentral": {
     "provider": "azure",
@@ -306,8 +306,8 @@
     "region": "polandcentral",
     "zoneKey": "PL",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
   },
   "azure-norwayeast": {
     "provider": "azure",
@@ -316,8 +316,8 @@
     "region": "norwayeast",
     "zoneKey": "NO-NO1",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
   },
   "azure-newzealandnorth": {
     "provider": "azure",
@@ -326,8 +326,8 @@
     "region": "newzealandnorth",
     "zoneKey": "NZ",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
   },
   "azure-mexicocentral": {
     "provider": "azure",
@@ -336,8 +336,8 @@
     "region": "mexicocentral",
     "zoneKey": "MX",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
   },
   "azure-koreacentral": {
     "provider": "azure",
@@ -346,8 +346,8 @@
     "region": "koreacentral",
     "zoneKey": "KR",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2017"
   },
   "azure-japanwest": {
     "provider": "azure",
@@ -356,8 +356,8 @@
     "region": "japanwest",
     "zoneKey": "JP-KN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-japaneast": {
     "provider": "azure",
@@ -366,8 +366,8 @@
     "region": "japaneast",
     "zoneKey": "JP-TH",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-italynorth": {
     "provider": "azure",
@@ -376,8 +376,8 @@
     "region": "italynorth",
     "zoneKey": "IT-NO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
   },
   "azure-israelcentral": {
     "provider": "azure",
@@ -386,8 +386,8 @@
     "region": "israelcentral",
     "zoneKey": "JO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
   },
   "azure-indonesiacentral": {
     "provider": "azure",
@@ -396,8 +396,8 @@
     "region": "indonesiacentral",
     "zoneKey": "ID",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2025"
   },
   "azure-southindia": {
     "provider": "azure",
@@ -406,8 +406,8 @@
     "region": "southindia",
     "zoneKey": "IN-SO",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2015"
   },
   "azure-centralindia": {
     "provider": "azure",
@@ -416,8 +416,8 @@
     "region": "centralindia",
     "zoneKey": "IN-WE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2015"
   },
   "azure-germanywestcentral": {
     "provider": "azure",
@@ -426,8 +426,8 @@
     "region": "germanywestcentral",
     "zoneKey": "DE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
   },
   "azure-francecentral": {
     "provider": "azure",
@@ -436,8 +436,8 @@
     "region": "francecentral",
     "zoneKey": "FR",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
   },
   "azure-westeurope": {
     "provider": "azure",
@@ -446,8 +446,8 @@
     "region": "westeurope",
     "zoneKey": "DE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
   },
   "azure-northeurope": {
     "provider": "azure",
@@ -456,8 +456,8 @@
     "region": "northeurope",
     "zoneKey": "IE",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2009"
   },
   "azure-chinanorth3": {
     "provider": "azure",
@@ -466,8 +466,8 @@
     "region": "chinanorth3",
     "zoneKey": "CN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2022"
   },
   "azure-chinanorth2": {
     "provider": "azure",
@@ -476,8 +476,8 @@
     "region": "chinanorth2",
     "zoneKey": "CN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
   },
   "azure-chinanorth": {
     "provider": "azure",
@@ -486,8 +486,8 @@
     "region": "chinanorth",
     "zoneKey": "CN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-chinaeast2": {
     "provider": "azure",
@@ -496,8 +496,8 @@
     "region": "chinaeast2",
     "zoneKey": "CN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
   },
   "azure-chinaeast": {
     "provider": "azure",
@@ -506,8 +506,8 @@
     "region": "chinaeast",
     "zoneKey": "CN",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-canadaeast": {
     "provider": "azure",
@@ -516,8 +516,8 @@
     "region": "canadaeast",
     "zoneKey": "CA-QC",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
   },
   "azure-canadacentral": {
     "provider": "azure",
@@ -526,8 +526,8 @@
     "region": "canadacentral",
     "zoneKey": "CA-ON",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
   },
   "azure-brazilsouth": {
     "provider": "azure",
@@ -536,8 +536,8 @@
     "region": "brazilsouth",
     "zoneKey": "BR-CS",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-australiacentral": {
     "provider": "azure",
@@ -546,8 +546,8 @@
     "region": "australiacentral",
     "zoneKey": "AU-NSW",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
   },
   "azure-australiasoutheast": {
     "provider": "azure",
@@ -556,8 +556,8 @@
     "region": "australiasoutheast",
     "zoneKey": "AU-VIC",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-australiaeast": {
     "provider": "azure",
@@ -566,8 +566,8 @@
     "region": "australiaeast",
     "zoneKey": "AU-NSW",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
   },
   "azure-southeastasia": {
     "provider": "azure",
@@ -576,8 +576,8 @@
     "region": "southeastasia",
     "zoneKey": "DK-DK2",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
   },
   "azure-eastasia": {
     "provider": "azure",
@@ -586,8 +586,8 @@
     "region": "eastasia",
     "zoneKey": "HK",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
   },
   "azure-southafricanorth": {
     "provider": "azure",
@@ -596,8 +596,8 @@
     "region": "southafricanorth",
     "zoneKey": "ZA",
     "status": "operational",
-    "source": "",
-    "operationalSince": null
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
   },
   "aws-us-east-1": {
     "provider": "aws",
@@ -606,7 +606,7 @@
     "region": "us-east-1",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-us-east-2": {
@@ -616,7 +616,7 @@
     "region": "us-east-2",
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-us-west-1": {
@@ -626,7 +626,7 @@
     "region": "us-west-1",
     "zoneKey": "US-CAL-CISO",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-us-west-2": {
@@ -636,7 +636,7 @@
     "region": "us-west-2",
     "zoneKey": "US-NW-PACW",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-af-south-1": {
@@ -646,7 +646,7 @@
     "region": "af-south-1",
     "zoneKey": "ZA",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-east-1": {
@@ -656,7 +656,7 @@
     "region": "ap-east-1",
     "zoneKey": "HK",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-south-2": {
@@ -666,7 +666,7 @@
     "region": "ap-south-2",
     "zoneKey": "IN-SO",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-southeast-3": {
@@ -676,7 +676,7 @@
     "region": "ap-southeast-3",
     "zoneKey": "ID",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-southeast-5": {
@@ -686,7 +686,7 @@
     "region": "ap-southeast-5",
     "zoneKey": "MY-WM",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-southeast-4": {
@@ -696,7 +696,7 @@
     "region": "ap-southeast-4",
     "zoneKey": "AU-VIC",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-south-1": {
@@ -706,7 +706,7 @@
     "region": "ap-south-1",
     "zoneKey": "IN-WE",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-northeast-3": {
@@ -716,7 +716,7 @@
     "region": "ap-northeast-3",
     "zoneKey": "JP-KN",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-northeast-2": {
@@ -726,7 +726,7 @@
     "region": "ap-northeast-2",
     "zoneKey": "KR",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-southeast-2": {
@@ -736,7 +736,7 @@
     "region": "ap-southeast-2",
     "zoneKey": "AU-NSW",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-southeast-7": {
@@ -746,7 +746,7 @@
     "region": "ap-southeast-7",
     "zoneKey": "TH",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ap-northeast-1": {
@@ -756,7 +756,7 @@
     "region": "ap-northeast-1",
     "zoneKey": "JP-TK",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ca-central-1": {
@@ -766,7 +766,7 @@
     "region": "ca-central-1",
     "zoneKey": "CA-QC",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-ca-west-1": {
@@ -776,7 +776,7 @@
     "region": "ca-west-1",
     "zoneKey": "CA-AB",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-central-1": {
@@ -786,7 +786,7 @@
     "region": "eu-central-1",
     "zoneKey": "DE",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-west-1": {
@@ -796,7 +796,7 @@
     "region": "eu-west-1",
     "zoneKey": "IE",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-west-2": {
@@ -806,7 +806,7 @@
     "region": "eu-west-2",
     "zoneKey": "GB",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-south-1": {
@@ -816,7 +816,7 @@
     "region": "eu-south-1",
     "zoneKey": "IT-NO",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-west-3": {
@@ -826,7 +826,7 @@
     "region": "eu-west-3",
     "zoneKey": "FR",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-south-2": {
@@ -836,7 +836,7 @@
     "region": "eu-south-2",
     "zoneKey": "ES",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-north-1": {
@@ -846,7 +846,7 @@
     "region": "eu-north-1",
     "zoneKey": "SE-SE3",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-eu-central-2": {
@@ -856,7 +856,7 @@
     "region": "eu-central-2",
     "zoneKey": "CH",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-il-central-1": {
@@ -866,7 +866,7 @@
     "region": "il-central-1",
     "zoneKey": "IL",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-mx-central-1": {
@@ -876,7 +876,7 @@
     "region": "mx-central-1",
     "zoneKey": "MX",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-me-central-1": {
@@ -886,7 +886,7 @@
     "region": "me-central-1",
     "zoneKey": "AE",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
   "aws-sa-east-1": {
@@ -896,7 +896,7 @@
     "region": "sa-east-1",
     "zoneKey": "BR-CS",
     "status": "operational",
-    "source": "",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   }
 }
