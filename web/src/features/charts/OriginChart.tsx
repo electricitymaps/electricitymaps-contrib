@@ -1,4 +1,3 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
@@ -11,7 +10,8 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
+import { EstimationLegendIcon } from './elements/EstimationMarkers';
+import { getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -91,10 +91,6 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
-
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -115,12 +111,27 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
     return hasEstimationPill;
   });
 
+  // const { text, icon } = getBadgeTextAndIcon(chartData, t);
+  // const badge = <EstimationBadge text={text} Icon={icon} />;
+
+  const someEstimated = estimated.some(Boolean);
+
+  const badge = someEstimated ? (
+    <div
+      className="flex h-6 flex-row items-center gap-1 whitespace-nowrap px-2 py-1 text-xs font-semibold"
+      style={{ color: '#DB58FF' }}
+    >
+      <EstimationLegendIcon />
+      Preliminary
+    </div>
+  ) : undefined;
+
   return (
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
         badge={badge}
-        isEstimated={Boolean(text)}
+        isEstimated={someEstimated}
         unit={valueAxisLabel}
         id={Charts.ORIGIN_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}

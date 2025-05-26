@@ -107,7 +107,7 @@ interface AreagraphProps {
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
-  estimated: boolean[];
+  estimated?: boolean[];
   selectedTimeRange: TimeRange;
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
@@ -188,7 +188,7 @@ function AreaGraph({
     [datetimes, endTime]
   );
   const estimatedWithNext = useMemo(
-    () => (estimated ? [...estimated, estimated?.at(-1)] : estimated),
+    () => (estimated ? [...estimated, estimated?.at(-1) || false] : estimated),
     [estimated]
   );
 
@@ -295,6 +295,7 @@ function AreaGraph({
           datetimes={datetimesWithNext}
           estimated={estimatedWithNext}
           scaleWidth={containerWidth}
+          scaleHeight={containerHeight}
           transform={`translate(0 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible"
         />
