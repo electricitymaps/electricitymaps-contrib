@@ -6,6 +6,7 @@ from collections.abc import Set
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger
+from operator import itemgetter
 from typing import Any
 
 import pandas as pd
@@ -839,17 +840,82 @@ class Price(Event):
         }
 
 
-class LocationalMarginalPrice(Price):
-    node: str
+class Node(BaseModel, ABC):
+    """
+    An event class representing the price of a node.
+    """
 
-    @validator("node")
-    def _validate_node(cls, v: str) -> str:
-        clean_value = v.strip()
-        if not clean_value:
-            raise ValueError(f"Node cannot be an invalid string: {v}")
-        if clean_value != v:
-            raise ValueError(f"Node should not contain leading or trailing spaces: {v}")
+    node: str
+    price: float | None
+    currency: str
+
+    @validator("currency")
+    def _validate_currency(cls, v: str) -> str:
+        if v not in VALID_CURRENCIES:
+            raise ValueError(f"Unknown currency: {v}")
         return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        node: str,
+        price: float | None,
+        currency: str,
+    ) -> "Node | None":
+        try:
+            return Node(
+                node=node,
+                price=price,
+                currency=currency,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating node Event: {e}",
+                extra={
+                    "node": node,
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "currency": self.currency,
+            "price": self.price,
+            "node": self.node,
+        }
+
+class NodeList:
+    """
+    A collection of Node objects.
+    """
+
+    def __init__(self, logger: Logger):
+        self.logger = logger
+        self.events = []
+
+    def append(
+        self,
+        node: str,
+        price: float | None,
+        currency: str,
+    ):
+        event = Node.create(self.logger, node, price, currency)
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        return sorted(
+            [event.to_dict() for event in self.events], key=itemgetter("node")
+        )
+
+    def __len__(self):
+        return len(self.events)
+
+
+class LocationalMarginalPrice(Event):
+    nodes: NodeList
+
+    class Config:
+        arbitrary_types_allowed = True
 
     @staticmethod
     def create(
@@ -857,9 +923,7 @@ class LocationalMarginalPrice(Price):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float | None,
-        currency: str,
-        node: str,
+        nodes: NodeList,
         sourceType: EventSourceType = EventSourceType.measured,
     ) -> "LocationalMarginalPrice | None":
         try:
@@ -867,9 +931,7 @@ class LocationalMarginalPrice(Price):
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                price=price,
-                currency=currency,
-                node=node,
+                nodes=nodes,
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -886,9 +948,8 @@ class LocationalMarginalPrice(Price):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "currency": self.currency,
-            "price": self.price,
-            "node": self.node,
+            "nodes": self.nodes.to_list(),
             "source": self.source,
             "sourceType": self.sourceType,
         }
+

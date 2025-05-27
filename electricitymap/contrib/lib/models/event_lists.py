@@ -476,13 +476,11 @@ class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        price: float | None,
-        currency: str,
-        node: str,
+        nodes: "NodeList",
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = LocationalMarginalPrice.create(
-            self.logger, zoneKey, datetime, source, price, currency, node, sourceType
+            self.logger, zoneKey, datetime, source, nodes, sourceType
         )
         if event:
             self.events.append(event)
