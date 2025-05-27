@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from importlib import resources
 
 import pytest
@@ -38,9 +38,9 @@ def test_fetch_production_historical(adapter, session, snapshot):
         ),
     )
 
-    historical_datetime = datetime(2021, 7, 16, 16, 20, 30, tzinfo=timezone.utc)
+    historical_datetime = datetime(2021, 7, 16, 16, 20, 30, tzinfo=UTC)
     assert snapshot == fetch_production(
-        target_datetime=historical_datetime.astimezone(timezone.utc),
+        target_datetime=historical_datetime.astimezone(UTC),
         session=session,
     )
 
@@ -68,5 +68,5 @@ def test_fetch_exchange_raises_parser_exception_on_historical_data(adapter, sess
     with pytest.raises(
         ParserException, match="This parser is not yet able to parse historical data"
     ):
-        historical_datetime = datetime.now(timezone.utc) - timedelta(days=1)
+        historical_datetime = datetime.now(UTC) - timedelta(days=1)
         fetch_exchange(target_datetime=historical_datetime, session=session)

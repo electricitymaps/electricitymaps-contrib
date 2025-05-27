@@ -1,5 +1,5 @@
 from collections import defaultdict
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -66,7 +66,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
     # if no target_datetime is specified, this defaults to now.
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     target_datetime = now if target_datetime is None else target_datetime
 
     # the backend production API works in terms of local times

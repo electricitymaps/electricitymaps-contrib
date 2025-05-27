@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
@@ -201,7 +201,7 @@ def format_data(
         # Add lag to avoid using data that is not yet complete and remove "future" data
         if (
             datetime.fromisoformat(group_df["validfrom"].iloc[0])
-            > (datetime.now(timezone.utc) - timedelta(hours=0.5))
+            > (datetime.now(UTC) - timedelta(hours=0.5))
             and not forecast
         ):
             continue
@@ -236,7 +236,7 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    target_datetime = target_datetime or datetime.now(timezone.utc)
+    target_datetime = target_datetime or datetime.now(UTC)
 
     json_data = call_api(target_datetime)
     NED_data = format_data(json_data, logger)
@@ -244,7 +244,7 @@ def fetch_production(
     all_dates = [item.get("datetime") for item in NED_data.to_list()]
 
     if all(
-        date >= datetime(2021, 1, 1, tzinfo=timezone.utc)
+        date >= datetime(2021, 1, 1, tzinfo=UTC)
         for date in all_dates
         if date is not None
     ):
@@ -267,7 +267,7 @@ def fetch_production_forecast(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    target_datetime = target_datetime or datetime.now(timezone.utc)
+    target_datetime = target_datetime or datetime.now(UTC)
     json_data = call_api(target_datetime, forecast=True)
     NED_data = format_data(json_data, logger, forecast=True)
 

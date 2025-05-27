@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from urllib.parse import urlencode
 
 import pytest
@@ -39,7 +39,7 @@ def test_api_requests_are_sent_with_correct_dates(adapter, session):
     fetch_production(
         zone_key=ZoneKey("PE"),
         session=session,
-        target_datetime=datetime(2024, 2, 6, 0, 0, 0, tzinfo=timezone.utc),
+        target_datetime=datetime(2024, 2, 6, 0, 0, 0, tzinfo=UTC),
     )
 
     assert adapter.called

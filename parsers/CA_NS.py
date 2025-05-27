@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -34,7 +34,7 @@ def _parse_timestamp(timestamp: str) -> datetime:
     "/Date(1493924400000)/" by extracting the Unix timestamp 1493924400. Note
     that the three trailing zeros are cut out as well).
     """
-    return datetime.fromtimestamp(int(timestamp[6:-5]), tz=timezone.utc)
+    return datetime.fromtimestamp(int(timestamp[6:-5]), tz=UTC)
 
 
 def fetch_production(

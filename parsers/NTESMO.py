@@ -10,7 +10,7 @@ import logging
 import math
 import re
 from collections.abc import Iterable, Iterator
-from datetime import date, datetime, time, timedelta, timezone
+from datetime import UTC, date, datetime, time, timedelta
 from logging import Logger, getLogger
 from typing import Any, TypedDict
 from zoneinfo import ZoneInfo
@@ -276,9 +276,9 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,
@@ -303,9 +303,9 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,
@@ -330,9 +330,9 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ):
     target_datetime = (
-        datetime.now(timezone.utc)
+        datetime.now(UTC)
         if target_datetime is None
-        else target_datetime.astimezone(timezone.utc)
+        else target_datetime.astimezone(UTC)
     )
     daily_report_data = get_daily_report_data(
         zone_key=zone_key,

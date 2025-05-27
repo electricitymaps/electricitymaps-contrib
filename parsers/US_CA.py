@@ -2,7 +2,7 @@
 
 import io
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from logging import Logger, getLogger
 from typing import Any
@@ -63,7 +63,7 @@ TIMEZONE = ZoneInfo("US/Pacific")
 
 def get_target_url(target_datetime: datetime | None, kind: str) -> str:
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
         target_url = REAL_TIME_URL_MAPPING[kind]
     else:
         target_url = f"{CAISO_PROXY}/outlook/history/{target_datetime.strftime('%Y%m%d')}/{HISTORICAL_URL_MAPPING[kind]}.csv?host=https://www.caiso.com"
@@ -266,7 +266,7 @@ def fetch_consumption_forecast(
 
     # Interval of time
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     target_datetime_gmt = target_datetime
     GMT_URL_SUFFIX = "-0000"
     END_OFFSET = timedelta(days=7)
@@ -333,7 +333,7 @@ def fetch_wind_solar_forecasts(
 
     # Interval of time: datetime is in GMT
     if target_datetime is None:
-        target_datetime = datetime.now(tz=timezone.utc)
+        target_datetime = datetime.now(tz=UTC)
     target_datetime_gmt = target_datetime
     GMT_URL_SUFFIX = "-0000"
     END_OFFSET = timedelta(days=7)

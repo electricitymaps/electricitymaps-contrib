@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 from requests_mock import GET, POST
@@ -34,5 +34,5 @@ def test_fetch_production_realtime(session, snapshot, mock_response_as_realtime)
 
 
 def test_production_historical(session, snapshot, mock_response_as_historical):
-    dt = datetime(2023, 9, 1, 0, 0, 0, tzinfo=timezone.utc)
+    dt = datetime(2023, 9, 1, 0, 0, 0, tzinfo=UTC)
     assert snapshot == fetch_production(ZoneKey("KR"), session, dt)

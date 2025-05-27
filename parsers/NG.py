@@ -4,7 +4,7 @@
 
 import re
 import urllib.parse
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
@@ -85,7 +85,7 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
+        target_datetime = datetime.now(UTC)
     timestamp = target_datetime.replace(minute=0, second=0, microsecond=0).astimezone(
         TIMEZONE
     )

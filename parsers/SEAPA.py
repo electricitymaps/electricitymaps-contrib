@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from logging import Logger, getLogger
 from typing import Any
 
@@ -50,7 +50,7 @@ def fetch_production(
     production_list = ProductionBreakdownList(logger=logger)
     production_list.append(
         zoneKey=zone_key,
-        datetime=datetime.now(timezone.utc),
+        datetime=datetime.now(UTC),
         production=production_mix,
         source=SOURCE,
     )

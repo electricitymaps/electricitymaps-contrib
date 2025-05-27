@@ -1,4 +1,4 @@
-from datetime import datetime, time, timedelta, timezone
+from datetime import UTC, datetime, time, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
 from operator import itemgetter
@@ -63,9 +63,7 @@ def _fetch_production_historical(
     """
 
     # API provides max one day of backlog
-    target_date_utc_to = datetime.combine(
-        target_datetime_utc, time(), tzinfo=timezone.utc
-    )
+    target_date_utc_to = datetime.combine(target_datetime_utc, time(), tzinfo=UTC)
     target_date_utc_from = target_date_utc_to - timedelta(days=1)
 
     # API takes local days as query parameters and returns data for the corresponding interval as UTC
@@ -94,7 +92,7 @@ def _fetch_production_historical(
         hourly_production_for_each_power_plant, key=itemgetter("date")
     )
     for hour, group in hourly_production_for_each_power_plant_by_hour:
-        dt = datetime.fromisoformat(hour).replace(tzinfo=timezone.utc)
+        dt = datetime.fromisoformat(hour).replace(tzinfo=UTC)
 
         # filter out entries outside of time window of interest (which happens if DST)
         end_of_day = target_date_utc_to + timedelta(days=1) - timedelta(microseconds=1)
@@ -179,7 +177,7 @@ def _fetch_production_live(
         # floor to hourly granularity to match historical API entries
         .replace(minute=0, second=0, microsecond=0, tzinfo=TIMEZONE)
         # cast to UTC just to keep consistent with historical API entries
-        .astimezone(timezone.utc)
+        .astimezone(UTC)
     )
 
     production_breakdown_list.append(
@@ -205,9 +203,9 @@ def fetch_production(
             f"This parser cannot retrieve data for zone {zone_key!r}",
         )
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     target_datetime = (
-        now if target_datetime is None else target_datetime.astimezone(timezone.utc)
+        now if target_datetime is None else target_datetime.astimezone(UTC)
     )
 
     session = session or Session()
