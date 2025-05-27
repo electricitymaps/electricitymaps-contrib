@@ -10,7 +10,7 @@ const MARKER_COLOR = '#DB58FF';
 
 export function EstimationLegendIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="mr-1">
       <rect width="24" height="24" fill="url(#pattern)" transform="scale(0.5)" />
       <line x1="0" y1="11" x2="12" y2="11" stroke="#DB58FF" strokeWidth="2" />
     </svg>

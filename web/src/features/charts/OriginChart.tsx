@@ -116,27 +116,25 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const someEstimated = estimated.some(Boolean);
 
-  const badge = someEstimated ? (
-    <div
-      className="flex h-6 flex-row items-center gap-1 whitespace-nowrap px-2 py-1 text-xs font-semibold"
-      style={{ color: '#DB58FF' }}
-    >
-      <EstimationLegendIcon />
-      Preliminary
-    </div>
-  ) : undefined;
-
   return (
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
-        badge={badge}
         isEstimated={someEstimated}
-        unit={valueAxisLabel}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ORIGIN_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
-      <div className="relative ">
+      <div className="relative">
+        {someEstimated && (
+          <div className="mb-2 flex flex-row items-center justify-between text-xs text-[#8b8b8b] dark:text-[#848484]">
+            <span className="flex">
+              <EstimationLegendIcon />
+              Preliminary
+            </span>
+            <span className="ml-auto">{valueAxisLabel}</span>
+          </div>
+        )}
         <AreaGraph
           testId="history-mix-graph"
           isDataInteractive={true}
