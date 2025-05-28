@@ -357,6 +357,7 @@ def test_invalid_locational_marginal_price_node_raises(node):
 
 def test_create_grid_alerts():
     grid_alert = GridAlert.create(
+        logger=logging.Logger("test"),
         zoneKey=ZoneKey("US-MIDA-PJM"),
         locationRegion="Test Region",
         source="trust.me",
@@ -379,11 +380,13 @@ def test_create_grid_alerts():
     assert grid_alert.endTime is None
 
 
-def test_invalid_grid_alert_raises():
+def test_invalid_messageBody_raises():
+    # This should raise a ValueError because empty messageBody
     with pytest.raises(ValueError):
-        GridAlert.create(
+        GridAlert(
+            logger=logging.Logger("test"),
             zoneKey=ZoneKey("US-MIDA-PJM"),
-            locationRegion="",
+            locationRegion=None,
             source="trust.me",
             # sourceType=EventSourceType.measured,
             alertType=GridAlertType.action,
