@@ -13,7 +13,6 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
     GridAlert,
-    GridAlertAudience,
     GridAlertType,
     LocationalMarginalPrice,
     Price,
@@ -359,39 +358,39 @@ def test_invalid_locational_marginal_price_node_raises(node):
 def test_create_grid_alerts():
     grid_alert = GridAlert.create(
         zoneKey=ZoneKey("US-MIDA-PJM"),
-        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        locationRegion="Test Region",
         source="trust.me",
-        sourceType=EventSourceType.measured,
+        # sourceType=EventSourceType.measured,
         alertType=GridAlertType.action,
-        topic="test",
-        message="This is a test message",
-        audience=GridAlertAudience.all,
-        endDate=None,
+        messageBody="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
     )
     assert grid_alert is not None
     assert grid_alert.zoneKey == ZoneKey("US-MIDA-PJM")
-    assert grid_alert.datetime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert grid_alert.locationRegion == "Test Region"
     assert grid_alert.source == "trust.me"
-    assert grid_alert.sourceType == EventSourceType.measured
+    # assert grid_alert.sourceType == EventSourceType.measured
     assert grid_alert.alertType == GridAlertType.action
-    assert grid_alert.topic == "test"
-    assert grid_alert.message == "This is a test message"
-    assert grid_alert.audience == GridAlertAudience.all
-    assert grid_alert.endDate is None
+    assert grid_alert.messageBody == "This is a test message"
+    assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert grid_alert.startTime == grid_alert.issuedTime  # because of the default
+    assert grid_alert.endTime is None
 
 
 def test_invalid_grid_alert_raises():
     with pytest.raises(ValueError):
         GridAlert.create(
             zoneKey=ZoneKey("US-MIDA-PJM"),
-            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            locationRegion="",
             source="trust.me",
-            sourceType=EventSourceType.measured,
+            # sourceType=EventSourceType.measured,
             alertType=GridAlertType.action,
-            topic="test",
-            message="",
-            audience=GridAlertAudience.all,
-            endDate=None,
+            messageBody="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
 
 

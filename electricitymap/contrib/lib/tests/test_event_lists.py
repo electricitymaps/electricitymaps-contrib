@@ -16,7 +16,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
-    GridAlertAudience,
     GridAlertType,
     ProductionMix,
     StorageMix,
@@ -295,14 +294,14 @@ def test_grid_alert_list():
     grid_alert_list = GridAlertList(logging.Logger("test"))
     grid_alert_list.append(
         zoneKey=ZoneKey("US-MIDA-PJM"),
-        datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        locationRegion="Test Region",
         source="trust.me",
-        sourceType=EventSourceType.measured,
+        # sourceType=EventSourceType.measured,
         alertType=GridAlertType.action,
-        topic="test",
-        message="This is a test message",
-        audience=GridAlertAudience.all,
-        endDate=None,
+        messageBody="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
     )
     assert len(grid_alert_list.events) == 1
 
@@ -312,14 +311,14 @@ def test_append_to_grid_alert_list_logs_error():
     with patch.object(grid_alert_list.logger, "error") as mock_error:
         grid_alert_list.append(
             zoneKey=ZoneKey("US-MIDA-PJM"),
-            datetime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            locationRegion="",
             source="trust.me",
-            sourceType=EventSourceType.measured,
+            # sourceType=EventSourceType.measured,
             alertType=GridAlertType.action,
-            topic="test",
-            message="",
-            audience=GridAlertAudience.all,
-            endDate=None,
+            messageBody="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
         mock_error.assert_called_once()
 
