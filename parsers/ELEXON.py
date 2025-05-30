@@ -22,7 +22,10 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix, TotalConsumption
+from electricitymap.contrib.lib.models.events import (
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -32,7 +35,9 @@ ELEXON_URLS = {
     "production_fuelhh": "/".join((ELEXON_API_ENDPOINT, "datasets/FUELINST/stream")),
     "exchange": "/".join((ELEXON_API_ENDPOINT, "generation/outturn/interconnectors")),
     "balancing": "/".join((ELEXON_API_ENDPOINT, "balancing/physical")),
-    "actual_load": "/".join((ELEXON_API_ENDPOINT, "datasets/ATL/stream")),  # B0610 - Actual Total Load
+    "actual_load": "/".join(
+        (ELEXON_API_ENDPOINT, "datasets/ATL/stream")
+    ),  # B0610 - Actual Total Load
 }
 ELEXON_START_DATE = datetime(
     2019, 1, 1, tzinfo=timezone.utc
@@ -407,18 +412,22 @@ def query_exchange(
             all_exchanges.append(exchange_list)
     return ExchangeList.merge_exchanges(all_exchanges, logger)
 
+
 def query_actual_demand(
     session: Session, target_datetime: datetime, logger: Logger
 ) -> list[dict[str, Any]]:
     """Fetches actual electrical demand data from the ATL (Actual Total Load) endpoint."""
     params = {
-        "publishDateTimeFrom": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "publishDateTimeFrom": (target_datetime - timedelta(days=1)).strftime(
+            "%Y-%m-%dT%H:%M:%SZ"
+        ),
         "publishDateTimeTo": target_datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "format": "json",
     }
 
     demand_data = query_elexon(ELEXON_URLS["actual_load"], session, params)
     return demand_data if isinstance(demand_data, list) else []
+
 
 def parse_demand_data(
     demand_data: list[dict[str, Any]], logger: Logger
@@ -428,7 +437,9 @@ def parse_demand_data(
 
     for event in demand_data:
         event_datetime_str = event.get("startTime")
-        consumption_value = get_event_value(event, "quantity")  # or whatever the demand field is called
+        consumption_value = get_event_value(
+            event, "quantity"
+        )  # or whatever the demand field is called
 
         if event_datetime_str and consumption_value is not None:
             event_datetime = datetime.fromisoformat(zulu_to_utc(event_datetime_str))
@@ -439,6 +450,7 @@ def parse_demand_data(
                 datetime=event_datetime,
             )
     return consumption_list
+
 
 @refetch_frequency(timedelta(hours=1))
 def fetch_consumption(
@@ -466,6 +478,7 @@ def fetch_consumption(
             message=f"No demand data found for {target_datetime.date()}",
         )
     return parsed_demand.to_list()
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
