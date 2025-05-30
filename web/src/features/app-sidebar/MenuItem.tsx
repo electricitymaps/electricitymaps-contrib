@@ -1,18 +1,17 @@
 import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { useNavigationEvent, useTrackEvent } from 'hooks/useTrackEvent';
-import type { LucideIcon } from 'lucide-react';
 
 import { SidebarMenuButton, SidebarMenuItem } from './Sidebar';
 
 export function MenuItem({
   to,
-  Icon,
+  icon,
   label,
   isActive = false,
 }: {
   to: string;
-  Icon: LucideIcon;
+  icon: React.ReactElement; // LucideIcon;
   label: string;
   isActive?: boolean;
 }) {
@@ -33,7 +32,7 @@ export function MenuItem({
           onClick={trackNavigationClick}
         >
           <a href={to}>
-            <Icon className="transition-[height,width] duration-200" />
+            {icon}
             <span>{label}</span>
           </a>
         </SidebarMenuButton>

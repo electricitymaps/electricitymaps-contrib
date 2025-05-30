@@ -33,34 +33,34 @@ export const SIDEBAR_WIDTH = '63px';
 
 const PORTAL_URL = 'https://portal.electricitymaps.com';
 
-const MENU_ITEMS = [
-  {
+const MENU_ITEMS = {
+  map: {
     to: '/',
     label: 'Map',
-    icon: MapIcon,
+    icon: <MapIcon />,
     isActive: true,
   },
-  {
-    label: 'Datasets',
+  datasets: {
     to: `${PORTAL_URL}/datasets`,
-    icon: FileDownIcon,
+    label: 'Datasets',
+    icon: <FileDownIcon />,
   },
-  {
-    label: 'Data Explorer',
+  explorer: {
     to: `${PORTAL_URL}/data-explorer`,
-    icon: ChartNoAxesCombined,
+    label: 'Data Explorer',
+    icon: <ChartNoAxesCombined />,
   },
-  {
-    label: 'API',
+  api: {
     to: `${PORTAL_URL}`,
-    icon: CodeXmlIcon,
+    label: 'API Playground',
+    icon: <CodeXmlIcon />,
   },
-  {
-    label: 'API Docs',
+  docs: {
     to: `${PORTAL_URL}/docs`,
-    icon: BookOpenIcon,
+    label: 'API Docs',
+    icon: <BookOpenIcon />,
   },
-];
+};
 
 export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,15 +95,10 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {MENU_ITEMS.map((item) => (
-              <MenuItem
-                key={item.to}
-                to={item.to}
-                label={item.label}
-                Icon={item.icon}
-                isActive={item.isActive || false}
-              />
-            ))}
+            <MenuItem key={MENU_ITEMS.map.to} {...MENU_ITEMS.map} />
+            <MenuItem key={MENU_ITEMS.datasets.to} {...MENU_ITEMS.datasets} />
+            <MenuItem key={MENU_ITEMS.explorer.to} {...MENU_ITEMS.explorer} />
+            <MenuItem key={MENU_ITEMS.api.to} {...MENU_ITEMS.api} />
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
