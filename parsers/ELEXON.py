@@ -37,7 +37,7 @@ ELEXON_URLS = {
     "balancing": "/".join((ELEXON_API_ENDPOINT, "balancing/physical")),
     "actual_load": "/".join(
         (ELEXON_API_ENDPOINT, "datasets/ATL/stream")
-    ),  # B0610 - Actual Total Load
+    ),  # B0610 - Actual Total Load https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/ATL
 }
 ELEXON_START_DATE = datetime(
     2019, 1, 1, tzinfo=timezone.utc
