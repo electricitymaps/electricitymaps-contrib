@@ -11,7 +11,7 @@ export function MenuItem({
   isActive = false,
 }: {
   to: string;
-  icon: React.ReactElement; // LucideIcon;
+  icon: React.ReactElement;
   label: string;
   isActive?: boolean;
 }) {

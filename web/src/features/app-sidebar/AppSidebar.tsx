@@ -65,6 +65,10 @@ const MENU_ITEMS = {
 export function AppSidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tooltipReference = useRef<TooltipWrapperReference>(null);
+
+  const [isApiMenuOpen, setIsApiMenuOpen] = useState(false);
+  const apiTooltipReference = useRef<TooltipWrapperReference>(null);
+
   const isIntercomEnabled = useFeatureFlag('intercom-messenger');
   const trackEvent = useTrackEvent();
   const { trackSupportChat, trackSupportFaq } = useEvents(trackEvent);
@@ -73,6 +77,13 @@ export function AppSidebar() {
     setIsMenuOpen(open);
     if (open) {
       tooltipReference.current?.close();
+    }
+  };
+
+  const handleOpenApiChange = (open: boolean) => {
+    setIsApiMenuOpen(open);
+    if (open) {
+      apiTooltipReference.current?.close();
     }
   };
 
@@ -98,7 +109,61 @@ export function AppSidebar() {
             <MenuItem key={MENU_ITEMS.map.to} {...MENU_ITEMS.map} />
             <MenuItem key={MENU_ITEMS.datasets.to} {...MENU_ITEMS.datasets} />
             <MenuItem key={MENU_ITEMS.explorer.to} {...MENU_ITEMS.explorer} />
-            <MenuItem key={MENU_ITEMS.api.to} {...MENU_ITEMS.api} />
+
+            <TooltipWrapper
+              ref={apiTooltipReference}
+              tooltipContent={
+                isApiMenuOpen ? undefined : <LabelTooltip>API</LabelTooltip>
+              }
+              side="right"
+              sideOffset={4}
+            >
+              <SidebarMenuItem className="flex flex-col">
+                <DropdownMenu.Root
+                  open={isApiMenuOpen}
+                  onOpenChange={handleOpenApiChange}
+                >
+                  <DropdownMenu.Trigger asChild>
+                    <SidebarMenuButton
+                      className="p-2 text-neutral-600 transition-all duration-200 hover:bg-[#126945]/10 hover:text-[#126945] data-[active=true]:bg-[#126945]/10 data-[active=true]:font-semibold data-[active=true]:text-[#126945] group-data-[collapsible=icon]:!p-1.5 dark:text-neutral-200 dark:hover:bg-[#4DC18C]/20 dark:hover:text-[#4DC18C] dark:data-[active=true]:bg-[#4DC18C]/20 dark:data-[active=true]:text-[#4DC18C] group-data-[collapsible=icon]:[&>svg]:size-5"
+                      aria-label="API"
+                    >
+                      {MENU_ITEMS.api.icon}
+                    </SidebarMenuButton>
+                  </DropdownMenu.Trigger>
+
+                  <DropdownMenu.Portal>
+                    <DropdownMenu.Content
+                      className="z-50 min-w-[150px] rounded-md border border-neutral-200 bg-white p-1 text-sm text-neutral-700 shadow-md dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200"
+                      sideOffset={16}
+                      side="right"
+                      align="end"
+                    >
+                      <DropdownMenu.Item asChild>
+                        <a
+                          href={MENU_ITEMS.api.to}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                        >
+                          {MENU_ITEMS.api.label}
+                        </a>
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Item asChild>
+                        <a
+                          href={MENU_ITEMS.docs.to}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 outline-none hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                        >
+                          {MENU_ITEMS.docs.label}
+                        </a>
+                      </DropdownMenu.Item>
+                    </DropdownMenu.Content>
+                  </DropdownMenu.Portal>
+                </DropdownMenu.Root>
+              </SidebarMenuItem>
+            </TooltipWrapper>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
