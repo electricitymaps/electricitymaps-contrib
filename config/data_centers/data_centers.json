@@ -899,142 +899,142 @@
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
-  "ovh-us-hillsboro": {
+  "ovh-hil": {
     "provider": "ovh",
     "displayName": "Hillsboro",
     "zoneKey": "US",
     "lonlat": [45.5225, -122.992],
-    "region": "North America",
+    "region": "us-hillsboro",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-us-vint_hill": {
+  "ovh-vin": {
     "provider": "ovh",
     "displayName": "Vint Hill",
     "zoneKey": "US",
     "lonlat": [38.7506, -77.6652],
-    "region": "North America",
+    "region": "us-vint_hill",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-de-frankfurt": {
+  "ovh-de": {
     "provider": "ovh",
     "displayName": "Frankfurt",
     "zoneKey": "DE",
     "lonlat": [50.4953, 8.33636],
-    "region": "Europe",
+    "region": "de-frankfurt",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-au-sydney": {
+  "ovh-syd": {
     "provider": "ovh",
     "displayName": "Sydney",
     "zoneKey": "AU",
     "lonlat": [-33.8648, 151.911],
-    "region": "Asia Pacific",
+    "region": "au-sydney",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-ca-beauharnois": {
+  "ovh-bhs": {
     "provider": "ovh",
     "displayName": "Beauharnois",
     "zoneKey": "CA",
     "lonlat": [45.3094, -73.8959],
-    "region": "North America",
+    "region": "ca-beauharnois",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-ca-toronto": {
+  "ovh-tor": {
     "provider": "ovh",
     "displayName": "Toronto",
     "zoneKey": "CA",
     "lonlat": [43.3625, -80.3165],
-    "region": "North America",
+    "region": "ca-toronto",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-fr-gravelines": {
+  "ovh-gra": {
     "provider": "ovh",
     "displayName": "Gravelines",
     "zoneKey": "FR",
     "lonlat": [51.0181, 2.15526],
-    "region": "Europe",
+    "region": "fr-gravelines",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-fr-paris": {
+  "ovh-par": {
     "provider": "ovh",
     "displayName": "Paris",
     "zoneKey": "FR",
     "lonlat": [48.8574, 2.35029],
-    "region": "Europe",
+    "region": "fr-paris",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-fr-roubaix": {
+  "ovh-rbx": {
     "provider": "ovh",
     "displayName": "Roubaix",
     "zoneKey": "FR",
     "lonlat": [50.6925, 3.20422],
-    "region": "Europe",
+    "region": "fr-roubaix",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-fr-strasbourg": {
+  "ovh-sbg": {
     "provider": "ovh",
     "displayName": "Strasbourg",
     "zoneKey": "FR",
     "lonlat": [48.5734, 7.75395],
-    "region": "Europe",
+    "region": "fr-strasbourg",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-in-mumbai": {
+  "ovh-mum": {
     "provider": "ovh",
     "displayName": "Mumbai ",
     "zoneKey": "IN",
     "lonlat": [19.0774, 72.8147],
-    "region": "Asia Pacific",
+    "region": "in-mumbai",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-pl-warsaw": {
+  "ovh-waw": {
     "provider": "ovh",
     "displayName": "Warsaw",
     "zoneKey": "PL",
     "lonlat": [52.2078, 20.8084],
-    "region": "Europe",
+    "region": "pl-warsaw",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-gb-london": {
+  "ovh-uk": {
     "provider": "ovh",
     "displayName": "London",
     "zoneKey": "GB",
     "lonlat": [51.5114, -0.078804],
-    "region": "Europe",
+    "region": "gb-london",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-sg-singapore": {
+  "ovh-sgp": {
     "provider": "ovh",
     "displayName": "Singapore",
     "zoneKey": "SG",
     "lonlat": [1.3179, 103.895],
-    "region": "Asia Pacific",
+    "region": "sg-singapore",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
     "operationalSince": null,
     "status": "operational"
