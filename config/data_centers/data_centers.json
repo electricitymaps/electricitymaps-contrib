@@ -902,7 +902,7 @@
   "ovh-hil": {
     "provider": "ovh",
     "displayName": "Hillsboro",
-    "zoneKey": "US",
+    "zoneKey": "US-NW-BPAT",
     "lonlat": [45.5225, -122.992],
     "region": "us-hillsboro",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
@@ -912,7 +912,7 @@
   "ovh-vin": {
     "provider": "ovh",
     "displayName": "Vint Hill",
-    "zoneKey": "US",
+    "zoneKey": "US-MIDA-PJM",
     "lonlat": [38.7506, -77.6652],
     "region": "us-vint_hill",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
@@ -932,7 +932,7 @@
   "ovh-syd": {
     "provider": "ovh",
     "displayName": "Sydney",
-    "zoneKey": "AU",
+    "zoneKey": "AU-NSW",
     "lonlat": [-33.8648, 151.911],
     "region": "au-sydney",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
@@ -942,7 +942,7 @@
   "ovh-bhs": {
     "provider": "ovh",
     "displayName": "Beauharnois",
-    "zoneKey": "CA",
+    "zoneKey": "CA-QC",
     "lonlat": [45.3094, -73.8959],
     "region": "ca-beauharnois",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
@@ -952,7 +952,7 @@
   "ovh-tor": {
     "provider": "ovh",
     "displayName": "Toronto",
-    "zoneKey": "CA",
+    "zoneKey": "CA-ON",
     "lonlat": [43.3625, -80.3165],
     "region": "ca-toronto",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
@@ -1002,7 +1002,7 @@
   "ovh-mum": {
     "provider": "ovh",
     "displayName": "Mumbai ",
-    "zoneKey": "IN",
+    "zoneKey": "IN-WE",
     "lonlat": [19.0774, 72.8147],
     "region": "in-mumbai",
     "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
