@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://app.electricitymaps.com">
-    <img alt="Electricity Maps" src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricitymaps-logo.svg" width="100" />
+    <img alt="Electricity Maps" src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricity-maps-logo.svg" width="100" />
   </a>
 </p>
 <h1 align="center">
