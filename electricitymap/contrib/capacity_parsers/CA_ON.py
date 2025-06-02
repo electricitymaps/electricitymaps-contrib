@@ -1,5 +1,5 @@
+import logging
 from datetime import datetime
-from logging import INFO, basicConfig, getLogger
 from typing import Any
 
 import pandas as pd
@@ -7,8 +7,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-logger = getLogger(__name__)
-basicConfig(level=INFO)
+logger = logging.getLogger(__name__)
 
 MODE_MAPPING = {
     "Nuclear": "nuclear",
@@ -62,4 +61,5 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     fetch_production_capacity(ZoneKey("CA_ON"), datetime(2023, 3, 1), Session())
