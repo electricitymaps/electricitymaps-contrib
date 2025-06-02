@@ -56,7 +56,7 @@ def fetch_production(
         latest_data_point_JP_SK["datetime"] - datetime_nuclear
     ).total_seconds() / 3600 <= 1:
         latest_data_point_JP_SK["production"]["nuclear"] = nuclear_power_MW
-    return latest_data_point_JP_SK
+    return [latest_data_point_JP_SK]
 
 
 NUCLEAR_REPORT_URL = "https://www.yonden.co.jp/energy/atom/ikata/ikt722.html"
