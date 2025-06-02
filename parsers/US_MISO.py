@@ -225,6 +225,7 @@ def fetch_wind_solar_forecasts(
 def fetch_grid_alerts(
     zone_key: ZoneKey = ZoneKey(ZONE),
     session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Fetch Grid Alerts from MISO"""
