@@ -7,6 +7,7 @@ import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     LocationalMarginalPriceList,
     PriceList,
     ProductionBreakdownList,
@@ -15,6 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
@@ -284,6 +286,37 @@ def test_append_to_locational_marginal_price_list_logs_error():
             source="trust.me",
             currency="EUR",
             node="",
+        )
+        mock_error.assert_called_once()
+
+
+def test_grid_alert_list():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    grid_alert_list.append(
+        zoneKey=ZoneKey("US-MIDA-PJM"),
+        locationRegion="Test Region",
+        source="trust.me",
+        alertType=GridAlertType.action,
+        message="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
+    )
+    assert len(grid_alert_list.events) == 1
+
+
+def test_append_to_grid_alert_list_logs_error():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    with patch.object(grid_alert_list.logger, "error") as mock_error:
+        grid_alert_list.append(
+            zoneKey=ZoneKey("US-MIDA-PJM"),
+            locationRegion="",
+            source="trust.me",
+            alertType=GridAlertType.action,
+            message="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
         mock_error.assert_called_once()
 
