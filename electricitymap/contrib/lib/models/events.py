@@ -996,6 +996,5 @@ class GridAlert(Event):
             "startTime": self.startTime,
             "endTime": self.endTime,
             "source": self.source,
-            # "sourceType": self.sourceType,
             "datetime": self.datetime,
         }
