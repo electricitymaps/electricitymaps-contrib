@@ -371,7 +371,6 @@ def test_create_grid_alerts():
     assert grid_alert.zoneKey == ZoneKey("US-MIDA-PJM")
     assert grid_alert.locationRegion == "Test Region"
     assert grid_alert.source == "trust.me"
-    # assert grid_alert.sourceType == EventSourceType.measured
     assert grid_alert.alertType == GridAlertType.action
     assert grid_alert.message == "This is a test message"
     assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=timezone.utc)
