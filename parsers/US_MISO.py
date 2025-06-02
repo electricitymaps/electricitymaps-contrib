@@ -280,12 +280,12 @@ def fetch_grid_alerts(
 if __name__ == "__main__":
     from pprint import pprint
 
-    # print("fetch_production() ->")
-    # print(fetch_production())
+    print("fetch_production() ->")
+    print(fetch_production())
 
-    # print(fetch_consumption_forecast())
+    print(fetch_consumption_forecast())
 
-    # print("fetch_wind_solar_forecasts() ->")
-    # print(fetch_wind_solar_forecasts())
+    print("fetch_wind_solar_forecasts() ->")
+    print(fetch_wind_solar_forecasts())
 
     pprint(fetch_grid_alerts())
