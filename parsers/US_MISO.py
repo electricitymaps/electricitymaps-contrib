@@ -225,20 +225,10 @@ def fetch_wind_solar_forecasts(
 def fetch_grid_alerts(
     zone_key: ZoneKey = ZoneKey(ZONE),
     session: Session | None = None,
-    # target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Fetch Grid Alerts from MISO"""
     session = session or Session()
-
-    # Datetime
-    """
-    if target_datetime is None:
-        target_datetime = datetime.now(tz=TIMEZONE)
-    else:
-        # assume passed in correct timezone
-        target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
-    """
 
     # API URL
     url = "https://www.misoenergy.org/api/topicnotifications/getrecentnotifications"
@@ -277,9 +267,8 @@ def fetch_grid_alerts(
             zoneKey=zone_key,
             locationRegion=None,
             source=SOURCE,
-            # sourceType=EventSourceType.measured,  # ?
             alertType=GridAlertType.undefined,
-            messageBody=notification["subject"] + "\n" + notification["body"],
+            message=notification["subject"] + "\n" + notification["body"],
             issuedTime=publish_datetime,
             startTime=None,  # if None, it defaults to issuedTime
             endTime=None,
