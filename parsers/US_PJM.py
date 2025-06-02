@@ -444,7 +444,7 @@ def fetch_grid_alerts(
             alertType=alertType,
             message=message,
             issuedTime=startTime,
-            startTime=None,
+            startTime=startTime,
             endTime=endTime,
         )
     return alerts.to_list()
