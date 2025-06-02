@@ -16,12 +16,14 @@ from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
@@ -44,6 +46,7 @@ PRICE_API_ENDPOINT = "http://www.pjm.com/markets-and-operations.aspx"
 CURRENCY = "USD"
 
 SOURCE = "pjm.com"
+GRID_ALERTS = "https://emergencyprocedures.pjm.com/ep/pages/dashboard.jsf"
 
 ZONE_TO_PJM_INTERFACES = {
     ZoneKey("US-MIDW-MISO"): ["MISO"],  # "MISO LMP"
@@ -414,6 +417,76 @@ def fetch_exchange(
         ungrouped_exchange_lists.append(exchange_list)
 
     return ExchangeList.merge_exchanges(ungrouped_exchange_lists, logger).to_list()
+
+
+def fetch_grid_alerts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    session = session or Session()
+    response = session.get(GRID_ALERTS)
+    soup = BeautifulSoup(response.text, "html.parser")
+    tbody = soup.find("tbody", {"id": "frmTable:tblPostings_data"})
+    alerts = GridAlertList(logger)
+
+    for i, alert in enumerate(tbody.children):
+        alertType = extract_alert_type(alert, i)
+        message = extract_message(alert, i)
+        startTime, endTime = extract_start_and_end_time(alert, i)
+        locationRegion = alert.find("span", {"class": "region-name"}).text.strip()
+
+        alerts.append(
+            zoneKey=ZONE_KEY,
+            locationRegion=locationRegion,
+            source=SOURCE,
+            alertType=alertType,
+            message=message,
+            issuedTime=startTime,
+            startTime=None,
+            endTime=endTime,
+        )
+    return alerts.to_list()
+
+
+def extract_alert_type(alert: BeautifulSoup, i: int) -> GridAlertType:
+    alertType = alert.find(
+        "span",
+        {"id": re.compile(f"frmTable:tblPostings:{i}:j_idt\\d+:txtPriority")},
+    ).text.strip()
+    if alertType == "Action":
+        return GridAlertType.action
+    else:
+        return GridAlertType.informational
+
+
+def extract_message(alert: BeautifulSoup, i: int) -> str:
+    messageBody = alert.find(
+        "span", {"id": f"frmTable:tblPostings:{i}:txtMessage"}
+    ).text.strip()
+    topic = alert.find(
+        "span",
+        {"id": re.compile(f"frmTable:tblPostings:{i}:j_idt\\d+:txtMessageTypeName")},
+    ).text.strip()
+    return f"{topic}\n{messageBody}"
+
+
+def extract_start_and_end_time(
+    alert: BeautifulSoup, i: int
+) -> tuple[datetime, datetime]:
+    startTime = alert.find(
+        "span", {"id": f"frmTable:tblPostings:{i}:txtEffectiveStartTime"}
+    ).text.strip()
+    endTime = alert.find(
+        "span", {"id": f"frmTable:tblPostings:{i}:txtEffectiveEndTime"}
+    ).text.strip()
+    startTime = datetime.strptime(startTime, "%m.%d.%Y %H:%M").replace(tzinfo=TIMEZONE)
+    if endTime != "":
+        endTime = datetime.strptime(endTime, "%m.%d.%Y %H:%M").replace(tzinfo=TIMEZONE)
+    else:
+        endTime = None
+    return startTime, endTime
 
 
 if __name__ == "__main__":
