@@ -903,7 +903,7 @@ class GridAlertType(str, Enum):
 class GridAlert(Event):
     locationRegion: str | None = None
     alertType: GridAlertType
-    messageBody: str
+    message: str
     issuedTime: datetime
     startTime: datetime | None
     endTime: datetime | None
@@ -914,10 +914,10 @@ class GridAlert(Event):
             raise ValueError(f"Unknown alert type: {v}")
         return v
 
-    @validator("messageBody")
-    def _validate_messageBody(cls, v: str) -> str:
+    @validator("message")
+    def _validate_message(cls, v: str) -> str:
         if not v:
-            raise ValueError(f"MessageBody cannot be empty: {v}")
+            raise ValueError(f"message cannot be empty: {v}")
         return v
 
     @validator("issuedTime")
@@ -957,10 +957,9 @@ class GridAlert(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         locationRegion: str | None,
-        # sourceType: EventSourceType,
         source: str,
         alertType: GridAlertType,
-        messageBody: str,
+        message: str,
         issuedTime: datetime,
         startTime: datetime | None,
         endTime: datetime | None,
@@ -970,9 +969,8 @@ class GridAlert(Event):
                 zoneKey=zoneKey,
                 locationRegion=locationRegion,
                 source=source,
-                # sourceType=sourceType,
                 alertType=alertType,
-                messageBody=messageBody,
+                message=message,
                 issuedTime=issuedTime,
                 startTime=startTime,
                 endTime=endTime,
@@ -993,7 +991,7 @@ class GridAlert(Event):
             "zoneKey": self.zoneKey,
             "locationRegion": self.locationRegion,
             "alertType": self.alertType,
-            "messageBody": self.messageBody,
+            "message": self.message,
             "issuedTime": self.issuedTime,
             "startTime": self.startTime,
             "endTime": self.endTime,
