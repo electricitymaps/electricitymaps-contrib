@@ -108,7 +108,7 @@
     "react-icons": "^5.5.0",
     "react-map-gl": "~7.1.9",
     "react-router-dom": "6.29.0",
-    "react-spinners": "^0.14.1",
+    "react-spinners": "^0.17.0",
     "react-spring-bottom-sheet": "3.5.0-alpha.0",
     "storybook-mock-date-decorator": "^2.0.6",
     "sunrise-sunset-js": "^2.2.1",
