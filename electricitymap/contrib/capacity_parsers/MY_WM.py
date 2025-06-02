@@ -1,6 +1,6 @@
 import json
+import logging
 from datetime import datetime
-from logging import INFO, basicConfig, getLogger
 from typing import Any
 
 import pandas as pd
@@ -10,8 +10,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 
-logger = getLogger(__name__)
-basicConfig(level=INFO)
+logger = logging.getLogger(__name__)
 
 """Disclaimer: only valid for real-time data, historical capacity is not available"""
 
@@ -74,4 +73,5 @@ def fetch_production_capacity(
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     fetch_production_capacity(ZoneKey("MY-WM"), Session())

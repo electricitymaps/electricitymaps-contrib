@@ -106,7 +106,7 @@ def _fetch_quebec_consumption(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    test_logger = getLogger()
+    test_logger = getLogger(__name__)
 
     print("fetch_production() ->")
     pprint(fetch_production(logger=test_logger))
