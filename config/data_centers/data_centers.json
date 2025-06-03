@@ -899,7 +899,7 @@
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": null
   },
-  "ovh-hil": {
+  "ovh-us-hillsboro": {
     "provider": "ovh",
     "displayName": "Hillsboro",
     "zoneKey": "US-NW-BPAT",
@@ -909,7 +909,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-vin": {
+  "ovh-us-vint_hill": {
     "provider": "ovh",
     "displayName": "Vint Hill",
     "zoneKey": "US-MIDA-PJM",
@@ -919,7 +919,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-de": {
+  "ovh-de-frankfurt": {
     "provider": "ovh",
     "displayName": "Frankfurt",
     "zoneKey": "DE",
@@ -929,7 +929,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-syd": {
+  "ovh-au-sydney": {
     "provider": "ovh",
     "displayName": "Sydney",
     "zoneKey": "AU-NSW",
@@ -939,7 +939,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-bhs": {
+  "ovh-ca-beauharnois": {
     "provider": "ovh",
     "displayName": "Beauharnois",
     "zoneKey": "CA-QC",
@@ -949,7 +949,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-tor": {
+  "ovh-ca-toronto": {
     "provider": "ovh",
     "displayName": "Toronto",
     "zoneKey": "CA-ON",
@@ -959,7 +959,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-gra": {
+  "ovh-fr-gravelines": {
     "provider": "ovh",
     "displayName": "Gravelines",
     "zoneKey": "FR",
@@ -969,7 +969,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-par": {
+  "ovh-fr-paris": {
     "provider": "ovh",
     "displayName": "Paris",
     "zoneKey": "FR",
@@ -979,7 +979,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-rbx": {
+  "ovh-fr-roubaix": {
     "provider": "ovh",
     "displayName": "Roubaix",
     "zoneKey": "FR",
@@ -989,7 +989,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-sbg": {
+  "ovh-fr-strasbourg": {
     "provider": "ovh",
     "displayName": "Strasbourg",
     "zoneKey": "FR",
@@ -999,7 +999,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-mum": {
+  "ovh-in-mumbai": {
     "provider": "ovh",
     "displayName": "Mumbai ",
     "zoneKey": "IN-WE",
@@ -1009,7 +1009,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-waw": {
+  "ovh-pl-warsaw": {
     "provider": "ovh",
     "displayName": "Warsaw",
     "zoneKey": "PL",
@@ -1019,7 +1019,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-uk": {
+  "ovh-gb-london": {
     "provider": "ovh",
     "displayName": "London",
     "zoneKey": "GB",
@@ -1029,7 +1029,7 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "ovh-sgp": {
+  "ovh-sg-singapore": {
     "provider": "ovh",
     "displayName": "Singapore",
     "zoneKey": "SG",
