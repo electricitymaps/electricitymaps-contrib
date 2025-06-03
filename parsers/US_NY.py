@@ -18,10 +18,15 @@ from requests.exceptions import HTTPError
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+)
 from parsers.lib.config import refetch_frequency
 
 # Pumped storage is present but is not split into a separate category.
@@ -308,6 +313,66 @@ def fetch_consumption_forecast(
     return consumption_list.to_list()
 
 
+def fetch_grid_alerts(
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetch Grid Alerts from NYISO (http://mis.nyiso.com/public/P-35list.htm)"""
+    session = session or Session()
+
+    # Target Datetime
+    if target_datetime is None:
+        target_datetime = datetime.now(tz=TIMEZONE)
+    else:
+        # assume passed in correct timezone
+        target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
+
+    # Make URL
+    target_datetime_string = target_datetime.strftime("%Y%m%d")  # today's date
+    url = (
+        "http://mis.nyiso.com/public/csv/RealTimeEvents/"
+        + target_datetime_string
+        + "RealTimeEvents.csv"
+    )
+
+    # Make the request and check for success
+    try:
+        csv = pd.read_csv(url)
+    except HTTPError as e:
+        logger.error("Failed to fetch grid alerts from NYISO: %s", e)
+        return []
+
+    print(csv)
+
+    # TODO: maybe extract locationRegion from each notification?
+    # TODO: maybe extract startTime and endTime from each notification?
+    # TODO: maybe extract alertType from each notification?
+
+    # Record events in grid_alert_list
+    grid_alert_list = GridAlertList(logger)
+    for _, notification in csv.iterrows():
+        # Parse and assign EDT timezone
+        dt_edt = datetime.strptime(
+            notification["Timestamp"], "%m/%d/%Y %H:%M:%S"
+        ).replace(tzinfo=TIMEZONE)
+        # Convert to UTC
+        dt_utc = dt_edt.astimezone(ZoneInfo("UTC"))
+
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=None,
+            source=SOURCE,
+            alertType=GridAlertType.undefined,
+            message=notification["Message"],
+            issuedTime=dt_utc,
+            startTime=None,  # if None, it defaults to issuedTime
+            endTime=None,
+        )
+    return grid_alert_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -340,7 +405,10 @@ if __name__ == "__main__":
         'fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))'
     )
     pprint(fetch_exchange("US-NY", "CA-QC", target_datetime=datetime(2007, 3, 13, 12)))
-    """
 
     print("fetch_consumption_forecast() ->")
     pprint(fetch_consumption_forecast())
+    """
+
+    print("fetch_grid_alerts() ->")
+    pprint(fetch_grid_alerts(target_datetime=datetime(2025, 6, 3, 12, 0)))
