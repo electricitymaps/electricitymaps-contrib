@@ -156,10 +156,7 @@ function ZoneDetailsContentInternal({
   children: React.ReactNode;
   zoneDataStatus: ZoneDataStatus | false;
 }): JSX.Element {
-  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
-    return <NoInformationMessage />;
-  }
-  if (zoneDataStatus === false) {
+  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION || zoneDataStatus == false) {
     return <NoInformationMessage />;
   }
 
