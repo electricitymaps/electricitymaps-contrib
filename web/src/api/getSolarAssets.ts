@@ -1,21 +1,20 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
+import { FeatureCollection } from 'geojson';
 
 import { getHeaders } from './helpers';
 
-const getSolarAssets = async (): Promise<any> => {
+const getSolarAssets = async (): Promise<FeatureCollection> => {
   const path: URL = new URL(
     'https://storage.googleapis.com/testing-gzipped-geojson/solar_power_plants.geojson'
   );
 
   const requestOptions: RequestInit = {
-    method: 'GET',
     headers: await getHeaders(path),
   };
 
   const response = await fetch(path, requestOptions);
   const result = await response.json();
-  console.log('res123', result);
   if (response.ok) {
     return result;
   }
@@ -23,8 +22,8 @@ const getSolarAssets = async (): Promise<any> => {
   throw new Error(await response.text());
 };
 
-const useGetSolarAssets = (): UseQueryResult<Record<string, unknown>> =>
-  useQuery<Record<string, unknown>>({
+const useGetSolarAssets = (): UseQueryResult<FeatureCollection> =>
+  useQuery({
     queryKey: ['solarAssets'],
     queryFn: getSolarAssets,
   });
