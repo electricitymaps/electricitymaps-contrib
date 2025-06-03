@@ -1,10 +1,10 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { FeatureCollection } from 'geojson';
+import { FeatureCollection, Point } from 'geojson';
 
 import { getHeaders } from './helpers';
 
-const getSolarAssets = async (): Promise<FeatureCollection> => {
+const getSolarAssets = async (): Promise<FeatureCollection<Point>> => {
   const path: URL = new URL(
     'https://storage.googleapis.com/testing-gzipped-geojson/solar_power_plants.geojson'
   );
