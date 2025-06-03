@@ -329,8 +329,8 @@ def fetch_grid_alerts(
         # assume passed in correct timezone
         target_datetime = target_datetime.replace(tzinfo=TIMEZONE)
 
-    # Make URL
-    target_datetime_string = target_datetime.strftime("%Y%m%d")  # today's date
+    # Make URL with specified date
+    target_datetime_string = target_datetime.strftime("%Y%m%d")
     url = (
         "http://mis.nyiso.com/public/csv/RealTimeEvents/"
         + target_datetime_string
@@ -340,11 +340,13 @@ def fetch_grid_alerts(
     # Make the request and check for success
     try:
         csv = pd.read_csv(url)
-    except HTTPError as e:
-        logger.error("Failed to fetch grid alerts from NYISO: %s", e)
+    except Exception as e:
+        logger.error(
+            "Failed to fetch grid alerts from NYISO for date of %s: %s",
+            target_datetime_string,
+            e,
+        )
         return []
-
-    print(csv)
 
     # TODO: maybe extract locationRegion from each notification?
     # TODO: maybe extract startTime and endTime from each notification?
@@ -411,4 +413,4 @@ if __name__ == "__main__":
     """
 
     print("fetch_grid_alerts() ->")
-    pprint(fetch_grid_alerts(target_datetime=datetime(2025, 6, 3, 12, 0)))
+    pprint(fetch_grid_alerts())
