@@ -43,9 +43,7 @@ ELEXON_START_DATE = datetime(
     2019, 1, 1, tzinfo=timezone.utc
 )  # ELEXON API only has data from 2019-01-01
 ELEXON_SOURCE = "elexon.co.uk"
-ESO_NATIONAL_GRID_ENDPOINT = (
-    "https://api.nationalgrideso.com/api/3/action/datastore_search_sql"
-)
+ESO_NATIONAL_GRID_ENDPOINT = "https://api.neso.energy/api/3/action/datastore_search_sql"
 ESO_SOURCE = "nationalgrideso.com"
 
 # A specific report to query most recent data (within 1 month time span + forecast ahead)
