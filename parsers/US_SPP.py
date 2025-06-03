@@ -156,7 +156,7 @@ def data_processor(df, logger: Logger) -> list[tuple[datetime, ProductionMix]]:
     processed_data = []
     for index in range(len(df)):
         mix = ProductionMix()
-        production = df.loc[index].to_dict()
+        production = df.iloc[index].to_dict()
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove | unknown_keys:
             production.pop(k, None)
@@ -177,6 +177,13 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
+        # check if target_datetime is timezone naive
+        # https://docs.python.org/3/library/datetime.html#determining-if-an-object-is-aware-or-naive
+        if (
+            target_datetime.tzinfo is None  # order is important here
+            or target_datetime.tzinfo.utcoffset(target_datetime) is None
+        ):
+            target_datetime = target_datetime.replace(tzinfo=timezone.utc)
         current_year = datetime.now().year
         target_year = target_datetime.year
 

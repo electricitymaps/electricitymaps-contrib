@@ -66,9 +66,9 @@ class CyprusParser:
                     datum["datetime"] = datetime.fromisoformat(val).replace(
                         tzinfo=TIMEZONE
                     )
-                elif col == "Αιολική Παραγωγή":
+                elif col == "Αιολική Παραγωγή στο ΣΜ":
                     production["wind"] = float(val)
-                elif col == "Συμβατική Παραγωγή":
+                elif col == "Συμβατική Παραγωγή στο ΣΜ":
                     production["oil"] = float(val)
                 elif col == "Εκτίμηση Διεσπαρμένης Παραγωγής":
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)

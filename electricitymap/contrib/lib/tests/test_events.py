@@ -12,6 +12,8 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
+    GridAlert,
+    GridAlertType,
     LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
@@ -350,6 +352,45 @@ def test_invalid_locational_marginal_price_node_raises(node):
             source="trust.me",
             currency="USD",
             node=node,
+        )
+
+
+def test_create_grid_alerts():
+    grid_alert = GridAlert.create(
+        logger=logging.Logger("test"),
+        zoneKey=ZoneKey("US-MIDA-PJM"),
+        locationRegion="Test Region",
+        source="trust.me",
+        alertType=GridAlertType.action,
+        message="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
+    )
+    assert grid_alert is not None
+    assert grid_alert.zoneKey == ZoneKey("US-MIDA-PJM")
+    assert grid_alert.locationRegion == "Test Region"
+    assert grid_alert.source == "trust.me"
+    assert grid_alert.alertType == GridAlertType.action
+    assert grid_alert.message == "This is a test message"
+    assert grid_alert.issuedTime == datetime(2025, 3, 1, tzinfo=timezone.utc)
+    assert grid_alert.startTime == grid_alert.issuedTime  # because of the default
+    assert grid_alert.endTime is None
+
+
+def test_invalid_message_raises():
+    # This should raise a ValueError because empty message
+    with pytest.raises(ValueError):
+        GridAlert(
+            logger=logging.Logger("test"),
+            zoneKey=ZoneKey("US-MIDA-PJM"),
+            locationRegion=None,
+            source="trust.me",
+            alertType=GridAlertType.action,
+            message="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
 
 
