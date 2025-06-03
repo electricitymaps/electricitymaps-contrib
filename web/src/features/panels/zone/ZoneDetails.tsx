@@ -26,7 +26,6 @@ import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
-import ZoneHeader from './ZoneHeader';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -129,18 +128,14 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const panelError = isError ? t('country-panel.zoneerror') : null;
-
   const isEstimatedForHeader = Boolean(estimationMethod);
 
   return (
     <GenericPanel
-      renderFullHeader={() => (
-        <ZoneHeader zoneId={zoneId} isEstimated={isEstimatedForHeader} />
-      )}
+      zoneId={zoneId}
+      isEstimated={isEstimatedForHeader}
       headerHeight="64px"
       isLoading={isLoading && !data}
-      error={panelError}
       contentClassName="px-3 pb-32 pt-2.5 sm:pb-4"
     >
       {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && <DisplayByEmissionToggle />}

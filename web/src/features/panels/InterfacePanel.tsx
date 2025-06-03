@@ -4,11 +4,11 @@ import { twMerge } from 'tailwind-merge';
 
 import GlassContainer from '../../components/GlassContainer'; // Adjust path as needed
 import LoadingSpinner from '../../components/LoadingSpinner'; // Adjust path as needed
+import ZoneHeader from './zone/ZoneHeader';
 
 interface GenericPanelProps {
   children: React.ReactNode;
   isLoading?: boolean;
-  error?: string | React.ReactNode;
   className?: string;
   contentClassName?: string;
   headerHeight?: string;
@@ -22,13 +22,13 @@ interface GenericPanelProps {
   customHeaderEndContent?: React.ReactNode; // Renamed: For content at the end (e.g., action buttons)
 
   // Prop for rendering a completely custom header
-  renderFullHeader?: () => React.ReactNode;
+  zoneId?: string;
+  isEstimated?: boolean;
 }
 
 function GenericPanel({
   children,
   isLoading = false,
-  error = null,
   className = '',
   contentClassName = '',
   headerHeight = '57px',
@@ -37,9 +37,10 @@ function GenericPanel({
   onClose,
   customHeaderStartContent,
   customHeaderEndContent,
-  renderFullHeader,
+  zoneId,
+  isEstimated,
 }: GenericPanelProps): JSX.Element {
-  const actualHeaderHeight = renderFullHeader ? headerHeight : '57px';
+  const actualHeaderHeight = zoneId ? headerHeight : '57px';
 
   return (
     <GlassContainer
@@ -49,8 +50,8 @@ function GenericPanel({
         className
       )}
     >
-      {renderFullHeader
-        ? renderFullHeader()
+      {zoneId
+        ? ZoneHeader({ zoneId, isEstimated })
         : // Render built-in header only if title is provided (as a proxy for wanting the built-in header)
           // Or if custom start/end content is provided, as they need a header bar.
           (title || customHeaderStartContent || customHeaderEndContent) && (
@@ -97,19 +98,11 @@ function GenericPanel({
         className={twMerge(
           'flex-1 overflow-y-auto',
           `sm:h-[calc(100%-${actualHeaderHeight})]`, // Use actualHeaderHeight
-          isLoading || error ? 'flex items-center justify-center' : '', // Remove default padding, let contentClassName handle it
+          isLoading ? 'flex items-center justify-center' : '', // Remove default padding, let contentClassName handle it
           contentClassName // This should now define the padding e.g. 'p-3 md:p-4'
         )}
       >
-        {(() => {
-          if (isLoading) {
-            return <LoadingSpinner />;
-          }
-          if (error) {
-            return <div className="p-3 text-center text-red-500 md:p-4">{error}</div>;
-          }
-          return children;
-        })()}
+        {isLoading ? <LoadingSpinner /> : children}
       </div>
     </GlassContainer>
   );
