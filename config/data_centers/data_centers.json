@@ -1001,7 +1001,7 @@
   },
   "ovh-in-mumbai": {
     "provider": "ovh",
-    "displayName": "Mumbai ",
+    "displayName": "Mumbai",
     "zoneKey": "IN-WE",
     "lonlat": [19.0774, 72.8147],
     "region": "in-mumbai",
