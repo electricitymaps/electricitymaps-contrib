@@ -22,7 +22,7 @@ const getSolarAssets = async (): Promise<FeatureCollection<Point>> => {
   throw new Error(await response.text());
 };
 
-const useGetSolarAssets = (): UseQueryResult<FeatureCollection> =>
+const useGetSolarAssets = (): UseQueryResult<FeatureCollection<Point>> =>
   useQuery({
     queryKey: ['solarAssets'],
     queryFn: getSolarAssets,

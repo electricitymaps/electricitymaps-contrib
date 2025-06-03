@@ -66,20 +66,19 @@ export const useGetSolarAssetsForSearch = () => {
         .map((feature) => {
           // Ensure we use the correct ID format that matches what the map expects
           // The map layer is using 'name' as the promoteId in the source
-          const id = feature.properties.name;
+          const properties = feature.properties!;
+          const id = properties.name;
 
           return {
             type: 'solar' as const,
             id: String(id),
-            name: feature.properties.name,
-            country: feature.properties.country,
-            capacity: feature.properties.capacity_mw
-              ? `${Number.parseFloat(String(feature.properties.capacity_mw)).toFixed(
-                  1
-                )} MW`
+            name: properties.name,
+            country: properties.country,
+            capacity: properties.capacity_mw
+              ? `${Number.parseFloat(String(properties.capacity_mw)).toFixed(1)} MW`
               : undefined,
             coordinates: feature.geometry.coordinates.slice(0, 2) as [number, number],
-            status: feature.properties.status,
+            status: properties.status,
           };
         });
 
