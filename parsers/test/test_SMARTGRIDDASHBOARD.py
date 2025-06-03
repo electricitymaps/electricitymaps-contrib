@@ -10,7 +10,8 @@ from parsers.SMARTGRIDDASHBOARD import (
     fetch_consumption_forecast,
     fetch_exchange,
     fetch_total_generation,
-    fetch_wind_forecasts,
+    fetch_wind_solar_forecasts,
+    fetch_production
 )
 
 
@@ -91,7 +92,21 @@ def test_fetch_wind_forecasts(adapter, session, snapshot):
         ),
     )
 
-    assert snapshot == fetch_wind_forecasts(
+    assert snapshot == fetch_wind_solar_forecasts(
         zone_key=ZoneKey("IE"),
         session=session,
     )
+
+
+def test_run():
+#     consumption: SMARTGRIDDASHBOARD.fetch_consumption
+#   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
+#   generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
+#   production: SMARTGRIDDASHBOARD.fetch_production
+#   productionCapacity: EMBER.fetch_production_capacity
+#   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+    blah = fetch_exchange(
+        zone_key1=ZoneKey("IE"),
+        zone_key2=ZoneKey("GB"),
+    )
+    pass
