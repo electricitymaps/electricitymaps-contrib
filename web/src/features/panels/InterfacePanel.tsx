@@ -49,8 +49,9 @@ function GenericPanel({
         className
       )}
     >
-      {renderFullHeader?.() ??
-          // Render built-in header only if title is provided (as a proxy for wanting the built-in header)
+      {renderFullHeader
+        ? renderFullHeader()
+        : // Render built-in header only if title is provided (as a proxy for wanting the built-in header)
           // Or if custom start/end content is provided, as they need a header bar.
           (title || customHeaderStartContent || customHeaderEndContent) && (
             <header
