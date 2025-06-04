@@ -48,8 +48,8 @@ REGION_MAPPING = {
 }
 
 EXCHANGE_MAPPING = {
-    ZoneKey("GB->IE"): {"key": "ROI", "exchange": "INTER_EWIC", "direction": 1},
-    ZoneKey("GB->GB-NIR"): {"key": "NI", "exchange": "INTER_MOYLE", "direction": 1},
+    ZoneKey("GB->IE"): {"key": "ROI", "exchange": ["INTER_EWIC", "INTER_GRNLK"], "direction": 1},
+    ZoneKey("GB->GB-NIR"): {"key": "NI", "exchange": ["INTER_MOYLE"], "direction": 1},
 }
 
 
@@ -226,18 +226,24 @@ def fetch_exchange(
         session=session,
     )
 
+    effective_times = set(x['EffectiveTime'] for x in exchange_data)
+    exchange_mapping = EXCHANGE_MAPPING[exchangeKey]
+
     exchangeList = ExchangeList(logger=logger)
-    for exchange in exchange_data:
-        flow = (
-            exchange["Value"] * EXCHANGE_MAPPING[exchangeKey]["direction"]
-            if exchange["Value"]
-            else exchange["Value"]
-        )
+    for time in effective_times:
+        exchanges = [event for event in exchange_data if event["EffectiveTime"] == time and event["FieldName"] in exchange_mapping["exchange"]]
+        
+        net_flow = 0
+        for exchange in exchanges:
+            net_flow += (exchange["Value"] * exchange_mapping["direction"]
+                if exchange["Value"]
+                else 0
+            )
 
         exchangeList.append(
             zoneKey=exchangeKey,
-            netFlow=flow,
-            datetime=parse_datetime(exchange["EffectiveTime"]),
+            netFlow=net_flow or None,
+            datetime=parse_datetime(time),
             source=SOURCE,
         )
 

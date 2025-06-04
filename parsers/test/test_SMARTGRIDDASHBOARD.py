@@ -81,13 +81,22 @@ def test_fetch_generation(adapter, session, snapshot):
     )
 
 
-def test_fetch_wind_forecasts(adapter, session, snapshot):
+def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     adapter.register_uri(
         GET,
-        URL,
+        f"{URL}?areas=windforecast",
         json=json.loads(
             resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
             .joinpath("windForecast.json")
+            .read_text()
+        ),
+    )
+    adapter.register_uri(
+        GET,
+        f"{URL}?areas=solarforecast",
+        json=json.loads(
+            resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
+            .joinpath("solarForecast.json")
             .read_text()
         ),
     )
@@ -96,17 +105,3 @@ def test_fetch_wind_forecasts(adapter, session, snapshot):
         zone_key=ZoneKey("IE"),
         session=session,
     )
-
-
-def test_run():
-#     consumption: SMARTGRIDDASHBOARD.fetch_consumption
-#   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast
-#   generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
-#   production: SMARTGRIDDASHBOARD.fetch_production
-#   productionCapacity: EMBER.fetch_production_capacity
-#   productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
-    blah = fetch_exchange(
-        zone_key1=ZoneKey("IE"),
-        zone_key2=ZoneKey("GB"),
-    )
-    pass
