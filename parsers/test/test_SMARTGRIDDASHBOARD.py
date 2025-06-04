@@ -11,7 +11,6 @@ from parsers.SMARTGRIDDASHBOARD import (
     fetch_exchange,
     fetch_total_generation,
     fetch_wind_solar_forecasts,
-    fetch_production
 )
 
 

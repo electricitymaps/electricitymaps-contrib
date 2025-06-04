@@ -48,7 +48,11 @@ REGION_MAPPING = {
 }
 
 EXCHANGE_MAPPING = {
-    ZoneKey("GB->IE"): {"key": "ROI", "exchange": ["INTER_EWIC", "INTER_GRNLK"], "direction": 1},
+    ZoneKey("GB->IE"): {
+        "key": "ROI",
+        "exchange": ["INTER_EWIC", "INTER_GRNLK"],
+        "direction": 1,
+    },
     ZoneKey("GB->GB-NIR"): {"key": "NI", "exchange": ["INTER_MOYLE"], "direction": 1},
 }
 
@@ -158,7 +162,10 @@ def fetch_production(
     )
 
     solar_data = fetch_data(
-        target_datetime=target_datetime, zone_key=zone_key, kind="solar", session=session
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="solar",
+        session=session,
     )
 
     assert len(total_generation) > 0
@@ -170,18 +177,33 @@ def fetch_production(
     for item in total_generation:
         dt = item["EffectiveTime"]
 
-        wind_event_dt = next((event for event in wind_data if event["EffectiveTime"] == dt), None)
-        wind_prod = float(wind_event_dt["Value"]) if wind_event_dt and wind_event_dt["Value"] else 0
+        wind_event_dt = next(
+            (event for event in wind_data if event["EffectiveTime"] == dt), None
+        )
+        wind_prod = (
+            float(wind_event_dt["Value"])
+            if wind_event_dt and wind_event_dt["Value"]
+            else 0
+        )
 
-        solar_event_dt = next((event for event in solar_data if event["EffectiveTime"] == dt), None)
-        solar_prod = float(solar_event_dt["Value"]) if solar_event_dt and solar_event_dt["Value"] else 0
+        solar_event_dt = next(
+            (event for event in solar_data if event["EffectiveTime"] == dt), None
+        )
+        solar_prod = (
+            float(solar_event_dt["Value"])
+            if solar_event_dt and solar_event_dt["Value"]
+            else 0
+        )
 
         productionMix = ProductionMix()
         if all([item["Value"], wind_prod, solar_prod]):
             productionMix.add_value("wind", wind_prod, correct_negative_with_zero=True)
-            productionMix.add_value("solar", solar_prod, correct_negative_with_zero=True)
             productionMix.add_value(
-                "unknown", float(item["Value"]) - productionMix.wind - productionMix.solar
+                "solar", solar_prod, correct_negative_with_zero=True
+            )
+            productionMix.add_value(
+                "unknown",
+                float(item["Value"]) - productionMix.wind - productionMix.solar,
             )
 
         production.append(
@@ -226,16 +248,22 @@ def fetch_exchange(
         session=session,
     )
 
-    effective_times = set(x['EffectiveTime'] for x in exchange_data)
+    effective_times = {x["EffectiveTime"] for x in exchange_data}
     exchange_mapping = EXCHANGE_MAPPING[exchangeKey]
 
     exchangeList = ExchangeList(logger=logger)
     for time in effective_times:
-        exchanges = [event for event in exchange_data if event["EffectiveTime"] == time and event["FieldName"] in exchange_mapping["exchange"]]
-        
+        exchanges = [
+            event
+            for event in exchange_data
+            if event["EffectiveTime"] == time
+            and event["FieldName"] in exchange_mapping["exchange"]
+        ]
+
         net_flow = 0
         for exchange in exchanges:
-            net_flow += (exchange["Value"] * exchange_mapping["direction"]
+            net_flow += (
+                exchange["Value"] * exchange_mapping["direction"]
                 if exchange["Value"]
                 else 0
             )
@@ -314,19 +342,37 @@ def fetch_wind_solar_forecasts(
         session=session,
     )
 
-    effective_times = set(x['EffectiveTime'] for x in solar_forecast_data) | set(x['EffectiveTime'] for x in wind_forecast_data)
+    effective_times = {x["EffectiveTime"] for x in solar_forecast_data} | {
+        x["EffectiveTime"] for x in wind_forecast_data
+    }
 
     forecast = ProductionBreakdownList(logger=logger)
     for dt in effective_times:
-        wind_event_dt = next((event for event in wind_forecast_data if event["EffectiveTime"] == dt), None)
-        wind_forecast = float(wind_event_dt["Value"]) if wind_event_dt and wind_event_dt["Value"] else 0
+        wind_event_dt = next(
+            (event for event in wind_forecast_data if event["EffectiveTime"] == dt),
+            None,
+        )
+        wind_forecast = (
+            float(wind_event_dt["Value"])
+            if wind_event_dt and wind_event_dt["Value"]
+            else 0
+        )
 
-        solar_event_dt = next((event for event in solar_forecast_data if event["EffectiveTime"] == dt), None)
-        solar_forecast = float(solar_event_dt["Value"]) if solar_event_dt and solar_event_dt["Value"] else 0
+        solar_event_dt = next(
+            (event for event in solar_forecast_data if event["EffectiveTime"] == dt),
+            None,
+        )
+        solar_forecast = (
+            float(solar_event_dt["Value"])
+            if solar_event_dt and solar_event_dt["Value"]
+            else 0
+        )
 
         productionMix = ProductionMix()
         productionMix.add_value("wind", wind_forecast, correct_negative_with_zero=True)
-        productionMix.add_value("solar", solar_forecast, correct_negative_with_zero=True)
+        productionMix.add_value(
+            "solar", solar_forecast, correct_negative_with_zero=True
+        )
         forecast.append(
             zoneKey=zone_key,
             production=productionMix,
