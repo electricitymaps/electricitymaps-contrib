@@ -3,7 +3,7 @@ export const getStatusColor = (status: string | undefined) => {
   if (!status) {
     return 'bg-gray-400'; // Default grey for unknown for the circle
   }
-  switch (status.toLowerCase()) {
+  switch (status?.toLowerCase()) {
     case 'operating':
     case 'operational':
     case 'commissioned': {
