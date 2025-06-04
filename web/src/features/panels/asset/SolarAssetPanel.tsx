@@ -1,34 +1,21 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
+import { formatDate } from 'utils/formatting';
 import { useNavigateWithParameters } from 'utils/helpers';
 
+import { TimeRange } from '../../../utils/constants';
 import { getStatusColor } from '../../assets/utils';
 import { selectedSolarAssetAtom } from '../../map/mapAtoms';
 import GenericPanel from '../InterfacePanel';
-
-// Helper to format date string (YYYY-MM-DDTHH:mm:ssZ) to MonthName Day, Year
-const formatDate = (dateString: string | undefined | null) => {
-  if (!dateString) {
-    return 'N/A';
-  }
-  try {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  } catch {
-    return 'Invalid Date';
-  }
-};
 
 export default function SolarAssetPanel() {
   const selectedAsset = useAtomValue(selectedSolarAssetAtom);
   const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
   const navigate = useNavigateWithParameters();
   const location = useLocation();
+  const { i18n } = useTranslation();
 
   if (!selectedAsset) {
     return null;
@@ -107,7 +94,10 @@ export default function SolarAssetPanel() {
   const commissionYear = properties.commission_year
     ? String(Math.floor(Number(properties.commission_year)))
     : null;
-  const capacityUpdateDate = formatDate(String(properties.capacity_update_date));
+
+  const date = new Date(String(properties.capacity_update_date));
+
+  const capacityUpdateDate = formatDate(date, i18n.languages[0], TimeRange.M3);
   let status = properties.status ? String(properties.status) : 'Unknown';
   let isCommissionedInPast = false;
 
@@ -173,9 +163,12 @@ export default function SolarAssetPanel() {
         {capacityUpdateDate && capacityUpdateDate !== 'N/A' && (
           <div className="flex justify-between">
             <span>Capacity Data Updated:</span>
-            <span className="font-medium text-gray-900 dark:text-gray-100">
+            <time
+              dateTime={date.toISOString()}
+              className="font-medium text-gray-900 dark:text-gray-100"
+            >
               {capacityUpdateDate}
-            </span>
+            </time>
           </div>
         )}
 
