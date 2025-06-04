@@ -105,8 +105,6 @@ def _fetch_api_data(
         "Accept-Encoding": "identity",
     }
     url = f"{US_PROXY}/{DATA_PATH}/{kind}"
-    breakpoint()
-    # 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app/api/v1/gen_by_fuel'
     resp: Response = session.get(
         url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
     )
