@@ -73,8 +73,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
   const [selectedSolarAsset, setSelectedSolarAsset] = useAtom(selectedSolarAssetAtom);
-  const setHoveredSolarAssetInfo = useSetAtom(hoveredSolarAssetInfoAtom);
-  const hoveredSolarAssetInfoValue = useAtomValue(hoveredSolarAssetInfoAtom);
+  const [hoveredSolarAssetInfoValue, setHoveredSolarAssetInfo] = useAtom(
+    hoveredSolarAssetInfoAtom
+  );
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const setLeftPanelOpen = useSetAtom(leftPanelOpenAtom);
   const setUserLocation = useSetAtom(userLocationAtom);
