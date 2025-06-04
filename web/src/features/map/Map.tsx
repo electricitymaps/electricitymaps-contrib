@@ -836,8 +836,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <CustomLayer>
         <SolarLayer />
       </CustomLayer>
+      <CustomLayer>
+        <SolarAssetNameTooltip />
+      </CustomLayer>
       <ZoomControls />
-      <SolarAssetNameTooltip />
     </Map>
   );
 }
