@@ -14,12 +14,12 @@ const getSolarAssets = async (): Promise<FeatureCollection<Point>> => {
   };
 
   const response = await fetch(path, requestOptions);
-  const result = await response.json();
-  if (response.ok) {
-    return result;
+  if (!response.ok) {
+    throw new Error(await response.text());
   }
 
-  throw new Error(await response.text());
+  const result = await response.json();
+  return result;
 };
 
 const useGetSolarAssets = (): UseQueryResult<FeatureCollection<Point>> =>
