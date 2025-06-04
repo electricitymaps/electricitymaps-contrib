@@ -31,17 +31,6 @@ KINDS_AREA_MAPPING = {
     "solar_forecast": "solarforecast",
 }
 
-CHART_TYPES_MAPPING = {
-    "demand": "demand",
-    "demand_forecast": "demand",
-    "wind": "wind",
-    "wind_forecast": "wind",
-    "exchange": "interconnection",
-    "generation": "generation",
-    "solar": "solar",
-    "solar_forecast": "solar",
-}
-
 REGION_MAPPING = {
     "IE": "ROI",
     "GB-NIR": "NI",
@@ -86,7 +75,7 @@ def fetch_data(
         url=URL,
         params={
             "areas": KINDS_AREA_MAPPING[kind],
-            "chartType": CHART_TYPES_MAPPING[kind],
+            "chartType": "default",
             "region": EXCHANGE_MAPPING[zone_key]["key"]
             if zone_key in EXCHANGE_MAPPING
             else REGION_MAPPING[zone_key],
