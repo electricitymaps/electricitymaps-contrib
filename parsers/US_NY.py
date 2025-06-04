@@ -362,16 +362,21 @@ def fetch_grid_alerts(
         # Convert to UTC
         dt_utc = dt_edt.astimezone(ZoneInfo("UTC"))
 
-        grid_alert_list.append(
-            zoneKey=zone_key,
-            locationRegion=None,
-            source=SOURCE,
-            alertType=GridAlertType.undefined,
-            message=notification["Message"],
-            issuedTime=dt_utc,
-            startTime=None,  # if None, it defaults to issuedTime
-            endTime=None,
-        )
+        # Parse message
+        message = notification["Message"]
+
+        if message != "Start of day system state is NORMAL":
+            # If the message is not the normal state, we add it to the grid_alert_list
+            grid_alert_list.append(
+                zoneKey=zone_key,
+                locationRegion=None,
+                source=SOURCE,
+                alertType=GridAlertType.undefined,
+                message=message,
+                issuedTime=dt_utc,
+                startTime=None,  # if None, it defaults to issuedTime
+                endTime=None,
+            )
     return grid_alert_list.to_list()
 
 
