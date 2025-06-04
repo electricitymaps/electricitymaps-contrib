@@ -20,27 +20,13 @@ export default function SolarAssetPanel() {
     return null;
   }
 
-  console.log('random');
   const { properties } = selectedAsset;
-
-  // Debug all properties to find potential URL fields
-  console.log('[SolarAssetPanel] All properties:', properties);
-  const possibleUrlFields = Object.entries(properties).filter(
-    ([_, value]) =>
-      typeof value === 'string' &&
-      (value.startsWith('http://') ||
-        value.startsWith('https://') ||
-        value.startsWith('www.'))
-  );
-  console.log('[SolarAssetPanel] Possible URL fields:', possibleUrlFields);
 
   const handleClose = () => {
     setSelectedAsset(null);
     // Check if we are on a path that implies an asset is selected in the URL structure.
     // This logic might need adjustment depending on final routing for assets.
-    const isAssetPath =
-      location.pathname.includes('/solar-asset/') ||
-      location.pathname.includes('/zone/solar-asset-');
+    const isAssetPath = location.pathname.includes('/solar-asset');
 
     if (isAssetPath) {
       // Navigate to the base map view, preserving current map parameters if possible
@@ -50,44 +36,27 @@ export default function SolarAssetPanel() {
     }
   };
 
-  const name = properties.name || properties.ASSET_NAME || 'Unnamed Asset';
+  const name =
+    String(properties.name) || String(properties.ASSET_NAME) || 'Unnamed Asset';
   const capacityMw = Number.parseFloat(String(properties.capacity_mw));
-  const source = properties.source || 'N/A';
+  const source = properties.source ? String(properties.source) : null;
+  const maybeUrl = properties.url ? String(properties.url) : null;
 
-  // Try to find a URL from various possible fields
-  let sourceUrl = properties.source_url || properties.sourceUrl || properties.url || null;
-
-  // If source itself is a URL, use it
-  if (
-    typeof source === 'string' &&
-    (source.startsWith('http://') || source.startsWith('https://'))
-  ) {
-    sourceUrl = source;
-  }
-
-  // Handle URLs that start with www. but don't have a protocol
-  if (typeof sourceUrl === 'string' && sourceUrl.startsWith('www.')) {
-    sourceUrl = 'https://' + sourceUrl;
-  }
-
-  // For debugging - explicitly check if the URL is valid
-  let isValidUrl = false;
-  try {
-    if (sourceUrl) {
-      new URL(sourceUrl); // This will throw if the URL is invalid
-      isValidUrl = true;
+  let sourceUrl = new URL(
+    'https://www.globalenergymonitor.org/projects/global-solar-power-tracker/'
+  );
+  if (maybeUrl) {
+    try {
+      sourceUrl = new URL(maybeUrl);
+    } catch (error) {
+      console.error('[SolarAssetPanel] Invalid URL:', maybeUrl, error);
     }
-  } catch (error) {
-    console.error('[SolarAssetPanel] Invalid URL:', sourceUrl, error);
-  }
-
-  console.log('[SolarAssetPanel] Final sourceUrl:', sourceUrl, 'isValid:', isValidUrl);
-
-  // Hardcoded fallback URL for now - remove this when real URLs are working
-  if (!isValidUrl) {
-    sourceUrl =
-      'https://www.globalenergymonitor.org/projects/global-solar-power-tracker/';
-    isValidUrl = true;
+  } else if (source) {
+    try {
+      sourceUrl = new URL(source); // This will throw if the URL is invalid
+    } catch (error) {
+      console.error('[SolarAssetPanel] Invalid URL:', source, error);
+    }
   }
 
   const commissionYear = properties.commission_year
@@ -178,11 +147,11 @@ export default function SolarAssetPanel() {
           <span className="text-gray-900 dark:text-gray-100">
             Global Solar Power Tracker, Global Energy Monitor and TransitionZero, February
             2025 release.
-            {isValidUrl && sourceUrl && (
+            {sourceUrl && (
               <>
                 <br />
                 <a
-                  href={sourceUrl}
+                  href={sourceUrl.toString()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline dark:text-blue-400"

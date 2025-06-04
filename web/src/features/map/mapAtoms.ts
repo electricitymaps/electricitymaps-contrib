@@ -14,7 +14,7 @@ export const mapMovingAtom = atom(false);
 
 export const selectedSolarAssetAtom = atom<{
   id: FeatureId;
-  properties: Record<string, any>;
+  properties: Record<string, string | number | null>;
 } | null>(null);
 
 export const mapZoomAtom = atom<number>(2.5);
