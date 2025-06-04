@@ -27,7 +27,7 @@ export const weatherButtonMap = {
     enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
   },
-  'solar assets': {
+  solar_assets: {
     icon: Aperture,
     iconSize: 20,
     enabledAtom: solarAssetsLayerAtom,
