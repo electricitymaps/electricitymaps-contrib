@@ -1,4 +1,4 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -11,8 +11,7 @@ import { selectedSolarAssetAtom } from '../../map/mapAtoms';
 import GenericPanel from '../InterfacePanel';
 
 export default function SolarAssetPanel() {
-  const selectedAsset = useAtomValue(selectedSolarAssetAtom);
-  const setSelectedAsset = useSetAtom(selectedSolarAssetAtom);
+  const [selectedAsset, setSelectedAsset] = useAtom(selectedSolarAssetAtom);
   const navigate = useNavigateWithParameters();
   const location = useLocation();
   const { i18n } = useTranslation();
