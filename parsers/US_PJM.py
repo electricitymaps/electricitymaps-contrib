@@ -46,7 +46,6 @@ PRICE_API_ENDPOINT = "http://www.pjm.com/markets-and-operations.aspx"
 CURRENCY = "USD"
 
 SOURCE = "pjm.com"
-GRID_ALERTS = "https://emergencyprocedures.pjm.com/ep/pages/dashboard.jsf"
 
 ZONE_TO_PJM_INTERFACES = {
     ZoneKey("US-MIDW-MISO"): ["MISO"],  # "MISO LMP"
@@ -106,6 +105,8 @@ def _fetch_api_data(
         "Accept-Encoding": "identity",
     }
     url = f"{US_PROXY}/{DATA_PATH}/{kind}"
+    breakpoint()
+    # 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app/api/v1/gen_by_fuel'
     resp: Response = session.get(
         url=url, params={"host": "https://api.pjm.com", **params}, headers=headers
     )
@@ -425,12 +426,47 @@ def fetch_grid_alerts(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
+    GRID_ALERTS_PATH = "ep/pages/dashboard.jsf"
+    GRID_ALERTS_SOURCE = "https://emergencyprocedures.pjm.com"
+
+    if target_datetime is not None:
+        raise ParserException(
+            PARSER,
+            "This parser is not yet able to parse historical data",
+            zone_key,
+        )
+
     session = session or Session()
-    response = session.get(GRID_ALERTS)
+
+    url = f"{US_PROXY}/{GRID_ALERTS_PATH}"
+    headers = {
+        "Accept-Encoding": "identity",
+    }
+    response: Response = session.get(
+        url=url,
+        params={
+            "host": GRID_ALERTS_SOURCE,
+        },
+        headers=headers,
+    )
+
+    if not response.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching grid alerts error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
+
     soup = BeautifulSoup(response.text, "html.parser")
     tbody = soup.find("tbody", {"id": "frmTable:tblPostings_data"})
-    alerts = GridAlertList(logger)
+    if not tbody:
+        raise ParserException(
+            PARSER,
+            f"BeautifulSoup could not find the tbody element in the response from {GRID_ALERTS_SOURCE}/{GRID_ALERTS_PATH}, error code: {response.status_code}: {response.text}",
+            zone_key,
+        )
 
+    alerts = GridAlertList(logger)
     for i, alert in enumerate(tbody.children):
         alertType = extract_alert_type(alert, i)
         message = extract_message(alert, i)
