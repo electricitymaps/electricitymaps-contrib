@@ -1,3 +1,5 @@
+export const MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP = 2.4;
+export const MIN_ZOOM_FOR_ASSET_SYMBOL_APPEARING = 5;
 // Helper to get a color based on status - can be expanded
 export const getStatusColor = (status: string | undefined) => {
   if (!status) {
@@ -24,6 +26,3 @@ export const getStatusColor = (status: string | undefined) => {
     } // Default grey for any other status
   }
 };
-
-export const MIN_ZOOM_FOR_ASSET_NAME_TOOLTIP = 2.4;
-export const MIN_ZOOM_FOR_ASSET_SYMBOL_APPEARING = 5;
