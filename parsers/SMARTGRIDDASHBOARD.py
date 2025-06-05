@@ -318,6 +318,18 @@ def fetch_wind_solar_forecasts(
         session=session,
     )
 
+    wind_forecast = ProductionBreakdownList(logger=logger)
+    for item in wind_forecast_data:
+        productionMix = ProductionMix()
+        productionMix.add_value("wind", item["Value"], correct_negative_with_zero=True)
+        wind_forecast.append(
+            zoneKey=zone_key,
+            production=productionMix,
+            datetime=parse_datetime(item["EffectiveTime"]),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+
     solar_forecast_data = fetch_data(
         target_datetime=target_datetime,
         zone_key=zone_key,
@@ -325,45 +337,21 @@ def fetch_wind_solar_forecasts(
         session=session,
     )
 
-    effective_times = {x["EffectiveTime"] for x in solar_forecast_data} | {
-        x["EffectiveTime"] for x in wind_forecast_data
-    }
-
-    forecast = ProductionBreakdownList(logger=logger)
-    for dt in effective_times:
-        wind_event_dt = next(
-            (event for event in wind_forecast_data if event["EffectiveTime"] == dt),
-            None,
-        )
-        wind_forecast = (
-            float(wind_event_dt["Value"])
-            if wind_event_dt and wind_event_dt["Value"]
-            else 0
-        )
-
-        solar_event_dt = next(
-            (event for event in solar_forecast_data if event["EffectiveTime"] == dt),
-            None,
-        )
-        solar_forecast = (
-            float(solar_event_dt["Value"])
-            if solar_event_dt and solar_event_dt["Value"]
-            else 0
-        )
-
+    solar_forecast = ProductionBreakdownList(logger=logger)
+    for item in solar_forecast_data:
         productionMix = ProductionMix()
-        productionMix.add_value("wind", wind_forecast, correct_negative_with_zero=True)
-        productionMix.add_value(
-            "solar", solar_forecast, correct_negative_with_zero=True
-        )
-        forecast.append(
+        productionMix.add_value("solar", item["Value"], correct_negative_with_zero=True)
+        solar_forecast.append(
             zoneKey=zone_key,
             production=productionMix,
-            datetime=parse_datetime(dt),
+            datetime=parse_datetime(item["EffectiveTime"]),
             source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
-    return forecast.to_list()
+
+    return ProductionBreakdownList.merge_production_breakdowns(
+        [wind_forecast, solar_forecast], logger=logger
+    ).to_list()
 
 
 def fetch_total_generation(
