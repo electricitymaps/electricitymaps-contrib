@@ -607,7 +607,7 @@
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2006"
   },
   "aws-us-east-2": {
     "provider": "aws",
@@ -617,7 +617,7 @@
     "zoneKey": "US-MIDA-PJM",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2016"
   },
   "aws-us-west-1": {
     "provider": "aws",
@@ -627,7 +627,7 @@
     "zoneKey": "US-CAL-CISO",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2009"
   },
   "aws-us-west-2": {
     "provider": "aws",
@@ -637,7 +637,7 @@
     "zoneKey": "US-NW-PACW",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2011"
   },
   "aws-af-south-1": {
     "provider": "aws",
@@ -647,7 +647,7 @@
     "zoneKey": "ZA",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2020"
   },
   "aws-ap-east-1": {
     "provider": "aws",
@@ -657,7 +657,7 @@
     "zoneKey": "HK",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2019"
   },
   "aws-ap-south-2": {
     "provider": "aws",
@@ -667,7 +667,7 @@
     "zoneKey": "IN-SO",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2022"
   },
   "aws-ap-southeast-3": {
     "provider": "aws",
@@ -677,7 +677,7 @@
     "zoneKey": "ID",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2021"
   },
   "aws-ap-southeast-5": {
     "provider": "aws",
@@ -687,7 +687,7 @@
     "zoneKey": "MY-WM",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2024"
   },
   "aws-ap-southeast-4": {
     "provider": "aws",
@@ -697,7 +697,7 @@
     "zoneKey": "AU-VIC",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2023"
   },
   "aws-ap-south-1": {
     "provider": "aws",
@@ -707,7 +707,7 @@
     "zoneKey": "IN-WE",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2016"
   },
   "aws-ap-northeast-3": {
     "provider": "aws",
@@ -717,7 +717,7 @@
     "zoneKey": "JP-KN",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2018"
   },
   "aws-ap-northeast-2": {
     "provider": "aws",
@@ -727,7 +727,7 @@
     "zoneKey": "KR",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2016"
   },
   "aws-ap-southeast-2": {
     "provider": "aws",
@@ -737,7 +737,7 @@
     "zoneKey": "AU-NSW",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2012"
   },
   "aws-ap-southeast-7": {
     "provider": "aws",
@@ -747,7 +747,7 @@
     "zoneKey": "TH",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2025"
   },
   "aws-ap-northeast-1": {
     "provider": "aws",
@@ -757,7 +757,7 @@
     "zoneKey": "JP-TK",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2011"
   },
   "aws-ca-central-1": {
     "provider": "aws",
@@ -767,7 +767,7 @@
     "zoneKey": "CA-QC",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2016"
   },
   "aws-ca-west-1": {
     "provider": "aws",
@@ -777,7 +777,7 @@
     "zoneKey": "CA-AB",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2023"
   },
   "aws-eu-central-1": {
     "provider": "aws",
@@ -787,7 +787,7 @@
     "zoneKey": "DE",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2014"
   },
   "aws-eu-west-1": {
     "provider": "aws",
@@ -797,7 +797,7 @@
     "zoneKey": "IE",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2008"
   },
   "aws-eu-west-2": {
     "provider": "aws",
@@ -807,7 +807,7 @@
     "zoneKey": "GB",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2016"
   },
   "aws-eu-south-1": {
     "provider": "aws",
@@ -817,7 +817,7 @@
     "zoneKey": "IT-NO",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2020"
   },
   "aws-eu-west-3": {
     "provider": "aws",
@@ -827,7 +827,7 @@
     "zoneKey": "FR",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2017"
   },
   "aws-eu-south-2": {
     "provider": "aws",
@@ -837,7 +837,7 @@
     "zoneKey": "ES",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2022"
   },
   "aws-eu-north-1": {
     "provider": "aws",
@@ -847,7 +847,7 @@
     "zoneKey": "SE-SE3",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2018"
   },
   "aws-eu-central-2": {
     "provider": "aws",
@@ -857,7 +857,7 @@
     "zoneKey": "CH",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2022"
   },
   "aws-il-central-1": {
     "provider": "aws",
@@ -867,7 +867,7 @@
     "zoneKey": "IL",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2023"
   },
   "aws-mx-central-1": {
     "provider": "aws",
@@ -877,7 +877,7 @@
     "zoneKey": "MX",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2025"
   },
   "aws-me-central-1": {
     "provider": "aws",
@@ -887,7 +887,7 @@
     "zoneKey": "AE",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2022"
   },
   "aws-sa-east-1": {
     "provider": "aws",
@@ -897,7 +897,7 @@
     "zoneKey": "BR-CS",
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
-    "operationalSince": null
+    "operationalSince": "2011"
   },
   "ovh-us-hillsboro": {
     "provider": "ovh",
