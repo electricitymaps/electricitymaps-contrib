@@ -237,34 +237,28 @@ def fetch_exchange(
         session=session,
     )
 
-    effective_times = {x["EffectiveTime"] for x in exchange_data}
     exchange_mapping = EXCHANGE_MAPPING[exchangeKey]
+    exchanges = {x: ExchangeList(logger=logger) for x in exchange_mapping["exchange"]}
 
-    exchangeList = ExchangeList(logger=logger)
-    for time in effective_times:
-        exchanges = [
-            event
-            for event in exchange_data
-            if event["EffectiveTime"] == time
-            and event["FieldName"] in exchange_mapping["exchange"]
-        ]
+    for exchange in exchange_data:
+        target_exchange = exchanges.get(exchange["FieldName"])
+        if target_exchange is None:
+            continue
 
-        net_flow = 0
-        for exchange in exchanges:
-            net_flow += (
-                exchange["Value"] * exchange_mapping["direction"]
-                if exchange["Value"]
-                else 0
-            )
+        flow = (
+            exchange["Value"] * exchange_mapping["direction"]
+            if exchange["Value"]
+            else exchange["Value"]
+        )
 
-        exchangeList.append(
+        target_exchange.append(
             zoneKey=exchangeKey,
-            netFlow=net_flow or None,
-            datetime=parse_datetime(time),
+            netFlow=flow,
+            datetime=parse_datetime(exchange["EffectiveTime"]),
             source=SOURCE,
         )
 
-    return exchangeList.to_list()
+    return ExchangeList.merge_exchanges(exchanges.values(), logger=logger).to_list()
 
 
 @refetch_frequency(timedelta(days=1))
