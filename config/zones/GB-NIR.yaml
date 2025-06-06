@@ -317,7 +317,7 @@ parsers:
   generationForecast: SMARTGRIDDASHBOARD.fetch_total_generation
   price: ENTSOE.fetch_price
   production: SMARTGRIDDASHBOARD.fetch_production
-  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2023:
