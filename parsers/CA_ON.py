@@ -13,7 +13,11 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Some notes about timestamps:
@@ -66,6 +70,7 @@ MODES = {
     "NUCLEAR": "nuclear",
     "SOLAR": "solar",
     "WIND": "wind",
+    "OTHER": "battery",
 }
 NAMESPACE = "{http://www.theIMO.com/schema}"
 PRICE_URL = (
@@ -125,7 +130,9 @@ def fetch_production(
 
     # Collect the source data into a dictionary keying ProductionMix objects by
     # the time of day at which they occurred.
-    mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
+    production_mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
+    storage_mixes: defaultdict[time, StorageMix] = defaultdict(StorageMix)
+
     for generator in xml.iter(NAMESPACE + "Generator"):
         try:
             mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
@@ -142,15 +149,23 @@ def fetch_production(
             # for a given plant at a given hour. In the browser, this is
             # displayed as an "N/A" entry in the table.
             generation = output.findtext(NAMESPACE + "EnergyMW")
-            mixes[time(hour=hour)].add_value(
-                mode, None if generation is None else float(generation)
-            )
+            time_ = time(hour=hour)
+
+            if mode == "battery":
+                storage_mixes[time_].add_value(
+                    mode, None if generation is None else -1 * float(generation)
+                )
+            else:
+                production_mixes[time_].add_value(
+                    mode, None if generation is None else float(generation)
+                )
 
     production_breakdowns = ProductionBreakdownList(logger)
-    for time_, mix in mixes.items():
+    for time_ in production_mixes:
         production_breakdowns.append(
             datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
-            production=mix,
+            production=production_mixes[time_],
+            storage=storage_mixes[time_],
             source=SOURCE,
             zoneKey=ZONE_KEY,
         )
