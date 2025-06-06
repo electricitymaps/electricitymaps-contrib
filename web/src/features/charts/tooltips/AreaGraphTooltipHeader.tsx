@@ -1,12 +1,12 @@
 import EstimationBadge from 'components/EstimationBadge';
 import HorizontalDivider from 'components/HorizontalDivider';
 import { FormattedTime } from 'components/Time';
-import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, isTSAModel, TimeRange } from 'utils/constants';
-import { endDatetimeAtom } from 'utils/state/atoms';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { endDatetimeAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
 
@@ -31,9 +31,12 @@ export default function AreaGraphToolTipHeader({
   productionSource,
   estimationMethod,
 }: AreaGraphToolTipHeaderProps) {
-  const { i18n } = useTranslation();
-  const pillText = useGetEstimationTranslation(
+  const { i18n, t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
+  const pillText = getEstimationOrAggregationTranslation(
+    t,
     'pill',
+    !isHourly,
     estimationMethod,
     estimatedPercentage
   );

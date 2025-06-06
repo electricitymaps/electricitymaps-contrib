@@ -83,6 +83,9 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
+  // Note: due to a problem in the aggregations, the `estimationMethod` field is not available
+  // in aggregations.
+  // TODO: Fix in backend (https://linear.app/electricitymaps/issue/GMM-821/aggregations-are-missing-the-origin-field)
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
 }

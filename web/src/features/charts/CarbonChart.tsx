@@ -1,12 +1,15 @@
-import EstimationBadge from 'components/EstimationBadge';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { useCo2ColorScale } from 'hooks/theme';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
+import { round } from 'utils/helpers';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, noop } from './graphUtils';
+import { EstimationLegend } from './elements/EstimationMarkers';
+import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
@@ -21,6 +24,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (isLoading || isError || !data) {
     return null;
@@ -29,9 +33,20 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { chartData, layerFill, layerKeys } = data;
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
+  const valueAxisLabel = 'gCO₂eq / kWh';
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  const badge = <EstimationBadge text={text} Icon={icon} />;
+  const estimated = chartData.map((d) => {
+    const zoneDetail = d.meta;
+    const { estimationMethod, estimatedPercentage } = zoneDetail;
+    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+    const hasEstimationPill =
+      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+
+    return hasEstimationPill;
+  });
+  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
+    .estimationMethod;
+  const someEstimated = estimated.some(Boolean);
 
   if (!hasEnoughDataToDisplay) {
     return (
@@ -45,13 +60,19 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.carbonintensity.${timeRange}`)}
-        badge={badge}
-        unit={'gCO₂eq / kWh'}
-        isEstimated={Boolean(text)}
+        isEstimated={someEstimated}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.CARBON_CHART}
         className="mb-0.5"
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
+      {someEstimated && (
+        <EstimationLegend
+          isAggregated={!isHourly}
+          estimationMethod={estimationMethod}
+          valueAxisLabel={valueAxisLabel}
+        />
+      )}
       <AreaGraph
         testId="details-carbon-graph"
         data={chartData}
@@ -61,6 +82,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
         markerHideHandler={noop}
         height="8em"
         datetimes={datetimes}
+        estimated={estimated}
         selectedTimeRange={timeRange}
         tooltip={CarbonChartTooltip}
       />

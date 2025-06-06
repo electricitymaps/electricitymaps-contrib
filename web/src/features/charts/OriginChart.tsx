@@ -10,7 +10,7 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { EstimationLegendIcon } from './elements/EstimationMarkers';
+import { EstimationLegend } from './elements/EstimationMarkers';
 import { getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
@@ -102,18 +102,15 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const estimated = chartData.map((d) => {
     const zoneDetail = d.meta;
-    // Note: the following 3 lines have been copy/pasted from BreakdownChartTooltip.tsx
-    const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
+    const { estimationMethod, estimatedPercentage } = zoneDetail;
     const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
     const hasEstimationPill =
       estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
 
     return hasEstimationPill;
   });
-
-  // const { text, icon } = getBadgeTextAndIcon(chartData, t);
-  // const badge = <EstimationBadge text={text} Icon={icon} />;
-
+  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
+    .estimationMethod;
   const someEstimated = estimated.some(Boolean);
 
   return (
@@ -127,13 +124,11 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       />
       <div className="relative">
         {someEstimated && (
-          <div className="mb-2 flex flex-row items-center justify-between text-xs text-[#8b8b8b] dark:text-[#848484]">
-            <span className="flex">
-              <EstimationLegendIcon />
-              Preliminary
-            </span>
-            <span className="ml-auto">{valueAxisLabel}</span>
-          </div>
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
         )}
         <AreaGraph
           testId="history-mix-graph"

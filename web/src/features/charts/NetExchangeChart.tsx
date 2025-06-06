@@ -1,11 +1,17 @@
+import { round } from '@turf/helpers';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { displayByEmissionsAtom, productionConsumptionAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  isHourlyAtom,
+  productionConsumptionAtom,
+} from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
+import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
@@ -21,6 +27,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const productionConsumption = useAtomValue(productionConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
   if (productionConsumption === 'production') {
     return null;
@@ -31,6 +38,19 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   }
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
+
+  const estimated = chartData.map((d) => {
+    const zoneDetail = d.meta;
+    const { estimationMethod, estimatedPercentage } = zoneDetail;
+    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+    const hasEstimationPill =
+      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+
+    return hasEstimationPill;
+  });
+  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
+    .estimationMethod;
+  const someEstimated = estimated.some(Boolean);
 
   // find the absolute max value to format the axis
   const maxEmissions = Math.max(
@@ -47,11 +67,18 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
     <RoundedCard className="pb-2">
       <ChartTitle
         titleText={t(`country-history.netExchange.${timeRange}`)}
-        unit={valueAxisLabel}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.NET_EXCHANGE_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
+        {someEstimated && (
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
+        )}
         <AreaGraph
           testId="history-exchange-graph"
           data={chartData}
@@ -63,6 +90,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={NetExchangeChartTooltip}
           formatTick={formatAxisTick}

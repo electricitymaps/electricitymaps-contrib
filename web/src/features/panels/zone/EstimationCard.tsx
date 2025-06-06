@@ -2,7 +2,6 @@ import useGetState from 'api/getState';
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
@@ -11,6 +10,7 @@ import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import trackEvent from 'utils/analytics';
 import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -105,12 +105,14 @@ export default function EstimationCard({
   }
   const selectedData = data?.datetimes[selectedDatetimeString]?.z[zoneKey];
 
-  const estimationMethod = selectedData?.em;
+  const estimationMethod = selectedData?.em || undefined;
 
-  if (!estimationMethod) {
+  const isAggregated = !isHourly;
+
+  if (!estimationMethod && !isAggregated) {
     return null;
   }
-  const isTSA = isTSAModel(estimationMethod);
+  const isTSA = estimationMethod ? isTSAModel(estimationMethod) : false;
   const cardType = getCardType({
     estimationMethod,
     zoneMessage,
@@ -174,6 +176,8 @@ function BaseCard({
   );
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+  const isHourly = useAtomValue(isHourlyAtom);
+  const isAggregated = !isHourly;
 
   const trackToggle = () => {
     if (isCollapsed) {
@@ -183,10 +187,17 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = useGetEstimationTranslation('title', estimationMethod);
+  const title = getEstimationOrAggregationTranslation(
+    t,
+    'title',
+    isAggregated,
+    estimationMethod
+  );
 
-  const bodyText = useGetEstimationTranslation(
+  const bodyText = getEstimationOrAggregationTranslation(
+    t,
     'body',
+    isAggregated,
     estimationMethod,
     estimatedPercentage
   );
@@ -270,7 +281,6 @@ export function AggregatedCard({
 }) {
   return (
     <BaseCard
-      estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
       icon={<ChartNoAxesColumn size={16} />}

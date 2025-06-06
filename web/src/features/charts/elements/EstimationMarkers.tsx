@@ -1,8 +1,11 @@
 import { scaleTime } from 'd3-scale';
 import { area, curveStepAfter } from 'd3-shape';
 import { useDarkMode } from 'hooks/theme';
+import { useTranslation } from 'react-i18next';
 import PulseLoader from 'react-spinners/PulseLoader';
 import useResizeObserver from 'use-resize-observer/polyfilled';
+import { EstimationMethods } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 
 const DARK_MODE_PATTERN_STROKE = '#404040';
 const LIGHT_MODE_PATTERN_STROKE = 'darkgray';
@@ -14,6 +17,34 @@ export function EstimationLegendIcon() {
       <rect width="24" height="24" fill="url(#pattern)" transform="scale(0.5)" />
       <line x1="0" y1="11" x2="12" y2="11" stroke="#DB58FF" strokeWidth="2" />
     </svg>
+  );
+}
+
+type EstimationLegendProps = {
+  isAggregated: boolean;
+  estimationMethod?: EstimationMethods;
+  valueAxisLabel: string;
+};
+
+export function EstimationLegend({
+  isAggregated,
+  estimationMethod,
+  valueAxisLabel,
+}: EstimationLegendProps) {
+  const { t } = useTranslation();
+  return (
+    <div className="mb-2 flex flex-row items-center justify-between text-xs text-[#8b8b8b] dark:text-[#848484]">
+      <span className="flex">
+        <EstimationLegendIcon />
+        {getEstimationOrAggregationTranslation(
+          t,
+          'legend',
+          isAggregated,
+          estimationMethod
+        )}
+      </span>
+      <span className="ml-auto">{valueAxisLabel}</span>
+    </div>
   );
 }
 
@@ -57,14 +88,12 @@ function EstimationMarkers({
     .curve(curveStepAfter)
     .x((d: any) => timeScale(d))
     .y0(0)
-    .y1(markerHeight)
-    .defined((d, index) => Boolean(estimated?.at(index)));
+    .y1((d, index) => (estimated?.at(index) ? markerHeight : 0));
   const backgroundPathData = area()
     .curve(curveStepAfter)
     .x((d: any) => timeScale(d))
     .y0(0)
-    .y1(-scaleHeight)
-    .defined((d, index) => Boolean(estimated?.at(index)));
+    .y1((d, index) => (estimated?.at(index) ? -scaleHeight : 0));
 
   const patternStroke = isDarkMode ? DARK_MODE_PATTERN_STROKE : LIGHT_MODE_PATTERN_STROKE;
   const patternBackground = isDarkMode ? 'black' : 'white';
