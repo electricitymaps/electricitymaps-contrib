@@ -4,7 +4,6 @@ import i18n from 'translation/i18n';
 import { EstimationMethods } from 'utils/constants';
 
 import EstimationCard, {
-  AggregatedCard,
   EstimatedCard,
   EstimatedTSACard,
   OutageCard,
@@ -32,18 +31,6 @@ export const OutageCardStory: Story = {
           zoneMessage={{ message: 'Different outage message', issue: '1234' }}
           estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
         />
-      </div>
-    </I18nextProvider>
-  ),
-};
-
-export const AggregatedCardStory: Story = {
-  render: () => (
-    <I18nextProvider i18n={i18n}>
-      <div className="space-y-2">
-        <AggregatedCard estimatedPercentage={20} />
-        <AggregatedCard estimatedPercentage={50} />
-        <AggregatedCard estimatedPercentage={80} />
       </div>
     </I18nextProvider>
   ),

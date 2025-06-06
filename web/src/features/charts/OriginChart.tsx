@@ -1,4 +1,3 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
@@ -6,11 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
+import { round } from 'utils/helpers';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
+import { EstimationLegend } from './elements/EstimationMarkers';
+import { getGenerationTypeKey, noop } from './graphUtils';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -90,10 +91,6 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
-
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -103,17 +100,36 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
     );
   }
 
+  const estimated = chartData.map((d) => {
+    const zoneDetail = d.meta;
+    const { estimationMethod, estimatedPercentage } = zoneDetail;
+    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+    const hasEstimationPill =
+      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+
+    return hasEstimationPill;
+  });
+  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
+    .estimationMethod;
+  const someEstimated = estimated.some(Boolean);
+
   return (
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
-        badge={badge}
-        isEstimated={Boolean(text)}
-        unit={valueAxisLabel}
+        isEstimated={someEstimated}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_MIX_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
-      <div className="relative ">
+      <div className="relative">
+        {someEstimated && (
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
+        )}
         <AreaGraph
           testId="history-mix-graph"
           isDataInteractive={true}
@@ -125,6 +141,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}

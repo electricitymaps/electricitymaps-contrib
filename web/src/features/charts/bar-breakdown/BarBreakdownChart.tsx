@@ -1,17 +1,22 @@
 import * as Portal from '@radix-ui/react-portal';
+import useGetZone from 'api/getZone';
 import EstimationBadge from 'components/EstimationBadge';
 import { TimeDisplay } from 'components/TimeDisplay';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
+import EstimationCard from 'features/panels/zone/EstimationCard';
+import { getZoneDataStatus, ZoneDataStatus } from 'features/panels/zone/util';
 import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
-import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { TFunction } from 'i18next';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneKey } from 'types';
+import { useParams } from 'react-router-dom';
+import { ElectricityModeType, RouteParameters, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
 import { Charts, isTSAModel, TimeRange } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
@@ -60,6 +65,10 @@ function BarBreakdownChart({
       determineUnit(displayByEmissions, currentZoneDetail, isConsumption, isHourly, t),
     [currentZoneDetail, displayByEmissions, isConsumption, isHourly, t]
   );
+  const { zoneId } = useParams<RouteParameters>();
+  const { data } = useGetZone();
+  const zoneMessage = data?.zoneMessage;
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -69,8 +78,12 @@ function BarBreakdownChart({
 
   const titleText = useBarBreakdownChartTitle();
   const estimationMethod = currentZoneDetail?.estimationMethod;
-  const pillText = useGetEstimationTranslation(
+  const estimatedPercentage = currentZoneDetail?.estimatedPercentage;
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const pillText = getEstimationOrAggregationTranslation(
+    t,
     'pill',
+    !isHourly,
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
@@ -102,7 +115,7 @@ function BarBreakdownChart({
     }
   }, [isMobile]);
 
-  if (isLoading) {
+  if (isLoading || !zoneId) {
     return null;
   }
 
@@ -195,6 +208,13 @@ function BarBreakdownChart({
           height={height}
           isMobile={isMobile}
           graphUnit={graphUnit}
+        />
+      )}
+      {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+        <EstimationCard
+          zoneKey={zoneId}
+          zoneMessage={zoneMessage}
+          estimatedPercentage={roundedEstimatedPercentage}
         />
       )}
     </RoundedCard>

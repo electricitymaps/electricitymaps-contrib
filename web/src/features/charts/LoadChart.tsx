@@ -1,8 +1,12 @@
+import { round } from '@turf/helpers';
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
+import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
 import { useLoadChartData } from './hooks/useLoadChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -17,12 +21,26 @@ interface LoadChartProps {
 function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   const { data, isLoading, isError } = useLoadChartData();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (isLoading || isError || !data) {
     return null;
   }
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
+
+  const estimated = chartData.map((d) => {
+    const zoneDetail = d.meta;
+    const { estimationMethod, estimatedPercentage } = zoneDetail;
+    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+    const hasEstimationPill =
+      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+
+    return hasEstimationPill;
+  });
+  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
+    .estimationMethod;
+  const someEstimated = estimated.some(Boolean);
 
   if (!Number.isFinite(chartData[0]?.layerData?.load)) {
     return null;
@@ -43,11 +61,18 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.electricityLoad.${timeRange}`)}
-        unit={valueAxisLabel}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_LOAD_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
+        {someEstimated && (
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
+        )}
         <AreaGraph
           testId="history-load-graph"
           data={chartData}
@@ -59,6 +84,7 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
           markerHideHandler={noop}
           height="6em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={LoadChartTooltip}
         />

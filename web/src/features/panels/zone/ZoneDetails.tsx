@@ -23,7 +23,6 @@ import {
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import EstimationCard from './EstimationCard';
 import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
@@ -70,7 +69,6 @@ export default function ZoneDetails(): JSX.Element {
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
     [data]
   );
-  const zoneMessage = data?.zoneMessage;
 
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
@@ -84,13 +82,6 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
-            <EstimationCard
-              zoneKey={zoneId}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
-          )}
           <ApiButton
             backgroundClasses="mt-3 mb-1"
             type="primary"
@@ -124,8 +115,6 @@ export default function ZoneDetails(): JSX.Element {
       isLoading,
       isError,
       hasEstimationPill,
-      zoneMessage,
-      roundedEstimatedPercentage,
       datetimes,
       timeRange,
       displayByEmissions,

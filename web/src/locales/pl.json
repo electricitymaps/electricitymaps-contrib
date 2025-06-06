@@ -145,18 +145,11 @@
     "submit": "Prześlij"
   },
   "estimation-badge": {
-    "partially-estimated": "Częściowo oszacowane",
-    "fully-estimated": "Oczacowane",
     "outage": "Niedostępne"
   },
   "estimation-card": {
     "link": "Dowiedz się więcej o naszych modelach estymacji.",
     "outage-details": "Zobacz szczegóły",
-    "estimated_generic_method": {
-      "title": "Dane są szacowane",
-      "pill": "Niedokładne",
-      "body": "Opublikowane dane dla tej strefy są niedostępne lub niekompletne. Dane pokazane na mapie są szacowane według naszych najlepszych starań, ale mogą różnić się od rzeczywistych wartości."
-    },
     "threshold_filtered": {
       "title": "Brakujące dane",
       "pill": "Brak danych",

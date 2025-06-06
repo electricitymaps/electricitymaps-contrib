@@ -97,18 +97,11 @@
     "submit": "Enviar"
   },
   "estimation-badge": {
-    "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "Indisponível"
   },
   "estimation-card": {
     "link": "Leia sobre os nossos modelos de estimativa",
     "outage-details": "Ver detalhes",
-    "estimated_generic_method": {
-      "title": "Os dados são estimados",
-      "pill": "Impreciso",
-      "body": "Os dados publicados para esta zona estão indisponíveis ou incompletos. Os dados mostrados no mapa são estimados ao melhor da nossa habilidade, mas podem diferir dos valores reais."
-    },
     "threshold_filtered": {
       "title": "Dados em falta",
       "pill": "Indisponível",
