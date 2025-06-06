@@ -1,6 +1,7 @@
+import { Group } from '@visx/group';
 import { memo } from 'react';
 import { ElectricityModeType } from 'types';
-import { modeColor } from 'utils/constants';
+import { DEFAULT_ICON_SIZE, modeColor } from 'utils/constants';
 
 import ProductionSourceIcon from './ProductionsSourceIcons';
 
@@ -10,18 +11,20 @@ function ProductionSourceLegend({
   electricityType: ElectricityModeType;
 }) {
   return (
-    <svg width={16} height={16}>
-      <g className="pointer-events-none">
-        <rect
-          fill={modeColor[electricityType as ElectricityModeType]}
-          width={16}
-          height={16}
-          rx={2}
-        />
-        <g transform={`translate(3, 3)`} width={16} height={16}>
-          <ProductionSourceIcon source={electricityType} />
-        </g>
-      </g>
+    <svg
+      width={DEFAULT_ICON_SIZE}
+      height={DEFAULT_ICON_SIZE}
+      className="pointer-events-none"
+    >
+      <rect
+        fill={modeColor[electricityType as ElectricityModeType]}
+        width={DEFAULT_ICON_SIZE}
+        height={DEFAULT_ICON_SIZE}
+        rx={2}
+      />
+      <Group top={3} left={3} width={DEFAULT_ICON_SIZE} height={DEFAULT_ICON_SIZE}>
+        <ProductionSourceIcon source={electricityType} />
+      </Group>
     </svg>
   );
 }

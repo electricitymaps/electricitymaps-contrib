@@ -107,7 +107,6 @@ interface AreagraphProps {
   datetimes: Date[];
   selectedTimeRange: TimeRange;
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
-  tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
   isDataInteractive?: boolean;
   selectedData?: SelectedData;
@@ -132,7 +131,6 @@ function AreaGraph({
   selectedTimeRange,
   datetimes,
   tooltip,
-  tooltipSize,
   formatTick = String,
   isDataInteractive = false,
   selectedData,
@@ -310,7 +308,6 @@ function AreaGraph({
             selectedLayerKey={
               hoveredLayerIndex === null ? undefined : layerKeys[hoveredLayerIndex]
             }
-            tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
             closeTooltip={onCloseTooltip}
           >

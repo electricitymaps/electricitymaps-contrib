@@ -1,5 +1,7 @@
+import { Group } from '@visx/group';
 import HorizontalColorbar from 'components/legend/ColorBar';
 import { ScaleLinear } from 'd3-scale';
+import { MouseEvent, MouseEventHandler, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
@@ -30,12 +32,17 @@ export default function BarElectricityExchangeChart({
   graphUnit: string | undefined;
   formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
-  onExchangeRowMouseOver: (
-    rowKey: ZoneKey,
-    event: React.MouseEvent<SVGPathElement, MouseEvent>
-  ) => void;
+  onExchangeRowMouseOver: (rowKey: ZoneKey, event: React.MouseEvent<SVGElement>) => void;
 }) {
   const { t } = useTranslation();
+
+  const handleExchangeRowMouseOver = useCallback(
+    (zoneKey: ZoneKey): MouseEventHandler<SVGElement> =>
+      (event) => {
+        onExchangeRowMouseOver(zoneKey, event);
+      },
+    [onExchangeRowMouseOver]
+  );
 
   if (!exchangeData || exchangeData.length === 0) {
     return null;
@@ -55,7 +62,7 @@ export default function BarElectricityExchangeChart({
           axisLegendTextLeft={t('country-panel.graph-legends.exported')}
           axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
-        <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
+        <Group top={EXCHANGE_PADDING}>
           {exchangeData.map((d, index) => (
             <ExchangeRow
               key={d.zoneKey}
@@ -64,7 +71,7 @@ export default function BarElectricityExchangeChart({
               width={width}
               scale={powerScale}
               value={d.exchange}
-              onMouseOver={(event) => onExchangeRowMouseOver(d.zoneKey, event)}
+              onMouseOver={handleExchangeRowMouseOver(d.zoneKey)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={false}
             >
@@ -76,13 +83,13 @@ export default function BarElectricityExchangeChart({
               />
               <HorizontalBar
                 className="exchange"
-                fill={co2ColorScale(d.gCo2eqPerkWh)}
+                fill={co2ColorScale(d.gCo2eqPerkWh ?? Number.NaN)}
                 range={[0, d.exchange]}
                 scale={powerScale}
               />
             </ExchangeRow>
           ))}
-        </g>
+        </Group>
       </svg>
       <div className="pb-2 pt-6">
         <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-neutral-300">
