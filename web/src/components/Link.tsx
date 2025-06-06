@@ -7,11 +7,13 @@ function Link({
   children,
   isExternal,
   className,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
   isExternal?: boolean;
   className?: string;
+  onClick?: () => void;
 }) {
   if (isExternal) {
     return (
@@ -19,6 +21,7 @@ function Link({
         href={href}
         target="_blank"
         rel="noopener"
+        onClick={onClick}
         className={twMerge(
           'flex w-full items-center justify-between text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500',
           className
@@ -35,6 +38,7 @@ function Link({
       href={href}
       target="_blank"
       rel="noopener"
+      onClick={onClick}
       className={twMerge(
         'text-sm font-semibold text-emerald-800 underline underline-offset-2 dark:text-emerald-500',
         className

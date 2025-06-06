@@ -53,6 +53,12 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 7772.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 8268.4
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 8455.4
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -61,6 +67,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 89.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 91.1
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -76,6 +85,9 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 163.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 0.0
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -119,9 +131,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from
-  the generation-only balancing authorities Arlington Valley, LLC - AVBA and New Harquahala
-  Generating Company, LLC - HGBA. Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authorities Arlington Valley, LLC - AVBA and New Harquahala Generating
+  Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:

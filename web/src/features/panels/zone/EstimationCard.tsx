@@ -2,14 +2,14 @@ import useGetState from 'api/getState';
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import { useFeatureFlag } from 'features/feature-flags/api';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
-import trackEvent from 'utils/analytics';
-import { EstimationMethods, isTSAModel, TrackEvent } from 'utils/constants';
+import { EstimationMethods, isTSAModel } from 'utils/constants';
 import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import {
   feedbackCardCollapsedNumberAtom,
@@ -179,10 +179,10 @@ function BaseCard({
   const isHourly = useAtomValue(isHourlyAtom);
   const isAggregated = !isHourly;
 
+  const trackEvent = useTrackEvent();
+  const { trackMissingDataMethodology } = useEvents(trackEvent);
+
   const trackToggle = () => {
-    if (isCollapsed) {
-      trackEvent(TrackEvent.ESTIMATION_CARD_EXPANDED, { cardType: cardType });
-    }
     setFeedbackCardCollapsedNumber(feedbackCardCollapsedNumber + 1);
   };
   const { t } = useTranslation();
@@ -235,11 +235,7 @@ function BaseCard({
               rel="noreferrer"
               data-testid="methodology-link"
               className={`text-sm font-semibold text-black underline dark:text-white`}
-              onClick={() => {
-                trackEvent(TrackEvent.ESTIMATION_CARD_METHODOLOGY_LINK_CLICKED, {
-                  cardType: cardType,
-                });
-              }}
+              onClick={trackMissingDataMethodology}
             >
               {t(`estimation-card.link`)}
             </a>

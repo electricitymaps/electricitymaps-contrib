@@ -105,7 +105,7 @@ def fetch_production(
         "source": "ssen.co.uk",
     }
 
-    return data
+    return [data]
 
 
 def fetch_exchange(
@@ -132,7 +132,7 @@ def fetch_exchange(
         "source": "ssen.co.uk",
     }
 
-    return data
+    return [data]
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +23,7 @@ import {
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
+import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
@@ -43,6 +45,9 @@ export default function ZoneDetails(): JSX.Element {
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
   const hasEstimationPill =
     Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+
+  const trackEvent = useTrackEvent();
+  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -77,7 +82,11 @@ export default function ZoneDetails(): JSX.Element {
           zoneDataStatus={zoneDataStatus}
         >
           <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          <ApiButton
+            backgroundClasses="mt-3 mb-1"
+            type="primary"
+            onClick={trackCtaMiddle}
+          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -86,11 +95,16 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
 
+          <GridAlertsCard
+            datetimes={datetimes}
+            timeRange={timeRange}
+            displayByEmissions={displayByEmissions}
+          />
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
             <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <ApiButton size="sm" />
+            <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>
@@ -105,6 +119,8 @@ export default function ZoneDetails(): JSX.Element {
       timeRange,
       displayByEmissions,
       t,
+      trackCtaForecast,
+      trackCtaMiddle,
     ]
   );
 

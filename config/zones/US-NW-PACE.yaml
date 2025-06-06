@@ -15,6 +15,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 12.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 9.8
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -83,6 +86,9 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 4606.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 4605.1
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -152,6 +158,12 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 2197.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2199.4
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2197.9
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -175,6 +187,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 4067.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 3984.8
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 3983.3
 comment: Pacificorp - East
 contributors:
   - systemcatch
@@ -185,9 +203,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all gas related electricity production
-  from the generation-only balancing authority Avangrid Renewables, LLC. Read more
-  on the zone definition wiki page.
+disclaimer:
+  This zone includes all gas related electricity production from the generation-only
+  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
+  page.
 emissionFactors:
   direct:
     battery discharge:

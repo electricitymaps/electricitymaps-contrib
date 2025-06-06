@@ -202,19 +202,6 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "XK": "10Y1001C--00100H",
 }
 
-# Generation per unit can only be obtained at EIC (Control Area) level
-ENTSOE_EIC_MAPPING: dict[str, str] = {
-    "DK-DK1": "10Y1001A1001A796",
-    "DK-DK2": "10Y1001A1001A796",
-    "FI": "10YFI-1--------U",
-    "PL": "10YPL-AREA-----S",
-    "SE-SE1": "10YSE-1--------K",
-    "SE-SE2": "10YSE-1--------K",
-    "SE-SE3": "10YSE-1--------K",
-    "SE-SE4": "10YSE-1--------K",
-    # TODO: ADD DE
-}
-
 # Define zone_keys to an array of zone_keys for aggregated production data
 ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
@@ -270,103 +257,6 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
-ENTSOE_UNITS_TO_ZONE: dict[str, str] = {
-    # DK-DK1
-    "Anholt": "DK-DK1",
-    "Esbjergvaerket 3": "DK-DK1",
-    "Fynsvaerket 7": "DK-DK1",
-    "Horns Rev A": "DK-DK1",
-    "Horns Rev B": "DK-DK1",
-    "Nordjyllandsvaerket 3": "DK-DK1",
-    "Silkeborgvaerket": "DK-DK1",
-    "Skaerbaekvaerket 3": "DK-DK1",
-    "Studstrupvaerket 3": "DK-DK1",
-    "Studstrupvaerket 4": "DK-DK1",
-    # DK-DK2
-    "Amagervaerket 3": "DK-DK2",
-    "Asnaesvaerket 2": "DK-DK2",
-    "Asnaesvaerket 5": "DK-DK2",
-    "Avedoerevaerket 1": "DK-DK2",
-    "Avedoerevaerket 2": "DK-DK2",
-    "Kyndbyvaerket 21": "DK-DK2",
-    "Kyndbyvaerket 22": "DK-DK2",
-    "Roedsand 1": "DK-DK2",
-    "Roedsand 2": "DK-DK2",
-    # FI
-    "Alholmens B2": "FI",
-    "Haapavesi B1": "FI",
-    "Kaukaan Voima G10": "FI",
-    "Keljonlahti B1": "FI",
-    "Loviisa 1 G11": "FI",
-    "Loviisa 1 G12": "FI",
-    "Loviisa 2 G21": "FI",
-    "Loviisa 2 G22": "FI",
-    "Olkiluoto 1 B1": "FI",
-    "Olkiluoto 2 B2": "FI",
-    "Toppila B2": "FI",
-    # SE-SE1
-    "Bastusel G1": "SE-SE1",
-    "Gallejaur G1": "SE-SE1",
-    "Gallejaur G2": "SE-SE1",
-    "Harsprånget G1": "SE-SE1",
-    "Harsprånget G2": "SE-SE1",
-    "Harsprånget G4": "SE-SE1",
-    "Harsprånget G5": "SE-SE1",
-    "Letsi G1": "SE-SE1",
-    "Letsi G2": "SE-SE1",
-    "Letsi G3": "SE-SE1",
-    "Ligga G3": "SE-SE1",
-    "Messaure G1": "SE-SE1",
-    "Messaure G2": "SE-SE1",
-    "Messaure G3": "SE-SE1",
-    "Porjus G11": "SE-SE1",
-    "Porjus G12": "SE-SE1",
-    "Porsi G3": "SE-SE1",
-    "Ritsem G1": "SE-SE1",
-    "Seitevare G1": "SE-SE1",
-    "Vietas G1": "SE-SE1",
-    "Vietas G2": "SE-SE1",
-    # SE-SE2
-    "Stalon G1": "SE-SE2",
-    "Stornorrfors G1": "SE-SE2",
-    "Stornorrfors G2": "SE-SE2",
-    "Stornorrfors G3": "SE-SE2",
-    "Stornorrfors G4": "SE-SE2",
-    # SE-SE3
-    "Forsmark block 1 G11": "SE-SE3",
-    "Forsmark block 1 G12": "SE-SE3",
-    "Forsmark block 2 G21": "SE-SE3",
-    "Forsmark block 2 G22": "SE-SE3",
-    "Forsmark block 3 G31": "SE-SE3",
-    "KVV Västerås G3": "SE-SE3",
-    "KVV1 Värtaverket": "SE-SE3",
-    "KVV6 Värtaverket": "SE-SE3",
-    "KVV8 Värtaverket": "SE-SE3",
-    "Oskarshamn G3": "SE-SE3",
-    "Oskarshamn G1Ö+G1V": "SE-SE3",
-    "Ringhals block 1 G11": "SE-SE3",
-    "Ringhals block 1 G12": "SE-SE3",
-    "Ringhals block 2 G21": "SE-SE3",
-    "Ringhals block 2 G22": "SE-SE3",
-    "Ringhals block 3 G31": "SE-SE3",
-    "Ringhals block 3 G32": "SE-SE3",
-    "Ringhals block 4 G41": "SE-SE3",
-    "Ringhals block 4 G42": "SE-SE3",
-    "Rya KVV": "SE-SE3",
-    "Stenungsund B3": "SE-SE3",
-    "Stenungsund B4": "SE-SE3",
-    "Trängslet G1": "SE-SE3",
-    "Trängslet G2": "SE-SE3",
-    "Trängslet G3": "SE-SE3",
-    "Uppsala KVV": "SE-SE3",
-    "Åbyverket Örebro": "SE-SE3",
-    # SE-SE4
-    "Gasturbiner Halmstad G12": "SE-SE4",
-    "Karlshamn G1": "SE-SE4",
-    "Karlshamn G2": "SE-SE4",
-    "Karlshamn G3": "SE-SE4",
-}
-
 VALIDATIONS: dict[str, dict[str, Any]] = {
     # This is a list of criteria to ensure validity of data,
     # used in validate_production()
@@ -419,7 +309,7 @@ VALIDATIONS: dict[str, dict[str, Any]] = {
         "expected_range": (5000, 35000),
     },
     "PT": {
-        "expected_range": (600, 20000),
+        "expected_range": (0, 20000),
     },
     "RO": {
         "expected_range": (2000, 25000),
@@ -544,32 +434,6 @@ def query_production(
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_REALTIME,
         function_name=query_production.__name__,
-    )
-
-
-def query_production_per_units(
-    psr_type: str,
-    domain: str,
-    session: Session,
-    target_datetime: datetime | None = None,
-) -> str | None:
-    params = {
-        # Actual generation - A document providing the actual generation for a
-        # period.
-        "documentType": "A73",
-        # Realised - The process for the treatment of realised data as opposed
-        # to forecast data
-        "processType": "A16",
-        "psrType": psr_type,
-        "in_Domain": domain,
-    }
-    # Note: ENTSOE only supports 1d queries for this type
-    return query_ENTSOE(
-        session,
-        params,
-        target_datetime=target_datetime,
-        span=(-24, 0),
-        function_name=query_production_per_units.__name__,
     )
 
 
@@ -920,56 +784,6 @@ def _group_production_data_by_datetime(
     return grouped_data
 
 
-def parse_production_per_units(xml_text: str) -> Any | None:
-    values = {}
-
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, "html.parser")
-    # Get all points
-    for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find("resolution").contents[0])
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find("start").contents[0])
-        )
-        is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
-        psr_type = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
-        unit_key = str(
-            timeseries.find("mktpsrtype")
-            .find("powersystemresources")
-            .find("mrid")
-            .contents[0]
-        )
-        unit_name = str(
-            timeseries.find("mktpsrtype")
-            .find("powersystemresources")
-            .find("name")
-            .contents[0]
-        )
-        if not is_production:
-            continue
-        for entry in timeseries.find_all("point"):
-            quantity = float(entry.find("quantity").contents[0])
-            position = int(entry.find("position").contents[0])
-            dt = datetime_from_position(datetime_start, position, resolution)
-            key = (unit_key, dt)
-            if key in values:
-                if is_production:
-                    values[key]["production"] += quantity
-                else:
-                    values[key]["production"] -= quantity
-            else:
-                values[key] = {
-                    "datetime": dt,
-                    "production": quantity,
-                    "productionType": ENTSOE_PARAMETER_BY_GROUP[psr_type],
-                    "unitKey": unit_key,
-                    "unitName": unit_name,
-                }
-
-    return values.values()
-
-
 def parse_exchange(
     xml_text: str,
     is_import: bool,
@@ -1132,57 +946,6 @@ def fetch_production(
         non_aggregated_data, logger
     ).to_list()
     return [x for x in aggregated_zone_data if validate_production(x, logger)]
-
-
-@refetch_frequency(timedelta(days=1))
-def fetch_production_per_units(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """Returns all production units and production values."""
-
-    # If no target_datetime is specified, or the target datetime is less
-    # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(
-        tz=timezone.utc
-    ) - timedelta(days=5):
-        logger.info(
-            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
-        )
-        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
-
-    domain = ENTSOE_EIC_MAPPING[zone_key]
-    data = []
-    # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC:
-        try:
-            raw_production_per_units = query_production_per_units(
-                k, domain, session, target_datetime
-            )
-            if raw_production_per_units is not None:
-                values = parse_production_per_units(raw_production_per_units) or []
-                for v in values:
-                    if not v:
-                        continue
-                    v["source"] = "entsoe.eu"
-                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
-                        logger.warning(
-                            f"Unknown unit {v['unitName']} with id {v['unitKey']}"
-                        )
-                    else:
-                        v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
-                        if v["zoneKey"] == zone_key:
-                            data.append(v)
-        except Exception as e:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"Failed to fetch data for {k} in {zone_key}",
-                zone_key=zone_key,
-            ) from e
-
-    return data
 
 
 def get_raw_exchange(

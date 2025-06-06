@@ -2,7 +2,6 @@ import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
-import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -243,8 +242,6 @@ function AreaGraph({
     setGraphIndex(null);
   }, [setTooltipData, setHoveredLayerIndex, setGraphIndex]);
 
-  const headerHeight = useHeaderHeight();
-
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
     if (layer.datapoints.length !== datetimes.length) {
@@ -330,7 +327,6 @@ function AreaGraph({
             }
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
-            headerHeight={headerHeight}
             closeTooltip={onCloseTooltip}
           >
             {(props) => tooltip(props)}

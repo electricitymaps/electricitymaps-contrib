@@ -68,7 +68,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
       <ChartTitle
         titleText={t(`country-history.netExchange.${timeRange}`)}
         unit={someEstimated ? undefined : valueAxisLabel}
-        id={Charts.NET_EXCHANGE_CHART}
+        id={Charts.ELECTRTICITY_FLOW_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
@@ -88,7 +88,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
           markerFill={markerFill}
           markerUpdateHandler={noop}
           markerHideHandler={noop}
-          height="10em"
+          height="6em"
           datetimes={datetimes}
           estimated={estimated}
           selectedTimeRange={timeRange}

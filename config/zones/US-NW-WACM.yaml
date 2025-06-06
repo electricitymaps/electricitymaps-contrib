@@ -29,10 +29,16 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 104.5
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 108.5
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 4.8
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -65,6 +71,9 @@ capacity:
     - datetime: '2023-06-01'
       source: EIA.gov
       value: 1585.3
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 1590.3
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -144,6 +153,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 12.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 7.9
   wind:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -163,6 +175,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 1466.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1857.3
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

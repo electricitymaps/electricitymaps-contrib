@@ -67,7 +67,7 @@ capacity:
       value: 3161.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 3172.0
+      value: 2969.0
   geothermal:
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -82,6 +82,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 61.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 62.0
   nuclear:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -141,7 +144,7 @@ capacity:
       value: 3964.8
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 7826.0
+      value: 7878.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -166,7 +169,7 @@ capacity:
       value: 106.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 140.0
+      value: 139.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu

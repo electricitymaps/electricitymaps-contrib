@@ -1,132 +1,157 @@
+bypassedSubZones:
+  - RU-1
+  - RU-2
+  - RU-AS
+  - RU-EU
+  - RU-FE
+  - RU-KGD
 capacity:
   biomass:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1370.0
+      value: 40.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 41660.0
+      value: 41640.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 41260.0
+      value: 41240.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 40690.0
+      value: 40670.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 40370.0
+      value: 40140.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 39070.0
+      value: 38840.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 38600.0
+      value: 38360.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 37860.0
+      value: 37550.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 37310.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 109140.0
+      value: 108590.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 110400.0
+      value: 109850.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 111230.0
+      value: 110680.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 110380.0
+      value: 109940.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 109770.0
+      value: 109440.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 110590.0
+      value: 110260.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 112240.0
+      value: 110820.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 111680.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 50490.0
+      value: 47230.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 50580.0
+      value: 47290.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 51080.0
+      value: 48650.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 51400.0
+      value: 48700.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 48740.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 48890.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 50570.0
+      value: 51620.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 49100.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
+      value: 27960.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
       value: 27950.0
-    - datetime: '2018-01-01'
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 29140.0
-    - datetime: '2019-01-01'
+      value: 28020.0
+    - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 30340.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 29410.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 29540.0
+      value: 27910.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 230.0
+      value: 540.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 540.0
+      value: 830.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 1280.0
+      value: 1430.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 1430.0
+      value: 1770.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 1660.0
+      value: 1990.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 1820.0
+      value: 2150.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2170.0
+      value: 2190.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2550.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 110.0
+      value: 260.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 10.0
+      value: 140.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+      value: 200.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 950.0
+      value: 1040.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 1960.0
+      value: 2050.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 2220.0
+      value: 2280.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2520.0
+      value: 2530.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2570.0
 contributors:
   - denplis
   - systemcatch
@@ -333,4 +358,11 @@ region: Europe
 sources:
   IEA 2015:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
+subZoneNames:
+  - RU-1
+  - RU-2
+  - RU-AS
+  - RU-EU
+  - RU-FE
+  - RU-KGD
 timezone: Europe/Moscow

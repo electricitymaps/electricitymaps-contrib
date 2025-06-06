@@ -137,6 +137,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 11626.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 11673.5
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 11893.5
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -174,6 +180,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 912.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 821.7
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -230,6 +239,12 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 31950.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 31911.0
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 31900.2
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -259,6 +274,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 6041.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 6161.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 6162.0
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -269,6 +290,12 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1877.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2077.6
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 1024.6
   nuclear:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -280,6 +307,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 160.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 160.2
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -410,6 +440,12 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 23004.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 23127.7
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 23351.5
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov

@@ -3,17 +3,18 @@
 Usage: poetry run test_parser FR production
 """
 
+import logging
 import pprint
 import time
 from collections.abc import Callable
 from datetime import datetime, timezone
-from logging import DEBUG, basicConfig, getLogger
 from typing import Any
 
 import click
 
+from electricitymap.contrib.lib.data_types import ParserDataType
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.parsers import PARSER_KEY_TO_DICT
+from parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from parsers.lib.quality import (
     ValidationError,
     validate_consumption,
@@ -21,8 +22,7 @@ from parsers.lib.quality import (
     validate_production,
 )
 
-logger = getLogger(__name__)
-basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
+logger = logging.getLogger(__name__)
 
 
 @click.command()
@@ -34,8 +34,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     Parameters
     ----------
     zone: a two letter zone from the map
-    data_type: in ['production', 'exchangeForecast', 'production', 'exchange',
-      'price', 'consumption', 'generationForecast', 'consumptionForecast', 'productionPerModeForecast]
+    data_type: in the ParserDataType enum
     target_datetime: ISO 8601 string, such as 2018-05-30 15:00
     \n
     Examples
@@ -46,7 +45,14 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     >>> poetry run test_parser GE production --target_datetime="2022-04-10 15:00"
 
     """
-    if data_type == "productionCapacity":
+    if not data_type:
+        parser_data_type = (
+            ParserDataType.EXCHANGE if "->" in zone else ParserDataType.PRODUCTION
+        )
+    else:
+        parser_data_type = ParserDataType(data_type)
+
+    if parser_data_type == ParserDataType.PRODUCTION_CAPACITY:
         raise ValueError(
             "productionCapacity is not supported by this script. Please use `poetry run update_capacity` instead."
         )
@@ -55,17 +61,17 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         parsed_target_datetime = datetime.fromisoformat(target_datetime)
     start = time.time()
 
-    if not data_type:
-        data_type = "exchange" if "->" in zone else "production"
+    parser: Callable[..., list[dict[str, Any]] | dict[str, Any]] = (
+        PARSER_DATA_TYPE_TO_DICT[ParserDataType(parser_data_type)][zone]
+    )
 
-    parser: Callable[..., list[dict[str, Any]] | dict[str, Any]] = PARSER_KEY_TO_DICT[
-        data_type
-    ][zone]
+    args = (
+        zone.split("->")
+        if parser_data_type
+        in [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
+        else [zone]
+    )
 
-    args = zone.split("->") if data_type in ["exchange", "exchangeForecast"] else [zone]
-
-    logger = getLogger(__name__)
-    logger.setLevel(DEBUG)
     res = parser(*args, target_datetime=parsed_target_datetime, logger=logger)
 
     if not res:
@@ -123,16 +129,20 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         res = [res]
     for event in res:
         try:
-            if data_type == "production":
+            if parser_data_type == ParserDataType.PRODUCTION:
                 validate_production(event, zone)
-            elif data_type == "consumption":
+            elif parser_data_type == ParserDataType.CONSUMPTION:
                 validate_consumption(event, zone)
-            elif data_type == "exchange":
+            elif parser_data_type == ParserDataType.EXCHANGE:
                 validate_exchange(event, zone)
         except ValidationError as e:
             logger.warning(f"Validation failed @ {event['datetime']}: {e}")
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s",
+    )
     # pylint: disable=no-value-for-parameter
     print(test_parser())

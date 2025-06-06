@@ -30,8 +30,8 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "price": _PARSER_FUNCTION_ARGS,
     "production": _PARSER_FUNCTION_ARGS,
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
-    "productionPerUnit": _PARSER_FUNCTION_ARGS,
     "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
+    "gridAlerts": _PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
@@ -55,8 +55,8 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "price": _RETURN_PARSER_TYPE,
     "production": _RETURN_PARSER_TYPE,
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
-    "productionPerUnit": _RETURN_PARSER_TYPE,
     "productionCapacity": _RETURN_PARSER_TYPE,
+    "gridAlerts": _RETURN_PARSER_TYPE,
 }
 
 
