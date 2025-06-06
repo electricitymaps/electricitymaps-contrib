@@ -671,6 +671,7 @@ parsers:
   consumptionForecast: US_NY.fetch_consumption_forecast
   production: US_NY.fetch_production
   productionCapacity: EIA.fetch_production_capacity
+  gridAlerts: US_NY.fetch_grid_alerts
 region: Americas
 sources:
   INCER ACV:
