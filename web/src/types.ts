@@ -239,4 +239,6 @@ export type RouteParameters = {
   zoneId?: string;
   urlTimeRange?: TimeRange;
   urlDatetime?: string;
+  provider?: string;
+  region?: string;
 };
