@@ -1,6 +1,8 @@
-import { Sun, Wind } from 'lucide-react';
+import { Aperture, Sun, Wind } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import {
+  solarAssetsLayerAtom,
+  solarAssetsLayerLoadingAtom,
   solarLayerAtom,
   solarLayerLoadingAtom,
   windLayerAtom,
@@ -24,6 +26,12 @@ export const weatherButtonMap = {
     iconSize: 20,
     enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
+  },
+  solar_assets: {
+    icon: Aperture,
+    iconSize: 20,
+    enabledAtom: solarAssetsLayerAtom,
+    loadingAtom: solarAssetsLayerLoadingAtom,
   },
 };
 
