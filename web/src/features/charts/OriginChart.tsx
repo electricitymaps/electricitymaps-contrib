@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { round } from 'utils/helpers';
 import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { EstimationLegend } from './elements/EstimationMarkers';
 import { getGenerationTypeKey, noop } from './graphUtils';
+import { useEstimationData } from './hooks/useEstimationData';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -72,6 +72,9 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
   const selectedData = useSelectedData(displayByEmissions);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   if (!data) {
     return null;
@@ -99,19 +102,6 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       />
     );
   }
-
-  const estimated = chartData.map((d) => {
-    const zoneDetail = d.meta;
-    const { estimationMethod, estimatedPercentage } = zoneDetail;
-    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-    const hasEstimationPill =
-      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
-
-    return hasEstimationPill;
-  });
-  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
-    .estimationMethod;
-  const someEstimated = estimated.some(Boolean);
 
   return (
     <RoundedCard>

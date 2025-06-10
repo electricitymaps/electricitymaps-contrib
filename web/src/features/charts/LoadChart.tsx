@@ -1,4 +1,3 @@
-import { round } from '@turf/helpers';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
@@ -8,6 +7,7 @@ import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
+import { useEstimationData } from './hooks/useEstimationData';
 import { useLoadChartData } from './hooks/useLoadChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
@@ -22,25 +22,15 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   const { data, isLoading, isError } = useLoadChartData();
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   if (isLoading || isError || !data) {
     return null;
   }
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
-
-  const estimated = chartData.map((d) => {
-    const zoneDetail = d.meta;
-    const { estimationMethod, estimatedPercentage } = zoneDetail;
-    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-    const hasEstimationPill =
-      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
-
-    return hasEstimationPill;
-  });
-  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
-    .estimationMethod;
-  const someEstimated = estimated.some(Boolean);
 
   if (!Number.isFinite(chartData[0]?.layerData?.load)) {
     return null;

@@ -1,4 +1,3 @@
-import { round } from '@turf/helpers';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
@@ -13,6 +12,7 @@ import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
 import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
+import { useEstimationData } from './hooks/useEstimationData';
 import { useNetExchangeChartData } from './hooks/useNetExchangeChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { RoundedCard } from './RoundedCard';
@@ -29,6 +29,9 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const isHourly = useAtomValue(isHourlyAtom);
   const { t } = useTranslation();
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
   if (productionConsumption === 'production') {
     return null;
   }
@@ -38,19 +41,6 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   }
   const { chartData } = data;
   const { layerFill, layerKeys, layerStroke, valueAxisLabel, markerFill } = data;
-
-  const estimated = chartData.map((d) => {
-    const zoneDetail = d.meta;
-    const { estimationMethod, estimatedPercentage } = zoneDetail;
-    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-    const hasEstimationPill =
-      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
-
-    return hasEstimationPill;
-  });
-  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
-    .estimationMethod;
-  const someEstimated = estimated.some(Boolean);
 
   // find the absolute max value to format the axis
   const maxEmissions = Math.max(

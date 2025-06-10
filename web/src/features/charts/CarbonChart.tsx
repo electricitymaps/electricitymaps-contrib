@@ -3,7 +3,6 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
-import { round } from 'utils/helpers';
 import { isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
@@ -11,6 +10,7 @@ import AreaGraph from './elements/AreaGraph';
 import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
 import { useCarbonChartData } from './hooks/useCarbonChartData';
+import { useEstimationData } from './hooks/useEstimationData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
 import CarbonChartTooltip from './tooltips/CarbonChartTooltip';
@@ -25,6 +25,9 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const isHourly = useAtomValue(isHourlyAtom);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   if (isLoading || isError || !data) {
     return null;
@@ -34,19 +37,6 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
   const valueAxisLabel = 'gCO₂eq / kWh';
-
-  const estimated = chartData.map((d) => {
-    const zoneDetail = d.meta;
-    const { estimationMethod, estimatedPercentage } = zoneDetail;
-    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-    const hasEstimationPill =
-      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
-
-    return hasEstimationPill;
-  });
-  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
-    .estimationMethod;
-  const someEstimated = estimated.some(Boolean);
 
   if (!hasEnoughDataToDisplay) {
     return (
