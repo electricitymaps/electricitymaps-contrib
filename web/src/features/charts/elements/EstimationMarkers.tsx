@@ -9,13 +9,16 @@ import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslatio
 
 const DARK_MODE_PATTERN_STROKE = '#404040';
 const LIGHT_MODE_PATTERN_STROKE = 'darkgray';
-const MARKER_COLOR = '#DB58FF';
+const MARKER_COLOR = 'lightgray';
+const SHOW_MARKER = false;
 
 export function EstimationLegendIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" className="mr-1">
       <rect width="24" height="24" fill="url(#pattern)" transform="scale(0.5)" />
-      <line x1="0" y1="11" x2="12" y2="11" stroke="#DB58FF" strokeWidth="2" />
+      {SHOW_MARKER && (
+        <line x1="0" y1="11" x2="12" y2="11" stroke={MARKER_COLOR} strokeWidth="2" />
+      )}
     </svg>
   );
 }
@@ -114,14 +117,16 @@ function EstimationMarkers({
           <path d="M-10 10L10 -10" stroke={patternStroke} />
         </pattern>
       </defs>
-      <g
-        fill={MARKER_COLOR}
-        textAnchor="middle"
-        transform={transform}
-        style={{ pointerEvents: 'none' }}
-      >
-        <path d={markerPathData(datetimes) || undefined} />
-      </g>
+      {SHOW_MARKER && (
+        <g
+          fill={MARKER_COLOR}
+          textAnchor="middle"
+          transform={transform}
+          style={{ pointerEvents: 'none' }}
+        >
+          <path d={markerPathData(datetimes) || undefined} />
+        </g>
+      )}
       <g textAnchor="middle" transform={transform} style={{ pointerEvents: 'none' }}>
         <path
           d={backgroundPathData(datetimes) || undefined}
