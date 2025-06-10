@@ -9,6 +9,7 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Session
 
@@ -46,7 +47,7 @@ wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerSer
 solar_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getSolarForecast&returnType=json"
 
 # To quote the MISO data source;
-# "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
+# "The category listed as "Other" is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
 # External Asynchronous Resources and a varied assortment of solid waste, garbage and wood pulp burners".
 
 # Timestamp reported by data source is in format 23-Jan-2018 - Interval 11:45 EST
@@ -264,12 +265,17 @@ def fetch_grid_alerts(
         publish_datetime = datetime.fromisoformat(
             notification["publishDateUnformatted"]
         )  # in UTC
+
+        clean_subject = BeautifulSoup(notification["subject"], "html.parser").get_text()
+        clean_body = BeautifulSoup(notification["body"], "html.parser").get_text()
+        message = clean_subject + "\n" + clean_body
+
         grid_alert_list.append(
             zoneKey=zone_key,
             locationRegion=None,
             source=SOURCE,
             alertType=GridAlertType.undefined,
-            message=notification["subject"] + "\n" + notification["body"],
+            message=message,
             issuedTime=publish_datetime,
             startTime=None,  # if None, it defaults to issuedTime
             endTime=None,
