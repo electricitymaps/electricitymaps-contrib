@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { round } from 'utils/helpers';
 
-export const useEstimationData = (chartData?: any[]) => useMemo(() => {
+export const useEstimationData = (chartData?: any[]) =>
+  useMemo(() => {
     if (!chartData) {
       return {
         estimated: undefined,
