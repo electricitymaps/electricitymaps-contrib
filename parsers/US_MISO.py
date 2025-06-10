@@ -10,7 +10,6 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 from bs4 import BeautifulSoup
-from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Session
 
@@ -283,12 +282,14 @@ def fetch_grid_alerts(
         )
     return grid_alert_list.to_list()
 
+
 def extract_text_with_links(html_content):
     soup = BeautifulSoup(html_content, "html.parser")
-    for a in soup.find_all('a'):
-        if a.get('href'):
+    for a in soup.find_all("a"):
+        if a.get("href"):
             a.replace_with(f"{a.get_text()} ({a['href']})")
     return soup.get_text()
+
 
 if __name__ == "__main__":
     from pprint import pprint
