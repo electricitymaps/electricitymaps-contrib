@@ -365,14 +365,15 @@ def fetch_grid_alerts(
         # Parse message
         message = notification["Message"]
 
-        if message != "Start of day system state is NORMAL":
-            # If the message is not the normal state, we add it to the grid_alert_list
+        if message.startswith("**") and message.endswith("**"):
+            # If the message is not the normal state (starting and ending with "**""), we add it to the grid_alert_list
+            message_content = message[2:-2]
             grid_alert_list.append(
                 zoneKey=zone_key,
                 locationRegion=None,
                 source=SOURCE,
                 alertType=GridAlertType.undefined,
-                message=message,
+                message=message_content,
                 issuedTime=dt_utc,
                 startTime=None,  # if None, it defaults to issuedTime
                 endTime=None,
