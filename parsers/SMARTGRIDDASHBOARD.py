@@ -116,10 +116,18 @@ def parse_consumption(
 
     demandList = TotalConsumptionList(logger=logger)
     for item in data:
+        dt = parse_datetime(item["EffectiveTime"])
+        # when fetching real-time data we remove future values
+        if not forecast:
+            now = datetime.now(tz=IE_TZ)
+            # datetimes in the future are expected to be None
+            if dt > now:
+                continue
+
         demandList.append(
             zoneKey=zone_key,
             consumption=item["Value"],
-            datetime=parse_datetime(item["EffectiveTime"]),
+            datetime=dt,
             source=SOURCE,
             sourceType=EventSourceType.forecasted
             if forecast
