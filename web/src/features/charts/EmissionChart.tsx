@@ -2,7 +2,6 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { round } from 'utils/helpers';
 import { isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
@@ -10,6 +9,7 @@ import AreaGraph from './elements/AreaGraph';
 import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
 import { useEmissionChartData } from './hooks/useEmissionChartData';
+import { useEstimationData } from './hooks/useEstimationData';
 import { RoundedCard } from './RoundedCard';
 import EmissionChartTooltip from './tooltips/EmissionChartTooltip';
 
@@ -21,6 +21,9 @@ interface EmissionChartProps {
 function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
   const isHourly = useAtomValue(isHourlyAtom);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   const { t } = useTranslation();
   if (isLoading || isError || !data) {
@@ -28,19 +31,6 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   }
 
   const { chartData, layerFill, layerKeys } = data;
-
-  const estimated = chartData.map((d) => {
-    const zoneDetail = d.meta;
-    const { estimationMethod, estimatedPercentage } = zoneDetail;
-    const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-    const hasEstimationPill =
-      estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
-
-    return hasEstimationPill;
-  });
-  const estimationMethod = chartData.find((d) => d.meta.estimationMethod)?.meta
-    .estimationMethod;
-  const someEstimated = estimated.some(Boolean);
 
   const valueAxisLabel = 'gCO₂eq';
   const maxEmissions = Math.max(...chartData.map((o) => o.layerData.emissions));
