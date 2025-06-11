@@ -207,6 +207,7 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
+      "pill": "Aggregated",
       "body": "The data consists of an aggregation of hourly values."
     },
     "aggregated_estimated": {
