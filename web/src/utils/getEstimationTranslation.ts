@@ -38,30 +38,28 @@ export default function getEstimationOrAggregationTranslation(
       // Just aggregated, no estimation
       return t(`estimation-card.aggregated.${field}`);
     }
-  } else {
+  } else if (field === 'pill') {
     // This is not aggregated data
 
-    if (field === 'pill') {
-      const isPreliminary =
-        estimationMethod == EstimationMethods.FORECASTS_HIERARCHY ||
-        estimationMethod == EstimationMethods.TSA;
-      // TODO: outage is not an estimation, need to refactor out to keep separation of concerns.
-      const isOutage = estimationMethod == EstimationMethods.OUTAGE;
-      const isSynthetic = !isPreliminary;
-      if (isSynthetic) {
-        return t('estimation-card.synthetic');
-      }
-      if (isPreliminary) {
-        return t('estimation-card.preliminary');
-      }
-      if (isOutage) {
-        return t(`estimation-card.outage.pill`);
-      }
-    } else {
-      // TODO: in order to have a clear separation of concerns, the decision of the label
-      // to show shouldn't be made in the translation file, and thus, the translation file should be
-      // independent of the estimation method.
-      return t(`estimation-card.${estimationMethod}.${field}`);
+    const isPreliminary =
+      estimationMethod == EstimationMethods.FORECASTS_HIERARCHY ||
+      estimationMethod == EstimationMethods.TSA;
+    // TODO: outage is not an estimation, need to refactor out to keep separation of concerns.
+    const isOutage = estimationMethod == EstimationMethods.OUTAGE;
+    const isSynthetic = !isPreliminary;
+    if (isSynthetic) {
+      return t('estimation-card.synthetic');
     }
+    if (isPreliminary) {
+      return t('estimation-card.preliminary');
+    }
+    if (isOutage) {
+      return t(`estimation-card.outage.pill`);
+    }
+  } else {
+    // TODO: in order to have a clear separation of concerns, the decision of the label
+    // to show shouldn't be made in the translation file, and thus, the translation file should be
+    // independent of the estimation method.
+    return t(`estimation-card.${estimationMethod}.${field}`);
   }
 }
