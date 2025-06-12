@@ -28,7 +28,7 @@ export function getExchangeCo2Intensity(
   const exchange = zoneData.exchange?.[zoneKey];
   const exchangeCo2Intensity = zoneData.exchangeCo2Intensities?.[zoneKey];
 
-  if (exchange >= 0) {
+  if (exchange != null && exchange >= 0) {
     return exchangeCo2Intensity;
   }
 
@@ -133,9 +133,9 @@ export const getDataBlockPositions = (
 };
 
 export interface ExchangeDataType {
-  exchange: number;
+  exchange: number | null;
   zoneKey: ZoneKey;
-  gCo2eqPerkWh: number;
+  gCo2eqPerkWh: number | null;
   gCo2eq: number;
   exchangeCapacityRange: number[];
 }
@@ -154,7 +154,10 @@ export const getExchangeData = (
 
     // Exchange CO₂ intensity
     const gCo2eqPerkWh = getExchangeCo2Intensity(zoneKey, data, isConsumption);
-    const gCo2eq = gCo2eqPerkWh * 1000 * exchange;
+    const gCo2eq =
+      gCo2eqPerkWh == null || exchange == null
+        ? Number.NaN
+        : gCo2eqPerkWh * 1000 * exchange;
 
     return {
       exchange,
