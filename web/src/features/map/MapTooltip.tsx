@@ -43,7 +43,7 @@ export const TooltipInner = memo(function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
             hasOutage={Boolean(o)}
-            estimatedMethod={estimationMethod}
+            estimatedMethod={estimationMethod || undefined}
             estimatedPercentage={round(estimationPercentage ?? 0, 0)}
             hasZoneData={hasZoneData}
           />
