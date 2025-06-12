@@ -41,10 +41,10 @@ describe('EstimatedCard', () => {
         <EstimatedCard estimationMethod={undefined} />
       </I18nextProvider>
     );
-    cy.get('[data-testid=title]').contains('Data is estimated');
+    cy.get('[data-testid=title]').contains('Data is always estimated');
     cy.get('[data-testid="collapse-button"]').click();
     cy.get('[data-testid="body-text"]').contains(
-      'The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values.'
+      'Real-time source data for this zone is not available. The data is modeled using a combination of live weather data and historical production patterns to generate an accurate flow-traced electricity mix.'
     );
   });
 });

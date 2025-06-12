@@ -161,7 +161,6 @@ function BaseCard({
   icon,
   showMethodologyLink,
   textColorTitle,
-  cardType,
 }: {
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
@@ -169,7 +168,6 @@ function BaseCard({
   icon: React.ReactElement;
   showMethodologyLink: boolean;
   textColorTitle: string;
-  cardType: string;
 }) {
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
@@ -265,7 +263,6 @@ export function OutageCard({
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={false}
       textColorTitle="text-warning dark:text-warning-dark"
-      cardType="outage-card"
     />
   );
 }
@@ -282,7 +279,6 @@ export function AggregatedCard({
       icon={<ChartNoAxesColumn size={16} />}
       showMethodologyLink={false}
       textColorTitle="text-black dark:text-white"
-      cardType="aggregated-card"
     />
   );
 }
@@ -299,7 +295,6 @@ export function EstimatedCard({
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={true}
       textColorTitle={'text-black dark:text-white'}
-      cardType="estimated-card"
     />
   );
 }
@@ -312,7 +307,6 @@ export function EstimatedTSACard() {
       icon={<CircleDashed size={16} />}
       showMethodologyLink={true}
       textColorTitle="text-black dark:text-white"
-      cardType="estimated-card"
     />
   );
 }
