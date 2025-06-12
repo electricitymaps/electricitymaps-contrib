@@ -16,8 +16,7 @@ from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
 IE_TZ = ZoneInfo("Europe/Dublin")
-
-URL = "https://www.smartgriddashboard.com/DashboardService.svc/data"
+URL = "https://www.smartgriddashboard.com/api/chart"
 
 SOURCE = "eirgridgroup.com"
 
@@ -28,6 +27,8 @@ KINDS_AREA_MAPPING = {
     "wind_forecast": "windforecast",
     "exchange": "interconnection",
     "generation": "generationactual",
+    "solar": "solaractual",
+    "solar_forecast": "solarforecast",
 }
 
 REGION_MAPPING = {
@@ -36,8 +37,12 @@ REGION_MAPPING = {
 }
 
 EXCHANGE_MAPPING = {
-    ZoneKey("GB->IE"): {"key": "ROI", "exchange": "INTER_EWIC", "direction": 1},
-    ZoneKey("GB->GB-NIR"): {"key": "NI", "exchange": "INTER_MOYLE", "direction": 1},
+    ZoneKey("GB->IE"): {
+        "key": "ROI",
+        "exchange": ["INTER_EWIC", "INTER_GRNLK"],
+        "direction": 1,
+    },
+    ZoneKey("GB->GB-NIR"): {"key": "NI", "exchange": ["INTER_MOYLE"], "direction": 1},
 }
 
 
@@ -69,10 +74,12 @@ def fetch_data(
     resp: Response = session.get(
         url=URL,
         params={
-            "area": KINDS_AREA_MAPPING[kind],
+            "areas": KINDS_AREA_MAPPING[kind],
+            "chartType": "default",
             "region": EXCHANGE_MAPPING[zone_key]["key"]
             if zone_key in EXCHANGE_MAPPING
             else REGION_MAPPING[zone_key],
+            "dateRange": "day",
             **get_datetime_params(target_datetime),
         },
     )
@@ -143,22 +150,49 @@ def fetch_production(
         target_datetime=target_datetime, zone_key=zone_key, kind="wind", session=session
     )
 
+    solar_data = fetch_data(
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="solar",
+        session=session,
+    )
+
     assert len(total_generation) > 0
     assert len(wind_data) > 0
+    assert len(solar_data) > 0
 
     production = ProductionBreakdownList(logger=logger)
 
     for item in total_generation:
         dt = item["EffectiveTime"]
-        wind_event_dt = [event for event in wind_data if event["EffectiveTime"] == dt]
 
-        wind_prod = float(wind_event_dt[0]["Value"]) if wind_event_dt[0]["Value"] else 0
+        wind_event_dt = next(
+            (event for event in wind_data if event["EffectiveTime"] == dt), None
+        )
+        wind_prod = (
+            float(wind_event_dt["Value"])
+            if wind_event_dt and wind_event_dt["Value"]
+            else 0
+        )
+
+        solar_event_dt = next(
+            (event for event in solar_data if event["EffectiveTime"] == dt), None
+        )
+        solar_prod = (
+            float(solar_event_dt["Value"])
+            if solar_event_dt and solar_event_dt["Value"]
+            else 0
+        )
 
         productionMix = ProductionMix()
-        if all([item["Value"], wind_prod]):
+        if all([item["Value"], wind_prod, solar_prod]):
             productionMix.add_value("wind", wind_prod, correct_negative_with_zero=True)
             productionMix.add_value(
-                "unknown", float(item["Value"]) - productionMix.wind
+                "solar", solar_prod, correct_negative_with_zero=True
+            )
+            productionMix.add_value(
+                "unknown",
+                float(item["Value"]) - productionMix.wind - productionMix.solar,
             )
 
         production.append(
@@ -203,22 +237,28 @@ def fetch_exchange(
         session=session,
     )
 
-    exchangeList = ExchangeList(logger=logger)
+    exchange_mapping = EXCHANGE_MAPPING[exchangeKey]
+    exchanges = {x: ExchangeList(logger=logger) for x in exchange_mapping["exchange"]}
+
     for exchange in exchange_data:
+        target_exchange = exchanges.get(exchange["FieldName"])
+        if target_exchange is None:
+            continue
+
         flow = (
-            exchange["Value"] * EXCHANGE_MAPPING[exchangeKey]["direction"]
+            exchange["Value"] * exchange_mapping["direction"]
             if exchange["Value"]
             else exchange["Value"]
         )
 
-        exchangeList.append(
+        target_exchange.append(
             zoneKey=exchangeKey,
             netFlow=flow,
             datetime=parse_datetime(exchange["EffectiveTime"]),
             source=SOURCE,
         )
 
-    return exchangeList.to_list()
+    return ExchangeList.merge_exchanges(exchanges.values(), logger=logger).to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -256,7 +296,7 @@ def fetch_consumption_forecast(
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_wind_forecasts(
+def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -289,7 +329,29 @@ def fetch_wind_forecasts(
             source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
-    return wind_forecast.to_list()
+
+    solar_forecast_data = fetch_data(
+        target_datetime=target_datetime,
+        zone_key=zone_key,
+        kind="solar_forecast",
+        session=session,
+    )
+
+    solar_forecast = ProductionBreakdownList(logger=logger)
+    for item in solar_forecast_data:
+        productionMix = ProductionMix()
+        productionMix.add_value("solar", item["Value"], correct_negative_with_zero=True)
+        solar_forecast.append(
+            zoneKey=zone_key,
+            production=productionMix,
+            datetime=parse_datetime(item["EffectiveTime"]),
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return ProductionBreakdownList.merge_production_breakdowns(
+        [wind_forecast, solar_forecast], logger=logger
+    ).to_list()
 
 
 def fetch_total_generation(
