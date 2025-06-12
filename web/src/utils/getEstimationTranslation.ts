@@ -60,7 +60,6 @@ export default function getEstimationOrAggregationTranslation(
     // TODO: in order to have a clear separation of concerns, the decision of the label
     // to show shouldn't be made in the translation file, and thus, the translation file should be
     // independent of the estimation method.
-    const methodKey = estimationMethod ?? EstimationMethods.GENERAL_PURPOSE_ZONE_MODEL;
-    return t(`estimation-card.${methodKey}.${field}`);
+    return t(`estimation-card.${estimationMethod}.${field}`);
   }
 }
