@@ -60,7 +60,7 @@ function EstimationMarkers({
   estimated,
   markerHeight = 3,
 }: {
-  datetimes: any[] | undefined;
+  datetimes: Array<Date | number> | undefined;
   scaleWidth: number;
   scaleHeight: number;
   className?: string;
@@ -86,15 +86,15 @@ function EstimationMarkers({
   }
   const timeScale = scaleTime().domain([startDate, endDate]).range([0, scaleWidth]);
 
-  const markerPathData = area()
+  const markerPathData = area<number | Date>()
     // see https://github.com/d3/d3-shape#curveStep
     .curve(curveStepAfter)
-    .x((d: any) => timeScale(d))
+    .x((d) => timeScale(d))
     .y0(0)
     .y1((d, index) => (estimated?.at(index) ? markerHeight : 0));
-  const backgroundPathData = area()
+  const backgroundPathData = area<number | Date>()
     .curve(curveStepAfter)
-    .x((d: any) => timeScale(d))
+    .x((d) => timeScale(d))
     .y0(0)
     .y1((d, index) => (estimated?.at(index) ? -scaleHeight : 0));
 
