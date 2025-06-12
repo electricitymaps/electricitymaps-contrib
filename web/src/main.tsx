@@ -182,6 +182,12 @@ export function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element })
     return <Navigate to={`/map/72h/hourly?${searchParameters}`} replace />;
   }
 
+  // Check if this is a solar asset identifier
+  if (zoneId.startsWith('solar-asset-')) {
+    // For solar assets, bypass normal zone validation and continue
+    return children;
+  }
+
   // Sanitize the zone ID by removing any special characters except for hyphens and making it uppercase
   let sanitizedZoneId = zoneId.replaceAll(/[^\dA-Za-z-]/g, '').toUpperCase();
 
