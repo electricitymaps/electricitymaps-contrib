@@ -67,7 +67,7 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   hasZoneData,
 }: {
   hasOutage: boolean;
-  estimatedMethod?: EstimationMethods | null;
+  estimatedMethod?: EstimationMethods;
   estimatedPercentage?: number | undefined;
   hasZoneData: boolean;
 }) {
@@ -80,30 +80,21 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimatedMethod) {
-    const text = getEstimationOrAggregationTranslation(
-      t,
-      'pill',
-      !isHourly,
-      estimatedMethod,
-      estimatedPercentage
-    );
-    if (isTSAModel(estimatedMethod)) {
-      return <EstimationBadge text={text} Icon={CircleDashed} isPreliminary={true} />;
-    }
-    return <EstimationBadge text={text} Icon={TrendingUpDown} />;
+  if (estimatedMethod == null && isHourly) {
+    // No aggregation or estimation pill to show
+    return null;
   }
-  if (estimatedPercentage && estimatedPercentage > 0.5) {
-    return (
-      <EstimationBadge
-        text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimatedPercentage,
-        })}
-        Icon={TrendingUpDown}
-      />
-    );
+  const text = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    !isHourly,
+    estimatedMethod,
+    estimatedPercentage
+  );
+  if (isTSAModel(estimatedMethod)) {
+    return <EstimationBadge text={text} Icon={CircleDashed} isPreliminary={true} />;
   }
-  return null;
+  return <EstimationBadge text={text} Icon={TrendingUpDown} />;
 });
 
 DataValidityBadge.displayName = 'DataValidityBadge';

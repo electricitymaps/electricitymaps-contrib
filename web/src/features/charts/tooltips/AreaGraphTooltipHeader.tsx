@@ -15,7 +15,7 @@ interface AreaGraphToolTipHeaderProps {
   datetime: Date;
   timeRange: TimeRange;
   title: string;
-  hasEstimationPill?: boolean;
+  hasEstimationOrAggregationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
   estimationMethod?: EstimationMethods;
@@ -26,7 +26,7 @@ export default function AreaGraphToolTipHeader({
   datetime,
   timeRange,
   title,
-  hasEstimationPill = false,
+  hasEstimationOrAggregationPill = false,
   estimatedPercentage,
   productionSource,
   estimationMethod,
@@ -54,7 +54,7 @@ export default function AreaGraphToolTipHeader({
           {productionSource && <ProductionSourceIcon source={productionSource} />}
         </div>
         <h2 className="grow px-1">{title}</h2>
-        {hasEstimationPill && (
+        {hasEstimationOrAggregationPill && (
           <EstimationBadge
             text={pillText}
             Icon={isTSA ? CircleDashed : TrendingUpDown}

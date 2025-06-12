@@ -16,13 +16,15 @@ export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipPr
     return null;
   }
 
-  const { stateDatetime } = zoneDetail;
+  const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
 
   const totalConsumption = zoneDetail.totalConsumption;
   const { formattingFactor, unit: powerUnit } = scalePower(totalConsumption, isHourly);
 
   const unit = powerUnit;
   const value = round(totalConsumption / formattingFactor);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[350px]">
@@ -31,6 +33,9 @@ export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipPr
         timeRange={timeRange}
         squareColor="#7f7f7f"
         title={t('tooltips.load')}
+        hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
+        estimatedPercentage={roundedEstimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
         <b className="mx-1">{Number.isFinite(value) ? value : '?'}</b> {unit}

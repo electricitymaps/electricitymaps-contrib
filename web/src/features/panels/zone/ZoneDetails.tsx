@@ -12,9 +12,9 @@ import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
-import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
+  isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -35,16 +35,15 @@ export default function ZoneDetails(): JSX.Element {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
-  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+  const { estimationMethod } = selectedData || {};
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
 
   const trackEvent = useTrackEvent();
   const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
@@ -81,7 +80,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
+          <BarBreakdownChart hasEstimationPill={hasEstimationOrAggregationPill} />
           <ApiButton
             backgroundClasses="mt-3 mb-1"
             type="primary"
@@ -114,7 +113,7 @@ export default function ZoneDetails(): JSX.Element {
       zoneDataStatus,
       isLoading,
       isError,
-      hasEstimationPill,
+      hasEstimationOrAggregationPill,
       datetimes,
       timeRange,
       displayByEmissions,

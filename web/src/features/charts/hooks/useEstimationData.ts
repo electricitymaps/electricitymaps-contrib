@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { round } from 'utils/helpers';
 
 export const useEstimationData = (chartData?: any[]) =>
   useMemo(() => {
@@ -11,9 +10,8 @@ export const useEstimationData = (chartData?: any[]) =>
       };
     }
     const estimated = chartData.map((d: any) => {
-      const { estimationMethod, estimatedPercentage } = d.meta;
-      const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-      return estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+      const { estimationMethod } = d.meta;
+      return Boolean(estimationMethod);
     });
     const estimationMethod = chartData.find((d: any) => d.meta.estimationMethod)?.meta
       .estimationMethod;

@@ -29,7 +29,7 @@ export default function getEstimationOrAggregationTranslation(
 
   if (isAggregated) {
     // Aggregated data will show a label that doesn't depend on the estimation method.
-    if (estimatedPercentage > 1) {
+    if (estimationMethod) {
       const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
       return t(`estimation-card.aggregated_estimated.${field}`, {
         percentage: roundedEstimatedPercentage,
