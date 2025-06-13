@@ -172,8 +172,6 @@
     "submit": "Skicka"
   },
   "estimation-badge": {
-    "partially-estimated": "Delvis uppskattad",
-    "fully-estimated": "Uppskattad",
     "outage": "Otillgänglig"
   },
   "estimation-card": {
@@ -181,23 +179,15 @@
     "outage-details": "Se detaljer",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data är preliminär",
-      "pill": "Preliminär",
       "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data är preliminär",
-      "pill": "Preliminär",
       "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data är delvis uppskattad",
-      "pill": "Delvis uppskattad",
       "body": "Rapporterad data för denna zon är ofullständig. Våra modeller fyller i saknade produktionssätt och elflöden för att ge en komplett bild av elmixen med ursprungsspårning."
-    },
-    "estimated_generic_method": {
-      "title": "Data är uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data är alltid uppskattad",
