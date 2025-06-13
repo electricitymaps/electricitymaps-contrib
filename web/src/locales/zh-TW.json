@@ -81,17 +81,10 @@
     "submit": "提交"
   },
   "estimation-badge": {
-    "partially-estimated": "部分估計",
-    "fully-estimated": "已估計",
     "outage": "不可用"
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "estimated_generic_method": {
-      "title": "數據為估計值",
-      "pill": "不精確",
-      "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
-    },
     "threshold_filtered": {
       "title": "缺失數據",
       "pill": "數據中斷",
