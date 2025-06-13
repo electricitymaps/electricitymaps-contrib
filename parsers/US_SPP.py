@@ -261,11 +261,14 @@ def fetch_load_forecast(
         forecast = raw_data.loc[index].to_dict()
 
         dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
-        load = _NaN_safe_get(forecast, "STLF")
+        load = _NaN_safe_get(forecast, "STLF")  # short term load forecast
         if load is None:
-            load = _NaN_safe_get(forecast, "MTLF")
+            load = _NaN_safe_get(forecast, "MTLF")  # medium term load forecast
         if load is None:
-            logger.info(f"fetch_load_forecast: {dt} has no forecasted load")
+            # STLF is reported every 5 minutes while MTLF is reported once every hour so we know load is None at times like 12.05, 12.10, etc
+            logger.warning(f"fetch_load_forecast: {dt} has no forecasted load")
+            # Drop there data points to prevent errors in .append
+            continue
 
         consumption_list.append(
             datetime=dt,
