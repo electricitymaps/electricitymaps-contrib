@@ -254,6 +254,12 @@ def fetch_exchange(
         if target_exchange is None:
             continue
 
+        dt = parse_datetime(exchange["EffectiveTime"])
+        now = datetime.now(tz=IE_TZ)
+        # datetimes in the future are expected to be None
+        if dt > now:
+            continue
+
         flow = (
             exchange["Value"] * exchange_mapping["direction"]
             if exchange["Value"]
