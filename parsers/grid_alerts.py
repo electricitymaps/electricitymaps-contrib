@@ -1,3 +1,4 @@
+import datetime
 import json
 
 import requests
@@ -8,9 +9,21 @@ MAILGUN_API_KEY = "key-1635ecb784cc83a48f1cf4dc4bb311e8"  # Replace with your ac
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 # REQUEST BODY
+
+nowminus5 = (
+    datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+    - datetime.timedelta(hours=5)
+).strftime("%a, %d %b %Y %H:%M:%S -0000")
+
+now = (
+    datetime.datetime.now(datetime.timezone.utc)
+    .replace(microsecond=0)
+    .strftime("%a, %d %b %Y %H:%M:%S -0000")
+)
+
 payload = {
-    "start": "Fri, 13 Jun 2025 08:00:00 -0000",
-    "end": "Fri, 13 Jun 2025 15:15:00 -0000",
+    "start": nowminus5,
+    "end": now,
     "filter": {
         "AND": [
             {
