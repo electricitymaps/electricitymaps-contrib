@@ -69,11 +69,18 @@ def test_filter_production_objs():
                 "solar": 0,
             },
         },
+        {
+            "datetime": now - timedelta(hours=3),
+            "production": {
+                "coal": 42,
+                "solar": 0,
+            },
+        },
     ]
     filtered_objs = filter_production_objs(objs)
     # 2nd entry should be filtered out because solar is None
     # 3rd entry should be filtered out because it's only 0 values for solar
-    assert len(filtered_objs) == 1
+    assert len(filtered_objs) == 2
 
 
 @pytest.fixture(autouse=True)
