@@ -19,7 +19,7 @@ export default function NetExchangeChartTooltip({
     return null;
   }
 
-  const { stateDatetime } = zoneDetail;
+  const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
 
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
   const { formattingFactor, unit: powerUnit } = scalePower(netExchange, isHourly);
@@ -28,6 +28,8 @@ export default function NetExchangeChartTooltip({
   const value = displayByEmissions
     ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[350px]">
@@ -36,6 +38,9 @@ export default function NetExchangeChartTooltip({
         timeRange={timeRange}
         squareColor="#7f7f7f"
         title={t('tooltips.netExchange')}
+        hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
+        estimatedPercentage={roundedEstimatedPercentage}
+        estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
         {netExchange >= 0 ? t('tooltips.importing') : t('tooltips.exporting')}{' '}

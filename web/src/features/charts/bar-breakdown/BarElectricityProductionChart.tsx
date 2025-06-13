@@ -36,7 +36,7 @@ function BarElectricityProductionChart({
 }) {
   const { t } = useTranslation();
   return (
-    <svg className="w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
+    <svg className="mb-2 w-full overflow-visible" height={height + AXIS_LEGEND_PADDING}>
       <Axis
         formatTick={formatTick}
         height={height}

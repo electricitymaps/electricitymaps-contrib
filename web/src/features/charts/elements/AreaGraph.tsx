@@ -17,6 +17,7 @@ import { SelectedData } from '../OriginChart';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
+import EstimationMarkers from './EstimationMarkers';
 import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
@@ -105,6 +106,7 @@ interface AreagraphProps {
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
+  estimated?: boolean[];
   selectedTimeRange: TimeRange;
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
@@ -130,7 +132,8 @@ function AreaGraph({
   height = '10em',
   isDisabled = false,
   selectedTimeRange,
-  datetimes,
+  datetimes, // array of datetimes
+  estimated, // array of booleans depicting if data has been estimated
   tooltip,
   tooltipSize,
   formatTick = String,
@@ -182,6 +185,10 @@ function AreaGraph({
     // This can be inferred by typescript 5.5 and can be removed when we upgrade
     () => [...datetimes, endTime].filter(Boolean) as Date[],
     [datetimes, endTime]
+  );
+  const estimatedWithNext = useMemo(
+    () => (estimated ? [...estimated, estimated?.at(-1) || false] : estimated),
+    [estimated]
   );
 
   const timeScale = useMemo(
@@ -280,6 +287,14 @@ function AreaGraph({
           mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={reference.current}
+        />
+        <EstimationMarkers
+          datetimes={datetimesWithNext}
+          estimated={estimatedWithNext}
+          scaleWidth={containerWidth}
+          scaleHeight={containerHeight}
+          transform={`translate(0 ${containerHeight})`}
+          className="h-[22px] w-full overflow-visible"
         />
         <TimeAxis
           isLoading={false}
