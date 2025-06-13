@@ -118,7 +118,7 @@ def flow(sorted_keys: ZoneKey, datapoint: dict) -> int | float | None:
         return (
             datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
             * EXCHANGE_MAPPING[sorted_keys]["direction"]
-            if datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
+            if datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]] is not None
             else None
         )
 
