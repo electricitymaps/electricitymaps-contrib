@@ -107,7 +107,18 @@ def filter_production_objs(
             and obj["production"]["solar"] is not None
         )
 
-    all_filters = [filter_solar_production]
+    # The latest data points for AU-TAS are regularly containing only 0 values for solar
+    # and no other production values. This is not a valid production object, so we filter it out.
+    def only_zero_solar_production(obj: dict) -> bool:
+        return not (
+            all(v is None for k, v in obj.get("production", {}).items() if k != "solar")
+            and (
+                obj.get("production", {}).get("solar") is None
+                or obj.get("production", {}).get("solar") == 0
+            )
+        )
+
+    all_filters = [filter_solar_production, only_zero_solar_production]
 
     filtered_objs = []
     for obj in objs:

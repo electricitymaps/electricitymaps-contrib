@@ -109,6 +109,7 @@ export default function BreakdownChartTooltip({
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -126,8 +127,7 @@ export default function BreakdownChartTooltip({
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    estimationMethod != undefined || Boolean(roundedEstimatedPercentage);
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
 
   return (
     <BreakdownChartTooltipContent
@@ -136,7 +136,7 @@ export default function BreakdownChartTooltip({
       isExchange={isExchange}
       selectedLayerKey={selectedLayerKey}
       timeRange={timeRange}
-      hasEstimationPill={hasEstimationPill}
+      hasEstimationPill={hasEstimationOrAggregationPill}
       estimatedPercentage={roundedEstimatedPercentage}
       estimationMethod={estimationMethod}
     ></BreakdownChartTooltipContent>
@@ -208,7 +208,7 @@ export function BreakdownChartTooltipContent({
         datetime={datetime}
         timeRange={timeRange}
         title={title}
-        hasEstimationPill={isExchange ? false : hasEstimationPill}
+        hasEstimationOrAggregationPill={isExchange ? false : hasEstimationPill}
         estimatedPercentage={estimatedPercentage}
         productionSource={isExchange ? undefined : selectedLayerKey}
         estimationMethod={estimationMethod}

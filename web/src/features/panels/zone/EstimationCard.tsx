@@ -2,7 +2,6 @@ import useGetState from 'api/getState';
 import Accordion from 'components/Accordion';
 import FeedbackCard, { SurveyResponseProps } from 'components/app-survey/FeedbackCard';
 import { useFeatureFlag } from 'features/feature-flags/api';
-import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtom, useAtomValue } from 'jotai';
 import { ChartNoAxesColumn, CircleDashed, TrendingUpDown } from 'lucide-react';
@@ -11,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
 import { ZoneMessage } from 'types';
 import { EstimationMethods, isTSAModel } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
@@ -105,12 +105,14 @@ export default function EstimationCard({
   }
   const selectedData = data?.datetimes[selectedDatetimeString]?.z[zoneKey];
 
-  const estimationMethod = selectedData?.em;
+  const estimationMethod = selectedData?.em || undefined;
 
-  if (!estimationMethod) {
+  const isAggregated = !isHourly;
+
+  if (!estimationMethod && !isAggregated) {
     return null;
   }
-  const isTSA = isTSAModel(estimationMethod);
+  const isTSA = estimationMethod ? isTSAModel(estimationMethod) : false;
   const cardType = getCardType({
     estimationMethod,
     zoneMessage,
@@ -159,7 +161,6 @@ function BaseCard({
   icon,
   showMethodologyLink,
   textColorTitle,
-  cardType,
 }: {
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
@@ -167,13 +168,14 @@ function BaseCard({
   icon: React.ReactElement;
   showMethodologyLink: boolean;
   textColorTitle: string;
-  cardType: string;
 }) {
   const [feedbackCardCollapsedNumber, setFeedbackCardCollapsedNumber] = useAtom(
     feedbackCardCollapsedNumberAtom
   );
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
+  const isHourly = useAtomValue(isHourlyAtom);
+  const isAggregated = !isHourly;
 
   const trackEvent = useTrackEvent();
   const { trackMissingDataMethodology } = useEvents(trackEvent);
@@ -183,10 +185,17 @@ function BaseCard({
   };
   const { t } = useTranslation();
 
-  const title = useGetEstimationTranslation('title', estimationMethod);
+  const title = getEstimationOrAggregationTranslation(
+    t,
+    'title',
+    isAggregated,
+    estimationMethod
+  );
 
-  const bodyText = useGetEstimationTranslation(
+  const bodyText = getEstimationOrAggregationTranslation(
+    t,
     'body',
+    isAggregated,
     estimationMethod,
     estimatedPercentage
   );
@@ -254,7 +263,6 @@ export function OutageCard({
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={false}
       textColorTitle="text-warning dark:text-warning-dark"
-      cardType="outage-card"
     />
   );
 }
@@ -266,13 +274,11 @@ export function AggregatedCard({
 }) {
   return (
     <BaseCard
-      estimationMethod={EstimationMethods.AGGREGATED}
       estimatedPercentage={estimatedPercentage}
       zoneMessage={undefined}
       icon={<ChartNoAxesColumn size={16} />}
       showMethodologyLink={false}
       textColorTitle="text-black dark:text-white"
-      cardType="aggregated-card"
     />
   );
 }
@@ -289,7 +295,6 @@ export function EstimatedCard({
       icon={<TrendingUpDown size={16} />}
       showMethodologyLink={true}
       textColorTitle={'text-black dark:text-white'}
-      cardType="estimated-card"
     />
   );
 }
@@ -302,7 +307,6 @@ export function EstimatedTSACard() {
       icon={<CircleDashed size={16} />}
       showMethodologyLink={true}
       textColorTitle="text-black dark:text-white"
-      cardType="estimated-card"
     />
   );
 }

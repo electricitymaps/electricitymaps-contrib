@@ -141,8 +141,6 @@
     }
   },
   "estimation-badge": {
-    "partially-estimated": "Částečně odhadnuto",
-    "fully-estimated": "Odhadnuto",
     "outage": "Nedostupné"
   },
   "estimation-card": {
@@ -150,23 +148,15 @@
     "outage-details": "Detaily",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data jsou předběžná",
-      "pill": "Předběžná data",
       "body": "Data pro tuto hodinu dosud nebyla zveřejněna. Naše modely zaplňují tyto mezery a v reálném čase dodávají úplný dataset s konzistentní granularitou."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data jsou předběžná",
-      "pill": "Předběžná data",
       "body": "Data pro tuto hodinu dosud nebyla zveřejněna. Naše modely zaplňují tyto mezery a v reálném čase dodávají úplný dataset s konzistentní granularitou."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data jsou částečně odhadnuta",
-      "pill": "Částečný odhad",
       "body": "Zveřejněná data pro tuto oblast jsou neúplná; naše modely doplňují chybějící typy zdrojů a přeshraniční toky."
-    },
-    "estimated_generic_method": {
-      "title": "Data jsou odhadnuta",
-      "pill": "Nepřesná data",
-      "body": "Data pro tuto oblast částečně či zcela chybí. Data na mapě jsou co nejlépe odhadnuta, avšak mohou se lišit od reálných hodnot."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data jsou vždy odhadována",
