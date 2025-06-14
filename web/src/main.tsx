@@ -95,7 +95,7 @@ window.addEventListener('vite:preloadError', async (event: VitePreloadErrorEvent
 
 const SearchPanel = lazy(() => import('features/panels/search-panel/SearchPanel'));
 const ZoneDetails = lazy(() => import('features/panels/zone/ZoneDetails'));
-
+const DataCenterDetails = lazy(() => import('features/data-centers/DataCenterDetails'));
 /**
  * DevTools for Jotai which makes atoms appear in Redux Dev Tools.
  * Only enabled on import.meta.env.DEV
@@ -266,6 +266,24 @@ const router = createBrowserRouter([
                 }
               >
                 <ZoneDetails />
+              </Suspense>
+            </TimeRangeAndResolutionGuardWrapper>
+          </ValidZoneIdGuardWrapper>
+        ),
+      },
+      {
+        path: '/data-center/:zoneId/:provider/:region/:urlTimeRange?/:resolution?/:urlDatetime?',
+        element: (
+          <ValidZoneIdGuardWrapper>
+            <TimeRangeAndResolutionGuardWrapper>
+              <Suspense
+                fallback={
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-36 sm:h-auto">
+                    <LoadingSpinner />
+                  </GlassContainer>
+                }
+              >
+                <DataCenterDetails />
               </Suspense>
             </TimeRangeAndResolutionGuardWrapper>
           </ValidZoneIdGuardWrapper>

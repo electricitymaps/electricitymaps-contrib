@@ -81,6 +81,11 @@ export const isWindLayerEnabledAtom = atom<boolean>(
   (get) => get(windLayerAtom) === ToggleOptions.ON && get(areWeatherLayersAllowedAtom)
 );
 
+export const dataCenterLayerAtom = atomWithStorage('dataCenter', ToggleOptions.ON);
+export const isDataCenterLayerEnabledAtom = atom<boolean>(
+  (get) => get(dataCenterLayerAtom) === ToggleOptions.ON
+);
+
 export const solarLayerLoadingAtom = atom<boolean>(false);
 export const windLayerLoadingAtom = atom<boolean>(false);
 
