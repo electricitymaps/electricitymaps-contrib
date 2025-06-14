@@ -56,7 +56,7 @@ const MENU_ITEMS = [
     icon: CodeXmlIcon,
   },
   {
-    label: 'API Docs',
+    label: 'Docs',
     to: `${PORTAL_URL}/docs`,
     icon: BookOpenIcon,
   },
@@ -94,7 +94,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarMenu>
+          <SidebarMenu className="group-data-[collapsible=icon]:gap-8">
             {MENU_ITEMS.map((item) => (
               <MenuItem
                 key={item.to}
