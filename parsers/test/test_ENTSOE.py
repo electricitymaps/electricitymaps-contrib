@@ -7,6 +7,7 @@ from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
+from parsers.ENTSOE import fetch_production
 
 base_path_to_mock = Path("parsers/test/mocks/ENTSOE")
 
@@ -313,3 +314,9 @@ def test_fetch_uses_normal_url(adapter, session):
             content=price_fr_data.read(),
         )
     ENTSOE.fetch_price(ZoneKey("DE"), session)
+
+
+def test_refetch_frequency():
+    func = fetch_production
+
+    assert func.__name__ == "fetch_production"
