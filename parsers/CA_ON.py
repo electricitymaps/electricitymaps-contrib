@@ -5,15 +5,21 @@ from logging import Logger, getLogger
 from typing import Any
 from xml.etree import ElementTree
 
+from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Some notes about timestamps:
@@ -486,6 +492,86 @@ def fetch_wind_solar_forecasts(
     return production_list.to_list()
 
 
+def fetch_grid_alerts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the grid alerts for IESO in https://www.ieso.ca/Sector-Participants/RSS-Feeds/Advisory-Notices-Archive."""
+    session = session or Session()
+
+    # Url with the latest advisory notices
+    url = "https://www.ieso.ca/ieso/api/table/data?source=958805C0C35B4BF3BB6A6EA429850C06&ctx=CF5ADB2D-E44E-4899-AFAF-E16C97A7A36F"
+    # If we want to fetch the current notices: https://www.ieso.ca/Sector-Participants/RSS-Feeds/Emergency-Advisory-Notices
+
+    # Fetch the data from the URL
+    response = session.get(url)
+    json_data = response.json()
+    entries = json_data[0]["TableRows"]  # stored in a table
+
+    # Record events in grid_alert_list
+    grid_alert_list = GridAlertList(logger)
+    for notice in entries:
+        alert_type = notice["Cells"][0]["Value"]
+
+        # "Alert", "Warning" --> "Informational", "Action" --> "Action" based on https://www.ieso.ca/Sector-Participants/RSS-Feeds/Day-0-Advisory-Notices-Summary
+        if alert_type == "Alert" or alert_type == "Warning":
+            alert_type = GridAlertType.informational
+        elif alert_type == "Action":
+            alert_type = GridAlertType.action
+        else:
+            alert_type = GridAlertType.undefined
+
+        notice_content = notice["Cells"][1]["Value"]
+
+        # Take the "Updated At" (the latest update)
+        issued_at = notice["Cells"][3]["Value"]
+        issued_at_dt = datetime.strptime(issued_at, "%a, %d %b %Y %H:%M").replace(
+            tzinfo=TIMEZONE
+        )
+
+        soup = BeautifulSoup(notice_content, "html.parser")
+        link = soup.find_all("a")[0]["href"]
+        subject = soup.find_all("a")[0]["title"]
+
+        # Extract the body
+        url2 = "https://www.ieso.ca" + link
+        response2 = session.get(url2)
+        soup2 = BeautifulSoup(response2.text, "html.parser")
+
+        # Find start and end times before the table
+        start_time = soup2.find_all("p")[0].get_text(strip=True)
+        start_time_dt = datetime.strptime(
+            start_time, "Start: %a, %d %b %Y %H:%M EST"
+        ).replace(tzinfo=TIMEZONE)
+        end_time = soup2.find_all("p")[1].get_text(strip=True)
+        end_time_dt = datetime.strptime(
+            end_time, "End: %a, %d %b %Y %H:%M EST"
+        ).replace(tzinfo=TIMEZONE)
+
+        # Find all <tr> rows
+        rows = soup2.find_all("tr")
+
+        # Extract the 2nd <td> (description) from each row
+        for row in rows:
+            tds = row.find_all("td")
+            if len(tds) >= 2:
+                description = tds[1].get_text(strip=True)
+
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=None,
+            source=SOURCE,
+            alertType=alert_type,
+            message=subject + "\n" + description,
+            issuedTime=issued_at_dt,
+            startTime=start_time_dt,  # if None, it defaults to issuedTime
+            endTime=end_time_dt,
+        )
+    return grid_alert_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -578,5 +664,7 @@ if __name__ == "__main__":
     # print("Requesting fetch_wind_solar_forecasts")
     # pprint(fetch_wind_solar_forecasts())
 
-    print("Requesting fetch_consumption_forecast")
-    pprint(fetch_consumption_forecast())
+    # print("Requesting fetch_consumption_forecast")
+    # pprint(fetch_consumption_forecast())
+
+    pprint(fetch_grid_alerts())
