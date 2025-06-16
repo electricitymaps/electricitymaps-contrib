@@ -1,12 +1,12 @@
 import EstimationBadge from 'components/EstimationBadge';
 import HorizontalDivider from 'components/HorizontalDivider';
 import { FormattedTime } from 'components/Time';
-import { useGetEstimationTranslation } from 'hooks/getEstimationTranslation';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, isTSAModel, TimeRange } from 'utils/constants';
-import { endDatetimeAtom } from 'utils/state/atoms';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { endDatetimeAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
 
@@ -15,7 +15,7 @@ interface AreaGraphToolTipHeaderProps {
   datetime: Date;
   timeRange: TimeRange;
   title: string;
-  hasEstimationPill?: boolean;
+  hasEstimationOrAggregationPill?: boolean;
   estimatedPercentage?: number;
   productionSource?: string;
   estimationMethod?: EstimationMethods;
@@ -26,14 +26,17 @@ export default function AreaGraphToolTipHeader({
   datetime,
   timeRange,
   title,
-  hasEstimationPill = false,
+  hasEstimationOrAggregationPill = false,
   estimatedPercentage,
   productionSource,
   estimationMethod,
 }: AreaGraphToolTipHeaderProps) {
-  const { i18n } = useTranslation();
-  const pillText = useGetEstimationTranslation(
+  const { i18n, t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
+  const pillText = getEstimationOrAggregationTranslation(
+    t,
     'pill',
+    !isHourly,
     estimationMethod,
     estimatedPercentage
   );
@@ -51,7 +54,7 @@ export default function AreaGraphToolTipHeader({
           {productionSource && <ProductionSourceIcon source={productionSource} />}
         </div>
         <h2 className="grow px-1">{title}</h2>
-        {hasEstimationPill && (
+        {hasEstimationOrAggregationPill && (
           <EstimationBadge
             text={pillText}
             Icon={isTSA ? CircleDashed : TrendingUpDown}

@@ -145,18 +145,11 @@
     "submit": "Indsend"
   },
   "estimation-badge": {
-    "partially-estimated": "Delvist estimeret",
-    "fully-estimated": "Estimeret",
     "outage": "Utilgængelig"
   },
   "estimation-card": {
     "link": "Læs om vores estimeringsmodeller",
     "outage-details": "Se detaljer",
-    "estimated_generic_method": {
-      "title": "Data er estimeret",
-      "pill": "Upræcis",
-      "body": "Den publiserede data for dette område er utilgængelig eller ufuldkommen. Data vist på kortet er estimeret ud fra vores bedste kunnen, men den er måske forskellig fra de reelle værdier."
-    },
     "threshold_filtered": {
       "title": "Manglende data",
       "pill": "Data problemer",

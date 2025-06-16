@@ -1,9 +1,13 @@
+import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
+import { isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
+import { EstimationLegend } from './elements/EstimationMarkers';
 import { noop } from './graphUtils';
+import { useEstimationData } from './hooks/useEstimationData';
 import { useLoadChartData } from './hooks/useLoadChartData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
 import { RoundedCard } from './RoundedCard';
@@ -17,6 +21,10 @@ interface LoadChartProps {
 function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   const { data, isLoading, isError } = useLoadChartData();
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   if (isLoading || isError || !data) {
     return null;
@@ -43,11 +51,18 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.electricityLoad.${timeRange}`)}
-        unit={valueAxisLabel}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_LOAD_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
       <div className="relative">
+        {someEstimated && (
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
+        )}
         <AreaGraph
           testId="history-load-graph"
           data={chartData}
@@ -59,6 +74,7 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
           markerHideHandler={noop}
           height="6em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={LoadChartTooltip}
         />
