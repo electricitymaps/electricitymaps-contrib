@@ -5,7 +5,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 # CONFIGURATION
-MAILGUN_API_KEY = "key-1635ecb784cc83a48f1cf4dc4bb311e8"  # Replace with your actual Mailgun private API key
+MAILGUN_API_KEY = ""  # Replace with your actual Mailgun private API key
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 # REQUEST BODY
