@@ -709,7 +709,7 @@ def _fetch_any(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-     # get EIA API key
+    # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
     eia_ts_format = "%Y-%m-%dT%H"
@@ -730,6 +730,7 @@ def _fetch_any(
         for datapoint in raw_data["response"]["data"]
     ]
 
+
 def _fetch_historical(
     zone_key: str,
     url_prefix: str,
@@ -737,7 +738,6 @@ def _fetch_historical(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-
     start, end = None, None
     if target_datetime:
         utc = tz.gettz("UTC")
@@ -764,7 +764,9 @@ def _fetch_forecast(
     start, end = None, None
     if target_datetime:
         utc = tz.gettz("UTC")
-        start = target_datetime.astimezone(utc).replace(minute=0, second=0, microsecond=0)
+        start = target_datetime.astimezone(utc).replace(
+            minute=0, second=0, microsecond=0
+        )
         end = start + LOOKAHEAD
     else:
         start = datetime.now(tz=tz.gettz("UTC")).replace(
