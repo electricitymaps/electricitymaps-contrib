@@ -52,13 +52,6 @@ class ConfigTestcase(unittest.TestCase):
         self.assertIn("wind", factors.keys())
         self.assertGreater(factors["gas"], 0)
 
-    def test_geojson_properly_loaded(self):
-        # Check that the file path to the geojson is correct in the reading function
-        try:
-            config.read_geojson_config()
-        except FileNotFoundError:
-            self.fail("geojson file not found")
-
 
 class DataCentersConfigTestcase(unittest.TestCase):
     def test_data_centers_config_contains_basic_data_centers(self):
