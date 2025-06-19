@@ -13,9 +13,9 @@ parser-files:
 
 src-files:
   COPY electricitymap/contrib/config ./electricitymap/contrib/config
-  COPY electricitymap/contrib/web/geo ./electricitymap/contrib/web/geo
   COPY electricitymap/contrib/lib ./electricitymap/contrib/lib
   COPY electricitymap/contrib/py.typed ./electricitymap/contrib/py.typed
+  COPY web/geo ./web/geo
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
   COPY web/public/locales/en.json ./web/public/locales/en.json
