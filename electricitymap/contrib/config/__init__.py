@@ -22,12 +22,13 @@ from electricitymap.contrib.config.zones import (
 from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
+GEO_DIR = Path(__file__).parent.parent.parent.parent.joinpath("web/geo").resolve()
 
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
 DATA_CENTERS_CONFIG = read_data_centers_config(CONFIG_DIR)
-GEOJSON_CONFIG = read_geojson_config()
+GEOJSON_CONFIG = read_geojson_config(GEO_DIR)
 
 EU_ZONES = [
     "AT",
