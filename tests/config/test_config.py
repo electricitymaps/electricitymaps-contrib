@@ -52,6 +52,11 @@ class ConfigTestcase(unittest.TestCase):
         self.assertIn("wind", factors.keys())
         self.assertGreater(factors["gas"], 0)
 
+    def test_zone_to_country_lookup(self):
+        # The zone_to_country_lookup returns a dict of zone keys to country names.
+        self.assertIn(ZoneKey("DK-DK1"), config.ZONE_TO_COUNTRY_LOOKUP.keys())
+        self.assertEqual(config.ZONE_TO_COUNTRY_LOOKUP[ZoneKey("DK-DK1")], "Denmark")
+
 
 class DataCentersConfigTestcase(unittest.TestCase):
     def test_data_centers_config_contains_basic_data_centers(self):
