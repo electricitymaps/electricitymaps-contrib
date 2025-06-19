@@ -6,10 +6,10 @@ from typing import Any
 
 from electricitymap.contrib.config.co2eq_parameters import generate_co2eq_parameters
 from electricitymap.contrib.config.reading import (
-    read_geojson_config,
     read_data_centers_config,
     read_defaults,
     read_exchanges_config,
+    read_geojson_config,
     read_zones_config,
 )
 from electricitymap.contrib.config.types import BoundingBox
