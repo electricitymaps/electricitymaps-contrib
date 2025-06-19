@@ -11,15 +11,18 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
@@ -377,6 +380,74 @@ def fetch_wind_solar_forecasts(
     return production_list.to_list()
 
 
+def fetch_grid_alerts(
+    zone_key: ZoneKey = US_NEISO_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetch Grid Alerts from ISONE"""
+    session = session or Session()
+
+    # Make the request
+    url = "https://www.iso-ne.com/markets-operations/system-forecast-status/current-system-status"
+    response = session.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    # Find the table
+    table = soup.find("table", id="PowerSystemConditions-Table")
+    # Extract footer <pre> text (updated at)
+    footer_pre = table.find("tfoot").find("pre").get_text(strip=True)
+    # Extract the datetime part (remove 'Updated: ')
+    datetime_part = footer_pre.replace("Updated: ", "")
+    # Parse the datetime
+    updated_at = datetime.strptime(datetime_part, " %m/%d/%Y  %I:%M %p").replace(
+        tzinfo=ZoneInfo("America/New_York")
+    )
+    issued_at = updated_at
+
+    grid_alert_list = GridAlertList(logger)
+    # Extract table rows
+    for tr in table.find("tbody").find_all("tr"):
+        cells = tr.find_all("td")
+
+        # Rows with at least 3 cells
+        row_data = [
+            cells[0].get_text(strip=True),
+            cells[1].get_text(strip=True),
+            cells[2].get_text(strip=True),
+        ]
+
+        # If message starts by "Normal":
+        if row_data[1].startswith("Normal"):
+            continue
+
+        # If "time in" is not empty
+        if row_data[2] != "":
+            time_in = row_data[2]
+            time_in = datetime.strptime(time_in, "%m/%d/%Y  %I:%M:%S %p").replace(
+                tzinfo=ZoneInfo("America/New_York")
+            )
+            issued_at = time_in
+
+        # Append
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=row_data[0],
+            source=SOURCE,
+            alertType=GridAlertType.undefined,
+            message=row_data[1],
+            issuedTime=issued_at,
+            startTime=None,  # if None, it defaults to issuedTime
+            endTime=None,
+        )
+
+    # TODO: maybe extract startTime and endTime from each notification?
+    # TODO: maybe extract alertType from each notification?
+
+    return grid_alert_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -428,9 +499,12 @@ if __name__ == "__main__":
             target_datetime=datetime.fromisoformat("2007-03-13T12:00:00+00:00"),
         )
     )
-    """
 
-    # print("fetch_wind_solar_forecasts()")
-    # pprint(fetch_wind_solar_forecasts())
+    print("fetch_wind_solar_forecasts()")
+    pprint(fetch_wind_solar_forecasts())
 
     pprint(fetch_consumption_forecast())
+    """
+
+    print("fetch_grid_alerts()")
+    pprint(fetch_grid_alerts())
