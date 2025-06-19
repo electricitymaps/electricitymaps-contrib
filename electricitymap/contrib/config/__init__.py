@@ -9,6 +9,7 @@ from electricitymap.contrib.config.reading import (
     read_data_centers_config,
     read_defaults,
     read_exchanges_config,
+    read_geojson_config,
     read_zones_config,
 )
 from electricitymap.contrib.config.types import BoundingBox
@@ -26,6 +27,7 @@ ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 RETIRED_ZONES_CONFIG = read_zones_config(CONFIG_DIR, retired=True)
 EXCHANGES_CONFIG = read_exchanges_config(CONFIG_DIR)
 DATA_CENTERS_CONFIG = read_data_centers_config(CONFIG_DIR)
+GEOJSON_CONFIG = read_geojson_config()
 
 EU_ZONES = [
     "AT",
