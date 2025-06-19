@@ -404,6 +404,7 @@ def fetch_grid_alerts(
     updated_at = datetime.strptime(datetime_part, " %m/%d/%Y  %I:%M %p").replace(
         tzinfo=ZoneInfo("America/New_York")
     )
+    issued_at = updated_at
 
     grid_alert_list = GridAlertList(logger)
     # Extract table rows
@@ -421,6 +422,14 @@ def fetch_grid_alerts(
         if row_data[1].startswith("Normal"):
             continue
 
+        # If "time in" is not empty
+        if row_data[2] != "":
+            time_in = row_data[2]
+            time_in = datetime.strptime(time_in, "%m/%d/%Y  %I:%M:%S %p").replace(
+                tzinfo=ZoneInfo("America/New_York")
+            )
+            issued_at = time_in
+
         # Append
         grid_alert_list.append(
             zoneKey=zone_key,
@@ -428,7 +437,7 @@ def fetch_grid_alerts(
             source=SOURCE,
             alertType=GridAlertType.undefined,
             message=row_data[1],
-            issuedTime=updated_at,
+            issuedTime=issued_at,
             startTime=None,  # if None, it defaults to issuedTime
             endTime=None,
         )
