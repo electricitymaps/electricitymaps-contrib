@@ -143,6 +143,7 @@ export const getDateTimeFormatOptions = (
   timezone?: string
 ): Intl.DateTimeFormatOptions => {
   switch (timeRange) {
+    case TimeRange.H6:
     case TimeRange.H72: {
       return {
         year: 'numeric',
@@ -207,6 +208,7 @@ const formatDateTick = (
   }
 
   switch (timeRange) {
+    case TimeRange.H6:
     case TimeRange.H72: {
       const { localHours, localMinutes } = getLocalTime(date, timezone);
       if (localHours === 0 && localMinutes === 0) {
@@ -315,6 +317,7 @@ function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): st
   }
 
   switch (timeRange) {
+    case TimeRange.H6:
     case TimeRange.H72:
     case TimeRange.M3: {
       return new Intl.DateTimeFormat(lang, {

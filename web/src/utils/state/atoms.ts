@@ -23,6 +23,7 @@ export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
   const { resolution, urlTimeRange } = useParams<RouteParameters>();
+  console.log('resolution', resolution);
   const navigateWithParameters = useNavigateWithParameters();
 
   useEffect(() => {

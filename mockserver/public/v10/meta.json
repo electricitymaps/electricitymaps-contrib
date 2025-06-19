@@ -1,5 +1,5 @@
 {
-    "features": {
+  "features": {
     "72-hours": true,
     "consumption-only": false,
     "feedback-micro-survey": false,
@@ -8,7 +8,11 @@
     "historical-storytelling-popover": true,
     "more-options-dropdown": true,
     "query-materialized-view": true,
-    "share-button": true
+    "share-button": true,
+    "5min-granularity": true
   },
-  "callerLocation": [138, 36]
+  "callerLocation": [
+    138,
+    36
+  ]
 }

@@ -114,6 +114,7 @@ export function useNavigateWithParameters() {
         search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
         hash: keepHashParameters ? location.hash : undefined,
       };
+      console.log('fullPath', fullPath);
       navigator(fullPath);
     },
     [
@@ -143,6 +144,7 @@ export function getDestinationPath({
   datetime?: string;
   resolution?: string;
 }) {
+  console.log(timeRange);
   return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
     resolution ? `/${resolution}` : ''
   }${datetime ? `/${datetime}` : ''}`;

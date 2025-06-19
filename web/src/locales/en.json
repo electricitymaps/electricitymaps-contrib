@@ -217,6 +217,7 @@
     }
   },
   "time-controller": {
+    "6h": "6 hours",
     "72h": "72 hours",
     "3mo": "90 days",
     "12mo": "12 months",

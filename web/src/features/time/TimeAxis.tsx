@@ -14,6 +14,9 @@ import { formatDateTick } from '../../utils/formatting';
 
 const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
   switch (timeRange) {
+    case TimeRange.H6: {
+      return false;
+    }
     case TimeRange.H72: {
       return localHours === 12 || localHours === 0;
     }

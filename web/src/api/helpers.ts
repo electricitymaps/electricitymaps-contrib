@@ -96,6 +96,7 @@ export function isValidDate(dateString: string) {
 }
 
 export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
+  [TimeRange.H6]: 'five_minutes',
   [TimeRange.H72]: 'hourly',
   [TimeRange.M3]: 'daily',
   [TimeRange.M12]: 'monthly',
@@ -104,6 +105,7 @@ export const TIME_RANGE_TO_TIME_AVERAGE: Record<TimeRange, string> = {
 } as const;
 
 export const TIME_RANGE_TO_BACKEND_PATH: Record<TimeRange, string> = {
+  [TimeRange.H6]: 'five_minutes',
   [TimeRange.H72]: 'hourly',
   [TimeRange.M3]: 'daily',
   [TimeRange.M12]: 'monthly',
