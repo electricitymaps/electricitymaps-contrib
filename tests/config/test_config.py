@@ -14,7 +14,7 @@ from electricitymap.contrib import config
 from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
-GEO_DIR = Path(__file__).parent.parent.parent.parent.joinpath("web/geo").resolve()
+GEO_DIR = Path(__file__).parent.parent.joinpath("web/geo").resolve()
 
 
 class ConfigTestcase(unittest.TestCase):
