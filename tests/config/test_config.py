@@ -52,10 +52,12 @@ class ConfigTestcase(unittest.TestCase):
         self.assertIn("wind", factors.keys())
         self.assertGreater(factors["gas"], 0)
 
-    def test_zone_to_country_lookup(self):
-        # The zone_to_country_lookup returns a dict of zone keys to country names.
-        self.assertIn(ZoneKey("DK-DK1"), config.ZONE_TO_COUNTRY_LOOKUP.keys())
-        self.assertEqual(config.ZONE_TO_COUNTRY_LOOKUP[ZoneKey("DK-DK1")], "Denmark")
+    def test_geojson_properly_loaded(self):
+        # Check that the file path to the geojson is correct in the reading function
+        try:
+            config.read_geojson_config()
+        except FileNotFoundError:
+            self.fail("geojson file not found")
 
 
 class DataCentersConfigTestcase(unittest.TestCase):

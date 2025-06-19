@@ -54,15 +54,10 @@ def read_data_centers_config(config_dir) -> dict[str, Any]:
     return all_data_centers
 
 
-def read_country_given_zone_from_geojson() -> dict[ZoneKey, str]:
-    """Reads the world geojson file and returns a dictionary of zone keys to country names."""
+def read_geojson_config() -> dict:
+    """Reads the world geojson file and returns the geojson data."""
     with open(
         Path(__file__).resolve().parents[3] / "web/geo/world.geojson", encoding="utf-8"
     ) as file:
         data = json.load(file)
-    return {
-        data["features"][zone_index]["properties"]["zoneName"]: data["features"][
-            zone_index
-        ]["properties"]["countryName"]
-        for zone_index in range(len(data["features"]))
-    }
+    return data
