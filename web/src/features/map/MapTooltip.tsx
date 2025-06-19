@@ -14,8 +14,9 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { EstimationMethods, isTSAModel } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import { round } from 'utils/helpers';
-import { selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { isHourlyAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
@@ -42,7 +43,7 @@ export const TooltipInner = memo(function TooltipInner({
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
           <DataValidityBadge
             hasOutage={Boolean(o)}
-            estimatedMethod={estimationMethod}
+            estimatedMethod={estimationMethod || undefined}
             estimatedPercentage={round(estimationPercentage ?? 0, 0)}
             hasZoneData={hasZoneData}
           />
@@ -66,11 +67,12 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   hasZoneData,
 }: {
   hasOutage: boolean;
-  estimatedMethod?: EstimationMethods | null;
-  estimatedPercentage?: number | null;
+  estimatedMethod?: EstimationMethods;
+  estimatedPercentage?: number | undefined;
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
+  const isHourly = useAtomValue(isHourlyAtom);
 
   if (!hasZoneData) {
     return <NoDataBadge />;
@@ -78,34 +80,21 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimatedMethod) {
-    if (isTSAModel(estimatedMethod)) {
-      return (
-        <EstimationBadge
-          text={t('estimation-card.ESTIMATED_TIME_SLICER_AVERAGE.pill')}
-          Icon={CircleDashed}
-          isPreliminary={true}
-        />
-      );
-    }
-    return (
-      <EstimationBadge
-        text={t(`estimation-card.${estimatedMethod}.pill`)}
-        Icon={TrendingUpDown}
-      />
-    );
+  if (estimatedMethod == null && isHourly) {
+    // No aggregation or estimation pill to show
+    return null;
   }
-  if (estimatedPercentage && estimatedPercentage > 0.5) {
-    return (
-      <EstimationBadge
-        text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimatedPercentage,
-        })}
-        Icon={TrendingUpDown}
-      />
-    );
+  const text = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    !isHourly,
+    estimatedMethod,
+    estimatedPercentage
+  );
+  if (isTSAModel(estimatedMethod)) {
+    return <EstimationBadge text={text} Icon={CircleDashed} isPreliminary={true} />;
   }
-  return null;
+  return <EstimationBadge text={text} Icon={TrendingUpDown} />;
 });
 
 DataValidityBadge.displayName = 'DataValidityBadge';
