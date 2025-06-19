@@ -14,7 +14,6 @@ from electricitymap.contrib import config
 from electricitymap.contrib.lib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
-GEO_DIR = Path("web/geo").resolve()
 
 
 class ConfigTestcase(unittest.TestCase):
@@ -56,7 +55,7 @@ class ConfigTestcase(unittest.TestCase):
     def test_geojson_properly_loaded(self):
         # Check that the file path to the geojson is correct in the reading function
         try:
-            config.read_geojson_config(geo_dir=GEO_DIR)
+            config.read_geojson_config()
         except FileNotFoundError:
             self.fail("geojson file not found")
 

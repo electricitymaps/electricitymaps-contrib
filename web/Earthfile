@@ -3,7 +3,6 @@ FROM node:20
 WORKDIR /contrib/web
 
 src-files:
-  COPY ./geo/world.geojson ./geo/world.geojson
   COPY ../config+src-files/* ../config
   COPY package.json .
   COPY pnpm-lock.yaml .

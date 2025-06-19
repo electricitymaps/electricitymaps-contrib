@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Any
 
 from ruamel.yaml import YAML
@@ -53,8 +54,10 @@ def read_data_centers_config(config_dir) -> dict[str, Any]:
     return all_data_centers
 
 
-def read_geojson_config(geo_dir) -> dict:
+def read_geojson_config() -> dict:
     """Reads the world geojson file and returns the geojson data."""
-    with open(geo_dir / "world.geojson", encoding="utf-8") as file:
+    with open(
+        Path(__file__).resolve().parents[3] / "web/geo/world.geojson", encoding="utf-8"
+    ) as file:
         data = json.load(file)
     return data
