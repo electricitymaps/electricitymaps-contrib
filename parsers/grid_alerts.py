@@ -14,7 +14,7 @@ from electricitymap.contrib.lib.models.events import GridAlertType
 from parsers.lib.utils import get_token
 
 # CONFIGURATION
-MAILGUN_API_KEY = get_token("MAILGUN_API_KEY")
+MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 
