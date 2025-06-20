@@ -11,9 +11,10 @@ from requests.auth import HTTPBasicAuth
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import GridAlertList
 from electricitymap.contrib.lib.models.events import GridAlertType
+from parsers.lib.utils import get_token
 
 # CONFIGURATION
-MAILGUN_API_KEY = ""  # Replace with your actual Mailgun private API key
+MAILGUN_API_KEY = get_token("MAILGUN_API_KEY")
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 
