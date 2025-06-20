@@ -1,50 +1,56 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { CountryFlag } from 'components/Flag';
 import InternalLink from 'components/InternalLink';
+import { DataCenterIcon } from 'features/data-centers/DataCenterIcons';
 import { useEffect, useRef } from 'react';
 import { GridState } from 'types';
 
 interface ZonelistProperties {
-  data: ZoneRowType[];
+  data: SearchResultRowType[];
   selectedIndex: number;
 }
 
-export interface ZoneRowType {
-  zoneId: keyof GridState;
-  countryName?: string;
-  zoneName?: string;
-  fullZoneName?: string;
+export interface SearchResultRowType {
+  key: string;
+  flagZoneId?: keyof GridState; // will display a country flag
+  dataCenterIconId?: string; // will display a data center icon
   displayName?: string;
-  seoZoneName?: string;
-  englishZoneName?: string;
+  secondaryDisplayName?: string;
+  englishDisplayName?: string;
+  link: string;
 }
 
-function ZoneRow({
-  zoneId,
-  countryName,
-  zoneName,
+function SearchResultRow({
+  flagZoneId,
+  dataCenterIconId,
+  displayName,
+  secondaryDisplayName,
+  link,
   isSelected,
-}: ZoneRowType & { isSelected: boolean }) {
+}: SearchResultRowType & { isSelected: boolean }) {
   return (
     <InternalLink
       className={`group flex h-11 w-full items-center gap-2 p-4 hover:bg-neutral-200/50 focus:outline-0 focus-visible:border-l-4 focus-visible:border-brand-green focus-visible:bg-brand-green/10 focus-visible:outline-0 dark:hover:bg-neutral-700/50 dark:focus-visible:bg-brand-green/10 ${
         isSelected ? 'bg-neutral-200/50 dark:bg-neutral-700/50' : ''
       }`}
-      key={zoneId}
-      to={`/zone/${zoneId}`}
+      to={link}
       data-testid="zone-list-link"
     >
-      <CountryFlag
-        zoneId={zoneId}
-        size={18}
-        className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
-      />
+      {flagZoneId && (
+        <CountryFlag
+          zoneId={flagZoneId}
+          size={18}
+          className="shadow-[0_0px_3px_rgba(0,0,0,0.2)]"
+        />
+      )}
+
+      {dataCenterIconId && <DataCenterIcon provider={dataCenterIconId} />}
 
       <div className="flex min-w-0 grow flex-row items-center justify-between">
-        <h3 className="min-w-0 truncate">{zoneName}</h3>
-        {countryName && (
+        <h3 className="min-w-0 truncate">{displayName}</h3>
+        {secondaryDisplayName && (
           <span className="ml-2 shrink-0 truncate text-xs font-normal text-neutral-400 dark:text-neutral-400">
-            {countryName}
+            {secondaryDisplayName}
           </span>
         )}
       </div>
@@ -52,7 +58,7 @@ function ZoneRow({
   );
 }
 
-export function VirtualizedZoneList({ data, selectedIndex }: ZonelistProperties) {
+export function VirtualizedSearchResultList({ data, selectedIndex }: ZonelistProperties) {
   const parentReference = useRef<HTMLDivElement>(null);
 
   const rowVirtualizer = useVirtualizer({
@@ -93,9 +99,13 @@ export function VirtualizedZoneList({ data, selectedIndex }: ZonelistProperties)
         >
           {items.map((virtualRow) => (
             <div key={virtualRow.key} data-index={virtualRow.index}>
-              <ZoneRow
-                key={virtualRow.index}
-                {...data[virtualRow.index]}
+              <SearchResultRow
+                key={data[virtualRow.index].key}
+                flagZoneId={data[virtualRow.index].flagZoneId}
+                dataCenterIconId={data[virtualRow.index].dataCenterIconId}
+                displayName={data[virtualRow.index].displayName}
+                secondaryDisplayName={data[virtualRow.index].secondaryDisplayName}
+                link={data[virtualRow.index].link}
                 isSelected={virtualRow.index === selectedIndex}
               />
             </div>
