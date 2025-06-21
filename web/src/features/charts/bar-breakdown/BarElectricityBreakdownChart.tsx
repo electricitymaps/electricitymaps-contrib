@@ -56,15 +56,14 @@ function BarElectricityBreakdownChart({
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
-  const [minPower, maxPower] = useMemo(
+  const [minProductionPower, maxProductionPower] = useMemo(
     () => [
       d3Min(
         Object.values(data.zoneStates).map((zoneData) =>
           Math.min(
             -zoneData.maxStorageCapacity || 0,
             -zoneData.maxStorage || 0,
-            -zoneData.maxExport || 0,
-            -zoneData.maxExportCapacity || 0
+            -zoneData.maxDischarge || 0
           )
         )
       ) || 0,
@@ -73,8 +72,28 @@ function BarElectricityBreakdownChart({
           Math.max(
             zoneData.maxCapacity || 0,
             zoneData.maxProduction || 0,
-            zoneData.maxDischarge || 0,
             zoneData.maxStorageCapacity || 0,
+            zoneData.maxDischarge || 0
+          )
+        )
+      ) || 0,
+    ],
+    [data]
+  );
+
+  const [minExchangePower, maxExchangePower] = useMemo(
+    () => [
+      d3Min(
+        Object.values(data.zoneStates).map((zoneData) =>
+          Math.min(
+            -zoneData.maxExport || 0,
+            -zoneData.maxExportCapacity || 0
+          )
+        )
+      ) || 0,
+      d3Max(
+        Object.values(data.zoneStates).map((zoneData) =>
+          Math.max(
             zoneData.maxImport || 0,
             zoneData.maxImportCapacity || 0
           )
@@ -84,34 +103,49 @@ function BarElectricityBreakdownChart({
     [data]
   );
 
+
   // Power in MW
-  const powerScale = useMemo(
+  const productionPowerScale = useMemo(
     () =>
       scaleLinear()
-        .domain([minPower, maxPower])
+        .domain([minProductionPower, maxProductionPower])
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
-    [minPower, maxPower, width]
+    [minProductionPower, maxProductionPower, width]
+  );
+
+  const exchangePowerScale = useMemo(
+    () =>
+      scaleLinear()
+        .domain([minExchangePower, maxExchangePower])
+        .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
+    [minExchangePower, maxExchangePower, width]
   );
 
   const formatTick: FormatTick = useCallback(
     (t: number) => {
-      // Use same unit as max value for tick with value 0
+      const referenceValue = Math.max(
+        Math.abs(maxProductionPower),
+        Math.abs(maxExchangePower)
+      );
+
       if (t === 0) {
         const tickValue = isHourly
-          ? formatPower({ value: maxPower, numberDigits: 1 })
-          : formatEnergy({ value: maxPower, numberDigits: 1 });
+          ? formatPower({ value: referenceValue, numberDigits: 1 })
+          : formatEnergy({ value: referenceValue, numberDigits: 1 });
         return tickValue.toString().replace(NUMERIC_REGEX, '0');
       }
+
       return isHourly
-        ? formatPower({ value: t, numberDigits: 2 })
-        : formatEnergy({ value: t, numberDigits: 2 });
+        ? formatPower({ value: Math.abs(t), numberDigits: 2 })
+        : formatEnergy({ value: Math.abs(t), numberDigits: 2 });
     },
-    [isHourly, maxPower]
+    [isHourly, maxProductionPower, maxExchangePower]
   );
+
   return (
     <>
       <BarElectricityProductionChart
-        powerScale={powerScale}
+        powerScale={productionPowerScale}
         height={height}
         formatTick={formatTick}
         productionY={productionY}
@@ -127,7 +161,7 @@ function BarElectricityBreakdownChart({
         onExchangeRowMouseOver={onExchangeRowMouseOver}
         exchangeData={exchangeData}
         width={width}
-        powerScale={powerScale}
+        powerScale={exchangePowerScale}
         formatTick={formatTick}
         co2ColorScale={co2ColorScale}
         graphUnit={graphUnit}
