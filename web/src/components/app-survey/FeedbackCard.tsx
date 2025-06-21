@@ -73,9 +73,9 @@ export default function FeedbackCard({
     }
   };
   const { t } = useTranslation();
-  const title = t('feedback-card.title');
-  const successMessage = t('feedback-card.success-message');
-  const successSubtitle = t('feedback-card.success-subtitle');
+  const title = t(($) => $['feedback-card'].title);
+  const successMessage = t(($) => $['feedback-card']['success-message']);
+  const successSubtitle = t(($) => $['feedback-card']['success-subtitle']);
   const isFeedbackSubmitted = feedbackState === FeedbackState.SUCCESS;
 
   const feedbackCardReference = useRef<HTMLDivElement>(null);
@@ -170,8 +170,8 @@ function InputField({
   isRequired?: boolean;
 }) {
   const { t } = useTranslation();
-  const inputPlaceholder = t('feedback-card.placeholder');
-  const optional = t('feedback-card.optional');
+  const inputPlaceholder = t(($) => $['feedback-card'].placeholder);
+  const optional = t(($) => $['feedback-card'].optional);
 
   return (
     <div>
@@ -198,7 +198,7 @@ function InputField({
 
 function SubmitButton({ handleSave }: { handleSave: () => void }) {
   const { t } = useTranslation();
-  const buttonText = t('feedback-card.submit');
+  const buttonText = t(($) => $['feedback-card'].submit);
 
   return <Pill text={buttonText} onClick={handleSave} />;
 }
@@ -307,11 +307,13 @@ function ActionPills({
 }) {
   const { t } = useTranslation();
   const isMapSurvey = surveyReference === 'Map Survey';
-  const agreeText = isMapSurvey ? t('feedback-card.satisfied') : t('feedback-card.agree');
+  const agreeText = isMapSurvey
+    ? t(($) => $['feedback-card'].satisfied)
+    : t(($) => $['feedback-card'].agree);
   const [pillContent] = useState(['1', '2', '3', '4', '5']);
   const disagreeText = isMapSurvey
-    ? t('feedback-card.unsatisfied')
-    : t('feedback-card.disagree');
+    ? t(($) => $['feedback-card'].unsatisfied)
+    : t(($) => $['feedback-card'].disagree);
   const [currentPillNumber, setPillNumber] = useState('');
 
   const handlePillClick = (identifier: string) => {

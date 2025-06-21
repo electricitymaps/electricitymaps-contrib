@@ -21,7 +21,7 @@ export function LegalNoticeButton({ ...restProps }: LegalNoticeButtonProps) {
       href="https://www.electricitymaps.com/legal-notice/"
       {...restProps}
     >
-      {t('button.legal-notice')}
+      {t(($) => $.button['legal-notice'])}
     </Button>
   );
 }

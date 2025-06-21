@@ -47,7 +47,7 @@ export function DataSources({
                 <EmissionFactorTooltip t={t} />
               ) : (
                 <LabelTooltip className="max-w-[400px] text-start">
-                  {t('country-panel.emissionFactorDataSourcesTooltip')}
+                  {t(($) => $['country-panel'].emissionFactorDataSourcesTooltip)}
                 </LabelTooltip>
               )
             }
@@ -85,7 +85,7 @@ function EmissionFactorTooltip({ t }: { t: TFunction<'translation', undefined> }
   return (
     <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col content-center items-center justify-center gap-2 bg-black/20 pb-40">
       <div className="dark:border-1 relative mx-6 h-auto min-w-64 rounded-xl border bg-zinc-50 p-4 text-left text-sm opacity-80 shadow-md dark:border-neutral-700 dark:bg-neutral-900">
-        {t('country-panel.emissionFactorDataSourcesTooltip')}
+        {t(($) => $['country-panel'].emissionFactorDataSourcesTooltip)}
       </div>
       <Button icon={<X />} type="secondary" backgroundClasses="pointer-events-auto" />
     </Portal.Root>

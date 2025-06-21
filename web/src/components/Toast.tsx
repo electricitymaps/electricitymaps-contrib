@@ -139,7 +139,7 @@ export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
             <ToastPrimitive.Close
               className="mx-2 flex items-center justify-center text-black dark:text-white"
               onClick={handleToastClose}
-              aria-label={toastCloseText ?? t('misc.dismiss')}
+              aria-label={toastCloseText ?? t(($) => $.misc.dismiss)}
               data-testid="toast-dismiss"
             >
               <X size={16} />

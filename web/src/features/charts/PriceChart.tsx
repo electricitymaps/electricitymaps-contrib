@@ -62,7 +62,7 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
   return (
     <RoundedCard>
       <ChartTitle
-        titleText={t(`country-history.electricityprices.${timeRange}`)}
+        titleText={t(($) => $['country-history'].electricityprices[timeRange])}
         unit={valueAxisLabel}
         id={Charts.ELECTRICITY_PRICE_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
@@ -70,7 +70,9 @@ function PriceChart({ datetimes, timeRange }: PriceChartProps) {
       <div className="relative">
         {isPriceDisabled && (
           <DisabledMessage
-            message={t(`country-panel.disabledPriceReasons.${priceDisabledReason}`)}
+            message={t(
+              ($) => $['country-panel'].disabledPriceReasons[priceDisabledReason]
+            )}
           />
         )}
         <AreaGraph

@@ -135,7 +135,6 @@ export default function App(): ReactElement {
   return (
     <Suspense fallback={<div />}>
       <GtmPageTracker />
-
       <Helmet
         htmlAttributes={{
           lang: i18n.languages[0],
@@ -144,7 +143,7 @@ export default function App(): ReactElement {
         }}
         prioritizeSeoTags
       >
-        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <title>{t(($) => $.misc.maintitle) + metaTitleSuffix}</title>
         <meta property="og:locale" content={i18n.languages[0]} />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>

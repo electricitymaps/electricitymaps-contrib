@@ -29,13 +29,14 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
         squareColor="#a5292a"
-        title={t('country-panel.emissions')}
+        title={t(($) => $['country-panel'].emissions)}
         hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
         estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
-        <b className="mr-1">{formatCo2({ value: totalEmissions })}</b> {t('ofCO2eq')}
+        <b className="mr-1">{formatCo2({ value: totalEmissions })}</b>{' '}
+        {t(($) => $.ofCO2eq)}
       </p>
     </div>
   );

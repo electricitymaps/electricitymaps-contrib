@@ -59,8 +59,8 @@ export const FuturePrice = memo(function FuturePrice({
     <div className="pt-2">
       <Accordion
         isCollapsed={isCollapsed}
-        title={t(`country-panel.price-chart.see`)}
-        expandedTitle={t(`country-panel.price-chart.hide`)}
+        title={t(($) => $['country-panel']['price-chart'].see)}
+        expandedTitle={t(($) => $['country-panel']['price-chart'].hide)}
         className="text-success dark:text-success-dark"
         expandedIcon={ChevronsUpDownIcon}
         collapsedIcon={ChevronsDownUpIcon}
@@ -167,7 +167,7 @@ function TommorowLabel({ date, t, i18n }: { date: string; t: TFunction; i18n: i1
 
   return (
     <p className="py-1 font-semibold">
-      {`${t('country-panel.price-chart.tomorrow')}, ${formattedDate}`}
+      {`${t(($) => $['country-panel']['price-chart'].tomorrow)}, ${formattedDate}`}
     </p>
   );
 }
@@ -227,7 +227,7 @@ function TimeDisplay({ date, granularity }: { date: string; granularity: number 
   if (isNow(date, granularity)) {
     return (
       <p className={`min-w-18 pl-1 text-sm font-semibold`} data-testid="now-label">
-        {t(`country-panel.price-chart.now`)}
+        {t(($) => $['country-panel']['price-chart'].now)}
       </p>
     );
   }
@@ -246,7 +246,7 @@ function PriceDisclaimer() {
     <Disclaimer
       testId="price-disclaimer"
       Icon={<Info size={16} />}
-      text={t('country-panel.price-chart.price-disclaimer')}
+      text={t(($) => $['country-panel']['price-chart']['price-disclaimer'])}
       className="flex flex-row py-2 text-amber-700 dark:text-amber-500"
     />
   );
@@ -262,7 +262,9 @@ function TimeDisclaimer() {
   return (
     <Disclaimer
       Icon={<Clock3 size={16} />}
-      text={`${t('country-panel.price-chart.time-disclaimer')} ${date.at(-1)?.value}.`}
+      text={`${t(($) => $['country-panel']['price-chart']['time-disclaimer'])} ${
+        date.at(-1)?.value
+      }.`}
       className="flex flex-row pb-3 text-neutral-600 dark:text-neutral-300"
       testId="time-disclaimer"
     />

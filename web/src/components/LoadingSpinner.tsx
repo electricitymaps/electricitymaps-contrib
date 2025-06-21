@@ -19,7 +19,7 @@ export default function LoadingSpinner({
       </div>
       {showReloadButton && (
         <>
-          <p>{t('misc.slow-loading-text')}</p>
+          <p>{t(($) => $.misc['slow-loading-text'])}</p>
           <Button
             size="lg"
             type="secondary"
@@ -27,7 +27,7 @@ export default function LoadingSpinner({
             backgroundClasses="min-w-[330px] my-2"
             onClick={() => window.location.reload()}
           >
-            {t('misc.reload')}
+            {t(($) => $.misc.reload)}
           </Button>
         </>
       )}

@@ -56,7 +56,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.netExchange.${timeRange}`)}
+        titleText={t(($) => $['country-history'].netExchange[timeRange])}
         unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRTICITY_FLOW_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}

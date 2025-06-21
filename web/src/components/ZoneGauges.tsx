@@ -30,22 +30,24 @@ function ZoneGaugesWithCO2Square({
         data-testid="co2-square-value"
         intensity={intensity}
         tooltipContent={
-          withTooltips ? <p>{t('tooltips.zoneHeader.carbonIntensity')}</p> : undefined
+          withTooltips ? (
+            <p>{t(($) => $.tooltips.zoneHeader.carbonIntensity)}</p>
+          ) : undefined
         }
       />
       <CircularGauge
-        name={t('country-panel.lowcarbon')}
+        name={t(($) => $['country-panel'].lowcarbon)}
         ratio={fossilFuelPercentage}
         tooltipContent={
-          withTooltips ? <p>{t('tooltips.zoneHeader.lowcarbon')}</p> : undefined
+          withTooltips ? <p>{t(($) => $.tooltips.zoneHeader.lowcarbon)}</p> : undefined
         }
         testId="zone-header-lowcarbon-gauge"
       />
       <CircularGauge
-        name={t('country-panel.renewable')}
+        name={t(($) => $['country-panel'].renewable)}
         ratio={renewable}
         tooltipContent={
-          withTooltips ? <p>{t('tooltips.zoneHeader.renewable')}</p> : undefined
+          withTooltips ? <p>{t(($) => $.tooltips.zoneHeader.renewable)}</p> : undefined
         }
         testId="zone-header-renewable-gauge"
       />

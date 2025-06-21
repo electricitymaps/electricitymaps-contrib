@@ -23,7 +23,7 @@ export function DocumentationButton({
       {...restProps}
       icon={<FileText size={iconSize} />}
     >
-      {t('button.docs')}
+      {t(($) => $.button.docs)}
     </Button>
   );
 }

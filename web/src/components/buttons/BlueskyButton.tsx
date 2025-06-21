@@ -27,8 +27,8 @@ export function BlueskyButton({
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#1185fe]"
       href={
         isShareLink
-          ? `https://bsky.app/intent/compose?text=${t('button.bluesky-share', {
-              baseUrl,
+          ? `https://bsky.app/intent/compose?text=${t(($) => $.button['bluesky-share'], {
+              baseUrl: baseUrl,
             })}`
           : undefined
       }

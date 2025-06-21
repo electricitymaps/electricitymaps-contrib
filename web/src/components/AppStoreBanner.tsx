@@ -46,7 +46,7 @@ export function AppStoreBanner({
           </div>
           <div className="content-center text-neutral-600 dark:text-neutral-300">
             <h3>Electricity Maps</h3>
-            <p className="text-xs">{t('app-banner.description')}</p>
+            <p className="text-xs">{t(($) => $['app-banner'].description)}</p>
           </div>
         </div>
         <Button
@@ -55,7 +55,7 @@ export function AppStoreBanner({
           href={appStoreUrl}
           onClick={closeBanner}
         >
-          {t('app-banner.cta')}
+          {t(($) => $['app-banner'].cta)}
         </Button>
       </div>
     )

@@ -56,19 +56,19 @@ export default function MapButtons(): ReactElement {
       <div className="pointer-events-auto flex flex-col gap-2">
         <MapButton
           icon={<SettingsIcon size={20} />}
-          tooltipText={t('settings-modal.title')}
+          tooltipText={t(($) => $['settings-modal'].title)}
           onClick={handleToggleSettingsModal}
           dataTestId="settings-button"
-          ariaLabel={t('aria.label.settings')}
+          ariaLabel={t(($) => $.aria.label.settings)}
           tooltipRef={settingsTooltipReference}
         />
         {shouldShowLayersButton && (
           <MapButton
             icon={<LayersIcon size={20} />}
-            tooltipText={t('tooltips.layers')}
+            tooltipText={t(($) => $.tooltips.layers)}
             onClick={handleToggleLayersModal}
             dataTestId="layers-button"
-            ariaLabel={t('aria.label.layers')}
+            ariaLabel={t(($) => $.aria.label.layers)}
             tooltipRef={layersTooltipReference}
           />
         )}

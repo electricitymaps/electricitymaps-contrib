@@ -43,12 +43,12 @@ function ElectricityFlowsToggle() {
     <div className="flex w-full flex-col space-y-1 p-2">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-          {t('settings-modal.flows')}
+          {t(($) => $['settings-modal'].flows)}
         </span>
         <SwitchToggle
           isEnabled={mode === Mode.CONSUMPTION}
           onChange={onToggle}
-          ariaLabel={t('settings-modal.flows')}
+          ariaLabel={t(($) => $['settings-modal'].flows)}
         />
       </div>
       <span className="text-xs text-secondary dark:text-secondary-dark">
@@ -97,7 +97,7 @@ function ThemeToggleGroup() {
   return (
     <div className="flex w-full items-center justify-between p-2">
       <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-        {t('tooltips.changeTheme')}
+        {t(($) => $.tooltips.changeTheme)}
       </span>
       <div className="flex space-x-1">
         <ThemeToggle
@@ -140,12 +140,12 @@ function ColorblindModeToggle() {
   return (
     <div className="flex w-full items-center justify-between p-2">
       <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-        {t('legends.colorblindmode')}
+        {t(($) => $.legends.colorblindmode)}
       </span>
       <SwitchToggle
         isEnabled={isEnabled}
         onChange={onToggle}
-        ariaLabel={t('legends.colorblindmode')}
+        ariaLabel={t(($) => $.legends.colorblindmode)}
       />
     </div>
   );
@@ -179,7 +179,7 @@ function LanguageSelectorToggle() {
         onKeyDown={handleKeyDown}
       >
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-          {t('Language')}
+          {t(($) => $.Language)}
         </span>
         <span className="text-sm text-secondary dark:text-secondary-dark">
           {selectedLanguage}
@@ -198,7 +198,9 @@ function AboutElectricityMaps() {
     <div className="w-full px-2 pt-2">
       <Accordion
         title={
-          <p className="text-secondary dark:text-secondary-dark">{t('info.title')}</p>
+          <p className="text-secondary dark:text-secondary-dark">
+            {t(($) => $.info.title)}
+          </p>
         }
         isCollapsed={isCollapsed}
         setState={setIsCollapsed}
@@ -211,18 +213,20 @@ function AboutElectricityMaps() {
 
           <div className="mb-2">
             <Link isExternal href="https://electricitymaps.com/privacy-policy">
-              {t('button.privacy-policy')}
+              {t(($) => $.button['privacy-policy'])}
             </Link>
           </div>
 
           <div className="mb-4">
             <Link isExternal href="https://electricitymaps.com/legal-notice">
-              {t('button.legal-notice')}
+              {t(($) => $.button['legal-notice'])}
             </Link>
           </div>
 
           <p className="pb-2 text-xs text-secondary dark:text-secondary-dark">
-            {t('info.version', { version: APP_VERSION })}
+            {t(($) => $.info.version, {
+              version: APP_VERSION,
+            })}
           </p>
         </div>
       </Accordion>
@@ -237,7 +241,7 @@ export function SettingsModalContent() {
       <div className="flex w-full flex-col">
         <SpatialAggregatesToggle />
         <p className="p-2 text-xs text-secondary dark:text-secondary-dark">
-          {t('tooltips.aggregateInfo')}
+          {t(($) => $.tooltips.aggregateInfo)}
         </p>
       </div>
       <HorizontalDivider />
@@ -267,7 +271,7 @@ function MobileDismissButton({
       style={style}
     >
       <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full">
-        <button aria-label={t('misc.dismiss')} onClick={onClick}>
+        <button aria-label={t(($) => $.misc.dismiss)} onClick={onClick}>
           <XIcon size={20} />
         </button>
       </GlassContainer>
