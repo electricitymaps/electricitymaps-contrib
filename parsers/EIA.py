@@ -409,7 +409,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    return _fetch(
+    return _fetch_historical(
         zone_key,
         PRODUCTION.format(REGIONS[zone_key]),
         session=session,
@@ -426,7 +426,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     consumption_list = TotalConsumptionList(logger)
-    consumption = _fetch(
+    consumption = _fetch_historical(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
         session=session,
@@ -452,7 +452,7 @@ def fetch_consumption_forecast(
     logger: Logger = getLogger(__name__),
 ):
     consumptions = TotalConsumptionList(logger)
-    consumption_forecasts = _fetch(
+    consumption_forecasts = _fetch_forecast(
         zone_key,
         CONSUMPTION_FORECAST.format(REGIONS[zone_key]),
         session=session,
@@ -515,7 +515,7 @@ def fetch_production_mix(
         )
         production_breakdown = ProductionBreakdownList(logger)
         url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
-        production_and_storage_values = _fetch(
+        production_and_storage_values = _fetch_historical(
             zone_key,
             url_prefix,
             session=session,
@@ -583,7 +583,7 @@ def fetch_production_mix(
         for zone, percentage in zones_to_integrate.items():
             url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
             additional_breakdown = ProductionBreakdownList(logger)
-            additional_production = _fetch(
+            additional_production = _fetch_historical(
                 zone,
                 url_prefix,
                 session=session,
@@ -656,7 +656,7 @@ def fetch_exchange(
 ) -> list[dict[str, Any]]:
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     exchange_list = ExchangeList(logger)
-    exchange = _fetch(
+    exchange = _fetch_historical(
         sortedcodes,
         url_prefix=EXCHANGE.format(EXCHANGES[sortedcodes]),
         session=session,
@@ -677,7 +677,7 @@ def fetch_exchange(
     remapped_exchanges = EXCHANGE_TRANSFERS.get(sortedcodes, {})
     remapped_exchange_list = ExchangeList(logger)
     for remapped_exchange in remapped_exchanges:
-        exchange = _fetch(
+        exchange = _fetch_historical(
             remapped_exchange,
             url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
             session=session,
@@ -701,29 +701,19 @@ def fetch_exchange(
     return exchange_list.to_list()
 
 
-def _fetch(
+def _fetch_any(
     zone_key: str,
     url_prefix: str,
+    start_datetime: datetime,
+    end_datetime: datetime,
     session: Session | None = None,
-    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
-    start, end = None, None
-    if target_datetime:
-        utc = tz.gettz("UTC")
-        end = target_datetime.astimezone(utc) + timedelta(hours=1)
-        start = end - timedelta(days=1)
-    else:
-        end = datetime.now(tz=tz.gettz("UTC")).replace(
-            minute=0, second=0, microsecond=0
-        ) + timedelta(hours=1)
-        start = end - timedelta(hours=72)
-
     eia_ts_format = "%Y-%m-%dT%H"
-    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start_datetime.strftime(eia_ts_format)}&end={end_datetime.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)
@@ -739,6 +729,52 @@ def _fetch(
         }
         for datapoint in raw_data["response"]["data"]
     ]
+
+
+def _fetch_historical(
+    zone_key: str,
+    url_prefix: str,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    start, end = None, None
+    if target_datetime:
+        utc = tz.gettz("UTC")
+        end = target_datetime.astimezone(utc) + timedelta(hours=1)
+        start = end - timedelta(days=1)
+    else:
+        end = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    return _fetch_any(zone_key, url_prefix, start, end, session, logger)
+
+
+def _fetch_forecast(
+    zone_key: str,
+    url_prefix: str,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    LOOKAHEAD = timedelta(days=15)
+
+    start, end = None, None
+    if target_datetime:
+        utc = tz.gettz("UTC")
+        start = target_datetime.astimezone(utc).replace(
+            minute=0, second=0, microsecond=0
+        )
+        end = start + LOOKAHEAD
+    else:
+        start = datetime.now(tz=tz.gettz("UTC")).replace(
+            minute=0, second=0, microsecond=0
+        )
+        end = start + LOOKAHEAD
+
+    return _fetch_any(zone_key, url_prefix, start, end, session, logger)
 
 
 def _parse_hourly_interval(period: str):
