@@ -2,6 +2,7 @@
 
 """Parser for the Southwest Power Pool area of the United States."""
 
+import math
 from datetime import datetime, timedelta, timezone
 from io import StringIO
 from logging import Logger, getLogger
@@ -156,7 +157,7 @@ def data_processor(df, logger: Logger) -> list[tuple[datetime, ProductionMix]]:
     processed_data = []
     for index in range(len(df)):
         mix = ProductionMix()
-        production = df.loc[index].to_dict()
+        production = df.iloc[index].to_dict()
         dt_aware = production["GMT MKT Interval"].to_pydatetime()
         for k in keys_to_remove | unknown_keys:
             production.pop(k, None)
@@ -177,6 +178,13 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
+        # check if target_datetime is timezone naive
+        # https://docs.python.org/3/library/datetime.html#determining-if-an-object-is-aware-or-naive
+        if (
+            target_datetime.tzinfo is None  # order is important here
+            or target_datetime.tzinfo.utcoffset(target_datetime) is None
+        ):
+            target_datetime = target_datetime.replace(tzinfo=timezone.utc)
         current_year = datetime.now().year
         target_year = target_datetime.year
 
@@ -223,11 +231,11 @@ def fetch_production(
     return production_list.to_list()
 
 
-def _NaN_safe_get(forecast: dict, key: str) -> float | None:
+def _NaN_safe_get(forecast: dict, key: str) -> float:
     try:
         return float(forecast[key])
     except ValueError:
-        return None
+        return math.nan
 
 
 def fetch_load_forecast(
@@ -254,11 +262,14 @@ def fetch_load_forecast(
         forecast = raw_data.loc[index].to_dict()
 
         dt = parser.parse(forecast["GMTIntervalEnd"]).replace(tzinfo=timezone.utc)
-        load = _NaN_safe_get(forecast, "STLF")
-        if load is None:
-            load = _NaN_safe_get(forecast, "MTLF")
-        if load is None:
-            logger.info(f"fetch_load_forecast: {dt} has no forecasted load")
+        load = _NaN_safe_get(forecast, "STLF")  # short term load forecast
+        if math.isnan(load):
+            load = _NaN_safe_get(forecast, "MTLF")  # medium term load forecast
+        if math.isnan(load):
+            # STLF is reported every 5 minutes while MTLF is reported once every hour so we know load is None at times like 12.05, 12.10, etc
+            logger.warning(f"fetch_load_forecast: {dt} has no forecasted load")
+            # Drop there data points to prevent errors in .append
+            continue
 
         consumption_list.append(
             datetime=dt,
@@ -315,7 +326,7 @@ def fetch_wind_solar_forecasts(
         solar = _NaN_safe_get(forecast, "Solar Forecast MW")
         wind = _NaN_safe_get(forecast, "Wind Forecast MW")
 
-        if solar is None and wind is None:
+        if math.isnan(solar) and math.isnan(wind):
             logger.info(
                 f"fetch_wind_solar_forecasts: {dt} has no solar nor wind forecasted production"
             )

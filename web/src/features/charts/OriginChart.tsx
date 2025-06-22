@@ -1,4 +1,3 @@
-import EstimationBadge from 'components/EstimationBadge';
 import { max, sum } from 'd3-array';
 import { useAtomValue } from 'jotai';
 import { useEffect, useMemo, useState } from 'react';
@@ -10,7 +9,9 @@ import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
-import { getBadgeTextAndIcon, getGenerationTypeKey, noop } from './graphUtils';
+import { EstimationLegend } from './elements/EstimationMarkers';
+import { getGenerationTypeKey, noop } from './graphUtils';
+import { useEstimationData } from './hooks/useEstimationData';
 import useOriginChartData from './hooks/useOriginChartData';
 import { MissingExchangeDataDisclaimer } from './MissingExchangeData';
 import { NotEnoughDataMessage } from './NotEnoughDataMessage';
@@ -71,6 +72,9 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   const { t } = useTranslation();
   const isHourly = useAtomValue(isHourlyAtom);
   const selectedData = useSelectedData(displayByEmissions);
+  const { estimated, estimationMethod, someEstimated } = useEstimationData(
+    data?.chartData
+  );
 
   if (!data) {
     return null;
@@ -90,10 +94,6 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
 
   const hasEnoughDataToDisplay = datetimes?.length > 2;
 
-  const { text, icon } = getBadgeTextAndIcon(chartData, t);
-
-  const badge = <EstimationBadge text={text} Icon={icon} />;
-
   if (!hasEnoughDataToDisplay) {
     return (
       <NotEnoughDataMessage
@@ -107,13 +107,19 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
     <RoundedCard>
       <ChartTitle
         titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
-        badge={badge}
-        isEstimated={Boolean(text)}
-        unit={valueAxisLabel}
+        isEstimated={someEstimated}
+        unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_MIX_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}
       />
-      <div className="relative ">
+      <div className="relative">
+        {someEstimated && (
+          <EstimationLegend
+            isAggregated={!isHourly}
+            estimationMethod={estimationMethod}
+            valueAxisLabel={valueAxisLabel}
+          />
+        )}
         <AreaGraph
           testId="history-mix-graph"
           isDataInteractive={true}
@@ -125,6 +131,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
           markerHideHandler={noop}
           height="10em"
           datetimes={datetimes}
+          estimated={estimated}
           selectedTimeRange={timeRange}
           tooltip={BreakdownChartTooltip}
           tooltipSize={displayByEmissions ? 'small' : 'large'}

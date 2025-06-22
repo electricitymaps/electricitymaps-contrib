@@ -9,8 +9,9 @@ from parsers.SMARTGRIDDASHBOARD import (
     fetch_consumption,
     fetch_consumption_forecast,
     fetch_exchange,
+    fetch_production,
     fetch_total_generation,
-    fetch_wind_forecasts,
+    fetch_wind_solar_forecasts,
 )
 
 
@@ -80,18 +81,62 @@ def test_fetch_generation(adapter, session, snapshot):
     )
 
 
-def test_fetch_wind_forecasts(adapter, session, snapshot):
+def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     adapter.register_uri(
         GET,
-        URL,
+        f"{URL}?areas=windforecast",
         json=json.loads(
             resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
             .joinpath("windForecast.json")
             .read_text()
         ),
     )
+    adapter.register_uri(
+        GET,
+        f"{URL}?areas=solarforecast",
+        json=json.loads(
+            resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
+            .joinpath("solarForecast.json")
+            .read_text()
+        ),
+    )
 
-    assert snapshot == fetch_wind_forecasts(
+    assert snapshot == fetch_wind_solar_forecasts(
+        zone_key=ZoneKey("IE"),
+        session=session,
+    )
+
+
+def test_fetch_production(adapter, session, snapshot):
+    adapter.register_uri(
+        GET,
+        f"{URL}?areas=solaractual",
+        json=json.loads(
+            resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
+            .joinpath("solarProduction.json")
+            .read_text()
+        ),
+    )
+    adapter.register_uri(
+        GET,
+        f"{URL}?areas=windactual",
+        json=json.loads(
+            resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
+            .joinpath("windProduction.json")
+            .read_text()
+        ),
+    )
+    adapter.register_uri(
+        GET,
+        f"{URL}?areas=generationactual",
+        json=json.loads(
+            resources.files("parsers.test.mocks.SMARTGRIDDASHBOARD")
+            .joinpath("generation.json")
+            .read_text()
+        ),
+    )
+
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("IE"),
         session=session,
     )
