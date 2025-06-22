@@ -3,48 +3,6 @@ const PATTERN = {
   digit: /^\d+$/,
 };
 
-const Object_hasOwnProperty = globalThis.Object.prototype.hasOwnProperty;
-
-const notfound = Symbol.for('i18next-codemod/NotFound');
-
-const isComposite = (u) => !!u && typeof u === 'object';
-
-function hasOwn(u, key) {
-  return !isComposite(u)
-    ? typeof u === 'function' && key in u
-    : typeof key === 'symbol'
-    ? isComposite(u) && key in u
-    : Object_hasOwnProperty.call(u, key);
-}
-
-function get(x, ks) {
-  let out = x;
-  let k;
-  while ((k = ks.shift()) !== undefined) {
-    if (hasOwn(out, k)) void (out = out[k]);
-    else if (k === '') continue;
-    else return notfound;
-  }
-  return out;
-}
-
-const isKey = (u) =>
-  typeof u === 'symbol' || typeof u === 'number' || typeof u === 'string';
-
-function parsePath(xs) {
-  return Array.isArray(xs) && xs.every(isKey)
-    ? [xs, () => true]
-    : [xs.slice(0, -1), xs[xs.length - 1]];
-}
-
-function has(...args) {
-  return (u) => {
-    const [path, check] = parsePath(args);
-    const got = get(u, path);
-    return got !== notfound && check(got);
-  };
-}
-
 function isStringLiteralNode(x) {
   return has('type', (type) => type === 'StringLiteral')(x);
 }
@@ -55,6 +13,10 @@ function isTemplateLiteralNode(x) {
 
 function isMemberExpressionNode(x) {
   return has('type', (type) => type === 'MemberExpression')(x);
+}
+
+function isConditionalExpressionNode(x) {
+  return has('type', (type) => type === 'ConditionalExpression')(x);
 }
 
 function isIdentifierNode(x) {
@@ -141,17 +103,13 @@ function is18nextTFunction(callee, { tAliases, i18nAliases }) {
   );
 }
 
-module.exports = function transform(file, api) {
+export function transform(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
-
   const i18nAliases = new Set();
   const tAliases = new Set();
   const useTranslationAliases = new Set();
-  const context = {
-    i18nAliases,
-    tAliases,
-  };
+  const context = { i18nAliases, tAliases };
 
   root.find(j.ImportDeclaration, { source: { value: 'i18next' } }).forEach((p) => {
     (p.node.specifiers || []).forEach((s) => {
@@ -236,7 +194,7 @@ module.exports = function transform(file, api) {
       ) {
         const keys = arg0.elements.map((el) => el?.value);
 
-        /** Gather default value + extra option props (if any) */
+        /** gather default value + extra option props (if any) */
         let positionalDefaultValue = null;
         let optionsObject = null;
         if (isStringLiteralNode(arg1)) positionalDefaultValue = arg1;
@@ -267,7 +225,7 @@ module.exports = function transform(file, api) {
 
         const calleeClone = clone(node.callee);
 
-        /** Recursively build nested t() calls */
+        /** recursively build nested `t()` calls */
         const buildCall = (idx) => {
           const { ns, path } = separateNamespaceFromPath(keys[idx]);
 
@@ -294,7 +252,7 @@ module.exports = function transform(file, api) {
           return j.callExpression(clone(calleeClone), args);
         };
 
-        /** Replace the entire original call */
+        /** replace the entire original call */
         j(p).replaceWith(buildCall(0));
         /** return so we don't fall through and start evaluating other branches */
         return;
@@ -307,13 +265,88 @@ module.exports = function transform(file, api) {
           const { node } = p;
           const [arg0, arg1, arg2] = p.node.arguments;
 
+          if (
+            isConditionalExpressionNode(arg0) &&
+            isStringLiteralNode(arg0.consequent) &&
+            isStringLiteralNode(arg0.alternate) &&
+            typeof arg0.consequent.value === 'string' &&
+            typeof arg0.alternate.value === 'string'
+          ) {
+            const selectorFn = j.arrowFunctionExpression(
+              [j.identifier('$')],
+              j.conditionalExpression(
+                arg0.test,
+                keyToSelector(arg0.consequent.value, j).body,
+                keyToSelector(arg0.alternate.value, j).body
+              )
+            );
+
+            const newArgs = [selectorFn];
+            const opts = {};
+
+            const userDefinedOptionsObject = [arg1, arg2].find(
+              (a) => a && a.type === 'ObjectExpression'
+            );
+            if (userDefinedOptionsObject) {
+              userDefinedOptionsObject.properties.forEach((prop) => {
+                if (has('key')(prop) && has('value')(prop)) {
+                  const { key, value } = prop;
+                  if (has('name', (name) => typeof name === 'string')(key)) {
+                    opts[key.name] = value;
+                  } else if (has('value', (value) => typeof value === 'string')(key)) {
+                    opts[key.value] = value;
+                  }
+                }
+              });
+            }
+
+            const hasOpts = Object.keys(opts).length > 0;
+            const arg1IsPointer = isIdentifierNode(arg1) || isMemberExpressionNode(arg1);
+            const arg2IsPointer = isIdentifierNode(arg2) || isMemberExpressionNode(arg2);
+
+            if (arg1IsPointer) {
+              if (hasOpts) {
+                newArgs.push(
+                  j.objectExpression([
+                    j.spreadElement(arg1),
+                    ...Object.entries(opts).map(([k, v]) =>
+                      j.property('init', j.identifier(k), v)
+                    ),
+                  ])
+                );
+              } else {
+                newArgs.push(arg1);
+              }
+            } else if (arg2IsPointer && hasOpts) {
+              newArgs.push(
+                j.objectExpression([
+                  j.spreadElement(arg2),
+                  ...Object.entries(opts).map(([k, v]) =>
+                    j.property('init', j.identifier(k), v)
+                  ),
+                ])
+              );
+            } else if (hasOpts) {
+              newArgs.push(
+                j.objectExpression(
+                  Object.entries(opts).map(([k, v]) =>
+                    j.property('init', j.identifier(k), v)
+                  )
+                )
+              );
+            }
+
+            node.arguments = newArgs;
+            /** return so we don't fall through and start evaluating other branches */
+            return;
+          }
+
           /** case: dynamic-key */
           if (
             isTemplateLiteralNode(arg0) ||
             isIdentifierNode(arg0) ||
             isMemberExpressionNode(arg0)
           ) {
-            /* derive selector function */
             const tokens = isTemplateLiteralNode(arg0)
               ? templateLiteralToTokens(arg0)
               : [arg0];
@@ -328,10 +361,11 @@ module.exports = function transform(file, api) {
             /** positional defaultValue (string) */
             if (isStringLiteralNode(arg1)) opts.defaultValue = arg1;
 
-            /** object‑style options (2nd or 3rd arg) */
-            const optObj = [arg1, arg2].find((a) => a && a.type === 'ObjectExpression');
-            if (optObj) {
-              optObj.properties.forEach((prop) => {
+            const userDefinedOptionsObject = [arg1, arg2].find(
+              (a) => a && a.type === 'ObjectExpression'
+            );
+            if (userDefinedOptionsObject) {
+              userDefinedOptionsObject.properties.forEach((prop) => {
                 if (has('key')(prop) && has('value')(prop)) {
                   const { key, value } = prop;
                   if (has('name', (name) => typeof name === 'string')(key)) {
@@ -343,7 +377,33 @@ module.exports = function transform(file, api) {
               });
             }
 
-            if (Object.keys(opts).length) {
+            const hasOpts = Object.keys(opts).length > 0;
+            const arg1IsPointer = isIdentifierNode(arg1) || isMemberExpressionNode(arg1);
+            const arg2IsPointer = isIdentifierNode(arg2) || isMemberExpressionNode(arg2);
+
+            if (arg1IsPointer) {
+              if (hasOpts) {
+                newArgs.push(
+                  j.objectExpression([
+                    j.spreadElement(arg1),
+                    ...Object.entries(opts).map(([k, v]) =>
+                      j.property('init', j.identifier(k), v)
+                    ),
+                  ])
+                );
+              } else {
+                newArgs.push(arg1);
+              }
+            } else if (arg2IsPointer && hasOpts) {
+              newArgs.push(
+                j.objectExpression([
+                  j.spreadElement(arg2),
+                  ...Object.entries(opts).map(([k, v]) =>
+                    j.property('init', j.identifier(k), v)
+                  ),
+                ])
+              );
+            } else if (hasOpts) {
               newArgs.push(
                 j.objectExpression(
                   Object.entries(opts).map(([k, v]) =>
@@ -368,9 +428,9 @@ module.exports = function transform(file, api) {
 
       if (isStringLiteralNode(arg1)) opts.defaultValue = arg1;
 
-      const optObj = [arg1, arg2].find(isObjectExpressionNode);
-      if (optObj) {
-        optObj.properties.forEach((prop) => {
+      const userDefinedOptionsObject = [arg1, arg2].find(isObjectExpressionNode);
+      if (userDefinedOptionsObject) {
+        userDefinedOptionsObject.properties.forEach((prop) => {
           if (has('key')(prop) && has('value')(prop)) {
             const { key, value } = prop;
             if (has('name', (name) => typeof name === 'string')(key)) {
@@ -383,7 +443,34 @@ module.exports = function transform(file, api) {
       }
 
       if (ns && !('ns' in opts)) opts.ns = j.literal(ns);
-      if (Object.keys(opts).length) {
+
+      const hasOpts = Object.keys(opts).length > 0;
+      const arg1IsPointer = isIdentifierNode(arg1) || isMemberExpressionNode(arg1);
+      const arg2IsPointer = isIdentifierNode(arg2) || isMemberExpressionNode(arg2);
+
+      if (arg1IsPointer) {
+        if (hasOpts) {
+          newArgs.push(
+            j.objectExpression([
+              j.spreadElement(arg1),
+              ...Object.entries(opts).map(([k, v]) =>
+                j.property('init', j.identifier(k), v)
+              ),
+            ])
+          );
+        } else {
+          newArgs.push(arg1);
+        }
+      } else if (arg2IsPointer && hasOpts) {
+        newArgs.push(
+          j.objectExpression([
+            j.spreadElement(arg2),
+            ...Object.entries(opts).map(([k, v]) =>
+              j.property('init', j.identifier(k), v)
+            ),
+          ])
+        );
+      } else if (hasOpts) {
         newArgs.push(
           j.objectExpression(
             Object.entries(opts).map(([k, v]) => j.property('init', j.identifier(k), v))
@@ -395,4 +482,4 @@ module.exports = function transform(file, api) {
     });
 
   return root.toSource();
-};
+}
