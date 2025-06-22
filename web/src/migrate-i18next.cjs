@@ -3,6 +3,48 @@ const PATTERN = {
   digit: /^\d+$/,
 };
 
+const Object_hasOwnProperty = globalThis.Object.prototype.hasOwnProperty;
+
+const notfound = Symbol.for('i18next-codemod::notfound');
+
+const isComposite = (u) => !!u && typeof u === 'object';
+
+function hasOwn(u, key) {
+  return !isComposite(u)
+    ? typeof u === 'function' && key in u
+    : typeof key === 'symbol'
+    ? isComposite(u) && key in u
+    : Object_hasOwnProperty.call(u, key);
+}
+
+function get(x, ks) {
+  let out = x;
+  let k;
+  while ((k = ks.shift()) !== undefined) {
+    if (hasOwn(out, k)) void (out = out[k]);
+    else if (k === '') continue;
+    else return notfound;
+  }
+  return out;
+}
+
+const isKey = (u) =>
+  typeof u === 'symbol' || typeof u === 'number' || typeof u === 'string';
+
+function parsePath(xs) {
+  return Array.isArray(xs) && xs.every(isKey)
+    ? [xs, () => true]
+    : [xs.slice(0, -1), xs[xs.length - 1]];
+}
+
+function has(...args) {
+  return (u) => {
+    const [path, check] = parsePath(args);
+    const got = get(u, path);
+    return got !== notfound && check(got);
+  };
+}
+
 function isStringLiteralNode(x) {
   return has('type', (type) => type === 'StringLiteral')(x);
 }
@@ -103,7 +145,7 @@ function is18nextTFunction(callee, { tAliases, i18nAliases }) {
   );
 }
 
-export function transform(file, api) {
+module.exports = function transform(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
   const i18nAliases = new Set();
@@ -482,4 +524,4 @@ export function transform(file, api) {
     });
 
   return root.toSource();
-}
+};
