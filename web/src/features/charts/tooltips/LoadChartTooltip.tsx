@@ -32,7 +32,7 @@ export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipPr
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
         squareColor="#7f7f7f"
-        title={t('tooltips.load')}
+        title={t(($) => $.tooltips.load)}
         hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
         estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}

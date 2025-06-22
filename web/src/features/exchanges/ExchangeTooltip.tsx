@@ -35,7 +35,7 @@ export default function ExchangeTooltip({
       className={twMerge('relative h-auto  rounded-2xl px-3 py-2', className)}
     >
       <div className="text-start text-base font-medium" data-testid="exchange-tooltip">
-        {t('tooltips.crossborderexport')}
+        {t(($) => $.tooltips.crossborderexport)}
         {isMobile ? '' : ':'}{' '}
         <b className="font-bold">
           {isHourly
@@ -49,14 +49,16 @@ export default function ExchangeTooltip({
             <ZoneName zone={zoneTo} textStyle="max-w-[165px]" />
           </div>
         </div>
-        {t('tooltips.carbonintensityexport')}:
+        {t(($) => $.tooltips.carbonintensityexport)}:
         <div className="pt-1">
           {co2intensity > 0 ? (
             <div className="inline-flex items-center gap-x-1">
               <CarbonIntensityDisplay withSquare co2Intensity={co2intensity} />
             </div>
           ) : (
-            <p className="text-neutral-400">{t('tooltips.temporarilyUnavailable')}</p>
+            <p className="text-neutral-400">
+              {t(($) => $.tooltips.temporarilyUnavailable)}
+            </p>
           )}
         </div>
       </div>

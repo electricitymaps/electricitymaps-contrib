@@ -69,9 +69,9 @@ export default function SurveyCard({ isUsSurvey }: { isUsSurvey?: boolean }) {
         <FeedbackCard
           surveyReference={'Map Survey'}
           postSurveyResponse={postSurveyResponse}
-          primaryQuestion={t('feedback-card.primary-question')}
-          secondaryQuestionHigh={t('feedback-card.secondary-question-high')}
-          secondaryQuestionLow={t('feedback-card.secondary-question-low')}
+          primaryQuestion={t(($) => $['feedback-card']['primary-question'])}
+          secondaryQuestionHigh={t(($) => $['feedback-card']['secondary-question-high'])}
+          secondaryQuestionLow={t(($) => $['feedback-card']['secondary-question-low'])}
         />
       )}
     </div>

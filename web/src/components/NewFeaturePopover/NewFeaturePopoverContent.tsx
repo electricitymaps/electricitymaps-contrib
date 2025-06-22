@@ -8,9 +8,9 @@ export function NewFeaturePopoverContent() {
     <div className="flex flex-col text-left">
       <div className="flex flex-row items-center gap-2">
         <Clock size={16} />
-        <h3>{t(`new-feature-popover.title`)}</h3>
+        <h3>{t(($) => $['new-feature-popover'].title)}</h3>
       </div>
-      <p>{t(`new-feature-popover.content`)}</p>
+      <p>{t(($) => $['new-feature-popover'].content)}</p>
     </div>
   );
 }

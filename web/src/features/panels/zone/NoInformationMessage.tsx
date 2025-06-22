@@ -12,7 +12,9 @@ export default function NoInformationMessage() {
     <div data-testid="no-parser-message" className="pt-4 text-center text-base">
       <span
         className="prose text-sm dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline"
-        dangerouslySetInnerHTML={{ __html: t(translationName, translationObject) }}
+        dangerouslySetInnerHTML={{
+          __html: t(($) => $[translationName], translationObject),
+        }}
       />
     </div>
   );

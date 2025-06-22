@@ -102,7 +102,9 @@ export default function ZoneDetails(): JSX.Element {
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
-            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <div className="text-sm font-semibold">
+              {t(($) => $['country-panel'].forecastCta)}
+            </div>
             <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />

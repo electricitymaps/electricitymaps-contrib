@@ -11,7 +11,7 @@ function Co2Legend(): ReactElement {
   const co2ColorScale = useCo2ColorScale();
   return (
     <LegendItem
-      label={t('legends.carbonintensity')}
+      label={t(($) => $.legends.carbonintensity)}
       unit={CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR}
     >
       <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />

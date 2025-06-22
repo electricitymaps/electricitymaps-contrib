@@ -35,7 +35,7 @@ export function FacebookButton({
     >
       {isIconOnly
         ? undefined
-        : t(isShareLink ? 'button.facebook-share' : 'button.facebook')}
+        : t(($) => (isShareLink ? $.button['facebook-share'] : $.button.facebook))}
     </Button>
   );
 }

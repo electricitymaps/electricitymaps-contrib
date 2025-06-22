@@ -48,13 +48,12 @@ export default function SearchPanel(): ReactElement {
       )}
     >
       <Helmet prioritizeSeoTags>
-        <title>{t('misc.maintitle') + metaTitleSuffix}</title>
+        <title>{t(($) => $.misc.maintitle) + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
-
       <div className="flex flex-grow flex-col">
         <SearchBar
-          placeholder={t('ranking-panel.search')}
+          placeholder={t(($) => $['ranking-panel'].search)}
           searchHandler={inputHandler}
           value={searchTerm}
           selectedIndex={selectedIndex}

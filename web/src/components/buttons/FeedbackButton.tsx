@@ -24,7 +24,7 @@ export function FeedbackButton({
       icon={<MessageSquareText size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.feedback')}
+      {isIconOnly ? undefined : t(($) => $.button.feedback)}
     </Button>
   );
 }

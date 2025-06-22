@@ -9,7 +9,7 @@ export function NotEnoughDataMessage({ title, id }: { title: string; id: Charts 
     <div className="w-full">
       <ChartTitle titleText={title} id={id} />
       <div className="my-2 rounded bg-neutral-200 py-4 text-center text-sm dark:bg-neutral-800">
-        <p>{t('country-history.not-enough-data')}</p>
+        <p>{t(($) => $['country-history']['not-enough-data'])}</p>
       </div>
     </div>
   );

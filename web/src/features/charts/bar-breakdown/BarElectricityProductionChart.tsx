@@ -41,8 +41,8 @@ function BarElectricityProductionChart({
         formatTick={formatTick}
         height={height}
         scale={powerScale}
-        axisLegendTextLeft={t('country-panel.graph-legends.stored')}
-        axisLegendTextRight={t('country-panel.graph-legends.produced')}
+        axisLegendTextLeft={t(($) => $['country-panel']['graph-legends'].stored)}
+        axisLegendTextRight={t(($) => $['country-panel']['graph-legends'].produced)}
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.map((d, index) => (
