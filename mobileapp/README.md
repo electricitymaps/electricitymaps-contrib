@@ -92,7 +92,7 @@ See [fastlane/README.md](./fastlane/README.md) for more information.
 
 ### Making a beta build
 
-Makes a build and distributes it for internal testing.
+Makes a build and distributes it for internal testing. Can use [this Mobile QA Script](https://www.notion.so/electricitymaps/Mobile-QA-Script-2192abac42b080b28f17e2c831c5c13c?showMoveTo=true&saveParent=true) to test.
 
 ```bash
 pnpm run fast android beta
