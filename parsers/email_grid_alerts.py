@@ -120,14 +120,12 @@ def fetch_grid_alerts_emails(
 
         # Extract zone key from sender
         if (
-            "ercot" in email_json["sender"]
-            and zone_key == ZoneKey("US-TEX-ERCO")
-        ) or (
-            "flexalert" in email_json["sender"]
-            and zone_key == ZoneKey("US-CAL-CISO")
-        ) or (
-            "spp" in email_json["sender"]
-            and zone_key == ZoneKey("US-CENT-SWPP")
+            ("ercot" in email_json["sender"] and zone_key == ZoneKey("US-TEX-ERCO"))
+            or (
+                "flexalert" in email_json["sender"]
+                and zone_key == ZoneKey("US-CAL-CISO")
+            )
+            or ("spp" in email_json["sender"] and zone_key == ZoneKey("US-CENT-SWPP"))
         ):
             # Add to grid_alert_list
             grid_alert_list.append(
