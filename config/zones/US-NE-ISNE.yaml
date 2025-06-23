@@ -780,6 +780,7 @@ parsers:
   production: US_NEISO.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_NEISO.fetch_wind_solar_forecasts
+  gridAlerts: US_NEISO.fetch_grid_alerts
 region: Americas
 sources:
   INCER ACV:
