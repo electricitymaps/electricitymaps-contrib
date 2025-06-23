@@ -14,7 +14,6 @@ from electricitymap.contrib.lib.models.events import GridAlertType
 from parsers.lib.utils import get_token
 
 # CONFIGURATION
-MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 
@@ -26,6 +25,7 @@ def fetch_grid_alerts_emails(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     session = session or Session()
+    MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 
     # REQUEST BODY: only implemented for the last 5 hours
     nowminus5hours = (
@@ -119,26 +119,27 @@ def fetch_grid_alerts_emails(
         )
 
         # Extract zone key from sender
-        if "ercot" in email_json["sender"]:  # coming from ERCOT
-            zone_key = ZoneKey("US-TEX-ERCO")
-        elif "flexalert" in email_json["sender"]:  # coming from CAISO
-            zone_key = ZoneKey("US-CA")
-        elif "spp" in email_json["sender"]:  # coming from SPP
-            zone_key = ZoneKey("US-CENT-SWPP")
+        if (
+            ("ercot" in email_json["sender"] and zone_key == ZoneKey("US-TEX-ERCO"))
+            or (
+                "flexalert" in email_json["sender"]
+                and zone_key == ZoneKey("US-CAL-CISO")
+            )
+            or ("spp" in email_json["sender"] and zone_key == ZoneKey("US-CENT-SWPP"))
+        ):
+            # Add to grid_alert_list
+            grid_alert_list.append(
+                zoneKey=zone_key,
+                locationRegion=None,
+                source=email_json["sender"],
+                alertType=GridAlertType.undefined,
+                message=message,
+                issuedTime=dt_received,
+                startTime=None,  # if None, it defaults to issuedTime
+                endTime=None,
+            )
         else:
-            zone_key = None
-
-        # Add to grid_alert_list
-        grid_alert_list.append(
-            zoneKey=zone_key,
-            locationRegion=None,
-            source=email_json["sender"],
-            alertType=GridAlertType.undefined,
-            message=message,
-            issuedTime=dt_received,
-            startTime=None,  # if None, it defaults to issuedTime
-            endTime=None,
-        )
+            logger.warning(f"Unknown sender: {email_json['sender']}")
 
     return grid_alert_list.to_list()
 
