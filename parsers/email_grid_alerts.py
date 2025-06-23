@@ -14,7 +14,6 @@ from electricitymap.contrib.lib.models.events import GridAlertType
 from parsers.lib.utils import get_token
 
 # CONFIGURATION
-MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 REGION = "eu"  # use 'us' or 'eu'
 API_BASE_URL = f"https://api.{REGION}.mailgun.net/v1/analytics/logs"
 
@@ -26,6 +25,7 @@ def fetch_grid_alerts_emails(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     session = session or Session()
+    MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 
     # REQUEST BODY: only implemented for the last 5 hours
     nowminus5hours = (
