@@ -32,10 +32,10 @@ function RangeSlider({
         value={value}
         onValueChange={onChange}
         aria-label="select range"
-        className="relative flex h-8 w-full touch-none hover:cursor-pointer"
+        className="relative flex w-full touch-none hover:cursor-pointer"
         minStepsBetweenThumbs={1}
       >
-        <SliderPrimitive.Track className="pointer-events-none relative h-2.5 w-full rounded-md ">
+        <SliderPrimitive.Track className="pointer-events-none relative w-full rounded-md">
           {trackComponent ?? (
             <div className="h-2 w-full bg-neutral-100 dark:bg-neutral-600"></div>
           )}
