@@ -51,10 +51,3 @@ def read_data_centers_config(config_dir) -> dict[str, Any]:
     for data_centers in data_centers_config.values():
         all_data_centers.update(data_centers)
     return all_data_centers
-
-
-def read_geojson_config(geo_dir) -> dict:
-    """Reads the world geojson file and returns the geojson data."""
-    with open(geo_dir / "world.geojson", encoding="utf-8") as file:
-        data = json.load(file)
-    return data
