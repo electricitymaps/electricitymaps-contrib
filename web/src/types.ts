@@ -177,6 +177,9 @@ export interface ZoneDetails {
 export interface ZoneMessage {
   message: string;
   issue?: string;
+  startTime?: datetime;
+  endTime?: datetime;
+  alertType?: string;
 }
 
 export interface GeometryProperties {
