@@ -9,7 +9,7 @@
     "more-options-dropdown": true,
     "query-materialized-view": true,
     "share-button": true,
-    "5min-granularity": true
+    "five-minute-granularity": true
   },
   "callerLocation": [
     138,
