@@ -126,6 +126,7 @@ def fetch_grid_alerts_emails(
                 and zone_key == ZoneKey("US-CAL-CISO")
             )
             or ("spp" in email_json["sender"] and zone_key == ZoneKey("US-CENT-SWPP"))
+            or ("electricitymaps" in email_json["sender"])
         ):
             # Add to grid_alert_list
             grid_alert_list.append(
