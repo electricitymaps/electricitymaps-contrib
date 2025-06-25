@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { ChartSubtitle, ChartTitle } from 'features/charts/ChartTitle';
-import { RoundedCard } from 'features/charts/RoundedCard';
-import { Charts, TimeRange } from 'utils/constants';
 import useGetZone from 'api/getZone';
-import { ZoneMessage } from 'types';
-import { FiAlertTriangle } from "react-icons/fi";
 import HorizontalDivider from 'components/HorizontalDivider';
+import { useEffect, useState } from 'react';
+import { FiAlertTriangle } from 'react-icons/fi';
+import { TimeRange } from 'utils/constants';
 
 interface ZoneAlert {
   message: string;
@@ -33,7 +30,7 @@ export default function CurrentGridAlertsCard({
 
   useEffect(() => {
     async function fetchAlerts() {
-      if (!data) return;
+      if (!data) {return;}
 
       setLoading(true);
       try {
@@ -44,8 +41,8 @@ export default function CurrentGridAlertsCard({
         } else {
           setZoneDetails([]);
         }
-      } catch (e) {
-        console.error('Error fetching grid state or zone details:', e);
+      } catch (error) {
+        console.error('Error fetching grid state or zone details:', error);
         setZoneDetails([]);
       } finally {
         setLoading(false);
@@ -57,11 +54,17 @@ export default function CurrentGridAlertsCard({
 
   const isLoading = loading || isZoneLoading;
 
+  // Return nothing if not loading and no alerts
+  if (!isLoading && zoneDetails.length === 0) {
+    return null;
+  }
+
+  // If there are alerts, show the card
   return (
     <section>
       <div
         className={`mb-2 rounded-2xl border ${
-          zoneDetails.some(z => z.zoneMessage?.alert_type === 'action')
+          zoneDetails.some((z) => z.zoneMessage?.alert_type === 'action')
             ? 'border-warning bg-warning/10 dark:border-warning/60 dark:bg-warning/20'
             : 'border-neutral-200 bg-white/60 dark:border-neutral-700/80 dark:bg-neutral-800/60'
         } p-0`}
@@ -69,18 +72,16 @@ export default function CurrentGridAlertsCard({
         <div className="flex flex-col items-center gap-2 rounded-2xl bg-sunken p-4 dark:bg-sunken-dark">
           {isLoading ? (
             <p className="text-center text-xs">Loading grid alerts...</p>
-          ) : zoneDetails.length === 0 ? (
-            // Nothing shown when no alerts, or you can add a placeholder if you want
-            null
-          ) : (
+          ) : (zoneDetails.length === 0 ? null : ( // Nothing shown when no alerts, or you can add a placeholder if you want
             <ul className="w-full">
-              {zoneDetails.map(({ zoneMessage }) =>
+              {zoneDetails.map(({ zoneMessage }, index) =>
                 zoneMessage ? (
                   <li
+                    key={`${zoneMessage.start_time}-${
+                      zoneMessage.end_time ?? 'no-end'
+                    }-${index}`}
                     className={`mb-2 rounded-2xl ${
-                      zoneMessage.alert_type === 'action'
-                        ? 'bg-warning/10'
-                        : 'bg-info/10'
+                      zoneMessage.alert_type === 'action' ? 'bg-warning/10' : 'bg-info/10'
                     } p-2`}
                   >
                     <div
@@ -92,26 +93,52 @@ export default function CurrentGridAlertsCard({
                         fontSize: 14,
                         fontFamily: 'Inter',
                         fontWeight: '600',
-                        wordWrap: 'break-word'
+                        wordWrap: 'break-word',
                       }}
                     >
-                      <FiAlertTriangle className="inline" /> {' '}
+                      <FiAlertTriangle className="inline" />{' '}
                       {zoneMessage.message.split('\n')[0]}
                     </div>
-                    <div style={{justifyContent: 'center', display: 'flex', flexDirection: 'column', fontSize: 12, fontFamily: 'Inter', fontWeight: '400', lineHeight: 4, wordWrap: 'break-word'}}>From: {zoneMessage.start_time}
-                      {zoneMessage.end_time && <> &mdash; To: {zoneMessage.end_time}</>}</div>
-                    <div className="font-bold flex justify-between items-center">
+                    <div
+                      style={{
+                        justifyContent: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        fontSize: 12,
+                        fontFamily: 'Inter',
+                        fontWeight: '400',
+                        lineHeight: 4,
+                        wordWrap: 'break-word',
+                      }}
+                    >
+                      From: {zoneMessage.start_time}
+                      {zoneMessage.end_time && <> &mdash; To: {zoneMessage.end_time}</>}
+                    </div>
+                    <div className="flex items-center justify-between font-bold">
                       <span className="text-xs uppercase opacity-70">
                         {zoneMessage.alert_type}
                       </span>
                     </div>
                     <HorizontalDivider />
-                    <div style={{width: '100%', justifyContent: 'center', display: 'flex', flexDirection: 'column', fontSize: 14, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>{zoneMessage.message.split('\n').slice(1).join('\n')}</div>
+                    <div
+                      style={{
+                        width: '100%',
+                        justifyContent: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: '400',
+                        wordWrap: 'break-word',
+                      }}
+                    >
+                      {zoneMessage.message.split('\n').slice(1).join('\n')}
+                    </div>
                   </li>
                 ) : null
               )}
             </ul>
-          )}
+          ))}
         </div>
       </div>
     </section>
