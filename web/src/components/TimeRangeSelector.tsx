@@ -1,4 +1,5 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
 import { ChevronsUpDown } from 'lucide-react';
 import { memo, useMemo } from 'react';
@@ -21,10 +22,19 @@ export interface TimeRangeSelectorProps {
 function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorProps) {
   const { t } = useTranslation();
   const { isOpen, onToggleDropdown } = useDropdownCtl();
+  const is5MinGranularity = useFeatureFlag('five-minute-granularity');
 
   const options = useMemo(
-    () => Object.values(TimeRange).map((value) => createOption(value, t)),
-    [t]
+    () =>
+      Object.values(TimeRange)
+        .filter((value) => {
+          if (!is5MinGranularity && value === TimeRange.H6) {
+            return false;
+          }
+          return true;
+        })
+        .map((value) => createOption(value, t)),
+    [t, is5MinGranularity]
   );
 
   const selectedLabel = options.find((opt) => opt.value === timeRange)!.label;
