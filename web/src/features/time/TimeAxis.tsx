@@ -12,10 +12,15 @@ import { formatDateTick } from '../../utils/formatting';
 // The following represents a list of methods, indexed by time range, that depict
 // if a datetime should be a major tick, where we will display the date value.
 
-const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
+const getMajorTick = (
+  timeRange: TimeRange,
+  localHours: number,
+  localMinutes: number,
+  index: number
+) => {
   switch (timeRange) {
     case TimeRange.H6: {
-      return false;
+      return localMinutes === 0;
     }
     case TimeRange.H72: {
       return localHours === 12 || localHours === 0;
@@ -46,10 +51,11 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  const { localHours } = getLocalTime(value, timezone);
+  const { localHours, localMinutes } = getLocalTime(value, timezone);
   const isMidnightTime = localHours === 0;
 
-  const isMajorTick = !isLoading && getMajorTick(selectedTimeRange, localHours, index);
+  const isMajorTick =
+    !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
   const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
   const scaledValue = scale(value);
   const overlapsWithLive = scaledValue + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
