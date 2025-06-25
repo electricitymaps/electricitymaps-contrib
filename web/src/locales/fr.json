@@ -166,8 +166,6 @@
     "title": "Aidez-nous à nous améliorer !"
   },
   "estimation-badge": {
-    "partially-estimated": "Partiellement estimées",
-    "fully-estimated": "Estimées",
     "outage": "Indisponibles"
   },
   "estimation-card": {
@@ -175,23 +173,15 @@
     "outage-details": "Voir les détails",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Les données sont partiellement estimées",
-      "pill": "Partiellement estimées",
       "body": "Les données rapportées pour cette zone sont incomplètes; des modèles d'estimation sont utilisés pour estimés les moyens de productions manquants."
-    },
-    "estimated_generic_method": {
-      "title": "Données estimées",
-      "pill": "Incomplètes",
-      "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Les données sont toujours estimées",
@@ -812,7 +802,7 @@
       "zoneName": "Egypte"
     },
     "EH": {
-      "zoneName": "Sahara Occidental"
+      "zoneName": "Sahara occidental"
     },
     "ER": {
       "zoneName": "Érythrée"

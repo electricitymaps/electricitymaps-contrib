@@ -12,9 +12,9 @@ import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
-import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
+  isHourlyAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -23,7 +23,7 @@ import {
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import EstimationCard from './EstimationCard';
+import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
@@ -35,16 +35,15 @@ export default function ZoneDetails(): JSX.Element {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isHourly = useAtomValue(isHourlyAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
-  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+  const { estimationMethod } = selectedData || {};
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
 
   const trackEvent = useTrackEvent();
   const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
@@ -69,7 +68,6 @@ export default function ZoneDetails(): JSX.Element {
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
     [data]
   );
-  const zoneMessage = data?.zoneMessage;
 
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
@@ -82,14 +80,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
-            <EstimationCard
-              zoneKey={zoneId}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
-          )}
+          <BarBreakdownChart hasEstimationPill={hasEstimationOrAggregationPill} />
           <ApiButton
             backgroundClasses="mt-3 mb-1"
             type="primary"
@@ -103,6 +94,11 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
 
+          <GridAlertsCard
+            datetimes={datetimes}
+            timeRange={timeRange}
+            displayByEmissions={displayByEmissions}
+          />
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
@@ -117,9 +113,7 @@ export default function ZoneDetails(): JSX.Element {
       zoneDataStatus,
       isLoading,
       isError,
-      hasEstimationPill,
-      zoneMessage,
-      roundedEstimatedPercentage,
+      hasEstimationOrAggregationPill,
       datetimes,
       timeRange,
       displayByEmissions,

@@ -424,20 +424,19 @@ def fetch_cea_production(
             if target_datetime.strftime("%Y-%m-%d") in elem["date"]
         ]
 
-        if len(target_elem) > 0:
-            if target_elem[0]["link"] == "file_not_found":
-                raise ParserException(
-                    parser="IN.py",
-                    message=f"{target_datetime}: {zone_key} renewable production data is not available",
-                )
-            else:
-                target_url = target_elem[0]["link"].split(": ")[0]
-                formatted_url = target_url.split("^")[0]
-                r: Response = session.get(formatted_url)
-                renewable_production = format_ren_production_data(
-                    url=r.url, zone_key=zone_key, target_datetime=target_datetime
-                )
-                return renewable_production
+        if len(target_elem) > 0 and target_elem[0]["link"] != "file_not_found":
+            target_url = target_elem[0]["link"].split(": ")[0]
+            formatted_url = target_url.split("^")[0]
+            r: Response = session.get(formatted_url)
+            renewable_production = format_ren_production_data(
+                url=r.url, zone_key=zone_key, target_datetime=target_datetime
+            )
+            return renewable_production
+        else:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: {zone_key} renewable production data is not available",
+            )
     else:
         raise ParserException(
             parser="IN.py",
@@ -465,27 +464,38 @@ def fetch_production(
     days_lookback_to_try = list(range(1, 8))
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
+
+        renewable_production = {}
         try:
             renewable_production = fetch_cea_production(
                 zone_key=zone_key,
                 session=session,
                 target_datetime=_target_datetime,
             )
+        except ParserException:
+            logger.warning(
+                f"{zone_key}: renewable production not available for {_target_datetime} - will compute production with conventional production only"
+            )
+
+        conventional_production = None
+        try:
             conventional_production = fetch_npp_production(
                 zone_key=zone_key,
                 session=session,
                 target_datetime=_target_datetime,
             )
+        except ParserException:
+            logger.warning(
+                f"{zone_key}: conventional production not available for {_target_datetime} - do not return any production data"
+            )
+
+        if conventional_production is not None:
             production = {**conventional_production, **renewable_production}
             all_data_points += daily_to_hourly_production_data(
                 target_datetime=_target_datetime,
                 production=production,
                 zone_key=zone_key,
                 logger=logger,
-            )
-        except Exception:
-            logger.warning(
-                f"{zone_key}: production not available for {_target_datetime}"
             )
     return all_data_points
 

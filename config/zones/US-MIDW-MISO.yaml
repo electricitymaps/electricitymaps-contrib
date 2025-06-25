@@ -932,6 +932,7 @@ parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_MISO.fetch_wind_solar_forecasts
+  gridAlerts: US_MISO.fetch_grid_alerts
 region: Americas
 sources:
   INCER ACV:

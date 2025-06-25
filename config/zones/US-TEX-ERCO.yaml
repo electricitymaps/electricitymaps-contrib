@@ -793,6 +793,7 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_ERCOT.fetch_wind_solar_forecasts
   realtimeLocationalMarginalPrice: US_ERCOT.fetch_realtime_locational_marginal_price
+  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
 region: Americas
 sources:
   INCER ACV:

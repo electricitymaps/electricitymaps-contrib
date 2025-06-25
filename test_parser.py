@@ -3,11 +3,11 @@
 Usage: poetry run test_parser FR production
 """
 
+import logging
 import pprint
 import time
 from collections.abc import Callable
 from datetime import datetime, timezone
-from logging import DEBUG, basicConfig, getLogger
 from typing import Any
 
 import click
@@ -22,8 +22,7 @@ from parsers.lib.quality import (
     validate_production,
 )
 
-logger = getLogger(__name__)
-basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
+logger = logging.getLogger(__name__)
 
 
 @click.command()
@@ -73,8 +72,6 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         else [zone]
     )
 
-    logger = getLogger(__name__)
-    logger.setLevel(DEBUG)
     res = parser(*args, target_datetime=parsed_target_datetime, logger=logger)
 
     if not res:
@@ -143,5 +140,9 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s",
+    )
     # pylint: disable=no-value-for-parameter
     print(test_parser())
