@@ -20,6 +20,7 @@ import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
+  isFiveMinAtom,
   isHourlyAtom,
   productionConsumptionAtom,
   timeRangeAtom,
@@ -56,6 +57,7 @@ function BarBreakdownChart({
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
   const isHourly = useAtomValue(isHourlyAtom);
+  const isFiveMin = useAtomValue(isFiveMinAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
   const isMobile = useIsMobile();
@@ -83,7 +85,7 @@ function BarBreakdownChart({
   const pillText = getEstimationOrAggregationTranslation(
     t,
     'pill',
-    !isHourly,
+    !(isHourly || isFiveMin),
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
