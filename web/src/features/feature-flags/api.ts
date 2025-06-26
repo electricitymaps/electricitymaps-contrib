@@ -9,6 +9,5 @@ export function useFeatureFlags(): FeatureFlags {
 
 export function useFeatureFlag(name: string): boolean {
   const { features } = useMeta();
-
   return features?.[name] || false;
 }

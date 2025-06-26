@@ -13,6 +13,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { TimeRange } from './constants';
 import {
   dateToDatetimeString,
+  filterCarbonIntensity,
   getCarbonIntensity,
   getDestinationPath,
   getFossilFuelRatio,
@@ -423,4 +424,30 @@ describe('getLocalTime', () => {
     const result = getLocalTime(new Date('2024-03-20T08:00:00Z'));
     expect(result).toEqual({ localHours: 8, localMinutes: 0 });
   });
+});
+
+describe('filterCarbonIntensity', () => {
+  it('should return carbon intensity if feature is not enabled', () => {
+    const result = filterCarbonIntensity(false, 420, 1, 10);
+
+    expect(result).toEqual(420);
+  });
+
+  it('should return undefined if carbon intensity is undefined', () => {
+    const result = filterCarbonIntensity(false, undefined, 1, 10);
+    expect(result).toBeUndefined();
+  });
+
+  it.each([
+    [10, 10, 1, 10],
+    [undefined, 10, 1, 9],
+    [10, 10, 10, 20],
+    [undefined, 10, 11, 20],
+  ])(
+    'should return %s for given co2Intensity of %s, min %s and max %s',
+    (expected, co2Intensity, min, max) => {
+      const result = filterCarbonIntensity(true, co2Intensity, min, max);
+      expect(result).toBe(expected);
+    }
+  );
 });

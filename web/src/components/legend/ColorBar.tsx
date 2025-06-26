@@ -16,10 +16,12 @@ function HorizontalColorbar({
   colorScale,
   id,
   ticksCount = 5,
+  labelClassNames = '',
 }: {
   colorScale: ScaleLinear<string, string, string>;
   id: string;
   ticksCount?: number;
+  labelClassNames?: string;
 }) {
   const linearScale = scaleLinear().domain(
     extent(colorScale.domain()) as unknown as [number, number]
@@ -28,7 +30,7 @@ function HorizontalColorbar({
   return (
     <>
       <svg className="flex h-3 w-full flex-col overflow-visible">
-        <g transform={`translate(8,0)`}>
+        <g transform={`translate(10,0)`}>
           <linearGradient id={`${id}-gradient`} x2="100%">
             {spreadOverDomain(colorScale, 10).map((value, index) => (
               <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
@@ -44,7 +46,7 @@ function HorizontalColorbar({
         </g>
       </svg>
 
-      <div className="flex flex-row justify-between pr-0.5">
+      <div className={`flex flex-row justify-between pr-0.5 ${labelClassNames}`}>
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
             key={t}

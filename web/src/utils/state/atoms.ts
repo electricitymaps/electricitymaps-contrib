@@ -20,6 +20,9 @@ import {
 
 export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 
+// TODO: Maintain constants for lower and upper limits for co2 intensity and use from there
+export const co2IntensityRangeAtom = atom([0, 1500]);
+
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
   const { resolution, urlTimeRange } = useParams<RouteParameters>();
