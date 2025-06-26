@@ -50,7 +50,7 @@ function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   return (
     <RoundedCard>
       <ChartTitle
-        titleText={t(`country-history.electricityLoad.${timeRange}`)}
+        titleText={t(($) => $['country-history'].electricityLoad[timeRange])}
         unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_LOAD_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}

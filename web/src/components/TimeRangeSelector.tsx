@@ -9,7 +9,7 @@ import { useDropdownCtl } from './MoreOptionsDropdown';
 
 const createOption = (time: TimeRange, t: TFunction) => ({
   value: time,
-  label: t(`time-controller.${time}`),
+  label: t(($) => $['time-controller'][time]),
   dataTestId: `time-controller-${time}`,
 });
 

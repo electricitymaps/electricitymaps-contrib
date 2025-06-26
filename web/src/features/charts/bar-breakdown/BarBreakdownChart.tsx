@@ -126,7 +126,7 @@ function BarBreakdownChart({
         <EmptyBarBreakdownChart
           height={height}
           width={width}
-          overLayText={t('country-panel.noDataAtTimestamp')}
+          overLayText={t(($) => $['country-panel'].noDataAtTimestamp)}
           isMobile={isMobile}
         />
       </RoundedCard>
@@ -156,7 +156,7 @@ function BarBreakdownChart({
       </div>
       {!displayByEmissions && isHourly && (
         <CapacityLegend
-          text={t('country-panel.graph-legends.installed-capacity')}
+          text={t(($) => $['country-panel']['graph-legends']['installed-capacity'])}
           unit={graphUnit}
         />
       )}
@@ -238,14 +238,14 @@ export const getText = (
 ) => {
   const translations = {
     hourly: {
-      emissions: t('country-panel.by-source.emissions'),
-      production: t('country-panel.by-source.electricity-mix'),
-      consumption: t('country-panel.by-source.electricity-mix'),
+      emissions: t(($) => $['country-panel']['by-source'].emissions),
+      production: t(($) => $['country-panel']['by-source']['electricity-mix']),
+      consumption: t(($) => $['country-panel']['by-source']['electricity-mix']),
     },
     default: {
-      emissions: t('country-panel.by-source.total-emissions'),
-      production: t('country-panel.by-source.total-electricity-mix'),
-      consumption: t('country-panel.by-source.total-electricity-mix'),
+      emissions: t(($) => $['country-panel']['by-source']['total-emissions']),
+      production: t(($) => $['country-panel']['by-source']['total-electricity-mix']),
+      consumption: t(($) => $['country-panel']['by-source']['total-electricity-mix']),
     },
   };
   const period = timePeriod === TimeRange.H72 ? 'hourly' : 'default';

@@ -19,7 +19,7 @@ function ApiButton({ iconSize = 20, type, onClick, ...restProps }: ApiButtonProp
       href="https://electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=api-cta"
       {...restProps}
     >
-      {t('button.api')}
+      {t(($) => $.button.api)}
     </Button>
   );
 }

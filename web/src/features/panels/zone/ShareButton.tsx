@@ -75,7 +75,7 @@ export function ShareButton({
         ref={reference}
         description={toastMessage}
         isCloseable={true}
-        toastCloseText={t('misc.dismiss')}
+        toastCloseText={t(($) => $.misc.dismiss)}
         duration={DEFAULT_TOAST_DURATION}
       />
     </>

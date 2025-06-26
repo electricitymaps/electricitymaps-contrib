@@ -5,14 +5,13 @@ import { ZoneRowType } from './ZoneList';
 
 export const getAllZones = (language: string) => {
   // Get all zone data directly from translations
-  const zoneData = t('zoneShortName', { returnObjects: true }) as Record<
-    string,
-    ZoneRowType
-  >;
+  const zoneData = t(($) => $.zoneShortName, {
+    returnObjects: true,
+  }) as Record<string, ZoneRowType>;
 
   // If current language is not English, also get English translations
   if (language !== 'en') {
-    const englishZoneData = t('zoneShortName', {
+    const englishZoneData = t(($) => $.zoneShortName, {
       lng: 'en',
       returnObjects: true,
     }) as Record<string, ZoneRowType>;

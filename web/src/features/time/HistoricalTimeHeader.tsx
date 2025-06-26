@@ -90,7 +90,7 @@ function HistoricalTimeHeader({
             />
           }
         />
-        {t('time-controller.navigate')} 24h
+        {t(($) => $['time-controller'].navigate)} 24h
         <Button
           backgroundClasses="bg-transparent"
           size="sm"
@@ -118,7 +118,7 @@ function HistoricalTimeHeader({
           isDisabled={!urlDatetime}
           icon={<Radio size={20} />}
         >
-          {t('time-controller.live')}
+          {t(($) => $['time-controller'].live)}
         </Button>
         <Button
           backgroundClasses={`rounded-full bg-transparent mr-0 z-1 ${floatingStyle}`}

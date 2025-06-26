@@ -56,7 +56,6 @@ function ToggleButton<T extends string>({
       )}
     >
       {transparentBackground && <GlassBackdrop />}
-
       <ToggleGroupRoot
         className={'flex grow flex-row items-center justify-between rounded-full'}
         type="single"
@@ -77,7 +76,7 @@ function ToggleButton<T extends string>({
             )}
           >
             <p className="grow select-none text-sm capitalize dark:text-white">
-              {t(translationKey)}
+              {t(($) => $[translationKey])}
             </p>
           </ToggleGroupItem>
         ))}
@@ -107,7 +106,7 @@ function ToggleButton<T extends string>({
                 onPointerDownOutside={onToolTipClick}
               >
                 <GlassBackdrop />
-                <div dangerouslySetInnerHTML={{ __html: t(tooltipKey) }} />
+                <div dangerouslySetInnerHTML={{ __html: t(($) => $[tooltipKey]) }} />
               </TooltipContent>
             </TooltipPortal>
           </TooltipRoot>

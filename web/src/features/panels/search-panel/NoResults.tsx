@@ -8,7 +8,7 @@ export default function NoResults() {
     <div className="flex flex-col items-center justify-center gap-2 pb-6">
       <NoResultsIllustration />
       <p className="text-center text-sm text-neutral-500">
-        {t('ranking-panel.no-results')}
+        {t(($) => $['ranking-panel']['no-results'])}
       </p>
     </div>
   );

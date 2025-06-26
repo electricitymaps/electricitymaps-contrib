@@ -49,7 +49,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.carbonintensity.${timeRange}`)}
+        titleText={t(($) => $['country-history'].carbonintensity[timeRange])}
         isEstimated={someEstimated}
         unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.CARBON_INTENSITY_CHART}

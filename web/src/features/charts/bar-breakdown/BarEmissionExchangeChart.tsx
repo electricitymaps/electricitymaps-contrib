@@ -41,8 +41,8 @@ export default function BarEmissionExchangeChart({
           formatTick={formatTick}
           height={height}
           scale={co2Scale}
-          axisLegendTextLeft={t('country-panel.graph-legends.exported')}
-          axisLegendTextRight={t('country-panel.graph-legends.imported')}
+          axisLegendTextLeft={t(($) => $['country-panel']['graph-legends'].exported)}
+          axisLegendTextRight={t(($) => $['country-panel']['graph-legends'].imported)}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (

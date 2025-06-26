@@ -41,7 +41,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
         squareColor={co2ColorScale(intensity)}
-        title={t('tooltips.carbonintensity')}
+        title={t(($) => $.tooltips.carbonintensity)}
         hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
         estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}

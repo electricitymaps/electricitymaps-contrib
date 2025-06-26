@@ -41,7 +41,7 @@ export function ChartTitle({
         {badge}
         {showMoreOptions && (
           <MoreOptionsDropdown
-            title={t(`more-options-dropdown.chart-title`)}
+            title={t(($) => $['more-options-dropdown']['chart-title'])}
             isEstimated={isEstimated}
             id={id}
             shareUrl={shareUrl}

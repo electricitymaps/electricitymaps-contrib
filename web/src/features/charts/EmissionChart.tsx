@@ -39,7 +39,7 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   return (
     <RoundedCard className="pb-2">
       <ChartTitle
-        titleText={t(`country-history.emissions.${timeRange}`)}
+        titleText={t(($) => $['country-history'].emissions[timeRange])}
         unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.EMISSION_CHART}
         subtitle={<ChartSubtitle datetimes={datetimes} timeRange={timeRange} />}

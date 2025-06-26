@@ -142,10 +142,16 @@ export default function EstimationCard({
             <FeedbackCard
               surveyReference={estimationMethod}
               postSurveyResponse={postSurveyResponse}
-              primaryQuestion={t('feedback-card.estimations.primary-question')}
-              secondaryQuestionHigh={t('feedback-card.estimations.secondary-question')}
-              secondaryQuestionLow={t('feedback-card.estimations.secondary-question')}
-              subtitle={t('feedback-card.estimations.subtitle')}
+              primaryQuestion={t(
+                ($) => $['feedback-card'].estimations['primary-question']
+              )}
+              secondaryQuestionHigh={t(
+                ($) => $['feedback-card'].estimations['secondary-question']
+              )}
+              secondaryQuestionLow={t(
+                ($) => $['feedback-card'].estimations['secondary-question']
+              )}
+              subtitle={t(($) => $['feedback-card'].estimations.subtitle)}
             />
           )}
         </div>
@@ -235,7 +241,7 @@ function BaseCard({
               className={`text-sm font-semibold text-black underline dark:text-white`}
               onClick={trackMissingDataMethodology}
             >
-              {t(`estimation-card.link`)}
+              {t(($) => $['estimation-card'].link)}
             </a>
           )}
         </div>
@@ -254,7 +260,11 @@ export function OutageCard({
   const { t } = useTranslation();
   const zoneMessageText =
     estimationMethod === EstimationMethods.THRESHOLD_FILTERED
-      ? { message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`) }
+      ? {
+          message: t(
+            ($) => $['estimation-card'][EstimationMethods.THRESHOLD_FILTERED].body
+          ),
+        }
       : zoneMessage;
   return (
     <BaseCard
@@ -331,7 +341,9 @@ function ZoneMessageBlock({ zoneMessage }: { zoneMessage?: ZoneMessage }) {
             className="inline-flex items-center gap-1 text-sm font-semibold text-black underline dark:text-white"
             href={`https://github.com/electricitymaps/electricitymaps-contrib/issues/${zoneMessage.issue}`}
           >
-            <span className="pl-1 underline">{t('estimation-card.outage-details')}</span>
+            <span className="pl-1 underline">
+              {t(($) => $['estimation-card']['outage-details'])}
+            </span>
             <FaGithub size={18} />
           </a>
         </span>

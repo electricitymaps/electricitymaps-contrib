@@ -66,12 +66,12 @@ function Headline({
 
   return (
     <div>
-      <b>{percentageUsage} %</b> {t(availabilityKey)}
+      <b>{percentageUsage} %</b> {t(($) => $[availabilityKey])}
       <span className="mx-1 inline-flex">
         <CountryFlag className="shadow-3xl" zoneId={zoneKey} />
       </span>
-      <b>{getZoneName(zoneKey)}</b> {t(dataActionKey)}
-      {!isExchange && ` ${t(selectedLayerKey)}`}
+      <b>{getZoneName(zoneKey)}</b> {t(($) => $[dataActionKey])}
+      {!isExchange && ` ${t(($) => $[selectedLayerKey])}`}
       {isExchange && (
         <>
           <span className="mx-1 inline-flex">
@@ -196,7 +196,9 @@ export function BreakdownChartTooltipContent({
 
   const title = isExchange
     ? getZoneName(selectedLayerKey)
-    : t(selectedLayerKey).charAt(0).toUpperCase() + t(selectedLayerKey).slice(1);
+    : t(($) => $[selectedLayerKey])
+        .charAt(0)
+        .toUpperCase() + t(($) => $[selectedLayerKey]).slice(1);
   return (
     <div className="w-full rounded-md bg-white p-3 text-sm shadow-3xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
@@ -227,11 +229,10 @@ export function BreakdownChartTooltipContent({
           value={emissions}
           total={totalEmissions}
           format={formatCo2}
-          label={t('ofCO2eq')}
+          label={t(($) => $.ofCO2eq)}
           useTotalUnit
         />
       )}
-
       {!displayByEmissions && (
         // Used to prevent browser translation crashes on edge, see #6809
         <div translate="no">
@@ -245,8 +246,8 @@ export function BreakdownChartTooltipContent({
           {isHourly && (
             <>
               <br />
-              {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
-              {t('tooltips.ofinstalled')}
+              {t(($) => $.tooltips.utilizing)} <b>{getRatioPercent(usage, capacity)} %</b>{' '}
+              {t(($) => $.tooltips.ofinstalled)}
               <br />
               <MetricRatio
                 value={usage}
@@ -257,22 +258,22 @@ export function BreakdownChartTooltipContent({
               {capacitySource && (
                 <small>
                   {' '}
-                  ({t('country-panel.source')}: {capacitySource})
+                  ({t(($) => $['country-panel'].source)}: {capacitySource})
                 </small>
               )}
               <br />
             </>
           )}
           <br />
-          {t('tooltips.representing')}{' '}
+          {t(($) => $.tooltips.representing)}{' '}
           <b>{getRatioPercent(emissions, totalEmissions)} %</b>{' '}
-          {t('tooltips.ofemissions')}
+          {t(($) => $.tooltips.ofemissions)}
           <br />
           <MetricRatio
             value={emissions}
             total={totalEmissions}
             format={formatCo2}
-            label={t('ofCO2eq')}
+            label={t(($) => $.ofCO2eq)}
             useTotalUnit
           />
         </div>
@@ -280,7 +281,7 @@ export function BreakdownChartTooltipContent({
       {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <>
           <br />
-          {t('tooltips.withcarbonintensity')}
+          {t(($) => $.tooltips.withcarbonintensity)}
           <br />
           <div className="flex-wrap">
             <div className="inline-flex items-center gap-x-1">
@@ -289,7 +290,7 @@ export function BreakdownChartTooltipContent({
             {!isExchange && (
               <small>
                 {' '}
-                ({t('country-panel.source')}: {co2IntensitySource || '?'})
+                ({t(($) => $['country-panel'].source)}: {co2IntensitySource || '?'})
               </small>
             )}
           </div>
