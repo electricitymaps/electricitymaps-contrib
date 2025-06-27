@@ -141,10 +141,6 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   }
   let sanitizedTimeRange = urlTimeRange.toLowerCase();
 
-  if (sanitizedTimeRange === '24h') {
-    sanitizedTimeRange = TimeRange.H72;
-  }
-
   if (sanitizedTimeRange === '30d') {
     sanitizedTimeRange = TimeRange.M3;
   }
