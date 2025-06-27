@@ -20,6 +20,7 @@ export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
 // accommodates 0-based index for 72 hours
 export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
   [TimeRange.H72]: 71,
+  [TimeRange.H24]: 287,
 };
 
 export const historicalTimeRange = [TimeRange.H72, TimeRange.H24];

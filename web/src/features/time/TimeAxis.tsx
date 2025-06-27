@@ -63,6 +63,8 @@ const renderTick = (
     ? (isMajorTick && !overlapsWithLive) || isLastTick
     : isMajorTick;
 
+  const shouldShowMinorTick = selectedTimeRange !== TimeRange.H24 || index % 4 === 2;
+
   return (
     <Group key={index} className="text-xs" left={scaledValue}>
       {isMidnightTime &&
@@ -77,7 +79,9 @@ const renderTick = (
             className="midnight-marker"
           />
         )}
-      <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
+      {shouldShowMinorTick && (
+        <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
+      )}
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </Group>
