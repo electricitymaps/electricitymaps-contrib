@@ -22,7 +22,7 @@ export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
   [TimeRange.H72]: 71,
 };
 
-export const historicalTimeRange = [TimeRange.H72];
+export const historicalTimeRange = [TimeRange.H72, TimeRange.H24];
 
 export enum ToggleOptions {
   ON = 'on',
