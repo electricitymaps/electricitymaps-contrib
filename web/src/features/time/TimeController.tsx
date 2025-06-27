@@ -48,7 +48,6 @@ export default function TimeController({
 
   const { i18n } = useTranslation();
   const timeRange = useAtomValue(timeRangeAtom);
-  console.log('data', data);
 
   // TODO: Figure out whether we want to work with datetimes as strings
   // or as Date objects. In this case datetimes are easier to work with
@@ -57,7 +56,6 @@ export default function TimeController({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- is loading is used to trigger the re-memoization on hour change
     [data, isLoading]
   );
-  console.log('datetimes', datetimes);
 
   useEffect(() => {
     if (datetimes) {
