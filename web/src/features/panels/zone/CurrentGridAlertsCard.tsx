@@ -2,7 +2,6 @@ import useGetZone from 'api/getZone';
 import HorizontalDivider from 'components/HorizontalDivider';
 import { useEffect, useState } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
-import { TimeRange } from 'utils/constants';
 
 interface ZoneAlert {
   message: string;
@@ -15,14 +14,7 @@ interface ZoneDetail {
   zoneMessage: ZoneAlert | null;
 }
 
-export default function CurrentGridAlertsCard({
-  datetimes,
-  timeRange,
-}: {
-  datetimes: Date[];
-  timeRange: TimeRange;
-  displayByEmissions: boolean;
-}) {
+export default function CurrentGridAlertsCard() {
   const [zoneDetails, setZoneDetails] = useState<ZoneDetail[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +22,9 @@ export default function CurrentGridAlertsCard({
 
   useEffect(() => {
     async function fetchAlerts() {
-      if (!data) {return;}
+      if (!data) {
+        return;
+      }
 
       setLoading(true);
       try {
