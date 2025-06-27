@@ -37,7 +37,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
     [t, is5MinGranularity]
   );
 
-  const selectedLabel = options.find((opt) => opt.value === timeRange)!.label;
+  const selectedLabel = options.find((opt) => opt.value === timeRange)?.label;
 
   return (
     <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
