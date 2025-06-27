@@ -2,10 +2,9 @@ import useGetZone from 'api/getZone';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useAtomValue } from 'jotai';
-import { TimeRange } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import { round } from 'utils/helpers';
-import { timeRangeAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom } from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
@@ -29,7 +28,7 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useLoadChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-  const timeRange = useAtomValue(timeRangeAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
@@ -45,9 +44,8 @@ export function useLoadChartData() {
     })
   );
 
-  const isHourly = timeRange === TimeRange.H72;
   const maxTotalValue = d3Max(chartData, (d) => d.layerData.load);
-  const { unit, formattingFactor } = scalePower(maxTotalValue, isHourly);
+  const { unit, formattingFactor } = scalePower(maxTotalValue, isFineGranularity);
   const valueAxisLabel = unit;
   for (const d of chartData) {
     d.layerData.load /= formattingFactor;

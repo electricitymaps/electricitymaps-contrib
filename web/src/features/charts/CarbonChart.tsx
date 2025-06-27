@@ -3,7 +3,7 @@ import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -24,7 +24,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
   const { data, isLoading, isError } = useCarbonChartData();
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData
   );
@@ -58,7 +58,7 @@ function CarbonChart({ datetimes, timeRange }: CarbonChartProps) {
       />
       {someEstimated && (
         <EstimationLegend
-          isAggregated={!isHourly}
+          isAggregated={!isFineGranularity}
           estimationMethod={estimationMethod}
           valueAxisLabel={valueAxisLabel}
         />

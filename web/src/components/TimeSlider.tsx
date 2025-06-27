@@ -7,7 +7,7 @@ import { ChevronsLeftRight, Moon, Sun } from 'lucide-react';
 import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom } from 'utils/state/atoms';
 
 type NightTimeSet = number[];
 
@@ -139,8 +139,8 @@ export function TimeSliderWithNight(props: TimeSliderProps) {
 
 function TimeSlider(props: TimeSliderProps) {
   const { zoneId } = useParams<RouteParameters>();
-  const isHourly = useAtomValue(isHourlyAtom);
-  const showNightTime = zoneId && isHourly;
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const showNightTime = zoneId && isFineGranularity;
 
   return showNightTime ? (
     <TimeSliderWithNight {...props} />

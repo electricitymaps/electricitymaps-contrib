@@ -5,7 +5,7 @@ import { useAtomValue } from 'jotai';
 import { memo, useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
 import BarElectricityProductionChart from './BarElectricityProductionChart';
@@ -52,7 +52,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
@@ -97,16 +97,16 @@ function BarElectricityBreakdownChart({
     (t: number) => {
       // Use same unit as max value for tick with value 0
       if (t === 0) {
-        const tickValue = isHourly
+        const tickValue = isFineGranularity
           ? formatPower({ value: maxPower, numberDigits: 1 })
           : formatEnergy({ value: maxPower, numberDigits: 1 });
         return tickValue.toString().replace(NUMERIC_REGEX, '0');
       }
-      return isHourly
+      return isFineGranularity
         ? formatPower({ value: t, numberDigits: 2 })
         : formatEnergy({ value: t, numberDigits: 2 });
     },
-    [isHourly, maxPower]
+    [isFineGranularity, maxPower]
   );
   return (
     <>

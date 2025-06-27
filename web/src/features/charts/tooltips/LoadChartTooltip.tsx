@@ -2,14 +2,14 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { scalePower } from 'utils/formatting';
 import { round } from 'utils/helpers';
-import { isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const timeRange = useAtomValue(timeRangeAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {
@@ -19,12 +19,15 @@ export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipPr
   const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
 
   const totalConsumption = zoneDetail.totalConsumption;
-  const { formattingFactor, unit: powerUnit } = scalePower(totalConsumption, isHourly);
+  const { formattingFactor, unit: powerUnit } = scalePower(
+    totalConsumption,
+    isFineGranularity
+  );
 
   const unit = powerUnit;
   const value = round(totalConsumption / formattingFactor);
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[350px]">

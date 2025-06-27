@@ -6,6 +6,7 @@ export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
 export enum TimeRange {
+  H24 = '24h',
   H72 = '72h',
   M3 = '3mo',
   M12 = '12mo',
@@ -19,9 +20,10 @@ export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
 // accommodates 0-based index for 72 hours
 export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
   [TimeRange.H72]: 71,
+  [TimeRange.H24]: 287,
 };
 
-export const historicalTimeRange = [TimeRange.H72];
+export const historicalTimeRange = [TimeRange.H72, TimeRange.H24];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -116,6 +118,7 @@ export const modeOrderBarBreakdown = [
 
 // A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
+  [TimeRange.H24]: 'minutes',
   [TimeRange.H72]: 'hours',
   [TimeRange.M3]: 'days',
   [TimeRange.M12]: 'months',
