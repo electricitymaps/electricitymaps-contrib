@@ -28,7 +28,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
     () =>
       Object.values(TimeRange)
         .filter((value) => {
-          if (!is5MinGranularity && value === TimeRange.H6) {
+          if (!is5MinGranularity && value === TimeRange.H24) {
             return false;
           }
           return true;

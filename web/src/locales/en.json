@@ -217,7 +217,7 @@
     }
   },
   "time-controller": {
-    "6h": "6 hours",
+    "24h": "24 hours",
     "72h": "72 hours",
     "3mo": "90 days",
     "12mo": "12 months",
@@ -251,7 +251,7 @@
   },
   "country-history": {
     "carbonintensity": {
-      "6h": "5-minute carbon intensity",
+      "24h": "5-minute carbon intensity",
       "72h": "Hourly carbon intensity",
       "3mo": "Daily carbon intensity",
       "12mo": "Monthly carbon intensity",
@@ -259,7 +259,7 @@
       "all_years": "Yearly carbon intensity"
     },
     "emissions": {
-      "6h": "5-minute carbon emissions",
+      "24h": "5-minute carbon emissions",
       "72h": "Hourly carbon emissions",
       "3mo": "Daily carbon emissions",
       "12mo": "Monthly carbon emissions",
@@ -267,7 +267,7 @@
       "all_years": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "6h": "5-minute carbon emission origin",
+      "24h": "5-minute carbon emission origin",
       "72h": "Hourly carbon emission origin",
       "3mo": "Daily carbon emission origin",
       "12mo": "Monthly carbon emission origin",
@@ -275,7 +275,7 @@
       "all_years": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "6h": "5-minute production emissions",
+      "24h": "5-minute production emissions",
       "72h": "Hourly production emissions",
       "3mo": "Daily production emissions",
       "12mo": "Monthly production emissions",
@@ -283,7 +283,7 @@
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "6h": "5-minute electricity mix",
+      "24h": "5-minute electricity mix",
       "72h": "Hourly electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
@@ -291,7 +291,7 @@
       "all_years": "Yearly electricity mix"
     },
     "electricityproduction": {
-      "6h": "5-minute electricity mix",
+      "24h": "5-minute electricity mix",
       "72h": "Hourly electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
@@ -299,7 +299,7 @@
       "all_years": "Yearly electricity mix"
     },
     "electricityprices": {
-      "6h": "5-minute electricity prices",
+      "24h": "5-minute electricity prices",
       "72h": "Hourly electricity prices",
       "3mo": "Daily electricity prices",
       "12mo": "Monthly electricity prices",
@@ -307,7 +307,7 @@
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "6h": "5-minute electricity net flow",
+      "24h": "5-minute electricity net flow",
       "72h": "Hourly electricity net flow",
       "3mo": "Daily electricity net flow",
       "12mo": "Monthly electricity net flow",
@@ -315,7 +315,7 @@
       "all_years": "Yearly electricity net flow"
     },
     "electricityLoad": {
-      "6h": "5-minute electricity load",
+      "24h": "5-minute electricity load",
       "72h": "Hourly electricity load",
       "3mo": "Daily electricity load",
       "12mo": "Monthly electricity load",

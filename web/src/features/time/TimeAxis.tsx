@@ -19,7 +19,7 @@ const getMajorTick = (
   index: number
 ) => {
   switch (timeRange) {
-    case TimeRange.H6: {
+    case TimeRange.H24: {
       return localHours % 4 === 0 && localMinutes === 0;
     }
     case TimeRange.H72: {

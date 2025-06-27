@@ -20,8 +20,7 @@ import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isFiveMinAtom,
-  isHourlyAtom,
+  isFineGranularityAtom,
   productionConsumptionAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
@@ -56,16 +55,21 @@ function BarBreakdownChart({
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const isHourly = useAtomValue(isHourlyAtom);
-  const isFiveMin = useAtomValue(isFiveMinAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
   const isMobile = useIsMobile();
   const graphUnit = useMemo(
     () =>
       currentZoneDetail &&
-      determineUnit(displayByEmissions, currentZoneDetail, isConsumption, isHourly, t),
-    [currentZoneDetail, displayByEmissions, isConsumption, isHourly, t]
+      determineUnit(
+        displayByEmissions,
+        currentZoneDetail,
+        isConsumption,
+        isFineGranularity,
+        t
+      ),
+    [currentZoneDetail, displayByEmissions, isConsumption, isFineGranularity, t]
   );
   const { zoneId } = useParams<RouteParameters>();
   const { data } = useGetZone();
@@ -85,7 +89,7 @@ function BarBreakdownChart({
   const pillText = getEstimationOrAggregationTranslation(
     t,
     'pill',
-    !(isHourly || isFiveMin),
+    !isFineGranularity,
     estimationMethod,
     currentZoneDetail?.estimatedPercentage
   );
@@ -156,7 +160,7 @@ function BarBreakdownChart({
       <div className="mb-4">
         <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
       </div>
-      {!displayByEmissions && isHourly && (
+      {!displayByEmissions && isFineGranularity && (
         <CapacityLegend
           text={t('country-panel.graph-legends.installed-capacity')}
           unit={graphUnit}

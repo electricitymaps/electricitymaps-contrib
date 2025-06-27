@@ -49,8 +49,9 @@ export function useTimeRangeSync() {
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
-export const isHourlyAtom = atom((get) => get(timeRangeAtom) === TimeRange.H72);
-export const isFiveMinAtom = atom((get) => get(timeRangeAtom) === TimeRange.H6);
+export const isFineGranularityAtom = atom((get) =>
+  [TimeRange.H72, TimeRange.H24].includes(get(timeRangeAtom))
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });

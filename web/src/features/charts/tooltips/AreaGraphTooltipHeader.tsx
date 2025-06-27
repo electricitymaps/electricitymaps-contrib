@@ -6,7 +6,7 @@ import { CircleDashed, TrendingUpDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { EstimationMethods, isTSAModel, TimeRange } from 'utils/constants';
 import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
-import { endDatetimeAtom, isFiveMinAtom, isHourlyAtom } from 'utils/state/atoms';
+import { endDatetimeAtom, isFineGranularityAtom } from 'utils/state/atoms';
 
 import ProductionSourceIcon from '../ProductionsSourceIcons';
 
@@ -32,12 +32,11 @@ export default function AreaGraphToolTipHeader({
   estimationMethod,
 }: AreaGraphToolTipHeaderProps) {
   const { i18n, t } = useTranslation();
-  const isHourly = useAtomValue(isHourlyAtom);
-  const isFiveMin = useAtomValue(isFiveMinAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const pillText = getEstimationOrAggregationTranslation(
     t,
     'pill',
-    !(isHourly || isFiveMin),
+    !isFineGranularity,
     estimationMethod,
     estimatedPercentage
   );

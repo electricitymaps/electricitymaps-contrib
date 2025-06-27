@@ -2,7 +2,7 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { isFineGranularityAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -20,7 +20,7 @@ interface EmissionChartProps {
 
 function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
   const { data, isLoading, isError } = useEmissionChartData();
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData
   );
@@ -46,7 +46,7 @@ function EmissionChart({ timeRange, datetimes }: EmissionChartProps) {
       />
       {someEstimated && (
         <EstimationLegend
-          isAggregated={!isHourly}
+          isAggregated={!isFineGranularity}
           estimationMethod={estimationMethod}
           valueAxisLabel={valueAxisLabel}
         />

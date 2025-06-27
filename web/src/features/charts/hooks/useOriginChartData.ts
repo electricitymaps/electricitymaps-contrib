@@ -16,7 +16,7 @@ import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isHourlyAtom,
+  isFineGranularityAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
@@ -46,7 +46,7 @@ export default function useOriginChartData() {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFineGranularityAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };
@@ -61,7 +61,7 @@ export default function useOriginChartData() {
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    isHourly
+    isFineGranularity
   );
 
   const chartData: AreaGraphElement[] = [];
@@ -180,7 +180,7 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  isHourly: boolean
+  isFineGranularity: boolean
 ): ValuesInfo {
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     displayByEmissions
@@ -190,7 +190,7 @@ function getValuesInfo(
   const format = displayByEmissions
     ? // Value factor of 1000 to convert from MW to KW
       { formattingFactor: 1000, unit: 'CO₂eq' }
-    : scalePower(maxTotalValue, isHourly);
+    : scalePower(maxTotalValue, isFineGranularity);
   const valueAxisLabel = format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
