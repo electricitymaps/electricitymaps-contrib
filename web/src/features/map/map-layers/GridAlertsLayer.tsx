@@ -53,7 +53,7 @@ export default function GridAlertsLayer() {
     }
 
     // Create one point per unique zoneId that needs a warning
-    const warningZones = ['CA-ON', 'US-MIDA-PJM']; //data.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
+    const warningZones = data.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
     const features = [];
 
     for (const zoneId of warningZones) {
