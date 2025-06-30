@@ -1,23 +1,52 @@
 import useGetZone from 'api/getZone';
 import HorizontalDivider from 'components/HorizontalDivider';
 import { useEffect, useState } from 'react';
-import { FiAlertTriangle } from 'react-icons/fi';
-
-interface ZoneAlert {
-  message: string;
-  start_time: string;
-  end_time: string | null;
-  alert_type: 'action' | 'informational' | string;
-}
+import { FiAlertTriangle, FiInfo } from 'react-icons/fi';
+import { ZoneMessage } from 'types';
 
 interface ZoneDetail {
-  zoneMessage: ZoneAlert | null;
+  zoneMessage: ZoneMessage | null;
 }
+
+// format date function to format date strings
+const formatDate = (dateString?: string) => {
+  if (!dateString) {
+    return 'N/A';
+  }
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(date);
+};
+
+// Configuration for icons and colors based on alert type
+const alertTypeConfig: Record<
+  string,
+  {
+    icon: JSX.Element;
+    colorClass: string;
+  }
+> = {
+  action: {
+    icon: <FiAlertTriangle className="inline" />,
+    colorClass: 'bg-warning/10',
+  },
+  informational: {
+    icon: <FiInfo className="inline" />,
+    colorClass: 'text-neutral-600 dark:text-neutral-400',
+  },
+  default: {
+    icon: <FiInfo className="inline" />,
+    colorClass: 'text-neutral-600',
+  },
+};
 
 export default function CurrentGridAlertsCard() {
   const [zoneDetails, setZoneDetails] = useState<ZoneDetail[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch zone details using the custom hook
   const { data, isLoading: isZoneLoading } = useGetZone();
 
   useEffect(() => {
@@ -29,12 +58,7 @@ export default function CurrentGridAlertsCard() {
       setLoading(true);
       try {
         const zoneMessage = data.zoneMessage || null;
-
-        if (zoneMessage) {
-          setZoneDetails([{ zoneMessage }]);
-        } else {
-          setZoneDetails([]);
-        }
+        setZoneDetails(zoneMessage ? [{ zoneMessage }] : []);
       } catch (error) {
         console.error('Error fetching grid state or zone details:', error);
         setZoneDetails([]);
@@ -48,17 +72,19 @@ export default function CurrentGridAlertsCard() {
 
   const isLoading = loading || isZoneLoading;
 
-  // Return nothing if not loading and no alerts
+  // Nothing to show
   if (!isLoading && zoneDetails.length === 0) {
     return null;
   }
 
-  // If there are alerts, show the card
+  // At least one alert action type
+  const isAction = zoneDetails.some((z) => z.zoneMessage?.alert_type === 'action');
+
   return (
     <section>
       <div
         className={`mb-2 rounded-2xl border ${
-          zoneDetails.some((z) => z.zoneMessage?.alert_type === 'action')
+          isAction
             ? 'border-warning bg-warning/10 dark:border-warning/60 dark:bg-warning/20'
             : 'border-neutral-200 bg-white/60 dark:border-neutral-700/80 dark:bg-neutral-800/60'
         } p-0`}
@@ -66,10 +92,17 @@ export default function CurrentGridAlertsCard() {
         <div className="flex flex-col items-center gap-2 rounded-2xl bg-sunken p-4 dark:bg-sunken-dark">
           {isLoading ? (
             <p className="text-center text-xs">Loading grid alerts...</p>
-          ) : (zoneDetails.length === 0 ? null : ( // Nothing shown when no alerts, or you can add a placeholder if you want
+          ) : (
             <ul className="w-full">
-              {zoneDetails.map(({ zoneMessage }, index) =>
-                zoneMessage ? (
+              {zoneDetails.map(({ zoneMessage }, index) => {
+                if (!zoneMessage) {
+                  return null;
+                }
+
+                const alertConfig = alertTypeConfig[zoneMessage.alert_type ?? 'default'];
+                const [title, ...rest] = zoneMessage.message.split('\n');
+
+                return (
                   <li
                     key={`${zoneMessage.start_time}-${
                       zoneMessage.end_time ?? 'no-end'
@@ -90,8 +123,10 @@ export default function CurrentGridAlertsCard() {
                         wordWrap: 'break-word',
                       }}
                     >
-                      <FiAlertTriangle className="inline" />{' '}
-                      {zoneMessage.message.split('\n')[0]}
+                      {alertConfig.icon}{' '}
+                      <span className={`font-semibold ${alertConfig.colorClass}`}>
+                        {title}
+                      </span>
                     </div>
                     <div
                       style={{
@@ -101,12 +136,14 @@ export default function CurrentGridAlertsCard() {
                         fontSize: 12,
                         fontFamily: 'Inter',
                         fontWeight: '400',
-                        lineHeight: 4,
+                        lineHeight: 2,
                         wordWrap: 'break-word',
                       }}
                     >
-                      From: {zoneMessage.start_time}
-                      {zoneMessage.end_time && <> &mdash; To: {zoneMessage.end_time}</>}
+                      From: {formatDate(zoneMessage.start_time)}
+                      {zoneMessage.end_time && (
+                        <> &mdash; To: {formatDate(zoneMessage.end_time)}</>
+                      )}
                     </div>
                     <div className="flex items-center justify-between font-bold">
                       <span className="text-xs uppercase opacity-70">
@@ -126,13 +163,13 @@ export default function CurrentGridAlertsCard() {
                         wordWrap: 'break-word',
                       }}
                     >
-                      {zoneMessage.message.split('\n').slice(1).join('\n')}
+                      {rest.join('\n')}
                     </div>
                   </li>
-                ) : null
-              )}
+                );
+              })}
             </ul>
-          ))}
+          )}
         </div>
       </div>
     </section>
