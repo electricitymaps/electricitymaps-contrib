@@ -120,7 +120,7 @@ export default function GridAlertsLayer() {
                 borderRadius: '999px',
               }}
             >
-              <WarningIcon style={{ width: 50, height: 50 }} fill={iconColor} />
+              <WarningIcon style={{ width: 33, height: 32 }} fill={iconColor} />
             </div>
           </Marker>
         );

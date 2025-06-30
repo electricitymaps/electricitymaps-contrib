@@ -140,15 +140,10 @@ export default function CurrentGridAlertsCard() {
                         wordWrap: 'break-word',
                       }}
                     >
-                      From: {formatDate(zoneMessage.start_time)}
+                      {formatDate(zoneMessage.start_time)}
                       {zoneMessage.end_time && (
-                        <> &mdash; To: {formatDate(zoneMessage.end_time)}</>
+                        <> &mdash; {formatDate(zoneMessage.end_time)}</>
                       )}
-                    </div>
-                    <div className="flex items-center justify-between font-bold">
-                      <span className="text-xs uppercase opacity-70">
-                        {zoneMessage.alert_type}
-                      </span>
                     </div>
                     <HorizontalDivider />
                     <div
