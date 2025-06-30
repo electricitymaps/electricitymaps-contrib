@@ -14,6 +14,7 @@ export type ZoneKey = string;
 
 export interface GridState {
   _disclaimer: string;
+  alerts?: string[];
   createdAt: string;
   datetimes: {
     /** Object representing the grid state at a single point in time */

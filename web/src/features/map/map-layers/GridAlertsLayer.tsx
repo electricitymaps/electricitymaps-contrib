@@ -40,6 +40,11 @@ export default function GridAlertsLayer() {
       return null;
     }
 
+    // fallback logic
+    if (!dataState_ || !dataState_.alerts) {
+      return null;
+    }
+
     // Create one point per unique zoneId that needs a warning
     const warningZones = dataState_.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
     const features = [];
@@ -84,7 +89,7 @@ export default function GridAlertsLayer() {
       type: 'FeatureCollection',
       features,
     };
-  }, [worldGeometries]);
+  }, [worldGeometries, dataState_]);
 
   return (
     <>
