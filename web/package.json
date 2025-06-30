@@ -9,7 +9,7 @@
   "license": "AGPL-3.0-or-later",
   "type": "module",
   "scripts": {
-    "migrate-i18next": "pnpm dlx jscodeshift --parser=tsx --no-babel -t src/migrate-i18next.cjs src && pnpm format",
+    "migrate-i18next": "npx i18next-selector-codemod src && pnpm format",
     "mockserver": "cd ../mockserver && pnpm run start",
     "prebuild": "pnpm run create-generated-files",
     "build": "vite build",
