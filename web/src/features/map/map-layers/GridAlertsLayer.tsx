@@ -1,6 +1,12 @@
 import useGetState from 'api/getState';
+import { getTextColor } from 'components/CarbonIntensitySquare';
+import WarningIcon from 'components/WarningAlertsIcon';
+import { useCo2ColorScale } from 'hooks/theme';
+import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
-import { Layer, Source } from 'react-map-gl/maplibre';
+import { Marker } from 'react-map-gl/maplibre';
+import { getCarbonIntensity } from 'utils/helpers';
+import { isConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
 import { useGetGeometries } from '../map-utils/getMapGrid';
 
@@ -31,9 +37,10 @@ const getPolygonCentroid = (coordinates: number[][][]) => {
 
 export default function GridAlertsLayer() {
   const { worldGeometries } = useGetGeometries();
-  const dataState = useGetState();
-  const dataState_ = dataState.data;
-  console.log('State data:', dataState_);
+  const { data } = useGetState();
+  console.log('State data:', data);
+
+  const co2ColorScale = useCo2ColorScale();
 
   const warningIconData = useMemo(() => {
     if (!worldGeometries?.features) {
@@ -41,12 +48,12 @@ export default function GridAlertsLayer() {
     }
 
     // fallback logic
-    if (!dataState_ || !dataState_.alerts) {
+    if (!data || !data.alerts) {
       return null;
     }
 
     // Create one point per unique zoneId that needs a warning
-    const warningZones = dataState_.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
+    const warningZones = ['CA-ON', 'US-MIDA-PJM']; //data.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
     const features = [];
 
     for (const zoneId of warningZones) {
@@ -89,25 +96,35 @@ export default function GridAlertsLayer() {
       type: 'FeatureCollection',
       features,
     };
-  }, [worldGeometries, dataState_]);
+  }, [worldGeometries, data]);
+
+  const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isConsumption = useAtomValue(isConsumptionAtom);
 
   return (
     <>
-      {/* Separate source for warning icons */}
-      {warningIconData && (
-        <Source id="warning-icons-source" type="geojson" data={warningIconData}>
-          <Layer
-            id="zones-warning-icon-layer"
-            type="symbol"
-            layout={{
-              'icon-image': 'lucide-warning',
-              'icon-size': 1.2,
-              'icon-allow-overlap': true,
-              'symbol-placement': 'point',
-            }}
-          />
-        </Source>
-      )}
+      {/* */}
+      {warningIconData?.features.map((feature) => {
+        const { zoneId } = feature.properties;
+        const [longitude, latitude] = feature.geometry.coordinates;
+        const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
+        const intensity = zoneData ? getCarbonIntensity(zoneData, isConsumption) : 0; // Default to 0 if no data
+        const bgColor = co2ColorScale(intensity);
+        const iconColor = getTextColor(bgColor);
+
+        return (
+          <Marker key={zoneId} longitude={longitude} latitude={latitude} anchor="center">
+            <div
+              style={{
+                backgroundColor: 'transparent', //bgColor, transparent
+                borderRadius: '999px',
+              }}
+            >
+              <WarningIcon style={{ width: 50, height: 50 }} fill={iconColor} />
+            </div>
+          </Marker>
+        );
+      })}
     </>
   );
 }
