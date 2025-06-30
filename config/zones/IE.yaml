@@ -456,7 +456,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: SMARTGRIDDASHBOARD.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
