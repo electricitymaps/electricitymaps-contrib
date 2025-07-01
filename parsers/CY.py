@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -9,6 +9,9 @@ from zoneinfo import ZoneInfo
 # BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
 from requests import Session
+
+# Local library imports
+from parsers.lib.config import refetch_frequency, use_proxy
 
 REALTIME_SOURCE = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
 HISTORICAL_SOURCE = "https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days"
@@ -112,6 +115,8 @@ class CyprusParser:
         return data
 
 
+@refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="DK")
 def fetch_production(
     zone_key: str = "CY",
     session: Session | None = None,
