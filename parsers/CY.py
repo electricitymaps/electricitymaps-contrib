@@ -116,7 +116,7 @@ class CyprusParser:
 
 
 @refetch_frequency(timedelta(days=1))
-@use_proxy(country_code="CY")
+@use_proxy(country_code="DK")
 def fetch_production(
     zone_key: str = "CY",
     session: Session | None = None,
