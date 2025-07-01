@@ -46,7 +46,7 @@ function HorizontalColorbar({
         </g>
       </svg>
 
-      <div className={`flex flex-row justify-between pr-0.5 ${labelClassNames}`}>
+      <div className={`flex flex-row justify-between ${labelClassNames}`}>
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
             key={t}

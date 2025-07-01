@@ -1,6 +1,6 @@
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { Menu } from 'lucide-react';
+import { ChevronFirst, ChevronLast } from 'lucide-react';
 import { memo, type ReactElement } from 'react';
 
 import LabelTooltip from './tooltips/LabelTooltip';
@@ -51,7 +51,7 @@ function RangeSlider({
             className="-ml-2.5 -mt-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-white p-1 outline
            outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 focus-visible:outline-brand-green dark:bg-neutral-900 dark:outline-neutral-700 dark:focus-visible:outline-brand-green"
           >
-            <Menu className="rotate-90" size={12} />
+            <ChevronFirst strokeWidth={3} size={12} pointerEvents="none" />
           </SliderPrimitive.Thumb>
         </TooltipWrapper>
 
@@ -65,7 +65,7 @@ function RangeSlider({
             className="-mr-2.5 -mt-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-white p-1 outline
            outline-1 outline-neutral-200 hover:outline-2 focus-visible:outline-2 focus-visible:outline-brand-green dark:bg-neutral-900 dark:outline-neutral-700 dark:focus-visible:outline-brand-green"
           >
-            <Menu className="rotate-90" size={12} />
+            <ChevronLast strokeWidth={3} size={12} pointerEvents="none" />
           </SliderPrimitive.Thumb>
         </TooltipWrapper>
       </SliderPrimitive.Root>

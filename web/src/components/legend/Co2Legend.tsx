@@ -2,7 +2,7 @@ import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtom } from 'jotai/index';
-import { memo, type ReactElement } from 'react';
+import { memo, type ReactElement, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
@@ -21,12 +21,22 @@ function Co2Legend(): ReactElement {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 
-  const rangeValues = spreadOverDomain(
-    scaleLinear().domain(extent(co2ColorScale.domain()) as unknown as [number, number]),
-    TICKS_COUNT
+  const rangeValues = useMemo(
+    () =>
+      spreadOverDomain(
+        scaleLinear().domain(
+          extent(co2ColorScale.domain()) as unknown as [number, number]
+        ),
+        TICKS_COUNT
+      ),
+    [co2ColorScale]
   );
 
   const [co2IntensityRange, setCo2IntensityRange] = useAtom(co2IntensityRangeAtom);
+  const defaultValue = useMemo(
+    () => [rangeValues.at(0) as number, rangeValues.at(-1) as number],
+    [rangeValues]
+  );
 
   return (
     <LegendItem
@@ -36,7 +46,7 @@ function Co2Legend(): ReactElement {
       {isCo2IntensityFilteringFeatureEnabled ? (
         <RangeSlider
           value={co2IntensityRange}
-          defaultValue={[rangeValues.at(0) as number, rangeValues.at(-1) as number]}
+          defaultValue={defaultValue}
           onChange={setCo2IntensityRange}
           maxValue={rangeValues.at(-1) as number}
           step={20}
