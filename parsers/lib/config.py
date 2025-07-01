@@ -167,9 +167,7 @@ def use_proxy(country_code: str, monkeypatch_for_pydataxm: bool = False):
                 )
                 return f(*args, **kwargs)
 
-            logger.debug(
-                f"Using proxy in {country_code}"
-            )
+            logger.debug(f"Using proxy in {country_code}")
             # get an existing Session object from args or kwargs, or create a
             # new one, so it can be temporarily re-configured
             if exchange_signature and len(args) >= 3:
