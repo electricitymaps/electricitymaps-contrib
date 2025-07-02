@@ -52,7 +52,7 @@ const renderTick = (
   isTimeController?: boolean
 ) => {
   const { localHours, localMinutes } = getLocalTime(value, timezone);
-  const isMidnightTime = localHours === 0;
+  const isMidnightTime = localHours === 0 && localMinutes === 0;
 
   const isMajorTick =
     !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
