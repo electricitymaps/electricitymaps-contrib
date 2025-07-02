@@ -63,7 +63,8 @@ const renderTick = (
     ? (isMajorTick && !overlapsWithLive) || isLastTick
     : isMajorTick;
 
-  const shouldShowMinorTick = selectedTimeRange !== TimeRange.H24 || index % 4 === 2;
+  const shouldShowMinorTick =
+    selectedTimeRange === TimeRange.H24 ? localMinutes % 15 === 0 : true;
 
   return (
     <Group key={index} className="text-xs" left={scaledValue}>
