@@ -188,6 +188,30 @@ export const getCarbonIntensity = (
 ): number => (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
 
 /**
+ * Returns carbon intensity within given range if feature is enabled
+ * @param isFeatureEnabled
+ * @param co2intensity
+ * @param min
+ * @param max
+ */
+export const filterCarbonIntensity = (
+  isFeatureEnabled: boolean,
+  co2intensity: number | undefined,
+  min: number,
+  max: number
+): number | undefined => {
+  if (!isFeatureEnabled) {
+    return co2intensity;
+  }
+
+  if (co2intensity && (co2intensity < min || co2intensity > max)) {
+    return undefined;
+  }
+
+  return co2intensity;
+};
+
+/**
  * Returns the renewable ratio of a zone
  * @param zoneData - The zone data
  * @param isConsumption - Whether the ratio is for consumption or production
