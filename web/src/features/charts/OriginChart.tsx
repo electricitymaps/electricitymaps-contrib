@@ -5,7 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { isConsumptionAtom, isHourlyAtom } from 'utils/state/atoms';
+import {
+  isConsumptionAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+} from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -70,7 +73,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   const { data } = useOriginChartData();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const selectedData = useSelectedData(displayByEmissions);
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData
@@ -80,7 +83,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
     return null;
   }
 
-  const isConsumptionAndAggregatedResolution = isConsumption && !isHourly;
+  const isConsumptionAndAggregatedResolution = isConsumption && !isFineGranularity;
 
   const { chartData, valueAxisLabel, layerFill, layerKeys } = data;
 
@@ -115,7 +118,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       <div className="relative">
         {someEstimated && (
           <EstimationLegend
-            isAggregated={!isHourly}
+            isAggregated={!isFineGranularity}
             estimationMethod={estimationMethod}
             valueAxisLabel={valueAxisLabel}
           />

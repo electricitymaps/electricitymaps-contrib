@@ -16,7 +16,10 @@ import { StateZoneData } from 'types';
 import { EstimationMethods, isTSAModel } from 'utils/constants';
 import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import { round } from 'utils/helpers';
-import { isHourlyAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
+import {
+  isFiveMinuteOrHourlyGranularityAtom,
+  selectedDatetimeStringAtom,
+} from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
@@ -72,7 +75,7 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!hasZoneData) {
     return <NoDataBadge />;
@@ -80,14 +83,14 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimatedMethod == null && isHourly) {
+  if (estimatedMethod == null && isFineGranularity) {
     // No aggregation or estimation pill to show
     return null;
   }
   const text = getEstimationOrAggregationTranslation(
     t,
     'pill',
-    !isHourly,
+    !isFineGranularity,
     estimatedMethod,
     estimatedPercentage
   );
