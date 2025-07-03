@@ -158,8 +158,8 @@ def use_proxy(country_code: str, monkeypatch_for_pydataxm: bool = False):
         def wrapped_f(*args, **kwargs):
             WEBSHARE_USERNAME = os.environ.get("WEBSHARE_USERNAME")
             WEBSHARE_PASSWORD = os.environ.get("WEBSHARE_PASSWORD")
+            logger = kwargs.get("logger", getLogger(__name__))
             if not WEBSHARE_USERNAME or not WEBSHARE_PASSWORD:
-                logger = kwargs.get("logger", getLogger(__name__))
                 logger.warning(
                     "Proxy environment variables are not set. "
                     "Attempting without proxy...\n"
@@ -167,6 +167,7 @@ def use_proxy(country_code: str, monkeypatch_for_pydataxm: bool = False):
                 )
                 return f(*args, **kwargs)
 
+            logger.debug(f"Using proxy in {country_code}")
             # get an existing Session object from args or kwargs, or create a
             # new one, so it can be temporarily re-configured
             if exchange_signature and len(args) >= 3:
