@@ -122,6 +122,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 7847.7
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 8122.6
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 8482.2
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -392,6 +398,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 23210.4
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 23610.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 24355.4
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -475,6 +487,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 38969.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 38821.2
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch
@@ -789,11 +804,11 @@ parsers:
   consumption: US_ERCOT.fetch_consumption
   consumptionForecast: US_ERCOT.fetch_consumption_forecast
   dayaheadLocationalMarginalPrice: US_ERCOT.fetch_dayahead_locational_marginal_price
+  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
   production: US_ERCOT.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_ERCOT.fetch_wind_solar_forecasts
   realtimeLocationalMarginalPrice: US_ERCOT.fetch_realtime_locational_marginal_price
-  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
 region: Americas
 sources:
   INCER ACV:
