@@ -22,19 +22,19 @@ export interface TimeRangeSelectorProps {
 function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorProps) {
   const { t } = useTranslation();
   const { isOpen, onToggleDropdown } = useDropdownCtl();
-  const is5MinGranularity = useFeatureFlag('five-minute-granularity');
+  const is5MinGranularityEnabled = useFeatureFlag('five-minute-granularity');
 
   const options = useMemo(
     () =>
       Object.values(TimeRange)
         .filter((value) => {
-          if (!is5MinGranularity && value === TimeRange.H24) {
+          if (!is5MinGranularityEnabled && value === TimeRange.H24) {
             return false;
           }
           return true;
         })
         .map((value) => createOption(value, t)),
-    [t, is5MinGranularity]
+    [t, is5MinGranularityEnabled]
   );
 
   const selectedLabel = options.find((opt) => opt.value === timeRange)?.label;

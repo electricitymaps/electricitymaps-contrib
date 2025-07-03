@@ -5,7 +5,10 @@ import { useAtomValue } from 'jotai';
 import { ZoneDetail } from 'types';
 import { scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, isFineGranularityAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+} from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
@@ -30,7 +33,7 @@ export function getFills(data: AreaGraphElement[]) {
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };

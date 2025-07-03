@@ -4,7 +4,7 @@ import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
 
@@ -16,7 +16,7 @@ export default function NetExchangeChartTooltip({
 }: InnerAreaGraphTooltipProps) {
   const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {

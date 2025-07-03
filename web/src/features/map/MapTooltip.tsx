@@ -16,7 +16,10 @@ import { StateZoneData } from 'types';
 import { EstimationMethods, isTSAModel } from 'utils/constants';
 import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import { round } from 'utils/helpers';
-import { isFineGranularityAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
+import {
+  isFiveMinuteOrHourlyGranularityAtom,
+  selectedDatetimeStringAtom,
+} from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
@@ -72,7 +75,7 @@ export const DataValidityBadge = memo(function DataValidityBadge({
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!hasZoneData) {
     return <NoDataBadge />;

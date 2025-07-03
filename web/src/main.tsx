@@ -131,7 +131,7 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   const [searchParameters] = useSearchParams();
   const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
-  const is5MinGranularity = useFeatureFlag('five-minute-granularity');
+  const is5MinGranularityEnabled = useFeatureFlag('five-minute-granularity');
 
   if (!urlTimeRange) {
     return (
@@ -143,12 +143,10 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   }
   let sanitizedTimeRange = urlTimeRange.toLowerCase();
 
-  if (!is5MinGranularity && sanitizedTimeRange === '24h') {
+  if (!is5MinGranularityEnabled && sanitizedTimeRange === '24h') {
     return (
       <Navigate
-        to={`${location.pathname
-          .replace(urlTimeRange, TimeRange.H72)
-          .replace('five_minutes', 'hourly')}?${searchParameters}${location.hash}`}
+        to={`${location.pathname}/72h/hourly?${searchParameters}${location.hash}`}
         replace
       />
     );

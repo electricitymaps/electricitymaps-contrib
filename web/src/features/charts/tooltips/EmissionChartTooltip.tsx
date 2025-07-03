@@ -4,7 +4,7 @@ import { formatCo2 } from 'utils/formatting';
 import { round } from 'utils/helpers';
 import {
   isConsumptionAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
 
@@ -16,7 +16,7 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
   const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!zoneDetail) {
     return null;

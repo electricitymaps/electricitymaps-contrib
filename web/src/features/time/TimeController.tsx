@@ -13,7 +13,7 @@ import { TimeRange } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
@@ -30,7 +30,7 @@ export default function TimeController({
   className?: string;
   onToggle: () => void;
 }) {
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();

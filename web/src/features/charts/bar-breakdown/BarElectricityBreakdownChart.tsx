@@ -5,7 +5,7 @@ import { useAtomValue } from 'jotai';
 import { memo, useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { isFineGranularityAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
 import BarElectricityProductionChart from './BarElectricityProductionChart';
@@ -52,7 +52,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.

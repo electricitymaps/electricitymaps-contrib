@@ -13,7 +13,7 @@ import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
 
@@ -109,7 +109,7 @@ export default function BreakdownChartTooltip({
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -188,7 +188,7 @@ export function BreakdownChartTooltipContent({
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)

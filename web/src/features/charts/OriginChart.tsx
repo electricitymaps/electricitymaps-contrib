@@ -5,7 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { ElectricityModeType } from 'types';
 import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
-import { isConsumptionAtom, isFineGranularityAtom } from 'utils/state/atoms';
+import {
+  isConsumptionAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+} from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -70,7 +73,7 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   const { data } = useOriginChartData();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const selectedData = useSelectedData(displayByEmissions);
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData

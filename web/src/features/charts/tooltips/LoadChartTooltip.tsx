@@ -2,14 +2,14 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { scalePower } from 'utils/formatting';
 import { round } from 'utils/helpers';
-import { isFineGranularityAtom, timeRangeAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom, timeRangeAtom } from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function LoadChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
   const timeRange = useAtomValue(timeRangeAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {

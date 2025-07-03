@@ -16,7 +16,7 @@ import { scalePower } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   spatialAggregateAtom,
 } from 'utils/state/atoms';
 
@@ -46,7 +46,7 @@ export default function useOriginChartData() {
   const isConsumption = useAtomValue(isConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const viewMode = useAtomValue(spatialAggregateAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const isCountryView = viewMode === SpatialAggregate.COUNTRY;
   if (isLoading || isError || !zoneData || !zoneId) {
     return { isLoading, isError };

@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { Charts, TimeRange } from 'utils/constants';
-import { isFineGranularityAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom } from 'utils/state/atoms';
 
 import { ChartSubtitle, ChartTitle } from './ChartTitle';
 import AreaGraph from './elements/AreaGraph';
@@ -21,7 +21,7 @@ interface LoadChartProps {
 function LoadChart({ datetimes, timeRange }: LoadChartProps) {
   const { data, isLoading, isError } = useLoadChartData();
   const { t } = useTranslation();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData
   );

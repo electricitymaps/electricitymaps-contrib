@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { useAtomValue } from 'jotai';
 import { scalePower } from 'utils/formatting';
 import { round } from 'utils/helpers';
-import { isFineGranularityAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom } from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
@@ -28,7 +28,7 @@ export function getFills(data: AreaGraphElement[]) {
 
 export function useLoadChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };

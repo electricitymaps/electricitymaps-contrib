@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCarbonIntensity, round } from 'utils/helpers';
 import {
   isConsumptionAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
 
@@ -18,7 +18,7 @@ export default function CarbonChartTooltip({ zoneDetail }: InnerAreaGraphTooltip
   const { t } = useTranslation();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const co2ColorScale = useCo2ColorScale();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!zoneDetail) {
     return null;

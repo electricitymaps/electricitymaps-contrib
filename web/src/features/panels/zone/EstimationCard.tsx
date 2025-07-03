@@ -14,7 +14,7 @@ import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslatio
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
 } from 'utils/state/atoms';
 
@@ -73,7 +73,7 @@ export default function EstimationCard({
   const { t } = useTranslation();
   const { data } = useGetState();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
@@ -174,7 +174,7 @@ function BaseCard({
   );
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const isAggregated = !isFineGranularity;
 
   const trackEvent = useTrackEvent();

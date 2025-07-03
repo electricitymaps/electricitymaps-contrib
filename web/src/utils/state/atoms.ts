@@ -48,7 +48,7 @@ export function useTimeRangeSync() {
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
-export const isFineGranularityAtom = atom((get) =>
+export const isFiveMinuteOrHourlyGranularityAtom = atom((get) =>
   [TimeRange.H72, TimeRange.H24].includes(get(timeRangeAtom))
 );
 

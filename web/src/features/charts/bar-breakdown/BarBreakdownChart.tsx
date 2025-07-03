@@ -20,7 +20,7 @@ import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   productionConsumptionAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
@@ -55,7 +55,7 @@ function BarBreakdownChart({
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
   const isMobile = useIsMobile();

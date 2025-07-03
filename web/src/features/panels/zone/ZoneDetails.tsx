@@ -14,7 +14,7 @@ import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -35,7 +35,7 @@ export default function ZoneDetails(): JSX.Element {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);

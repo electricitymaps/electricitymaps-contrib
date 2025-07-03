@@ -4,7 +4,7 @@ import { Charts, TimeRange } from 'utils/constants';
 import { formatCo2 } from 'utils/formatting';
 import {
   displayByEmissionsAtom,
-  isFineGranularityAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   productionConsumptionAtom,
 } from 'utils/state/atoms';
 
@@ -27,7 +27,7 @@ function NetExchangeChart({ datetimes, timeRange }: NetExchangeChartProps) {
   const { data, isLoading, isError } = useNetExchangeChartData();
   const productionConsumption = useAtomValue(productionConsumptionAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { t } = useTranslation();
   const { estimated, estimationMethod, someEstimated } = useEstimationData(
     data?.chartData

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ExchangeArrowData } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { isFineGranularityAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom } from 'utils/state/atoms';
 
 interface ExchangeTooltipProperties {
   exchangeData: ExchangeArrowData;
@@ -21,7 +21,7 @@ export default function ExchangeTooltip({
   className,
 }: ExchangeTooltipProperties): ReactElement {
   const { t } = useTranslation();
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { key, netFlow, co2intensity } = exchangeData;
 
   const isExporting = netFlow > 0;

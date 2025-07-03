@@ -3,7 +3,10 @@ import { useDropdownCtl } from 'components/MoreOptionsDropdown';
 import { loadingMapAtom } from 'features/map/mapAtoms';
 import { useAtomValue } from 'jotai';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { hasOnboardingBeenSeenAtom, isFineGranularityAtom } from 'utils/state/atoms';
+import {
+  hasOnboardingBeenSeenAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+} from 'utils/state/atoms';
 import { useBreakpoint } from 'utils/styling';
 
 import HistoricalTimeHeader from './HistoricalTimeHeader';
@@ -14,7 +17,7 @@ function useHistoricalTimeHeader(): {
   onToggleDropdown: () => void;
   onDismiss: () => void;
 } {
-  const isFineGranularity = useAtomValue(isFineGranularityAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { isOpen, onToggleDropdown, onDismiss } = useDropdownCtl();
   const shouldShowHistoricalNavigator = isFineGranularity && isOpen;
 
