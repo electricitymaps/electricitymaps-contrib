@@ -143,6 +143,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 11893.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 11993.0
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 12510.3
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -183,6 +189,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 821.7
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 831.4
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -245,6 +254,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 31900.2
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 31881.9
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -252,6 +264,9 @@ capacity:
     - datetime: '2022-07-01'
       source: EIA.gov
       value: 2037.9
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2034.9
   hydro:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -280,6 +295,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 6162.0
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 6196.0
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -310,6 +328,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 160.2
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 163.2
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -446,6 +467,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 23351.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 23356.7
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 23621.3
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -499,6 +526,12 @@ capacity:
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 6277.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 6328.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 6361.7
 comment: California Independent System Operator
 contributors:
   - systemcatch
@@ -848,10 +881,10 @@ fallbackZoneMixes:
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast
+  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
   production: US_CA.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_CA.fetch_wind_solar_forecasts
-  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
 region: Americas
 sources:
   INCER ACV:
