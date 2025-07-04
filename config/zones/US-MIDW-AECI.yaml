@@ -64,6 +64,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 959.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 941.4
 comment: Associated Electric Cooperative, Inc.
 contributors:
   - systemcatch

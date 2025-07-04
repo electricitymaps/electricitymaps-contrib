@@ -37,7 +37,7 @@ def capacity_update(
     >>> poetry run capacity_update --source ENTSOE --target_datetime "2022-01-01"
     """
     logging.basicConfig(
-        level=logging.debug,
+        level=logging.DEBUG,
         format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s",
     )
 
