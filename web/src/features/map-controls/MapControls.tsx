@@ -1,6 +1,7 @@
-import { Sun, Wind } from 'lucide-react';
+import { DatabaseZap, Sun, Wind } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import {
+  dataCenterLayerAtom,
   solarLayerAtom,
   solarLayerLoadingAtom,
   windLayerAtom,
@@ -24,6 +25,12 @@ export const weatherButtonMap = {
     iconSize: 20,
     enabledAtom: solarLayerAtom,
     loadingAtom: solarLayerLoadingAtom,
+  },
+  dataCenter: {
+    icon: DatabaseZap,
+    iconSize: 20,
+    enabledAtom: dataCenterLayerAtom,
+    loadingAtom: null, // No loading state for data centers
   },
 };
 
