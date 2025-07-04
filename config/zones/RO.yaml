@@ -4,6 +4,7 @@ bounding_box:
     - 43.6884447292
   - - 29.62654341
     - 48.2208812526
+price_displayed: false
 capacity:
   battery storage:
     - datetime: '2025-01-01'
