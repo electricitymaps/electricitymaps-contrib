@@ -11,6 +11,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 100.0
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 227.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -95,6 +98,9 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 581.3
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 781.3
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
