@@ -45,6 +45,9 @@ cartopy = "^0.24.1"
 plotly = "^6.1.2"
 nbformat = "^5.10.4"
 geopandas = "^1.1.0"
+hvplot = "^0.11.3"
+geoviews = "^1.14.0"
+jupyter-bokeh = "^4.0.5"
 
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
