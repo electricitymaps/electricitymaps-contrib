@@ -15,7 +15,7 @@ export function DefaultCloseButton({
   const { t } = useTranslation();
   return (
     <button
-      aria-label={t('misc.dismiss')}
+      aria-label={t(($) => $.misc.dismiss)}
       data-testid="dismiss-btn"
       onClick={onClose}
       className={twMerge(

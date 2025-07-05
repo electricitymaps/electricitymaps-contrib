@@ -26,7 +26,7 @@ export function GithubButton({
       icon={<FaGithub size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t('button.github')}
+      {isIconOnly ? undefined : t(($) => $.button.github)}
     </Button>
   );
 }

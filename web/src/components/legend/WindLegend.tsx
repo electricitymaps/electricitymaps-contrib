@@ -8,7 +8,7 @@ import { LegendItem } from './LegendItem';
 function WindLegend(): ReactElement {
   const { t } = useTranslation();
   return (
-    <LegendItem label={t('legends.windpotential')} unit="m/s">
+    <LegendItem label={t(($) => $.legends.windpotential)} unit="m/s">
       <HorizontalColorbar colorScale={windColor} id="wind" ticksCount={6} />
     </LegendItem>
   );

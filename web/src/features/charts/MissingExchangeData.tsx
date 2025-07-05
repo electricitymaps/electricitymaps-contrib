@@ -44,7 +44,7 @@ export function MissingExchangeDataDisclaimer() {
         className="prose my-1 rounded bg-neutral-200 p-2 text-xs leading-snug dark:bg-neutral-800 dark:text-white dark:prose-a:text-white"
         style={{ width: `calc(100% - ${MARGIN}px)` }}
       >
-        {t('country-history.exchange-delay')}
+        {t(($) => $['country-history']['exchange-delay'])}
       </p>
     );
   }

@@ -31,7 +31,7 @@ export function TwitterButton({
     >
       {isIconOnly
         ? undefined
-        : t(isShareLink ? 'button.twitter-share' : 'button.twitter')}
+        : t(($) => (isShareLink ? $.button['twitter-share'] : $.button.twitter))}
     </Button>
   );
 }

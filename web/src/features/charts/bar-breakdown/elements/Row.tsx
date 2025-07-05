@@ -140,10 +140,9 @@ export function ProductionSourceRow({
       width={width}
     >
       <g className="pointer-events-none">
-        <TextElement text={t(productionMode)} />
+        <TextElement text={t(($) => $[productionMode])} />
         <ProductionSourceLegend electricityType={productionMode} />
       </g>
-
       {/* Row content */}
       {children}
     </BaseRow>

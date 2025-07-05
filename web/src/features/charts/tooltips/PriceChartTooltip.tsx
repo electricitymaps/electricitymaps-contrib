@@ -29,7 +29,7 @@ export default function PriceChartTooltip({ zoneDetail }: InnerAreaGraphTooltipP
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
         squareColor="#7f7f7f" // TODO: use price scale color
-        title={t('tooltips.price')}
+        title={t(($) => $.tooltips.price)}
       />
       <p className="flex justify-center text-base">
         <b className="mr-1">{price}</b>

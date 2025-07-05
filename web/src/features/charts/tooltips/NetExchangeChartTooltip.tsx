@@ -31,7 +31,7 @@ export default function NetExchangeChartTooltip({
     isFineGranularity
   );
 
-  const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
+  const unit = displayByEmissions ? t(($) => $.ofCO2eq) : powerUnit;
   const value = displayByEmissions
     ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
@@ -44,13 +44,15 @@ export default function NetExchangeChartTooltip({
         datetime={new Date(stateDatetime)}
         timeRange={timeRange}
         squareColor="#7f7f7f"
-        title={t('tooltips.netExchange')}
+        title={t(($) => $.tooltips.netExchange)}
         hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
         estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">
-        {netExchange >= 0 ? t('tooltips.importing') : t('tooltips.exporting')}{' '}
+        {netExchange >= 0
+          ? t(($) => $.tooltips.importing)
+          : t(($) => $.tooltips.exporting)}{' '}
         <b className="mx-1">{Number.isFinite(value) ? value : '?'}</b> {unit}
       </p>
     </div>

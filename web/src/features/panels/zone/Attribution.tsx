@@ -11,7 +11,9 @@ export default function Attribution({ zoneId }: { zoneId: string }) {
     <div className="flex flex-col gap-3 pt-1.5">
       {contributors.length > 0 && (
         <div className="flex flex-row justify-between">
-          <div className="text-sm font-semibold">{t('country-panel.helpfrom')}</div>
+          <div className="text-sm font-semibold">
+            {t(($) => $['country-panel'].helpfrom)}
+          </div>
           <ContributorList contributors={contributors} />
         </div>
       )}

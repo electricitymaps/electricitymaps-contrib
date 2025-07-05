@@ -21,7 +21,7 @@ export function PrivacyPolicyButton({ ...restProps }: PrivacyPolicyButtonProps) 
       href="https://www.electricitymaps.com/privacy-policy/"
       {...restProps}
     >
-      {t('button.privacy-policy')}
+      {t(($) => $.button['privacy-policy'])}
     </Button>
   );
 }
