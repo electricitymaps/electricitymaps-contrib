@@ -48,6 +48,8 @@ geopandas = "^1.1.0"
 hvplot = "^0.11.3"
 geoviews = "^1.14.0"
 jupyter-bokeh = "^4.0.5"
+netcdf4 = "^1.7.2"
+eccodes = "^2.42.0"
 
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
