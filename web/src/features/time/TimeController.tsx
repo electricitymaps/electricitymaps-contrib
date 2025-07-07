@@ -13,7 +13,7 @@ import { TimeRange } from 'utils/constants';
 import { getZoneTimezone, useNavigateWithParameters } from 'utils/helpers';
 import {
   endDatetimeAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   isRedirectedToLatestDatetimeAtom,
   selectedDatetimeIndexAtom,
   startDatetimeAtom,
@@ -30,7 +30,7 @@ export default function TimeController({
   className?: string;
   onToggle: () => void;
 }) {
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const [selectedDatetime, setSelectedDatetime] = useAtom(selectedDatetimeIndexAtom);
   const [numberOfEntries, setNumberOfEntries] = useState(0);
   const { data, isLoading: dataLoading } = useGetState();
@@ -127,7 +127,7 @@ export default function TimeController({
     <div className={twMerge(className, 'flex flex-col gap-3')}>
       <div className="flex flex-row items-center justify-between gap-2">
         <div className="flex items-center gap-1">
-          {isHourly ? (
+          {isFineGranularity ? (
             <Button
               type="link"
               size="sm"
@@ -171,7 +171,7 @@ export default function TimeController({
           isLoading={isLoading}
           className="h-[22px] w-full overflow-visible"
           transform={`translate(12, 0)`}
-          isLiveDisplay={isHourly && !urlDatetime}
+          isLiveDisplay={isFineGranularity && !urlDatetime}
           timezone={zoneTimezone}
           isTimeController={true}
         />

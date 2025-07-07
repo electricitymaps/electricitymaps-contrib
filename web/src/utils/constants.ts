@@ -6,6 +6,7 @@ export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
 export enum TimeRange {
+  H24 = '24h',
   H72 = '72h',
   M3 = '3mo',
   M12 = '12mo',
@@ -19,9 +20,10 @@ export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
 // accommodates 0-based index for 72 hours
 export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
   [TimeRange.H72]: 71,
+  [TimeRange.H24]: 287,
 };
 
-export const historicalTimeRange = [TimeRange.H72];
+export const historicalTimeRange = [TimeRange.H72, TimeRange.H24];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -55,6 +57,7 @@ export enum Charts {
   EMISSION_CHART = 'emission_chart',
   ELECTRTICITY_FLOW_CHART = 'electricity_flow_chart',
   ELECTRICITY_LOAD_CHART = 'electricity_load_chart',
+  ELECTRICITY_GRID_ALERT = 'electricity_grid_alert_chart',
   ELECTRICITY_MIX_CHART = 'electricity_mix_chart',
   ELECTRICITY_MIX_OVERVIEW_CHART = 'electricity_mix_overview_chart',
   ELECTRICITY_PRICE_CHART = 'electricity_price_chart',
@@ -115,6 +118,7 @@ export const modeOrderBarBreakdown = [
 
 // A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
 export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
+  [TimeRange.H24]: 'minutes',
   [TimeRange.H72]: 'hours',
   [TimeRange.M3]: 'days',
   [TimeRange.M12]: 'months',
@@ -244,7 +248,6 @@ export enum EstimationMethods {
   MODE_BREAKDOWN = 'ESTIMATED_MODE_BREAKDOWN',
   RECONSTRUCT_BREAKDOWN = 'ESTIMATED_RECONSTRUCT_BREAKDOWN',
   RECONSTRUCT_PRODUCTION_FROM_CONSUMPTION = 'ESTIMATED_RECONSTRUCT_PRODUCTION_FROM_CONSUMPTION',
-  AGGREGATED = 'aggregated',
   THRESHOLD_FILTERED = 'threshold_filtered',
   OUTAGE = 'outage',
   GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',

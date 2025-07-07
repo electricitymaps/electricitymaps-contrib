@@ -140,7 +140,7 @@ def test_fetch_production_success_without_solar(
             return_value=mock_exchange_data_night,
         ),
     ):
-        result = JP_KY.fetch_production()
+        result = JP_KY.fetch_production()[0]
 
         nuclear = 3119  # (119.7 + 96.1 + 96.1) * 10
         unknown = 5091  # 8010 - (-200) - 0 - nuclear
@@ -172,7 +172,7 @@ def test_fetch_production_success_with_solar(
             return_value=mock_exchange_data_day,
         ),
     ):
-        result = JP_KY.fetch_production()
+        result = JP_KY.fetch_production()[0]
 
         nuclear = 3119  # (119.7 + 96.1 + 96.1) * 10
         unknown = 3861  #  8680 - (-400) - 2100 - nuclear
@@ -205,19 +205,19 @@ def test_fetch_production_with_distant_exchange_data(
         }
     ]
 
-    with (
-        patch(
-            "requests.get",
-            side_effect=[
-                mock_csv_response_at_night,
-                mock_nuclear_responses[0],
-                mock_nuclear_responses[1],
-            ],
-        ),
-        patch("parsers.JP_KY.occtonet.fetch_exchange", return_value=distant_exchange),
+    with patch(  # noqa: SIM117
+        "requests.get",
+        side_effect=[
+            mock_csv_response_at_night,
+            mock_nuclear_responses[0],
+            mock_nuclear_responses[1],
+        ],
     ):
-        result = JP_KY.fetch_production()
-        assert result == []
+        with patch(
+            "parsers.JP_KY.occtonet.fetch_exchange", return_value=distant_exchange
+        ):
+            result = JP_KY.fetch_production()
+            assert result == []
 
 
 def test_snapshot_fetch_production(

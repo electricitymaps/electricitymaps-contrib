@@ -7,6 +7,7 @@ bounding_box:
     - 35.319778545000034
   - - 45.30699282900011
     - 42.598781643000095
+price_displayed: false
 capacity:
   biomass:
     - datetime: '2017-01-01'

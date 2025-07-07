@@ -13,6 +13,8 @@ from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
+    GridAlert,
+    GridAlertType,
     LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
@@ -483,6 +485,33 @@ class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
     ):
         event = LocationalMarginalPrice.create(
             self.logger, zoneKey, datetime, source, price, currency, node, sourceType
+        )
+        if event:
+            self.events.append(event)
+
+
+class GridAlertList(EventList[GridAlert]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        locationRegion: str | None,
+        source: str,
+        alertType: GridAlertType,
+        message: str,
+        issuedTime: datetime,
+        startTime: datetime,
+        endTime: datetime | None,
+    ):
+        event = GridAlert.create(
+            self.logger,
+            zoneKey,
+            locationRegion,
+            source,
+            alertType,
+            message,
+            issuedTime,
+            startTime,
+            endTime,
         )
         if event:
             self.events.append(event)

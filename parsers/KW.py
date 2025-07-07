@@ -74,7 +74,7 @@ def fetch_consumption(
         "source": "mew.gov.kw",
     }
 
-    return datapoint
+    return [datapoint]
 
 
 if __name__ == "__main__":

@@ -44,6 +44,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 212.0
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 412.0
   biomass:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -87,6 +90,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2186.4
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2202.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 2163.8
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -254,6 +263,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 83136.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 83097.3
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -503,6 +515,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 14498.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 15272.5
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 15442.5
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -592,6 +610,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 32487.9
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 32482.1
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch
@@ -929,6 +950,7 @@ fallbackZoneMixes:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_MISO.fetch_consumption_forecast
+  gridAlerts: US_MISO.fetch_grid_alerts
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_MISO.fetch_wind_solar_forecasts

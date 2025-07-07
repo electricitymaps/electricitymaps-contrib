@@ -277,6 +277,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 5708.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 5695.2
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -422,6 +425,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 3407.0
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 3414.5
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 3419.2
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -777,6 +786,7 @@ fallbackZoneMixes:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_NEISO.fetch_consumption_forecast
+  gridAlerts: US_NEISO.fetch_grid_alerts
   production: US_NEISO.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_NEISO.fetch_wind_solar_forecasts

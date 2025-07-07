@@ -107,7 +107,14 @@ def filter_production_objs(
             and obj["production"]["solar"] is not None
         )
 
-    all_filters = [filter_solar_production]
+    # The latest data points for AU-TAS are regularly containing only values for solar
+    # and no other production values. This is likely an invalid report, so we filter it out.
+    def only_solar_production(obj: dict) -> bool:
+        return not (
+            all(v is None for k, v in obj.get("production", {}).items() if k != "solar")
+        )
+
+    all_filters = [filter_solar_production, only_solar_production]
 
     filtered_objs = []
     for obj in objs:

@@ -166,8 +166,6 @@
     "title": "Aidez-nous à nous améliorer !"
   },
   "estimation-badge": {
-    "partially-estimated": "Partiellement estimées",
-    "fully-estimated": "Estimées",
     "outage": "Indisponibles"
   },
   "estimation-card": {
@@ -175,23 +173,15 @@
     "outage-details": "Voir les détails",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Les données sont partiellement estimées",
-      "pill": "Partiellement estimées",
       "body": "Les données rapportées pour cette zone sont incomplètes; des modèles d'estimation sont utilisés pour estimés les moyens de productions manquants."
-    },
-    "estimated_generic_method": {
-      "title": "Données estimées",
-      "pill": "Incomplètes",
-      "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Les données sont toujours estimées",
@@ -221,7 +211,7 @@
     "72h": "72h",
     "3mo": "90 jours",
     "12mo": "12 mois",
-    "all_months": "Tout les mois",
+    "all_months": "Tous les mois",
     "all_years": "Toutes les années",
     "navigate": "Naviguer",
     "live": "Live",
@@ -312,6 +302,13 @@
       "all_months": "Échanges nets mensuels",
       "all_years": "Échanges nets annuels"
     },
+    "electricityLoad": {
+      "72h": "Charge électrique horaire",
+      "3mo": "Charge électrique quotidienne",
+      "12mo": "Charge électrique mensuelle",
+      "all_months": "Charge électrique mensuelle",
+      "all_years": "Charge électrique annuelle"
+    },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
   },
@@ -359,7 +356,7 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
-    "netExchange": "Échange net",
+    "netExchange": "Échanges nets",
     "price": "Prix",
     "importing": "Important",
     "exporting": "Exportant",
@@ -805,7 +802,7 @@
       "zoneName": "Egypte"
     },
     "EH": {
-      "zoneName": "Sahara Occidental"
+      "zoneName": "Sahara occidental"
     },
     "ER": {
       "zoneName": "Érythrée"

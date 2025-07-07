@@ -78,6 +78,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE
         value: 738.986
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE
+        value: 741.362
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -167,6 +170,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE
         value: 982.986
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE
+        value: 985.362
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
