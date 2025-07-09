@@ -24,6 +24,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 69.2
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 70.0
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -40,6 +43,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1059.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2590.0
   gas:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -56,6 +62,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 15122.7
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 13592.2
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -179,6 +188,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 2159.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2164.6
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov

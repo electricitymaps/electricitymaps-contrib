@@ -11,6 +11,7 @@ import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { zoneExists } from 'features/panels/zone/util';
 import { PostHog, PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
@@ -130,6 +131,7 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   const [searchParameters] = useSearchParams();
   const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
+  const is5MinGranularityEnabled = useFeatureFlag('five-minute-granularity');
 
   if (!urlTimeRange) {
     return (
@@ -141,8 +143,13 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   }
   let sanitizedTimeRange = urlTimeRange.toLowerCase();
 
-  if (sanitizedTimeRange === '24h') {
-    sanitizedTimeRange = TimeRange.H72;
+  if (!is5MinGranularityEnabled && sanitizedTimeRange === '24h') {
+    return (
+      <Navigate
+        to={`${location.pathname}/72h/hourly?${searchParameters}${location.hash}`}
+        replace
+      />
+    );
   }
 
   if (sanitizedTimeRange === '30d') {

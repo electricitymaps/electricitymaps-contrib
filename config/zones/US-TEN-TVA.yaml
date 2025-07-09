@@ -30,6 +30,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 218.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 213.3
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -53,6 +56,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 17880.6
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 17906.6
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -137,6 +143,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1308.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1508.8
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -145,6 +154,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 28.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1.8
 comment: Tennessee Valley Authority
 contributors:
   - systemcatch

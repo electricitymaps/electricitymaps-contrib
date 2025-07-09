@@ -194,7 +194,7 @@ def fetch_production(
         solar_prod = solar.get("Value")
 
         productionMix = ProductionMix()
-        if all([total_prod, wind_prod, solar_prod]):
+        if all([total_prod is not None, wind_prod is not None, solar_prod is not None]):
             productionMix.add_value(
                 "unknown",
                 total_prod - wind_prod - solar_prod,
@@ -252,6 +252,12 @@ def fetch_exchange(
     for exchange in exchange_data:
         target_exchange = exchanges.get(exchange["FieldName"])
         if target_exchange is None:
+            continue
+
+        dt = parse_datetime(exchange["EffectiveTime"])
+        now = datetime.now(tz=IE_TZ)
+        # datetimes in the future are expected to be None
+        if dt > now:
             continue
 
         flow = (

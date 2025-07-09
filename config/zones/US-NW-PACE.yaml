@@ -89,6 +89,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 4605.1
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 4611.5
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov

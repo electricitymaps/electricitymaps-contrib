@@ -128,6 +128,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 25800.2
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 25781.7
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -181,6 +184,9 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 3423.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 3483.6
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -329,6 +335,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2451.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2461.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 2483.5
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -669,9 +681,9 @@ fallbackZoneMixes:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_NY.fetch_consumption_forecast
+  gridAlerts: US_NY.fetch_grid_alerts
   production: US_NY.fetch_production
   productionCapacity: EIA.fetch_production_capacity
-  gridAlerts: US_NY.fetch_grid_alerts
 region: Americas
 sources:
   INCER ACV:

@@ -123,6 +123,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 2025.0
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2016.0
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -269,6 +272,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 104819.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 104806.8
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 104760.4
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -289,6 +298,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 3287.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 3291.6
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -355,6 +367,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 5386.1
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 5395.1
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -506,6 +521,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 15287.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 15637.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 15855.9
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -887,11 +908,11 @@ fallbackZoneMixes:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
+  gridAlerts: US_PJM.fetch_grid_alerts
   price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_PJM.fetch_wind_solar_forecasts
-  gridAlerts: US_PJM.fetch_grid_alerts
 region: Americas
 sources:
   INCER ACV:
