@@ -8,8 +8,11 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+import requests
 from bs4 import BeautifulSoup
 from requests import Response, Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
@@ -415,7 +418,9 @@ def fetch_cea_production(
     cea_data_url = (
         "https://cea.nic.in/wp-admin/admin-ajax.php?action=getpostsfordatatables"
     )
+
     r_all_data: Response = session.get(cea_data_url)
+
     if r_all_data.status_code == 200:
         all_data = r_all_data.json()["data"]
         target_elem = [
@@ -427,6 +432,7 @@ def fetch_cea_production(
         if len(target_elem) > 0 and target_elem[0]["link"] != "file_not_found":
             target_url = target_elem[0]["link"].split(": ")[0]
             formatted_url = target_url.split("^")[0]
+
             r: Response = session.get(formatted_url)
             renewable_production = format_ren_production_data(
                 url=r.url, zone_key=zone_key, target_datetime=target_datetime
@@ -462,6 +468,16 @@ def fetch_production(
 
     all_data_points = []
     days_lookback_to_try = list(range(1, 8))
+
+    retries = Retry(
+        total=5,
+        backoff_factor=0.5,
+        allowed_methods=["GET"],
+    )
+
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount("https://", adapter)
+
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
 
