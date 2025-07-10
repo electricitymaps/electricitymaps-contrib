@@ -34,14 +34,30 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """
-    Thermal is a mix of diesel and LNG, thermal is therefore set to unknown.
+    We are using Yukon Energy's data from
+    http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption
+
+    Generation in Yukon is done with solar, wind, hydro, diesel oil, and LNG.
+
+    There are two companies, Yukon Energy and ATCO aka Yukon Electric aka YECL.
+    Yukon Energy does most of the generation and feeds into Yukon's grid. ATCO
+    does operations, billing, and generation in some of the off-grid
+    communities.
+
+    See schema of the grid at http://www.atcoelectricyukon.com/About-Us/
+
+    Thermal is a mix of diesel oil and LNG, therefore thermal is set to unknown.
     https://yukonenergy.ca/energy-in-yukon/projects-facilities/
     """
 
     if zone_key != ZONE_KEY:
-        raise ParserException("CA_YT.py", "Cannot parse zone '{zone_key}'", zone_key)
+        raise ParserException(
+            "YUKONENERGY.py", "Cannot parse zone '{zone_key}'", zone_key
+        )
     if target_datetime:
-        raise ParserException("CA_YT.py", "Unable to fetch historical data", zone_key)
+        raise ParserException(
+            "YUKONENERGY.py", "Unable to fetch historical data", zone_key
+        )
 
     session = session or Session()
 
@@ -57,7 +73,7 @@ def fetch_production(
         r"var rows_chart_current = parseDates\((\[\[.*?\]\])\);", html, re.DOTALL
     )
     if not match_past_day or not match_current:
-        raise ParserException("CA_YT.py", "Cannot find data", zone_key)
+        raise ParserException("YUKONENERGY.py", "Cannot find data", zone_key)
 
     past_day_data = json.loads(match_past_day.group(1))
     current_data = json.loads(match_current.group(1))
