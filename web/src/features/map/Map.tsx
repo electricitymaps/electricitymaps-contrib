@@ -30,6 +30,7 @@ import {
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
 import { useFeatureFlag } from '../feature-flags/api';
 import BackgroundLayer from './map-layers/BackgroundLayer';
+import GridAlertsLayer from './map-layers/GridAlertsLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
@@ -475,6 +476,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <GridAlertsLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>
