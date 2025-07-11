@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { FiAlertTriangle, FiInfo } from 'react-icons/fi';
 import i18n from 'translation/i18n';
 import { TimeRange } from 'utils/constants';
-import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
+import { selectedDatetimeIndexAtom, useTimeRangeSync } from 'utils/state/atoms';
 
 const getAlertIcon = (alertType: string) => {
   if (alertType === 'action') {
@@ -31,15 +31,17 @@ const getAlertColorClass = (alertType: string) => {
 export default function CurrentGridAlertsCard() {
   const { data, isLoading } = useGetZone();
   const selectedDatetime = useAtomValue(selectedDatetimeIndexAtom);
+  const [selectedTimeRange, _] = useTimeRangeSync();
 
   const zoneMessage = data?.zoneMessage;
   const icon = getAlertIcon(zoneMessage?.alert_type ?? 'default');
   const colorClass = getAlertColorClass(zoneMessage?.alert_type ?? 'default');
   const [title, ...rest] = zoneMessage?.message.split('\n') ?? [];
 
-  if (isLoading || !zoneMessage) {
+  if (isLoading || !zoneMessage || selectedTimeRange !== TimeRange.H72) {
     return null;
   }
+
   const startHour = new Date(zoneMessage.start_time ?? '');
   startHour.setMinutes(0, 0, 0);
   if (selectedDatetime.datetime < startHour) {
@@ -47,35 +49,29 @@ export default function CurrentGridAlertsCard() {
   }
 
   return (
-    <RoundedCard className="flex flex-col items-center gap-2 py-3 text-sm text-neutral-600 dark:text-neutral-300">
-      {isLoading ? (
-        <p className="text-center">Loading grid alerts...</p>
-      ) : (
-        <div>
+    <RoundedCard className="gap-2 py-3 text-sm text-neutral-600 dark:text-neutral-300">
+      <div className="flex flex-row items-center gap-1">
+        {icon} <span className={`font-semibold ${colorClass}`}>{title}</span>
+      </div>
+      <div className="flex flex-row items-center gap-1 text-xs">
+        <FormattedTime
+          datetime={new Date(zoneMessage?.start_time ?? '')}
+          language={i18n.languages[0]}
+          timeRange={TimeRange.H72}
+        />
+        {zoneMessage?.end_time && (
           <div className="flex flex-row items-center gap-1">
-            {icon} <span className={`font-semibold ${colorClass}`}>{title}</span>
-          </div>
-          <div className="flex flex-row items-center gap-1 text-xs">
+            <div>-</div>
             <FormattedTime
-              datetime={new Date(zoneMessage?.start_time ?? '')}
+              datetime={new Date(zoneMessage.end_time ?? '')}
               language={i18n.languages[0]}
               timeRange={TimeRange.H72}
             />
-            {zoneMessage?.end_time && (
-              <div className="flex flex-row items-center gap-1">
-                <div>-</div>
-                <FormattedTime
-                  datetime={new Date(zoneMessage.end_time ?? '')}
-                  language={i18n.languages[0]}
-                  timeRange={TimeRange.H72}
-                />
-              </div>
-            )}
           </div>
-          <HorizontalDivider />
-          <div className="font-normal">{rest.join('\n')}</div>
-        </div>
-      )}
+        )}
+      </div>
+      <HorizontalDivider />
+      <div className="font-normal">{rest.join('\n')}</div>
     </RoundedCard>
   );
 }
