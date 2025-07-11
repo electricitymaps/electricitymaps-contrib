@@ -27,6 +27,8 @@ GRID_INDIA_URL_WITHOUT_PROXY = "https://grid-india.in/reports/daily-psp-report"
 GRID_INDIA_CDN_WITHOUT_PROXY = "https://webcdn.grid-india.in"
 IN_EA_TZ = ZoneInfo("Asia/Kolkata")
 
+SOURCE = "grid-india.in"
+
 # 1MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 CONVERSION_MU_MW = 0.024
 
@@ -41,7 +43,6 @@ def get_psp_report_file_url(target_date: datetime) -> str:
     url = GRID_INDIA_BACKEND_API
     target_date_filename_format = "%d.%m.%y"
     target_date_filename = target_date.strftime(target_date_filename_format)
-    file_regex = f"{target_date_filename}_NLDC_PSP_(\d)+.pdf"
 
     try:
         response = requests.post(
@@ -53,25 +54,47 @@ def get_psp_report_file_url(target_date: datetime) -> str:
                 "_month": "00",
             },
         )
+
         response.raise_for_status()
         all_files = response.json().get("retData")
-        file_for_target_date = [
-            item for item in all_files if re.search(file_regex, item["FilePath"])
+
+        file_patterns = [
+            f"{target_date_filename}_NLDC_PSP_(\d)+.pdf",  # After approx May 1, 2025
+            f"{target_date_filename}_NLDC_PSP.pdf",  # Before approx May 1, 2025
         ]
-        if len(file_for_target_date) > 1:
-            logger.error(f"Multiple files found for {target_date_filename}")
-            raise ParserException(
-                parser="IN_EA.py",
-                message=f"{target_date}: Multiple files found for {target_date_filename}",
-            )
-        return f"{GRID_INDIA_CDN_WITHOUT_PROXY}/{file_for_target_date[0]['FilePath']}"
+
+        for file_regex in file_patterns:
+            file_for_target_date = [
+                item for item in all_files if re.search(file_regex, item["FilePath"])
+            ]
+
+            if len(file_for_target_date) > 1:
+                logger.error(f"Multiple files found for {target_date_filename}")
+                raise ParserException(
+                    parser="IN_EA.py",
+                    message=f"{target_date}: Multiple files found for {target_date_filename}",
+                )
+
+            if file_for_target_date:
+                return f"{GRID_INDIA_CDN_WITHOUT_PROXY}/{file_for_target_date[0]['FilePath']}"
+
+            else:
+                continue
+
+        raise ParserException(
+            parser="IN_EA.py",
+            message=f"No file found for {target_date}. Some dates may not have a PSP report.",
+        )
+
     except requests.RequestException as e:
         raise ParserException(
-            parser="IN_EA.py", message=f"{target_date}: Error fetching the webpage: {e}"
+            parser="IN_EA.py",
+            message=f"{target_date}: Error fetching the webpage: {e}",
         ) from e
     except Exception as e:
         raise ParserException(
-            parser="IN_EA.py", message=f"{target_date}: Error parsing the webpage: {e}"
+            parser="IN_EA.py",
+            message=f"{target_date}: Error parsing the webpage: {e}",
         ) from e
 
 
@@ -153,23 +176,62 @@ def find_and_extract_table(pdf, table_header_text):
     return None
 
 
-def parse_pdf_for_interregional_exchanges(pdf_url: str, zone_key: ZoneKey) -> dict[ZoneKey, float]:
+def find_and_set_header(df, search_keywords=("sl no",)):
+    """
+    Searches for a header row containing in the DataFrame that contains "sl no".
+    Some years the header is not the first row, so we search the first 10 rows.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to search.
+        search_keywords (tuple): A tuple of keywords to look for in the header row.
+
+    Returns:
+        pd.DataFrame: The DataFrame with the header row set if found.
+    """
+
+    for i in range(min(10, len(df))):
+        row = df.iloc[i]
+        cleaned_row = row.astype(str).str.replace(r"\s+", " ", regex=True).str.lower()
+
+        if any(
+            any(keyword in cell for cell in cleaned_row) for keyword in search_keywords
+        ):
+            df.columns = row
+            df = df.iloc[i + 1 :].reset_index(drop=True)
+
+            df.columns = [
+                str(col).replace("\n", " ").strip() for col in df.columns
+            ]  # For some dates the column names have \n
+            return df
+
+    raise ValueError("Could not find header row with expected keywords.")
+
+
+def parse_pdf_for_interregional_exchanges(
+    pdf_url: str, zone_key: ZoneKey
+) -> dict[ZoneKey, float]:
     """
     Parses the PDF content and returns a dictionary of interregional exchanges.
     """
     response = requests.get(pdf_url)
     response.raise_for_status()
+
     with pdfplumber.open(io.BytesIO(response.content)) as pdf:
         target_table_data = find_table_after_text(pdf, "Inter-Regional Exchanges")
-        headers = target_table_data[0]
-        data = target_table_data[1:]
-        df = pd.DataFrame(data, columns=headers)
+
+        df = pd.DataFrame(target_table_data)
+        df = find_and_set_header(df, search_keywords=("sl no",))
+
         cols_to_keep = [
-            col for col in df.columns 
-            if 'sl no' in col.lower() or 'net' in col.lower()
+            col for col in df.columns if "sl no" in col.lower() or "net" in col.lower()
         ]
-        df = df[cols_to_keep].rename(columns={df.columns[0]: 'zone_key', df.columns[1]: 'net_flow'})
-        df = df[df['zone_key'] == INTERREGIONAL_EXCHANGES_MAPPING[zone_key]] 
+
+        df = df[cols_to_keep].rename(
+            columns={cols_to_keep[0]: "zone_key", cols_to_keep[1]: "net_flow"}
+        )
+
+        df = df[df["zone_key"] == INTERREGIONAL_EXCHANGES_MAPPING[zone_key]]
+
         if len(df) > 1:
             raise ParserException(
                 parser="IN_EA.py",
@@ -177,8 +239,12 @@ def parse_pdf_for_interregional_exchanges(pdf_url: str, zone_key: ZoneKey) -> di
                 zone_key=zone_key,
             )
         try:
-            net_flow_mu = float(df['net_flow'].iloc[0])
+            net_flow_mu = float(df["net_flow"].iloc[0])
+            if zone_key in REVERSED_INTERREGIONAL_EXCHANGES:
+                net_flow_mu = -net_flow_mu
+
             return {zone_key: round(net_flow_mu / CONVERSION_MU_MW, 3)}
+
         except Exception as e:
             raise ParserException(
                 parser="IN_EA.py",
@@ -187,14 +253,57 @@ def parse_pdf_for_interregional_exchanges(pdf_url: str, zone_key: ZoneKey) -> di
             ) from e
 
 
+@refetch_frequency(timedelta(days=1))
+def fetch_exchange(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session = Session(),
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """collects average daily exchanges from Grid India"""
+    logging.getLogger("pdfminer").setLevel(logging.WARNING)
+
+    if target_datetime is None:
+        # 1 day delay observed
+        target_datetime = datetime.now(tz=IN_EA_TZ).replace(
+            hour=0, minute=0, second=0
+        ) - timedelta(days=1)
+
+    else:
+        target_datetime = target_datetime.astimezone(IN_EA_TZ).replace(
+            hour=0, minute=0, second=0
+        )
+
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
+    exchange_list = ExchangeList(logger)
+    file_url = get_psp_report_file_url(target_datetime)
+
+    interregional_exchange_data = parse_pdf_for_interregional_exchanges(
+        file_url, sorted_zone_keys
+    )
+
+    exchange_list.append(
+        zoneKey=sorted_zone_keys,
+        datetime=target_datetime,
+        netFlow=interregional_exchange_data.get(sorted_zone_keys),
+        source=SOURCE,
+    )
+    return exchange_list.to_list()
+
+
 INTERREGIONAL_EXCHANGES_MAPPING = {
     ZoneKey("IN-EA->IN-NO"): "ER-NR",
     ZoneKey("IN-EA->IN-NE"): "ER-NER",
     ZoneKey("IN-EA->IN-SO"): "ER-SR",
     ZoneKey("IN-EA->IN-WE"): "ER-WR",
-    ZoneKey("IN-NO->IN-WE"): "NR-WR",
-    ZoneKey("IN-SO->IN-WE"): "SR-WR",
+    ZoneKey("IN-NO->IN-WE"): "WR-NR",  # Reversed exchange
+    ZoneKey("IN-SO->IN-WE"): "WR-SR",  # Reversed exchange
+    ZoneKey("IN-NE->IN-NO"): "NER-NR",
 }
+
+REVERSED_INTERREGIONAL_EXCHANGES = ["IN-NO->IN-WE", "IN-SO->IN-WE"]
 
 INTERREGIONAL_EXCHANGES = {
     ZoneKey("IN-EA->IN-NO"): "Import/Export between EAST REGION and NORTH REGION",
@@ -270,42 +379,12 @@ def extract_interregional_exchanges(
     return exchanges
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_exchange(
-    zone_key1: ZoneKey,
-    zone_key2: ZoneKey,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[dict[str, Any]]:
-    """collects average daily exchanges for ERLC"""
-    if target_datetime is None:
-        # 1 day delay observed
-        target_datetime = datetime.now(tz=IN_EA_TZ).replace(
-            hour=0, minute=0, second=0
-        ) - timedelta(days=1)
-    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    target_date = target_datetime.strftime("%Y-%m-%d")
-    url, extract_function = get_fetch_function(sorted_zone_keys)
-    resp = session.get(
-        url=url.format(
-            proxy=IN_WE_PROXY,
-            host=HOST,
-            target_date=target_date,
-        )
-    )
-    if not resp.ok:
-        raise ParserException(
-            parser="IN_EA.py",
-            message=f"{target_datetime}: {sorted_zone_keys} data is not available : [{resp.status_code}]",
-            zone_key=sorted_zone_keys,
-        )
-    data = resp.json()
-    exchanges = extract_function(data, sorted_zone_keys, logger)
-    return exchanges.to_list()
-
-
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
+
     file_url = get_psp_report_file_url(datetime(2025, 6, 12, tzinfo=IN_EA_TZ))
-    parse_pdf_for_interregional_exchanges(file_url, zone_key=ZoneKey("IN-EA->IN-NO"))
+
+    parsed_data = parse_pdf_for_interregional_exchanges(
+        file_url, zone_key=ZoneKey("IN-EA->IN-NE")
+    )
+    print(parsed_data)
