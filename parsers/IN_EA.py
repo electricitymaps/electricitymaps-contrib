@@ -253,6 +253,64 @@ def parse_pdf_for_interregional_exchanges(
             ) from e
 
 
+def parse_pdf_for_international_exchanges(
+    pdf_url: str, zone_key: ZoneKey
+) -> dict[ZoneKey, float]:
+    """
+    Parses the PDF content and returns a dictionary of international exchanges.
+    """
+    response = requests.get(pdf_url)
+    response.raise_for_status()
+
+    with pdfplumber.open(io.BytesIO(response.content)) as pdf:
+        target_table_data = find_table_after_text(pdf, "International Exchanges")
+
+        df = pd.DataFrame(target_table_data)
+        df = find_and_set_header(df, search_keywords=("state",))
+        df["State"] = df["State"].ffill()
+
+        cols_to_keep = [
+            col
+            for col in df.columns
+            if "state" in col.lower()
+            or "region" in col.lower()
+            or "(mu)" in col.lower()
+        ]
+
+        if len(cols_to_keep) != 3:
+            raise ParserException(
+                parser="IN_EA.py",
+                message=f"Needed columns not found or too many found in table for {zone_key}",
+                zone_key=zone_key,
+            )
+
+        df["zone_key"] = df[[cols_to_keep[0], cols_to_keep[1]]].agg("-".join, axis=1)
+
+        df = df[["zone_key", cols_to_keep[2]]].rename(
+            columns={
+                cols_to_keep[2]: "net_flow",
+            }
+        )
+
+        df = df[df["zone_key"] == INTERNATIONAL_EXCHANGES_MAPPING[zone_key]]
+        df["net_flow"] = df["net_flow"].astype(float)
+        df = df.groupby("zone_key").sum()
+
+        try:
+            net_flow_mu = df["net_flow"].iloc[0]
+            if zone_key in REVERSED_INTERNATIONAL_EXCHANGES:
+                net_flow_mu = -net_flow_mu
+            print(net_flow_mu)
+            return {zone_key: round(net_flow_mu / CONVERSION_MU_MW, 3)}
+
+        except Exception as e:
+            raise ParserException(
+                parser="IN_EA.py",
+                message=f"Could not find a valid value for {zone_key} for {pdf_url}: {e}",
+                zone_key=zone_key,
+            ) from e
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: ZoneKey,
@@ -279,15 +337,22 @@ def fetch_exchange(
 
     exchange_list = ExchangeList(logger)
     file_url = get_psp_report_file_url(target_datetime)
+    print(file_url)
 
-    interregional_exchange_data = parse_pdf_for_interregional_exchanges(
-        file_url, sorted_zone_keys
-    )
+    if sorted_zone_keys in INTERREGIONAL_EXCHANGES_MAPPING:
+        exchange_data = parse_pdf_for_interregional_exchanges(
+            file_url, sorted_zone_keys
+        )
+
+    elif sorted_zone_keys in INTERRNATIONAL_EXCHANGES:
+        exchange_data = parse_pdf_for_international_exchanges(
+            file_url, sorted_zone_keys
+        )
 
     exchange_list.append(
         zoneKey=sorted_zone_keys,
         datetime=target_datetime,
-        netFlow=interregional_exchange_data.get(sorted_zone_keys),
+        netFlow=exchange_data.get(sorted_zone_keys),
         source=SOURCE,
     )
     return exchange_list.to_list()
@@ -303,7 +368,18 @@ INTERREGIONAL_EXCHANGES_MAPPING = {
     ZoneKey("IN-NE->IN-NO"): "NER-NR",
 }
 
+INTERNATIONAL_EXCHANGES_MAPPING = {
+    ZoneKey("BT->IN-EA"): "BHUTAN-ER",
+    ZoneKey("BT->IN-NE"): "BHUTAN-NER",
+    ZoneKey("IN-EA->NP"): "NEPAL-ER",
+    ZoneKey("IN-NO->NP"): "NEPAL-NR",
+    ZoneKey("BD->IN-EA"): "BANGLADESH-ER",
+    ZoneKey("BD->IN-NE"): "BANGLADESH-NER",
+}
+
 REVERSED_INTERREGIONAL_EXCHANGES = ["IN-NO->IN-WE", "IN-SO->IN-WE"]
+
+REVERSED_INTERNATIONAL_EXCHANGES = ["IN-EA->NP", "IN-NO->NP"]
 
 INTERREGIONAL_EXCHANGES = {
     ZoneKey("IN-EA->IN-NO"): "Import/Export between EAST REGION and NORTH REGION",
@@ -316,6 +392,7 @@ INTERRNATIONAL_EXCHANGES = {
     ZoneKey("IN-EA->NP"): "NEPAL",
     ZoneKey("BD->IN-EA"): "BANGLADESH",
 }
+
 MAPPING = {
     **INTERREGIONAL_EXCHANGES,
     **INTERRNATIONAL_EXCHANGES,
