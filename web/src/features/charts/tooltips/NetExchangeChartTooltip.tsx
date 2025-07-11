@@ -2,7 +2,11 @@ import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatCo2, scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, isHourlyAtom, timeRangeAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+  timeRangeAtom,
+} from 'utils/state/atoms';
 
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
@@ -12,7 +16,7 @@ export default function NetExchangeChartTooltip({
 }: InnerAreaGraphTooltipProps) {
   const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { t } = useTranslation();
 
   if (!zoneDetail) {
@@ -22,14 +26,17 @@ export default function NetExchangeChartTooltip({
   const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
 
   const netExchange = getNetExchange(zoneDetail, displayByEmissions);
-  const { formattingFactor, unit: powerUnit } = scalePower(netExchange, isHourly);
+  const { formattingFactor, unit: powerUnit } = scalePower(
+    netExchange,
+    isFineGranularity
+  );
 
   const unit = displayByEmissions ? t('ofCO2eq') : powerUnit;
   const value = displayByEmissions
     ? formatCo2({ value: Math.abs(netExchange) })
     : Math.abs(round(netExchange / formattingFactor));
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
 
   return (
     <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[350px]">

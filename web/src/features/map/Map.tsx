@@ -14,11 +14,13 @@ import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
 import { useLocation, useParams } from 'react-router-dom';
 import { RouteParameters } from 'types';
 import {
+  filterCarbonIntensity,
   getCarbonIntensity,
   useNavigateWithParameters,
   useUserLocation,
 } from 'utils/helpers';
 import {
+  co2IntensityRangeAtom,
   isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
@@ -26,6 +28,7 @@ import {
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import { useFeatureFlag } from '../feature-flags/api';
 import BackgroundLayer from './map-layers/BackgroundLayer';
 import GridAlertsLayer from './map-layers/GridAlertsLayer';
 import StatesLayer from './map-layers/StatesLayer';
@@ -64,6 +67,7 @@ interface ExtendedWindow extends Window {
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const co2IntensityRange = useAtomValue(co2IntensityRangeAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
@@ -91,6 +95,9 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
+  const isCo2IntensityFilteringFeatureEnabled = useFeatureFlag(
+    'legend-co2-intensity-filtering'
+  );
 
   useEffect(() => {
     let subscription: PluginListenerHandle | null = null;
@@ -182,7 +189,16 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
       const zone = data?.datetimes[selectedDatetimeString]?.z[zoneId];
-      const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
+
+      let co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
+
+      co2intensity = filterCarbonIntensity(
+        isCo2IntensityFilteringFeatureEnabled,
+        co2intensity,
+        co2IntensityRange[0],
+        co2IntensityRange[1]
+      );
+
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
@@ -217,6 +233,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     theme.clickableFill,
     selectedDatetimeString,
     isConsumption,
+    co2IntensityRange,
+    isCo2IntensityFilteringFeatureEnabled,
   ]);
 
   useEffect(() => {

@@ -27,6 +27,7 @@ def fetch_grid_alerts_emails(
     session = session or Session()
     MAILGUN_API_KEY = get_token("MAILGUN_TOKEN")
 
+    domain_name = "alerts.electricitymaps.com"
     # REQUEST BODY: only implemented for the last 5 hours
     nowminus5hours = (
         datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
@@ -50,8 +51,8 @@ def fetch_grid_alerts_emails(
                     "comparator": "=",
                     "values": [
                         {
-                            "label": "alerts.electricitymaps.com",
-                            "value": "alerts.electricitymaps.com",
+                            "label": domain_name,
+                            "value": domain_name,
                         }
                     ],
                 },
@@ -100,8 +101,6 @@ def fetch_grid_alerts_emails(
 
     # Get email using storage keys # The email is stored only for a few days (less than 3 days)
     for storage_key in keys:
-        domain_name = "alerts.electricitymaps.com"
-
         API_BASE_URL2 = f"https://api.{REGION}.mailgun.net/v3/domains/{domain_name}/messages/{storage_key}"
 
         # MAKE REQUEST
@@ -113,26 +112,31 @@ def fetch_grid_alerts_emails(
 
         # Parse email
         email_json = response.json()
-        message = email_json["subject"] + "\n" + email_json["body-plain"]
-        dt_received = datetime.datetime.strptime(
-            email_json["Date"], "%a, %d %b %Y %H:%M:%S %z"
-        )
+
+        date_str = email_json["Date"].replace(" (UTC)", "")
+        dt_received = datetime.datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S %z")
+        sender = email_json["From"].lower()
 
         # Extract zone key from sender
         if (
-            ("ercot" in email_json["sender"] and zone_key == ZoneKey("US-TEX-ERCO"))
-            or (
-                "flexalert" in email_json["sender"]
-                and zone_key == ZoneKey("US-CAL-CISO")
-            )
-            or ("spp" in email_json["sender"] and zone_key == ZoneKey("US-CENT-SWPP"))
-            or ("electricitymaps" in email_json["sender"])
+            ("ercot" in sender and zone_key == ZoneKey("US-TEX-ERCO"))
+            or ("flexalert" in sender and zone_key == ZoneKey("US-CAL-CISO"))
+            or ("spp" in sender and zone_key == ZoneKey("US-CENT-SWPP"))
+            or ("electricitymaps" in sender)
         ):
+            body = ""
+            if ZoneKey("US-CENT-SWPP") == zone_key:
+                body = email_json["body-plain"].split(
+                    "The following chart shows the relative severity of"
+                )[0]
+            # add more cases when we know the format of the other emails
+
+            message = email_json["subject"] + "\n" + body
             # Add to grid_alert_list
             grid_alert_list.append(
                 zoneKey=zone_key,
                 locationRegion=None,
-                source=email_json["sender"],
+                source=sender,
                 alertType=GridAlertType.undefined,
                 message=message,
                 issuedTime=dt_received,

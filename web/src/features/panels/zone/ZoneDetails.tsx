@@ -14,7 +14,7 @@ import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate } from 'utils/constants';
 import {
   displayByEmissionsAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -36,7 +36,7 @@ export default function ZoneDetails(): JSX.Element {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
@@ -44,7 +44,7 @@ export default function ZoneDetails(): JSX.Element {
   const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
   const { estimationMethod } = selectedData || {};
-  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
 
   const trackEvent = useTrackEvent();
   const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);

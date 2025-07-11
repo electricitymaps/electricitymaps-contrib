@@ -12,8 +12,16 @@ import { formatDateTick } from '../../utils/formatting';
 // The following represents a list of methods, indexed by time range, that depict
 // if a datetime should be a major tick, where we will display the date value.
 
-const getMajorTick = (timeRange: TimeRange, localHours: number, index: number) => {
+const getMajorTick = (
+  timeRange: TimeRange,
+  localHours: number,
+  localMinutes: number,
+  index: number
+) => {
   switch (timeRange) {
+    case TimeRange.H24: {
+      return localHours % 4 === 0 && localMinutes === 0;
+    }
     case TimeRange.H72: {
       return localHours === 12 || localHours === 0;
     }
@@ -43,16 +51,20 @@ const renderTick = (
   chartHeight?: number,
   isTimeController?: boolean
 ) => {
-  const { localHours } = getLocalTime(value, timezone);
-  const isMidnightTime = localHours === 0;
+  const { localHours, localMinutes } = getLocalTime(value, timezone);
+  const isMidnightTime = localHours === 0 && localMinutes === 0;
 
-  const isMajorTick = !isLoading && getMajorTick(selectedTimeRange, localHours, index);
+  const isMajorTick =
+    !isLoading && getMajorTick(selectedTimeRange, localHours, localMinutes, index);
   const isLastTick = index === HOURLY_TIME_INDEX[selectedTimeRange];
   const scaledValue = scale(value);
   const overlapsWithLive = scaledValue + 40 >= scale.range()[1]; // the "LIVE" labels takes ~30px
   const shouldShowValue = displayLive
     ? (isMajorTick && !overlapsWithLive) || isLastTick
     : isMajorTick;
+
+  const shouldShowMinorTick =
+    selectedTimeRange === TimeRange.H24 ? localMinutes % 15 === 0 : true;
 
   return (
     <Group key={index} className="text-xs" left={scaledValue}>
@@ -68,7 +80,9 @@ const renderTick = (
             className="midnight-marker"
           />
         )}
-      <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
+      {shouldShowMinorTick && (
+        <line stroke="currentColor" y2="6" opacity={isMajorTick ? 0.5 : 0.2} />
+      )}
       {shouldShowValue &&
         renderTickValue(value, index, displayLive, lang, selectedTimeRange, timezone)}
     </Group>
