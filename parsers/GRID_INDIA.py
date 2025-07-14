@@ -1,7 +1,6 @@
 import io
 import logging
 import re
-from collections.abc import Callable
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
