@@ -14,17 +14,22 @@ from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 from parsers.lib.exceptions import ParserException
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-HOST = "https://app.erldc.in"
+
+API_HOST = "https://webapi.grid-india.in"
+CDN_HOST = "https://webcdn.grid-india.in"
+
 GRID_INDIA_BACKEND_API = "https://webapi.grid-india.in/api/v1/file"
-INTERNATIONAL_EXCHANGES_URL = "{proxy}/api/pspreportpsp/Get/pspreport_psp_transnationalexchange/GetByTwoDate?host={host}&firstDate={target_date}&secondDate={target_date}"
-INTERREGIONAL_EXCHANGES_URL = "{proxy}/api/pspreportpsp/Get/pspreport_psp_interregionalexchanges/GetByTwoDate?host={host}&firstDate={target_date}&secondDate={target_date}"
-GRID_INDIA_URL = "{proxy}/reports/daily-psp-report?host={host}"
+
+API_BACKEND_WITH_PROXY = "{proxy}/api/v1/file?host={host}"
+CDN_BACKEND_WITH_PROXY = "{proxy}?host={host}"
+
 GRID_INDIA_URL_WITHOUT_PROXY = "https://grid-india.in/reports/daily-psp-report"
 GRID_INDIA_CDN_WITHOUT_PROXY = "https://webcdn.grid-india.in"
+
 IN_EA_TZ = ZoneInfo("Asia/Kolkata")
 
 SOURCE = "grid-india.in"
@@ -80,7 +85,8 @@ def get_psp_report_file_url(target_date: datetime) -> str:
     Returns a list of dictionaries containing file information.
     """
 
-    # url = GRID_INDIA_URL.format(proxy=IN_WE_PROXY, host=HOST_GRID_INDIA)
+    # url = API_BACKEND_WITH_PROXY.format(proxy=IN_WE_PROXY, host=API_HOST)
+
     url = GRID_INDIA_BACKEND_API
     target_date_filename_format = "%d.%m.%y"
     target_date_filename = target_date.strftime(target_date_filename_format)
@@ -112,29 +118,32 @@ def get_psp_report_file_url(target_date: datetime) -> str:
             if len(file_for_target_date) > 1:
                 logger.error(f"Multiple files found for {target_date_filename}")
                 raise ParserException(
-                    parser="IN_EA.py",
+                    parser="GRID_INDIA.py",
                     message=f"{target_date}: Multiple files found for {target_date_filename}",
                 )
 
             if file_for_target_date:
                 return f"{GRID_INDIA_CDN_WITHOUT_PROXY}/{file_for_target_date[0]['FilePath']}"
 
+            # if file_for_target_date:
+            #     return f"{CDN_BACKEND_WITH_PROXY.format(proxy=IN_WE_PROXY, host=CDN_HOST)}/{file_for_target_date[0]['FilePath']}"
+
             else:
                 continue
 
         raise ParserException(
-            parser="IN_EA.py",
+            parser="GRID_INDIA.py",
             message=f"No file found for {target_date}. Some dates may not have a PSP report.",
         )
 
     except requests.RequestException as e:
         raise ParserException(
-            parser="IN_EA.py",
+            parser="GRID_INDIA.py",
             message=f"{target_date}: Error fetching the webpage: {e}",
         ) from e
     except Exception as e:
         raise ParserException(
-            parser="IN_EA.py",
+            parser="GRID_INDIA.py",
             message=f"{target_date}: Error parsing the webpage: {e}",
         ) from e
 
@@ -255,6 +264,7 @@ def parse_pdf_for_interregional_exchanges(
     Parses the PDF content and returns a dictionary of interregional exchanges.
     """
     response = requests.get(pdf_url)
+
     response.raise_for_status()
 
     with pdfplumber.open(io.BytesIO(response.content)) as pdf:
@@ -355,6 +365,7 @@ def parse_pdf_for_international_exchanges(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="IN")
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
