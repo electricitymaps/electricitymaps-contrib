@@ -471,14 +471,14 @@ def fetch_consumption_forecast(
 
 
 def create_production_storage(
-    fuel_type: str, production_point: dict[str, float], negative_threshold: float
+    fuel_type: str, production_point: dict[str, float | None], negative_threshold: float
 ) -> tuple[ProductionMix | None, StorageMix | None]:
     """Create a production mix or a storage mix from a production point
     handling the special cases of hydro storage and self consumption"""
     production_value = production_point["value"]
     production_mix = ProductionMix()
     storage_mix = StorageMix()
-    if production_value < 0 and fuel_type == "hydro":
+    if production_value is not None and production_value < 0 and fuel_type == "hydro":
         # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
         # https://www.eia.gov/electricity/gridmonitor/about
         storage_mix.add_value("hydro", abs(production_value))
@@ -488,14 +488,22 @@ def create_production_storage(
 
     # have to have early returns because of downstream validation in ProductionBreakdownList
     if fuel_type == "hydro_storage":
-        storage_mix.add_value("hydro", -production_value)
+        storage_mix.add_value(
+            "hydro",
+            -production_value if production_value is not None else production_value,
+        )
         return None, storage_mix
     elif fuel_type == "battery_storage":
-        storage_mix.add_value("battery", -production_value)
+        storage_mix.add_value(
+            "battery",
+            -production_value if production_value is not None else production_value,
+        )
         return None, storage_mix
     else:
         production_mix.add_value(
-            fuel_type, production_value, production_value > negative_threshold
+            fuel_type,
+            production_value,
+            production_value > negative_threshold if bool(production_value) else False,
         )
         return production_mix, None
 
