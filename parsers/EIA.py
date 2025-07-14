@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-from dateutil import parser, tz
+from dateutil import parser
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -352,7 +352,7 @@ EXCHANGE_TRANSFERS = {
 # battery_storage: float | None = None
 # hydro_storage: float | None = None
 TYPES = {
-    # 'biomass': 'BM',  # not currently supported
+    "biomass": "BM",
     "coal": "COL",
     "gas": "NG",
     "geothermal": "GEO",
@@ -404,7 +404,7 @@ FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -522,15 +522,6 @@ def fetch_production_mix(
             target_datetime=target_datetime,
             logger=logger,
         )
-        # TODO Currently manually filtering out datapoints with null values
-        # As null values can cause problems in the estimation models if there's
-        # only null values.
-        # Integrate with data quality layer later.
-        production_and_storage_values = [
-            datapoint
-            for datapoint in production_and_storage_values
-            if datapoint["value"] is not None
-        ]
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
@@ -584,21 +575,12 @@ def fetch_production_mix(
             url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
             additional_breakdown = ProductionBreakdownList(logger)
             additional_production = _fetch_historical(
-                zone,
+                ZoneKey(zone),
                 url_prefix,
                 session=session,
                 target_datetime=target_datetime,
                 logger=logger,
             )
-            # TODO Currently manually filtering out datapoints with null values
-            # As null values can cause problems in the estimation models if there's
-            # only null values.
-            # Integrate with data quality layer later.
-            additional_production = [
-                datapoint
-                for datapoint in additional_production
-                if datapoint["value"] is not None
-            ]
             for point in additional_production:
                 point.update({"value": point["value"] * percentage})
                 production_mix, storage_mix = create_production_storage(
@@ -654,7 +636,7 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
+    sortedcodes = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     exchange_list = ExchangeList(logger)
     exchange = _fetch_historical(
         sortedcodes,
@@ -678,7 +660,7 @@ def fetch_exchange(
     remapped_exchange_list = ExchangeList(logger)
     for remapped_exchange in remapped_exchanges:
         exchange = _fetch_historical(
-            remapped_exchange,
+            ZoneKey(remapped_exchange),
             url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
             session=session,
             target_datetime=target_datetime,
@@ -686,7 +668,7 @@ def fetch_exchange(
         )
         for point in exchange:
             remapped_exchange_list.append(
-                zoneKey=ZoneKey(sortedcodes),
+                zoneKey=sortedcodes,
                 datetime=point["datetime"],
                 netFlow=-point["value"]
                 if remapped_exchange in REVERSE_EXCHANGES
@@ -702,7 +684,7 @@ def fetch_exchange(
 
 
 def _fetch_any(
-    zone_key: str,
+    zone_key: ZoneKey,
     url_prefix: str,
     start_datetime: datetime,
     end_datetime: datetime,
@@ -732,7 +714,7 @@ def _fetch_any(
 
 
 def _fetch_historical(
-    zone_key: str,
+    zone_key: ZoneKey,
     url_prefix: str,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -740,11 +722,10 @@ def _fetch_historical(
 ) -> list[dict[str, Any]]:
     start, end = None, None
     if target_datetime:
-        utc = tz.gettz("UTC")
-        end = target_datetime.astimezone(utc) + timedelta(hours=1)
+        end = target_datetime.astimezone(timezone.utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
     else:
-        end = datetime.now(tz=tz.gettz("UTC")).replace(
+        end = datetime.now(timezone.utc).replace(
             minute=0, second=0, microsecond=0
         ) + timedelta(hours=1)
         start = end - timedelta(hours=72)
@@ -753,7 +734,7 @@ def _fetch_historical(
 
 
 def _fetch_forecast(
-    zone_key: str,
+    zone_key: ZoneKey,
     url_prefix: str,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -763,15 +744,12 @@ def _fetch_forecast(
 
     start, end = None, None
     if target_datetime:
-        utc = tz.gettz("UTC")
-        start = target_datetime.astimezone(utc).replace(
+        start = target_datetime.astimezone(timezone.utc).replace(
             minute=0, second=0, microsecond=0
         )
         end = start + LOOKAHEAD
     else:
-        start = datetime.now(tz=tz.gettz("UTC")).replace(
-            minute=0, second=0, microsecond=0
-        )
+        start = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
         end = start + LOOKAHEAD
 
     return _fetch_any(zone_key, url_prefix, start, end, session, logger)
@@ -800,8 +778,8 @@ if __name__ == "__main__":
     # pprint(fetch_consumption_forecast('US-CAL-CISO'))
     pprint(
         fetch_exchange(
-            zone_key1="US-CENT-SWPP",
-            zone_key2="CA-SK",
+            zone_key1=ZoneKey("US-CENT-SWPP"),
+            zone_key2=ZoneKey("CA-SK"),
             target_datetime=datetime(2022, 3, 1),
         )
     )
