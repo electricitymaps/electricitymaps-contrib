@@ -689,12 +689,12 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "itenos-de-stuttgart-vaihingen-1": {
+  "itenos-de-stuttgart-vaihingen": {
     "provider": "itenos",
     "displayName": "Itenos data center Stuttgart-Vaihingen-1",
     "zoneKey": "DE",
     "lonlat": [9.1285794, 48.7214015],
-    "region": "stuttgart-vaihingen",
+    "region": "de-stuttgart-vaihingen",
     "source": "https://itenos.de/en/data-center/data-center-germany/data-center-stuttgart-1/",
     "operationalSince": null,
     "status": "operational"
