@@ -60,6 +60,13 @@ REVERSED_INTERREGIONAL_EXCHANGES = ["IN-NO->IN-WE", "IN-SO->IN-WE"]
 
 REVERSED_INTERNATIONAL_EXCHANGES = ["IN-EA->NP", "IN-NO->NP"]
 
+headers = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
+    )
+}
+
 INTERREGIONAL_EXCHANGES = {
     ZoneKey("IN-EA->IN-NO"): "Import/Export between EAST REGION and NORTH REGION",
     ZoneKey("IN-EA->IN-NE"): "Import/Export between EAST REGION and NORTH_EAST REGION",
@@ -99,8 +106,8 @@ def get_psp_report_file_url(target_date: datetime) -> str:
                 "_fileDate": "",
                 "_month": "00",
             },
+            headers=headers,
         )
-
         response.raise_for_status()
         all_files = response.json().get("retData")
 
@@ -315,7 +322,9 @@ def parse_pdf_for_international_exchanges(
     response.raise_for_status()
 
     with pdfplumber.open(io.BytesIO(response.content)) as pdf:
-        target_table_data = find_table_after_text(pdf, "International Exchanges")
+        target_table_data = find_table_after_text(
+            pdf, "International Exchanges", zone_key
+        )
 
         df = pd.DataFrame(target_table_data)
         df = find_and_set_header(df, search_keywords=("state",))
@@ -352,7 +361,7 @@ def parse_pdf_for_international_exchanges(
             net_flow_mu = df["net_flow"].iloc[0]
             if zone_key in REVERSED_INTERNATIONAL_EXCHANGES:
                 net_flow_mu = -net_flow_mu
-            print(net_flow_mu)
+
             return {zone_key: round(net_flow_mu / CONVERSION_MU_MW, 3)}
 
         except Exception as e:
@@ -364,7 +373,7 @@ def parse_pdf_for_international_exchanges(
 
 
 @refetch_frequency(timedelta(days=1))
-@use_proxy(country_code="IN")
+@use_proxy(country_code="NP")
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
