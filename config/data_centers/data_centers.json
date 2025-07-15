@@ -441,10 +441,10 @@
   },
   "azure-westeurope": {
     "provider": "azure",
-    "lonlat": [7.0480821, 52.5001698],
+    "lonlat": [5.0369813, 52.7570829],
     "displayName": "West Europe",
     "region": "westeurope",
-    "zoneKey": "DE",
+    "zoneKey": "NL",
     "status": "operational",
     "source": "https://datacenters.microsoft.com",
     "operationalSince": "2010"
