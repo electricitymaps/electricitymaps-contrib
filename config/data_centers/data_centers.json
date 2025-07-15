@@ -679,6 +679,36 @@
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": "2021"
   },
+  "hlrs-de-stuttgart": {
+    "provider": "hlrs",
+    "displayName": "HLRS Stuttgart",
+    "zoneKey": "DE-BW",
+    "lonlat": [9.0970622, 48.739457],
+    "region": "de-stuttgart",
+    "source": "https://www.hlrs.de/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "data-center-stuttgart-vaihingen-1": {
+    "provider": "itenos",
+    "displayName": "Itenos data center Stuttgart-Vaihingen-1",
+    "zoneKey": "DE-BW",
+    "lonlat": [9.1285794, 48.7214015],
+    "region": "de-stuttgart",
+    "source": "https://itenos.de/en/data-center/data-center-germany/data-center-stuttgart-1/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "jsc-de-juelich": {
+    "provider": "jsc",
+    "displayName": "Jülich Supercomputing Centre",
+    "zoneKey": "DE-NW",
+    "lonlat": [6.3996038, 50.9022892],
+    "region": "de-juelich",
+    "source": "https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html",
+    "operationalSince": null,
+    "status": "operational"
+  },
   "aws-ap-southeast-5": {
     "provider": "aws",
     "lonlat": [101.6841, 3.1319],
