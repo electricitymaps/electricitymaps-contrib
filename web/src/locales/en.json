@@ -1,4 +1,10 @@
 {
+  "experiment": {
+    "5min": {
+      "title": "New feature: 5-minute resolution",
+      "description": "The 5-minute resolution feature is currently in experimental phase and available at no additional cost while we gather feedback and refine the functionality."
+    }
+  },
   "info": {
     "title": "About Electricity Maps",
     "text": "is an API platform providing real-time and predictive electricity signals allowing any device to reduce their cost and emissions by informing them about the best time to consume electricity.",
