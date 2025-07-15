@@ -134,7 +134,7 @@
     "lonlat": [8.9713297, 50.1239022],
     "displayName": "Hanau Data Center (europe-west3)",
     "region": "europe-west3",
-    "zoneKey": "DE",
+    "zoneKey": ",
     "status": "operational",
     "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
@@ -424,7 +424,7 @@
     "lonlat": [8.6820917, 50.2106444],
     "displayName": "Germany West Central",
     "region": "germanywestcentral",
-    "zoneKey": "DE",
+    "zoneKey": ",
     "status": "operational",
     "source": "https://datacenters.microsoft.com",
     "operationalSince": "2019"
@@ -689,12 +689,12 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "data-center-stuttgart-vaihingen-1": {
+  "itenos-de-stuttgart-vaihingen-1": {
     "provider": "itenos",
     "displayName": "Itenos data center Stuttgart-Vaihingen-1",
     "zoneKey": "DE",
     "lonlat": [9.1285794, 48.7214015],
-    "region": "de-stuttgart",
+    "region": "stuttgart-vaihingen",
     "source": "https://itenos.de/en/data-center/data-center-germany/data-center-stuttgart-1/",
     "operationalSince": null,
     "status": "operational"
