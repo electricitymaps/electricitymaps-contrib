@@ -51,7 +51,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
   return (
     <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
       <DropdownMenu.Trigger>
-        <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white p-1 pl-2 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
+        <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white px-2 py-1 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
           {selectedLabel}
           <ChevronsUpDown size={ICON_SIZE} />
         </div>
