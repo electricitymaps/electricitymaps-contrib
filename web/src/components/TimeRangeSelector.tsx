@@ -8,6 +8,8 @@ import { TimeRange } from 'utils/constants';
 
 import { useDropdownCtl } from './MoreOptionsDropdown';
 
+const ICON_SIZE = 14;
+
 const createOption = (time: TimeRange, t: TFunction) => ({
   value: time,
   label: t(`time-controller.${time}`),
@@ -51,7 +53,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
       <DropdownMenu.Trigger>
         <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white p-1 pl-2 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
           {selectedLabel}
-          <ChevronsUpDown height="14px" />
+          <ChevronsUpDown size={ICON_SIZE} />
         </div>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content
@@ -66,7 +68,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
             onClick={onClick}
             className={`flex select-none items-center justify-between rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800`}
           >
-            {label} {isExperimental && <FlaskConicalIcon size={12} />}
+            {label} {isExperimental && <FlaskConicalIcon size={ICON_SIZE} />}
           </DropdownMenu.Item>
         ))}
       </DropdownMenu.Content>
