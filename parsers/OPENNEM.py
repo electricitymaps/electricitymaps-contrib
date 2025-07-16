@@ -202,11 +202,11 @@ def _fetch_main_df(
 
     # Fetches the last week of data
     logger.info(f"Requesting {url}..")
-    r = (session or requests).get(url)
-    r.raise_for_status()
-    logger.debug("Parsing JSON..")
-    datasets = r.json()["data"]
-    logger.debug("Filtering datasets..")
+    req = (session or requests).get(url)
+    req.raise_for_status()
+    logger.info("Parsing JSON..")
+    datasets = req.json()["data"]
+    logger.info("Filtering datasets..")
 
     def filter_dataset(ds: dict) -> bool:
         filter_data_type = ds["type"] == data_type
@@ -225,7 +225,7 @@ def _fetch_main_df(
         return filter_data_type and filter_region
 
     filtered_datasets = [ds for ds in datasets if filter_dataset(ds)]
-    logger.debug("Concatenating datasets..")
+    logger.info("Concatenating datasets..")
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
 
     # Sometimes we get twice the columns. In that case, only return the first one
@@ -261,7 +261,7 @@ def fetch_production(
     if "BATTERY_DISCHARGING" in df.columns:
         df["BATTERY_DISCHARGING"] = df["BATTERY_DISCHARGING"] * -1
 
-    logger.debug("Preparing final objects..")
+    logger.info("Preparing final objects..")
     objs = [
         {
             "datetime": dt.to_pydatetime(),
@@ -293,7 +293,7 @@ def fetch_production(
     objs = filter_production_objs(objs)
 
     # Validation
-    logger.debug("Validating..")
+    logger.info("Validating..")
     for obj in objs:
         for k, v in obj["production"].items():
             if v is None:
