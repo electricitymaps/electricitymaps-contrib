@@ -58,7 +58,7 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
       </DropdownMenu.Trigger>
       <DropdownMenu.Content
         sideOffset={4}
-        className="border-1 z-50 w-32 rounded-xl border border-neutral-200 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-900"
+        className="border-1 z-50 w-32 rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
       >
         {options.map(({ value, label, dataTestId, onClick, isExperimental }) => (
           <DropdownMenu.Item
@@ -68,7 +68,13 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
             onClick={onClick}
             className={`flex select-none items-center justify-between rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800`}
           >
-            {label} {isExperimental && <FlaskConicalIcon size={ICON_SIZE} />}
+            {label}{' '}
+            {isExperimental && (
+              <FlaskConicalIcon
+                size={ICON_SIZE}
+                className="text-info-base dark:text-info-base-dark"
+              />
+            )}
           </DropdownMenu.Item>
         ))}
       </DropdownMenu.Content>
