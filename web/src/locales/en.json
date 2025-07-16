@@ -3,7 +3,8 @@
     "5min": {
       "title": "New feature: 5-minute resolution",
       "description": "The 5-minute resolution feature is currently in experimental phase and available at no additional cost while we gather feedback and refine the functionality."
-    }
+    },
+    "feedbackCta": "Leave feedback"
   },
   "info": {
     "title": "About Electricity Maps",
