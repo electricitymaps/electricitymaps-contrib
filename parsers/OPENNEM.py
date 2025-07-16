@@ -6,6 +6,7 @@ import requests
 from requests import Session
 
 from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 
 REFETCH_FREQUENCY = timedelta(days=7)
 
@@ -26,21 +27,38 @@ ZONE_KEY_TO_NETWORK = {
     "AU-VIC": "NEM",
     "AU-WA": "WEM",
 }
+
+# exchanges are reconstructed from each zones total imports and exports
+# all exchanges except AU-NSW->AU-VIC only have one connection so we can
+# reconstruct the net flow by querying to leaf node
+# see diagram below
+#       QLD
+#        |
+#       NSW
+#        |
+#   SA--VIC
+#        |
+#       TAS
 EXCHANGE_MAPPING_DICTIONARY = {
     "AU-NSW->AU-QLD": {
-        "region_id": "NSW1->QLD1",
-        "direction": 1,
+        "zone_to_query": "AU-QLD",
+        "additional_zone_to_query": None,
+        "direction": -1,
     },
+    # we get this flow by substracting QLD imports/exports from NSW imports/exports
     "AU-NSW->AU-VIC": {
-        "region_id": "NSW1->VIC1",
+        "zone_to_query": "AU-NSW",
+        "additional_zone_to_query": "AU-QLD",
         "direction": 1,
     },
     "AU-SA->AU-VIC": {
-        "region_id": "SA1->VIC1",
+        "zone_to_query": "AU-SA",
+        "additional_zone_to_query": None,
         "direction": 1,
     },
     "AU-TAS->AU-VIC": {
-        "region_id": "TAS1->VIC1",
+        "zone_to_query": "AU-TAS",
+        "additional_zone_to_query": None,
         "direction": 1,
     },
 }
@@ -85,7 +103,7 @@ def dataset_to_df(dataset):
     return df
 
 
-def sum_vector(pd_series, keys, ignore_nans=False):
+def sum_vector(pd_series, keys, ignore_nans=False) -> pd.Series | None:
     # Only consider keys that are in the pd_series
     filtered_keys = pd_series.index.intersection(keys)
 
@@ -131,9 +149,7 @@ def filter_production_objs(
     return filtered_objs
 
 
-def generate_url(
-    zone_key: str, is_flow, target_datetime: datetime | None, logger: Logger
-) -> str:
+def generate_url(zone_key: str, target_datetime: datetime | None) -> str:
     # Only 7d or 30d data is available
     duration = (
         "7d"
@@ -164,12 +180,13 @@ def fetch_main_price_df(
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-    )[0]
+    )
 
 
 def fetch_main_power_df(
     zone_key: str | None = None,
-    sorted_zone_keys: list[str] | None = None,
+    additional_zone_key: str | None = None,
+    direction: int | None = None,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -177,7 +194,8 @@ def fetch_main_power_df(
     return _fetch_main_df(
         "power",
         zone_key=zone_key,
-        sorted_zone_keys=sorted_zone_keys,
+        additional_zone_key=additional_zone_key,
+        direction=direction,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -187,26 +205,31 @@ def fetch_main_power_df(
 def _fetch_main_df(
     data_type,
     zone_key: str,
-    sorted_zone_keys: str,
-    session: Session,
-    target_datetime: datetime,
-    logger: Logger,
+    additional_zone_key: str | None = None,
+    direction: int | None = None,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger | None = None,
 ) -> tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
-        zone_key=zone_key or sorted_zone_keys[0],
-        is_flow=sorted_zone_keys is not None,
+        zone_key=zone_key,
         target_datetime=target_datetime,
-        logger=logger,
     )
 
-    # Fetches the last week of data
-    logger.info(f"Requesting {url}..")
     req = (session or requests).get(url)
     req.raise_for_status()
-    logger.info("Parsing JSON..")
     datasets = req.json()["data"]
-    logger.info("Filtering datasets..")
+
+    if additional_zone_key is not None:
+        extra_url = generate_url(
+            zone_key=additional_zone_key, target_datetime=target_datetime
+        )
+        extra_req = (session or requests).get(extra_url)
+        extra_req.raise_for_status()
+        extra_datasets = extra_req.json()["data"]
+    else:
+        extra_datasets = None
 
     def filter_dataset(ds: dict) -> bool:
         filter_data_type = ds["type"] == data_type
@@ -215,17 +238,9 @@ def _fetch_main_df(
             filter_region |= (
                 "region" in ds and ds.get("region").upper() == region.upper()
             )
-        if sorted_zone_keys:
-            filter_region |= (
-                ds.get("id").split(".")[-2].upper()
-                == EXCHANGE_MAPPING_DICTIONARY["->".join(sorted_zone_keys)][
-                    "region_id"
-                ].upper()
-            )
         return filter_data_type and filter_region
 
     filtered_datasets = [ds for ds in datasets if filter_dataset(ds)]
-    logger.info("Concatenating datasets..")
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
 
     # Sometimes we get twice the columns. In that case, only return the first one
@@ -236,7 +251,7 @@ def _fetch_main_df(
         )
         df = df.loc[:, is_duplicated_column]
 
-    return df, filtered_datasets
+    return df
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -246,7 +261,7 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    df, filtered_datasets = fetch_main_power_df(
+    df = fetch_main_power_df(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
@@ -342,15 +357,30 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    sorted_zone_keys = sorted([zone_key1, zone_key2])
-    key = "->".join(sorted_zone_keys)
+    exchange_key = "->".join([zone_key1, zone_key2])
+
+    try:
+        exchange_params = EXCHANGE_MAPPING_DICTIONARY[exchange_key]
+    except KeyError:
+        raise ParserException(
+            parser="OPENNEM",
+            message=f"Valid exchange keys for this parser are {[EXCHANGE_MAPPING_DICTIONARY.keys()]}, you passed {exchange_key=}",
+            zone_key=exchange_key,
+        ) from None
+
+    zone_key = exchange_params["zone_to_query"]
+    additional_zone_key = exchange_params["additional_zone_to_query"]
+    direction = exchange_params["direction"]
+
     df, _ = fetch_main_power_df(
-        sorted_zone_keys=sorted_zone_keys,
+        zone_key=zone_key,
+        additional_zone_key=additional_zone_key,
+        direction=direction,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
-    direction = EXCHANGE_MAPPING_DICTIONARY[key]["direction"]
+    direction = EXCHANGE_MAPPING_DICTIONARY[exchange_key]["direction"]
 
     # Take the first column (there's only one)
     series = df.iloc[:, 0]
@@ -360,7 +390,7 @@ def fetch_exchange(
             "datetime": dt.to_pydatetime(),
             "netFlow": value * direction,
             "source": SOURCE,
-            "sortedZoneKeys": key,
+            "sortedZoneKeys": exchange_key,
         }
         for dt, value in series.iteritems()
     ]
