@@ -99,6 +99,8 @@ def dataset_to_df(dataset):
     # In some situation, some data points missing, the first dates are the ones to keep
     index = index[: len(series["data"])]
     df = pd.DataFrame(index=index, data=series["data"], columns=[name])
+    if name == "SOLAR_ROOFTOP":
+        breakpoint()
 
     return df
 
@@ -231,17 +233,12 @@ def _fetch_main_df(
     else:
         extra_datasets = None
 
-    def filter_dataset(ds: dict) -> bool:
-        filter_data_type = ds["type"] == data_type
-        filter_region = False
-        if zone_key:
-            filter_region |= (
-                "region" in ds and ds.get("region").upper() == region.upper()
-            )
-        return filter_data_type and filter_region
-
-    filtered_datasets = [ds for ds in datasets if filter_dataset(ds)]
+    breakpoint()
+    filtered_datasets = [
+        ds for ds in datasets if ds["type"] == data_type and ds["region"] == region
+    ]
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
+    breakpoint()
 
     # Sometimes we get twice the columns. In that case, only return the first one
     is_duplicated_column = df.columns.duplicated(keep="last")
@@ -267,7 +264,6 @@ def fetch_production(
         target_datetime=target_datetime,
         logger=logger,
     )
-
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
 
@@ -372,7 +368,7 @@ def fetch_exchange(
     additional_zone_key = exchange_params["additional_zone_to_query"]
     direction = exchange_params["direction"]
 
-    df, _ = fetch_main_power_df(
+    df = fetch_main_power_df(
         zone_key=zone_key,
         additional_zone_key=additional_zone_key,
         direction=direction,
@@ -380,6 +376,7 @@ def fetch_exchange(
         target_datetime=target_datetime,
         logger=logger,
     )
+    breakpoint()
     direction = EXCHANGE_MAPPING_DICTIONARY[exchange_key]["direction"]
 
     # Take the first column (there's only one)
