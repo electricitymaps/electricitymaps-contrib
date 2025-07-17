@@ -177,6 +177,7 @@ export interface ZoneDetails {
 
 export interface ZoneMessage {
   message: string;
+  message_type: 'custom' | 'grid_alert';
   issue?: string;
   start_time?: string;
   end_time?: string;
