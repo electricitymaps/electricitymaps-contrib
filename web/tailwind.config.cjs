@@ -60,6 +60,18 @@ const config = {
           DEFAULT: colors.neutral[600],
           dark: colors.gray[300],
         },
+        'info-base': {
+          DEFAULT: colors.blue[700],
+          dark: colors.blue[300],
+        },
+        'info-subtle': {
+          DEFAULT: colors.blue[200],
+          dark: colors.blue[800],
+        },
+        'info-muted': {
+          DEFAULT: colors.blue[50],
+          dark: colors.blue[950],
+        },
         success: {
           DEFAULT: colors.emerald[800],
           dark: colors.emerald[500],

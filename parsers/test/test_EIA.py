@@ -16,23 +16,6 @@ def eia_key_env():
     os.environ["EIA_KEY"] = "token"
 
 
-def _check_production_matches(
-    actual: list[dict[str, str | dict]],
-    expected: list[dict[str, str | dict]],
-):
-    assert actual is not None
-    assert len(expected) == len(actual)
-    for i, data in enumerate(actual):
-        assert data["zoneKey"] == expected[i]["zoneKey"]
-        assert data["source"] == expected[i]["source"]
-        assert data["datetime"] is not None
-        for key, value in data["production"].items():
-            assert value == expected[i]["production"][key]
-        assert data.get("storage") == expected[i].get("storage")
-        for key, value in data.get("storage", {}).items():
-            assert value == expected[i]["storage"][key]
-
-
 def test_parse_hourly_interval():
     """
     We add a 'frequency=hourly' parameter to our EIA API requests; this
@@ -52,7 +35,7 @@ def test_parse_hourly_interval():
         assert result == expected
 
 
-def test_fetch_production_mix(adapter, session):
+def test_fetch_production_mix(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -62,45 +45,12 @@ def test_fetch_production_mix(adapter, session):
             .read_text()
         ),
     )
-    data_list = EIA.fetch_production_mix("US-NW-PGE", session)
-    expected = [
-        {
-            "zoneKey": "US-NW-PGE",
-            "source": "eia.gov",
-            "production": {
-                "gas": 1,
-                "coal": 1,
-                "wind": 1,
-                "hydro": 1,
-                "nuclear": 1,
-                "oil": 1,
-                "unknown": 1,
-                "solar": 1,
-                "geothermal": 1,
-            },
-            "storage": {"hydro": -1, "battery": -1},
-        },
-        {
-            "zoneKey": "US-NW-PGE",
-            "source": "eia.gov",
-            "production": {
-                "gas": 2,
-                "coal": 2,
-                "wind": 2,
-                "hydro": 2,
-                "nuclear": 2,
-                "oil": 2,
-                "unknown": 2,
-                "solar": 2,
-                "geothermal": 2,
-            },
-            "storage": {"hydro": -2, "battery": -2},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+    data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), session)
+
+    assert data_list == snapshot
 
 
-def test_US_NW_AVRN_rerouting(adapter, session):
+def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -211,52 +161,12 @@ def test_US_NW_AVRN_rerouting(adapter, session):
     )
 
     data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PACW"), session)
-    expected = [
-        {
-            "zoneKey": "US-NW-PACW",
-            "source": "eia.gov",
-            "production": {"gas": 330, "hydro": 300, "solar": 300, "wind": 300},
-            "storage": {},
-        },
-        {
-            "zoneKey": "US-NW-PACW",
-            "source": "eia.gov",
-            "production": {"gas": 450, "hydro": 400, "solar": 400, "wind": 400},
-            "storage": {},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+    assert data_list == snapshot
     data_list = EIA.fetch_production_mix(ZoneKey("US-NW-BPAT"), session)
-    expected = [
-        {
-            "zoneKey": "US-NW-BPAT",
-            "source": "eia.gov",
-            "production": {
-                "wind": 21,
-                "gas": 300,
-                "hydro": 300,
-                "nuclear": 300,
-                "solar": 300,
-            },
-            "storage": {},
-        },
-        {
-            "zoneKey": "US-NW-BPAT",
-            "source": "eia.gov",
-            "production": {
-                "wind": 42,
-                "gas": 400,
-                "hydro": 400,
-                "nuclear": 400,
-                "solar": 400,
-            },
-            "storage": {},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+    assert data_list == snapshot
 
 
-def test_US_CAR_SC_nuclear_split(adapter, session):
+def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -376,65 +286,9 @@ def test_US_CAR_SC_nuclear_split(adapter, session):
     )
 
     data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SC"), session)
-    expected = [
-        {
-            "zoneKey": "US-CAR-SC",
-            "source": "eia.gov",
-            "production": {
-                "nuclear": 330.666634,
-                "coal": 300,
-                "gas": 300,
-                "oil": 300,
-                "solar": 300,
-                "hydro": 300,
-            },
-            "storage": {},
-        },
-        {
-            "zoneKey": "US-CAR-SC",
-            "source": "eia.gov",
-            "production": {
-                "nuclear": 330.3333,
-                "coal": 400,
-                "gas": 400,
-                "oil": 400,
-                "solar": 400,
-                "hydro": 400,
-            },
-            "storage": {},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+    assert data_list == snapshot
     data_list = EIA.fetch_production_mix(ZoneKey("US-CAR-SCEG"), session)
-    expected = [
-        {
-            "zoneKey": "US-CAR-SCEG",
-            "source": "eia.gov",
-            "production": {
-                "nuclear": 661.333366,
-                "coal": 300,
-                "gas": 300,
-                "oil": 300,
-                "solar": 300,
-                "hydro": 300,
-            },
-            "storage": {},
-        },
-        {
-            "zoneKey": "US-CAR-SCEG",
-            "source": "eia.gov",
-            "production": {
-                "nuclear": 660.6667,
-                "coal": 400,
-                "gas": 400,
-                "oil": 400,
-                "solar": 400,
-                "hydro": 400,
-            },
-            "storage": {},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+    assert data_list == snapshot
 
 
 def test_check_transfer_mixes():
@@ -452,7 +306,7 @@ def test_check_transfer_mixes():
                     )
 
 
-def test_hydro_transfer_mix(adapter, session):
+def test_hydro_transfer_mix(adapter, session, snapshot):
     """
     Make sure that with zones that integrate production only zones
     the hydro production events are properly handled and the storage
@@ -541,35 +395,7 @@ def test_hydro_transfer_mix(adapter, session):
     )
 
     data = EIA.fetch_production_mix(ZoneKey("US-SW-SRP"), session)
-    expected = [
-        {
-            "zoneKey": "US-SW-SRP",
-            "source": "eia.gov",
-            "production": {
-                "hydro": 7.0,
-                "coal": 300,
-                "gas": 300,
-                "nuclear": 300,
-                "solar": 300,
-                "wind": 300,
-            },  # hydro 4 from HGMA, 3 from DEAA
-            "storage": {"hydro": 5.0},  # 5 from SRP
-        },
-        {
-            "zoneKey": "US-SW-SRP",
-            "source": "eia.gov",
-            "production": {
-                "hydro": 800.0,
-                "coal": 400,
-                "gas": 400,
-                "nuclear": 400,
-                "solar": 400,
-                "wind": 400,
-            },  # hydro 400 from SRP, 400 from HGMA
-            "storage": {"hydro": 900.0},  # 900 from DEAA
-        },
-    ]
-    _check_production_matches(data, expected)
+    assert data == snapshot
 
 
 def test_exchange_transfer(adapter, session):
@@ -620,7 +446,7 @@ def test_exchange_transfer(adapter, session):
         assert fpl["value"] + nsb["value"] == parser["netFlow"]
 
 
-def test_fetch_production_mix_discards_null(adapter, session):
+def test_fetch_production_mix_discards_null(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -631,28 +457,11 @@ def test_fetch_production_mix_discards_null(adapter, session):
         ),
     )
     data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), session)
-    expected = [
-        {
-            "zoneKey": "US-NW-PGE",
-            "source": "eia.gov",
-            "production": {
-                "gas": 400,
-                "coal": 400,
-                "wind": 400,
-                "hydro": 400,
-                "nuclear": 400,
-                "oil": 400,
-                "unknown": 400,
-                "solar": 400,
-                "geothermal": 400,
-            },
-            "storage": {"hydro": -400, "battery": -400},
-        },
-    ]
+    assert data_list == snapshot
+
     assert (
         datetime(2022, 10, 31, 11, 0, tzinfo=timezone.utc) == data_list[0]["datetime"]
     )
-    _check_production_matches(data_list, expected)
 
 
 def test_fetch_exchange(adapter, session):
@@ -783,7 +592,7 @@ def test_texas_loses_one_mode(adapter, session):
     assert len(data) == 0
 
 
-def test_fetch_returns_storage(adapter, session):
+def test_fetch_returns_storage(adapter, session, snapshot):
     adapter.register_uri(
         GET,
         ANY,
@@ -795,22 +604,5 @@ def test_fetch_returns_storage(adapter, session):
     )
 
     data_list = EIA.fetch_production_mix(ZoneKey("US-CAL-IID"), session)
-    expected = [
-        {
-            "zoneKey": "US-CAL-IID",
-            "source": "eia.gov",
-            "production": {
-                "gas": 1,
-                "coal": 1,
-                "wind": 1,
-                "hydro": 1,
-                "nuclear": 1,
-                "oil": 1,
-                "unknown": 1,
-                "solar": 1,
-                "geothermal": 1,
-            },
-            "storage": {"battery": -1, "hydro": -1},
-        },
-    ]
-    _check_production_matches(data_list, expected)
+
+    assert data_list == snapshot
