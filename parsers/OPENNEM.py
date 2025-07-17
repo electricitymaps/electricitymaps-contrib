@@ -164,7 +164,6 @@ def generate_url(zone_key: str, target_datetime: datetime | None) -> str:
 
 def fetch_main_price_df(
     zone_key: str | None = None,
-    sorted_zone_keys: str | None = None,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -172,7 +171,6 @@ def fetch_main_price_df(
     return _fetch_main_df(
         "price",
         zone_key=zone_key,
-        sorted_zone_keys=sorted_zone_keys,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -403,9 +401,6 @@ def _fetch_regular_exchange(
         exports["start"] != imports["start"]
         or exports["last"] != imports["last"]
         or len(exports["data"]) != len(imports["data"])
-        # interval is 5m so we expect 2017 data points
-        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
-        or len(exports["data"]) != 2017
     ):
         raise ParserException(
             parser="OPENNEM",
@@ -483,20 +478,6 @@ def _fetch_au_nsw_au_vic_exchange(
             zone_key=nsw_zk,
         )
 
-    if (
-        nsw_exports["start"] != nsw_imports["start"]
-        or nsw_exports["last"] != nsw_imports["last"]
-        or len(nsw_exports["data"]) != len(nsw_imports["data"])
-        # interval is 5m so we expect 2017 data points
-        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
-        or len(nsw_exports["data"]) != 2017
-    ):
-        raise ParserException(
-            parser="OPENNEM",
-            message="Export and import data is misaligned",
-            zone_key=nsw_zk,
-        )
-
     qld_exports = None
     qld_imports = None
     for dataset in qld_response.json()["data"]:
@@ -513,18 +494,25 @@ def _fetch_au_nsw_au_vic_exchange(
             zone_key=qld_zk,
         )
 
-    if (
-        qld_exports["start"] != qld_imports["start"]
-        or qld_exports["last"] != qld_imports["last"]
-        or len(qld_exports["data"]) != len(qld_imports["data"])
-        # interval is 5m so we expect 2017 data points
-        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
-        or len(qld_exports["data"]) != 2017
+    # all must have same start, end, and number of data points
+    if not (
+        nsw_exports["start"]
+        == nsw_imports["start"]
+        == qld_exports["start"]
+        == qld_imports["start"]
+        and nsw_exports["last"]
+        == nsw_imports["last"]
+        == qld_exports["last"]
+        == qld_imports["last"]
+        and len(nsw_exports["data"])
+        == len(nsw_imports["data"])
+        == len(qld_exports["data"])
+        == len(qld_imports["data"])
     ):
         raise ParserException(
             parser="OPENNEM",
-            message="Export and import data is misaligned",
-            zone_key=qld_zk,
+            message=f"{nsw_zk} and {qld_zk} export and import data is misaligned",
+            zone_key=nsw_zk,
         )
 
     # assume data is sorted from start to end
