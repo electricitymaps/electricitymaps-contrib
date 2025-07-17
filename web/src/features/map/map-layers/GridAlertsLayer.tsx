@@ -5,6 +5,7 @@ import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { Marker } from 'react-map-gl/maplibre';
+import { GridState, MapGeometries } from 'types';
 import { getCarbonIntensity } from 'utils/helpers';
 import { isConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
 
@@ -35,65 +36,70 @@ const getPolygonCentroid = (coordinates: number[][][]) => {
   return [x, y];
 };
 
+function getWarningIconData(worldGeometries: MapGeometries, data: GridState | undefined) {
+  if (!worldGeometries?.features) {
+    return null;
+  }
+
+  if (!data || !data.alerts) {
+    return null;
+  }
+
+  const warningZones = data.alerts;
+  const features = [];
+
+  for (const zoneId of warningZones) {
+    const zoneFeature = worldGeometries.features.find(
+      (feature) => feature.properties?.zoneId === zoneId
+    );
+
+    if (zoneFeature?.geometry) {
+      let centroid;
+
+      if (zoneFeature.geometry.type === 'Polygon') {
+        centroid = getPolygonCentroid(zoneFeature.geometry.coordinates);
+      } else if (zoneFeature.geometry.type === 'MultiPolygon') {
+        // Use the centroid of the largest polygon
+        let largest = zoneFeature.geometry.coordinates[0];
+        for (let index = 1; index < zoneFeature.geometry.coordinates.length; index++) {
+          if (zoneFeature.geometry.coordinates[index][0].length > largest[0].length) {
+            largest = zoneFeature.geometry.coordinates[index];
+          }
+        }
+        centroid = getPolygonCentroid(largest);
+      }
+
+      if (centroid) {
+        features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: centroid,
+          },
+          properties: {
+            zoneId: zoneId,
+          },
+        });
+      }
+    }
+  }
+
+  return {
+    type: 'FeatureCollection',
+    features,
+  };
+}
+
 export default function GridAlertsLayer() {
   const { worldGeometries } = useGetGeometries();
   const { data } = useGetState();
 
   const co2ColorScale = useCo2ColorScale();
 
-  const warningIconData = useMemo(() => {
-    if (!worldGeometries?.features) {
-      return null;
-    }
-
-    if (!data || !data.alerts) {
-      return null;
-    }
-
-    const warningZones = data.alerts;
-    const features = [];
-
-    for (const zoneId of warningZones) {
-      const zoneFeature = worldGeometries.features.find(
-        (feature) => feature.properties?.zoneId === zoneId
-      );
-
-      if (zoneFeature?.geometry) {
-        let centroid;
-
-        if (zoneFeature.geometry.type === 'Polygon') {
-          centroid = getPolygonCentroid(zoneFeature.geometry.coordinates);
-        } else if (zoneFeature.geometry.type === 'MultiPolygon') {
-          // Use the centroid of the largest polygon
-          let largest = zoneFeature.geometry.coordinates[0];
-          for (let index = 1; index < zoneFeature.geometry.coordinates.length; index++) {
-            if (zoneFeature.geometry.coordinates[index][0].length > largest[0].length) {
-              largest = zoneFeature.geometry.coordinates[index];
-            }
-          }
-          centroid = getPolygonCentroid(largest);
-        }
-
-        if (centroid) {
-          features.push({
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: centroid,
-            },
-            properties: {
-              zoneId: zoneId,
-            },
-          });
-        }
-      }
-    }
-
-    return {
-      type: 'FeatureCollection',
-      features,
-    };
-  }, [worldGeometries, data]);
+  const warningIconData = useMemo(
+    () => getWarningIconData(worldGeometries, data),
+    [worldGeometries, data]
+  );
 
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
