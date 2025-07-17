@@ -112,7 +112,10 @@ export default function GridAlertsLayer() {
         return (
           <Marker key={zoneId} longitude={longitude} latitude={latitude} anchor="center">
             <div className="flex items-center justify-center rounded-full bg-white/10 p-2">
-              <FiAlertTriangle size={16} color={iconColor} className="-translate-y-px" />
+              <FiAlertTriangle
+                size={16}
+                className={`-translate-y-px text-${iconColor}`}
+              />
             </div>
           </Marker>
         );
