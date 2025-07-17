@@ -168,9 +168,6 @@ def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
 
 if __name__ == "__main__":
     session = Session()
-    session.headers["User-Agent"] = (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"
-    )
 
     print(fetch_production_capacity("AU-QLD", datetime(2025, 1, 1), session))
     # print(fetch_production_capacity("AU-VIC", datetime(2015, 1, 1), Session()))
