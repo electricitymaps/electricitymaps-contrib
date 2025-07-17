@@ -210,7 +210,9 @@ def _fetch_main_df(
     datasets = response.json()["data"]
 
     filtered_datasets = [
-        ds for ds in datasets if ds["type"] == data_type and ds["region"] == region
+        ds
+        for ds in datasets
+        if ds["type"] == data_type and ds["region"].upper() == region
     ]
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
 
