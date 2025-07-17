@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pandas as pd
 
-from electricitymap.contrib.capacity_parsers.OPENNEM import (
+from electricitymap.contrib.capacity_parsers.OPENELECTRICITY import (
     filter_capacity_data_by_datetime,
 )
 
