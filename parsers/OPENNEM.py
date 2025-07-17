@@ -440,7 +440,7 @@ def _fetch_au_nsw_au_vic_exchange(
 
     and because QLD only has one exchange to NSW:
         NSW_exports_to_QLD = QLD_imports_from_NSW = QLD_imports
-        NSW_imports_from_QLD = QLD_exports_to_NSFW = QLD_exports
+        NSW_imports_from_QLD = QLD_exports_to_NSW = QLD_exports
 
     thus
         NSW_exports_to_VIC = NSW_exports - QLD_imports
