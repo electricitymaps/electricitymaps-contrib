@@ -1,9 +1,9 @@
 import useGetState from 'api/getState';
 import { getTextColor } from 'components/CarbonIntensitySquare';
-import WarningIcon from 'components/WarningAlertsIcon';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
 import { useMemo } from 'react';
+import { FiAlertTriangle } from 'react-icons/fi';
 import { Marker } from 'react-map-gl/maplibre';
 import { getCarbonIntensity } from 'utils/helpers';
 import { isConsumptionAtom, selectedDatetimeStringAtom } from 'utils/state/atoms';
@@ -38,7 +38,6 @@ const getPolygonCentroid = (coordinates: number[][][]) => {
 export default function GridAlertsLayer() {
   const { worldGeometries } = useGetGeometries();
   const { data } = useGetState();
-  console.log('State data:', data);
 
   const co2ColorScale = useCo2ColorScale();
 
@@ -47,13 +46,11 @@ export default function GridAlertsLayer() {
       return null;
     }
 
-    // fallback logic
     if (!data || !data.alerts) {
       return null;
     }
 
-    // Create one point per unique zoneId that needs a warning
-    const warningZones = data.alerts; // Add more zone IDs as needed for example ['CA-ON', 'US-MIDA-PJM']
+    const warningZones = data.alerts;
     const features = [];
 
     for (const zoneId of warningZones) {
@@ -114,13 +111,8 @@ export default function GridAlertsLayer() {
 
         return (
           <Marker key={zoneId} longitude={longitude} latitude={latitude} anchor="center">
-            <div
-              style={{
-                backgroundColor: 'transparent', //bgColor, transparent
-                borderRadius: '999px',
-              }}
-            >
-              <WarningIcon style={{ width: 33, height: 32 }} fill={iconColor} />
+            <div className="flex items-center justify-center rounded-full bg-white/10 p-2">
+              <FiAlertTriangle size={16} color={iconColor} className="-translate-y-px" />
             </div>
           </Marker>
         );
