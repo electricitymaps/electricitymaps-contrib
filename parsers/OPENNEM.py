@@ -42,23 +42,19 @@ ZONE_KEY_TO_NETWORK = {
 EXCHANGE_MAPPING_DICTIONARY = {
     "AU-NSW->AU-QLD": {
         "zone_to_query": "AU-QLD",
-        "additional_zone_to_query": None,
         "direction": -1,
-    },
-    # we get this flow by substracting QLD imports/exports from NSW imports/exports
-    "AU-NSW->AU-VIC": {
-        "zone_to_query": "AU-NSW",
-        "additional_zone_to_query": "AU-QLD",
-        "direction": 1,
     },
     "AU-SA->AU-VIC": {
         "zone_to_query": "AU-SA",
-        "additional_zone_to_query": None,
         "direction": 1,
     },
     "AU-TAS->AU-VIC": {
         "zone_to_query": "AU-TAS",
-        "additional_zone_to_query": None,
+        "direction": 1,
+    },
+    # we get this flow by substracting QLD imports/exports from NSW imports/exports
+    "AU-NSW->AU-VIC": {
+        "zone_to_query": "AU-NSW",
         "direction": 1,
     },
 }
@@ -99,8 +95,6 @@ def dataset_to_df(dataset):
     # In some situation, some data points missing, the first dates are the ones to keep
     index = index[: len(series["data"])]
     df = pd.DataFrame(index=index, data=series["data"], columns=[name])
-    if name == "SOLAR_ROOFTOP":
-        breakpoint()
 
     return df
 
@@ -207,8 +201,6 @@ def fetch_main_power_df(
 def _fetch_main_df(
     data_type,
     zone_key: str,
-    additional_zone_key: str | None = None,
-    direction: int | None = None,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger | None = None,
@@ -223,22 +215,10 @@ def _fetch_main_df(
     req.raise_for_status()
     datasets = req.json()["data"]
 
-    if additional_zone_key is not None:
-        extra_url = generate_url(
-            zone_key=additional_zone_key, target_datetime=target_datetime
-        )
-        extra_req = (session or requests).get(extra_url)
-        extra_req.raise_for_status()
-        extra_datasets = extra_req.json()["data"]
-    else:
-        extra_datasets = None
-
-    breakpoint()
     filtered_datasets = [
         ds for ds in datasets if ds["type"] == data_type and ds["region"] == region
     ]
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
-    breakpoint()
 
     # Sometimes we get twice the columns. In that case, only return the first one
     is_duplicated_column = df.columns.duplicated(keep="last")
@@ -365,32 +345,202 @@ def fetch_exchange(
         ) from None
 
     zone_key = exchange_params["zone_to_query"]
-    additional_zone_key = exchange_params["additional_zone_to_query"]
     direction = exchange_params["direction"]
 
-    df = fetch_main_power_df(
-        zone_key=zone_key,
-        additional_zone_key=additional_zone_key,
-        direction=direction,
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-    breakpoint()
-    direction = EXCHANGE_MAPPING_DICTIONARY[exchange_key]["direction"]
-
-    # Take the first column (there's only one)
-    series = df.iloc[:, 0]
+    if exchange_key == "AU-NSW->AU-VIC":
+        datetimes_and_netflows = _fetch_au_nsw_au_vic_exchange(
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
+    else:
+        datetimes_and_netflows = _fetch_regular_exchange(
+            zone_key=zone_key,
+            direction=direction,
+            session=session,
+            target_datetime=target_datetime,
+            logger=logger,
+        )
 
     return [
         {
-            "datetime": dt.to_pydatetime(),
-            "netFlow": value * direction,
+            "datetime": dt,
+            "netFlow": netflow,
             "source": SOURCE,
             "sortedZoneKeys": exchange_key,
         }
-        for dt, value in series.iteritems()
+        for dt, netflow in datetimes_and_netflows
     ]
+
+
+def _fetch_regular_exchange(
+    zone_key=str,
+    direction=int,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[tuple[datetime, float]]:
+    """
+    This should only be called for zones that have a single exchange to another zone.
+    """
+    url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
+    response = (session or requests).get(url)
+    response.raise_for_status()
+
+    exports = None
+    imports = None
+    for dataset in response.json()["data"]:
+        if dataset["id"].endswith("exports.power"):
+            exports = dataset.get("history", None)
+        elif dataset["id"].endswith("imports.power"):
+            imports = dataset.get("history", None)
+        else:
+            continue
+    if exports is None or imports is None:
+        raise ParserException(
+            parser="OPENNEM",
+            message="Response did not contain both export and import datasets.",
+            zone_key=zone_key,
+        )
+
+    if (
+        exports["start"] != imports["start"]
+        or exports["last"] != imports["last"]
+        or len(exports["data"]) != len(imports["data"])
+        # interval is 5m so we expect 2017 data points
+        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
+        or len(exports["data"]) != 2017
+    ):
+        raise ParserException(
+            parser="OPENNEM",
+            message="Export and import data is misaligned",
+            zone_key=zone_key,
+        )
+
+    # assume data is sorted from start to end
+    start = datetime.fromisoformat(exports["start"])
+    datetimes_and_netflows = [
+        (start + timedelta(minutes=5 * i), (exp - imp) * direction)
+        for i, (exp, imp) in enumerate(zip(exports, imports, strict=True))
+    ]
+
+    return datetimes_and_netflows
+
+
+def _fetch_au_nsw_au_vic_exchange(
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[tuple[datetime, float]]:
+    """
+    Calculate AU-NSW->AU-VIC netflow from exports and imports of AU-NSW and AU-QLD.
+
+    NSW has two exchanges one to QLD, one to VIC. QLD only has one exchange to NSW.
+    We want to know
+        AU-NSW->AU-VIC = NSW_exports_to_VIC - NSW_imports_from_VIC
+
+    NSW has two exchanges one to QLD, one to VIC:
+        NSW_exports = NSW_exports_to_QLD + NSW_exports_to_VIC
+        NSW_imports = NSW_imports_from_QLD + NSW_imports_from_VIC
+
+    and because QLD only has one exchange to NSW:
+        NSW_exports_to_QLD = QLD_imports_from_NSW = QLD_imports
+        NSW_imports_from_QLD = QLD_exports_to_NSFW = QLD_exports
+
+    thus
+        NSW_exports_to_VIC = NSW_exports - QLD_imports
+        NSW_imports_from_VIC = NSW_imports - QLD_exports
+
+    and
+        AU-NSW->AU-VIC = NSW_exports - QLD_imports - NSW_imports + QLD_exports
+        = NSW_exports - NSW_imports + QLD_exports - QLD_imports
+    """
+    nsw_zk = "AU-NSW"
+    qld_zk = "AU-QLD"
+
+    nsw_url = generate_url(zone_key=nsw_zk, target_datetime=target_datetime)
+    qld_url = generate_url(zone_key=qld_zk, target_datetime=target_datetime)
+
+    # potential race condition here
+    # if the first request if right before a 5 minute interval and
+    # the second request is right after then the responses could be out of sync
+    # so we issue additional request as close to base request
+    nsw_response = (session or requests).get(nsw_url)
+    qld_response = (session or requests).get(qld_url)
+
+    nsw_response.raise_for_status()
+    qld_response.raise_for_status()
+
+    nsw_exports = None
+    nsw_imports = None
+    for dataset in nsw_response.json()["data"]:
+        if dataset["id"].endswith("exports.power"):
+            nsw_exports = dataset.get("history", None)
+        elif dataset["id"].endswith("imports.power"):
+            nsw_imports = dataset.get("history", None)
+        else:
+            continue
+    if nsw_exports is None or nsw_imports is None:
+        raise ParserException(
+            parser="OPENNEM",
+            message="Response did not contain both export and import datasets.",
+            zone_key=nsw_zk,
+        )
+
+    if (
+        nsw_exports["start"] != nsw_imports["start"]
+        or nsw_exports["last"] != nsw_imports["last"]
+        or len(nsw_exports["data"]) != len(nsw_imports["data"])
+        # interval is 5m so we expect 2017 data points
+        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
+        or len(nsw_exports["data"]) != 2017
+    ):
+        raise ParserException(
+            parser="OPENNEM",
+            message="Export and import data is misaligned",
+            zone_key=nsw_zk,
+        )
+
+    qld_exports = None
+    qld_imports = None
+    for dataset in qld_response.json()["data"]:
+        if dataset["id"].endswith("exports.power"):
+            qld_exports = dataset.get("history", None)
+        elif dataset["id"].endswith("imports.power"):
+            qld_imports = dataset.get("history", None)
+        else:
+            continue
+    if qld_exports is None or qld_imports is None:
+        raise ParserException(
+            parser="OPENNEM",
+            message="Response did not contain both export and import datasets.",
+            zone_key=qld_zk,
+        )
+
+    if (
+        qld_exports["start"] != qld_imports["start"]
+        or qld_exports["last"] != qld_imports["last"]
+        or len(qld_exports["data"]) != len(qld_imports["data"])
+        # interval is 5m so we expect 2017 data points
+        # 7 days * 24 hours * (60/5) = 2016 then add 1 because end is included
+        or len(qld_exports["data"]) != 2017
+    ):
+        raise ParserException(
+            parser="OPENNEM",
+            message="Export and import data is misaligned",
+            zone_key=qld_zk,
+        )
+
+    # assume data is sorted from start to end
+    start = datetime.fromisoformat(nsw_exports["start"])
+    datetimes_and_netflows = [
+        (start + timedelta(minutes=5 * i), (nsw_exp - nsw_imp + qld_exp - qld_imp))
+        for i, (nsw_exp, nsw_imp, qld_exp, qld_imp) in enumerate(
+            zip(nsw_exports, nsw_imports, qld_exports, qld_imports, strict=True)
+        )
+    ]
+
+    return datetimes_and_netflows
 
 
 if __name__ == "__main__":
