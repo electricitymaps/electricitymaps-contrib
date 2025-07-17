@@ -181,8 +181,6 @@ def fetch_main_price_df(
 
 def fetch_main_power_df(
     zone_key: str | None = None,
-    additional_zone_key: str | None = None,
-    direction: int | None = None,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
@@ -190,8 +188,6 @@ def fetch_main_power_df(
     return _fetch_main_df(
         "power",
         zone_key=zone_key,
-        additional_zone_key=additional_zone_key,
-        direction=direction,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -211,9 +207,9 @@ def _fetch_main_df(
         target_datetime=target_datetime,
     )
 
-    req = (session or requests).get(url)
-    req.raise_for_status()
-    datasets = req.json()["data"]
+    response = (session or requests).get(url)
+    response.raise_for_status()
+    datasets = response.json()["data"]
 
     filtered_datasets = [
         ds for ds in datasets if ds["type"] == data_type and ds["region"] == region
@@ -381,7 +377,7 @@ def _fetch_regular_exchange(
     logger: Logger = getLogger(__name__),
 ) -> list[tuple[datetime, float]]:
     """
-    This should only be called for zones that have a single exchange to another zone.
+    Calculate netflows for zones that have a single exchange.
     """
     url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
     response = (session or requests).get(url)
