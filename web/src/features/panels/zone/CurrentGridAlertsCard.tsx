@@ -1,11 +1,14 @@
 import useGetZone from 'api/getZone';
 import HorizontalDivider from 'components/HorizontalDivider';
 import { FormattedTime } from 'components/Time';
+import LabelTooltip from 'components/tooltips/LabelTooltip';
+import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiAlertTriangle, FiInfo } from 'react-icons/fi';
+import { IoFlaskOutline } from 'react-icons/io5';
 import i18n from 'translation/i18n';
 import { TimeRange } from 'utils/constants';
 import {
@@ -52,49 +55,68 @@ export default function CurrentGridAlertsCard() {
   }
 
   return (
-    <RoundedCard className="gap-2 py-3 text-sm text-neutral-600 dark:text-neutral-300">
-      <div className="flex flex-row items-center gap-1">
-        {icon}{' '}
-        <span className={`line-clamp-1 font-semibold ${colorClass}`} title={title}>
-          {title}
-        </span>
-      </div>
-      <div className="flex flex-row items-center gap-1 text-xs">
-        <FormattedTime
-          datetime={new Date(zoneMessage?.start_time ?? '')}
-          language={i18n.languages[0]}
-          timeRange={TimeRange.H72}
-        />
-        {zoneMessage?.end_time && (
-          <div className="flex flex-row items-center gap-1">
-            <div>-</div>
-            <FormattedTime
-              datetime={new Date(zoneMessage.end_time ?? '')}
-              language={i18n.languages[0]}
-              timeRange={TimeRange.H72}
-            />
+    <RoundedCard className="gap-2 px-0 pb-0 text-sm text-neutral-600 dark:text-neutral-300">
+      <div className="px-4 py-3 pb-2">
+        <div className="flex flex-row items-center gap-1">
+          {icon}{' '}
+          <span className={`line-clamp-1 font-semibold ${colorClass}`} title={title}>
+            {title}
+          </span>
+        </div>
+        <div className="flex flex-row items-center gap-1 text-xs">
+          <FormattedTime
+            datetime={new Date(zoneMessage?.start_time ?? '')}
+            language={i18n.languages[0]}
+            timeRange={TimeRange.H72}
+          />
+          {zoneMessage?.end_time && (
+            <div className="flex flex-row items-center gap-1">
+              <div>-</div>
+              <FormattedTime
+                datetime={new Date(zoneMessage.end_time ?? '')}
+                language={i18n.languages[0]}
+                timeRange={TimeRange.H72}
+              />
+            </div>
+          )}
+        </div>
+        <HorizontalDivider />
+        {!isLongMessage && <div className="font-normal">{parseTextWithLinks(text)}</div>}
+        {isLongMessage && (
+          <div className="flex flex-col gap-1">
+            <div className={`text-wrap font-normal ${isCollapsed ? 'line-clamp-2' : ''}`}>
+              {parseTextWithLinks(text)}
+            </div>
+            <div className="items-left flex flex-row gap-1">
+              <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="font-semibold text-brand-yellow underline underline-offset-2 dark:text-brand-green-dark"
+              >
+                {isCollapsed
+                  ? t('grid-alerts-card.show-more')
+                  : t('grid-alerts-card.show-less')}
+              </button>
+            </div>
           </div>
         )}
       </div>
-      <HorizontalDivider />
-      {!isLongMessage && <div className="font-normal">{parseTextWithLinks(text)}</div>}
-      {isLongMessage && (
-        <div className="flex flex-col gap-1">
-          <div className={`text-wrap font-normal ${isCollapsed ? 'line-clamp-2' : ''}`}>
-            {parseTextWithLinks(text)}
-          </div>
-          <div className="items-left flex flex-row gap-1">
-            <button
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              className="font-semibold text-brand-yellow underline underline-offset-2 dark:text-brand-green-dark"
-            >
-              {isCollapsed
-                ? t('grid-alerts-card.show-more')
-                : t('grid-alerts-card.show-less')}
-            </button>
+      <TooltipWrapper
+        side="bottom"
+        tooltipContent={
+          <LabelTooltip className=" w-[278px] max-w-[278px] rounded-lg text-left text-xs text-stone-500 dark:text-stone-400 sm:rounded-lg">
+            {t('grid-alerts-card.tooltip')}
+          </LabelTooltip>
+        }
+      >
+        <div className="m-0 flex flex-row gap-1 border-t border-neutral-200 bg-[#EFF6FF] text-[#1E40AF] dark:border-neutral-700/80 dark:bg-blue-950 dark:text-blue-200">
+          <div className="flex flex-row items-center gap-2 p-3">
+            <IoFlaskOutline className="font-bold " size={12} />
+            <span className=" text-xs font-normal underline decoration-dotted underline-offset-2">
+              {t('grid-alerts-card.experimental-mode')}
+            </span>
           </div>
         </div>
-      )}
+      </TooltipWrapper>
     </RoundedCard>
   );
 }
