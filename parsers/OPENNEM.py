@@ -414,7 +414,9 @@ def _fetch_regular_exchange(
     start = datetime.fromisoformat(exports["start"])
     datetimes_and_netflows = [
         (start + timedelta(minutes=5 * i), (exp - imp) * direction)
-        for i, (exp, imp) in enumerate(zip(exports, imports, strict=True))
+        for i, (exp, imp) in enumerate(
+            zip(exports["data"], imports["data"], strict=True)
+        )
     ]
 
     return datetimes_and_netflows
@@ -522,7 +524,13 @@ def _fetch_au_nsw_au_vic_exchange(
     datetimes_and_netflows = [
         (start + timedelta(minutes=5 * i), (nsw_exp - nsw_imp + qld_exp - qld_imp))
         for i, (nsw_exp, nsw_imp, qld_exp, qld_imp) in enumerate(
-            zip(nsw_exports, nsw_imports, qld_exports, qld_imports, strict=True)
+            zip(
+                nsw_exports["data"],
+                nsw_imports["data"],
+                qld_exports["data"],
+                qld_imports["data"],
+                strict=True,
+            )
         )
     ]
 
