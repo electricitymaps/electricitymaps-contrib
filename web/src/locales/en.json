@@ -150,6 +150,10 @@
       "now": "Now"
     }
   },
+  "grid-alerts-card": {
+    "show-more": "Show more",
+    "show-less": "Show less"
+  },
   "feedback-card": {
     "title": "Help us improve!",
     "success-message": "Your response helps us understand and improve the quality of our app.",
