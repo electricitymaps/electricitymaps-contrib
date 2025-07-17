@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { Charts, SpatialAggregate } from 'utils/constants';
+import { Charts, SpatialAggregate, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
   isFiveMinuteOrHourlyGranularityAtom,
@@ -23,6 +23,7 @@ import {
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
+import ExperimentalCard from './ExperimentalCard';
 import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
@@ -151,6 +152,12 @@ export default function ZoneDetails(): JSX.Element {
         >
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
+          )}
+          {timeRange === TimeRange.H24 && (
+            <ExperimentalCard
+              title={t('experiment.5min.title')}
+              description={t('experiment.5min.description')}
+            />
           )}
           {zoneDetailsContent}
         </div>

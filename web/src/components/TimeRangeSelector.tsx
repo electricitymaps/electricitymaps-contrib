@@ -1,17 +1,20 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useFeatureFlag } from 'features/feature-flags/api';
 import { TFunction } from 'i18next';
-import { ChevronsUpDown } from 'lucide-react';
+import { ChevronsUpDown, FlaskConicalIcon } from 'lucide-react';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TimeRange } from 'utils/constants';
 
 import { useDropdownCtl } from './MoreOptionsDropdown';
 
+const ICON_SIZE = 14;
+
 const createOption = (time: TimeRange, t: TFunction) => ({
   value: time,
   label: t(`time-controller.${time}`),
   dataTestId: `time-controller-${time}`,
+  isExperimental: time === TimeRange.H24,
 });
 
 export interface TimeRangeSelectorProps {
@@ -33,33 +36,45 @@ function TimeRangeSelector({ timeRange, onToggleGroupClick }: TimeRangeSelectorP
           }
           return true;
         })
-        .map((value) => createOption(value, t)),
-    [t, is5MinGranularityEnabled]
+        .map((value) => ({
+          ...createOption(value, t),
+          onClick: () => onToggleGroupClick(value),
+        })),
+    [is5MinGranularityEnabled, t, onToggleGroupClick]
   );
 
-  const selectedLabel = options.find((opt) => opt.value === timeRange)?.label;
+  const selectedLabel = useMemo(
+    () => options.find(({ value }) => value === timeRange)?.label,
+    [options, timeRange]
+  );
 
   return (
     <DropdownMenu.Root onOpenChange={onToggleDropdown} open={isOpen} modal={false}>
       <DropdownMenu.Trigger>
-        <div className="flex w-28 flex-row items-center justify-between rounded-xl bg-white p-1 pl-2 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
+        <div className="flex w-32 flex-row items-center justify-between rounded-xl bg-white px-2 py-1 text-sm font-semibold capitalize outline outline-1 outline-neutral-200 hover:bg-neutral-100 dark:bg-neutral-900 dark:outline-neutral-700 dark:hover:bg-neutral-800">
           {selectedLabel}
-          <ChevronsUpDown height="14px" />
+          <ChevronsUpDown size={ICON_SIZE} />
         </div>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content
         sideOffset={4}
-        className="border-1 border-1 z-50 w-28 rounded-xl border border-neutral-200 bg-white p-1  dark:border-neutral-700 dark:bg-neutral-900"
+        className="border-1 z-50 w-32 rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900"
       >
-        {options.map(({ value, label, dataTestId }) => (
+        {options.map(({ value, label, dataTestId, onClick, isExperimental }) => (
           <DropdownMenu.Item
             key={`group-item-${value}-${label}`}
             data-testid={dataTestId}
             aria-label={label}
-            onClick={() => onToggleGroupClick(value)}
-            className={`h-full grow basis-0 select-none rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800 `}
+            onClick={onClick}
+            className={`flex select-none items-center justify-between rounded-xl p-2 text-xs font-semibold capitalize hover:bg-neutral-100 focus-visible:outline-none dark:hover:bg-neutral-800`}
           >
-            {label}
+            {label}{' '}
+            {isExperimental && (
+              <FlaskConicalIcon
+                size={ICON_SIZE}
+                className="text-info-base dark:text-info-base-dark"
+              />
+            )}
           </DropdownMenu.Item>
         ))}
       </DropdownMenu.Content>
