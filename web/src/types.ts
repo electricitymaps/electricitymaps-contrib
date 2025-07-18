@@ -14,6 +14,7 @@ export type ZoneKey = string;
 
 export interface GridState {
   _disclaimer: string;
+  alerts?: string[];
   createdAt: string;
   datetimes: {
     /** Object representing the grid state at a single point in time */
@@ -176,7 +177,11 @@ export interface ZoneDetails {
 
 export interface ZoneMessage {
   message: string;
+  message_type: 'custom' | 'grid_alert';
   issue?: string;
+  start_time?: string;
+  end_time?: string;
+  alert_type?: string;
 }
 
 export interface GeometryProperties {

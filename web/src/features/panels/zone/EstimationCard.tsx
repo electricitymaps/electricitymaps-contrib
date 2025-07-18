@@ -254,7 +254,10 @@ export function OutageCard({
   const { t } = useTranslation();
   const zoneMessageText =
     estimationMethod === EstimationMethods.THRESHOLD_FILTERED
-      ? { message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`) }
+      ? ({
+          message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`),
+          message_type: 'custom',
+        } as ZoneMessage)
       : zoneMessage;
   return (
     <BaseCard

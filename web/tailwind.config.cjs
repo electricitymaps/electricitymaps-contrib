@@ -52,7 +52,7 @@ const config = {
       colors: {
         'brand-green': '#135836',
         'brand-green-dark': '#41866B',
-        'brand-yellow': '#E9B73B',
+        'brand-yellow': '#89742A',
         'brand-brown': '#702214',
         'price-light': '#18214F',
         'price-dark': '#848EC0',
