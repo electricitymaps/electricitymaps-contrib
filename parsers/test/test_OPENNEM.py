@@ -83,7 +83,7 @@ def test_filter_production_objs():
     assert len(filtered_objs) == 2
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def mock_response(adapter):
     adapter.register_uri(
         ANY,
@@ -96,13 +96,13 @@ def mock_response(adapter):
     )
 
 
-def test_production(adapter, session, snapshot):
+def test_production(adapter, mock_response, session, snapshot):
     assert snapshot == fetch_production(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
     )
 
 
-def test_price(adapter, session, snapshot):
+def test_price(adapter, mock_response, session, snapshot):
     assert snapshot == fetch_price(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
     )
