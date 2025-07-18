@@ -123,3 +123,29 @@ def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
     assert snapshot == fetch_exchange(
         "AU-NSW", "AU-QLD", session, datetime.fromisoformat("2025-07-17")
     )
+
+
+def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-QLD.json")
+            .read_text()
+        ),
+    )
+
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-NSW.json")
+            .read_text()
+        ),
+    )
+
+    assert snapshot == fetch_exchange(
+        "AU-NSW", "AU-VIC", session, datetime.fromisoformat("2025-07-17")
+    )
