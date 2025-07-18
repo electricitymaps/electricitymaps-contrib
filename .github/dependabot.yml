@@ -82,14 +82,13 @@ updates:
         patterns:
           - '@visx/*'
 
-  # Ensure ruff and tzdata is updated.
+  # Ensure ruff is updated.
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
       interval: 'monthly'
     allow:
       - dependency-name: 'ruff'
-      - dependency-name: 'tzdata'
     reviewers:
       - 'VIKTORVAV99'
 
