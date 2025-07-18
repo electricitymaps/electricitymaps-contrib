@@ -6,7 +6,6 @@ import requests
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
-from electricitymap.contrib.lib.models.events import Exchange
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
