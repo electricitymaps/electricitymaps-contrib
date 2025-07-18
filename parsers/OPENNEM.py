@@ -331,7 +331,7 @@ def fetch_exchange(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[Exchange]:
+) -> list:
     exchange_key = ZoneKey("->".join([zone_key1, zone_key2]))
 
     try:
