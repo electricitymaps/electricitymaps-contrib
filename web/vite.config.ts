@@ -202,31 +202,10 @@ export default defineConfig(({ mode }) => ({
             workbox: {
               skipWaiting: true,
               clientsClaim: true,
-              maximumFileSizeToCacheInBytes: 3_500_000,
-              runtimeCaching: [
-                {
-                  urlPattern: ({ url }) => url.pathname.startsWith('/images/'),
-                  handler: 'CacheFirst',
-                  options: {
-                    cacheName: 'images',
-                    cacheableResponse: {
-                      statuses: [200],
-                    },
-                  },
-                },
-                {
-                  urlPattern: ({ url }) => url.pathname.startsWith('/icons/'),
-                  handler: 'CacheFirst',
-                  options: {
-                    cacheName: 'icons',
-                    cacheableResponse: {
-                      statuses: [200],
-                    },
-                  },
-                },
-              ],
+              globPatterns: [],
+              runtimeCaching: [],
+              navigateFallback: null,
             },
-            includeAssets: ['robots.txt', 'fonts/**/*.{woff2, pbf}'],
             manifest: PWAManifest,
           }),
           // Used to upload sourcemaps to Sentry
