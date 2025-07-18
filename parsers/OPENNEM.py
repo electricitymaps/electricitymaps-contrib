@@ -5,7 +5,9 @@ import pandas as pd
 import requests
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from electricitymap.contrib.lib.models.events import Exchange
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -330,7 +332,7 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[Exchange]:
-    exchange_key = "->".join([zone_key1, zone_key2])
+    exchange_key = ZoneKey("->".join([zone_key1, zone_key2]))
 
     try:
         exchange_params = EXCHANGE_MAPPING_DICTIONARY[exchange_key]
@@ -359,10 +361,10 @@ def fetch_exchange(
             logger=logger,
         )
 
-    return [
-        Exchange(datetime=dt, netFlow=netflow, zoneKey=exchange_key, source=SOURCE)
-        for dt, netflow in datetimes_and_netflows
-    ]
+    events = ExchangeList(logger=logger)
+    for dt, netflow in datetimes_and_netflows:
+        events.append(datetime=dt, netFlow=netflow, zoneKey=exchange_key, source=SOURCE)
+    return events.to_list()
 
 
 def _fetch_regular_exchange(
