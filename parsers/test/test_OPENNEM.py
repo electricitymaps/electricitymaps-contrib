@@ -8,6 +8,7 @@ import pytest
 from requests_mock import ANY
 
 from parsers.OPENNEM import (
+    fetch_exchange,
     fetch_price,
     fetch_production,
     filter_production_objs,
@@ -108,14 +109,17 @@ def test_price(adapter, au_vic_mock_response, session, snapshot):
     )
 
 
-# @pytest.fixture()
-# def au_qld_response(adapter):
-#     adapter.register_uri(
-#         ANY,
-#         ANY,
-#         json=json.loads(
-#             resources.files("parsers.test.mocks.OPENNEM")
-#             .joinpath("OPENNEM.json")
-#             .read_text()
-#         ),
-#     )
+def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-QLD.json")
+            .read_text()
+        ),
+    )
+
+    assert snapshot == fetch_exchange(
+        "AU-NSW", "AU-QLD", session, datetime.fromisoformat("2025-07-17")
+    )
