@@ -84,25 +84,38 @@ def test_filter_production_objs():
 
 
 @pytest.fixture()
-def mock_response(adapter):
+def au_vic_mock_response(adapter):
     adapter.register_uri(
         ANY,
         ANY,
         json=json.loads(
             resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM.json")
+            .joinpath("OPENNEM_AU-VIC.json")
             .read_text()
         ),
     )
 
 
-def test_production(adapter, mock_response, session, snapshot):
+def test_production(adapter, au_vic_mock_response, session, snapshot):
     assert snapshot == fetch_production(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
     )
 
 
-def test_price(adapter, mock_response, session, snapshot):
+def test_price(adapter, au_vic_mock_response, session, snapshot):
     assert snapshot == fetch_price(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
     )
+
+
+# @pytest.fixture()
+# def au_qld_response(adapter):
+#     adapter.register_uri(
+#         ANY,
+#         ANY,
+#         json=json.loads(
+#             resources.files("parsers.test.mocks.OPENNEM")
+#             .joinpath("OPENNEM.json")
+#             .read_text()
+#         ),
+#     )
