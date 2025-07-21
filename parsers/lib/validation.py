@@ -4,9 +4,6 @@ import math
 from logging import Logger, getLogger
 from typing import Any
 
-import numpy as np
-import pandas as pd
-
 
 def has_value_for_key(datapoint: dict[str, Any], key: str, logger: Logger):
     """
@@ -38,71 +35,6 @@ def check_expected_range(
         )
         return
     return True
-
-
-def validate_production_diffs(
-    datapoints: list[dict[str, Any]], max_diff: dict, logger: Logger
-):
-    """
-    Parameters
-    ----------
-    datapoints: a list of datapoints having a 'production' field
-    max_diff: dict representing the max allowed diff (in MW) per energy type
-    logger
-
-    Returns
-    -------
-    the same list of datapoints, with the ones having a too big diff removed
-    """
-
-    if len(datapoints) < 2:
-        return datapoints
-
-    # ignore points that are None
-    # TODO(olc): do diffs on each chunks of consecutive non-None points
-    # intead of simply remove None
-    datapoints = [x for x in datapoints if x]
-
-    # sort datapoins by datetime
-    datapoints = sorted(datapoints, key=lambda x: x["datetime"])
-
-    ok_diff = pd.Series(np.ones_like(datapoints, dtype=bool))
-    for energy, max_diff_value in max_diff.items():
-        if "energy" == "total":
-            series = pd.Series(
-                [
-                    np.nansum(list(datapoint["production"].values()))
-                    for datapoint in datapoints
-                ]
-            )
-        else:
-            series = pd.Series(
-                [
-                    datapoint["production"].get(energy, np.nan)
-                    for datapoint in datapoints
-                ]
-            )
-        # nan is always allowed (can be disallowed using `validate` function)
-        new_diffs = (np.abs(series.diff()) < max_diff_value) | series.isna()
-        if not new_diffs[1:].all():
-            wrongs_ixs = new_diffs[~new_diffs].index
-            wrongs_ixs_and_previous = sorted(
-                {ix - 1 for ix in wrongs_ixs} | set(wrongs_ixs)
-            )
-            to_display = [
-                (datapoints[i]["datetime"], datapoints[i]["production"][energy])
-                for i in wrongs_ixs_and_previous
-                if i > 0
-            ]
-            logger.warning(
-                "some datapoints have a too high production value difference "
-                f"for {energy}: {to_display}"
-            )
-        ok_diff &= new_diffs
-    # first datapoint is always OK
-    ok_diff.iloc[0] = True
-
-    return [datapoints[i] for i in ok_diff[ok_diff].index]
 
 
 def validate_consumption(
