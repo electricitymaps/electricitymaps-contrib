@@ -1,10 +1,15 @@
+import os
 from datetime import datetime
+from pathlib import Path
 
 import pandas as pd
 
 from electricitymap.contrib.capacity_parsers.OPENELECTRICITY import (
     filter_capacity_data_by_datetime,
 )
+
+base_path_to_mock = Path("capacity_parsers/tests/mocks/OPENELECTRICITY")
+
 
 test_df = pd.DataFrame(
     [
@@ -30,3 +35,7 @@ def test_filter_capacity_data_by_datetime():
     assert filtered_df_3.equals(
         test_df.loc[test_df["datetime"] <= datetime(2021, 1, 1)]
     )
+
+
+def openelectricity_token_env():
+    os.environ["OPENELECTRICITY_TOKEN"] = "token"

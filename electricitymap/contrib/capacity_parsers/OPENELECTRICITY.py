@@ -43,9 +43,8 @@ OPENELECTRICITY_TOKEN = get_token("OPENELECTRICITY_TOKEN")
 headers = {"Authorization": f"Bearer {OPENELECTRICITY_TOKEN}"}
 
 
-def get_opennem_capacity_data(session: Session) -> dict[str, Any]:
+def get_openelectricity_capacity_data(session: Session) -> dict[str, Any]:
     r: Response = session.request("GET", CAPACITY_URL, headers=headers)
-
     data = r.json()
     result = []
 
@@ -102,7 +101,7 @@ def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ) -> dict[str, Any]:
     session = session or Session()
-    capacity_df = get_opennem_capacity_data(session)
+    capacity_df = get_openelectricity_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df["zone_key"] = capacity_df["zone_key"].map(REGION_MAPPING)
@@ -147,7 +146,7 @@ def fetch_production_capacity(
 def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
     """Get solar capacity for AU-NT."""
     session = Session()
-    capacity_df = get_opennem_capacity_data(session)
+    capacity_df = get_openelectricity_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df = capacity_df.loc[capacity_df["zone_key"] == "NT1"]
