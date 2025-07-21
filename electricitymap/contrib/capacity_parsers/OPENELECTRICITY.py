@@ -6,7 +6,8 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
-from parsers.OPENNEM import SOURCE, ZONE_KEY_TO_REGION
+from parsers.lib.utils import get_token
+from parsers.OPENNEM import ZONE_KEY_TO_REGION
 
 """Disclaimer: only works for real-time data. There is retired capacity included but we do not have the information on when the capacity was retired."""
 logger = getLogger(__name__)
@@ -34,33 +35,44 @@ FUEL_MAPPING = {
     "bioenergy_biomass": "biomass",
 }
 
-CAPACITY_URL = "https://api.opennem.org.au/facility/"
+CAPACITY_URL = "https://api.openelectricity.org.au/v4/facilities/"
+SOURCE = "https://openelectricity.org.au/"
 
 
-def get_opennem_capacity_data(session: Session) -> dict[str, Any]:
-    r: Response = session.get(CAPACITY_URL)
+def get_openelectricity_capacity_data(session: Session) -> pd.DataFrame:
+    token = get_token("OPENELECTRICITY_TOKEN")
+    headers = {"Authorization": f"Bearer {token}"}
+    r: Response = session.request("GET", CAPACITY_URL, headers=headers)
     data = r.json()
-    capacity_df = pd.json_normalize(data)
+    result = []
 
-    capacity_df = capacity_df.loc[capacity_df["dispatch_type"] == "GENERATOR"]
-    capacity_df = capacity_df.loc[capacity_df["status.code"] == "operating"]
-    capacity_df = capacity_df[
-        ["network_region", "capacity_registered", "fueltech.code", "created_at"]
-    ]
-    capacity_df = capacity_df.rename(
-        columns={
-            "network_region": "zone_key",
-            "capacity_registered": "value",
-            "fueltech.code": "mode",
-            "created_at": "datetime",
-        }
-    )
+    time_stamp = data.get("created_at")
 
+    for entry in data.get("data", []):
+        region = entry.get("network_region")
+
+        for unit in entry.get("units", []):
+            if unit.get("dispatch_type") != "GENERATOR":
+                continue
+
+            if unit.get("status_id") != "operating":
+                continue
+
+            transformed = {
+                "zone_key": region,
+                "value": unit.get("capacity_registered"),
+                "mode": unit.get("fueltech_id"),
+                "datetime": time_stamp,
+            }
+            result.append(transformed)
+
+    capacity_df = pd.DataFrame(result)
     capacity_df["datetime"] = capacity_df["datetime"].apply(
         lambda x: pd.to_datetime(x).replace(
             month=1, day=1, hour=0, minute=0, second=0, microsecond=0, tzinfo=None
         )
     )
+
     return capacity_df
 
 
@@ -87,7 +99,7 @@ def fetch_production_capacity_for_all_zones(
     target_datetime: datetime, session: Session | None = None
 ) -> dict[str, Any]:
     session = session or Session()
-    capacity_df = get_opennem_capacity_data(session)
+    capacity_df = get_openelectricity_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df["zone_key"] = capacity_df["zone_key"].map(REGION_MAPPING)
@@ -96,6 +108,8 @@ def fetch_production_capacity_for_all_zones(
     capacity_df = (
         capacity_df.groupby(["zone_key", "mode"])[["value"]].sum().reset_index()
     )
+
+    capacity_df = capacity_df.dropna(subset=["value"])
 
     capacity = {}
     for zone in capacity_df["zone_key"].unique():
@@ -130,7 +144,7 @@ def fetch_production_capacity(
 def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
     """Get solar capacity for AU-NT."""
     session = Session()
-    capacity_df = get_opennem_capacity_data(session)
+    capacity_df = get_openelectricity_capacity_data(session)
     capacity_df = filter_capacity_data_by_datetime(capacity_df, target_datetime)
 
     capacity_df = capacity_df.loc[capacity_df["zone_key"] == "NT1"]
@@ -150,5 +164,8 @@ def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
 
 
 if __name__ == "__main__":
-    print(fetch_production_capacity("AU-VIC", datetime(2015, 1, 1), Session()))
-    print(get_solar_capacity_au_nt(datetime(2021, 1, 1)))
+    session = Session()
+
+    print(fetch_production_capacity("AU-QLD", datetime(2025, 1, 1), session))
+    # print(fetch_production_capacity("AU-VIC", datetime(2015, 1, 1), Session()))
+    # print(get_solar_capacity_au_nt(datetime(2021, 1, 1)))
