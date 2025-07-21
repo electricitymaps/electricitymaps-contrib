@@ -11,7 +11,9 @@ from electricitymap.contrib.capacity_parsers.OPENELECTRICITY import (
 )
 from electricitymap.contrib.config import ZoneKey
 
-base_path_to_mock = Path("capacity_parsers/tests/mocks/OPENELECTRICITY")
+base_path_to_mock = Path(
+    "electricitymap/contrib/capacity_parsers/tests/mocks/OPENELECTRICITY"
+)
 
 
 test_df = pd.DataFrame(
@@ -45,11 +47,15 @@ def openelectricity_token_env():
 
 
 def test_fetch_capacities(adapter, session, snapshot):
+    openelectricity_token_env()
     data = Path(base_path_to_mock, "AU-QLD_capacities.json")
     adapter.register_uri(
         GET,
         ANY,
-        content=data.read_text(),
+        text=data.read_text(),
     )
 
-    assert snapshot == fetch_production_capacity(ZoneKey("AU-QLD"), session)
+    target_datetime = datetime(2025, 1, 1)
+    assert snapshot == fetch_production_capacity(
+        ZoneKey("AU-QLD"), target_datetime, session
+    )
