@@ -699,16 +699,6 @@
     "operationalSince": null,
     "status": "operational"
   },
-  "jsc-de-juelich": {
-    "provider": "jsc",
-    "displayName": "Jülich Supercomputing Centre",
-    "zoneKey": "DE",
-    "lonlat": [6.3996038, 50.9022892],
-    "region": "de-juelich",
-    "source": "https://www.fz-juelich.de/ias/jsc/EN/Home/home_node.html",
-    "operationalSince": null,
-    "status": "operational"
-  },
   "aws-ap-southeast-5": {
     "provider": "aws",
     "lonlat": [101.6841, 3.1319],
