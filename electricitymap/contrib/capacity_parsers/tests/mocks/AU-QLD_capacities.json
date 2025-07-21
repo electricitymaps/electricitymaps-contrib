@@ -1,0 +1,47 @@
+{
+  "battery storage": {
+    "datetime": "2025-01-01",
+    "value": 1250.6,
+    "source": "https://openelectricity.org.au/"
+  },
+  "biomass": {
+    "datetime": "2025-01-01",
+    "value": 313.28,
+    "source": "https://openelectricity.org.au/"
+  },
+  "coal": {
+    "datetime": "2025-01-01",
+    "value": 8119.0,
+    "source": "https://openelectricity.org.au/"
+  },
+  "gas": {
+    "datetime": "2025-01-01",
+    "value": 3201.98,
+    "source": "https://openelectricity.org.au/"
+  },
+  "hydro": {
+    "datetime": "2025-01-01",
+    "value": 726.0,
+    "source": "https://openelectricity.org.au/"
+  },
+  "hydro storage": {
+    "datetime": "2025-01-01",
+    "value": 480.0,
+    "source": "https://openelectricity.org.au/"
+  },
+  "oil": {
+    "datetime": "2025-01-01",
+    "value": 453.0,
+    "source": "https://openelectricity.org.au/"
+  },
+  "solar": {
+    "datetime": "2025-01-01",
+    "value": 4364.81,
+    "source": "https://openelectricity.org.au/"
+  },
+  "wind": {
+    "datetime": "2025-01-01",
+    "value": 2648.2,
+    "source": "https://openelectricity.org.au/"
+  }
+}

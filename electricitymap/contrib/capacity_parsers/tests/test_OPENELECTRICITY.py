@@ -3,10 +3,13 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.capacity_parsers.OPENELECTRICITY import (
+    fetch_production_capacity,
     filter_capacity_data_by_datetime,
 )
+from electricitymap.contrib.config import ZoneKey
 
 base_path_to_mock = Path("capacity_parsers/tests/mocks/OPENELECTRICITY")
 
@@ -39,3 +42,14 @@ def test_filter_capacity_data_by_datetime():
 
 def openelectricity_token_env():
     os.environ["OPENELECTRICITY_TOKEN"] = "token"
+
+
+def test_fetch_capacities(adapter, session, snapshot):
+    data = Path(base_path_to_mock, "AU-QLD_capacities.json")
+    adapter.register_uri(
+        GET,
+        ANY,
+        content=data.read_text(),
+    )
+
+    assert snapshot == fetch_production_capacity(ZoneKey("AU-QLD"), session)
