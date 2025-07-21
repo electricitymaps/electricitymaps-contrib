@@ -38,12 +38,10 @@ FUEL_MAPPING = {
 CAPACITY_URL = "https://api.openelectricity.org.au/v4/facilities/"
 SOURCE = "https://openelectricity.org.au/"
 
-OPENELECTRICITY_TOKEN = get_token("OPENELECTRICITY_TOKEN")
 
-headers = {"Authorization": f"Bearer {OPENELECTRICITY_TOKEN}"}
-
-
-def get_openelectricity_capacity_data(session: Session) -> dict[str, Any]:
+def get_openelectricity_capacity_data(session: Session) -> pd.DataFrame:
+    token = get_token("OPENELECTRICITY_TOKEN")
+    headers = {"Authorization": f"Bearer {token}"}
     r: Response = session.request("GET", CAPACITY_URL, headers=headers)
     data = r.json()
     result = []

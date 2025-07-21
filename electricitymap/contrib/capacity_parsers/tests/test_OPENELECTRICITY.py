@@ -49,7 +49,6 @@ def test_filter_capacity_data_by_datetime():
 
 
 def test_fetch_capacities(adapter, session, snapshot):
-    openelectricity_token_env()
     data = Path(base_path_to_mock, "AU-QLD_capacities.json")
     adapter.register_uri(
         GET,
