@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
+import pytest
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.capacity_parsers.OPENELECTRICITY import (
@@ -27,6 +28,11 @@ test_df = pd.DataFrame(
 )
 
 
+@pytest.fixture(autouse=True)
+def openelectricity_token_env():
+    os.environ["OPENELECTRICITY_TOKEN"] = "token"
+
+
 def test_filter_capacity_data_by_datetime():
     target_datetime_1 = datetime(2022, 3, 1)
     filtered_df_1 = filter_capacity_data_by_datetime(test_df, target_datetime_1)
@@ -40,10 +46,6 @@ def test_filter_capacity_data_by_datetime():
     assert filtered_df_3.equals(
         test_df.loc[test_df["datetime"] <= datetime(2021, 1, 1)]
     )
-
-
-def openelectricity_token_env():
-    os.environ["OPENELECTRICITY_TOKEN"] = "token"
 
 
 def test_fetch_capacities(adapter, session, snapshot):
