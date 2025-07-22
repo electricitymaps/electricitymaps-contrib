@@ -70,60 +70,6 @@ If this jobs fails and you need to manually format the code you can run `poetry 
 
 Check the [wiki page][wiki python code formatting] for more details and tips.
 
-## Front-end guidelines
-
-To get started with editing the frontend use the following steps:
-
-1. Use `cd web` to go into the web directory
-2. Then use `pnpm install` to get all dependencies installed.
-
-Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepage] installed, you can see their respective installation guides here:
-
-- [How to install node.js][node installation guide]
-- [pnpm installation][pnpm installation guide]
-
-### Frontend structure
-
-The frontend can be broken down into 2 main parts, the web app built [Vite][vitejs] and the mobile app built with [capacitor][capacitorjs].
-Both of these share a common code base that is built upon [react][reactjs].
-
-As a result we have a frontend folder structure that looks like this:
-
-```
-mobileapp
-├── android
-├── assets
-├── icons
-└── ios
-web
-├── config
-├── cypress
-├── geo
-├── public
-├── scripts
-└── src
-    ├── api
-    ├── components
-    ├── features
-    ├── hooks
-    ├── stories
-    ├── testing
-    ├── translation
-    └── utils
-```
-
-### State management
-
-We use [Jotai][jotai homepage] that saves our state in primitive atoms, these live in [web/src/utils/state/atoms.ts][jotai atoms] and are then imported in the individual frontend files where it's needed. If you have a need to save the state for a new feature you should add a new atom to this file so we keep everything organized.
-
-### Formatting the frontend
-
-The frontend uses [ESLint][eslint homepage] and [Prettier][prettier homepage] as formatters for all code and this is automatically checked in the CI jobs `Prettier / Check` and `ESLint / Check`.
-
-If these jobs fail and you need to format the code you can run `yarn lint --fix` in the `/web` folder to do so.
-
-Check the [wiki page][wiki js code formatting] on formatting for more details and tips.
-
 # Contribution lifecycle
 
 In order for your PR to be accepted and deployed it will need to pass a series of checks, these checks will be defined and explained in the following section of this document.
