@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 from datetime import datetime
-from json import load
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
