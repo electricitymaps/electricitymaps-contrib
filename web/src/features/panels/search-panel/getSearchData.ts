@@ -1,38 +1,66 @@
+import { RawDataCenter } from 'features/data-centers/DataCenterLayer';
 import { t } from 'i18next';
 import { GridState } from 'types';
 
-import { ZoneRowType } from './ZoneList';
+import { SearchResultRowType } from './ZoneList';
+
+export interface ZoneRowType {
+  zoneId: keyof GridState;
+  countryName?: string;
+  zoneName?: string;
+  fullZoneName?: string;
+  displayName?: string;
+  seoZoneName?: string;
+  englishZoneName?: string;
+}
+
+// Cache for zone data to avoid expensive translation lookups
+let zoneDataCache: Record<string, SearchResultRowType> | null = null;
+let cachedLanguage = '';
 
 export const getAllZones = (language: string) => {
+  // Return cached data if available and language hasn't changed
+  if (zoneDataCache && cachedLanguage === language) {
+    return zoneDataCache;
+  }
+
   // Get all zone data directly from translations
   const zoneData = t('zoneShortName', { returnObjects: true }) as Record<
     string,
     ZoneRowType
   >;
 
-  // If current language is not English, also get English translations
-  if (language !== 'en') {
-    const englishZoneData = t('zoneShortName', {
-      lng: 'en',
-      returnObjects: true,
-    }) as Record<string, ZoneRowType>;
+  const searchData = {} as Record<string, SearchResultRowType>;
+  for (const [key, value] of Object.entries(zoneData)) {
+    searchData[key] = {
+      key: key,
+      displayName: value.zoneName,
+      secondaryDisplayName: value.countryName,
+      flagZoneId: key as keyof GridState,
+      link: `/zone/${key}`,
+    };
 
-    // Merge English translations under same key
-    for (const [key, value] of Object.entries(zoneData)) {
-      zoneData[key] = {
-        ...value,
-        englishZoneName: englishZoneData[key].zoneName,
-      };
+    // If current language is not English, also get English translations
+    if (language !== 'en') {
+      const englishZoneData = t('zoneShortName', {
+        lng: 'en',
+        returnObjects: true,
+      }) as Record<string, ZoneRowType>;
+      searchData[key].englishDisplayName = englishZoneData[key].zoneName;
     }
   }
 
-  return zoneData;
+  // Cache the results
+  zoneDataCache = searchData;
+  cachedLanguage = language;
+
+  return searchData;
 };
 
-export const getFilteredList = (
+export const getFilteredZoneList = (
   searchTerm: string,
-  zoneData: Record<string, ZoneRowType>
-): ZoneRowType[] => {
+  zoneData: Record<string, SearchResultRowType>
+): SearchResultRowType[] => {
   if (!searchTerm) {
     return [];
   }
@@ -43,17 +71,38 @@ export const getFilteredList = (
     // TODO: If adding fuzzy search, we might need to change the zoneKey to be part of the same object instead
     return (
       zoneKey.toString().toLowerCase().includes(searchLower) ||
-      zone.zoneName?.toLowerCase().includes(searchLower) ||
-      zone.countryName?.toLowerCase().includes(searchLower) ||
-      zone.seoZoneName?.toLowerCase().includes(searchLower) ||
       zone.displayName?.toLowerCase().includes(searchLower) ||
-      zone.englishZoneName?.toLowerCase().includes(searchLower)
+      zone.secondaryDisplayName?.toLowerCase().includes(searchLower) ||
+      zone.englishDisplayName?.toLowerCase().includes(searchLower)
     );
   });
 
   // Convert filtered entries to array of ZoneRowType
-  return filtered.map(([zoneKey, zone]) => ({
-    ...zone,
-    zoneId: zoneKey as keyof GridState,
-  }));
+  return filtered.map(([_, value]) => value);
+};
+
+export const getFilteredDataCenterList = (
+  searchTerm: string,
+  dataCenterData: Record<string, RawDataCenter>
+): SearchResultRowType[] => {
+  if (!searchTerm) {
+    return [];
+  }
+
+  return Object.entries(dataCenterData)
+    .filter(([key, data]) => {
+      const searchLower = searchTerm.toLowerCase();
+      return (
+        key.toLowerCase().includes(searchLower) ||
+        data.region.toLowerCase().includes(searchLower) ||
+        data.displayName.toLowerCase().includes(searchLower)
+      );
+    })
+    .map(([key, data]) => ({
+      key: key,
+      link: `/data-center/${data.zoneKey}/${data.provider}/${data.region}`,
+      displayName: data.displayName,
+      secondaryDisplayName: data.region,
+      dataCenterIconId: data.provider.toLowerCase(),
+    }));
 };
