@@ -5,12 +5,14 @@ import LabelTooltip from 'components/tooltips/LabelTooltip';
 import TooltipWrapper from 'components/tooltips/TooltipWrapper';
 import { RoundedCard } from 'features/charts/RoundedCard';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { AlertTriangle, CircleAlert, FlaskConical } from 'lucide-react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiAlertTriangle, FiInfo } from 'react-icons/fi';
-import { IoFlaskOutline } from 'react-icons/io5';
+import { useParams } from 'react-router-dom';
 import i18n from 'translation/i18n';
+import { RouteParameters } from 'types';
 import { TimeRange } from 'utils/constants';
+import { getZoneTimezone } from 'utils/helpers';
 import {
   isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeIndexAtom,
@@ -31,6 +33,12 @@ export default function CurrentGridAlertsCard() {
   const text = rest.join('\n');
   const isLongMessage = text.length > 100;
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const { zoneId } = useParams<RouteParameters>();
+  const timezone = getZoneTimezone(zoneId);
+
+  const handleCollapseToggle = useCallback(() => {
+    setIsCollapsed((previous) => !previous);
+  }, []);
 
   if (
     isLoading ||
@@ -58,26 +66,28 @@ export default function CurrentGridAlertsCard() {
     <RoundedCard className="gap-2 px-0 pb-0 text-sm text-neutral-600 dark:text-neutral-300">
       <div className="px-4 py-3 pb-2">
         <div className="flex flex-row items-center gap-1">
-          {icon}{' '}
+          {icon}
           <span className={`line-clamp-1 font-semibold ${colorClass}`} title={title}>
             {title}
           </span>
         </div>
         <div className="flex flex-row items-center gap-1 text-xs">
-          <FormattedTime
-            datetime={new Date(zoneMessage?.start_time ?? '')}
-            language={i18n.languages[0]}
-            timeRange={TimeRange.H72}
-          />
+          {!zoneMessage?.end_time && (
+            <FormattedTime
+              datetime={new Date(zoneMessage.start_time ?? '')}
+              language={i18n.languages[0]}
+              timeRange={TimeRange.H72}
+            />
+          )}
           {zoneMessage?.end_time && (
-            <div className="flex flex-row items-center gap-1">
-              <div>-</div>
-              <FormattedTime
-                datetime={new Date(zoneMessage.end_time ?? '')}
-                language={i18n.languages[0]}
-                timeRange={TimeRange.H72}
-              />
-            </div>
+            <p className="text-xs">
+              {getAlertTimeRange(
+                new Date(zoneMessage.start_time ?? ''),
+                new Date(zoneMessage.end_time),
+                i18n.languages[0],
+                timezone
+              )}
+            </p>
           )}
         </div>
         <HorizontalDivider />
@@ -89,7 +99,7 @@ export default function CurrentGridAlertsCard() {
             </div>
             <div className="items-left flex flex-row gap-1">
               <button
-                onClick={() => setIsCollapsed(!isCollapsed)}
+                onClick={handleCollapseToggle}
                 className="font-semibold text-brand-yellow underline underline-offset-2 dark:text-brand-green-dark"
               >
                 {isCollapsed
@@ -110,7 +120,7 @@ export default function CurrentGridAlertsCard() {
       >
         <div className="m-0 flex flex-row gap-1 border-t border-neutral-200 bg-[#EFF6FF] text-[#1E40AF] dark:border-neutral-700/80 dark:bg-blue-950 dark:text-blue-200">
           <div className="flex flex-row items-center gap-2 p-3">
-            <IoFlaskOutline className="font-bold " size={12} />
+            <FlaskConical className="font-bold " size={12} />
             <span className=" text-xs font-normal underline decoration-dotted underline-offset-2">
               {t('grid-alerts-card.experimental-mode')}
             </span>
@@ -119,6 +129,23 @@ export default function CurrentGridAlertsCard() {
       </TooltipWrapper>
     </RoundedCard>
   );
+}
+
+function getAlertTimeRange(
+  startTime: Date,
+  endTime: Date,
+  lang: string,
+  timezone?: string
+) {
+  return new Intl.DateTimeFormat(lang, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short',
+    timeZone: timezone,
+  }).formatRange(startTime, endTime);
 }
 
 // Helper to parse text and replace URLs in parentheses with styled links
@@ -161,22 +188,17 @@ function parseTextWithLinks(text: string) {
   return parts;
 }
 
-const getAlertIcon = (alertType: string) => {
-  if (alertType === 'action') {
-    return (
-      <FiAlertTriangle className="inline text-warning dark:text-warning-dark" size={16} />
-    );
-  }
-  if (alertType === 'informational') {
-    return <FiInfo className="inline" size={16} />;
-  }
-};
+const getAlertIcon = (alertType: string) =>
+  alertType === 'action' ? (
+    <AlertTriangle
+      className="inline min-w-4 text-warning dark:text-warning-dark"
+      size={16}
+    />
+  ) : (
+    <CircleAlert className="inline min-w-4" size={16} />
+  );
 
-const getAlertColorClass = (alertType: string) => {
-  if (alertType === 'action') {
-    return 'text-warning dark:text-warning-dark';
-  }
-  if (alertType === 'informational') {
-    return 'text-secondary dark:text-secondary-dark';
-  }
-};
+const getAlertColorClass = (alertType: string) =>
+  alertType === 'action'
+    ? 'text-warning dark:text-warning-dark'
+    : 'text-secondary dark:text-secondary-dark';

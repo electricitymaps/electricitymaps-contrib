@@ -37,11 +37,7 @@ const getPolygonCentroid = (coordinates: number[][][]) => {
 };
 
 function getWarningIconData(worldGeometries: MapGeometries, data: GridState | undefined) {
-  if (!worldGeometries?.features) {
-    return null;
-  }
-
-  if (!data || !data.alerts) {
+  if (!worldGeometries?.features || !data?.alerts) {
     return null;
   }
 
