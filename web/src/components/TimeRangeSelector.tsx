@@ -12,7 +12,7 @@ const ICON_SIZE = 14;
 
 const createOption = (time: TimeRange, t: TFunction) => ({
   value: time,
-  label: t(`time-controller.${time}`),
+  label: t(($) => $['time-controller'][time]),
   dataTestId: `time-controller-${time}`,
   isExperimental: time === TimeRange.H24,
 });

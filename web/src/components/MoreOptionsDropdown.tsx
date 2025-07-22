@@ -73,7 +73,7 @@ export function MoreOptionsDropdown({
     [downloadUrl, trackCsvLink]
   );
 
-  const summary = t('more-options-dropdown.summary');
+  const summary = t(($) => $['more-options-dropdown'].summary);
 
   const { onShare, copyShareUrl } = useMemo(() => {
     const toastMessageCallback = (message: string) => {
@@ -99,10 +99,11 @@ export function MoreOptionsDropdown({
     };
   }, [reference, shareUrl, summary, share, copyToClipboard, trackSocialShareDirectLink]);
 
-  const dropdownTitle = title || t('more-options-dropdown.title');
+  const dropdownTitle = title || t(($) => $['more-options-dropdown'].title);
 
   const copyLinkText = t(
-    `more-options-dropdown.${id === 'zone' ? 'copy-zone-link' : 'copy-chart-link'}`
+    ($) =>
+      $['more-options-dropdown'][id === 'zone' ? 'copy-zone-link' : 'copy-chart-link']
   );
 
   return (
@@ -117,7 +118,7 @@ export function MoreOptionsDropdown({
         >
           {isEstimated && (
             <div className="w-full rounded-t-2xl bg-warning/10 p-3 text-xs font-semibold text-warning dark:bg-warning-dark/10 dark:text-warning-dark">
-              <p>{t('more-options-dropdown.preliminary-data')}</p>
+              <p>{t(($) => $['more-options-dropdown']['preliminary-data'])}</p>
             </div>
           )}
           <div className="px-2 py-2">
@@ -130,7 +131,7 @@ export function MoreOptionsDropdown({
                 <div className="my-auto flex items-center">
                   <FileDownIcon size={DEFAULT_ICON_SIZE} />
                   <div className="ml-2 text-sm font-semibold">
-                    {t('more-options-dropdown.download')}
+                    {t(($) => $['more-options-dropdown'].download)}
                   </div>
                 </div>
                 <ExternalLink
@@ -157,7 +158,7 @@ export function MoreOptionsDropdown({
                 <DropdownMenu.Item className={dropdownItemStyle} onSelect={onShare}>
                   <MemoizedShareIcon />
                   <p className={dropdownContentStyle}>
-                    {t('more-options-dropdown.mobile-share-via')}
+                    {t(($) => $['more-options-dropdown']['mobile-share-via'])}
                   </p>
                 </DropdownMenu.Item>
               )}
@@ -174,7 +175,9 @@ export function MoreOptionsDropdown({
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaSquareXTwitter size={DEFAULT_ICON_SIZE} />
-                      <p className={dropdownContentStyle}>{t('button.twitter-share')}</p>
+                      <p className={dropdownContentStyle}>
+                        {t(($) => $.button['twitter-share'])}
+                      </p>
                     </DropdownMenu.Item>
                   </a>
                   <a
@@ -188,7 +191,9 @@ export function MoreOptionsDropdown({
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaFacebook size={DEFAULT_ICON_SIZE} />
-                      <p className={dropdownContentStyle}>{t('button.facebook-share')}</p>
+                      <p className={dropdownContentStyle}>
+                        {t(($) => $.button['facebook-share'])}
+                      </p>
                     </DropdownMenu.Item>
                   </a>
                   <a
@@ -200,7 +205,9 @@ export function MoreOptionsDropdown({
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaLinkedin size={DEFAULT_ICON_SIZE} />
-                      <p className={dropdownContentStyle}>{t('button.linkedin-share')}</p>
+                      <p className={dropdownContentStyle}>
+                        {t(($) => $.button['linkedin-share'])}
+                      </p>
                     </DropdownMenu.Item>
                   </a>
                   <a
@@ -212,7 +219,9 @@ export function MoreOptionsDropdown({
                   >
                     <DropdownMenu.Item className={dropdownItemStyle}>
                       <FaReddit size={DEFAULT_ICON_SIZE} />
-                      <p className={dropdownContentStyle}>{t('button.reddit-share')}</p>
+                      <p className={dropdownContentStyle}>
+                        {t(($) => $.button['reddit-share'])}
+                      </p>
                     </DropdownMenu.Item>
                   </a>
                 </>
@@ -225,7 +234,7 @@ export function MoreOptionsDropdown({
         ref={reference}
         description={toastMessage}
         isCloseable={true}
-        toastCloseText={t('misc.dismiss')}
+        toastCloseText={t(($) => $.misc.dismiss)}
         duration={DEFAULT_TOAST_DURATION}
       />
     </>

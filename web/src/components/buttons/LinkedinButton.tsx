@@ -35,7 +35,7 @@ export function LinkedinButton({
     >
       {isIconOnly
         ? undefined
-        : t(isShareLink ? 'button.linkedin-share' : 'button.linkedin')}
+        : t(($) => (isShareLink ? $.button['linkedin-share'] : $.button.linkedin))}
     </Button>
   );
 }

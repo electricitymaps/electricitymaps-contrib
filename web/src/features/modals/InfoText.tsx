@@ -9,7 +9,7 @@ export default function InfoText() {
         <Link href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=about-section">
           Electricity Maps
         </Link>{' '}
-        {t('info.text')}
+        {t(($) => $.info.text)}
       </p>
     </div>
   );

@@ -48,7 +48,7 @@ function FAQContent() {
     <Accordion.Root type="multiple" className="space-y-4 pr-2">
       {orderings.map(({ groupKey, entryOrder }) => (
         <div key={`group-${groupKey}`} className="space-y-2">
-          <h3 className="font-bold">{t(`${groupKey}.groupName`)}</h3>
+          <h3 className="font-bold">{t(($) => $[groupKey].groupName)}</h3>
           {entryOrder.map((entryKey, index) => (
             <Accordion.Item
               value={`${groupKey}-item-${index + 1}`}
@@ -58,14 +58,14 @@ function FAQContent() {
               <Accordion.Header className="w-full">
                 <Accordion.Trigger className="group flex items-center space-x-2 text-left hover:text-neutral-600 dark:hover:text-neutral-400">
                   <ChevronRight className="flex-none duration-300 group-radix-state-open:rotate-90" />{' '}
-                  <span>{t(`${groupKey}.${entryKey}-question`)}</span>
+                  <span>{t(($) => $[groupKey][entryKey]['-question'])}</span>
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content className="ml-2 border-l border-neutral-300 pl-4 radix-state-closed:animate-slide-up radix-state-open:animate-slide-down">
                 <div
                   className="text-md prose prose-sm leading-5 dark:prose-invert prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline dark:prose-a:invert md:max-w-none"
                   dangerouslySetInnerHTML={{
-                    __html: t(`${groupKey}.${entryKey}-answer`),
+                    __html: t(($) => $[groupKey][entryKey]['-answer']),
                   }}
                 />
               </Accordion.Content>

@@ -109,7 +109,9 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
   return (
     <RoundedCard>
       <ChartTitle
-        titleText={t(`country-history.${titleDisplayMode}${titleMixMode}.${timeRange}`)}
+        titleText={t(
+          ($) => $['country-history'][titleDisplayMode][titleMixMode][timeRange]
+        )}
         isEstimated={someEstimated}
         unit={someEstimated ? undefined : valueAxisLabel}
         id={Charts.ELECTRICITY_MIX_CHART}
@@ -144,7 +146,9 @@ function OriginChart({ displayByEmissions, datetimes, timeRange }: OriginChartPr
       {isConsumptionAndAggregatedResolution && (
         <div
           className="prose my-1 rounded bg-neutral-200 p-2 text-xs leading-snug dark:bg-neutral-800 dark:text-white dark:prose-a:text-white"
-          dangerouslySetInnerHTML={{ __html: t('country-panel.exchangesAreMissing') }}
+          dangerouslySetInnerHTML={{
+            __html: t(($) => $['country-panel'].exchangesAreMissing),
+          }}
         />
       )}
       <MissingExchangeDataDisclaimer />

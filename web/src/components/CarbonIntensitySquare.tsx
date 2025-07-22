@@ -82,7 +82,7 @@ function CarbonIntensitySquare({
         </div>
       </TooltipWrapper>
       <p className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-        {t('country-panel.carbonintensity')}
+        {t(($) => $['country-panel'].carbonintensity)}
       </p>
     </div>
   );

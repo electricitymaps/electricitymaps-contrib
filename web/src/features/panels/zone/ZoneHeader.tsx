@@ -36,17 +36,15 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       <ZoneHeaderBackButton />
-
       <div className="w-full overflow-hidden">
         <ZoneHeaderTitle zoneId={zoneId} zoneNameFull={zoneNameFull} />
       </div>
-
       {isShareButtonEnabled &&
         (showMoreOptions ? (
           <MoreOptionsDropdown
             id="zone"
             shareUrl={shareUrl}
-            title={t(`more-options-dropdown.title`) + ` ${zoneNameFull}`}
+            title={t(($) => $['more-options-dropdown'].title) + ` ${zoneNameFull}`}
             isEstimated={isEstimated}
           >
             <Ellipsis />

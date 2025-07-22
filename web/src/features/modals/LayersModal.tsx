@@ -38,10 +38,9 @@ function WeatherToggleSwitch({
       <div className="flex items-center">
         <Icon size={20} className="mr-2 text-secondary dark:text-secondary-dark" />
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-          {t(`${typeAsTitlecase} layer`)}
+          {t(($) => $[typeAsTitlecase][' layer'])}
         </span>
       </div>
-
       <div className="relative">
         <SwitchToggle
           isEnabled={isEnabled}
@@ -49,7 +48,7 @@ function WeatherToggleSwitch({
           className={` ${
             !allowed || isLoadingLayer ? 'cursor-not-allowed opacity-50' : ''
           }`}
-          ariaLabel={t(`Toggle ${typeAsTitlecase} layer`)}
+          ariaLabel={t(($) => $['Toggle '][typeAsTitlecase][' layer'])}
         />
         {isLoadingLayer && (
           <span className="absolute inset-0 mb-[6px] ml-4 flex items-center justify-center">
@@ -83,7 +82,7 @@ function MobileDismissButton({ onClick }: { onClick: () => void }) {
   return (
     <div className="absolute inset-x-0 top-36 mx-auto flex justify-center md:hidden">
       <GlassContainer className="flex h-9 w-9 items-center justify-center rounded-full ">
-        <button aria-label={t('misc.dismiss')} onClick={onClick}>
+        <button aria-label={t(($) => $.misc.dismiss)} onClick={onClick}>
           <XIcon size={20} />
         </button>
       </GlassContainer>

@@ -32,7 +32,9 @@ export function RedditButton({
       icon={<FaReddit size={iconSize} />}
       {...restProps}
     >
-      {isIconOnly ? undefined : t(isShareLink ? 'button.reddit-share' : 'button.reddit')}
+      {isIconOnly
+        ? undefined
+        : t(($) => (isShareLink ? $.button['reddit-share'] : $.button.reddit))}
     </Button>
   );
 }
