@@ -194,7 +194,7 @@ def fetch_production(
         solar_prod = solar.get("Value")
 
         productionMix = ProductionMix()
-        if all([total_prod, wind_prod, solar_prod]):
+        if all([total_prod is not None, wind_prod is not None, solar_prod is not None]):
             productionMix.add_value(
                 "unknown",
                 total_prod - wind_prod - solar_prod,

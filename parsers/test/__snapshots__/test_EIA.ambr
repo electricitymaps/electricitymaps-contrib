@@ -1,0 +1,305 @@
+# serializer version: 1
+# name: test_US_CAR_SC_nuclear_split
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 300.0,
+        'gas': 300.0,
+        'hydro': 300.0,
+        'nuclear': 330.666634,
+        'oil': 300.0,
+        'solar': 300.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAR-SC',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 400.0,
+        'gas': 400.0,
+        'hydro': 400.0,
+        'nuclear': 330.3333,
+        'oil': 400.0,
+        'solar': 400.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAR-SC',
+    }),
+  ])
+# ---
+# name: test_US_CAR_SC_nuclear_split.1
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 300.0,
+        'gas': 300.0,
+        'hydro': 300.0,
+        'nuclear': 661.333366,
+        'oil': 300.0,
+        'solar': 300.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAR-SCEG',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 400.0,
+        'gas': 400.0,
+        'hydro': 400.0,
+        'nuclear': 660.6667,
+        'oil': 400.0,
+        'solar': 400.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-CAR-SCEG',
+    }),
+  ])
+# ---
+# name: test_US_NW_AVRN_rerouting
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 330.0,
+        'hydro': 300.0,
+        'solar': 300.0,
+        'wind': 300.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NW-PACW',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 450.0,
+        'hydro': 400.0,
+        'solar': 400.0,
+        'wind': 400.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NW-PACW',
+    }),
+  ])
+# ---
+# name: test_US_NW_AVRN_rerouting.1
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 300.0,
+        'hydro': 300.0,
+        'nuclear': 300.0,
+        'solar': 300.0,
+        'wind': 21.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NW-BPAT',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 400.0,
+        'hydro': 400.0,
+        'nuclear': 400.0,
+        'solar': 400.0,
+        'wind': 42.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'US-NW-BPAT',
+    }),
+  ])
+# ---
+# name: test_fetch_production_mix
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 1.0,
+        'coal': 1.0,
+        'gas': 1.0,
+        'geothermal': 1.0,
+        'hydro': 1.0,
+        'nuclear': 1.0,
+        'oil': 1.0,
+        'solar': 1.0,
+        'unknown': 1.0,
+        'wind': 1.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -1.0,
+        'hydro': -1.0,
+      }),
+      'zoneKey': 'US-NW-PGE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 2.0,
+        'coal': 2.0,
+        'gas': 2.0,
+        'geothermal': 2.0,
+        'hydro': 2.0,
+        'nuclear': 2.0,
+        'oil': 2.0,
+        'solar': 2.0,
+        'unknown': 2.0,
+        'wind': 2.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -2.0,
+        'hydro': -2.0,
+      }),
+      'zoneKey': 'US-NW-PGE',
+    }),
+  ])
+# ---
+# name: test_fetch_production_mix_discards_null
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 400.0,
+        'coal': 400.0,
+        'gas': 400.0,
+        'geothermal': 400.0,
+        'hydro': 400.0,
+        'nuclear': 400.0,
+        'oil': 400.0,
+        'solar': 400.0,
+        'unknown': 400.0,
+        'wind': 400.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -400.0,
+        'hydro': -400.0,
+      }),
+      'zoneKey': 'US-NW-PGE',
+    }),
+  ])
+# ---
+# name: test_fetch_returns_storage
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 27, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 1.0,
+        'coal': 1.0,
+        'gas': 1.0,
+        'geothermal': 1.0,
+        'hydro': 1.0,
+        'nuclear': 1.0,
+        'oil': 1.0,
+        'solar': 1.0,
+        'unknown': 1.0,
+        'wind': 1.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -1.0,
+        'hydro': -1.0,
+      }),
+      'zoneKey': 'US-CAL-IID',
+    }),
+  ])
+# ---
+# name: test_hydro_transfer_mix
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 300.0,
+        'gas': 300.0,
+        'hydro': 7.0,
+        'nuclear': 300.0,
+        'solar': 300.0,
+        'wind': 300.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 5.0,
+      }),
+      'zoneKey': 'US-SW-SRP',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'coal': 400.0,
+        'gas': 400.0,
+        'hydro': 800.0,
+        'nuclear': 400.0,
+        'solar': 400.0,
+        'wind': 400.0,
+      }),
+      'source': 'eia.gov',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 900.0,
+      }),
+      'zoneKey': 'US-SW-SRP',
+    }),
+  ])
+# ---

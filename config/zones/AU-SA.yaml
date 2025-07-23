@@ -324,7 +324,7 @@ fallbackZoneMixes:
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-  productionCapacity: OPENNEM.fetch_production_capacity
+  productionCapacity: OPENELECTRICITY.fetch_production_capacity
   consumptionForecast: AEMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Adelaide
