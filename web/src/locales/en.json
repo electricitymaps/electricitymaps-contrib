@@ -1,8 +1,8 @@
 {
   "experiment": {
     "5min": {
-      "title": "New feature: 5-minute resolution",
-      "description": "The 5-minute resolution feature is currently in experimental phase and available at no additional cost while we gather feedback and refine the functionality."
+      "title": "New: 5-minute resolution",
+      "description": "Currently experimental. Available at no additional cost while we gather feedback and refine the functionality."
     },
     "feedbackCta": "Leave feedback"
   },
@@ -258,72 +258,72 @@
   },
   "country-history": {
     "carbonintensity": {
-      "24h": "5-minute carbon intensity",
-      "72h": "Hourly carbon intensity",
+      "24h": "Carbon intensity",
+      "72h": "Carbon intensity",
       "3mo": "Daily carbon intensity",
       "12mo": "Monthly carbon intensity",
       "all_months": "Monthly carbon intensity",
       "all_years": "Yearly carbon intensity"
     },
     "emissions": {
-      "24h": "5-minute carbon emissions",
-      "72h": "Hourly carbon emissions",
+      "24h": "Carbon emissions",
+      "72h": "Carbon emissions",
       "3mo": "Daily carbon emissions",
       "12mo": "Monthly carbon emissions",
       "all_months": "Monthly carbon emissions",
       "all_years": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "24h": "5-minute carbon emission origin",
-      "72h": "Hourly carbon emission origin",
+      "24h": "Carbon emission origin",
+      "72h": "Carbon emission origin",
       "3mo": "Daily carbon emission origin",
       "12mo": "Monthly carbon emission origin",
       "all_months": "Monthly carbon emission origin",
       "all_years": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "24h": "5-minute production emissions",
-      "72h": "Hourly production emissions",
+      "24h": "Production emissions",
+      "72h": "Production emissions",
       "3mo": "Daily production emissions",
       "12mo": "Monthly production emissions",
       "all_months": "Monthly production emissions",
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "24h": "5-minute electricity mix",
-      "72h": "Hourly electricity mix",
+      "24h": "Electricity mix",
+      "72h": "Electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
       "all_months": "Monthly electricity mix",
       "all_years": "Yearly electricity mix"
     },
     "electricityproduction": {
-      "24h": "5-minute electricity mix",
-      "72h": "Hourly electricity mix",
+      "24h": "Electricity mix",
+      "72h": "Electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
       "all_months": "Monthly electricity mix",
       "all_years": "Yearly electricity mix"
     },
     "electricityprices": {
-      "24h": "5-minute electricity prices",
-      "72h": "Hourly electricity prices",
+      "24h": "Electricity prices",
+      "72h": "Electricity prices",
       "3mo": "Daily electricity prices",
       "12mo": "Monthly electricity prices",
       "all_months": "Monthly electricity prices",
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "24h": "5-minute electricity net flow",
-      "72h": "Hourly electricity net flow",
+      "24h": "Electricity net flow",
+      "72h": "Electricity net flow",
       "3mo": "Daily electricity net flow",
       "12mo": "Monthly electricity net flow",
       "all_months": "Monthly electricity net flow",
       "all_years": "Yearly electricity net flow"
     },
     "electricityLoad": {
-      "24h": "5-minute electricity load",
-      "72h": "Hourly electricity load",
+      "24h": "Electricity load",
+      "72h": "Electricity load",
       "3mo": "Daily electricity load",
       "12mo": "Monthly electricity load",
       "all_months": "Monthly electricity load",
