@@ -32,3 +32,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mayotte
+zone_name: Mayotte
+country_name: Mayotte

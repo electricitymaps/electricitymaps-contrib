@@ -328,3 +328,5 @@ parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Adelaide
+zone_name: South Australia
+country_name: Australia

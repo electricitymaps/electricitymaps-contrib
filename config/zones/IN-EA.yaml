@@ -221,3 +221,5 @@ parsers:
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Eastern India
+country_name: India

@@ -339,3 +339,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dhaka
+zone_name: Bangladesh
+country_name: Bangladesh

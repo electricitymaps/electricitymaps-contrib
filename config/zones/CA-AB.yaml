@@ -232,3 +232,5 @@ parsers:
   productionPerModeForecast: CA_AB.fetch_wind_solar_forecasts
 region: Americas
 timezone: America/Edmonton
+zone_name: Alberta
+country_name: Canada

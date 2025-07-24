@@ -332,3 +332,5 @@ sources:
   EPPO:
     link: https://www.eppo.go.th/index.php/en/en-energystatistics/co2-statistic
 timezone: Asia/Bangkok
+zone_name: Thailand
+country_name: Thailand

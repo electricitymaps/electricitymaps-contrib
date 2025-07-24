@@ -43,3 +43,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Brunei
+zone_name: Brunei
+country_name: Brunei

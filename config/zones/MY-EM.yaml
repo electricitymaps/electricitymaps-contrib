@@ -183,3 +183,5 @@ fallbackZoneMixes:
         wind: 0.0
 region: Asia
 timezone: Asia/Kuala_Lumpur
+zone_name: Borneo
+country_name: Malaysia

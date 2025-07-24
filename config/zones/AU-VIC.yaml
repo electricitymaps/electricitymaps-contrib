@@ -328,3 +328,5 @@ parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Melbourne
+zone_name: Victoria
+country_name: Australia

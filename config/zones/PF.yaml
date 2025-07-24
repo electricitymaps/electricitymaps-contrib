@@ -154,3 +154,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tahiti
+zone_name: French Polynesia
+country_name: French Polynesia

@@ -201,3 +201,4 @@ parsers:
   production: IN_DL.fetch_production
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Unknown

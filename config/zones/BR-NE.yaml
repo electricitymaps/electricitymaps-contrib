@@ -296,3 +296,5 @@ parsers:
   productionCapacity: ONS.fetch_production_capacity
 region: Americas
 timezone: America/Sao_Paulo
+zone_name: North-East Brazil
+country_name: Brazil

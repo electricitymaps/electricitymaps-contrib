@@ -25,3 +25,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Maseru
+zone_name: Lesotho
+country_name: Lesotho
