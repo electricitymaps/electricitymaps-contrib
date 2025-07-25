@@ -119,5 +119,3 @@ parsers:
   production: IN_HP.fetch_production
 region: Asia
 timezone: Asia/Kolkata
-zone_name: Himachal Pradesh
-country_name: India

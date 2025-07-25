@@ -286,4 +286,3 @@ parsers:
   production: IN_MH.fetch_production
 region: Asia
 timezone: Asia/Kolkata
-zone_name: Unknown
