@@ -161,7 +161,7 @@
     "show-more": "Show more",
     "show-less": "Show less",
     "experimental-mode": "This is free while in experimental mode",
-    "tooltip": "This feature is currently in experimental phase and available at no additional cost while we gather feedback and refine the functionality."
+    "tooltip": "This feature is currently in an experimental phase and available at no additional cost while we gather feedback and refine the functionality."
   },
   "feedback-card": {
     "title": "Help us improve!",
