@@ -10,7 +10,7 @@ import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
 import { CircleDashed, TrendingUpDown } from 'lucide-react';
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
 import { EstimationMethods, isTSAModel } from 'utils/constants';
@@ -109,40 +109,14 @@ export default function MapTooltip() {
   const isMapMoving = useAtomValue(mapMovingAtom);
   const { data } = useGetState();
 
-  // Debounce logic to prevent flicker
-  const [visibleZoneId, setVisibleZoneId] = useState<string | null>(null);
-  const hideTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (hoveredZone && !isMapMoving) {
-      if (hideTimeout.current) {
-        clearTimeout(hideTimeout.current);
-        hideTimeout.current = null;
-      }
-      setVisibleZoneId(hoveredZone.zoneId);
-    } else {
-      if (hideTimeout.current) {
-        clearTimeout(hideTimeout.current);
-      }
-      hideTimeout.current = setTimeout(() => {
-        setVisibleZoneId(null);
-      }, 50); // 50ms debounce
-    }
-
-    return () => {
-      if (hideTimeout.current) {
-        clearTimeout(hideTimeout.current);
-        hideTimeout.current = null;
-      }
-    };
-  }, [hoveredZone, isMapMoving]);
-
-  if (!visibleZoneId) {
+  if (!hoveredZone || isMapMoving) {
     return null;
   }
 
+  const { zoneId } = hoveredZone;
+
   const { x, y } = mousePosition;
-  const zoneData = data?.datetimes[selectedDatetimeString]?.z[visibleZoneId];
+  const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
@@ -153,7 +127,7 @@ export default function MapTooltip() {
         className="pointer-events-none relative w-[361px]"
         style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
       >
-        <TooltipInner zoneData={zoneData} zoneId={visibleZoneId} />
+        <TooltipInner zoneData={zoneData} zoneId={zoneId} />
       </GlassContainer>
     </Portal.Root>
   );
