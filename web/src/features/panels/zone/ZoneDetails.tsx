@@ -22,6 +22,7 @@ import {
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
+import CurrentGridAlertsCard from './CurrentGridAlertsCard';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
 import ExperimentalCard from './ExperimentalCard';
 import GridAlertsCard from './GridAlertsCard';
@@ -81,6 +82,7 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
+          <CurrentGridAlertsCard />
           <BarBreakdownChart hasEstimationPill={hasEstimationOrAggregationPill} />
           <ApiButton
             backgroundClasses="mt-3 mb-1"

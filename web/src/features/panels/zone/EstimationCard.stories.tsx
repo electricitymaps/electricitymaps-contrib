@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'translation/i18n';
+import { ZoneMessage } from 'types';
 import { EstimationMethods } from 'utils/constants';
 
 import EstimationCard, {
@@ -17,9 +18,10 @@ const meta: Meta<typeof EstimationCard> = {
 export default meta;
 type Story = StoryObj<typeof EstimationCard>;
 
-const instance: { message: string; issue: string } = {
+const instance: ZoneMessage = {
   message: 'Some outage message.',
   issue: '5613',
+  message_type: 'custom',
 };
 
 export const OutageCardStory: Story = {
@@ -28,7 +30,11 @@ export const OutageCardStory: Story = {
       <div className="space-y-2">
         <OutageCard zoneMessage={instance} estimationMethod={EstimationMethods.OUTAGE} />
         <OutageCard
-          zoneMessage={{ message: 'Different outage message', issue: '1234' }}
+          zoneMessage={{
+            message: 'Different outage message',
+            issue: '1234',
+            message_type: 'custom',
+          }}
           estimationMethod={EstimationMethods.THRESHOLD_FILTERED}
         />
       </div>
