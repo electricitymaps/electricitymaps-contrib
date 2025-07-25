@@ -8,6 +8,7 @@ import pytest
 from requests_mock import ANY
 
 from parsers.OPENNEM import (
+    fetch_exchange,
     fetch_price,
     fetch_production,
     filter_production_objs,
@@ -83,26 +84,68 @@ def test_filter_production_objs():
     assert len(filtered_objs) == 2
 
 
-@pytest.fixture(autouse=True)
-def mock_response(adapter):
+@pytest.fixture()
+def au_vic_mock_response(adapter):
     adapter.register_uri(
         ANY,
         ANY,
         json=json.loads(
             resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM.json")
+            .joinpath("OPENNEM_AU-VIC.json")
             .read_text()
         ),
     )
 
 
-def test_production(adapter, session, snapshot):
+def test_production(adapter, au_vic_mock_response, session, snapshot):
     assert snapshot == fetch_production(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
     )
 
 
-def test_price(adapter, session, snapshot):
+def test_price(adapter, au_vic_mock_response, session, snapshot):
     assert snapshot == fetch_price(
         "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+    )
+
+
+def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-QLD.json")
+            .read_text()
+        ),
+    )
+
+    assert snapshot == fetch_exchange(
+        "AU-NSW", "AU-QLD", session, datetime.fromisoformat("2025-07-17")
+    )
+
+
+def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-QLD.json")
+            .read_text()
+        ),
+    )
+
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.OPENNEM")
+            .joinpath("OPENNEM_AU-NSW.json")
+            .read_text()
+        ),
+    )
+
+    assert snapshot == fetch_exchange(
+        "AU-NSW", "AU-VIC", session, datetime.fromisoformat("2025-07-17")
     )
