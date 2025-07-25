@@ -112,7 +112,13 @@ export default function GridAlertsLayer() {
         const iconColor = getTextColor(bgColor);
 
         return (
-          <Marker key={zoneId} longitude={longitude} latitude={latitude} anchor="center">
+          <Marker
+            key={zoneId}
+            longitude={longitude}
+            latitude={latitude}
+            anchor="center"
+            className="pointer-events-none"
+          >
             <div className="flex items-center justify-center rounded-full bg-white/10 p-2">
               <FiAlertTriangle
                 size={16}
