@@ -42,46 +42,57 @@ EXCHANGE_DIRECTION_MAP = {
 }
 
 
-def get_data(
-    session: Session, data_type: str = "production"
-) -> tuple[list[Any], dict[str, str]]:
+def get_production_data_by_type(
+    session: Session,
+) -> list[tuple[list[Any], dict[str, str]]]:
     """
-    Gets the data from otr.ods.org.hn and returns it as a list with
-    the data and a dictionary with the plant to type mapping or an exchange mapping.
+    Gets the production data from otr.ods.org.hn separated by plant type.
+    Returns a list of tuples containing (CSV_data, plant_to_type_mapping) for each type.
     """
-    CSV_data = []
-    PLANT_TO_TYPE_MAP = {}
-    if data_type == "production":
-        for index in range(1, 11):
-            if index == 7:  # Skip exchanges
-                continue
-            params = {
-                "request": "CSV_N_",
-                "p8_indx": index,
-            }
-            response: Response = session.get(
-                DATA_URL,
-                params=params,
-                verify=False,
-            )
+    data_by_type = []
 
-            parsed_csv = list(reader(response.text.splitlines()))
-            for row in parsed_csv:
-                if row[0] == "Fecha" or row[1] == "Planta":
-                    continue
-                PLANT_TO_TYPE_MAP[row[1]] = INDEX_TO_TYPE_MAP[index]
-                CSV_data.append(row)
-        return CSV_data, PLANT_TO_TYPE_MAP
-    elif data_type == "exchange":
+    for index in range(1, 11):
+        if index == 7:
+            continue
+
         params = {
             "request": "CSV_N_",
-            "p8_indx": 7,
+            "p8_indx": index,
         }
-        response: Response = session.get(DATA_URL, params=params, verify=False)
-        CSV_data = list(reader(response.text.splitlines()))
-        return CSV_data, EXCHANGE_MAP
-    else:
-        raise ParserException("HN.py", f"Invalid data type: {data_type}")
+        response: Response = session.get(
+            DATA_URL,
+            params=params,
+            verify=False,
+        )
+
+        parsed_csv = list(reader(response.text.splitlines()))
+        csv_data = []
+        plant_to_type_map = {}
+
+        for row in parsed_csv:
+            if row[0] == "Fecha" or row[1] == "Planta":
+                continue
+            plant_to_type_map[row[1]] = INDEX_TO_TYPE_MAP[index]
+            csv_data.append(row)
+
+        if csv_data:
+            data_by_type.append((csv_data, plant_to_type_map))
+
+    return data_by_type
+
+
+def get_exchange_data(session: Session) -> tuple[list[Any], dict[str, str]]:
+    """
+    Gets the exchange data from otr.ods.org.hn.
+    Returns a tuple with CSV data and exchange mapping.
+    """
+    params = {
+        "request": "CSV_N_",
+        "p8_indx": 7,
+    }
+    response: Response = session.get(DATA_URL, params=params, verify=False)
+    CSV_data = list(reader(response.text.splitlines()))
+    return CSV_data, EXCHANGE_MAP
 
 
 def safe_float_conversion(value: str | None) -> float | None:
@@ -106,121 +117,70 @@ def extract_date_from_csv(CSV_data: list) -> str | None:
     return None
 
 
-def parse_production_data_by_hour(
-    CSV_data: list, mapping: dict[str, str]
-) -> dict[int, ProductionMix]:
+def create_production_breakdown_list(
+    csv_data: list[Any], plant_to_type_map: dict[str, str], date: str, logger: Logger
+) -> ProductionBreakdownList:
     """
-    Parse CSV data and group production values by hour.
-    Returns a dictionary with hour as key and ProductionMix as values.
+    Create a ProductionBreakdownList from CSV data for a specific plant type.
+    Uses ProductionMix.add_value() for automatic aggregation and validation.
     """
-    values_by_hour = {i: ProductionMix() for i in range(0, 24)}
+    breakdown_list = ProductionBreakdownList(logger)
 
-    for row in CSV_data:
-        # Skip empty or malformed rows
-        if not row or len(row) < 2:
+    hourly_mixes = {hour: ProductionMix() for hour in range(24)}
+
+    for row in csv_data:
+        if not row or len(row) < 2 or row[1] not in plant_to_type_map:
             continue
 
-        if len(row) < 2 or row[1] == "Planta":
-            continue
+        production_mode = plant_to_type_map[row[1]]
+        hourly_values = row[2:]
 
-        # Check if plant name exists in mapping
-        if row[1] not in mapping:
-            continue
-
-        row_values_by_hour = row[2:] if len(row) > 2 else []
-        index = 0
-        for value in row_values_by_hour:
-            if row[0] == "Fecha":
-                continue
-            # Ensure we don't exceed 24 hours
-            if index >= 24:
-                break
-
+        for hour, value in enumerate(hourly_values[:24]):
             float_value = safe_float_conversion(value)
-            mode = mapping[row[1]]
+            hourly_mixes[hour].add_value(production_mode, float_value)
 
-            # Use ProductionMix.add_value() which handles None safely and sums automatically
-            values_by_hour[index].add_value(mode, float_value, correct_negative_with_zero=True)
+    for hour, production_mix in hourly_mixes.items():
+        dt = get_datetime(date, hour)
+        if dt is not None:
+            breakdown_list.append(
+                zoneKey=ZoneKey("HN"),
+                datetime=dt,
+                source="ods.org.hn",
+                production=production_mix,
+            )
 
-            index += 1
-
-    return values_by_hour
+    return breakdown_list
 
 
 def parse_exchange_data_by_hour(
-    CSV_data: list, mapping: dict[str, str]
-) -> dict[int, dict[str, float | None]]:
-    """
-    Parse CSV data and group exchange values by hour.
-    Returns a dictionary with hour as key and {zone: net_flow} as values.
-    """
-    values_by_hour = {i: {} for i in range(0, 24)}
-
-    for row in CSV_data:
-        # Skip empty or malformed rows
-        if not row or len(row) < 2:
-            continue
-
-        if len(row) < 2 or row[1] == "Planta":
-            continue
-
-        # Check if plant name exists in mapping
-        if row[1] not in mapping:
-            continue
-
-        row_values_by_hour = row[2:] if len(row) > 2 else []
-        index = 0
-        for value in row_values_by_hour:
-            if row[0] == "Fecha":
-                continue
-            # Ensure we don't exceed 24 hours
-            if index >= 24:
-                break
-
-            float_value = safe_float_conversion(value)
-            zone = mapping[row[1]]
-
-            if float_value is None:
-                values_by_hour[index][zone] = None
-            else:
-                # Apply direction multiplier for exchanges
-                net_flow = float_value * EXCHANGE_DIRECTION_MAP[zone]
-                if zone in values_by_hour[index]:
-                    current_value = values_by_hour[index][zone]
-                    if current_value is not None:
-                        values_by_hour[index][zone] = current_value + net_flow
-                    else:
-                        values_by_hour[index][zone] = net_flow
-                else:
-                    values_by_hour[index][zone] = net_flow
-
-            index += 1
-
-    return values_by_hour
-
-
-def get_exchange_values(
-    CSV_data: list, mapping: dict, date: str | None, logger: Logger
+    CSV_data: list, mapping: dict[str, str], date: str | None, logger: Logger
 ) -> dict[str, ExchangeList]:
     """
-    Gets the exchange values from the CSV data and returns a dictionary of ExchangeLists by zone key
+    Parse CSV data and return exchange lists by zone.
+    Returns a dictionary with zone keys and ExchangeList values.
     """
     exchanges_by_zone = {}
+
     if date is None:
         return exchanges_by_zone
 
-    values_by_hour = parse_exchange_data_by_hour(CSV_data, mapping)
+    for zone_key in mapping.values():
+        exchanges_by_zone[zone_key] = ExchangeList(logger)
 
-    # Create Exchange events for each hour and zone
-    for hour in range(24):
-        hour_exchanges = values_by_hour[hour]
-        if hour_exchanges:  # Only create if there's data
-            dt = get_datetime(date, hour)
-            if dt is not None:
-                for zone_key, net_flow in hour_exchanges.items():
-                    if zone_key not in exchanges_by_zone:
-                        exchanges_by_zone[zone_key] = ExchangeList(logger)
+    for row in CSV_data:
+        if not row or len(row) < 3 or row[1] not in mapping:
+            continue
 
+        zone_key = mapping[row[1]]
+        direction_multiplier = EXCHANGE_DIRECTION_MAP[zone_key]
+        hourly_values = row[2:]
+
+        for hour, value in enumerate(hourly_values[:24]):
+            float_value = safe_float_conversion(value)
+            if float_value is not None:
+                dt = get_datetime(date, hour)
+                if dt is not None:
+                    net_flow = float_value * direction_multiplier
                     exchanges_by_zone[zone_key].append(
                         zoneKey=ZoneKey(zone_key),
                         datetime=dt,
@@ -232,34 +192,39 @@ def get_exchange_values(
 
 
 def get_production_values(
-    CSV_data: list, mapping: dict, date: str | None, logger: Logger
+    data_by_type: list[tuple[list[Any], dict[str, str]]],
+    logger: Logger,
 ) -> ProductionBreakdownList:
     """
-    Gets the production values from the CSV data and returns a ProductionBreakdownList
+    Gets the production values using the merge functionality to combine
+    production breakdowns from different plant types.
     """
-    production_breakdowns = ProductionBreakdownList(logger)
+    if not data_by_type:
+        return ProductionBreakdownList(logger)
+
+    # Extract date from the first data source
+    first_csv_data, _ = data_by_type[0]
+    date = extract_date_from_csv(first_csv_data)
+
     if date is None:
-        return production_breakdowns
+        return ProductionBreakdownList(logger)
 
-    values_by_hour = parse_production_data_by_hour(CSV_data, mapping)
+    production_breakdown_lists = []
 
-    # Create ProductionBreakdown events for each hour
-    for hour in range(24):
-        production_mix = values_by_hour[hour]
-        dt = get_datetime(date, hour)
-        if dt is not None and isinstance(production_mix, ProductionMix):
-            # Skip hours with completely empty production mix
-            if all(value is None for value in production_mix.dict().values()):
-                continue
+    for csv_data, plant_to_type_map in data_by_type:
+        if not csv_data:
+            continue
 
-            production_breakdowns.append(
-                zoneKey=ZoneKey("HN"),
-                datetime=dt,
-                source="ods.org.hn",
-                production=production_mix,
-            )
+        breakdown_list = create_production_breakdown_list(
+            csv_data, plant_to_type_map, date, logger
+        )
 
-    return production_breakdowns
+        if len(breakdown_list) > 0:
+            production_breakdown_lists.append(breakdown_list)
+
+    return ProductionBreakdownList.merge_production_breakdowns(
+        production_breakdown_lists, logger
+    )
 
 
 def get_datetime(date: str | None, hour: int) -> datetime | None:
@@ -287,11 +252,8 @@ def fetch_production(
             "HN.py", "This parser is not yet able to parse past dates"
         )
 
-    CSV_data, PLANT_TO_TYPE_MAP = get_data(session, "production")
-    date = extract_date_from_csv(CSV_data)
-    production_breakdowns = get_production_values(
-        CSV_data, PLANT_TO_TYPE_MAP, date, logger
-    )
+    data_by_type = get_production_data_by_type(session)
+    production_breakdowns = get_production_values(data_by_type, logger)
 
     return production_breakdowns.to_list()
 
@@ -308,9 +270,11 @@ def fetch_exchange(
             "HN.py", "This parser is not yet able to parse past dates"
         )
 
-    CSV_data, EXCHANGE_MAP = get_data(session, "exchange")
+    CSV_data, EXCHANGE_MAP = get_exchange_data(session)
     date = extract_date_from_csv(CSV_data)
-    exchanges_by_zone = get_exchange_values(CSV_data, EXCHANGE_MAP, date, logger)
+    exchanges_by_zone = parse_exchange_data_by_hour(
+        CSV_data, EXCHANGE_MAP, date, logger
+    )
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     if sorted_zone_keys in exchanges_by_zone:

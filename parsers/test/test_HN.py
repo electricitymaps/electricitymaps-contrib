@@ -23,24 +23,24 @@ def test_fetch_production(adapter, session, snapshot):
         ("production_index_9_oil.csv", 9),
         ("production_index_10_hydro.csv", 10),
     ]
-    
+
     def mock_response(request, context):
         """Mock response based on the p8_indx parameter."""
-        index = int(request.qs.get('p8_indx', [0])[0])
-        
+        index = int(request.qs.get("p8_indx", [0])[0])
+
         for filename, file_index in production_files:
             if index == file_index:
                 file_path = base_path_to_mock / filename
-                return file_path.read_text(encoding='utf-8')
-        
+                return file_path.read_text(encoding="utf-8")
+
         return ""
-    
+
     adapter.register_uri(
         GET,
         ANY,
         text=mock_response,
     )
-    
+
     result = HN.fetch_production(ZoneKey("HN"), session)
     assert snapshot == result
 
@@ -57,12 +57,12 @@ def test_fetch_production(adapter, session, snapshot):
 def test_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2):
     """Test exchange data parsing with snapshot testing."""
     exchange_file = base_path_to_mock / "exchange_index_7.csv"
-    
+
     adapter.register_uri(
         GET,
         ANY,
-        text=exchange_file.read_text(encoding='utf-8'),
+        text=exchange_file.read_text(encoding="utf-8"),
     )
-    
+
     result = HN.fetch_exchange(zone_key1, zone_key2, session)
     assert snapshot == result
