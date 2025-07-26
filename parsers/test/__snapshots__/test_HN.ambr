@@ -187,8 +187,8 @@
   list([
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
@@ -208,8 +208,8 @@
     }),
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
@@ -229,8 +229,8 @@
     }),
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
@@ -250,8 +250,8 @@
     }),
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
@@ -271,8 +271,8 @@
     }),
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
@@ -292,8 +292,8 @@
     }),
     dict({
       'correctedModes': list([
-        'solar',
         'oil',
+        'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
       'production': dict({
