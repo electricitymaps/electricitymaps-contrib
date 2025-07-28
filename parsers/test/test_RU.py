@@ -14,7 +14,7 @@ from parsers.RU import fetch_exchange, fetch_production
 BASE_PATH_TO_MOCK = Path("parsers/test/mocks/RU")
 
 
-@pytest.mark.parametrize("zone_key", ["RU-1", "RU-2", "RU-AS", "RU"])
+@pytest.mark.parametrize("zone_key", ["RU-1", "RU-2", "RU-AS"])
 @freeze_time("2025-07-28 12:00:00")
 def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
     """Test fetch_production for different Russian zones using mock data."""

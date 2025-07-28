@@ -2914,234 +2914,365 @@
 # name: test_snapshot_fetch_production[RU-AS]
   list([
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3083.6572459897907,
+        'hydro': 3083.657246,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1631.4450597466612,
+        'unknown': 1631.44506,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3182.1694846645123,
+        'hydro': 3182.169485,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1819.363160062851,
+        'unknown': 1819.36316,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3344.528174481206,
+        'hydro': 3344.528174,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1874.1175397979407,
+        'unknown': 1874.11754,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3369.6265439082304,
+        'hydro': 3369.626544,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1944.8486035749372,
+        'unknown': 1944.848604,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3402.629042312097,
+        'hydro': 3402.629042,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2006.2956686381488,
+        'unknown': 2006.295669,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3362.0474112704196,
+        'hydro': 3362.047411,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2046.5674080456517,
+        'unknown': 2046.567408,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3325.3110963050326,
+        'hydro': 3325.311096,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2086.299775712412,
+        'unknown': 2086.299776,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3345.680769297179,
+        'hydro': 3345.680769,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2063.002318356621,
+        'unknown': 2063.002318,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3364.623898981712,
+        'hydro': 3364.623899,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2062.2972605700834,
+        'unknown': 2062.297261,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3336.3297199164913,
+        'hydro': 3336.32972,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2058.290767082331,
+        'unknown': 2058.290767,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3341.3199692036974,
+        'hydro': 3341.319969,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2053.1565746656024,
+        'unknown': 2053.156575,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3373.015830515013,
+        'hydro': 3373.015831,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2024.3472913665826,
+        'unknown': 2024.347291,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3405.0957052583854,
+        'hydro': 3405.095705,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 2003.295351005698,
+        'unknown': 2003.295351,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3388.8073903854306,
+        'hydro': 3388.80739,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1942.1822208874244,
+        'unknown': 1942.182221,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
     dict({
-      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Moscow')),
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
       'production': dict({
-        'biomass': None,
-        'geothermal': None,
-        'hydro': 3398.3778635059266,
+        'hydro': 3398.377864,
         'nuclear': 0.0,
-        'solar': None,
-        'unknown': 1921.0716720967916,
+        'unknown': 1921.071672,
       }),
       'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'RU-AS',
     }),
-  ])
-# ---
-# name: test_snapshot_fetch_production[RU]
-  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3400.495094,
+        'nuclear': 0.0,
+        'unknown': 1720.118612,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3394.743685,
+        'nuclear': 0.0,
+        'unknown': 1527.278429,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3232.661113,
+        'nuclear': 0.0,
+        'unknown': 1403.69665,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3020.427729,
+        'nuclear': 0.0,
+        'unknown': 1402.398393,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2901.185758,
+        'nuclear': 0.0,
+        'unknown': 1401.104228,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2846.328785,
+        'nuclear': 0.0,
+        'unknown': 1414.307315,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2886.874579,
+        'nuclear': 0.0,
+        'unknown': 1421.490354,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2947.675003,
+        'nuclear': 0.0,
+        'unknown': 1414.226952,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2996.120854,
+        'nuclear': 0.0,
+        'unknown': 1529.323405,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
   ])
 # ---
 # name: test_snapshot_fetch_production_live

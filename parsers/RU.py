@@ -2,11 +2,9 @@
 
 import json
 from datetime import datetime, timedelta, timezone
-from functools import reduce
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import pandas as pd
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -35,10 +33,17 @@ MAP_GENERATION_1 = {
 
 MAP_GENERATION_2 = {"aes_gen": "nuclear", "ges_gen": "hydro", "P_tes": "unknown"}
 
-IGNORE_KEYS = [
+IGNORE_KEYS = {
     "M_DATE",
     "INTERVAL",
-]
+    "date",
+    "hour",
+    "fHour",
+    "Pmin_tes",
+    "Pmax_tes",
+    "power_sys_id",
+    "price_zone_id",
+}
 
 exchange_ids = {
     "RU-AS->CN": 764,
@@ -70,78 +75,46 @@ TIMEZONE = ZoneInfo("Europe/Moscow")
 
 
 def fetch_production(
-    zone_key: ZoneKey = ZoneKey("RU"),
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
+    """Fetch production data for Russian zones (1st and 2nd synchronous zones)."""
     session = session or Session()
-    if zone_key == "RU":
-        # Get data for all zones
-        dfs = {}
-        for subzone_key in ["RU-1", "RU-2", "RU-AS"]:
-            data = fetch_production(subzone_key, session, target_datetime, logger)
-            df = pd.DataFrame(data).set_index("datetime")
-            df_prod = df["production"].apply(pd.Series).fillna(0)
 
-            # Set a 30 minutes frequency
-            if subzone_key in ["RU-1", "RU-2"]:
-                df_30m_index = df_prod.index.union(
-                    df_prod.index + pd.Timedelta(minutes=30)
-                )
-                df_prod = df_prod.reindex(df_30m_index).ffill()
-
-            dfs[subzone_key] = df_prod
-
-        # Compute the sum
-        df_prod = reduce(lambda x, y: x + y, dfs.values()).dropna()
-
-        # Format to dict
-        df_prod = df_prod.apply(dict, axis=1).reset_index(name="production")
-        df_prod["zoneKey"] = "RU"
-        df_prod["storage"] = [{} for i in range(len(df_prod))]
-        df_prod["source"] = SOURCE
-        data = df_prod.to_dict("records")
-        for row in data:
-            row["datetime"] = row["datetime"].to_pydatetime()
-
-        return data
-
-    elif zone_key == "RU-1" or zone_key == "RU-2":
-        return fetch_production_1st_synchronous_zone(
-            zone_key, session, logger, target_datetime
-        ).to_list()
-    elif zone_key == "RU-AS":
-        return fetch_production_2nd_synchronous_zone(zone_key, session, target_datetime)
-    else:
-        raise NotImplementedError("This parser is not able to parse given zone")
-
-
-def fetch_production_1st_synchronous_zone(
-    zone_key: ZoneKey,
-    session: Session,
-    logger: Logger,
-    target_datetime: datetime | None = None,
-) -> ProductionBreakdownList:
+    # Zone configuration
     zone_key_price_zone_mapper = {
         "RU-1": 1,
         "RU-2": 2,
     }
-    if zone_key not in zone_key_price_zone_mapper:
+
+    # Validate zone
+    if zone_key not in zone_key_price_zone_mapper and zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
 
+    # Prepare datetime
     if target_datetime:
         target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
         target_datetime_tz = datetime.now(TIMEZONE)
-    # Query at t gives production from t to t+1
-    # I need to shift 1 to get the last value at t
     datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
     date = datetime_to_fetch.strftime("%Y.%m.%d")
 
-    price_zone = zone_key_price_zone_mapper[zone_key]
-    base_url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}"
-    url = base_url + f"&startDate={date}&endDate={date}"
+    # Build URL based on zone type
+    if zone_key in zone_key_price_zone_mapper:
+        # 1st synchronous zone (RU-1, RU-2)
+        price_zone = zone_key_price_zone_mapper[zone_key]
+        url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}&startDate={date}&endDate={date}"
+        generation_map = MAP_GENERATION_1
+        date_key = "M_DATE"
+        hour_key = "INTERVAL"
+    else:
+        # 2nd synchronous zone (RU-AS)
+        url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
+        generation_map = MAP_GENERATION_2
+        date_key = "date"
+        hour_key = "hour"
 
     response = session.get(url, verify=False)
     json_content = json.loads(response.text)
@@ -154,8 +127,8 @@ def fetch_production_1st_synchronous_zone(
         for key in datapoint:
             if key in IGNORE_KEYS:
                 continue
-            if key in MAP_GENERATION_1:
-                production_type = MAP_GENERATION_1[key]
+            if key in generation_map:
+                production_type = generation_map[key]
                 gen_value = datapoint[key]
                 production.add_value(
                     mode=production_type,
@@ -166,8 +139,10 @@ def fetch_production_1st_synchronous_zone(
                 logger.warning(
                     f"Unknown production type {key} in {zone_key} production data"
                 )
-        date = datetime.fromisoformat(datapoint["M_DATE"])
-        interval_hour = int(datapoint["INTERVAL"])
+
+        # Parse datetime based on zone type
+        date = datetime.fromisoformat(datapoint[date_key])
+        interval_hour = datapoint[hour_key]
 
         dt = date + timedelta(hours=interval_hour)
 
@@ -178,76 +153,7 @@ def fetch_production_1st_synchronous_zone(
             source=SOURCE,
         )
 
-    return production_breakdown_list
-
-
-def fetch_production_2nd_synchronous_zone(
-    zone_key: str = "RU-AS",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-) -> list[dict]:
-    if zone_key != "RU-AS":
-        raise NotImplementedError("This parser is not able to parse given zone")
-
-    if target_datetime:
-        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
-    else:
-        target_datetime_tz = datetime.now(TIMEZONE)
-    # Here we should shift 30 minutes but it would be inconsistent with 1st zone
-    datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
-    date = datetime_to_fetch.strftime("%Y.%m.%d")
-
-    r = session or Session()
-
-    url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
-
-    response = r.get(url, verify=False)
-    json_content = json.loads(response.text)
-    dataset = json_content[0]["m_Item2"]
-
-    data = []
-    for datapoint in dataset:
-        row = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": SOURCE,
-        }
-
-        for k, production_type in MAP_GENERATION_2.items():
-            if k in datapoint:
-                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
-                row["production"][production_type] = (
-                    row["production"].get(production_type, 0.0) + gen_value
-                )
-            else:
-                row["production"][production_type] = row["production"].get(
-                    production_type, 0.0
-                )
-
-        # Date
-        hour = datapoint["fHour"]
-
-        if len(hour) == 1:
-            hour = "0" + hour
-
-        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
-            tzinfo=TIMEZONE
-        )
-        last_dt = datetime.now(TIMEZONE) - timedelta(minutes=30)
-
-        # Drop datapoints in the future
-        if row["datetime"] > last_dt:
-            continue
-
-        # Default values
-        row["production"]["biomass"] = None
-        row["production"]["geothermal"] = None
-        row["production"]["solar"] = None
-
-        data.append(row)
-
-    return data
+    return production_breakdown_list.to_list()
 
 
 def response_checker(json_content) -> bool:
