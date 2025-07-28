@@ -499,7 +499,7 @@ class GridAlertList(EventList[GridAlert]):
         alertType: GridAlertType,
         message: str,
         issuedTime: datetime,
-        startTime: datetime,
+        startTime: datetime | None,
         endTime: datetime | None,
     ):
         event = GridAlert.create(
