@@ -14,7 +14,7 @@ def test_exchanges(adapter, session, snapshot, neighbour_zone_key: ZoneKey):
 
     pdfurl = GRID_INDIA.get_psp_report_file_url(target_date)
 
-    with open("test/mocks/GRID_INDIA/exchanges.pdf", "rb") as data:
+    with open("parsers/test/mocks/GRID_INDIA/exchanges.pdf", "rb") as data:
         adapter.register_uri(
             GET,
             pdfurl,
@@ -26,3 +26,4 @@ def test_exchanges(adapter, session, snapshot, neighbour_zone_key: ZoneKey):
         session,
         datetime(2023, 6, 25, tzinfo=ZoneInfo("Asia/Kolkata")),
     )
+

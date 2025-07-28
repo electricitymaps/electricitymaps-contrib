@@ -197,12 +197,12 @@ def find_table_after_text(pdf, heading_text, zone_key) -> list[list[str]]:
                 return table
             else:
                 raise ParserException(
-                    parser="IN_EA.py",
+                    parser="GRID_INDIA.py",
                     message=f"Found heading on page {page.page_number}, but no table was found directly below it.",
                     zone_key=ZoneKey(zone_key),
                 )
     raise ParserException(
-        parser="IN_EA.py",
+        parser="GRID_INDIA.py",
         message=f"Could not find the heading '{heading_text}' anywhere in the PDF.",
         zone_key=ZoneKey(zone_key),
     )
@@ -293,7 +293,7 @@ def parse_pdf_for_interregional_exchanges(
 
         if len(df) > 1:
             raise ParserException(
-                parser="IN_EA.py",
+                parser="GRID_INDIA.py",
                 message=f"Multiple rows found for {zone_key} while we only expect to find one daily value",
                 zone_key=zone_key,
             )
@@ -306,7 +306,7 @@ def parse_pdf_for_interregional_exchanges(
 
         except Exception as e:
             raise ParserException(
-                parser="IN_EA.py",
+                parser="GRID_INDIA.py",
                 message=f"Could not find a valid value for {zone_key} for {pdf_url}: {e}",
                 zone_key=zone_key,
             ) from e
@@ -340,7 +340,7 @@ def parse_pdf_for_international_exchanges(
 
         if len(cols_to_keep) != 3:
             raise ParserException(
-                parser="IN_EA.py",
+                parser="GRID_INDIA.py",
                 message=f"Needed columns not found or too many found in table for {zone_key}",
                 zone_key=zone_key,
             )
@@ -366,7 +366,7 @@ def parse_pdf_for_international_exchanges(
 
         except Exception as e:
             raise ParserException(
-                parser="IN_EA.py",
+                parser="GRID_INDIA.py",
                 message=f"Could not find a valid value for {zone_key} for {pdf_url}: {e}",
                 zone_key=zone_key,
             ) from e
