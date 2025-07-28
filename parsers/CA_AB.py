@@ -26,7 +26,11 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
@@ -244,7 +248,7 @@ def fetch_grid_alerts(
             zoneKey=zone_key,
             locationRegion=None,
             source=GRID_ALERT_SOURCE,
-            alertType="undefined",
+            alertType=GridAlertType.undefined,
             message=message,
             issuedTime=time,
             startTime=None,
