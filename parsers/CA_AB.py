@@ -24,17 +24,31 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
-
-# Local library imports
-from parsers.lib import validation
 
 DEFAULT_ZONE_KEY = ZoneKey("CA-AB")
 MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
 TIMEZONE = ZoneInfo("Canada/Mountain")
 URL = urllib.parse.urlsplit("http://ets.aeso.ca/ets_web/ip/Market/Reports")
 URL_STRING = urllib.parse.urlunsplit(URL)
+SOURCE = URL.netloc
+
+PRODUCTION_MAPPING = {
+    "COGENERATION": "gas",
+    "COMBINED CYCLE": "gas",
+    "GAS FIRED STEAM": "gas",
+    "SIMPLE CYCLE": "gas",
+    "WIND": "wind",
+    "SOLAR": "solar",
+    "HYDRO": "hydro",
+    "OTHER": "biomass",
+}
+
+STORAGE_MAPPING = {"ENERGY STORAGE": "battery storage"}
 
 
 def fetch_exchange(
@@ -115,48 +129,26 @@ def fetch_production(
         f"{URL_STRING}/CSDReportServlet", params={"contentType": "csv"}
     )
     generation = {
-        row[0]: {
-            "MC": float(row[1]),  # maximum capability
-            "TNG": float(row[2]),  # total net generation
-        }
+        row[0]: float(row[2])  # total net generation
         for row in csv.reader(response.text.split("\r\n\r\n")[3].splitlines())
     }
-    return [
-        validation.validate(
-            {
-                "capacity": {
-                    "gas": generation["COGENERATION"]["MC"]
-                    + generation["COMBINED CYCLE"]["MC"]
-                    + generation["GAS FIRED STEAM"]["MC"]
-                    + generation["SIMPLE CYCLE"]["MC"],
-                    "wind": generation["WIND"]["MC"],
-                    "solar": generation["SOLAR"]["MC"],
-                    "hydro": generation["HYDRO"]["MC"],
-                    "biomass": generation["OTHER"]["MC"],
-                    "battery storage": generation["ENERGY STORAGE"]["MC"],
-                },
-                "datetime": get_csd_report_timestamp(response.text),
-                "production": {
-                    "gas": generation["COGENERATION"]["TNG"]
-                    + generation["COMBINED CYCLE"]["TNG"]
-                    + generation["GAS FIRED STEAM"]["TNG"]
-                    + generation["SIMPLE CYCLE"]["TNG"],
-                    "wind": generation["WIND"]["TNG"],
-                    "solar": generation["SOLAR"]["TNG"],
-                    "hydro": generation["HYDRO"]["TNG"],
-                    "biomass": generation["OTHER"]["TNG"],
-                },
-                "source": URL.netloc,
-                "storage": {
-                    "battery": generation["ENERGY STORAGE"]["TNG"],
-                },
-                "zoneKey": zone_key,
-            },
-            logger,
-            floor=MINIMUM_PRODUCTION_THRESHOLD,
-            remove_negative=True,
-        )
-    ]
+
+    production_breakdowns = ProductionBreakdownList(logger)
+    mix = ProductionMix()
+    for key in generation:
+        if key in PRODUCTION_MAPPING:
+            mix.add_value(PRODUCTION_MAPPING[key], generation.get(key))
+
+    date = get_csd_report_timestamp(response.text)
+
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=date,
+        production=mix,
+        source=SOURCE,
+    )
+
+    return production_breakdowns.to_list()
 
 
 def get_csd_report_timestamp(report):
@@ -232,4 +224,3 @@ if __name__ == "__main__":
     print(f"fetch_exchange({DEFAULT_ZONE_KEY}, US-NW-NWMT) ->")
     print(fetch_exchange(DEFAULT_ZONE_KEY, "US-NW-NWMT"))"
     """
-    print(fetch_wind_solar_forecasts())
