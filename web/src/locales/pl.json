@@ -1815,7 +1815,7 @@
   "experiment": {
     "5min": {
       "title": "Nowa funkcjonalność: rozdzielczość 5-minutowa",
-      "description": "Funkcjonalność eksperymentalna. Dostępne bez dodatkowych opłat, gdy zbieramy opinie i dopracowujemy funkcje."
+      "description": "Funkcjonalność eksperymentalna. Dostępna bez dodatkowych opłat, gdy zbieramy opinie i dopracowujemy funkcje."
     },
     "feedbackCta": "Podziel się swoją opinią"
   },
@@ -1827,7 +1827,7 @@
     "mobile-share-via": "Udostępnij za pomocą",
     "copy-link": "Skopiuj link",
     "copy-chart-link": "Skopiuj link do wykresu",
-    "copy-zone-link": "Skopuj link to obszaru",
+    "copy-zone-link": "Skopiuj link to obszaru",
     "preliminary-data": "Wstępne dane mogą się z czasem zmieniać.",
     "summary": "Odkryj dane o energii elektrycznej w czasie rzeczywistym dzięki aplikacji Electricity Maps!"
   },
@@ -1842,7 +1842,7 @@
     "12mo": "12 miesięcy",
     "all_months": "Wszystkie miesiące",
     "all_years": "Wszystkie lata",
-    "navigate": "Naviguj",
+    "navigate": "Nawiguj",
     "live": "Na żywo",
     "date-unavailable": {
       "title": "Data niedostępna",
