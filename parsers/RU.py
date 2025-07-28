@@ -9,6 +9,10 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 from requests import Session
 
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)
 # RU-AS: Russia East Power System (2nd synchronous zone)
@@ -26,8 +30,15 @@ MAP_GENERATION_1 = {
     "P_TES": "unknown",
     "P_BS": "unknown",
     "P_REN": "solar",
+    "P_WIND": "wind",
 }
+
 MAP_GENERATION_2 = {"aes_gen": "nuclear", "ges_gen": "hydro", "P_tes": "unknown"}
+
+IGNORE_KEYS = [
+    "M_DATE",
+    "INTERVAL",
+]
 
 exchange_ids = {
     "RU-AS->CN": 764,
@@ -50,6 +61,8 @@ exchange_ids = {
     "UA->RU-1": 880,
 }
 
+SOURCE = "so-ups.ru"
+
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
 
@@ -57,12 +70,12 @@ TIMEZONE = ZoneInfo("Europe/Moscow")
 
 
 def fetch_production(
-    zone_key: str = "RU",
+    zone_key: ZoneKey = ZoneKey("RU"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
-    """Requests the last known production mix (in MW) of a given country."""
+    session = session or Session()
     if zone_key == "RU":
         # Get data for all zones
         dfs = {}
@@ -87,7 +100,7 @@ def fetch_production(
         df_prod = df_prod.apply(dict, axis=1).reset_index(name="production")
         df_prod["zoneKey"] = "RU"
         df_prod["storage"] = [{} for i in range(len(df_prod))]
-        df_prod["source"] = "so-ups.ru"
+        df_prod["source"] = SOURCE
         data = df_prod.to_dict("records")
         for row in data:
             row["datetime"] = row["datetime"].to_pydatetime()
@@ -95,7 +108,9 @@ def fetch_production(
         return data
 
     elif zone_key == "RU-1" or zone_key == "RU-2":
-        return fetch_production_1st_synchronous_zone(zone_key, session, target_datetime)
+        return fetch_production_1st_synchronous_zone(
+            zone_key, session, logger, target_datetime
+        ).to_list()
     elif zone_key == "RU-AS":
         return fetch_production_2nd_synchronous_zone(zone_key, session, target_datetime)
     else:
@@ -103,10 +118,11 @@ def fetch_production(
 
 
 def fetch_production_1st_synchronous_zone(
-    zone_key: str = "RU-1",
-    session: Session | None = None,
+    zone_key: ZoneKey,
+    session: Session,
+    logger: Logger,
     target_datetime: datetime | None = None,
-) -> list:
+) -> ProductionBreakdownList:
     zone_key_price_zone_mapper = {
         "RU-1": 1,
         "RU-2": 2,
@@ -123,54 +139,46 @@ def fetch_production_1st_synchronous_zone(
     datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
     date = datetime_to_fetch.strftime("%Y.%m.%d")
 
-    r = session or Session()
-
     price_zone = zone_key_price_zone_mapper[zone_key]
     base_url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}"
     url = base_url + f"&startDate={date}&endDate={date}"
 
-    response = r.get(url, verify=False)
+    response = session.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
-    data = []
+    production_breakdown_list = ProductionBreakdownList(logger=logger)
     for datapoint in dataset:
-        row = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": "so-ups.ru",
-        }
+        production = ProductionMix()
 
-        for k, production_type in MAP_GENERATION_1.items():
-            if k in datapoint:
-                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
-                row["production"][production_type] = (
-                    row["production"].get(production_type, 0.0) + gen_value
+        for key in datapoint:
+            if key in IGNORE_KEYS:
+                continue
+            if key in MAP_GENERATION_1:
+                production_type = MAP_GENERATION_1[key]
+                gen_value = datapoint[key]
+                production.add_value(
+                    mode=production_type,
+                    value=gen_value,
+                    correct_negative_with_zero=True,
                 )
             else:
-                row["production"][production_type] = row["production"].get(
-                    production_type, 0.0
+                logger.warning(
+                    f"Unknown production type {key} in {zone_key} production data"
                 )
+        date = datetime.fromisoformat(datapoint["M_DATE"])
+        interval_hour = int(datapoint["INTERVAL"])
 
-        # Date
-        hour = f"{int(datapoint['INTERVAL']):02d}"
-        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
-            tzinfo=TIMEZONE
+        dt = date + timedelta(hours=interval_hour)
+
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production,
+            source=SOURCE,
         )
-        last_dt = datetime.now(TIMEZONE) - timedelta(hours=1)
 
-        # Drop datapoints in the future
-        if row["datetime"] > last_dt:
-            continue
-
-        # Default values
-        row["production"]["biomass"] = None
-        row["production"]["geothermal"] = None
-
-        data.append(row)
-
-    return data
+    return production_breakdown_list
 
 
 def fetch_production_2nd_synchronous_zone(
@@ -203,7 +211,7 @@ def fetch_production_2nd_synchronous_zone(
             "zoneKey": zone_key,
             "production": {},
             "storage": {},
-            "source": "so-ups.ru",
+            "source": SOURCE,
         }
 
         for k, production_type in MAP_GENERATION_2.items():
@@ -324,50 +332,9 @@ def fetch_exchange(
             "sortedZoneKeys": sortedcodes,
             "datetime": dt,
             "netFlow": flow,
-            "source": "so-ups.ru",
+            "source": SOURCE,
         }
 
         data.append(exchange)
 
     return data
-
-
-if __name__ == "__main__":
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_production(RU-1) ->")
-    print(fetch_production("RU-1"))
-    print("fetch_production(RU-2) ->")
-    print(fetch_production("RU-2"))
-    print("fetch_production(RU-AS) ->")
-    print(fetch_production("RU-AS"))
-    print("fetch_exchange(CN, RU-AS) ->")
-    print(fetch_exchange("CN", "RU-AS"))
-    print("fetch_exchange(MN, RU) ->")
-    print(fetch_exchange("MN", "RU"))
-    print("fetch_exchange(MN, RU-2) ->")
-    print(fetch_exchange("MN", "RU-2"))
-    print("fetch_exchange(KZ, RU) ->")
-    print(fetch_exchange("KZ", "RU"))
-    print("fetch_exchange(KZ, RU-1) ->")
-    print(fetch_exchange("KZ", "RU-1"))
-    print("fetch_exchange(KZ, RU-2) ->")
-    print(fetch_exchange("KZ", "RU-2"))
-    print("fetch_exchange(GE, RU) ->")
-    print(fetch_exchange("GE", "RU"))
-    print("fetch_exchange(GE, RU-1) ->")
-    print(fetch_exchange("GE", "RU-1"))
-    print("fetch_exchange(AZ, RU) ->")
-    print(fetch_exchange("AZ", "RU"))
-    print("fetch_exchange(AZ, RU-1) ->")
-    print(fetch_exchange("AZ", "RU-1"))
-    print("fetch_exchange(BY, RU) ->")
-    print(fetch_exchange("BY", "RU"))
-    print("fetch_exchange(BY, RU-1) ->")
-    print(fetch_exchange("BY", "RU-1"))
-    print("fetch_exchange(RU-1, UA-CR) ->")
-    print(fetch_exchange("RU-1", "UA-CR"))
-    print("fetch_exchange(RU-1, UA) ->")
-    print(fetch_exchange("RU-1", "UA"))
-    print("fetch_exchange(RU-1, RU-2) ->")
-    print(fetch_exchange("RU-1", "RU-2"))

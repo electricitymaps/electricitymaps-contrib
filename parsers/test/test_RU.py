@@ -20,7 +20,7 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
     """Test fetch_production for different Russian zones using mock data."""
     # Determine which zones need to be mocked based on the test zone
     zones_to_mock = ["RU-1", "RU-2", "RU-AS"] if zone_key == "RU" else [zone_key]
-    
+
     for zone in zones_to_mock:
         mock_file = BASE_PATH_TO_MOCK / f"production_{zone}_2025_07_28.json"
         if zone in ["RU-1", "RU-2"]:
@@ -30,7 +30,7 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
             )
         else:  # RU-AS
             url_pattern = re.compile(r".*CommonInfo/GenEquipOptions_Z2.*")
-        
+
         adapter.register_uri(
             GET,
             url_pattern,
@@ -39,7 +39,7 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
 
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, 12, 0)
-    
+
     assert snapshot == fetch_production(
         zone_key=zone_key,
         session=session,
@@ -69,11 +69,13 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
     ],
 )
 @freeze_time("2025-07-28 12:00:00")
-def test_snapshot_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2, hour):
+def test_snapshot_fetch_exchange(
+    adapter, session, snapshot, zone_key1, zone_key2, hour
+):
     """Test fetch_exchange for different exchange pairs using mock data."""
     # Load the appropriate mock file based on hour
     mock_file = BASE_PATH_TO_MOCK / f"exchange_2025-07-28_{hour}.json"
-    
+
     # Mock the exchange API endpoint with specific pattern
     url_pattern = re.compile(r".*flowDiagramm/GetData.*")
     adapter.register_uri(
@@ -84,7 +86,7 @@ def test_snapshot_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key
 
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, hour, 0)
-    
+
     assert snapshot == fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
@@ -114,7 +116,7 @@ def test_snapshot_fetch_exchange_live(adapter, session, snapshot):
     )
 
 
-@freeze_time("2025-07-28 12:00:00") 
+@freeze_time("2025-07-28 12:00:00")
 def test_snapshot_fetch_production_live(adapter, session, snapshot):
     """Test fetch_production without target_datetime (live mode) using mock data."""
     # Mock all zone endpoints for live mode with specific URL patterns
@@ -127,7 +129,7 @@ def test_snapshot_fetch_production_live(adapter, session, snapshot):
             )
         else:  # RU-AS
             url_pattern = re.compile(r".*CommonInfo/GenEquipOptions_Z2.*")
-        
+
         adapter.register_uri(
             GET,
             url_pattern,
