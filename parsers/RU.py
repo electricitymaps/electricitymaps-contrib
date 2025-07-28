@@ -137,7 +137,7 @@ def fetch_production(
                 )
             else:
                 logger.warning(
-                    f"Unknown production type {key} in {zone_key} production data"
+                    f"Unknown production type '{key}' with value {datapoint[key]} in {zone_key} production data"
                 )
 
         # Parse datetime based on zone type
