@@ -27,6 +27,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
+    StorageMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
@@ -48,7 +49,8 @@ PRODUCTION_MAPPING = {
     "OTHER": "biomass",
 }
 
-STORAGE_MAPPING = {"ENERGY STORAGE": "battery storage"}
+STORAGE_MAPPING = {"ENERGY STORAGE": "battery"}
+SKIP_KEYS = ["TOTAL"]
 
 
 def fetch_exchange(
@@ -134,17 +136,29 @@ def fetch_production(
     }
 
     production_breakdowns = ProductionBreakdownList(logger)
-    mix = ProductionMix()
+    production = ProductionMix()
+    storage = StorageMix()
+
     for key in generation:
         if key in PRODUCTION_MAPPING:
-            mix.add_value(PRODUCTION_MAPPING[key], generation.get(key))
+            production.add_value(
+                PRODUCTION_MAPPING[key],
+                generation.get(key),
+                correct_negative_with_zero=True,
+            )
+        elif key in STORAGE_MAPPING:
+            storage.add_value(STORAGE_MAPPING[key], generation.get(key))
+
+        elif key not in SKIP_KEYS:
+            logger.warning(f"Unrecognized key: {key} in data skipped")
 
     date = get_csd_report_timestamp(response.text)
 
     production_breakdowns.append(
         zoneKey=zone_key,
         datetime=date,
-        production=mix,
+        production=production,
+        storage=storage,
         source=SOURCE,
     )
 
