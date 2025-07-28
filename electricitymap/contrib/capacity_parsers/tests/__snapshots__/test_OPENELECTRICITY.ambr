@@ -1,0 +1,50 @@
+# serializer version: 1
+# name: test_fetch_capacities
+  dict({
+    'battery storage': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 1250.6,
+    }),
+    'biomass': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 313.28,
+    }),
+    'coal': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 8119.0,
+    }),
+    'gas': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 3201.98,
+    }),
+    'hydro': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 726.0,
+    }),
+    'hydro storage': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 480.0,
+    }),
+    'oil': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 453.0,
+    }),
+    'solar': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 4364.81,
+    }),
+    'wind': dict({
+      'datetime': '2025-01-01',
+      'source': 'https://openelectricity.org.au/',
+      'value': 2648.2,
+    }),
+  })
+# ---

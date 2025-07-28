@@ -175,56 +175,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Uurlijkse koolstofintensiteit",
+      "24h": "Koolstofintensiteit",
+      "72h": "Koolstofintensiteit",
       "3mo": "Dagelijkse koolstofintensiteit",
       "12mo": "Maandelijkse koolstofintensiteit",
       "all_months": "Maandelijkse koolstofintensiteit",
       "all_years": "Jaarlijkse koolstofintensiteit"
     },
     "emissions": {
-      "72h": "Uurlijkse koolstofemissies",
+      "24h": "Koolstofemissies",
+      "72h": "Koolstofemissies",
       "3mo": "Dagelijkse koolstofemissies",
       "12mo": "Maandelijkse koolstofemissies",
       "all_months": "Maandelijkse koolstofemissies",
       "all_years": "Jaarlijkse koolstofemissies"
     },
     "emissionsorigin": {
-      "72h": "Uurlijkse oorsprong van koolstofemissies",
+      "24h": "Oorsprong van koolstofemissies",
+      "72h": "Oorsprong van koolstofemissies",
       "3mo": "Dagelijkse oorsprong van koolstofemissies",
       "12mo": "Maandelijkse oorsprong van koolstofemissies",
       "all_months": "Maandelijkse oorsprong van koolstofemissies",
       "all_years": "Jaarlijkse oorsprong van koolstofemissies"
     },
     "emissionsproduction": {
-      "72h": "Uurlijkse productie-emissies",
+      "24h": "Productie-emissies",
+      "72h": "Productie-emissies",
       "3mo": "Dagelijkse productie-emissies",
       "12mo": "Maandelijkse productie-emissies",
       "all_months": "Maandelijkse productie-emissies",
       "all_years": "Jaarlijkse productie-emissies"
     },
     "electricityorigin": {
-      "72h": "Uurlijkse oorsprong van elektriciteit",
+      "24h": "Oorsprong van elektriciteit",
+      "72h": "Oorsprong van elektriciteit",
       "3mo": "Dagelijkse oorsprong van elektriciteit",
       "12mo": "Maandelijkse oorsprong van elektriciteit",
       "all_months": "Maandelijkse oorsprong van elektriciteit",
       "all_years": "Jaarlijkse oorsprong van elektriciteit"
     },
     "electricityproduction": {
-      "72h": "Uurlijkse elektriciteitsproductie",
+      "24h": "Elektriciteitsproductie",
+      "72h": "Elektriciteitsproductie",
       "3mo": "Dagelijkse elektriciteitsproductie",
       "12mo": "Maandelijkse elektriciteitsproductie",
       "all_months": "Maandelijkse elektriciteitsproductie",
       "all_years": "Jaarlijkse elektriciteitsproductie"
     },
     "electricityprices": {
-      "72h": "Uurlijkse elektriciteitsprijzen",
+      "24h": "Elektriciteitsprijzen",
+      "72h": "Elektriciteitsprijzen",
       "3mo": "Dagelijkse elektriciteitsprijzen",
       "12mo": "Maandelijkse elektriciteitsprijzen",
       "all_months": "Maandelijkse elektriciteitsprijzen",
       "all_years": "Jaarlijkse elektriciteitsprijzen"
     },
     "netExchange": {
-      "72h": "Uurlijkse netto-uitwisseling",
+      "24h": "Netto-uitwisseling",
+      "72h": "Netto-uitwisseling",
       "3mo": "Dagelijkse netto-uitwisseling",
       "12mo": "Maandelijkse netto-uitwisseling",
       "all_months": "Maandelijkse netto-uitwisseling",
