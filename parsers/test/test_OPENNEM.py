@@ -101,9 +101,7 @@ def test_production(adapter, session, snapshot, zone):
     )
 
 
-@pytest.mark.parametrize(
-    "zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC"]
-)
+@pytest.mark.parametrize("zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC"])
 def test_price(adapter, session, snapshot, zone):
     mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.json")
     adapter.register_uri(
