@@ -127,7 +127,7 @@ export const determineUnit = (
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   isConsumption: boolean,
-  isHourly: boolean,
+  isFineGranularity: boolean,
   t: TFunction
 ) => {
   if (displayByEmissions) {
@@ -138,7 +138,7 @@ export const determineUnit = (
     );
   }
 
-  return isHourly
+  return isFineGranularity
     ? getUnit(
         formatPower({
           value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),

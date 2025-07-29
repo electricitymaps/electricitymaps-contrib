@@ -14,7 +14,7 @@ import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslatio
 import {
   feedbackCardCollapsedNumberAtom,
   hasEstimationFeedbackBeenSeenAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
 } from 'utils/state/atoms';
 
@@ -38,11 +38,11 @@ function postSurveyResponse({
 function getCardType({
   estimationMethod,
   zoneMessage,
-  isHourly,
+  isFineGranularity,
 }: {
   estimationMethod?: EstimationMethods;
   zoneMessage?: ZoneMessage;
-  isHourly: boolean;
+  isFineGranularity: boolean;
 }): 'estimated' | 'aggregated' | 'outage' | 'none' {
   if (
     (zoneMessage !== undefined &&
@@ -52,7 +52,7 @@ function getCardType({
   ) {
     return 'outage';
   }
-  if (!isHourly) {
+  if (!isFineGranularity) {
     return 'aggregated';
   }
   if (estimationMethod) {
@@ -73,7 +73,7 @@ export default function EstimationCard({
   const { t } = useTranslation();
   const { data } = useGetState();
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const [isFeedbackCardVisible, setIsFeedbackCardVisible] = useState(false);
   const feedbackCardCollapsedNumber = useAtomValue(feedbackCardCollapsedNumberAtom);
   const feedbackEnabled = useFeatureFlag('feedback-estimation-labels');
@@ -107,7 +107,7 @@ export default function EstimationCard({
 
   const estimationMethod = selectedData?.em || undefined;
 
-  const isAggregated = !isHourly;
+  const isAggregated = !isFineGranularity;
 
   if (!estimationMethod && !isAggregated) {
     return null;
@@ -116,7 +116,7 @@ export default function EstimationCard({
   const cardType = getCardType({
     estimationMethod,
     zoneMessage,
-    isHourly,
+    isFineGranularity,
   });
 
   if (cardType === 'none') {
@@ -174,8 +174,8 @@ function BaseCard({
   );
   const isCollapsedDefault = estimationMethod === 'outage' ? false : true;
   const [isCollapsed, setIsCollapsed] = useState(isCollapsedDefault);
-  const isHourly = useAtomValue(isHourlyAtom);
-  const isAggregated = !isHourly;
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
+  const isAggregated = !isFineGranularity;
 
   const trackEvent = useTrackEvent();
   const { trackMissingDataMethodology } = useEvents(trackEvent);
@@ -254,7 +254,10 @@ export function OutageCard({
   const { t } = useTranslation();
   const zoneMessageText =
     estimationMethod === EstimationMethods.THRESHOLD_FILTERED
-      ? { message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`) }
+      ? ({
+          message: t(`estimation-card.${EstimationMethods.THRESHOLD_FILTERED}.body`),
+          message_type: 'custom',
+        } as ZoneMessage)
       : zoneMessage;
   return (
     <BaseCard

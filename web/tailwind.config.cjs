@@ -52,13 +52,25 @@ const config = {
       colors: {
         'brand-green': '#135836',
         'brand-green-dark': '#41866B',
-        'brand-yellow': '#E9B73B',
+        'brand-yellow': '#89742A',
         'brand-brown': '#702214',
         'price-light': '#18214F',
         'price-dark': '#848EC0',
         secondary: {
           DEFAULT: colors.neutral[600],
           dark: colors.gray[300],
+        },
+        'info-base': {
+          DEFAULT: colors.blue[700],
+          dark: colors.blue[300],
+        },
+        'info-subtle': {
+          DEFAULT: colors.blue[200],
+          dark: colors.blue[800],
+        },
+        'info-muted': {
+          DEFAULT: colors.blue[50],
+          dark: colors.blue[950],
         },
         success: {
           DEFAULT: colors.emerald[800],

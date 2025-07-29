@@ -13,7 +13,7 @@ import { round } from 'utils/helpers';
 import {
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   timeRangeAtom,
 } from 'utils/state/atoms';
 
@@ -109,7 +109,7 @@ export default function BreakdownChartTooltip({
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!zoneDetail || !selectedLayerKey) {
     return null;
@@ -127,7 +127,7 @@ export default function BreakdownChartTooltip({
 
   const { estimationMethod, stateDatetime, estimatedPercentage } = zoneDetail;
   const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isHourly;
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
 
   return (
     <BreakdownChartTooltipContent
@@ -188,7 +188,7 @@ export function BreakdownChartTooltipContent({
 }: BreakdownChartTooltipContentProperties) {
   const { t } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   // Dynamically generate the translated headline HTML based on the exchange or generation type
   const percentageUsage = displayByEmissions
     ? getRatioPercent(emissions, totalEmissions)
@@ -239,10 +239,10 @@ export function BreakdownChartTooltipContent({
             value={usage}
             total={totalElectricity}
             useTotalUnit
-            format={isHourly ? formatPower : formatEnergy}
+            format={isFineGranularity ? formatPower : formatEnergy}
           />
           <br />
-          {isHourly && (
+          {isFineGranularity && (
             <>
               <br />
               {t('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b>{' '}

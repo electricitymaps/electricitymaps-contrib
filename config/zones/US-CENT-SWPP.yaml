@@ -33,6 +33,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 324.2
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 323.4
   coal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -49,6 +52,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 20999.3
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 20639.3
   gas:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -86,6 +92,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 35050.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 35376.5
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 35489.3
   geothermal:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -94,6 +106,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3068.6
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 3103.6
   hydro storage:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -163,6 +178,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2173.3
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 2215.1
   solar:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -245,6 +263,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 869.6
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 889.6
   unknown:
     - datetime: '2021-01-01'
       source: EIA.gov
@@ -319,6 +340,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 33931.9
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 34080.3
 comment: Southwest Power Pool
 contributors:
   - systemcatch
@@ -654,11 +678,11 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_SPP.fetch_load_forecast
   dayaheadLocationalMarginalPrice: US_SPP.fetch_dayahead_locational_marginal_price
+  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
   production: US_SPP.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_SPP.fetch_wind_solar_forecasts
   realtimeLocationalMarginalPrice: US_SPP.fetch_realtime_locational_marginal_price
-  gridAlerts: email_grid_alerts.fetch_grid_alerts_emails
 region: Americas
 sources:
   INCER ACV:
