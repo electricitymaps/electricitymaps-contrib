@@ -1,21 +1,29 @@
 {
   "info": {
     "version": "Wersja aplikacji: {{version}}",
-    "share-app": "Podziel się aplikacją:"
+    "share-app": "Podziel się aplikacją:",
+    "title": "Informacje o Electricity Maps",
+    "text": "To platforma API, która udostępnia dane o zużyciu energii elektrycznej w czasie rzeczywistym i prognozowanym, umożliwiając urządzeniom ograniczenie kosztów i emisji poprzez informowanie o najlepszym czasie na zużycie prądu."
   },
   "settings-modal": {
-    "title": "Ustawienia"
+    "title": "Ustawienia",
+    "flows": "Przepływy energii elektrycznej",
+    "flow-tracing-link-label": "Śledzenie przepływu",
+    "flow-tracing-link-description": "pokazuje, jak energia elektryczna przekazywana jest przez połączenia między różnymi strefami",
+    "home-link-description": "oferuje API dostarczające dane z sieci energetycznej w czasie rzeczywistym i prognozowane.",
+    "weather-layers-disallowed": "Dane pogodowe niedostępne dla tej agregacji - przełącz na tryb na żywo, aby zobaczyć aktualne dane pogodowe"
   },
   "ranking-panel": {
     "title": "Wpływ na klimat według obszaru",
     "subtitle": "Podział według intensywności emisji dwutlenku węgla w zużytej energii elektrycznej (gCO₂eq/kWh)",
-    "search": "Szukaj"
+    "search": "Szukaj",
+    "no-results": "Nic nie znaleziono. Spróbuj wyszukać czegoś innego."
   },
   "button": {
     "reddit": "Dołącz do r/electricitymaps",
     "github": "Współtwórz na GitHub",
-    "twitter": "Śledź nas na Twitter",
-    "twitter-share": "Podziel się na Twitter",
+    "twitter": "Śledź nas na X (Twitter)",
+    "twitter-share": "Podziel się na X (Twitter)",
     "linkedin": "Śledź nas na LinkedIn",
     "linkedin-share": "Udostępnij na LinkedIn",
     "facebook": "Śledź nas na Facebook",
@@ -23,7 +31,11 @@
     "feedback": "Podziel się opinią",
     "faq": "FAQ",
     "privacy-policy": "Polityka prywatności",
-    "legal-notice": "Informacja prawna"
+    "legal-notice": "Informacja prawna",
+    "bluesky-share": "Sprawdź dane o globalnych emisjach energii elektrycznej w czasie rzeczywistym: {{baseUrl}}",
+    "reddit-share": "Udostępnij na Reddit",
+    "api": "Dostęp do API",
+    "docs": "Dokumentacja API"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -260,7 +272,7 @@
   "legends": {
     "windpotential": "Potencjał wiatrowy",
     "solarpotential": "Potencjał słoneczny",
-    "colorblindmode": "tryb dla daltonistów",
+    "colorblindmode": "Tryb dla daltonistów",
     "carbonintensity": "Emisja CO₂"
   },
   "tooltips": {
@@ -279,6 +291,7 @@
     "withcarbonintensity": "z emisją CO₂",
     "zoomIn": "Powiększ",
     "zoomOut": "Pomniejsz",
+    "layers": "Warstwy mapy",
     "showWindLayer": "Pokaż warstwę wiatru",
     "hideWindLayer": "Ukryj warstwę wiatru",
     "showSolarLayer": "Pokaż warstwę słoneczną",
@@ -296,8 +309,11 @@
     "dataIsDelayed": "Dane są opóźnione",
     "price": "Cena",
     "netExchange": "Wymiana netto",
+    "load": "Pobór mocy",
     "importing": "Import",
-    "exporting": "Eksport"
+    "exporting": "Eksport",
+    "flowTraced": "Dane śledzące przepływ uwzględniają fizyczny przepływ energii elektrycznej",
+    "nonFlowTraced": "Dane bez śledzenia przepływu nie uwzględniają importu i eksportu"
   },
   "aria": {
     "label": {
@@ -307,7 +323,10 @@
       "solarLayer": "Warstwa słoneczna",
       "changeTheme": "Zmień motyw",
       "hideSidePanel": "Ukryj panel boczny",
-      "showSidePanel": "Pokaż panel boczny"
+      "showSidePanel": "Pokaż panel boczny",
+      "layers": "Warstwy mapy",
+      "zoomIn": "Powiększ",
+      "zoomOut": "Pomniejsz"
     }
   },
   "aggregateButtons": {
@@ -1791,6 +1810,43 @@
     },
     "YT": {
       "zoneName": "Majotta"
+    }
+  },
+  "experiment": {
+    "5min": {
+      "title": "Nowa funkcjonalność: rozdzielczość 5-minutowa",
+      "description": "Funkcjonalność eksperymentalna. Dostępna bez dodatkowych opłat, gdy zbieramy opinie i dopracowujemy funkcje."
+    },
+    "feedbackCta": "Podziel się swoją opinią"
+  },
+  "more-options-dropdown": {
+    "title": "Udostępnij",
+    "download": "Pobierz CSV",
+    "chart-title": "Udostępnij wykres",
+    "zone-title": "Udostępnij obszar",
+    "mobile-share-via": "Udostępnij za pomocą",
+    "copy-link": "Skopiuj link",
+    "copy-chart-link": "Skopiuj link do wykresu",
+    "copy-zone-link": "Skopiuj link to obszaru",
+    "preliminary-data": "Wstępne dane mogą się z czasem zmieniać.",
+    "summary": "Odkryj dane o energii elektrycznej w czasie rzeczywistym dzięki aplikacji Electricity Maps!"
+  },
+  "new-feature-popover": {
+    "title": "Nowa funkcjonalność: widok 72-godzinny",
+    "content": "Poznaj trendy w danych na żywo i historycznych dzięki nowemu 72-godzinnemu oknu czasowemu."
+  },
+  "time-controller": {
+    "24h": "24 godziny",
+    "72h": "72 godziny",
+    "3mo": "90 dni",
+    "12mo": "12 miesięcy",
+    "all_months": "Wszystkie miesiące",
+    "all_years": "Wszystkie lata",
+    "navigate": "Nawiguj",
+    "live": "Na żywo",
+    "date-unavailable": {
+      "title": "Data niedostępna",
+      "description": "Przekierowanie do danych na żywo."
     }
   }
 }
