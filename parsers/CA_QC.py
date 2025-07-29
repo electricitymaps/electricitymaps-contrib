@@ -40,6 +40,11 @@ def fetch_production(
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given region."""
 
+    if target_datetime is not None:
+        raise NotImplementedError(
+            "CA-QC parser does not support historical data requests."
+        )
+
     data = _fetch_quebec_production(session)
     production_breakdown_list = ProductionBreakdownList(logger)
     now = datetime.now(tz=TIMEZONE)
