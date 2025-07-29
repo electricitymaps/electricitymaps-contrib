@@ -52,7 +52,7 @@ PRODUCTION_MAPPING = {
     "OTHER": "biomass",
 }
 
-STORAGE_MAPPING = {"ENERGY STORAGE": "battery storage"}
+STORAGE_MAPPING = {"ENERGY STORAGE": "battery"}
 GRID_ALERTS_URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/RealTimeShiftReportServlet?contentType=html"
 GRID_ALERT_SOURCE = "aeso.ca"
 SKIP_KEYS = ["TOTAL"]
