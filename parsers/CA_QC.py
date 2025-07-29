@@ -21,6 +21,16 @@ CONSUMPTION_URL = f"{US_PROXY}/{DATA_PATH}/demande.json{HOST_PARAM}"
 SOURCE = "hydroquebec.com"
 TIMEZONE = ZoneInfo("America/Montreal")
 
+MODE_MAPPING = {
+    "hydraulique": "hydro",
+    "thermique": "gas",  # See Github issue #3218, Québec's thermal generation is at Bécancour gas turbine.
+    "solaire": "solar",
+    "eolien": "wind",
+    "autres": "biomass",  # Other renewables, mostly biomass. See Github #3218
+}
+
+IGNORED_KEYS = {"total"}
+
 
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("CA-QC"),
@@ -31,30 +41,46 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given region."""
 
     data = _fetch_quebec_production(session)
-    production = ProductionBreakdownList(logger)
+    production_breakdown_list = ProductionBreakdownList(logger)
     now = datetime.now(tz=TIMEZONE)
+
     for elem in data:
         values = elem["valeurs"]
-        if isinstance(elem["date"], str):
-            timestamp = datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE)
-        # The datasource returns future timestamps or recent with a 0.0 value, so we ignore them.
-        if timestamp <= now and values.get("total", 0) > 0:
-            production.append(
-                zoneKey=zone_key,
-                datetime=timestamp,
-                production=ProductionMix(
-                    # autres is all renewable, and mostly biomass.  See Github    #3218
-                    biomass=values.get("autres", 0),
-                    hydro=values.get("hydraulique", 0),
-                    # See Github issue #3218, Québec's thermal generation is at Bécancour gas turbine.
-                    # It is reported with a delay, and data source returning 0.0 can indicate either no generation or not-yet-reported generation.
-                    gas=values.get("thermique", 0),
-                    solar=values.get("solaire", 0),
-                    wind=values.get("eolien", 0),
-                ),
-                source=SOURCE,
-            )
-    return production.to_list()
+        if not isinstance(values, dict):
+            continue
+
+        # Remove ignored keys and skip if no meaningful data remains
+        for key in IGNORED_KEYS:
+            values.pop(key, None)
+        if not values:
+            continue
+
+        # Parse timestamp and skip if invalid or future
+        if not isinstance(elem["date"], str):
+            continue
+        timestamp = datetime.fromisoformat(elem["date"]).replace(tzinfo=TIMEZONE)
+        if timestamp > now:
+            continue
+
+        # Process production data
+        production = ProductionMix()
+        for key, value in values.items():
+            if key in MODE_MAPPING:
+                production.add_value(
+                    MODE_MAPPING[key], value, correct_negative_with_zero=True
+                )
+            else:
+                logger.warning(
+                    f"CA-QC: Unknown production mode '{key}' in data from hydroquebec"
+                )
+
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=timestamp,
+            production=production,
+            source=SOURCE,
+        )
+    return production_breakdown_list.to_list()
 
 
 def fetch_consumption(
