@@ -15,27 +15,30 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from bs4 import BeautifulSoup
 
 # Third-party library imports
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     PriceList,
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
 DEFAULT_ZONE_KEY = ZoneKey("CA-AB")
-MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
 TIMEZONE = ZoneInfo("Canada/Mountain")
 URL = urllib.parse.urlsplit("http://ets.aeso.ca/ets_web/ip/Market/Reports")
 URL_STRING = urllib.parse.urlunsplit(URL)
+
 SOURCE = URL.netloc
 
 PRODUCTION_MAPPING = {
@@ -49,7 +52,9 @@ PRODUCTION_MAPPING = {
     "OTHER": "biomass",
 }
 
-STORAGE_MAPPING = {"ENERGY STORAGE": "battery"}
+STORAGE_MAPPING = {"ENERGY STORAGE": "battery storage"}
+GRID_ALERTS_URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/RealTimeShiftReportServlet?contentType=html"
+GRID_ALERT_SOURCE = "aeso.ca"
 SKIP_KEYS = ["TOTAL"]
 
 
@@ -150,7 +155,7 @@ def fetch_production(
             storage.add_value(STORAGE_MAPPING[key], generation.get(key))
 
         elif key not in SKIP_KEYS:
-            logger.warning(f"Unrecognized key: {key} in data skipped")
+            logger.warning(f"Unrecognized key: {key} in data")
 
     date = get_csd_report_timestamp(response.text)
 
@@ -220,6 +225,39 @@ def fetch_wind_solar_forecasts(
             sourceType=EventSourceType.forecasted,
         )
     return production_list.to_list()
+
+
+def fetch_grid_alerts(
+    zone_key: ZoneKey = DEFAULT_ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    session = session or Session()
+
+    data = session.get(GRID_ALERTS_URL)
+    soup = BeautifulSoup(data.text, "html.parser")
+    table = soup.find_all("table")[-1]
+    rows = table.find_all("tr")
+    grid_alert_list = GridAlertList(logger)
+    for row in rows:
+        cells = row.find_all("td")
+        if len(cells) < 2:
+            continue
+        message = cells[1].text
+        time = cells[0].text
+        time = datetime.strptime(time, "%m/%d/%Y %H:%M").replace(tzinfo=TIMEZONE)
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=None,
+            source=GRID_ALERT_SOURCE,
+            alertType=GridAlertType.undefined,
+            message=message,
+            issuedTime=time,
+            startTime=None,
+            endTime=None,
+        )
+    return grid_alert_list.to_list()
 
 
 if __name__ == "__main__":
