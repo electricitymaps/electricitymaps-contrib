@@ -1,6 +1,6 @@
 import json
 from datetime import datetime, timedelta, timezone
-from importlib import resources
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -14,6 +14,8 @@ from parsers.OPENNEM import (
     filter_production_objs,
     sum_vector,
 )
+
+base_path_to_mock = Path("parsers/test/mocks/OPENNEM")
 
 
 def test_sum_vector():
@@ -84,40 +86,40 @@ def test_filter_production_objs():
     assert len(filtered_objs) == 2
 
 
-@pytest.fixture()
-def au_vic_mock_response(adapter):
+@pytest.mark.parametrize(
+    "zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"]
+)
+def test_production(adapter, session, snapshot, zone):
+    mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.json")
     adapter.register_uri(
         ANY,
         ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM_AU-VIC.json")
-            .read_text()
-        ),
+        json=json.loads(mock_data.read_text()),
     )
-
-
-def test_production(adapter, au_vic_mock_response, session, snapshot):
     assert snapshot == fetch_production(
-        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+        zone, session, datetime.fromisoformat("2025-03-23")
     )
 
 
-def test_price(adapter, au_vic_mock_response, session, snapshot):
-    assert snapshot == fetch_price(
-        "AU-VIC", session, datetime.fromisoformat("2025-03-23")
+@pytest.mark.parametrize(
+    "zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC"]
+)
+def test_price(adapter, session, snapshot, zone):
+    mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.json")
+    adapter.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(mock_data.read_text()),
     )
+    assert snapshot == fetch_price(zone, session, datetime.fromisoformat("2025-03-23"))
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
+    mock_data = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
     adapter.register_uri(
         ANY,
         ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM_AU-QLD.json")
-            .read_text()
-        ),
+        json=json.loads(mock_data.read_text()),
     )
 
     assert snapshot == fetch_exchange(
@@ -126,24 +128,19 @@ def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
 
 
 def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
+    mock_data_qld = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
+    mock_data_nsw = Path(base_path_to_mock, "OPENNEM_AU-NSW.json")
+
     adapter.register_uri(
         ANY,
         ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM_AU-QLD.json")
-            .read_text()
-        ),
+        json=json.loads(mock_data_qld.read_text()),
     )
 
     adapter.register_uri(
         ANY,
         ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.OPENNEM")
-            .joinpath("OPENNEM_AU-NSW.json")
-            .read_text()
-        ),
+        json=json.loads(mock_data_nsw.read_text()),
     )
 
     assert snapshot == fetch_exchange(
