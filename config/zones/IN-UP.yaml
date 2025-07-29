@@ -219,3 +219,5 @@ fallbackZoneMixes:
 parsers: {}
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Unknown
+country_name: India
