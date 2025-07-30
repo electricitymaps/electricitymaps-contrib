@@ -307,12 +307,13 @@ def fetch_price(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     exchange_key = ZoneKey("->".join([zone_key1, zone_key2]))
 
     try:
@@ -351,7 +352,7 @@ def fetch_exchange(
 def _fetch_regular_exchange(
     zone_key: ZoneKey,
     direction: int,
-    session: Session | None = None,
+    session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[tuple[datetime, float]]:
@@ -359,7 +360,7 @@ def _fetch_regular_exchange(
     Calculate netflows for zones that have a single exchange.
     """
     url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
-    response = (session or Session()).get(url)
+    response = session.get(url)
     response.raise_for_status()
 
     exports = None
@@ -402,7 +403,7 @@ def _fetch_regular_exchange(
 
 
 def _fetch_au_nsw_au_vic_exchange(
-    session: Session | None = None,
+    session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[tuple[datetime, float]]:
@@ -429,7 +430,6 @@ def _fetch_au_nsw_au_vic_exchange(
         AU-NSW->AU-VIC = NSW_exports - QLD_imports - NSW_imports + QLD_exports
         = NSW_exports - NSW_imports + QLD_exports - QLD_imports
     """
-    session = session or Session()
     nsw_zk = ZoneKey("AU-NSW")
     qld_zk = ZoneKey("AU-QLD")
 
