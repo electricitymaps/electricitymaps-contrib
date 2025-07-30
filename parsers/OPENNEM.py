@@ -1,11 +1,16 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from typing import Any
 
 import pandas as pd
 import requests
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -74,6 +79,24 @@ OPENNEM_STORAGE_CATEGORIES = {
     "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING"],
     "hydro": ["PUMPS"],
 }
+
+# Reverse mapping from fuel type to category
+PRODUCTION_MAPPING = {
+    fuel_type.lower(): category
+    for category, fuel_types in OPENNEM_PRODUCTION_CATEGORIES.items()
+    for fuel_type in fuel_types
+}
+STORAGE_MAPPING = {
+    fuel_type.lower(): category
+    for category, fuel_types in OPENNEM_STORAGE_CATEGORIES.items()
+    for fuel_type in fuel_types
+}
+
+IGNORED_FUEL_TECH_KEYS = {
+    "imports",
+    "exports",  # These keys are not relevant for production breakdowns
+}
+
 SOURCE = "opennem.org.au"
 
 
@@ -146,21 +169,6 @@ def fetch_main_price_df(
     )
 
 
-def fetch_main_power_df(
-    zone_key: str | None = None,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> tuple[pd.DataFrame, list]:
-    return _fetch_main_df(
-        "power",
-        zone_key=zone_key,
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-
-
 def _fetch_main_df(
     data_type,
     zone_key: str,
@@ -197,70 +205,120 @@ def _fetch_main_df(
     return df
 
 
+def process_production_datasets(
+    datasets: list,
+    zone_key: ZoneKey,
+    region: str,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    """
+    Process production datasets and return a production breakdown list.
+    """
+    now = datetime.now(tz=timezone.utc)
+    unmerged_production_breakdown_lists = []
+    for dataset in datasets:
+        if dataset["type"] != "power" or dataset["region"].upper() != region:
+            continue
+        mode = dataset.get("fuel_tech")
+        print(mode)
+
+        if mode is None:
+            continue
+        if (
+            mode
+            not in PRODUCTION_MAPPING.keys()
+            | STORAGE_MAPPING.keys()
+            | IGNORED_FUEL_TECH_KEYS
+        ):
+            logger.error(
+                f"Unknown fuel type {mode} in dataset {dataset['id']}, skipping."
+            )
+            continue
+        if mode in IGNORED_FUEL_TECH_KEYS:
+            continue
+        production_breakdown_list = ProductionBreakdownList(logger=logger)
+        history = dataset["history"]
+        start = datetime.fromisoformat(history["start"])
+        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
+        delta = timedelta(minutes=interval_min)
+        data = history["data"]
+        for i, value in enumerate(data):
+            dt = start + i * delta
+            if dt > now:
+                logger.debug(
+                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
+                )
+                continue
+            if mode in PRODUCTION_MAPPING:
+                production = ProductionMix()
+                category = PRODUCTION_MAPPING[mode]
+                production.add_value(
+                    category,
+                    value,
+                    correct_negative_with_zero=True,
+                )
+                production_breakdown_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                production=production,
+                source=SOURCE,
+            )
+            elif mode in STORAGE_MAPPING:
+                storage = StorageMix()
+                category = STORAGE_MAPPING[mode]
+                multiplier = -1 if "discharging" in mode else 1
+                value = value * multiplier if value is not None else None  # Convert charging to negative value
+                storage.add_value(
+                    category,
+                    value,
+                )
+                production_breakdown_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                storage=storage,
+                source=SOURCE,
+            )
+
+        unmerged_production_breakdown_lists.append(production_breakdown_list)
+
+    # Merge all production breakdown lists into one
+    return ProductionBreakdownList.merge_production_breakdowns(
+        unmerged_production_breakdown_lists,
+        logger=logger,
+    )
+
+
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
-    zone_key: str | None = None,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
-    df = fetch_main_power_df(
+) -> list[dict[str, Any]]:
+    session = session or Session()
+
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    if not region:
+        raise ParserException(
+            parser="OPENNEM",
+            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
+            zone_key=zone_key,
+        )
+    url = generate_url(
         zone_key=zone_key,
-        session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
-    # Drop interconnectors
-    df = df.drop([x for x in df.columns if "->" in x], axis=1)
+    response = session.get(url)
+    response.raise_for_status()
 
-    # Make sure charging is counted positively
-    # and discharging negetively
-    if "BATTERY_DISCHARGING" in df.columns:
-        df["BATTERY_DISCHARGING"] = df["BATTERY_DISCHARGING"] * -1
+    datasets = response.json()["data"]
 
-    logger.info("Preparing final objects..")
-    objs = [
-        {
-            "datetime": dt.to_pydatetime(),
-            "production": {  # Unit is MW
-                "coal": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
-                "gas": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
-                "oil": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["oil"]),
-                "hydro": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["hydro"]),
-                "wind": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["wind"]),
-                "biomass": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["biomass"]),
-                # We here assume all rooftop solar is fed to the grid
-                # This assumption should be checked and we should here only report
-                # grid-level generation
-                "solar": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
-            },
-            "storage": {
-                # opennem reports charging as negative, we here should report as positive
-                # Note: we made the sign switch before, so we can just sum them up
-                "battery": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["battery"]),
-                # opennem reports pumping as positive, we here should report as positive
-                "hydro": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["hydro"]),
-            },
-            "source": SOURCE,
-            "zoneKey": zone_key,
-        }
-        for dt, row in df.iterrows()
-    ]
-
-    # Validation
-    logger.info("Validating..")
-    for obj in objs:
-        for k, v in obj["production"].items():
-            if v is None:
-                continue
-            if v < 0 and v > -50:
-                # Set small negative values to 0
-                logger.warning(
-                    f"Setting small value of {k} ({v}) to 0.", extra={"key": zone_key}
-                )
-                obj["production"][k] = 0
-
-    return objs
+    return process_production_datasets(
+        datasets=datasets,
+        zone_key=zone_key,
+        region=region,
+        logger=logger,
+    ).to_list()
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
