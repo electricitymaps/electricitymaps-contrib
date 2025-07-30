@@ -11,7 +11,6 @@ from parsers.OPENNEM import (
     fetch_exchange,
     fetch_price,
     fetch_production,
-    filter_production_objs,
     sum_vector,
 )
 
@@ -40,50 +39,6 @@ def test_sum_vector():
     assert sum_solar is None
     assert sum_solar_ignore_nans == sum(values_solar[:1])
     assert sum_wind == sum(values_wind)
-
-
-def test_filter_production_objs():
-    now = datetime.now(timezone.utc)
-    objs = [
-        {
-            "datetime": now - timedelta(hours=1),
-            "production": {
-                "coal": 12,
-                "solar": 1.0,
-            },
-            "capacity": {
-                "coal": 12,
-            },
-        },
-        {
-            "datetime": now - timedelta(hours=2),
-            "production": {
-                "coal": 12,
-                "solar": None,
-            },
-            "capacity": {
-                "coal": 12,
-            },
-        },
-        {
-            "datetime": now - timedelta(hours=3),
-            "production": {
-                "coal": None,
-                "solar": 0,
-            },
-        },
-        {
-            "datetime": now - timedelta(hours=3),
-            "production": {
-                "coal": 42,
-                "solar": 0,
-            },
-        },
-    ]
-    filtered_objs = filter_production_objs(objs)
-    # 2nd entry should be filtered out because solar is None
-    # 3rd entry should be filtered out because it's only 0 values for solar
-    assert len(filtered_objs) == 2
 
 
 @pytest.mark.parametrize(

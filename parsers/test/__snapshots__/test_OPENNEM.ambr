@@ -6062,6 +6062,60 @@
 # name: test_production[AU-NSW]
   list([
     dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 20.0473,
+        'coal': 7271.5768,
+        'gas': 288.99,
+        'hydro': 26.4792,
+        'oil': None,
+        'solar': None,
+        'wind': 2487.3957,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 10.6189,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-NSW',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 21.2773,
+        'coal': 7257.8559,
+        'gas': 247.87,
+        'hydro': 0,
+        'oil': None,
+        'solar': None,
+        'wind': 2491.0016,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 41.8667,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-NSW',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 17.8339,
+        'coal': 7237.8604,
+        'gas': 231.35,
+        'hydro': 0.0,
+        'oil': None,
+        'solar': None,
+        'wind': 2493.5302,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 42.2389,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-NSW',
+    }),
+    dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'biomass': 17.9467,
@@ -11195,6 +11249,60 @@
 # ---
 # name: test_production[AU-QLD]
   list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 68.7,
+        'coal': 5757.7921,
+        'gas': 361.0446,
+        'hydro': 300.6025,
+        'oil': 0.0,
+        'solar': None,
+        'wind': 1326.0059,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 2.2903000000000002,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-QLD',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 68.3,
+        'coal': 5707.2007,
+        'gas': 359.1538,
+        'hydro': 286.3225,
+        'oil': 0.0,
+        'solar': None,
+        'wind': 1321.0536,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': -0.8397000000000001,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-QLD',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 10, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': 66.6,
+        'coal': 5643.9034,
+        'gas': 360.4317,
+        'hydro': 287.0375,
+        'oil': 0.0,
+        'solar': None,
+        'wind': 1329.2355,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': -3.1545,
+        'hydro': 0.0,
+      }),
+      'zoneKey': 'AU-QLD',
+    }),
     dict({
       'datetime': datetime.datetime(2025, 7, 10, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
@@ -16330,6 +16438,60 @@
 # name: test_production[AU-SA]
   list([
     dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 253.7443,
+        'hydro': None,
+        'oil': 0,
+        'solar': None,
+        'wind': 1422.545,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 0.5335000000000001,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 254.0265,
+        'hydro': None,
+        'oil': 0,
+        'solar': None,
+        'wind': 1408.7917,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': -64.452,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 251.0932,
+        'hydro': None,
+        'oil': 0,
+        'solar': None,
+        'wind': 1385.5851,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': 6.3272999999999975,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
       'datetime': datetime.datetime(2025, 7, 23, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'biomass': None,
@@ -21463,6 +21625,60 @@
 # ---
 # name: test_production[AU-TAS]
   list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 0.0,
+        'hydro': 644.4125,
+        'oil': None,
+        'solar': None,
+        'wind': 339.36,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': None,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-TAS',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 0.0,
+        'hydro': 640.1321,
+        'oil': None,
+        'solar': None,
+        'wind': 334.62,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': None,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-TAS',
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 23, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'biomass': None,
+        'coal': None,
+        'gas': 0.0,
+        'hydro': 640.3093,
+        'oil': None,
+        'solar': None,
+        'wind': 334.1384,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': None,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-TAS',
+    }),
     dict({
       'datetime': datetime.datetime(2025, 7, 23, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
@@ -31785,6 +32001,24 @@
 # ---
 # name: test_production[AU-WA]
   list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 22, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'production': dict({
+        'biomass': 44.904199999999996,
+        'coal': 876.8169,
+        'gas': 1765.2041,
+        'hydro': None,
+        'oil': 7.9942,
+        'solar': None,
+        'wind': 146.6089,
+      }),
+      'source': 'opennem.org.au',
+      'storage': dict({
+        'battery': None,
+        'hydro': None,
+      }),
+      'zoneKey': 'AU-WA',
+    }),
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'production': dict({

@@ -114,39 +114,6 @@ def sum_vector(pd_series, keys, ignore_nans=False) -> pd.Series | None:
         return None
 
 
-def filter_production_objs(
-    objs: list[dict], logger: Logger = getLogger(__name__)
-) -> list[dict]:
-    def filter_solar_production(obj: dict) -> bool:
-        return bool(
-            "solar" in obj.get("production", {})
-            and obj["production"]["solar"] is not None
-        )
-
-    # The latest data points for AU-TAS are regularly containing only values for solar
-    # and no other production values. This is likely an invalid report, so we filter it out.
-    def only_solar_production(obj: dict) -> bool:
-        return not (
-            all(v is None for k, v in obj.get("production", {}).items() if k != "solar")
-        )
-
-    all_filters = [filter_solar_production, only_solar_production]
-
-    filtered_objs = []
-    for obj in objs:
-        _valid = True
-        for f in all_filters:
-            _valid &= f(obj)
-        if _valid:
-            filtered_objs.append(obj)
-        else:
-            logger.warning(
-                f"Entry for {obj['datetime']} is dropped because it does not pass the production filter."
-            )
-
-    return filtered_objs
-
-
 def generate_url(zone_key: str, target_datetime: datetime | None) -> str:
     # Only 7d or 30d data is available
     duration = (
@@ -209,6 +176,7 @@ def _fetch_main_df(
 
     response = (session or requests).get(url)
     response.raise_for_status()
+
     datasets = response.json()["data"]
 
     filtered_datasets = [
@@ -278,8 +246,6 @@ def fetch_production(
         }
         for dt, row in df.iterrows()
     ]
-
-    objs = filter_production_objs(objs)
 
     # Validation
     logger.info("Validating..")
