@@ -157,7 +157,6 @@ def process_production_datasets(
         if dataset["type"] != "power" or dataset["region"].upper() != region:
             continue
         mode = dataset.get("fuel_tech")
-        print(mode)
 
         if mode is None:
             continue
@@ -350,8 +349,8 @@ def fetch_exchange(
 
 
 def _fetch_regular_exchange(
-    zone_key=ZoneKey,
-    direction=int,
+    zone_key: ZoneKey,
+    direction: int,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
