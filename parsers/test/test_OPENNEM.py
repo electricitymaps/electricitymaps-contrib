@@ -1,9 +1,7 @@
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
 import pytest
 from requests_mock import ANY
 
@@ -11,34 +9,9 @@ from parsers.OPENNEM import (
     fetch_exchange,
     fetch_price,
     fetch_production,
-    sum_vector,
 )
 
 base_path_to_mock = Path("parsers/test/mocks/OPENNEM")
-
-
-def test_sum_vector():
-    emap_to_parser = {
-        "coal": ["COAL_a", "COAL_b"],
-        "solar": ["SOLAR_1", "SOLAR_2"],
-        "wind": ["WIND"],
-    }
-    values_coal = [1, 2]
-    values_solar = [4, np.nan]
-    values_wind = [1]
-    all_values = [*values_coal, *values_solar, *values_wind]
-    idx = emap_to_parser["coal"] + emap_to_parser["solar"] + emap_to_parser["wind"]
-    row = pd.Series(all_values, index=idx)
-
-    sum_coal = sum_vector(row, emap_to_parser["coal"])
-    sum_solar = sum_vector(row, emap_to_parser["solar"])
-    sum_solar_ignore_nans = sum_vector(row, emap_to_parser["solar"], ignore_nans=True)
-    sum_wind = sum_vector(row, emap_to_parser["wind"])
-
-    assert sum_coal == sum(values_coal)
-    assert sum_solar is None
-    assert sum_solar_ignore_nans == sum(values_solar[:1])
-    assert sum_wind == sum(values_wind)
 
 
 @pytest.mark.parametrize(

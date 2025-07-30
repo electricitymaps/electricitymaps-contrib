@@ -4046,6 +4046,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4053,6 +4054,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.1,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4060,6 +4062,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4067,6 +4070,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -2.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4074,6 +4078,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4081,6 +4086,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4088,6 +4094,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4095,6 +4102,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4102,6 +4110,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4109,6 +4118,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4116,6 +4126,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.48,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4123,6 +4134,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4130,6 +4142,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4137,6 +4150,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -9.31,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4144,6 +4158,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4151,6 +4166,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4158,6 +4174,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4165,6 +4182,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.75,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4172,6 +4190,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.03,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4179,6 +4198,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.69,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4186,6 +4206,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.64,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4193,6 +4214,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4200,6 +4222,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.86,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4207,6 +4230,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.02,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4214,6 +4238,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.91,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4221,6 +4246,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.36,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4228,6 +4254,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.37,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4235,6 +4262,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4242,6 +4270,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.55,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4249,6 +4278,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -26.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4256,6 +4286,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -26.03,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4263,6 +4294,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.09,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4270,6 +4302,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4277,6 +4310,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4284,6 +4318,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.48,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4291,6 +4326,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -9.56,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4298,6 +4334,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4305,6 +4342,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.48,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4312,6 +4350,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4319,6 +4358,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4326,6 +4366,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -9.4,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4333,6 +4374,7 @@
       'datetime': datetime.datetime(2025, 3, 16, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4340,6 +4382,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -2.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4347,6 +4390,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 10.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4354,6 +4398,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.14,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4361,6 +4406,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4368,6 +4414,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 26.06,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4375,6 +4422,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4382,6 +4430,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4389,6 +4438,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4396,6 +4446,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4403,6 +4454,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4410,6 +4462,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4417,6 +4470,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4424,6 +4478,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -2.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4431,6 +4486,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 6.55,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4438,6 +4494,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4445,6 +4502,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4452,6 +4510,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 6.69,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4459,6 +4518,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4466,6 +4526,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4473,6 +4534,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4480,6 +4542,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4487,6 +4550,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4494,6 +4558,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4501,6 +4566,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4508,6 +4574,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4515,6 +4582,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4522,6 +4590,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4529,6 +4598,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4536,6 +4606,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4543,6 +4614,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 3.38,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4550,6 +4622,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 3.38,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4557,6 +4630,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4564,6 +4638,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4571,6 +4646,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4578,6 +4654,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4585,6 +4662,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4592,6 +4670,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4599,6 +4678,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4606,6 +4686,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4613,6 +4694,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4620,6 +4702,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4627,6 +4710,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4634,6 +4718,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4641,6 +4726,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 6.96,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4648,6 +4734,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4655,6 +4742,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4662,6 +4750,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4669,6 +4758,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4676,6 +4766,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4683,6 +4774,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.82,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4690,6 +4782,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 19.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4697,6 +4790,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 20.04,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4704,6 +4798,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 20.04,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4711,6 +4806,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 12.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4718,6 +4814,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 63.3,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4725,6 +4822,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 63.32,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4732,6 +4830,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 64.42,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4739,6 +4838,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 63.91,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4746,6 +4846,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 63.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4753,6 +4854,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 65.42,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4760,6 +4862,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 67.67,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4767,6 +4870,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 66.54,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4774,6 +4878,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 77.81,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4781,6 +4886,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 78.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4788,6 +4894,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.66,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4795,6 +4902,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 93.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4802,6 +4910,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 97.02,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4809,6 +4918,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 84.36,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4816,6 +4926,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 105.11,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4823,6 +4934,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 125.5,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4830,6 +4942,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 138.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4837,6 +4950,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 125.5,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4844,6 +4958,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 139.41,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4851,6 +4966,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 119.18,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4858,6 +4974,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 160.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4865,6 +4982,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 144.88,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4872,6 +4990,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 160.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4879,6 +4998,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 166.35,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4886,6 +5006,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 156.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4893,6 +5014,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 142.94,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4900,6 +5022,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 115.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4907,6 +5030,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 132.72,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4914,6 +5038,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 115.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4921,6 +5046,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 111.75,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4928,6 +5054,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 97.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4935,6 +5062,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4942,6 +5070,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 77.53,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4949,6 +5078,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 73.67,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4956,6 +5086,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 57.77,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4963,6 +5094,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 46.26,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4970,6 +5102,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 37.77,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4977,6 +5110,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 55.58,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4984,6 +5118,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 90.19,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4991,6 +5126,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.66,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -4998,6 +5134,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 89.78,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5005,6 +5142,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -2.06,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5012,6 +5150,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -15.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5019,6 +5158,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5026,6 +5166,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5033,6 +5174,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.66,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5040,6 +5182,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 12.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5047,6 +5190,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 59.03,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5054,6 +5198,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 47.87,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5061,6 +5206,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 54.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5068,6 +5214,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 2.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5075,6 +5222,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 46.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5082,6 +5230,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -5.32,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5089,6 +5238,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.18,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5096,6 +5246,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5103,6 +5254,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 57.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5110,6 +5262,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 2.23,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5117,6 +5270,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 56.79,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5124,6 +5278,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -9.07,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5131,6 +5286,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.73,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5138,6 +5294,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.22,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5145,6 +5302,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5152,6 +5310,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5159,6 +5318,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 32.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5166,6 +5326,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.46,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5173,6 +5334,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -5.31,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5180,6 +5342,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5187,6 +5350,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.44,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5194,6 +5358,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5201,6 +5366,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5208,6 +5374,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.76,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5215,6 +5382,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -29.14,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5222,6 +5390,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.19,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5229,6 +5398,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.31,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5236,6 +5406,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.25,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5243,6 +5414,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.25,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5250,6 +5422,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.88,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5257,6 +5430,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5264,6 +5438,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -29.41,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5271,6 +5446,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -0.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5278,6 +5454,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -0.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5285,6 +5462,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -30.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5292,6 +5470,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -16.56,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5299,6 +5478,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.19,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5306,6 +5486,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.76,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5313,6 +5494,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.37,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5320,6 +5502,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.25,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5327,6 +5510,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -0.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5334,6 +5518,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5341,6 +5526,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.86,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5348,6 +5534,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -18.15,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5355,6 +5542,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -28.33,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5362,6 +5550,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.64,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5369,6 +5558,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.63,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5376,6 +5566,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -26.63,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5383,6 +5574,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -26.69,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5390,6 +5582,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.56,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5397,6 +5590,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5404,6 +5598,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.09,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5411,6 +5606,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -24.9,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5418,6 +5614,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5425,6 +5622,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -24.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5432,6 +5630,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -25.4,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5439,6 +5638,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -24.13,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5446,6 +5646,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -16.74,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5453,6 +5654,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -24.18,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5460,6 +5662,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 32.12,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5467,6 +5670,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.41,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5474,6 +5678,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.12,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5481,6 +5686,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 24.36,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5488,6 +5694,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 37.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5495,6 +5702,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -27.25,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5502,6 +5710,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -13.57,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5509,6 +5718,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 1.4,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5516,6 +5726,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -29.14,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5523,6 +5734,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -19.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5530,6 +5742,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -21.75,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5537,6 +5750,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -18.58,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5544,6 +5758,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -15.02,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5551,6 +5766,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -18.42,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5558,6 +5774,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -20.16,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5565,6 +5782,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 31.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5572,6 +5790,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -1.52,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5579,6 +5798,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5586,6 +5806,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 29.69,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5593,6 +5814,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.96,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5600,6 +5822,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 38.06,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5607,6 +5830,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': -22.17,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5614,6 +5838,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5621,6 +5846,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 24.88,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5628,6 +5854,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 39.58,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5635,6 +5862,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 64.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5642,6 +5870,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 63.86,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5649,6 +5878,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 0.97,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5656,6 +5886,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5663,6 +5894,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 11.9,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5670,6 +5902,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 9.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5677,6 +5910,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 10.36,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5684,6 +5918,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 38.35,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5691,6 +5926,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 20.04,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5698,6 +5934,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5705,6 +5942,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 27.86,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5712,6 +5950,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 34.39,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5719,6 +5958,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5726,6 +5966,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 8.95,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5733,6 +5974,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 33.89,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5740,6 +5982,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 80.55,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5747,6 +5990,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.11,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5754,6 +5998,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 108.09,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5761,6 +6006,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 91.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5768,6 +6014,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 81.6,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5775,6 +6022,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 77.97,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5782,6 +6030,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 86.19,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5789,6 +6038,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 90.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5796,6 +6046,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 87.72,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5803,6 +6054,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 132.22,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5810,6 +6062,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 131.37,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5817,6 +6070,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 88.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5824,6 +6078,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 88.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5831,6 +6086,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 91.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5838,6 +6094,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 120.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5845,6 +6102,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 153.88,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5852,6 +6110,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 109.08,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5859,6 +6118,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 117.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5866,6 +6126,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 120.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5873,6 +6134,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 103.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5880,6 +6142,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 112.55,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5887,6 +6150,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 120.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5894,6 +6158,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 120.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5901,6 +6166,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 112.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5908,6 +6174,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 100.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5915,6 +6182,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 131.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5922,6 +6190,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 132.37,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5929,6 +6198,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 127.41,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5936,6 +6206,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 112.47,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5943,6 +6214,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 153.88,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5950,6 +6222,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 111.98,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5957,6 +6230,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 111.98,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5964,6 +6238,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 133.24,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5971,6 +6246,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 112.51,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5978,6 +6254,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 111.98,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5985,6 +6262,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 106.19,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5992,6 +6270,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 100.01,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -5999,6 +6278,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 104.77,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6006,6 +6286,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 104.99,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6013,6 +6294,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 91.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6020,6 +6302,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 95.56,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6027,6 +6310,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 91.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6034,6 +6318,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 85.31,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6041,6 +6326,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 79.0,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6048,6 +6334,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 83.64,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
     dict({
@@ -6055,6 +6342,7 @@
       'datetime': datetime.datetime(2025, 3, 17, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'price': 91.85,
       'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'AU-VIC',
     }),
   ])
