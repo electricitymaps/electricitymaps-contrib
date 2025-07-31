@@ -147,12 +147,6 @@ def process_production_datasets(
     now = datetime.now(tz=timezone.utc)
     unmerged_production_breakdown_lists = []
     region = ZONE_KEY_TO_REGION.get(zone_key)
-    if not region:
-        raise ParserException(
-            parser="OPENNEM",
-            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
-            zone_key=zone_key,
-        )
     for dataset in datasets:
         if dataset["type"] != "power" or dataset["region"].upper() != region:
             continue
