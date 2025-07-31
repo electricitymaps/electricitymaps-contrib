@@ -1,0 +1,3689 @@
+# serializer version: 1
+# name: test_snapshot_fetch_exchange[AZ-RU-1-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -15.369718551635742,
+      'sortedZoneKeys': 'AZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[BY-RU-1-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -42.7039909362793,
+      'sortedZoneKeys': 'BY->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[CN-RU-AS-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[CN-RU-AS-11]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 9.51062297821045,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[GE-RU-1-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -33.125675201416016,
+      'sortedZoneKeys': 'GE->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[KZ-RU-1-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 2183.0078125,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[KZ-RU-1-11]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 2211.9833984375,
+      'sortedZoneKeys': 'KZ->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[KZ-RU-2-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -664.8331298828125,
+      'sortedZoneKeys': 'KZ->RU-2',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[MN-RU-2-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 132.10043334960938,
+      'sortedZoneKeys': 'MN->RU-2',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[RU-1-FI-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'FI->RU-1',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[RU-1-RU-2-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 653.2890014648438,
+      'sortedZoneKeys': 'RU-1->RU-2',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[RU-1-UA-CR-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 333.6430969238281,
+      'sortedZoneKeys': 'RU-1->UA-CR',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[RU-KGD-LT-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'LT->RU-KGD',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange[UA-RU-1-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': -0.0,
+      'sortedZoneKeys': 'RU-1->UA',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_exchange_live
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone.utc),
+      'netFlow': 123.52476501464844,
+      'sortedZoneKeys': 'MN->RU',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone.utc),
+      'netFlow': 123.52476501464844,
+      'sortedZoneKeys': 'MN->RU',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_production[RU-1]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 4346.501953,
+        'nuclear': 26255.0,
+        'solar': 0.0,
+        'unknown': 50173.64502,
+        'wind': 926.97998,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3537.502197,
+        'nuclear': 26214.0,
+        'solar': 0.0,
+        'unknown': 49450.04541,
+        'wind': 724.518005,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3500.501953,
+        'nuclear': 26224.0,
+        'solar': 1.7,
+        'unknown': 48148.434082,
+        'wind': 898.512024,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3494.501953,
+        'nuclear': 26236.0,
+        'solar': 7.75,
+        'unknown': 47866.341797,
+        'wind': 735.33197,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3546.502197,
+        'nuclear': 26270.0,
+        'solar': 44.263,
+        'unknown': 48896.133789,
+        'wind': 881.731018,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 4343.501953,
+        'nuclear': 26319.0,
+        'solar': 144.781998,
+        'unknown': 50447.544433,
+        'wind': 720.939026,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 5991.301758,
+        'nuclear': 26328.300781,
+        'solar': 331.674011,
+        'unknown': 54911.654297,
+        'wind': 655.276001,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 6839.999512,
+        'nuclear': 26289.300781,
+        'solar': 577.502991,
+        'unknown': 59313.839843,
+        'wind': 648.059998,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8181.468262,
+        'nuclear': 26260.300781,
+        'solar': 766.291016,
+        'unknown': 62992.39795,
+        'wind': 590.267029,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8614.632812,
+        'nuclear': 26196.300781,
+        'solar': 881.244019,
+        'unknown': 65757.251953,
+        'wind': 811.273987,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 9778.923828,
+        'nuclear': 26135.300781,
+        'solar': 894.66803,
+        'unknown': 66554.412109,
+        'wind': 980.773987,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 9524.998047,
+        'nuclear': 26070.300781,
+        'solar': 907.239014,
+        'unknown': 66208.286133,
+        'wind': 1093.807007,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10300.410156,
+        'nuclear': 26025.0,
+        'solar': 811.791016,
+        'unknown': 66690.502441,
+        'wind': 991.333984,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10797.139648,
+        'nuclear': 26000.0,
+        'solar': 733.091003,
+        'unknown': 66601.081054,
+        'wind': 1008.932983,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10744.229492,
+        'nuclear': 25977.300781,
+        'solar': 618.656006,
+        'unknown': 66812.897949,
+        'wind': 853.738708,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10400.150391,
+        'nuclear': 25819.0,
+        'solar': 455.972992,
+        'unknown': 66577.999023,
+        'wind': 621.213867,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8797.742188,
+        'nuclear': 25763.941406,
+        'solar': 250.949005,
+        'unknown': 67355.156739,
+        'wind': 453.132172,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 9014.041016,
+        'nuclear': 25650.0,
+        'solar': 130.634003,
+        'unknown': 66122.48291,
+        'wind': 575.749207,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8586.829102,
+        'nuclear': 25590.0,
+        'solar': 35.539001,
+        'unknown': 65198.904296,
+        'wind': 821.947021,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8125.947266,
+        'nuclear': 25560.0,
+        'solar': 5.1,
+        'unknown': 64339.231934,
+        'wind': 1024.118042,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 8059.025879,
+        'nuclear': 25545.0,
+        'solar': 0.0,
+        'unknown': 64291.926269,
+        'wind': 956.10498,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 7902.702148,
+        'nuclear': 25596.0,
+        'solar': 0.0,
+        'unknown': 61873.375,
+        'wind': 1121.36499,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 7275.902344,
+        'nuclear': 25615.0,
+        'solar': 0.0,
+        'unknown': 56876.41748,
+        'wind': 1262.905029,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 5289.202148,
+        'nuclear': 25607.0,
+        'solar': 0.0,
+        'unknown': 54199.392578,
+        'wind': 1310.967041,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-1',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_production[RU-2]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11902.007812,
+        'nuclear': None,
+        'solar': 28.35,
+        'unknown': 7687.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11968.030273,
+        'nuclear': None,
+        'solar': 72.199997,
+        'unknown': 7693.506775,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12199.666016,
+        'nuclear': None,
+        'solar': 131.899994,
+        'unknown': 7707.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12457.5,
+        'nuclear': None,
+        'solar': 192.25,
+        'unknown': 7751.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13121.564453,
+        'nuclear': None,
+        'solar': 184.25,
+        'unknown': 7880.860291,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14036.282227,
+        'nuclear': None,
+        'solar': 248.379456,
+        'unknown': 8061.495483,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13385.181641,
+        'nuclear': None,
+        'solar': 256.149994,
+        'unknown': 8209.99585,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13647.104492,
+        'nuclear': None,
+        'solar': 256.276031,
+        'unknown': 8239.125549,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13966.766602,
+        'nuclear': None,
+        'solar': 258.593689,
+        'unknown': 8300.357544,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14082.213867,
+        'nuclear': None,
+        'solar': 252.336899,
+        'unknown': 8346.084595,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13634.400391,
+        'nuclear': None,
+        'solar': 241.166031,
+        'unknown': 8352.928588,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14025.966797,
+        'nuclear': None,
+        'solar': 213.5,
+        'unknown': 8366.604736,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13690.520508,
+        'nuclear': None,
+        'solar': 169.600006,
+        'unknown': 8418.335877,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13629.388672,
+        'nuclear': None,
+        'solar': 108.550003,
+        'unknown': 8394.960877,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13720.821289,
+        'nuclear': None,
+        'solar': 48.599998,
+        'unknown': 8428.925232,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14000.866211,
+        'nuclear': None,
+        'solar': 12.0,
+        'unknown': 8793.875428,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14406.917969,
+        'nuclear': None,
+        'solar': 3.7,
+        'unknown': 8728.12201,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13838.950195,
+        'nuclear': None,
+        'solar': 1.05,
+        'unknown': 8790.569275,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13639.786133,
+        'nuclear': None,
+        'solar': 0.2,
+        'unknown': 8591.752869,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12841.951172,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8571.481385,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12144.849609,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8625.721619,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11886.116211,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8566.546326,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11135.402344,
+        'nuclear': None,
+        'solar': 0.6,
+        'unknown': 8507.364197,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10917.832031,
+        'nuclear': None,
+        'solar': 6.45,
+        'unknown': 8508.051697,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_production[RU-AS]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3083.657246,
+        'nuclear': 0.0,
+        'unknown': 1631.44506,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3182.169485,
+        'nuclear': 0.0,
+        'unknown': 1819.36316,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3344.528174,
+        'nuclear': 0.0,
+        'unknown': 1874.11754,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3369.626544,
+        'nuclear': 0.0,
+        'unknown': 1944.848604,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3402.629042,
+        'nuclear': 0.0,
+        'unknown': 2006.295669,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3362.047411,
+        'nuclear': 0.0,
+        'unknown': 2046.567408,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3325.311096,
+        'nuclear': 0.0,
+        'unknown': 2086.299776,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3345.680769,
+        'nuclear': 0.0,
+        'unknown': 2063.002318,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3364.623899,
+        'nuclear': 0.0,
+        'unknown': 2062.297261,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3336.32972,
+        'nuclear': 0.0,
+        'unknown': 2058.290767,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3341.319969,
+        'nuclear': 0.0,
+        'unknown': 2053.156575,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3373.015831,
+        'nuclear': 0.0,
+        'unknown': 2024.347291,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3405.095705,
+        'nuclear': 0.0,
+        'unknown': 2003.295351,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3388.80739,
+        'nuclear': 0.0,
+        'unknown': 1942.182221,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3398.377864,
+        'nuclear': 0.0,
+        'unknown': 1921.071672,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3400.495094,
+        'nuclear': 0.0,
+        'unknown': 1720.118612,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3394.743685,
+        'nuclear': 0.0,
+        'unknown': 1527.278429,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3232.661113,
+        'nuclear': 0.0,
+        'unknown': 1403.69665,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 3020.427729,
+        'nuclear': 0.0,
+        'unknown': 1402.398393,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2901.185758,
+        'nuclear': 0.0,
+        'unknown': 1401.104228,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2846.328785,
+        'nuclear': 0.0,
+        'unknown': 1414.307315,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2886.874579,
+        'nuclear': 0.0,
+        'unknown': 1421.490354,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2947.675003,
+        'nuclear': 0.0,
+        'unknown': 1414.226952,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 2996.120854,
+        'nuclear': 0.0,
+        'unknown': 1529.323405,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-AS',
+    }),
+  ])
+# ---
+# name: test_snapshot_fetch_production_live
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11902.007812,
+        'nuclear': None,
+        'solar': 28.35,
+        'unknown': 7687.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11968.030273,
+        'nuclear': None,
+        'solar': 72.199997,
+        'unknown': 7693.506775,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12199.666016,
+        'nuclear': None,
+        'solar': 131.899994,
+        'unknown': 7707.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12457.5,
+        'nuclear': None,
+        'solar': 192.25,
+        'unknown': 7751.402771,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13121.564453,
+        'nuclear': None,
+        'solar': 184.25,
+        'unknown': 7880.860291,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14036.282227,
+        'nuclear': None,
+        'solar': 248.379456,
+        'unknown': 8061.495483,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13385.181641,
+        'nuclear': None,
+        'solar': 256.149994,
+        'unknown': 8209.99585,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13647.104492,
+        'nuclear': None,
+        'solar': 256.276031,
+        'unknown': 8239.125549,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13966.766602,
+        'nuclear': None,
+        'solar': 258.593689,
+        'unknown': 8300.357544,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14082.213867,
+        'nuclear': None,
+        'solar': 252.336899,
+        'unknown': 8346.084595,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13634.400391,
+        'nuclear': None,
+        'solar': 241.166031,
+        'unknown': 8352.928588,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14025.966797,
+        'nuclear': None,
+        'solar': 213.5,
+        'unknown': 8366.604736,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13690.520508,
+        'nuclear': None,
+        'solar': 169.600006,
+        'unknown': 8418.335877,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13629.388672,
+        'nuclear': None,
+        'solar': 108.550003,
+        'unknown': 8394.960877,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13720.821289,
+        'nuclear': None,
+        'solar': 48.599998,
+        'unknown': 8428.925232,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14000.866211,
+        'nuclear': None,
+        'solar': 12.0,
+        'unknown': 8793.875428,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 14406.917969,
+        'nuclear': None,
+        'solar': 3.7,
+        'unknown': 8728.12201,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13838.950195,
+        'nuclear': None,
+        'solar': 1.05,
+        'unknown': 8790.569275,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 13639.786133,
+        'nuclear': None,
+        'solar': 0.2,
+        'unknown': 8591.752869,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12841.951172,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8571.481385,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 12144.849609,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8625.721619,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11886.116211,
+        'nuclear': None,
+        'solar': 0.0,
+        'unknown': 8566.546326,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 11135.402344,
+        'nuclear': None,
+        'solar': 0.6,
+        'unknown': 8507.364197,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'hydro': 10917.832031,
+        'nuclear': None,
+        'solar': 6.45,
+        'unknown': 8508.051697,
+        'wind': None,
+      }),
+      'source': 'so-ups.ru',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'RU-2',
+    }),
+  ])
+# ---

@@ -1,11 +1,15 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from typing import Any
 
-import pandas as pd
-import requests
 from requests import Session
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
@@ -74,80 +78,48 @@ OPENNEM_STORAGE_CATEGORIES = {
     "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING"],
     "hydro": ["PUMPS"],
 }
+
+# Reverse mapping from fuel type to category
+PRODUCTION_MAPPING = {
+    fuel_type.lower(): category
+    for category, fuel_types in OPENNEM_PRODUCTION_CATEGORIES.items()
+    for fuel_type in fuel_types
+}
+STORAGE_MAPPING = {
+    fuel_type.lower(): category
+    for category, fuel_types in OPENNEM_STORAGE_CATEGORIES.items()
+    for fuel_type in fuel_types
+}
+
+IGNORED_FUEL_TECH_KEYS = {
+    "imports",
+    "exports",  # These keys are not relevant for production breakdowns
+}
+
 SOURCE = "opennem.org.au"
 
 
-def dataset_to_df(dataset):
-    series = dataset["history"]
-    interval = series["interval"]
-    dt_start = datetime.fromisoformat(series["start"])
-    dt_end = datetime.fromisoformat(series["last"])
-    data_type = dataset["data_type"]
-    _id = dataset.get("id")
-
-    # When `power` is given, the multiple power sources will be given
-    # we therefore set `name` to the power source
-    name = data_type.upper() if data_type != "power" else _id.split(".")[-2].upper()
-
-    # Turn into minutes
-    if interval[-1] == "m":
-        interval += "in"
-
-    index = pd.date_range(start=dt_start, end=dt_end, freq=interval)
-    # In some situation, some data points missing, the first dates are the ones to keep
-    index = index[: len(series["data"])]
-    df = pd.DataFrame(index=index, data=series["data"], columns=[name])
-
-    return df
-
-
-def sum_vector(pd_series, keys, ignore_nans=False) -> pd.Series | None:
-    # Only consider keys that are in the pd_series
-    filtered_keys = pd_series.index.intersection(keys)
-
-    # Require all present keys to be non-null
-    pd_series_filtered = pd_series.loc[filtered_keys]
-    nan_filter = pd_series_filtered.notnull().all() | ignore_nans
-    if filtered_keys.size and nan_filter:
-        return pd_series_filtered.fillna(0).sum()
-    else:
-        return None
-
-
-def filter_production_objs(
-    objs: list[dict], logger: Logger = getLogger(__name__)
-) -> list[dict]:
-    def filter_solar_production(obj: dict) -> bool:
-        return bool(
-            "solar" in obj.get("production", {})
-            and obj["production"]["solar"] is not None
+def fetch_datasets(
+    zone_key: ZoneKey, session: Session, target_datetime: datetime | None
+):
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    if not region:
+        raise ParserException(
+            parser="OPENNEM",
+            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
+            zone_key=zone_key,
         )
+    url = generate_url(
+        zone_key=zone_key,
+        target_datetime=target_datetime,
+    )
+    response = session.get(url)
+    response.raise_for_status()
 
-    # The latest data points for AU-TAS are regularly containing only values for solar
-    # and no other production values. This is likely an invalid report, so we filter it out.
-    def only_solar_production(obj: dict) -> bool:
-        return not (
-            all(v is None for k, v in obj.get("production", {}).items() if k != "solar")
-        )
-
-    all_filters = [filter_solar_production, only_solar_production]
-
-    filtered_objs = []
-    for obj in objs:
-        _valid = True
-        for f in all_filters:
-            _valid &= f(obj)
-        if _valid:
-            filtered_objs.append(obj)
-        else:
-            logger.warning(
-                f"Entry for {obj['datetime']} is dropped because it does not pass the production filter."
-            )
-
-    return filtered_objs
+    return response.json()["data"]
 
 
-def generate_url(zone_key: str, target_datetime: datetime | None) -> str:
+def generate_url(zone_key: ZoneKey, target_datetime: datetime | None) -> str:
     # Only 7d or 30d data is available
     duration = (
         "7d"
@@ -164,173 +136,201 @@ def generate_url(zone_key: str, target_datetime: datetime | None) -> str:
     return url
 
 
-def fetch_main_price_df(
-    zone_key: str | None = None,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> pd.DataFrame:
-    return _fetch_main_df(
-        "price",
-        zone_key=zone_key,
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-
-
-def fetch_main_power_df(
-    zone_key: str | None = None,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> tuple[pd.DataFrame, list]:
-    return _fetch_main_df(
-        "power",
-        zone_key=zone_key,
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-
-
-def _fetch_main_df(
-    data_type,
-    zone_key: str,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger | None = None,
-) -> tuple[pd.DataFrame, list]:
+def process_production_datasets(
+    datasets: list,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    """
+    Process production datasets and return a production breakdown list.
+    """
+    now = datetime.now(tz=timezone.utc)
+    unmerged_production_breakdown_lists = []
     region = ZONE_KEY_TO_REGION.get(zone_key)
-    url = generate_url(
-        zone_key=zone_key,
-        target_datetime=target_datetime,
+    for dataset in datasets:
+        if dataset["type"] != "power" or dataset["region"].upper() != region:
+            continue
+        mode = dataset.get("fuel_tech")
+
+        if mode is None:
+            continue
+        if (
+            mode
+            not in PRODUCTION_MAPPING.keys()
+            | STORAGE_MAPPING.keys()
+            | IGNORED_FUEL_TECH_KEYS
+        ):
+            logger.error(
+                f"Unknown fuel type {mode} in dataset {dataset['id']}, skipping."
+            )
+            continue
+        if mode in IGNORED_FUEL_TECH_KEYS:
+            continue
+        production_breakdown_list = ProductionBreakdownList(logger=logger)
+        history = dataset["history"]
+        start = datetime.fromisoformat(history["start"])
+        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
+        delta = timedelta(minutes=interval_min)
+        data = history["data"]
+        for i, value in enumerate(data):
+            dt = start + i * delta
+            if dt > now:
+                logger.debug(
+                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
+                )
+                continue
+            if mode in PRODUCTION_MAPPING:
+                production = ProductionMix()
+                category = PRODUCTION_MAPPING[mode]
+                production.add_value(
+                    category,
+                    value,
+                    correct_negative_with_zero=True,
+                )
+                production_breakdown_list.append(
+                    zoneKey=zone_key,
+                    datetime=dt,
+                    production=production,
+                    source=SOURCE,
+                )
+            elif mode in STORAGE_MAPPING:
+                storage = StorageMix()
+                category = STORAGE_MAPPING[mode]
+                multiplier = -1 if "discharging" in mode else 1
+                value = value * multiplier if value is not None else None
+                storage.add_value(
+                    category,
+                    value,
+                )
+                production_breakdown_list.append(
+                    zoneKey=zone_key,
+                    datetime=dt,
+                    storage=storage,
+                    source=SOURCE,
+                )
+
+        unmerged_production_breakdown_lists.append(production_breakdown_list)
+
+    # Merge all production breakdown lists into one
+    merged_production = ProductionBreakdownList.merge_production_breakdowns(
+        unmerged_production_breakdown_lists,
+        logger=logger,
     )
 
-    response = (session or requests).get(url)
-    response.raise_for_status()
-    datasets = response.json()["data"]
-
-    filtered_datasets = [
-        ds
-        for ds in datasets
-        if ds["type"] == data_type and ds["region"].upper() == region
-    ]
-    df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
-
-    # Sometimes we get twice the columns. In that case, only return the first one
-    is_duplicated_column = df.columns.duplicated(keep="last")
-    if is_duplicated_column.sum():
-        logger.warning(
-            f"Dropping columns {df.columns[is_duplicated_column]} that appear more than once"
-        )
-        df = df.loc[:, is_duplicated_column]
-
-    return df
+    if zone_key == ZoneKey("AU-TAS"):
+        # Tasmania sometimes only report solar for the latest data, remove the datapoint if it only has solar
+        # TODO: Remove this once the race condition between feeder-electricity and quality validation is fixed
+        corrected_breakdown = ProductionBreakdownList(logger=logger)
+        for event in merged_production:
+            for mode, value in event.production.__dict__.items():
+                if mode != "solar" and value is not None:
+                    dt = event.datetime
+                    production = event.production
+                    storage = event.storage
+                    source = event.source
+                    zoneKey = event.zoneKey
+                    corrected_breakdown.append(
+                        zoneKey=zoneKey,
+                        datetime=dt,
+                        production=production,
+                        storage=storage,
+                        source=source,
+                    )
+                    break
+        merged_production = corrected_breakdown
+    return merged_production
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
-    zone_key: str | None = None,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
-    df = fetch_main_power_df(
+) -> list[dict[str, Any]]:
+    session = session or Session()
+
+    datasets = fetch_datasets(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
-    # Drop interconnectors
-    df = df.drop([x for x in df.columns if "->" in x], axis=1)
 
-    # Make sure charging is counted positively
-    # and discharging negetively
-    if "BATTERY_DISCHARGING" in df.columns:
-        df["BATTERY_DISCHARGING"] = df["BATTERY_DISCHARGING"] * -1
+    return process_production_datasets(
+        datasets=datasets,
+        zone_key=zone_key,
+        logger=logger,
+    ).to_list()
 
-    logger.info("Preparing final objects..")
-    objs = [
-        {
-            "datetime": dt.to_pydatetime(),
-            "production": {  # Unit is MW
-                "coal": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["coal"]),
-                "gas": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["gas"]),
-                "oil": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["oil"]),
-                "hydro": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["hydro"]),
-                "wind": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["wind"]),
-                "biomass": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["biomass"]),
-                # We here assume all rooftop solar is fed to the grid
-                # This assumption should be checked and we should here only report
-                # grid-level generation
-                "solar": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
-            },
-            "storage": {
-                # opennem reports charging as negative, we here should report as positive
-                # Note: we made the sign switch before, so we can just sum them up
-                "battery": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["battery"]),
-                # opennem reports pumping as positive, we here should report as positive
-                "hydro": sum_vector(row, OPENNEM_STORAGE_CATEGORIES["hydro"]),
-            },
-            "source": SOURCE,
-            "zoneKey": zone_key,
-        }
-        for dt, row in df.iterrows()
-    ]
 
-    objs = filter_production_objs(objs)
+def process_price_datasets(
+    datasets: list,
+    zone_key: ZoneKey,
+    logger: Logger,
+) -> PriceList:
+    """
+    Process price datasets and return a price list.
+    """
+    now = datetime.now(tz=timezone.utc)
+    price_list = PriceList(logger=logger)
 
-    # Validation
-    logger.info("Validating..")
-    for obj in objs:
-        for k, v in obj["production"].items():
-            if v is None:
-                continue
-            if v < 0 and v > -50:
-                # Set small negative values to 0
-                logger.warning(
-                    f"Setting small value of {k} ({v}) to 0.", extra={"key": zone_key}
+    for dataset in datasets:
+        if dataset["type"] != "price":
+            continue
+        history = dataset["history"]
+        start = datetime.fromisoformat(history["start"])
+        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
+        delta = timedelta(minutes=interval_min)
+        data = history["data"]
+        for i, value in enumerate(data):
+            dt = start + i * delta
+            if dt > now:
+                logger.debug(
+                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
                 )
-                obj["production"][k] = 0
+                continue
+            price_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                currency="AUD",
+                price=value,
+                source=SOURCE,
+            )
 
-    return objs
+    return price_list
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    df = fetch_main_price_df(
+    session = session or Session()
+
+    datasets = fetch_datasets(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
-        logger=logger,
     )
-    df = df.loc[~df["PRICE"].isna()]  # Only keep prices that are defined
-    return [
-        {
-            "datetime": dt.to_pydatetime(),
-            "price": sum_vector(row, ["PRICE"]),  # currency / MWh
-            "currency": "AUD",
-            "source": SOURCE,
-            "zoneKey": zone_key,
-        }
-        for dt, row in df.iterrows()
-    ]
+
+    return process_price_datasets(
+        datasets=datasets,
+        zone_key=zone_key,
+        logger=logger,
+    ).to_list()
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    session = session or Session()
     exchange_key = ZoneKey("->".join([zone_key1, zone_key2]))
 
     try:
@@ -367,9 +367,9 @@ def fetch_exchange(
 
 
 def _fetch_regular_exchange(
-    zone_key=str,
-    direction=int,
-    session: Session | None = None,
+    zone_key: ZoneKey,
+    direction: int,
+    session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[tuple[datetime, float]]:
@@ -377,7 +377,7 @@ def _fetch_regular_exchange(
     Calculate netflows for zones that have a single exchange.
     """
     url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
-    response = (session or requests).get(url)
+    response = session.get(url)
     response.raise_for_status()
 
     exports = None
@@ -420,7 +420,7 @@ def _fetch_regular_exchange(
 
 
 def _fetch_au_nsw_au_vic_exchange(
-    session: Session | None = None,
+    session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[tuple[datetime, float]]:
@@ -447,8 +447,8 @@ def _fetch_au_nsw_au_vic_exchange(
         AU-NSW->AU-VIC = NSW_exports - QLD_imports - NSW_imports + QLD_exports
         = NSW_exports - NSW_imports + QLD_exports - QLD_imports
     """
-    nsw_zk = "AU-NSW"
-    qld_zk = "AU-QLD"
+    nsw_zk = ZoneKey("AU-NSW")
+    qld_zk = ZoneKey("AU-QLD")
 
     nsw_url = generate_url(zone_key=nsw_zk, target_datetime=target_datetime)
     qld_url = generate_url(zone_key=qld_zk, target_datetime=target_datetime)
@@ -457,8 +457,8 @@ def _fetch_au_nsw_au_vic_exchange(
     # if the first request if right before a 5 minute interval and
     # the second request is right after then the responses could be out of sync
     # so we issue additional request as close to base request
-    nsw_response = (session or requests).get(nsw_url)
-    qld_response = (session or requests).get(qld_url)
+    nsw_response = session.get(nsw_url)
+    qld_response = session.get(qld_url)
 
     nsw_response.raise_for_status()
     qld_response.raise_for_status()
@@ -536,11 +536,11 @@ def _fetch_au_nsw_au_vic_exchange(
 
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
-    print(fetch_price("AU-SA"))
+    # print(fetch_price(ZoneKey("AU-SA")))
 
-    print(fetch_production("AU-WA"))
-    print(fetch_production("AU-NSW"))
-    target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
-    print(fetch_production("AU-SA", target_datetime=target_datetime))
-
-    print(fetch_exchange("AU-SA", "AU-VIC"))
+    print(fetch_production(ZoneKey("AU-TAS")))
+    # print(fetch_production(ZoneKey("AU-NSW")))
+    # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+    # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
+    #
+    # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
