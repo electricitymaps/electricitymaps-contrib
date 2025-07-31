@@ -58,9 +58,6 @@ capacity:
     - datetime: '2023-01-01'
       source: opennem.org.au
       value: 2900.52
-    - datetime: '2025-01-01'
-      source: https://openelectricity.org.au/
-      value: 735.05
   wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
