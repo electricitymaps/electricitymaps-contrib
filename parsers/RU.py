@@ -10,6 +10,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)
@@ -73,7 +74,7 @@ SOURCE = "so-ups.ru"
 
 TIMEZONE = ZoneInfo("Europe/Moscow")
 
-
+@refetch_frequency(timedelta(hours=24))
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
