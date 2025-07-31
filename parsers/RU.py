@@ -74,6 +74,7 @@ SOURCE = "so-ups.ru"
 
 TIMEZONE = ZoneInfo("Europe/Moscow")
 
+
 @refetch_frequency(timedelta(hours=24))
 def fetch_production(
     zone_key: ZoneKey,
