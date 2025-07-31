@@ -14,7 +14,11 @@
   },
   "settings-modal": {
     "title": "Settings",
-    "flows": "Electricity flows"
+    "flows": "Electricity flows",
+    "flow-tracing-link-label": "Flow-tracing",
+    "flow-tracing-link-description": "tracks how electricity physically moves through interconnectors that link different zones",
+    "home-link-description": "offers an API that delivers real-time and predictive electricity grid signals.",
+    "weather-layers-disallowed": "Weather data not available for this aggregation, switch to real-time to see live weather data"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
