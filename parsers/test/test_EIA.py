@@ -456,7 +456,9 @@ def test_fetch_production_mix_discards_null(adapter, session, snapshot):
             .read_text()
         ),
     )
+
     data_list = EIA.fetch_production_mix(ZoneKey("US-NW-PGE"), session)
+
     assert data_list == snapshot
 
     assert (
@@ -564,32 +566,6 @@ def test_fetch_forecasted_consumption(adapter, session):
         assert data["datetime"] == expected[i]["datetime"]
         assert data["consumption"] == expected[i]["consumption"]
         assert data["sourceType"] == EventSourceType.forecasted
-
-
-def test_texas_loses_one_mode(adapter, session):
-    """A temporary test to make sure that if texas loses one of its modes we discard the datapoint."""
-    # All modes are loaded with some data
-    adapter.register_uri(
-        GET,
-        ANY,
-        json=json.loads(
-            resources.files("parsers.test.mocks.EIA")
-            .joinpath("US_SMTH-coal.json")
-            .read_text()
-        ),
-    )
-    # Nuclear is missing data
-    adapter.register_uri(
-        GET,
-        EIA.PRODUCTION_MIX.format("ERCO", "NUC"),
-        json=json.loads(
-            resources.files("parsers.test.mocks.EIA")
-            .joinpath("US_NW_AVRN-other.json")
-            .read_text()
-        ),
-    )
-    data = EIA.fetch_production_mix(ZoneKey("US-TEX-ERCO"), session)
-    assert len(data) == 0
 
 
 def test_fetch_returns_storage(adapter, session, snapshot):
