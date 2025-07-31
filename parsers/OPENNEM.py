@@ -212,10 +212,33 @@ def process_production_datasets(
         unmerged_production_breakdown_lists.append(production_breakdown_list)
 
     # Merge all production breakdown lists into one
-    return ProductionBreakdownList.merge_production_breakdowns(
+    merged_production = ProductionBreakdownList.merge_production_breakdowns(
         unmerged_production_breakdown_lists,
         logger=logger,
     )
+
+    if zone_key == ZoneKey("AU-TAS"):
+        # Tasmania sometimes only report solar for the latest data, remove the datapoint if it only has solar
+        # TODO: Remove this once the race condition between feeder-electricity and quality validation is fixed
+        corrected_breakdown = ProductionBreakdownList(logger=logger)
+        for event in merged_production:
+            for mode, value in event.production.__dict__.items():
+                if mode != "solar" and value is not None:
+                    dt = event.datetime
+                    production = event.production
+                    storage = event.storage
+                    source = event.source
+                    zoneKey = event.zoneKey
+                    corrected_breakdown.append(
+                        zoneKey=zoneKey,
+                        datetime=dt,
+                        production=production,
+                        storage=storage,
+                        source=source,
+                    )
+                    break
+        merged_production = corrected_breakdown
+    return merged_production
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -513,11 +536,11 @@ def _fetch_au_nsw_au_vic_exchange(
 
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
-    print(fetch_price(ZoneKey("AU-SA")))
+    #print(fetch_price(ZoneKey("AU-SA")))
 
-    print(fetch_production(ZoneKey("AU-WA")))
-    print(fetch_production(ZoneKey("AU-NSW")))
-    target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
-    print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
-
-    print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
+    print(fetch_production(ZoneKey("AU-TAS")))
+    # print(fetch_production(ZoneKey("AU-NSW")))
+    # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+    # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
+#
+    # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
