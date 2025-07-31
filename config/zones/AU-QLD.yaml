@@ -10,7 +10,7 @@ capacity:
       value: 336.0
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
-      value: 1250.6
+      value: 1250.68
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
