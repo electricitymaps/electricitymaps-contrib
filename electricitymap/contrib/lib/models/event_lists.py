@@ -61,6 +61,9 @@ class EventList(ABC, Generic[EventType]):
     def __getitem__(self, datetime) -> EventType:
         return next(event for event in self.events if event.datetime == datetime)
 
+    def __iter__(self):
+        return iter(self.events)
+
     @abstractmethod
     def append(self, **kwargs):
         """Handles creation of events and adding it to the batch."""
