@@ -5,9 +5,8 @@ This is a higher level validation than validation.py
 
 from datetime import datetime, timezone
 from typing import Any
-from warnings import warn
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
+from electricitymap.contrib.config import EXCHANGES_CONFIG
 from electricitymap.contrib.lib.types import ZoneKey
 
 
@@ -21,7 +20,6 @@ def validate_datapoint_format(datapoint: dict[str, Any], kind: str, zone_key: Zo
     """
     standard_keys = ["datetime", "source"]
     keys_dict = {
-        "production": ["zoneKey", "production"] + standard_keys,
         "consumption": ["zoneKey", "consumption"] + standard_keys,
         "exchange": ["sortedZoneKeys", "netFlow"] + standard_keys,
         "price": ["zoneKey", "currency", "price"] + standard_keys,
@@ -103,85 +101,3 @@ def validate_exchange(item, k) -> None:
                     f"netFlow {item['netFlow']} exceeds interconnector capacity for {k}"
                 )
 
-
-def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
-    validate_datapoint_format(datapoint=obj, kind="production", zone_key=zone_key)
-    if "datetime" not in obj:
-        raise ValidationError(f"datetime was not returned for {zone_key}")
-    if "countryCode" in obj:
-        warn(
-            "object has field `countryCode`. It should have "
-            f"`zoneKey` instead. In {obj}",
-            stacklevel=1,
-        )
-    if "zoneKey" not in obj and "countryCode" not in obj:
-        raise ValidationError(f"zoneKey was not returned for {zone_key}")
-    if not isinstance(obj["datetime"], datetime):
-        raise ValidationError(
-            "datetime {} is not valid for {}".format(obj["datetime"], zone_key)
-        )
-    if (obj.get("zoneKey") or obj.get("countryCode")) != zone_key:
-        raise ValidationError(
-            f"Zone keys {obj.get('zoneKey')} and {zone_key} don't match in {obj}"
-        )
-
-    if (
-        obj.get("production", {}).get("unknown", None) is None
-        and obj.get("production", {}).get("coal", None) is None
-        and obj.get("production", {}).get("oil", None) is None
-        and obj.get("production", {}).get("gas", None) is None
-        and zone_key
-        not in [
-            "CH",
-            "NO",
-            "AU-TAS",
-            "DK-BHM",
-            "US-CAR-YAD",
-            "US-CENT-SPA",
-            "US-NW-SCL",
-            "US-NW-CHPD",
-            "US-NW-WWA",
-            "US-NW-GCPD",
-            "US-NW-TPWR",
-            "US-NW-WAUW",
-            "US-SE-SEPA",
-            "US-NW-GWA",
-            "US-NW-DOPD",
-            "LU",
-        ]
-    ):
-        raise ValidationError(
-            f"Coal, gas or oil or unknown production value is required for {zone_key}"
-        )
-
-    if zone_key in ["US-CAR-YAD"] and obj.get("production", {}).get("hydro", 0) < 5:
-        raise ValidationError(
-            f"Hydro production value is required to be greater than 5 for {zone_key}"
-        )
-
-    if obj.get("storage"):
-        if not isinstance(obj["storage"], dict):
-            raise ValidationError(
-                "storage value must be a dict, was {}".format(obj["storage"])
-            )
-        not_allowed_keys = set(obj["storage"]) - {"battery", "hydro"}
-        if not_allowed_keys:
-            raise ValidationError(f"unexpected keys in storage: {not_allowed_keys}")
-    for key, value in obj["production"].items():
-        if value is None:
-            continue
-        if value < 0:
-            raise ValidationError(f"{zone_key}: key {key} has negative value {value}")
-        # Plausibility Check, no more than 500GW
-        if value > 500000:
-            raise ValidationError(
-                f"{zone_key}: production for {key} is not realistic (>500GW) {value}"
-            )
-
-    for key in obj.get("production", {}):
-        if key not in emission_factors(zone_key):
-            raise ValidationError(
-                f"Couldn't find emission factor for '{key}' in '{zone_key}'. Maybe you misspelled one of the production keys?"
-            )
-
-    validate_reasonable_time(obj, zone_key)
