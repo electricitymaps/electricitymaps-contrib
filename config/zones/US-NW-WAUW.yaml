@@ -334,3 +334,6 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: US/Mountain
+zone_name: Western Area Power Administration - Upper Great Plains West
+zone_short_name: WAPA Upper Great Plains
+country_name: USA

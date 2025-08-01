@@ -294,3 +294,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Colombo
+zone_name: Sri Lanka
+country_name: Sri Lanka

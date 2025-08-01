@@ -27,3 +27,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Banjul
+zone_name: Gambia
+country_name: Gambia

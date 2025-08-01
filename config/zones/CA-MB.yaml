@@ -24,3 +24,5 @@ fallbackZoneMixes:
       wind: 0.0254
 region: Americas
 timezone: America/Winnipeg
+zone_name: Manitoba
+country_name: Canada

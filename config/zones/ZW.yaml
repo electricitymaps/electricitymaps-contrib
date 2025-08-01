@@ -56,3 +56,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Harare
+zone_name: Zimbabwe
+country_name: Zimbabwe

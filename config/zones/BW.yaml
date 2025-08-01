@@ -81,3 +81,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Gaborone
+zone_name: Botswana
+country_name: Botswana

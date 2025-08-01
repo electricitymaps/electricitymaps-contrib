@@ -276,3 +276,5 @@ fallbackZoneMixes:
         wind: 0.0
 region: Asia
 timezone: Asia/Hong_Kong
+zone_name: Hong Kong
+country_name: Hong Kong

@@ -33,3 +33,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Gaza
+zone_name: State of Palestine
+country_name: State of Palestine

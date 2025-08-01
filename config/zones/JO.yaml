@@ -84,3 +84,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Amman
+zone_name: Jordan
+country_name: Jordan

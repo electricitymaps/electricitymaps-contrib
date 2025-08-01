@@ -110,3 +110,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo
+zone_name: Mozambique
+country_name: Mozambique

@@ -6,3 +6,5 @@ bounding_box:
 country: GI
 region: Europe
 timezone: Europe/Gibraltar
+zone_name: Gibraltar
+country_name: Gibraltar

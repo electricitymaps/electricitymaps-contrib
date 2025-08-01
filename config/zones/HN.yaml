@@ -276,3 +276,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Tegucigalpa
+zone_name: Honduras
+country_name: Honduras

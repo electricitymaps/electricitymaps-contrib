@@ -32,3 +32,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Belize
+zone_name: Belize
+country_name: Belize

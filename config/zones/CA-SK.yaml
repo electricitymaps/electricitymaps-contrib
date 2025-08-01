@@ -209,3 +209,5 @@ parsers:
   consumption: CA_SK.fetch_consumption
 region: Americas
 timezone: America/Regina
+zone_name: Saskatchewan
+country_name: Canada

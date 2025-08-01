@@ -19,3 +19,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tongatapu
+zone_name: Tonga
+country_name: Tonga

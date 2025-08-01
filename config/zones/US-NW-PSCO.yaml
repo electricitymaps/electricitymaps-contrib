@@ -476,3 +476,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
+zone_name: Public Service Company of Colorado
+zone_short_name: PSCo
+country_name: USA

@@ -26,3 +26,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guadalcanal
+zone_name: Solomon Islands
+country_name: Solomon Islands

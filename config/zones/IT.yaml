@@ -394,3 +394,5 @@ subZoneNames:
   - IT-SIC
   - IT-SO
 timezone: Europe/Rome
+zone_name: Italy
+country_name: Italy

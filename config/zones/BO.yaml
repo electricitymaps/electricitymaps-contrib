@@ -302,3 +302,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/La_Paz
+zone_name: Bolivia
+country_name: Bolivia

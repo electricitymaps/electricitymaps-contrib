@@ -41,3 +41,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Brazzaville
+zone_name: Congo
+country_name: Congo

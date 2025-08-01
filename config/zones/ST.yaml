@@ -28,3 +28,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Sao_Tome
+zone_name: São Tomé and Príncipe
+country_name: São Tomé and Príncipe

@@ -49,3 +49,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Noumea
+zone_name: New Caledonia
+country_name: New Caledonia

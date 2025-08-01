@@ -38,3 +38,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Guyana
+zone_name: Guyana
+country_name: Guyana

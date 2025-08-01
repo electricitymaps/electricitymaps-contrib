@@ -520,3 +520,5 @@ subZoneNames:
   - US-TEN-TVA
   - US-TEX-ERCO
 timezone: US/Central
+zone_name: United States
+country_name: United States

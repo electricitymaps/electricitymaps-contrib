@@ -108,3 +108,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Nairobi
+zone_name: Kenya
+country_name: Kenya

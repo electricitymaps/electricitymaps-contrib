@@ -126,3 +126,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Accra
+zone_name: Ghana
+country_name: Ghana

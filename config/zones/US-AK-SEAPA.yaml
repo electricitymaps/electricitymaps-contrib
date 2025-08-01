@@ -39,3 +39,5 @@ parsers:
   production: SEAPA.fetch_production
 region: Americas
 timezone: America/Anchorage
+zone_name: Southeast Alaska Power Agency
+country_name: USA

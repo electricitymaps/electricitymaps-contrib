@@ -366,3 +366,5 @@ subZoneNames:
   - RU-FE
   - RU-KGD
 timezone: Europe/Moscow
+zone_name: Russia
+country_name: Russia

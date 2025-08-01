@@ -161,3 +161,5 @@ sources:
   Climatescope:
     link: https://www.global-climatescope.org/markets/om/
 timezone: Asia/Muscat
+zone_name: Oman
+country_name: Oman

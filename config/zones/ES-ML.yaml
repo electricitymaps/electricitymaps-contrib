@@ -102,3 +102,5 @@ parsers:
   productionCapacity: REE.fetch_production_capacity
 region: Europe
 timezone: Europe/Madrid
+zone_name: Melilla
+country_name: Spain

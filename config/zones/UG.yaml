@@ -112,3 +112,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Kampala
+zone_name: Uganda
+country_name: Uganda

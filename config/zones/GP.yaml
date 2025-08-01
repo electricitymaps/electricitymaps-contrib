@@ -194,3 +194,5 @@ parsers:
   production: FR_O.fetch_production
 region: Americas
 timezone: America/Puerto_Rico
+zone_name: Guadeloupe
+country_name: Guadeloupe

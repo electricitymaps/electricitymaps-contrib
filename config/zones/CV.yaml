@@ -28,3 +28,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Atlantic/Cape_Verde
+zone_name: Cabo Verde
+country_name: Cabo Verde

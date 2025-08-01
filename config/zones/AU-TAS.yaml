@@ -310,3 +310,5 @@ parsers:
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Hobart
+zone_name: Tasmania
+country_name: Australia

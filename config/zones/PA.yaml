@@ -380,3 +380,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Panama
+zone_name: Panama
+country_name: Panama

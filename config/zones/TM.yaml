@@ -32,3 +32,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Ashgabat
+zone_name: Turkmenistan
+country_name: Turkmenistan

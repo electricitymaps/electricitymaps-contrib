@@ -211,3 +211,5 @@ sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
 timezone: Asia/Tokyo
+zone_name: Tōhoku
+country_name: Japan

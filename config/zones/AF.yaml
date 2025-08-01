@@ -41,3 +41,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Kabul
+zone_name: Afghanistan
+country_name: Afghanistan

@@ -475,3 +475,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Seoul
+zone_name: South Korea
+country_name: South Korea

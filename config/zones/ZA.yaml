@@ -382,3 +382,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Johannesburg
+zone_name: South Africa
+country_name: South Africa

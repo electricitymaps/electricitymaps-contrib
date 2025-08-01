@@ -98,3 +98,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Havana
+zone_name: Cuba
+country_name: Cuba

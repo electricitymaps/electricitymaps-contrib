@@ -26,3 +26,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Cayman
+zone_name: Cayman Islands
+country_name: Cayman Islands

@@ -372,3 +372,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Costa_Rica
+zone_name: Costa Rica
+country_name: Costa Rica

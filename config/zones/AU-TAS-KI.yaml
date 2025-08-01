@@ -153,3 +153,5 @@ parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Hobart
+zone_name: King Island
+country_name: Australia

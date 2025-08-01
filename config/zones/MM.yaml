@@ -76,3 +76,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yangon
+zone_name: Myanmar
+country_name: Myanmar

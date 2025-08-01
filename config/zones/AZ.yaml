@@ -89,3 +89,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baku
+zone_name: Azerbaijan
+country_name: Azerbaijan

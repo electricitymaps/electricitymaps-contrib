@@ -331,3 +331,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Montevideo
+zone_name: Uruguay
+country_name: Uruguay

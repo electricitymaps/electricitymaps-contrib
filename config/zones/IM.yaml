@@ -31,9 +31,11 @@ fallbackZoneMixes:
     - _source: https://www.manxutilities.im/media/3096/manx-utilities-annual-report-and-accounts-31-march-2024.pdf
       datetime: '2024-01-01'
       value:
-        gas: 0.950
+        gas: 0.95
         hydro: 0.006
         oil: 0.003
         unknown: 0.041
 region: Europe
 timezone: Europe/Isle_of_Man
+zone_name: Isle of Man
+country_name: Isle of Man

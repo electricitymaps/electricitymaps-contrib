@@ -10,3 +10,5 @@ parsers:
   consumption: GCCIA.fetch_consumption
 region: Asia
 timezone: Asia/Riyadh
+zone_name: Saudi Arabia
+country_name: Saudi Arabia

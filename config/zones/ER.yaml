@@ -34,3 +34,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Asmara
+zone_name: Eritrea
+country_name: Eritrea

@@ -275,3 +275,5 @@ parsers:
   production: FR_O.fetch_production
 region: Africa
 timezone: Indian/Reunion
+zone_name: Réunion
+country_name: Réunion

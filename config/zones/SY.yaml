@@ -55,3 +55,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Damascus
+zone_name: Syria
+country_name: Syria

@@ -143,3 +143,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Cairo
+zone_name: Egypt
+country_name: Egypt

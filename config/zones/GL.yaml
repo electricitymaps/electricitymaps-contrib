@@ -20,3 +20,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Nuuk
+zone_name: Greenland
+country_name: Greenland

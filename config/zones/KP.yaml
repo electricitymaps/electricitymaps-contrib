@@ -60,3 +60,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Pyongyang
+zone_name: North Korea
+country_name: North Korea

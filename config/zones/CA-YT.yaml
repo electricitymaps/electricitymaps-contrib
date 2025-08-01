@@ -218,3 +218,5 @@ fallbackZoneMixes:
         wind: 0.0
 region: Americas
 timezone: America/Whitehorse
+zone_name: Yukon
+country_name: Canada

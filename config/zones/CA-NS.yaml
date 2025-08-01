@@ -138,3 +138,5 @@ parsers:
   production: CA_NS.fetch_production
 region: Americas
 timezone: America/Halifax
+zone_name: Nova Scotia
+country_name: Canada

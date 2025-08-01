@@ -43,3 +43,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre
+zone_name: Malawi
+country_name: Malawi

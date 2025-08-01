@@ -39,3 +39,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Juba
+zone_name: South Sudan
+country_name: South Sudan

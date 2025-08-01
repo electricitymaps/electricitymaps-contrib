@@ -67,3 +67,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Vientiane
+zone_name: Laos
+country_name: Laos
