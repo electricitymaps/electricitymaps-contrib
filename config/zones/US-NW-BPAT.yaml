@@ -5,6 +5,9 @@ bounding_box:
     - 49.50244
 capacity:
   battery storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1.0
@@ -15,6 +18,9 @@ capacity:
       source: EIA.gov
       value: 32.0
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 350.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 308.2
@@ -37,10 +43,16 @@ capacity:
       source: EIA.gov
       value: 281.0
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1459.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 729.9
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2266.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2271.7
@@ -48,10 +60,13 @@ capacity:
       source: EIA.gov
       value: 2167.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 18.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 19303.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 19010.3
@@ -65,18 +80,21 @@ capacity:
       source: EIA.gov
       value: 18988.6
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 314.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1200.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 87.9
@@ -90,10 +108,13 @@ capacity:
       source: EIA.gov
       value: 223.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4380.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3617.1

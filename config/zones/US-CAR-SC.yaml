@@ -5,11 +5,11 @@ bounding_box:
     - 35.334748543
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 219.5
     - datetime: '2022-01-01'
@@ -19,40 +19,43 @@ capacity:
       source: EIA.gov
       value: 219.5
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3650.1
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 3727.3
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1102.0
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1272.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 231.2
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 229.4
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 98.2
@@ -69,11 +72,11 @@ capacity:
       source: EIA.gov
       value: 303.3
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: South Carolina Public Service Authority

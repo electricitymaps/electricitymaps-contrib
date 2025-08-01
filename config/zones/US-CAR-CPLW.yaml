@@ -5,6 +5,9 @@ bounding_box:
     - 36.7872800000001
 capacity:
   battery storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 8.8
@@ -12,38 +15,41 @@ capacity:
       source: EIA.gov
       value: 13.2
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 21.5
@@ -57,11 +63,11 @@ capacity:
       source: EIA.gov
       value: 26.9
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Duke Energy Progress West

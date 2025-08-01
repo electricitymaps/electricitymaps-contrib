@@ -5,6 +5,9 @@ bounding_box:
     - 37.04465
 capacity:
   battery storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.5
@@ -24,6 +27,9 @@ capacity:
       source: EIA.gov
       value: 128.6
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 540.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 608.5
@@ -49,10 +55,16 @@ capacity:
       source: EIA.gov
       value: 365.2
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3815.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3321.4
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5987.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 6430.8
@@ -60,10 +72,13 @@ capacity:
       source: EIA.gov
       value: 6411.8
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 226.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 225.2
@@ -74,18 +89,30 @@ capacity:
       source: EIA.gov
       value: 223.2
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3722.7
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 729.3
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 713.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 242.2
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 847.6
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 919.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1595.4
@@ -174,11 +201,11 @@ capacity:
       source: EIA.gov
       value: 2920.5
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 54.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Duke Energy Progress East

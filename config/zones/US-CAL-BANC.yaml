@@ -5,18 +5,21 @@ bounding_box:
     - 41.868139
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 9.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1838.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1865.9
@@ -27,10 +30,13 @@ capacity:
       source: EIA.gov
       value: 2549.9
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 734.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2557.2
@@ -38,18 +44,21 @@ capacity:
       source: EIA.gov
       value: 2553.7
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 71.2
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 120.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 164.6
@@ -66,11 +75,11 @@ capacity:
       source: EIA.gov
       value: 337.0
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Balancing Authority Of Northern California

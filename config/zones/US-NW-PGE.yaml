@@ -5,32 +5,41 @@ bounding_box:
     - 46.4057731890001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 292.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 14.7
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 15.9
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 642.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2085.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2115.3
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 692.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 606.0
@@ -38,18 +47,21 @@ capacity:
       source: EIA.gov
       value: 624.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 125.4
@@ -90,11 +102,11 @@ capacity:
       source: EIA.gov
       value: 191.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.5
 comment: Portland General Electric Company

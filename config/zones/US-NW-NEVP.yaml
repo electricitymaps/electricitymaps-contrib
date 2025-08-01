@@ -5,7 +5,7 @@ bounding_box:
     - 42.5017700000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2021-06-01'
@@ -30,21 +30,27 @@ capacity:
       source: EIA.gov
       value: 1035.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 15.2
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1103.8
+    - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7606.2
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
   geothermal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 633.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 750.5
@@ -82,7 +88,7 @@ capacity:
       source: EIA.gov
       value: 853.9
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 12.8
     - datetime: '2022-01-01'
@@ -92,18 +98,24 @@ capacity:
       source: EIA.gov
       value: 16.9
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 15.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 837.7
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 887.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1592.5
@@ -159,11 +171,11 @@ capacity:
       source: EIA.gov
       value: 4186.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7.5
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 150.0
 comment: Nevada Power Company

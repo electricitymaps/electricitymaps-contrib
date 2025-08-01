@@ -5,14 +5,20 @@ bounding_box:
     - 39.4703334770001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2.0
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6545.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 5807.2
@@ -20,6 +26,9 @@ capacity:
       source: EIA.gov
       value: 5451.7
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4027.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3993.6
@@ -30,29 +39,35 @@ capacity:
       source: EIA.gov
       value: 3353.6
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 133.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 137.8
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 11.5
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 10.6
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 10.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 14.7
@@ -63,11 +78,11 @@ capacity:
       source: EIA.gov
       value: 18.1
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Louisville Gas And Electric Company And Kentucky Utilities

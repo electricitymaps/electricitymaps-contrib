@@ -5,6 +5,9 @@ bounding_box:
     - 45.51097
 capacity:
   battery storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 20.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 68.1
@@ -72,6 +75,9 @@ capacity:
       source: EIA.gov
       value: 253.5
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 558.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 508.5
@@ -82,10 +88,16 @@ capacity:
       source: EIA.gov
       value: 451.4
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1098.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 23705.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 26349.5
@@ -132,10 +144,13 @@ capacity:
       source: EIA.gov
       value: 25781.7
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4660.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4589.1
@@ -152,13 +167,16 @@ capacity:
       source: EIA.gov
       value: 4081.2
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1240.0
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 1220.0
   nuclear:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5709.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4410.4
@@ -166,6 +184,9 @@ capacity:
       source: EIA.gov
       value: 3398.4
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3642.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3512.3
@@ -188,6 +209,12 @@ capacity:
       source: EIA.gov
       value: 3483.6
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 114.2
+    - datetime: '2017-03-01'
+      source: EIA.gov
+      value: 116.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 694.9
@@ -342,10 +369,19 @@ capacity:
       source: EIA.gov
       value: 2483.5
   unknown:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 244.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1822.2
+    - datetime: '2017-03-01'
+      source: EIA.gov
+      value: 1823.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1985.4

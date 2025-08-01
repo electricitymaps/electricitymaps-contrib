@@ -5,10 +5,13 @@ bounding_box:
     - 47.5893300000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 185.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 118.7
@@ -19,18 +22,27 @@ capacity:
       source: EIA.gov
       value: 118.7
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1240.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 626.0
   geothermal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1055.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1060.8
@@ -44,18 +56,21 @@ capacity:
       source: EIA.gov
       value: 893.8
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 42.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 297.4
@@ -87,10 +102,13 @@ capacity:
       source: EIA.gov
       value: 480.8
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 619.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 480.5

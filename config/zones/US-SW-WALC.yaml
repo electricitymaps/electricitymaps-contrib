@@ -5,7 +5,7 @@ bounding_box:
     - 44.1167400000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2021-12-01'
@@ -24,14 +24,20 @@ capacity:
       source: EIA.gov
       value: 140.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 408.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 204.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1713.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2153.0
@@ -39,22 +45,31 @@ capacity:
       source: EIA.gov
       value: 1517.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5614.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3789.5
   hydro storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 65.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 40.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1.5
@@ -62,6 +77,9 @@ capacity:
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 34.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 142.2
@@ -75,10 +93,13 @@ capacity:
       source: EIA.gov
       value: 340.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 350.0

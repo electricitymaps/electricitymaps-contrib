@@ -5,28 +5,31 @@ bounding_box:
     - 34.535375
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 30.0
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 180.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 55.5
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 605.5
   geothermal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 750.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 748.2
@@ -52,22 +55,28 @@ capacity:
       source: EIA.gov
       value: 686.3
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 81.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 83.9
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 24.9
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 160.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 383.4
@@ -81,11 +90,11 @@ capacity:
       source: EIA.gov
       value: 543.2
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Imperial Irrigation District
