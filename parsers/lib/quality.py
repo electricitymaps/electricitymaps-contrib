@@ -100,4 +100,3 @@ def validate_exchange(item, k) -> None:
                 raise ValidationError(
                     f"netFlow {item['netFlow']} exceeds interconnector capacity for {k}"
                 )
-
