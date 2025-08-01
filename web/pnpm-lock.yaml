@@ -156,8 +156,8 @@ importers:
         specifier: ^2.0.5
         version: 2.0.5(react@18.3.1)
       react-i18next:
-        specifier: ^15.5.3
-        version: 15.5.3(i18next@24.2.3(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)(typescript@5.5.4)
+        specifier: ^15.6.1
+        version: 15.6.1(i18next@24.2.3(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)(typescript@5.5.4)
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@18.3.1)
@@ -7598,8 +7598,8 @@ packages:
     peerDependencies:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
 
-  react-i18next@15.5.3:
-    resolution: {integrity: sha512-ypYmOKOnjqPEJZO4m1BI0kS8kWqkBNsKYyhVUfij0gvjy9xJNoG/VcGkxq5dRlVwzmrmY1BQMAmpbbUBLwC4Kw==}
+  react-i18next@15.6.1:
+    resolution: {integrity: sha512-uGrzSsOUUe2sDBG/+FJq2J1MM+Y4368/QW8OLEKSFvnDflHBbZhSd1u3UkW0Z06rMhZmnB/AQrhCpYfE5/5XNg==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -12908,7 +12908,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       '@types/aria-query': 5.0.4
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -17972,7 +17972,7 @@ snapshots:
 
   polished@4.3.1:
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
 
   polygon-clipping@0.15.7:
     dependencies:
@@ -18185,9 +18185,9 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-i18next@15.5.3(i18next@24.2.3(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)(typescript@5.5.4):
+  react-i18next@15.6.1(i18next@24.2.3(typescript@5.5.4))(react-dom@18.3.1(react@18.3.1))(react-native@0.73.6(@babel/core@7.25.7)(@babel/preset-env@7.25.4(@babel/core@7.25.7))(react@18.3.1))(react@18.3.1)(typescript@5.5.4):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       html-parse-stringify: 3.0.1
       i18next: 24.2.3(typescript@5.5.4)
       react: 18.3.1
