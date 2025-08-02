@@ -54,6 +54,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2831.1
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 2827.1
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 2826.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2260.3
@@ -109,6 +115,12 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 68040.6
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 67989.3
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 67820.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 60195.8
@@ -179,6 +191,21 @@ capacity:
     - datetime: '2017-04-01'
       source: EIA.gov
       value: 77312.9
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 77358.6
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 77409.9
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 77414.2
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 77342.1
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 77323.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 80456.1
@@ -295,6 +322,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2294.5
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 2370.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2400.2
@@ -352,6 +382,9 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 4355.8
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 4349.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4183.1
@@ -416,6 +449,27 @@ capacity:
     - datetime: '2017-04-01'
       source: EIA.gov
       value: 539.0
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 592.8
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 604.3
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 635.3
+    - datetime: '2017-09-01'
+      source: EIA.gov
+      value: 654.4
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 674.2
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 706.2
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 830.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2089.2
@@ -598,6 +652,15 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 16759.1
+    - datetime: '2017-09-01'
+      source: EIA.gov
+      value: 16857.1
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 16957.1
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 17327.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 26424.9
@@ -799,12 +862,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1076.354463
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1066.379379
     gas:
       - datetime: '2020-01-01'

@@ -104,6 +104,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 304.2
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 305.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 359.8
@@ -146,9 +149,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from the generation-only
-  balancing authorities Arlington Valley, LLC - AVBA and New Harquahala Generating
-  Company, LLC - HGBA. Read more on the wiki page.
+disclaimer:
+  This zone includes all electricity production from the generation-only balancing authorities Arlington Valley, LLC - AVBA and New
+  Harquahala Generating Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:

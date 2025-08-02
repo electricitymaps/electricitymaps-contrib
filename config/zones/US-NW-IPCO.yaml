@@ -61,6 +61,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1894.4
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 1893.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1855.1
@@ -101,6 +104,9 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 269.5
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 289.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 318.3

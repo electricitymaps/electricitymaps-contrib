@@ -95,6 +95,9 @@ capacity:
     - datetime: '2017-02-01'
       source: EIA.gov
       value: 734.9
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 737.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 772.0
@@ -254,12 +257,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1072.158303
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1047.8344789999999
     gas:
       - datetime: '2020-01-01'

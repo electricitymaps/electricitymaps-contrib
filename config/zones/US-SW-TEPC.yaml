@@ -65,6 +65,9 @@ capacity:
     - datetime: '2017-04-01'
       source: EIA.gov
       value: 264.8
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 266.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 328.9

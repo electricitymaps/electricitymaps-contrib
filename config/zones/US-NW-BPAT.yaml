@@ -8,6 +8,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2.0
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 4.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1.0
@@ -95,6 +98,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 4.4
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 60.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 87.9
@@ -129,9 +135,8 @@ delays:
   consumptionForecast: 30
   production: 48
 disclaimer:
-  This zone includes all wind related electricity production from the generation-only
-  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
-  page.
+  This zone includes all wind related electricity production from the generation-only balancing authority Avangrid Renewables, LLC.
+  Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
