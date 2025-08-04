@@ -73,6 +73,9 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 77.6
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 71.4
 comment: Western Area Power Administration Ugp West
 contributors:
   - systemcatch

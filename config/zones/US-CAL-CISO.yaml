@@ -221,6 +221,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 12510.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 13059.7
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -470,6 +473,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 31881.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 31875.3
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -842,6 +848,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 23621.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 23629.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -858,6 +867,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 62.7
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 43.4
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov

@@ -425,6 +425,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 5745.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 5744.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -435,6 +438,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 45.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 0.0
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
