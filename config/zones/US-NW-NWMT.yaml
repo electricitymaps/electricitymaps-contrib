@@ -152,8 +152,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all electricity production from the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner
+disclaimer: This zone includes all electricity production from the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner
   Wind Watch, LLC. Read more on the wiki page.
 emissionFactors:
   direct:

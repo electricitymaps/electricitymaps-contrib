@@ -210,6 +210,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 2016.0
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 2008.5
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -518,6 +521,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 104760.4
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 104742.5
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -694,6 +700,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 5395.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 5246.3
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -989,6 +998,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 15855.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 15885.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1093,6 +1105,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 11459.6
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 11514.5
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch
