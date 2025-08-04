@@ -68,11 +68,7 @@ def get_solar(session: Session, logger: Logger) -> float | None:
     Uses OCR (tesseract) to extract MW value.
     """
     requests_obj = session or Session()
-    requests_obj.headers.update(
-        {
-            "User-Agent": "Mozilla/5.0"
-        }
-    )
+    requests_obj.headers.update({"User-Agent": "Mozilla/5.0"})
     solar_image = Image.open(session.get(SOLAR_URL, stream=True).raw)
 
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
