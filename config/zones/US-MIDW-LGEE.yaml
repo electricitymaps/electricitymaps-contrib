@@ -411,3 +411,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Louisville Gas and Electric Company and Kentucky Utilities
+zone_short_name: Louisville Gas And Electric Company
+country_name: USA

@@ -59,3 +59,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Beirut
+zone_name: Lebanon
+country_name: Lebanon

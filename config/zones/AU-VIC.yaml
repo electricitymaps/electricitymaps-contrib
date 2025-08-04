@@ -346,3 +346,5 @@ parsers:
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Melbourne
+zone_name: Victoria
+country_name: Australia

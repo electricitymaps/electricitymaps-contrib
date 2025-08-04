@@ -285,3 +285,5 @@ sources:
   Guatemala AMM 2021-2022:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
+zone_name: Guatemala
+country_name: Guatemala

@@ -364,3 +364,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Jerusalem
+zone_name: Israel
+country_name: Israel

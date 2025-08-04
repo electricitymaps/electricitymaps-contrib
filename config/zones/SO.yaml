@@ -28,3 +28,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mogadishu
+zone_name: Somalia
+country_name: Somalia

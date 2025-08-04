@@ -52,3 +52,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Abidjan
+zone_name: Ivory Coast
+country_name: Ivory Coast

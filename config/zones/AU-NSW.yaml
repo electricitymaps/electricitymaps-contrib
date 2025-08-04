@@ -361,3 +361,5 @@ parsers:
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Sydney
+zone_name: New South Wales
+country_name: Australia

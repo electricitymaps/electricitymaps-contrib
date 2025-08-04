@@ -118,3 +118,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Tehran
+zone_name: Iran
+country_name: Iran

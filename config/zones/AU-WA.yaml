@@ -336,3 +336,5 @@ parsers:
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Perth
+zone_name: Western Australia
+country_name: Australia

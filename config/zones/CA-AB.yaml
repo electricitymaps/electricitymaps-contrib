@@ -233,3 +233,5 @@ parsers:
   gridAlerts: CA_AB.fetch_grid_alerts
 region: Americas
 timezone: America/Edmonton
+zone_name: Alberta
+country_name: Canada

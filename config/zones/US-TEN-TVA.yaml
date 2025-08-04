@@ -555,3 +555,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Tennessee Valley Authority
+zone_short_name: TVA
+country_name: USA

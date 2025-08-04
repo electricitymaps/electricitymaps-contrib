@@ -102,3 +102,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mauritius
+zone_name: Mauritius
+country_name: Mauritius
