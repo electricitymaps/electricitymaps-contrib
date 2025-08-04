@@ -28,7 +28,13 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 936.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 945.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 940.8
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 950.2
     - datetime: '2023-01-01'
@@ -64,7 +70,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 77.5
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 77.6
 comment: Western Area Power Administration Ugp West

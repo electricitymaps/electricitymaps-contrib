@@ -8,7 +8,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-06-01'
       source: EIA.gov
       value: 2.0
     - datetime: '2023-02-01'
@@ -39,14 +39,17 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 6.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 33.2
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 30.4
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2476.1
-    - datetime: '2021-01-01'
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 2062.1
     - datetime: '2025-03-01'
@@ -56,7 +59,13 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2124.4
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1897.2
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 2544.8
+    - datetime: '2019-05-01'
       source: EIA.gov
       value: 2714.6
     - datetime: '2022-01-01'
@@ -98,6 +107,21 @@ capacity:
     - datetime: '2017-12-01'
       source: EIA.gov
       value: 737.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 740.0
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 741.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 767.4
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 769.2
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 757.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 772.0

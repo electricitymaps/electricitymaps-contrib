@@ -26,6 +26,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1910.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1911.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1915.9
@@ -52,6 +55,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.1
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -59,6 +68,15 @@ capacity:
     - datetime: '2017-05-01'
       source: EIA.gov
       value: 117.5
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 119.5
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 124.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 127.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 126.8

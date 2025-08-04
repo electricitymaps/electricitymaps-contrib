@@ -12,7 +12,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2019-09-01'
       source: EIA.gov
       value: 1.7
   coal:
@@ -56,6 +56,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 22.0
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 25.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 25.0

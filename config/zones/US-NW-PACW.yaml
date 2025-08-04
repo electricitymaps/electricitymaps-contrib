@@ -12,6 +12,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 185.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 123.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 118.7
@@ -29,6 +32,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1240.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1301.8
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 1240.3
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 621.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 626.0
@@ -36,7 +48,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 3.7
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
@@ -74,6 +86,36 @@ capacity:
     - datetime: '2017-12-01'
       source: EIA.gov
       value: 93.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 110.9
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 120.9
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 130.9
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 140.9
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 158.9
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 166.9
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 172.5
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 229.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 284.1
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 294.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 297.4
@@ -112,6 +154,18 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 619.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 629.6
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 650.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 674.3
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 694.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 480.5

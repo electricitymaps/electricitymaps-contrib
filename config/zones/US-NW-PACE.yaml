@@ -25,7 +25,10 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 7923.5
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 7841.5
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 7447.5
     - datetime: '2023-01-01'
@@ -38,6 +41,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 3346.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 3399.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 3784.3
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 3774.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3767.4
@@ -112,6 +124,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 269.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 264.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 264.2
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 271.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 271.8
@@ -134,7 +155,16 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 855.8
-    - datetime: '2021-01-01'
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 949.8
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 1007.4
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 1129.4
+    - datetime: '2020-11-01'
       source: EIA.gov
       value: 1286.4
     - datetime: '2021-03-01'
@@ -190,6 +220,18 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1846.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1948.1
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1923.0
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 1906.2
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 2690.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2708.6
@@ -224,8 +266,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all gas related electricity production from the generation-only balancing authority Avangrid Renewables, LLC. Read
+disclaimer: This zone includes all gas related electricity production from the generation-only balancing authority Avangrid Renewables, LLC. Read
   more on the zone definition wiki page.
 emissionFactors:
   direct:

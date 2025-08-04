@@ -8,7 +8,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2020-08-01'
       source: EIA.gov
       value: 8.8
     - datetime: '2022-07-01'
@@ -50,7 +50,10 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1.5
-    - datetime: '2021-01-01'
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 11.5
+    - datetime: '2019-03-01'
       source: EIA.gov
       value: 21.5
     - datetime: '2022-07-01'

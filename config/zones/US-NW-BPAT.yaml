@@ -11,6 +11,12 @@ capacity:
     - datetime: '2017-07-01'
       source: EIA.gov
       value: 4.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.0
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 3.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1.0
@@ -24,6 +30,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 350.9
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 340.9
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 339.3
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 325.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 308.2
@@ -49,7 +64,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1459.8
-    - datetime: '2021-01-01'
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 729.9
   gas:
@@ -70,6 +85,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 19303.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 19038.3
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 19178.5
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 19249.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 19010.3
@@ -101,7 +125,22 @@ capacity:
     - datetime: '2017-11-01'
       source: EIA.gov
       value: 60.7
-    - datetime: '2021-01-01'
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 70.6
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 14.8
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 24.7
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 64.7
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 84.7
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 87.9
     - datetime: '2022-03-01'
@@ -121,6 +160,18 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 4380.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 3074.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 3077.5
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 3277.5
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 3397.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3617.1
@@ -134,8 +185,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all wind related electricity production from the generation-only balancing authority Avangrid Renewables, LLC.
+disclaimer: This zone includes all wind related electricity production from the generation-only balancing authority Avangrid Renewables, LLC.
   Read more on the zone definition wiki page.
 emissionFactors:
   direct:

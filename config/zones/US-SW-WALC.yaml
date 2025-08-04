@@ -31,14 +31,17 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 408.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
       source: EIA.gov
       value: 204.0
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1713.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1917.0
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 2153.0
     - datetime: '2025-01-01'
@@ -52,6 +55,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 5614.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 5610.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3789.5
@@ -70,7 +76,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 1.5
     - datetime: '2021-09-01'
@@ -86,7 +92,13 @@ capacity:
     - datetime: '2017-10-01'
       source: EIA.gov
       value: 151.7
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 81.7
+    - datetime: '2019-08-01'
+      source: EIA.gov
+      value: 109.7
+    - datetime: '2019-12-01'
       source: EIA.gov
       value: 142.2
     - datetime: '2021-12-01'
@@ -106,7 +118,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 350.0
 comment: Western Area Power Administration - Desert Southwest Region
@@ -119,8 +131,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the
+disclaimer: This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the
   zone definition wiki page.
 emissionFactors:
   direct:

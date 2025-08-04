@@ -26,6 +26,9 @@ capacity:
     - datetime: '2017-07-01'
       source: EIA.gov
       value: 377.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 328.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 579.4

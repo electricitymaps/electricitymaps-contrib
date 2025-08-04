@@ -8,7 +8,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-12-01'
       source: EIA.gov
       value: 4.0
     - datetime: '2024-12-01'
@@ -31,14 +31,20 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1848.8
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 1431.5
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 3090.4
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 3507.7
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 3511.2
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 3464.7
     - datetime: '2022-01-01'
@@ -67,7 +73,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 244.3
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 241.8
     - datetime: '2023-01-01'
@@ -88,7 +94,10 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 30.3
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 14.0
+    - datetime: '2019-06-01'
       source: EIA.gov
       value: 17.5
     - datetime: '2022-01-01'
@@ -116,7 +125,55 @@ capacity:
     - datetime: '2017-12-01'
       source: EIA.gov
       value: 198.1
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 238.1
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 248.3
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 262.4
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 266.8
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 268.4
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 314.9
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 316.9
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 336.9
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 349.9
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 428.5
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 503.4
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 575.9
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 645.9
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 720.9
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 795.9
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 868.0
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 903.2
     - datetime: '2022-05-01'
@@ -143,8 +200,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  A third of the nuclear-related electricity production is attributed to the balancing authority South Carolina Public Service Authority
+disclaimer: A third of the nuclear-related electricity production is attributed to the balancing authority South Carolina Public Service Authority
   (US-CAR-SC) due to an agreement between the two balancing authorities. Read more on the zone definition wiki page.
 emissionFactors:
   direct:

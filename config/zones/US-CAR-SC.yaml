@@ -59,7 +59,22 @@ capacity:
     - datetime: '2017-12-01'
       source: EIA.gov
       value: 42.5
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.5
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 4.1
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 5.2
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 17.2
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 23.2
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 98.2
     - datetime: '2022-12-01'
@@ -92,8 +107,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas
+disclaimer: This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas
   Company. Read more on the zone definition wiki page.
 emissionFactors:
   direct:

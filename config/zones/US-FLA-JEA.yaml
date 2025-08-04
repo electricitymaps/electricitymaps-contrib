@@ -8,7 +8,7 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2021-01-01'
+    - datetime: '2019-12-01'
       source: EIA.gov
       value: 5.0
   biomass:
@@ -19,14 +19,14 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 1953.0
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
       source: EIA.gov
       value: 595.0
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 2166.2
-    - datetime: '2021-01-01'
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 2166.9
     - datetime: '2022-01-01'
@@ -65,7 +65,13 @@ capacity:
     - datetime: '2017-11-01'
       source: EIA.gov
       value: 23.5
-    - datetime: '2021-01-01'
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 32.5
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 37.5
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 35.1
     - datetime: '2022-01-01'
