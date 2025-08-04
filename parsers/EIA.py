@@ -386,21 +386,6 @@ PRODUCTION_MIX = (
 )
 EXCHANGE = f"{BASE_URL}/interchange-data/data/?data[]=value{{}}&frequency=hourly"
 
-FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
-    "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": [
-        "biomass",
-        "geothermal",
-        "oil",
-        "solar",
-    ],  # Solar is not reported by PGE.
-    "US-NW-PACE": ["biomass", "geothermal", "oil"],
-    "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
-    "US-TEN-TVA": ["biomass", "geothermal", "oil"],
-    "US-SE-SOCO": ["biomass", "geothermal", "oil", "hydro"],
-    "US-FLA-FPL": ["biomass", "geothermal", "oil"],
-}
-
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
@@ -629,10 +614,7 @@ def fetch_production_mix(
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    if zone_key in FILTER_INCOMPLETE_DATA_BYPASSED_MODES:
-        events = ProductionBreakdownList.filter_expected_modes(
-            events, by_passed_modes=FILTER_INCOMPLETE_DATA_BYPASSED_MODES[zone_key]
-        )
+
     return events.to_list()
 
 

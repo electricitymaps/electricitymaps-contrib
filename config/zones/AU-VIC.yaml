@@ -5,54 +5,72 @@ bounding_box:
     - -33.486452325214685
 capacity:
   battery storage:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 707.0
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 500.0
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 120.0
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 500.0
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 707.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1231.0
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 50.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 51.23
   coal:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 4850.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 4690.0
   gas:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2427.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 2471.46
   hydro:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2040.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 2322.8
   solar:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 5611.58
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 5485.58
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 5268.58
-  wind:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 3014.77
-    - datetime: '2022-01-01'
-      source: opennem.org.au
-      value: 2905.77
     - datetime: '2021-01-01'
       source: opennem.org.au
-      value: 2744.77
+      value: 5485.58
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 5611.58
+  wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2564.17
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 2744.77
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 2905.77
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 3014.77
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 5487.17
 contributors:
   - jarek
   - corradio
@@ -322,10 +340,10 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.18972740562986398
 parsers:
+  consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
-  consumptionForecast: AEMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Melbourne
 zone_name: Victoria

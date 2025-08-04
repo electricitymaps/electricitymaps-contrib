@@ -354,8 +354,12 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.035798118790591575
 parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia
 sources:
   EU-ETS, CERA 2018 Report:

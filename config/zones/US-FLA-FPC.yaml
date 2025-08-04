@@ -5,7 +5,7 @@ bounding_box:
     - 31.214009
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2021-12-01'
@@ -24,7 +24,19 @@ capacity:
       source: EIA.gov
       value: 50.1
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 387.8
+    - datetime: '2017-03-01'
+      source: EIA.gov
+      value: 397.4
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 272.4
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 258.4
+    - datetime: '2020-07-01'
       source: EIA.gov
       value: 255.2
     - datetime: '2021-11-01'
@@ -37,11 +49,35 @@ capacity:
       source: EIA.gov
       value: 184.2
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2442.7
+    - datetime: '2018-12-01'
       source: EIA.gov
       value: 1478.4
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 8766.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 8737.9
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 9723.2
+    - datetime: '2018-11-01'
+      source: EIA.gov
+      value: 10708.5
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 10674.8
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 10555.3
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 10587.6
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 10553.9
     - datetime: '2022-01-01'
@@ -54,26 +90,62 @@ capacity:
       source: EIA.gov
       value: 11156.9
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 12.2
+    - datetime: '2019-02-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1358.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1363.4
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 1329.7
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 30.8
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 32.7
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 41.5
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 48.8
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 175.7
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 177.2
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 297.1
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 372.0
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 446.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 436.5
@@ -117,11 +189,14 @@ capacity:
       source: EIA.gov
       value: 1936.9
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 21.0
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 18.8
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Duke Energy Florida Inc
