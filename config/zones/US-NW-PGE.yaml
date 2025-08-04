@@ -5,32 +5,50 @@ bounding_box:
     - 46.4057731890001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 292.0
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 14.7
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 15.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 14.7
-    - datetime: '2022-01-01'
-      source: EIA.gov
-      value: 15.9
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 642.2
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2085.6
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 2115.3
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 692.4
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 693.6
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 676.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 606.0
@@ -38,18 +56,63 @@ capacity:
       source: EIA.gov
       value: 624.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6.6
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 24.2
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 28.6
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 30.8
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 37.4
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 41.8
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 43.7
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 63.7
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 65.9
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 70.3
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 73.4
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 76.4
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 83.9
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 87.5
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 112.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 125.4
@@ -90,11 +153,11 @@ capacity:
       source: EIA.gov
       value: 191.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.5
 comment: Portland General Electric Company

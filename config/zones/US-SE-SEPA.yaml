@@ -5,30 +5,39 @@ bounding_box:
     - 33.075117
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2019-09-01'
       source: EIA.gov
       value: 1.7
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 945.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 996.9
   hydro storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 328.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 246.0
@@ -36,14 +45,20 @@ capacity:
       source: EIA.gov
       value: 164.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 22.0
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 25.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 25.0
@@ -51,11 +66,11 @@ capacity:
       source: EIA.gov
       value: 275.0
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Southeastern Power Administration

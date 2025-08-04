@@ -5,7 +5,7 @@ bounding_box:
     - 33.98037168914246
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2022-05-01'
@@ -15,14 +15,20 @@ capacity:
       source: EIA.gov
       value: 51.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3.2
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1910.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1911.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1915.9
@@ -30,26 +36,47 @@ capacity:
       source: EIA.gov
       value: 2143.7
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 114.5
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 117.5
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 119.5
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 124.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 127.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 126.8
@@ -63,11 +90,11 @@ capacity:
       source: EIA.gov
       value: 251.3
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 50.4
 comment: El Paso Electric Company

@@ -5,46 +5,55 @@ bounding_box:
     - 36.7872800000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2020-08-01'
       source: EIA.gov
       value: 8.8
     - datetime: '2022-07-01'
       source: EIA.gov
       value: 13.2
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.5
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 11.5
+    - datetime: '2019-03-01'
       source: EIA.gov
       value: 21.5
     - datetime: '2022-07-01'
@@ -57,11 +66,11 @@ capacity:
       source: EIA.gov
       value: 26.9
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Duke Energy Progress West
@@ -154,8 +163,7 @@ emissionFactors:
         value: 481.22
     coal:
       datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
       value: 842.949033
     gas:
       datetime: '2014-01-01'

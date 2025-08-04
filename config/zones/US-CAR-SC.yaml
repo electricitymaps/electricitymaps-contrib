@@ -5,11 +5,11 @@ bounding_box:
     - 35.334748543
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 219.5
     - datetime: '2022-01-01'
@@ -19,41 +19,62 @@ capacity:
       source: EIA.gov
       value: 219.5
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3650.1
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 3727.3
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1102.0
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1272.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 231.2
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 229.4
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2.5
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 42.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.5
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 4.1
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 5.2
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 17.2
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 23.2
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 98.2
     - datetime: '2022-12-01'
@@ -69,11 +90,11 @@ capacity:
       source: EIA.gov
       value: 303.3
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: South Carolina Public Service Authority
@@ -86,9 +107,9 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes a third of the nuclear related electricity production
-  from the balancing authority South Carolina Electric & Gas Company. Read more on
-  the zone definition wiki page.
+disclaimer:
+  This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas
+  Company. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -197,12 +218,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1165.692392
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1153.7182579999999
     gas:
       - datetime: '2020-01-01'
