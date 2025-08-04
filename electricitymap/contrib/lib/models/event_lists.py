@@ -7,8 +7,6 @@ from typing import Any, Generic, TypeVar
 
 import pandas as pd
 
-from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
@@ -24,9 +22,6 @@ from electricitymap.contrib.lib.models.events import (
     TotalProduction,
 )
 from electricitymap.contrib.lib.types import ZoneKey
-
-CAPACITY_STRICT_THRESHOLD = 0
-CAPACITY_LOOSE_THRESHOLD = 0.02
 
 EventType = TypeVar("EventType", bound="Event")
 
@@ -60,6 +55,9 @@ class EventList(ABC, Generic[EventType]):
 
     def __getitem__(self, datetime) -> EventType:
         return next(event for event in self.events if event.datetime == datetime)
+
+    def __iter__(self):
+        return iter(self.events)
 
     @abstractmethod
     def append(self, **kwargs):
@@ -361,66 +359,6 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
                     )
 
         return updated_production_breakdowns
-
-    @staticmethod
-    def filter_expected_modes(
-        breakdowns: "ProductionBreakdownList",
-        strict_storage: bool = False,
-        strict_capacity: bool = False,
-        by_passed_modes: list[str] | None = None,
-    ) -> "ProductionBreakdownList":
-        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
-        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
-        TODO: Remove this method once the outlier detection is able to handle it.
-        """
-
-        if by_passed_modes is None:
-            by_passed_modes = []
-
-        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
-            if strict_capacity:
-                return capacity_value > CAPACITY_STRICT_THRESHOLD
-            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
-
-        events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
-            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
-            capacity = get_capacity_data(capacity_config, event.datetime)
-            total_capacity = sum(capacity.values())
-            valid = True
-            required_modes = [
-                mode
-                for mode, capacity_value in capacity.items()
-                if select_capacity(capacity_value, total_capacity)
-            ]
-            required_modes = list(set(required_modes))
-            if not strict_storage:
-                required_modes = [
-                    mode for mode in required_modes if "storage" not in mode
-                ]
-            required_modes = [
-                mode for mode in required_modes if mode not in by_passed_modes
-            ]
-            for mode in required_modes:
-                value = event.get_value(mode)
-                if (
-                    value is None
-                    and mode not in event.production.corrected_negative_modes
-                ):
-                    valid = False
-                    events.logger.warning(
-                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
-                    )
-                    break
-            if valid:
-                events.append(
-                    zoneKey=event.zoneKey,
-                    datetime=event.datetime,
-                    production=event.production,
-                    storage=event.storage,
-                    source=event.source,
-                )
-        return events
 
 
 class TotalProductionList(EventList[TotalProduction]):
