@@ -344,3 +344,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Managua
+zone_name: Nicaragua
+country_name: Nicaragua

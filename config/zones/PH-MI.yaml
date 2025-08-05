@@ -201,3 +201,5 @@ parsers:
   production: IEMOP.fetch_production
 region: Asia
 timezone: Asia/Manila
+zone_name: Mindanao
+country_name: Philippines

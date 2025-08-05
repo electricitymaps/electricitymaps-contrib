@@ -300,3 +300,5 @@ sources:
   IAEA PRIS:
     link: https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=AE
 timezone: Asia/Dubai
+zone_name: United Arab Emirates
+country_name: United Arab Emirates

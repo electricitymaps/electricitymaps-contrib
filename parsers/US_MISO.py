@@ -264,7 +264,7 @@ def fetch_grid_alerts(
     for notification in notifications:
         publish_datetime = datetime.fromisoformat(
             notification["publishDateUnformatted"]
-        )  # in UTC
+        ).replace(tzinfo=TIMEZONE)
 
         clean_subject = extract_text_with_links(notification["subject"])
         clean_body = extract_text_with_links(notification["body"])
@@ -288,7 +288,7 @@ def extract_text_with_links(html_content):
     for a in soup.find_all("a"):
         if a.get("href"):
             a.replace_with(f"{a.get_text()} ({a['href']})")
-    return soup.get_text()
+    return soup.get_text(separator=" ")
 
 
 if __name__ == "__main__":

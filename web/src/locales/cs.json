@@ -203,63 +203,72 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Hodinová uhlíková intenzita",
+      "24h": "Uhlíková intenzita",
+      "72h": "Uhlíková intenzita",
       "3mo": "Denní uhlíková intenzita",
       "12mo": "Měsíční uhlíková intenzita",
       "all_months": "Měsíční uhlíková intenzita",
       "all_years": "Roční uhlíková intenzita"
     },
     "emissions": {
-      "72h": "Hodinové uhlíkové emise",
+      "24h": "Uhlíkové emise",
+      "72h": "Uhlíkové emise",
       "3mo": "Denní uhlíkové emise",
       "12mo": "Měsíční uhlíkové emise",
       "all_months": "Měsíční uhlíkové emise",
       "all_years": "Roční uhlíkové emise"
     },
     "emissionsorigin": {
-      "72h": "Denní zdroje uhlíkových emisí",
+      "24h": "Zdroje uhlíkových emisí",
+      "72h": "Zdroje uhlíkových emisí",
       "3mo": "Denní zdroje uhlíkových emisí",
       "12mo": "Měsíční zdroje uhlíkových emisí",
       "all_months": "Měsíční zdroje uhlíkových emisí",
       "all_years": "Roční zdroje uhlíkových emisí"
     },
     "emissionsproduction": {
-      "72h": "Hodinová produkce emisí",
+      "24h": "Produkce emisí",
+      "72h": "Produkce emisí",
       "3mo": "Denní produkce emisí",
       "12mo": "Měsíční produkce emisí",
       "all_months": "Měsíční produkce emisí",
       "all_years": "Roční produkce emisí"
     },
     "electricityorigin": {
-      "72h": "Hodinový energetický mix",
+      "24h": "Energetický mix",
+      "72h": "Energetický mix",
       "3mo": "Denní energetický mix",
       "12mo": "Měsíční energetický mix",
       "all_months": "Měsíční energetický mix",
       "all_years": "Roční energetický mix"
     },
     "electricityproduction": {
-      "72h": "Hodinový energetický mix",
+      "24h": "Energetický mix",
+      "72h": "Energetický mix",
       "3mo": "Denní energetický mix",
       "12mo": "Měsíční energetický mix",
       "all_months": "Měsíční energetický mix",
       "all_years": "Roční energetický mix"
     },
     "electricityprices": {
-      "72h": "Hodinové ceny elektřiny",
+      "24h": "Ceny elektřiny",
+      "72h": "Ceny elektřiny",
       "3mo": "Denní ceny elektřiny",
       "12mo": "Měsíční ceny elektřiny",
       "all_months": "Měsíční ceny elektřiny",
       "all_years": "Roční ceny elektřiny"
     },
     "netExchange": {
-      "72h": "Hodinový přeshraniční tok",
+      "24h": "Přeshraniční tok",
+      "72h": "Přeshraniční tok",
       "3mo": "Denní přeshraniční tok",
       "12mo": "Měsíční přeshraniční tok",
       "all_months": "Měsíční přeshraniční tok",
       "all_years": "Roční přeshraniční tok"
     },
     "electricityLoad": {
-      "72h": "Hodinové zatížení sítě",
+      "24h": "Zatížení sítě",
+      "72h": "Zatížení sítě",
       "3mo": "Denní zatížení sítě",
       "12mo": "Měsíční zatížení sítě",
       "all_months": "Měsíční zatížení sítě",

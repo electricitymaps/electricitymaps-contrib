@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from operator import itemgetter
 from zoneinfo import ZoneInfo
 
 from requests import Response, Session
@@ -116,10 +117,18 @@ def parse_consumption(
 
     demandList = TotalConsumptionList(logger=logger)
     for item in data:
+        dt = parse_datetime(item["EffectiveTime"])
+        # when fetching real-time data we remove future values
+        if not forecast:
+            now = datetime.now(tz=IE_TZ)
+            # datetimes in the future are expected to be None
+            if dt > now:
+                continue
+
         demandList.append(
             zoneKey=zone_key,
             consumption=item["Value"],
-            datetime=parse_datetime(item["EffectiveTime"]),
+            datetime=dt,
             source=SOURCE,
             sourceType=EventSourceType.forecasted
             if forecast
@@ -161,44 +170,44 @@ def fetch_production(
     assert len(wind_data) > 0
     assert len(solar_data) > 0
 
+    # sort by time
+    total_generation.sort(key=itemgetter("EffectiveTime"))
+    wind_data.sort(key=itemgetter("EffectiveTime"))
+    solar_data.sort(key=itemgetter("EffectiveTime"))
+
     production = ProductionBreakdownList(logger=logger)
 
-    for item in total_generation:
-        dt = item["EffectiveTime"]
+    for total, wind, solar in zip(total_generation, wind_data, solar_data, strict=True):
+        dt = parse_datetime(total["EffectiveTime"])
+        dt_wind = parse_datetime(wind["EffectiveTime"])
+        dt_solar = parse_datetime(solar["EffectiveTime"])
 
-        wind_event_dt = next(
-            (event for event in wind_data if event["EffectiveTime"] == dt), None
-        )
-        wind_prod = (
-            float(wind_event_dt["Value"])
-            if wind_event_dt and wind_event_dt["Value"]
-            else 0
-        )
+        assert dt == dt_wind == dt_solar
 
-        solar_event_dt = next(
-            (event for event in solar_data if event["EffectiveTime"] == dt), None
-        )
-        solar_prod = (
-            float(solar_event_dt["Value"])
-            if solar_event_dt and solar_event_dt["Value"]
-            else 0
-        )
+        now = datetime.now(tz=IE_TZ)
+        # datetimes in the future are expected to be None
+        if dt > now:
+            continue
+
+        total_prod = total.get("Value")
+        wind_prod = wind.get("Value")
+        solar_prod = solar.get("Value")
 
         productionMix = ProductionMix()
-        if all([item["Value"], wind_prod, solar_prod]):
+        if all([total_prod is not None, wind_prod is not None, solar_prod is not None]):
+            productionMix.add_value(
+                "unknown",
+                total_prod - wind_prod - solar_prod,
+            )
             productionMix.add_value("wind", wind_prod, correct_negative_with_zero=True)
             productionMix.add_value(
                 "solar", solar_prod, correct_negative_with_zero=True
-            )
-            productionMix.add_value(
-                "unknown",
-                float(item["Value"]) - productionMix.wind - productionMix.solar,
             )
 
         production.append(
             zoneKey=zone_key,
             production=productionMix,
-            datetime=parse_datetime(dt),
+            datetime=dt,
             source=SOURCE,
         )
 
@@ -243,6 +252,12 @@ def fetch_exchange(
     for exchange in exchange_data:
         target_exchange = exchanges.get(exchange["FieldName"])
         if target_exchange is None:
+            continue
+
+        dt = parse_datetime(exchange["EffectiveTime"])
+        now = datetime.now(tz=IE_TZ)
+        # datetimes in the future are expected to be None
+        if dt > now:
             continue
 
         flow = (

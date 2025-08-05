@@ -198,3 +198,5 @@ subZoneNames:
   - BR-NE
   - BR-S
 timezone: America/Sao_Paulo
+zone_name: Brazil
+country_name: Brazil

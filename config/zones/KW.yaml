@@ -163,3 +163,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Kuwait
+zone_name: Kuwait
+country_name: Kuwait

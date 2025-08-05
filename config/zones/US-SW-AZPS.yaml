@@ -5,7 +5,10 @@ bounding_box:
     - 36.784585904
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-06-01'
       source: EIA.gov
       value: 2.0
     - datetime: '2023-02-01'
@@ -26,16 +29,46 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 617.0
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 984.0
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 1743.8
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 2161.8
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 33.2
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 30.4
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2476.1
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 2062.1
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1636.2
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2124.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1897.2
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 2544.8
+    - datetime: '2019-05-01'
       source: EIA.gov
       value: 2714.6
     - datetime: '2022-01-01'
@@ -44,27 +77,54 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 2416.5
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 2602.5
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 123.8
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 694.9
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 734.9
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 737.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 740.0
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 741.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 767.4
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 769.2
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 757.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 772.0
@@ -89,12 +149,18 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 1193.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1563.8
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 2189.3
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 174.3
     - datetime: '2023-05-01'
@@ -218,12 +284,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1072.158303
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1047.8344789999999
     gas:
       - datetime: '2020-01-01'
@@ -421,3 +485,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
+zone_name: Arizona Public Service Company
+country_name: USA

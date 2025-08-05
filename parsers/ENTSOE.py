@@ -45,7 +45,6 @@ from parsers.lib.config import ProductionModes, StorageModes, refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
-from .lib.validation import validate
 
 SOURCE = "entsoe.eu"
 
@@ -138,6 +137,7 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "BG": "10YCA-BULGARIA-R",
     "BY": "10Y1001A1001A51S",
     "CH": "10YCH-SWISSGRIDZ",
+    "CY": "10YCY-1001A0003J",
     "CZ": "10YCZ-CEPS-----N",
     "DE": "10Y1001A1001A83F",
     "DE-LU": "10Y1001A1001A82H",
@@ -255,78 +255,6 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
-}
-
-VALIDATIONS: dict[str, dict[str, Any]] = {
-    # This is a list of criteria to ensure validity of data,
-    # used in validate_production()
-    # Note that "required" means data is present in ENTSOE.
-    # It will still work if data is present but 0.
-    # "expected_range" and "floor" only count production and storage
-    # - not exchanges!
-    "BA": {"expected_range": (500, 6500)},
-    "BE": {
-        "expected_range": (3000, 25000),
-    },
-    "BG": {
-        "expected_range": (2000, 20000),
-    },
-    "CH": {
-        "expected_range": (2000, 25000),
-    },
-    "CZ": {
-        # usual load is in 7-12 GW range
-        "expected_range": (3000, 25000),
-    },
-    "DE": {
-        # Germany sometimes has problems with categories of generation missing from ENTSOE.
-        # Normally there is constant production of a few GW from hydro and biomass
-        # and when those are missing this can indicate that others are missing as well.
-        # We have also never seen unknown being 0.
-        # Usual load is in 30 to 80 GW range.
-        "expected_range": (20000, 100000),
-    },
-    "ES": {
-        "expected_range": (7000, 80000),
-    },
-    "FI": {
-        "expected_range": (2000, 20000),
-    },
-    "GB": {
-        "expected_range": (10000, 80000),
-    },
-    "GR": {
-        "expected_range": (2000, 20000),
-    },
-    "IE": {
-        "expected_range": (1000, 15000),
-    },
-    "IT": {
-        "expected_range": (5000, 50000),
-    },
-    "PL": {
-        # usual load is in 10-20 GW range
-        "expected_range": (5000, 35000),
-    },
-    "PT": {
-        "expected_range": (0, 20000),
-    },
-    "RO": {
-        "expected_range": (2000, 25000),
-    },
-    "RS": {
-        "expected_range": {
-            "coal": (
-                800,
-                7000,
-            ),  # 7 GW is 1 GW more than the production capacity of Serbia.
-            "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
-        },
-    },
-    "SI": {
-        # own total generation capacity is around 4 GW
-        "expected_range": (140, 5000),
-    },
 }
 
 
@@ -886,27 +814,6 @@ def parse_prices(
     return prices
 
 
-def validate_production(
-    datapoint: dict[str, Any], logger: Logger
-) -> dict[str, Any] | bool | None:
-    """
-    Production data can sometimes be available but clearly wrong.
-
-    The most common occurrence is when the production total is very low and main generation types are missing.
-    In reality a country's electrical grid could not function in this scenario.
-
-    This function checks datapoints for a selection of countries and returns False if invalid and True otherwise.
-    """
-
-    zone_key: str = datapoint["zoneKey"]
-
-    validation_criteria = VALIDATIONS.get(zone_key, {})
-
-    if validation_criteria:
-        return validate(datapoint, logger=logger, **validation_criteria)
-    return True
-
-
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_production(
     zone_key: ZoneKey,
@@ -942,10 +849,9 @@ def fetch_production(
         # Aggregated data are regrouped unde the same zone key.
         non_aggregated_data.append(parse_production(raw_production, logger, zone_key))
 
-    aggregated_zone_data = ProductionBreakdownList.merge_production_breakdowns(
+    return ProductionBreakdownList.merge_production_breakdowns(
         non_aggregated_data, logger
     ).to_list()
-    return [x for x in aggregated_zone_data if validate_production(x, logger)]
 
 
 def get_raw_exchange(

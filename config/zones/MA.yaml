@@ -123,3 +123,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Casablanca
+zone_name: Morocco
+country_name: Morocco

@@ -5,6 +5,20 @@
     "version": "Version de l'application: {{version}}",
     "share-app": "Partager l'application:"
   },
+  "settings-modal": {
+    "title": "Paramètres",
+    "flows": "Flux de l'électricité",
+    "flow-tracing-link-label": "Flux de l'électricité",
+    "flow-tracing-link-description": "montre comment l'électricité se déplace physiquement à travers les interconnexions qui relient différentes zones",
+    "home-link-description": "offre une API qui fournit des signaux de réseau électrique prédictifs en temps réel.",
+    "weather-layers-disallowed": "Données météorologiques non disponibles pour cette agrégation, passez à temps réel pour voir les données météorologiques en direct."
+  },
+  "ranking-panel": {
+    "title": "Impact sur le climat par zone",
+    "subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
+    "search": "Rechercher une zone",
+    "no-results": "Aucun résultat trouvé pour cette recherche 🌍"
+  },
   "button": {
     "bluesky-share": "Visualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
     "reddit": "Rejoindre r/electricitymaps",
@@ -22,10 +36,6 @@
     "legal-notice": "Informations légales",
     "api": "Accéder à l'API",
     "docs": "Documentation de l'API "
-  },
-  "settings-modal": {
-    "title": "Paramètres",
-    "flows": "Flux de l'électricité"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -144,26 +154,32 @@
       "now": "Maintenant"
     }
   },
+  "grid-alerts-card": {
+    "show-more": "Voir plus",
+    "show-less": "Voir moins",
+    "experimental-mode": "C'est gratuit pendant la phase expérimentale",
+    "tooltip": "Cette fonctionnalité est actuellement en phase expérimentale et disponible sans coût supplémentaire pendant que nous recueillons des commentaires et affinons la fonctionnalité."
+  },
   "feedback-card": {
+    "title": "Aidez-nous à nous améliorer !",
+    "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
+    "success-subtitle": "Merci pour votre retour !",
+    "estimations": {
+      "subtitle": "Évaluez les affirmations suivantes.",
+      "secondary-question": "Comment pouvons-nous l'améliorer ?",
+      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:"
+    },
+    "primary-question": "Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
+    "secondary-question-low": "Que pouvons faire de mieux ?",
+    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
+    "optional": "Optionnel :",
+    "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
     "agree": "Tout à fait d'accord",
     "disagree": "Absolument pas d'accord",
     "satisfied": "Très satisfait",
     "unsatisfied": "Pas du tout satisfait",
-    "estimations": {
-      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
-      "secondary-question": "Comment pouvons-nous l'améliorer ?",
-      "subtitle": "Évaluez les affirmations suivantes."
-    },
-    "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
-    "optional": "Optionnel :",
     "placeholder": "Dites le nous en quelques mots...",
-    "primary-question": "Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
-    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
-    "secondary-question-low": "Que pouvons faire de mieux ?",
-    "submit": "Soumettre",
-    "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
-    "success-subtitle": "Merci pour votre retour !",
-    "title": "Aidez-nous à nous améliorer !"
+    "submit": "Soumettre"
   },
   "estimation-badge": {
     "outage": "Indisponibles"
@@ -171,6 +187,8 @@
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
     "outage-details": "Voir les détails",
+    "synthetic": "Synthétiques",
+    "preliminary": "Préliminaires",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Les données sont préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
@@ -199,6 +217,7 @@
     },
     "aggregated": {
       "title": "Les données sont agrégées",
+      "pill": "Agrégées",
       "body": "Les données consistent en une agrégation de données horaires."
     },
     "aggregated_estimated": {
@@ -208,10 +227,11 @@
     }
   },
   "time-controller": {
+    "24h": "24h",
     "72h": "72h",
     "3mo": "90 jours",
     "12mo": "12 mois",
-    "all_months": "Tout les mois",
+    "all_months": "Tous les mois",
     "all_years": "Toutes les années",
     "navigate": "Naviguer",
     "live": "Live",
@@ -220,18 +240,12 @@
       "description": "Redirection vers les données en temps réel"
     }
   },
-  "ranking-panel": {
-    "title": "Impact sur le climat par zone",
-    "subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
-    "search": "Rechercher une zone",
-    "no-results": "Aucun résultat trouvé pour cette recherche 🌍"
-  },
   "left-panel": {
     "applied-methodologies": {
-      "carbonintensity": "Electricity Maps - Intensité carbone",
+      "title": "Méthodologies utilisées",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Traçage des flux",
-      "title": "Méthodologies utilisées",
+      "carbonintensity": "Electricity Maps - Intensité carbone",
       "historicalAggregations": "Electricity Maps - Agrégations historiques"
     },
     "methodologies-and-data-sources": {
@@ -247,63 +261,72 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Intensité carbone horaire",
+      "24h": "Intensité carbone",
+      "72h": "Intensité carbone",
       "3mo": "Intensité carbone quotidienne",
       "12mo": "Intensité carbone mensuelle",
       "all_months": "Intensité carbone mensuelle",
       "all_years": "Intensité carbone annuelle"
     },
     "emissions": {
-      "72h": "Émissions de CO2 horaires",
+      "24h": "Émissions de CO2",
+      "72h": "Émissions de CO2",
       "3mo": "Émissions de CO2 quotidiennes",
       "12mo": "Émissions de CO2 mensuelles",
       "all_months": "Émissions de CO2 mensuelles",
       "all_years": "Émissions de CO2 annuelles"
     },
     "emissionsorigin": {
-      "72h": "Origine des émissions de CO2 horaires",
+      "24h": "Origine des émissions de CO2",
+      "72h": "Origine des émissions de CO2",
       "3mo": "Origine des émissions de CO2 quotidiennes",
       "12mo": "Origine des émissions de CO2 mensuelles",
       "all_months": "Origine des émissions de CO2 mensuelles",
       "all_years": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
-      "72h": "Origine des émissions de CO2 horaires",
+      "24h": "Émissions de CO2 pour la production",
+      "72h": "Origine des émissions de CO2",
       "3mo": "Émissions quotidiennes pour la production",
       "12mo": "Émissions mensuelles pour la production",
       "all_months": "Émissions mensuelles pour la production",
       "all_years": "Émissions annuelles pour la production"
     },
     "electricityorigin": {
-      "72h": "Origine de l'électricité horaire",
+      "24h": "Origine de l'électricité",
+      "72h": "Origine de l'électricité",
       "3mo": "Origine de l'électricité quotidienne",
       "12mo": "Origine de l'électricité mensuelle",
       "all_months": "Origine de l'électricité mensuelle",
       "all_years": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
-      "72h": "Production d'électricité horaire",
+      "24h": "Production d'électricité",
+      "72h": "Production d'électricité",
       "3mo": "Production d'électricité quotidienne",
       "12mo": "Production d'électricité mensuelle",
       "all_months": "Production d'électricité mensuelle",
       "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "72h": "Prix horaires de l'électricité",
+      "24h": "Prix de l'électricité",
+      "72h": "Prix de l'électricité",
       "3mo": "Prix quotidiens de l'électricité",
       "12mo": "Prix mensuels de l'électricité",
       "all_months": "Prix mensuels de l'électricité",
       "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "72h": "Échanges nets horaires",
+      "24h": "Échanges nets d'électricité",
+      "72h": "Échanges nets d'électricité",
       "3mo": "Échanges nets quotidiens",
       "12mo": "Échanges nets mensuels",
       "all_months": "Échanges nets mensuels",
       "all_years": "Échanges nets annuels"
     },
     "electricityLoad": {
-      "72h": "Charge électrique horaire",
+      "24h": "Charge électrique",
+      "72h": "Charge électrique",
       "3mo": "Charge électrique quotidienne",
       "12mo": "Charge électrique mensuelle",
       "all_months": "Charge électrique mensuelle",
@@ -314,9 +337,9 @@
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
-    "here": "ici",
     "faq-text": "Tout n’est pas clair ? Passez voir notre",
-    "faq": "foire aux questions."
+    "faq": "foire aux questions.",
+    "here": "ici"
   },
   "legends": {
     "windpotential": "Potentiel éolien",
@@ -335,7 +358,11 @@
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
+    "representing": "représentant",
+    "ofemissions": "des émissions",
     "withcarbonintensity": "avec une intensité carbone de",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
     "layers": "Calques de la carte",
     "showWindLayer": "Voir le calque de vent",
     "hideWindLayer": "Masquer le calque de vent",
@@ -349,15 +376,11 @@
     "production": "production",
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
+    "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
     "selectLanguage": "Choisissez une langue",
     "dataIsDelayed": "Données en retard",
-    "representing": "représentant",
-    "ofemissions": "des émissions",
-    "zoomIn": "Zoomer",
-    "zoomOut": "Dézoomer",
-    "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
-    "netExchange": "Échanges nets",
     "price": "Prix",
+    "netExchange": "Échanges nets",
     "importing": "Important",
     "exporting": "Exportant",
     "flowTraced": "Les données de flux représentent le flux physique d'électricité",
@@ -387,8 +410,8 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
-    "update": "Mettre à jour",
+    "description": "Une nouvelle version de l'application est disponible",
+    "update": "Recharger",
     "dismiss": "Ignorer"
   },
   "misc": {
@@ -412,7 +435,6 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "ofCO2eq": "de CO₂eq",
   "electricityStoredUsing": "est stockée via",
   "emissionsStoredUsing": "sont stockées via",
   "electricityExportedTo": "est exportée vers",
@@ -422,6 +444,7 @@
   "electricityAvailableIn": "de l'électricité disponible en",
   "emissionsAvailableIn": "des émissions de l'électricité disponible en",
   "comesFrom": "est générée via",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "La carte",
     "mapColors-question": "Que signifient les couleurs sur la carte ?",
@@ -513,11 +536,11 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AT": {
-      "zoneName": "Autriche"
-    },
     "AR": {
       "zoneName": "Argentine"
+    },
+    "AT": {
+      "zoneName": "Autriche"
     },
     "AU": {
       "zoneName": "Australie"
@@ -550,13 +573,13 @@
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
-    "AU-TAS-FI": {
-      "countryName": "Australie",
-      "zoneName": "Île Flinders"
-    },
     "AU-TAS-KI": {
       "countryName": "Australie",
       "zoneName": "Tasmanie (Île King)"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Australie",
+      "zoneName": "Île Flinders"
     },
     "AU-VIC": {
       "countryName": "Australie",
@@ -664,21 +687,21 @@
       "countryName": "Canada",
       "zoneName": "Manitoba"
     },
-    "CA-NL": {
-      "countryName": "Canada",
-      "zoneName": "Terre-Neuve-et-Labrador"
-    },
     "CA-NB": {
       "countryName": "Canada",
       "zoneName": "Nouveau-Brunswick"
     },
-    "CA-NT": {
+    "CA-NL": {
       "countryName": "Canada",
-      "zoneName": "Territoires du Nord-Ouest"
+      "zoneName": "Terre-Neuve-et-Labrador"
     },
     "CA-NS": {
       "countryName": "Canada",
       "zoneName": "Nouvelle-Écosse"
+    },
+    "CA-NT": {
+      "countryName": "Canada",
+      "zoneName": "Territoires du Nord-Ouest"
     },
     "CA-NU": {
       "countryName": "Canada",
@@ -719,21 +742,21 @@
     "CI": {
       "zoneName": "Côte d’Ivoire"
     },
-    "CL-SEM": {
+    "CL-CHP": {
       "countryName": "Chili",
-      "zoneName": "SEM"
+      "zoneName": "Île de Pâques"
     },
     "CL-SEA": {
       "countryName": "Chili",
       "zoneName": "SEA"
     },
+    "CL-SEM": {
+      "countryName": "Chili",
+      "zoneName": "SEM"
+    },
     "CL-SEN": {
       "countryName": "Chili",
       "zoneName": "SEN"
-    },
-    "CL-CHP": {
-      "countryName": "Chili",
-      "zoneName": "Île de Pâques"
     },
     "CM": {
       "zoneName": "Cameroun"
@@ -993,17 +1016,9 @@
     "IN": {
       "zoneName": "Inde"
     },
-    "IN-AN": {
-      "countryName": "Inde",
-      "zoneName": "Andaman and Nicobar Islands"
-    },
     "IN-EA": {
       "countryName": "Inde",
       "zoneName": "Est"
-    },
-    "IN-HP": {
-      "countryName": "Inde",
-      "zoneName": "Himachal Pradesh"
     },
     "IN-NE": {
       "countryName": "Inde",
@@ -1017,6 +1032,18 @@
       "countryName": "Inde",
       "zoneName": "Sud"
     },
+    "IN-WE": {
+      "countryName": "Inde",
+      "zoneName": "Ouest"
+    },
+    "IN-AN": {
+      "countryName": "Inde",
+      "zoneName": "Andaman and Nicobar Islands"
+    },
+    "IN-HP": {
+      "countryName": "Inde",
+      "zoneName": "Himachal Pradesh"
+    },
     "IN-UP": {
       "countryName": "Inde",
       "zoneName": "Uttar Pradesh"
@@ -1024,10 +1051,6 @@
     "IN-UT": {
       "countryName": "Inde",
       "zoneName": "Uttarakhand"
-    },
-    "IN-WE": {
-      "countryName": "Inde",
-      "zoneName": "Ouest"
     },
     "IO": {
       "zoneName": "Territoire britannique de l’océan Indien"
@@ -1428,13 +1451,13 @@
       "countryName": "Russie",
       "zoneName": "Sibérie"
     },
-    "RU-EU": {
-      "countryName": "Russie",
-      "zoneName": "Arctique"
-    },
     "RU-AS": {
       "countryName": "Russie",
       "zoneName": "Orient"
+    },
+    "RU-EU": {
+      "countryName": "Russie",
+      "zoneName": "Arctique"
     },
     "RU-FE": {
       "countryName": "Russie",
@@ -1560,8 +1583,8 @@
       "zoneName": "Ukraine"
     },
     "UA-CR": {
-      "zoneName": "Crimée",
-      "countryName": "Ukraine"
+      "countryName": "Ukraine",
+      "zoneName": "Crimée"
     },
     "UG": {
       "zoneName": "Ouganda"

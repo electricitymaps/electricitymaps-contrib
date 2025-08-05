@@ -79,6 +79,7 @@ testpaths = [
     "tests",
     "parsers/test",
     "parsers/lib/tests",
+    "electricitymap/contrib/capacity_parsers/tests",
     "electricitymap/contrib/lib/tests",
 ]
 addopts = "--color=yes --durations=10"

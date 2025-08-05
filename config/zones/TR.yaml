@@ -7,6 +7,7 @@ bounding_box:
     - 35.319778545000034
   - - 45.30699282900011
     - 42.598781643000095
+price_displayed: false
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -441,3 +442,5 @@ sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Istanbul
+zone_name: Turkey
+country_name: Turkey

@@ -31,3 +31,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dushanbe
+zone_name: Tajikistan
+country_name: Tajikistan

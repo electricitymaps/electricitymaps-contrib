@@ -319,3 +319,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Santo_Domingo
+zone_name: Dominican Republic
+country_name: Dominican Republic

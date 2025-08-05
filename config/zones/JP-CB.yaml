@@ -218,3 +218,5 @@ sources:
   Chubu Electric Power 2022:
     link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
 timezone: Asia/Tokyo
+zone_name: Chūbu
+country_name: Japan
