@@ -9,6 +9,7 @@ This is a capacitor project that builds the mobile apps from the web directory
 - `brew install gradle`
 - install Android Studio - make sure you open it and go through the install wizard in the start
   - Also go to Tools > SDK Manager and install SDK v35
+  - You may need to sync the gradle version via Android Studio
 - Follow the steps here: https://www.brainfever.co.uk/2022/02/04/build-tool-32-1-0-rc1-is-missing-dx-at/
   - instead of last step, add the following to your `.zshrc` file:
   ```bash
