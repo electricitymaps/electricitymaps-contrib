@@ -139,66 +139,6 @@
     "source": "https://cloud.google.com/compute/docs/regions-zones",
     "operationalSince": null
   },
-  "google-us-central": {
-    "provider": "google",
-    "lonlat": [-94.5786, 39.1],
-    "displayName": "Kansas City, Missouri",
-    "region": "us-central",
-    "zoneKey": "US-MIDW-MISO",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2019"
-  },
-  "google-asia-southeast": {
-    "provider": "google",
-    "lonlat": [100.4978, 13.7563],
-    "displayName": "Thailand",
-    "region": "asia-southeast",
-    "zoneKey": "TH",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2022"
-  },
-  "google-australia-southeast": {
-    "provider": "google",
-    "lonlat": [174.7633, -36.8523],
-    "displayName": "Auckland, New Zealand",
-    "region": "australia-southeast",
-    "zoneKey": "NZ",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2022"
-  },
-  "google-europe-north2": {
-    "provider": "google",
-    "lonlat": [18.0686, 59.3294],
-    "displayName": "Sweden",
-    "region": "europe-north2",
-    "zoneKey": "SE",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2022"
-  },
-  "google-mexico-central": {
-    "provider": "google",
-    "lonlat": [-100.3878, 20.5908],
-    "displayName": "Querétaro, Mexico",
-    "region": "mexico-central",
-    "zoneKey": "MX",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2022"
-  },
-  "google-africa-south1": {
-    "provider": "google",
-    "lonlat": [28.0472, -26.2011],
-    "displayName": "Johannesburg, South Africa",
-    "region": "africa-south1",
-    "zoneKey": "ZA",
-    "status": "operational",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2024"
-  },
   "azure-westus3": {
     "provider": "azure",
     "lonlat": [-111.763275, 34.395342],
