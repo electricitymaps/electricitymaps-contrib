@@ -40,7 +40,11 @@ describe('OutageCard', () => {
       <I18nextProvider i18n={i18n}>
         <OutageCard
           estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
-          zoneMessage={{ message: 'Outage Message', issue: 'issue' }}
+          zoneMessage={{
+            message: 'Outage Message',
+            issue: 'issue',
+            message_type: 'custom',
+          }}
         />
       </I18nextProvider>
     );

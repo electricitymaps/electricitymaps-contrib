@@ -27,3 +27,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Efate
+zone_name: Vanuatu
+country_name: Vanuatu

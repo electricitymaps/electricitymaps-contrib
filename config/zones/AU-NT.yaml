@@ -241,3 +241,5 @@ parsers:
   consumptionForecast: NTESMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Darwin
+zone_name: Northern Territory
+country_name: Australia

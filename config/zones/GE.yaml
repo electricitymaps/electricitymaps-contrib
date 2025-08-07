@@ -276,3 +276,5 @@ parsers:
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia
 timezone: Asia/Tbilisi
+zone_name: Georgia
+country_name: Georgia

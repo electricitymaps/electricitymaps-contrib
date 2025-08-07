@@ -141,6 +141,9 @@ class Zone(StrictBaseModelWithAlias):
     sources: dict[str, Source] | None
     region: str | None
     country: str | None
+    zone_name: str | None
+    zone_short_name: str | None
+    country_name: str | None
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])

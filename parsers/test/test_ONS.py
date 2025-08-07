@@ -1,14 +1,18 @@
 import json
-from datetime import datetime
+from pathlib import Path
 from unittest.mock import patch
 
 import pytest
+from requests_mock import GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ONS
 
+# Base path for mock data files
+MOCK_DATA_DIR = Path(__file__).parent / "mocks" / "ONS"
 
-@pytest.fixture(autouse=True)
+
+@pytest.fixture()
 def mock_response():
     with open("parsers/test/mocks/ONS/BR.json") as f:
         mock_data = json.load(f)
@@ -16,41 +20,57 @@ def mock_response():
         yield
 
 
-def test_fetch_production():
-    production = ONS.fetch_production(ZoneKey("BR-CS"))[0]
-    assert production
+@pytest.mark.parametrize(
+    "data_file", ["BR.json", "BR_negative_solar.json", "data.json"]
+)
+@pytest.mark.parametrize("zone_key", ["BR-NE", "BR-N", "BR-CS", "BR-S"])
+def test_snapshot_fetch_production(zone_key, data_file, adapter, session, snapshot):
+    """Test fetch_production with snapshot using different data files for all Brazilian subzones."""
+    mock_data_path = MOCK_DATA_DIR / data_file
+    mock_data = json.loads(mock_data_path.read_text())
 
-    # Check that hydro keys correctly merge into one
-    assert production["production"]["hydro"] == 35888.05363
-    assert production["production"]["wind"] == 4.2
-    assert production["datetime"] == datetime.fromisoformat("2018-01-27T20:19:00-02:00")
-    assert production["source"] == "ons.org.br"
-    assert production["zoneKey"] == "BR-CS"
-    assert isinstance(production["storage"], dict)
+    adapter.register_uri(
+        GET,
+        "http://tr.ons.org.br/Content/GetBalancoEnergetico/null",
+        json=mock_data,
+    )
 
-
-def test_fetch_production_negative_solar():
-    with open("parsers/test/mocks/ONS/BR_negative_solar.json") as f:
-        mock_data = json.load(f)
-    with patch("parsers.ONS.get_data", return_value=mock_data):
-        production = ONS.fetch_production(ZoneKey("BR-CS"))[0]
-
-    assert production["production"]["solar"] == 0
-
-
-def test_fetch_exchange_UY():
-    exchange = ONS.fetch_exchange("BR-S", "UY")[0]
-    assert exchange
-    assert exchange["sortedZoneKeys"] == "BR-S->UY"
-    assert exchange["datetime"] == datetime.fromisoformat("2018-01-27T20:19:00-02:00")
-    assert exchange["netFlow"] == 14.0
-    assert exchange["source"] == "ons.org.br"
+    assert snapshot == ONS.fetch_production(
+        zone_key=ZoneKey(zone_key),
+        session=session,
+    )
 
 
-def test_fetch_exchange_BR_NE():
-    exchange = ONS.fetch_exchange("BR-N", "BR-NE")[0]
-    assert exchange
-    assert exchange["sortedZoneKeys"] == "BR-N->BR-NE"
-    assert exchange["datetime"] == datetime.fromisoformat("2018-01-27T20:19:00-02:00")
-    assert exchange["netFlow"] == 2967.768
-    assert exchange["source"] == "ons.org.br"
+@pytest.mark.parametrize(
+    "data_file", ["BR.json", "BR_negative_solar.json", "data.json"]
+)
+@pytest.mark.parametrize(
+    "zone_key1,zone_key2",
+    [
+        ("BR-CS", "BR-S"),  # sud_sudeste
+        ("BR-CS", "BR-NE"),  # sudeste_nordeste
+        ("BR-CS", "BR-N"),  # sudeste_norteFic
+        ("BR-N", "BR-NE"),  # norteFic_nordeste
+        ("BR-S", "UY"),  # uruguai
+        ("AR", "BR-S"),  # argentina
+        ("BR-S", "PY"),  # paraguai
+    ],
+)
+def test_snapshot_fetch_exchange(
+    zone_key1, zone_key2, data_file, adapter, session, snapshot
+):
+    """Test fetch_exchange with snapshot using different data files for all exchanges."""
+    mock_data_path = MOCK_DATA_DIR / data_file
+    mock_data = json.loads(mock_data_path.read_text())
+
+    adapter.register_uri(
+        GET,
+        "http://tr.ons.org.br/Content/GetBalancoEnergetico/null",
+        json=mock_data,
+    )
+
+    assert snapshot == ONS.fetch_exchange(
+        zone_key1=zone_key1,
+        zone_key2=zone_key2,
+        session=session,
+    )

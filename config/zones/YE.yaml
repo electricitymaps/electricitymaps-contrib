@@ -52,3 +52,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Aden
+zone_name: Yemen
+country_name: Yemen

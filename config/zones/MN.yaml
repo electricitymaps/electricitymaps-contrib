@@ -110,3 +110,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Ulaanbaatar
+zone_name: Mongolia
+country_name: Mongolia

@@ -221,3 +221,5 @@ subZoneNames:
   - AU-WA
   - AU-WA-RI
 timezone: Australia/Sydney
+zone_name: Australia
+country_name: Australia
