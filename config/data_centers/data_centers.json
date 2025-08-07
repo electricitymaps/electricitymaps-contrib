@@ -144,7 +144,7 @@
     "lonlat": [-94.5786, 39.1],
     "displayName": "Kansas City, Missouri",
     "region": "us-central",
-    "zoneKey": "US-MO",
+    "zoneKey": "US-MIDW-MISO",
     "status": "operational",
     "source": "https://www.google.com/about/datacenters/locations/",
     "operationalSince": "2019"
@@ -169,11 +169,11 @@
     "source": "https://www.google.com/about/datacenters/locations/",
     "operationalSince": "2022"
   },
-  "google-europe-north": {
+  "google-europe-north2": {
     "provider": "google",
     "lonlat": [18.0686, 59.3294],
     "displayName": "Sweden",
-    "region": "europe-north",
+    "region": "europe-north2",
     "zoneKey": "SE",
     "status": "operational",
     "source": "https://www.google.com/about/datacenters/locations/",
@@ -198,16 +198,6 @@
     "status": "operational",
     "source": "https://www.google.com/about/datacenters/locations/",
     "operationalSince": "2024"
-  },
-  "google-southamerica-east": {
-    "provider": "google",
-    "lonlat": [-56.2125, -34.8],
-    "displayName": "Canelones, Uruguay",
-    "region": "southamerica-east",
-    "zoneKey": "UY",
-    "status": "planned",
-    "source": "https://www.google.com/about/datacenters/locations/",
-    "operationalSince": "2026"
   },
   "azure-westus3": {
     "provider": "azure",
