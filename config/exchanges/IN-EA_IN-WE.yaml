@@ -2,5 +2,5 @@ lonlat:
   - 83.363
   - 21.456
 parsers:
-  exchange: IN_WE.fetch_exchange
+  exchange: GRID_INDIA.fetch_exchange
 rotation: 310
