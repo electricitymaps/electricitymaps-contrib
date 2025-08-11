@@ -5,37 +5,40 @@ bounding_box:
     - 27.332735
 capacity:
   biomass:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 3167.6
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 3167.6
   coal:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 84386.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 84386.0
   gas:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 10806.49
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 10806.49
   hydro:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 8065.7
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 8065.7
   nuclear:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 2540.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 2540.0
   oil:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 0.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 0.0
   solar:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 19907.4
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 19907.4
+    - datetime: '2025-06-30'
+      source: mnre.gov.in
+      value: 41245.91
   wind:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 19226.1
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 19226.1
 contributors:
   - GitMatze
   - alixunderplatz
@@ -252,3 +255,5 @@ parsers:
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Western India
+country_name: India

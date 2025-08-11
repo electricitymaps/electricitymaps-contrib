@@ -56,3 +56,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Kinshasa
+zone_name: Democratic Republic of the Congo
+country_name: Democratic Republic of the Congo

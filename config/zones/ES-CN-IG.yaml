@@ -78,6 +78,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE
         value: 713.29
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE
+        value: 684.308
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
@@ -173,6 +176,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE; IPCC 2014
         value: 957.29
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 928.308
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -312,3 +318,5 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Canary
+zone_name: Isla de la Gomera
+country_name: Spain

@@ -8,12 +8,13 @@ import { useFeatureFlag } from 'features/feature-flags/api';
 import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import {
   BookOpenIcon,
+  ChartNoAxesCombined,
   CodeXmlIcon,
   FileDownIcon,
   HelpCircleIcon,
   MapIcon,
 } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { MenuItem } from './MenuItem';
 import {
@@ -45,6 +46,11 @@ const MENU_ITEMS = [
     icon: FileDownIcon,
   },
   {
+    label: 'Data Explorer',
+    to: `${PORTAL_URL}/data-explorer`,
+    icon: ChartNoAxesCombined,
+  },
+  {
     label: 'API',
     to: `${PORTAL_URL}`,
     icon: CodeXmlIcon,
@@ -63,21 +69,21 @@ export function AppSidebar() {
   const trackEvent = useTrackEvent();
   const { trackSupportChat, trackSupportFaq } = useEvents(trackEvent);
 
-  const handleOpenChange = (open: boolean) => {
+  const handleOpenChange = useCallback((open: boolean) => {
     setIsMenuOpen(open);
     if (open) {
       tooltipReference.current?.close();
     }
-  };
+  }, []);
 
-  const handleChat = () => {
+  const handleChat = useCallback(() => {
     trackSupportChat();
     if (window.Intercom) {
       window.Intercom('show');
     } else {
       console.warn('Intercom not available');
     }
-  };
+  }, [trackSupportChat]);
 
   return (
     <Sidebar>

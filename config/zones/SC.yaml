@@ -32,3 +32,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Mahe
+zone_name: Seychelles
+country_name: Seychelles

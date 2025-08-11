@@ -6,3 +6,5 @@ bounding_box:
 country: RU
 region: Europe
 timezone: Europe/Moscow
+zone_name: Arctic
+country_name: Russia

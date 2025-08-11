@@ -9,15 +9,21 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from bs4 import BeautifulSoup
 from dateutil import parser, tz
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    GridAlertList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+)
 
 SOURCE = "misoenergy.org"
 ZONE = "US-MIDW-MISO"
@@ -41,7 +47,7 @@ wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerSer
 solar_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getSolarForecast&returnType=json"
 
 # To quote the MISO data source;
-# "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
+# "The category listed as "Other" is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
 # External Asynchronous Resources and a varied assortment of solid waste, garbage and wood pulp burners".
 
 # Timestamp reported by data source is in format 23-Jan-2018 - Interval 11:45 EST
@@ -217,11 +223,83 @@ def fetch_wind_solar_forecasts(
     return production_breakdowns.to_list()
 
 
+def fetch_grid_alerts(
+    zone_key: ZoneKey = ZoneKey(ZONE),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetch Grid Alerts from MISO"""
+    session = session or Session()
+
+    # API URL
+    url = "https://www.misoenergy.org/api/topicnotifications/getrecentnotifications"
+
+    # Request payload (can be adjusted if you want specific filters)
+    payload = {"topics": ["RealTime"], "take": 0}  # take 0 is equal to get all possible
+    # TODO: do we just need the last one?
+
+    # Request headers
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0",
+        "Referer": "https://www.misoenergy.org/markets-and-operations/notifications/real-time-operations-notifications/",
+        "X-Requested-With": "XMLHttpRequest",
+    }
+
+    # Make the POST request
+    response = session.post(url, json=payload, headers=headers)
+
+    # Check for success
+    if response.status_code == 200:
+        notifications = response.json()
+
+    # TODO: maybe extract locationRegion from each notification?
+    # TODO: maybe extract startTime and endTime from each notification?
+    # TODO: maybe extract alertType from each notification?
+
+    # Record events in grid_alert_list
+    grid_alert_list = GridAlertList(logger)
+    for notification in notifications:
+        publish_datetime = datetime.fromisoformat(
+            notification["publishDateUnformatted"]
+        ).replace(tzinfo=TIMEZONE)
+
+        clean_subject = extract_text_with_links(notification["subject"])
+        clean_body = extract_text_with_links(notification["body"])
+        message = clean_subject + "\n" + clean_body
+
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=None,
+            source=SOURCE,
+            alertType=GridAlertType.undefined,
+            message=message,
+            issuedTime=publish_datetime,
+            startTime=None,  # if None, it defaults to issuedTime
+            endTime=None,
+        )
+    return grid_alert_list.to_list()
+
+
+def extract_text_with_links(html_content):
+    soup = BeautifulSoup(html_content, "html.parser")
+    for a in soup.find_all("a"):
+        if a.get("href"):
+            a.replace_with(f"{a.get_text()} ({a['href']})")
+    return soup.get_text(separator=" ")
+
+
 if __name__ == "__main__":
-    # print("fetch_production() ->")
-    # print(fetch_production())
+    from pprint import pprint
+
+    print("fetch_production() ->")
+    print(fetch_production())
 
     print(fetch_consumption_forecast())
 
-    # print("fetch_wind_solar_forecasts() ->")
-    # print(fetch_wind_solar_forecasts())
+    print("fetch_wind_solar_forecasts() ->")
+    print(fetch_wind_solar_forecasts())
+
+    pprint(fetch_grid_alerts())

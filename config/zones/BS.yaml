@@ -47,3 +47,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Nassau
+zone_name: Bahamas
+country_name: Bahamas

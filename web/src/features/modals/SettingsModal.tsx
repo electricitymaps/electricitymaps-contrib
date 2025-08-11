@@ -56,10 +56,9 @@ function ElectricityFlowsToggle() {
           className="text-xs"
           href="https://www.electricitymaps.com/blog/flow-tracing"
         >
-          Flow-tracing
+          {t('settings-modal.flow-tracing-link-label')}
         </Link>{' '}
-        tracks how electricity physically moves through interconnectors that link
-        different zones
+        {t('settings-modal.flow-tracing-link-description')}
       </span>
     </div>
   );
@@ -205,8 +204,9 @@ function AboutElectricityMaps() {
       >
         <div className="mt-2 text-xs text-secondary dark:text-secondary-dark">
           <p className="mb-4">
-            <Link href="https://electricitymaps.com">Electricity Maps</Link> offers an API
-            that delivers real-time and predictive electricity grid signals.
+            <Link href="https://electricitymaps.com">Electricity Maps</Link>
+            &nbsp;
+            {t('settings-modal.home-link-description')}
           </p>
 
           <div className="mb-2">

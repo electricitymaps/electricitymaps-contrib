@@ -124,3 +124,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Almaty
+zone_name: Kazakhstan
+country_name: Kazakhstan

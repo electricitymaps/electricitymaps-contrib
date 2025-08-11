@@ -1331,7 +1331,6 @@
       'datetime': datetime.datetime(2023, 8, 16, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montreal')),
       'production': dict({
         'biomass': 611.0,
-        'gas': 0,
         'hydro': 13974.0,
         'solar': 0.0,
         'wind': 92.0,
@@ -1348,7 +1347,6 @@
       'datetime': datetime.datetime(2023, 8, 16, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montreal')),
       'production': dict({
         'biomass': 611.0,
-        'gas': 0,
         'hydro': 14545.0,
         'solar': 0.0,
         'wind': 100.0,
@@ -1365,7 +1363,6 @@
       'datetime': datetime.datetime(2023, 8, 16, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montreal')),
       'production': dict({
         'biomass': 608.0,
-        'gas': 0,
         'hydro': 15028.0,
         'solar': 0.0,
         'wind': 113.0,
@@ -1382,7 +1379,6 @@
       'datetime': datetime.datetime(2023, 8, 16, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montreal')),
       'production': dict({
         'biomass': 603.0,
-        'gas': 0,
         'hydro': 16175.0,
         'solar': 0.0,
         'wind': 106.0,
@@ -1399,7 +1395,6 @@
       'datetime': datetime.datetime(2023, 8, 16, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montreal')),
       'production': dict({
         'biomass': 599.0,
-        'gas': 0,
         'hydro': 18527.0,
         'solar': 0.0,
         'wind': 78.0,

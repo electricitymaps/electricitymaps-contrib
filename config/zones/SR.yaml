@@ -38,3 +38,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Paramaribo
+zone_name: Suriname
+country_name: Suriname

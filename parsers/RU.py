@@ -2,12 +2,15 @@
 
 import json
 from datetime import datetime, timedelta, timezone
-from functools import reduce
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import pandas as pd
 from requests import Session
+
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.types import ZoneKey
+from parsers.lib.config import refetch_frequency
 
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)
@@ -26,8 +29,22 @@ MAP_GENERATION_1 = {
     "P_TES": "unknown",
     "P_BS": "unknown",
     "P_REN": "solar",
+    "P_WIND": "wind",
 }
+
 MAP_GENERATION_2 = {"aes_gen": "nuclear", "ges_gen": "hydro", "P_tes": "unknown"}
+
+IGNORE_KEYS = {
+    "M_DATE",
+    "INTERVAL",
+    "date",
+    "hour",
+    "fHour",
+    "Pmin_tes",
+    "Pmax_tes",
+    "power_sys_id",
+    "price_zone_id",
+}
 
 exchange_ids = {
     "RU-AS->CN": 764,
@@ -50,196 +67,95 @@ exchange_ids = {
     "UA->RU-1": 880,
 }
 
+SOURCE = "so-ups.ru"
+
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
 
 TIMEZONE = ZoneInfo("Europe/Moscow")
 
 
+@refetch_frequency(timedelta(hours=24))
 def fetch_production(
-    zone_key: str = "RU",
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
-    """Requests the last known production mix (in MW) of a given country."""
-    if zone_key == "RU":
-        # Get data for all zones
-        dfs = {}
-        for subzone_key in ["RU-1", "RU-2", "RU-AS"]:
-            data = fetch_production(subzone_key, session, target_datetime, logger)
-            df = pd.DataFrame(data).set_index("datetime")
-            df_prod = df["production"].apply(pd.Series).fillna(0)
+    """Fetch production data for Russian zones (1st and 2nd synchronous zones)."""
+    session = session or Session()
 
-            # Set a 30 minutes frequency
-            if subzone_key in ["RU-1", "RU-2"]:
-                df_30m_index = df_prod.index.union(
-                    df_prod.index + pd.Timedelta(minutes=30)
-                )
-                df_prod = df_prod.reindex(df_30m_index).ffill()
-
-            dfs[subzone_key] = df_prod
-
-        # Compute the sum
-        df_prod = reduce(lambda x, y: x + y, dfs.values()).dropna()
-
-        # Format to dict
-        df_prod = df_prod.apply(dict, axis=1).reset_index(name="production")
-        df_prod["zoneKey"] = "RU"
-        df_prod["storage"] = [{} for i in range(len(df_prod))]
-        df_prod["source"] = "so-ups.ru"
-        data = df_prod.to_dict("records")
-        for row in data:
-            row["datetime"] = row["datetime"].to_pydatetime()
-
-        return data
-
-    elif zone_key == "RU-1" or zone_key == "RU-2":
-        return fetch_production_1st_synchronous_zone(zone_key, session, target_datetime)
-    elif zone_key == "RU-AS":
-        return fetch_production_2nd_synchronous_zone(zone_key, session, target_datetime)
-    else:
-        raise NotImplementedError("This parser is not able to parse given zone")
-
-
-def fetch_production_1st_synchronous_zone(
-    zone_key: str = "RU-1",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-) -> list:
+    # Zone configuration
     zone_key_price_zone_mapper = {
         "RU-1": 1,
         "RU-2": 2,
     }
-    if zone_key not in zone_key_price_zone_mapper:
+
+    # Validate zone
+    if zone_key not in zone_key_price_zone_mapper and zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
 
+    # Prepare datetime
     if target_datetime:
         target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
     else:
         target_datetime_tz = datetime.now(TIMEZONE)
-    # Query at t gives production from t to t+1
-    # I need to shift 1 to get the last value at t
     datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
     date = datetime_to_fetch.strftime("%Y.%m.%d")
 
-    r = session or Session()
-
-    price_zone = zone_key_price_zone_mapper[zone_key]
-    base_url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}"
-    url = base_url + f"&startDate={date}&endDate={date}"
-
-    response = r.get(url, verify=False)
-    json_content = json.loads(response.text)
-    dataset = json_content[0]["m_Item2"]
-
-    data = []
-    for datapoint in dataset:
-        row = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": "so-ups.ru",
-        }
-
-        for k, production_type in MAP_GENERATION_1.items():
-            if k in datapoint:
-                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
-                row["production"][production_type] = (
-                    row["production"].get(production_type, 0.0) + gen_value
-                )
-            else:
-                row["production"][production_type] = row["production"].get(
-                    production_type, 0.0
-                )
-
-        # Date
-        hour = f"{int(datapoint['INTERVAL']):02d}"
-        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
-            tzinfo=TIMEZONE
-        )
-        last_dt = datetime.now(TIMEZONE) - timedelta(hours=1)
-
-        # Drop datapoints in the future
-        if row["datetime"] > last_dt:
-            continue
-
-        # Default values
-        row["production"]["biomass"] = None
-        row["production"]["geothermal"] = None
-
-        data.append(row)
-
-    return data
-
-
-def fetch_production_2nd_synchronous_zone(
-    zone_key: str = "RU-AS",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-) -> list[dict]:
-    if zone_key != "RU-AS":
-        raise NotImplementedError("This parser is not able to parse given zone")
-
-    if target_datetime:
-        target_datetime_tz = target_datetime.astimezone(tz=TIMEZONE)
+    # Build URL based on zone type
+    if zone_key in zone_key_price_zone_mapper:
+        # 1st synchronous zone (RU-1, RU-2)
+        price_zone = zone_key_price_zone_mapper[zone_key]
+        url = f"{HOST}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={price_zone}&startDate={date}&endDate={date}"
+        generation_map = MAP_GENERATION_1
+        date_key = "M_DATE"
+        hour_key = "INTERVAL"
     else:
-        target_datetime_tz = datetime.now(TIMEZONE)
-    # Here we should shift 30 minutes but it would be inconsistent with 1st zone
-    datetime_to_fetch = target_datetime_tz - timedelta(hours=1)
-    date = datetime_to_fetch.strftime("%Y.%m.%d")
+        # 2nd synchronous zone (RU-AS)
+        url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
+        generation_map = MAP_GENERATION_2
+        date_key = "date"
+        hour_key = "hour"
 
-    r = session or Session()
-
-    url = f"{HOST}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={date}"
-
-    response = r.get(url, verify=False)
+    response = session.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
-    data = []
+    production_breakdown_list = ProductionBreakdownList(logger=logger)
     for datapoint in dataset:
-        row = {
-            "zoneKey": zone_key,
-            "production": {},
-            "storage": {},
-            "source": "so-ups.ru",
-        }
+        production = ProductionMix()
 
-        for k, production_type in MAP_GENERATION_2.items():
-            if k in datapoint:
-                gen_value = float(datapoint[k]) if datapoint[k] else 0.0
-                row["production"][production_type] = (
-                    row["production"].get(production_type, 0.0) + gen_value
+        for key in datapoint:
+            if key in IGNORE_KEYS:
+                continue
+            if key in generation_map:
+                production_type = generation_map[key]
+                gen_value = datapoint[key]
+                production.add_value(
+                    mode=production_type,
+                    value=gen_value,
+                    correct_negative_with_zero=True,
                 )
             else:
-                row["production"][production_type] = row["production"].get(
-                    production_type, 0.0
+                logger.warning(
+                    f"Unknown production type '{key}' with value {datapoint[key]} in {zone_key} production data"
                 )
 
-        # Date
-        hour = datapoint["fHour"]
+        # Parse datetime based on zone type
+        date = datetime.fromisoformat(datapoint[date_key])
+        interval_hour = datapoint[hour_key]
 
-        if len(hour) == 1:
-            hour = "0" + hour
+        dt = date + timedelta(hours=interval_hour)
 
-        row["datetime"] = datetime.strptime(f"{date} {hour}", "%Y.%m.%d %H").replace(
-            tzinfo=TIMEZONE
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production,
+            source=SOURCE,
         )
-        last_dt = datetime.now(TIMEZONE) - timedelta(minutes=30)
 
-        # Drop datapoints in the future
-        if row["datetime"] > last_dt:
-            continue
-
-        # Default values
-        row["production"]["biomass"] = None
-        row["production"]["geothermal"] = None
-        row["production"]["solar"] = None
-
-        data.append(row)
-
-    return data
+    return production_breakdown_list.to_list()
 
 
 def response_checker(json_content) -> bool:
@@ -324,50 +240,9 @@ def fetch_exchange(
             "sortedZoneKeys": sortedcodes,
             "datetime": dt,
             "netFlow": flow,
-            "source": "so-ups.ru",
+            "source": SOURCE,
         }
 
         data.append(exchange)
 
     return data
-
-
-if __name__ == "__main__":
-    print("fetch_production() ->")
-    print(fetch_production())
-    print("fetch_production(RU-1) ->")
-    print(fetch_production("RU-1"))
-    print("fetch_production(RU-2) ->")
-    print(fetch_production("RU-2"))
-    print("fetch_production(RU-AS) ->")
-    print(fetch_production("RU-AS"))
-    print("fetch_exchange(CN, RU-AS) ->")
-    print(fetch_exchange("CN", "RU-AS"))
-    print("fetch_exchange(MN, RU) ->")
-    print(fetch_exchange("MN", "RU"))
-    print("fetch_exchange(MN, RU-2) ->")
-    print(fetch_exchange("MN", "RU-2"))
-    print("fetch_exchange(KZ, RU) ->")
-    print(fetch_exchange("KZ", "RU"))
-    print("fetch_exchange(KZ, RU-1) ->")
-    print(fetch_exchange("KZ", "RU-1"))
-    print("fetch_exchange(KZ, RU-2) ->")
-    print(fetch_exchange("KZ", "RU-2"))
-    print("fetch_exchange(GE, RU) ->")
-    print(fetch_exchange("GE", "RU"))
-    print("fetch_exchange(GE, RU-1) ->")
-    print(fetch_exchange("GE", "RU-1"))
-    print("fetch_exchange(AZ, RU) ->")
-    print(fetch_exchange("AZ", "RU"))
-    print("fetch_exchange(AZ, RU-1) ->")
-    print(fetch_exchange("AZ", "RU-1"))
-    print("fetch_exchange(BY, RU) ->")
-    print(fetch_exchange("BY", "RU"))
-    print("fetch_exchange(BY, RU-1) ->")
-    print(fetch_exchange("BY", "RU-1"))
-    print("fetch_exchange(RU-1, UA-CR) ->")
-    print(fetch_exchange("RU-1", "UA-CR"))
-    print("fetch_exchange(RU-1, UA) ->")
-    print(fetch_exchange("RU-1", "UA"))
-    print("fetch_exchange(RU-1, RU-2) ->")
-    print(fetch_exchange("RU-1", "RU-2"))

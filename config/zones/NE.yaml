@@ -44,3 +44,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Niamey
+zone_name: Niger
+country_name: Niger

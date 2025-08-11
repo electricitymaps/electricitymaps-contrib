@@ -172,8 +172,6 @@
     "submit": "Skicka"
   },
   "estimation-badge": {
-    "partially-estimated": "Delvis uppskattad",
-    "fully-estimated": "Uppskattad",
     "outage": "Otillgänglig"
   },
   "estimation-card": {
@@ -181,23 +179,15 @@
     "outage-details": "Se detaljer",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data är preliminär",
-      "pill": "Preliminär",
       "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data är preliminär",
-      "pill": "Preliminär",
       "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data är delvis uppskattad",
-      "pill": "Delvis uppskattad",
       "body": "Rapporterad data för denna zon är ofullständig. Våra modeller fyller i saknade produktionssätt och elflöden för att ge en komplett bild av elmixen med ursprungsspårning."
-    },
-    "estimated_generic_method": {
-      "title": "Data är uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data är alltid uppskattad",
@@ -257,56 +247,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Timvis kolintensitet",
+      "24h": "Kolintensitet",
+      "72h": "Kolintensitet",
       "3mo": "Daglig kolintensitet",
       "12mo": "Månadsvis kolintensitet",
       "all_months": "Månadsvis kolintensitet",
       "all_years": "Årlig kolintensitet"
     },
     "emissions": {
-      "72h": "Timvisa koldioxidutsläpp",
+      "24h": "Koldioxidutsläpp",
+      "72h": "Koldioxidutsläpp",
       "3mo": "Dagliga koldioxidutsläpp",
       "12mo": "Månadsvisa koldioxidutsläpp",
       "all_months": "Månadsvisa koldioxidutsläpp",
       "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "72h": "Timvis ursprung av koldioxidutsläpp",
+      "24h": "Ursprung av koldioxidutsläpp",
+      "72h": "Ursprung av koldioxidutsläpp",
       "3mo": "Dagligt ursprung av koldioxidutsläpp",
       "12mo": "Månadsvis ursprung av koldioxidutsläpp",
       "all_months": "Månadsvis ursprung av koldioxidutsläpp",
       "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "72h": "Timvisa produktionsutsläpp",
+      "24h": "Produktionsutsläpp",
+      "72h": "Produktionsutsläpp",
       "3mo": "Dagliga produktionsutsläpp",
       "12mo": "Månadsvisa produktionsutsläpp",
       "all_months": "Månadsvisa produktionsutsläpp",
       "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "72h": "Timvis elmix",
+      "24h": "Elmix",
+      "72h": "Elmix",
       "3mo": "Dagligt elmix",
       "12mo": "Månadsvis elmix",
       "all_months": "Månadsvis elmix",
       "all_years": "Årligt elmix"
     },
     "electricityproduction": {
-      "72h": "Timvis elmix",
+      "24h": "Elmix",
+      "72h": "Elmix",
       "3mo": "Daglig elmix",
       "12mo": "Månadsvis elmix",
       "all_months": "Månadsvis elmix",
       "all_years": "Årlig elmix"
     },
     "electricityprices": {
-      "72h": "Timvisa elpriser",
+      "24h": "Elpriser",
+      "72h": "Elpriser",
       "3mo": "Dagliga elpriser",
       "12mo": "Månadsvisa elpriser",
       "all_months": "Månadsvisa elpriser",
       "all_years": "Årliga elpriser"
     },
     "netExchange": {
-      "72h": "Timvis elflöde",
+      "24h": "Elflöde",
+      "72h": "Elflöde",
       "3mo": "Daglig elflöde",
       "12mo": "Månadsvis elflöde",
       "all_months": "Månadsvis elflöde",

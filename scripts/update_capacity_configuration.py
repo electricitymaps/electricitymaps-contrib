@@ -1,7 +1,7 @@
 import importlib
+import logging
 from copy import deepcopy
 from datetime import datetime
-from logging import INFO, basicConfig, getLogger
 from operator import itemgetter
 from typing import Any
 
@@ -15,8 +15,7 @@ from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from scripts.utils import write_zone_config
 
-logger = getLogger(__name__)
-basicConfig(level=INFO)
+logger = logging.getLogger(__name__)
 ZONES_CONFIG = read_zones_config(CONFIG_DIR)
 CAPACITY_MODES = PRODUCTION_MODES + [f"{mode} storage" for mode in STORAGE_MODES]
 

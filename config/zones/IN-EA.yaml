@@ -5,37 +5,40 @@ bounding_box:
     - 27.664069
 capacity:
   biomass:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 542.8
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 542.8
   coal:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 36997.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 36997.0
   gas:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 80.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 80.0
   hydro:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 6331.75
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 6331.75
   nuclear:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 0.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 0.0
   oil:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 92.71
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 92.71
   solar:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 1017.1
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 1017.1
+    - datetime: '2025-06-30'
+      source: mnre.gov.in
+      value: 1562.73
   wind:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 0.0
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 0.0
 contributors:
   - unitrium
 country: IN
@@ -221,3 +224,5 @@ parsers:
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Eastern India
+country_name: India
