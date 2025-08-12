@@ -324,7 +324,7 @@ isRenewable:
 parsers:
   consumption: TH.fetch_consumption
   price: TH.fetch_price
-  production: TH.fetch_production
+  # production: TH.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: TH.fetch_generation_forecast
 region: Asia
