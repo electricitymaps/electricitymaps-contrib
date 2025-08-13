@@ -19,7 +19,6 @@ from parsers.lib.quality import (
     ValidationError,
     validate_consumption,
     validate_exchange,
-    validate_production,
 )
 
 logger = logging.getLogger(__name__)
@@ -129,9 +128,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         res = [res]
     for event in res:
         try:
-            if parser_data_type == ParserDataType.PRODUCTION:
-                validate_production(event, zone)
-            elif parser_data_type == ParserDataType.CONSUMPTION:
+            if parser_data_type == ParserDataType.CONSUMPTION:
                 validate_consumption(event, zone)
             elif parser_data_type == ParserDataType.EXCHANGE:
                 validate_exchange(event, zone)

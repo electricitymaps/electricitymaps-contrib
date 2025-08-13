@@ -441,10 +441,10 @@
   },
   "azure-westeurope": {
     "provider": "azure",
-    "lonlat": [7.0480821, 52.5001698],
+    "lonlat": [5.0369813, 52.7570829],
     "displayName": "West Europe",
     "region": "westeurope",
-    "zoneKey": "DE",
+    "zoneKey": "NL",
     "status": "operational",
     "source": "https://datacenters.microsoft.com",
     "operationalSince": "2010"
@@ -678,6 +678,26 @@
     "status": "operational",
     "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
     "operationalSince": "2021"
+  },
+  "hlrs-de-stuttgart": {
+    "provider": "hlrs",
+    "displayName": "HLRS Stuttgart",
+    "zoneKey": "DE",
+    "lonlat": [9.0970622, 48.739457],
+    "region": "de-stuttgart",
+    "source": "https://www.hlrs.de/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "itenos-de-stuttgart-vaihingen": {
+    "provider": "itenos",
+    "displayName": "Itenos data center Stuttgart-Vaihingen-1",
+    "zoneKey": "DE",
+    "lonlat": [9.1285794, 48.7214015],
+    "region": "de-stuttgart-vaihingen",
+    "source": "https://itenos.de/en/data-center/data-center-germany/data-center-stuttgart-1/",
+    "operationalSince": null,
+    "status": "operational"
   },
   "aws-ap-southeast-5": {
     "provider": "aws",

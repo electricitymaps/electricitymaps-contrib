@@ -32,6 +32,9 @@ capacity:
     - datetime: '2023-12-01'
       source: mnre.gov.in
       value: 25012.2
+    - datetime: '2025-06-30'
+      source: mnre.gov.in
+      value: 40245.36
   wind:
     - datetime: '2023-12-01'
       source: mnre.gov.in
@@ -219,3 +222,5 @@ parsers:
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Northern India
+country_name: India

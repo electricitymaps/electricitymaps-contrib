@@ -73,3 +73,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo
+zone_name: Zambia
+country_name: Zambia

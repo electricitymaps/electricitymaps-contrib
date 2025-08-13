@@ -282,3 +282,5 @@ fallbackZoneMixes:
         wind: 0.0
 region: Asia
 timezone: Asia/Jakarta
+zone_name: Indonesia
+country_name: Indonesia

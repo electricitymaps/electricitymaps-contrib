@@ -1,0 +1,355 @@
+# serializer version: 1
+# name: test_fetch_exchange[GT-HN]
+  list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 27.6,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 21.5,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 22.7,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 23.3,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 14.4,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 5.9,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 5.2,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 24.4,
+      'sortedZoneKeys': 'GT->HN',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_fetch_exchange[HN-NI]
+  list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -98.5,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -97.4,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -98.0,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -91.8,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -101.6,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -108.0,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -82.7,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': -66.3,
+      'sortedZoneKeys': 'HN->NI',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_fetch_exchange[HN-SV]
+  list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 58.5,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 51.5,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 33.9,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 23.8,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 36.3,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 45.0,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 28.7,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 20.1,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_fetch_exchange[HN-US]
+  list([
+  ])
+# ---
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 35.5,
+        'coal': 106.4,
+        'geothermal': 27.3,
+        'hydro': 455.6,
+        'oil': 653.4,
+        'solar': 0.0,
+        'wind': 115.1,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 43.4,
+        'coal': 105.8,
+        'geothermal': 27.6,
+        'hydro': 440.7,
+        'oil': 608.5,
+        'solar': 0.0,
+        'wind': 106.2,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 35.3,
+        'coal': 105.6,
+        'geothermal': 27.7,
+        'hydro': 436.4,
+        'oil': 530.4,
+        'solar': 0.0,
+        'wind': 114.6,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 35.8,
+        'coal': 106.1,
+        'geothermal': 27.8,
+        'hydro': 449.6,
+        'oil': 484.8,
+        'solar': 0.0,
+        'wind': 108.7,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 35.4,
+        'coal': 106.3,
+        'geothermal': 28.0,
+        'hydro': 455.7,
+        'oil': 484.1,
+        'solar': 0.0,
+        'wind': 105.2,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 39.7,
+        'coal': 106.0,
+        'geothermal': 28.3,
+        'hydro': 475.5,
+        'oil': 483.2,
+        'solar': 0.3,
+        'wind': 107.8,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 42.3,
+        'coal': 106.0,
+        'geothermal': 28.2,
+        'hydro': 449.2,
+        'oil': 436.7,
+        'solar': 77.9,
+        'wind': 125.9,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'production': dict({
+        'biomass': 47.4,
+        'coal': 106.1,
+        'geothermal': 27.9,
+        'hydro': 439.1,
+        'oil': 353.9,
+        'solar': 233.0,
+        'wind': 106.5,
+      }),
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'HN',
+    }),
+  ])
+# ---

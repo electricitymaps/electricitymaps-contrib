@@ -173,3 +173,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lagos
+zone_name: Nigeria
+country_name: Nigeria

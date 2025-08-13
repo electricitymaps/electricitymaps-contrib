@@ -209,3 +209,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Shanghai
+zone_name: China
+country_name: China

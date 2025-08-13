@@ -93,15 +93,13 @@ def fetch_production(
         "div", class_="avail_hydro"
     )  # Should we just remove the capacity parsing?
     thermal = soup.find("div", class_="load_thermal").div
+    load_hydro = soup.find("div", class_="load_hydro").div
 
     production_mix = ProductionMix()
-    production_mix.add_value("coal", 0)
-    production_mix.add_value("geothermal", 0)
     production_mix.add_value(
-        "hydro", _parse_mw(soup.find("div", class_="load_hydro").div.text)
+        "hydro", _parse_mw(load_hydro.text) if load_hydro else None
     )
-    production_mix.add_value("nuclear", 0)
-    production_mix.add_value("unknown", _parse_mw(thermal.text) if thermal else 0)
+    production_mix.add_value("unknown", _parse_mw(thermal.text) if thermal else None)
 
     production_breakdowns = ProductionBreakdownList(logger=logger)
     production_breakdowns.append(

@@ -85,3 +85,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Mbabane
+zone_name: Eswatini
+country_name: Eswatini

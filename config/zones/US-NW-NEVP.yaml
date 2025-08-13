@@ -5,7 +5,7 @@ bounding_box:
     - 42.5017700000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2021-06-01'
@@ -30,22 +30,58 @@ capacity:
       source: EIA.gov
       value: 1035.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 15.2
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 35.2
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 15.2
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1103.8
+    - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7606.2
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 633.4
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 670.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 678.4
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 667.0
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 734.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 735.7
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 761.7
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 740.7
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 718.9
+    - datetime: '2020-06-01'
       source: EIA.gov
       value: 750.5
     - datetime: '2021-04-01'
@@ -82,7 +118,7 @@ capacity:
       source: EIA.gov
       value: 853.9
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 12.8
     - datetime: '2022-01-01'
@@ -92,18 +128,66 @@ capacity:
       source: EIA.gov
       value: 16.9
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 15.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 837.7
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 887.7
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 898.3
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 998.3
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 1077.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1092.3
+    - datetime: '2018-05-01'
+      source: EIA.gov
+      value: 1095.4
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 1115.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1115.6
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 1215.6
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 1222.9
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 1422.9
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 1432.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1433.7
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 1483.7
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 1593.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1592.5
@@ -159,11 +243,11 @@ capacity:
       source: EIA.gov
       value: 4186.7
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 7.5
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 150.0
 comment: Nevada Power Company
@@ -274,12 +358,10 @@ emissionFactors:
         value: 456.18
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1179.761649
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1179.99223
     gas:
       - datetime: '2020-01-01'
@@ -484,3 +566,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Nevada Power Company
+country_name: USA

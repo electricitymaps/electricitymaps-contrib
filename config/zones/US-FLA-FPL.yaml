@@ -5,7 +5,13 @@ bounding_box:
     - 31.33017
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 14.0
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 24.0
     - datetime: '2021-11-01'
@@ -15,7 +21,19 @@ capacity:
       source: EIA.gov
       value: 493.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 531.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 622.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 620.8
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 622.4
+    - datetime: '2019-12-01'
       source: EIA.gov
       value: 620.8
     - datetime: '2022-01-01'
@@ -34,11 +52,23 @@ capacity:
       source: EIA.gov
       value: 535.8
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 395.4
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 21336.3
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 20293.9
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 22017.0
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 23743.6
     - datetime: '2022-01-01'
@@ -57,22 +87,31 @@ capacity:
       source: EIA.gov
       value: 28215.1
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 43.5
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3797.2
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3846.1
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 1977.1
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 250.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 274.5
@@ -86,7 +125,25 @@ capacity:
       source: EIA.gov
       value: 189.8
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 262.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 560.7
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 858.7
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1157.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1604.8
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 1902.8
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 2275.3
     - datetime: '2021-03-01'
@@ -135,11 +192,11 @@ capacity:
       source: EIA.gov
       value: 8086.3
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Florida Power & Light Company
@@ -479,3 +536,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
+zone_name: Florida Power and Light Company
+country_name: USA

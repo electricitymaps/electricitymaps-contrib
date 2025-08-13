@@ -30,3 +30,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Apia
+zone_name: Samoa
+country_name: Samoa

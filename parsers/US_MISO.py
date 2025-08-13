@@ -264,7 +264,7 @@ def fetch_grid_alerts(
     for notification in notifications:
         publish_datetime = datetime.fromisoformat(
             notification["publishDateUnformatted"]
-        )  # in UTC
+        ).replace(tzinfo=TIMEZONE)
 
         clean_subject = extract_text_with_links(notification["subject"])
         clean_body = extract_text_with_links(notification["body"])
