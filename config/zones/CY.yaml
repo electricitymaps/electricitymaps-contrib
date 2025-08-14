@@ -357,7 +357,8 @@ parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
-  production: CY.fetch_production
+  # production: CY.fetch_production # Valid until end of February 2025
+  production: ENTSOE.fetch_production # Valid from 1st of March 2025
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia
