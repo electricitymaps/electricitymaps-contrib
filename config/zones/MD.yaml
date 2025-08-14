@@ -281,6 +281,8 @@ fallbackZoneMixes:
         wind: 0.03416068856152983
 parsers:
   consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   price: MD.fetch_price
   production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
