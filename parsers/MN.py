@@ -12,7 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from parsers.lib.exceptions import ParserException
 
 NDC_API = "https://disnews.energy.mn/convertt.php"
@@ -47,6 +47,7 @@ JSON_API_MAPPING = {
     "dts": "coal",
     "sumnar": "solar",
     "sumsalhit": "wind",
+    "Songino": "battery_storage"
 }
 
 
@@ -107,6 +108,8 @@ def fetch_production(
     prod_mix.add_value("coal", data["coal"])
     prod_mix.add_value("solar", data["solar"])
     prod_mix.add_value("wind", data["wind"])
+    storage_mix = StorageMix()
+    storage_mix.add_value("battery", data["battery_storage"])
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
@@ -114,6 +117,7 @@ def fetch_production(
         zoneKey=zone_key,
         source="https://ndc.energy.mn/",
         production=prod_mix,
+        storage=storage_mix,
     )
 
     return prod_breakdown_list.to_list()
@@ -144,5 +148,5 @@ def fetch_consumption(
 if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
-    print("fetch_consumption() ->")
-    print(fetch_consumption())
+    # print("fetch_consumption() ->")
+    # print(fetch_consumption())
