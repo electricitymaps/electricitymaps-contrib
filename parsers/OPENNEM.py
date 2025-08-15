@@ -217,7 +217,6 @@ def process_production_datasets(
         logger=logger,
     )
 
-
     # OPENNEM sometimes only report solar for the latest data, remove the datapoint if it only has solar
     # TODO: Remove this once the race condition between feeder-electricity and quality validation is fixed
     corrected_breakdown = ProductionBreakdownList(logger=logger)
