@@ -121,7 +121,6 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: Electricity Maps, 2024 average
         value: 435.36
-estimation_method: CONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average

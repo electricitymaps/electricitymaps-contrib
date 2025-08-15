@@ -315,7 +315,6 @@ emissionFactors:
       source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
         wind, 2.2% biofuels, 1.0% other
       value: 644
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
