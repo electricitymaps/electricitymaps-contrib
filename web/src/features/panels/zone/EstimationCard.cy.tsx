@@ -39,7 +39,7 @@ describe('OutageCard', () => {
     cy.mount(
       <I18nextProvider i18n={i18n}>
         <OutageCard
-          estimationMethod={EstimationMethods.CONSTRUCT_BREAKDOWN}
+          estimationMethod={EstimationMethods.GENERAL_PURPOSE_ZONE_MODEL}
           zoneMessage={{
             message: 'Outage Message',
             issue: 'issue',
