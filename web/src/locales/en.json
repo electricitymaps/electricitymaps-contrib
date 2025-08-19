@@ -1044,6 +1044,10 @@
       "countryName": "India",
       "zoneName": "Western India"
     },
+    "IN-AN": {
+      "countryName": "India",
+      "zoneName": "Andaman and Nicobar Islands"
+    },
     "IO": {
       "zoneName": "British Indian Ocean Territory"
     },
