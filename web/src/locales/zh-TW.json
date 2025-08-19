@@ -81,17 +81,10 @@
     "submit": "提交"
   },
   "estimation-badge": {
-    "partially-estimated": "部分估計",
-    "fully-estimated": "已估計",
     "outage": "不可用"
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "estimated_generic_method": {
-      "title": "數據為估計值",
-      "pill": "不精確",
-      "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
-    },
     "threshold_filtered": {
       "title": "缺失數據",
       "pill": "數據中斷",
@@ -111,13 +104,6 @@
       "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
     }
   },
-  "time-controller": {
-    "3mo": "每日",
-    "72h": "每小時",
-    "12mo": "每月",
-    "all_months": "每月",
-    "all_years": "每年"
-  },
   "ranking-panel": {
     "title": "各地區對氣候的影響",
     "subtitle": "依據耗電量的碳強度（單位：gCO₂eq/kWh）排名",
@@ -125,56 +111,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "每小時碳強度",
+      "24h": "碳強度",
+      "72h": "碳強度",
       "3mo": "每日碳強度",
       "12mo": "每月碳強度",
       "all_months": "每月碳強度",
       "all_years": "每年碳強度"
     },
     "emissions": {
-      "72h": "每小時碳排放",
+      "24h": "碳排放",
+      "72h": "碳排放",
       "3mo": "每日碳排放",
       "12mo": "每月碳排放",
       "all_months": "每月碳排放",
       "all_years": "每年碳排放"
     },
     "emissionsorigin": {
-      "72h": "每小時碳排放來源",
+      "24h": "碳排放來源",
+      "72h": "碳排放來源",
       "3mo": "每日碳排放來源",
       "12mo": "每月碳排放來源",
       "all_months": "每月碳排放來源",
       "all_years": "每年碳排放來源"
     },
     "emissionsproduction": {
-      "72h": "每小時生產排放",
+      "24h": "生產排放",
+      "72h": "生產排放",
       "3mo": "每日生產排放",
       "12mo": "每月生產排放",
       "all_months": "每月生產排放",
       "all_years": "每年生產排放"
     },
     "electricityorigin": {
-      "72h": "每小時電力來源",
+      "24h": "電力來源",
+      "72h": "電力來源",
       "3mo": "每日電力來源",
       "12mo": "每月電力來源",
       "all_months": "每月電力來源",
       "all_years": "每年電力來源"
     },
     "electricityproduction": {
-      "72h": "每小時電力生產",
+      "24h": "電力生產",
+      "72h": "電力生產",
       "3mo": "每日電力生產",
       "12mo": "每月電力生產",
       "all_months": "每月電力生產",
       "all_years": "每年電力生產"
     },
     "electricityprices": {
-      "72h": "每小時電價",
+      "24h": "電價",
+      "72h": "電價",
       "3mo": "每日電價",
       "12mo": "每月電價",
       "all_months": "每月電價",
       "all_years": "每年電價"
     },
     "netExchange": {
-      "72h": "每小時淨交換",
+      "24h": "淨交換",
+      "72h": "淨交換",
       "3mo": "每日淨交換",
       "12mo": "每月淨交換",
       "all_months": "每月淨交換",

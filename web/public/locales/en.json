@@ -503,7 +503,8 @@
       "zoneName": "Isle of Man"
     },
     "IN": {
-      "zoneName": "Mainland India"
+      "zoneName": "Mainland India",
+      "countryName": "India"
     },
     "IN-EA": {
       "countryName": "India",
@@ -1083,7 +1084,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "United States"
     },
     "US-AK": {
       "countryName": "USA",

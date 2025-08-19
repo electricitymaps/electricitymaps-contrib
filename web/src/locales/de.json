@@ -73,31 +73,14 @@
     "no-results": "Nichts gefunden. Versuche es mit etwas anderem zu suchen."
   },
   "time-controller": {
-    "title": {
-      "72h": "Stündliche Daten für:",
-      "3mo": "Tägliche Daten für:",
-      "12mo": "Monatliche Daten für:",
-      "all_months": "Monatliche Daten für:",
-      "all_years": "Jährliche Daten für:"
-    },
-    "3mo": "täglich",
-    "72h": "stündlich",
-    "12mo": "monatlich",
-    "all_months": "monatlich",
-    "all_years": "jährlich"
+    "navigate": "Navigieren",
+    "live": "Live"
   },
   "estimation-badge": {
-    "partially-estimated": "Teilweise geschätzt",
-    "fully-estimated": "Geschätzt",
     "outage": "Nicht verfügbar"
   },
   "estimation-card": {
     "link": "Lesen Sie mehr über unsere statistischen Schätzmodelle",
-    "estimated_generic_method": {
-      "title": "Daten werden geschätzt",
-      "pill": "Unpräzise",
-      "body": "Für diese Zone sind unvollständige, beziehungsweise keine Daten verfügbar. Die auf der Karte gezeigten Daten sind nach bestem Wissen geschätzt, können aber von den tatsächlichen Werten abweichen."
-    },
     "threshold_filtered": {
       "title": "Fehlende Daten",
       "pill": "Ausfall von Daten",
@@ -1294,7 +1277,7 @@
       "zoneName": "King Island"
     },
     "US": {
-      "zoneName": "Zusammenhängende Vereinigte Staaten"
+      "zoneName": "Vereinigte Staaten"
     },
     "US-CAL-BANC": {
       "countryName": "Vereinigte Staaten",

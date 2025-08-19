@@ -33,20 +33,23 @@ capacity:
       value: 1500.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 1570.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
       value: 1580.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 1570.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1580.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2023-01-01'
+      value: 90.0
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 110.0
+      value: 100.0
+    - datetime: '2025-01-01'
+      source: bnamericas
+      value: 201
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -282,3 +285,5 @@ sources:
   Guatemala AMM 2021-2022:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
+zone_name: Guatemala
+country_name: Guatemala

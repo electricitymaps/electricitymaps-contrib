@@ -7,6 +7,7 @@ bounding_box:
     - 35.319778545000034
   - - 45.30699282900011
     - 42.598781643000095
+price_displayed: false
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -42,17 +43,17 @@ capacity:
       value: 19350.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 19500.0
+      value: 19640.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 20870.0
+      value: 21020.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 26380.0
+      value: 25690.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 27630.0
+      value: 26940.0
   geothermal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -72,6 +73,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1750.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1800.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -93,11 +97,14 @@ capacity:
       value: 31570.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 31780.0
+      value: 31960.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 32390.0
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 660.0
+      value: 570.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -120,6 +127,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 11290.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 19880.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -141,7 +151,10 @@ capacity:
       value: 11400.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 11700.0
+      value: 11810.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 12970.0
 contributors:
   - corradio
   - olivierSemet
@@ -429,3 +442,5 @@ sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Istanbul
+zone_name: Turkey
+country_name: Turkey

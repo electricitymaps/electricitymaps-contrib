@@ -210,3 +210,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Aruba
+zone_name: Aruba
+country_name: Aruba

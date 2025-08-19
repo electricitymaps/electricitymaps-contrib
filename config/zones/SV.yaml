@@ -27,7 +27,7 @@ capacity:
       value: 200.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 230.0
+      value: 210.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -38,6 +38,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 570.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 640.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -59,7 +62,7 @@ capacity:
       value: 570.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 590.0
+      value: 650.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -333,3 +336,5 @@ sources:
   Our World in Data 2022:
     link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
+zone_name: El Salvador
+country_name: El Salvador

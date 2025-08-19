@@ -5,6 +5,20 @@
     "version": "Version de l'application: {{version}}",
     "share-app": "Partager l'application:"
   },
+  "settings-modal": {
+    "title": "Paramètres",
+    "flows": "Flux de l'électricité",
+    "flow-tracing-link-label": "Flux de l'électricité",
+    "flow-tracing-link-description": "montre comment l'électricité se déplace physiquement à travers les interconnexions qui relient différentes zones",
+    "home-link-description": "offre une API qui fournit des signaux de réseau électrique prédictifs en temps réel.",
+    "weather-layers-disallowed": "Données météorologiques non disponibles pour cette agrégation, passez à temps réel pour voir les données météorologiques en direct."
+  },
+  "ranking-panel": {
+    "title": "Impact sur le climat par zone",
+    "subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
+    "search": "Rechercher une zone",
+    "no-results": "Aucun résultat trouvé pour cette recherche 🌍"
+  },
   "button": {
     "bluesky-share": "Visualisez en temps réel les données mondiales sur les émissions d’électricité : {{baseUrl}}",
     "reddit": "Rejoindre r/electricitymaps",
@@ -22,9 +36,6 @@
     "legal-notice": "Informations légales",
     "api": "Accéder à l'API",
     "docs": "Documentation de l'API "
-  },
-  "settings-modal": {
-    "title": "Paramètres"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -121,6 +132,7 @@
     "by-source": {
       "emissions": "Émissions carbone",
       "electricity-mix": "Mix électrique",
+      "total-electricity-mix": "Mix électrique global",
       "total-emissions": "Émissions totales de carbone"
     },
     "graph-legends": {
@@ -142,54 +154,52 @@
       "now": "Maintenant"
     }
   },
+  "grid-alerts-card": {
+    "show-more": "Voir plus",
+    "show-less": "Voir moins",
+    "experimental-mode": "C'est gratuit pendant la phase expérimentale",
+    "tooltip": "Cette fonctionnalité est actuellement en phase expérimentale et disponible sans coût supplémentaire pendant que nous recueillons des commentaires et affinons la fonctionnalité."
+  },
   "feedback-card": {
+    "title": "Aidez-nous à nous améliorer !",
+    "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
+    "success-subtitle": "Merci pour votre retour !",
+    "estimations": {
+      "subtitle": "Évaluez les affirmations suivantes.",
+      "secondary-question": "Comment pouvons-nous l'améliorer ?",
+      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:"
+    },
+    "primary-question": "Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
+    "secondary-question-low": "Que pouvons faire de mieux ?",
+    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
+    "optional": "Optionnel :",
+    "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
     "agree": "Tout à fait d'accord",
     "disagree": "Absolument pas d'accord",
     "satisfied": "Très satisfait",
     "unsatisfied": "Pas du tout satisfait",
-    "estimations": {
-      "primary-question": "Les descriptions des données estimées sont faciles à comprendre:",
-      "secondary-question": "Comment pouvons-nous l'améliorer ?",
-      "subtitle": "Évaluez les affirmations suivantes."
-    },
-    "input-question": "Faites-nous savoir si vous souhaitez voir des fonctionnalités supplémentaires.",
-    "optional": "Optionnel :",
     "placeholder": "Dites le nous en quelques mots...",
-    "primary-question": "Dans quelle mesure êtes-vous satisfait de votre expérience d'utilisation de l'application Electricity Maps ?",
-    "secondary-question-high": "Quelles améliorations aimeriez-vous voir apportées prochainement ?",
-    "secondary-question-low": "Que pouvons faire de mieux ?",
-    "submit": "Soumettre",
-    "success-message": "Votre réponse nous permet de comprendre et d'améliorer la qualité de notre application.",
-    "success-subtitle": "Merci pour votre retour !",
-    "title": "Aidez-nous à nous améliorer !"
+    "submit": "Soumettre"
   },
   "estimation-badge": {
-    "partially-estimated": "Partiellement estimées",
-    "fully-estimated": "Estimées",
     "outage": "Indisponibles"
   },
   "estimation-card": {
     "link": "En savoir plus sur nos modèles d'estimation",
     "outage-details": "Voir les détails",
+    "synthetic": "Synthétiques",
+    "preliminary": "Préliminaires",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Les données sont préliminaires",
-      "pill": "Préliminaires",
       "body": "Les données pour cette heure n'ont pas encore été confirmées et sont basées sur des données préliminaires."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Les données sont partiellement estimées",
-      "pill": "Partiellement estimées",
       "body": "Les données rapportées pour cette zone sont incomplètes; des modèles d'estimation sont utilisés pour estimés les moyens de productions manquants."
-    },
-    "estimated_generic_method": {
-      "title": "Données estimées",
-      "pill": "Incomplètes",
-      "body": "Les données publiées pour cette zone sont indisponibles ou incomplètes. Les données figurant sur la carte sont estimées au mieux de nos capacités, mais peuvent différer des valeurs réelles."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Les données sont toujours estimées",
@@ -207,6 +217,7 @@
     },
     "aggregated": {
       "title": "Les données sont agrégées",
+      "pill": "Agrégées",
       "body": "Les données consistent en une agrégation de données horaires."
     },
     "aggregated_estimated": {
@@ -216,42 +227,25 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "Données des 3 derniers jours pour :",
-      "3mo": "Données quotidiennes pour :",
-      "12mo": "Données mensuelles pour :",
-      "all_months": "Données mensuelles pour :",
-      "all_years": "Données annuelles pour :"
-    },
+    "24h": "24h",
     "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "Tout",
+    "3mo": "90 jours",
+    "12mo": "12 mois",
+    "all_months": "Tous les mois",
     "all_years": "Toutes les années",
-    "historical-linking": {
-      "3mo": "30j",
-      "72h": "72h",
-      "12mo": "12mo",
-      "all_months": "Tout",
-      "all_years": "Toutes les années"
-    },
+    "navigate": "Naviguer",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date indisponible",
       "description": "Redirection vers les données en temps réel"
     }
   },
-  "ranking-panel": {
-    "title": "Impact sur le climat par zone",
-    "subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
-    "search": "Rechercher une zone",
-    "no-results": "Aucun résultat trouvé pour cette recherche 🌍"
-  },
   "left-panel": {
     "applied-methodologies": {
-      "carbonintensity": "Electricity Maps - Intensité carbone",
+      "title": "Méthodologies utilisées",
       "estimations": "Electricity Maps - Estimations",
       "flowtracing": "Electricity Maps - Traçage des flux",
-      "title": "Méthodologies utilisées",
+      "carbonintensity": "Electricity Maps - Intensité carbone",
       "historicalAggregations": "Electricity Maps - Agrégations historiques"
     },
     "methodologies-and-data-sources": {
@@ -267,69 +261,85 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Intensité carbone horaire",
+      "24h": "Intensité carbone",
+      "72h": "Intensité carbone",
       "3mo": "Intensité carbone quotidienne",
       "12mo": "Intensité carbone mensuelle",
       "all_months": "Intensité carbone mensuelle",
       "all_years": "Intensité carbone annuelle"
     },
     "emissions": {
-      "72h": "Émissions de CO2 horaires",
+      "24h": "Émissions de CO2",
+      "72h": "Émissions de CO2",
       "3mo": "Émissions de CO2 quotidiennes",
       "12mo": "Émissions de CO2 mensuelles",
       "all_months": "Émissions de CO2 mensuelles",
       "all_years": "Émissions de CO2 annuelles"
     },
     "emissionsorigin": {
-      "72h": "Origine des émissions de CO2 horaires",
+      "24h": "Origine des émissions de CO2",
+      "72h": "Origine des émissions de CO2",
       "3mo": "Origine des émissions de CO2 quotidiennes",
       "12mo": "Origine des émissions de CO2 mensuelles",
       "all_months": "Origine des émissions de CO2 mensuelles",
       "all_years": "Origine des émissions de CO2 annuelles"
     },
     "emissionsproduction": {
-      "72h": "Origine des émissions de CO2 horaires",
+      "24h": "Émissions de CO2 pour la production",
+      "72h": "Origine des émissions de CO2",
       "3mo": "Émissions quotidiennes pour la production",
       "12mo": "Émissions mensuelles pour la production",
       "all_months": "Émissions mensuelles pour la production",
       "all_years": "Émissions annuelles pour la production"
     },
     "electricityorigin": {
-      "72h": "Origine de l'électricité horaire",
+      "24h": "Origine de l'électricité",
+      "72h": "Origine de l'électricité",
       "3mo": "Origine de l'électricité quotidienne",
       "12mo": "Origine de l'électricité mensuelle",
       "all_months": "Origine de l'électricité mensuelle",
       "all_years": "Origine de l'électricité annuelle"
     },
     "electricityproduction": {
-      "72h": "Production d'électricité horaire",
+      "24h": "Production d'électricité",
+      "72h": "Production d'électricité",
       "3mo": "Production d'électricité quotidienne",
       "12mo": "Production d'électricité mensuelle",
       "all_months": "Production d'électricité mensuelle",
       "all_years": "Production d'électricité annuelle"
     },
     "electricityprices": {
-      "72h": "Prix horaires de l'électricité",
+      "24h": "Prix de l'électricité",
+      "72h": "Prix de l'électricité",
       "3mo": "Prix quotidiens de l'électricité",
       "12mo": "Prix mensuels de l'électricité",
       "all_months": "Prix mensuels de l'électricité",
       "all_years": "Prix annuels de l'électricité"
     },
     "netExchange": {
-      "72h": "Échanges nets horaires",
+      "24h": "Échanges nets d'électricité",
+      "72h": "Échanges nets d'électricité",
       "3mo": "Échanges nets quotidiens",
       "12mo": "Échanges nets mensuels",
       "all_months": "Échanges nets mensuels",
       "all_years": "Échanges nets annuels"
+    },
+    "electricityLoad": {
+      "24h": "Charge électrique",
+      "72h": "Charge électrique",
+      "3mo": "Charge électrique quotidienne",
+      "12mo": "Charge électrique mensuelle",
+      "all_months": "Charge électrique mensuelle",
+      "all_years": "Charge électrique annuelle"
     },
     "not-enough-data": "Pas assez de données disponibles pour afficher le graphique",
     "exchange-delay": "Les données d'échange peuvent être retardées jusqu'à 48 heures."
   },
   "footer": {
     "foundbugs": "Un bug ? Une idée ? Cliquez",
-    "here": "ici",
     "faq-text": "Tout n’est pas clair ? Passez voir notre",
-    "faq": "foire aux questions."
+    "faq": "foire aux questions.",
+    "here": "ici"
   },
   "legends": {
     "windpotential": "Potentiel éolien",
@@ -348,11 +358,17 @@
     "carbonintensityexport": "Intensité carbone de l’export",
     "ofinstalled": "de la capacité installée",
     "utilizing": "utilisant",
+    "representing": "représentant",
+    "ofemissions": "des émissions",
     "withcarbonintensity": "avec une intensité carbone de",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "layers": "Calques de la carte",
     "showWindLayer": "Voir le calque de vent",
     "hideWindLayer": "Masquer le calque de vent",
     "showSolarLayer": "Voir le calque d’ensoleillement",
     "hideSolarLayer": "Masquer le calque d’ensoleillement",
+    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
     "changeTheme": "Changer de thème",
     "noParserInfo": "Pas de données disponibles",
     "temporaryDataOutage": "Données temporairement indisponibles",
@@ -360,18 +376,15 @@
     "production": "production",
     "consumption": "consommation",
     "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
+    "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
     "selectLanguage": "Choisissez une langue",
     "dataIsDelayed": "Données en retard",
-    "representing": "représentant",
-    "ofemissions": "des émissions",
-    "zoomIn": "Zoomer",
-    "zoomOut": "Dézoomer",
-    "weatherDisabled": "Les données météo ne sont pas disponibles actuellement",
-    "aggregateInfo": "Basculer entre une vue détaillée d'une zone et une vue agrégée par pays",
-    "netExchange": "Échange net",
     "price": "Prix",
+    "netExchange": "Échanges nets",
     "importing": "Important",
-    "exporting": "Exportant"
+    "exporting": "Exportant",
+    "flowTraced": "Les données de flux représentent le flux physique d'électricité",
+    "nonFlowTraced": "Les données hors flux ne prennent pas en compte les importations et les exportations"
   },
   "aria": {
     "label": {
@@ -381,7 +394,10 @@
       "solarLayer": "Calque d'ensoleillement",
       "changeTheme": "Changer le thème",
       "hideSidePanel": "Masquer le panneau latéral",
-      "showSidePanel": "Afficher le panneau latéral"
+      "showSidePanel": "Afficher le panneau latéral",
+      "layers": "Calques de la carte",
+      "zoomIn": "Zoommer",
+      "zoomOut": "Dézoomer"
     }
   },
   "aggregateButtons": {
@@ -394,8 +410,8 @@
     "system": "Système"
   },
   "updatePrompt": {
-    "description": "Une nouvelle version de l'application est disponible, mettre à jour maintenant ?",
-    "update": "Mettre à jour",
+    "description": "Une nouvelle version de l'application est disponible",
+    "update": "Recharger",
     "dismiss": "Ignorer"
   },
   "misc": {
@@ -419,7 +435,6 @@
   "coal": "charbon",
   "oil": "fioul",
   "unknown": "inconnu",
-  "ofCO2eq": "de CO₂eq",
   "electricityStoredUsing": "est stockée via",
   "emissionsStoredUsing": "sont stockées via",
   "electricityExportedTo": "est exportée vers",
@@ -429,6 +444,7 @@
   "electricityAvailableIn": "de l'électricité disponible en",
   "emissionsAvailableIn": "des émissions de l'électricité disponible en",
   "comesFrom": "est générée via",
+  "ofCO2eq": "de CO₂eq",
   "theMap": {
     "groupName": "La carte",
     "mapColors-question": "Que signifient les couleurs sur la carte ?",
@@ -520,11 +536,11 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AT": {
-      "zoneName": "Autriche"
-    },
     "AR": {
       "zoneName": "Argentine"
+    },
+    "AT": {
+      "zoneName": "Autriche"
     },
     "AU": {
       "zoneName": "Australie"
@@ -557,13 +573,13 @@
       "countryName": "Australie",
       "zoneName": "Île du Cap Barren"
     },
-    "AU-TAS-FI": {
-      "countryName": "Australie",
-      "zoneName": "Île Flinders"
-    },
     "AU-TAS-KI": {
       "countryName": "Australie",
       "zoneName": "Tasmanie (Île King)"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Australie",
+      "zoneName": "Île Flinders"
     },
     "AU-VIC": {
       "countryName": "Australie",
@@ -671,21 +687,21 @@
       "countryName": "Canada",
       "zoneName": "Manitoba"
     },
-    "CA-NL": {
-      "countryName": "Canada",
-      "zoneName": "Terre-Neuve-et-Labrador"
-    },
     "CA-NB": {
       "countryName": "Canada",
       "zoneName": "Nouveau-Brunswick"
     },
-    "CA-NT": {
+    "CA-NL": {
       "countryName": "Canada",
-      "zoneName": "Territoires du Nord-Ouest"
+      "zoneName": "Terre-Neuve-et-Labrador"
     },
     "CA-NS": {
       "countryName": "Canada",
       "zoneName": "Nouvelle-Écosse"
+    },
+    "CA-NT": {
+      "countryName": "Canada",
+      "zoneName": "Territoires du Nord-Ouest"
     },
     "CA-NU": {
       "countryName": "Canada",
@@ -726,21 +742,21 @@
     "CI": {
       "zoneName": "Côte d’Ivoire"
     },
-    "CL-SEM": {
+    "CL-CHP": {
       "countryName": "Chili",
-      "zoneName": "SEM"
+      "zoneName": "Île de Pâques"
     },
     "CL-SEA": {
       "countryName": "Chili",
       "zoneName": "SEA"
     },
+    "CL-SEM": {
+      "countryName": "Chili",
+      "zoneName": "SEM"
+    },
     "CL-SEN": {
       "countryName": "Chili",
       "zoneName": "SEN"
-    },
-    "CL-CHP": {
-      "countryName": "Chili",
-      "zoneName": "Île de Pâques"
     },
     "CM": {
       "zoneName": "Cameroun"
@@ -809,7 +825,7 @@
       "zoneName": "Egypte"
     },
     "EH": {
-      "zoneName": "Sahara Occidental"
+      "zoneName": "Sahara occidental"
     },
     "ER": {
       "zoneName": "Érythrée"
@@ -1019,6 +1035,14 @@
     "IN-WE": {
       "countryName": "Inde",
       "zoneName": "Ouest"
+    },
+    "IN-AN": {
+      "countryName": "Inde",
+      "zoneName": "Andaman and Nicobar Islands"
+    },
+    "IN-HP": {
+      "countryName": "Inde",
+      "zoneName": "Himachal Pradesh"
     },
     "IO": {
       "zoneName": "Territoire britannique de l’océan Indien"
@@ -1419,13 +1443,13 @@
       "countryName": "Russie",
       "zoneName": "Sibérie"
     },
-    "RU-EU": {
-      "countryName": "Russie",
-      "zoneName": "Arctique"
-    },
     "RU-AS": {
       "countryName": "Russie",
       "zoneName": "Orient"
+    },
+    "RU-EU": {
+      "countryName": "Russie",
+      "zoneName": "Arctique"
     },
     "RU-FE": {
       "countryName": "Russie",
@@ -1551,14 +1575,15 @@
       "zoneName": "Ukraine"
     },
     "UA-CR": {
-      "zoneName": "Crimée",
-      "countryName": "Ukraine"
+      "countryName": "Ukraine",
+      "zoneName": "Crimée"
     },
     "UG": {
       "zoneName": "Ouganda"
     },
     "US": {
-      "zoneName": "États-Unis"
+      "zoneName": "États-Unis",
+      "seoZoneName": "États-Unis d'Amérique - U.S."
     },
     "US-AK": {
       "countryName": "États-Unis",
@@ -1568,17 +1593,26 @@
       "countryName": "États-Unis",
       "zoneName": "Autorité électrique d'Alaska du Sud"
     },
+    "US-HI": {
+      "countryName": "États-Unis",
+      "zoneName": "Hawaii"
+    },
     "US-CAL-BANC": {
       "countryName": "États-Unis",
-      "zoneName": "Autorité d'équilibrage de la Californie du Nord"
+      "displayName": "BANC",
+      "zoneName": "Autorité d'équilibrage de la Californie du Nord",
+      "seoZoneName": "Autorité d'équilibrage de la Californie du Nord - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "États-Unis",
-      "zoneName": "Opérateur de réseau indépendant de Californie"
+      "displayName": "Californie ISO",
+      "zoneName": "Opérateur de réseau indépendant de Californie",
+      "seoZoneName": "Opérateur de réseau indépendant de Californie - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "États-Unis",
-      "zoneName": "District d'irrigation impérial"
+      "zoneName": "District d'irrigation impérial",
+      "seoZoneName": "District d'irrigation impérial - Californie"
     },
     "US-CAL-LDWP": {
       "countryName": "États-Unis",
@@ -1590,15 +1624,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "États-Unis",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "États-Unis",
@@ -1610,6 +1647,7 @@
     },
     "US-CAR-YAD": {
       "countryName": "États-Unis",
+      "displayName": "Génération d'énergie Alcoa",
       "zoneName": "Génération d'énergie Alcoa, Inc. Division de Yadkin"
     },
     "US-CENT-SPA": {
@@ -1618,7 +1656,9 @@
     },
     "US-CENT-SWPP": {
       "countryName": "États-Unis",
-      "zoneName": "Pool énergétique du sud-ouest"
+      "displayName": "SPP",
+      "zoneName": "Pool énergétique du sud-ouest",
+      "seoZoneName": "Pool énergétique du sud-ouest - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "États-Unis",
@@ -1658,7 +1698,9 @@
     },
     "US-MIDA-PJM": {
       "countryName": "États-Unis",
-      "zoneName": "PJM Interconnection, Llc"
+      "displayName": "PJM",
+      "zoneName": "PJM Interconnection, Llc",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "États-Unis",
@@ -1666,15 +1708,19 @@
     },
     "US-MIDW-LGEE": {
       "countryName": "États-Unis",
+      "displayName": "Compagnie de gaz et d'électricité de Louisville",
       "zoneName": "Compagnie de gaz et d'électricité de Louisville et services publics du Kentucky"
     },
     "US-MIDW-MISO": {
       "countryName": "États-Unis",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
+      "displayName": "MISO",
+      "zoneName": "Midcontinent Independent Transmission System Operator, Inc.",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "États-Unis",
-      "zoneName": "Iso Nouvelle-Angleterre Inc."
+      "zoneName": "Iso Nouvelle-Angleterre Inc.",
+      "seoZoneName": "Iso Nouvelle-Angleterre - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "États-Unis",
@@ -1726,7 +1772,9 @@
     },
     "US-NW-PSCO": {
       "countryName": "États-Unis",
-      "zoneName": "Société de service public du Colorado"
+      "displayName": "PSCo",
+      "zoneName": "Société de service public du Colorado",
+      "seoZoneName": "Société de service public du Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "États-Unis",
@@ -1742,15 +1790,18 @@
     },
     "US-NW-WACM": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Rocky Mountains",
       "zoneName": "Western Area Power Administration - Région des Rocheuses"
     },
     "US-NW-WAUW": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Upper Great Plains",
       "zoneName": "Administration de l'électricité de la région de l'Ouest UGP Ouest"
     },
     "US-NY-NYIS": {
       "countryName": "États-Unis",
-      "zoneName": "Exploitant de réseau indépendant de New York"
+      "zoneName": "Exploitant de réseau indépendant de New York",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "États-Unis",
@@ -1782,15 +1833,20 @@
     },
     "US-SW-WALC": {
       "countryName": "États-Unis",
+      "displayName": "WAPA Desert Southwest",
       "zoneName": "Western Area Power Administration - Région du sud-ouest désertique"
     },
     "US-TEN-TVA": {
       "countryName": "États-Unis",
-      "zoneName": "Autorité de la vallée du Tennessee"
+      "displayName": "TVA",
+      "zoneName": "Autorité de la vallée du Tennessee",
+      "seoZoneName": "Autorité de la vallée du Tennessee - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "États-Unis",
-      "zoneName": "Conseil de fiabilité électrique du Texas, Inc."
+      "displayName": "ERCOT",
+      "zoneName": "Conseil de fiabilité électrique du Texas, Inc.",
+      "seoZoneName": "Conseil de fiabilité électrique du Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"

@@ -5,26 +5,38 @@ bounding_box:
     - 40.781817
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 261.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 32.8
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1497.1
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1391.1
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1343.6
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1368.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1287.6
@@ -34,31 +46,58 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 1253.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1403.6
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 1364.6
   hydro storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 107.6
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 134.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 161.4
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 134.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 161.4
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 7.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 12.0
+    - datetime: '2017-12-01'
       source: EIA.gov
       value: 17.0
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 18.5
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 119.5
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 499.0
 comment: Southwestern Power Administration
@@ -368,3 +407,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Southwestern Power Administration
+country_name: USA

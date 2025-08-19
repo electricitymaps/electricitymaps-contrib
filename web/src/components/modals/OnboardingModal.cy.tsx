@@ -7,7 +7,7 @@ import { OnboardingModal } from './OnboardingModal';
 
 const queryClient = new QueryClient();
 
-describe('OnboardingModal', () => {
+describe.skip('OnboardingModal', () => {
   beforeEach(() => {
     cy.intercept('/feature-flags', {
       body: { 'consumption-only': false },

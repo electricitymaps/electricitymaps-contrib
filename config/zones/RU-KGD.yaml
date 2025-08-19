@@ -19,3 +19,5 @@ fallbackZoneMixes:
       wind: 0.015
 region: Europe
 timezone: Europe/Kaliningrad
+zone_name: Kaliningrad
+country_name: Russia

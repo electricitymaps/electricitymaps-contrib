@@ -1,20 +1,20 @@
-import { Capacitor } from '@capacitor/core';
 import useGetZone from 'api/getZone';
 import ApiButton from 'components/buttons/ApiButton';
 import GlassContainer from 'components/GlassContainer';
 import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
-import { Charts, SpatialAggregate } from 'utils/constants';
-import { round } from 'utils/helpers';
+import { Charts, SpatialAggregate, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
@@ -22,13 +22,14 @@ import {
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
+import CurrentGridAlertsCard from './CurrentGridAlertsCard';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import EstimationCard from './EstimationCard';
+import ExperimentalCard from './ExperimentalCard';
+import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
 import ZoneHeader from './ZoneHeader';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
 
 export default function ZoneDetails(): JSX.Element {
   const { zoneId } = useParams<RouteParameters>();
@@ -36,16 +37,18 @@ export default function ZoneDetails(): JSX.Element {
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { data, isError, isLoading } = useGetZone();
   const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
   const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
   const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
-  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
-  const hasEstimationPill =
-    Boolean(estimationMethod) || Boolean(roundedEstimatedPercentage);
+  const { estimationMethod } = selectedData || {};
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
+
+  const trackEvent = useTrackEvent();
+  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
@@ -67,7 +70,6 @@ export default function ZoneDetails(): JSX.Element {
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
     [data]
   );
-  const zoneMessage = data?.zoneMessage;
 
   // We isolate the component which is independant of `selectedData`
   // in order to avoid re-rendering it needlessly
@@ -80,15 +82,13 @@ export default function ZoneDetails(): JSX.Element {
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
-            <EstimationCard
-              zoneKey={zoneId}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={roundedEstimatedPercentage}
-            />
-          )}
-          <ApiButton backgroundClasses="mt-3 mb-1" type="primary" />
+          <CurrentGridAlertsCard />
+          <BarBreakdownChart hasEstimationPill={hasEstimationOrAggregationPill} />
+          <ApiButton
+            backgroundClasses="mt-3 mb-1"
+            type="primary"
+            onClick={trackCtaMiddle}
+          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
@@ -97,11 +97,16 @@ export default function ZoneDetails(): JSX.Element {
             />
           )}
 
+          <GridAlertsCard
+            datetimes={datetimes}
+            timeRange={timeRange}
+            displayByEmissions={displayByEmissions}
+          />
           <MethodologyCard />
           <HorizontalDivider />
           <div className="flex items-center justify-between gap-2">
             <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
-            <ApiButton size="sm" />
+            <ApiButton size="sm" onClick={trackCtaForecast} />
           </div>
           <Attribution zoneId={zoneId} />
         </ZoneDetailsContent>
@@ -111,13 +116,13 @@ export default function ZoneDetails(): JSX.Element {
       zoneDataStatus,
       isLoading,
       isError,
-      hasEstimationPill,
-      zoneMessage,
-      roundedEstimatedPercentage,
+      hasEstimationOrAggregationPill,
       datetimes,
       timeRange,
       displayByEmissions,
       t,
+      trackCtaForecast,
+      trackCtaMiddle,
     ]
   );
 
@@ -131,23 +136,30 @@ export default function ZoneDetails(): JSX.Element {
     return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
 
-  const isIosCapacitor =
-    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'ios';
   return (
-    <GlassContainer className="pointer-events-auto z-[21] flex h-full flex-col border-0 pb-2 pt-10 transition-all duration-500 sm:inset-3 sm:bottom-48 sm:h-auto sm:border sm:pt-0">
+    <GlassContainer
+      className={twMerge(
+        'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
+        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
+      )}
+    >
       <section className="h-full w-full">
         <ZoneHeader zoneId={zoneId} isEstimated={false} />
         <div
           id="panel-scroller"
           className={twMerge(
             // TODO: Can we set the height here without using calc and specific zone-header value?
-            'h-full flex-1 overflow-y-scroll px-3 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4',
-            isIosCapacitor ? 'pb-72' : 'pb-32'
+            'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
           )}
         >
-          <ZoneHeaderGauges zoneKey={zoneId} />
           {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
             <DisplayByEmissionToggle />
+          )}
+          {timeRange === TimeRange.H24 && (
+            <ExperimentalCard
+              title={t('experiment.5min.title')}
+              description={t('experiment.5min.description')}
+            />
           )}
           {zoneDetailsContent}
         </div>

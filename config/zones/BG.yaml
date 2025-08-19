@@ -4,6 +4,10 @@ bounding_box:
   - - 28.5580814959
     - 44.2349230007
 capacity:
+  battery storage:
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 220.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -43,6 +47,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 699.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 729.0
   geothermal:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -69,6 +76,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 2349.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2347.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -80,6 +90,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 2080.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2000.0
   oil:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -109,6 +122,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4055.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4873.0
   unknown:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -123,6 +139,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 705.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 711.0
 contributors:
   - yurukov
   - ultibo
@@ -503,3 +522,5 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Sofia
+zone_name: Bulgaria
+country_name: Bulgaria

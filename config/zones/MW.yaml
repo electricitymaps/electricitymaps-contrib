@@ -18,19 +18,16 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2018-01-01'
+      value: 0.0
+    - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
+      value: 10.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 140.0
+      value: 70.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 180.0
+      value: 110.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -46,3 +43,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre
+zone_name: Malawi
+country_name: Malawi

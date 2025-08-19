@@ -16,26 +16,27 @@ import { twMerge } from 'tailwind-merge';
 
 import { GlassBackdrop } from './GlassContainer';
 
-export type ToggleButtonOptions = Array<{
-  value: string;
+export type ToggleButtonOptions<T extends string> = Array<{
+  value: T;
   translationKey: string;
   dataTestId?: string;
 }>;
-interface ToggleButtonProperties {
-  options: ToggleButtonOptions;
-  selectedOption: string;
-  onToggle: (option: string) => void;
+interface ToggleButtonProperties<T extends string> {
+  options: ToggleButtonOptions<T>;
+  selectedOption: T;
+  // radix gives back an empty string if a new value is not selected
+  onToggle: (option: T | '') => void;
   tooltipKey?: string;
   transparentBackground?: boolean;
 }
 
-function ToggleButton({
+function ToggleButton<T extends string>({
   options,
   selectedOption,
   tooltipKey,
   onToggle,
   transparentBackground = true,
-}: ToggleButtonProperties): ReactElement {
+}: ToggleButtonProperties<T>): ReactElement {
   const { t } = useTranslation();
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const onToolTipClick = () => {
@@ -61,12 +62,12 @@ function ToggleButton({
         type="single"
         aria-label="Toggle between modes"
         value={selectedOption}
+        onValueChange={onToggle}
       >
         {options.map(({ value, translationKey, dataTestId }, key) => (
           <ToggleGroupItem
             key={`group-item-${key}`}
             value={value}
-            onClick={() => onToggle(value)}
             data-testid={`toggle-button-${dataTestId ?? value}`}
             className={twMerge(
               'inline-flex h-7 w-full items-center whitespace-nowrap rounded-full bg-neutral-100/0 px-3 text-xs dark:border dark:border-neutral-400/0 dark:bg-transparent',
@@ -116,4 +117,6 @@ function ToggleButton({
   );
 }
 
-export default memo(ToggleButton);
+// react and typescript doesn't pass through generics so we need to cast
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/37087#issuecomment-1765701020
+export default memo(ToggleButton) as typeof ToggleButton;

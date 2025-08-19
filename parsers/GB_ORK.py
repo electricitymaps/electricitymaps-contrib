@@ -9,6 +9,12 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.session import get_session_with_legacy_adapter
 
 # There is a 2MW storage battery on the islands.
@@ -17,6 +23,7 @@ from parsers.lib.session import get_session_with_legacy_adapter
 TIMEZONE = ZoneInfo("Europe/London")
 DATETIME_LINK = "https://distribution.ssen.co.uk/anmorkneygraph/"
 GENERATION_LINK = "https://distribution.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726"
+SOURCE = "ssen.co.uk"
 
 GENERATION_MAPPING = {
     "Live Demand": "Demand",
@@ -76,11 +83,11 @@ def get_datetime():
 
 
 def fetch_production(
-    zone_key: str = "GB-ORK",
+    zone_key: ZoneKey = ZoneKey("GB-ORK"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -88,24 +95,25 @@ def fetch_production(
     raw_data = get_json_data()
     raw_data.pop("Live Demand")
 
-    mapped_data = {}
-    mapped_data["unknown"] = raw_data.get("Orkney ANM", 0.0) + raw_data.get(
-        "Non-ANM Renewable Generation", 0.0
-    )
+    production_mix = ProductionMix()
+
+    # Add each renewable generation source separately
+    # ProductionMix.add_value() can handle None values directly
+    production_mix.add_value("unknown", raw_data.get("Orkney ANM"))
+    production_mix.add_value("unknown", raw_data.get("Non-ANM Renewable Generation"))
 
     dt = get_datetime()
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": dt,
-        "production": mapped_data,
-        "storage": {
-            "battery": None,
-        },
-        "source": "ssen.co.uk",
-    }
+    production_list = ProductionBreakdownList(logger=logger)
+    production_list.append(
+        zoneKey=zone_key,
+        datetime=dt,
+        production=production_mix,
+        storage=StorageMix(battery=None),
+        source=SOURCE,
+    )
 
-    return data
+    return production_list.to_list()
 
 
 def fetch_exchange(
@@ -114,25 +122,39 @@ def fetch_exchange(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
-    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     raw_data = get_json_data()
     dt = get_datetime()
 
     # +ve importing from mainland
     # -ve export to mainland
-    total_generation = raw_data["Orkney ANM"] + raw_data["Non-ANM Renewable Generation"]
-    netflow = raw_data["Live Demand"] - total_generation
+    # Handle None values safely
+    orkney_anm = raw_data.get("Orkney ANM")
+    non_anm_renewable = raw_data.get("Non-ANM Renewable Generation")
+    live_demand = raw_data.get("Live Demand")
 
-    data = {
-        "netFlow": netflow,
-        "datetime": dt,
-        "sortedZoneKeys": sorted_zone_keys,
-        "source": "ssen.co.uk",
-    }
+    # Only calculate netflow if all required data is available
+    if (
+        orkney_anm is not None
+        and non_anm_renewable is not None
+        and live_demand is not None
+    ):
+        total_generation = orkney_anm + non_anm_renewable
+        netflow = live_demand - total_generation
+    else:
+        netflow = None
 
-    return data
+    exchange_list = ExchangeList(logger=logger)
+    exchange_list.append(
+        zoneKey=sorted_zone_keys,
+        datetime=dt,
+        netFlow=netflow,
+        source=SOURCE,
+    )
+
+    return exchange_list.to_list()
 
 
 if __name__ == "__main__":

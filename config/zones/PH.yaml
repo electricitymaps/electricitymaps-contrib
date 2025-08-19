@@ -198,3 +198,5 @@ subZoneNames:
   - PH-MI
   - PH-VI
 timezone: Asia/Manila
+zone_name: Philippines
+country_name: Philippines

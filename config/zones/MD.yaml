@@ -11,14 +11,17 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1600.0
+      value: 1400.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1180.0
+      value: 1380.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -35,7 +38,10 @@ capacity:
       value: 60.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 90.0
+      value: 200.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 340.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -55,6 +61,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
 contributors:
   - systemcatch
   - alixunderplatz
@@ -271,12 +280,16 @@ fallbackZoneMixes:
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
 parsers:
-  consumption: MD.fetch_consumption
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   price: MD.fetch_price
-  production: MD.fetch_production
+  production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau
+zone_name: Moldova
+country_name: Moldova

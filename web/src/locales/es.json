@@ -99,17 +99,10 @@
     "now": "Ahora"
   },
   "estimation-badge": {
-    "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "No disponible"
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "estimated_generic_method": {
-      "title": "Los datos son estimados",
-      "pill": "Datos imprecisos",
-      "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
-    },
     "threshold_filtered": {
       "title": "Datos no disponibles",
       "pill": "Interrupción",
@@ -123,18 +116,6 @@
       "title": "Datos agregados",
       "body": "Los datos mostrados son el resultado de la agregación de valores horarios."
     }
-  },
-  "time-controller": {
-    "title": {
-      "3mo": "Datos diarios para:",
-      "12mo": "Datos mensuales para:",
-      "all_months": "Datos mensuales para:",
-      "all_years": "Datos anuales para:"
-    },
-    "3mo": "diario",
-    "12mo": "mensual",
-    "all_months": "mensual",
-    "all_years": "anual"
   },
   "footer": {
     "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
@@ -1271,7 +1252,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Estados Unidos contiguos"
+      "zoneName": "Estados Unidos"
     },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos",

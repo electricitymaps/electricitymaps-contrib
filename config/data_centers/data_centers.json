@@ -1,0 +1,1062 @@
+{
+  "gcp-us-central1": {
+    "provider": "gcp",
+    "lonlat": [-95.8028031, 41.1755951],
+    "displayName": "Southlands Campus (us-central1)",
+    "region": "us-central1",
+    "zoneKey": "US-CENT-SWPP",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-us-east1": {
+    "provider": "gcp",
+    "lonlat": [-80.088472, 33.105486],
+    "displayName": "Berkeley County (us-east1)",
+    "region": "us-east1",
+    "zoneKey": "US-CAR-SCEG",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-us-west1": {
+    "provider": "gcp",
+    "lonlat": [-121.2009427, 45.6317898],
+    "displayName": "The Dalles (us-west1)",
+    "region": "us-west1",
+    "zoneKey": "US-NW-PACW",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-northamerica-northeast2": {
+    "provider": "gcp",
+    "lonlat": [-85.0337392, 41.0233277],
+    "displayName": "Fort Wayne Campus (northamerica-northeast2)",
+    "region": "northamerica-northeast2",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-us-east4": {
+    "provider": "gcp",
+    "lonlat": [-82.6833958, 39.7261137],
+    "displayName": "Lancaster Data Center (us-east4)",
+    "region": "us-east4",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-europe-west1": {
+    "provider": "gcp",
+    "lonlat": [3.8580813, 50.4663049],
+    "displayName": "St Ghislain (europe-west1)",
+    "region": "europe-west1",
+    "zoneKey": "BE",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-us-west2": {
+    "provider": "gcp",
+    "lonlat": [-111.6706104, 33.3504314],
+    "displayName": "Mesa Campus (us-west2)",
+    "region": "us-west2",
+    "zoneKey": "US-SW-SRP",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-europe-west4": {
+    "provider": "gcp",
+    "lonlat": [5.0421531, 52.7954802],
+    "displayName": "Middenmeer (europe-west4)",
+    "region": "europe-west4",
+    "zoneKey": "NL",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-southamerica-west1": {
+    "provider": "gcp",
+    "lonlat": [-70.6973317, -33.3584722],
+    "displayName": "Quilicura (southamerica-west1)",
+    "region": "southamerica-west1",
+    "zoneKey": "CL-SEN",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-asia-northeast1": {
+    "provider": "gcp",
+    "lonlat": [140.1144645, 35.6420573],
+    "displayName": "Inzai (asia-northeast1)",
+    "region": "asia-northeast1",
+    "zoneKey": "JP-TK",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-europe-north1": {
+    "provider": "gcp",
+    "lonlat": [27.125318, 60.53985],
+    "displayName": "Hamina Finland Data Center (europe-north1)",
+    "region": "europe-north1",
+    "zoneKey": "FI",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-asia-southeast1": {
+    "provider": "gcp",
+    "lonlat": [103.7095924, 1.3512738],
+    "displayName": "Jurong West Campus (asia-southeast1)",
+    "region": "asia-southeast1",
+    "zoneKey": "SG",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-asia-east1": {
+    "provider": "gcp",
+    "lonlat": [120.4268396, 24.1404245],
+    "displayName": "Changhua Taiwan Data Center (asia-east1)",
+    "region": "asia-east1",
+    "zoneKey": "TW",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "gcp-europe-west3": {
+    "provider": "gcp",
+    "lonlat": [8.9713297, 50.1239022],
+    "displayName": "Hanau Data Center (europe-west3)",
+    "region": "europe-west3",
+    "zoneKey": "DE",
+    "status": "operational",
+    "source": "https://cloud.google.com/compute/docs/regions-zones",
+    "operationalSince": null
+  },
+  "azure-westus3": {
+    "provider": "azure",
+    "lonlat": [-111.763275, 34.395342],
+    "displayName": "West US 3",
+    "region": "westus3",
+    "zoneKey": "US-SW-AZPS",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2021"
+  },
+  "azure-westus2": {
+    "provider": "azure",
+    "lonlat": [-120.212613, 47.2868352],
+    "displayName": "West US 2",
+    "region": "westus2",
+    "zoneKey": "US-NW-BPAT",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2007"
+  },
+  "azure-westus": {
+    "provider": "azure",
+    "lonlat": [-118.755997, 36.7014631],
+    "displayName": "West US",
+    "region": "westus",
+    "zoneKey": "US-CAL-CISO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2012"
+  },
+  "azure-westcentralus": {
+    "provider": "azure",
+    "lonlat": [-107.568534, 43.1700264],
+    "displayName": "West Central US",
+    "region": "westcentralus",
+    "zoneKey": "US-NW-PACE",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
+  },
+  "azure-southcentralus": {
+    "provider": "azure",
+    "lonlat": [-96.87744141, 29.55434513],
+    "displayName": "South Central US",
+    "region": "southcentralus",
+    "zoneKey": "US-TEX-ERCO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2008"
+  },
+  "azure-northcentralus": {
+    "provider": "azure",
+    "lonlat": [-89.4337288, 40.0796606],
+    "displayName": "North Central US",
+    "region": "northcentralus",
+    "zoneKey": "US-MIDW-MISO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2009"
+  },
+  "azure-eastus2": {
+    "provider": "azure",
+    "lonlat": [-81.12304688, 36.66841892],
+    "displayName": "East US 2",
+    "region": "eastus2",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2012"
+  },
+  "azure-eastus": {
+    "provider": "azure",
+    "lonlat": [-78.13476563, 38.75408328],
+    "displayName": "East US",
+    "region": "eastus",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-centralus": {
+    "provider": "azure",
+    "lonlat": [-94.55932617, 41.4509614],
+    "displayName": "Central US",
+    "region": "centralus",
+    "zoneKey": "US-MIDW-MISO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-ukwest": {
+    "provider": "azure",
+    "lonlat": [-3.1791934, 51.4816546],
+    "displayName": "UK West",
+    "region": "ukwest",
+    "zoneKey": "GB",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
+  },
+  "azure-uksouth": {
+    "provider": "azure",
+    "lonlat": [-0.1276474, 51.5073219],
+    "displayName": "UK South",
+    "region": "uksouth",
+    "zoneKey": "GB",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
+  },
+  "azure-uaenorth": {
+    "provider": "azure",
+    "lonlat": [55.2707065, 25.2047397],
+    "displayName": "UAE North",
+    "region": "uaenorth",
+    "zoneKey": "AE",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
+  },
+  "azure-switzerlandnorth": {
+    "provider": "azure",
+    "lonlat": [8.8410422, 47.2744489],
+    "displayName": "Switzerland North",
+    "region": "switzerlandnorth",
+    "zoneKey": "CH",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
+  },
+  "azure-swedencentral": {
+    "provider": "azure",
+    "lonlat": [17.138836, 60.667761],
+    "displayName": "Sweden Central",
+    "region": "swedencentral",
+    "zoneKey": "SE-SE3",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2021"
+  },
+  "azure-spaincentral": {
+    "provider": "azure",
+    "lonlat": [-3.7035825, 40.4167047],
+    "displayName": "Spain Central",
+    "region": "spaincentral",
+    "zoneKey": "ES",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
+  },
+  "azure-qatarcentral": {
+    "provider": "azure",
+    "lonlat": [51.5264162, 26.2856329],
+    "displayName": "Qatar Central",
+    "region": "qatarcentral",
+    "zoneKey": "QA",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2022"
+  },
+  "azure-polandcentral": {
+    "provider": "azure",
+    "lonlat": [21.8067249, 52.2319581],
+    "displayName": "Poland Central",
+    "region": "polandcentral",
+    "zoneKey": "PL",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
+  },
+  "azure-norwayeast": {
+    "provider": "azure",
+    "lonlat": [10.7389701, 59.9133301],
+    "displayName": "Norway East",
+    "region": "norwayeast",
+    "zoneKey": "NO-NO1",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
+  },
+  "azure-newzealandnorth": {
+    "provider": "azure",
+    "lonlat": [174.7631803, -36.852095],
+    "displayName": "New Zealand North",
+    "region": "newzealandnorth",
+    "zoneKey": "NZ",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
+  },
+  "azure-mexicocentral": {
+    "provider": "azure",
+    "lonlat": [-99.84756, 20.8542575],
+    "displayName": "Mexico Central",
+    "region": "mexicocentral",
+    "zoneKey": "MX",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2024"
+  },
+  "azure-koreacentral": {
+    "provider": "azure",
+    "lonlat": [126.9782914, 37.5666791],
+    "displayName": "Korea Central",
+    "region": "koreacentral",
+    "zoneKey": "KR",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2017"
+  },
+  "azure-japanwest": {
+    "provider": "azure",
+    "lonlat": [135.490357, 34.6198813],
+    "displayName": "Japan West",
+    "region": "japanwest",
+    "zoneKey": "JP-KN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-japaneast": {
+    "provider": "azure",
+    "lonlat": [139.7594549, 37.6828387],
+    "displayName": "Japan East",
+    "region": "japaneast",
+    "zoneKey": "JP-TH",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-italynorth": {
+    "provider": "azure",
+    "lonlat": [9.6905, 45.2668],
+    "displayName": "Italy North",
+    "region": "italynorth",
+    "zoneKey": "IT-NO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
+  },
+  "azure-israelcentral": {
+    "provider": "azure",
+    "lonlat": [35.8667654, 31.5313113],
+    "displayName": "Israel Central",
+    "region": "israelcentral",
+    "zoneKey": "JO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2023"
+  },
+  "azure-indonesiacentral": {
+    "provider": "azure",
+    "lonlat": [106.827183, -6.1753942],
+    "displayName": "Indonesia Central",
+    "region": "indonesiacentral",
+    "zoneKey": "ID",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2025"
+  },
+  "azure-southindia": {
+    "provider": "azure",
+    "lonlat": [80.270186, 13.0836939],
+    "displayName": "South India",
+    "region": "southindia",
+    "zoneKey": "IN-SO",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2015"
+  },
+  "azure-centralindia": {
+    "provider": "azure",
+    "lonlat": [75.0544541, 18.521428],
+    "displayName": "Central India",
+    "region": "centralindia",
+    "zoneKey": "IN-WE",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2015"
+  },
+  "azure-germanywestcentral": {
+    "provider": "azure",
+    "lonlat": [8.6820917, 50.2106444],
+    "displayName": "Germany West Central",
+    "region": "germanywestcentral",
+    "zoneKey": "DE",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
+  },
+  "azure-francecentral": {
+    "provider": "azure",
+    "lonlat": [2.3514616, 48.8566969],
+    "displayName": "France Central",
+    "region": "francecentral",
+    "zoneKey": "FR",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
+  },
+  "azure-westeurope": {
+    "provider": "azure",
+    "lonlat": [5.0369813, 52.7570829],
+    "displayName": "West Europe",
+    "region": "westeurope",
+    "zoneKey": "NL",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
+  },
+  "azure-northeurope": {
+    "provider": "azure",
+    "lonlat": [-7.9794599, 52.865196],
+    "displayName": "North Europe",
+    "region": "northeurope",
+    "zoneKey": "IE",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2009"
+  },
+  "azure-chinanorth3": {
+    "provider": "azure",
+    "lonlat": [116.277987, 42.710633],
+    "displayName": "China North 3",
+    "region": "chinanorth3",
+    "zoneKey": "CN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2022"
+  },
+  "azure-chinanorth2": {
+    "provider": "azure",
+    "lonlat": [118.3976563, 39.63107677],
+    "displayName": "China North 2",
+    "region": "chinanorth2",
+    "zoneKey": "CN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
+  },
+  "azure-chinanorth": {
+    "provider": "azure",
+    "lonlat": [116.0912391, 40.5065084],
+    "displayName": "China North",
+    "region": "chinanorth",
+    "zoneKey": "CN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-chinaeast2": {
+    "provider": "azure",
+    "lonlat": [119.9265137, 30.57015912],
+    "displayName": "China East 2",
+    "region": "chinaeast2",
+    "zoneKey": "CN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
+  },
+  "azure-chinaeast": {
+    "provider": "azure",
+    "lonlat": [121.9692071, 31.2322758],
+    "displayName": "China East",
+    "region": "chinaeast",
+    "zoneKey": "CN",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-canadaeast": {
+    "provider": "azure",
+    "lonlat": [-71.2352226, 46.8259601],
+    "displayName": "Canada East",
+    "region": "canadaeast",
+    "zoneKey": "CA-QC",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
+  },
+  "azure-canadacentral": {
+    "provider": "azure",
+    "lonlat": [-79.3839347, 43.6534817],
+    "displayName": "Canada Central",
+    "region": "canadacentral",
+    "zoneKey": "CA-ON",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2016"
+  },
+  "azure-brazilsouth": {
+    "provider": "azure",
+    "lonlat": [-46.66992188, -23.74512587],
+    "displayName": "Brazil South",
+    "region": "brazilsouth",
+    "zoneKey": "BR-CS",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-australiacentral": {
+    "provider": "azure",
+    "lonlat": [149.1012676, -35.2975906],
+    "displayName": "Australia Central",
+    "region": "australiacentral",
+    "zoneKey": "AU-NSW",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2018"
+  },
+  "azure-australiasoutheast": {
+    "provider": "azure",
+    "lonlat": [144.9631608, -37.8142176],
+    "displayName": "Australia Southeast",
+    "region": "australiasoutheast",
+    "zoneKey": "AU-VIC",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-australiaeast": {
+    "provider": "azure",
+    "lonlat": [146.921097, -31.253218],
+    "displayName": "Australia East",
+    "region": "australiaeast",
+    "zoneKey": "AU-NSW",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2014"
+  },
+  "azure-southeastasia": {
+    "provider": "azure",
+    "lonlat": [105.3, 1.13],
+    "displayName": "Southeast Asia",
+    "region": "southeastasia",
+    "zoneKey": "DK-DK2",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
+  },
+  "azure-eastasia": {
+    "provider": "azure",
+    "lonlat": [114.109497, 22.396427],
+    "displayName": "East Asia",
+    "region": "eastasia",
+    "zoneKey": "HK",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2010"
+  },
+  "azure-southafricanorth": {
+    "provider": "azure",
+    "lonlat": [28.047304, -26.204103],
+    "displayName": "South Africa North",
+    "region": "southafricanorth",
+    "zoneKey": "ZA",
+    "status": "operational",
+    "source": "https://datacenters.microsoft.com",
+    "operationalSince": "2019"
+  },
+  "aws-us-east-1": {
+    "provider": "aws",
+    "lonlat": [-77.4291, 39.0067],
+    "displayName": "N. Virginia (us-east-1)",
+    "region": "us-east-1",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2006"
+  },
+  "aws-us-east-2": {
+    "provider": "aws",
+    "lonlat": [-83.1406, 40.1025],
+    "displayName": "Ohio (us-east-2)",
+    "region": "us-east-2",
+    "zoneKey": "US-MIDA-PJM",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2016"
+  },
+  "aws-us-west-1": {
+    "provider": "aws",
+    "lonlat": [-121.9552, 37.3541],
+    "displayName": "N. California (us-west-1)",
+    "region": "us-west-1",
+    "zoneKey": "US-CAL-CISO",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2009"
+  },
+  "aws-us-west-2": {
+    "provider": "aws",
+    "lonlat": [-119.7006, 45.8399],
+    "displayName": "Oregon (us-west-2)",
+    "region": "us-west-2",
+    "zoneKey": "US-NW-PACW",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2011"
+  },
+  "aws-af-south-1": {
+    "provider": "aws",
+    "lonlat": [18.4231, -33.9221],
+    "displayName": "Cape Town (af-south-1)",
+    "region": "af-south-1",
+    "zoneKey": "ZA",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2020"
+  },
+  "aws-ap-east-1": {
+    "provider": "aws",
+    "lonlat": [114.1694, 22.3193],
+    "displayName": "Hong Kong (ap-east-1)",
+    "region": "ap-east-1",
+    "zoneKey": "HK",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2019"
+  },
+  "aws-ap-south-2": {
+    "provider": "aws",
+    "lonlat": [78.476, 17.366],
+    "displayName": "Hyderabad (ap-south-2)",
+    "region": "ap-south-2",
+    "zoneKey": "IN-SO",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2022"
+  },
+  "aws-ap-southeast-3": {
+    "provider": "aws",
+    "lonlat": [106.8229, -6.1944],
+    "displayName": "Jakarta (ap-southeast-3)",
+    "region": "ap-southeast-3",
+    "zoneKey": "ID",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2021"
+  },
+  "hlrs-de-stuttgart": {
+    "provider": "hlrs",
+    "displayName": "HLRS Stuttgart",
+    "zoneKey": "DE",
+    "lonlat": [9.0970622, 48.739457],
+    "region": "de-stuttgart",
+    "source": "https://www.hlrs.de/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "itenos-de-stuttgart-vaihingen": {
+    "provider": "itenos",
+    "displayName": "Itenos data center Stuttgart-Vaihingen-1",
+    "zoneKey": "DE",
+    "lonlat": [9.1285794, 48.7214015],
+    "region": "de-stuttgart-vaihingen",
+    "source": "https://itenos.de/en/data-center/data-center-germany/data-center-stuttgart-1/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "aws-ap-southeast-5": {
+    "provider": "aws",
+    "lonlat": [101.6841, 3.1319],
+    "displayName": "Malaysia (ap-southeast-5)",
+    "region": "ap-southeast-5",
+    "zoneKey": "MY-WM",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2024"
+  },
+  "aws-ap-southeast-4": {
+    "provider": "aws",
+    "lonlat": [144.9631, -37.8136],
+    "displayName": "Melbourne (ap-southeast-4)",
+    "region": "ap-southeast-4",
+    "zoneKey": "AU-VIC",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2023"
+  },
+  "aws-ap-south-1": {
+    "provider": "aws",
+    "lonlat": [72.8777, 19.076],
+    "displayName": "Mumbai (ap-south-1)",
+    "region": "ap-south-1",
+    "zoneKey": "IN-WE",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2016"
+  },
+  "aws-ap-northeast-3": {
+    "provider": "aws",
+    "lonlat": [135.5023, 34.6937],
+    "displayName": "Osaka (ap-northeast-3)",
+    "region": "ap-northeast-3",
+    "zoneKey": "JP-KN",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2018"
+  },
+  "aws-ap-northeast-2": {
+    "provider": "aws",
+    "lonlat": [126.9971, 37.5503],
+    "displayName": "Seoul (ap-northeast-2)",
+    "region": "ap-northeast-2",
+    "zoneKey": "KR",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2016"
+  },
+  "aws-ap-southeast-2": {
+    "provider": "aws",
+    "lonlat": [151.2093, -33.8688],
+    "displayName": "Sydney (ap-southeast-2)",
+    "region": "ap-southeast-2",
+    "zoneKey": "AU-NSW",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2012"
+  },
+  "aws-ap-southeast-7": {
+    "provider": "aws",
+    "lonlat": [100.5018, 13.7563],
+    "displayName": "Thailand (ap-southeast-7)",
+    "region": "ap-southeast-7",
+    "zoneKey": "TH",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2025"
+  },
+  "aws-ap-northeast-1": {
+    "provider": "aws",
+    "lonlat": [139.65, 35.6764],
+    "displayName": "Tokyo (ap-northeast-1)",
+    "region": "ap-northeast-1",
+    "zoneKey": "JP-TK",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2011"
+  },
+  "aws-ca-central-1": {
+    "provider": "aws",
+    "lonlat": [-73.5674, 45.5019],
+    "displayName": "Central (ca-central-1)",
+    "region": "ca-central-1",
+    "zoneKey": "CA-QC",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2016"
+  },
+  "aws-ca-west-1": {
+    "provider": "aws",
+    "lonlat": [-114.0719, 51.0447],
+    "displayName": "Calgary (ca-west-1)",
+    "region": "ca-west-1",
+    "zoneKey": "CA-AB",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2023"
+  },
+  "aws-eu-central-1": {
+    "provider": "aws",
+    "lonlat": [8.6821, 50.1109],
+    "displayName": "Frankfurt (eu-central-1)",
+    "region": "eu-central-1",
+    "zoneKey": "DE",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2014"
+  },
+  "aws-eu-west-1": {
+    "provider": "aws",
+    "lonlat": [-6.2603, 53.3498],
+    "displayName": "Ireland (eu-west-1)",
+    "region": "eu-west-1",
+    "zoneKey": "IE",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2008"
+  },
+  "aws-eu-west-2": {
+    "provider": "aws",
+    "lonlat": [-0.1276, 51.5072],
+    "displayName": "London (eu-west-2)",
+    "region": "eu-west-2",
+    "zoneKey": "GB",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2016"
+  },
+  "aws-eu-south-1": {
+    "provider": "aws",
+    "lonlat": [9.1824, 45.4685],
+    "displayName": "Milan (eu-south-1)",
+    "region": "eu-south-1",
+    "zoneKey": "IT-NO",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2020"
+  },
+  "aws-eu-west-3": {
+    "provider": "aws",
+    "lonlat": [2.3514, 48.8575],
+    "displayName": "Paris (eu-west-3)",
+    "region": "eu-west-3",
+    "zoneKey": "FR",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2017"
+  },
+  "aws-eu-south-2": {
+    "provider": "aws",
+    "lonlat": [-0.8247, 41.7737],
+    "displayName": "Spain (eu-south-2)",
+    "region": "eu-south-2",
+    "zoneKey": "ES",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2022"
+  },
+  "aws-eu-north-1": {
+    "provider": "aws",
+    "lonlat": [18.0656, 59.3327],
+    "displayName": "Stockholm (eu-north-1)",
+    "region": "eu-north-1",
+    "zoneKey": "SE-SE3",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2018"
+  },
+  "aws-eu-central-2": {
+    "provider": "aws",
+    "lonlat": [8.5417, 47.3769],
+    "displayName": "Zurich (eu-central-2)",
+    "region": "eu-central-2",
+    "zoneKey": "CH",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2022"
+  },
+  "aws-il-central-1": {
+    "provider": "aws",
+    "lonlat": [34.7818, 32.0853],
+    "displayName": "Tel Aviv (il-central-1)",
+    "region": "il-central-1",
+    "zoneKey": "IL",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2023"
+  },
+  "aws-mx-central-1": {
+    "provider": "aws",
+    "lonlat": [-100.3899, 20.5888],
+    "displayName": "Central (mx-central-1)",
+    "region": "mx-central-1",
+    "zoneKey": "MX",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2025"
+  },
+  "aws-me-central-1": {
+    "provider": "aws",
+    "lonlat": [55.2708, 25.2048],
+    "displayName": "UAE (me-central-1)",
+    "region": "me-central-1",
+    "zoneKey": "AE",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2022"
+  },
+  "aws-sa-east-1": {
+    "provider": "aws",
+    "lonlat": [-46.6396, -23.5558],
+    "displayName": "S\u00e3o Paulo (sa-east-1)",
+    "region": "sa-east-1",
+    "zoneKey": "BR-CS",
+    "status": "operational",
+    "source": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html",
+    "operationalSince": "2011"
+  },
+  "ovh-us-hillsboro": {
+    "provider": "ovh",
+    "displayName": "Hillsboro",
+    "zoneKey": "US-NW-BPAT",
+    "lonlat": [-122.992, 45.5225],
+    "region": "us-hillsboro",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-us-vint_hill": {
+    "provider": "ovh",
+    "displayName": "Vint Hill",
+    "zoneKey": "US-MIDA-PJM",
+    "lonlat": [-77.6652, 38.7506],
+    "region": "us-vint_hill",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-de-frankfurt": {
+    "provider": "ovh",
+    "displayName": "Frankfurt",
+    "zoneKey": "DE",
+    "lonlat": [8.33636, 50.4953],
+    "region": "de-frankfurt",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-au-sydney": {
+    "provider": "ovh",
+    "displayName": "Sydney",
+    "zoneKey": "AU-NSW",
+    "lonlat": [151.911, -33.8648],
+    "region": "au-sydney",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-ca-beauharnois": {
+    "provider": "ovh",
+    "displayName": "Beauharnois",
+    "zoneKey": "CA-QC",
+    "lonlat": [-73.8959, 45.3094],
+    "region": "ca-beauharnois",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-ca-toronto": {
+    "provider": "ovh",
+    "displayName": "Toronto",
+    "zoneKey": "CA-ON",
+    "lonlat": [-80.3165, 43.3625],
+    "region": "ca-toronto",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-fr-gravelines": {
+    "provider": "ovh",
+    "displayName": "Gravelines",
+    "zoneKey": "FR",
+    "lonlat": [2.15526, 51.0181],
+    "region": "fr-gravelines",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-fr-paris": {
+    "provider": "ovh",
+    "displayName": "Paris",
+    "zoneKey": "FR",
+    "lonlat": [2.35029, 48.8574],
+    "region": "fr-paris",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-fr-roubaix": {
+    "provider": "ovh",
+    "displayName": "Roubaix",
+    "zoneKey": "FR",
+    "lonlat": [3.20422, 50.6925],
+    "region": "fr-roubaix",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-fr-strasbourg": {
+    "provider": "ovh",
+    "displayName": "Strasbourg",
+    "zoneKey": "FR",
+    "lonlat": [7.75395, 48.5734],
+    "region": "fr-strasbourg",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-in-mumbai": {
+    "provider": "ovh",
+    "displayName": "Mumbai",
+    "zoneKey": "IN-WE",
+    "lonlat": [72.8147, 19.0774],
+    "region": "in-mumbai",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-pl-warsaw": {
+    "provider": "ovh",
+    "displayName": "Warsaw",
+    "zoneKey": "PL",
+    "lonlat": [20.8084, 52.2078],
+    "region": "pl-warsaw",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-gb-london": {
+    "provider": "ovh",
+    "displayName": "London",
+    "zoneKey": "GB",
+    "lonlat": [-0.078804, 51.5114],
+    "region": "gb-london",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  },
+  "ovh-sg-singapore": {
+    "provider": "ovh",
+    "displayName": "Singapore",
+    "zoneKey": "SG",
+    "lonlat": [103.895, 1.3179],
+    "region": "sg-singapore",
+    "source": "https://www.ovhcloud.com/fr/datacenters-ovhcloud/",
+    "operationalSince": null,
+    "status": "operational"
+  }
+}

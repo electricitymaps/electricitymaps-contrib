@@ -5,29 +5,47 @@ bounding_box:
     - 41.868139
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 9.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1838.1
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 1865.9
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 1913.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2549.9
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 734.1
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 737.6
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 737.1
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 739.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2557.2
@@ -35,18 +53,51 @@ capacity:
       source: EIA.gov
       value: 2553.7
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 71.2
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 120.5
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 123.0
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 125.7
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 129.2
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 130.2
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 131.5
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 133.0
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 145.0
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 147.4
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 149.1
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 162.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 164.6
@@ -62,12 +113,15 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 337.0
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 338.6
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Balancing Authority Of Northern California
@@ -383,3 +437,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Balancing Authority of Northern California
+zone_short_name: BANC
+country_name: USA

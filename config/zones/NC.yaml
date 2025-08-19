@@ -17,19 +17,19 @@ capacity:
       value: 30.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 40.0
+      value: 60.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 70.0
+      value: 100.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 100.0
+      value: 130.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 150.0
+      value: 180.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 180.0
+      value: 210.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -49,3 +49,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Noumea
+zone_name: New Caledonia
+country_name: New Caledonia

@@ -26,6 +26,9 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 662.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 636.0
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -53,7 +56,7 @@ capacity:
       value: 26388.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 26078.0
+      value: 25483.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -81,7 +84,7 @@ capacity:
       value: 5436.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 5724.0
+      value: 5725.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -169,7 +172,7 @@ capacity:
       value: 14609.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 17308.0
+      value: 17705.0
   unknown:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -182,7 +185,7 @@ capacity:
       value: 1643.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 1811.0
+      value: 1804.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -210,7 +213,7 @@ capacity:
       value: 9583.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 10299.0
+      value: 10293.0
 contributors:
   - corradio
   - wojciej
@@ -576,7 +579,6 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-  productionPerUnit: ENTSOE.fetch_production_per_units
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
@@ -597,3 +599,5 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Warsaw
+zone_name: Poland
+country_name: Poland

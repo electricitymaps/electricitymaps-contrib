@@ -5,7 +5,10 @@ bounding_box:
     - 35.5013030000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.0
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 2.2
     - datetime: '2021-12-01'
@@ -27,6 +30,36 @@ capacity:
       source: EIA.gov
       value: 148.7
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1758.8
+    - datetime: '2017-03-01'
+      source: EIA.gov
+      value: 1813.8
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 1868.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1848.7
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1925.4
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 1908.2
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 1932.9
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 1871.9
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 1987.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1975.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1917.5
@@ -45,7 +78,28 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1882.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1872.7
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 1881.2
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1878.0
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 17522.6
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 18462.1
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 17295.4
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 16164.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 15029.7
@@ -56,6 +110,30 @@ capacity:
       source: EIA.gov
       value: 12234.7
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 35594.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 34715.8
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 34607.0
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 34614.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 34767.5
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 34817.5
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 34829.7
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 34830.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 35949.5
@@ -86,11 +164,29 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 36372.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 36251.2
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 38992.5
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 36251.2
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3225.3
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 3311.4
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 3310.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3309.4
@@ -98,11 +194,17 @@ capacity:
       source: EIA.gov
       value: 3317.6
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1056.6
+    - datetime: '2018-01-01'
       source: EIA.gov
       value: 1306.6
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5818.2
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 6054.4
     - datetime: '2023-07-01'
@@ -112,7 +214,13 @@ capacity:
       source: EIA.gov
       value: 8282.4
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1132.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1188.3
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 1188.9
     - datetime: '2022-01-01'
@@ -127,7 +235,103 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 1346.1
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 1387.9
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1346.1
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 957.1
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 967.7
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 971.2
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 1053.2
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 1060.6
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 1063.0
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 1113.0
+    - datetime: '2017-11-01'
+      source: EIA.gov
+      value: 1205.9
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 1286.6
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1292.6
+    - datetime: '2018-02-01'
+      source: EIA.gov
+      value: 1323.6
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 1326.9
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1339.5
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 1340.5
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 1342.8
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 1346.5
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 1350.8
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 1354.4
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 1458.3
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 1878.3
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1892.4
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 2063.8
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 2069.5
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 2161.7
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 2170.4
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 2222.9
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 2500.9
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 2504.4
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 2524.4
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 2635.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2639.2
@@ -209,15 +413,36 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 5470.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 5746.9
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 5970.4
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 5746.9
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 5745.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 5744.9
   unknown:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 45.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 0.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 45.0
-    - datetime: '2022-01-01'
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Southern Company Services, Inc. - Trans
@@ -343,12 +568,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 943.0750138
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 950.540864
     gas:
       - datetime: '2020-01-01'
@@ -549,3 +772,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
+zone_name: Southern Company Services
+country_name: USA

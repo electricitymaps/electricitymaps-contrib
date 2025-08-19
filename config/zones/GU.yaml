@@ -27,3 +27,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guam
+zone_name: Guam
+country_name: Guam

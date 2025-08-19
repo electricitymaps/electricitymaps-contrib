@@ -7,13 +7,16 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
-    - datetime: '2019-01-01'
+    - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 10.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -27,3 +30,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Apia
+zone_name: Samoa
+country_name: Samoa

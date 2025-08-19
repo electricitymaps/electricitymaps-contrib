@@ -11,7 +11,9 @@ import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
 import App from 'App';
 import GlassContainer from 'components/GlassContainer';
 import LoadingSpinner from 'components/LoadingSpinner';
+import { useFeatureFlag } from 'features/feature-flags/api';
 import { zoneExists } from 'features/panels/zone/util';
+import { PostHog, PostHogProvider } from 'posthog-js/react';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
@@ -32,7 +34,14 @@ import enableErrorsInOverlay from 'utils/errorOverlay';
 import { getSentryUuid } from 'utils/getSentryUuid';
 import { refetchDataOnHourChange } from 'utils/refetching';
 
+declare global {
+  interface Window {
+    posthog?: PostHog;
+  }
+}
+
 const isProduction = import.meta.env.PROD;
+
 if (isProduction) {
   Sentry.init({
     dsn: Capacitor.isNativePlatform()
@@ -122,6 +131,7 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   const [searchParameters] = useSearchParams();
   const { urlTimeRange } = useParams<RouteParameters>();
   const location = useLocation();
+  const is5MinGranularityEnabled = useFeatureFlag('five-minute-granularity');
 
   if (!urlTimeRange) {
     return (
@@ -133,8 +143,13 @@ function TimeRangeAndResolutionGuardWrapper({ children }: { children: JSX.Elemen
   }
   let sanitizedTimeRange = urlTimeRange.toLowerCase();
 
-  if (sanitizedTimeRange === '24h') {
-    sanitizedTimeRange = TimeRange.H72;
+  if (!is5MinGranularityEnabled && sanitizedTimeRange === '24h') {
+    return (
+      <Navigate
+        to={`${location.pathname}/72h/hourly?${searchParameters}${location.hash}`}
+        replace
+      />
+    );
   }
 
   if (sanitizedTimeRange === '30d') {
@@ -252,7 +267,7 @@ const router = createBrowserRouter([
             <TimeRangeAndResolutionGuardWrapper>
               <Suspense
                 fallback={
-                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-48 sm:h-auto">
+                  <GlassContainer className="pointer-events-auto h-full sm:inset-3 sm:bottom-36 sm:h-auto">
                     <LoadingSpinner />
                   </GlassContainer>
                 }
@@ -276,17 +291,29 @@ const router = createBrowserRouter([
 ]);
 
 const container = document.querySelector('#root');
+
 if (container) {
   const root = createRoot(container);
+
   root.render(
     <StrictMode>
       <I18nextProvider i18n={i18n}>
         <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-          </QueryClientProvider>
+          <PostHogWrapper>
+            <QueryClientProvider client={queryClient}>
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </PostHogWrapper>
         </HelmetProvider>
       </I18nextProvider>
     </StrictMode>
   );
+}
+
+function PostHogWrapper({ children }: { children: JSX.Element }) {
+  const posthog = window?.posthog;
+  if (!posthog) {
+    return children;
+  }
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }

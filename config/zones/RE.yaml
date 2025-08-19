@@ -4,13 +4,52 @@ bounding_box:
   - - 56.33463
     - -20.421464
 capacity:
-  biomass: 215
-  coal: 211
-  gas: 80
-  hydro: 138
-  oil: 221
-  solar: 189
-  wind: 15
+  biomass:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 215.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 377.0
+  coal:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 211.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 0.0
+  gas:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 80.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 121.0
+  hydro:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 138.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 139.0
+  oil:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 221.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 0.0
+  solar:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 189.0
+    - datetime: '2025-04-12'
+      source: reunion.edf.fr
+      value: 210.0
+  wind:
+    - datetime: '2022-10-10'
+      source: reunion.edf.fr
+      value: 15.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
@@ -236,3 +275,5 @@ parsers:
   production: FR_O.fetch_production
 region: Africa
 timezone: Indian/Reunion
+zone_name: Réunion
+country_name: Réunion

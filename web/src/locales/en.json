@@ -1,4 +1,11 @@
 {
+  "experiment": {
+    "5min": {
+      "title": "New: 5-minute resolution",
+      "description": "Currently experimental. Available at no additional cost while we gather feedback and refine the functionality."
+    },
+    "feedbackCta": "Leave feedback"
+  },
   "info": {
     "title": "About Electricity Maps",
     "text": "is an API platform providing real-time and predictive electricity signals allowing any device to reduce their cost and emissions by informing them about the best time to consume electricity.",
@@ -8,7 +15,10 @@
   "settings-modal": {
     "title": "Settings",
     "flows": "Electricity flows",
-    "flow-tracing": "Flow-tracing tracks how electricity physically moves through interconnectors that link different zones"
+    "flow-tracing-link-label": "Flow-tracing",
+    "flow-tracing-link-description": "tracks how electricity physically moves through interconnectors that link different zones",
+    "home-link-description": "offers an API that delivers real-time and predictive electricity grid signals.",
+    "weather-layers-disallowed": "Weather data not available for this aggregation, switch to real-time to see live weather data"
   },
   "ranking-panel": {
     "title": "Electricity Grid Carbon Emissions",
@@ -151,6 +161,12 @@
       "now": "Now"
     }
   },
+  "grid-alerts-card": {
+    "show-more": "Show more",
+    "show-less": "Show less",
+    "experimental-mode": "This is free while in the experimental phase",
+    "tooltip": "This feature is currently in an experimental phase and available at no additional cost while we gather feedback and refine the functionality."
+  },
   "feedback-card": {
     "title": "Help us improve!",
     "success-message": "Your response helps us understand and improve the quality of our app.",
@@ -173,32 +189,24 @@
     "submit": "Submit"
   },
   "estimation-badge": {
-    "partially-estimated": "Partially estimated",
-    "fully-estimated": "Estimated",
     "outage": "Unavailable"
   },
   "estimation-card": {
     "link": "Read about our estimation models",
     "outage-details": "See details",
+    "synthetic": "Synthetic",
+    "preliminary": "Preliminary",
     "ESTIMATED_FORECASTS_HIERARCHY": {
       "title": "Data is preliminary",
-      "pill": "Preliminary",
       "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
       "title": "Data is preliminary",
-      "pill": "Preliminary",
       "body": "The data for this hour has not yet been reported. Our models fill these gaps, providing a complete, granular dataset in real time."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data is partially estimated",
-      "pill": "Partially estimated",
       "body": "The reported data for this zone is incomplete; our models fill in missing production modes and electricity flows to provide a complete view of the flow-traced electricity mix."
-    },
-    "estimated_generic_method": {
-      "title": "Data is estimated",
-      "pill": "Imprecise",
-      "body": "The published data for this zone is unavailable or incomplete. The data shown on the map is estimated using our best effort, but might differ from the actual values."
     },
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data is always estimated",
@@ -216,6 +224,7 @@
     },
     "aggregated": {
       "title": "Data is aggregated",
+      "pill": "Aggregated",
       "body": "The data consists of an aggregation of hourly values."
     },
     "aggregated_estimated": {
@@ -225,25 +234,14 @@
     }
   },
   "time-controller": {
-    "title": {
-      "72h": "72 hour data for:",
-      "3mo": "Daily data for:",
-      "12mo": "Monthly data for:",
-      "all_months": "Monthly data for:",
-      "all_years": "Yearly data for:"
-    },
-    "72h": "72h",
-    "3mo": "3mo",
-    "12mo": "12mo",
-    "all_months": "All",
+    "24h": "24 hours",
+    "72h": "72 hours",
+    "3mo": "90 days",
+    "12mo": "12 months",
+    "all_months": "All months",
     "all_years": "All years",
-    "historical-linking": {
-      "72h": "72h",
-      "3mo": "3mo",
-      "12mo": "12mo",
-      "all_months": "All",
-      "all_years": "All years"
-    },
+    "navigate": "Navigate",
+    "live": "Live",
     "date-unavailable": {
       "title": "Date unavailable",
       "description": "Redirecting to live data"
@@ -270,60 +268,76 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Hourly carbon intensity",
+      "24h": "Carbon intensity",
+      "72h": "Carbon intensity",
       "3mo": "Daily carbon intensity",
       "12mo": "Monthly carbon intensity",
       "all_months": "Monthly carbon intensity",
       "all_years": "Yearly carbon intensity"
     },
     "emissions": {
-      "72h": "Hourly carbon emissions",
+      "24h": "Carbon emissions",
+      "72h": "Carbon emissions",
       "3mo": "Daily carbon emissions",
       "12mo": "Monthly carbon emissions",
       "all_months": "Monthly carbon emissions",
       "all_years": "Yearly carbon emissions"
     },
     "emissionsorigin": {
-      "72h": "Hourly carbon emission origin",
+      "24h": "Carbon emission origin",
+      "72h": "Carbon emission origin",
       "3mo": "Daily carbon emission origin",
       "12mo": "Monthly carbon emission origin",
       "all_months": "Monthly carbon emission origin",
       "all_years": "Yearly carbon emission origin"
     },
     "emissionsproduction": {
-      "72h": "Hourly production emissions",
+      "24h": "Production emissions",
+      "72h": "Production emissions",
       "3mo": "Daily production emissions",
       "12mo": "Monthly production emissions",
       "all_months": "Monthly production emissions",
       "all_years": "Yearly production emissions"
     },
     "electricityorigin": {
-      "72h": "Hourly electricity mix",
+      "24h": "Electricity mix",
+      "72h": "Electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
       "all_months": "Monthly electricity mix",
       "all_years": "Yearly electricity mix"
     },
     "electricityproduction": {
-      "72h": "Hourly electricity mix",
+      "24h": "Electricity mix",
+      "72h": "Electricity mix",
       "3mo": "Daily electricity mix",
       "12mo": "Monthly electricity mix",
       "all_months": "Monthly electricity mix",
       "all_years": "Yearly electricity mix"
     },
     "electricityprices": {
-      "72h": "Hourly electricity prices",
+      "24h": "Electricity prices",
+      "72h": "Electricity prices",
       "3mo": "Daily electricity prices",
       "12mo": "Monthly electricity prices",
       "all_months": "Monthly electricity prices",
       "all_years": "Yearly electricity prices"
     },
     "netExchange": {
-      "72h": "Hourly electricity flow",
-      "3mo": "Daily electricity flow",
-      "12mo": "Monthly electricity flow",
-      "all_months": "Monthly electricity flow",
-      "all_years": "Yearly electricity flow"
+      "24h": "Electricity net flow",
+      "72h": "Electricity net flow",
+      "3mo": "Daily electricity net flow",
+      "12mo": "Monthly electricity net flow",
+      "all_months": "Monthly electricity net flow",
+      "all_years": "Yearly electricity net flow"
+    },
+    "electricityLoad": {
+      "24h": "Electricity load",
+      "72h": "Electricity load",
+      "3mo": "Daily electricity load",
+      "12mo": "Monthly electricity load",
+      "all_months": "Monthly electricity load",
+      "all_years": "Yearly electricity load"
     },
     "not-enough-data": "Not enough data available to display chart",
     "exchange-delay": "Flow data may be delayed by up to 48h."
@@ -374,6 +388,7 @@
     "dataIsDelayed": "Data is delayed",
     "price": "Price",
     "netExchange": "Electricity flow",
+    "load": "Electricity load",
     "importing": "Importing",
     "exporting": "Exporting",
     "flowTraced": "Flow-traced data accounts for physical electricity flow",
@@ -1567,7 +1582,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Contiguous United States",
+      "zoneName": "United States",
       "seoZoneName": "United States of America - U.S."
     },
     "US-AK": {

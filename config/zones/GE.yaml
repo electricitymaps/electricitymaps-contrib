@@ -35,6 +35,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 3450.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 3410.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -42,9 +45,15 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 60.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -267,3 +276,5 @@ parsers:
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia
 timezone: Asia/Tbilisi
+zone_name: Georgia
+country_name: Georgia

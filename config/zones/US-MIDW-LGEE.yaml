@@ -5,48 +5,78 @@ bounding_box:
     - 39.4703334770001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.0
+    - datetime: '2019-07-01'
       source: EIA.gov
       value: 2.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6545.6
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 6252.5
+    - datetime: '2020-06-01'
       source: EIA.gov
       value: 5807.2
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 5451.7
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4027.9
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 4011.6
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 3993.6
     - datetime: '2021-04-01'
       source: EIA.gov
       value: 3977.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 3353.6
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 133.0
+    - datetime: '2018-01-01'
       source: EIA.gov
       value: 137.8
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 11.5
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 10.6
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 10.0
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 13.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 14.7
@@ -57,11 +87,11 @@ capacity:
       source: EIA.gov
       value: 18.1
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Louisville Gas And Electric Company And Kentucky Utilities
@@ -168,12 +198,10 @@ emissionFactors:
         value: 854.24
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1040.9717968
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1043.382738
     gas:
       - datetime: '2020-01-01'
@@ -383,3 +411,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Louisville Gas and Electric Company and Kentucky Utilities
+zone_short_name: Louisville Gas And Electric Company
+country_name: USA

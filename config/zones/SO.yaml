@@ -2,11 +2,17 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 10.0
+      value: 0.0
     - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
     - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
   unknown:
@@ -22,3 +28,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mogadishu
+zone_name: Somalia
+country_name: Somalia

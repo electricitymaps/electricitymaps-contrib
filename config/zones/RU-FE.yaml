@@ -6,3 +6,5 @@ bounding_box:
 country: RU
 region: Europe
 timezone: Asia/Kamchatka
+zone_name: Far East
+country_name: Russia

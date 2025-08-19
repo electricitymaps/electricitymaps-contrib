@@ -74,3 +74,5 @@ fallbackZoneMixes:
         wind: 0.0
 region: Asia
 timezone: Asia/Baghdad
+zone_name: Iraq
+country_name: Iraq

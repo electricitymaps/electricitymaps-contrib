@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
@@ -22,6 +21,7 @@ from parsers.lib.exceptions import ParserException
 
 IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
+# 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -49,11 +49,11 @@ NPP_REGION_MAPPING = {
 }
 
 CEA_REGION_MAPPING = {
-    "उत्तरी क्षेत्र / Northern Region": "IN-NO",
-    "पश्चिमी क्षेत्र / Western Region": "IN-WE",
-    "दक्षिणी क्षेत्र / Southern Region": "IN-SO",
-    "पूर्वी क्षेत्र/ Eastern Region": "IN-EA",
-    "उत्तर-पूर्वी क्षेत्र  / North-Eastern Region": "IN-NE",
+    "northern region": "IN-NO",
+    "western region": "IN-WE",
+    "southern region": "IN-SO",
+    "eastern region": "IN-EA",
+    "north-eastern region": "IN-NE",
 }
 
 DEMAND_URL_VIDYUTPRAVAH = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
@@ -303,6 +303,10 @@ def fetch_npp_production(
 
     if r.status_code == 200:
         df_npp = pd.read_excel(r.content, header=3)
+        # Since 15/04/2025, a footer was added to the excel file.
+        # It modifies the structure of its columns. By removing the footer and then removing the empty columns, we can have a consistent structure.
+        df_npp = df_npp[df_npp[df_npp.columns[0]].notnull()]
+        df_npp = df_npp.dropna(axis="columns", how="all")
         df_npp = df_npp.rename(
             columns={
                 df_npp.columns[0]: "power_station",
@@ -350,7 +354,7 @@ def format_ren_production_data(
     url: str, zone_key: str, target_datetime: datetime
 ) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
-    df_ren = pd.read_excel(url, engine="openpyxl", header=5, skipfooter=2)
+    df_ren = pd.read_excel(url, engine="openpyxl", header=5)
     df_ren = df_ren.dropna(axis=0, how="all")
 
     # They changed format of the data from 2024/07/01
@@ -364,6 +368,7 @@ def format_ren_production_data(
             }
         )
     else:
+        # columns 4-7 are cumulative values for the month
         df_ren = df_ren.rename(
             columns={
                 df_ren.columns[0]: "region",
@@ -373,22 +378,29 @@ def format_ren_production_data(
             }
         )
 
-    df_ren.loc[:, "zone_key"] = (
-        df_ren["region"].apply(lambda x: x if "Region" in x else np.nan).backfill()
+    is_region = df_ren["region"].str.contains("Region")
+    # values should be "{Indian name}/{English name}"
+    df_ren["zone_key"] = (
+        df_ren["region"]
+        .loc[is_region]
+        .str.split("/")
+        .str[1]
+        .str.lower()
+        .map(CEA_REGION_MAPPING)
     )
 
-    df_ren["zone_key"] = df_ren["zone_key"].str.strip()
-    df_ren["zone_key"] = df_ren["zone_key"].map(CEA_REGION_MAPPING)
-
     zone_data = df_ren.loc[
-        (df_ren.zone_key == zone_key) & (~df_ren.region.str.contains("Region"))
-    ][["wind", "solar", "unknown"]].sum()
+        (df_ren["zone_key"] == zone_key), ["wind", "solar", "unknown"]
+    ]
+    if zone_data.shape != (1, 3):
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} renewable production data is not available",
+        )
+    zone_data = (zone_data / CONVERSION_GWH_MW).round(3)
+    zone_data = zone_data.iloc[0, :].to_dict()
 
-    renewable_production = {
-        key: round(zone_data.get(key) / CONVERSION_GWH_MW, 3) for key in zone_data.index
-    }
-
-    return renewable_production
+    return zone_data
 
 
 def fetch_cea_production(
@@ -412,20 +424,19 @@ def fetch_cea_production(
             if target_datetime.strftime("%Y-%m-%d") in elem["date"]
         ]
 
-        if len(target_elem) > 0:
-            if target_elem[0]["link"] == "file_not_found":
-                raise ParserException(
-                    parser="IN.py",
-                    message=f"{target_datetime}: {zone_key} renewable production data is not available",
-                )
-            else:
-                target_url = target_elem[0]["link"].split(": ")[0]
-                formatted_url = target_url.split("^")[0]
-                r: Response = session.get(formatted_url)
-                renewable_production = format_ren_production_data(
-                    url=r.url, zone_key=zone_key, target_datetime=target_datetime
-                )
-                return renewable_production
+        if len(target_elem) > 0 and target_elem[0]["link"] != "file_not_found":
+            target_url = target_elem[0]["link"].split(": ")[0]
+            formatted_url = target_url.split("^")[0]
+            r: Response = session.get(formatted_url)
+            renewable_production = format_ren_production_data(
+                url=r.url, zone_key=zone_key, target_datetime=target_datetime
+            )
+            return renewable_production
+        else:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: {zone_key} renewable production data is not available",
+            )
     else:
         raise ParserException(
             parser="IN.py",
@@ -453,27 +464,38 @@ def fetch_production(
     days_lookback_to_try = list(range(1, 8))
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
+
+        renewable_production = {}
         try:
             renewable_production = fetch_cea_production(
                 zone_key=zone_key,
                 session=session,
                 target_datetime=_target_datetime,
             )
+        except ParserException:
+            logger.warning(
+                f"{zone_key}: renewable production not available for {_target_datetime} - will compute production with conventional production only"
+            )
+
+        conventional_production = None
+        try:
             conventional_production = fetch_npp_production(
                 zone_key=zone_key,
                 session=session,
                 target_datetime=_target_datetime,
             )
+        except ParserException:
+            logger.warning(
+                f"{zone_key}: conventional production not available for {_target_datetime} - do not return any production data"
+            )
+
+        if conventional_production is not None:
             production = {**conventional_production, **renewable_production}
             all_data_points += daily_to_hourly_production_data(
                 target_datetime=_target_datetime,
                 production=production,
                 zone_key=zone_key,
                 logger=logger,
-            )
-        except Exception:
-            logger.warning(
-                f"{zone_key}: production not available for {_target_datetime}"
             )
     return all_data_points
 

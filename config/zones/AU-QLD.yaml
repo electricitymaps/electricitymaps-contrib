@@ -8,10 +8,16 @@ capacity:
     - datetime: '2024-01-01'
       source: opennem.org.au
       value: 336.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1250.68
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 276.5
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 313.28
   coal:
     - datetime: '2020-01-01'
       source: opennem.org.au
@@ -20,6 +26,9 @@ capacity:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2692.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 3201.98
   hydro:
     - datetime: '2020-01-01'
       source: opennem.org.au
@@ -32,36 +41,43 @@ capacity:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 449.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 453.0
   solar:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 8416.86
-    - datetime: '2022-01-01'
-      source: opennem.org.au
-      value: 8077.86
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 7706.36
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 7691.36
-  wind:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 1023.2
-    - datetime: '2022-01-01'
-      source: opennem.org.au
-      value: 843.2
     - datetime: '2021-01-01'
       source: opennem.org.au
-      value: 687.2
+      value: 7706.36
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 8077.86
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 8416.86
+  wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 644.0
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 687.2
+    - datetime: '2022-01-01'
+      source: opennem.org.au
+      value: 843.2
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 1023.2
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 2648.2
 contributors:
   - brandongalbraith
   - jarek
   - corradio
+  - alejandranavcas
 country: AU
 delays:
   production: 96
@@ -327,8 +343,11 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.04511033753549817
 parsers:
+  consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-  productionCapacity: OPENNEM.fetch_production_capacity
+  productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Brisbane
+zone_name: Queensland
+country_name: Australia

@@ -3,10 +3,10 @@ import json
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from operator import itemgetter
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import requests
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -18,7 +18,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
-from parsers.lib.validation import validate
 
 from .lib.utils import get_token
 
@@ -53,7 +52,7 @@ IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
 
 
-def fetch_ticket_TGT() -> str:
+def fetch_ticket_TGT(session: Session) -> str:
     url = "https://giris.epias.com.tr/cas/v1/tickets"
 
     TR_USERNAME = urllib.parse.quote_plus(get_token("TR_USERNAME"))
@@ -66,13 +65,13 @@ def fetch_ticket_TGT() -> str:
         "Accept": "text/plain",
     }
 
-    response_TGT = requests.request("POST", url, headers=headers, data=payload)
+    response_TGT = session.request("POST", url, headers=headers, data=payload)
 
     return response_TGT.text
 
 
-def fetch_data(target_datetime: datetime, kind: str) -> dict:
-    TGT_ticket = fetch_ticket_TGT()
+def fetch_data(target_datetime: datetime, kind: str, session: Session) -> list:
+    TGT_ticket = fetch_ticket_TGT(session)
     url = "/".join((EPIAS_MAIN_URL, KINDS_MAPPING[kind]["url"]))
 
     is_last_page = False
@@ -98,7 +97,7 @@ def fetch_data(target_datetime: datetime, kind: str) -> dict:
             "Content-Type": "application/json",
         }
 
-        r: Response = requests.request("POST", url, headers=headers, data=payload)
+        r: Response = session.request("POST", url, headers=headers, data=payload)
 
         if r.status_code == 200:
             results += r.json()["items"]
@@ -116,21 +115,6 @@ def fetch_data(target_datetime: datetime, kind: str) -> dict:
     return results
 
 
-def validate_production_data(
-    data: list,
-    exclude_last_data_point: bool,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """detects outliers: for real-time data the latest data point can be completely out of the expected range and needs to be excluded"""
-    floor = (
-        17000  # as seen during the Covid-19 pandemic, the minimum production was 17 GW
-    )
-    all_data_points_validated = [x for x in data if validate(x, logger, floor=floor)]
-    if exclude_last_data_point:
-        all_data_points_validated = all_data_points_validated[:-1]
-    return all_data_points_validated
-
-
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("TR"),
@@ -138,37 +122,48 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = session or Session()
+
     # For real-time data, the last data point seems to but continously updated thoughout the hour and will be excluded as not final
     exclude_last_data_point = False
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
         exclude_last_data_point = True
 
-    data = fetch_data(target_datetime=target_datetime, kind="production")
+    data = fetch_data(
+        target_datetime=target_datetime, kind="production", session=session
+    )
+
+    # Sort the data by date
+    data = sorted(data, key=itemgetter("date"))
+
+    data = data[:-1] if exclude_last_data_point else data
 
     production_breakdowns = ProductionBreakdownList(logger)
     for item in data:
         mix = ProductionMix()
         for key, value in item.items():
             if key in INVERT_PRODUCTION_MAPPPING:
-                mix.add_value(INVERT_PRODUCTION_MAPPPING[key], value)
+                mix.add_value(
+                    INVERT_PRODUCTION_MAPPPING[key],
+                    value,
+                    correct_negative_with_zero=True,
+                )
             elif key not in IGNORED_KEYS:
                 logger.warning("Unrecognized key '%s' in data skipped", key)
 
+        date = str(item.get("date"))
+
         production_breakdowns.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(item.get("date")).replace(tzinfo=TR_TZ),
+            datetime=datetime.fromisoformat(date)
+            if "+" in date
+            else datetime.fromisoformat(date).replace(tzinfo=TR_TZ),
             production=mix,
             source=SOURCE,
         )
 
-    all_data_points_validated = validate_production_data(
-        data=production_breakdowns.to_list(),
-        exclude_last_data_point=exclude_last_data_point,
-        logger=logger,
-    )
-
-    return all_data_points_validated
+    return production_breakdowns.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
@@ -178,12 +173,16 @@ def fetch_consumption(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = session or Session()
+
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
 
-    data = fetch_data(target_datetime=target_datetime, kind="consumption")
+    data = fetch_data(
+        target_datetime=target_datetime, kind="consumption", session=session
+    )
 
     consumptions = TotalConsumptionList(logger)
     for item in data:
@@ -204,10 +203,12 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
+    session = session or Session()
+
     if target_datetime is None:
         target_datetime = datetime.now(tz=TR_TZ)
 
-    data = fetch_data(target_datetime=target_datetime, kind="price")
+    data = fetch_data(target_datetime=target_datetime, kind="price", session=session)
     prices = PriceList(logger)
     for item in data:
         prices.append(

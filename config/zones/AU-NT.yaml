@@ -10,6 +10,7 @@ capacity:
 contributors:
   - unitrium
   - amv213
+  - alejandranavcas
 country: AU
 delays:
   consumption: 30
@@ -237,5 +238,8 @@ parsers:
   consumption: NTESMO.fetch_consumption
   price: NTESMO.fetch_price
   production: NTESMO.fetch_production
+  consumptionForecast: NTESMO.fetch_consumption_forecast
 region: Oceania
 timezone: Australia/Darwin
+zone_name: Northern Territory
+country_name: Australia

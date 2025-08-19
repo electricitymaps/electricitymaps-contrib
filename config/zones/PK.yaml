@@ -30,6 +30,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 7790.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 8450.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -43,6 +46,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 16130.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 17390.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -59,6 +65,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 10640.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11530.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -88,6 +97,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1240.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1400.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -116,3 +128,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Karachi
+zone_name: Pakistan
+country_name: Pakistan

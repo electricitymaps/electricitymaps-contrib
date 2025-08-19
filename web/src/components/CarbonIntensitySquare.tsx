@@ -17,7 +17,7 @@ import TooltipWrapper from './tooltips/TooltipWrapper';
  * See https://github.com/electricitymaps/electricitymaps-contrib/issues/3365 for more informations.
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
-const getTextColor = (rgbColor: string) => {
+export const getTextColor = (rgbColor: string) => {
   const colors = rgbColor.replaceAll(/[^\d,.]/g, '').split(',');
   const r = Number.parseInt(colors[0], 10);
   const g = Number.parseInt(colors[1], 10);

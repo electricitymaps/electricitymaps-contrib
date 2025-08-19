@@ -15,26 +15,47 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from bs4 import BeautifulSoup
 
 # Third-party library imports
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     PriceList,
     ProductionBreakdownList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 
-# Local library imports
-from parsers.lib import validation
-
 DEFAULT_ZONE_KEY = ZoneKey("CA-AB")
-MINIMUM_PRODUCTION_THRESHOLD = 10  # MW
 TIMEZONE = ZoneInfo("Canada/Mountain")
 URL = urllib.parse.urlsplit("http://ets.aeso.ca/ets_web/ip/Market/Reports")
 URL_STRING = urllib.parse.urlunsplit(URL)
+
+SOURCE = URL.netloc
+
+PRODUCTION_MAPPING = {
+    "COGENERATION": "gas",
+    "COMBINED CYCLE": "gas",
+    "GAS FIRED STEAM": "gas",
+    "SIMPLE CYCLE": "gas",
+    "WIND": "wind",
+    "SOLAR": "solar",
+    "HYDRO": "hydro",
+    "OTHER": "biomass",
+}
+
+STORAGE_MAPPING = {"ENERGY STORAGE": "battery"}
+GRID_ALERTS_URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/RealTimeShiftReportServlet?contentType=html"
+GRID_ALERT_SOURCE = "aeso.ca"
+SKIP_KEYS = ["TOTAL"]
 
 
 def fetch_exchange(
@@ -115,46 +136,38 @@ def fetch_production(
         f"{URL_STRING}/CSDReportServlet", params={"contentType": "csv"}
     )
     generation = {
-        row[0]: {
-            "MC": float(row[1]),  # maximum capability
-            "TNG": float(row[2]),  # total net generation
-        }
+        row[0]: float(row[2])  # total net generation
         for row in csv.reader(response.text.split("\r\n\r\n")[3].splitlines())
     }
-    return validation.validate(
-        {
-            "capacity": {
-                "gas": generation["COGENERATION"]["MC"]
-                + generation["COMBINED CYCLE"]["MC"]
-                + generation["GAS FIRED STEAM"]["MC"]
-                + generation["SIMPLE CYCLE"]["MC"],
-                "wind": generation["WIND"]["MC"],
-                "solar": generation["SOLAR"]["MC"],
-                "hydro": generation["HYDRO"]["MC"],
-                "biomass": generation["OTHER"]["MC"],
-                "battery storage": generation["ENERGY STORAGE"]["MC"],
-            },
-            "datetime": get_csd_report_timestamp(response.text),
-            "production": {
-                "gas": generation["COGENERATION"]["TNG"]
-                + generation["COMBINED CYCLE"]["TNG"]
-                + generation["GAS FIRED STEAM"]["TNG"]
-                + generation["SIMPLE CYCLE"]["TNG"],
-                "wind": generation["WIND"]["TNG"],
-                "solar": generation["SOLAR"]["TNG"],
-                "hydro": generation["HYDRO"]["TNG"],
-                "biomass": generation["OTHER"]["TNG"],
-            },
-            "source": URL.netloc,
-            "storage": {
-                "battery": generation["ENERGY STORAGE"]["TNG"],
-            },
-            "zoneKey": zone_key,
-        },
-        logger,
-        floor=MINIMUM_PRODUCTION_THRESHOLD,
-        remove_negative=True,
+
+    production_breakdowns = ProductionBreakdownList(logger)
+    production = ProductionMix()
+    storage = StorageMix()
+
+    for key in generation:
+        if key in PRODUCTION_MAPPING:
+            production.add_value(
+                PRODUCTION_MAPPING[key],
+                generation.get(key),
+                correct_negative_with_zero=True,
+            )
+        elif key in STORAGE_MAPPING:
+            storage.add_value(STORAGE_MAPPING[key], generation.get(key))
+
+        elif key not in SKIP_KEYS:
+            logger.warning(f"Unrecognized key: {key} in data")
+
+    date = get_csd_report_timestamp(response.text)
+
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=date,
+        production=production,
+        storage=storage,
+        source=SOURCE,
     )
+
+    return production_breakdowns.to_list()
 
 
 def get_csd_report_timestamp(report):
@@ -214,6 +227,39 @@ def fetch_wind_solar_forecasts(
     return production_list.to_list()
 
 
+def fetch_grid_alerts(
+    zone_key: ZoneKey = DEFAULT_ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    session = session or Session()
+
+    data = session.get(GRID_ALERTS_URL)
+    soup = BeautifulSoup(data.text, "html.parser")
+    table = soup.find_all("table")[-1]
+    rows = table.find_all("tr")
+    grid_alert_list = GridAlertList(logger)
+    for row in rows:
+        cells = row.find_all("td")
+        if len(cells) < 2:
+            continue
+        message = cells[1].text
+        time = cells[0].text
+        time = datetime.strptime(time, "%m/%d/%Y %H:%M").replace(tzinfo=TIMEZONE)
+        grid_alert_list.append(
+            zoneKey=zone_key,
+            locationRegion=None,
+            source=GRID_ALERT_SOURCE,
+            alertType=GridAlertType.undefined,
+            message=message,
+            issuedTime=time,
+            startTime=None,
+            endTime=None,
+        )
+    return grid_alert_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
     """
@@ -230,4 +276,3 @@ if __name__ == "__main__":
     print(f"fetch_exchange({DEFAULT_ZONE_KEY}, US-NW-NWMT) ->")
     print(fetch_exchange(DEFAULT_ZONE_KEY, "US-NW-NWMT"))"
     """
-    print(fetch_wind_solar_forecasts())

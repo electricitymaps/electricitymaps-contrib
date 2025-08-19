@@ -20,6 +20,9 @@ import {
 
 export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
 
+// TODO: Maintain constants for lower and upper limits for co2 intensity and use from there
+export const co2IntensityRangeAtom = atom([0, 1500]);
+
 export function useTimeRangeSync() {
   const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
   const { resolution, urlTimeRange } = useParams<RouteParameters>();
@@ -48,7 +51,9 @@ export function useTimeRangeSync() {
 
   return [timeRange, setTimeRangeAndNavigate] as const;
 }
-export const isHourlyAtom = atom((get) => get(timeRangeAtom) === TimeRange.H72);
+export const isFiveMinuteOrHourlyGranularityAtom = atom((get) =>
+  [TimeRange.H72, TimeRange.H24].includes(get(timeRangeAtom))
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
@@ -88,10 +93,7 @@ export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
-export const hasOnboardingBeenSeenAtom = atomWithStorage(
-  'onboardingSeen',
-  localStorage.getItem('onboardingSeen') ?? false
-);
+export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', true);
 
 export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
   'estimationFeedbackSeen',

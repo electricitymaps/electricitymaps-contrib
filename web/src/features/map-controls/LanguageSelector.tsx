@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
-import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
 
 type LanguageNamesKey = keyof typeof languageNames;
 
@@ -56,7 +54,6 @@ export function LanguageSelector({
   const handleLanguageSelect = (languageKey: LanguageNamesKey) => {
     i18n.changeLanguage(languageKey);
     setSelectedLanguage(languageNames[languageKey]);
-    trackEvent(TrackEvent.LANGUAGE_SELECTED, { language: languageNames[languageKey] });
     onClose?.();
   };
 

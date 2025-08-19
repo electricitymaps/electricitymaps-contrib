@@ -17,7 +17,7 @@ function ZoneHeaderBackButton() {
 
   return (
     <div
-      className="self-center py-4 pr-4 text-xl"
+      className="flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center self-center p-3 pr-6 text-xl"
       data-testid="left-panel-back-button"
       onClick={onNavigateBack}
       role="button"

@@ -3,10 +3,12 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useAtomValue } from 'jotai';
 import { ZoneDetail } from 'types';
-import { TimeRange } from 'utils/constants';
 import { scalePower } from 'utils/formatting';
 import { getNetExchange, round } from 'utils/helpers';
-import { displayByEmissionsAtom, timeRangeAtom } from 'utils/state/atoms';
+import {
+  displayByEmissionsAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+} from 'utils/state/atoms';
 
 import { AreaGraphElement } from '../types';
 
@@ -31,7 +33,7 @@ export function getFills(data: AreaGraphElement[]) {
 export function useNetExchangeChartData() {
   const { data: zoneData, isLoading, isError } = useGetZone();
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
-  const timeRange = useAtomValue(timeRangeAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (isLoading || isError || !zoneData) {
     return { isLoading, isError };
@@ -40,7 +42,7 @@ export function useNetExchangeChartData() {
   const { valueFactor, valueAxisLabel } = getValuesInfo(
     Object.values(zoneData.zoneStates),
     displayByEmissions,
-    timeRange
+    isFineGranularity
   );
 
   const chartData = Object.entries(zoneData.zoneStates).map(
@@ -77,9 +79,8 @@ interface ValuesInfo {
 function getValuesInfo(
   historyData: ZoneDetail[],
   displayByEmissions: boolean,
-  timeRange: string
+  isFineGranularity: boolean
 ): ValuesInfo {
-  const isHourly = timeRange === TimeRange.H72;
   const maxTotalValue = d3Max(historyData, (d: ZoneDetail) =>
     Math.abs(getNetExchange(d, displayByEmissions))
   );
@@ -89,7 +90,7 @@ function getValuesInfo(
         unit: 'CO₂eq',
         formattingFactor: 1,
       }
-    : scalePower(maxTotalValue, isHourly);
+    : scalePower(maxTotalValue, isFineGranularity);
   const valueAxisLabel = unit;
   const valueFactor = formattingFactor;
 

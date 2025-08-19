@@ -2,7 +2,6 @@ import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
-import { useHeaderHeight } from 'hooks/headerHeight';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,6 +17,7 @@ import { SelectedData } from '../OriginChart';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
+import EstimationMarkers from './EstimationMarkers';
 import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
@@ -106,6 +106,7 @@ interface AreagraphProps {
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
+  estimated?: boolean[];
   selectedTimeRange: TimeRange;
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
@@ -131,7 +132,8 @@ function AreaGraph({
   height = '10em',
   isDisabled = false,
   selectedTimeRange,
-  datetimes,
+  datetimes, // array of datetimes
+  estimated, // array of booleans depicting if data has been estimated
   tooltip,
   tooltipSize,
   formatTick = String,
@@ -183,6 +185,10 @@ function AreaGraph({
     // This can be inferred by typescript 5.5 and can be removed when we upgrade
     () => [...datetimes, endTime].filter(Boolean) as Date[],
     [datetimes, endTime]
+  );
+  const estimatedWithNext = useMemo(
+    () => (estimated ? [...estimated, estimated?.at(-1) || false] : estimated),
+    [estimated]
   );
 
   const timeScale = useMemo(
@@ -236,8 +242,6 @@ function AreaGraph({
     setGraphIndex(null);
   }, [setTooltipData, setHoveredLayerIndex, setGraphIndex]);
 
-  const headerHeight = useHeaderHeight();
-
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
     if (layer.datapoints.length !== datetimes.length) {
@@ -284,6 +288,14 @@ function AreaGraph({
           isMobile={isMobile}
           svgNode={reference.current}
         />
+        <EstimationMarkers
+          datetimes={datetimesWithNext}
+          estimated={estimatedWithNext}
+          scaleWidth={containerWidth}
+          scaleHeight={containerHeight}
+          transform={`translate(0 ${containerHeight})`}
+          className="h-[22px] w-full overflow-visible"
+        />
         <TimeAxis
           isLoading={false}
           selectedTimeRange={selectedTimeRange}
@@ -315,7 +327,6 @@ function AreaGraph({
             }
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
-            headerHeight={headerHeight}
             closeTooltip={onCloseTooltip}
           >
             {(props) => tooltip(props)}

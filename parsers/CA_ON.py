@@ -5,14 +5,21 @@ from logging import Logger, getLogger
 from typing import Any
 from xml.etree import ElementTree
 
+from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     PriceList,
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
-from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    GridAlertType,
+    ProductionMix,
+)
 from electricitymap.contrib.lib.types import ZoneKey
 
 # Some notes about timestamps:
@@ -257,9 +264,331 @@ def fetch_exchange(
     return exchanges.to_list()
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the demand forecast (in MW) of Canada Ontario zone for 7 days ahead hourly."""
+    session = session or Session()
+
+    if target_datetime is None:
+        target_datetime = datetime.now(TIMEZONE)
+
+    # Dictionary to store extracted data
+    consumption_list = TotalConsumptionList(logger)
+
+    # Extract the file in adequacy folder until 7 days later.
+    # They have forecast until 34 days, but depends at what time of the day the url is extracted, the 34th day might not be published yet
+    end_date = target_datetime + timedelta(days=7)
+
+    # Iterate on every available date
+    current_date = target_datetime
+    while current_date <= end_date:
+        # Extract Adequacy report
+        date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
+
+        # Define the namespace (if applicable)
+        NAMESPACE = "{http://www.ieso.ca/schema}"
+        ns = {"ns0": "http://www.ieso.ca/schema"}
+
+        forecast_date = xml.find(".//ns0:DeliveryDate", ns)
+
+        for forecast_ontario_demand in xml.findall(".//ns0:ForecastOntDemand", ns):
+            for demand in forecast_ontario_demand.findall(".//ns0:Demand", ns):
+                delivery_hour = demand.findtext(NAMESPACE + "DeliveryHour")
+                date_object = datetime.strptime(forecast_date.text, "%Y-%m-%d").replace(
+                    tzinfo=TIMEZONE
+                )
+                date_object = date_object.replace(hour=int(delivery_hour) - 1)
+                energy_mw = demand.findtext(NAMESPACE + "EnergyMW")
+
+                # Update consumption list
+                consumption_list.append(
+                    zoneKey=zone_key,
+                    datetime=date_object,
+                    consumption=float(energy_mw) if energy_mw is not None else None,
+                    source=SOURCE,
+                    sourceType=EventSourceType.forecasted,
+                )
+
+        current_date += timedelta(days=1)  # Go to next day
+
+    return consumption_list.to_list()
+
+
+def read_adequacy_report(root, logger):
+    """Helper function for fetch_wind_solar_forecasts() that reads Adequacy report for a given xml root"""
+    NAMESPACE = "{http://www.ieso.ca/schema}"
+    ns = {"ns0": "http://www.ieso.ca/schema"}
+
+    # Dictionary to store extracted data
+    production_list = ProductionBreakdownList(logger)
+    forecast_date = root.find(".//ns0:DeliveryDate", ns)
+
+    # Dictionary to store ProductionMix for each timestamp
+    mixes: dict[datetime, ProductionMix] = {}
+
+    # Iterate through InternalResource elements
+    for resource in root.findall(".//ns0:InternalResource", ns):
+        mode = resource.findtext(NAMESPACE + "FuelType")
+        if mode == "Wind" or mode == "Solar":
+            for c in resource.findall("ns0:Forecasts", ns):
+                for value in c.findall("ns0:Forecast", ns):
+                    date_object = datetime.strptime(
+                        forecast_date.text, "%Y-%m-%d"
+                    ).replace(tzinfo=TIMEZONE)
+                    delivery_hour = value.findtext(NAMESPACE + "DeliveryHour")
+                    date_object = date_object.replace(hour=int(delivery_hour) - 1)
+                    timestamp = date_object
+                    energy_mw = value.findtext(NAMESPACE + "EnergyMW")
+
+                    # Create production mix
+                    mix: defaultdict[datetime, ProductionMix] = defaultdict(
+                        ProductionMix
+                    )
+                    mix[date_object].add_value(
+                        mode.lower(),
+                        None if energy_mw is None else float(energy_mw),
+                        correct_negative_with_zero=True,
+                    )
+
+                    # Get or create ProductionMix for this timestamp
+                    if timestamp not in mixes:
+                        mixes[timestamp] = ProductionMix()
+
+                    # Add wind/solar output to the existing ProductionMix
+                    mixes[timestamp].add_value(
+                        mode.lower(),
+                        None if energy_mw is None else float(energy_mw),
+                        correct_negative_with_zero=True,
+                    )
+
+                    # Check if this datetime already exists in the production_list
+                    datetime_exists = any(
+                        item["datetime"] == date_object for item in production_list
+                    )
+
+                    # Only append if the datetime doesn't exist yet
+                    if not datetime_exists:
+                        production_list.append(
+                            zoneKey=ZONE_KEY,
+                            datetime=date_object,
+                            production=mix[date_object],
+                            source=SOURCE,
+                            sourceType=EventSourceType.forecasted,
+                        )
+
+    return production_list
+
+
+def read_VGForecastSummary_report(root, logger):
+    """Helper function for fetch_wind_solar_forecasts() that reads VGForecastsSummary report for a given XML root."""
+
+    ns = {"ns0": "http://www.ieso.ca/schema"}
+    production_list = ProductionBreakdownList(logger)
+
+    # Dictionary to store ProductionMix for each timestamp
+    mixes: dict[datetime, ProductionMix] = {}
+
+    for org_data in root.findall(".//ns0:OrganizationData", ns):
+        for fuel_data in org_data.findall(".//ns0:FuelData", ns):
+            fuel_type = fuel_data.find("ns0:FuelType", ns).text.lower()
+
+            for resource in fuel_data.findall(".//ns0:ResourceData", ns):
+                zone = resource.find("ns0:ZoneName", ns)
+
+                if zone.text == "OntarioTotal":
+                    for energy_forecast in resource.findall(
+                        ".//ns0:EnergyForecast", ns
+                    ):
+                        forecast_date = energy_forecast.find("ns0:ForecastDate", ns)
+                        base_date = datetime.strptime(
+                            forecast_date.text, "%Y-%m-%d"
+                        ).replace(tzinfo=TIMEZONE)
+
+                        for forecast_interval in energy_forecast.findall(
+                            ".//ns0:ForecastInterval", ns
+                        ):
+                            forecast_hour_ending = forecast_interval.find(
+                                "ns0:ForecastHour", ns
+                            )
+                            timestamp = base_date.replace(
+                                hour=int(forecast_hour_ending.text) - 1
+                            )
+
+                            mw_output = forecast_interval.find("ns0:MWOutput", ns)
+                            mw_value = (
+                                None if mw_output is None else float(mw_output.text)
+                            )
+
+                            # Get or create ProductionMix for this timestamp
+                            if timestamp not in mixes:
+                                mixes[timestamp] = ProductionMix()
+
+                            # Add wind/solar output to the existing ProductionMix
+                            mixes[timestamp].add_value(
+                                fuel_type,
+                                mw_value,
+                                correct_negative_with_zero=True,
+                            )
+
+    # Append all combined ProductionMix objects to production_list
+    for timestamp, mix in mixes.items():
+        production_list.append(
+            zoneKey=ZONE_KEY,
+            datetime=timestamp,
+            production=mix,
+            source=SOURCE,
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return production_list
+
+
+ADEQUACY_URL = (
+    "https://reports-public.ieso.ca/public/Adequacy2/PUB_Adequacy2_{YYYYMMDD}.xml"
+)
+VG_FORECAST_SUMMARY = "https://reports-public.ieso.ca/public/VGForecastSummary/PUB_VGForecastSummary_{YYYYMMDD}.xml"
+
+
+def fetch_wind_solar_forecasts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the forecasts for wind and solar (in MW) of Canada Ontario zone for 7 days ahead."""
+    session = session or Session()
+
+    if target_datetime is None:
+        target_datetime = datetime.now(TIMEZONE)
+
+    # Extract the file in adequacy folder until 7 days later.
+    # They have forecast until 34 days, but depends at what time of the day the url is extracted, the 34th day might not be published yet
+    end_date = target_datetime + timedelta(days=7)
+
+    # Direct iteration method
+    production_list = ProductionBreakdownList(logger)
+    current_date = target_datetime
+    while current_date <= end_date:
+        # First try to get the VG Forecast Summary report
+        date_, xml = _fetch_xml(logger, session, current_date, VG_FORECAST_SUMMARY)
+
+        # Check if the data is available before trying to read it
+        if xml is not None:
+            production_list_1 = read_VGForecastSummary_report(xml, logger)
+        else:
+            # When VG Forecast is not available, use Adequacy report instead
+            date_, xml = _fetch_xml(logger, session, current_date, ADEQUACY_URL)
+            production_list_1 = read_adequacy_report(xml, logger)
+
+        production_list = ProductionBreakdownList.merge_production_breakdowns(
+            [production_list, production_list_1], logger
+        )
+
+        current_date += timedelta(days=1)
+    return production_list.to_list()
+
+
+def fetch_grid_alerts(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """
+    Requests the grid alerts for IESO.
+    For current emergency advisory notices: https://www.ieso.ca/Sector-Participants/RSS-Feeds/Emergency-Advisory-Notices
+    For current day 0 advisory notices (non-emergency): https://www.ieso.ca/Sector-Participants/RSS-Feeds/Day-0-Advisory-Notices-Summary
+    For archive: in https://www.ieso.ca/Sector-Participants/RSS-Feeds/Advisory-Notices-Archive
+    Url for archive table json: https://www.ieso.ca/ieso/api/table/data?source=958805C0C35B4BF3BB6A6EA429850C06&ctx=CF5ADB2D-E44E-4899-AFAF-E16C97A7A36F
+    """
+    session = session or Session()
+
+    urls = [
+        # Current Emergency Advisory Notices
+        "https://www.ieso.ca/ieso/api/table/data?source=E6324F9AEEA84B658C34E78C92E0BCEF&ctx=3435D509-B2FC-4B5D-824A-A21A8BC45822",
+        # Current Day 0 Advisory Notices
+        "https://www.ieso.ca/ieso/api/table/data?source=92EEB31A6F184529B467FD465EE8EFA2&ctx=DEA30159-2D04-48E5-9358-2B4FBAC28B83",
+    ]
+
+    grid_alert_list = GridAlertList(logger)
+
+    for url in urls:
+        # Fetch the data from the URL
+        response = session.get(url)
+        json_data = response.json()
+        entries = json_data[0]["TableRows"]  # stored in a table
+
+        # Record events in grid_alert_list
+        for notice in entries:
+            alert_type = notice["Cells"][0]["Value"]
+
+            # "Alert", "Warning" --> "Informational", "Action" --> "Action" based on https://www.ieso.ca/Sector-Participants/RSS-Feeds/Day-0-Advisory-Notices-Summary
+            if alert_type == "Alert" or alert_type == "Warning":
+                alert_type = GridAlertType.informational
+            elif alert_type == "Action":
+                alert_type = GridAlertType.action
+            else:
+                alert_type = GridAlertType.undefined
+
+            notice_content = notice["Cells"][1]["Value"]
+
+            # Take the "Updated At" (the latest update)
+            issued_at = notice["Cells"][3]["Value"]
+            issued_at_dt = datetime.strptime(issued_at, "%a, %d %b %Y %H:%M").replace(
+                tzinfo=TIMEZONE
+            )
+
+            soup = BeautifulSoup(notice_content, "html.parser")
+            link = soup.find_all("a")[0]["href"]
+            subject = soup.find_all("a")[0]["title"]
+
+            # Extract the body
+            url2 = "https://www.ieso.ca" + link
+            response2 = session.get(url2)
+            soup2 = BeautifulSoup(response2.text, "html.parser")
+
+            # Find start and end times before the table
+            start_time = soup2.find_all("p")[0].get_text(strip=True)
+            start_time_dt = datetime.strptime(
+                start_time, "Start: %a, %d %b %Y %H:%M EST"
+            ).replace(tzinfo=TIMEZONE)
+            end_time = soup2.find_all("p")[1].get_text(strip=True)
+            end_time_dt = datetime.strptime(
+                end_time, "End: %a, %d %b %Y %H:%M EST"
+            ).replace(tzinfo=TIMEZONE)
+
+            # Find all <tr> rows
+            rows = soup2.find_all("tr")
+
+            # Extract the 2nd <td> (description) from each row
+            for row in rows:
+                tds = row.find_all("td")
+                if len(tds) >= 2:
+                    description = tds[1].get_text(separator=" ", strip=True)
+
+            grid_alert_list.append(
+                zoneKey=zone_key,
+                locationRegion=None,
+                source=SOURCE,
+                alertType=alert_type,
+                message=subject + "\n" + description,
+                issuedTime=issued_at_dt,
+                startTime=start_time_dt,  # if None, it defaults to issuedTime
+                endTime=end_time_dt,
+            )
+    return grid_alert_list.to_list()
+
+
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    from pprint import pprint
+
+    """
     now = datetime.now(timezone.utc)
     two_months_ago = now - timedelta(days=60)
     two_years_ago = now - timedelta(days=2 * 365)
@@ -341,3 +670,12 @@ if __name__ == "__main__":
         fetch_exchange(ZoneKey("CA-ON"), ZoneKey("CA-NS"))
     except NotImplementedError:
         print("Task failed successfully")
+    """
+
+    # print("Requesting fetch_wind_solar_forecasts")
+    # pprint(fetch_wind_solar_forecasts())
+
+    # print("Requesting fetch_consumption_forecast")
+    # pprint(fetch_consumption_forecast())
+
+    pprint(fetch_grid_alerts())

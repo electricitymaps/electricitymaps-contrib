@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -9,6 +9,9 @@ from zoneinfo import ZoneInfo
 # BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
 from requests import Session
+
+# Local library imports
+from parsers.lib.config import refetch_frequency, use_proxy
 
 REALTIME_SOURCE = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
 HISTORICAL_SOURCE = "https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days"
@@ -66,9 +69,9 @@ class CyprusParser:
                     datum["datetime"] = datetime.fromisoformat(val).replace(
                         tzinfo=TIMEZONE
                     )
-                elif col == "Αιολική Παραγωγή":
+                elif col == "Αιολική Παραγωγή στο ΣΜ":
                     production["wind"] = float(val)
-                elif col == "Συμβατική Παραγωγή":
+                elif col == "Συμβατική Παραγωγή στο ΣΜ":
                     production["oil"] = float(val)
                 elif col == "Εκτίμηση Διεσπαρμένης Παραγωγής":
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)
@@ -92,7 +95,11 @@ class CyprusParser:
             url_date = target_datetime.astimezone(TIMEZONE).strftime("%d-%m-%Y")
             url = HISTORICAL_SOURCE.format(url_date)
 
-        res = self.session.get(url)
+        # Add User-Agent headers to mimic a browser and avoid 403 errors
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        res = self.session.get(url, headers=headers)
         assert res.status_code == 200, (
             f"CY parser: GET {url} returned {res.status_code}"
         )
@@ -108,6 +115,8 @@ class CyprusParser:
         return data
 
 
+@refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="DK")
 def fetch_production(
     zone_key: str = "CY",
     session: Session | None = None,
