@@ -835,13 +835,21 @@ def parse_outages(
     outages = OutageList(logger)
     reason = soup.find("reason").find("text").contents[0]
     for timeseries in soup.find_all("timeseries"):
-        fuel_code = str(timeseries.find("production_registeredresource.psrtype.psrtype").contents[0])
+        fuel_code = str(
+            timeseries.find("production_registeredresource.psrtype.psrtype").contents[0]
+        )
         fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
         outage_type = OutageType.mapping_code_to_type(
             timeseries.find("businesstype").contents[0]
         )
-        generator_id = str(timeseries.find("production_registeredresource.mrid").contents[0])
-        installed_capacity = float(timeseries.find("production_registeredresource.psrtype.powersystemresources.nominalp").contents[0])
+        generator_id = str(
+            timeseries.find("production_registeredresource.mrid").contents[0]
+        )
+        installed_capacity = float(
+            timeseries.find(
+                "production_registeredresource.psrtype.powersystemresources.nominalp"
+            ).contents[0]
+        )
 
         for entry in timeseries.find_all("available_period"):
             quantity = float(entry.find("point").find("quantity").contents[0])
@@ -850,14 +858,19 @@ def parse_outages(
             time_range = entry.find("timeinterval")
             start_time = time_range.find("start").contents[0]
             end_time = time_range.find("end").contents[0]
-            datetime_start = datetime.fromisoformat(
-                zulu_to_utc(f"{start_time}")
-            )
-            datetime_start_rounded = datetime_start.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
-            datetime_end = datetime.fromisoformat(zulu_to_utc(f"{end_time}")).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1) # round to the next hour
+            datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
+            datetime_start_rounded = datetime_start.replace(
+                minute=0, second=0, microsecond=0
+            ) + timedelta(hours=1)
+            datetime_end = datetime.fromisoformat(zulu_to_utc(f"{end_time}")).replace(
+                minute=0, second=0, microsecond=0
+            ) + timedelta(hours=1)  # round to the next hour
 
             # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-            for dt in [datetime_start, *list(pd.date_range(datetime_start_rounded, datetime_end, freq="H"))]:
+            for dt in [
+                datetime_start,
+                *list(pd.date_range(datetime_start_rounded, datetime_end, freq="H")),
+            ]:
                 outages.append(
                     zoneKey=zoneKey,
                     datetime=dt,
