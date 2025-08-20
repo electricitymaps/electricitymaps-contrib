@@ -16,13 +16,17 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 
 import itertools
+import os
 import re
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from functools import lru_cache
 from logging import Logger, getLogger
 from operator import itemgetter
+from tempfile import TemporaryDirectory
 from typing import Any
+from zipfile import ZipFile
 
 import numpy as np
 from bs4 import BeautifulSoup
@@ -41,10 +45,9 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import get_token
 from parsers.lib.config import ProductionModes, StorageModes, refetch_frequency
-
-from .lib.exceptions import ParserException
-from .lib.utils import get_token
 
 SOURCE = "entsoe.eu"
 
@@ -1258,5 +1261,51 @@ def fetch_wind_solar_forecasts(
     return forcast_breakdown_list.to_list()
 
 
+def _query_entsoe_zip_endpoint(
+    params: dict,
+    session: Session,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[ET.ElementTree]:
+    """Some endpoints are returning zip objects in which the xml files are stored."""
+    # TODO: Currently this cannot use the proxy because it returns an attachment.
+    URL = "https://web-api.tp.entsoe.eu/api"
+    if target_datetime is None:
+        target_datetime = datetime.now(timezone.utc)
+
+    if not isinstance(target_datetime, datetime):
+        raise ParserException(
+            parser="ENTSOE.py",
+            message="target_datetime has to be a datetime in query_entsoe",
+        )
+    params = {}
+
+    params["periodStart"] = (target_datetime + timedelta(hours=0)).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+    params["periodEnd"] = (target_datetime + timedelta(hours=1)).strftime(
+        "%Y%m%d%H00"  # YYYYMMDDHH00
+    )
+
+    token = get_token("ENTSOE_TOKEN")
+    params["securityToken"] = token
+    response: Response = session.get(URL, params=params)
+    trees = []
+    with TemporaryDirectory() as tmpdir:
+        with open(f"{tmpdir}/response.zip", "wb") as f:
+            f.write(response.content)
+        with ZipFile(f"{tmpdir}/response.zip", "r") as zip_ref:
+            zip_ref.extractall(f"{tmpdir}/extracted")
+            xml_files = [
+                f for f in os.listdir(f"{tmpdir}/extracted") if f.endswith(".xml")
+            ]
+            for xml_file in xml_files:
+                tree = ET.parse(f"{tmpdir}/extracted/{xml_file}")
+                trees.append(tree)
+    return trees
+
+
 if __name__ == "__main__":
-    fetch_price(ZoneKey("FR"))
+    _query_zip_endpoint(
+        ZoneKey("FR"), session=Session(), target_datetime=datetime.now(timezone.utc)
+    )
