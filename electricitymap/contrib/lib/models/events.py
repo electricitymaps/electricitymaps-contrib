@@ -839,6 +839,64 @@ class Price(Event):
         }
 
 
+class OutageType(Enum):
+    PLANNED = "planned"
+    UNPLANNED = "unplanned"
+
+
+class Outage(Event):
+    capacity_reduction: float
+    fuel_type: str
+    outage_type: OutageType
+    generator_id: str | None = None
+    reason: str | None = None
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacity_reduction: float,
+        fuel_type: str,
+        outage_type: OutageType,
+        generator_id: str | None = None,
+        reason: str | None = None,
+    ) -> "Outage | None":
+        try:
+            return Outage(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                capacity_reduction=capacity_reduction,
+                fuel_type=fuel_type,
+                outage_type=outage_type,
+                generator_id=generator_id,
+                reason=reason,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating outage Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "outage",
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "source": self.source,
+            "capacity_reduction": self.capacity_reduction,
+            "fuel_type": self.fuel_type,
+            "outage_type": self.outage_type,
+            "generator_id": self.generator_id,
+            "reason": self.reason,
+        }
+
+
 class LocationalMarginalPrice(Price):
     node: str
 
