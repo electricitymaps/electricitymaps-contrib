@@ -843,8 +843,16 @@ class OutageType(Enum):
     PLANNED = "planned"
     UNPLANNED = "unplanned"
 
+    @staticmethod
+    def mapping_code_to_type(code: str) -> "OutageType":
+        return {
+            "A53": OutageType.PLANNED,
+            "A54": OutageType.UNPLANNED,
+        }[code]
+
 
 class Outage(Event):
+    sourceType: EventSourceType = EventSourceType.forecasted
     capacity_reduction: float
     fuel_type: str
     outage_type: OutageType
