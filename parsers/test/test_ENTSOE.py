@@ -10,6 +10,7 @@ from parsers import ENTSOE
 from parsers.ENTSOE import fetch_production
 
 base_path_to_mock = Path("parsers/test/mocks/ENTSOE")
+path_to_outage_xml = Path("parsers/test/fixtures/planned_unavailability.xml")
 
 
 @pytest.fixture(autouse=True)
@@ -320,3 +321,16 @@ def test_refetch_frequency():
     func = fetch_production
 
     assert func.__name__ == "fetch_production"
+
+
+def test_parse_outages(adapter, session, snapshot):
+    with open(path_to_outage_xml, "rb") as outage_xml:
+        outage_xml_text = outage_xml.read()
+    outages = ENTSOE.parse_outages(
+        outage_xml_text,
+        ZoneKey("BE"),
+        logger=logging.Logger("test"),
+    )
+    outages_list = outages.to_list()
+    assert len(outages_list) == 1467
+    assert snapshot == outages_list[0]
