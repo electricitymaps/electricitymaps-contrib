@@ -1,0 +1,20 @@
+bounding_box:
+  - - -2.5589448655806
+    - 46.266566974958
+  - - 0.91379809767445
+    - 48.567994064435
+capacity:
+  biomass: 77
+  hydro: 11
+  nuclear: 0
+  solar: 557
+  unknown: 2080
+  wind: 1012
+contributors:
+  - AilinvandenHonigkuchenpferdlande
+  - corradio
+parsers:
+  production: ECO2MIX.fetch_production
+timezone: Europe/Paris
+zone_name: Pays-de-la-Loire
+country_name: France

@@ -651,3 +651,16 @@ sources:
 timezone: Europe/Paris
 zone_name: France
 country_name: France
+subZoneNames:
+  - FR-ACA
+  - FR-ALP
+  - FR-ARA
+  - FR-BFC
+  - FR-BRE
+  - FR-CEN
+  - FR-IDF
+  - FR-LRM
+  - FR-NOR
+  - FR-NPP
+  - FR-PAC
+  - FR-PLO

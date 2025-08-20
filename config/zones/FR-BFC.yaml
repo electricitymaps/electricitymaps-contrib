@@ -1,0 +1,20 @@
+bounding_box:
+  - - 2.8451871650071
+    - 46.156946471815
+  - - 7.1398015507652
+    - 48.39970411104
+capacity:
+  biomass: 74
+  hydro: 523
+  nuclear: 0
+  solar: 294
+  unknown: 385
+  wind: 808
+contributors:
+  - AilinvandenHonigkuchenpferdlande
+  - corradio
+parsers:
+  production: ECO2MIX.fetch_production
+timezone: Europe/Paris
+zone_name: Bourgogne-Franche-Comté
+country_name: France
