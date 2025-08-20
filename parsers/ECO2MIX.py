@@ -56,11 +56,7 @@ MAP_MODES = {
     "PrÃ©visionJ-1": "IGNORED",
 }
 
-# validations for each region
-VALIDATIONS = {
-    "FR-ARA": ["unknown", "nuclear", "hydro"],
-}
-
+SOURCE = "rte-france.com"
 
 def query(url_type_arg, session: Session, target_datetime: datetime):
     if target_datetime:
@@ -160,7 +156,7 @@ def format_production_df(df, zone_key):
                 .rename(lambda c: c.replace("storage.", ""))
                 .to_dict()
             ),
-            "source": "rte-france.com/eco2mix",
+            "source": SOURCE,
         }
         for (ts, row) in df.iterrows()
     ]
@@ -276,7 +272,7 @@ def format_exchange_df(df, sorted_zone_keys):
             "sortedZoneKeys": sorted_zone_keys,
             "datetime": ts.to_pydatetime(),
             "netFlow": row.net_flow,
-            "source": "rte-france.com/eco2mix",
+            "source": SOURCE,
         }
         for (ts, row) in df.iterrows()
     ]
