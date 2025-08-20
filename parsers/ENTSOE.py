@@ -27,6 +27,8 @@ from operator import itemgetter
 from tempfile import TemporaryDirectory
 from typing import Any
 from zipfile import ZipFile
+import pandas as pd
+
 
 import numpy as np
 from bs4 import BeautifulSoup
@@ -35,6 +37,7 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    OutageList,
     PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
@@ -42,6 +45,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    OutageType,
     ProductionMix,
     StorageMix,
 )
@@ -815,6 +819,53 @@ def parse_prices(
             )
 
     return prices
+
+
+def parse_outages(
+    xml_text: str,
+    zoneKey: ZoneKey,
+    logger: Logger,
+) -> OutageList:
+    if not xml_text:
+        return OutageList(logger)
+    soup = BeautifulSoup(xml_text, "html.parser")
+    outages = OutageList(logger)
+    reason = soup.find("reason").find("text").contents[0]
+    for timeseries in soup.find_all("timeseries"):
+        fuel_code = str(timeseries.find("production_registeredresource.psrtype.psrtype").contents[0])
+        fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+        outage_type = OutageType.mapping_code_to_type(
+            timeseries.find("businesstype").contents[0]
+        )
+        generator_id = str(timeseries.find("production_registeredresource.mrid").contents[0])
+        installed_capacity = float(timeseries.find("production_registeredresource.psrtype.powersystemresources.nominalp").contents[0])
+
+        for entry in timeseries.find_all("available_period"):
+            quantity = float(entry.find("point").find("quantity").contents[0])
+            capacity_reduction = installed_capacity - quantity
+
+            time_range = entry.find("timeinterval")
+            start_time = time_range.find("start").contents[0]
+            end_time = time_range.find("end").contents[0]
+            datetime_start = datetime.fromisoformat(
+                zulu_to_utc(f"{start_time}")
+            )
+            datetime_start_rounded = datetime_start.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+            datetime_end = datetime.fromisoformat(zulu_to_utc(f"{end_time}")).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1) # round to the next hour
+
+            # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
+            for dt in [datetime_start, *list(pd.date_range(datetime_start_rounded, datetime_end, freq="H"))]:
+                outages.append(
+                    zoneKey=zoneKey,
+                    datetime=dt,
+                    source="entsoe.eu",
+                    capacity_reduction=capacity_reduction,
+                    fuel_type=fuel_em_type,
+                    outage_type=outage_type,
+                    generator_id=generator_id,
+                    reason=reason,
+                )
+    return outages
 
 
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
