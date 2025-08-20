@@ -1306,6 +1306,4 @@ def _query_entsoe_zip_endpoint(
 
 
 if __name__ == "__main__":
-    _query_zip_endpoint(
-        ZoneKey("FR"), session=Session(), target_datetime=datetime.now(timezone.utc)
-    )
+    fetch_price(ZoneKey("FR"))
