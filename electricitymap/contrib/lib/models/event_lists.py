@@ -16,6 +16,8 @@ from electricitymap.contrib.lib.models.events import (
     LocationalMarginalPrice,
     Outage,
     OutageType,
+    Outage,
+    OutageType,
     Price,
     ProductionBreakdown,
     ProductionMix,
