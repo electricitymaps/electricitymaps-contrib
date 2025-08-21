@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY, GET
+from freezegun import freeze_time
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
@@ -317,7 +318,7 @@ def test_fetch_uses_normal_url(adapter, session):
         )
     ENTSOE.fetch_price(ZoneKey("DE"), session)
 
-
+@freeze_time("2025-08-20 12:00:00")
 def test_fetch_outages(adapter, session, snapshot):
     with open("parsers/test/mocks/ENTSOE/BE_outages.zip", "rb") as outages_be_data:
         adapter.register_uri(
@@ -326,7 +327,7 @@ def test_fetch_outages(adapter, session, snapshot):
             content=outages_be_data.read(),
         )
     outages = ENTSOE.fetch_generation_outages(ZoneKey("BE"), session)
-    assert snapshot == outages[0:2]
+    assert snapshot == outages
 
 
 def test_refetch_frequency():
@@ -334,7 +335,7 @@ def test_refetch_frequency():
 
     assert func.__name__ == "fetch_production"
 
-
+@freeze_time("2025-08-20 12:00:00")
 def test_parse_outages(adapter, session, snapshot):
     outage_data_trees = [ET.parse(path_to_outage_xml)]
     outages = ENTSOE.parse_outages(
@@ -343,5 +344,4 @@ def test_parse_outages(adapter, session, snapshot):
         logger=logging.Logger("test"),
     )
     outages_list = outages.to_list()
-    assert len(outages_list) == 1467
-    assert snapshot == outages_list[0]
+    assert snapshot == outages_list
