@@ -1,5 +1,6 @@
 import logging
 import os
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pytest
@@ -335,10 +336,9 @@ def test_refetch_frequency():
 
 
 def test_parse_outages(adapter, session, snapshot):
-    with open(path_to_outage_xml, "rb") as outage_xml:
-        outage_xml_text = outage_xml.read()
+    outage_data_trees = [ET.parse(path_to_outage_xml)]
     outages = ENTSOE.parse_outages(
-        outage_xml_text,
+        outage_data_trees,
         ZoneKey("BE"),
         logger=logging.Logger("test"),
     )

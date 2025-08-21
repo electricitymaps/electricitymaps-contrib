@@ -9158,7 +9158,7 @@
     'datetime': datetime.datetime(2025, 8, 31, 22, 0, tzinfo=datetime.timezone.utc),
     'fuel_type': 'nuclear',
     'generator_id': '22WTIHANG000242R',
-    'outage_type': <OutageType.PLANNED: 'planned'>,
+    'outage_type': 'planned',
     'reason': 'Shutdown date as provided by the law',
     'source': 'entsoe.eu',
     'zoneKey': 'BE',
