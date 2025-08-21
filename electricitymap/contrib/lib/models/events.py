@@ -855,7 +855,7 @@ class Outage(Event):
     sourceType: EventSourceType = EventSourceType.forecasted
     capacity_reduction: float
     fuel_type: str
-    outage_type: OutageType
+    outage_type: str | None = None
     generator_id: str | None = None
     reason: str | None = None
 
@@ -867,7 +867,7 @@ class Outage(Event):
         source: str,
         capacity_reduction: float,
         fuel_type: str,
-        outage_type: OutageType,
+        outage_type: OutageType | None = None,
         generator_id: str | None = None,
         reason: str | None = None,
     ) -> "Outage | None":
@@ -878,7 +878,7 @@ class Outage(Event):
                 source=source,
                 capacity_reduction=capacity_reduction,
                 fuel_type=fuel_type,
-                outage_type=outage_type,
+                outage_type=outage_type.value if outage_type else None,
                 generator_id=generator_id,
                 reason=reason,
             )
