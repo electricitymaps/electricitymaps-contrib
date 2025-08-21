@@ -998,9 +998,7 @@ def parse_outages(
                 time_range = entry.find("timeInterval")
                 start_time = time_range.find("start").contents[0]
                 end_time = time_range.find("end").contents[0]
-                datetime_start = datetime.fromisoformat(
-                    zulu_to_utc(f"{start_time}")
-                )
+                datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
                 datetime_end = datetime.fromisoformat(
                     zulu_to_utc(f"{end_time}")
                 ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
@@ -1008,13 +1006,11 @@ def parse_outages(
                 for dt in pd.date_range(
                     max(
                         datetime_start,
-                        datetime.now().replace(tzinfo=timezone.utc)
-                        - timedelta(days=1),
+                        datetime.now().replace(tzinfo=timezone.utc) - timedelta(days=1),
                     ),
                     min(
                         datetime_end,
-                        datetime.now().replace(tzinfo=timezone.utc)
-                        + timedelta(days=4),
+                        datetime.now().replace(tzinfo=timezone.utc) + timedelta(days=4),
                     ),
                     freq="H",
                 ).to_pydatetime():
