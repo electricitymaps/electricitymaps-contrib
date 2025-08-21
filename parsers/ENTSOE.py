@@ -209,6 +209,12 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "XK": "10Y1001C--00100H",
 }
 
+OUTAGE_CODE_TO_TYPE = {
+    "A53": OutageType.PLANNED,
+    "A54": OutageType.UNPLANNED,
+}
+
+
 # Define zone_keys to an array of zone_keys for aggregated production data
 ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
@@ -856,7 +862,7 @@ def parse_outages(
                 ).contents[0]
             )
             fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-            outage_type = OutageType.mapping_code_to_type(
+            outage_type = OUTAGE_CODE_TO_TYPE.get(
                 timeseries.find("businessType").contents[0]
             )
             generator_id = str(
