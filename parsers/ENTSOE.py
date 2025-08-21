@@ -883,7 +883,7 @@ def parse_outages(
                     zulu_to_utc(f"{end_time}")
                 ).replace(minute=0, second=0, microsecond=0) + timedelta(
                     hours=1
-                )  # round to the next hour
+                )  # round to the next hour\
 
                 # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
                 for dt in [
