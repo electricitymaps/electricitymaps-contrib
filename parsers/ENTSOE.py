@@ -636,7 +636,9 @@ def query_wind_solar_production_forecast(
 
 
 def query_generation_outages(
-    in_domain: str, session: Session, target_datetime: datetime | None = None,
+    in_domain: str,
+    session: Session,
+    target_datetime: datetime | None = None,
 ) -> str | None:
     params = {
         "documentType": "A80",
@@ -997,12 +999,26 @@ def parse_outages(
                     time_range = entry.find("timeInterval")
                     start_time = time_range.find("start").contents[0]
                     end_time = time_range.find("end").contents[0]
-                    datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
+                    datetime_start = datetime.fromisoformat(
+                        zulu_to_utc(f"{start_time}")
+                    )
                     datetime_end = datetime.fromisoformat(
                         zulu_to_utc(f"{end_time}")
                     ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
                     # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-                    for dt in pd.date_range(max(datetime_start, datetime.now().replace(tzinfo=timezone.utc) - timedelta(days=1)), min(datetime_end, datetime.now().replace(tzinfo=timezone.utc) + timedelta(days=4)), freq="H").to_pydatetime():
+                    for dt in pd.date_range(
+                        max(
+                            datetime_start,
+                            datetime.now().replace(tzinfo=timezone.utc)
+                            - timedelta(days=1),
+                        ),
+                        min(
+                            datetime_end,
+                            datetime.now().replace(tzinfo=timezone.utc)
+                            + timedelta(days=4),
+                        ),
+                        freq="H",
+                    ).to_pydatetime():
                         outages.append(
                             zoneKey=zoneKey,
                             datetime=dt,
@@ -1482,7 +1498,9 @@ def fetch_generation_outages(
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
         try:
             raw_outage_data = query_generation_outages(
-                domain, session, target_datetime=target_datetime,
+                domain,
+                session,
+                target_datetime=target_datetime,
             )
         except Exception as e:
             raise ParserException(
