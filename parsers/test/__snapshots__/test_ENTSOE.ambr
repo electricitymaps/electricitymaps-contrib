@@ -5873,6 +5873,30 @@
     }),
   ])
 # ---
+# name: test_fetch_outages
+  list([
+    dict({
+      'capacity_reduction': 170.0,
+      'datetime': Timestamp('2024-04-17 22:00:00+0000', tz='UTC'),
+      'fuel_type': 'gas',
+      'generator_id': None,
+      'outage_type': None,
+      'reason': None,
+      'source': 'entsoe.eu',
+      'zoneKey': 'BE',
+    }),
+    dict({
+      'capacity_reduction': 170.0,
+      'datetime': Timestamp('2024-04-17 23:00:00+0000', tz='UTC'),
+      'fuel_type': 'gas',
+      'generator_id': None,
+      'outage_type': None,
+      'reason': None,
+      'source': 'entsoe.eu',
+      'zoneKey': 'BE',
+    }),
+  ])
+# ---
 # name: test_fetch_prices
   list([
     dict({

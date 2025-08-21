@@ -317,6 +317,17 @@ def test_fetch_uses_normal_url(adapter, session):
     ENTSOE.fetch_price(ZoneKey("DE"), session)
 
 
+def test_fetch_outages(adapter, session, snapshot):
+    with open("parsers/test/mocks/ENTSOE/BE_outages.zip", "rb") as outages_be_data:
+        adapter.register_uri(
+            GET,
+            ANY,
+            content=outages_be_data.read(),
+        )
+    outages = ENTSOE.fetch_generation_outages(ZoneKey("BE"), session)
+    assert snapshot == outages[0:2]
+
+
 def test_refetch_frequency():
     func = fetch_production
 
