@@ -106,6 +106,7 @@ class Parsers(ParsersBaseModel):
     production: str | None
     productionCapacity: str | None
     gridAlerts: str | None
+    generationOutages: str | None
 
 
 class Source(StrictBaseModel):

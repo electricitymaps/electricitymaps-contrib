@@ -32,6 +32,7 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
     "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
     "gridAlerts": _PARSER_FUNCTION_ARGS,
+    "generationOutages": _PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
@@ -43,6 +44,7 @@ _RETURN_PARSER_TYPE = [
     dict[str, Any],
     dict[str, Any] | list[dict[str, Any]],
     dict[str, Any] | None,
+    list[dict[str, Any]] | None,
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
@@ -57,6 +59,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "productionPerModeForecast": _RETURN_PARSER_TYPE,
     "productionCapacity": _RETURN_PARSER_TYPE,
     "gridAlerts": _RETURN_PARSER_TYPE,
+    "generationOutages": _RETURN_PARSER_TYPE,
 }
 
 
