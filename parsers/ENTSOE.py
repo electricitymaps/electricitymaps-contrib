@@ -57,6 +57,7 @@ SOURCE = "entsoe.eu"
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
 DEFAULT_LOOKBACK_HOURS_REALTIME = 72
+DEFAULT_LOOKBACK_HOURS_OUTAGES = 1
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 DEFAULT_HOURS_OUTAGES = (0, 1)
@@ -882,22 +883,11 @@ def parse_outages(
                 start_time = time_range.find("start").contents[0]
                 end_time = time_range.find("end").contents[0]
                 datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
-                datetime_start_rounded = datetime_start.replace(
-                    minute=0, second=0, microsecond=0
-                ) + timedelta(hours=1)
                 datetime_end = datetime.fromisoformat(
                     zulu_to_utc(f"{end_time}")
-                ).replace(minute=0, second=0, microsecond=0) + timedelta(
-                    hours=1
-                )  # round to the next hour\
-
+                ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
                 # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-                for dt in [
-                    datetime_start,
-                    *list(
-                        pd.date_range(datetime_start_rounded, datetime_end, freq="H")
-                    ),
-                ]:
+                for dt in pd.date_range(datetime_start, datetime_end, freq="H"):
                     outages.append(
                         zoneKey=zoneKey,
                         datetime=dt,
@@ -1356,7 +1346,7 @@ def fetch_wind_solar_forecasts(
     return forcast_breakdown_list.to_list()
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_OUTAGES))
 def fetch_generation_outages(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1393,8 +1383,7 @@ def fetch_generation_outages(
         non_aggregated_data.append(parse_outages(raw_outage_data, zone_key, logger))
 
     return OutageList.aggregate_across_generation_units(
-        [outage for outage_list in non_aggregated_data for outage in outage_list],
-        logger,
+        non_aggregated_data, logger
     ).to_list()
 
 
@@ -1411,6 +1400,12 @@ def _query_entsoe_zip_endpoint(
     URL = "https://web-api.tp.entsoe.eu/api"
     if target_datetime is None:
         target_datetime = datetime.now(timezone.utc)
+
+    if not isinstance(target_datetime, datetime):
+        raise ParserException(
+            parser="ENTSOE.py",
+            message="target_datetime has to be a datetime in query_entsoe",
+        )
 
     params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
         "%Y%m%d%H00"
