@@ -5873,6 +5873,40 @@
     }),
   ])
 # ---
+# name: test_fetch_outages
+  list([
+    dict({
+      'capacity_reduction': 170.0,
+      'datetime': Timestamp('2024-04-17 22:00:00+0000', tz='UTC', freq='H'),
+      'fuel_type': 'gas',
+      'generator_id': '22W201806271---D',
+      'outage_type': <OutageType.PLANNED: 'planned'>,
+      'reason': '''
+        Temporary shutdown of the Steam Turbine for the period from 18.04.2024. 
+        
+        This date is nevertheless likely to be shifted depending on the progress in the execution of the project for the new CCGT plant in Seraing
+  
+      ''',
+      'source': 'entsoe.eu',
+      'zoneKey': 'BE',
+    }),
+    dict({
+      'capacity_reduction': 170.0,
+      'datetime': Timestamp('2024-04-17 23:00:00+0000', tz='UTC', freq='H'),
+      'fuel_type': 'gas',
+      'generator_id': '22W201806271---D',
+      'outage_type': <OutageType.PLANNED: 'planned'>,
+      'reason': '''
+        Temporary shutdown of the Steam Turbine for the period from 18.04.2024. 
+        
+        This date is nevertheless likely to be shifted depending on the progress in the execution of the project for the new CCGT plant in Seraing
+  
+      ''',
+      'source': 'entsoe.eu',
+      'zoneKey': 'BE',
+    }),
+  ])
+# ---
 # name: test_fetch_prices
   list([
     dict({
