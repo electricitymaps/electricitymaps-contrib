@@ -15,6 +15,7 @@ class ParserDataType(Enum):
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
     GRID_ALERTS = "gridAlerts"
+    GENERATION_OUTAGES = "generationOutages"
 
     def __str__(self) -> str:
         return self.value
