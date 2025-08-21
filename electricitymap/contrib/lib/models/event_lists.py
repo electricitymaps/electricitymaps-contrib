@@ -16,8 +16,6 @@ from electricitymap.contrib.lib.models.events import (
     LocationalMarginalPrice,
     Outage,
     OutageType,
-    Outage,
-    OutageType,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -422,7 +420,7 @@ class OutageList(EventList[Outage]):
         source: str,
         capacity_reduction: float,
         fuel_type: str,
-        outage_type: OutageType,
+        outage_type: OutageType | None = None,
         generator_id: str | None = None,
         reason: str | None = None,
     ):
@@ -439,6 +437,32 @@ class OutageList(EventList[Outage]):
         )
         if event:
             self.events.append(event)
+
+    @staticmethod
+    def aggregate_across_generation_units(
+        outages: "OutageList", logger: Logger
+    ) -> "OutageList":
+        """
+        Aggregates the outages over the generation units.
+        """
+        aggregated_outages_df = (
+            pd.DataFrame([o.to_dict() for o in outages])
+            .drop_duplicates()
+            .groupby(["datetime", "zoneKey", "source", "fuel_type", "outage_type"])
+            .sum(numeric_only=True)
+            .sort_index()
+            .reset_index()
+        )
+        aggregated_outages = OutageList(logger)
+        for _, row in aggregated_outages_df.iterrows():
+            aggregated_outages.append(
+                zoneKey=row["zoneKey"],
+                datetime=row["datetime"],
+                source=row["source"],
+                capacity_reduction=row["capacity_reduction"],
+                fuel_type=row["fuel_type"],
+            )
+        return aggregated_outages
 
 
 class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
