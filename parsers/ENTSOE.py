@@ -1002,7 +1002,7 @@ def parse_outages(
                         zulu_to_utc(f"{end_time}")
                     ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
                     # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-                    for dt in pd.date_range(datetime_start, datetime_end, freq="H"):
+                    for dt in pd.date_range(max(datetime_start, datetime.now().replace(tzinfo=timezone.utc) - timedelta(days=60)), min(datetime_end, datetime.now().replace(tzinfo=timezone.utc) + timedelta(days=30)), freq="H").to_pydatetime():
                         outages.append(
                             zoneKey=zoneKey,
                             datetime=dt,
