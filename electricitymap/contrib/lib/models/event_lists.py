@@ -440,13 +440,13 @@ class OutageList(EventList[Outage]):
 
     @staticmethod
     def aggregate_across_generation_units(
-        outages: "OutageList", logger: Logger
+        outages: list["OutageList"], logger: Logger
     ) -> "OutageList":
         """
         Aggregates the outages over the generation units.
         """
         aggregated_outages_df = (
-            pd.DataFrame([o.to_dict() for o in outages])
+            pd.DataFrame([o.to_dict() for outage_list in outages for o in outage_list])
             .drop_duplicates()
             .groupby(["datetime", "zoneKey", "source", "fuel_type", "outage_type"])
             .sum(numeric_only=True)
