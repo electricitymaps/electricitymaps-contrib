@@ -966,73 +966,68 @@ def parse_outages(
         xml_string = ET.tostring(tree.getroot(), encoding="unicode")
         xml_string_without_ns = re.sub(r"ns\d+:", "", xml_string)
         soup = BeautifulSoup(xml_string_without_ns, "xml")
-        try:
-            reason_field = soup.find("Reason")
-            reason = (
-                reason_field.find("text").contents[0]
-                if "text" in reason_field
-                else OUTAGE_REASON_CODES.get(reason_field.find("code").contents[0])
+        reason_field = soup.find("Reason")
+        reason = (
+            reason_field.find("text").contents[0]
+            if "text" in reason_field
+            else OUTAGE_REASON_CODES.get(reason_field.find("code").contents[0])
+        )
+        for timeseries in soup.find_all("TimeSeries"):
+            fuel_code = str(
+                timeseries.find(
+                    "production_RegisteredResource.pSRType.psrType"
+                ).contents[0]
             )
-            for timeseries in soup.find_all("TimeSeries"):
-                fuel_code = str(
-                    timeseries.find(
-                        "production_RegisteredResource.pSRType.psrType"
-                    ).contents[0]
-                )
-                fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-                outage_type = OUTAGE_CODE_TO_TYPE.get(
-                    timeseries.find("businessType").contents[0]
-                )
-                generator_id = str(
-                    timeseries.find("production_RegisteredResource.mRID").contents[0]
-                )
-                installed_capacity = float(
-                    timeseries.find(
-                        "production_RegisteredResource.pSRType.powerSystemResources.nominalP"
-                    ).contents[0]
-                )
+            fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+            outage_type = OUTAGE_CODE_TO_TYPE.get(
+                timeseries.find("businessType").contents[0]
+            )
+            generator_id = str(
+                timeseries.find("production_RegisteredResource.mRID").contents[0]
+            )
+            installed_capacity = float(
+                timeseries.find(
+                    "production_RegisteredResource.pSRType.powerSystemResources.nominalP"
+                ).contents[0]
+            )
 
-                for entry in timeseries.find_all("Available_Period"):
-                    quantity = float(entry.find("Point").find("quantity").contents[0])
-                    capacity_reduction = installed_capacity - quantity
+            for entry in timeseries.find_all("Available_Period"):
+                quantity = float(entry.find("Point").find("quantity").contents[0])
+                capacity_reduction = installed_capacity - quantity
 
-                    time_range = entry.find("timeInterval")
-                    start_time = time_range.find("start").contents[0]
-                    end_time = time_range.find("end").contents[0]
-                    datetime_start = datetime.fromisoformat(
-                        zulu_to_utc(f"{start_time}")
+                time_range = entry.find("timeInterval")
+                start_time = time_range.find("start").contents[0]
+                end_time = time_range.find("end").contents[0]
+                datetime_start = datetime.fromisoformat(
+                    zulu_to_utc(f"{start_time}")
+                )
+                datetime_end = datetime.fromisoformat(
+                    zulu_to_utc(f"{end_time}")
+                ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+                # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
+                for dt in pd.date_range(
+                    max(
+                        datetime_start,
+                        datetime.now().replace(tzinfo=timezone.utc)
+                        - timedelta(days=1),
+                    ),
+                    min(
+                        datetime_end,
+                        datetime.now().replace(tzinfo=timezone.utc)
+                        + timedelta(days=4),
+                    ),
+                    freq="H",
+                ).to_pydatetime():
+                    outages.append(
+                        zoneKey=zoneKey,
+                        datetime=dt,
+                        source="entsoe.eu",
+                        capacity_reduction=capacity_reduction,
+                        fuel_type=fuel_em_type,
+                        outage_type=outage_type,
+                        generator_id=generator_id,
+                        reason=reason,
                     )
-                    datetime_end = datetime.fromisoformat(
-                        zulu_to_utc(f"{end_time}")
-                    ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
-                    # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-                    for dt in pd.date_range(
-                        max(
-                            datetime_start,
-                            datetime.now().replace(tzinfo=timezone.utc)
-                            - timedelta(days=1),
-                        ),
-                        min(
-                            datetime_end,
-                            datetime.now().replace(tzinfo=timezone.utc)
-                            + timedelta(days=4),
-                        ),
-                        freq="H",
-                    ).to_pydatetime():
-                        outages.append(
-                            zoneKey=zoneKey,
-                            datetime=dt,
-                            source="entsoe.eu",
-                            capacity_reduction=capacity_reduction,
-                            fuel_type=fuel_em_type,
-                            outage_type=outage_type,
-                            generator_id=generator_id,
-                            reason=reason,
-                        )
-        except Exception as e:
-            print(e)
-            breakpoint()
-
     return outages
 
 
