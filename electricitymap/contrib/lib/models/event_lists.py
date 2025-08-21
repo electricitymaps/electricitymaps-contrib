@@ -14,6 +14,8 @@ from electricitymap.contrib.lib.models.events import (
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
+    Outage,
+    OutageType,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -405,6 +407,31 @@ class PriceList(EventList[Price]):
     ):
         event = Price.create(
             self.logger, zoneKey, datetime, source, price, currency, sourceType
+        )
+        if event:
+            self.events.append(event)
+
+
+class OutageList(EventList[Outage]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacity_reduction: float,
+        fuel_type: str,
+        outage_type: OutageType,
+        reason: str | None = None,
+    ):
+        event = Outage.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            source,
+            capacity_reduction,
+            fuel_type,
+            outage_type,
+            reason,
         )
         if event:
             self.events.append(event)
