@@ -215,6 +215,115 @@ OUTAGE_CODE_TO_TYPE = {
     "A54": OutageType.UNPLANNED,
 }
 
+OUTAGE_REASON_CODES = {
+    "A01": "Message fully accepted",
+    "A02": "Message fully rejected",
+    "A03": "Message contains errors at the time series level",
+    "A04": "Time interval incorrect",
+    "A05": "Sender without valid contract",
+    "A06": "Schedule accepted",
+    "A07": "Schedule partially accepted",
+    "A08": "Schedule rejected",
+    "A09": "Time series not matching",
+    "A10": "Credit limit exceeded",
+    "A20": "Time series fully rejected",
+    "A21": "Time series accepted with specific time interval",
+    "A22": "In party/Out party invalid",
+    "A23": "Area invalid",
+    "A24": "This code is no longer applicable",
+    "A25": "This code is no longer applicable",
+    "A26": "Default time series applied",
+    "A27": "Cross border capacity exceeded",
+    "A28": "Counterpart time series missing",
+    "A29": "Counterpart time series quantity differences",
+    "A30": "Imposed Time series from nominated party's time series (party identified in reason text)",
+    "A41": "Resolution inconsistency",
+    "A42": "Quantity inconsistency",
+    "A43": "Quantity increased",
+    "A44": "Quantity decreased",
+    "A45": "Default quantity applied",
+    "A46": "Quantities must not be signed values",
+    "A47": "This code is no longer applicable",
+    "A48": "Modification reason",
+    "A49": "Position inconsistency",
+    "A50": "Senders time series version conflict",
+    "A51": "Message identification or version conflict",
+    "A52": "Time series missing from new version of message",
+    "A53": "Receiving party incorrect",
+    "A54": "Global position not in balance",
+    "A55": "Time series identification conflict",
+    "A56": "Corresponding Time series not netted",
+    "A57": "Deadline limit exceeded/Gate not open",
+    "A58": "One to one nomination inconsistency",
+    "A59": "Not compliant to local market rules",
+    "A60": "Inter-area transit schedule exceeds nominated schedule",
+    "A61": "Currency invalid",
+    "A62": "Invalid business type",
+    "A63": "Time Series modified",
+    "A64": "Resource Object Invalid",
+    "A65": "Reserve object Technical limits exceeded",
+    "A66": "Planned reserves do not correspond with contractual data",
+    "A67": "Limit Data is not available",
+    "A68": "Reserve Object not qualified for reserve type",
+    "A69": "Mandatory attributes missing",
+    "A70": "Curtailment",
+    "A71": "Linked bid rejected due to associated bid unsuccessful",
+    "A72": "Original bid divided to permit acceptance",
+    "A73": "Bid accepted",
+    "A74": "Auction Status",
+    "A75": "Right status information",
+    "A76": "Agreement identification inconsistency",
+    "A77": "Dependency matrix not respected",
+    "A78": "Sender identification and/or role invalid",
+    "A79": "Process type invalid",
+    "A80": "Domain invalid",
+    "A81": "Matching period invalid",
+    "A82": "In/Out area inconsistant with domain",
+    "A83": "Disagree with matching results",
+    "A84": "Confirmation ignored due to higher version already received",
+    "A85": "Confirmation without adjustment (time series have been matched without change)",
+    "A86": "Confirmation with adjustment (time series have been modified)",
+    "A87": "For action (only in intermediate confirmation - time series need mutual agreement and action)",
+    "A88": "Time series matched",
+    "A89": "Time series ignored (note: this can only apply to time series that are set to zero - see matching principles)",
+    "A90": "Modification proposal (intermediate confirmation)",
+    "A91": "Expected document not received",
+    "A92": "Not possible to send document on time, but estimated delivery time is provided",
+    "A93": "Not possible to send document on time, and further more no expected time of return to normal situation",
+    "A94": "Document cannot be processed by receiving system",
+    "A95": "Complementary information",
+    "A96": "Technical constraint",
+    "A97": "Force majeure curtailment",
+    "A98": "Network security curtailment",
+    "A99": "Auction cancelled",
+    "B01": "Incomplete document",
+    "B02": "Accounting Point (tie-line) Time Series missing",
+    "B03": "Meter data Time series missing",
+    "B04": "Estimated values not allowed in first transmission",
+    "B05": "No quantity values allowed for a quality that is not available",
+    "B06": "Time series accepted",
+    "B07": "Auction without bids being entered",
+    "B08": "Data not yet available",
+    "B09": "Bid not accepted",
+    "B10": "Initiator area problem",
+    "B11": "Cooperating area problem",
+    "B12": "Communication status currently active",
+    "B13": "Communication status currently inactive",
+    "B14": "Communication status currently restricted",
+    "B15": "Problem associated with both areas",
+    "B16": "Tender unavailable in MOL list",
+    "B17": "Price based on preliminary exchange rate",
+    "B18": "Failure",
+    "B19": "Forseen maintenance",
+    "B20": "Shutdown",
+    "B21": "Official exchange rate approved",
+    "B22": "System regulation",
+    "B23": "Frequency regulation",
+    "B24": "Load flow overload",
+    "B25": "voltage level adjustment",
+    "999": "Errors not specifically identified",
+}
+
 
 # Define zone_keys to an array of zone_keys for aggregated production data
 ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
@@ -527,11 +636,11 @@ def query_wind_solar_production_forecast(
 
 
 def query_generation_outages(
-    in_domain: str, session: Session, target_datetime: datetime | None = None
+    in_domain: str, session: Session, target_datetime: datetime | None = None,
 ) -> str | None:
     params = {
         "documentType": "A80",
-        "in_Domain": in_domain,
+        "BiddingZone_Domain": in_domain,
     }
     return _query_entsoe_zip_endpoint(
         params=params,
@@ -855,49 +964,58 @@ def parse_outages(
         xml_string = ET.tostring(tree.getroot(), encoding="unicode")
         xml_string_without_ns = re.sub(r"ns\d+:", "", xml_string)
         soup = BeautifulSoup(xml_string_without_ns, "xml")
-        reason = soup.find("Reason").find("text").contents[0]
-        for timeseries in soup.find_all("TimeSeries"):
-            fuel_code = str(
-                timeseries.find(
-                    "production_RegisteredResource.pSRType.psrType"
-                ).contents[0]
+        try:
+            reason_field = soup.find("Reason")
+            reason = (
+                reason_field.find("text").contents[0]
+                if "text" in reason_field
+                else OUTAGE_REASON_CODES.get(reason_field.find("code").contents[0])
             )
-            fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-            outage_type = OUTAGE_CODE_TO_TYPE.get(
-                timeseries.find("businessType").contents[0]
-            )
-            generator_id = str(
-                timeseries.find("production_RegisteredResource.mRID").contents[0]
-            )
-            installed_capacity = float(
-                timeseries.find(
-                    "production_RegisteredResource.pSRType.powerSystemResources.nominalP"
-                ).contents[0]
-            )
+            for timeseries in soup.find_all("TimeSeries"):
+                fuel_code = str(
+                    timeseries.find(
+                        "production_RegisteredResource.pSRType.psrType"
+                    ).contents[0]
+                )
+                fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+                outage_type = OUTAGE_CODE_TO_TYPE.get(
+                    timeseries.find("businessType").contents[0]
+                )
+                generator_id = str(
+                    timeseries.find("production_RegisteredResource.mRID").contents[0]
+                )
+                installed_capacity = float(
+                    timeseries.find(
+                        "production_RegisteredResource.pSRType.powerSystemResources.nominalP"
+                    ).contents[0]
+                )
 
-            for entry in timeseries.find_all("Available_Period"):
-                quantity = float(entry.find("Point").find("quantity").contents[0])
-                capacity_reduction = installed_capacity - quantity
+                for entry in timeseries.find_all("Available_Period"):
+                    quantity = float(entry.find("Point").find("quantity").contents[0])
+                    capacity_reduction = installed_capacity - quantity
 
-                time_range = entry.find("timeInterval")
-                start_time = time_range.find("start").contents[0]
-                end_time = time_range.find("end").contents[0]
-                datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
-                datetime_end = datetime.fromisoformat(
-                    zulu_to_utc(f"{end_time}")
-                ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
-                # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-                for dt in pd.date_range(datetime_start, datetime_end, freq="H"):
-                    outages.append(
-                        zoneKey=zoneKey,
-                        datetime=dt,
-                        source="entsoe.eu",
-                        capacity_reduction=capacity_reduction,
-                        fuel_type=fuel_em_type,
-                        outage_type=outage_type,
-                        generator_id=generator_id,
-                        reason=reason,
-                    )
+                    time_range = entry.find("timeInterval")
+                    start_time = time_range.find("start").contents[0]
+                    end_time = time_range.find("end").contents[0]
+                    datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
+                    datetime_end = datetime.fromisoformat(
+                        zulu_to_utc(f"{end_time}")
+                    ).replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+                    # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
+                    for dt in pd.date_range(datetime_start, datetime_end, freq="H"):
+                        outages.append(
+                            zoneKey=zoneKey,
+                            datetime=dt,
+                            source="entsoe.eu",
+                            capacity_reduction=capacity_reduction,
+                            fuel_type=fuel_em_type,
+                            outage_type=outage_type,
+                            generator_id=generator_id,
+                            reason=reason,
+                        )
+        except Exception as e:
+            print(e)
+            breakpoint()
 
     return outages
 
@@ -1364,7 +1482,7 @@ def fetch_generation_outages(
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
         try:
             raw_outage_data = query_generation_outages(
-                domain, session, target_datetime=target_datetime
+                domain, session, target_datetime=target_datetime,
             )
         except Exception as e:
             raise ParserException(
