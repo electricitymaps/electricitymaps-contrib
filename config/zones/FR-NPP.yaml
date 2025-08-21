@@ -13,6 +13,8 @@ capacity:
 contributors:
   - AilinvandenHonigkuchenpferdlande
   - corradio
+  - Bastien Bigué
+  - Paul Romieu
 parsers:
   production: ECO2MIX.fetch_production
 timezone: Europe/Paris
