@@ -438,32 +438,6 @@ class OutageList(EventList[Outage]):
         if event:
             self.events.append(event)
 
-    @staticmethod
-    def aggregate_across_generation_units(
-        outages: list["OutageList"], logger: Logger
-    ) -> "OutageList":
-        """
-        Aggregates the outages over the generation units.
-        """
-        aggregated_outages_df = (
-            pd.DataFrame([o.to_dict() for outage_list in outages for o in outage_list])
-            .drop_duplicates()
-            .groupby(["datetime", "zoneKey", "source", "fuel_type", "outage_type"])
-            .sum(numeric_only=True)
-            .sort_index()
-            .reset_index()
-        )
-        aggregated_outages = OutageList(logger)
-        for _, row in aggregated_outages_df.iterrows():
-            aggregated_outages.append(
-                zoneKey=row["zoneKey"],
-                datetime=row["datetime"],
-                source=row["source"],
-                capacity_reduction=row["capacity_reduction"],
-                fuel_type=row["fuel_type"],
-            )
-        return aggregated_outages
-
 
 class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
     def append(
