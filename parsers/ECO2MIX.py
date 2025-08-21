@@ -3,12 +3,12 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
-from requests import Session
 
 import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
@@ -58,12 +58,15 @@ MAP_MODES = {
 
 SOURCE = "rte-france.com"
 
+
 def query(url_type_arg, session: Session, target_datetime: datetime):
     if target_datetime:
         date_to = target_datetime.replace(tzinfo=ZoneInfo("Europe/Paris"))
     else:
         date_to = datetime.now(tz=ZoneInfo("Europe/Paris"))
-    date_from = (date_to - timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    date_from = (date_to - timedelta(days=1)).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
     date_from = date_from.strftime("%d/%m/%Y")
     date_to = date_to.strftime("%d/%m/%Y")
 
@@ -171,7 +174,7 @@ def fetch_production(
 
     datapoints = [
         # validate(d, logger, required=VALIDATIONS.get(zone_key, []))
-        # for d in 
+        # for d in
         format_production_df(
             df=parse_production_to_df(query_production(session, target_datetime)),
             zone_key=zone_key,
@@ -220,7 +223,6 @@ def parse_exchange_to_df(text):
     df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
     df["zone_key_other"] = df.v.apply(lambda x: MAP_ZONES[x.split("_")[1]])
     df["zone_key"] = df.perimetre.apply(lambda k: MAP_ZONES[k])
-    # Only keep rows between 
     df["sorted_zone_keys"] = df.apply(
         lambda row: "->".join(sorted([row["zone_key"], row["zone_key_other"]])), axis=1
     )
@@ -286,17 +288,35 @@ def fetch_exchange(
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ):
-
     datapoints = format_exchange_df(
         df=parse_exchange_to_df(query_exchange(session, target_datetime)),
         sorted_zone_keys="->".join(sorted([zone_key1, zone_key2])),
     )
     return datapoints
 
+
 if __name__ == "__main__":
     session = requests.Session()
     # target_datetime = datetime.now(tz=ZoneInfo("Europe/Paris"))
     target_datetime = datetime(2025, 8, 19, 0, 0, 0, tzinfo=ZoneInfo("Europe/Paris"))
-    print(fetch_production(zone_key="FR-ARA", session=session, target_datetime=target_datetime))
-    print(fetch_exchange(zone_key1="FR-BRE", zone_key2="FR-PLO", session=session, target_datetime=target_datetime))
-    print(fetch_exchange(zone_key1="FR-BRE", zone_key2="FR-NOR", session=session, target_datetime=target_datetime))
+    print(
+        fetch_production(
+            zone_key="FR-ARA", session=session, target_datetime=target_datetime
+        )
+    )
+    print(
+        fetch_exchange(
+            zone_key1="FR-BRE",
+            zone_key2="FR-PLO",
+            session=session,
+            target_datetime=target_datetime,
+        )
+    )
+    print(
+        fetch_exchange(
+            zone_key1="FR-BRE",
+            zone_key2="FR-NOR",
+            session=session,
+            target_datetime=target_datetime,
+        )
+    )
