@@ -17,9 +17,7 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 
 import itertools
 import os
-import os
 import re
-import xml.etree.ElementTree as ET
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -27,13 +25,11 @@ from functools import lru_cache
 from logging import Logger, getLogger
 from operator import itemgetter
 from tempfile import TemporaryDirectory
-from tempfile import TemporaryDirectory
 from typing import Any
 from zipfile import ZipFile
-import pandas as pd
-
 
 import numpy as np
+import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
@@ -63,6 +59,7 @@ ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 DEFAULT_LOOKBACK_HOURS_REALTIME = 72
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+DEFAULT_HOURS_OUTAGES = (-120, 120)
 
 
 # TODO: Switch this to a string enum when we migrate to Python 3.11
@@ -522,6 +519,21 @@ def query_wind_solar_production_forecast(
     )
 
 
+def query_generation_outages(
+    in_domain: str, session: Session, target_datetime: datetime | None = None
+) -> str | None:
+    params = {
+        "documentType": "A80",
+        "in_Domain": in_domain,
+    }
+    return _query_entsoe_zip_endpoint(
+        params=params,
+        session=session,
+        span=DEFAULT_HOURS_OUTAGES,
+        target_datetime=target_datetime,
+    )
+
+
 # TODO: Remove this when we run on Python 3.11 or above
 @lru_cache(maxsize=8)
 def zulu_to_utc(datetime_string: str) -> str:
@@ -825,62 +837,72 @@ def parse_prices(
 
 
 def parse_outages(
-    xml_text: str,
+    xml_trees: list[ET.ElementTree],
     zoneKey: ZoneKey,
     logger: Logger,
 ) -> OutageList:
-    if not xml_text:
+    if not xml_trees:
         return OutageList(logger)
-    soup = BeautifulSoup(xml_text, "html.parser")
     outages = OutageList(logger)
-    reason = soup.find("reason").find("text").contents[0]
-    for timeseries in soup.find_all("timeseries"):
-        fuel_code = str(
-            timeseries.find("production_registeredresource.psrtype.psrtype").contents[0]
-        )
-        fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
-        outage_type = OutageType.mapping_code_to_type(
-            timeseries.find("businesstype").contents[0]
-        )
-        generator_id = str(
-            timeseries.find("production_registeredresource.mrid").contents[0]
-        )
-        installed_capacity = float(
-            timeseries.find(
-                "production_registeredresource.psrtype.powersystemresources.nominalp"
-            ).contents[0]
-        )
+    for tree in xml_trees:
+        xml_string = ET.tostring(tree.getroot(), encoding="unicode")
+        xml_string_without_ns = re.sub(r"ns\d+:", "", xml_string)
+        soup = BeautifulSoup(xml_string_without_ns, "xml")
+        reason = soup.find("Reason").find("text").contents[0]
+        for timeseries in soup.find_all("TimeSeries"):
+            fuel_code = str(
+                timeseries.find(
+                    "production_RegisteredResource.pSRType.psrType"
+                ).contents[0]
+            )
+            fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
+            outage_type = OutageType.mapping_code_to_type(
+                timeseries.find("businessType").contents[0]
+            )
+            generator_id = str(
+                timeseries.find("production_RegisteredResource.mRID").contents[0]
+            )
+            installed_capacity = float(
+                timeseries.find(
+                    "production_RegisteredResource.pSRType.powerSystemResources.nominalP"
+                ).contents[0]
+            )
 
-        for entry in timeseries.find_all("available_period"):
-            quantity = float(entry.find("point").find("quantity").contents[0])
-            capacity_reduction = installed_capacity - quantity
+            for entry in timeseries.find_all("Available_Period"):
+                quantity = float(entry.find("Point").find("quantity").contents[0])
+                capacity_reduction = installed_capacity - quantity
 
-            time_range = entry.find("timeinterval")
-            start_time = time_range.find("start").contents[0]
-            end_time = time_range.find("end").contents[0]
-            datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
-            datetime_start_rounded = datetime_start.replace(
-                minute=0, second=0, microsecond=0
-            ) + timedelta(hours=1)
-            datetime_end = datetime.fromisoformat(zulu_to_utc(f"{end_time}")).replace(
-                minute=0, second=0, microsecond=0
-            ) + timedelta(hours=1)  # round to the next hour
+                time_range = entry.find("timeInterval")
+                start_time = time_range.find("start").contents[0]
+                end_time = time_range.find("end").contents[0]
+                datetime_start = datetime.fromisoformat(zulu_to_utc(f"{start_time}"))
+                datetime_start_rounded = datetime_start.replace(
+                    minute=0, second=0, microsecond=0
+                ) + timedelta(hours=1)
+                datetime_end = datetime.fromisoformat(
+                    zulu_to_utc(f"{end_time}")
+                ).replace(minute=0, second=0, microsecond=0) + timedelta(
+                    hours=1
+                )  # round to the next hour
 
-            # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
-            for dt in [
-                datetime_start,
-                *list(pd.date_range(datetime_start_rounded, datetime_end, freq="H")),
-            ]:
-                outages.append(
-                    zoneKey=zoneKey,
-                    datetime=dt,
-                    source="entsoe.eu",
-                    capacity_reduction=capacity_reduction,
-                    fuel_type=fuel_em_type,
-                    outage_type=outage_type,
-                    generator_id=generator_id,
-                    reason=reason,
-                )
+                # HACK: creating one datetime per hour but should rather have one event per outage and handle this downstream.
+                for dt in [
+                    datetime_start,
+                    *list(
+                        pd.date_range(datetime_start_rounded, datetime_end, freq="H")
+                    ),
+                ]:
+                    outages.append(
+                        zoneKey=zoneKey,
+                        datetime=dt,
+                        source="entsoe.eu",
+                        capacity_reduction=capacity_reduction,
+                        fuel_type=fuel_em_type,
+                        outage_type=outage_type,
+                        generator_id=generator_id,
+                        reason=reason,
+                    )
+
     return outages
 
 
@@ -1328,32 +1350,68 @@ def fetch_wind_solar_forecasts(
     return forcast_breakdown_list.to_list()
 
 
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+def fetch_generation_outages(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """
+    Gets values and corresponding datetimes for all production types in the specified zone.
+    Removes any values that are in the future or don't have a datetime associated with them.
+    """
+    if not session:
+        session = Session()
+    non_aggregated_data: list[OutageList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_outage_data = query_generation_outages(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch generation outages for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_outage_data is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No generation outages data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        # Aggregated data are regrouped unde the same zone key.
+
+        non_aggregated_data.append(parse_outages(raw_outage_data, zone_key, logger))
+
+    return OutageList.aggregate_across_generation_units(
+        [outage for outage_list in non_aggregated_data for outage in outage_list],
+        logger,
+    ).to_list()
+
+
 def _query_entsoe_zip_endpoint(
     params: dict,
     session: Session,
+    span: tuple,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[ET.ElementTree]:
     """Some endpoints are returning zip objects in which the xml files are stored."""
     # TODO: Currently this cannot use the proxy because it returns an attachment.
+
     URL = "https://web-api.tp.entsoe.eu/api"
     if target_datetime is None:
         target_datetime = datetime.now(timezone.utc)
 
-    if not isinstance(target_datetime, datetime):
-        raise ParserException(
-            parser="ENTSOE.py",
-            message="target_datetime has to be a datetime in query_entsoe",
-        )
-    params = {}
-
-    params["periodStart"] = (target_datetime + timedelta(hours=0)).strftime(
-        "%Y%m%d%H00"  # YYYYMMDDHH00
+    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+        "%Y%m%d%H00"
     )
-    params["periodEnd"] = (target_datetime + timedelta(hours=1)).strftime(
-        "%Y%m%d%H00"  # YYYYMMDDHH00
+    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+        "%Y%m%d%H00"
     )
-
     token = get_token("ENTSOE_TOKEN")
     params["securityToken"] = token
     response: Response = session.get(URL, params=params)
@@ -1373,6 +1431,6 @@ def _query_entsoe_zip_endpoint(
 
 
 if __name__ == "__main__":
-    _query_zip_endpoint(
+    _query_entsoe_zip_endpoint(
         ZoneKey("FR"), session=Session(), target_datetime=datetime.now(timezone.utc)
     )
