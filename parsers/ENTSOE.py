@@ -845,7 +845,6 @@ def parse_outages(
         return OutageList(logger)
     outages = OutageList(logger)
     for tree in xml_trees:
-        breakpoint()
         xml_string = ET.tostring(tree.getroot(), encoding="unicode")
         xml_string_without_ns = re.sub(r"ns\d+:", "", xml_string)
         soup = BeautifulSoup(xml_string_without_ns, "xml")
