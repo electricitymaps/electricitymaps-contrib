@@ -4,8 +4,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pytest
-from requests_mock import ANY, GET
 from freezegun import freeze_time
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers import ENTSOE
@@ -318,6 +318,7 @@ def test_fetch_uses_normal_url(adapter, session):
         )
     ENTSOE.fetch_price(ZoneKey("DE"), session)
 
+
 @freeze_time("2025-08-20 12:00:00")
 def test_fetch_outages(adapter, session, snapshot):
     with open("parsers/test/mocks/ENTSOE/BE_outages.zip", "rb") as outages_be_data:
@@ -334,6 +335,7 @@ def test_refetch_frequency():
     func = fetch_production
 
     assert func.__name__ == "fetch_production"
+
 
 @freeze_time("2025-08-20 12:00:00")
 def test_parse_outages(adapter, session, snapshot):
