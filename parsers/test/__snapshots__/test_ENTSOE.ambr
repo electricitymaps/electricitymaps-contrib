@@ -9128,6 +9128,18 @@
     }),
   ])
 # ---
+# name: test_parse_outages
+  dict({
+    'capacity_reduction': 1030.0,
+    'datetime': datetime.datetime(2025, 8, 31, 22, 0, tzinfo=datetime.timezone.utc),
+    'fuel_type': 'nuclear',
+    'generator_id': '22WTIHANG000242R',
+    'outage_type': <OutageType.PLANNED: 'planned'>,
+    'reason': 'Shutdown date as provided by the law',
+    'source': 'entsoe.eu',
+    'zoneKey': 'BE',
+  })
+# ---
 # name: test_production_with_snapshot[FI]
   list([
     dict({

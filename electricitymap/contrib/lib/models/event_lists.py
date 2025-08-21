@@ -16,6 +16,8 @@ from electricitymap.contrib.lib.models.events import (
     LocationalMarginalPrice,
     Outage,
     OutageType,
+    Outage,
+    OutageType,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -421,6 +423,7 @@ class OutageList(EventList[Outage]):
         capacity_reduction: float,
         fuel_type: str,
         outage_type: OutageType,
+        generator_id: str | None = None,
         reason: str | None = None,
     ):
         event = Outage.create(
@@ -431,6 +434,7 @@ class OutageList(EventList[Outage]):
             capacity_reduction,
             fuel_type,
             outage_type,
+            generator_id,
             reason,
         )
         if event:
