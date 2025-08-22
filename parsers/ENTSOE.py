@@ -1484,14 +1484,12 @@ def fetch_generation_outages(
     """
     if not session:
         session = Session()
-    non_aggregated_data = OutageList(logger)
+    non_aggregated_data: list[OutageList] = []
     for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
         try:
             raw_outage_data = query_generation_outages(
-                domain,
-                session,
-                target_datetime=target_datetime,
+                domain, session, target_datetime=target_datetime
             )
         except Exception as e:
             raise ParserException(
@@ -1505,9 +1503,13 @@ def fetch_generation_outages(
                 message=f"No generation outages data found for {_zone_key}",
                 zone_key=zone_key,
             )
-        non_aggregated_data += parse_outages(raw_outage_data, zone_key, logger)
+        # Aggregated data are regrouped unde the same zone key.
 
-    return non_aggregated_data.to_list()
+        non_aggregated_data.append(parse_outages(raw_outage_data, zone_key, logger))
+
+    return OutageList.aggregate_across_generation_units(
+        non_aggregated_data, logger
+    ).to_list()
 
 
 def _query_entsoe_zip_endpoint(
