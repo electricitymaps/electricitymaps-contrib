@@ -420,7 +420,8 @@ class OutageList(EventList[Outage]):
         source: str,
         capacity_reduction: float,
         fuel_type: str,
-        outage_type: OutageType,
+        outage_type: OutageType | None = None,
+        generator_id: str | None = None,
         reason: str | None = None,
     ):
         event = Outage.create(
@@ -431,6 +432,7 @@ class OutageList(EventList[Outage]):
             capacity_reduction,
             fuel_type,
             outage_type,
+            generator_id,
             reason,
         )
         if event:

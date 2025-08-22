@@ -503,6 +503,7 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: DK.fetch_wind_solar_forecasts
+  generationOutages: ENTSOE.fetch_generation_outages
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

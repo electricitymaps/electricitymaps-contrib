@@ -839,15 +839,16 @@ class Price(Event):
         }
 
 
-class OutageType(Enum):
+class OutageType(str, Enum):
     PLANNED = "planned"
     UNPLANNED = "unplanned"
 
 
 class Outage(Event):
+    sourceType: EventSourceType = EventSourceType.forecasted
     capacity_reduction: float
     fuel_type: str
-    outage_type: OutageType
+    outage_type: OutageType | None = None
     generator_id: str | None = None
     reason: str | None = None
 
@@ -859,7 +860,7 @@ class Outage(Event):
         source: str,
         capacity_reduction: float,
         fuel_type: str,
-        outage_type: OutageType,
+        outage_type: OutageType | None = None,
         generator_id: str | None = None,
         reason: str | None = None,
     ) -> "Outage | None":

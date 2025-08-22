@@ -1,8 +1,10 @@
 import logging
 import os
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pytest
+from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
@@ -10,6 +12,7 @@ from parsers import ENTSOE
 from parsers.ENTSOE import fetch_production
 
 base_path_to_mock = Path("parsers/test/mocks/ENTSOE")
+path_to_outage_xml = Path("parsers/test/fixtures/planned_unavailability.xml")
 
 
 @pytest.fixture(autouse=True)
@@ -316,7 +319,31 @@ def test_fetch_uses_normal_url(adapter, session):
     ENTSOE.fetch_price(ZoneKey("DE"), session)
 
 
+@freeze_time("2025-08-20 12:00:00")
+def test_fetch_outages(adapter, session, snapshot):
+    with open("parsers/test/mocks/ENTSOE/BE_outages.zip", "rb") as outages_be_data:
+        adapter.register_uri(
+            GET,
+            ANY,
+            content=outages_be_data.read(),
+        )
+    outages = ENTSOE.fetch_generation_outages(ZoneKey("BE"), session)
+    assert snapshot == outages
+
+
 def test_refetch_frequency():
     func = fetch_production
 
     assert func.__name__ == "fetch_production"
+
+
+@freeze_time("2025-08-20 12:00:00")
+def test_parse_outages(adapter, session, snapshot):
+    outage_data_trees = [ET.parse(path_to_outage_xml)]
+    outages = ENTSOE.parse_outages(
+        outage_data_trees,
+        ZoneKey("BE"),
+        logger=logging.Logger("test"),
+    )
+    outages_list = outages.to_list()
+    assert snapshot == outages_list

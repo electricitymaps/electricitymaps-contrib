@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Unavailability_MarketDocument xmlns="urn:iec62325.351:tc57wg16:451-6:outagedocument:3:0" >
+    <mRID>TKYl8nCuCU2Idp5IS2TbZg</mRID>
+    <revisionNumber>3</revisionNumber>
+    <type>A80</type>
+    <process.processType>A26</process.processType>
+    <createdDateTime>2025-07-17T11:26:31Z</createdDateTime>
+    <sender_MarketParticipant.mRID codingScheme="A01">10X1001A1001A450</sender_MarketParticipant.mRID>
+    <sender_MarketParticipant.marketRole.type>A32</sender_MarketParticipant.marketRole.type>
+    <receiver_MarketParticipant.mRID codingScheme="A01">10X1001A1001A450</receiver_MarketParticipant.mRID>
+    <receiver_MarketParticipant.marketRole.type>A33</receiver_MarketParticipant.marketRole.type>
+    <unavailability_Time_Period.timeInterval>
+        <start>2025-08-31T22:00Z</start>
+        <end>2025-10-31T23:00Z</end>
+    </unavailability_Time_Period.timeInterval>
+	    <docStatus>
+	        <value>A09</value>
+	    </docStatus>
+    <TimeSeries>
+        <mRID>1</mRID>
+            <businessType>A53</businessType>
+            <biddingZone_Domain.mRID codingScheme="A01">10YBE----------2</biddingZone_Domain.mRID>
+            <start_DateAndOrTime.date>2025-08-31</start_DateAndOrTime.date>
+            <start_DateAndOrTime.time>22:00:00Z</start_DateAndOrTime.time>
+            <end_DateAndOrTime.date>2025-10-31</end_DateAndOrTime.date>
+            <end_DateAndOrTime.time>23:00:00Z</end_DateAndOrTime.time>
+        <quantity_Measure_Unit.name>MAW</quantity_Measure_Unit.name>
+        <curveType>A03</curveType>
+		    <production_RegisteredResource.mRID codingScheme="A01">22WTIHANG000242R</production_RegisteredResource.mRID>
+		        <production_RegisteredResource.name>TIHANGE 3</production_RegisteredResource.name>
+		        <production_RegisteredResource.location.name>Belgium</production_RegisteredResource.location.name>
+		        <production_RegisteredResource.pSRType.psrType>B14</production_RegisteredResource.pSRType.psrType>
+		    <production_RegisteredResource.pSRType.powerSystemResources.mRID codingScheme="A01">22WTIHANG150242R</production_RegisteredResource.pSRType.powerSystemResources.mRID>
+		        <production_RegisteredResource.pSRType.powerSystemResources.name>TIHANGE 3</production_RegisteredResource.pSRType.powerSystemResources.name>
+		    <production_RegisteredResource.pSRType.powerSystemResources.nominalP unit="MAW">1030</production_RegisteredResource.pSRType.powerSystemResources.nominalP>
+            <Available_Period>
+                <timeInterval>
+                    <start>2025-08-31T22:00Z</start>
+                    <end>2025-10-31T23:00Z</end>
+                </timeInterval>
+                <resolution>PT60M</resolution>
+                    <Point>
+                        <position>1</position>
+                        <quantity>0</quantity>
+                    </Point>
+            </Available_Period>
+    </TimeSeries>
+    <Reason>
+        <code>A95</code>
+                <text>Shutdown date as provided by the law</text>
+    </Reason>
+</Unavailability_MarketDocument>
