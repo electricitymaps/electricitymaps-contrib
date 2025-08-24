@@ -1,9 +1,11 @@
 import { animated, useSpring } from '@react-spring/web';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CarbonUnits } from 'utils/units';
 
 import { useCo2ColorScale } from '../hooks/theme';
 import InfoIconWithPadding from './InfoIconWithPadding';
+import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 /**
@@ -15,7 +17,7 @@ import TooltipWrapper from './tooltips/TooltipWrapper';
  * See https://github.com/electricitymaps/electricitymaps-contrib/issues/3365 for more informations.
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
-const getTextColor = (rgbColor: string) => {
+export const getTextColor = (rgbColor: string) => {
   const colors = rgbColor.replaceAll(/[^\d,.]/g, '').split(',');
   const r = Number.parseInt(colors[0], 10);
   const g = Number.parseInt(colors[1], 10);
@@ -48,7 +50,13 @@ function CarbonIntensitySquare({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
+      <TooltipWrapper
+        tooltipContent={
+          <LabelTooltip className="max-w-[200px]">{tooltipContent}</LabelTooltip>
+        }
+        side="bottom"
+        sideOffset={8}
+      >
         <div className="relative flex flex-col items-center">
           <div className="size-20 p-1">
             <animated.div
@@ -60,7 +68,7 @@ function CarbonIntensitySquare({
             >
               <p
                 className="select-none text-base leading-none"
-                data-test-id="co2-square-value"
+                data-testid="co2-square-value"
               >
                 <span className="font-semibold">{Math.round(intensity) || '?'}</span>
                 <span className="text-xs font-semibold">g</span>
@@ -80,4 +88,4 @@ function CarbonIntensitySquare({
   );
 }
 
-export default CarbonIntensitySquare;
+export default memo(CarbonIntensitySquare);

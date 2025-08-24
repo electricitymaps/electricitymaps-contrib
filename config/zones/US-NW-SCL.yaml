@@ -5,57 +5,69 @@ bounding_box:
     - 48.277929
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 4.6
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5.0
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2023-12-01'
+    - datetime: '2023-11-01'
       source: EIA.gov
       value: 3.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2007.4
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 2005.1
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 1816.7
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2005.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 2046.2
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Seattle City Light
@@ -67,9 +79,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -129,7 +139,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0
@@ -165,7 +175,7 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
         value: 24.0
@@ -332,3 +342,5 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: US/Pacific
+zone_name: Seattle City Light
+country_name: USA

@@ -5,7 +5,7 @@ import { ZoneKey } from 'types';
 import { CarbonUnits } from 'utils/units';
 
 import { EXCHANGE_PADDING } from './constants';
-import Axis from './elements/Axis';
+import Axis, { FormatTick } from './elements/Axis';
 import CapacityLegend from './elements/CapacityLegend';
 import HorizontalBar from './elements/HorizontalBar';
 import { ExchangeRow } from './elements/Row';
@@ -28,7 +28,7 @@ export default function BarElectricityExchangeChart({
   powerScale: ScaleLinear<number, number, never>;
   co2ColorScale: ScaleLinear<string, string, string>;
   graphUnit: string | undefined;
-  formatTick: (t: number) => string | number;
+  formatTick: FormatTick;
   onExchangeRowMouseOut: () => void;
   onExchangeRowMouseOver: (
     rowKey: ZoneKey,
@@ -43,18 +43,17 @@ export default function BarElectricityExchangeChart({
 
   return (
     <>
-      <CapacityLegend>
-        {t('country-panel.graph-legends.exchange-capacity')} ({graphUnit})
-      </CapacityLegend>
+      <CapacityLegend
+        text={t('country-panel.graph-legends.exchange-capacity')}
+        unit={graphUnit}
+      />
       <svg className="w-full overflow-visible" height={height}>
         <Axis
           formatTick={formatTick}
           height={height}
           scale={powerScale}
-          axisLegendText={{
-            left: t('country-panel.graph-legends.exported'),
-            right: t('country-panel.graph-legends.imported'),
-          }}
+          axisLegendTextLeft={t('country-panel.graph-legends.exported')}
+          axisLegendTextRight={t('country-panel.graph-legends.imported')}
         />
         <g transform={`translate(0, ${EXCHANGE_PADDING})`}>
           {exchangeData.map((d, index) => (
@@ -86,7 +85,7 @@ export default function BarElectricityExchangeChart({
         </g>
       </svg>
       <div className="pb-2 pt-6">
-        <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-gray-300">
+        <div className="mb-1 text-xs font-medium text-neutral-600 dark:text-neutral-300">
           {t('legends.carbonintensity')} ({CarbonUnits.GRAMS_CO2EQ_PER_KILOWATT_HOUR})
         </div>
         <HorizontalColorbar colorScale={co2ColorScale} ticksCount={6} id={'co2'} />

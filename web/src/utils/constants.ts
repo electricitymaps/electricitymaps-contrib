@@ -5,12 +5,25 @@ export const metaTitleSuffix = ' | App | Electricity Maps';
 export const baseUrl = 'https://app.electricitymaps.com';
 
 // The order here determines the order displayed
-export enum TimeAverages {
-  HOURLY = 'hourly',
-  DAILY = 'daily',
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
+export enum TimeRange {
+  H24 = '24h',
+  H72 = '72h',
+  M3 = '3mo',
+  M12 = '12mo',
+  ALL_MONTHS = 'all_months',
+  ALL_YEARS = 'all_years',
 }
+
+export const MAX_HISTORICAL_LOOKBACK_DAYS = 30;
+
+// used in TimeAxis & areWeatherLayersAllowedAtom
+// accommodates 0-based index for 72 hours
+export const HOURLY_TIME_INDEX: Partial<Record<TimeRange, number>> = {
+  [TimeRange.H72]: 71,
+  [TimeRange.H24]: 287,
+};
+
+export const historicalTimeRange = [TimeRange.H72, TimeRange.H24];
 
 export enum ToggleOptions {
   ON = 'on',
@@ -38,12 +51,16 @@ export enum LeftPanelToggleOptions {
   EMISSIONS = 'emissions',
 }
 
-export enum TrackEvent {
-  DATA_SOURCES_CLICKED = 'Data Sources Clicked',
-  APP_BANNER_CTA_CLICKED = 'App Banner CTA Clicked',
-  APP_BANNER_DISMISSED = 'App Banner Dismissed',
-  SHARE_BUTTON_CLICKED = 'Share Button Clicked',
-  FUTURE_PRICE_EXPANDED = 'Future Price Expanded',
+// TODO: rename chart components and files to match
+export enum Charts {
+  CARBON_INTENSITY_CHART = 'carbon_intensity_chart',
+  EMISSION_CHART = 'emission_chart',
+  ELECTRTICITY_FLOW_CHART = 'electricity_flow_chart',
+  ELECTRICITY_LOAD_CHART = 'electricity_load_chart',
+  ELECTRICITY_GRID_ALERT = 'electricity_grid_alert_chart',
+  ELECTRICITY_MIX_CHART = 'electricity_mix_chart',
+  ELECTRICITY_MIX_OVERVIEW_CHART = 'electricity_mix_overview_chart',
+  ELECTRICITY_PRICE_CHART = 'electricity_price_chart',
 }
 
 // color of different production modes are based on various industry standards
@@ -67,8 +84,8 @@ export const modeOrder = [
   'geothermal',
   'biomass',
   'coal',
-  'wind',
   'solar',
+  'wind',
   'hydro',
   'hydro storage',
   'battery storage',
@@ -99,12 +116,14 @@ export const modeOrderBarBreakdown = [
   'unknown',
 ] as const;
 
-//A mapping between the TimeAverages enum and the corresponding Duration for the date-fns add/substract method
-export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
-  daily: 'days',
-  hourly: 'hours',
-  monthly: 'months',
-  yearly: 'years',
+// A mapping between the TimeRange enum and the corresponding Duration for the date-fns add/substract method
+export const timeAxisMapping: Record<TimeRange, keyof Duration> = {
+  [TimeRange.H24]: 'minutes',
+  [TimeRange.H72]: 'hours',
+  [TimeRange.M3]: 'days',
+  [TimeRange.M12]: 'months',
+  [TimeRange.ALL_MONTHS]: 'months',
+  [TimeRange.ALL_YEARS]: 'years',
 };
 /**
  * A mapping between the source name and a link to the source.
@@ -115,6 +134,8 @@ export const timeAxisMapping: Record<TimeAverages, keyof Duration> = {
  */
 export const sourceLinkMapping: { [key: string]: string } = {
   'EU-ETS, ENTSO-E 2022':
+    'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
+  'EU-ETS, ENTSO-E 2023':
     'https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors',
   Climatescope: 'https://www.global-climatescope.org/',
   'ree.es': 'https://www.ree.es/en',
@@ -217,6 +238,7 @@ export const sourceLinkMapping: { [key: string]: string } = {
 };
 
 export const DEFAULT_ICON_SIZE = 16;
+export const DEFAULT_TOAST_DURATION = 3 * 1000; // 3s
 
 export enum EstimationMethods {
   TSA = 'ESTIMATED_TIME_SLICER_AVERAGE',
@@ -226,7 +248,11 @@ export enum EstimationMethods {
   MODE_BREAKDOWN = 'ESTIMATED_MODE_BREAKDOWN',
   RECONSTRUCT_BREAKDOWN = 'ESTIMATED_RECONSTRUCT_BREAKDOWN',
   RECONSTRUCT_PRODUCTION_FROM_CONSUMPTION = 'ESTIMATED_RECONSTRUCT_PRODUCTION_FROM_CONSUMPTION',
-  AGGREGATED = 'aggregated',
   THRESHOLD_FILTERED = 'threshold_filtered',
   OUTAGE = 'outage',
+  GENERAL_PURPOSE_ZONE_MODEL = 'ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL',
 }
+
+export const isTSAModel = (estimationMethod?: EstimationMethods) =>
+  estimationMethod === EstimationMethods.TSA ||
+  estimationMethod === EstimationMethods.FORECASTS_HIERARCHY;

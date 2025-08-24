@@ -76,26 +76,32 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE
         value: 677.072
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE
+        value: 669.797
   lifecycle:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 998.1021977802769
+        value: 820.05
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 1001.315602634187
+        value: 827.28
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 1010.1146208172005
+        value: 830.92
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 1013.7137811496762
+        value: 831.71
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 1078.8980830879166
+        value: 855.33
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 1088.1615138254667
+        value: 856.92
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 842.49
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -123,22 +129,25 @@ emissionFactors:
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 998.1021977802769
+        value: 820.05
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 1001.315602634187
+        value: 827.28
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 1010.1146208172005
+        value: 830.92
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 1013.7137811496762
+        value: 831.71
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 1078.8980830879166
+        value: 855.33
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 1088.1615138254667
+        value: 856.92
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 842.49
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -165,6 +174,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, REE; IPCC 2014
         value: 921.072
+      - datetime: '2024-01-01'
+        source: EU-ETS, REE; IPCC 2014
+        value: 913.797
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -266,6 +278,21 @@ fallbackZoneMixes:
         solar: 0.017697072042023216
         unknown: 0.0
         wind: 0.053184358408431054
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.9132256887989368
+        solar: 0.018142231715055784
+        unknown: 0.0
+        wind: 0.0686308771428057
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
@@ -289,3 +316,5 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Canary
+zone_name: La Palma
+country_name: Spain

@@ -41,11 +41,10 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import ProductionModes, StorageModes, refetch_frequency
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
-from .lib.validation import validate
 
 SOURCE = "entsoe.eu"
 
@@ -56,18 +55,23 @@ DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 
 
-class WindAndSolarProductionForecastTypes(Enum):
+# TODO: Switch this to a string enum when we migrate to Python 3.11
+class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
+    TOTAL = "A05"
     INTRADAY = "A40"
     CURRENT = "A18"
+
+    def __str__(self) -> str:
+        return self.value
 
 
 # The order of the forecast types is important for the parser to use the most recent data
 # This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORECAST_TYPES = [
-    WindAndSolarProductionForecastTypes.DAY_AHEAD,
-    WindAndSolarProductionForecastTypes.INTRADAY,
-    WindAndSolarProductionForecastTypes.CURRENT,
+ORDERED_FORECAST_TYPES: list[EntsoeTypeEnum] = [
+    EntsoeTypeEnum.DAY_AHEAD,
+    EntsoeTypeEnum.INTRADAY,
+    EntsoeTypeEnum.CURRENT,
 ]
 
 ENTSOE_PARAMETER_DESC = {
@@ -91,22 +95,23 @@ ENTSOE_PARAMETER_DESC = {
     "B18": "Wind Offshore",
     "B19": "Wind Onshore",
     "B20": "Other",
+    "B25": "Energy Storage",
 }
 ENTSOE_PARAMETER_BY_DESC = {v: k for k, v in ENTSOE_PARAMETER_DESC.items()}
 ENTSOE_PARAMETER_GROUPS = {
     "production": {
-        "biomass": ["B01", "B17"],
-        "coal": ["B02", "B05", "B07", "B08"],
-        "gas": ["B03", "B04"],
-        "geothermal": ["B09"],
-        "hydro": ["B11", "B12"],
-        "nuclear": ["B14"],
-        "oil": ["B06"],
-        "solar": ["B16"],
-        "wind": ["B18", "B19"],
-        "unknown": ["B20", "B13", "B15"],
+        ProductionModes.BIOMASS: ["B01", "B17"],
+        ProductionModes.COAL: ["B02", "B05", "B07", "B08"],
+        ProductionModes.GAS: ["B03", "B04"],
+        ProductionModes.GEOTHERMAL: ["B09"],
+        ProductionModes.HYDRO: ["B11", "B12"],
+        ProductionModes.NUCLEAR: ["B14"],
+        ProductionModes.OIL: ["B06"],
+        ProductionModes.SOLAR: ["B16"],
+        ProductionModes.WIND: ["B18", "B19"],
+        ProductionModes.UNKNOWN: ["B20", "B13", "B15"],
     },
-    "storage": {"hydro": ["B10"]},
+    "storage": {StorageModes.HYDRO: ["B10"], StorageModes.BATTERY: ["B25"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
@@ -124,6 +129,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "AL": "10YAL-KESH-----5",
+    "AM": "10Y1001A1001B004",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
     "BA": "10YBA-JPCC-----D",
@@ -131,6 +137,7 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "BG": "10YCA-BULGARIA-R",
     "BY": "10Y1001A1001A51S",
     "CH": "10YCH-SWISSGRIDZ",
+    "CY": "10YCY-1001A0003J",
     "CZ": "10YCZ-CEPS-----N",
     "DE": "10Y1001A1001A83F",
     "DE-LU": "10Y1001A1001A82H",
@@ -195,19 +202,6 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "XK": "10Y1001C--00100H",
 }
 
-# Generation per unit can only be obtained at EIC (Control Area) level
-ENTSOE_EIC_MAPPING: dict[str, str] = {
-    "DK-DK1": "10Y1001A1001A796",
-    "DK-DK2": "10Y1001A1001A796",
-    "FI": "10YFI-1--------U",
-    "PL": "10YPL-AREA-----S",
-    "SE-SE1": "10YSE-1--------K",
-    "SE-SE2": "10YSE-1--------K",
-    "SE-SE3": "10YSE-1--------K",
-    "SE-SE4": "10YSE-1--------K",
-    # TODO: ADD DE
-}
-
 # Define zone_keys to an array of zone_keys for aggregated production data
 ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
@@ -221,7 +215,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
-    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE"], ENTSOE_DOMAIN_MAPPINGS["SE"]],
     "DE->NL": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NL"]],
     "EE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["EE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FI->RU-1": [ENTSOE_DOMAIN_MAPPINGS["FI"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
@@ -261,175 +255,6 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
-}
-
-ENTSOE_UNITS_TO_ZONE: dict[str, str] = {
-    # DK-DK1
-    "Anholt": "DK-DK1",
-    "Esbjergvaerket 3": "DK-DK1",
-    "Fynsvaerket 7": "DK-DK1",
-    "Horns Rev A": "DK-DK1",
-    "Horns Rev B": "DK-DK1",
-    "Nordjyllandsvaerket 3": "DK-DK1",
-    "Silkeborgvaerket": "DK-DK1",
-    "Skaerbaekvaerket 3": "DK-DK1",
-    "Studstrupvaerket 3": "DK-DK1",
-    "Studstrupvaerket 4": "DK-DK1",
-    # DK-DK2
-    "Amagervaerket 3": "DK-DK2",
-    "Asnaesvaerket 2": "DK-DK2",
-    "Asnaesvaerket 5": "DK-DK2",
-    "Avedoerevaerket 1": "DK-DK2",
-    "Avedoerevaerket 2": "DK-DK2",
-    "Kyndbyvaerket 21": "DK-DK2",
-    "Kyndbyvaerket 22": "DK-DK2",
-    "Roedsand 1": "DK-DK2",
-    "Roedsand 2": "DK-DK2",
-    # FI
-    "Alholmens B2": "FI",
-    "Haapavesi B1": "FI",
-    "Kaukaan Voima G10": "FI",
-    "Keljonlahti B1": "FI",
-    "Loviisa 1 G11": "FI",
-    "Loviisa 1 G12": "FI",
-    "Loviisa 2 G21": "FI",
-    "Loviisa 2 G22": "FI",
-    "Olkiluoto 1 B1": "FI",
-    "Olkiluoto 2 B2": "FI",
-    "Toppila B2": "FI",
-    # SE-SE1
-    "Bastusel G1": "SE-SE1",
-    "Gallejaur G1": "SE-SE1",
-    "Gallejaur G2": "SE-SE1",
-    "Harsprånget G1": "SE-SE1",
-    "Harsprånget G2": "SE-SE1",
-    "Harsprånget G4": "SE-SE1",
-    "Harsprånget G5": "SE-SE1",
-    "Letsi G1": "SE-SE1",
-    "Letsi G2": "SE-SE1",
-    "Letsi G3": "SE-SE1",
-    "Ligga G3": "SE-SE1",
-    "Messaure G1": "SE-SE1",
-    "Messaure G2": "SE-SE1",
-    "Messaure G3": "SE-SE1",
-    "Porjus G11": "SE-SE1",
-    "Porjus G12": "SE-SE1",
-    "Porsi G3": "SE-SE1",
-    "Ritsem G1": "SE-SE1",
-    "Seitevare G1": "SE-SE1",
-    "Vietas G1": "SE-SE1",
-    "Vietas G2": "SE-SE1",
-    # SE-SE2
-    "Stalon G1": "SE-SE2",
-    "Stornorrfors G1": "SE-SE2",
-    "Stornorrfors G2": "SE-SE2",
-    "Stornorrfors G3": "SE-SE2",
-    "Stornorrfors G4": "SE-SE2",
-    # SE-SE3
-    "Forsmark block 1 G11": "SE-SE3",
-    "Forsmark block 1 G12": "SE-SE3",
-    "Forsmark block 2 G21": "SE-SE3",
-    "Forsmark block 2 G22": "SE-SE3",
-    "Forsmark block 3 G31": "SE-SE3",
-    "KVV Västerås G3": "SE-SE3",
-    "KVV1 Värtaverket": "SE-SE3",
-    "KVV6 Värtaverket": "SE-SE3",
-    "KVV8 Värtaverket": "SE-SE3",
-    "Oskarshamn G3": "SE-SE3",
-    "Oskarshamn G1Ö+G1V": "SE-SE3",
-    "Ringhals block 1 G11": "SE-SE3",
-    "Ringhals block 1 G12": "SE-SE3",
-    "Ringhals block 2 G21": "SE-SE3",
-    "Ringhals block 2 G22": "SE-SE3",
-    "Ringhals block 3 G31": "SE-SE3",
-    "Ringhals block 3 G32": "SE-SE3",
-    "Ringhals block 4 G41": "SE-SE3",
-    "Ringhals block 4 G42": "SE-SE3",
-    "Rya KVV": "SE-SE3",
-    "Stenungsund B3": "SE-SE3",
-    "Stenungsund B4": "SE-SE3",
-    "Trängslet G1": "SE-SE3",
-    "Trängslet G2": "SE-SE3",
-    "Trängslet G3": "SE-SE3",
-    "Uppsala KVV": "SE-SE3",
-    "Åbyverket Örebro": "SE-SE3",
-    # SE-SE4
-    "Gasturbiner Halmstad G12": "SE-SE4",
-    "Karlshamn G1": "SE-SE4",
-    "Karlshamn G2": "SE-SE4",
-    "Karlshamn G3": "SE-SE4",
-}
-
-VALIDATIONS: dict[str, dict[str, Any]] = {
-    # This is a list of criteria to ensure validity of data,
-    # used in validate_production()
-    # Note that "required" means data is present in ENTSOE.
-    # It will still work if data is present but 0.
-    # "expected_range" and "floor" only count production and storage
-    # - not exchanges!
-    "BA": {"expected_range": (500, 6500)},
-    "BE": {
-        "expected_range": (3000, 25000),
-    },
-    "BG": {
-        "expected_range": (2000, 20000),
-    },
-    "CH": {
-        "expected_range": (2000, 25000),
-    },
-    "CZ": {
-        # usual load is in 7-12 GW range
-        "expected_range": (3000, 25000),
-    },
-    "DE": {
-        # Germany sometimes has problems with categories of generation missing from ENTSOE.
-        # Normally there is constant production of a few GW from hydro and biomass
-        # and when those are missing this can indicate that others are missing as well.
-        # We have also never seen unknown being 0.
-        # Usual load is in 30 to 80 GW range.
-        "expected_range": (20000, 100000),
-    },
-    "ES": {
-        "expected_range": (10000, 80000),
-    },
-    "FI": {
-        "expected_range": (2000, 20000),
-    },
-    "GB": {
-        "expected_range": (10000, 80000),
-    },
-    "GR": {
-        "expected_range": (2000, 20000),
-    },
-    "IE": {
-        "expected_range": (1000, 15000),
-    },
-    "IT": {
-        "expected_range": (5000, 50000),
-    },
-    "PL": {
-        # usual load is in 10-20 GW range
-        "expected_range": (5000, 35000),
-    },
-    "PT": {
-        "expected_range": (1000, 20000),
-    },
-    "RO": {
-        "expected_range": (2000, 25000),
-    },
-    "RS": {
-        "expected_range": {
-            "coal": (
-                800,
-                7000,
-            ),  # 7 GW is 1 GW more than the production capacity of Serbia.
-            "hydro": (0, 5000),  # 5 GW is double the production capacity of Serbia.
-        },
-    },
-    "SI": {
-        # own total generation capacity is around 4 GW
-        "expected_range": (140, 5000),
-    },
 }
 
 
@@ -501,7 +326,12 @@ def query_consumption(
     domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
     params = {
+        # System total load - Total load', including losses without power used
+        # for energy storage, is equal to generation deducted with exports,
+        # added with imports and deducted with power used for energy storage.
         "documentType": "A65",
+        # Realised - The process for the treatment of realised data as opposed
+        # to forecast data
         "processType": "A16",
         "outBiddingZone_Domain": domain,
     }
@@ -518,8 +348,12 @@ def query_production(
     in_domain: str, session: Session, target_datetime: datetime | None = None
 ) -> str | None:
     params = {
+        # Actual generation per type - A document providing the actual
+        # generation per generation type for a period.
         "documentType": "A75",
-        "processType": "A16",  # Realised
+        # Realised - The process for the treatment of realised data as opposed
+        # to forecast data
+        "processType": "A16",
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -531,28 +365,6 @@ def query_production(
     )
 
 
-def query_production_per_units(
-    psr_type: str,
-    domain: str,
-    session: Session,
-    target_datetime: datetime | None = None,
-) -> str | None:
-    params = {
-        "documentType": "A73",
-        "processType": "A16",
-        "psrType": psr_type,
-        "in_Domain": domain,
-    }
-    # Note: ENTSOE only supports 1d queries for this type
-    return query_ENTSOE(
-        session,
-        params,
-        target_datetime=target_datetime,
-        span=(-24, 0),
-        function_name=query_production_per_units.__name__,
-    )
-
-
 def query_exchange(
     in_domain: str,
     out_domain: str,
@@ -560,6 +372,8 @@ def query_exchange(
     target_datetime: datetime | None = None,
 ) -> str | None:
     params = {
+        # Aggregated energy data report - A compilation of the time series of
+        # all the meter readings or their equivalent for a given period.
         "documentType": "A11",
         "in_Domain": in_domain,
         "out_Domain": out_domain,
@@ -582,7 +396,9 @@ def query_exchange_forecast(
     """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
-        "documentType": "A09",  # Finalised schedule
+        # Finalised schedule - A compilation of a set of schedules that have
+        # been finalized after a given cutoff.
+        "documentType": "A09",
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
@@ -601,6 +417,8 @@ def query_price(
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
     params = {
+        # Price Document - The document is used to provide market spot price
+        # information.
         "documentType": "A44",
         "in_Domain": domain,
         "out_Domain": domain,
@@ -621,8 +439,11 @@ def query_generation_forecast(
 
     # Note: this does not give a breakdown of the production
     params = {
-        "documentType": "A71",  # Generation Forecast
-        "processType": "A01",  # Realised
+        # Generation forecast - A document providing the generation forecast for
+        # a period.
+        "documentType": "A71",
+        # Day ahead - The information provided concerns a day ahead schedule
+        "processType": "A01",
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -640,7 +461,11 @@ def query_consumption_forecast(
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
-        "documentType": "A65",  # Load Forecast
+        # System total load - Total load', including losses without power used
+        # for energy storage, is equal to generation deducted with exports,
+        # added with imports and deducted with power used for energy storage.
+        "documentType": "A65",
+        # Day ahead - The information provided concerns a day ahead schedule
         "processType": "A01",
         "outBiddingZone_Domain": in_domain,
     }
@@ -656,14 +481,26 @@ def query_consumption_forecast(
 def query_wind_solar_production_forecast(
     in_domain: str,
     session: Session,
-    data_type: WindAndSolarProductionForecastTypes,
+    process_type: EntsoeTypeEnum,
     target_datetime: datetime | None = None,
 ) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
+    allowed_types = {
+        EntsoeTypeEnum.DAY_AHEAD,
+        EntsoeTypeEnum.INTRADAY,
+        EntsoeTypeEnum.CURRENT,
+    }
+    if process_type not in allowed_types:
+        raise ValueError(
+            f"Invalid process type: {process_type}. Must be one of {allowed_types}."
+        )
+
     params = {
-        "documentType": "A69",  # Forecast
-        "processType": WindAndSolarProductionForecastTypes(data_type).value,
+        # Wind and solar forecast - A document providing the forecast of wind
+        # and solar generation.
+        "documentType": "A69",
+        "processType": EntsoeTypeEnum(process_type),
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -875,62 +712,11 @@ def _group_production_data_by_datetime(
     return grouped_data
 
 
-def parse_production_per_units(xml_text: str) -> Any | None:
-    values = {}
-
-    if not xml_text:
-        return None
-    soup = BeautifulSoup(xml_text, "html.parser")
-    # Get all points
-    for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find("resolution").contents[0])
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find("start").contents[0])
-        )
-        is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
-        psr_type = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
-        unit_key = str(
-            timeseries.find("mktpsrtype")
-            .find("powersystemresources")
-            .find("mrid")
-            .contents[0]
-        )
-        unit_name = str(
-            timeseries.find("mktpsrtype")
-            .find("powersystemresources")
-            .find("name")
-            .contents[0]
-        )
-        if not is_production:
-            continue
-        for entry in timeseries.find_all("point"):
-            quantity = float(entry.find("quantity").contents[0])
-            position = int(entry.find("position").contents[0])
-            dt = datetime_from_position(datetime_start, position, resolution)
-            key = (unit_key, dt)
-            if key in values:
-                if is_production:
-                    values[key]["production"] += quantity
-                else:
-                    values[key]["production"] -= quantity
-            else:
-                values[key] = {
-                    "datetime": dt,
-                    "production": quantity,
-                    "productionType": ENTSOE_PARAMETER_BY_GROUP[psr_type],
-                    "unitKey": unit_key,
-                    "unitName": unit_name,
-                }
-
-    return values.values()
-
-
 def parse_exchange(
     xml_text: str,
     is_import: bool,
     sorted_zone_keys: ZoneKey,
     logger: Logger,
-    is_forecast: bool = False,
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
 
@@ -941,12 +727,45 @@ def parse_exchange(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find("start").contents[0])
         )
-        # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
-        if (
-            timeseries.find("contract_marketagreement.type")
-            and timeseries.find("contract_marketagreement.type").contents[0] != "A05"
-        ):
+
+        for entry in timeseries.find_all("point"):
+            quantity = float(entry.find_all("quantity")[0].contents[0])
+            if is_import:
+                quantity *= -1
+            position = int(entry.find_all("position")[0].contents[0])
+            dt = datetime_from_position(datetime_start, position, resolution)
+            # Find out whether or not we should update the net production
+            exchange_list.append(
+                zoneKey=sorted_zone_keys,
+                datetime=dt,
+                source=SOURCE,
+                netFlow=quantity,
+            )
+
+    return exchange_list
+
+
+def parse_exchange_forecast(
+    xml_text: str,
+    is_import: bool,
+    sorted_zone_keys: ZoneKey,
+    logger: Logger,
+    market_type: EntsoeTypeEnum,
+) -> ExchangeList:
+    exchange_list = ExchangeList(logger)
+
+    soup = BeautifulSoup(xml_text, "html.parser")
+    # Get all points
+    for timeseries in soup.find_all("timeseries"):
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
+            0
+        ]
+        if marketAgreementType and marketAgreementType != market_type:
             continue
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
+        )
 
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find("quantity").contents[0])
@@ -960,9 +779,7 @@ def parse_exchange(
                 datetime=dt,
                 source=SOURCE,
                 netFlow=quantity,
-                sourceType=EventSourceType.forecasted
-                if is_forecast
-                else EventSourceType.measured,
+                sourceType=EventSourceType.forecasted,
             )
 
     return exchange_list
@@ -995,27 +812,6 @@ def parse_prices(
             )
 
     return prices
-
-
-def validate_production(
-    datapoint: dict[str, Any], logger: Logger
-) -> dict[str, Any] | bool | None:
-    """
-    Production data can sometimes be available but clearly wrong.
-
-    The most common occurrence is when the production total is very low and main generation types are missing.
-    In reality a country's electrical grid could not function in this scenario.
-
-    This function checks datapoints for a selection of countries and returns False if invalid and True otherwise.
-    """
-
-    zone_key: str = datapoint["zoneKey"]
-
-    validation_criteria = VALIDATIONS.get(zone_key, {})
-
-    if validation_criteria:
-        return validate(datapoint, logger=logger, **validation_criteria)
-    return True
 
 
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
@@ -1053,61 +849,9 @@ def fetch_production(
         # Aggregated data are regrouped unde the same zone key.
         non_aggregated_data.append(parse_production(raw_production, logger, zone_key))
 
-    aggregated_zone_data = ProductionBreakdownList.merge_production_breakdowns(
+    return ProductionBreakdownList.merge_production_breakdowns(
         non_aggregated_data, logger
     ).to_list()
-    return [x for x in aggregated_zone_data if validate_production(x, logger)]
-
-
-@refetch_frequency(timedelta(days=1))
-def fetch_production_per_units(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """Returns all production units and production values."""
-
-    # If no target_datetime is specified, or the target datetime is less
-    # than 5 days ago we set the target_datetime to 5 days ago.
-    if target_datetime is None or target_datetime > datetime.now(
-        tz=timezone.utc
-    ) - timedelta(days=5):
-        logger.info(
-            "This dataset has a publishing guideline of 5 days from the current MTU, setting the target_datetime to 5 days ago to get the latest data."
-        )
-        target_datetime = datetime.now(tz=timezone.utc) - timedelta(days=5)
-
-    domain = ENTSOE_EIC_MAPPING[zone_key]
-    data = []
-    # Iterate over all psr types
-    for k in ENTSOE_PARAMETER_DESC:
-        try:
-            raw_production_per_units = query_production_per_units(
-                k, domain, session, target_datetime
-            )
-            if raw_production_per_units is not None:
-                values = parse_production_per_units(raw_production_per_units) or []
-                for v in values:
-                    if not v:
-                        continue
-                    v["source"] = "entsoe.eu"
-                    if v["unitName"] not in ENTSOE_UNITS_TO_ZONE:
-                        logger.warning(
-                            f"Unknown unit {v['unitName']} with id {v['unitKey']}"
-                        )
-                    else:
-                        v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
-                        if v["zoneKey"] == zone_key:
-                            data.append(v)
-        except Exception as e:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"Failed to fetch data for {k} in {zone_key}",
-                zone_key=zone_key,
-            ) from e
-
-    return data
 
 
 def get_raw_exchange(
@@ -1129,6 +873,10 @@ def get_raw_exchange(
     # This will be filled with a list of raw exchanges to merge
     raw_exchange_lists: list[ExchangeList] = []
 
+    # Create lists for forecast exchanges so we can merge them later without fetching the same data twice
+    raw_exchange_lists_forecast_day_ahead: list[ExchangeList] = []
+    raw_exchange_lists_forecast_total: list[ExchangeList] = []
+
     query_function = query_exchange_forecast if forecast else query_exchange
 
     # This will be filled with a list of domain pairs to fetch
@@ -1144,10 +892,10 @@ def get_raw_exchange(
             [ENTSOE_DOMAIN_MAPPINGS[zone_key1], ENTSOE_DOMAIN_MAPPINGS[zone_key2]]
         )
 
-    def _fetch_and_parse_exchange(
+    def _fetch_exchange(
         domain_pair: list[str],
         is_import: bool,
-    ) -> ExchangeList:
+    ) -> str | None:
         """
         Internal function to fetch and parse exchange data
         only used to avoid code duplication in the parent function.
@@ -1167,26 +915,95 @@ def get_raw_exchange(
                 message=f"No exchange data found for {domain1} -> {domain2}",
                 zone_key=sorted_zone_keys,
             )
-        return parse_exchange(
-            raw_exchange,
-            is_import=is_import,
-            sorted_zone_keys=sorted_zone_keys,
-            logger=logger,
-            is_forecast=forecast,
-        )
+        return raw_exchange
 
     # Grab all exchanges
     for domain_pair in exchanges_to_fetch:
         # First we try to get the import data
-        raw_exchange_lists.append(
-            _fetch_and_parse_exchange(domain_pair, is_import=True)
-        )
-        # Then we try to get the export data
-        raw_exchange_lists.append(
-            _fetch_and_parse_exchange(domain_pair, is_import=False)
-        )
+        raw_exchange = _fetch_exchange(domain_pair, is_import=True)
+        if raw_exchange is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No exchange data found for {domain_pair[0]} -> {domain_pair[1]}",
+                zone_key=sorted_zone_keys,
+            )
+        if not forecast:
+            raw_exchange_lists.append(
+                parse_exchange(
+                    raw_exchange,
+                    is_import=True,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                )
+            )
+        else:
+            raw_exchange_lists_forecast_day_ahead.append(
+                parse_exchange_forecast(
+                    raw_exchange,
+                    is_import=True,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                    market_type=EntsoeTypeEnum.DAY_AHEAD,
+                )
+            )
+            raw_exchange_lists_forecast_total.append(
+                parse_exchange_forecast(
+                    raw_exchange,
+                    is_import=True,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                    market_type=EntsoeTypeEnum.TOTAL,
+                )
+            )
 
-    return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
+        # Then we try to get the export data
+        raw_exchange = _fetch_exchange(domain_pair, is_import=False)
+
+        if raw_exchange is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No exchange data found for {domain_pair[1]} -> {domain_pair[0]}",
+                zone_key=sorted_zone_keys,
+            )
+        if not forecast:
+            raw_exchange_lists.append(
+                parse_exchange(
+                    raw_exchange,
+                    is_import=False,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                )
+            )
+        else:
+            raw_exchange_lists_forecast_day_ahead.append(
+                parse_exchange_forecast(
+                    raw_exchange,
+                    is_import=False,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                    market_type=EntsoeTypeEnum.DAY_AHEAD,
+                )
+            )
+            raw_exchange_lists_forecast_total.append(
+                parse_exchange_forecast(
+                    raw_exchange,
+                    is_import=False,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                    market_type=EntsoeTypeEnum.TOTAL,
+                )
+            )
+    if not forecast:
+        return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
+    merged_forecast_day_ahead = ExchangeList(logger).merge_exchanges(
+        raw_exchange_lists_forecast_day_ahead, logger
+    )
+    merged_forecast_total = ExchangeList(logger).merge_exchanges(
+        raw_exchange_lists_forecast_total, logger
+    )
+    return ExchangeList(logger).update_exchanges(
+        merged_forecast_day_ahead, merged_forecast_total, logger
+    )
 
 
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))

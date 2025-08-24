@@ -1,5 +1,6 @@
 import { extent } from 'd3-array';
 import { ScaleLinear, scaleLinear } from 'd3-scale';
+import { memo } from 'react';
 
 export const spreadOverDomain = (
   scale: ScaleLinear<string | number, string | number, string | number>,
@@ -15,10 +16,12 @@ function HorizontalColorbar({
   colorScale,
   id,
   ticksCount = 5,
+  labelClassNames = '',
 }: {
   colorScale: ScaleLinear<string, string, string>;
   id: string;
   ticksCount?: number;
+  labelClassNames?: string;
 }) {
   const linearScale = scaleLinear().domain(
     extent(colorScale.domain()) as unknown as [number, number]
@@ -27,7 +30,7 @@ function HorizontalColorbar({
   return (
     <>
       <svg className="flex h-3 w-full flex-col overflow-visible">
-        <g transform={`translate(8,0)`}>
+        <g transform={`translate(10,0)`}>
           <linearGradient id={`${id}-gradient`} x2="100%">
             {spreadOverDomain(colorScale, 10).map((value, index) => (
               <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
@@ -43,11 +46,11 @@ function HorizontalColorbar({
         </g>
       </svg>
 
-      <div className="flex flex-row justify-between pr-0.5">
+      <div className={`flex flex-row justify-between ${labelClassNames}`}>
         {spreadOverDomain(linearScale, ticksCount).map((t) => (
           <div
-            key={`colorbar-tick-${t}`}
-            className="text-xs font-medium text-neutral-600 dark:text-gray-300"
+            key={t}
+            className="text-xs font-medium text-neutral-600 dark:text-neutral-300"
           >
             {Math.round(t)}
           </div>
@@ -57,4 +60,4 @@ function HorizontalColorbar({
   );
 }
 
-export default HorizontalColorbar;
+export default memo(HorizontalColorbar);

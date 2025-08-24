@@ -1,3 +1,120 @@
+bounding_box:
+  - - -9.181486814868123
+    - 18.482071508441607
+  - - 12.468319683196853
+    - 37.58240717969856
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 18510.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 20121.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 22460.6
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 23201.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 23657.6
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 24457.6
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 25657.6
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 228.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 208.6
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 128.9
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1485.9
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1462.9
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1561.9
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 354.1
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 366.1
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 450.8
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10.2
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 10.0
 country: DZ
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 487.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 487.26
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 487.25
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 487.26
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.9889616849323075
+        geothermal: 0.0
+        hydro: 0.00017536621953407952
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0035953872632283087
+        solar: 0.007103075358023904
+        unknown: 0.0
+        wind: 0.00016441212685149015
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.9889742986324795
+        geothermal: 0.0
+        hydro: 0.00017961719018977343
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0036047228087590687
+        solar: 0.0070754161021284396
+        unknown: 0.0
+        wind: 0.00016600744389401443
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Algiers
+zone_name: Algeria
+country_name: Algeria

@@ -1,3 +1,106 @@
+bounding_box:
+  - - 56.87197371973721
+    - -21.00722818421054
+  - - 58.29677796777969
+    - -19.493469447178505
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 90.65
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 182.8
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 61.14
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 61.2
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 529.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 457.2
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.76
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 74.55
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 99.36
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 107.68
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 109.67
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 107.65
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10.63
 country: MU
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 604.5
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 604.51
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 604.5
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 604.51
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0962775649923246
+        coal: 0.31546804589565014
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0410783008152051
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.49293926960272944
+        solar: 0.04942187305033488
+        unknown: 0.0
+        wind: 0.004813870547433623
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.09627858643865023
+        coal: 0.3154755924220831
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.041067954331140674
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.49294075209359883
+        solar: 0.04942291741728504
+        unknown: 0.0
+        wind: 0.004813099721722564
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mauritius
+zone_name: Mauritius
+country_name: Mauritius

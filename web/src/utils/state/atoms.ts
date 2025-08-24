@@ -1,40 +1,79 @@
-import { atom } from 'jotai';
+import { TIME_RANGE_TO_TIME_AVERAGE } from 'api/helpers';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { dateToDatetimeString } from 'utils/helpers';
+import { useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
+import { dateToDatetimeString, useNavigateWithParameters } from 'utils/helpers';
 
 import {
+  HOURLY_TIME_INDEX,
   Mode,
   SpatialAggregate,
   ThemeOptions,
-  TimeAverages,
+  TimeRange,
   ToggleOptions,
 } from '../constants';
 
 // TODO: Move these atoms to relevant features
 // TODO: Make some of these atoms also sync with URL (see atomWithCustomStorage.ts)
 
-export const timeAverageAtom = atom(TimeAverages.HOURLY);
-export const isHourlyAtom = atom((get) => get(timeAverageAtom) === TimeAverages.HOURLY);
+export const timeRangeAtom = atom<TimeRange>(TimeRange.H72);
+
+// TODO: Maintain constants for lower and upper limits for co2 intensity and use from there
+export const co2IntensityRangeAtom = atom([0, 1500]);
+
+export function useTimeRangeSync() {
+  const [timeRange, setTimeRange] = useAtom(timeRangeAtom);
+  const { resolution, urlTimeRange } = useParams<RouteParameters>();
+  const navigateWithParameters = useNavigateWithParameters();
+
+  useEffect(() => {
+    if (resolution === 'monthly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_MONTHS);
+    } else if (resolution === 'yearly' && String(urlTimeRange) === 'all') {
+      setTimeRange(TimeRange.ALL_YEARS);
+    } else if (urlTimeRange && urlTimeRange !== timeRange) {
+      setTimeRange(urlTimeRange);
+    }
+  }, [resolution, setTimeRange, timeRange, urlTimeRange]);
+
+  const setTimeRangeAndNavigate = useCallback(
+    (newTimeRange: TimeRange) => {
+      setTimeRange(newTimeRange);
+      navigateWithParameters({
+        timeRange: newTimeRange,
+        resolution: TIME_RANGE_TO_TIME_AVERAGE[newTimeRange],
+      });
+    },
+    [setTimeRange, navigateWithParameters]
+  );
+
+  return [timeRange, setTimeRangeAndNavigate] as const;
+}
+export const isFiveMinuteOrHourlyGranularityAtom = atom((get) =>
+  [TimeRange.H72, TimeRange.H24].includes(get(timeRangeAtom))
+);
 
 // TODO: consider another initial value
 export const selectedDatetimeIndexAtom = atom({ datetime: new Date(), index: 0 });
-
+export const endDatetimeAtom = atom<Date | undefined>(undefined);
+export const startDatetimeAtom = atom<Date | undefined>(undefined);
 export const selectedDatetimeStringAtom = atom<string>((get) => {
   const { datetime } = get(selectedDatetimeIndexAtom);
   return dateToDatetimeString(datetime);
 });
 
-export const spatialAggregateAtom = atomWithStorage(
-  'country-mode',
-  SpatialAggregate.ZONE
-);
-export const productionConsumptionAtom = atomWithStorage('mode', Mode.CONSUMPTION);
+export const spatialAggregateAtom = atom(SpatialAggregate.ZONE);
+export const productionConsumptionAtom = atom(Mode.CONSUMPTION);
 export const isConsumptionAtom = atom<boolean>(
   (get) => get(productionConsumptionAtom) === Mode.CONSUMPTION
 );
 
 export const areWeatherLayersAllowedAtom = atom<boolean>(
-  (get) => get(isHourlyAtom) && get(selectedDatetimeIndexAtom).index === 24
+  (get) =>
+    get(timeRangeAtom) === TimeRange.H72 &&
+    get(selectedDatetimeIndexAtom).index === HOURLY_TIME_INDEX[TimeRange.H72]
 );
 
 export const solarLayerAtom = atomWithStorage('solar', ToggleOptions.OFF);
@@ -54,10 +93,7 @@ export const displayByEmissionsAtom = atom<boolean>(false);
 
 export const themeAtom = atomWithStorage('theme', ThemeOptions.SYSTEM);
 
-export const hasOnboardingBeenSeenAtom = atomWithStorage(
-  'onboardingSeen',
-  localStorage.getItem('onboardingSeen') ?? false
-);
+export const hasOnboardingBeenSeenAtom = atomWithStorage('onboardingSeen', true);
 
 export const hasEstimationFeedbackBeenSeenAtom = atomWithStorage(
   'estimationFeedbackSeen',
@@ -80,9 +116,8 @@ export const hasSeenSurveyCardAtom = atomWithStorage('hasSeenSurveyCard', false)
 
 export const hasSeenUsSurveyCardAtom = atomWithStorage('hasSeenUsSurveyCard', false);
 
-export const rankingPanelAccordionCollapsedAtom = atomWithStorage(
-  'rankingPanelAccordionCollapsed',
-  false
-);
-
 export const futurePriceCollapsedAtom = atom<boolean>(true);
+
+export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
+
+export const openTooltipIdAtom = atom<string | null>(null);

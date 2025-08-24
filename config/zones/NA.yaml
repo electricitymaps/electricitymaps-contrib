@@ -34,17 +34,17 @@ emissionFactors:
     battery discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 39.667073073513784
+        value: 39.67
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 42.97891970183084
+        value: 42.98
     hydro discharge:
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 39.667073073513784
+        value: 39.67
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 42.97891970183084
+        value: 42.98
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -79,3 +79,5 @@ fallbackZoneMixes:
         wind: 0.018079403291716912
 region: Africa
 timezone: Africa/Windhoek
+zone_name: Namibia
+country_name: Namibia

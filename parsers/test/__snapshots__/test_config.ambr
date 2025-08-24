@@ -1,0 +1,133 @@
+# serializer version: 1
+# name: test_snapshot_emission_factor[FR]
+  dict({
+    'emissionFactors': dict({
+      'defaults': dict({
+        'battery charge': dict({
+          'source': 'IPCC 2014',
+          'value': 0,
+        }),
+        'battery discharge': dict({
+          'source': 'IPCC 2014',
+          'value': 34.26,
+        }),
+        'biomass': dict({
+          'source': 'IPCC 2014',
+          'value': 230.0,
+        }),
+        'coal': dict({
+          'source': 'IPCC 2014',
+          'value': 983.04,
+        }),
+        'gas': dict({
+          'source': 'IPCC 2014',
+          'value': 511.79,
+        }),
+        'geothermal': dict({
+          'source': 'IPCC 2014',
+          'value': 38,
+        }),
+        'hydro': dict({
+          'source': 'IPCC 2014',
+          'value': 10.7,
+        }),
+        'hydro charge': dict({
+          'source': 'IPCC 2014',
+          'value': 0,
+        }),
+        'hydro discharge': dict({
+          'source': 'IPCC 2014',
+          'value': 26.53,
+        }),
+        'nuclear': dict({
+          'source': 'IPCC 2014',
+          'value': 5.13,
+        }),
+        'oil': dict({
+          'source': 'IPCC 2014',
+          'value': 901.06,
+        }),
+        'solar': dict({
+          'source': 'IPCC 2014',
+          'value': 30.075,
+        }),
+        'unknown': dict({
+          'source': 'IPCC 2014',
+          'value': 700,
+        }),
+        'wind': dict({
+          'source': 'IPCC 2014',
+          'value': 12.62,
+        }),
+      }),
+      'zoneOverrides': dict({
+      }),
+    }),
+  })
+# ---
+# name: test_snapshot_emission_factor[KR]
+  dict({
+    'emissionFactors': dict({
+      'defaults': dict({
+        'battery charge': dict({
+          'source': 'IPCC 2014',
+          'value': 0,
+        }),
+        'battery discharge': dict({
+          'source': 'IPCC 2014',
+          'value': 423.12,
+        }),
+        'biomass': dict({
+          'source': 'IPCC 2014',
+          'value': 230,
+        }),
+        'coal': dict({
+          'source': 'IPCC 2014',
+          'value': 820,
+        }),
+        'gas': dict({
+          'source': 'IPCC 2014',
+          'value': 490,
+        }),
+        'geothermal': dict({
+          'source': 'IPCC 2014',
+          'value': 38,
+        }),
+        'hydro': dict({
+          'source': 'IPCC 2014',
+          'value': 24,
+        }),
+        'hydro charge': dict({
+          'source': 'IPCC 2014',
+          'value': 0,
+        }),
+        'hydro discharge': dict({
+          'source': 'IPCC 2014',
+          'value': 395.29,
+        }),
+        'nuclear': dict({
+          'source': 'IPCC 2014',
+          'value': 12,
+        }),
+        'oil': dict({
+          'source': 'IPCC 2014',
+          'value': 650,
+        }),
+        'solar': dict({
+          'source': 'IPCC 2014',
+          'value': 45,
+        }),
+        'unknown': dict({
+          'source': 'IPCC 2014',
+          'value': 644,
+        }),
+        'wind': dict({
+          'source': 'IPCC 2014',
+          'value': 11,
+        }),
+      }),
+      'zoneOverrides': dict({
+      }),
+    }),
+  })
+# ---

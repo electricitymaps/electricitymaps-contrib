@@ -8,7 +8,7 @@ import {
   ZoneKey,
 } from 'types';
 import { modeOrderBarBreakdown } from 'utils/constants';
-import { getProductionCo2Intensity, round } from 'utils/helpers';
+import { getProductionCo2Intensity } from 'utils/helpers';
 import { EnergyUnits } from 'utils/units';
 
 import exchangesToExclude from '../../../../config/excluded_aggregated_exchanges.json';
@@ -49,8 +49,11 @@ export interface ProductionDataType {
   gCo2eq: number;
 }
 
-export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
-  modeOrderBarBreakdown.map((mode) => {
+export const getProductionData = (data?: ZoneDetail): ProductionDataType[] => {
+  if (!data) {
+    return [];
+  }
+  return modeOrderBarBreakdown.map((mode) => {
     const isStorage = mode.includes('storage');
     const generationMode = mode.replace(' storage', '') as GenerationType;
     // Power in MW
@@ -73,7 +76,7 @@ export const getProductionData = (data: ZoneDetail): ProductionDataType[] =>
       gCo2eq,
     };
   });
-
+};
 interface GetElectricityProductionValueType {
   capacity: Maybe<number>;
   isStorage: boolean;
@@ -137,11 +140,14 @@ export interface ExchangeDataType {
   exchangeCapacityRange: number[];
 }
 export const getExchangeData = (
-  data: ZoneDetail,
   exchangeKeys: ZoneKey[],
-  isConsumption: boolean
-): ExchangeDataType[] =>
-  exchangeKeys.map((zoneKey: ZoneKey) => {
+  isConsumption: boolean,
+  data?: ZoneDetail
+): ExchangeDataType[] => {
+  if (!data || !isConsumption) {
+    return [];
+  }
+  return exchangeKeys.map((zoneKey: ZoneKey) => {
     // Power in MW
     const exchange = data.exchange?.[zoneKey];
     const exchangeCapacityRange = data.exchangeCapacities?.[zoneKey] ?? [0, 0];
@@ -158,14 +164,19 @@ export const getExchangeData = (
       gCo2eq,
     };
   });
+};
 
 export const getExchangesToDisplay = (
-  currentZoneKey: ZoneKey,
   isCountryView: boolean,
-  zoneStates: {
+  currentZoneKey?: ZoneKey,
+  zoneStates?: {
     [key: string]: ZoneDetail;
   }
 ): ZoneKey[] => {
+  if (!currentZoneKey || !zoneStates) {
+    return [];
+  }
+
   const exchangeKeysToRemove = isCountryView
     ? exchangesToExclude.exchangesToExcludeCountryView
     : exchangesToExclude.exchangesToExcludeZoneView;

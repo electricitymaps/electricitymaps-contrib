@@ -1,3 +1,4 @@
+import { Group } from '@visx/group';
 import { scaleLinear } from 'd3-scale';
 import { useMemo } from 'react';
 import { modeOrderBarBreakdown } from 'utils/constants';
@@ -12,9 +13,16 @@ import { getDataBlockPositions } from './utils';
 interface EmptyBarBreakdownChartProps {
   height: number;
   width: number;
-  isMobile?: boolean;
+  isMobile: boolean;
   overLayText?: string;
 }
+
+const MAX_CO2EQ = 10;
+const MIN_CO2EQ = -1;
+
+const formatTick = (t: number) =>
+  // TODO: format tick depending on displayByEmissions
+  `${t} ${PowerUnits.GIGAWATTS}`;
 
 function EmptyBarBreakdownChart({
   height,
@@ -22,40 +30,22 @@ function EmptyBarBreakdownChart({
   overLayText,
   width,
 }: EmptyBarBreakdownChartProps) {
-  const productionData = modeOrderBarBreakdown.map((d) => ({
-    mode: d,
-    gCo2eq: 0,
-    gCo2eqByFuel: {},
-    gCo2eqByFuelAndSource: {},
-    isStorage: false,
-  }));
   const { productionY } = getDataBlockPositions(0, []);
-
-  const maxCO2eqExport = 1;
-  const maxCO2eqImport = 10;
-  const maxCO2eqProduction = 10;
 
   // in CO₂eq
   const co2Scale = useMemo(
     () =>
       scaleLinear()
-        .domain([
-          -maxCO2eqExport || 0,
-          Math.max(maxCO2eqProduction || 0, maxCO2eqImport || 0),
-        ])
+        .domain([MIN_CO2EQ, MAX_CO2EQ])
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
-    [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
+    [width]
   );
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const formatTick = (t: number) =>
-    // TODO: format tick depending on displayByEmissions
-    `${t} ${PowerUnits.GIGAWATTS}`;
   return (
     <>
       <div style={{ width, height, position: 'absolute' }}>
         {overLayText && (
-          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-gray-200 p-2 text-center text-sm shadow-sm dark:bg-gray-900">
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-neutral-200 p-2 text-center text-sm shadow-sm dark:bg-neutral-900">
             {overLayText}
           </div>
         )}
@@ -67,16 +57,16 @@ function EmptyBarBreakdownChart({
         height={height}
       >
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
-        <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
+        <Group top={productionY}>
+          {modeOrderBarBreakdown.map((mode, index) => (
             <ProductionSourceRow
-              key={d.mode}
+              key={mode}
               index={index}
-              productionMode={d.mode}
+              productionMode={mode}
               width={width}
               scale={co2Scale}
-              value={Math.abs(d.gCo2eq)}
-              isMobile={Boolean(isMobile)}
+              value={0}
+              isMobile={isMobile}
             >
               <HorizontalBar
                 className="production"
@@ -86,7 +76,7 @@ function EmptyBarBreakdownChart({
               />
             </ProductionSourceRow>
           ))}
-        </g>
+        </Group>
       </svg>
     </>
   );

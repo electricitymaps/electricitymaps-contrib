@@ -7,6 +7,8 @@ import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { round } from 'utils/helpers';
 
 import { AreaGraphElement } from './types';
 
@@ -78,19 +80,14 @@ export const getStorageKey = (name: ElectricityStorageType): string | undefined 
   }
 };
 
-export const getGenerationTypeKey = (name: string): GenerationType | undefined => {
-  if (modeOrder.includes(name as GenerationType)) {
-    return name as GenerationType;
-  }
-
-  return undefined;
-};
+export const getGenerationTypeKey = (name: string): GenerationType | undefined =>
+  modeOrder.includes(name as GenerationType) ? (name as GenerationType) : undefined;
 
 /** Returns the total electricity that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalElectricityAvailable(
+export const getTotalElectricityAvailable = (
   zoneData: ZoneDetail,
   isConsumption: boolean
-) {
+) => {
   const totalDischarge = zoneData.totalDischarge ?? 0;
   const totalImport = zoneData.totalImport ?? 0;
 
@@ -99,10 +96,13 @@ export function getTotalElectricityAvailable(
   }
 
   return zoneData.totalProduction + totalDischarge + (isConsumption ? totalImport : 0);
-}
+};
 
 /** Returns the total emissions that is available in the zone (e.g. production + discharge + imports) */
-export function getTotalEmissionsAvailable(zoneData: ZoneDetail, isConsumption: boolean) {
+export const getTotalEmissionsAvailable = (
+  zoneData: ZoneDetail,
+  isConsumption: boolean
+) => {
   const totalCo2Discharge = zoneData.totalCo2Discharge ?? 0;
   const totalCo2Import = zoneData.totalCo2Import ?? 0;
 
@@ -113,7 +113,7 @@ export function getTotalEmissionsAvailable(zoneData: ZoneDetail, isConsumption: 
   return (
     zoneData.totalCo2Production + totalCo2Discharge + (isConsumption ? totalCo2Import : 0)
   );
-}
+};
 
 export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   const index = datetimes.findIndex((d) => d?.getTime() === currentDate?.getTime());
@@ -123,13 +123,13 @@ export const getNextDatetime = (datetimes: Date[], currentDate: Date) => {
   return datetimes[index + 1];
 };
 
-export function determineUnit(
+export const determineUnit = (
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   isConsumption: boolean,
-  isHourly: boolean,
+  isFineGranularity: boolean,
   t: TFunction
-) {
+) => {
   if (displayByEmissions) {
     return getUnit(
       formatCo2({ value: getTotalEmissionsAvailable(currentZoneDetail, isConsumption) }) +
@@ -138,7 +138,7 @@ export function determineUnit(
     );
   }
 
-  return isHourly
+  return isFineGranularity
     ? getUnit(
         formatPower({
           value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
@@ -149,18 +149,12 @@ export function determineUnit(
           value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
         })
       );
-}
+};
+const GET_UNIT_REGEX = /\s+(.+)/;
+const getUnit = (valueAndUnit: string | number) =>
+  valueAndUnit.toString().match(GET_UNIT_REGEX)?.at(1) ?? '';
 
-function getUnit(valueAndUnit: string | number) {
-  const regex = /\s+(.+)/;
-  const match = valueAndUnit.toString().match(regex);
-  if (!match) {
-    return '';
-  }
-  return match[1];
-}
-
-export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
+export const getRatioPercent = (value: Maybe<number>, total: Maybe<number>) => {
   // If both the numerator and denominator are zeros,
   // interpret the ratio as zero instead of NaN.
   if (value === 0 && total === 0) {
@@ -178,9 +172,9 @@ export function getRatioPercent(value: Maybe<number>, total: Maybe<number>) {
     return '?';
   }
   return Math.round((value / total) * 10_000) / 100;
-}
+};
 
-export function getElectricityProductionValue({
+export const getElectricityProductionValue = ({
   generationTypeCapacity,
   isStorage,
   generationTypeProduction,
@@ -190,7 +184,7 @@ export function getElectricityProductionValue({
   isStorage: boolean;
   generationTypeProduction: Maybe<number>;
   generationTypeStorage: Maybe<number>;
-}) {
+}) => {
   const value = isStorage ? generationTypeStorage : generationTypeProduction;
 
   // If the value is not defined but the capacity
@@ -209,55 +203,78 @@ export function getElectricityProductionValue({
   }
   // Do not negate value if it is zero
   return generationTypeStorage === 0 ? 0 : -generationTypeStorage;
-}
+};
 
-function analyzeChartData(chartData: AreaGraphElement[]) {
+const analyzeChartData = (chartData: AreaGraphElement[]) => {
   let estimatedCount = 0;
   let tsaCount = 0;
-  for (const chartElement of chartData) {
-    if (chartElement.meta.estimationMethod === EstimationMethods.TSA) {
+  let estimatedTotal = 0;
+  const total = chartData.length;
+  for (const { meta } of chartData) {
+    const { estimationMethod, estimatedPercentage } = meta;
+    if (
+      estimationMethod === EstimationMethods.TSA ||
+      estimationMethod === EstimationMethods.FORECASTS_HIERARCHY
+    ) {
       tsaCount++;
     }
-    if (chartElement.meta.estimatedPercentage || chartElement.meta.estimationMethod) {
+    if (estimatedPercentage || estimationMethod) {
       estimatedCount++;
     }
+    estimatedTotal += estimatedPercentage ?? 0;
   }
+  const calculatedTotal = round(
+    estimatedTotal / total || ((estimatedCount || tsaCount) / total) * 100,
+    0
+  );
   return {
-    allTimeSlicerAverageMethod: tsaCount === chartData.length,
-    allEstimated: estimatedCount === chartData.length,
+    estimatedTotal: calculatedTotal,
+    allTimeSlicerAverageMethod: tsaCount === total,
+    allEstimated: estimatedCount === total,
     hasEstimation: estimatedCount > 0,
   };
-}
+};
 
-export function getBadgeTextAndIcon(
+export const getBadgeTextAndIcon = (
   chartData: AreaGraphElement[],
-  t: TFunction
-): { text?: string; icon?: LucideIcon } {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation } =
-    analyzeChartData(chartData);
-  if (allTimeSlicerAverageMethod) {
+  t: TFunction,
+  isAggregated: boolean
+): { text?: string; icon?: LucideIcon } => {
+  const { allTimeSlicerAverageMethod, estimatedTotal } = analyzeChartData(chartData);
+  const estimationTranslation = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    isAggregated,
+    undefined,
+    estimatedTotal
+  );
+
+  if (estimatedTotal === 0) {
+    return {};
+  }
+
+  if (estimatedTotal) {
     return {
-      text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
-      icon: CircleDashed,
+      text: estimationTranslation,
+      icon: TrendingUpDown,
     };
   }
 
-  if (allEstimated) {
-    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
-  }
-
-  if (hasEstimation) {
-    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
+  if (allTimeSlicerAverageMethod) {
+    return {
+      text: estimationTranslation,
+      icon: CircleDashed,
+    };
   }
   return {};
-}
+};
 
-export function extractLinkFromSource(
+export const extractLinkFromSource = (
   source: string,
   sourceToLinkMapping: {
     [key: string]: string;
   }
-) {
+) => {
   const link = sourceToLinkMapping[source];
   if (link) {
     return link;
@@ -273,4 +290,4 @@ export function extractLinkFromSource(
 
   // We on purpose don't use https due to some sources not supporting it (and the majority that does will automatically redirect anyway)
   return `http://${source}`;
-}
+};

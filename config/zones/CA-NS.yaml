@@ -49,92 +49,94 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 426.8445977974951
+        value: 426.85
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 518.2793069399034
+        value: 518.28
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 479.74118532013614
+        value: 479.75
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 443.44608891751625
+        value: 443.45
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 426.8445977974951
+        value: 426.85
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 518.2793069399034
+        value: 518.28
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 479.74118532013614
+        value: 479.75
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 443.44608891751625
+        value: 443.45
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
       datetime: '2017-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.02027182687366422
+        biomass: 0.020285335769138137
         coal: 0.540864552113717
-        gas: 0.18672718537194893
+        gas: 0.18672689876171963
         geothermal: 0.0
-        hydro: 0.07302744570002016
+        hydro: 0.07300251061007185
         hydro discharge: 0.0
-        nuclear: 1.5515167078955485e-05
+        nuclear: 1.6117048560466685e-05
         oil: 0.0
-        solar: 9.171527337313588e-07
-        unknown: 0.03468509226508733
-        wind: 0.14440692079631404
+        solar: 1.0413504997574802e-06
+        unknown: 0.03468519735550474
+        wind: 0.1444179839511647
     - _source: Electricity Maps, 2018 average
       datetime: '2018-01-01'
       value:
         battery discharge: 1.7506712672907034e-08
-        biomass: 0.02554291729807656
-        coal: 0.5294280904680008
-        gas: 0.1534085799854755
+        biomass: 0.02556150404025436
+        coal: 0.5294280541079053
+        gas: 0.15340801034397852
         geothermal: 0.0
-        hydro: 0.08743975701135291
+        hydro: 0.08740443519853001
         hydro discharge: 0.0
-        nuclear: 3.8058246680694284e-05
-        oil: 2.073872116636679e-07
-        solar: 1.0261626966734738e-06
-        unknown: 0.037031587062714935
-        wind: 0.16710953263048295
+        nuclear: 3.948975710925584e-05
+        oil: 2.0469387125245142e-07
+        solar: 1.1554430364118645e-06
+        unknown: 0.03703172576974611
+        wind: 0.16712522268504854
     - _source: Electricity Maps, 2019 average
       datetime: '2019-01-01'
       value:
         battery discharge: 2.7685697250783867e-08
-        biomass: 0.012597221117537265
+        biomass: 0.012621785713851313
         coal: 0.5255563542838196
-        gas: 0.12994653915855142
+        gas: 0.12994597806175384
         geothermal: 0.0
-        hydro: 0.10572705798072903
+        hydro: 0.10567596125788299
         hydro discharge: 0.0
-        nuclear: 0.00019371866937688476
+        nuclear: 0.00019934440305824404
         oil: 1.1443421530323998e-07
-        solar: 2.7574954461780726e-06
-        unknown: 0.056291949472295745
-        wind: 0.169684121273845
+        solar: 2.9586781795337695e-06
+        unknown: 0.05629213404361076
+        wind: 0.1697051808608871
     - _source: Electricity Maps, 2020 average
       datetime: '2020-01-01'
       value:
         battery discharge: 6.045213280580344e-08
-        biomass: 0.02616357728711932
+        biomass: 0.026186821132183152
         coal: 0.5194228002551721
-        gas: 0.1744703594442407
+        gas: 0.17446986675935836
         geothermal: 0.0
-        hydro: 0.06161138104012737
+        hydro: 0.06156233622478202
         hydro discharge: 0.0
-        nuclear: 0.00018894314108453862
+        nuclear: 0.00019428408701793138
         oil: 3.9293886323772237e-07
-        solar: 2.99842578716785e-06
-        unknown: 0.0351494936358579
-        wind: 0.1829897032093774
+        solar: 3.1737369723046804e-06
+        unknown: 0.03514963872097663
+        wind: 0.18301042620050328
 parsers:
   production: CA_NS.fetch_production
 region: Americas
 timezone: America/Halifax
+zone_name: Nova Scotia
+country_name: Canada

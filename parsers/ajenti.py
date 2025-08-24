@@ -86,9 +86,7 @@ def parse_payload(logger: Logger, payload) -> dict:
         "unknown": 0,
     }
     if "technologies" not in payload:
-        raise KeyError(
-            f"No 'technologies' in payload\n" f"serie : {json.dumps(payload)}"
-        )
+        raise KeyError(f"No 'technologies' in payload\nserie : {json.dumps(payload)}")
     else:
         logger.debug(f"serie : {json.dumps(payload)}")
     for technology in payload["technologies"]:
@@ -163,31 +161,34 @@ def fetch_production(
     technologies_parsed = parse_payload(logger, payload)
     storage_techs = sum_storage_techs(technologies_parsed)
 
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime.now(tz=ZoneInfo(tz)),
-        "production": {
-            "biomass": technologies_parsed["biomass"],
-            "coal": technologies_parsed["coal"],
-            "gas": technologies_parsed["gas"],
-            "hydro": technologies_parsed["hydro"],
-            "nuclear": technologies_parsed["nuclear"],
-            "oil": technologies_parsed["oil"],
-            "solar": technologies_parsed["solar"],
-            "wind": 0
-            if technologies_parsed["wind"] < 0 and technologies_parsed["wind"] > -0.1
-            else technologies_parsed[
-                "wind"
-            ],  # If wind between 0 and -0.1 set to 0 to ignore self-consumption
-            "geothermal": technologies_parsed["geothermal"],
-            "unknown": technologies_parsed["unknown"],
-        },
-        "storage": {
-            "battery": storage_techs
-            * -1  # Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
-        },
-        "source": source,
-    }
+    return [
+        {
+            "zoneKey": zone_key,
+            "datetime": datetime.now(tz=ZoneInfo(tz)),
+            "production": {
+                "biomass": technologies_parsed["biomass"],
+                "coal": technologies_parsed["coal"],
+                "gas": technologies_parsed["gas"],
+                "hydro": technologies_parsed["hydro"],
+                "nuclear": technologies_parsed["nuclear"],
+                "oil": technologies_parsed["oil"],
+                "solar": technologies_parsed["solar"],
+                "wind": 0
+                if technologies_parsed["wind"] < 0
+                and technologies_parsed["wind"] > -0.1
+                else technologies_parsed[
+                    "wind"
+                ],  # If wind between 0 and -0.1 set to 0 to ignore self-consumption
+                "geothermal": technologies_parsed["geothermal"],
+                "unknown": technologies_parsed["unknown"],
+            },
+            "storage": {
+                "battery": storage_techs
+                * -1  # Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
+            },
+            "source": source,
+        }
+    ]
 
 
 if __name__ == "__main__":

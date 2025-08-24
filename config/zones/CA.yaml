@@ -1,0 +1,186 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2785.3
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2791.55
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 2684.56
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 2691.46
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2699.86
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 9636.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 9689.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 9247.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 7996.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 6553.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 17241.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 17472.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 17634.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 19802.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 21262.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 22474.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 23418.9
+  geothermal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 6.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 80657.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 81396.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 81209.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 82133.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 83138.0
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 174.0
+  nuclear:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 14033.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 13338.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 12513.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 11578.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6018.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 6002.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 6019.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 5205.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3419.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3719.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 4007.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 4379.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 5261.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 5438.5
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 5884.01
+  unknown:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 63.5
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 57.5
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 38.5
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 39.2
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 12250.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 12816.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 13220.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 13532.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 13722.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 15081.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 16989.42
+country: CA
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
+region: Americas
+subZoneNames:
+  - CA-AB
+  - CA-BC
+  - CA-MB
+  - CA-NB
+  - CA-NL
+  - CA-NS
+  - CA-NT
+  - CA-NU
+  - CA-ON
+  - CA-PE
+  - CA-QC
+  - CA-SK
+  - CA-YT
+timezone: America/Toronto
+zone_name: Canada
+country_name: Canada

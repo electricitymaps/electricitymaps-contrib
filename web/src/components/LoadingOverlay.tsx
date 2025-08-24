@@ -1,7 +1,7 @@
 import { animated, useTransition } from '@react-spring/web';
 import useGetState from 'api/getState';
 import { loadingMapAtom } from 'features/map/mapAtoms';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 
 import LoadingSpinner from './LoadingSpinner';
@@ -37,9 +37,9 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
     (styles, isVisible) =>
       isVisible && (
         <animated.div
-          className="fixed z-50 h-full w-full bg-gray-100 dark:bg-gray-900"
+          className="fixed z-50 h-full w-full bg-neutral-100 dark:bg-neutral-950"
           style={styles}
-          data-test-id="loading-overlay"
+          data-testid="loading-overlay"
         >
           <LoadingSpinner showReloadButton={showButton} />
         </animated.div>
@@ -48,10 +48,9 @@ function FadingOverlay({ isVisible }: { isVisible: boolean }) {
 }
 
 export default function LoadingOverlay() {
-  const { isLoading, isError } = useGetState();
-  const [isLoadingMap] = useAtom(loadingMapAtom);
-
-  const showLoadingOverlay = !isError && (isLoading || isLoadingMap);
-
+  const { isSuccess, isError } = useGetState();
+  const isLoadingMap = useAtomValue(loadingMapAtom);
+  const hasResult = isSuccess || isError;
+  const showLoadingOverlay = !hasResult || isLoadingMap;
   return <FadingOverlay isVisible={showLoadingOverlay} />;
 }

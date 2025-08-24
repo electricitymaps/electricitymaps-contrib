@@ -36,8 +36,8 @@ const getConfig = (): CombinedZonesConfig => {
     'estimation_method',
     'parsers',
     'subZoneNames',
-    'aggregates_displayed',
     'generation_only',
+    'timezone',
   ]);
 
   const contributors = new Set<string>();
@@ -65,7 +65,9 @@ const getConfig = (): CombinedZonesConfig => {
       const index = contributorArray.indexOf(contributor);
       zoneContributorsArray.push(index);
     }
-
+    if (!config.timezone) {
+      console.log('no timezone for', filepath);
+    }
     if (zoneContributorsArray && zoneContributorsArray.length > 0) {
       (config as unknown as OptimizedZoneConfig).contributors = zoneContributorsArray;
     }

@@ -1,3 +1,116 @@
+bounding_box:
+  - - 29.054495544955472
+    - -1.969533257365882
+  - - 35.47974979749799
+    - 4.719021003643483
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 76.4
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 96.2
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 706.91
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 744.15
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1004.41
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1010.91
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1032.71
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 137.08
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 102.68
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 101.08
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 44.16
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 67.39
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 77.68
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 88.43
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 90.47
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 94.63
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 94.79
 country: UG
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 58.74
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 58.74
+    hydro discharge:
+      - datetime: '2023-01-01'
+        source: Electricity Maps, 2023 average
+        value: 58.74
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 58.74
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.08659463755380915
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8619674957821306
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.026151723457783355
+        solar: 0.02528580375353232
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.08659508173891416
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8619659873381036
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.026150638258165812
+        solar: 0.02528760510767805
+        unknown: 0.0
+        wind: 0.0
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Kampala
+zone_name: Uganda
+country_name: Uganda

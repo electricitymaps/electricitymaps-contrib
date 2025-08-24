@@ -6,7 +6,6 @@
     "feedback": "Deli povratne informacije",
     "github": "Oglejte si naš GitHub",
     "twitter": "Deli na Twitterju",
-    "slack": "Pridruži se skupnosti Slack",
     "privacy-policy": "Politika zasebnosti",
     "legal-notice": "Pravno obvestilo"
   },
@@ -42,11 +41,7 @@
     "renewable": "obnovljiva",
     "by-source": {
       "emissions": "Izpusti ogljika",
-      "electricity-production": "Proizvodnja električne energije",
-      "electricity-consumption": "Poraba električne energije",
-      "total-emissions": "Skupni izpusti ogljika",
-      "total-electricity-production": "Skupna proizvodnja električne energije",
-      "total-electricity-consumption": "Skupna poraba električne energije"
+      "total-emissions": "Skupni izpusti ogljika"
     },
     "helpfrom": "s pomočjo od",
     "noDataAtTimestamp": "Podatki za izbrani čas začasno niso na voljo",
@@ -54,12 +49,12 @@
     "dataIsDelayed": "Podatki za to regijo lahko zamujajo do {{hours}} ur. Podatkov v živo ni mogoče prikazati.",
     "estimated": "ocenjeno",
     "aggregated": "zbrano",
-    "dataIsEstimated": "Nekateri podatki za to regijo so ocenjeni. Preberite več o naši metodologiji ocenjevanja <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target= \"_blank\">tukaj</a>.",
-    "exchangesAreMissing": "Izmenjave so upoštevane v izračunih, vendar trenutno niso prikazane. Preberite več o naših zgodovinskih združevanjih <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">tukaj</a>..",
+    "dataIsEstimated": "Nekateri podatki za to regijo so ocenjeni. Preberite več o naši metodologiji ocenjevanja <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target= '_blank'>tukaj</a>.",
+    "exchangesAreMissing": "Izmenjave so upoštevane v izračunih, vendar trenutno niso prikazane. Preberite več o naših zgodovinskih združevanjih <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>tukaj</a>..",
     "estimatedTooltip": "Podatki v realnem času za to območje so ocenjeni na podlagi podatkov iz vira in predpostavk modela.",
     "aggregatedTooltip": "Podatki za to območje so združeni na podlagi zgodovinskih urnih vrednosti",
-    "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href=\"{{link}}\" target=\"_blank\">dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
-    "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href=\"{{link}}\" target=\"_blank\">dodate območje podatki</a>.",
+    "helpUs": "Pomagajte nam prepoznati težavo tako, da si ogledate <a href='{{link}}' target='_blank'>dnevnike izvajalnega časa</a> ali se obrnete na ponudnika podatkov.",
+    "noParserInfo": "Nimamo še nobenih informacij o tem območju.<br/> Želite pomagati popraviti to? Lahko prispevate tako, da <a href='{{link}}' target='_blank'>dodate območje podatki</a>.",
     "now": "Zdaj"
   },
   "ranking-panel": {
@@ -140,40 +135,40 @@
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Kaj pomenijo barve na zemljevidu?",
-    "mapColors-answer": "Območja na zemljevidu obarvamo glede na količine toplogrednih plinov, ki se izpustijo za vsako tam porabljeno enoto električne energije (njena <a href=\"#carbonIntensity\" class=\"entry-link\">ogljična intenzivnost</a> ). Bolj kot je zelena barva, podnebju prijaznejša je poraba električne energije",
+    "mapColors-answer": "Območja na zemljevidu obarvamo glede na količine toplogrednih plinov, ki se izpustijo za vsako tam porabljeno enoto električne energije (njena <a href='#carbonIntensity' class='entry-link'>ogljična intenzivnost</a> ). Bolj kot je zelena barva, podnebju prijaznejša je poraba električne energije",
     "mapArrows-question": "Kaj označujejo puščice med območji na zemljevidu?",
     "mapArrows-answer": "Puščice med območji označujejo fizični pretok (uvoz in izvoz) električne energije med območji: hitreje utripajo, hitrejši je pretok. Pretok električne energije je pomemben, saj ko nekaj električne energije uvozite iz sosednjih območij, uvozite tudi emisije ogljika, povezane z njeno proizvodnjo.",
     "mapSolarWindButtons-question": "kaj počneta gumba 'sonce' in 'veter' na zemljevidu?",
     "mapSolarWindButtons-answer": "Ti gumbi preklapljajo med prikazovanjem hitrosti vetra in moči sonca v realnem času, kar kaže na možnost prehoda na alternativne vire energije iz sonca in vetra na različnih območjih. Upoštevajte, da je to le površen pokazatelj, saj je dejanski potencial pri namestitvi vetrnih turbin in sončnih celic odvisen tudi od številnih drugih dejavnikov.",
     "mapNuclearColors-question": "Zakaj so države z jedrsko energijo na zemljevidu označene z zeleno?",
-    "mapNuclearColors-answer": "Proizvodnja jedrske energije ima zelo nizko intenzivnost ogljika (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >vir</ a>), zato so države z jedrsko energijo na zemljevidu prikazane z zeleno barvo. To ne pomeni, da z jedrsko energijo ni povezanih drugih okoljskih izzivov (kot velja tudi za druge oblike proizvodnje energije), vendar ti izzivi niso povezani z izpusti toplogrednih plinov in so zato izven obsega tega zemljevida.",
+    "mapNuclearColors-answer": "Proizvodnja jedrske energije ima zelo nizko intenzivnost ogljika (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >vir</ a>), zato so države z jedrsko energijo na zemljevidu prikazane z zeleno barvo. To ne pomeni, da z jedrsko energijo ni povezanih drugih okoljskih izzivov (kot velja tudi za druge oblike proizvodnje energije), vendar ti izzivi niso povezani z izpusti toplogrednih plinov in so zato izven obsega tega zemljevida.",
     "mapColorBlind-question": "Sem barvno slep(a), kako lahko berem vašo mapo?",
     "mapColorBlind-answer": "Barve, prikazane na zemljevidu, lahko spremenite tako, da omogočite nastavitev »barvno slepi način«. Nahaja se na dnu leve plošče na namizju in v zavihku z informacijami v mobilni aplikaciji."
   },
   "mapAreas": {
     "groupName": "Območja na mapi",
     "noData-question": "Zakaj podatki za moje območje niso na voljo?",
-    "noData-answer": " Bodisi zato, ker viri podatkov za območje začasno niso na voljo, bodisi zato, ker še nimamo nastavljenih virov podatkov za to območje. Lahko nam <a href=\"#contribute\" class=\"entry-link\">pomagate pri dodajanju novih virov podatkov.",
+    "noData-answer": " Bodisi zato, ker viri podatkov za območje začasno niso na voljo, bodisi zato, ker še nimamo nastavljenih virov podatkov za to območje. Lahko nam <a href='#contribute' class='entry-link'>pomagate pri dodajanju novih virov podatkov.",
     "whySmallAreas-question": "Zakaj delite svet na manjša območja in ne prikazujete le povprečja držav?",
     "whySmallAreas-answer": "Območja so najmanjša geografska območja, za katera imamo podatke. Z dostopom do informacij na najvišji stopnji razdrobljenosti lahko odjemalci električne energije na različnih območjih natančneje vedo o izvoru električne energije, ki jo porabijo.",
     "divideExistingArea-question": "Ali lahko moje območje razdelite na manjše dele?",
-    "divideExistingArea-answer": "Seveda, če obstajajo ločeni viri podatkov za vsak del območja. Lahko <a href=\"#contribute\" class=\"entry-link\">pomagate nam pri dodajanju novih podatkovnih virov</a>",
+    "divideExistingArea-answer": "Seveda, če obstajajo ločeni viri podatkov za vsak del območja. Lahko <a href='#contribute' class='entry-link'>pomagate nam pri dodajanju novih podatkovnih virov</a>",
     "seeHistoricalData-question": "Ali lahko vidim zgodovino za obmmočje starejše od 24 ur?",
-    "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">zbirke podatkov</a>."
+    "seeHistoricalData-answer": "Dostop do vseh naših zgodovinskih podatkov lahko kupite prek naše <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>zbirke podatkov</a>."
   },
   "methodology": {
-    "carbonIntensity-question": "Kaj je \"ogljična intenzivnost\"?",
+    "carbonIntensity-question": "Kaj je 'ogljična intenzivnost'?",
     "carbonIntensity-answer": "Intenzivnost ogljika je merilo emisij toplogrednih plinov, povezanih s proizvodnjo električne energije, ki jo porabite (v gCO₂eq/kWh – gramih ekvivalentov ogljikovega dioksida, izpuščenih na kilovatno uro porabljene električne energije). <br><br>Merimo emisije porabe električne energije (ne proizvodnje), kar pomeni vse emisije toplogrednih plinov (tako CO₂ kot drugih toplogrednih plinov, kot je metan), ki so šli v proizvodnjo električne energije, ki se porablja na območju, ob upoštevanju upoštevati ogljične intenzivnosti električne energije, uvožene z drugih območij. Uporabljamo pristop analize življenjskega cikla (LCA), kar pomeni, da upoštevamo emisije, ki izhajajo iz celotnega življenjskega cikla elektrarn (gradnja, proizvodnja goriva, obratovalne emisije in razgradnja).",
     "renewableLowCarbonDifference-question": "Kakšna je razlika med 'obnovljivo' in 'nizkoogljičnio' energijo?",
     "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije temelji na obnovljivih virih energije, kot so veter in vodni tokovi, sonce in geotermalna energija. Nizkoogljična proizvodnja energije pomeni, da proizvodnja vključuje zelo nizko raven emisij toplogrednih plinov, na primer pri proizvodnji jedrske energije.",
     "importsAndExports-question": "Ali upoštevate uvoz in izvoz električne energije?",
-    "importsAndExports-answer": "Da. Uvoze in izvoze lahko na zemljevidu vidite kot majhne <a href=\"#mapArrows\" class=\"entry-link\">puščice med različnimi območji</a>. Podrobne informacije si lahko ogledate v grafikonih, prikazanih, ko kliknete na območje.",
+    "importsAndExports-answer": "Da. Uvoze in izvoze lahko na zemljevidu vidite kot majhne <a href='#mapArrows' class='entry-link'>puščice med različnimi območji</a>. Podrobne informacije si lahko ogledate v grafikonih, prikazanih, ko kliknete na območje.",
     "emissionsOfStored-question": "Kaj pa emisije pri proizvodnji električne energije, ki se nato shrani v baterije ali uporabi za polnjenje rezervoarjev?",
     "emissionsOfStored-answer": "Ker je trenutno shranjen le majhen delež električne energije, netočnosti pri modeliranju teh emisij ne bi smele bistveno vplivati ​​na sedanje skupne vrednosti. Vendar glede na vse večji pomen shranjevanja upamo, da ga bomo v našem modelu kmalu bolj upoštevali.",
     "guaranteesOfOrigin-question": "Kaj so zeleni certifikati in kako se upoštevajo?",
     "guaranteesOfOrigin-answer": "Ko proizvajalci obnovljive energije proizvajajo električno energijo, lahko ustvarijo garancije o izvoru (ali potrdila o obnovljivi energiji) - dokaz, da je bila električna energija iz obnovljivih virov proizvedena in distribuirana v električno omrežje. Ta jamstva je nato mogoče prodati, kar trgovcem z električno energijo na drobno omogoči, da trdijo, da električna energija, ki jo preprodajajo, prihaja iz obnovljivih virov, ne glede na njen dejanski, fizični vir.<br><br> To pomeni, da lahko potrošnikom električne energije povedo, da njihova električna energija prihaja pred soncem in vetrom, tudi v brezvetrju. To je problematično, saj odpravlja spodbude potrošnikov za porabo električne energije ob najboljšem času (na primer, ko je količina obnovljive električne energije v omrežju dejansko največja). Ta zemljevid torej izključuje jamstva o izvoru, namesto tega ponuja lokacijsko fizično sliko električnega omrežja, da bi okrepili moč potrošnikov.",
     "otherSources-question": "Zakaj ne prikažete drugih virov emisij poleg proizvodnje električne energije?",
-    "otherSources-answer": "To bi bilo izven obsega tega projekta. Vendar pri Electricity Maps aktivno delamo na razvoju <a href=\"#whoAreYou\" class=\"entry-link\">novih rešitev za količinsko opredelitev vpliva vaših vsakodnevnih odločitev na podnebje</a>.",
+    "otherSources-answer": "To bi bilo izven obsega tega projekta. Vendar pri Electricity Maps aktivno delamo na razvoju <a href='#whoAreYou' class='entry-link'>novih rešitev za količinsko opredelitev vpliva vaših vsakodnevnih odločitev na podnebje</a>.",
     "homeSolarPanel-question": "Kaj pa če imam na svojem domu nameščene sončne celice?",
     "homeSolarPanel-answer": "Intenzivnost ogljika merimo v lokalnem električnem omrežju, zato električna energija, ki jo porabite neposredno iz sončne celice (izven omrežja), ni del naših meritev. Če pa vaša sončna plošča napaja vaše lokalno električno omrežje, je njena proizvodnja vključena v naše statistike na območjih, kjer so ocene lokalne proizvodnje sončne energije javno dostopne (na primer v Franciji in Združenem kraljestvu).",
     "emissionsPerCapita-question": "Zakaj ne prikažete količine emisij na prebivalca?",
@@ -184,22 +179,22 @@
     "dataOrigins-question": "Kako dobite vaše podatke?",
     "dataOrigins-answer": "Vse naše podatke izračunavamo iz javno dostopnih podatkov, ki jih objavljajo operaterji elektroenergetskega omrežja, uradne agencije in drugi. Lahko kliknete območje, če si želite ogledati več podrobnosti o izvoru njegovih podatkov.",
     "dataDownload-question": "Ali imam dostop do vaših popdat?",
-    "dataDownload-answer": "Imate možnost kupiti dostop do vseh naših podatkov v <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">bazi</a>.",
+    "dataDownload-answer": "Imate možnost kupiti dostop do vseh naših podatkov v <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>bazi</a>.",
     "dataIntegration-question": "Ali lahko vaše podatke v realnem času integriram v svojo aplikacijo ali napravo?",
-    "dataIntegration-answer": "Da! Prodajamo dostop do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API-ja</a>, kateri vključuje prihodnje napovedi."
+    "dataIntegration-answer": "Da! Prodajamo dostop do <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>real-time API-ja</a>, kateri vključuje prihodnje napovedi."
   },
   "aboutUs": {
     "groupName": "O nas",
     "whoAreYou-question": "Kdo ste?",
-    "whoAreYou-answer": "Aplikacijo razvija in vzdržuje <a href=\"https://electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a>, dansko startup podjetje. Naš cilj je pomagati človeštvu doseči trajnostno stanje obstoja, tako, da kvalificiramo vpliv vsakodnevnih odločitev na podnebje it podatke naredimo široko dostopne.",
+    "whoAreYou-answer": "Aplikacijo razvija in vzdržuje <a href='https://electricitymaps.com/' target='_blank'>Električni zemljevidi</a>, dansko startup podjetje. Naš cilj je pomagati človeštvu doseči trajnostno stanje obstoja, tako, da kvalificiramo vpliv vsakodnevnih odločitev na podnebje it podatke naredimo široko dostopne.",
     "feedback-question": "Vam lahko dam nekaj povratnih informacij?",
-    "feedback-answer": "Da! Prosim izpolnite <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
+    "feedback-answer": "Da! Prosim izpolnite <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>our feedback form</a> or <a href='mailto:app@electricitymaps.com'>Pošlji mail!</a>",
     "contribute-question": "Ali lahko pomagam pri vašem projektu?",
-    "contribute-answer": "Aplikacija je odprtokodni projekt, ki so ga omogočili naši prostovoljci. Če želite pomagati pri razvoju zemljevida, bodisi z dodajanjem virov podatkov za nova območja, dodajanjem novih funkcij ali odpravljanjem napak, se nam pridružite v našem <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Aplikacija je odprtokodni projekt, ki so ga omogočili naši prostovoljci. Če želite pomagati pri razvoju zemljevida, bodisi z dodajanjem virov podatkov za nova območja, dodajanjem novih funkcij ali odpravljanjem napak, se nam pridružite v našem <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>github</a>.",
     "workTogether-question": "Lahko delamo skupaj?",
-    "workTogether-answer": "Aktivno iščemo nove priložnosti za sodelovanje. <a href=\"mailto:app@electricitymaps.com\">Pošlji mail!</a>",
+    "workTogether-answer": "Aktivno iščemo nove priložnosti za sodelovanje. <a href='mailto:app@electricitymaps.com'>Pošlji mail!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Električni zemljevidi</a> v informativne namene. Ne garantiramo pravilnosti in ne zagotavljamo nobenih jamstev o podatkih. Pridružujemo si pravico, da lahko kadarkoli spremenimo ali odstranimo dele vsebine, ne da bi vas o tem obvestili. Električni zemljevidi ne prevzemajo nobene odgovornosti za kakršno koli škodo ali stroške, kateri bi lahko nastali zaradi netočnosti, nepopolnosti, neažurnosti ali zastarelosti informacij pridobljenih iz zemljevidov. Te spletne strani ali katerega koli njenega posameznega elementa ni dovoljeno vključiti v drugo spletno stran brez uradnega predhodnega pisnega soglasja.<br><br> Vse pravice intelektualne lastnine pripadajo zakonitim lastnikom in dajalcem licence. Kopiranje, distribucija in kakršna koli druga uporaba teh materialov, zlasti energetskih podatkov, ni dovoljena brez pisnega dovoljenja Elektrokarte, razen in samo v obsegu, ki je drugače določen s predpisi prisilnega prava (kot je pravica do citiranja), razen če je za določene materiale določeno drugače.  <br><br> Ta izjava se lahko občasno posodobi."
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Električni zemljevidi</a> v informativne namene. Ne garantiramo pravilnosti in ne zagotavljamo nobenih jamstev o podatkih. Pridružujemo si pravico, da lahko kadarkoli spremenimo ali odstranimo dele vsebine, ne da bi vas o tem obvestili. Električni zemljevidi ne prevzemajo nobene odgovornosti za kakršno koli škodo ali stroške, kateri bi lahko nastali zaradi netočnosti, nepopolnosti, neažurnosti ali zastarelosti informacij pridobljenih iz zemljevidov. Te spletne strani ali katerega koli njenega posameznega elementa ni dovoljeno vključiti v drugo spletno stran brez uradnega predhodnega pisnega soglasja.<br><br> Vse pravice intelektualne lastnine pripadajo zakonitim lastnikom in dajalcem licence. Kopiranje, distribucija in kakršna koli druga uporaba teh materialov, zlasti energetskih podatkov, ni dovoljena brez pisnega dovoljenja Elektrokarte, razen in samo v obsegu, ki je drugače določen s predpisi prisilnega prava (kot je pravica do citiranja), razen če je za določene materiale določeno drugače.  <br><br> Ta izjava se lahko občasno posodobi."
   },
   "zoneShortName": {
     "AD": {
@@ -214,9 +209,6 @@
     "AG": {
       "zoneName": "Antigua in Barbuda"
     },
-    "AI": {
-      "zoneName": "Angvila"
-    },
     "AL": {
       "zoneName": "Albanija"
     },
@@ -226,14 +218,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarktika"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "Ameriška Samoa"
     },
     "AT": {
       "zoneName": "Avstrija"
@@ -327,9 +313,6 @@
     "BO": {
       "zoneName": "Bolivija"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius in Saba"
-    },
     "BR-CS": {
       "countryName": "Brazilija",
       "zoneName": "Centralna Brazilija"
@@ -352,9 +335,6 @@
     "BT": {
       "zoneName": "Butan"
     },
-    "BV": {
-      "zoneName": "Bouvet Otok"
-    },
     "BW": {
       "zoneName": "Botsvana"
     },
@@ -363,6 +343,9 @@
     },
     "BZ": {
       "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Kanada"
     },
     "CA-AB": {
       "countryName": "Kanada",
@@ -383,14 +366,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland in Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Kanada",
@@ -424,9 +399,6 @@
       "countryName": "Kanada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Kokosovi otoki"
-    },
     "CD": {
       "zoneName": "Demokratična republika Kongo"
     },
@@ -441,9 +413,6 @@
     },
     "CI": {
       "zoneName": "Slonokoščena obala"
-    },
-    "CK": {
-      "zoneName": "Cookovi otoki"
     },
     "CL-CHP": {
       "countryName": "Čile",
@@ -481,9 +450,6 @@
     },
     "CW": {
       "zoneName": "Curacao"
-    },
-    "CX": {
-      "zoneName": "Božični otoki"
     },
     "CY": {
       "zoneName": "Ciper"
@@ -559,9 +525,13 @@
       "countryName": "Španija",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Španija",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Španija",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Španija",
@@ -636,9 +606,6 @@
     "GB-ZET": {
       "countryName": "Velika Britanija",
       "zoneName": "Šetlandski otoki"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GE": {
       "zoneName": "Georgia"
@@ -722,117 +689,9 @@
       "countryName": "Indija",
       "zoneName": "Andaman in Nicobar otoki"
     },
-    "IN-AP": {
-      "countryName": "Indija",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Indija",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Indija",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Indija",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Indija",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indija",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Indija",
-      "zoneName": "Dadra and Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Indija",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indija",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Indija",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Indija",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Indija",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indija",
-      "zoneName": "Jammu and Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Indija",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Indija",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Indija",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Indija",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Indija",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Indija",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Indija",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Indija",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Indija",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "Indija",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Indija",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Indija",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Indija",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Indija",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Indija",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indija",
@@ -842,19 +701,11 @@
       "countryName": "Indija",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Indija",
-      "zoneName": "Zahodni Bengal"
-    },
     "IO": {
       "zoneName": "Britansko ozemlje Indijskega oceana"
     },
     "IQ": {
       "zoneName": "Irak"
-    },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -947,14 +798,8 @@
     "KH": {
       "zoneName": "Kambodža"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komori"
-    },
-    "KN": {
-      "zoneName": "Sveti Kitts in Nevis"
     },
     "KP": {
       "zoneName": "Severna Koreja"
@@ -1016,15 +861,8 @@
     "ME": {
       "zoneName": "Črna Gora"
     },
-    "MF": {
-      "countryName": "Sveti Martin",
-      "zoneName": "Francoski del"
-    },
     "MG": {
       "zoneName": "Madagaskar"
-    },
-    "MH": {
-      "zoneName": "Marshallovi otoki"
     },
     "MK": {
       "zoneName": "Severna Makedonija"
@@ -1040,9 +878,6 @@
     },
     "MO": {
       "zoneName": "Makav"
-    },
-    "MP": {
-      "zoneName": "Severni Marijanski otoki"
     },
     "MQ": {
       "zoneName": "Martinik"
@@ -1123,17 +958,11 @@
     "NE": {
       "zoneName": "Nigerija"
     },
-    "NF": {
-      "zoneName": "Otok Norfolk"
-    },
     "NG": {
       "zoneName": "Nigerija"
     },
     "NI": {
       "zoneName": "Nikaragva"
-    },
-    "NKR": {
-      "zoneName": "Gorski Karabah"
     },
     "NL": {
       "zoneName": "Nizozemska"
@@ -1163,12 +992,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "Nova Zelandija"
@@ -1211,9 +1034,6 @@
     },
     "PM": {
       "zoneName": "Sveti Pierre in Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairnovi Otoki"
     },
     "PR": {
       "zoneName": "Portoriko"
@@ -1314,9 +1134,6 @@
     "SG": {
       "zoneName": "Singapur"
     },
-    "SH": {
-      "zoneName": "Sveta Helena, Vnebohod in Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenija"
     },
@@ -1328,9 +1145,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1350,18 +1164,11 @@
     "SV": {
       "zoneName": "Salvador"
     },
-    "SX": {
-      "countryName": "Sveti Martin",
-      "zoneName": "Nizozemska"
-    },
     "SY": {
       "zoneName": "Sirija"
     },
     "SZ": {
       "zoneName": "Svazi"
-    },
-    "TC": {
-      "zoneName": "Otoki Turks in Caicos"
     },
     "TD": {
       "zoneName": "Čad"
@@ -1377,9 +1184,6 @@
     },
     "TJ": {
       "zoneName": "Tadžikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1399,9 +1203,6 @@
     "TT": {
       "zoneName": "Trinidad in Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Tajvan"
     },
@@ -1418,47 +1219,12 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Manjši oddaljeni otoki Združenih Držav"
-    },
     "US": {
-      "zoneName": "Celinske Združene Države"
+      "zoneName": "Združene Države"
     },
     "US-AK": {
       "countryName": "ZDA",
       "zoneName": "Aljaska"
-    },
-    "US-HI-HA": {
-      "countryName": "ZDA",
-      "zoneName": "Havaji"
-    },
-    "US-HI-KA": {
-      "countryName": "ZDA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "ZDA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "ZDA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "ZDA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "ZDA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "ZDA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "ZDA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "ZDA",
@@ -1592,10 +1358,6 @@
       "countryName": "ZDA",
       "zoneName": "Gridforce Energy Management, Llc"
     },
-    "US-NW-GWA": {
-      "countryName": "ZDA",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
     "US-NW-IPCO": {
       "countryName": "ZDA",
       "zoneName": "Idaho Power Company"
@@ -1644,10 +1406,6 @@
       "countryName": "ZDA",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "ZDA",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
     "US-NY-NYIS": {
       "countryName": "ZDA",
       "zoneName": "New York Independent System Operator"
@@ -1667,10 +1425,6 @@
     "US-SW-EPE": {
       "countryName": "ZDA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "ZDA",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "ZDA",
@@ -1702,18 +1456,11 @@
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Vatikan"
-    },
     "VC": {
       "zoneName": "Sveti Vincent in Grenadini"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Deviški Otoki",
-      "zoneName": "Deviški Otoki"
     },
     "VI": {
       "countryName": "ZDA",
@@ -1724,9 +1471,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis in Futuna"
     },
     "WS": {
       "zoneName": "Samoa"

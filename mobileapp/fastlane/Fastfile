@@ -10,7 +10,7 @@ android_dir = File.expand_path("../android")
 
 private_lane :build_web_app do
   ensure_env_vars(
-  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN']
+  env_vars: ['SENTRY_AUTH_TOKEN', 'VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9']
 )
   # Build the web app if we have both environment variables set
   sh("pnpm", "run", "build-web")
@@ -62,8 +62,7 @@ platform :ios do
     )
     bump_version
     build_web_app
-    get_certificates           # invokes cert
-    get_provisioning_profile   # invokes sigh
+    match(type: "appstore")
     build_app(
       workspace: File.join(ios_dir, "App/App.xcworkspace")
     )
@@ -167,10 +166,12 @@ platform :android do
     UI.success("--- Step: manual part ---")
     UI.success("-------------------------")
     UI.important("YOU ARE ALMOST THERE! Please follow the steps below to submit the new version for review:")
-    UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/tracks/internal-testing")
-    UI.message("2. Promote the latest version to production.")
-    UI.success("3. Remember to add release notes and save.")
-    UI.success("4. Run the 'commit' lane after both releases are done.")
+    UI.message("1. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/releases/overview")
+    UI.message("2. Find the latest right Production release under 'Latest Releases'.")
+    UI.success("3. Open the release and add release notes.")
+    UI.success("4. Open https://play.google.com/console/u/0/developers/7105597502658203364/app/4972478320592934095/publishing")
+    UI.success("5. Publish changes.")
+    UI.success("6. Run the 'commit' lane after both releases are done.")
   end
 end
 

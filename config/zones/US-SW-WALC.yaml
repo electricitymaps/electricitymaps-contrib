@@ -5,60 +5,120 @@ bounding_box:
     - 44.1167400000001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2021-12-01'
       source: EIA.gov
       value: 90.0
-    - datetime: '2023-12-01'
+    - datetime: '2023-09-01'
       source: EIA.gov
       value: 105.0
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 115.0
+    - datetime: '2024-09-01'
+      source: EIA.gov
+      value: 130.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 140.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 408.0
+    - datetime: '2018-01-01'
       source: EIA.gov
       value: 204.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1713.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1917.0
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 2153.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1517.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5614.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 5610.5
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 3789.5
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 65.2
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 40.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1.5
+    - datetime: '2021-09-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 34.4
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 61.7
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 151.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 81.7
+    - datetime: '2019-08-01'
+      source: EIA.gov
+      value: 109.7
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 142.2
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 322.2
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 323.1
-    - datetime: '2023-12-01'
+    - datetime: '2023-09-01'
       source: EIA.gov
       value: 340.7
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 350.0
 comment: Western Area Power Administration - Desert Southwest Region
@@ -70,11 +130,10 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available. This zone includes all electricity production from
-  the generation-only balancing authority Griffith Energy, LLC. Read more on the zone
-  definition wiki page.
+  production: 48
+disclaimer:
+  This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the
+  zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -142,33 +201,31 @@ emissionFactors:
         value: 542.1413552404729
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 589.548452323098
+        value: 589.55
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 571.8994500444788
+        value: 571.9
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 370.1867876697655
+        value: 370.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 439.4166173790383
+        value: 439.42
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 370.3272944575323
+        value: 370.33
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 380.11141092469353
+        value: 380.11
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 511.56010227991226
+        value: 511.56
     coal:
       - datetime: '2012-01-01'
-        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 817.120985
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 894.610985
     gas:
       - datetime: '2020-01-01'
@@ -186,25 +243,25 @@ emissionFactors:
         value: 542.1413552404729
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 589.548452323098
+        value: 589.55
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 571.8994500444788
+        value: 571.9
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 370.1867876697655
+        value: 370.19
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 439.4166173790383
+        value: 439.42
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 370.3272944575323
+        value: 370.33
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 380.11141092469353
+        value: 380.11
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 511.56010227991226
+        value: 511.56
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -360,3 +417,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
+zone_name: Western Area Power Administration - Desert Southwest Region
+zone_short_name: WAPA Desert Southwest
+country_name: USA

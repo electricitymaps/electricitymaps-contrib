@@ -25,6 +25,7 @@ DATA_URL = "https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/ge
 TIMEZONE = ZoneInfo("America/Tegucigalpa")
 
 JSON_MAPPING = {
+    "GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
     "GT->MX-OR": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
     "GT->SV": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
     "GT->HN": "4LEC.LT230.2FR4-4LEC-01B.-.MW",

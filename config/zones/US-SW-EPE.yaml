@@ -5,54 +5,99 @@ bounding_box:
     - 33.98037168914246
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2022-05-01'
+      source: EIA.gov
+      value: 1.0
+    - datetime: '2023-06-01'
       source: EIA.gov
       value: 51.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3.2
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1910.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1911.7
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 1915.9
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 2143.7
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2.1
+    - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 114.5
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 117.5
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 119.5
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 124.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 127.3
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 126.8
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 129.8
+    - datetime: '2023-06-01'
       source: EIA.gov
       value: 249.8
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 251.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 261.3
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 50.4
 comment: El Paso Electric Company
@@ -64,9 +109,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -130,25 +173,25 @@ emissionFactors:
         value: 628.6048672222605
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 622.4999140185001
+        value: 622.5
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 668.92801269558
+        value: 668.93
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 644.9451525440152
+        value: 644.95
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 646.1621183510472
+        value: 646.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 651.1973005543184
+        value: 651.2
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 613.5271066186818
+        value: 613.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 545.7958714972767
+        value: 545.8
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -169,25 +212,25 @@ emissionFactors:
         value: 628.6048672222605
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 622.4999140185001
+        value: 622.5
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 668.92801269558
+        value: 668.93
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 644.9451525440152
+        value: 644.95
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 646.1621183510472
+        value: 646.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 651.1973005543184
+        value: 651.2
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 613.5271066186818
+        value: 613.53
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 545.7958714972767
+        value: 545.8
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -349,3 +392,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
+zone_name: El Paso Electric Company
+country_name: USA

@@ -1,31 +1,37 @@
 import ToggleButton from 'components/ToggleButton';
 import { useAtom } from 'jotai';
-import type { ReactElement } from 'react';
-import trackEvent from 'utils/analytics';
+import { memo, type ReactElement, useCallback } from 'react';
 import { Mode } from 'utils/constants';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
-export default function ConsumptionProductionToggle(): ReactElement {
-  const options = [
-    {
-      value: Mode.PRODUCTION,
-      translationKey: 'tooltips.production',
-      dataTestId: 'production-toggle',
-    },
-    {
-      value: Mode.CONSUMPTION,
-      translationKey: 'tooltips.consumption',
-      dataTestId: 'consumption-toggle',
-    },
-  ];
+const options = [
+  {
+    value: Mode.PRODUCTION,
+    translationKey: 'tooltips.production',
+    dataTestId: 'production-toggle',
+  },
+  {
+    value: Mode.CONSUMPTION,
+    translationKey: 'tooltips.consumption',
+    dataTestId: 'consumption-toggle',
+  },
+];
+
+function ConsumptionProductionToggle({
+  transparentBackground = true,
+}: {
+  transparentBackground?: boolean;
+}): ReactElement {
   const [currentMode, setCurrentMode] = useAtom(productionConsumptionAtom);
-  const onSetCurrentMode = (option: string) => {
-    if (option === currentMode) {
-      return;
-    }
-    trackEvent('Production Consumption Clicked', { productionConsumption: option });
-    setCurrentMode(currentMode === Mode.PRODUCTION ? Mode.CONSUMPTION : Mode.PRODUCTION);
-  };
+  const onSetCurrentMode = useCallback(
+    (option: Mode | '') => {
+      if (option === '') {
+        return;
+      }
+      setCurrentMode(option);
+    },
+    [setCurrentMode]
+  );
 
   return (
     <ToggleButton
@@ -33,7 +39,9 @@ export default function ConsumptionProductionToggle(): ReactElement {
       tooltipKey="tooltips.cpinfo"
       selectedOption={currentMode}
       onToggle={onSetCurrentMode}
-      transparentBackground
+      transparentBackground={transparentBackground}
     />
   );
 }
+
+export default memo(ConsumptionProductionToggle);

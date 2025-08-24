@@ -5,59 +5,77 @@ bounding_box:
     - 49.1340949710001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 936.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 945.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 940.8
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 950.2
-    - datetime: '2024-01-01'
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 952.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 955.4
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 80.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 77.5
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 77.6
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 71.4
 comment: Western Area Power Administration Ugp West
 contributors:
   - systemcatch
@@ -67,9 +85,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 33
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -126,29 +142,28 @@ emissionFactors:
         value: 24.0
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 119.04789686665868
+        value: 119.05
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 450.42504096448533
+        value: 450.43
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 417.74667058653455
+        value: 417.75
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 359.3320045477184
+        value: 359.33
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 344.70520038212663
+        value: 344.71
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 335.5862488998276
+        value: 335.59
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 271.2247396128676
+        value: 271.22
     coal:
       datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
       value: 776.557703
     gas:
       datetime: '2014-01-01'
@@ -163,25 +178,25 @@ emissionFactors:
         value: 24.0
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 119.04789686665868
+        value: 119.05
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 450.42504096448533
+        value: 450.43
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 417.74667058653455
+        value: 417.75
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 359.3320045477184
+        value: 359.33
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 344.70520038212663
+        value: 344.71
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 335.5862488998276
+        value: 335.59
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 271.2247396128676
+        value: 271.22
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -333,3 +348,6 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: US/Mountain
+zone_name: Western Area Power Administration - Upper Great Plains West
+zone_short_name: WAPA Upper Great Plains
+country_name: USA

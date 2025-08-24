@@ -1,3 +1,88 @@
+bounding_box:
+  - - 34.4509495094951
+    - 28.689985355933374
+  - - 39.79992274590594
+    - 33.87779736975472
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 13.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2877.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3428.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 3186.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 3163.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 3.6
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 814.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1049.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1284.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 417.54
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 760.19
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 970.99
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1540.88
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1810.83
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1965.93
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1989.93
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 198.4
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 294.5
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 383.6
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 528.61
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 632.11
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 614.01
 country: JO
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Amman
+zone_name: Jordan
+country_name: Jordan

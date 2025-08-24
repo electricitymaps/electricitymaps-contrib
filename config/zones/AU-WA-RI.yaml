@@ -38,14 +38,20 @@ emissionFactors:
         value: 475.16042054489543
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 494.2083458391532
+        value: 494.21
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 519.99
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 475.16042054489543
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 494.2083458391532
+        value: 494.21
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 519.99
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -78,7 +84,24 @@ fallbackZoneMixes:
         solar: 0.07833126006705768
         unknown: 0.0
         wind: 0.16976688744150792
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7931552125610936
+        solar: 0.06026681890829423
+        unknown: 0.0
+        wind: 0.1463649654920588
 parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Perth
+zone_name: Rottnest Island
+country_name: Australia

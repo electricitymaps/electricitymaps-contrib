@@ -1,44 +1,42 @@
-import ToggleButton from 'components/ToggleButton';
-import { useAtom, useAtomValue } from 'jotai';
-import type { ReactElement } from 'react';
-import trackEvent from 'utils/analytics';
+import ToggleButton, { ToggleButtonOptions } from 'components/ToggleButton';
+import { useAtom } from 'jotai';
+import { memo, type ReactElement, useCallback } from 'react';
 import { LeftPanelToggleOptions } from 'utils/constants';
-import { displayByEmissionsAtom, isConsumptionAtom } from 'utils/state/atoms';
+import { displayByEmissionsAtom } from 'utils/state/atoms';
 
-export default function EmissionToggle(): ReactElement {
-  const isConsumption = useAtomValue(isConsumptionAtom);
+const options: ToggleButtonOptions<LeftPanelToggleOptions> = [
+  {
+    value: LeftPanelToggleOptions.ELECTRICITY,
+    translationKey: 'country-panel.electricityconsumption',
+  },
+  {
+    value: LeftPanelToggleOptions.EMISSIONS,
+    translationKey: 'country-panel.emissions',
+  },
+];
+
+function EmissionToggle(): ReactElement {
   const [displayByEmissions, setDisplayByEmissions] = useAtom(displayByEmissionsAtom);
 
   // TODO: perhaps togglebutton should accept boolean values
-  const options = [
-    {
-      value: LeftPanelToggleOptions.ELECTRICITY,
-      translationKey: isConsumption
-        ? 'country-panel.electricityconsumption'
-        : 'country-panel.electricityproduction',
-    },
-    {
-      value: LeftPanelToggleOptions.EMISSIONS,
-      translationKey: 'country-panel.emissions',
-    },
-  ];
 
-  const onSetCurrentMode = (option: string) => {
-    if (displayByEmissions) {
-      trackEvent('PanelProductionButton Clicked');
-    } else {
-      trackEvent('PanelEmissionButton Clicked');
-    }
-    if (
-      (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
-      (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
-    ) {
-      setDisplayByEmissions(!displayByEmissions);
-    }
-  };
+  const onSetCurrentMode = useCallback(
+    (option: LeftPanelToggleOptions | '') => {
+      if (option === '') {
+        return;
+      }
+      if (
+        (option === LeftPanelToggleOptions.ELECTRICITY && displayByEmissions) ||
+        (option === LeftPanelToggleOptions.EMISSIONS && !displayByEmissions)
+      ) {
+        setDisplayByEmissions(!displayByEmissions);
+      }
+    },
+    [displayByEmissions, setDisplayByEmissions]
+  );
 
   return (
-    <div className="my-4">
+    <div className="mb-4">
       <ToggleButton
         options={options}
         selectedOption={
@@ -47,7 +45,10 @@ export default function EmissionToggle(): ReactElement {
             : LeftPanelToggleOptions.ELECTRICITY
         }
         onToggle={onSetCurrentMode}
+        transparentBackground={false}
       />
     </div>
   );
 }
+
+export default memo(EmissionToggle);

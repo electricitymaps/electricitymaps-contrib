@@ -8,7 +8,7 @@ _If you're looking for more info on the parsers, check out [how to setup Python 
 
 Prerequisites:
 
-- Ensure you have `NodeJS` and `pnpm` installed locally (`brew install pnpm`)
+- Ensure you have `NodeJS` (`v20.9.0` or above) and `pnpm` installed locally (`brew install pnpm`)
 - Run `pnpm install` in both the web and mockserver directories
 
 1. Start the mockserver: `pnpm run mockserver`
@@ -42,13 +42,13 @@ Prerequisites:
 
 As an eMap internal team member, you can also run the app connected to production API instead of the mockserver:
 
-- Run `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN' pnpm dev`
+- Run `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9='YOUR TOKEN' pnpm dev`
 - Add a `?remote=true` query parameter
 
 ### Building for production
 
 - Add an environment variable for `SENTRY_AUTH_TOKEN="find it here => https://sentry.io/settings/account/api/auth-tokens/"`
-- Add an environment variable for `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR TOKEN'`
+- Add an environment variable for `VITE_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN_V9='YOUR TOKEN'`
 
 ## Geometries development
 
@@ -58,7 +58,7 @@ See [how to edit world geometries](https://github.com/electricityMaps/electricit
 
 We use [Lucide](https://lucide.dev) for icons and [react-icons](https://github.com/react-icons/react-icons) for brand icons, brand icons should be imported from the FontAwesome 6 library.
 
-If an icon is missing reach out the to Electricity Maps team either on Slack or by creating an issue. There is also the possibility to file a icon request upstream in [Lucides GitHub repository](https://github.com/lucide-icons/lucide) or creating and submitting one yourself as long as it matches the Lucide visual style and guidelines.
+If an icon is missing reach out the to Electricity Maps team by creating an issue. There is also the possibility to file a icon request upstream in [Lucides GitHub repository](https://github.com/lucide-icons/lucide) or creating and submitting one yourself as long as it matches the Lucide visual style and guidelines.
 
 Search for icons here: [Lucide](https://lucide.dev/icons/)
 Search for brand icons here: [Font Awesome Brands](https://fontawesome.com/search?o=r&f=brands)

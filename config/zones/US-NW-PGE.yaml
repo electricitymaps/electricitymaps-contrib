@@ -5,54 +5,165 @@ bounding_box:
     - 46.4057731890001
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 292.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 14.7
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 15.9
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 14.7
+    - datetime: '2025-01-01'
       source: EIA.gov
       value: 15.9
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 642.2
+    - datetime: '2020-10-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2085.6
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 2115.3
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 692.4
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 693.6
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 676.2
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 606.0
+    - datetime: '2023-01-01'
       source: EIA.gov
       value: 624.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6.6
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 24.2
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 28.6
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 30.8
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 37.4
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 41.8
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 43.7
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 63.7
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 65.9
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 70.3
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 73.4
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 76.4
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 83.9
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 87.5
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 112.7
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 125.4
+    - datetime: '2021-02-01'
+      source: EIA.gov
+      value: 128.4
+    - datetime: '2021-03-01'
+      source: EIA.gov
+      value: 132.7
+    - datetime: '2021-04-01'
+      source: EIA.gov
+      value: 135.2
+    - datetime: '2021-10-01'
+      source: EIA.gov
+      value: 137.4
+    - datetime: '2021-12-01'
+      source: EIA.gov
+      value: 147.4
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 149.9
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 151.8
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 165.0
     - datetime: '2024-03-01'
       source: EIA.gov
       value: 170.9
+    - datetime: '2024-10-01'
+      source: EIA.gov
+      value: 173.5
+    - datetime: '2024-12-01'
+      source: EIA.gov
+      value: 189.7
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 191.7
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 194.2
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.5
 comment: Portland General Electric Company
@@ -64,9 +175,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -134,25 +243,25 @@ emissionFactors:
         value: 418.84067817607627
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 427.6492462456607
+        value: 427.65
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 214.9418334022392
+        value: 214.94
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 213.9262598295396
+        value: 213.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 162.67157716008535
+        value: 162.67
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 199.1625591753572
+        value: 199.16
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 174.21178376917598
+        value: 174.21
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 239.12402026410462
+        value: 239.12
     coal:
       datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
@@ -173,25 +282,25 @@ emissionFactors:
         value: 418.84067817607627
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 427.6492462456607
+        value: 427.65
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 214.9418334022392
+        value: 214.94
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 213.9262598295396
+        value: 213.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 162.67157716008535
+        value: 162.67
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 199.1625591753572
+        value: 199.16
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 174.21178376917598
+        value: 174.21
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 239.12402026410462
+        value: 239.12
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -353,3 +462,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Portland General Electric Company
+country_name: USA

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useMatches } from 'react-router-dom';
 import { baseUrl } from 'utils/constants';
 
 /**
@@ -7,9 +7,13 @@ import { baseUrl } from 'utils/constants';
  */
 export const useGetCanonicalUrl = () => {
   const { i18n } = useTranslation();
-  const { pathname } = useLocation();
+
+  const matches = useMatches();
+
+  const pathname = matches?.at(-1)?.pathname ?? '/';
+
   const currentLanguageKey = i18n.languages[0];
   return `${baseUrl}${pathname}${
-    currentLanguageKey === 'en' ? '' : `?lang=${currentLanguageKey}`
+    currentLanguageKey.startsWith('en') ? '' : `?lang=${currentLanguageKey}`
   }`;
 };

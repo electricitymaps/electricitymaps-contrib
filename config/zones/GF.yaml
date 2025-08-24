@@ -5,49 +5,39 @@ bounding_box:
     - 5.78601
 capacity:
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 5.0
-  coal:
-    - datetime: '2021-01-01'
+      value: 1.98
+    - datetime: '2019-01-01'
       source: IRENA.org
-      value: 0.0
-  gas:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  geothermal:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      value: 5.08
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 119.0
-  hydro storage:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
-  nuclear:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      value: 120.18
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: IRENA.org
-      value: 197.0
+      value: 191.67
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 205.67
   solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 51.06
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 53.79
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 54.95
     - datetime: '2021-01-01'
       source: IRENA.org
-      value: 55.0
-  unknown:
-    - datetime: '2021-01-01'
+      value: 55.23
+    - datetime: '2022-01-01'
       source: IRENA.org
-      value: 0.0
-  wind:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.0
+      value: 55.27
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
@@ -57,53 +47,59 @@ emissionFactors:
     battery discharge:
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 238.8626595767095
+        value: 238.86
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 177.32988695041442
+        value: 177.33
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 186.19739912251356
+        value: 186.2
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 257.83914114555523
+        value: 257.84
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 245.0172956876773
+        value: 245.02
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 168.87843570866374
+        value: 168.88
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 160.61767618938424
+        value: 160.62
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 421.3331220412558
+        value: 420.75
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 393.11
     hydro discharge:
       - datetime: '2016-01-01'
         source: Electricity Maps, 2016 average
-        value: 238.8626595767095
+        value: 238.86
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 177.32988695041442
+        value: 177.33
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 186.19739912251356
+        value: 186.2
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 257.83914114555523
+        value: 257.84
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 245.0172956876773
+        value: 245.02
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 168.87843570866374
+        value: 168.88
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 160.61767618938424
+        value: 160.62
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 421.3331220412558
+        value: 420.75
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 393.11
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -215,15 +211,30 @@ fallbackZoneMixes:
       datetime: '2023-01-01'
       value:
         battery discharge: 0.0
-        biomass: 0.05430565706264205
+        biomass: 0.0559501875581819
+        coal: 0.0
+        gas: 0.11108404585690737
+        geothermal: 0.0
+        hydro: 0.2796028181832044
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.5319543577666881
+        solar: 0.021408668481840875
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.06495299663773707
         coal: 0.0
         gas: 0.0
         geothermal: 0.0
-        hydro: 0.3096511310663344
+        hydro: 0.34205537117791934
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.6161951779412499
-        solar: 0.019848443929996663
+        oil: 0.5670083003899943
+        solar: 0.025983803372641664
         unknown: 0.0
         wind: 0.0
 parsers:
@@ -232,3 +243,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: Europe/Paris
+zone_name: French Guiana
+country_name: French Guiana

@@ -1,15 +1,15 @@
 {
   "aboutUs": {
-    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a>.",
     "contribute-question": "Kan jeg bidra til prosjektet?",
-    "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time.",
+    "disclaimer-answer": "<a href='https://www.tmrow.com/' target='_blank'>Tomorrow</a> publishes data and images on the <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time.",
     "disclaimer-question": "Ansvarsfraskrivelse",
-    "feedback-answer": "Gjerne! Vennligst fyll ut <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt tilbakemeldingsskjema</a> eller <a href=\"mailto:app@electricitymaps.com\">eller send oss en e-post</a>.",
+    "feedback-answer": "Gjerne! Vennligst fyll ut <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>vårt tilbakemeldingsskjema</a> eller <a href='mailto:app@electricitymaps.com'>eller send oss en e-post</a>.",
     "feedback-question": "Kan jeg gi tilbakemeldinger?",
     "groupName": "Om oss",
-    "whoAreYou-answer": "Tjenesten er utviklet og vedlikeholdt av <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, som er et dansk oppstartselskap. Selskapets mål er å organisere elektrisitetsdata for å bidra til overgangen til et utslippsfritt energisystem.",
+    "whoAreYou-answer": "Tjenesten er utviklet og vedlikeholdt av <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, som er et dansk oppstartselskap. Selskapets mål er å organisere elektrisitetsdata for å bidra til overgangen til et utslippsfritt energisystem.",
     "whoAreYou-question": "Hvem har laget dette?",
-    "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymaps.com\">Send oss en e-post!</a>",
+    "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href='mailto:app@electricitymaps.com'>Send oss en e-post!</a>",
     "workTogether-question": "Kan vi samarbeide?"
   },
   "aggregateButtons": {
@@ -36,38 +36,33 @@
   "country-panel": {
     "aggregated": "aggregert",
     "aggregatedTooltip": "Data for denne sonen er aggregert fra historiske verdier for hver time",
-    "aggregationDisabled": "Data er ikke tilgjengelig for det valgte tidsrom på grunn av manglende detaljnivå på tidsserie. Velg en lengre tidsperiode.",
     "by-source": {
-      "electricity-consumption": "Elektrisitetsforbruk",
-      "electricity-production": "Elektrisitetsproduksjon",
       "emissions": "Karbonutslipp",
-      "total-electricity-consumption": "Samlet elektrisitetsforbruk",
-      "total-electricity-production": "Samlet elektrisitetsproduksjon",
       "total-emissions": "Samlet karbonutslipp"
     },
     "carbonintensity": "CO₂-intensitet",
     "dataIsDelayed": "Data fra denne regionen kan være {{hours}} timer forsinka. Sanntidsdata kan derfor ikke vises.",
-    "dataIsEstimated": "Enkelte data i regionen er estimert. Les om <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">våre estimeringsmetoder</a>.",
+    "dataIsEstimated": "Enkelte data i regionen er estimert. Les om <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>våre estimeringsmetoder</a>.",
     "disabledPriceReasons": {
       "licensing": "Elektrisitetspriser er utilgjengelige for dette området på grunn av rettighetsbegrensninger"
     },
     "estimated": "anslag",
     "estimatedTooltip": "Sanntidsdata for denne sonen er estimert fra kilden basert på antagelser i modellen.",
-    "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">her</a>.",
+    "exchangesAreMissing": "Utveksling er tatt hensyn til i kalkulasjonene en vises for tiden ikke. Les mer om våre historiske aggregeringer <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>her</a>.",
     "helpfrom": "med hjelp fra",
-    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"{{link}}\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
+    "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href='{{link}}' target='_blank'>loggene</a> eller ta kontakt med datatilbyder.",
     "lowcarbon": "Lavt CO₂-utslipp",
     "noDataAtTimestamp": "Data midlertidig utilgjengelig for tidspunktet",
     "noLiveData": "Sanntidsdata er midlertidig utilgjengelig for området",
-    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"{{link}}\" target=\"_blank\">tilføye regionale data</a>.",
+    "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href='{{link}}' target='_blank'>tilføye regionale data</a>.",
     "now": "Nå",
     "renewable": "Fornybar",
     "source": "Kilde"
   },
   "data": {
-    "dataDownload-answer": "Vi publiserer data for de siste år gratis på vår <a href=\"https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">data-oversikt</a>. For tilgang til ferskere eller  sanntidsdata kan du benytte <a href=\"https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral\">vårt API</a>, som er gratis for ikke-kommersielt bruk og tilgjengelig for salg for kommersielt bruk. ",
+    "dataDownload-answer": "Vi publiserer data for de siste år gratis på vår <a href='https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>data-oversikt</a>. For tilgang til ferskere eller  sanntidsdata kan du benytte <a href='https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral'>vårt API</a>, som er gratis for ikke-kommersielt bruk og tilgjengelig for salg for kommersielt bruk. ",
     "dataDownload-question": "Kan jeg laste ned dataene?",
-    "dataIntegration-answer": "Ja! Vi selger tilgang til <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">sanntids API</a>, som inneholder framskrivinger.",
+    "dataIntegration-answer": "Ja! Vi selger tilgang til <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>sanntids API</a>, som inneholder framskrivinger.",
     "dataIntegration-question": "Kan jeg integrere dataene i min greie?",
     "dataOrigins-answer": "Vi beregner alle våre data fra offentlige kilder. Disse er publisert av nettselskap, offentlige myndigheter mfl. Ved å klikke på et område kan du se datakilder.",
     "dataOrigins-question": "Hvordan får dere tak i dataene?",
@@ -83,14 +78,9 @@
   "geothermal": "Jordvarme",
   "hydro": "Vannkraft",
   "hydro storage": "Pumpekraftverk",
-  "info": {
-    "text": "Electricity Map innsikt i sanntid på nett og mobil til allmennheten, energieksperter, frivillige organisasjoner og myndigheter for å gi dypere forståelse av det grønne skiftet.",
-    "open-source-text": "Tjenesten er <a href='{{link}}' target='_blank'>åpen kildekode</a> og utviklet i samarbeid med frivillige."
-  },
   "button": {
     "privacy-policy": "Personvern",
     "legal-notice": "Juridisk",
-    "slack": "Bli med i Slack-kanalen",
     "twitter": "Del på X/Twitter",
     "feedback": "Send tilbakemelding",
     "github": "Se på GitHub"
@@ -107,19 +97,19 @@
     "windpotential": "Vindpotensial"
   },
   "mapAreas": {
-    "divideExistingArea-answer": "Gjerne. Hvis det finnes egne datakilder for hvert område. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til ytterligere datakilder</a>",
+    "divideExistingArea-answer": "Gjerne. Hvis det finnes egne datakilder for hvert område. Du kan <a href='#contribute' class='entry-link'>hjelpe oss med å legge til ytterligere datakilder</a>",
     "divideExistingArea-question": "Kan dere spalte opp mitt område i mindre enheter?",
     "groupName": "Områder på kartet",
-    "noData-answer": "Enten fordi datakildene for området ikke er tilgjengelig, eller fordi vi ennå ikke har tilgang til å legge inn datakildene for området. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til datakilder</a>.",
+    "noData-answer": "Enten fordi datakildene for området ikke er tilgjengelig, eller fordi vi ennå ikke har tilgang til å legge inn datakildene for området. Du kan <a href='#contribute' class='entry-link'>hjelpe oss med å legge til datakilder</a>.",
     "noData-question": "Hvorfor er det ikke data tilgjengelig for mitt område?",
-    "seeHistoricalData-answer": "Du kan kjøpe adgang til alle våre historiske data gjennom vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
+    "seeHistoricalData-answer": "Du kan kjøpe adgang til alle våre historiske data gjennom vår <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>database</a>.",
     "seeHistoricalData-question": "Kan jeg se historiske data for et område lenger tilbake i tid enn 24 timer?",
     "whySmallAreas-answer": "Regionene er de minste geografiske områdene vi har tilgang til data for. Ved å ha tilgang til informasjon med høyeste geografiske detaljnivå, vil elektrisitetsforbrukere i forskjellige områder få mer presis kunnskap om kildene til strømmen de forbruker, samt dens klimaeffekter.",
     "whySmallAreas-question": "Hvorfor deler du opp verden i regioner i stedet for bare å vise tall for landsgjennomsnitt?"
   },
   "methodology": {
     "carbonIntensity-answer": "Karbonintensitet er et mål for klimagassutslipp knyttet til strømmen du forbruker (målt i gCO₂eq/kWh som er antall gram karbondioksid-ekvivalenter som slippes ut for hver kilowatttime forbrukt energi). <br><br>Vi måler utslippene ved strømforbruk, ikke produksjon, noe som vil si at alle klimagassutslipp (både CO₂ og andre drivhusgasser som metan) som har gått med for å produsere energien som brukes i området. Vi tar hensyn til karbonintensiteten til elektrisitet som er importert fra andre områder. For å regne ut dette bruker vi metoden livssyklusanalyse (“LCA“), noe som vil si at vi tar med utslipp fra hele kraftverkenes levetid (det vil si både fra bygging, brensel, produksjon, driftsutslipp og nedstegning).",
-    "carbonIntensity-question": "Hva er \"karbonintensitet\"?",
+    "carbonIntensity-question": "Hva er 'karbonintensitet'?",
     "emissionsOfStored-answer": "Ettersom kun en liten del av elektrisiteten lagres, vil unøyaktigheter i modelleringen av disse utslippene ikke utgjøre noen stor forskjell. Men etterhvert som strømlagring får større betydning, håper vi å kunne ta hensyn til dette i modellene våre snart.",
     "emissionsOfStored-question": "Hva med utslipp som elektrrisitetsproduksjon om stammer fra batterier eller oppfylte vannmagasiner?",
     "emissionsPerCapita-answer": "En stor del av strømforbruket i et område brukes på å produsere fysiske varer som blir eksportert til andre steder. Denne produksjonen, og elektrisiteten som går med i prosessen, er drevet av forbruket i <em>områdene som importerer</em>, ikke området produksjonen finner sted. Vi mener folk bør ha ansvar for det de forbruker, ikke for produkter produsert i området de bor i, uten å forbruke selv. Av denne grunn vil utslipp per person villedende.",
@@ -129,11 +119,11 @@
     "guaranteesOfOrigin-question": "Hva med grønne sertifikater? Tas det hensyn til disse?",
     "homeSolarPanel-answer": "Vi måler karbonintensiteten i det lokale strømnettet, så elektrisitetsforbruk som kommer direkte fra solcellepanel som ikke er del av strømnettet inngår ikke i målingene. Riktignok, hvis solcellepanelene leverer strøm til det lokale strømnettet, inngår strømmen i den offentlige strømstatistikken.",
     "homeSolarPanel-question": "Men hva om jeg har solceller på boligen min?",
-    "importsAndExports-answer": "Ja, det gjør vi. Import og eksport kan ses på kartet som <a href=\"#mapArrows\" class=\"entry-link\">små piler mellom områdene</a>. Detaljert informasjon kan ses på stolpediagramene som kommer frem når du klikker på et område.",
+    "importsAndExports-answer": "Ja, det gjør vi. Import og eksport kan ses på kartet som <a href='#mapArrows' class='entry-link'>små piler mellom områdene</a>. Detaljert informasjon kan ses på stolpediagramene som kommer frem når du klikker på et område.",
     "importsAndExports-question": "Tar dere hensyn til import og eksport av elektrisitet?",
-    "methodology-answer": "Vi har beskrevet metodene våre på <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, med ytterligere dokumentasjon på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">vår GitHub-wiki</a>.",
+    "methodology-answer": "Vi har beskrevet metodene våre på <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, med ytterligere dokumentasjon på <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>vår GitHub-wiki</a>.",
     "methodology-question": "Hvordan beregnet dere tallene?",
-    "otherSources-answer": "Det er utenfor formålet med dette prosjektet. Men vi jobber med å utvikle <a href=\"#whoAreYou\" class=\"entry-link\">nye løsninger for å tallfeste klimaeffekten av hverdagsbeslutninger</a>.",
+    "otherSources-answer": "Det er utenfor formålet med dette prosjektet. Men vi jobber med å utvikle <a href='#whoAreYou' class='entry-link'>nye løsninger for å tallfeste klimaeffekten av hverdagsbeslutninger</a>.",
     "otherSources-question": "Hvorfor viser dere ikke andre kilder for utslipp enn elektrisitetsproduksjon?",
     "renewableLowCarbonDifference-answer": "Fornybar energiproduksjon er basert på fornybare engerikilder, så som vind, rennende vann, sol eller jordvarme. Lavkarbonenergi betyr at energiproduksjonen fører til svært små klimagassutslipp, så som kjernekraft.",
     "renewableLowCarbonDifference-question": "Hva er forskjellen mellom “fornybar” og “lav-karbon”?"
@@ -193,9 +183,9 @@
     "mapArrows-question": "Hva viser pilene mellom områdene på karet?",
     "mapColorBlind-answer": "Du kan endre fargevisningen på kartet ved å skru på “fargeblindmodus”. Innstillingene er på bunnen av venstrepanelet på desktopvisning og informasjonsfanen i mobilappen. ",
     "mapColorBlind-question": "Jeg er fargeblind. Hvordan kan jeg bruke kartet?",
-    "mapColors-answer": "Vi fargelegger områder på kartet i henhold til mengden drivhusgasser som slippes ut for hver enhet med strøm som forbrukes der. (Dvs. <a href=\"#carbonIntensity\" class=\"entry-link\">områdets karbonintensitet</a>). Jo grønnere farge, jo mer klimavennlig er strømforbruket.",
+    "mapColors-answer": "Vi fargelegger områder på kartet i henhold til mengden drivhusgasser som slippes ut for hver enhet med strøm som forbrukes der. (Dvs. <a href='#carbonIntensity' class='entry-link'>områdets karbonintensitet</a>). Jo grønnere farge, jo mer klimavennlig er strømforbruket.",
     "mapColors-question": "Hva betyr fargene på kartet?",
-    "mapNuclearColors-answer": "Kjernekraftproduksjon har svært lav karbonintensitet (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >kilde</a>), og land som får strømmen sin fra kjernekraft vil derfor bli vist som grønne på kartet. Dette betyr ikke at det er andre miljøutfordringer forbundet med kjernekraft (i likhet med andre former for energiproduksjon), men disse er ikke relatert til utslipp av drivhusgasser og derfor utenfor dette kartets problemstilling.",
+    "mapNuclearColors-answer": "Kjernekraftproduksjon har svært lav karbonintensitet (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >kilde</a>), og land som får strømmen sin fra kjernekraft vil derfor bli vist som grønne på kartet. Dette betyr ikke at det er andre miljøutfordringer forbundet med kjernekraft (i likhet med andre former for energiproduksjon), men disse er ikke relatert til utslipp av drivhusgasser og derfor utenfor dette kartets problemstilling.",
     "mapNuclearColors-question": "Hvorfor er land som benytter mye kjernekraft også vist som grønne på kartet?",
     "mapSolarWindButtons-answer": "Disse knappene skur av og på sanntidsvisning av vindstyrke og mengden sollys, noe som gir en indikasjon på hvor stort potensial en overgang til sol- og vindbaserte energikilder vil kunne ha i forskjellige områder. Merk at dette er en overfladisk beregning. I virkeligheten vil effekten av vindturbiner og solpaneler også være avhengig av en rekke faktorer.",
     "mapSolarWindButtons-question": "Hva gjør “sol-” og “vind”-knappene på kartet?"
@@ -254,9 +244,6 @@
     "AG": {
       "zoneName": "Antigua og Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albania"
     },
@@ -266,14 +253,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarktis"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "Amerikansk Samoa"
     },
     "AT": {
       "zoneName": "Østerrike"
@@ -374,9 +355,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius og Saba"
-    },
     "BR": {
       "zoneName": "Brasil"
     },
@@ -402,9 +380,6 @@
     "BT": {
       "zoneName": "Bhutan"
     },
-    "BV": {
-      "zoneName": "Bouvetøya"
-    },
     "BW": {
       "zoneName": "Botswana"
     },
@@ -413,6 +388,9 @@
     },
     "BZ": {
       "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Canada"
     },
     "CA-AB": {
       "countryName": "Canada",
@@ -433,14 +411,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland og Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -474,9 +444,6 @@
       "countryName": "Canada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Kokosøyene"
-    },
     "CD": {
       "zoneName": "Den demokratiske republikken Kongo"
     },
@@ -491,9 +458,6 @@
     },
     "CI": {
       "zoneName": "Elfenbenskysten"
-    },
-    "CK": {
-      "zoneName": "Cookøyene"
     },
     "CL-CHP": {
       "countryName": "Chile",
@@ -531,9 +495,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Christmasøya"
     },
     "CY": {
       "zoneName": "Kypros"
@@ -593,9 +554,13 @@
       "countryName": "Spania",
       "zoneName": "Ceuta"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spania",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spania",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spania",
@@ -687,9 +652,6 @@
       "countryName": "Storbritannia",
       "zoneName": "Shetland"
     },
-    "GD": {
-      "zoneName": "Grenada"
-    },
     "GE": {
       "zoneName": "Georgia"
     },
@@ -775,133 +737,25 @@
       "countryName": "India",
       "zoneName": "Andamanene og Nikobarene"
     },
-    "IN-AP": {
-      "countryName": "India",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "India",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "India",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "India",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "India",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "India",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "India",
-      "zoneName": "Dadra og Nagar Haveli"
-    },
     "IN-EA": {
       "countryName": "India",
       "zoneName": "Øst-India"
-    },
-    "IN-GA": {
-      "countryName": "India",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "India",
-      "zoneName": "Gujarat"
     },
     "IN-HP": {
       "countryName": "India",
       "zoneName": "Himachal Pradesh"
     },
-    "IN-HR": {
-      "countryName": "India",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "India",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "India",
-      "zoneName": "Jammu og Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "India",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "India",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "India",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "India",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "India",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "India",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "India",
-      "zoneName": "Mizoram"
-    },
     "IN-NE": {
       "countryName": "India",
       "zoneName": "Nordøst-India"
-    },
-    "IN-NL": {
-      "countryName": "India",
-      "zoneName": "Nagaland"
     },
     "IN-NO": {
       "countryName": "India",
       "zoneName": "Nord-India"
     },
-    "IN-OR": {
-      "countryName": "India",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "India",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "India",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "India",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "India",
-      "zoneName": "Sikkim"
-    },
     "IN-SO": {
       "countryName": "India",
       "zoneName": "Sør-India"
-    },
-    "IN-TN": {
-      "countryName": "India",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "India",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "India",
@@ -910,10 +764,6 @@
     "IN-UT": {
       "countryName": "India",
       "zoneName": "Uttarakhand"
-    },
-    "IN-WB": {
-      "countryName": "India",
-      "zoneName": "Vest-Bengal"
     },
     "IN-WE": {
       "countryName": "India",
@@ -924,10 +774,6 @@
     },
     "IQ": {
       "zoneName": "Irak"
-    },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -1023,14 +869,8 @@
     "KH": {
       "zoneName": "Kambodsja"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komorene"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts og Nevis"
     },
     "KP": {
       "zoneName": "Nord-Korea"
@@ -1092,15 +932,8 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Madagaskar"
-    },
-    "MH": {
-      "zoneName": "Marshalløyene"
     },
     "MK": {
       "zoneName": "Nord-Makedonia"
@@ -1116,9 +949,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Nord-Marianene"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -1203,17 +1033,11 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolk Island"
-    },
     "NG": {
       "zoneName": "Nigeria"
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Nederland"
@@ -1243,12 +1067,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "New Zealand"
@@ -1303,9 +1121,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre og Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1406,9 +1221,6 @@
     "SG": {
       "zoneName": "Singapore"
     },
-    "SH": {
-      "zoneName": "St. Helena, Ascension og Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenia"
     },
@@ -1420,9 +1232,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1442,18 +1251,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Syria"
     },
     "SZ": {
       "zoneName": "Eswatini"
-    },
-    "TC": {
-      "zoneName": "Turks- og Caicosøyene"
     },
     "TD": {
       "zoneName": "Tsjad"
@@ -1469,9 +1271,6 @@
     },
     "TJ": {
       "zoneName": "Tajikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Øst-Timor"
@@ -1491,9 +1290,6 @@
     "TT": {
       "zoneName": "Trinidad og Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Taiwan"
     },
@@ -1510,11 +1306,8 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "USAs ytre småøyer"
-    },
     "US": {
-      "zoneName": "Det kontinentale USA"
+      "zoneName": "USA"
     },
     "US-AK": {
       "countryName": "USA",
@@ -1608,38 +1401,6 @@
       "countryName": "USA",
       "zoneName": "Tampa Electric Company"
     },
-    "US-HI-HA": {
-      "countryName": "USA",
-      "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "USA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "USA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "USA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "USA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "USA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "USA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "USA",
-      "zoneName": "Oahu"
-    },
     "US-MIDA-PJM": {
       "countryName": "USA",
       "zoneName": "PJM Interconnection, LLC"
@@ -1683,10 +1444,6 @@
     "US-NW-GRID": {
       "countryName": "USA",
       "zoneName": "Gridforce Energy Management, LLC"
-    },
-    "US-NW-GWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Power Watch, LLC (Gwa)"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1736,10 +1493,6 @@
       "countryName": "USA",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Wind Watch, LLC"
-    },
     "US-NY-NYIS": {
       "countryName": "USA",
       "zoneName": "New York Independent System Operator"
@@ -1759,10 +1512,6 @@
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "USA",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "USA",
@@ -1794,18 +1543,11 @@
     "UZ": {
       "zoneName": "Usbekistan"
     },
-    "VA": {
-      "zoneName": "Vatikanet"
-    },
     "VC": {
       "zoneName": "Saint Vincent og Grenadinene"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Jomfruøyene",
-      "zoneName": "Jomfruøyene"
     },
     "VI": {
       "countryName": "USA",
@@ -1814,23 +1556,8 @@
     "VN": {
       "zoneName": "Vietnam"
     },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Sentral-Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Nord-Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Sør-Vietnam"
-    },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis- og Futunaøyene"
     },
     "WS": {
       "zoneName": "Samoa"

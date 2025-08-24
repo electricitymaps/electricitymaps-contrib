@@ -1,33 +1,38 @@
 import * as Portal from '@radix-ui/react-portal';
-import Accordion from 'components/Accordion';
-import { HorizontalDivider } from 'components/Divider';
+import useGetZone from 'api/getZone';
+import EstimationBadge from 'components/EstimationBadge';
+import { TimeDisplay } from 'components/TimeDisplay';
 import { getOffsetTooltipPosition } from 'components/tooltips/utilities';
-import { useHeaderHeight } from 'hooks/headerHeight';
-import { useAtom, useAtomValue } from 'jotai';
-import { Factory, UtilityPole, X, Zap } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import EstimationCard from 'features/panels/zone/EstimationCard';
+import { getZoneDataStatus, ZoneDataStatus } from 'features/panels/zone/util';
+import { ZoneHeaderGauges } from 'features/panels/zone/ZoneHeaderGauges';
+import { TFunction } from 'i18next';
+import { useAtomValue } from 'jotai';
+import { CircleDashed, TrendingUpDown, X } from 'lucide-react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ElectricityModeType, ZoneKey } from 'types';
+import { useParams } from 'react-router-dom';
+import { ElectricityModeType, RouteParameters, ZoneKey } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import trackEvent from 'utils/analytics';
-import { TrackEvent } from 'utils/constants';
+import { Charts, isTSAModel, TimeRange } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { round } from 'utils/helpers';
 import {
-  dataSourcesCollapsedBarBreakdownAtom,
   displayByEmissionsAtom,
   isConsumptionAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+  productionConsumptionAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useBreakpoint, useIsMobile } from 'utils/styling';
 
-import { DataSources } from '../DataSources';
+import { ChartTitle } from '../ChartTitle';
 import { determineUnit } from '../graphUtils';
 import useBarBreakdownChartData from '../hooks/useBarElectricityBreakdownChartData';
-import useZoneDataSources from '../hooks/useZoneDataSources';
 import { RoundedCard } from '../RoundedCard';
 import BreakdownChartTooltip from '../tooltips/BreakdownChartTooltip';
 import BarBreakdownEmissionsChart from './BarBreakdownEmissionsChart';
 import BarElectricityBreakdownChart from './BarElectricityBreakdownChart';
-import BySource from './elements/BySource';
 import CapacityLegend from './elements/CapacityLegend';
 import EmptyBarBreakdownChart from './EmptyBarBreakdownChart';
 
@@ -46,28 +51,30 @@ function BarBreakdownChart({
     isLoading,
     height,
   } = useBarBreakdownChartData();
-
-  const {
-    capacitySources,
-    powerGenerationSources,
-    emissionFactorSources,
-    emissionFactorSourcesToProductionSources,
-  } = useZoneDataSources();
-
-  const [displayByEmissions] = useAtom(displayByEmissionsAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const { ref, width: observerWidth = 0 } = useResizeObserver<HTMLDivElement>();
   const { t } = useTranslation();
   const isBiggerThanMobile = useBreakpoint('sm');
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const width = observerWidth + X_PADDING;
-
+  const isMobile = useIsMobile();
   const graphUnit = useMemo(
     () =>
       currentZoneDetail &&
-      determineUnit(displayByEmissions, currentZoneDetail, isConsumption, isHourly, t),
-    [currentZoneDetail, displayByEmissions, isConsumption, isHourly, t]
+      determineUnit(
+        displayByEmissions,
+        currentZoneDetail,
+        isConsumption,
+        isFineGranularity,
+        t
+      ),
+    [currentZoneDetail, displayByEmissions, isConsumption, isFineGranularity, t]
   );
+  const { zoneId } = useParams<RouteParameters>();
+  const { data } = useGetZone();
+  const zoneMessage = data?.zoneMessage;
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
 
   const [tooltipData, setTooltipData] = useState<{
     selectedLayerKey: ElectricityModeType | ZoneKey;
@@ -75,81 +82,97 @@ function BarBreakdownChart({
     y: number;
   } | null>(null);
 
-  const [dataSourcesCollapsedBarBreakdown, setDataSourcesCollapsedBarBreakdown] = useAtom(
-    dataSourcesCollapsedBarBreakdownAtom
+  const titleText = useBarBreakdownChartTitle();
+  const estimationMethod = currentZoneDetail?.estimationMethod;
+  const estimatedPercentage = currentZoneDetail?.estimatedPercentage;
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const pillText = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    !isFineGranularity,
+    estimationMethod,
+    currentZoneDetail?.estimatedPercentage
+  );
+  const isTSA = isTSAModel(estimationMethod);
+
+  const onMouseOver = useCallback(
+    (layerKey: ElectricityModeType | ZoneKey, event: React.MouseEvent) => {
+      const { clientX, clientY } = event;
+
+      const position = getOffsetTooltipPosition({
+        mousePositionX: clientX || 0,
+        mousePositionY: clientY || 0,
+        tooltipHeight: displayByEmissions ? 190 : 360,
+        isBiggerThanMobile,
+      });
+
+      setTooltipData({
+        selectedLayerKey: layerKey,
+        x: position.x,
+        y: position.y,
+      });
+    },
+    [displayByEmissions, isBiggerThanMobile]
   );
 
-  const headerHeight = useHeaderHeight();
+  const onMouseOut = useCallback(() => {
+    if (!isMobile) {
+      setTooltipData(null);
+    }
+  }, [isMobile]);
 
-  if (isLoading) {
+  if (isLoading || !zoneId) {
     return null;
   }
 
   if (!currentZoneDetail) {
     return (
-      <div className="text-md relative w-full" ref={ref}>
-        <BySource className="opacity-40" />
+      <RoundedCard ref={ref}>
+        <ChartTitle className="opacity-40" id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART} />
         <EmptyBarBreakdownChart
           height={height}
           width={width}
           overLayText={t('country-panel.noDataAtTimestamp')}
+          isMobile={isMobile}
         />
-      </div>
+      </RoundedCard>
     );
   }
 
-  const onMouseOver = (
-    layerKey: ElectricityModeType | ZoneKey,
-    event: React.MouseEvent
-  ) => {
-    const { clientX, clientY } = event;
-
-    const position = getOffsetTooltipPosition({
-      mousePositionX: clientX || 0,
-      mousePositionY: clientY || 0,
-      tooltipHeight: displayByEmissions ? 190 : 360,
-      isBiggerThanMobile,
-    });
-
-    setTooltipData({
-      selectedLayerKey: layerKey,
-      x: position.x,
-      y: position.y,
-    });
-  };
-
-  const onMouseOut = () => {
-    setTooltipData(null);
-  };
-
-  const showPowerSources = Boolean(powerGenerationSources?.length > 0);
-  const showEmissionSources = Boolean(emissionFactorSources?.length > 0);
-  const showCapacitySources = Boolean(capacitySources?.length > 0);
-
-  const showDataSourceAccordion = Boolean(
-    showCapacitySources || showPowerSources || showEmissionSources
-  );
-
   return (
     <RoundedCard ref={ref}>
-      <BySource
-        hasEstimationPill={hasEstimationPill}
-        estimatedPercentage={currentZoneDetail.estimatedPercentage}
-        unit={graphUnit}
-        estimationMethod={currentZoneDetail.estimationMethod}
+      <ChartTitle
+        titleText={titleText}
+        subtitle={
+          <TimeDisplay className="whitespace-nowrap text-xs text-neutral-600 dark:text-neutral-300" />
+        }
+        badge={
+          hasEstimationPill ? (
+            <EstimationBadge
+              text={pillText}
+              Icon={isTSA ? CircleDashed : TrendingUpDown}
+              isPreliminary={isTSA}
+            />
+          ) : undefined
+        }
+        id={Charts.ELECTRICITY_MIX_OVERVIEW_CHART}
       />
-      {!displayByEmissions && (
-        <CapacityLegend>
-          {t('country-panel.graph-legends.installed-capacity')} ({graphUnit})
-        </CapacityLegend>
+      <div className="mb-4">
+        <ZoneHeaderGauges zoneKey={currentZoneDetail.zoneKey} />
+      </div>
+      {!displayByEmissions && isFineGranularity && (
+        <CapacityLegend
+          text={t('country-panel.graph-legends.installed-capacity')}
+          unit={graphUnit}
+        />
       )}
       {tooltipData && (
-        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full  sm:h-0 sm:w-0">
+        <Portal.Root className="pointer-events-none absolute left-0 top-0 z-50 h-full w-full sm:h-0 sm:w-0">
           <div
             className="absolute mt-14 flex h-full w-full flex-col items-center gap-y-1 bg-black/20 sm:mt-auto sm:items-start"
             style={{
               left: tooltipData?.x,
-              top: tooltipData?.y <= headerHeight ? headerHeight : tooltipData?.y,
+              top: tooltipData?.y,
             }}
           >
             <BreakdownChartTooltip
@@ -157,7 +180,10 @@ function BarBreakdownChart({
               zoneDetail={currentZoneDetail}
               hasEstimationPill={hasEstimationPill}
             />
-            <button className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-gray-800 sm:hidden">
+            <button
+              onClick={() => setTooltipData(null)}
+              className="p-auto pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white shadow dark:bg-neutral-800 sm:hidden"
+            >
               <X />
             </button>
           </div>
@@ -173,7 +199,7 @@ function BarBreakdownChart({
           onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
-          isMobile={false}
+          isMobile={isMobile}
         />
       ) : (
         <BarElectricityBreakdownChart
@@ -186,47 +212,50 @@ function BarBreakdownChart({
           onExchangeRowMouseOut={onMouseOut}
           width={width}
           height={height}
-          isMobile={false}
+          isMobile={isMobile}
           graphUnit={graphUnit}
         />
       )}
-      {showDataSourceAccordion && (
-        <>
-          <HorizontalDivider />
-          <Accordion
-            onOpen={() => {
-              trackEvent(TrackEvent.DATA_SOURCES_CLICKED, {
-                chart: 'bar-breakdown-chart',
-              });
-            }}
-            title={t('data-sources.title')}
-            className="text-md"
-            isCollapsed={dataSourcesCollapsedBarBreakdown}
-            setState={setDataSourcesCollapsedBarBreakdown}
-          >
-            <DataSources
-              title={t('data-sources.capacity')}
-              icon={<UtilityPole size={16} />}
-              sources={capacitySources}
-            />
-            <DataSources
-              title={t('data-sources.power')}
-              icon={<Zap size={16} />}
-              sources={powerGenerationSources}
-            />
-            <DataSources
-              title={t('data-sources.emission')}
-              icon={<Factory size={16} />}
-              sources={emissionFactorSources}
-              emissionFactorSourcesToProductionSources={
-                emissionFactorSourcesToProductionSources
-              }
-            />
-          </Accordion>
-        </>
+      {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+        <EstimationCard
+          zoneKey={zoneId}
+          zoneMessage={zoneMessage}
+          estimatedPercentage={roundedEstimatedPercentage}
+        />
       )}
     </RoundedCard>
   );
 }
+
+export const useBarBreakdownChartTitle = () => {
+  const { t } = useTranslation();
+  const timeRange = useAtomValue(timeRangeAtom);
+  const displayByEmissions = useAtomValue(displayByEmissionsAtom);
+  const mixMode = useAtomValue(productionConsumptionAtom);
+  const dataType = displayByEmissions ? 'emissions' : mixMode;
+
+  return getText(timeRange, dataType, t);
+};
+
+export const getText = (
+  timePeriod: TimeRange,
+  dataType: 'emissions' | 'production' | 'consumption',
+  t: TFunction
+) => {
+  const translations = {
+    hourly: {
+      emissions: t('country-panel.by-source.emissions'),
+      production: t('country-panel.by-source.electricity-mix'),
+      consumption: t('country-panel.by-source.electricity-mix'),
+    },
+    default: {
+      emissions: t('country-panel.by-source.total-emissions'),
+      production: t('country-panel.by-source.total-electricity-mix'),
+      consumption: t('country-panel.by-source.total-electricity-mix'),
+    },
+  };
+  const period = timePeriod === TimeRange.H72 ? 'hourly' : 'default';
+  return translations[period][dataType];
+};
 
 export default BarBreakdownChart;

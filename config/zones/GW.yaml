@@ -1,3 +1,16 @@
+capacity:
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 country: GW
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bissau
+zone_name: Guinea-Bissau
+country_name: Guinea-Bissau

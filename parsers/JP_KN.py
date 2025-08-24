@@ -51,7 +51,7 @@ def fetch_production(
 
     latest["production"]["nuclear"] = nuclear_mw
     latest["production"]["unknown"] = latest["production"]["unknown"] - nuclear_mw
-    return latest
+    return [latest]
 
 
 URL = (
@@ -60,16 +60,19 @@ URL = (
 IMAGE_CORE_URL = "https://www.kepco.co.jp/"
 
 
-def get_image_text(img_url, lang):
+def get_image_text(img_url, lang, width=None):
     """
     Fetches image based on URL, crops it and extract text from the image.
     """
     r = Request(img_url, headers={"User-Agent": "Mozilla/5.0"})
     img_bytes = urlopen(r).read()
     img = Image.open(BytesIO(img_bytes))
+    height = img.size[1]
 
-    width, height = img.size
-    img = img.crop((0, int(height / 8), 160, height))
+    if width is None:
+        width = 160
+
+    img = img.crop((0, int(height / 8), width, height))
     # cropping the image, makes it easier to read for tesseract
     text = image_to_string(img, lang=lang)
     return text
@@ -97,7 +100,7 @@ def extract_operation_percentage(tr):
     img = td[0]
     url = IMAGE_CORE_URL + img["src"]
     if ".gif" in url:
-        text = get_image_text(url, "eng")
+        text = get_image_text(url, "eng", width=65)
         # will return a number and percentage eg ("104%"). Sometimes a little more eg: ("104% 4...")
         split = text.split("%")
         if len(split) == 0:

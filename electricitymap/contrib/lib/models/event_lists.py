@@ -3,16 +3,17 @@ from collections.abc import Sequence
 from datetime import datetime
 from logging import Logger
 from operator import itemgetter
-from typing import Any
+from typing import Any, Generic, TypeVar
 
 import pandas as pd
 
-from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.config.capacity import get_capacity_data
 from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
+    GridAlert,
+    GridAlertType,
+    LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
     ProductionMix,
@@ -22,18 +23,17 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.lib.types import ZoneKey
 
-CAPACITY_STRICT_THRESHOLD = 0
-CAPACITY_LOOSE_THRESHOLD = 0.02
+EventType = TypeVar("EventType", bound="Event")
 
 
-class EventList(ABC):
+class EventList(ABC, Generic[EventType]):
     """
     A wrapper around Events lists.
     Events are indexed by datetimes.
     """
 
     logger: Logger
-    events: list[Event]
+    events: list[EventType]
 
     def __init__(self, logger: Logger):
         self.events = []
@@ -45,7 +45,7 @@ class EventList(ABC):
     def __contains__(self, datetime) -> bool:
         return any(event.datetime == datetime for event in self.events)
 
-    def __setitem__(self, datetime, event: Event):
+    def __setitem__(self, datetime, event: EventType):
         self.events[self.events.index(self[datetime])] = event
 
     def __add__(self, other: "EventList") -> "EventList":
@@ -53,10 +53,11 @@ class EventList(ABC):
         new_list.events = self.events + other.events
         return new_list
 
-    # Abstract method to be implemented by subclasses so that the typing is correct.
-    @abstractmethod
-    def __getitem__(self, datetime) -> Event:
-        pass
+    def __getitem__(self, datetime) -> EventType:
+        return next(event for event in self.events if event.datetime == datetime)
+
+    def __iter__(self):
+        return iter(self.events)
 
     @abstractmethod
     def append(self, **kwargs):
@@ -87,7 +88,7 @@ class EventList(ABC):
         ).set_index("datetime")
 
 
-class AggregatableEventList(EventList, ABC):
+class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
     """An abstract class to supercharge event lists with aggregation capabilities."""
 
     @classmethod
@@ -159,12 +160,7 @@ class AggregatableEventList(EventList, ABC):
         return source_types[0]
 
 
-class ExchangeList(AggregatableEventList):
-    events: list[Exchange]
-
-    def __getitem__(self, datetime) -> Exchange:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class ExchangeList(AggregatableEventList[Exchange]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -239,12 +235,7 @@ class ExchangeList(AggregatableEventList):
         return exchanges
 
 
-class ProductionBreakdownList(AggregatableEventList):
-    events: list[ProductionBreakdown]
-
-    def __getitem__(self, datetime) -> ProductionBreakdown:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -369,73 +360,8 @@ class ProductionBreakdownList(AggregatableEventList):
 
         return updated_production_breakdowns
 
-    @staticmethod
-    def filter_expected_modes(
-        breakdowns: "ProductionBreakdownList",
-        strict_storage: bool = False,
-        strict_capacity: bool = False,
-        by_passed_modes: list[str] | None = None,
-    ) -> "ProductionBreakdownList":
-        """A temporary method to filter out incomplete production breakdowns which are missing expected modes.
-        This method is only to be used on zones for which we know the expected modes and that the source sometimes returns Nones.
-        TODO: Remove this method once the outlier detection is able to handle it.
-        """
 
-        if by_passed_modes is None:
-            by_passed_modes = []
-
-        def select_capacity(capacity_value: float, total_capacity: float) -> bool:
-            if strict_capacity:
-                return capacity_value > CAPACITY_STRICT_THRESHOLD
-            return capacity_value / total_capacity > CAPACITY_LOOSE_THRESHOLD
-
-        events = ProductionBreakdownList(breakdowns.logger)
-        for event in breakdowns.events:
-            capacity_config = ZONES_CONFIG.get(event.zoneKey, {}).get("capacity", {})
-            capacity = get_capacity_data(capacity_config, event.datetime)
-            total_capacity = sum(capacity.values())
-            valid = True
-            required_modes = [
-                mode
-                for mode, capacity_value in capacity.items()
-                if select_capacity(capacity_value, total_capacity)
-            ]
-            required_modes = list(set(required_modes))
-            if not strict_storage:
-                required_modes = [
-                    mode for mode in required_modes if "storage" not in mode
-                ]
-            required_modes = [
-                mode for mode in required_modes if mode not in by_passed_modes
-            ]
-            for mode in required_modes:
-                value = event.get_value(mode)
-                if (
-                    value is None
-                    and mode not in event.production.corrected_negative_modes
-                ):
-                    valid = False
-                    events.logger.warning(
-                        f"Discarded production event for {event.zoneKey} at {event.datetime} due to missing {mode} value."
-                    )
-                    break
-            if valid:
-                events.append(
-                    zoneKey=event.zoneKey,
-                    datetime=event.datetime,
-                    production=event.production,
-                    storage=event.storage,
-                    source=event.source,
-                )
-        return events
-
-
-class TotalProductionList(EventList):
-    events: list[TotalProduction]
-
-    def __getitem__(self, datetime) -> TotalProduction:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class TotalProductionList(EventList[TotalProduction]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -451,12 +377,7 @@ class TotalProductionList(EventList):
             self.events.append(event)
 
 
-class TotalConsumptionList(EventList):
-    events: list[TotalConsumption]
-
-    def __getitem__(self, datetime) -> TotalConsumption:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class TotalConsumptionList(EventList[TotalConsumption]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -472,12 +393,7 @@ class TotalConsumptionList(EventList):
             self.events.append(event)
 
 
-class PriceList(EventList):
-    events: list[Price]
-
-    def __getitem__(self, datetime) -> Price:
-        return next(event for event in self.events if event.datetime == datetime)
-
+class PriceList(EventList[Price]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -489,6 +405,51 @@ class PriceList(EventList):
     ):
         event = Price.create(
             self.logger, zoneKey, datetime, source, price, currency, sourceType
+        )
+        if event:
+            self.events.append(event)
+
+
+class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        price: float | None,
+        currency: str,
+        node: str,
+        sourceType: EventSourceType = EventSourceType.measured,
+    ):
+        event = LocationalMarginalPrice.create(
+            self.logger, zoneKey, datetime, source, price, currency, node, sourceType
+        )
+        if event:
+            self.events.append(event)
+
+
+class GridAlertList(EventList[GridAlert]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        locationRegion: str | None,
+        source: str,
+        alertType: GridAlertType,
+        message: str,
+        issuedTime: datetime,
+        startTime: datetime | None,
+        endTime: datetime | None,
+    ):
+        event = GridAlert.create(
+            self.logger,
+            zoneKey,
+            locationRegion,
+            source,
+            alertType,
+            message,
+            issuedTime,
+            startTime,
+            endTime,
         )
         if event:
             self.events.append(event)

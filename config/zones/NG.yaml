@@ -5,31 +5,64 @@ bounding_box:
     - 14.380290832000114
 capacity:
   biomass:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 20.0
   coal:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 280.0
   gas:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10180.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10760.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10870.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11000.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 11290.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 11340.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11910.0
   hydro:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 2110.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2850.0
+      value: 2860.0
   solar:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 110.0
+      value: 140.0
 contributors:
   - byronwilliams
   - kruschk
@@ -50,23 +83,29 @@ emissionFactors:
     battery discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 377.6844057534393
+        value: 377.68
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 372.0606908243157
+        value: 372.06
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 377.6791709623325
+        value: 377.68
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 374.23
     hydro discharge:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 377.6844057534393
+        value: 377.68
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 372.0606908243157
+        value: 372.06
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 377.6791709623325
+        value: 377.68
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 374.23
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -114,8 +153,25 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.7515682967255825
+        geothermal: 0.0
+        hydro: 0.24843170327441758
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 parsers:
   production: NG.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lagos
+zone_name: Nigeria
+country_name: Nigeria

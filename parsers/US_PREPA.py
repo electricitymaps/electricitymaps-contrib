@@ -182,7 +182,7 @@ def fetch_production(
             data["production"]["biomass"] += float(item["value"])
         else:
             logger.warn(
-                f"Unknown renewable type \"{item['label']}\" is present for Puerto Rico",
+                f'Unknown renewable type "{item["label"]}" is present for Puerto Rico',
                 extra={"key": zone_key},
             )
 
@@ -191,7 +191,7 @@ def fetch_production(
         )  # Subtract production accounted for from the renewable output total
 
         logger.info(
-            f"Renewable \"{item['label']}\" produces {item['value']}MW",
+            f'Renewable "{item["label"]}" produces {item["value"]}MW',
             extra={"key": zone_key},
         )
         logger.debug(
@@ -239,9 +239,9 @@ def fetch_production(
         TIMESTAMP_URL
     )  # TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
 
-    assert (
-        res.status_code == 200
-    ), f"Exception when fetching timestamp for {zone_key}: error when calling url={TIMESTAMP_URL}"
+    assert res.status_code == 200, (
+        f"Exception when fetching timestamp for {zone_key}: error when calling url={TIMESTAMP_URL}"
+    )
 
     raw_timestamp_match = re.search(
         r"Ultima Actualizaci�n:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)",
@@ -257,9 +257,9 @@ def fetch_production(
 
     data["datetime"] = convert_timestamp(zone_key, raw_timestamp)
 
-    assert (
-        data["production"]["oil"] > 0.0
-    ), f"{zone_key} is missing required generation type: oil"
+    assert data["production"]["oil"] > 0.0, (
+        f"{zone_key} is missing required generation type: oil"
+    )
 
     return data
 

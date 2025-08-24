@@ -1,9 +1,8 @@
 import json
 from importlib import resources
 
-from requests import Session
-from requests_mock import ANY, GET, Adapter
-from snapshottest import TestCase
+import pytest
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.CAMMESA import (
@@ -14,104 +13,52 @@ from parsers.CAMMESA import (
 )
 
 
-class TestCammesaweb(TestCase):
-    def setUp(self) -> None:
-        self.session = Session()
-        self.adapter = Adapter()
-        self.session.mount("https://", self.adapter)
+@pytest.fixture(autouse=True)
+def mock_response(adapter):
+    adapter.register_uri(
+        GET,
+        ANY,
+        json=json.loads(
+            resources.files("parsers.test.mocks.Cammesa")
+            .joinpath("exchanges.json")
+            .read_text()
+        ),
+    )
+    adapter.register_uri(
+        GET,
+        CAMMESA_DEMANDA_ENDPOINT,
+        json=json.loads(
+            resources.files("parsers.test.mocks.Cammesa")
+            .joinpath("conventional_production.json")
+            .read_text()
+        ),
+    )
+    adapter.register_uri(
+        GET,
+        CAMMESA_RENEWABLES_ENDPOINT,
+        json=json.loads(
+            resources.files("parsers.test.mocks.Cammesa")
+            .joinpath("renewable_production.json")
+            .read_text()
+        ),
+    )
 
-    def test_exchanges_AR_CL_SEN(self):
-        self.adapter.register_uri(
-            GET,
-            ANY,
-            json=json.loads(
-                resources.files("parsers.test.mocks.Cammesa")
-                .joinpath("exchanges.json")
-                .read_text()
-            ),
-        )
 
-        exchange = fetch_exchange(
-            zone_key1=ZoneKey("AR"), zone_key2=ZoneKey("CL-SEN"), session=self.session
-        )
+def test_exchanges_AR_CL_SEN(session, snapshot):
+    assert snapshot == fetch_exchange(
+        ZoneKey("AR"),
+        ZoneKey("CL-SEN"),
+        session=session,
+    )
 
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "netFlow": element["netFlow"],
-                    "source": element["source"],
-                    "sortedZoneKeys": element["sortedZoneKeys"],
-                    "sourceType": element["sourceType"].value,
-                }
-                for element in exchange
-            ]
-        )
 
-    def test_exchanges_AR_BAS_AR_COM(self):
-        self.adapter.register_uri(
-            GET,
-            ANY,
-            json=json.loads(
-                resources.files("parsers.test.mocks.Cammesa")
-                .joinpath("exchanges.json")
-                .read_text()
-            ),
-        )
+def test_exchanges_AR_BAS_AR_COM(session, snapshot):
+    assert snapshot == fetch_exchange(
+        ZoneKey("AR-BAS"),
+        ZoneKey("AR-COM"),
+        session=session,
+    )
 
-        exchange = fetch_exchange(
-            zone_key1=ZoneKey("AR-BAS"),
-            zone_key2=ZoneKey("AR-COM"),
-            session=self.session,
-        )
 
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "netFlow": element["netFlow"],
-                    "source": element["source"],
-                    "sortedZoneKeys": element["sortedZoneKeys"],
-                    "sourceType": element["sourceType"].value,
-                }
-                for element in exchange
-            ]
-        )
-
-    def test_fetch_production(self):
-        self.adapter.register_uri(
-            GET,
-            CAMMESA_DEMANDA_ENDPOINT,
-            json=json.loads(
-                resources.files("parsers.test.mocks.Cammesa")
-                .joinpath("conventional_production.json")
-                .read_text()
-            ),
-        )
-        self.adapter.register_uri(
-            GET,
-            CAMMESA_RENEWABLES_ENDPOINT,
-            json=json.loads(
-                resources.files("parsers.test.mocks.Cammesa")
-                .joinpath("renewable_production.json")
-                .read_text()
-            ),
-        )
-        production = fetch_production(
-            zone_key=ZoneKey("AR"),
-            session=self.session,
-        )
-
-        self.assertMatchSnapshot(
-            [
-                {
-                    "datetime": element["datetime"].isoformat(),
-                    "production": element["production"],
-                    "storage": element["storage"],
-                    "source": element["source"],
-                    "zoneKey": element["zoneKey"],
-                    "sourceType": element["sourceType"].value,
-                }
-                for element in production
-            ]
-        )
+def test_fetch_production(session, snapshot):
+    assert snapshot == fetch_production(ZoneKey("AR"), session=session)

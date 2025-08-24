@@ -6,28 +6,26 @@ import type {
   Polygon,
 } from '@turf/turf';
 import { LineString, MultiLineString, Point } from 'geojson';
-import { EstimationMethods } from 'utils/constants';
+import { EstimationMethods, TimeRange } from 'utils/constants';
 
 export type Maybe<T> = T | null | undefined;
 
 export type ZoneKey = string;
 
 export interface GridState {
-  callerLocation?: [number, number];
-  data: {
-    _disclaimer: string;
-    createdAt: string;
-    datetimes: {
-      /** Object representing the grid state at a single point in time */
-      [datetimeKey: string]: {
-        /** Array of all exchanges */
-        e: {
-          [key: ZoneKey]: StateExchangeData;
-        };
-        /** Array of all zones */
-        z: {
-          [key: ZoneKey]: StateZoneData;
-        };
+  _disclaimer: string;
+  alerts?: string[];
+  createdAt: string;
+  datetimes: {
+    /** Object representing the grid state at a single point in time */
+    [datetimeKey: string]: {
+      /** Array of all exchanges */
+      e: {
+        [key: ZoneKey]: StateExchangeData;
+      };
+      /** Array of all zones */
+      z: {
+        [key: ZoneKey]: StateZoneData;
       };
     };
   };
@@ -52,8 +50,10 @@ export interface StateZoneData {
     /** Renewable ratio */
     rr?: number | null;
   };
-  /** Represents if a zone is estimated or not, will be true for hourly data else number */
-  e?: boolean | number | null;
+  /** Estimation method */
+  em?: EstimationMethods | null;
+  /** Estimation percentage */
+  ep?: number | null;
   /** Represents if the zone has a outage message or not */
   o?: boolean | null;
 }
@@ -84,6 +84,9 @@ export interface ZoneOverview {
   stateDatetime: string;
   fossilFuelRatio: number;
   renewableRatio: number;
+  // Note: due to a problem in the aggregations, the `estimationMethod` field is not available
+  // in aggregations.
+  // TODO: Fix in backend (https://linear.app/electricitymaps/issue/GMM-821/aggregations-are-missing-the-origin-field)
   estimationMethod?: EstimationMethods;
   estimatedPercentage?: number;
 }
@@ -164,6 +167,7 @@ export interface ZoneDetail extends ZoneOverview {
 export interface ZoneDetails {
   hasData: boolean;
   futurePrice: FuturePriceData;
+  //TODO Remove from backend, most likely unused
   stateAggregation: 'daily' | 'hourly' | 'monthly' | 'yearly';
   zoneStates: {
     [key: string]: ZoneDetail;
@@ -173,7 +177,11 @@ export interface ZoneDetails {
 
 export interface ZoneMessage {
   message: string;
+  message_type: 'custom' | 'grid_alert';
   issue?: string;
+  start_time?: string;
+  end_time?: string;
+  alert_type?: string;
 }
 
 export interface GeometryProperties {
@@ -232,3 +240,11 @@ export interface FuturePriceData {
   source: string;
   zoneKey: ZoneKey;
 }
+
+// Type for the URL parameters that determine app state
+export type RouteParameters = {
+  resolution?: string;
+  zoneId?: string;
+  urlTimeRange?: TimeRange;
+  urlDatetime?: string;
+};

@@ -1,3 +1,43 @@
+bounding_box:
+  - - -62.382818828188235
+    - 16.548678601114915
+  - - -61.170416704166996
+    - 17.66459631058453
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 80.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: AG
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Antigua
+zone_name: Antigua and Barbuda
+country_name: Antigua and Barbuda

@@ -5,25 +5,56 @@ bounding_box:
     - 52.62958404600003
 capacity:
   coal:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 970.0
+      value: 880.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 910.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 960.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1150.0
   hydro:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
   solar:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 90.0
+      value: 60.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 140.0
   wind:
-    - datetime: '2022-01-01'
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 160.0
 contributors:
   - q--
   - alixunderplatz
   - MuffinCompiler
+  - consideRatio
 country: MN
 emissionFactors:
   direct:
@@ -36,11 +67,11 @@ emissionFactors:
     battery discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 712.2357223753118
+        value: 712.24
     hydro discharge:
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 712.2357223753118
+        value: 712.24
     unknown:
       - _url: https://www.iea.org/fuels-and-technologies/electricity
         datetime: '2020-01-01'
@@ -79,3 +110,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Ulaanbaatar
+zone_name: Mongolia
+country_name: Mongolia

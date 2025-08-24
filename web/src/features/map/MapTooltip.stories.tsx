@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { zoneStateMock } from 'stories/mockData';
+import { EstimationMethods } from 'utils/constants';
 
 import { TooltipInner } from './MapTooltip';
 
@@ -8,13 +9,14 @@ interface StoryStateZoneData {
   ci: number;
   fr: number;
   rr: number;
-  e?: boolean | null;
+  em?: EstimationMethods | null;
+  ep?: number | null;
   o?: boolean | null;
 }
 
-function TestWrapper({ zoneKey, ci, fr, rr, e, o }: StoryStateZoneData) {
+function TestWrapper({ zoneKey, ci, fr, rr, em, ep, o }: StoryStateZoneData) {
   return (
-    <div className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 ">
+    <div className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-neutral-700 dark:bg-neutral-900 ">
       <div>
         <TooltipInner
           zoneData={{
@@ -24,7 +26,8 @@ function TestWrapper({ zoneKey, ci, fr, rr, e, o }: StoryStateZoneData) {
               fr,
               rr,
             },
-            e,
+            em,
+            ep,
             o,
           }}
           zoneId={zoneKey}
@@ -49,7 +52,8 @@ export const MeasuredData: Story = {
     fr: 0.1664,
     rr: 0.683,
     o: false,
-    e: false,
+    em: null,
+    ep: null,
   },
 };
 
@@ -60,7 +64,8 @@ export const DisplayTitle: Story = {
     fr: 0.1664,
     rr: 0.683,
     o: false,
-    e: false,
+    em: null,
+    ep: null,
   },
 };
 export const TruncatedTitle: Story = {
@@ -70,7 +75,8 @@ export const TruncatedTitle: Story = {
     fr: 0.1664,
     rr: 0.683,
     o: false,
-    e: false,
+    em: null,
+    ep: null,
   },
 };
 export const TruncatedAndEstimated: Story = {
@@ -80,6 +86,19 @@ export const TruncatedAndEstimated: Story = {
     fr: 0.1664,
     rr: 0.683,
     o: false,
-    e: true,
+    em: EstimationMethods.TSA,
+    ep: null,
+  },
+};
+
+export const EstimatedPercentage: Story = {
+  args: {
+    zoneKey: 'DK-DK2',
+    ci: 176.01,
+    fr: 0.1664,
+    rr: 0.683,
+    o: false,
+    em: null,
+    ep: 54,
   },
 };

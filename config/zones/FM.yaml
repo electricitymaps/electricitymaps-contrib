@@ -1,3 +1,39 @@
+capacity:
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.73
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 32.17
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 37.07
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 38.87
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1.73
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 2.5
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 2.9
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 0.83
 country: FM
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Chuuk
+zone_name: Micronesia
+country_name: Micronesia

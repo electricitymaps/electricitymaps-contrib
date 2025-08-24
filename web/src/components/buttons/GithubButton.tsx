@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from 'components/Button';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa6';
-import trackEvent from 'utils/analytics';
 import { DEFAULT_ICON_SIZE } from 'utils/constants';
 
 interface GithubButtonProps
@@ -25,9 +24,6 @@ export function GithubButton({
       foregroundClasses="text-white dark:text-white focus-visible:outline-[#010409]"
       href="https://github.com/electricityMaps/electricitymaps-contrib"
       icon={<FaGithub size={iconSize} />}
-      onClick={() => {
-        trackEvent('Contribute On GitHub Button Clicked');
-      }}
       {...restProps}
     >
       {isIconOnly ? undefined : t('button.github')}

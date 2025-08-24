@@ -1,38 +1,72 @@
 {
   "info": {
-    "text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen har <a href='{{link}}' target='_blank'>Öppen Källkod</a> och drivs av en gemenskap.",
-    "title": "Om appen",
-    "version": "App version: {{version}}",
+    "title": "Om Electricity Maps",
+    "text": "är en API-plattform som tillhandahåller realtids- och prognossignaler för el, vilket gör det möjligt för alla enheter att minska sina kostnader och utsläpp genom att informera dem om när det är bäst att förbruka el.",
+    "version": "Appversion: {{version}}",
     "share-app": "Dela appen:"
   },
+  "settings-modal": {
+    "title": "Inställningar",
+    "flows": "Elflöden"
+  },
+  "ranking-panel": {
+    "title": "Koldioxidutsläpp från elnätet",
+    "subtitle": "Se var din el kommer ifrån<br/> och hur mycket CO2 som släppts ut för att producera den",
+    "search": "Sök områden",
+    "no-results": "Inget hittades. Försök med något annat."
+  },
   "button": {
-    "feedback": "Ge återkoppling",
-    "github": "Se vår GitHub",
-    "twitter": "Följ oss på X (Twitter)",
+    "bluesky-share": "Se realtidsdata om globala elutsläpp: {{baseUrl}}",
     "reddit": "Gå med i r/electricitymaps",
-    "slack": "Gå med i Slack-gemenskapen",
-    "privacy-policy": "Integritetspolicy",
-    "legal-notice": "Rättsligt meddelande",
+    "reddit-share": "Dela på Reddit",
+    "github": "Bidra på GitHub",
+    "twitter": "Följ oss på X (Twitter)",
     "twitter-share": "Dela på X (Twitter)",
     "linkedin": "Följ oss på LinkedIn",
     "linkedin-share": "Dela på LinkedIn",
     "facebook": "Följ oss på Facebook",
     "facebook-share": "Dela på Facebook",
-    "faq": "FAQ"
-  },
-  "settings-modal": {
-    "title": "Inställningar"
+    "feedback": "Lämna synpunkter",
+    "faq": "Vanliga frågor",
+    "privacy-policy": "Integritetspolicy",
+    "legal-notice": "Juridisk information",
+    "api": "Åtkomst till API",
+    "docs": "API-dokumentation"
   },
   "mobile-main-menu": {
     "map": "Elkarta",
     "areas": "Regioner",
     "about": "Om"
   },
+  "app-banner": {
+    "cta": "Hämta appen",
+    "description": "Eldata i realtid"
+  },
+  "share-button": {
+    "clipboard": "URL kopierad till urklipp!",
+    "clipboard-error": "Fel vid kopiering av URL till urklipp",
+    "share-error": "Fel vid delning av URL"
+  },
+  "more-options-dropdown": {
+    "title": "Dela",
+    "download": "Ladda ned CSV",
+    "chart-title": "Dela diagram",
+    "zone-title": "Dela zon",
+    "mobile-share-via": "Dela via",
+    "copy-link": "Kopiera länk",
+    "copy-chart-link": "Kopiera länk till diagram",
+    "copy-zone-link": "Kopiera länk till zon",
+    "preliminary-data": "Preliminära data kan komma att ändras över tid.",
+    "summary": "Upptäck insikter om el i realtid med appen Electricity Maps!"
+  },
+  "new-feature-popover": {
+    "title": "Ny funktion: 72-timmarsvy",
+    "content": "Utforska trender i aktuell och historisk data med det nya 72-timmarsfönstret."
+  },
   "onboarding-modal": {
     "view1": {
-      "header": "Välkommen till Electricity Maps",
-      "text": "Här kan du utforska klimatpåverkan från el för många länder globalt!"
+      "header": "Välkommen till Electricity Maps-appen",
+      "text": "Här kan du utforska klimatpåverkan från el runt om i världen.<br/><br/>Låt oss guida dig genom kartan i några enkla steg!"
     },
     "view2": {
       "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid",
@@ -48,7 +82,7 @@
     },
     "view5": {
       "header": "Växla mellan vyer för elproduktion och utsläpp",
-      "text": "Växla för att alternera mellan diagram som visar en zons elinformation eller koldioxidutsläpp. Värdena som visas representerar totalen för den valda perioden, och informationen stämmer överens med det valda läget för produktion eller förbrukning."
+      "text": "Växla för att alternera mellan diagram som visar en zons elinformation eller koldioxidutsläpp. Värdena som visas representerar summan för den valda perioden, och informationen stämmer överens med vald ursprungsspårad data eller produktionsdata."
     },
     "view6": {
       "header": "Utforska det förflutna",
@@ -63,53 +97,58 @@
     "title": "Datakällor",
     "capacity": "Data om installerad kapacitet",
     "power": "Data om elproduktion",
-    "exchange": "Data om elhandel",
+    "exchange": "Data om elflöde",
     "emission": "Data om utsläppsfaktorer"
   },
   "country-panel": {
+    "forecastCta": "Letar du efter prognosdata?",
     "source": "Källa",
     "carbonintensity": "Kolintensitet",
     "lowcarbon": "Fossilfritt",
     "renewable": "Förnybart",
+    "electricityconsumption": "Elektricitet",
+    "emissions": "Utsläpp",
     "helpfrom": "Med hjälp från:",
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
     "disabledPriceReasons": {
       "licensing": "Elpriser är ej tillgängliga för detta område på grund av licensvillkor"
     },
-    "disabledBreakdownChartReason": "Inaktiverad för konsumtionsvyn. Växla till produktionsvyn för att aktivera ursprungsdiagrammet.",
+    "emissionFactorDataSourcesTooltip": "Emissionsfaktorer för elproduktion kan härröra från flera källor. Detta händer eftersom flera faktorer, som anläggningsspecifika data, generering och ibland reservkällor, beaktas i utsläppsberäkningar.",
     "dataIsDelayed": "Data för denna region kan vara upp till {{hours}} timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
-    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
-    "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
+    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>här</a>.",
+    "exchangesAreMissing": "Detta diagram innehåller inte flödesdata. Flöden visas i timvis vy. Läs mer om våra historiska sammanställningar <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>här</a>.",
+    "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserad på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
-    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"{{link}}\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
-    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"{{link}}\" target=\"_blank\">lägga till data för regionen</a>.",
-    "aggregationDisabled": "Data är inte tillgänglig för den valda tidsperioden på grund av saknad detaljerad uppdelning. Försök med en bredare tidsperiod.",
+    "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href='{{link}}' target='_blank'>körningsloggarna</a> eller kontakta dataleverantören.",
+    "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href='{{link}}' target='_blank'>lägga till data för regionen</a>.",
     "now": "Nu",
     "by-source": {
       "emissions": "Koldioxidutsläpp",
-      "electricity-production": "Elproduktion",
-      "electricity-consumption": "Elkonsumtion",
-      "total-emissions": "Totala koldioxidutsläpp",
-      "total-electricity-production": "Total elproduktion",
-      "total-electricity-consumption": "Total ekonsumtion"
+      "electricity-mix": "Elmix",
+      "total-electricity-mix": "Total elmix",
+      "total-emissions": "Totala koldioxidutsläpp"
     },
-    "electricityproduction": "Produktion",
-    "electricityconsumption": "Konsumption",
-    "emissions": "Utsläpp",
     "graph-legends": {
       "installed-capacity": "Installerad kapacitet",
-      "exchange-capacity": "Tillgänglig överföringskapacitet",
+      "exchange-capacity": "Kapacitet för elflöde ",
       "exported": "Exporterad",
       "imported": "Importerad",
       "stored": "Lagrad",
       "produced": "Producerad"
     },
-    "emissionFactorDataSourcesTooltip": "Utsläppsfaktorer för elproduktion kan komma från flera olika källor. Detta sker eftersom flera faktorer, som anläggningsspecifika data, produktion och ibland standardkällor, beaktas i utsläppsberäkningar.",
-    "fullyDisabled": "De data som är tillgängliga för denna zon är otillräckliga och visas därför inte. Om du känner till några datakällor för detta område, vänligen <a href='{{link}}' target='_blank'>meddela oss</a>."
+    "price-chart": {
+      "see": "Visa kommande priser",
+      "hide": "Dölj kommande priser",
+      "today": "Idag",
+      "tomorrow": "Imorgon",
+      "price-disclaimer": "Alla priser är per MWh, exkl. skatter & nätavgifter.",
+      "time-disclaimer": "Alla tider anges i",
+      "at": "kl.",
+      "now": "Nu"
+    }
   },
   "feedback-card": {
     "title": "Hjälp oss bli bättre!",
@@ -120,60 +159,40 @@
       "secondary-question": "Finns det något vi kan göra för att förbättra det?",
       "primary-question": "Beskrivningen av dataestimeringen var lätt att förstå:"
     },
-    "primary-question": "Hur nöjd är du med din upplevelse av att använda Electricity Maps-appen?",
+    "primary-question": "Hur skulle du bedöma din övergripande tillfredsställelse med appen Electricity Maps?",
     "secondary-question-low": "Vad kan vi göra bättre?",
     "secondary-question-high": "Vilka förbättringar skulle du vilja se härnäst?",
     "optional": "Valfritt:",
     "input-question": "Berätta vilka funktioner du skulle vilja se?",
     "agree": "Instämmer helt",
     "disagree": "Instämmer inte alls",
-    "placeholder": "Berätta mer med några ord...",
-    "submit": "Skicka",
     "satisfied": "Väldigt nöjd",
-    "unsatisfied": "Väldigt missnöjd"
+    "unsatisfied": "Väldigt missnöjd",
+    "placeholder": "Berätta mer med några ord...",
+    "submit": "Skicka"
   },
   "estimation-badge": {
-    "partially-estimated": "Delvis uppskattad",
-    "fully-estimated": "Uppskattad",
     "outage": "Otillgänglig"
   },
   "estimation-card": {
     "link": "Läs om våra uppskattningsmodeller",
     "outage-details": "Se detaljer",
     "ESTIMATED_FORECASTS_HIERARCHY": {
-      "title": "Data är uppskattad",
-      "pill": "Uppskattad",
-      "body": "Data för denna zon är uppskattad med en kombination av interna och externa produktionsprognoser och historiska genomsnitt. Detta syftar till att ge en mer exakt representation än enbart historiska genomsnitt, men data kan fortfarande vara felaktig. Data kommer att uppdateras så snart realtidsdata blir tillgänglig."
+      "title": "Data är preliminär",
+      "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_TIME_SLICER_AVERAGE": {
-      "title": "Data är för närvarande uppskattad",
-      "body": "Dataleverantören rapporterar för närvarande inte data för denna timme. De visade värdena är uppskattade baserat på historiska mätningar och kommer att ersättas med konsoliderade data när de blir tillgängliga. Observera att uppskattade värden kanske inte alltid är korrekta eftersom de inte tar hänsyn till specifika realtidshändelser som väder.",
-      "pill": "Preliminär"
+      "title": "Data är preliminär",
+      "body": "Data för denna timme har ännu inte rapporterats. Våra modeller fyller i luckorna och tillhandahåller ett komplett, detaljerat dataset i realtid."
     },
     "ESTIMATED_MODE_BREAKDOWN": {
       "title": "Data är delvis uppskattad",
-      "pill": "Ofullständig",
-      "body": "Data om elproduktion för denna zon är ofullständig; saknade värden har beräknats med en uppskattningsmodell."
+      "body": "Rapporterad data för denna zon är ofullständig. Våra modeller fyller i saknade produktionssätt och elflöden för att ge en komplett bild av elmixen med ursprungsspårning."
     },
-    "ESTIMATED_RECONSTRUCT_BREAKDOWN": {
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Data är alltid uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon tillhandahåller endast den totala produktionen. Förnybara källor uppskattas med hjälp av aktuella väderdata, medan fossila källor beräknas baserat på historiska data för varje produktionskälla."
-    },
-    "estimated_generic_method": {
-      "title": "Data är uppskattad",
-      "pill": "Opålitlig",
-      "body": "De publicerade data för denna zon är otillgängliga eller ofullständiga. Data som visas på kartan är uppskattad enligt bästa förmåga men kan skilja sig från de faktiska värdena."
-    },
-    "ESTIMATED_CONSTRUCT_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
-    },
-    "ESTIMATED_CONSTRUCT_ZERO_BREAKDOWN": {
-      "title": "Data är alltid uppskattad",
-      "pill": "Ej realtid",
-      "body": "Data för denna zon publiceras inte i realtid och tillhandahåller endast den totala produktionen. Både timvis produktion och produktionskällor uppskattas baserat på historiska data för varje produktionskälla."
+      "pill": "Uppskattad",
+      "body": "Realtidsdata för denna zon är inte tillgänglig. Data modelleras med en kombination av aktuella väderdata och historiska produktionsmönster för att generera en korrekt elmix med ursprungsspårning."
     },
     "threshold_filtered": {
       "title": "Saknar data",
@@ -195,89 +214,104 @@
     }
   },
   "time-controller": {
-    "title": {
-      "hourly": "Timvis data för:",
-      "daily": "Dagsvis data för:",
-      "monthly": "Månadsvis data för:",
-      "yearly": "Årsvis data för:"
-    },
-    "daily": "dagvis",
-    "hourly": "timvis",
-    "monthly": "månadsvis",
-    "yearly": "årsvis"
-  },
-  "ranking-panel": {
-    "title": "Klimatpåverkan per region",
-    "subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
-    "search": "Sök efter region"
+    "72h": "72 timmar",
+    "3mo": "90 dagar",
+    "12mo": "12 månader",
+    "all_months": "Alla månader",
+    "all_years": "Alla år",
+    "navigate": "Navigera",
+    "live": "Realtid",
+    "date-unavailable": {
+      "title": "Datum ej tillgängligt",
+      "description": "Omdirigerar till realtidsdata"
+    }
   },
   "left-panel": {
-    "get-data": "Se våra kommersiella API-erbjudanden",
     "applied-methodologies": {
       "title": "Tillämpade metoder",
       "estimations": "Electricity Maps - Uppskattningar",
       "flowtracing": "Electricity Maps - Flödesanalys",
-      "carbonintensity": "Electricity Maps - Koldioxidintensitet"
+      "carbonintensity": "Electricity Maps - Koldioxidintensitet",
+      "historicalAggregations": "Electricity Maps - Historiska sammanställningar"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Metodik och datakällor"
     }
   },
   "header": {
-    "get-data": "Använd vår data",
     "blog": "Blogg",
-    "open-source": "Öppen källkod",
+    "open-source": "Gemenskap",
     "hiring": "Vi anställer!",
     "methodology": "Metodologi",
     "faq": "Vanliga frågor"
   },
   "country-history": {
     "carbonintensity": {
-      "hourly": "Timvis koldioxidintensitet",
-      "daily": "Daglig koldioxidintensitet",
-      "monthly": "Månadsvis koldioxidintensitet",
-      "yearly": "Årlig koldioxidintensitet"
+      "24h": "Kolintensitet",
+      "72h": "Kolintensitet",
+      "3mo": "Daglig kolintensitet",
+      "12mo": "Månadsvis kolintensitet",
+      "all_months": "Månadsvis kolintensitet",
+      "all_years": "Årlig kolintensitet"
     },
     "emissions": {
-      "hourly": "Timvisa koldioxidutsläpp",
-      "daily": "Dagliga koldioxidutsläpp",
-      "monthly": "Månadsvisa koldioxidutsläpp",
-      "yearly": "Årliga koldioxidutsläpp"
+      "24h": "Koldioxidutsläpp",
+      "72h": "Koldioxidutsläpp",
+      "3mo": "Dagliga koldioxidutsläpp",
+      "12mo": "Månadsvisa koldioxidutsläpp",
+      "all_months": "Månadsvisa koldioxidutsläpp",
+      "all_years": "Årliga koldioxidutsläpp"
     },
     "emissionsorigin": {
-      "hourly": "Timvis ursprung av koldioxidutsläpp",
-      "daily": "Dagligt ursprung av koldioxidutsläpp",
-      "monthly": "Månadsvis ursprung av koldioxidutsläpp",
-      "yearly": "Årligt ursprung av koldioxidutsläpp"
+      "24h": "Ursprung av koldioxidutsläpp",
+      "72h": "Ursprung av koldioxidutsläpp",
+      "3mo": "Dagligt ursprung av koldioxidutsläpp",
+      "12mo": "Månadsvis ursprung av koldioxidutsläpp",
+      "all_months": "Månadsvis ursprung av koldioxidutsläpp",
+      "all_years": "Årligt ursprung av koldioxidutsläpp"
     },
     "emissionsproduction": {
-      "hourly": "Timvisa produktionsutsläpp",
-      "daily": "Dagliga produktionsutsläpp",
-      "monthly": "Månadsvisa produktionsutsläpp",
-      "yearly": "Årliga produktionsutsläpp"
+      "24h": "Produktionsutsläpp",
+      "72h": "Produktionsutsläpp",
+      "3mo": "Dagliga produktionsutsläpp",
+      "12mo": "Månadsvisa produktionsutsläpp",
+      "all_months": "Månadsvisa produktionsutsläpp",
+      "all_years": "Årliga produktionsutsläpp"
     },
     "electricityorigin": {
-      "hourly": "Timvis ursprung av elektricitet",
-      "daily": "Dagligt ursprung av elektricitet",
-      "monthly": "Månadsvis ursprung av elektricitet",
-      "yearly": "Årligt ursprung av elektricitet"
+      "24h": "Elmix",
+      "72h": "Elmix",
+      "3mo": "Dagligt elmix",
+      "12mo": "Månadsvis elmix",
+      "all_months": "Månadsvis elmix",
+      "all_years": "Årligt elmix"
     },
     "electricityproduction": {
-      "hourly": "Timvis elproduktion",
-      "daily": "Daglig elproduktion",
-      "monthly": "Månadsvis elproduktion",
-      "yearly": "Årlig elproduktion"
+      "24h": "Elmix",
+      "72h": "Elmix",
+      "3mo": "Daglig elmix",
+      "12mo": "Månadsvis elmix",
+      "all_months": "Månadsvis elmix",
+      "all_years": "Årlig elmix"
     },
     "electricityprices": {
-      "hourly": "Timvisa elpriser",
-      "daily": "Dagliga elpriser",
-      "monthly": "Månadsvisa elpriser",
-      "yearly": "Årliga elpriser"
+      "24h": "Elpriser",
+      "72h": "Elpriser",
+      "3mo": "Dagliga elpriser",
+      "12mo": "Månadsvisa elpriser",
+      "all_months": "Månadsvisa elpriser",
+      "all_years": "Årliga elpriser"
     },
     "netExchange": {
-      "hourly": "Timvis nettohandel",
-      "daily": "Daglig nettohandel",
-      "monthly": "Månadsvis nettohandel",
-      "yearly": "Årlig nettohandel"
+      "24h": "Elflöde",
+      "72h": "Elflöde",
+      "3mo": "Daglig elflöde",
+      "12mo": "Månadsvis elflöde",
+      "all_months": "Månadsvis elflöde",
+      "all_years": "Årlig elflöde"
     },
-    "not-enough-data": "Inte tillräckligt med data för att visa diagrammet"
+    "not-enough-data": "Inte tillräckligt med data för att visa diagrammet",
+    "exchange-delay": "Elflödesdata kan vara fördröjda med upp till 48 timmar."
   },
   "footer": {
     "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
@@ -288,13 +322,15 @@
   "legends": {
     "windpotential": "Potential för vindkraft",
     "solarpotential": "Potential för solkraft",
-    "colorblindmode": "anpassning för färgblinda",
+    "colorblindmode": "Anpassning för färgblinda",
     "carbonintensity": "Kolintensitet"
   },
   "tooltips": {
     "carbonintensity": "Kolintensitet",
     "zoneHeader": {
-      "lowcarbon": "Inkluderar förnybart och kärnkraft"
+      "lowcarbon": "Inkluderar förnybart och kärnkraft",
+      "renewable": "Inkluderar sol, vind, vatten, biomassa och geotermisk energ",
+      "carbonIntensity": "Gram koldioxidekvivalenter per kilowattimme (gCO2ekv/kWh), ett mått på växthusgasutsläpp vid elproduktion"
     },
     "crossborderexport": "Gränsöverskridande export",
     "carbonintensityexport": "Kolintensitet för export",
@@ -305,6 +341,7 @@
     "withcarbonintensity": "med en kolintensitet på",
     "zoomIn": "Zooma in",
     "zoomOut": "Zooma ut",
+    "layers": "Kartlager",
     "showWindLayer": "Visa vind-lager",
     "hideWindLayer": "Dölj vind-lager",
     "showSolarLayer": "Visa sol-lager",
@@ -313,17 +350,19 @@
     "changeTheme": "Byt tema",
     "noParserInfo": "Ingen data tillgänglig",
     "temporaryDataOutage": "Aktuell data tillfälligt ej tillgänglig",
+    "temporarilyUnavailable": "Tillfälligt otillgänglig",
     "production": "produktion",
     "consumption": "konsumtion",
-    "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
+    "cpinfo": "<b>Ursprungsspårning</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "aggregateInfo": "Växla mellan en detaljerad zon vy och en aggregerad lands vy",
     "selectLanguage": "Välj språk",
     "dataIsDelayed": "Data är fördröjd",
     "price": "Pris",
-    "netExchange": "Nettoöverföring",
+    "netExchange": "Elflöde",
     "importing": "Importerar",
     "exporting": "Exporterar",
-    "temporarilyUnavailable": "Temporät otillgänglig"
+    "flowTraced": "Ursprungsspårad data tar hänsyn till fysiskt elflöde",
+    "nonFlowTraced": "Icke ursprungsspårad data bortser från import och export"
   },
   "aria": {
     "label": {
@@ -333,7 +372,10 @@
       "solarLayer": "Sol-lager",
       "changeTheme": "Byt tema",
       "hideSidePanel": "Dölj sidopanel",
-      "showSidePanel": "Visa sidopanel"
+      "showSidePanel": "Visa sidopanel",
+      "layers": "Kartlager",
+      "zoomIn": "Zooma in",
+      "zoomOut": "Zooma ut"
     }
   },
   "aggregateButtons": {
@@ -346,8 +388,8 @@
     "system": "System"
   },
   "updatePrompt": {
-    "description": "En ny version av appen är tillgänglig, uppdatera nu?",
-    "update": "Uppdatera",
+    "description": "En ny version är tillgänglig",
+    "update": "Ladda om",
     "dismiss": "Avvisa"
   },
   "misc": {
@@ -371,49 +413,58 @@
   "coal": "kol",
   "oil": "olja",
   "unknown": "okänd",
+  "electricityStoredUsing": "är lagrad med hjälp av",
+  "emissionsStoredUsing": "är lagrad med hjälp av",
+  "electricityExportedTo": "är exporterat till",
+  "emissionsExportedTo": "är exporterat till",
+  "electricityImportedFrom": "är importerat från",
+  "emissionsImportedFrom": "är importerat från",
+  "electricityAvailableIn": "av elektricitet tillgängligt i",
+  "emissionsAvailableIn": "av utsläpp från elektricitet tillgängligt i",
+  "comesFrom": "kommer från",
   "ofCO2eq": "av CO₂eq",
   "theMap": {
     "groupName": "Kartan",
     "mapColors-question": "Vad betyder färgerna på kartan?",
-    "mapColors-answer": "Vi färglägger regionerna på kartan efter hur mycket växthusgaser som släpps ut för varje elanvändare där (dess <a href=\"#carbonIntensity\" class=\"entry-link\">kolintensitet</a>). Ju grönare färg, desto mer klimatvänlig elkonsumtion.",
+    "mapColors-answer": "Vi färglägger regionerna på kartan efter hur mycket växthusgaser som släpps ut för varje elanvändare där (dess <a href='#carbonIntensity' class='entry-link'>kolintensitet</a>). Ju grönare färg, desto mer klimatvänlig elkonsumtion.",
     "mapArrows-question": "Vad innebär pilarna mellan regionerna på kartan?",
     "mapArrows-answer": "Pilar mellan regioner indikerar det fysiska flödet (import och export) av el mellan regioner: ju snabbare de blinkar, desto snabbare flöde. Flödet av el är viktigt då du vid import av el från grannregioner, även importerar det associerade utsläppet av koldioxid från dess produktion.",
     "mapSolarWindButtons-question": "Vad gör knapparna “sol” och “vind” på kartan?",
     "mapSolarWindButtons-answer": "Dessa knappar visar eller döljer realtidsvisning av vindhastighet och solstyrka för att ge en indikation på potentialen av sol- eller vindbaserad elproduktion för olika regioner. Notera att detta bara är en ytlig indikation då den faktiska potentialen för installerad vind- och solkraft också är beroende av många andra faktorer.",
     "mapNuclearColors-question": "Varför visas kärnkraftsdrivna länder med grön färg på kartan?",
-    "mapNuclearColors-answer": "Energiproduktion med kärnkraft har en mycket låg kolintensitet (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >källa</a>), och kärnkraftsländer visas därför med grönt på kartan. Detta innebär inte att det inte finns andra miljöutmaningar associerade med kärnkraft (precis som för all annan form av energiproduktion), men dessa utmaningarna är orelaterade till utsläppet av växthusgaser och är därför utanför ramen för denna karta.",
+    "mapNuclearColors-answer": "Energiproduktion med kärnkraft har en mycket låg kolintensitet (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >källa</a>), och kärnkraftsländer visas därför med grönt på kartan. Detta innebär inte att det inte finns andra miljöutmaningar associerade med kärnkraft (precis som för all annan form av energiproduktion), men dessa utmaningarna är orelaterade till utsläppet av växthusgaser och är därför utanför ramen för denna karta.",
     "mapColorBlind-question": "Jag är färgblind. Hur kan jag läsa din karta?",
     "mapColorBlind-answer": "Du kan ändra de visade färgerna på kartan genom att aktivera inställningen “anpassning för färgblinda“. Den finns till höger om kartan på skrivbordsdatorer och i inställningspanelen i mobilappen."
   },
   "mapAreas": {
     "groupName": "Regioner på kartan",
     "noData-question": "Varför är inte data för min region tillgänglig?",
-    "noData-answer": "Antingen för att regionens datakälla är tillfälligt otillgänglig, eller på grund av att vi ännu inte har någon datakälla uppsatt för regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss att lägga till en ny datakälla</a>.",
+    "noData-answer": "Antingen för att regionens datakälla är tillfälligt otillgänglig, eller på grund av att vi ännu inte har någon datakälla uppsatt för regionen. Du kan <a href='#contribute' class='entry-link'>hjälpa oss att lägga till en ny datakälla</a>.",
     "whySmallAreas-question": "Varför delar ni upp världen i mindre regioner istället för att visa genomsnittet i varje land?",
     "whySmallAreas-answer": "Regionerna är de minsta geografiska områdena vi har data för. Genom att ha tillgång till information på högsta möjliga detaljnivå kan elkonsumenter i olika regioner få mer precis kunskap om källan för den el de konsumerar och dess associerade klimatpåverkan.",
     "divideExistingArea-question": "Kan ni dela in min region i mindre delar?",
-    "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss genom att lägga till datakällor</a>",
+    "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href='#contribute' class='entry-link'>hjälpa oss genom att lägga till datakällor</a>",
     "seeHistoricalData-question": "Kan jag se historik för en region längre tillbaka än 24 timmar?",
-    "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databas</a>."
+    "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databas</a>."
   },
   "methodology": {
     "groupName": "Våra metoder",
-    "carbonIntensity-question": "Vad innebär \"kolintensitet\"?",
+    "carbonIntensity-question": "Vad innebär 'kolintensitet'?",
     "carbonIntensity-answer": "Kolintensitet är ett mått på utsläpp av växthusgaser associerad med produktion av den el du konsumerar (i gCO₂eq/kWh - gram av CO₂-ekvivalenter utsläppt per kilowattimme av el konsumerad). <br><br>Vi mäter utsläppen från elkonsumtion (inte produktion), vilket betyder att allt utsläpp av växthusgaser (både CO₂ och andra växthusgaser så som metan) som har skapats för att producera elen som konsumeras i en region, med hänsyn tagen till kolintensitet för el importerad från andra regioner. Vi använder en livscykelanalys (LCA), vilket innebär att vi räkna med utsläpp skapade under hela livscykeln för kraftverk (konstruktion, bränsleproduktion, produktionsutsläpp och rivning).",
     "methodology-question": "Hur beräknade ni siffrorna?",
-    "methodology-answer": "Vi har beskrivit vår fullständiga metodik på <a href=\"https://www.electricitymaps.com/methodology\">electricitymaps.com/methodology</a>, med ytterligare dokumentation på <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations\">vår GitHub Wiki</a>.",
+    "methodology-answer": "Vi har beskrivit vår fullständiga metodik på <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a>, med ytterligare dokumentation på <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>vår GitHub Wiki</a>.",
     "regionalEmissionFactors-question": "Varför ändras utsläppsfaktorerna för olika områden?",
-    "regionalEmissionFactors-answer": "För vissa zoner kan vi få mer exakta utsläppsfaktorer än det globala genomsnittet som används som standard. Till exempel, för USA och EU är direkta utsläpp från kraftverk offentligt tillgängliga. Vi matchar dessa utsläpp med data om kraftverksproduktion och beräknar utsläppsfaktorer per kraftverk, vilket sedan aggregeras på zonnivå. Se <a href=\"https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors\">detaljer på Wiki:n</a>.",
+    "regionalEmissionFactors-answer": "För vissa zoner kan vi få mer exakta utsläppsfaktorer än det globala genomsnittet som används som standard. Till exempel, för USA och EU är direkta utsläpp från kraftverk offentligt tillgängliga. Vi matchar dessa utsläpp med data om kraftverksproduktion och beräknar utsläppsfaktorer per kraftverk, vilket sedan aggregeras på zonnivå. Se <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>detaljer på Wiki:n</a>.",
     "renewableLowCarbonDifference-question": "Vad är skillnaden mellan “förnybart” och “fosilfritt”?",
     "renewableLowCarbonDifference-answer": "Förnybar energiproduktion är baserad på förnybara energikällor så som vind- och vattenflöden, solsken och geotermisk energi. Fosilfri energiproduktion betyder att produktionen innebär väldigt lågt utsläpp av växthusgaser, så som kärnkraftsproduktion.",
     "importsAndExports-question": "Tar ni hänsyn till import och export av el?",
-    "importsAndExports-answer": "Ja, det gör vi. Man kan se import och export på kartan som små <a href=\"#mapArrows\" class=\"entry-link\">pilar mellan olika regioner</a>. Du kan se detaljerad information i diagramform när du klickar på en region.",
+    "importsAndExports-answer": "Ja, det gör vi. Man kan se import och export på kartan som små <a href='#mapArrows' class='entry-link'>pilar mellan olika regioner</a>. Du kan se detaljerad information i diagramform när du klickar på en region.",
     "emissionsOfStored-question": "Hur är det med utsläpp från genererad el som sedan lagras i batterier eller som används för att fylla reservoarer?",
     "emissionsOfStored-answer": "Då för närvarande bara en liten andel av elen lagras, bör felaktigheter i modelleringen av dessa utsläpp för närvarande inte göra någon stor skillnad i slutänden. Men med tanke på den ökande mängden lagring hoppas vi att vi inom kort ska kunna ta hänsyn till detta fullt ut i vår modell.",
     "guaranteesOfOrigin-question": "Vad är elcertifikat, och vilken hänsyn tas till dem?",
     "guaranteesOfOrigin-answer": "När producenter av förnyelsebar energi producerar el, kan de skapa ett elcertifikat - ett bevis på att förnyelsebar el har producerats och distribuerats till elnätet. Dessa certifikat kan sedan säljas, vilket ger elleverantörer ett sätt att hävda att elen de säljer kommer från förnybara källor, oavsett den faktiska fysiska källan.<br><br>Detta innebär att elkonsumenterna kan få höra att deras el kommer från sol och vind, även en vindlös natt. Detta är problematiskt då detta tar bort incitamentet för konsumenten att konsumera el vid bästa tidpunkt (t.ex. när mängden förnybar el i nätet faktiskt är som högst). Denna karta utesluter därför ursprungsgarantier, istället erbjuder vi en platsbaserad, fysisk bild av elnätet för att stärka konsumentmakten.",
     "otherSources-question": "Varför visar ni inte andra källor för utsläpp förutom elproduktion?",
-    "otherSources-answer": "Det skulle vara utanför syftet med detta projekt. Men, på Electricity Maps arbetar vi aktivt med att utveckla en <a href=\"#whoAreYou\" class=\"entry-link\">ny lösning för att kvantifiera klimatpåverkan av dina vardagliga beslut</a>.",
+    "otherSources-answer": "Det skulle vara utanför syftet med detta projekt. Men, på Electricity Maps arbetar vi aktivt med att utveckla en <a href='#whoAreYou' class='entry-link'>ny lösning för att kvantifiera klimatpåverkan av dina vardagliga beslut</a>.",
     "homeSolarPanel-question": "Hur blir det om jag har en solpanel installerad på mitt hus?",
     "homeSolarPanel-answer": "Vi mäter kolintensitet på ditt lokala elnät, så ingen el du konsumerar direkt från din solpanel (frikopplat från nätet) är med i våra mätvärden. Å andra sidan, om din solpanel tillhandahåller kraft till ditt lokala elnät, är dess produktion  inkluderad i vår statistik i regioner där uppskattningar av lokal solenergiproduktion är publikt tillgänglig (så som Frankrike och Storbritannien).",
     "emissionsPerCapita-question": "Varför visar ni inte utsläpp per capita?",
@@ -422,24 +473,24 @@
   "data": {
     "groupName": "Vår data",
     "dataOrigins-question": "Hur får ni er data?",
-    "dataOrigins-answer": "Vi beräknar all vi data från publik tillgänglig data publicerad av elnätsoperatörer, officiella myndigheter eller andra. Du kan klicka på en region för att se mer detaljer om ursprunget för dess data.",
+    "dataOrigins-answer": "Vi beräknar all vår data från publikt tillgänglig data publicerad av elnätsoperatörer, officiella myndigheter eller andra. Du kan klicka på en region för att se mer detaljer om ursprunget för dess data.",
     "dataDownload-question": "Kan jag ladda ned er data?",
-    "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databas</a>.",
+    "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databas</a>.",
     "dataIntegration-question": "Kan jag integrera er live-data i min applikation eller utrustning?",
-    "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
+    "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>realtids-API</a>, som inkluderar framtida prognoser."
   },
   "aboutUs": {
     "groupName": "Om oss",
     "whoAreYou-question": "Vilka är ni?",
-    "whoAreYou-answer": "Appen är utvecklad och förvaltad av <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
+    "whoAreYou-answer": "Appen är utvecklad och förvaltad av <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
     "feedback-question": "Kan jag ge er någon återkoppling?",
-    "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymaps.com\">skicka oss ett e-brev!</a>",
+    "feedback-answer": "Gärna! Fyll i <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>vårt återkopplingsformulär</a>.",
     "contribute-question": "Kan jag bidra till ert projekt?",
-    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>github</a>.",
     "workTogether-question": "Kan vi arbeta tillsammans?",
-    "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymaps.com\">Skicka oss ett e-brev</a>!",
+    "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href='mailto:app@electricitymaps.com'>Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publicerar data och bilder på The <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Electricity Maps påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på Electricity Maps, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Electricity Maps, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publicerar data och bilder på The <a href='https://www.electricitymaps.com/' target='_blank'>Electricity Maps</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Electricity Maps påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på Electricity Maps, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Electricity Maps, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
   },
   "zoneShortName": {
     "AD": {
@@ -454,9 +505,6 @@
     "AG": {
       "zoneName": "Antigua och Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albanien"
     },
@@ -466,14 +514,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarktis"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "Amerikanska Samoa"
     },
     "AT": {
       "zoneName": "Österrike"
@@ -574,9 +616,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius och Saba"
-    },
     "BR": {
       "zoneName": "Brasilien"
     },
@@ -602,9 +641,6 @@
     "BT": {
       "zoneName": "Bhutan"
     },
-    "BV": {
-      "zoneName": "Bouvetön"
-    },
     "BW": {
       "zoneName": "Botswana"
     },
@@ -613,6 +649,9 @@
     },
     "BZ": {
       "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Kanada"
     },
     "CA-AB": {
       "countryName": "Kanada",
@@ -633,14 +672,6 @@
     "CA-NL": {
       "countryName": "Kanada",
       "zoneName": "Newfoundland och Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Kanada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Kanada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Kanada",
@@ -674,9 +705,6 @@
       "countryName": "Kanada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Kokosöarna"
-    },
     "CD": {
       "zoneName": "Demokratiska republiken Kongo"
     },
@@ -691,9 +719,6 @@
     },
     "CI": {
       "zoneName": "Elfenbenskusten"
-    },
-    "CK": {
-      "zoneName": "Cooköarna"
     },
     "CL-CHP": {
       "countryName": "Chile",
@@ -731,9 +756,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Julön"
     },
     "CY": {
       "zoneName": "Cypern"
@@ -809,9 +831,13 @@
       "countryName": "Spanien",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Spanien",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanien",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Spanien",
@@ -886,9 +912,6 @@
     "GB-ZET": {
       "countryName": "Storbritannien",
       "zoneName": "Shetlandsöarna"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GE": {
       "zoneName": "Georgien"
@@ -995,117 +1018,9 @@
       "countryName": "Indien",
       "zoneName": "Andamanerna och Nikobarerna"
     },
-    "IN-AP": {
-      "countryName": "Indien",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Indien",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Indien",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Indien",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Indien",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Indien",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Indien",
-      "zoneName": "Dadra och Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Indien",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Indien",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Indien",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Indien",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Indien",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Indien",
-      "zoneName": "Jammu och Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "Indien",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Indien",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Indien",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Indien",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Indien",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Indien",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Indien",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Indien",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Indien",
-      "zoneName": "Odisha"
-    },
-    "IN-PB": {
-      "countryName": "Indien",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Indien",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Indien",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Indien",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "Indien",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "Indien",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Indien",
@@ -1115,19 +1030,11 @@
       "countryName": "Indien",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Indien",
-      "zoneName": "Västbengalen"
-    },
     "IO": {
       "zoneName": "Brittiska territoriet i Indiska oceanen"
     },
     "IQ": {
       "zoneName": "Irak"
-    },
-    "IQ-KUR": {
-      "countryName": "Irak",
-      "zoneName": "Kurdistan"
     },
     "IR": {
       "zoneName": "Iran"
@@ -1223,14 +1130,8 @@
     "KH": {
       "zoneName": "Kambodja"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Komorerna"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts och Nevis"
     },
     "KP": {
       "zoneName": "Nordkorea"
@@ -1292,15 +1193,8 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint-Martin",
-      "zoneName": "Franska"
-    },
     "MG": {
       "zoneName": "Madagaskar"
-    },
-    "MH": {
-      "zoneName": "Marshallöarna"
     },
     "MK": {
       "zoneName": "Nordmakedonien"
@@ -1316,9 +1210,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Nordmarianerna"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -1403,17 +1294,11 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolkön"
-    },
     "NG": {
       "zoneName": "Nigeria"
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabach"
     },
     "NL": {
       "zoneName": "Nederländerna"
@@ -1443,12 +1328,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "Nya Zeeland"
@@ -1503,9 +1382,6 @@
     },
     "PM": {
       "zoneName": "Saint-Pierre och Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairnöarna"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1606,9 +1482,6 @@
     "SG": {
       "zoneName": "Singapore"
     },
-    "SH": {
-      "zoneName": "Sankta Helena, Ascension och Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenien"
     },
@@ -1620,9 +1493,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1642,18 +1512,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Nederländerna"
-    },
     "SY": {
       "zoneName": "Syrien"
     },
     "SZ": {
       "zoneName": "Swaziland"
-    },
-    "TC": {
-      "zoneName": "Turks- och Caicosöarna"
     },
     "TD": {
       "zoneName": "Tchad"
@@ -1669,9 +1532,6 @@
     },
     "TJ": {
       "zoneName": "Tadzjikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Östtimor"
@@ -1691,9 +1551,6 @@
     "TT": {
       "zoneName": "Trinidad och Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Taiwan"
     },
@@ -1710,11 +1567,9 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Förenta staternas mindre öar i Oceanien och Västindien"
-    },
     "US": {
-      "zoneName": "Kontinentala USA"
+      "zoneName": "USA",
+      "seoZoneName": "Förenta staterna - USA"
     },
     "US-AK": {
       "countryName": "USA",
@@ -1724,51 +1579,26 @@
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
     },
-    "US-HI-HA": {
+    "US-HI": {
       "countryName": "USA",
       "zoneName": "Hawaii"
-    },
-    "US-HI-KA": {
-      "countryName": "USA",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "USA",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "USA",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "USA",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "USA",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "USA",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "USA",
-      "zoneName": "Oahu"
     },
     "US-CAL-BANC": {
       "countryName": "USA",
       "displayName": "BANC",
-      "zoneName": "Balancing Authority of Northern California"
+      "zoneName": "Balancing Authority of Northern California",
+      "seoZoneName": "Balancing Authority of Northern California - BANC"
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO",
+      "seoZoneName": "California ISO - CAISO "
     },
     "US-CAL-IID": {
       "countryName": "USA",
-      "zoneName": "Imperial Irrigation District"
+      "zoneName": "Imperial Irrigation District",
+      "seoZoneName": "Imperial Irrigation District - Kalifonien"
     },
     "US-CAL-LDWP": {
       "countryName": "USA",
@@ -1780,15 +1610,18 @@
     },
     "US-CAR-CPLE": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress East"
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
     },
     "US-CAR-CPLW": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Progress West"
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
     },
     "US-CAR-DUK": {
       "countryName": "USA",
-      "zoneName": "Duke Energy Carolinas"
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
     },
     "US-CAR-SC": {
       "countryName": "USA",
@@ -1810,7 +1643,8 @@
     "US-CENT-SWPP": {
       "countryName": "USA",
       "displayName": "SPP",
-      "zoneName": "Southwest Power Pool"
+      "zoneName": "Southwest Power Pool",
+      "seoZoneName": "Southwest Power Pool - SPP"
     },
     "US-FLA-FMPP": {
       "countryName": "USA",
@@ -1851,7 +1685,8 @@
     "US-MIDA-PJM": {
       "countryName": "USA",
       "displayName": "PJM",
-      "zoneName": "PJM Interconnection"
+      "zoneName": "PJM Interconnection",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
     },
     "US-MIDW-AECI": {
       "countryName": "USA",
@@ -1865,11 +1700,13 @@
     "US-MIDW-MISO": {
       "countryName": "USA",
       "displayName": "MISO",
-      "zoneName": "Midcontinent ISO"
+      "zoneName": "Midcontinent ISO",
+      "seoZoneName": "Midcontinent ISO - MISO"
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England",
+      "seoZoneName": "ISO New England - ISO-NE"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1894,10 +1731,6 @@
     "US-NW-GRID": {
       "countryName": "USA",
       "zoneName": "Gridforce Energy Management"
-    },
-    "US-NW-GWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Power Watch"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1926,7 +1759,8 @@
     "US-NW-PSCO": {
       "countryName": "USA",
       "displayName": "PSCo",
-      "zoneName": "Public Service Company of Colorado"
+      "zoneName": "Public Service Company of Colorado",
+      "seoZoneName": "Public Service Company of Colorado - PSCo"
     },
     "US-NW-PSEI": {
       "countryName": "USA",
@@ -1950,13 +1784,10 @@
       "displayName": "WAPA Upper Great Plains",
       "zoneName": "Western Area Power Administration - Upper Great Plains West"
     },
-    "US-NW-WWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Wind Watch"
-    },
     "US-NY-NYIS": {
       "countryName": "USA",
-      "zoneName": "New York ISO"
+      "zoneName": "New York ISO",
+      "seoZoneName": "New York ISO - NYISO"
     },
     "US-SE-SEPA": {
       "countryName": "USA",
@@ -1973,10 +1804,6 @@
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "USA",
-      "zoneName": "Griffith Energy"
     },
     "US-SW-PNM": {
       "countryName": "USA",
@@ -1998,12 +1825,14 @@
     "US-TEN-TVA": {
       "countryName": "USA",
       "displayName": "TVA",
-      "zoneName": "Tennessee Valley Authority"
+      "zoneName": "Tennessee Valley Authority",
+      "seoZoneName": "Tennessee Valley Authority - TVA"
     },
     "US-TEX-ERCO": {
       "countryName": "USA",
       "displayName": "ERCOT",
-      "zoneName": "Electric Reliability Council of Texas"
+      "zoneName": "Electric Reliability Council of Texas",
+      "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
     },
     "UY": {
       "zoneName": "Uruguay"
@@ -2011,18 +1840,11 @@
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Vatikanstaten"
-    },
     "VC": {
       "zoneName": "Saint Vincent och Grenadinerna"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Jungfruöarna",
-      "zoneName": "Brittiska"
     },
     "VI": {
       "countryName": "Jungfruöarna",
@@ -2031,23 +1853,8 @@
     "VN": {
       "zoneName": "Vietnam"
     },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Centrala Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Norra Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Södra Vietnam"
-    },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis- och Futunaöarna"
     },
     "WS": {
       "zoneName": "Samoa"
@@ -2073,14 +1880,5 @@
     "ZW": {
       "zoneName": "Zimbabwe"
     }
-  },
-  "electricityStoredUsing": "är lagrad med hjälp av",
-  "emissionsStoredUsing": "är lagrad med hjälp av",
-  "electricityExportedTo": "är exporterat till",
-  "emissionsExportedTo": "är exporterat till",
-  "electricityImportedFrom": "är importerat från",
-  "emissionsImportedFrom": "är importerat från",
-  "electricityAvailableIn": "av elektricitet tillgängligt i",
-  "emissionsAvailableIn": "av utsläpp från elektricitet tillgängligt i",
-  "comesFrom": "kommer från"
+  }
 }

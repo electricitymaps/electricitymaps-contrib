@@ -1,3 +1,60 @@
+bounding_box:
+  - - 24.727252272522747
+    - -22.8976886065485
+  - - 33.53573035730358
+    - -15.11435597832601
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 100.0
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1190.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1240.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1840.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 780.04
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1080.04
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1080.02
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 10.75
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 5.04
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 8.59
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 11.85
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 14.15
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 33.08
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 45.95
 country: ZW
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Harare
+zone_name: Zimbabwe
+country_name: Zimbabwe

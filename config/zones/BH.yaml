@@ -1,13 +1,55 @@
-aggregates_displayed:
-  - none
 bounding_box:
   - - 49.94890384200005
     - 25.289536851000037
   - - 51.14565981318161
     - 26.742580471000053
 capacity:
-  solar: 11
-  wind: 1
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6821.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 8613.0
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 9618.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 9735.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 150.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 6.31
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 9.7
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 10.1
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 21.34
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 45.59
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 56.62
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.68
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 2.68
 contributors:
   - q--
   - nessie2013
@@ -17,17 +59,23 @@ emissionFactors:
     battery discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 700.0000000000001
+        value: 700.0
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 700.0000000000001
+        value: 700.0
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 700.0
     hydro discharge:
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 700.0000000000001
+        value: 700.0
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 700.0000000000001
+        value: 700.0
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 700.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -60,7 +108,25 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.9999999979281821
         wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 1.0
+        wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Bahrain
+zone_name: Bahrain
+country_name: Bahrain

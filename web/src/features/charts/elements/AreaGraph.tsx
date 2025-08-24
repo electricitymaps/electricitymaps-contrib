@@ -2,26 +2,29 @@ import { ScaleLinear, scaleLinear } from 'd3-scale';
 import { Series, stack, stackOffsetDiverging } from 'd3-shape';
 import { add } from 'date-fns';
 import TimeAxis from 'features/time/TimeAxis';
-import { useHeaderHeight } from 'hooks/headerHeight';
-import { useAtom } from 'jotai';
-import React, { useMemo, useRef, useState } from 'react';
-import { ZoneDetail } from 'types';
+import { atom, useAtom, useAtomValue } from 'jotai';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { RouteParameters, ZoneDetail } from 'types';
 import useResizeObserver from 'use-resize-observer';
-import { TimeAverages, timeAxisMapping } from 'utils/constants';
+import { timeAxisMapping, TimeRange } from 'utils/constants';
+import { getZoneTimezone } from 'utils/helpers';
 import { selectedDatetimeIndexAtom } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
+import { useBreakpoint, useIsMobile } from 'utils/styling';
 
 import { getTimeScale } from '../graphUtils';
+import { SelectedData } from '../OriginChart';
 import AreaGraphTooltip from '../tooltips/AreaGraphTooltip';
 import { AreaGraphElement, FillFunction, InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphLayers from './AreaGraphLayers';
+import EstimationMarkers from './EstimationMarkers';
 import GraphBackground from './GraphBackground';
 import GraphHoverLine from './GraphHoverline';
 import ValueAxis from './ValueAxis';
 
-const X_AXIS_HEIGHT = 20;
-const Y_AXIS_WIDTH = 26;
-const Y_AXIS_PADDING = 2;
+export const X_AXIS_HEIGHT = 20;
+export const Y_AXIS_WIDTH = 26;
+export const Y_AXIS_PADDING = 2;
 
 interface Layer {
   key: string;
@@ -100,20 +103,24 @@ interface AreagraphProps {
     dataPoint: AreaGraphElement
   ) => void;
   markerHideHandler: () => void;
-  isMobile: boolean;
   isDisabled?: boolean;
   height: string;
   datetimes: Date[];
-  selectedTimeAggregate: TimeAverages; // TODO: Graph does not need to know about this
+  estimated?: boolean[];
+  selectedTimeRange: TimeRange;
   tooltip: (props: InnerAreaGraphTooltipProps) => JSX.Element | null;
   tooltipSize?: 'small' | 'large';
   formatTick?: (t: number) => string | number;
+  isDataInteractive?: boolean;
+  selectedData?: SelectedData;
 }
 
 interface TooltipData {
   position: { x: number; y: number };
   zoneDetail: ZoneDetail;
 }
+
+const AreaGraphIndexSelectedAtom = atom<number | null>(null);
 
 function AreaGraph({
   data,
@@ -122,22 +129,26 @@ function AreaGraph({
   layerStroke,
   layerFill,
   markerFill,
-  isMobile,
   height = '10em',
   isDisabled = false,
-  selectedTimeAggregate,
-  datetimes,
+  selectedTimeRange,
+  datetimes, // array of datetimes
+  estimated, // array of booleans depicting if data has been estimated
   tooltip,
   tooltipSize,
   formatTick = String,
+  isDataInteractive = false,
+  selectedData,
 }: AreagraphProps) {
   const reference = useRef(null);
   const { width: observerWidth = 0, height: observerHeight = 0 } =
     useResizeObserver<HTMLDivElement>({ ref: reference });
-
-  const [selectedDate] = useAtom(selectedDatetimeIndexAtom);
+  const isMobile = useIsMobile();
+  const selectedDate = useAtomValue(selectedDatetimeIndexAtom);
   const [tooltipData, setTooltipData] = useState<TooltipData | null>(null);
   const isBiggerThanMobile = useBreakpoint('sm');
+  const { zoneId } = useParams<RouteParameters>();
+  const zoneTimezone = getZoneTimezone(zoneId);
 
   const containerWidth = Math.max(observerWidth - Y_AXIS_WIDTH, 0);
   const containerHeight = Math.max(observerHeight - X_AXIS_HEIGHT, 0);
@@ -163,11 +174,11 @@ function AreaGraph({
       return null;
     }
 
-    const duration = timeAxisMapping[selectedTimeAggregate];
+    const duration = timeAxisMapping[selectedTimeRange];
 
     //add exactly 1 interval to the last time, e.g. 1 hour or 1 day or 1 month, etc.
-    return duration ? add(lastTime, { [duration]: 1 }) : null;
-  }, [lastTime, selectedTimeAggregate]);
+    return add(lastTime, { [duration]: 1 });
+  }, [lastTime, selectedTimeRange]);
 
   const datetimesWithNext = useMemo(
     // The as Date[] assertion is needed because the filter removes the null values but typescript can't infer that
@@ -175,20 +186,24 @@ function AreaGraph({
     () => [...datetimes, endTime].filter(Boolean) as Date[],
     [datetimes, endTime]
   );
+  const estimatedWithNext = useMemo(
+    () => (estimated ? [...estimated, estimated?.at(-1) || false] : estimated),
+    [estimated]
+  );
 
   const timeScale = useMemo(
     () => getTimeScale(containerWidth, startTime, endTime),
     [containerWidth, startTime, endTime]
   );
 
-  const [graphIndex, setGraphIndex] = useState<number | null>(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
+  const [graphIndex, setGraphIndex] = useAtom(AreaGraphIndexSelectedAtom);
+  const [hoveredLayerIndex, setHoveredLayerIndex] = useState<number | null>(null);
 
   const hoverLineTimeIndex = graphIndex ?? selectedDate.index;
 
   // Graph update handlers. Used for tooltip data.
-  const markerUpdateHandler = useMemo(
-    () => (position: { x: number; y: number }, dataPoint: AreaGraphElement) => {
+  const markerUpdateHandler = useCallback(
+    (position: { x: number; y: number }, dataPoint: AreaGraphElement) => {
       setTooltipData({
         position,
         zoneDetail: dataPoint.meta,
@@ -196,36 +211,36 @@ function AreaGraph({
     },
     [setTooltipData]
   );
-  const markerHideHandler = useMemo(
-    () => () => {
-      setTooltipData(null);
-    },
-    [setTooltipData]
-  );
+  const markerHideHandler = useCallback(() => {
+    setTooltipData(null);
+  }, [setTooltipData]);
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex: number | null, layerIndex: number | null) => {
+  const mouseMoveHandler = useCallback(
+    (timeIndex: number | null, layerIndex: number | null) => {
       setGraphIndex(timeIndex);
       if (layers.length <= 1) {
         // Select the first (and only) layer even when hovering over background
-        setSelectedLayerIndex(0);
+        setHoveredLayerIndex(0);
       } else {
         // use the selected layer (or undefined to hide the tooltips)
-        setSelectedLayerIndex(layerIndex);
+        setHoveredLayerIndex(layerIndex);
       }
     },
-    [layers, setGraphIndex, setSelectedLayerIndex]
+    [layers, setGraphIndex, setHoveredLayerIndex]
   );
-  const mouseOutHandler = useMemo(
-    () => () => {
+  const mouseOutHandler = useCallback(() => {
+    if (!isMobile) {
       setGraphIndex(null);
-      setSelectedLayerIndex(null);
-    },
-    [setGraphIndex, setSelectedLayerIndex]
-  );
+      setHoveredLayerIndex(null);
+    }
+  }, [setGraphIndex, setHoveredLayerIndex, isMobile]);
 
-  const headerHeight = useHeaderHeight();
+  const onCloseTooltip = useCallback(() => {
+    setTooltipData(null);
+    setHoveredLayerIndex(null);
+    setGraphIndex(null);
+  }, [setTooltipData, setHoveredLayerIndex, setGraphIndex]);
 
   // Don't render the graph if datetimes and datapoints are not in sync
   for (const layer of layers) {
@@ -235,15 +250,15 @@ function AreaGraph({
     }
   }
 
-  if (layers.every((layer) => layer.datapoints.every((d) => d[0] === 0 && d[1] === 0))) {
-    // Don't render the graph if all datapoints are 0
+  // Don't render the graph if all datapoints are 0
+  if (totalValues.min === 0 && totalValues.max === 0) {
     return null;
   }
 
   return (
     <div ref={reference}>
       <svg
-        data-test-id={testId}
+        data-testid={testId}
         height={height}
         className={`w-full overflow-visible ${
           isDisabled ? 'pointer-events-none blur' : ''
@@ -261,6 +276,9 @@ function AreaGraph({
           />
         )}
         <AreaGraphLayers
+          isDataInteractive={isDataInteractive}
+          hoveredLayerIndex={hoveredLayerIndex}
+          selectedData={selectedData}
           layers={layers}
           datetimes={datetimesWithNext}
           timeScale={timeScale}
@@ -270,13 +288,23 @@ function AreaGraph({
           isMobile={isMobile}
           svgNode={reference.current}
         />
+        <EstimationMarkers
+          datetimes={datetimesWithNext}
+          estimated={estimatedWithNext}
+          scaleWidth={containerWidth}
+          scaleHeight={containerHeight}
+          transform={`translate(0 ${containerHeight})`}
+          className="h-[22px] w-full overflow-visible"
+        />
         <TimeAxis
           isLoading={false}
-          selectedTimeAggregate={selectedTimeAggregate}
+          selectedTimeRange={selectedTimeRange}
           datetimes={datetimesWithNext}
           scaleWidth={containerWidth}
-          transform={`translate(5 ${containerHeight})`}
+          transform={`translate(0 ${containerHeight})`}
           className="h-[22px] w-full overflow-visible opacity-50"
+          timezone={zoneTimezone}
+          chartHeight={containerHeight}
         />
         <ValueAxis scale={valueScale} width={containerWidth} formatTick={formatTick} />
         <GraphHoverLine
@@ -287,7 +315,7 @@ function AreaGraph({
           endTime={endTime}
           markerUpdateHandler={markerUpdateHandler}
           markerHideHandler={markerHideHandler}
-          selectedLayerIndex={selectedLayerIndex}
+          hoveredLayerIndex={hoveredLayerIndex}
           selectedTimeIndex={hoverLineTimeIndex}
           svgNode={reference.current}
         />
@@ -295,11 +323,11 @@ function AreaGraph({
           <AreaGraphTooltip
             {...tooltipData}
             selectedLayerKey={
-              selectedLayerIndex === null ? undefined : layerKeys[selectedLayerIndex]
+              hoveredLayerIndex === null ? undefined : layerKeys[hoveredLayerIndex]
             }
             tooltipSize={tooltipSize}
             isBiggerThanMobile={isBiggerThanMobile}
-            headerHeight={headerHeight}
+            closeTooltip={onCloseTooltip}
           >
             {(props) => tooltip(props)}
           </AreaGraphTooltip>
@@ -309,4 +337,4 @@ function AreaGraph({
   );
 }
 
-export default React.memo(AreaGraph);
+export default memo(AreaGraph);

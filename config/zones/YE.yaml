@@ -1,3 +1,56 @@
+bounding_box:
+  - - 42.111826118261206
+    - 11.80463900985805
+  - - 54.97034470344704
+    - 19.49495125393824
+capacity:
+  biomass:
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 0.01
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 341.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1179.0
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 1268.0
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1293.75
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1403.75
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 103.08
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 253.34
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 254.16
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 257.67
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 257.71
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 263.73
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 290.0
 country: YE
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Aden
+zone_name: Yemen
+country_name: Yemen

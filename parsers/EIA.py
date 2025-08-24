@@ -9,12 +9,11 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
 
-import arrow
-from dateutil import parser, tz
+from dateutil import parser
 from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -339,16 +338,32 @@ EXCHANGE_TRANSFERS = {
     "US-MIDW-MISO->US-SE-SOCO": {"US-MIDW-MISO->US-SE-AEC"},
 }
 
+# Available modes
+# biomass: float | None = None
+# coal: float | None = None
+# gas: float | None = None
+# geothermal: float | None = None
+# hydro: float | None = None
+# nuclear: float | None = None
+# oil: float | None = None
+# solar: float | None = None
+# unknown: float | None = None
+# wind: float | None = None
+# battery_storage: float | None = None
+# hydro_storage: float | None = None
 TYPES = {
-    # 'biomass': 'BM',  # not currently supported
+    "biomass": "BM",
     "coal": "COL",
     "gas": "NG",
+    "geothermal": "GEO",
     "hydro": "WAT",
     "nuclear": "NUC",
     "oil": "OIL",
-    "unknown": "OTH",
     "solar": "SUN",
+    "unknown": "OTH",
     "wind": "WND",
+    "battery_storage": "BAT",
+    "hydro_storage": "PS",
 }
 
 BASE_URL = "https://api.eia.gov/v2/electricity/rto"
@@ -369,32 +384,17 @@ PRODUCTION_MIX = (
     f"{BASE_URL}/fuel-type-data/data/"
     "?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly"
 )
-EXCHANGE = f"{BASE_URL}/interchange-data/data/" "?data[]=value{}&frequency=hourly"
-
-FILTER_INCOMPLETE_DATA_BYPASSED_MODES = {
-    "US-TEX-ERCO": ["biomass", "geothermal", "oil"],
-    "US-NW-PGE": [
-        "biomass",
-        "geothermal",
-        "oil",
-        "solar",
-    ],  # Solar is not reported by PGE.
-    "US-NW-PACE": ["biomass", "geothermal", "oil"],
-    "US-MIDW-MISO": ["biomass", "geothermal", "oil"],
-    "US-TEN-TVA": ["biomass", "geothermal", "oil"],
-    "US-SE-SOCO": ["biomass", "geothermal", "oil"],
-    "US-FLA-FPL": ["biomass", "geothermal", "oil"],
-}
+EXCHANGE = f"{BASE_URL}/interchange-data/data/?data[]=value{{}}&frequency=hourly"
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key: str,
+    zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
-    return _fetch(
+    return _fetch_historical(
         zone_key,
         PRODUCTION.format(REGIONS[zone_key]),
         session=session,
@@ -411,7 +411,7 @@ def fetch_consumption(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     consumption_list = TotalConsumptionList(logger)
-    consumption = _fetch(
+    consumption = _fetch_historical(
         zone_key,
         CONSUMPTION.format(REGIONS[zone_key]),
         session=session,
@@ -437,7 +437,7 @@ def fetch_consumption_forecast(
     logger: Logger = getLogger(__name__),
 ):
     consumptions = TotalConsumptionList(logger)
-    consumption_forecasts = _fetch(
+    consumption_forecasts = _fetch_forecast(
         zone_key,
         CONSUMPTION_FORECAST.format(REGIONS[zone_key]),
         session=session,
@@ -456,24 +456,41 @@ def fetch_consumption_forecast(
 
 
 def create_production_storage(
-    fuel_type: str, production_point: dict[str, float], negative_threshold: float
+    fuel_type: str, production_point: dict[str, float | None], negative_threshold: float
 ) -> tuple[ProductionMix | None, StorageMix | None]:
     """Create a production mix or a storage mix from a production point
     handling the special cases of hydro storage and self consumption"""
     production_value = production_point["value"]
     production_mix = ProductionMix()
     storage_mix = StorageMix()
-    if production_value < 0 and fuel_type == "hydro":
+    if production_value is not None and production_value < 0 and fuel_type == "hydro":
         # Negative hydro is reported by some BAs, according to the EIA those are pumped storage.
         # https://www.eia.gov/electricity/gridmonitor/about
         storage_mix.add_value("hydro", abs(production_value))
         return None, storage_mix
     # production_value > negative_threshold, this is considered to be self consumption and should be reported as 0.
     # Lower values are set to None as they are most likely outliers.
-    production_mix.add_value(
-        fuel_type, production_value, production_value > negative_threshold
-    )
-    return production_mix, None
+
+    # have to have early returns because of downstream validation in ProductionBreakdownList
+    if fuel_type == "hydro_storage":
+        storage_mix.add_value(
+            "hydro",
+            -production_value if production_value is not None else production_value,
+        )
+        return None, storage_mix
+    elif fuel_type == "battery_storage":
+        storage_mix.add_value(
+            "battery",
+            -production_value if production_value is not None else production_value,
+        )
+        return None, storage_mix
+    else:
+        production_mix.add_value(
+            fuel_type,
+            production_value,
+            production_value > negative_threshold if bool(production_value) else False,
+        )
+        return production_mix, None
 
 
 @refetch_frequency(timedelta(days=1))
@@ -491,23 +508,13 @@ def fetch_production_mix(
         )
         production_breakdown = ProductionBreakdownList(logger)
         url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
-        production_values = _fetch(
+        production_and_storage_values = _fetch_historical(
             zone_key,
             url_prefix,
             session=session,
             target_datetime=target_datetime,
             logger=logger,
         )
-        # TODO Currently manually filtering out datapoints with null values
-        # As null values can cause problems in the estimation models if there's
-        # only null values.
-        # Integrate with data quality layer later.
-        production_values = [
-            datapoint
-            for datapoint in production_values
-            if datapoint["value"] is not None
-        ]
-
         # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
@@ -517,9 +524,28 @@ def fetch_production_mix(
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
 
         if zone_key == "US-CAR-SCEG" and production_mode == "nuclear":
-            for point in production_values:
+            for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
-        for point in production_values:
+
+        # hardcoded exception
+        # parser is double counting "geothermal" and "unknown"
+        # we set unknown to 0.0 and keep geothermal as is
+        # see GMM-555 for details
+        if zone_key == "US-CAL-IID" and production_mode == "unknown":
+            first_appearance = datetime(
+                year=2025, month=1, day=1, hour=8, tzinfo=timezone.utc
+            )
+            last_apperance = datetime(
+                year=2025, month=2, day=12, hour=7, tzinfo=timezone.utc
+            )
+            for event in production_and_storage_values:
+                if (
+                    event["datetime"] >= first_appearance
+                    and event["datetime"] <= last_apperance
+                ):
+                    event["value"] = 0.0
+
+        for point in production_and_storage_values:
             production_mix, storage_mix = create_production_storage(
                 production_mode, point, negative_threshold
             )
@@ -541,22 +567,13 @@ def fetch_production_mix(
         for zone, percentage in zones_to_integrate.items():
             url_prefix = PRODUCTION_MIX.format(REGIONS[zone], code)
             additional_breakdown = ProductionBreakdownList(logger)
-            additional_production = _fetch(
-                zone,
+            additional_production = _fetch_historical(
+                ZoneKey(zone),
                 url_prefix,
                 session=session,
                 target_datetime=target_datetime,
                 logger=logger,
             )
-            # TODO Currently manually filtering out datapoints with null values
-            # As null values can cause problems in the estimation models if there's
-            # only null values.
-            # Integrate with data quality layer later.
-            additional_production = [
-                datapoint
-                for datapoint in additional_production
-                if datapoint["value"] is not None
-            ]
             for point in additional_production:
                 point.update({"value": point["value"] * percentage})
                 production_mix, storage_mix = create_production_storage(
@@ -597,10 +614,7 @@ def fetch_production_mix(
     events = ProductionBreakdownList.merge_production_breakdowns(
         all_production_breakdowns, logger
     )
-    if zone_key in FILTER_INCOMPLETE_DATA_BYPASSED_MODES:
-        events = ProductionBreakdownList.filter_expected_modes(
-            events, by_passed_modes=FILTER_INCOMPLETE_DATA_BYPASSED_MODES[zone_key]
-        )
+
     return events.to_list()
 
 
@@ -612,9 +626,9 @@ def fetch_exchange(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
+    sortedcodes = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     exchange_list = ExchangeList(logger)
-    exchange = _fetch(
+    exchange = _fetch_historical(
         sortedcodes,
         url_prefix=EXCHANGE.format(EXCHANGES[sortedcodes]),
         session=session,
@@ -635,8 +649,8 @@ def fetch_exchange(
     remapped_exchanges = EXCHANGE_TRANSFERS.get(sortedcodes, {})
     remapped_exchange_list = ExchangeList(logger)
     for remapped_exchange in remapped_exchanges:
-        exchange = _fetch(
-            remapped_exchange,
+        exchange = _fetch_historical(
+            ZoneKey(remapped_exchange),
             url_prefix=EXCHANGE.format(EXCHANGES[remapped_exchange]),
             session=session,
             target_datetime=target_datetime,
@@ -644,7 +658,7 @@ def fetch_exchange(
         )
         for point in exchange:
             remapped_exchange_list.append(
-                zoneKey=ZoneKey(sortedcodes),
+                zoneKey=sortedcodes,
                 datetime=point["datetime"],
                 netFlow=-point["value"]
                 if remapped_exchange in REVERSE_EXCHANGES
@@ -659,35 +673,19 @@ def fetch_exchange(
     return exchange_list.to_list()
 
 
-def _fetch(
-    zone_key: str,
+def _fetch_any(
+    zone_key: ZoneKey,
     url_prefix: str,
+    start_datetime: datetime,
+    end_datetime: datetime,
     session: Session | None = None,
-    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
     # get EIA API key
     API_KEY = get_token("EIA_KEY")
 
-    start, end = None, None
-    if target_datetime:
-        try:
-            target_datetime = arrow.get(target_datetime).datetime
-        except arrow.parser.ParserError as e:
-            raise ValueError(
-                f"target_datetime must be a valid datetime - received {target_datetime}"
-            ) from e
-        utc = tz.gettz("UTC")
-        end = target_datetime.astimezone(utc) + timedelta(hours=1)
-        start = end - timedelta(days=1)
-    else:
-        end = datetime.now(tz=tz.gettz("UTC")).replace(
-            minute=0, second=0, microsecond=0
-        ) + timedelta(hours=1)
-        start = end - timedelta(hours=72)
-
     eia_ts_format = "%Y-%m-%dT%H"
-    url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
+    url = f"{url_prefix}&api_key={API_KEY}&start={start_datetime.strftime(eia_ts_format)}&end={end_datetime.strftime(eia_ts_format)}"
 
     s = session or Session()
     req = s.get(url)
@@ -697,9 +695,7 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": _get_utc_datetime_from_datapoint(
-                parser.parse(datapoint["period"])
-            ),
+            "datetime": _parse_hourly_interval(datapoint["period"]),
             "value": float(datapoint["value"]) if datapoint["value"] else None,
             "source": "eia.gov",
         }
@@ -707,19 +703,62 @@ def _fetch(
     ]
 
 
-def _conform_timestamp_convention(dt: datetime):
+def _fetch_historical(
+    zone_key: ZoneKey,
+    url_prefix: str,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    start, end = None, None
+    if target_datetime:
+        end = target_datetime.astimezone(timezone.utc) + timedelta(hours=1)
+        start = end - timedelta(days=1)
+    else:
+        end = datetime.now(timezone.utc).replace(
+            minute=0, second=0, microsecond=0
+        ) + timedelta(hours=1)
+        start = end - timedelta(hours=72)
+
+    return _fetch_any(zone_key, url_prefix, start, end, session, logger)
+
+
+def _fetch_forecast(
+    zone_key: ZoneKey,
+    url_prefix: str,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    LOOKAHEAD = timedelta(days=15)
+
+    start, end = None, None
+    if target_datetime:
+        start = target_datetime.astimezone(timezone.utc).replace(
+            minute=0, second=0, microsecond=0
+        )
+        end = start + LOOKAHEAD
+    else:
+        start = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+        end = start + LOOKAHEAD
+
+    return _fetch_any(zone_key, url_prefix, start, end, session, logger)
+
+
+def _parse_hourly_interval(period: str):
+    interval_end_naive = parser.parse(period)
+
+    # NB: the EIA API can respond with time intervals relative to either UTC
+    # or local-time.  We request UTC times using the 'frequency=hourly'
+    # parameter, meaning that we can attach timezone.utc without performing
+    # any timezone conversion.
+    interval_end = interval_end_naive.replace(tzinfo=timezone.utc)
+
     # The timestamp given by EIA represents the end of the time interval.
     # ElectricityMap using another convention,
     # where the timestamp represents the beginning of the interval.
     # So we need shift the datetime 1 hour back.
-    return dt - timedelta(hours=1)
-
-
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc"""
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to("utc")
-    return dt_utc.datetime
+    return interval_end - timedelta(hours=1)
 
 
 if __name__ == "__main__":
@@ -729,8 +768,8 @@ if __name__ == "__main__":
     # pprint(fetch_consumption_forecast('US-CAL-CISO'))
     pprint(
         fetch_exchange(
-            zone_key1="US-CENT-SWPP",
-            zone_key2="CA-SK",
+            zone_key1=ZoneKey("US-CENT-SWPP"),
+            zone_key2=ZoneKey("CA-SK"),
             target_datetime=datetime(2022, 3, 1),
         )
     )

@@ -1,3 +1,30 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: SB
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guadalcanal
+zone_name: Solomon Islands
+country_name: Solomon Islands

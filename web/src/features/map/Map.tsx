@@ -1,4 +1,7 @@
+import { App } from '@capacitor/app';
+import { PluginListenerHandle } from '@capacitor/core/types/definitions';
 import useGetState from 'api/getState';
+import { SIDEBAR_WIDTH } from 'features/app-sidebar/AppSidebar';
 import ExchangeLayer from 'features/exchanges/ExchangeLayer';
 import ZoomControls from 'features/map-controls/ZoomControls';
 import { leftPanelOpenAtom } from 'features/panels/panelAtoms';
@@ -8,9 +11,16 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { StyleSpecification } from 'maplibre-gl';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { ErrorEvent, Map, MapRef } from 'react-map-gl/maplibre';
-import { matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { createToWithState, getCarbonIntensity, useUserLocation } from 'utils/helpers';
+import { useLocation, useParams } from 'react-router-dom';
+import { RouteParameters } from 'types';
 import {
+  filterCarbonIntensity,
+  getCarbonIntensity,
+  useNavigateWithParameters,
+  useUserLocation,
+} from 'utils/helpers';
+import {
+  co2IntensityRangeAtom,
   isConsumptionAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
@@ -18,7 +28,9 @@ import {
 } from 'utils/state/atoms';
 
 import { useCo2ColorScale, useTheme } from '../../hooks/theme';
+import { useFeatureFlag } from '../feature-flags/api';
 import BackgroundLayer from './map-layers/BackgroundLayer';
+import GridAlertsLayer from './map-layers/GridAlertsLayer';
 import StatesLayer from './map-layers/StatesLayer';
 import ZonesLayer from './map-layers/ZonesLayer';
 import CustomLayer from './map-utils/CustomLayer';
@@ -47,10 +59,15 @@ type MapPageProps = {
   onMapLoad?: (map: maplibregl.Map) => void;
 };
 
+interface ExtendedWindow extends Window {
+  killMap?: () => void;
+}
+
 // TODO: Selected feature-id should be stored in a global state instead (and as zoneId).
 // We could even consider not changing it hear, but always reading it from the path parameter?
 export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const setIsMoving = useSetAtom(mapMovingAtom);
+  const co2IntensityRange = useAtomValue(co2IntensityRangeAtom);
   const setMousePosition = useSetAtom(mousePositionAtom);
   const [isLoadingMap, setIsLoadingMap] = useAtom(loadingMapAtom);
   const [hoveredZone, setHoveredZone] = useAtom(hoveredZoneAtom);
@@ -61,7 +78,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [isSourceLoaded, setSourceLoaded] = useState(false);
   const location = useLocation();
   const getCo2colorScale = useCo2ColorScale();
-  const navigate = useNavigate();
+  const navigate = useNavigateWithParameters();
   const theme = useTheme();
   const isConsumption = useAtomValue(isConsumptionAtom);
   const [selectedZoneId, setSelectedZoneId] = useState<FeatureId>();
@@ -73,10 +90,71 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   const [mapReference, setMapReference] = useState<MapRef | null>(null);
   const map = mapReference?.getMap();
   const userLocation = useUserLocation();
-
+  const { zoneId: pathZoneId } = useParams<RouteParameters>();
+  const [wasInBackground, setWasInBackground] = useState(false);
   const onMapReferenceChange = useCallback((reference: MapRef) => {
     setMapReference(reference);
   }, []);
+  const isCo2IntensityFilteringFeatureEnabled = useFeatureFlag(
+    'legend-co2-intensity-filtering'
+  );
+
+  useEffect(() => {
+    let subscription: PluginListenerHandle | null = null;
+    // Dev testing function to break the map state and test recovery
+    if (import.meta.env.DEV) {
+      (window as ExtendedWindow).killMap = () => {
+        console.log('Attempting to break map state');
+        if (map && map.loaded()) {
+          try {
+            if (map.getSource(ZONE_SOURCE)) {
+              console.log('Removing zone source');
+              map.removeSource(ZONE_SOURCE);
+            }
+
+            const canvas = map.getCanvas();
+            canvas.width = 0;
+            canvas.height = 0;
+
+            const container = map.getContainer();
+            container.innerHTML = '';
+
+            console.log('Map should now be broken');
+          } catch (error) {
+            console.error('Error while killing map:', error);
+          }
+        } else {
+          console.log('Map not ready or already broken');
+        }
+      };
+    }
+    const setupListener = async () => {
+      subscription = await App.addListener('appStateChange', ({ isActive }) => {
+        if (!isActive) {
+          setWasInBackground(true);
+        } else if (wasInBackground && map) {
+          const isMapBroken =
+            !map.loaded() ||
+            map.getCanvas().width === 0 ||
+            map.getContainer().offsetWidth === 0 ||
+            map.getContainer().style.display === 'none';
+          if (isMapBroken) {
+            window.location.reload();
+          } else {
+            map.resize();
+          }
+        }
+      });
+    };
+
+    setupListener();
+
+    return () => {
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [map, wasInBackground, setMapReference]);
 
   useEffect(() => {
     const setSourceLoadedForMap = () => {
@@ -110,8 +188,17 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     }
     for (const feature of worldGeometries.features) {
       const { zoneId } = feature.properties;
-      const zone = data?.data.datetimes[selectedDatetimeString]?.z[zoneId];
-      const co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
+      const zone = data?.datetimes[selectedDatetimeString]?.z[zoneId];
+
+      let co2intensity = zone ? getCarbonIntensity(zone, isConsumption) : undefined;
+
+      co2intensity = filterCarbonIntensity(
+        isCo2IntensityFilteringFeatureEnabled,
+        co2intensity,
+        co2IntensityRange[0],
+        co2IntensityRange[1]
+      );
+
       const fillColor = co2intensity
         ? getCo2colorScale(co2intensity)
         : theme.clickableFill;
@@ -146,6 +233,8 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     theme.clickableFill,
     selectedDatetimeString,
     isConsumption,
+    co2IntensityRange,
+    isCo2IntensityFilteringFeatureEnabled,
   ]);
 
   useEffect(() => {
@@ -193,7 +282,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
   useEffect(() => {
     // Run when the selected zone changes
     // deselect and dehover zone when navigating to /map (e.g. using back button on mobile panel)
-    if (map && location.pathname === '/map' && selectedZoneId) {
+    if (map && location.pathname.startsWith('/map') && selectedZoneId) {
       map.setFeatureState(
         { source: ZONE_SOURCE, id: selectedZoneId },
         { selected: false, hover: false }
@@ -201,7 +290,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
     }
     // Center the map on the selected zone
-    const pathZoneId = matchPath('/zone/:zoneId', location.pathname)?.params.zoneId;
+
     setSelectedZoneId(pathZoneId);
     if (map && !isLoadingMap && pathZoneId) {
       const feature = worldGeometries.features.find(
@@ -226,6 +315,7 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
     setHoveredZone,
     worldGeometries.features,
     setLeftPanelOpen,
+    pathZoneId,
   ]);
 
   const onClick = useCallback(
@@ -253,9 +343,10 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
       setHoveredZone(null);
       if (feature?.properties) {
         const zoneId = feature.properties.zoneId;
-        navigate(createToWithState(`/zone/${zoneId}`));
+        // Do not keep hash on navigate so that users are not scrolled to id element in new view
+        navigate({ to: '/zone', zoneId, keepHashParameters: false });
       } else {
-        navigate(createToWithState('/map'));
+        navigate({ to: '/map', keepHashParameters: false });
       }
     },
     [map, selectedZoneId, hoveredZone, setHoveredZone, navigate]
@@ -375,12 +466,17 @@ export default function MapPage({ onMapLoad }: MapPageProps): ReactElement {
         [Number.NEGATIVE_INFINITY, SOUTHERN_LATITUDE_BOUND],
         [Number.POSITIVE_INFINITY, NORTHERN_LATITUDE_BOUND],
       ]}
-      style={{ minWidth: '100vw', height: '100vh', position: 'absolute' }}
+      style={{
+        minWidth: `calc(100vw - ${SIDEBAR_WIDTH})`,
+        height: '100vh',
+        position: 'absolute',
+      }}
       mapStyle={MAP_STYLE as StyleSpecification}
     >
       <BackgroundLayer />
       <ZonesLayer />
       <StatesLayer />
+      <GridAlertsLayer />
       <CustomLayer>
         <WindLayer />
       </CustomLayer>

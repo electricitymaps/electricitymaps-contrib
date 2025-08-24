@@ -5,51 +5,63 @@ bounding_box:
     - 48.462236509
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1077.6
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 1095.8
+    - datetime: '2018-11-01'
+      source: EIA.gov
+      value: 1217.8
+    - datetime: '2019-08-01'
+      source: EIA.gov
+      value: 1114.0
+    - datetime: '2020-09-01'
       source: EIA.gov
       value: 1236.0
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Public Utility District No. 2 Of Grant County, Washington
@@ -61,9 +73,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 33
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -123,22 +133,22 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 47.03585555652582
+        value: 47.04
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 50.36352818965378
+        value: 50.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 39.1598382663306
+        value: 39.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 42.45124293885544
+        value: 42.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 37.55526214517685
+        value: 37.56
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 57.795787906898234
+        value: 57.8
     coal:
       datetime: '2014-01-01'
       source: IPCC 2014
@@ -159,22 +169,22 @@ emissionFactors:
         value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 47.03585555652582
+        value: 47.04
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 50.36352818965378
+        value: 50.36
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 39.1598382663306
+        value: 39.16
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 42.45124293885544
+        value: 42.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 37.55526214517685
+        value: 37.56
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 57.795787906898234
+        value: 57.8
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -326,3 +336,5 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: US/Pacific
+zone_name: Grant County
+country_name: USA

@@ -2,14 +2,15 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { useCo2ColorScale } from 'hooks/theme';
 import { useAtomValue } from 'jotai';
-import { useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneDetails, ZoneKey } from 'types';
 import { formatEnergy, formatPower } from 'utils/formatting';
-import { isHourlyAtom } from 'utils/state/atoms';
+import { isFiveMinuteOrHourlyGranularityAtom } from 'utils/state/atoms';
 
 import BarElectricityExchangeChart from './BarElectricityExchangeChart';
-import { BarElectricityProductionChart } from './BarElectricityProductionChart';
+import BarElectricityProductionChart from './BarElectricityProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { FormatTick } from './elements/Axis';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarElectricityBreakdownChartProps {
@@ -31,6 +32,7 @@ interface BarElectricityBreakdownChartProps {
   onExchangeRowMouseOut: () => void;
   graphUnit: string | undefined;
 }
+const NUMERIC_REGEX = /[\d.]+/;
 
 function BarElectricityBreakdownChart({
   data,
@@ -50,7 +52,7 @@ function BarElectricityBreakdownChart({
     productionData.length,
     exchangeData
   );
-  const isHourly = useAtomValue(isHourlyAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   // Use the whole history to determine the min/max values in order to avoid
   // graph jumping while sliding through the time range.
@@ -83,23 +85,29 @@ function BarElectricityBreakdownChart({
   );
 
   // Power in MW
-  const powerScale = scaleLinear()
-    .domain([minPower, maxPower])
-    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+  const powerScale = useMemo(
+    () =>
+      scaleLinear()
+        .domain([minPower, maxPower])
+        .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
+    [minPower, maxPower, width]
+  );
 
-  const formatTick = (t: number) => {
-    // Use same unit as max value for tick with value 0
-    if (t === 0) {
-      const tickValue = isHourly
-        ? formatPower({ value: maxPower, numberDigits: 1 })
-        : formatEnergy({ value: maxPower, numberDigits: 1 });
-      return tickValue.toString().replace(/[\d.]+/, '0');
-    }
-    return isHourly
-      ? formatPower({ value: t, numberDigits: 2 })
-      : formatEnergy({ value: t, numberDigits: 2 });
-  };
-
+  const formatTick: FormatTick = useCallback(
+    (t: number) => {
+      // Use same unit as max value for tick with value 0
+      if (t === 0) {
+        const tickValue = isFineGranularity
+          ? formatPower({ value: maxPower, numberDigits: 1 })
+          : formatEnergy({ value: maxPower, numberDigits: 1 });
+        return tickValue.toString().replace(NUMERIC_REGEX, '0');
+      }
+      return isFineGranularity
+        ? formatPower({ value: t, numberDigits: 2 })
+        : formatEnergy({ value: t, numberDigits: 2 });
+    },
+    [isFineGranularity, maxPower]
+  );
   return (
     <>
       <BarElectricityProductionChart
@@ -128,4 +136,4 @@ function BarElectricityBreakdownChart({
   );
 }
 
-export default BarElectricityBreakdownChart;
+export default memo(BarElectricityBreakdownChart);

@@ -1,3 +1,10 @@
+bounding_box:
+  - - -5.863121599699786
+    - 35.609147955711094
+  - - -4.838010782916699
+    - 36.65567746511084
 country: GI
 region: Europe
 timezone: Europe/Gibraltar
+zone_name: Gibraltar
+country_name: Gibraltar

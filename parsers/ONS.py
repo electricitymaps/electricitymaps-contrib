@@ -1,4 +1,3 @@
-from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from typing import Any
@@ -61,20 +60,16 @@ def production_processor(
     """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = datetime.fromisoformat(json_data["Data"])
-    totals = defaultdict(lambda: 0.0)
+    production = ProductionMix()
 
     region = REGIONS[zone_key]
     breakdown = json_data[region]["geracao"]
     for generation, val in breakdown.items():
-        totals[generation] += val
-
-    del totals["total"]
-    production = ProductionMix()
-    for mode, value in totals.items():
-        mode_name = GENERATION_MAPPING.get(mode, "unknown")
-        production.add_value(
-            mode_name, value, mode_name in CORRECTED_NEGATIVE_PRODUCTION
-        )
+        if generation != "total":  # Skip the total field
+            mode_name = GENERATION_MAPPING.get(generation, "unknown")
+            production.add_value(
+                mode_name, val, mode_name in CORRECTED_NEGATIVE_PRODUCTION
+            )
 
     return dt, production
 

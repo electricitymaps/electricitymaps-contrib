@@ -14,7 +14,7 @@ describe('translateIfExists', () => {
 
     const translation = translateIfExists('zoneShortName.AT.zoneName');
 
-    expect(translation).to.equal('Austria');
+    expect(translation).toEqual('Austria');
   });
 
   it('should return an empty string if the key does not exist', () => {});
@@ -23,7 +23,7 @@ describe('translateIfExists', () => {
 
   const translation = translateIfExists('zoneShortName.AT.zoneName');
 
-  expect(translation).to.equal('');
+  expect(translation).toEqual('');
 });
 
 // TODO: Mocking these tests is currently not possible or easy due to the translation

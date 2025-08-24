@@ -1,49 +1,60 @@
 import useGetZone from 'api/getZone';
-import { CommercialApiButton } from 'components/buttons/CommercialApiButton';
+import ApiButton from 'components/buttons/ApiButton';
+import GlassContainer from 'components/GlassContainer';
+import HorizontalDivider from 'components/HorizontalDivider';
 import LoadingSpinner from 'components/LoadingSpinner';
 import BarBreakdownChart from 'features/charts/bar-breakdown/BarBreakdownChart';
+import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { ZoneMessage } from 'types';
-import { EstimationMethods, SpatialAggregate } from 'utils/constants';
+import { useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
+import { RouteParameters } from 'types';
+import { Charts, SpatialAggregate, TimeRange } from 'utils/constants';
 import {
   displayByEmissionsAtom,
-  isHourlyAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
-  timeAverageAtom,
+  timeRangeAtom,
 } from 'utils/state/atoms';
-import { useBreakpoint } from 'utils/styling';
 
 import AreaGraphContainer from './AreaGraphContainer';
 import Attribution from './Attribution';
+import CurrentGridAlertsCard from './CurrentGridAlertsCard';
 import DisplayByEmissionToggle from './DisplayByEmissionToggle';
-import EstimationCard from './EstimationCard';
+import ExperimentalCard from './ExperimentalCard';
+import GridAlertsCard from './GridAlertsCard';
 import MethodologyCard from './MethodologyCard';
 import NoInformationMessage from './NoInformationMessage';
 import { getHasSubZones, getZoneDataStatus, ZoneDataStatus } from './util';
-import { ZoneHeaderGauges } from './ZoneHeaderGauges';
-import ZoneHeaderTitle from './ZoneHeaderTitle';
+import ZoneHeader from './ZoneHeader';
 
 export default function ZoneDetails(): JSX.Element {
-  const { zoneId } = useParams();
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const { zoneId } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
   const displayByEmissions = useAtomValue(displayByEmissionsAtom);
   const setViewMode = useSetAtom(spatialAggregateAtom);
   const selectedDatetimeString = useAtomValue(selectedDatetimeStringAtom);
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
   const { data, isError, isLoading } = useGetZone();
-  const isHourly = useAtomValue(isHourlyAtom);
-  const isMobile = !useBreakpoint('sm');
-
+  const { t } = useTranslation();
   const hasSubZones = getHasSubZones(zoneId);
   const isSubZone = zoneId ? zoneId.includes('-') : true;
+  const zoneDataStatus = zoneId && getZoneDataStatus(zoneId, data);
+  const selectedData = data?.zoneStates[selectedDatetimeString];
+  const { estimationMethod } = selectedData || {};
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
+
+  const trackEvent = useTrackEvent();
+  const { trackCtaMiddle, trackCtaForecast } = useEvents(trackEvent);
 
   useEffect(() => {
     if (hasSubZones === null) {
       return;
     }
-    // When first hitting the map (or opening a zone from the ranking panel),
+    // When first hitting the map (or opening a zone from the search panel),
     // set the correct matching view mode (zone or country).
     if (hasSubZones && !isSubZone) {
       setViewMode(SpatialAggregate.COUNTRY);
@@ -53,96 +64,108 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
+  useScrollHashIntoView(isLoading);
 
-  // TODO: App-backend should not return an empty array as "data" if the zone does not
-  // exist.
-  if (Array.isArray(data)) {
-    return <Navigate to="/" replace />;
-  }
+  const datetimes = useMemo(
+    () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
+    [data]
+  );
 
-  const zoneDataStatus = getZoneDataStatus(zoneId, data, timeAverage);
-
-  const datetimes = Object.keys(data?.zoneStates || {})?.map((key) => new Date(key));
-
-  const selectedData = data?.zoneStates[selectedDatetimeString];
-  const { estimationMethod, estimatedPercentage } = selectedData || {};
-  const zoneMessage = data?.zoneMessage;
-  const cardType = getCardType({ estimationMethod, zoneMessage, isHourly });
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
-
-  return (
-    <>
-      <ZoneHeaderTitle zoneId={zoneId} />
-      <div className="mb-3 h-[calc(100%-120px)] overflow-y-scroll p-3 pb-20 pt-2 sm:h-[calc(100%-150px)]">
-        {cardType != 'none' &&
-          zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
-            <EstimationCard
-              cardType={cardType}
-              estimationMethod={estimationMethod}
-              zoneMessage={zoneMessage}
-              estimatedPercentage={selectedData?.estimatedPercentage}
-            />
-          )}
-        <ZoneHeaderGauges zoneKey={zoneId} />
-        {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION &&
-          zoneDataStatus !== ZoneDataStatus.AGGREGATE_DISABLED && (
-            <DisplayByEmissionToggle />
-          )}
+  // We isolate the component which is independant of `selectedData`
+  // in order to avoid re-rendering it needlessly
+  const zoneDetailsContent = useMemo(
+    () =>
+      zoneId &&
+      zoneDataStatus && (
         <ZoneDetailsContent
           isLoading={isLoading}
           isError={isError}
           zoneDataStatus={zoneDataStatus}
         >
-          <BarBreakdownChart hasEstimationPill={hasEstimationPill} />
-          <CommercialApiButton backgroundClasses="mt-3 mb-1" type="link" />
+          <CurrentGridAlertsCard />
+          <BarBreakdownChart hasEstimationPill={hasEstimationOrAggregationPill} />
+          <ApiButton
+            backgroundClasses="mt-3 mb-1"
+            type="primary"
+            onClick={trackCtaMiddle}
+          />
           {zoneDataStatus === ZoneDataStatus.AVAILABLE && (
             <AreaGraphContainer
               datetimes={datetimes}
-              timeAverage={timeAverage}
+              timeRange={timeRange}
               displayByEmissions={displayByEmissions}
             />
           )}
-          <MethodologyCard />
-          <Attribution zoneId={zoneId} />
-          {isMobile ? (
-            <CommercialApiButton backgroundClasses="mt-3" />
-          ) : (
-            <div className="p-2" />
-          )}
-        </ZoneDetailsContent>
-      </div>
-    </>
-  );
-}
 
-function getCardType({
-  estimationMethod,
-  zoneMessage,
-  isHourly,
-}: {
-  estimationMethod?: EstimationMethods;
-  zoneMessage?: ZoneMessage;
-  isHourly: boolean;
-}): 'estimated' | 'aggregated' | 'outage' | 'none' {
-  if (
-    (zoneMessage !== undefined &&
-      zoneMessage?.message !== undefined &&
-      zoneMessage?.issue !== undefined) ||
-    estimationMethod === EstimationMethods.THRESHOLD_FILTERED
-  ) {
-    return 'outage';
+          <GridAlertsCard
+            datetimes={datetimes}
+            timeRange={timeRange}
+            displayByEmissions={displayByEmissions}
+          />
+          <MethodologyCard />
+          <HorizontalDivider />
+          <div className="flex items-center justify-between gap-2">
+            <div className="text-sm font-semibold">{t('country-panel.forecastCta')}</div>
+            <ApiButton size="sm" onClick={trackCtaForecast} />
+          </div>
+          <Attribution zoneId={zoneId} />
+        </ZoneDetailsContent>
+      ),
+    [
+      zoneId,
+      zoneDataStatus,
+      isLoading,
+      isError,
+      hasEstimationOrAggregationPill,
+      datetimes,
+      timeRange,
+      displayByEmissions,
+      t,
+      trackCtaForecast,
+      trackCtaMiddle,
+    ]
+  );
+
+  if (!zoneId) {
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
-  if (!isHourly) {
-    return 'aggregated';
+
+  // TODO: App-backend should not return an empty array as "data" if the zone does not
+  // exist.
+  if (Array.isArray(data)) {
+    return <Navigate to="/map" replace state={{ preserveSearch: true }} />;
   }
-  if (estimationMethod) {
-    return 'estimated';
-  }
-  return 'none';
+
+  return (
+    <GlassContainer
+      className={twMerge(
+        'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
+        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
+      )}
+    >
+      <section className="h-full w-full">
+        <ZoneHeader zoneId={zoneId} isEstimated={false} />
+        <div
+          id="panel-scroller"
+          className={twMerge(
+            // TODO: Can we set the height here without using calc and specific zone-header value?
+            'h-full flex-1 overflow-y-scroll px-3 pb-32 pt-2.5 sm:h-[calc(100%-64px)] sm:pb-4'
+          )}
+        >
+          {zoneDataStatus !== ZoneDataStatus.NO_INFORMATION && (
+            <DisplayByEmissionToggle />
+          )}
+          {timeRange === TimeRange.H24 && (
+            <ExperimentalCard
+              title={t('experiment.5min.title')}
+              description={t('experiment.5min.description')}
+            />
+          )}
+          {zoneDetailsContent}
+        </div>
+      </section>
+    </GlassContainer>
+  );
 }
 
 function ZoneDetailsContent({
@@ -157,13 +180,17 @@ function ZoneDetailsContent({
   zoneDataStatus: ZoneDataStatus;
 }): JSX.Element {
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="relative mt-[10vh]">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (isError) {
     return (
       <div
-        data-test-id="no-parser-message"
+        data-testid="no-parser-message"
         className={`flex h-full w-full items-center justify-center text-sm`}
       >
         🤖 Unknown server error 🤖
@@ -171,15 +198,39 @@ function ZoneDetailsContent({
     );
   }
 
-  if (
-    [
-      ZoneDataStatus.NO_INFORMATION,
-      ZoneDataStatus.AGGREGATE_DISABLED,
-      ZoneDataStatus.FULLY_DISABLED,
-    ].includes(zoneDataStatus)
-  ) {
-    return <NoInformationMessage status={zoneDataStatus} />;
+  if (zoneDataStatus === ZoneDataStatus.NO_INFORMATION) {
+    return <NoInformationMessage />;
   }
 
   return children as JSX.Element;
 }
+
+const useScrollHashIntoView = (isLoading: boolean) => {
+  const { hash, pathname, search } = useLocation();
+  const anchor = hash.toLowerCase();
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    const chartIds = Object.values<string>(Charts);
+    const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
+
+    if (anchor && chartIds.includes(anchorId)) {
+      const anchorElement = anchor ? document.querySelector(anchor) : null;
+      if (anchorElement) {
+        anchorElement.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+        });
+      }
+    } else {
+      // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
+      const element = document.querySelector('#panel-scroller');
+      if (element) {
+        element.scrollTop = 0;
+      }
+    }
+  }, [anchor, isLoading, pathname, search]);
+};

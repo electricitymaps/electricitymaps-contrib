@@ -1,3 +1,40 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 2.0
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 120.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 162.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.19
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 0.56
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 1.11
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 1.59
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1.64
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1.1
 country: TD
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Ndjamena
+zone_name: Chad
+country_name: Chad

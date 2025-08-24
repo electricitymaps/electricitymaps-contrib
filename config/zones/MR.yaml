@@ -1,3 +1,27 @@
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 240.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 country: MR
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Nouakchott
+zone_name: Mauritania
+country_name: Mauritania

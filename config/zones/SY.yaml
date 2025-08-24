@@ -1,3 +1,59 @@
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 6.71
+  gas:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 4819.5
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 4787.5
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 4801.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 1490.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 3425.0
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 3779.5
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 3824.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.13
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1.38
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 2.47
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 11.52
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 33.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 60.0
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.6
 country: SY
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Damascus
+zone_name: Syria
+country_name: Syria

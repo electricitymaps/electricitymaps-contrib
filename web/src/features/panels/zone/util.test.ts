@@ -1,5 +1,4 @@
 import { ZoneDetails } from 'types';
-import { TimeAverages } from 'utils/constants';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -45,11 +44,7 @@ describe('getHasSubZones', () => {
 
 describe('getZoneDataStatus', () => {
   it('should return ZoneDataStatus.UNKNOWN when zoneDetails is falsy', () => {
-    const result = getZoneDataStatus(
-      'FI',
-      undefined as unknown as ZoneDetails,
-      TimeAverages.HOURLY
-    );
+    const result = getZoneDataStatus('FI', undefined as unknown as ZoneDetails);
     expect(result).toEqual(ZoneDataStatus.UNKNOWN);
   });
 
@@ -57,14 +52,6 @@ describe('getZoneDataStatus', () => {
 
   it.todo(
     'should return ZoneDataStatus.NO_INFORMATION when there is no config for the zone'
-  );
-
-  it.todo(
-    'should return ZoneDataStatus.FULLY_DISABLED when aggregates_displayed is ["none"]'
-  );
-
-  it.todo(
-    'should return ZoneDataStatus.AGGREGATE_DISABLED when timeAverage is not included in aggregates_displayed'
   );
 
   it.todo(

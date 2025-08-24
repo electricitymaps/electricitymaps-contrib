@@ -9,4 +9,6 @@ capacity:
   solar: 1
 country: AU
 region: Oceania
-timezone: Lord_Howe
+timezone: Australia/Lord_Howe
+zone_name: Lord Howe Island
+country_name: Australia

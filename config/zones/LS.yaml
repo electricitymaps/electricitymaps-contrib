@@ -1,3 +1,29 @@
+bounding_box:
+  - - 26.516470164701673
+    - -31.159329801216934
+  - - 29.9356943569436
+    - -28.071379947930733
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: LS
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Maseru
+zone_name: Lesotho
+country_name: Lesotho

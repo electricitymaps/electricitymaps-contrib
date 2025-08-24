@@ -1,22 +1,47 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
+import { useParams } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import type { ZoneDetails } from 'types';
-import { TimeAverages } from 'utils/constants';
-import { useGetZoneFromPath } from 'utils/helpers';
-import { timeAverageAtom } from 'utils/state/atoms';
+import { RouteParameters } from 'types';
+import { TimeRange } from 'utils/constants';
+import { isValidHistoricalTimeRange } from 'utils/helpers';
+import { getStaleTime } from 'utils/refetching';
+import { timeRangeAtom } from 'utils/state/atoms';
 
-import { cacheBuster, getBasePath, getHeaders, QUERY_KEYS } from './helpers';
+import {
+  cacheBuster,
+  getBasePath,
+  getHeaders,
+  getParameters,
+  isValidDate,
+  QUERY_KEYS,
+  TIME_RANGE_TO_BACKEND_PATH,
+} from './helpers';
 
 const getZone = async (
-  timeAverage: TimeAverages,
-  zoneId?: string
+  timeRange: TimeRange,
+  zoneId: string,
+  targetDatetime?: string
 ): Promise<ZoneDetails> => {
   invariant(zoneId, 'Zone ID is required');
-  const path: URL = new URL(`v8/details/${timeAverage}/${zoneId}`, getBasePath());
-  path.searchParams.append('cacheKey', cacheBuster());
 
+  const shouldQueryHistorical =
+    targetDatetime &&
+    isValidDate(targetDatetime) &&
+    isValidHistoricalTimeRange(timeRange);
+
+  const path: URL = new URL(
+    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${getParameters(
+      shouldQueryHistorical,
+      targetDatetime
+    )}`,
+    getBasePath()
+  );
+  if (!targetDatetime) {
+    path.searchParams.append('cacheKey', cacheBuster());
+  }
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
@@ -25,7 +50,7 @@ const getZone = async (
   const response = await fetch(path, requestOptions);
 
   if (response.ok) {
-    const { data } = (await response.json()) as { data: ZoneDetails };
+    const data = (await response.json()) as ZoneDetails;
     if (!data.zoneStates) {
       throw new Error('No data returned from API');
     }
@@ -35,14 +60,27 @@ const getZone = async (
   throw new Error(await response.text());
 };
 
-// TODO: The frontend (graphs) expects that the datetimes in state are the same as in zone
-// should we add a check for this?
 const useGetZone = (): UseQueryResult<ZoneDetails> => {
-  const zoneId = useGetZoneFromPath();
-  const [timeAverage] = useAtom(timeAverageAtom);
+  const { zoneId, urlDatetime } = useParams<RouteParameters>();
+  const timeRange = useAtomValue(timeRangeAtom);
+
   return useQuery<ZoneDetails>({
-    queryKey: [QUERY_KEYS.ZONE, { zone: zoneId, aggregate: timeAverage }],
-    queryFn: async () => getZone(timeAverage, zoneId),
+    queryKey: [
+      QUERY_KEYS.ZONE,
+      {
+        zone: zoneId,
+        aggregate: timeRange,
+        targetDatetime: urlDatetime,
+      },
+    ],
+    queryFn: async () => {
+      if (!zoneId) {
+        throw new Error('Zone ID is required');
+      }
+      return getZone(timeRange, zoneId, urlDatetime);
+    },
+    staleTime: getStaleTime(timeRange, urlDatetime),
+    refetchOnWindowFocus: true,
   });
 };
 

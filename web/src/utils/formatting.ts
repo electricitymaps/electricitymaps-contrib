@@ -1,6 +1,7 @@
 import * as d3 from 'd3-format';
 
-import { TimeAverages } from './constants';
+import { TimeRange } from './constants';
+import { getLocalTime } from './helpers';
 import { EnergyUnits, PowerUnits } from './units';
 
 const DEFAULT_NUM_DIGITS = 3;
@@ -138,10 +139,12 @@ const scalePower = (maxPower: number | undefined, isPower = false) => {
 };
 
 export const getDateTimeFormatOptions = (
-  timeAverage: TimeAverages
+  timeRange: TimeRange,
+  timezone?: string
 ): Intl.DateTimeFormatOptions => {
-  switch (timeAverage) {
-    case TimeAverages.HOURLY: {
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.H72: {
       return {
         year: 'numeric',
         month: 'short',
@@ -149,64 +152,88 @@ export const getDateTimeFormatOptions = (
         hour: 'numeric',
         minute: 'numeric',
         timeZoneName: 'short',
+        timeZone: timezone,
       };
     }
-    case TimeAverages.DAILY: {
+    case TimeRange.M3: {
       return {
         dateStyle: 'long',
         timeZone: 'UTC',
       };
     }
-    case TimeAverages.MONTHLY: {
+    case TimeRange.M12:
+    case TimeRange.ALL_MONTHS: {
       return {
         month: 'long',
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
-    case TimeAverages.YEARLY: {
+    case TimeRange.ALL_YEARS: {
       return {
         year: 'numeric',
         timeZone: 'UTC',
       };
     }
     default: {
-      console.error(`${timeAverage} is not implemented`);
+      console.error(`${timeRange} is not implemented`);
       return {};
     }
   }
 };
 
-const formatDate = (date: Date, lang: string, timeAverage: TimeAverages) => {
-  if (!isValidDate(date) || !timeAverage) {
+const formatDate = (
+  date: Date,
+  lang: string,
+  timeRange: TimeRange,
+  timezone?: string
+) => {
+  if (!isValidDate(date) || !timeRange) {
     return '';
   }
-  return new Intl.DateTimeFormat(lang, getDateTimeFormatOptions(timeAverage)).format(
-    date
-  );
+  return new Intl.DateTimeFormat(
+    lang,
+    getDateTimeFormatOptions(timeRange, timezone)
+  ).format(date);
 };
 
-const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) => {
-  if (!isValidDate(date) || !timeAggregate) {
+const formatDateTick = (
+  date: Date,
+  lang: string,
+  timeRange: TimeRange,
+  timezone?: string
+) => {
+  if (!isValidDate(date) || !timeRange) {
     return '';
   }
 
-  switch (timeAggregate) {
-    case TimeAverages.HOURLY: {
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.H72: {
+      const { localHours, localMinutes } = getLocalTime(date, timezone);
+      if (localHours === 0 && localMinutes === 0) {
+        // Display date name when midnight
+        return new Intl.DateTimeFormat(lang, {
+          month: 'short',
+          day: 'numeric',
+          timeZone: timezone,
+        }).format(date);
+      }
       return new Intl.DateTimeFormat(lang, {
         timeStyle: 'short',
+        timeZone: timezone,
       }).format(date);
     }
     // Instantiate below DateTimeFormat objects using UTC to avoid displaying
     // misleading time slider labels for users in UTC-negative offset timezones
-    case TimeAverages.DAILY: {
+    case TimeRange.M3: {
       return new Intl.DateTimeFormat(lang, {
         month: 'short',
         day: 'numeric',
         timeZone: 'UTC',
       }).format(date);
     }
-    case TimeAverages.MONTHLY: {
+    case TimeRange.M12: {
       return lang === 'et'
         ? new Intl.DateTimeFormat(lang, {
             month: 'short',
@@ -220,18 +247,35 @@ const formatDateTick = (date: Date, lang: string, timeAggregate: TimeAverages) =
             timeZone: 'UTC',
           }).format(date);
     }
-    case TimeAverages.YEARLY: {
+    case TimeRange.ALL_MONTHS:
+    case TimeRange.ALL_YEARS: {
       return new Intl.DateTimeFormat(lang, {
         year: 'numeric',
         timeZone: 'UTC',
       }).format(date);
     }
     default: {
-      console.error(`${timeAggregate} is not implemented`);
+      console.error(`${timeRange} is not implemented`);
       return '';
     }
   }
 };
+
+export function formatDateRange(
+  startDate: Date,
+  endDate: Date,
+  locale = 'en-US',
+  timeZone?: string
+) {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone,
+  });
+
+  return formatter.formatRange(startDate, endDate);
+}
 
 function isValidDate(date: Date) {
   if (!date || !(date instanceof Date)) {
@@ -257,4 +301,51 @@ function formatDataSources(dataSources: string[], language: string) {
       );
 }
 
-export { formatDataSources, formatDate, formatDateTick, scalePower };
+/**
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @param {Date[]} datetimes - array of datetimes.
+ * @param {TimeRange} timeRange - TimeRange
+ * @returns {string} formatted string of datetime range
+ */
+function getDateRange(lang: string, datetimes: Date[], timeRange: TimeRange): string {
+  const first = datetimes[0];
+  const last = datetimes.at(-1);
+
+  if (!first || !last || !isValidDate(first) || !isValidDate(last) || !timeRange) {
+    console.error(`Invalid datetime: ${first}, ${last}, ${timeRange}`);
+    return '';
+  }
+
+  switch (timeRange) {
+    case TimeRange.H24:
+    case TimeRange.H72:
+    case TimeRange.M3: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }).formatRange(first, last);
+    }
+
+    case TimeRange.M12:
+    case TimeRange.ALL_MONTHS: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+        month: 'short',
+      }).formatRange(first, last);
+    }
+
+    case TimeRange.ALL_YEARS: {
+      return new Intl.DateTimeFormat(lang, {
+        year: 'numeric',
+      }).formatRange(first, last);
+    }
+
+    default: {
+      console.error(`${timeRange} is not implemented`);
+      return '';
+    }
+  }
+}
+
+export { formatDataSources, formatDate, formatDateTick, getDateRange, scalePower };

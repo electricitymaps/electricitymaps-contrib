@@ -23,14 +23,14 @@ export default function Badge({ pillText, type, icon }: BadgeProps) {
       break;
     }
     default: {
-      classes = 'bg-neutral-200 dark:bg-gray-700 text-black dark:text-white';
+      classes = 'bg-neutral-200/50 dark:bg-neutral-700 text-neutral-600 dark:text-white';
     }
   }
 
   return (
     <span
       className={`flex h-6 flex-row items-center gap-1 whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold ${classes}`}
-      data-test-id="badge"
+      data-testid="badge"
     >
       {icon}
       {pillText}

@@ -1,145 +1,41 @@
-import LoadingSpinner from 'components/LoadingSpinner';
-import Logo from 'features/header/Logo';
-import MobileButtons from 'features/map-controls/MobileButtons';
-import { useAtom } from 'jotai';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { lazy, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
-import { useIsMobile } from 'utils/styling';
+import Logo from 'components/Logo';
+import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
+import { Outlet, useLocation } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
-import { leftPanelOpenAtom } from './panelAtoms';
-
-const RankingPanel = lazy(() => import('./ranking-panel/RankingPanel'));
-const ZoneDetails = lazy(() => import('./zone/ZoneDetails'));
-
-function HandleLegacyRoutes() {
-  const [searchParameters] = useSearchParams();
-
-  const page = (searchParameters.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
-  searchParameters.delete('page');
-
-  const zoneId = searchParameters.get('countryCode');
-  searchParameters.delete('countryCode');
-
+function MapMobileHeader() {
   return (
-    <Navigate
-      to={{
-        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
-        search: searchParameters.toString(),
-      }}
-    />
-  );
-}
-
-function ValidZoneIdGuardWrapper({ children }: { children: JSX.Element }) {
-  const [searchParameters] = useSearchParams();
-  const { zoneId } = useParams();
-
-  if (!zoneId) {
-    return <Navigate to="/" replace />;
-  }
-
-  // Handle legacy Australia zone names
-  if (zoneId.startsWith('AUS')) {
-    return (
-      <Navigate to={`/zone/${zoneId.replace('AUS', 'AU')}?${searchParameters}`} replace />
-    );
-  }
-  const upperCaseZoneId = zoneId.toUpperCase();
-  if (zoneId !== upperCaseZoneId) {
-    return <Navigate to={`/zone/${upperCaseZoneId}?${searchParameters}`} replace />;
-  }
-
-  return children;
-}
-
-type CollapseButtonProps = {
-  isCollapsed: boolean;
-  onCollapse: () => void;
-};
-
-function CollapseButton({ isCollapsed, onCollapse }: CollapseButtonProps) {
-  const { t } = useTranslation();
-  return (
-    <button
-      data-test-id="left-panel-collapse-button"
-      className={
-        'absolute left-full top-2 z-10 h-12 w-6 cursor-pointer rounded-r bg-zinc-50 shadow-[6px_2px_10px_-3px_rgba(0,0,0,0.1)] hover:bg-zinc-100 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800'
-      }
-      onClick={onCollapse}
-      aria-label={
-        isCollapsed ? t('aria.label.showSidePanel') : t('aria.label.hideSidePanel')
-      }
-    >
-      {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
-    </button>
-  );
-}
-
-function MobileHeader() {
-  return (
-    <div className="mt-[env(safe-area-inset-top)] flex w-full items-center justify-between pl-1 dark:bg-gray-900">
-      <Logo className="h-10 w-44 fill-black dark:fill-white" />
-      <MobileButtons />
+    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent pb-4 pl-3 pt-[max(0.75rem,env(safe-area-inset-top))] dark:from-black/60 sm:pt-3">
+      <Logo className=" h-8 w-28  fill-black dark:fill-white" />
     </div>
   );
 }
-
 function OuterPanel({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useAtom(leftPanelOpenAtom);
   const location = useLocation();
-  const isMobile = useIsMobile();
-
-  const onCollapse = () => setOpen(!isOpen);
 
   return (
-    <div
-      data-test-id="left-panel"
-      className={`absolute left-0 top-0 z-20 h-full w-full bg-zinc-50 shadow-xl transition-all duration-500 dark:bg-gray-900 dark:[color-scheme:dark] sm:flex sm:w-[calc(14vw_+_16rem)] ${
-        location.pathname === '/map' ? 'hidden' : ''
-      } ${isOpen ? '' : '-translate-x-full'}`}
-    >
-      {isMobile && <MobileHeader />}
-      <section className="h-full w-full">{children}</section>
-      <CollapseButton isCollapsed={!isOpen} onCollapse={onCollapse} />
-    </div>
+    <>
+      <div className={`pointer-events-none absolute left-0 right-0 top-0 z-20 sm:hidden`}>
+        <MapMobileHeader />
+      </div>
+      <div
+        data-testid="left-panel"
+        className={twMerge(
+          'pointer-events-none absolute inset-0 z-10  sm:w-[calc(14vw_+_16rem)]',
+          location.pathname.startsWith('/map') ? 'hidden sm:flex' : 'block sm:flex'
+        )}
+      >
+        {children}
+        <TimeControllerWrapper />
+      </div>
+    </>
   );
 }
+
 export default function LeftPanel() {
   return (
     <OuterPanel>
-      <Routes>
-        <Route path="/" element={<HandleLegacyRoutes />} />
-        <Route
-          path="/zone/:zoneId"
-          element={
-            <ValidZoneIdGuardWrapper>
-              <Suspense fallback={<LoadingSpinner />}>
-                <ZoneDetails />
-              </Suspense>
-            </ValidZoneIdGuardWrapper>
-          }
-        />
-        {/* Alternative: add /map here and have a NotFound component for anything else*/}
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<LoadingSpinner />}>
-              <RankingPanel />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <Outlet />
     </OuterPanel>
   );
 }

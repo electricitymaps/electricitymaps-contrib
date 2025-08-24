@@ -5,71 +5,167 @@ bounding_box:
     - 34.54817
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
-      value: 493.0
+      value: 0.0
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 10.0
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 20.0
+    - datetime: '2021-09-01'
+      source: EIA.gov
+      value: 45.0
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 35.0
+    - datetime: '2023-07-01'
+      source: EIA.gov
+      value: 295.0
+    - datetime: '2023-09-01'
+      source: EIA.gov
+      value: 483.0
     - datetime: '2024-05-01'
       source: EIA.gov
-      value: 743.0
+      value: 733.0
     - datetime: '2024-06-01'
       source: EIA.gov
       value: 1033.0
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 1123.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3231.1
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 2428.0
+    - datetime: '2019-11-01'
       source: EIA.gov
       value: 821.8
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6300.6
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 8157.6
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 7474.8
+    - datetime: '2022-08-01'
+      source: EIA.gov
+      value: 7573.8
+    - datetime: '2022-09-01'
       source: EIA.gov
       value: 7672.8
+    - datetime: '2024-06-01'
+      source: EIA.gov
+      value: 7772.6
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 8268.4
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 8455.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 8442.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 7759.3
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 89.3
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 91.1
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 154.1
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 4209.6
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2022-01-01'
+      source: EIA.gov
+      value: 163.2
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2025-05-01'
       source: EIA.gov
       value: 163.2
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 304.2
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 305.4
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 325.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 155.4
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 155.2
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 159.8
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 259.8
+    - datetime: '2021-01-01'
+      source: EIA.gov
+      value: 359.8
+    - datetime: '2022-04-01'
+      source: EIA.gov
+      value: 459.8
+    - datetime: '2022-12-01'
       source: EIA.gov
       value: 559.8
+    - datetime: '2023-01-01'
+      source: EIA.gov
+      value: 562.9
     - datetime: '2023-12-01'
       source: EIA.gov
-      value: 819.8
-    - datetime: '2024-01-01'
-      source: EIA.gov
-      value: 941.8
-    - datetime: '2024-05-01'
-      source: EIA.gov
-      value: 1171.8
+      value: 1174.9
     - datetime: '2024-06-01'
       source: EIA.gov
-      value: 1474.7
+      value: 1474.9
+    - datetime: '2024-11-01'
+      source: EIA.gov
+      value: 1674.9
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 63.0
+    - datetime: '2024-07-01'
+      source: EIA.gov
+      value: 226.0
 comment: Salt River Project
 contributors:
   - systemcatch
@@ -79,11 +175,10 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available. This zone includes all electricity production from
-  the generation-only balancing authorities Arlington Valley, LLC - AVBA and New Harquahala
-  Generating Company, LLC - HGBA. Read more on the wiki page.
+  production: 48
+disclaimer:
+  This zone includes all electricity production from the generation-only balancing authorities Arlington Valley, LLC - AVBA and New
+  Harquahala Generating Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -154,25 +249,25 @@ emissionFactors:
         value: 269.9713981359454
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 247.7029935120496
+        value: 247.7
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 300.1710352953091
+        value: 300.17
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 348.4639862231487
+        value: 348.46
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 303.31075747973284
+        value: 303.31
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 280.53518498238407
+        value: 280.54
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 271.0437010709076
+        value: 271.04
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 304.6968730351475
+        value: 304.7
     coal:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -196,25 +291,25 @@ emissionFactors:
         value: 269.9713981359454
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 247.7029935120496
+        value: 247.7
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 300.1710352953091
+        value: 300.17
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 348.4639862231487
+        value: 348.46
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 303.31075747973284
+        value: 303.31
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 280.53518498238407
+        value: 280.54
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 271.0437010709076
+        value: 271.04
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 304.6968730351475
+        value: 304.7
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -376,3 +471,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
+zone_name: Salt River Project
+country_name: USA

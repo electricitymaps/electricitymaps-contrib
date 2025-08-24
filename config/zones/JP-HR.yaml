@@ -18,6 +18,7 @@ contributors:
   - pierresegonne
   - wobniarin
   - PPsyrius
+  - alejandranavcas
 country: JP
 delays:
   production: 5
@@ -29,47 +30,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 451.2476536858971
+        value: 451.25
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 448.1286037339714
+        value: 448.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 442.5173908499862
+        value: 442.52
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 452.9357543942432
+        value: 452.94
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 459.38335505808857
+        value: 459.38
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 464.14392307373
+        value: 464.14
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 454.79782906657226
+        value: 454.8
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 451.2476536858971
+        value: 451.25
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 448.1286037339714
+        value: 448.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 442.5173908499862
+        value: 442.52
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 452.9357543942432
+        value: 452.94
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 459.38335505808857
+        value: 459.38
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 464.14392307373
+        value: 464.14
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 454.79782906657226
+        value: 454.8
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462
@@ -184,8 +185,11 @@ parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
   production: JP.fetch_production
+  generationForecast: JP.fetch_generation_forecast
 region: Asia
 sources:
   Enerdata 2022 Japanese National Average:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
 timezone: Asia/Tokyo
+zone_name: Hokuriku
+country_name: Japan

@@ -1,7 +1,7 @@
 import * as ToggleGroupPrimitive from '@radix-ui/react-toggle-group';
 import Pill from 'components/Pill';
 import { useFeatureFlags } from 'features/feature-flags/api';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { X } from 'lucide-react';
 import {
   ChangeEvent,
@@ -109,23 +109,23 @@ export default function FeedbackCard({
 
   return (
     <div
-      data-test-id="feedback-card"
-      className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-gray-700 dark:bg-gray-900"
+      data-testid="feedback-card"
+      className="flex w-full flex-col gap-2 rounded-lg border border-neutral-200 bg-zinc-50 px-3 py-4 transition-all dark:border-neutral-700 dark:bg-neutral-900"
       ref={feedbackCardReference}
     >
       <div className="flex flex-row  justify-between">
         <div className="flex flex-initial flex-row gap-2">
           <div
-            className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricitymaps-icon.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
+            className={`min-h-[16px] min-w-[16px] bg-[url('/images/electricity-maps-logo.svg')] bg-contain bg-center bg-no-repeat dark:invert`}
           />
           <h2
             className={`self-center text-left text-sm font-semibold text-black dark:text-white`}
-            data-test-id="title"
+            data-testid="title"
           >
             {isFeedbackSubmitted ? successSubtitle : title}
           </h2>
         </div>
-        <button data-test-id="close-button" onClick={handleClose}>
+        <button data-testid="close-button" onClick={handleClose}>
           <X />
         </button>
       </div>
@@ -134,7 +134,7 @@ export default function FeedbackCard({
           className={`pb-1 ${
             isFeedbackSubmitted ? 'text-sm' : 'text-xs'
           } font-medium text-neutral-400`}
-          data-test-id="subtitle"
+          data-testid="subtitle"
         >
           {isFeedbackSubmitted ? successMessage : subtitle}
         </div>
@@ -178,11 +178,11 @@ function InputField({
       <div className="flex flex-wrap justify-start">
         <span className="text-sm font-normal text-black dark:text-white">
           {!isRequired && <span className="pr-1 font-semibold">{optional}</span>}
-          <span data-test-id="input-title">{inputQuestion}</span>
+          <span data-testid="input-title">{inputQuestion}</span>
         </span>
       </div>
       <textarea
-        data-test-id="feedback-input"
+        data-testid="feedback-input"
         value={inputText}
         onChange={(event) => {
           handleInputChange(event);
@@ -190,7 +190,7 @@ function InputField({
         }}
         rows={1}
         placeholder={inputPlaceholder}
-        className="my-2 w-full resize-none rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-gray-700"
+        className="my-2 w-full resize-none rounded border border-neutral-200 bg-transparent text-base focus:border-brand-green focus:ring-0 dark:border-neutral-700"
       />
     </div>
   );
@@ -225,7 +225,7 @@ function FeedbackFields({
   const [inputText, setInputText] = useState('');
   const [preceedingInputText, setPreceedingInputText] = useState('');
   const [feedbackScore, setFeedbackScore] = useState('');
-  const [userLocation] = useAtom(userLocationAtom);
+  const userLocation = useAtomValue(userLocationAtom);
   const featureFlags = useFeatureFlags();
 
   const handlePreceedingInputChange = (event: {
@@ -269,7 +269,7 @@ function FeedbackFields({
           </div>
         </div>
       )}
-      <div data-test-id="feedback-question" className="text-sm">
+      <div data-testid="feedback-question" className="text-sm">
         {primaryQuestion}
       </div>
       <ActionPills
@@ -279,7 +279,7 @@ function FeedbackFields({
       />
       {feedbackState === FeedbackState.OPTIONAL && (
         <div>
-          <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-gray-700" />
+          <div className="my-3 h-[1px] w-full bg-neutral-200 dark:bg-neutral-700" />
           <div>
             <InputField
               inputText={inputText}
@@ -328,10 +328,10 @@ function ActionPills({
         currentPillNumber={currentPillNumber}
       />
       <div className="flex flex-row items-center justify-between pt-1">
-        <div data-test-id="disagree-text" className="text-xs font-bold">
+        <div data-testid="disagree-text" className="text-xs font-bold">
           {disagreeText}
         </div>
-        <div data-test-id="agree-text" className="text-xs font-bold">
+        <div data-testid="agree-text" className="text-xs font-bold">
           {agreeText}
         </div>
       </div>
@@ -355,22 +355,22 @@ function PillContent({
     >
       {pillContent.map((content) => (
         <ToggleGroupPrimitive.Item
-          data-test-id={`feedback-pill-${content}`}
+          data-testid={`feedback-pill-${content}`}
           key={content}
           value={content}
           aria-label={content}
           onClick={() => handlePillClick(content)}
           className={`
-          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-gray-700 dark:text-white
+          inline-flex h-9 w-full select-none items-center justify-center rounded-full border border-neutral-200 text-black  dark:border-neutral-700 dark:text-white
             ${
               currentPillNumber == content
                 ? 'bg-black dark:bg-white'
-                : 'hover:bg-neutral-200 dark:hover:bg-gray-700'
+                : 'hover:bg-neutral-200 dark:hover:bg-neutral-700'
             }`}
         >
           <div
             className={`text-sm font-semibold ${
-              currentPillNumber == content ? ' text-zinc-50 dark:text-gray-900' : ''
+              currentPillNumber == content ? ' text-zinc-50 dark:text-neutral-900' : ''
             }`}
           >
             {content}

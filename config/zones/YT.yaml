@@ -1,3 +1,36 @@
+bounding_box:
+  - - 44.5418504185042
+    - -13.386712098707434
+  - - 45.700252002520045
+    - -12.19780916475694
+capacity:
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 99.0
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 15.15
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 15.73
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 16.81
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 18.57
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 30.03
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 31.23
 country: YT
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mayotte
+zone_name: Mayotte
+country_name: Mayotte

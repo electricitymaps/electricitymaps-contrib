@@ -65,13 +65,15 @@ def fetch_price(
         tzinfo=timezone.utc
     )
 
-    return {
-        "datetime": date_time,
-        "price": avg_price,
-        "currency": "NZD",
-        "source": "api.em6.co.nz",
-        "zoneKey": zone_key,
-    }
+    return [
+        {
+            "datetime": date_time,
+            "price": avg_price,
+            "currency": "NZD",
+            "source": "api.em6.co.nz",
+            "zoneKey": zone_key,
+        }
+    ]
 
 
 def fetch_production(
@@ -93,41 +95,51 @@ def fetch_production(
     region_key = "New Zealand"
     productions = obj["soPgenGraph"]["data"][region_key]
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": date_time,
-        "production": {
-            "coal": productions.get("Coal", {"generation": None})["generation"],
-            "oil": productions.get("Diesel/Oil", {"generation": None})["generation"],
-            "gas": productions.get("Gas", {"generation": None})["generation"],
-            "geothermal": productions.get("Geothermal", {"generation": None})[
-                "generation"
-            ],
-            "wind": productions.get("Wind", {"generation": None})["generation"],
-            "hydro": productions.get("Hydro", {"generation": None})["generation"],
-            "solar": productions.get("Solar", {"generation": None})["generation"],
-            "unknown": productions.get("Co-Gen", {"generation": None})["generation"],
-            "nuclear": 0,  # famous issue in NZ politics
-        },
-        "capacity": {
-            "coal": productions.get("Coal", {"capacity": None})["capacity"],
-            "oil": productions.get("Diesel/Oil", {"capacity": None})["capacity"],
-            "gas": productions.get("Gas", {"capacity": None})["capacity"],
-            "geothermal": productions.get("Geothermal", {"capacity": None})["capacity"],
-            "wind": productions.get("Wind", {"capacity": None})["capacity"],
-            "hydro": productions.get("Hydro", {"capacity": None})["capacity"],
-            "solar": productions.get("Solar", {"capacity": None})["capacity"],
-            "battery storage": productions.get("Battery", {"capacity": None})[
-                "capacity"
-            ],
-            "unknown": productions.get("Co-Gen", {"capacity": None})["capacity"],
-            "nuclear": 0,  # famous issue in NZ politics
-        },
-        "storage": {
-            "battery": productions.get("Battery", {"generation": None})["generation"],
-        },
-        "source": "transpower.co.nz",
-    }
+    data = [
+        {
+            "zoneKey": zone_key,
+            "datetime": date_time,
+            "production": {
+                "coal": productions.get("Coal", {"generation": None})["generation"],
+                "oil": productions.get("Diesel/Oil", {"generation": None})[
+                    "generation"
+                ],
+                "gas": productions.get("Gas", {"generation": None})["generation"],
+                "geothermal": productions.get("Geothermal", {"generation": None})[
+                    "generation"
+                ],
+                "wind": productions.get("Wind", {"generation": None})["generation"],
+                "hydro": productions.get("Hydro", {"generation": None})["generation"],
+                "solar": productions.get("Solar", {"generation": None})["generation"],
+                "unknown": productions.get("Co-Gen", {"generation": None})[
+                    "generation"
+                ],
+                "nuclear": 0,  # famous issue in NZ politics
+            },
+            "capacity": {
+                "coal": productions.get("Coal", {"capacity": None})["capacity"],
+                "oil": productions.get("Diesel/Oil", {"capacity": None})["capacity"],
+                "gas": productions.get("Gas", {"capacity": None})["capacity"],
+                "geothermal": productions.get("Geothermal", {"capacity": None})[
+                    "capacity"
+                ],
+                "wind": productions.get("Wind", {"capacity": None})["capacity"],
+                "hydro": productions.get("Hydro", {"capacity": None})["capacity"],
+                "solar": productions.get("Solar", {"capacity": None})["capacity"],
+                "battery storage": productions.get("Battery", {"capacity": None})[
+                    "capacity"
+                ],
+                "unknown": productions.get("Co-Gen", {"capacity": None})["capacity"],
+                "nuclear": 0,  # famous issue in NZ politics
+            },
+            "storage": {
+                "battery": productions.get("Battery", {"generation": None})[
+                    "generation"
+                ],
+            },
+            "source": "transpower.co.nz",
+        }
+    ]
 
     return data
 

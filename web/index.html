@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
     <meta name="description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
     <meta property="og:description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-    <meta property="og:image" content="https://app.electricitymaps.com/images/electricitymap_social_image.png" />
+    <meta property="og:image" content="https://app.electricitymaps.com/images/social_image.png" />
     <meta property="og:title" content="Live 24/7 CO₂ emissions of electricity consumption" />
     <meta property="og:type" content="website" />
     <!-- It's important to keep the old og:url, else likes will not accumulate properly -->
@@ -16,7 +16,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@electricitymaps" />
     <meta name="twitter:description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-    <meta name="twitter:image" content="https://app.electricitymaps.com/images/electricitymap_social_image.png" />
+    <meta name="twitter:image" content="https://app.electricitymaps.com/images/social_image.png" />
     <meta name="twitter:site" content="@ElectricityMaps" />
     <meta name="twitter:title" content="@ElectricityMaps | Live 24/7 CO2 emissions of electricity consumption" />
 
@@ -30,14 +30,12 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 
     <!-- Mobile linking -->
-    <meta name="apple-itunes-app" content="app-id=1224594248" />
     <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymaps.com" />
     <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/app.electricitymaps.com" />
     <link rel="alternate" href="ios-app://1224594248/https/app.electricitymaps.com" />
     <link rel="alternate" href="ios-app://1224594248/http/app.electricitymaps.com" />
 
     <!-- Language -->
-    <meta property="og:locale:alternate" content="ar_AR" />
     <meta property="og:locale:alternate" content="cs_CZ" />
     <meta property="og:locale:alternate" content="da_DK" />
     <meta property="og:locale:alternate" content="de_DE" />
@@ -47,7 +45,6 @@
     <meta property="og:locale:alternate" content="et_EE" />
     <meta property="og:locale:alternate" content="fi_FI" />
     <meta property="og:locale:alternate" content="fr_FR" />
-    <meta property="og:locale:alternate" content="hi_IN" />
     <meta property="og:locale:alternate" content="hr_HR" />
     <meta property="og:locale:alternate" content="id_ID" />
     <meta property="og:locale:alternate" content="it_IT" />
@@ -66,10 +63,8 @@
     <meta property="og:locale:alternate" content="sv_SE" />
     <meta property="og:locale:alternate" content="vi_VN" />
     <meta property="og:locale:alternate" content="zh_CN" />
-    <meta property="og:locale:alternate" content="zh_HK" />
     <meta property="og:locale:alternate" content="zh_TW" />
     <link rel="alternate" href="https://app.electricitymaps.com" hreflang="x-default" />
-    <link rel="alternate" href="https://app.electricitymaps.com?lang=ar" hreflang="ar" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=cs" hreflang="cs" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=da" hreflang="da" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=de" hreflang="de" />
@@ -79,7 +74,6 @@
     <link rel="alternate" href="https://app.electricitymaps.com?lang=et" hreflang="et" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=fi" hreflang="fi" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=fr" hreflang="fr" />
-    <link rel="alternate" href="https://app.electricitymaps.com?lang=hi" hreflang="hi" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=hr" hreflang="hr" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=id" hreflang="id" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=it" hreflang="it" />
@@ -98,18 +92,16 @@
     <link rel="alternate" href="https://app.electricitymaps.com?lang=sv" hreflang="sv" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=vi" hreflang="vi" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-CN" hreflang="zh-CN" />
-    <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-HK" hreflang="zh-HK" />
     <link rel="alternate" href="https://app.electricitymaps.com?lang=zh-TW" hreflang="zh-TW" />
 
     <!-- Pre-connect to backend to improve performance -->
     <link rel="preconnect" href="https://app-backend.electricitymaps.com/" />
     <link rel="preconnect" href="https://o192958.ingest.sentry.io" />
     <link rel="preconnect" href="https://plausible.io" />
-
+    <link rel="preconnect" href="https://yo.electricitymaps.com" />
     <!-- Preload font files to improve performance-->
     <link rel="preload" href="/fonts/Poppins-Medium.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossorigin />
-
     <!-- Plausible -->
     <script defer data-domain="app.electricitymaps.com" src="https://plausible.io/js/plausible.local.js"></script>
     <!-- Polyfill for .at() -->
@@ -138,9 +130,34 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
+    <!-- Google Tag Manager -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-P2QJ3KDQ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- CookieYes Banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e8dc92a5b54e1aaf957f6897/script.js"></script>
+    <!-- End CookieYes banner -->
+
     <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2QJ3KDQ" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <noscript>
       <img src="/images/electricity-maps-logo.svg" alt="Electricity Maps logo" />
       <div>

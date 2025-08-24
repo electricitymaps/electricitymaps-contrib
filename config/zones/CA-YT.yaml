@@ -47,47 +47,53 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 45.98924774605369
+        value: 45.99
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 80.13342647211215
+        value: 80.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 127.92589593577578
+        value: 127.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 106.74640307595777
+        value: 106.75
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 71.69917597538533
+        value: 71.7
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 78.14585748925272
+        value: 78.15
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 83.54717061868135
+        value: 83.55
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 141.74
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 45.98924774605369
+        value: 45.99
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 80.13342647211215
+        value: 80.13
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 127.92589593577578
+        value: 127.93
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 106.74640307595777
+        value: 106.75
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 71.69917597538533
+        value: 71.7
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 78.14585748925272
+        value: 78.15
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 83.54717061868135
+        value: 83.55
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 141.74
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -195,7 +201,22 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.08804942933376388
         wind: 0.0
-parsers:
-  production: YUKONENERGY.fetch_production
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.8258501891508444
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.17414929934515255
+        wind: 0.0
 region: Americas
 timezone: America/Whitehorse
+zone_name: Yukon
+country_name: Canada

@@ -1,12 +1,13 @@
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { ElectricityModeType, ZoneKey } from 'types';
 import { formatCo2 } from 'utils/formatting';
 
 import BarEmissionExchangeChart from './BarEmissionExchangeChart';
 import { BarEmissionProductionChart } from './BarEmissionProductionChart';
 import { EXCHANGE_PADDING, LABEL_MAX_WIDTH, PADDING_X } from './constants';
+import { FormatTick } from './elements/Axis';
 import { ExchangeDataType, getDataBlockPositions, ProductionDataType } from './utils';
 
 interface BarBreakdownEmissionsChartProps {
@@ -60,11 +61,10 @@ function BarBreakdownEmissionsChart({
     [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
   );
 
-  const formatTick = (t: number) => {
-    const maxValue = maxCO2eqProduction || 1;
-
-    return formatCo2({ value: t, total: maxValue });
-  };
+  const formatTick: FormatTick = useCallback(
+    (t: number) => formatCo2({ value: t, total: maxCO2eqProduction || 1 }),
+    [maxCO2eqProduction]
+  );
 
   return (
     <>

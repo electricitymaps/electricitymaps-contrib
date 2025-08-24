@@ -12,7 +12,7 @@ import re
 from collections.abc import Iterable, Iterator
 from datetime import date, datetime, time, timedelta, timezone
 from logging import Logger, getLogger
-from typing import TypedDict
+from typing import Any, TypedDict
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -20,6 +20,8 @@ from bs4 import BeautifulSoup
 from requests import Session
 from requests.adapters import Retry
 
+from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency, retry_policy
 from parsers.lib.exceptions import ParserException
@@ -352,7 +354,46 @@ def fetch_production(
     return parse_production_mix(production_mix, logger=logger)
 
 
+def fetch_consumption_forecast(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Requests the latest demand forecast for every half an hour until 7 days ahead in MW."""
+    session = session or Session()
+
+    url_dk = "https://ntesmo.com.au/data/data-dashboard/2024-enhancements/demand-forecast/darwin-katherine/dk-7-days-forecast"
+    url_as = "https://ntesmo.com.au/data/data-dashboard/2024-enhancements/demand-forecast/alice-springs/as-7-days-forecast"
+    url_tc = "https://ntesmo.com.au/data/data-dashboard/2024-enhancements/demand-forecast/tennant-creek/tc-7-days-forecast"
+
+    # Collect all values into a dict by timestamp
+    combined = collections.defaultdict(float)
+
+    for url in [url_dk, url_as, url_tc]:
+        data = session.get(url).json()  # Expecting list of [timestamp, value]
+        for timestamp, value in data["forecastedDemand"]:
+            combined[timestamp] += value  # Add value for each matching timestamp
+
+    # Optionally: convert to sorted list
+    all_consumption_events = sorted(combined.items())
+
+    consumption_list = TotalConsumptionList(logger)
+    for event in all_consumption_events:
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=datetime.strptime(event[0], "%Y-%m-%dT%H:%M+09:30").replace(
+                tzinfo=AUSTRALIA_TZ
+            ),
+            consumption=event[1],
+            source="ntesmo.com.au",
+            sourceType=EventSourceType.forecasted,
+        )
+    return consumption_list.to_list()
+
+
 if __name__ == "__main__":
+    """
     for dt in [
         # now
         None,
@@ -370,3 +411,6 @@ if __name__ == "__main__":
 
         print(f"fetch_production(target_datetime={dt}) ->")
         print(fetch_production(target_datetime=dt))
+    """
+
+    print(fetch_consumption_forecast())

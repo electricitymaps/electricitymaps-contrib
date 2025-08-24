@@ -28,25 +28,21 @@
     "renewable": "Renovável",
     "by-source": {
       "emissions": "Emissões de carbono",
-      "electricity-production": "Produção de eletricidade",
-      "electricity-consumption": "Consumo de eletricidade",
-      "total-emissions": "Emissões totais de carbono",
-      "total-electricity-production": "Produção total de eletricidade",
-      "total-electricity-consumption": "Consumo total de eletricidade"
+      "total-emissions": "Emissões totais de carbono"
     },
     "helpfrom": "com ajuda de",
     "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
     "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
-    "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"{{link}}\" target=\"_blank\">adicionando dados da área</a>.",
+    "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href='{{link}}' target='_blank'>adicionando dados da área</a>.",
     "now": "Agora",
     "dataIsDelayed": "Dados para essa região podem estar até {{hours}} horas atrasados. Dados em tempo real estão indisponíveis.",
     "estimated": "estimado",
     "aggregated": "agregado",
-    "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aqui</a>.",
-    "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão sendo mostradas. Leia mais sobre nossas agregações históricas <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aqui</a>.",
+    "dataIsEstimated": "Parte dos dados dessa região são estimados. Leia mais sobre nossa metodologia de estimativas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>aqui</a>.",
+    "exchangesAreMissing": "Trocas são consideradas para os cálculos mas não estão sendo mostradas. Leia mais sobre nossas agregações históricas <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>aqui</a>.",
     "estimatedTooltip": "Os dados em tempo-real para essa zona são estimados e baseados na origem e em suposições do modelo.",
     "aggregatedTooltip": "Os dados para essa zona são agregados e baseados em valores históricos de hora em hora.",
-    "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href=\"{{link}}\" target=\"_blank\">registros</a> ou contactando o provedor de dados."
+    "helpUs": "Nos ajude a identificar o problema dando uma olhada nos <a href='{{link}}' target='_blank'>registros</a> ou contactando o provedor de dados."
   },
   "ranking-panel": {
     "title": "Impacto climático",
@@ -116,40 +112,40 @@
   "theMap": {
     "groupName": "O mapa",
     "mapColors-question": "O que significam as cores no mapa?",
-    "mapColors-answer": "Colorimos as áreas no mapa pelas quantidades de gases de efeito estufa emitidas para cada unidade de eletricidade consumida no local (sua <a href=\"#carbonIntensity\" class=\"entry-link\"> intensidade de carbono </a> ) Quanto mais verde a cor, mais favorável ao clima é o consumo de eletricidade.",
+    "mapColors-answer": "Colorimos as áreas no mapa pelas quantidades de gases de efeito estufa emitidas para cada unidade de eletricidade consumida no local (sua <a href='#carbonIntensity' class='entry-link'> intensidade de carbono </a> ) Quanto mais verde a cor, mais favorável ao clima é o consumo de eletricidade.",
     "mapArrows-question": "O que indicam as setas entre as áreas do mapa?",
     "mapArrows-answer": "As setas entre as áreas indicam o fluxo físico (importações e exportações) de eletricidade entre as áreas: quanto mais rápido elas piscam, mais rápido o fluxo. O fluxo de eletricidade é importante, porque quando você importa parte de sua eletricidade de áreas vizinhas, também está importando as emissões de carbono associadas à sua produção.",
-    "mapSolarWindButtons-question": "O que os botões \"sol\" e \"vento\" fazem no mapa?",
+    "mapSolarWindButtons-question": "O que os botões 'sol' e 'vento' fazem no mapa?",
     "mapSolarWindButtons-answer": "Esses botões alternam a exibição das velocidades do vento em tempo real e da força do sol, fornecendo uma indicação do potencial de transição para alternativas de energia solar e eólica em diferentes áreas. Observe que isso é apenas uma indicação superficial, pois o potencial real na instalação de turbinas eólicas e células solares também depende de muitos outros fatores.",
     "mapNuclearColors-question": "Por que os países movidos a energia nuclear são mostrados em verde no mapa?",
-    "mapNuclearColors-answer": "A produção de energia nuclear possui uma intensidade muito baixa de carbono (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), e os países movidos a energia nuclear são mostrados em verde no mapa. Isso não significa que não haja outros desafios ambientais associados à energia nuclear (como também ocorre com outras formas de produção de energia), mas esses desafios não estão relacionados às emissões de gases de efeito estufa e, portanto, estão fora do escopo deste mapa.",
+    "mapNuclearColors-answer": "A produção de energia nuclear possui uma intensidade muito baixa de carbono (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >source</a>), e os países movidos a energia nuclear são mostrados em verde no mapa. Isso não significa que não haja outros desafios ambientais associados à energia nuclear (como também ocorre com outras formas de produção de energia), mas esses desafios não estão relacionados às emissões de gases de efeito estufa e, portanto, estão fora do escopo deste mapa.",
     "mapColorBlind-question": "Eu sou daltônico. Como posso ler seu mapa?",
-    "mapColorBlind-answer": "Você pode alterar as cores exibidas no mapa ativando a configuração \"modo daltônico\". Ele está localizado na parte inferior do painel esquerdo da área de trabalho e na guia informações no aplicativo móvel"
+    "mapColorBlind-answer": "Você pode alterar as cores exibidas no mapa ativando a configuração 'modo daltônico'. Ele está localizado na parte inferior do painel esquerdo da área de trabalho e na guia informações no aplicativo móvel"
   },
   "mapAreas": {
     "groupName": "Áreas no mapa",
     "noData-question": "Por que os dados da minha área não estão disponíveis?",
-    "noData-answer": "Ou porque as fontes de dados da área estão temporariamente indisponíveis ou porque ainda não temos nenhuma fonte de dados configurada para a área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar com a adição de novas fontes de dados </a>.",
+    "noData-answer": "Ou porque as fontes de dados da área estão temporariamente indisponíveis ou porque ainda não temos nenhuma fonte de dados configurada para a área. Você pode <a href='#contribute' class='entry-link'> nos ajudar com a adição de novas fontes de dados </a>.",
     "whySmallAreas-question": "Por que você divide o mundo em áreas menores e não mostra simplesmente as médias dos países?",
     "whySmallAreas-answer": "As áreas são as menores áreas geográficas para as quais temos dados. Ao ter acesso a informações no mais alto nível de granularidade, os consumidores de eletricidade em diferentes áreas podem ter um conhecimento mais preciso sobre a origem da eletricidade que estão consumindo e o clima associado. impacto.",
     "divideExistingArea-question": "Você pode dividir minha área em partes menores?",
-    "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar a adicionar novas fontes de dados </a>",
+    "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href='#contribute' class='entry-link'> nos ajudar a adicionar novas fontes de dados </a>",
     "seeHistoricalData-question": "Posso ver o histórico de uma área mais atrasada do que 24 horas?",
-    "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
+    "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'> banco de dados </ a >."
   },
   "methodology": {
     "groupName": "Nossos métodos",
-    "carbonIntensity-question": "O que é \"intensidade de carbono\"?",
+    "carbonIntensity-question": "O que é 'intensidade de carbono'?",
     "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO₂eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO₂ e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
-    "renewableLowCarbonDifference-question": "Qual é a diferença entre \"renovável \"e \"baixo carbono\"?",
+    "renewableLowCarbonDifference-question": "Qual é a diferença entre 'renovável 'e 'baixo carbono'?",
     "renewableLowCarbonDifference-answer": "A produção de energia renovável se baseia em fontes de energia renováveis, como fluxo de vento e água, sol e energia geotérmica. Produção de energia com baixo teor de carbono significa que a produção envolve um nível muito baixo de emissões de gases de efeito estufa, como na produção de energia nuclear.",
     "importsAndExports-question": "Você considera importações e exportações de eletricidade?",
-    "importsAndExports-answer": "Sim. Sim. Importações e exportações podem ser vistas no mapa como pequenas <a href=\"#mapArrows\" class=\"entry-link\"> setas entre áreas diferentes </ a >. Informações detalhadas podem ser vistas nas tabelas mostradas quando você clica em uma área.",
+    "importsAndExports-answer": "Sim. Sim. Importações e exportações podem ser vistas no mapa como pequenas <a href='#mapArrows' class='entry-link'> setas entre áreas diferentes </ a >. Informações detalhadas podem ser vistas nas tabelas mostradas quando você clica em uma área.",
     "emissionsOfStored-question": "E as emissões provenientes da geração de eletricidade, que são armazenadas nas baterias ou usadas para encher reservatórios?",
     "emissionsOfStored-answer": "Como atualmente apenas uma pequena proporção de eletricidade é armazenada, imprecisões na modelagem dessas emissões não devem fazer muita diferença para o total no momento. No entanto, dada a crescente importância do armazenamento, esperamos levá-lo em consideração. em mais detalhes em nosso modelo em breve.",
     "guaranteesOfOrigin-answer": "Quando os produtores de energia renovável produzem eletricidade, eles podem criar Garantias de Origem (ou Certificados de Energia Renovável) - uma prova de que a eletricidade renovável foi produzida e distribuída na rede elétrica. Essas garantias podem ser vendidas, dando aos varejistas de eletricidade uma maneira de afirmar que a eletricidade que eles revendem vem de fontes renováveis, independentemente de sua fonte física real. <br> <br> Isso significa que os consumidores de eletricidade podem ser informados de que sua eletricidade vem da energia solar e eólica, mesmo em uma noite sem vento, o que é problemático, pois remove os incentivos dos consumidores para consumir eletricidade no melhor momento (por exemplo, quando a quantidade de eletricidade renovável na rede é realmente a mais alta). Portanto, este mapa exclui as garantias de origem, oferecendo quadro físico baseado na localização da rede elétrica, a fim de capacitar os consumidores. ",
     "otherSources-question": "Por que você não mostra outras fontes de emissão além da produção de eletricidade?",
-    "otherSources-answer": "Isso estaria fora do escopo deste projeto. No entanto, amanhã, estamos trabalhando ativamente no desenvolvimento de <a href=\"#whoAreYou\" class=\"entry-link\"> novas soluções para quantificar o impacto climático de suas decisões diárias </a>.",
+    "otherSources-answer": "Isso estaria fora do escopo deste projeto. No entanto, amanhã, estamos trabalhando ativamente no desenvolvimento de <a href='#whoAreYou' class='entry-link'> novas soluções para quantificar o impacto climático de suas decisões diárias </a>.",
     "homeSolarPanel-question": "E se eu tiver um painel solar instalado em minha casa?",
     "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que você consome diretamente do seu painel solar (fora da rede) não faz parte de nossas medições. No entanto, se o seu painel solar estiver fornecendo energia na sua rede de energia local, sua produção está incluída em nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como na França e no Reino Unido).",
     "emissionsPerCapita-question": "Por que você não mostra emissões per capita?",
@@ -161,22 +157,22 @@
     "dataOrigins-question": "Como você obtém seus dados?",
     "dataOrigins-answer": "Computamos todos os nossos dados a partir de dados publicamente disponíveis, publicados por operadores de rede elétrica, agências oficiais e outros. Você pode clicar em uma área para ver mais detalhes sobre a origem de seus dados.",
     "dataDownload-question": "Posso baixar seus dados?",
-    "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
+    "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>banco de dados </a>.",
     "dataIntegration-question": "Posso integrar seus dados em tempo real ao meu aplicativo ou dispositivo?",
-    "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
+    "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'> em tempo real</a>, que inclui previsões futuras."
   },
   "aboutUs": {
     "groupName": "Sobre nós",
     "whoAreYou-question": "Quem são vocês?",
-    "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
+    "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href='https://electricitymaps.com/' target='_blank'>electricityMap</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
     "feedback-question": "Posso dar algum feedback?",
-    "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:app@electricitymaps.com\"> envie-nos um email!</a>",
+    "feedback-answer": "Por favor, faça! Por favor, preencha <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_ blank'> nosso formulário de comentários </a>ou <a href='mailto:app@electricitymaps.com'> envie-nos um email!</a>",
     "workTogether-question": "Podemos trabalhar juntos?",
-    "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:app@electricitymaps.com\">Envie-nos um email!</a>",
+    "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href='mailto:app@electricitymaps.com'>Envie-nos um email!</a>",
     "disclaimer-question": "Aviso legal",
-    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publica dados e imagens no <a href = \"https://www.electricitymaps.com/\"target=\"_blank\">Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
+    "disclaimer-answer": "<a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> publica dados e imagens no <a href = 'https://www.electricitymaps.com/'target='_blank'>Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
     "contribute-question": "Como posso contribuir com o projeto?",
-    "contribute-answer": "Sim! O Electricity Maps é um projeto de código aberto, possibilitado apenas por nossos colaboradores voluntários. Se você quer ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, criando novas funcionalidades ou corrigindo bugs, fique à vontade para se juntar a nós no <a href=\"https://github.com/electricitymaps/electricitymaps-contrib\" target=\"_blank\">github</a>."
+    "contribute-answer": "Sim! O Electricity Maps é um projeto de código aberto, possibilitado apenas por nossos colaboradores voluntários. Se você quer ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, criando novas funcionalidades ou corrigindo bugs, fique à vontade para se juntar a nós no <a href='https://github.com/electricitymaps/electricitymaps-contrib' target='_blank'>github</a>."
   },
   "zoneShortName": {
     "AD": {
@@ -191,9 +187,6 @@
     "AG": {
       "zoneName": "Antigua e Barbudas"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albânia"
     },
@@ -202,12 +195,6 @@
     },
     "AO": {
       "zoneName": "Angola"
-    },
-    "AQ": {
-      "zoneName": "Antártica"
-    },
-    "AS": {
-      "zoneName": "Samoa Americana"
     },
     "AT": {
       "zoneName": "Áustria"
@@ -292,9 +279,6 @@
     "BO": {
       "zoneName": "Bolívia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Santo Eustáquio e Saba"
-    },
     "BR": {
       "zoneName": "Brasil"
     },
@@ -320,9 +304,6 @@
     "BT": {
       "zoneName": "Butão"
     },
-    "BV": {
-      "zoneName": "Ilha Bouvet"
-    },
     "BW": {
       "zoneName": "Botswana"
     },
@@ -331,6 +312,9 @@
     },
     "BZ": {
       "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Canadá"
     },
     "CA-AB": {
       "countryName": "Canadá",
@@ -384,9 +368,6 @@
       "countryName": "Canadá",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Ilhas Cocos"
-    },
     "CD": {
       "zoneName": "República Democrática do Congo"
     },
@@ -401,9 +382,6 @@
     },
     "CI": {
       "zoneName": "Ivory Coast"
-    },
-    "CK": {
-      "zoneName": "Cook Islands"
     },
     "CL-SEA": {
       "countryName": "Chile",
@@ -437,9 +415,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Ilha do Natal"
     },
     "CY": {
       "zoneName": "Chipre"
@@ -515,9 +490,13 @@
       "countryName": "Espanha",
       "zoneName": "Menorca"
     },
-    "ES-CN-FVLZ": {
+    "ES-CN-FV": {
       "countryName": "Espanha",
-      "zoneName": "Fuerteventura/Lanzarote"
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Espanha",
+      "zoneName": "Lanzarote"
     },
     "ES-CN-GC": {
       "countryName": "Espanha",
@@ -584,9 +563,6 @@
     "GB-ZET": {
       "countryName": "Grã-Bretanha",
       "zoneName": "Ilhas Shetland"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GE": {
       "zoneName": "Geórgia"
@@ -670,113 +646,9 @@
       "countryName": "Índia",
       "zoneName": "Ilhas Andaman e Nicobar"
     },
-    "IN-AP": {
-      "countryName": "Índia",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "Índia",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "Índia",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "Índia",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "Índia",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "Índia",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "Índia",
-      "zoneName": "Dadra e Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "Índia",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "Índia",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "Índia",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "Índia",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "Índia",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "Índia",
-      "zoneName": "Jammu e Caxemira"
-    },
-    "IN-KA": {
-      "countryName": "Índia",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "Índia",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "Índia",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "Índia",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "Índia",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "Índia",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "Índia",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "Índia",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "Índia",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "Índia",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "Índia",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "Índia",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "Índia",
-      "zoneName": "Sikkim"
-    },
-    "IN-TR": {
-      "countryName": "Índia",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "Índia",
@@ -786,19 +658,11 @@
       "countryName": "Índia",
       "zoneName": "Uttarakhand"
     },
-    "IN-WB": {
-      "countryName": "Índia",
-      "zoneName": "Bengala Ocidental"
-    },
     "IO": {
       "zoneName": "Território Britânico do Oceano Índico"
     },
     "IQ": {
       "zoneName": "Iraque"
-    },
-    "IQ-KUR": {
-      "countryName": "Iraque",
-      "zoneName": "Curdistão"
     },
     "IR": {
       "zoneName": "Irã"
@@ -891,14 +755,8 @@
     "KH": {
       "zoneName": "Camboja"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Comoros"
-    },
-    "KN": {
-      "zoneName": "São Cristóvão e Neves"
     },
     "KP": {
       "zoneName": "Coreia do Norte"
@@ -960,15 +818,8 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "são Martinho",
-      "zoneName": "Francesa"
-    },
     "MG": {
       "zoneName": "Madagáscar"
-    },
-    "MH": {
-      "zoneName": "Ilhas Marshall"
     },
     "MK": {
       "zoneName": "Macedônia do Norte"
@@ -984,9 +835,6 @@
     },
     "MO": {
       "zoneName": "Macau"
-    },
-    "MP": {
-      "zoneName": "Ilhas Marianas do Norte"
     },
     "MQ": {
       "zoneName": "Martinica"
@@ -1067,17 +915,11 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Ilha Norfolk"
-    },
     "NG": {
       "zoneName": "Nigéria"
     },
     "NI": {
       "zoneName": "Nicarágua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Países Baixos"
@@ -1104,12 +946,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "Nova Zelândia"
@@ -1148,9 +984,6 @@
     },
     "PM": {
       "zoneName": "São Pedro e Miquelão"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1231,9 +1064,6 @@
     "SG": {
       "zoneName": "Singapura"
     },
-    "SH": {
-      "zoneName": "Santa Helena, Ascensão e Tristão da Cunha"
-    },
     "SI": {
       "zoneName": "Eslovênia"
     },
@@ -1245,9 +1075,6 @@
     },
     "SL": {
       "zoneName": "Serra Leoa"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1267,18 +1094,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Holandês"
-    },
     "SY": {
       "zoneName": "Síria"
     },
     "SZ": {
       "zoneName": "Suazilândia"
-    },
-    "TC": {
-      "zoneName": "Ilhas Turcas e Caicos"
     },
     "TD": {
       "zoneName": "Chade"
@@ -1294,9 +1114,6 @@
     },
     "TJ": {
       "zoneName": "Tajiquistão"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1316,9 +1133,6 @@
     "TT": {
       "zoneName": "Trinidad e Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Taiwan"
     },
@@ -1335,43 +1149,8 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
-    },
     "US": {
-      "zoneName": "Estados Unidos da América Contíguos"
-    },
-    "US-HI-HA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Havaí"
-    },
-    "US-HI-KA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kauai"
-    },
-    "US-HI-KH": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Kahoolawe"
-    },
-    "US-HI-LA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Lanai"
-    },
-    "US-HI-MA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Maui"
-    },
-    "US-HI-MO": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Molokai"
-    },
-    "US-HI-NI": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Niihau"
-    },
-    "US-HI-OA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Oahu"
+      "zoneName": "Estados Unidos da América"
     },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos da América",
@@ -1505,10 +1284,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Gridforce Energy Management, Llc"
     },
-    "US-NW-GWA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Naturener Power Watch, Llc (Gwa)"
-    },
     "US-NW-IPCO": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Idaho Power Company"
@@ -1557,10 +1332,6 @@
       "countryName": "Estados Unidos da América",
       "zoneName": "Western Area Power Administration UGP West"
     },
-    "US-NW-WWA": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Naturener Wind Watch, Llc"
-    },
     "US-NY-NYIS": {
       "countryName": "Estados Unidos da América",
       "zoneName": "Operador de sistema independente de Nova York"
@@ -1580,10 +1351,6 @@
     "US-SW-EPE": {
       "countryName": "Estados Unidos da América",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "Estados Unidos da América",
-      "zoneName": "Griffith Energy, LLC"
     },
     "US-SW-PNM": {
       "countryName": "Estados Unidos da América",
@@ -1615,18 +1382,11 @@
     "UZ": {
       "zoneName": "Uzbequistão"
     },
-    "VA": {
-      "zoneName": "Cidade do Vaticano"
-    },
     "VC": {
       "zoneName": "São Vicente e Granadinas"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Ilhas virgens",
-      "zoneName": "Ilhas virgens"
     },
     "VI": {
       "countryName": "Estados Unidos da América",
@@ -1637,9 +1397,6 @@
     },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis e Futuna"
     },
     "WS": {
       "zoneName": "Samoa"
@@ -1674,21 +1431,9 @@
       "countryName": "Austrália",
       "zoneName": "Ilha Rottnest"
     },
-    "CA-NL-LB": {
-      "countryName": "Canadá",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canadá",
-      "zoneName": "Newfoundland"
-    },
     "CL-CHP": {
       "countryName": "Chile",
       "zoneName": "Ilha de Páscoa"
-    },
-    "IN-TN": {
-      "countryName": "Índia",
-      "zoneName": "Tamil Nadu"
     },
     "NZ-NZST": {
       "countryName": "Nova Zelândia",
@@ -1731,15 +1476,10 @@
   },
   "windDataError": "Dados eólicos estão indisponíveis",
   "solarDataError": "Dados solares estão indisponíveis",
-  "info": {
-    "text": "O Mapa da Eletricidade fornece informações em tempo-real na web e no celular para cidadãos, especialistas em energia, ONGs e legisladores promovendo um entendimento mais profundo sobre os desafios de transição de energia.",
-    "open-source-text": "Esse aplicativo é <a href='{{link}}' target='_blank'>de código aberto</a> e apoiado pela comunidade."
-  },
   "button": {
     "feedback": "Compartilhar Feedback",
     "github": "Ver nosso GitHub",
     "twitter": "Compartilhar no Twitter",
-    "slack": "Entrar na comunidade do Slack",
     "privacy-policy": "Política de Privacidade",
     "legal-notice": "Aviso Legal"
   },

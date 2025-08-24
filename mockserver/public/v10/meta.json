@@ -1,0 +1,18 @@
+{
+  "features": {
+    "72-hours": true,
+    "consumption-only": false,
+    "feedback-micro-survey": false,
+    "feedback-us-micro-survey": true,
+    "historical-linking": true,
+    "historical-storytelling-popover": true,
+    "more-options-dropdown": true,
+    "query-materialized-view": true,
+    "share-button": true,
+    "five-minute-granularity": true
+  },
+  "callerLocation": [
+    138,
+    36
+  ]
+}

@@ -23,6 +23,7 @@ interface ToastProps {
   toastCloseText?: string;
   duration?: number;
   type?: ToastType;
+  className?: string;
 }
 
 export const ToastTypeTheme = {
@@ -63,6 +64,7 @@ export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
     toastCloseText,
     duration,
     type = ToastType.INFO,
+    className,
   }: ToastProps,
   forwardedReference
 ) {
@@ -79,7 +81,10 @@ export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
     setOpen(false);
   };
 
-  const handleToastClose = () => {
+  const handleToastClose = (
+    event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
     toastClose?.();
     setOpen(false);
   };
@@ -95,11 +100,12 @@ export const Toast = forwardRef<ToastController, ToastProps>(function Toast(
         duration={duration}
         type="background"
         className={twMerge(
-          'fixed left-1/2 top-16 z-50 flex w-11/12 min-w-fit max-w-sm -translate-x-1/2 transform rounded-lg shadow',
-          'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900',
+          'fixed left-1/2 top-2 z-40 flex w-11/12 min-w-fit max-w-sm -translate-x-1/2 transform rounded-lg shadow',
+          'border border-solid border-neutral-50 bg-white/80 backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-900',
           "before:content[''] before:absolute before:block before:h-full before:w-1 before:rounded-bl-md before:rounded-tl-md",
           color,
-          toastAction ? 'h-[52px]' : 'h-11'
+          toastAction ? 'h-[52px]' : 'h-11',
+          className
         )}
       >
         <div className="flex w-full items-center p-2">

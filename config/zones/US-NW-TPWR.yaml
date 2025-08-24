@@ -5,54 +5,54 @@ bounding_box:
     - 48.28046
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 64.0
-    - datetime: '2023-12-01'
+    - datetime: '2023-11-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.6
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: City Of Tacoma, Department Of Public Utilities, Light Division
@@ -64,9 +64,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -130,25 +128,25 @@ emissionFactors:
         value: 24.000000000000004
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.18178147013533
+        value: 85.18
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 104.6832783898639
+        value: 104.68
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 55.63483890608569
+        value: 55.63
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 65.12914061965704
+        value: 65.13
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 64.21039971020251
+        value: 64.21
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 95.71316508349986
+        value: 95.71
     biomass:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -158,8 +156,7 @@ emissionFactors:
         value: 277.252
     coal:
       datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
       value: 816.445393
     gas:
       datetime: '2014-01-01'
@@ -174,25 +171,25 @@ emissionFactors:
         value: 24.000000000000004
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 24.000000000000004
+        value: 24.0
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 85.18178147013533
+        value: 85.18
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 104.6832783898639
+        value: 104.68
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 55.63483890608569
+        value: 55.63
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 65.12914061965704
+        value: 65.13
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 64.21039971020251
+        value: 64.21
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 95.71316508349986
+        value: 95.71
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -348,3 +345,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: City of Tacoma
+country_name: USA

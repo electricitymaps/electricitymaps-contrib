@@ -1,0 +1,22 @@
+{
+  "response": {
+    "query execution": 0.008633325,
+    "count query execution": 0.021634831,
+    "total": 1,
+    "dateFormat": "YYYY-MM-DD\"T\"HH24",
+    "frequency": "hourly",
+    "data": [
+      {
+        "period": "2024-02-27T11",
+        "respondent": "EIA",
+        "respondent-name": "ACME corp",
+        "fueltype": "BAT",
+        "type-name": "Battery storage",
+        "value": 1,
+        "value-units": "megawatthours"
+      }
+    ],
+    "description": "Hourly net generation by balancing authority and energy source.  \n    Source: Form EIA-930\n    Product: Hourly Electric Grid Monitor"
+  },
+  "apiVersion": "2.0.3"
+}

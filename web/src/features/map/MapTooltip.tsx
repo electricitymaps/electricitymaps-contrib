@@ -1,6 +1,7 @@
 import * as Portal from '@radix-ui/react-portal';
 import useGetState from 'api/getState';
 import EstimationBadge from 'components/EstimationBadge';
+import GlassContainer from 'components/GlassContainer';
 import NoDataBadge from 'components/NoDataBadge';
 import OutageBadge from 'components/OutageBadge';
 import { TimeDisplay } from 'components/TimeDisplay';
@@ -8,14 +9,26 @@ import { getSafeTooltipPosition } from 'components/tooltips/utilities';
 import ZoneGaugesWithCO2Square from 'components/ZoneGauges';
 import { ZoneName } from 'components/ZoneName';
 import { useAtomValue } from 'jotai';
-import { TrendingUpDown } from 'lucide-react';
+import { CircleDashed, TrendingUpDown } from 'lucide-react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StateZoneData } from 'types';
-import { selectedDatetimeStringAtom } from 'utils/state/atoms';
+import { EstimationMethods, isTSAModel } from 'utils/constants';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
+import { round } from 'utils/helpers';
+import {
+  isFiveMinuteOrHourlyGranularityAtom,
+  selectedDatetimeStringAtom,
+} from 'utils/state/atoms';
 
 import { hoveredZoneAtom, mapMovingAtom, mousePositionAtom } from './mapAtoms';
 
-export function TooltipInner({
+const emptyZoneData: StateZoneData = {
+  p: {},
+  c: {},
+};
+
+export const TooltipInner = memo(function TooltipInner({
   zoneData,
   zoneId,
 }: {
@@ -23,44 +36,46 @@ export function TooltipInner({
   zoneData?: StateZoneData;
 }) {
   const hasZoneData = Boolean(zoneData);
-  zoneData ??= {
-    p: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-    c: {
-      ci: null,
-      fr: null,
-      rr: null,
-    },
-  };
-  const { e, o } = zoneData;
+  zoneData ??= emptyZoneData;
+  const { em: estimationMethod, ep: estimationPercentage, o } = zoneData;
 
   return (
     <div className="flex w-full flex-col gap-2 py-3 text-center">
       <div className="flex flex-col px-3">
         <div className="flex w-full flex-row justify-between">
           <ZoneName zone={zoneId} textStyle="font-medium text-base font-poppins" />
-          <DataValidityBadge hasOutage={o} estimated={e} hasZoneData={hasZoneData} />
+          <DataValidityBadge
+            hasOutage={Boolean(o)}
+            estimatedMethod={estimationMethod || undefined}
+            estimatedPercentage={round(estimationPercentage ?? 0, 0)}
+            hasZoneData={hasZoneData}
+          />
         </div>
-        <TimeDisplay className="self-start text-neutral-600 dark:text-neutral-400" />
+        <TimeDisplay
+          zoneId={zoneId}
+          className="self-start text-sm text-neutral-600 dark:text-neutral-400"
+        />
       </div>
-      <ZoneGaugesWithCO2Square zoneData={zoneData} />
+      <ZoneGaugesWithCO2Square zoneData={zoneData} classNames="justify-evenly" />
     </div>
   );
-}
+});
 
-function DataValidityBadge({
+TooltipInner.displayName = 'TooltipInner';
+
+export const DataValidityBadge = memo(function DataValidityBadge({
   hasOutage,
-  estimated,
+  estimatedMethod,
+  estimatedPercentage,
   hasZoneData,
 }: {
-  hasOutage?: boolean | null;
-  estimated?: number | boolean | null;
+  hasOutage: boolean;
+  estimatedMethod?: EstimationMethods;
+  estimatedPercentage?: number | undefined;
   hasZoneData: boolean;
 }) {
   const { t } = useTranslation();
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!hasZoneData) {
     return <NoDataBadge />;
@@ -68,26 +83,24 @@ function DataValidityBadge({
   if (hasOutage) {
     return <OutageBadge />;
   }
-  if (estimated === true) {
-    return (
-      <EstimationBadge
-        text={t('estimation-badge.fully-estimated')}
-        Icon={TrendingUpDown}
-      />
-    );
+  if (estimatedMethod == null && isFineGranularity) {
+    // No aggregation or estimation pill to show
+    return null;
   }
-  if (estimated && estimated > 0) {
-    return (
-      <EstimationBadge
-        text={t(`estimation-card.aggregated_estimated.pill`, {
-          percentage: estimated,
-        })}
-        Icon={TrendingUpDown}
-      />
-    );
+  const text = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    !isFineGranularity,
+    estimatedMethod,
+    estimatedPercentage
+  );
+  if (isTSAModel(estimatedMethod)) {
+    return <EstimationBadge text={text} Icon={CircleDashed} isPreliminary={true} />;
   }
-  return null;
-}
+  return <EstimationBadge text={text} Icon={TrendingUpDown} />;
+});
+
+DataValidityBadge.displayName = 'DataValidityBadge';
 
 export default function MapTooltip() {
   const mousePosition = useAtomValue(mousePositionAtom);
@@ -103,19 +116,19 @@ export default function MapTooltip() {
   const { zoneId } = hoveredZone;
 
   const { x, y } = mousePosition;
-  const zoneData = data?.data?.datetimes[selectedDatetimeString]?.z[zoneId];
+  const zoneData = data?.datetimes[selectedDatetimeString]?.z[zoneId];
 
   const screenWidth = window.innerWidth;
   const tooltipWithDataPositon = getSafeTooltipPosition(x, y, screenWidth, 361, 170);
 
   return (
     <Portal.Root className="absolute left-0 top-0 hidden h-0 w-0 md:block">
-      <div
-        className="pointer-events-none relative w-[361px] rounded-2xl border border-neutral-200 bg-white text-sm shadow-lg dark:border-gray-700 dark:bg-gray-900 "
+      <GlassContainer
+        className="pointer-events-none relative w-[361px]"
         style={{ left: tooltipWithDataPositon.x, top: tooltipWithDataPositon.y }}
       >
         <TooltipInner zoneData={zoneData} zoneId={zoneId} />
-      </div>
+      </GlassContainer>
     </Portal.Root>
   );
 }

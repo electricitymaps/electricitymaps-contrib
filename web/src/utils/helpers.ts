@@ -1,15 +1,27 @@
 import { callerLocation, useMeta } from 'api/getMeta';
-import { useMatch, useParams } from 'react-router-dom';
+import { useCallback } from 'react';
+import {
+  useLocation,
+  useMatch,
+  useMatches,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import {
   ElectricityModeType,
   ElectricityStorageKeyType,
   GenerationType,
+  RouteParameters,
   StateZoneData,
   ZoneDetail,
 } from 'types';
 
+import zonesConfigJSON from '../../config/zones.json';
+import { CombinedZonesConfig } from '../../geo/types';
+import { historicalTimeRange, TimeRange } from './constants';
+
 export function useGetZoneFromPath() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<RouteParameters>();
   const match = useMatch('/zone/:id');
   if (zoneId) {
     return zoneId;
@@ -57,12 +69,83 @@ export function getProductionCo2Intensity(
   return dischargeCo2Intensity;
 }
 
-/**
- * Returns a link which maintains search and hash parameters
- * @param to
- */
-export function createToWithState(to: string) {
-  return `${to}${location.search}${location.hash}`;
+export function useNavigateWithParameters() {
+  const navigator = useNavigate();
+  const location = useLocation();
+  const {
+    zoneId: previousZoneId,
+    urlTimeRange: previousTimeRange,
+    urlDatetime: previousDatetime,
+    resolution: previousResolution,
+  } = useParams();
+  const parameters = useMatches();
+  const isZoneRoute = parameters.some((match) => match.pathname.startsWith('/zone'));
+
+  const basePath = isZoneRoute ? '/zone' : '/map';
+
+  return useCallback(
+    ({
+      to = basePath,
+      zoneId = isZoneRoute ? previousZoneId : undefined,
+      timeRange = previousTimeRange as TimeRange,
+      datetime = previousDatetime,
+      keepHashParameters = true,
+      resolution = previousResolution,
+    }: {
+      to?: string;
+      zoneId?: string;
+      timeRange?: TimeRange;
+      datetime?: string;
+      keepHashParameters?: boolean;
+      resolution?: string;
+    }) => {
+      // Always preserve existing search params
+      const isDestinationZoneRoute = to.startsWith('/zone');
+      const currentSearch = new URLSearchParams(location.search);
+      const path = getDestinationPath({
+        to,
+        zoneId: isDestinationZoneRoute ? zoneId : undefined,
+        timeRange: timeRange.includes('all') ? 'all' : timeRange,
+        datetime,
+        resolution,
+      });
+      const fullPath = {
+        pathname: path,
+        search: currentSearch.toString() ? `?${currentSearch.toString()}` : '',
+        hash: keepHashParameters ? location.hash : undefined,
+      };
+      navigator(fullPath);
+    },
+    [
+      basePath,
+      isZoneRoute,
+      location.hash,
+      location.search,
+      navigator,
+      previousDatetime,
+      previousResolution,
+      previousTimeRange,
+      previousZoneId,
+    ]
+  );
+}
+
+export function getDestinationPath({
+  to,
+  zoneId,
+  timeRange,
+  datetime,
+  resolution,
+}: {
+  to: string;
+  zoneId?: string;
+  timeRange?: TimeRange | 'all';
+  datetime?: string;
+  resolution?: string;
+}) {
+  return `${to}${zoneId ? `/${zoneId}` : ''}${timeRange ? `/${timeRange}` : ''}${
+    resolution ? `/${resolution}` : ''
+  }${datetime ? `/${datetime}` : ''}`;
 }
 
 /**
@@ -105,6 +188,30 @@ export const getCarbonIntensity = (
 ): number => (isConsumption ? zoneData?.c?.ci : zoneData?.p?.ci) ?? Number.NaN;
 
 /**
+ * Returns carbon intensity within given range if feature is enabled
+ * @param isFeatureEnabled
+ * @param co2intensity
+ * @param min
+ * @param max
+ */
+export const filterCarbonIntensity = (
+  isFeatureEnabled: boolean,
+  co2intensity: number | undefined,
+  min: number,
+  max: number
+): number | undefined => {
+  if (!isFeatureEnabled) {
+    return co2intensity;
+  }
+
+  if (co2intensity && (co2intensity < min || co2intensity > max)) {
+    return undefined;
+  }
+
+  return co2intensity;
+};
+
+/**
  * Returns the renewable ratio of a zone
  * @param zoneData - The zone data
  * @param isConsumption - Whether the ratio is for consumption or production
@@ -133,10 +240,6 @@ export function getNetExchange(
   zoneData: ZoneDetail,
   displayByEmissions: boolean
 ): number {
-  if (Object.keys(zoneData.exchange).length === 0) {
-    return Number.NaN;
-  }
-
   if (
     !displayByEmissions &&
     zoneData.totalImport === null &&
@@ -158,3 +261,42 @@ export function getNetExchange(
 
   return netExchangeValue;
 }
+
+export const getZoneTimezone = (zoneId?: string) => {
+  if (!zoneId) {
+    return undefined;
+  }
+  const { zones } = zonesConfigJSON as unknown as CombinedZonesConfig;
+  return zones[zoneId]?.timezone;
+};
+
+const MOBILE_USER_AGENT_PATTERN: RegExp =
+  /android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i;
+/**
+ * @returns {Boolean} true if agent is probably a mobile device.
+ */
+export const hasMobileUserAgent = () =>
+  MOBILE_USER_AGENT_PATTERN.test(navigator.userAgent);
+
+export const isValidHistoricalTimeRange = (timeRange: TimeRange) =>
+  historicalTimeRange.includes(timeRange);
+
+export const getLocalTime = (date: Date, timezone?: string) => {
+  if (!timezone) {
+    return { localHours: date.getUTCHours(), localMinutes: date.getUTCMinutes() };
+  }
+
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  });
+
+  const [hours, minutes] = formatter
+    .format(date)
+    .split(':')
+    .map((n) => Number.parseInt(n, 10));
+
+  return { localHours: hours, localMinutes: minutes };
+};

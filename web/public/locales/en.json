@@ -12,9 +12,6 @@
     "AG": {
       "zoneName": "Antigua and Barbuda"
     },
-    "AI": {
-      "zoneName": "Anguilla"
-    },
     "AL": {
       "zoneName": "Albania"
     },
@@ -24,14 +21,8 @@
     "AO": {
       "zoneName": "Angola"
     },
-    "AQ": {
-      "zoneName": "Antarctica"
-    },
     "AR": {
       "zoneName": "Argentina"
-    },
-    "AS": {
-      "zoneName": "American Samoa"
     },
     "AT": {
       "zoneName": "Austria"
@@ -132,9 +123,6 @@
     "BO": {
       "zoneName": "Bolivia"
     },
-    "BQ": {
-      "zoneName": "Bonaire, Sint Eustatius and Saba"
-    },
     "BR": {
       "zoneName": "Brazil"
     },
@@ -160,9 +148,6 @@
     "BT": {
       "zoneName": "Bhutan"
     },
-    "BV": {
-      "zoneName": "Bouvet Island"
-    },
     "BW": {
       "zoneName": "Botswana"
     },
@@ -171,6 +156,9 @@
     },
     "BZ": {
       "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Canada"
     },
     "CA-AB": {
       "countryName": "Canada",
@@ -191,14 +179,6 @@
     "CA-NL": {
       "countryName": "Canada",
       "zoneName": "Newfoundland and Labrador"
-    },
-    "CA-NL-LB": {
-      "countryName": "Canada",
-      "zoneName": "Labrador"
-    },
-    "CA-NL-NF": {
-      "countryName": "Canada",
-      "zoneName": "Newfoundland"
     },
     "CA-NS": {
       "countryName": "Canada",
@@ -232,9 +212,6 @@
       "countryName": "Canada",
       "zoneName": "Yukon"
     },
-    "CC": {
-      "zoneName": "Cocos Islands"
-    },
     "CD": {
       "zoneName": "Democratic Republic of the Congo"
     },
@@ -249,9 +226,6 @@
     },
     "CI": {
       "zoneName": "Ivory Coast"
-    },
-    "CK": {
-      "zoneName": "Cook Islands"
     },
     "CL-CHP": {
       "countryName": "Chile",
@@ -289,9 +263,6 @@
     },
     "CW": {
       "zoneName": "Curaçao"
-    },
-    "CX": {
-      "zoneName": "Christmas Island"
     },
     "CY": {
       "zoneName": "Cyprus"
@@ -371,6 +342,14 @@
       "countryName": "Spain",
       "zoneName": "Fuerteventura/Lanzarote"
     },
+    "ES-CN-FV": {
+      "countryName": "Spain",
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spain",
+      "zoneName": "Lanzarote"
+    },
     "ES-CN-GC": {
       "countryName": "Spain",
       "zoneName": "Gran Canaria"
@@ -444,9 +423,6 @@
     "GB-ZET": {
       "countryName": "Great Britain",
       "zoneName": "Shetland Islands"
-    },
-    "GD": {
-      "zoneName": "Grenada"
     },
     "GE": {
       "zoneName": "Georgia"
@@ -527,7 +503,8 @@
       "zoneName": "Isle of Man"
     },
     "IN": {
-      "zoneName": "Mainland India"
+      "zoneName": "Mainland India",
+      "countryName": "India"
     },
     "IN-EA": {
       "countryName": "India",
@@ -553,117 +530,9 @@
       "countryName": "India",
       "zoneName": "Andaman and Nicobar Islands"
     },
-    "IN-AP": {
-      "countryName": "India",
-      "zoneName": "Andhra Pradesh"
-    },
-    "IN-AR": {
-      "countryName": "India",
-      "zoneName": "Arunachal Pradesh"
-    },
-    "IN-AS": {
-      "countryName": "India",
-      "zoneName": "Assam"
-    },
-    "IN-BR": {
-      "countryName": "India",
-      "zoneName": "Bihar"
-    },
-    "IN-CT": {
-      "countryName": "India",
-      "zoneName": "Chhattisgarh"
-    },
-    "IN-DL": {
-      "countryName": "India",
-      "zoneName": "Delhi"
-    },
-    "IN-DN": {
-      "countryName": "India",
-      "zoneName": "Dadra and Nagar Haveli"
-    },
-    "IN-GA": {
-      "countryName": "India",
-      "zoneName": "Goa"
-    },
-    "IN-GJ": {
-      "countryName": "India",
-      "zoneName": "Gujarat"
-    },
     "IN-HP": {
       "countryName": "India",
       "zoneName": "Himachal Pradesh"
-    },
-    "IN-HR": {
-      "countryName": "India",
-      "zoneName": "Haryana"
-    },
-    "IN-JH": {
-      "countryName": "India",
-      "zoneName": "Jharkhand"
-    },
-    "IN-JK": {
-      "countryName": "India",
-      "zoneName": "Jammu and Kashmir"
-    },
-    "IN-KA": {
-      "countryName": "India",
-      "zoneName": "Karnataka"
-    },
-    "IN-KL": {
-      "countryName": "India",
-      "zoneName": "Kerala"
-    },
-    "IN-MH": {
-      "countryName": "India",
-      "zoneName": "Maharashtra"
-    },
-    "IN-ML": {
-      "countryName": "India",
-      "zoneName": "Meghalaya"
-    },
-    "IN-MN": {
-      "countryName": "India",
-      "zoneName": "Manipur"
-    },
-    "IN-MP": {
-      "countryName": "India",
-      "zoneName": "Madhya Pradesh"
-    },
-    "IN-MZ": {
-      "countryName": "India",
-      "zoneName": "Mizoram"
-    },
-    "IN-NL": {
-      "countryName": "India",
-      "zoneName": "Nagaland"
-    },
-    "IN-OR": {
-      "countryName": "India",
-      "zoneName": "Orissa"
-    },
-    "IN-PB": {
-      "countryName": "India",
-      "zoneName": "Punjab"
-    },
-    "IN-PY": {
-      "countryName": "India",
-      "zoneName": "Pondicherry"
-    },
-    "IN-RJ": {
-      "countryName": "India",
-      "zoneName": "Rajasthan"
-    },
-    "IN-SK": {
-      "countryName": "India",
-      "zoneName": "Sikkim"
-    },
-    "IN-TN": {
-      "countryName": "India",
-      "zoneName": "Tamil Nadu"
-    },
-    "IN-TR": {
-      "countryName": "India",
-      "zoneName": "Tripura"
     },
     "IN-UP": {
       "countryName": "India",
@@ -672,10 +541,6 @@
     "IN-UT": {
       "countryName": "India",
       "zoneName": "Uttarakhand"
-    },
-    "IN-WB": {
-      "countryName": "India",
-      "zoneName": "West Bengal"
     },
     "IO": {
       "zoneName": "British Indian Ocean Territory"
@@ -781,14 +646,8 @@
     "KH": {
       "zoneName": "Cambodia"
     },
-    "KI": {
-      "zoneName": "Kiribati"
-    },
     "KM": {
       "zoneName": "Comoros"
-    },
-    "KN": {
-      "zoneName": "Saint Kitts and Nevis"
     },
     "KP": {
       "zoneName": "North Korea"
@@ -850,15 +709,8 @@
     "ME": {
       "zoneName": "Montenegro"
     },
-    "MF": {
-      "countryName": "Saint Martin",
-      "zoneName": "French"
-    },
     "MG": {
       "zoneName": "Madagascar"
-    },
-    "MH": {
-      "zoneName": "Marshall Islands"
     },
     "MK": {
       "zoneName": "North Macedonia"
@@ -874,9 +726,6 @@
     },
     "MO": {
       "zoneName": "Macao"
-    },
-    "MP": {
-      "zoneName": "Northern Mariana Islands"
     },
     "MQ": {
       "zoneName": "Martinique"
@@ -961,17 +810,11 @@
     "NE": {
       "zoneName": "Niger"
     },
-    "NF": {
-      "zoneName": "Norfolk Island"
-    },
     "NG": {
       "zoneName": "Nigeria"
     },
     "NI": {
       "zoneName": "Nicaragua"
-    },
-    "NKR": {
-      "zoneName": "Nagorno-Karabakh"
     },
     "NL": {
       "zoneName": "Netherlands"
@@ -1001,12 +844,6 @@
     },
     "NP": {
       "zoneName": "Nepal"
-    },
-    "NR": {
-      "zoneName": "Nauru"
-    },
-    "NU": {
-      "zoneName": "Niue"
     },
     "NZ": {
       "zoneName": "New Zealand"
@@ -1061,9 +898,6 @@
     },
     "PM": {
       "zoneName": "Saint Pierre and Miquelon"
-    },
-    "PN": {
-      "zoneName": "Pitcairn"
     },
     "PR": {
       "zoneName": "Puerto Rico"
@@ -1164,9 +998,6 @@
     "SG": {
       "zoneName": "Singapore"
     },
-    "SH": {
-      "zoneName": "Saint Helena, Ascension and Tristan da Cunha"
-    },
     "SI": {
       "zoneName": "Slovenia"
     },
@@ -1178,9 +1009,6 @@
     },
     "SL": {
       "zoneName": "Sierra Leone"
-    },
-    "SM": {
-      "zoneName": "San Marino"
     },
     "SN": {
       "zoneName": "Senegal"
@@ -1200,18 +1028,11 @@
     "SV": {
       "zoneName": "El Salvador"
     },
-    "SX": {
-      "countryName": "Sint Maarten",
-      "zoneName": "Dutch"
-    },
     "SY": {
       "zoneName": "Syria"
     },
     "SZ": {
       "zoneName": "Eswatini"
-    },
-    "TC": {
-      "zoneName": "Turks and Caicos Islands"
     },
     "TD": {
       "zoneName": "Chad"
@@ -1227,9 +1048,6 @@
     },
     "TJ": {
       "zoneName": "Tajikistan"
-    },
-    "TK": {
-      "zoneName": "Tokelau"
     },
     "TL": {
       "zoneName": "Timor-Leste"
@@ -1249,9 +1067,6 @@
     "TT": {
       "zoneName": "Trinidad and Tobago"
     },
-    "TV": {
-      "zoneName": "Tuvalu"
-    },
     "TW": {
       "zoneName": "Taiwan"
     },
@@ -1268,11 +1083,8 @@
     "UG": {
       "zoneName": "Uganda"
     },
-    "UM": {
-      "zoneName": "United States Minor Outlying Islands"
-    },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "United States"
     },
     "US-AK": {
       "countryName": "USA",
@@ -1281,6 +1093,10 @@
     "US-AK-SEAPA": {
       "countryName": "USA",
       "zoneName": "Southeast Alaska Power Agency"
+    },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
     },
     "US-HI-HA": {
       "countryName": "USA",
@@ -1321,8 +1137,8 @@
     },
     "US-CAL-CISO": {
       "countryName": "USA",
-      "displayName": "CAISO",
-      "zoneName": "California ISO"
+      "displayName": "California ISO",
+      "zoneName": "CAISO"
     },
     "US-CAL-IID": {
       "countryName": "USA",
@@ -1427,7 +1243,7 @@
     },
     "US-NE-ISNE": {
       "countryName": "USA",
-      "zoneName": "New England ISO"
+      "zoneName": "ISO New England"
     },
     "US-NW-AVA": {
       "countryName": "USA",
@@ -1452,10 +1268,6 @@
     "US-NW-GRID": {
       "countryName": "USA",
       "zoneName": "Gridforce Energy Management"
-    },
-    "US-NW-GWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Power Watch"
     },
     "US-NW-IPCO": {
       "countryName": "USA",
@@ -1508,10 +1320,6 @@
       "displayName": "WAPA Upper Great Plains",
       "zoneName": "Western Area Power Administration - Upper Great Plains West"
     },
-    "US-NW-WWA": {
-      "countryName": "USA",
-      "zoneName": "Naturener Wind Watch"
-    },
     "US-NY-NYIS": {
       "countryName": "USA",
       "zoneName": "New York ISO"
@@ -1531,10 +1339,6 @@
     "US-SW-EPE": {
       "countryName": "USA",
       "zoneName": "El Paso Electric Company"
-    },
-    "US-SW-GRIF": {
-      "countryName": "USA",
-      "zoneName": "Griffith Energy"
     },
     "US-SW-PNM": {
       "countryName": "USA",
@@ -1569,18 +1373,11 @@
     "UZ": {
       "zoneName": "Uzbekistan"
     },
-    "VA": {
-      "zoneName": "Vatican City"
-    },
     "VC": {
       "zoneName": "Saint Vincent and the Grenadines"
     },
     "VE": {
       "zoneName": "Venezuela"
-    },
-    "VG": {
-      "countryName": "Virgin Islands",
-      "zoneName": "Virgin Islands"
     },
     "VI": {
       "countryName": "USA",
@@ -1589,23 +1386,8 @@
     "VN": {
       "zoneName": "Vietnam"
     },
-    "VN-C": {
-      "countryName": "Vietnam",
-      "zoneName": "Central Vietnam"
-    },
-    "VN-N": {
-      "countryName": "Vietnam",
-      "zoneName": "Northern Vietnam"
-    },
-    "VN-S": {
-      "countryName": "Vietnam",
-      "zoneName": "Southern Vietnam"
-    },
     "VU": {
       "zoneName": "Vanuatu"
-    },
-    "WF": {
-      "zoneName": "Wallis and Futuna"
     },
     "WS": {
       "zoneName": "Samoa"

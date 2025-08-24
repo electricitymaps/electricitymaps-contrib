@@ -5,6 +5,7 @@ import { Text } from '@visx/text';
 import { memo } from 'react';
 
 import InfoIconWithPadding from './InfoIconWithPadding';
+import LabelTooltip from './tooltips/LabelTooltip';
 import TooltipWrapper from './tooltips/TooltipWrapper';
 
 const FULL_CIRCLE = 360;
@@ -35,7 +36,7 @@ const BackgroundArc = memo(function BackgroundArc({ radius }: { radius: number }
       innerRadius={radius * 0.8}
       startAngle={PIE_START_ANGLE}
       endAngle={PIE_END_ANGLE}
-      className="fill-gray-200/60 dark:fill-gray-600/50"
+      className="fill-neutral-600/15 dark:fill-neutral-600/50"
       cornerRadius={radius}
     />
   );
@@ -71,12 +72,7 @@ const SpringAnimatedArc = memo(function SpringAnimatedArc({
   );
 });
 
-export function CircularGauge({
-  ratio,
-  name,
-  testId,
-  tooltipContent,
-}: CircularGaugeProps) {
+function CircularGauge({ ratio, name, testId, tooltipContent }: CircularGaugeProps) {
   const height = 80;
   const width = 80;
   const radius = Math.min(width, height) / 2;
@@ -85,8 +81,12 @@ export function CircularGauge({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <TooltipWrapper tooltipContent={tooltipContent} side="bottom" sideOffset={8}>
-        <div data-test-id={testId} className="relative flex flex-col items-center">
+      <TooltipWrapper
+        tooltipContent={<LabelTooltip>{tooltipContent}</LabelTooltip>}
+        side="bottom"
+        sideOffset={8}
+      >
+        <div data-testid={testId} className="relative flex flex-col items-center">
           <svg height={height} width={width}>
             <Group top={centerY} left={centerX} height={height} width={width}>
               <BackgroundArc radius={radius} />
@@ -110,3 +110,5 @@ export function CircularGauge({
     </div>
   );
 }
+
+export default memo(CircularGauge);

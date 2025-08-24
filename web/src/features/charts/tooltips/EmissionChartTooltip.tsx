@@ -1,16 +1,22 @@
 import { useAtomValue } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import { formatCo2 } from 'utils/formatting';
-import { isConsumptionAtom, timeAverageAtom } from 'utils/state/atoms';
+import { round } from 'utils/helpers';
+import {
+  isConsumptionAtom,
+  isFiveMinuteOrHourlyGranularityAtom,
+  timeRangeAtom,
+} from 'utils/state/atoms';
 
 import { getTotalEmissionsAvailable } from '../graphUtils';
 import { InnerAreaGraphTooltipProps } from '../types';
 import AreaGraphToolTipHeader from './AreaGraphTooltipHeader';
 
 export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphTooltipProps) {
-  const timeAverage = useAtomValue(timeAverageAtom);
+  const timeRange = useAtomValue(timeRangeAtom);
   const isConsumption = useAtomValue(isConsumptionAtom);
   const { t } = useTranslation();
+  const isFineGranularity = useAtomValue(isFiveMinuteOrHourlyGranularityAtom);
 
   if (!zoneDetail) {
     return null;
@@ -18,17 +24,18 @@ export default function EmissionChartTooltip({ zoneDetail }: InnerAreaGraphToolt
 
   const totalEmissions = getTotalEmissionsAvailable(zoneDetail, isConsumption);
   const { stateDatetime, estimationMethod, estimatedPercentage } = zoneDetail;
-  const hasEstimationPill = Boolean(estimationMethod) || Boolean(estimatedPercentage);
+  const roundedEstimatedPercentage = round(estimatedPercentage ?? 0, 0);
+  const hasEstimationOrAggregationPill = Boolean(estimationMethod) || !isFineGranularity;
 
   return (
-    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-gray-700 dark:bg-gray-800 sm:w-[410px]">
+    <div className="w-full rounded-md bg-white p-3 shadow-xl dark:border dark:border-neutral-700 dark:bg-neutral-800 sm:w-[410px]">
       <AreaGraphToolTipHeader
         datetime={new Date(stateDatetime)}
-        timeAverage={timeAverage}
+        timeRange={timeRange}
         squareColor="#a5292a"
         title={t('country-panel.emissions')}
-        hasEstimationPill={hasEstimationPill}
-        estimatedPercentage={estimatedPercentage}
+        hasEstimationOrAggregationPill={hasEstimationOrAggregationPill}
+        estimatedPercentage={roundedEstimatedPercentage}
         estimationMethod={estimationMethod}
       />
       <p className="flex justify-center text-base">

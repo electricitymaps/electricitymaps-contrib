@@ -13,33 +13,34 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import ProductionModes, refetch_frequency
 
+from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
+from .ENTSOE import parse_production as ENTSOE_parse_production
+from .ENTSOE import query_production as ENTSOE_query_production
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
 URL = "https://api.ned.nl/v1/utilizations"
 
 TYPE_MAPPING = {
-    1: "wind",
-    51: "wind",
-    2: "solar",
-    9: "geothermal",
-    10: "unknown",
-    26: "unknown",
-    18: "gas",
-    35: "gas",
-    19: "coal",
-    20: "nuclear",
-    21: "biomass",
-    25: "biomass",
+    1: ProductionModes.WIND,
+    51: ProductionModes.WIND,
+    2: ProductionModes.SOLAR,
+    10: ProductionModes.UNKNOWN,
+    26: ProductionModes.UNKNOWN,
+    18: ProductionModes.GAS,
+    35: ProductionModes.GAS,
+    19: ProductionModes.COAL,
+    20: ProductionModes.NUCLEAR,
+    21: ProductionModes.BIOMASS,
+    25: ProductionModes.BIOMASS,
 }
 
 
 class NedType(Enum):
     WIND = 1
     SOLAR = 2
-    GEOTHERMAL = 9
     OTHER = 10
     FOSSILGASPOWER = 18
     FOSSILHARDCOAL = 19
@@ -84,21 +85,27 @@ def _kwh_to_mw(kwh):
     return round((kwh / 1000) * 4, 3)
 
 
-# There is a limit of items we can get per page, so we fetch all possible per page.
+# It seems the API can take max itemPerPage 200. We fetch x items per page as this is: x = (# types * 4 quaters * n hours) < 200
+# If the itemsPerPage is not a multiple of the types the API sometime skips a type, sometimes duplicates a type!
 # The API does not include the last page number in the response, so we need to keep querying until we get an empty response
 def call_api(target_datetime: datetime, forecast: bool = False):
     is_last_page = False
     pageNum = 1
     results = []
+
+    itemsPerPage = max(
+        [(len(NedType) * 4 * n) for n in range(1, 6) if (len(NedType) * 4 * n) < 200]
+    )
+
     while not is_last_page:
+        # API fetches full day of data, so we add 1 day to validfrom[before] to get todays data
         params = {
             "page": pageNum,
-            "itemsPerPage": 3500,
+            "itemsPerPage": itemsPerPage,
             "point": NedPoint.NETHERLANDS.value,
             "type[]": [
                 NedType.WIND.value,
                 NedType.SOLAR.value,
-                NedType.GEOTHERMAL.value,
                 NedType.OTHER.value,
                 NedType.FOSSILGASPOWER.value,
                 NedType.FOSSILHARDCOAL.value,
@@ -135,10 +142,35 @@ def call_api(target_datetime: datetime, forecast: bool = False):
         results += response.json()
         pageNum += 1
 
-        if response.json() == [] or pageNum > 20:
+        if response.json() == [] or pageNum > 30:
             is_last_page = True
 
     return results
+
+
+def _get_entsoe_production_data(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    # Add 2 days as ENTSOE fetches data from three days before target_datetime, where NED.nl fetches for target_datetime and day before
+    ENTSOE_raw_data = ENTSOE_query_production(
+        ENTSOE_DOMAIN_MAPPINGS[zone_key],
+        session,
+        target_datetime=(target_datetime + timedelta(days=2)),
+    )
+    if ENTSOE_raw_data is None:
+        raise ParserException(
+            parser="NED.py",
+            message="Failed to fetch ENTSOE data",
+            zone_key=zone_key,
+        )
+    ENTSOE_parsed_data = ENTSOE_parse_production(
+        ENTSOE_raw_data, zoneKey=zone_key, logger=logger
+    )
+
+    return ENTSOE_parsed_data
 
 
 def format_data(
@@ -166,6 +198,13 @@ def format_data(
 
     formatted_production_data = ProductionBreakdownList(logger)
     for _group_key, group_df in df:
+        # Add lag to avoid using data that is not yet complete and remove "future" data
+        if (
+            datetime.fromisoformat(group_df["validfrom"].iloc[0])
+            > (datetime.now(timezone.utc) - timedelta(hours=0.5))
+            and not forecast
+        ):
+            continue
         data_dict = group_df.to_dict(orient="records")
         mix = ProductionMix()
         for data in data_dict:
@@ -185,6 +224,7 @@ def format_data(
             if forecast
             else EventSourceType.measured,
         )
+
     return formatted_production_data
 
 
@@ -199,10 +239,25 @@ def fetch_production(
     target_datetime = target_datetime or datetime.now(timezone.utc)
 
     json_data = call_api(target_datetime)
-
     NED_data = format_data(json_data, logger)
 
-    return NED_data.to_list()
+    all_dates = [item.get("datetime") for item in NED_data.to_list()]
+
+    if all(
+        date >= datetime(2021, 1, 1, tzinfo=timezone.utc)
+        for date in all_dates
+        if date is not None
+    ):
+        return NED_data.to_list()
+
+    else:
+        ENTSOE_data = _get_entsoe_production_data(
+            zone_key, session, target_datetime, logger
+        )
+        combined_data = ProductionBreakdownList.update_production_breakdowns(
+            ENTSOE_data, NED_data, logger, matching_timestamps_only=True
+        )
+        return combined_data.to_list()
 
 
 def fetch_production_forecast(

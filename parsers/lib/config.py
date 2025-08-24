@@ -1,11 +1,65 @@
+import functools
 import os
+from collections.abc import ItemsView, KeysView, ValuesView
 from copy import deepcopy
 from datetime import timedelta
+from enum import Enum
 from inspect import signature
 from logging import getLogger
+from typing import TypeVar
 
+import requests
 from requests import Session
 from requests.adapters import HTTPAdapter, Retry
+
+ModeEnumType = TypeVar("ModeEnumType", bound="BaseModeEnum")
+
+
+# TODO: Switch this to StringEnum when we migrate to Python 3.11
+class BaseModeEnum(str, Enum):
+    """Base class for Mode enums."""
+
+    def __str__(self) -> str:
+        return self.value
+
+    @classmethod
+    def values(cls: type[ModeEnumType]) -> ValuesView[ModeEnumType]:
+        """Return a Values View of all enum members."""
+        return cls.__members__.values()
+
+    @classmethod
+    def names(cls) -> KeysView[str]:
+        """Return a Keys View of all enum names."""
+        return cls.__members__.keys()
+
+    @classmethod
+    def items(cls: type[ModeEnumType]) -> ItemsView[str, ModeEnumType]:
+        """Return an Items View of (name, member) tuples."""
+        return cls.__members__.items()
+
+
+class ProductionModes(BaseModeEnum):
+    """Energy production modes/sources used throughout the parsers."""
+
+    # TODO: When we migrate to StringEnum, we should use the `auto()` method
+    BIOMASS = "biomass"
+    COAL = "coal"
+    GAS = "gas"
+    GEOTHERMAL = "geothermal"
+    HYDRO = "hydro"
+    NUCLEAR = "nuclear"
+    OIL = "oil"
+    SOLAR = "solar"
+    WIND = "wind"
+    UNKNOWN = "unknown"
+
+
+class StorageModes(BaseModeEnum):
+    """Energy storage modes/sources used throughout the parsers."""
+
+    # TODO: When we migrate to StringEnum, we should use the `auto()` method
+    BATTERY = "battery"
+    HYDRO = "hydro"
 
 
 def refetch_frequency(frequency: timedelta):
@@ -18,6 +72,7 @@ def refetch_frequency(frequency: timedelta):
     assert isinstance(frequency, timedelta)
 
     def wrap(f):
+        @functools.wraps(f)
         def wrapped_f(*args, **kwargs):
             result = f(*args, **kwargs)
             return result
@@ -54,7 +109,7 @@ def retry_policy(retry_policy: Retry):
     return wrap
 
 
-def use_proxy(country_code: str):
+def use_proxy(country_code: str, monkeypatch_for_pydataxm: bool = False):
     """
     Decorator to route requests through webshare.io proxies for a specific country.
 
@@ -62,8 +117,23 @@ def use_proxy(country_code: str):
     and other proxy methods (like cloud run datacenter proxies) do not work. Note that this
     proxy service is not free and is charged per GB.
 
+    If you create an account with webshare.io to develop parsers for this
+    project, you should subscribe to the "residential" proxy type (not "static
+    residential"), as this choice includes most countries. As a practical
+    example, South Korea proxies are only available using this subscription.
+
     Args:
-        country_code (str): The ISO 3166-1 alpha-2 code of the country for which the proxy should be used.
+        country_code (str):
+            The ISO 3166-1 alpha-2 code of the country for which the proxy
+            should be used.
+        monkeypatch_for_pydataxm (bool):
+            The CO parser specifically makes use both requests.post and
+            aiohttp.ClientSession via a API specific third party library called
+            pydataxm that isn't configurable to use a proxy. By setting this to
+            True, we temporarily monkeypatch whats needed to get setup the
+            proxy.
+
+            See
 
     Usage:
     ```
@@ -74,65 +144,72 @@ def use_proxy(country_code: str):
     """
 
     def wrap(f):
+        sig = signature(f)
+        if "zone_key" in sig.parameters:
+            exchange_signature = False
+        elif "zone_key1" in sig.parameters and "zone_key2" in sig.parameters:
+            exchange_signature = True
+        else:
+            raise ValueError(
+                "Invalid function signature. Maybe you added the @decorators in "
+                "the wrong order? The use_proxy decorator should be the bottom decorator."
+            )
+
         def wrapped_f(*args, **kwargs):
             WEBSHARE_USERNAME = os.environ.get("WEBSHARE_USERNAME")
             WEBSHARE_PASSWORD = os.environ.get("WEBSHARE_PASSWORD")
-
-            sig = signature(f)
-
-            is_exchange_parser = (
-                "zone_key1" in sig.parameters or "zone_key2" in sig.parameters
-            )
-            is_production_parser = "zone_key" in sig.parameters
-
-            zone_keys = None
-            if is_exchange_parser:
-                zone_key1 = args[0] if len(args) > 0 else kwargs.get("zone_key1")
-                zone_key2 = args[1] if len(args) > 1 else kwargs.get("zone_key2")
-                session = args[2] if len(args) > 2 else kwargs.get("session")
-                target_datetime = (
-                    args[3] if len(args) > 3 else kwargs.get("target_datetime")
-                )
-                logger = (
-                    args[4]
-                    if len(args) > 4
-                    else kwargs.get("logger") or getLogger(__name__)
-                )
-                zone_keys = [zone_key1, zone_key2]
-            elif is_production_parser:
-                zone_key = args[0] if len(args) > 0 else kwargs.get("zone_key")
-                session = args[1] if len(args) > 1 else kwargs.get("session")
-                target_datetime = (
-                    args[2] if len(args) > 2 else kwargs.get("target_datetime")
-                )
-                logger = (
-                    args[3]
-                    if len(args) > 3
-                    else kwargs.get("logger") or getLogger(__name__)
-                )
-                zone_keys = [zone_key]
-            else:
-                raise ValueError(
-                    "Invalid function signature. Maybe you added the @decorators in the wrong order? The use_proxy decorator should be the bottom decorator."
-                )
-
-            if WEBSHARE_USERNAME is None or WEBSHARE_PASSWORD is None:
-                logger.error(
-                    "Proxy environment variables are not set. Continuing without proxy...\nAdd WEBSHARE_USERNAME and WEBSHARE_PASSWORD to use the proxy."
+            logger = kwargs.get("logger", getLogger(__name__))
+            if not WEBSHARE_USERNAME or not WEBSHARE_PASSWORD:
+                logger.warning(
+                    "Proxy environment variables are not set. "
+                    "Attempting without proxy...\n"
+                    "Add WEBSHARE_USERNAME and WEBSHARE_PASSWORD to use the proxy."
                 )
                 return f(*args, **kwargs)
 
-            session = Session() if session is None else session
-            old_proxies = session.proxies
-            new_proxies = {
+            logger.debug(f"Using proxy in {country_code}")
+            # get an existing Session object from args or kwargs, or create a
+            # new one, so it can be temporarily re-configured
+            if exchange_signature and len(args) >= 3:
+                session = args[2]
+            elif not exchange_signature and len(args) >= 2:
+                session = args[1]
+            else:
+                session = kwargs.setdefault("session", Session())
+
+            requests_proxy_dict = {
                 "http": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
                 "https": f"http://{WEBSHARE_USERNAME}-{country_code}-rotate:{WEBSHARE_PASSWORD}@p.webshare.io:80/",
             }
 
-            session.proxies.update(new_proxies)
-            result = f(*zone_keys, session, target_datetime, logger)
-            session.proxies.update(old_proxies)
-            return result
+            if monkeypatch_for_pydataxm:
+                from aiohttp import BasicAuth, ClientSession
+
+                aiohttp_old_post = ClientSession.post
+                requests_old_post = requests.post
+
+                ClientSession.post = functools.partialmethod(
+                    ClientSession.post,
+                    proxy="http://p.webshare.io",
+                    proxy_auth=BasicAuth(
+                        f"{WEBSHARE_USERNAME}-{country_code}-rotate",
+                        WEBSHARE_PASSWORD,
+                    ),
+                )
+                requests.post = functools.partial(
+                    requests.post,
+                    proxies=requests_proxy_dict,
+                )
+
+            old_proxies = session.proxies
+            session.proxies = requests_proxy_dict
+            try:
+                return f(*args, **kwargs)
+            finally:
+                session.proxies = old_proxies
+                if monkeypatch_for_pydataxm:
+                    ClientSession.post = aiohttp_old_post
+                    requests.post = requests_old_post
 
         return wrapped_f
 

@@ -54,47 +54,47 @@ emissionFactors:
     battery discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 571.1581301253204
+        value: 571.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 476.11209555921374
+        value: 476.11
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 393.15978346400476
+        value: 393.16
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 385.6195681182947
+        value: 385.62
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 459.2042079468457
+        value: 459.2
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 418.91602478276025
+        value: 418.92
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 443.234971158219
+        value: 443.23
     hydro discharge:
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 571.1581301253204
+        value: 571.16
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 476.11209555921374
+        value: 476.11
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 393.15978346400476
+        value: 393.16
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 385.6195681182947
+        value: 385.62
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 459.2042079468457
+        value: 459.2
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 418.91602478276025
+        value: 418.92
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 443.234971158219
+        value: 443.23
     unknown:
       _comment: calculated 20% nuclear, 80% thermal (coal)
       source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC
@@ -217,3 +217,5 @@ sources:
   Souther Regional Load Dispatch Center Allocation Limits 2018-2019:
     link: http://srldc.org/2018-19srallocation.aspx
 timezone: Asia/Kolkata
+zone_name: Unknown
+country_name: India

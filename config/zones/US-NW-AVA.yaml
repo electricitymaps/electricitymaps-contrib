@@ -5,53 +5,80 @@ bounding_box:
     - 49.50073
 capacity:
   battery storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1.2
+    - datetime: '2018-09-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 179.9
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 173.7
   coal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 561.5
   geothermal:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1176.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1235.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1251.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1170.1
+    - datetime: '2022-01-01'
       source: EIA.gov
       value: 1170.4
   hydro storage:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-11-01'
       source: EIA.gov
       value: 19.2
   unknown:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2023-10-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 105.3
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 249.3
+    - datetime: '2024-09-01'
+      source: EIA.gov
+      value: 349.3
 comment: Avista Corporation
 contributors:
   - systemcatch
@@ -61,9 +88,7 @@ country: US
 delays:
   consumption: 30
   consumptionForecast: 30
-  production: 32
-disclaimer: Data for real-time consumption and generation mix is estimated. Real-time
-  exchanges are not available.
+  production: 48
 emissionFactors:
   direct:
     battery discharge:
@@ -134,25 +159,25 @@ emissionFactors:
         value: 229.9614089117601
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 230.93490616900638
+        value: 230.93
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 319.1154021087451
+        value: 319.12
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 228.63734258995507
+        value: 228.64
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 176.9510803016178
+        value: 176.95
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 198.29779265727592
+        value: 198.3
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 184.13058128827444
+        value: 184.13
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 240.29665890694727
+        value: 240.3
     biomass:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -180,25 +205,25 @@ emissionFactors:
         value: 229.9614089117601
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 230.93490616900638
+        value: 230.93
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 319.1154021087451
+        value: 319.12
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 228.63734258995507
+        value: 228.64
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 176.9510803016178
+        value: 176.95
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 198.29779265727592
+        value: 198.3
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 184.13058128827444
+        value: 184.13
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 240.29665890694727
+        value: 240.3
     oil:
       datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
@@ -354,3 +379,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Avista Corporation
+country_name: USA

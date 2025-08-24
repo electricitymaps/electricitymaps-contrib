@@ -1,12 +1,15 @@
+import { Capacitor } from '@capacitor/core';
+import { Share as CapShare } from '@capacitor/share';
 import { Button, ButtonProps } from 'components/Button';
+import { MemoizedShareIcon } from 'components/ShareIcon';
 import { Toast, useToastReference } from 'components/Toast';
 import { isIos, isMobile } from 'features/weather-layers/wind-layer/util';
-import { Share, Share2 } from 'lucide-react';
-import { useState } from 'react';
+import { useShare } from 'hooks/useShare';
+import { Link } from 'lucide-react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-import { ShareType, trackShare } from 'utils/analytics';
-import { DEFAULT_ICON_SIZE } from 'utils/constants';
+import { baseUrl, DEFAULT_ICON_SIZE, DEFAULT_TOAST_DURATION } from 'utils/constants';
 
 interface ShareButtonProps
   extends Omit<
@@ -16,60 +19,43 @@ interface ShareButtonProps
   iconSize?: number;
   shareUrl?: string;
   showIosIcon?: boolean;
+  hasMobileUserAgent?: boolean;
 }
-const trackShareClick = trackShare(ShareType.SHARE);
-const DURATION = 3 * 1000;
 
 export function ShareButton({
   iconSize = DEFAULT_ICON_SIZE,
-  shareUrl,
+  shareUrl = baseUrl,
   showIosIcon = isIos(),
+  hasMobileUserAgent = isMobile(),
   ...restProps
 }: ShareButtonProps) {
   const { t } = useTranslation();
   const reference = useToastReference();
   const [toastMessage, setToastMessage] = useState('');
+  const { copyToClipboard, share } = useShare();
 
-  const url = shareUrl ?? window.location?.href;
-
-  const shareData = {
-    title: 'Electricity Maps',
-    text: 'Check this out!',
-    url,
-  };
-
-  const share = async () => {
-    try {
-      await navigator.share(shareData);
-    } catch (error) {
-      if (error instanceof Error && !/AbortError/.test(error.toString())) {
-        console.error(error);
-        setToastMessage(t('share-button.share-error'));
-        reference.current?.publish();
-      }
-    }
-  };
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(url);
-      setToastMessage(t('share-button.clipboard'));
-    } catch (error) {
-      console.error(error);
-      setToastMessage(t('share-button.clipboard-error'));
-    } finally {
+  const onClick = useCallback(async () => {
+    const toastMessageCallback = (message: string) => {
+      setToastMessage(message);
       reference.current?.publish();
-    }
-  };
+    };
 
-  const onClick = () => {
-    if (isMobile() && navigator.canShare({ url })) {
-      share();
-    } else {
-      copyToClipboard();
-    }
-    trackShareClick();
-  };
+    await (hasMobileUserAgent && (await CapShare.canShare())
+      ? share(
+          {
+            title: 'Electricity Maps',
+            text: 'Check this out!',
+            url: shareUrl,
+          },
+          toastMessageCallback
+        )
+      : copyToClipboard(shareUrl, toastMessageCallback));
+  }, [reference, hasMobileUserAgent, copyToClipboard, share, shareUrl]);
+
+  let shareIcon = <Link data-testid="linkIcon" size={iconSize} />;
+  if (hasMobileUserAgent || Capacitor.isNativePlatform()) {
+    shareIcon = <MemoizedShareIcon showIosIcon={showIosIcon} />;
+  }
 
   return (
     <>
@@ -82,13 +68,7 @@ export function ShareButton({
           showIosIcon ? '' : '-translate-x-px'
         )}
         onClick={onClick}
-        icon={
-          showIosIcon ? (
-            <Share data-test-id="iosShareIcon" size={iconSize} />
-          ) : (
-            <Share2 data-test-id="defaultShareIcon" size={iconSize} />
-          )
-        }
+        icon={shareIcon}
         {...restProps}
       />
       <Toast
@@ -96,7 +76,7 @@ export function ShareButton({
         description={toastMessage}
         isCloseable={true}
         toastCloseText={t('misc.dismiss')}
-        duration={DURATION}
+        duration={DEFAULT_TOAST_DURATION}
       />
     </>
   );

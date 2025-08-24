@@ -8,10 +8,16 @@ capacity:
     - datetime: '2024-01-01'
       source: opennem.org.au
       value: 100.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 885.0
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 65.13
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 102.23
   coal:
     - datetime: '2020-01-01'
       source: opennem.org.au
@@ -20,34 +26,47 @@ capacity:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 3430.4
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 3462.6
+  hydro:
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1.5
   oil:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 104.1
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 104.5
   solar:
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 2765.64
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2665.64
-  wind:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 1090.42
     - datetime: '2021-01-01'
       source: opennem.org.au
-      value: 1014.82
+      value: 2765.64
+  wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 611.57
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 1014.82
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 1090.42
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1105.87
 contributors:
   - jarek
   - corradio
   - MariusKroon
 country: AU
 delays:
-  production: 28
+  production: 96
 disclaimer: Western Australia's power grid is not connected to the (Australian) National
   Electricity Market or the Northern Territory grid.
 emissionFactors:
@@ -106,25 +125,28 @@ emissionFactors:
         value: 510.8590975293004
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 577.7569712332119
+        value: 577.76
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 559.8796745899491
+        value: 559.88
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 522.5583778880402
+        value: 522.56
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 488.1195552641504
+        value: 488.12
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 464.4462818159344
+        value: 464.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 430.88110948199784
+        value: 430.88
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 359.0481155050275
+        value: 417.37
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 387.03
     hydro discharge:
       - datetime: '2015-01-01'
         source: Electricity Maps, 2015 average
@@ -134,25 +156,28 @@ emissionFactors:
         value: 510.8590975293004
       - datetime: '2017-01-01'
         source: Electricity Maps, 2017 average
-        value: 577.7569712332119
+        value: 577.76
       - datetime: '2018-01-01'
         source: Electricity Maps, 2018 average
-        value: 559.8796745899491
+        value: 559.88
       - datetime: '2019-01-01'
         source: Electricity Maps, 2019 average
-        value: 522.5583778880402
+        value: 522.56
       - datetime: '2020-01-01'
         source: Electricity Maps, 2020 average
-        value: 488.1195552641504
+        value: 488.12
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
-        value: 464.4462818159344
+        value: 464.45
       - datetime: '2022-01-01'
         source: Electricity Maps, 2022 average
-        value: 430.88110948199784
+        value: 430.88
       - datetime: '2023-01-01'
         source: Electricity Maps, 2023 average
-        value: 359.0481155050275
+        value: 428.17
+      - datetime: '2024-01-01'
+        source: Electricity Maps, 2024 average
+        value: 394.99
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -278,21 +303,38 @@ fallbackZoneMixes:
     - _source: Electricity Maps, 2023 average
       datetime: '2023-01-01'
       value:
-        battery discharge: 0.0006979025229063169
-        biomass: 0.004231651618587027
-        coal: 0.2980110038395418
-        gas: 0.3486892917085244
+        battery discharge: 0.0006475946940200009
+        biomass: 0.004235763380929242
+        coal: 0.2992403986590204
+        gas: 0.3488167824513507
         geothermal: 0.0
         hydro: 0.0
         hydro discharge: 0.0
         nuclear: 0.0
-        oil: 0.00028560076244663534
-        solar: 0.1950718660457529
+        oil: 0.00028682589505083547
+        solar: 0.19255200040168485
         unknown: 0.0
-        wind: 0.153012735307941
+        wind: 0.15422067611662243
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0034738676206961397
+        biomass: 0.003274161716959677
+        coal: 0.2787645649166744
+        gas: 0.3091358966303054
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0006804763292333772
+        solar: 0.23467167868922628
+        unknown: 0.0
+        wind: 0.1699992813333499
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-  productionCapacity: OPENNEM.fetch_production_capacity
+  productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Perth
+zone_name: Western Australia
+country_name: Australia

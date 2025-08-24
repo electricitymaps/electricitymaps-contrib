@@ -1,3 +1,125 @@
+bounding_box:
+  - - 101.82922329223291
+    - 9.919902918851918
+  - - 108.10687606876067
+    - 15.204564920729169
+capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 75.27
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 75.97
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 68.27
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 66.27
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 75.27
+  coal:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 564.2
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 551.2
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 708.7
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 675.0
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1045.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1300.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 979.7
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 1329.7
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 1676.0
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 1791.0
+  oil:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 265.98
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 242.61
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 268.58
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 651.11
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 611.65
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 635.78
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 392.35
+  solar:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 31.91
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 42.05
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 137.28
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 329.8
+    - datetime: '2021-01-01'
+      source: IRENA.org
+      value: 392.26
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 477.06
+    - datetime: '2023-01-01'
+      source: IRENA.org
+      value: 481.88
+  unknown:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 29.16
+    - datetime: '2018-01-01'
+      source: IRENA.org
+      value: 24.21
+    - datetime: '2019-01-01'
+      source: IRENA.org
+      value: 0.95
+    - datetime: '2020-01-01'
+      source: IRENA.org
+      value: 7.95
+    - datetime: '2022-01-01'
+      source: IRENA.org
+      value: 7.65
+  wind:
+    - datetime: '2017-01-01'
+      source: IRENA.org
+      value: 0.25
 country: KH
+parsers:
+  productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Phnom_Penh
+zone_name: Cambodia
+country_name: Cambodia
