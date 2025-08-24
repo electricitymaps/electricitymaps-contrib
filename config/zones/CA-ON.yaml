@@ -25,7 +25,7 @@ capacity:
   nuclear:
     - datetime: '2025-03-01'
       source: ieso.ca
-      value: 12184.0  
+      value: 12184.0
     - datetime: '2023-12-01'
       source: ieso.ca
       value: 13144.0
