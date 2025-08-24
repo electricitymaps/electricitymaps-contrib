@@ -24,7 +24,16 @@ OUTLOOK_URL = "https://www.ieso.ca/-/media/Files/IESO/Document-Library/planning-
 
 
 def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFrame:
-    file_url = OUTLOOK_URL.format(date=target_datetime.strftime("%Y%b"))
+    # Calculate the last month of the last full quarter
+    current_quarter = ((target_datetime.month - 1) // 3) + 1
+    last_full_quarter = current_quarter - 1 if current_quarter > 1 else 4
+    year = target_datetime.year if current_quarter > 1 else target_datetime.year - 1
+    quarter_end_month = last_full_quarter * 3
+    quarter_end_date = target_datetime.replace(
+        year=year, month=quarter_end_month, day=1
+    )
+
+    file_url = OUTLOOK_URL.format(date=quarter_end_date.strftime("%Y%b"))
     file_response: Response = session.get(file_url)
     if "Error-404" not in file_response.url and file_response.ok:
         df = pd.read_excel(
@@ -33,7 +42,7 @@ def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFra
         return df
     else:
         raise ValueError(
-            f"Failed to fetch capacity data for IESO from url: {target_datetime.date()}"
+            f"Failed to fetch capacity data for IESO from url: {quarter_end_date.date()}"
         )
 
 
