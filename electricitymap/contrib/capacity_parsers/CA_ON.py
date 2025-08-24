@@ -46,7 +46,7 @@ def fetch_production_capacity(
         columns={"Fuel Type": "mode", "Total Installed Capacity\n(MW)": "value"}
     )
     df = df[["mode", "value"]]
-    df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING.get(x, None))
+    df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING.get(x))
     df = df.dropna(subset=["mode"])  # Drop rows where 'mode' is None
     capacity = {}
     for _idx, data in df.iterrows():
