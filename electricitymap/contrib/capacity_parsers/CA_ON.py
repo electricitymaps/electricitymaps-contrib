@@ -46,7 +46,8 @@ def fetch_production_capacity(
         columns={"Fuel Type": "mode", "Total Installed Capacity\n(MW)": "value"}
     )
     df = df[["mode", "value"]]
-    df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING[x])
+    df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING.get(x, None))
+    df = df.dropna(subset=["mode"])  # Drop rows where 'mode' is None
     capacity = {}
     for _idx, data in df.iterrows():
         capacity[data["mode"]] = {
@@ -62,4 +63,4 @@ def fetch_production_capacity(
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    fetch_production_capacity(ZoneKey("CA_ON"), datetime(2023, 3, 1), Session())
+    fetch_production_capacity(ZoneKey("CA_ON"), datetime(2025, 3, 1), Session())
