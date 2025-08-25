@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.lib.models.event_lists import ExchangeList
+from electricitymap.contrib.lib.types import ZoneKey
 from parsers.lib.config import refetch_frequency
 from parsers.lib.exceptions import ParserException
 
@@ -59,7 +61,7 @@ MAP_MODES = {
 SOURCE = "rte-france.com"
 
 
-def query(url_type_arg, session: Session, target_datetime: datetime):
+def query(url_type_arg, session: Session, target_datetime: datetime | None):
     if target_datetime:
         date_to = target_datetime.replace(tzinfo=ZoneInfo("Europe/Paris"))
     else:
@@ -79,13 +81,13 @@ def query(url_type_arg, session: Session, target_datetime: datetime):
     return response.text
 
 
-def query_exchange(session, target_datetime):
+def query_exchange(session: Session, target_datetime: datetime | None):
     return query(
         url_type_arg="regionFlux", session=session, target_datetime=target_datetime
     )
 
 
-def query_production(session, target_datetime):
+def query_production(session: Session, target_datetime: datetime | None):
     return query(
         url_type_arg="region", session=session, target_datetime=target_datetime
     )
@@ -255,7 +257,7 @@ def parse_exchange_to_df(text):
     return df
 
 
-def format_exchange_df(df, sorted_zone_keys):
+def format_exchange_df(df, sorted_zone_keys: ZoneKey, logger: Logger):
     # There can be multiple rows with the same key
     # (e.g. multiple things lumping into `unknown`)
     # so we need to group them and sum.
@@ -269,28 +271,30 @@ def format_exchange_df(df, sorted_zone_keys):
         # value is present to compute a sum.
         .sum(min_count=1)
     )
-    return [
-        {
-            "sortedZoneKeys": sorted_zone_keys,
-            "datetime": ts.to_pydatetime(),
-            "netFlow": row.net_flow,
-            "source": SOURCE,
-        }
-        for (ts, row) in df.iterrows()
-    ]
+    exchange_list = ExchangeList(logger)
+    for ts, row in df.iterrows():
+        exchange_list.append(
+            zoneKey=sorted_zone_keys,
+            datetime=ts.to_pydatetime(),
+            netFlow=row.net_flow,
+            source=SOURCE,
+        )
+    return exchange_list.to_list()
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ):
+    session = session or Session()
     datapoints = format_exchange_df(
         df=parse_exchange_to_df(query_exchange(session, target_datetime)),
-        sorted_zone_keys="->".join(sorted([zone_key1, zone_key2])),
+        sorted_zone_keys=ZoneKey("->".join(sorted([zone_key1, zone_key2]))),
+        logger=logger,
     )
     return datapoints
 
@@ -306,16 +310,16 @@ if __name__ == "__main__":
     )
     print(
         fetch_exchange(
-            zone_key1="FR-BRE",
-            zone_key2="FR-PLO",
+            zone_key1=ZoneKey("FR-BRE"),
+            zone_key2=ZoneKey("FR-PLO"),
             session=session,
             target_datetime=target_datetime,
         )
     )
     print(
         fetch_exchange(
-            zone_key1="FR-BRE",
-            zone_key2="FR-NOR",
+            zone_key1=ZoneKey("FR-BRE"),
+            zone_key2=ZoneKey("FR-NOR"),
             session=session,
             target_datetime=target_datetime,
         )
