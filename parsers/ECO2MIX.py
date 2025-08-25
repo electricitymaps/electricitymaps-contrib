@@ -32,7 +32,7 @@ MAP_ZONES = {
     "GB": "GB",
     "IT": "IT-NO",
     "LU": "LU",
-    "ACA": "FR-ACA", # Manual mapping since we can't read the subzones yet
+    "ACA": "FR-ACA",  # Manual mapping since we can't read the subzones yet
     "ARA": "FR-ARA",
     "BFC": "FR-BFC",
     "BRE": "FR-BRE",
@@ -199,16 +199,6 @@ def fetch_production(
             zone_key=zone_key,
         )
     ]
-
-    # max_diffs = {
-    #     # "hydro": 1600,
-    #     # "solar": 500,
-    #     # "unknown": 2000,  # thermal
-    #     # "wind": 1000,
-    #     # "nuclear": 1300,
-    # }
-
-    # datapoints = validate_production_diffs(datapoints, max_diffs, logger)
 
     return datapoints
 
