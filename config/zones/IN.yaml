@@ -17,6 +17,7 @@ contributors:
   - gopikrishna1793
   - unitrium
 country: IN
+country_name: India
 emissionFactors:
   direct:
     battery discharge:
@@ -212,4 +213,3 @@ subZoneNames:
   - IN-SO
 timezone: Asia/Kolkata
 zone_name: Mainland India
-country_name: India

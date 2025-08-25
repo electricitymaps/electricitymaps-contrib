@@ -12,11 +12,13 @@ from electricitymap.contrib.config import CONFIG_DIR
 from electricitymap.contrib.lib.types import ZoneKey
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
-LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
+LOCALES_FOLDER_PATH = ROOT_PATH / "web/src/locales"
 LOCALE_FILE_PATHS = [
     LOCALES_FOLDER_PATH / f
     for f in listdir(LOCALES_FOLDER_PATH)
     if path.isfile(LOCALES_FOLDER_PATH / f) and f.endswith(".json")
+] + [
+    ROOT_PATH / "web/public/locales/en.json",
 ]
 
 

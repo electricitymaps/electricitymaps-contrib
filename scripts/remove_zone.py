@@ -128,6 +128,7 @@ def find_files_mentioning_zone(text):
         "node_modules",
         "dist",
         "archived",
+        ".venv",
     ]
     VALID_EXTENSIONS = (
         ".py",
