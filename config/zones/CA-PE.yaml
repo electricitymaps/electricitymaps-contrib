@@ -217,8 +217,6 @@ fallbackZoneMixes:
         solar: 0.00014838992733089316
         unknown: 0.45975793302739665
         wind: 0.30642071370616963
-parsers:
-  production: PrinceEdwardIsland.fetch_production
 region: Americas
 timezone: America/Halifax
 zone_name: Prince Edward Island
