@@ -144,7 +144,11 @@ def fetch_production(
         mix = ProductionMix()
         for key, value in item.items():
             if key in INVERT_PRODUCTION_MAPPPING:
-                mix.add_value(INVERT_PRODUCTION_MAPPPING[key], value)
+                mix.add_value(
+                    INVERT_PRODUCTION_MAPPPING[key],
+                    value,
+                    correct_negative_with_zero=True,
+                )
             elif key not in IGNORED_KEYS:
                 logger.warning("Unrecognized key '%s' in data skipped", key)
 
