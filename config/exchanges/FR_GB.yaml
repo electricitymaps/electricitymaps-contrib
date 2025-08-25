@@ -5,6 +5,6 @@ lonlat:
   - 0
   - 50.4
 parsers:
-  exchange: ELEXON.fetch_exchange
+  # exchange: ELEXON.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: -20

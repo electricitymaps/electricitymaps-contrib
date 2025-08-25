@@ -1,0 +1,6 @@
+parsers:
+  exchange: ECO2MIX.fetch_exchange
+lonlat:
+  - 1.5899
+  - 49.1347
+rotation: -45
