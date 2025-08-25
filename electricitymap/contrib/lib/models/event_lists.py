@@ -418,25 +418,64 @@ class OutageList(EventList[Outage]):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        capacity_reduction: float,
-        fuel_type: str,
+        production_reduction: ProductionMix | None = None,
+        storage_reduction: StorageMix | None = None,
         outage_type: OutageType | None = None,
         generator_id: str | None = None,
         reason: str | None = None,
+        sourceType: EventSourceType = EventSourceType.forecasted,
     ):
         event = Outage.create(
-            self.logger,
-            zoneKey,
-            datetime,
-            source,
-            capacity_reduction,
-            fuel_type,
-            outage_type,
-            generator_id,
-            reason,
+            logger=self.logger,
+            zoneKey=zoneKey,
+            datetime=datetime,
+            source=source,
+            production_reduction=production_reduction,
+            storage_reduction=storage_reduction,
+            outage_type=outage_type,
+            generator_id=generator_id,
+            reason=reason,
+            sourceType=sourceType,
         )
         if event:
             self.events.append(event)
+
+    @staticmethod
+    def _deduplicate_outages(outages: list[Outage], logger: Logger) -> list[Outage]:
+        unique_outages = []
+        seen_keys = set()
+        for outage in outages:
+            key = OutageList._get_outage_key(outage)
+            if key not in seen_keys:
+                seen_keys.add(key)
+                unique_outages.append(outage)
+        return unique_outages
+
+    @staticmethod
+    def _get_outage_key(
+        outage: Outage,
+    ) -> tuple:
+        production_reduction_key = (
+            frozenset(outage.production_reduction.dict(exclude_unset=True).items())
+            if outage.production_reduction is not None
+            else None
+        )
+        storage_reduction_key = (
+            frozenset(outage.storage_reduction.dict(exclude_unset=True).items())
+            if outage.storage_reduction is not None
+            else None
+        )
+        return (
+            outage.zoneKey,
+            outage.datetime,
+            outage.source,
+            outage.sourceType,
+            production_reduction_key,
+            storage_reduction_key,
+            outage.outage_type,
+            outage.generator_id,
+            outage.reason,
+        )
 
     @staticmethod
     def aggregate_across_generation_units(
@@ -445,23 +484,45 @@ class OutageList(EventList[Outage]):
         """
         Aggregates the outages over the generation units.
         """
-        aggregated_outages_df = (
-            pd.DataFrame([o.to_dict() for outage_list in outages for o in outage_list])
-            .drop_duplicates()
-            .groupby(["datetime", "zoneKey", "source", "fuel_type", "outage_type"])
-            .sum(numeric_only=True)
-            .sort_index()
-            .reset_index()
-        )
+        flattened_outages = [o for outage_list in outages for o in outage_list]
+        # TODO: Check that this is correct!
+        deduplicated_outages = OutageList._deduplicate_outages(flattened_outages, logger)
+
+        if not deduplicated_outages:
+            return OutageList(logger)
+
+        df = pd.DataFrame([elem.to_dict() for elem in deduplicated_outages])
+        grouped = df.groupby(["datetime", "zoneKey", "source"])
+
         aggregated_outages = OutageList(logger)
-        for _, row in aggregated_outages_df.iterrows():
-            aggregated_outages.append(
-                zoneKey=row["zoneKey"],
-                datetime=row["datetime"],
-                source=row["source"],
-                capacity_reduction=row["capacity_reduction"],
-                fuel_type=row["fuel_type"],
+        for name, group in grouped:
+            dt, zoneKey, source = name
+            filtered_production_reductions_to_aggregate = [
+                outage.production_reduction
+                for outage in group.itertuples()
+                if outage.production_reduction is not None
+            ]
+            filtered_storage_reductions_to_aggregate = [
+                outage.storage_reduction
+                for outage in group.itertuples()
+                if outage.storage_reduction is not None
+            ]
+            if not filtered_production_reductions_to_aggregate:
+                continue
+            aggregated_production_reduction = ProductionMix.merge(
+                filtered_production_reductions_to_aggregate
             )
+            aggregated_storage_reduction = StorageMix.merge(
+                filtered_storage_reductions_to_aggregate
+            )
+            aggregated_outages.append(
+                zoneKey=zoneKey,
+                datetime=dt.to_pydatetime(),
+                source=source,
+                production_reduction=aggregated_production_reduction,
+                storage_reduction=aggregated_storage_reduction,
+            )
+
         return aggregated_outages
 
 

@@ -845,9 +845,8 @@ class OutageType(str, Enum):
 
 
 class Outage(Event):
-    sourceType: EventSourceType = EventSourceType.forecasted
-    capacity_reduction: float
-    fuel_type: str
+    production_reduction: ProductionMix | None = None
+    storage_reduction: StorageMix | None = None
     outage_type: OutageType | None = None
     generator_id: str | None = None
     reason: str | None = None
@@ -858,22 +857,24 @@ class Outage(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        capacity_reduction: float,
-        fuel_type: str,
+        production_reduction: ProductionMix | None = None,
+        storage_reduction: StorageMix | None = None,
         outage_type: OutageType | None = None,
         generator_id: str | None = None,
         reason: str | None = None,
+        sourceType: EventSourceType = EventSourceType.forecasted,
     ) -> "Outage | None":
         try:
             return Outage(
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                capacity_reduction=capacity_reduction,
-                fuel_type=fuel_type,
+                production_reduction=production_reduction,
+                storage_reduction=storage_reduction,
                 outage_type=outage_type,
                 generator_id=generator_id,
                 reason=reason,
+                sourceType=sourceType,
             )
         except ValidationError as e:
             logger.error(
@@ -890,8 +891,10 @@ class Outage(Event):
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "source": self.source,
-            "capacity_reduction": self.capacity_reduction,
-            "fuel_type": self.fuel_type,
+            "sourceType": self.sourceType,
+            "production_reduction": self.production_reduction,
+            "storage_reduction": self.storage_reduction,
+            # TODO: or rewrite as "capacity_reduction": {**self.production_reduction, **self.storage_reduction},?
             "outage_type": self.outage_type,
             "generator_id": self.generator_id,
             "reason": self.reason,
