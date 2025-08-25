@@ -42,6 +42,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
     TotalProductionList,
 )
+from electricitymap.contrib.lib.models.events import ProductionBreakdown
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     OutageType,
@@ -993,7 +994,7 @@ def parse_outages(
 
             for entry in timeseries.find_all("Available_Period"):
                 quantity = float(entry.find("Point").find("quantity").contents[0])
-                capacity_reduction = installed_capacity - quantity
+                mode_capacity_reduction = float(installed_capacity - quantity)
 
                 time_range = entry.find("timeInterval")
                 start_time = time_range.find("start").contents[0]
@@ -1014,16 +1015,45 @@ def parse_outages(
                     ),
                     freq="H",
                 ).to_pydatetime():
-                    outages.append(
-                        zoneKey=zoneKey,
-                        datetime=dt,
-                        source="entsoe.eu",
-                        capacity_reduction=capacity_reduction,
-                        fuel_type=fuel_em_type,
-                        outage_type=outage_type,
-                        generator_id=generator_id,
-                        reason=reason,
-                    )
+                    if fuel_em_type in StorageModes.values():
+                        outages.append(
+                            zoneKey=zoneKey,
+                            datetime=dt,
+                            source="entsoe.eu",
+                            sourceType=EventSourceType.forecasted,
+                            production_reduction=None,
+                            storage_reduction=StorageMix(**{fuel_em_type:mode_capacity_reduction}),
+                            outage_type=outage_type,
+                            generator_id=generator_id,
+                            reason=reason,
+                        )
+                    elif fuel_em_type in ProductionModes.values():
+                        outages.append(
+                            zoneKey=zoneKey,
+                            datetime=dt,
+                            source="entsoe.eu",
+                            sourceType=EventSourceType.forecasted,
+                            production_reduction=ProductionMix(**{fuel_em_type:mode_capacity_reduction}),
+                            storage_reduction=None,
+                            outage_type=outage_type,
+                            generator_id=generator_id,
+                            reason=reason,
+                        )
+                    else:
+                        logger.warning(
+                            f"Unknown fuel type: {fuel_em_type} for {zoneKey} at {dt}"
+                        )
+                        outages.append(
+                            zoneKey=zoneKey,
+                            datetime=dt,
+                            source="entsoe.eu",
+                            sourceType=EventSourceType.estimated,
+                            production_reduction=ProductionMix(**{ProductionModes.UNKNOWN:mode_capacity_reduction}),
+                            storage_reduction=None,
+                            outage_type=outage_type,
+                            generator_id=generator_id,
+                            reason=reason,
+                        )
     return outages
 
 
@@ -1484,14 +1514,12 @@ def fetch_generation_outages(
     """
     if not session:
         session = Session()
-    non_aggregated_data = OutageList(logger)
+    non_aggregated_data: list[OutageList] = []
     for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
         domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
         try:
             raw_outage_data = query_generation_outages(
-                domain,
-                session,
-                target_datetime=target_datetime,
+                domain, session, target_datetime=target_datetime
             )
         except Exception as e:
             raise ParserException(
@@ -1505,9 +1533,12 @@ def fetch_generation_outages(
                 message=f"No generation outages data found for {_zone_key}",
                 zone_key=zone_key,
             )
-        non_aggregated_data += parse_outages(raw_outage_data, zone_key, logger)
+        # Aggregated data are regrouped unde the same zone key.
 
-    return non_aggregated_data.to_list()
+        non_aggregated_data.append(parse_outages(raw_outage_data, zone_key, logger))
+    return OutageList.aggregate_across_generation_units(
+        non_aggregated_data, logger
+    ).to_list()
 
 
 def _query_entsoe_zip_endpoint(
