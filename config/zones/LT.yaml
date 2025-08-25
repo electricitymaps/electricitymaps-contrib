@@ -103,6 +103,9 @@ capacity:
     - datetime: '2025-02-16'
       source: litgrid.eu
       value: 2408.0
+    - datetime: '2025-08-04'
+      source: litgrid.eu
+      value: 2725
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -153,6 +156,9 @@ capacity:
     - datetime: '2025-02-16'
       source: litgrid.eu
       value: 1832.0
+    - datetime: '2025-08-04'
+      source: litgrid.eu
+      value: 1890
 contributors:
   - corradio
   - nessie2013
