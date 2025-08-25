@@ -32,6 +32,23 @@ MAP_ZONES = {
     "GB": "GB",
     "IT": "IT-NO",
     "LU": "LU",
+    "ACA": "FR-ACA", # Manual mapping since we can't read the subzones yet
+    "ARA": "FR-ARA",
+    "BFC": "FR-BFC",
+    "BRE": "FR-BRE",
+    "CEN": "FR-CEN",
+    "NPP": "FR-NPP",
+    "IDF": "FR-IDF",
+    "NOR": "FR-NOR",
+    "ALP": "FR-ALP",
+    "LRM": "FR-LRM",
+    "PLO": "FR-PLO",
+    "PAC": "FR-PAC",
+}
+
+EXCHANGE_OVERRIDE = {
+    "DE->FR": (ZoneKey("DE"), ZoneKey("FR-ACA")),
+    "FR-LU": (ZoneKey("FR-ACA"), ZoneKey("LU")),
 }
 
 MAP_MODES = {
@@ -263,8 +280,15 @@ def format_exchange_df(df, sorted_zone_keys: ZoneKey, logger: Logger):
     # so we need to group them and sum.
     if df.empty:
         return []
+    # Handle exchange overrides, this is temporary until we use all FR subzones
+    new_zone_keys = None
+    if sorted_zone_keys in EXCHANGE_OVERRIDE:
+        zone_key1, zone_key2 = EXCHANGE_OVERRIDE[sorted_zone_keys]
+        new_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    use_zone_key = new_zone_keys or sorted_zone_keys
+
     df = (
-        df[df.sorted_zone_keys == sorted_zone_keys]
+        df[df.sorted_zone_keys == use_zone_key]
         .reset_index()
         .groupby(["datetime"])
         # We use `min_count=1` to make sure at least one non-NaN
@@ -291,9 +315,11 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ):
     session = session or Session()
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+
     datapoints = format_exchange_df(
         df=parse_exchange_to_df(query_exchange(session, target_datetime)),
-        sorted_zone_keys=ZoneKey("->".join(sorted([zone_key1, zone_key2]))),
+        sorted_zone_keys=sorted_zone_keys,
         logger=logger,
     )
     return datapoints
