@@ -48,7 +48,7 @@ MAP_ZONES = {
 
 EXCHANGE_OVERRIDE = {
     "DE->FR": (ZoneKey("DE"), ZoneKey("FR-ACA")),
-    "FR-LU": (ZoneKey("FR-ACA"), ZoneKey("LU")),
+    "FR->LU": (ZoneKey("FR-ACA"), ZoneKey("LU")),
 }
 
 MAP_MODES = {
