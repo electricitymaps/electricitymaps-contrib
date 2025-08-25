@@ -109,7 +109,7 @@ def fetch_production(
     prod_mix.add_value("solar", data["solar"])
     prod_mix.add_value("wind", data["wind"])
     storage_mix = StorageMix()
-    storage_mix.add_value("battery", data["battery_storage"])
+    storage_mix.add_value("battery", -data["battery_storage"])
 
     prod_breakdown_list = ProductionBreakdownList(logger)
     prod_breakdown_list.append(
