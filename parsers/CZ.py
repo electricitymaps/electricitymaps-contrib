@@ -60,9 +60,9 @@ def make_request(session, payload, zone_key):
     }
 
     res: Response = session.post(url, headers=headers, data=payload)
-    assert res.status_code == 200, (
-        f"Exception when fetching production for {zone_key}: error when calling {url}"
-    )
+    assert (
+        res.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling {url}"
 
     return res
 

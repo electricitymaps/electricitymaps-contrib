@@ -47,7 +47,7 @@ JSON_API_MAPPING = {
     "dts": "coal",
     "sumnar": "solar",
     "sumsalhit": "wind",
-    "Songino": "battery_storage"
+    "Songino": "battery_storage",
 }
 
 
