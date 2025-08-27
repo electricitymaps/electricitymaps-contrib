@@ -27,7 +27,8 @@
     "@capacitor/core": "^7.4.2",
     "@capacitor/ios": "^7.4.2",
     "@capacitor/share": "^7.0.1",
-    "@capacitor/status-bar": "^7.0.2"
+    "@capacitor/status-bar": "^7.0.2",
+    "capacitor-plugin-safe-area": "^4.0.0"
   },
   "devDependencies": {
     "@capacitor/assets": "^1.0.14",

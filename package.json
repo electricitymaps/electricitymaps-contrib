@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@capacitor-community/safe-area": "7.0.0-alpha.1"
+	}
+}

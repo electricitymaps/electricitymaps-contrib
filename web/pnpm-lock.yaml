@@ -98,6 +98,9 @@ importers:
       '@visx/text':
         specifier: ^3.12.0
         version: 3.12.0(react@18.3.1)
+      capacitor-plugin-safe-area:
+        specifier: ^4.0.0
+        version: 4.0.0(@capacitor/core@6.2.1)
       country-flag-icons:
         specifier: ^1.5.19
         version: 1.5.19
@@ -4718,6 +4721,11 @@ packages:
 
   caniuse-lite@1.0.30001731:
     resolution: {integrity: sha512-lDdp2/wrOmTRWuoB5DpfNkC0rJDU8DqRa6nYL6HK6sytw70QMopt/NIc/9SM7ylItlBWfACXk0tEn37UWM/+mg==}
+
+  capacitor-plugin-safe-area@4.0.0:
+    resolution: {integrity: sha512-5VHT4wG2TlwHtyy3zKrAjKwgJQgC3KeMfRW1bc8abTETLYNLxb85zvfpA0QFE59BxbtYHD57GvXKJuUPgEHl3g==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -14848,6 +14856,10 @@ snapshots:
   caniuse-lite@1.0.30001716: {}
 
   caniuse-lite@1.0.30001731: {}
+
+  capacitor-plugin-safe-area@4.0.0(@capacitor/core@6.2.1):
+    dependencies:
+      '@capacitor/core': 6.2.1
 
   caseless@0.12.0: {}
 

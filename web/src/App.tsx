@@ -1,10 +1,12 @@
 import { App as Cap } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
+import { SafeArea } from 'capacitor-plugin-safe-area';
 import { AppStoreBanner } from 'components/AppStoreBanner';
 import GtmPageTracker from 'components/GtmPageTracker';
 import LoadingOverlay from 'components/LoadingOverlay';
@@ -29,8 +31,21 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { metaTitleSuffix, Mode } from 'utils/constants';
-import { isEdgeToEdgeAndroid, useNavigateWithParameters } from 'utils/helpers';
+import { useNavigateWithParameters } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
+
+async function setSafeAreaVariables() {
+  const { insets } = await SafeArea.getSafeAreaInsets();
+  document.documentElement.style.setProperty('--safe-area-inset-top', `${insets.top}px`);
+  document.documentElement.style.setProperty(
+    '--safe-area-inset-right',
+    `${insets.right}px`
+  );
+  document.documentElement.style.setProperty(
+    '--safe-area-inset-bottom',
+    `${insets.bottom}px`
+  );
+}
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
@@ -62,14 +77,6 @@ export default function App(): ReactElement {
   const navigate = useNavigateWithParameters();
   const setIsMapMoving = useSetAtom(mapMovingAtom);
 
-  // const getDeviceInfo = async () => {
-  //   const info = await Device.getInfo();
-  // };
-
-  // useEffect(() => {
-  //   getDeviceInfo();
-  // }, []);
-
   useEffect(() => {
     if (isIntercomEnabled) {
       Intercom({
@@ -94,7 +101,8 @@ export default function App(): ReactElement {
 
   // Handle back button on Android
   useEffect(() => {
-    if (isEdgeToEdgeAndroid()) {
+    setSafeAreaVariables();
+    if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
         if (window.location.pathname === '/map/72h/hourly') {
           Cap.exitApp();
