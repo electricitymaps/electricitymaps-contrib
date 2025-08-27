@@ -2,11 +2,22 @@ import Logo from 'components/Logo';
 import TimeControllerWrapper from 'features/time/TimeControllerWrapper';
 import { Outlet, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { isEdgeToEdgeAndroid } from 'utils/helpers';
 
 function MapMobileHeader() {
+  const isNativeAndroid = isEdgeToEdgeAndroid();
+
   return (
-    <div className="mt-2 flex w-full items-center justify-between bg-gradient-to-b to-transparent pb-4 pl-3 pt-[max(0.75rem,env(safe-area-inset-top))] dark:from-black/60 sm:pt-3">
-      <Logo className=" h-8 w-28  fill-black dark:fill-white" />
+    <div
+      className={`flex w-full items-center justify-between pb-4 pl-3 dark:from-black/60 sm:pt-3 
+      ${
+        isNativeAndroid
+          ? 'pt-8'
+          : 'bg-gradient-to-b to-transparent pt-[max(0.75rem,env(safe-area-inset-top))]'
+      }
+    `}
+    >
+      <Logo className="h-8 w-28  fill-black dark:fill-white" />
     </div>
   );
 }

@@ -10,15 +10,6 @@ const baseConfig: CapacitorConfig = {
   ios: {
     scheme: 'Electricity Maps',
   },
-  android: {
-    adjustMarginsForEdgeToEdge: 'force',
-  },
-  plugins: {
-    StatusBar: {
-      overlaysWebView: false,
-      style: 'DEFAULT',
-    },
-  },
 };
 
 switch (process.env.NODE_ENV) {

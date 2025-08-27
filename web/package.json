@@ -57,7 +57,9 @@
   "dependencies": {
     "@capacitor/app": "^6.0.2",
     "@capacitor/core": "^6.2.1",
+    "@capacitor/device": "^7.0.2",
     "@capacitor/share": "^6.0.3",
+    "@capacitor/status-bar": "^7.0.2",
     "@google-cloud/storage": "^7.16.0",
     "@intercom/messenger-js-sdk": "^0.0.14",
     "@radix-ui/react-accordion": "^1.2.11",
