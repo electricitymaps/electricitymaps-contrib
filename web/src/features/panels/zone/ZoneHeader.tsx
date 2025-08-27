@@ -30,7 +30,7 @@ export default function ZoneHeader({ zoneId, isEstimated }: ZoneHeaderTitleProps
   const { t } = useTranslation();
 
   return (
-    <div className="flex w-full items-center pl-1 pr-4 pt-[calc(max(env(safe-area-inset-top),var(--safe-area-inset-top))-1rem)] sm:pt-2">
+    <div className="flex w-full items-center pl-1 pr-4 pt-[calc(max(env(safe-area-inset-top),var(--safe-area-inset-top))-2rem)] sm:pt-2">
       <Helmet prioritizeSeoTags>
         <title>{seoZoneName + metaTitleSuffix}</title>
         <link rel="canonical" href={canonicalUrl} />

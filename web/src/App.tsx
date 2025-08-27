@@ -96,12 +96,14 @@ export default function App(): ReactElement {
   // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
-    shouldUseDarkMode ? setStatusBarStyleDark() : setStatusBarStyleLight();
+    setSafeAreaVariables();
+    if (Capacitor.isNativePlatform()) {
+      shouldUseDarkMode ? setStatusBarStyleDark() : setStatusBarStyleLight();
+    }
   }, [shouldUseDarkMode]);
 
   // Handle back button on Android
   useEffect(() => {
-    setSafeAreaVariables();
     if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
       Cap.addListener('backButton', () => {
         if (window.location.pathname === '/map/72h/hourly') {
