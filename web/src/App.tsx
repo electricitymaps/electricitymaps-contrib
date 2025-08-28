@@ -96,11 +96,14 @@ export default function App(): ReactElement {
   // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
-    setSafeAreaVariables();
     if (Capacitor.isNativePlatform()) {
       shouldUseDarkMode ? setStatusBarStyleDark() : setStatusBarStyleLight();
     }
   }, [shouldUseDarkMode]);
+
+  useEffect(() => {
+    setSafeAreaVariables();
+  }, []);
 
   // Handle back button on Android
   useEffect(() => {
@@ -113,7 +116,7 @@ export default function App(): ReactElement {
         }
       });
     }
-  }, [shouldUseDarkMode]);
+  }, []);
 
   // Close zone panel and focus search
   const navigateToSearchAndFocus = useCallback(() => {
