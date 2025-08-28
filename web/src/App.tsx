@@ -1,10 +1,12 @@
 import { App as Cap } from '@capacitor/app';
 import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
 import * as Sentry from '@sentry/react';
 import useGetState from 'api/getState';
+import { SafeArea } from 'capacitor-plugin-safe-area';
 import { AppStoreBanner } from 'components/AppStoreBanner';
 import GtmPageTracker from 'components/GtmPageTracker';
 import LoadingOverlay from 'components/LoadingOverlay';
@@ -32,9 +34,30 @@ import { metaTitleSuffix, Mode } from 'utils/constants';
 import { useNavigateWithParameters } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
+async function setSafeAreaVariables() {
+  const { insets } = await SafeArea.getSafeAreaInsets();
+  document.documentElement.style.setProperty('--safe-area-inset-top', `${insets.top}px`);
+  document.documentElement.style.setProperty(
+    '--safe-area-inset-right',
+    `${insets.right}px`
+  );
+  document.documentElement.style.setProperty(
+    '--safe-area-inset-bottom',
+    `${insets.bottom}px`
+  );
+}
+
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
+
+const setStatusBarStyleDark = async () => {
+  await StatusBar.setStyle({ style: Style.Dark });
+};
+
+const setStatusBarStyleLight = async () => {
+  await StatusBar.setStyle({ style: Style.Light });
+};
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -73,7 +96,14 @@ export default function App(): ReactElement {
   // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
+    if (Capacitor.isNativePlatform()) {
+      shouldUseDarkMode ? setStatusBarStyleDark() : setStatusBarStyleLight();
+    }
   }, [shouldUseDarkMode]);
+
+  useEffect(() => {
+    setSafeAreaVariables();
+  }, []);
 
   // Handle back button on Android
   useEffect(() => {
