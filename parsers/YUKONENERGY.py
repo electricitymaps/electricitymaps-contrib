@@ -61,7 +61,6 @@ def fetch_production(
 
     session = session or Session()
 
-
     response = session.get(URL)
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
@@ -72,7 +71,6 @@ def fetch_production(
     )
     match_current = re.search(
         r"var rows_chart_current = parseDates\((\[\[.*?\]\])\);", html, re.DOTALL
-
     )
     if not match_past_day or not match_current:
         raise ParserException("YUKONENERGY.py", "Cannot find data", zone_key)
@@ -108,6 +106,7 @@ def fetch_production(
     all_production_breakdowns: list[ProductionBreakdownList] = []
 
     for item in past_day_data:
+        breakpoint()
         time, *datetime_data = item
 
         production_mode_list = ProductionBreakdownList(logger)
