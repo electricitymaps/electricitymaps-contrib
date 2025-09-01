@@ -43,11 +43,21 @@ SOURCE = "nyiso.com"
 TIMEZONE = ZoneInfo("America/New_York")
 ZONE = "US-NY-NYIS"
 
-mapping = {
+mapping_pre_april_2020 = {
     "Dual Fuel": "gas",
     "Natural Gas": "gas",
     "Nuclear": "nuclear",
     "Other Fossil Fuels": "unknown",
+    "Other Renewables": "unknown",
+    "Wind": "wind",
+    "Hydro": "hydro",
+}
+
+mapping_post_april_2020 = {
+    "Dual Fuel": "gas",
+    "Natural Gas": "gas",
+    "Nuclear": "nuclear",
+    "Other Fossil Fuels": "oil",
     "Other Renewables": "unknown",
     "Wind": "wind",
     "Hydro": "hydro",
@@ -88,7 +98,7 @@ def timestamp_converter(timestamp_string: str) -> datetime:
     return dt_aware
 
 
-def data_parser(df, logger) -> list[tuple[datetime, ProductionMix]]:
+def data_parser(df, mapping, logger) -> list[tuple[datetime, ProductionMix]]:
     """
     Takes dataframe and loops over rows to form dictionaries consisting of datetime and generation type.
     Merges these dictionaries using datetime key.
@@ -161,7 +171,11 @@ def fetch_production(
             # this can happen when target_datetime has no data available
             return []
 
-    clean_data = data_parser(raw_data, logger)
+    if target_datetime > datetime(2020, 4, 1, tzinfo=TIMEZONE):
+        clean_data = data_parser(raw_data, mapping_post_april_2020, logger)
+
+    else:
+        clean_data = data_parser(raw_data, mapping_pre_april_2020, logger)
 
     production_breakdowns = ProductionBreakdownList(logger=logger)
     for dt, mix in clean_data:

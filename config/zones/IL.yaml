@@ -360,7 +360,9 @@ isRenewable:
 parsers:
   consumption: IL.fetch_consumption
   price: IL.fetch_price
-  production: IL.fetch_production
+  # production: IL.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Jerusalem
+zone_name: Israel
+country_name: Israel

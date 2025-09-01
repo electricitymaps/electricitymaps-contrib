@@ -44,3 +44,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Khartoum
+zone_name: Sudan
+country_name: Sudan

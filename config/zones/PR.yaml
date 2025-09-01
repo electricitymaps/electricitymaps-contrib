@@ -307,10 +307,12 @@ isRenewable:
   unknown:
     value: 1
 parsers:
-  production: US_PREPA.fetch_production
+  # production: US_PREPA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 sources:
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: America/Puerto_Rico
+zone_name: Puerto Rico
+country_name: Puerto Rico

@@ -45,3 +45,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Indian/Maldives
+zone_name: Maldives
+country_name: Maldives

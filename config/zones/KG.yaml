@@ -33,3 +33,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Bishkek
+zone_name: Kyrgyzstan
+country_name: Kyrgyzstan

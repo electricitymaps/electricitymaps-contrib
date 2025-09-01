@@ -220,3 +220,5 @@ parsers:
   production: YUKONENERGY.fetch_production
 region: Americas
 timezone: America/Whitehorse
+zone_name: Yukon
+country_name: Canada

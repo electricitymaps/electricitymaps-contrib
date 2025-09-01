@@ -121,3 +121,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia
 timezone: Asia/Phnom_Penh
+zone_name: Cambodia
+country_name: Cambodia

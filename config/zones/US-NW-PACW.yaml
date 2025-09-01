@@ -5,10 +5,16 @@ bounding_box:
     - 47.5893300000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 185.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 123.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 118.7
@@ -19,18 +25,36 @@ capacity:
       source: EIA.gov
       value: 118.7
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1240.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 1301.8
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 1240.3
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 621.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 626.0
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3.7
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1055.6
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 1060.8
@@ -44,18 +68,54 @@ capacity:
       source: EIA.gov
       value: 893.8
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 42.3
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 93.0
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 110.9
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 120.9
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 130.9
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 140.9
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 158.9
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 166.9
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 172.5
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 229.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 284.1
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 294.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 297.4
@@ -86,11 +146,29 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 480.8
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 483.8
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 619.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 629.6
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 650.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 674.3
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 694.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 480.5
@@ -208,8 +286,7 @@ emissionFactors:
         value: 277.252
     coal:
       datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
       value: 811.451201
     gas:
       - datetime: '2020-01-01'
@@ -407,3 +484,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Pacificorp West
+country_name: USA

@@ -274,3 +274,5 @@ parsers:
   generationForecast: JP.fetch_generation_forecast
 region: Asia
 timezone: Asia/Tokyo
+zone_name: Tōkyō
+country_name: Japan

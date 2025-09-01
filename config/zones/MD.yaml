@@ -280,12 +280,16 @@ fallbackZoneMixes:
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
 parsers:
-  consumption: MD.fetch_consumption
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   price: MD.fetch_price
-  production: MD.fetch_production
+  production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau
+zone_name: Moldova
+country_name: Moldova

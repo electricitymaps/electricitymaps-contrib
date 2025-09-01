@@ -134,7 +134,7 @@ fallbackZoneMixes:
         solar: 3.1737369723046804e-06
         unknown: 0.03514963872097663
         wind: 0.18301042620050328
-parsers:
-  production: CA_NS.fetch_production
 region: Americas
 timezone: America/Halifax
+zone_name: Nova Scotia
+country_name: Canada

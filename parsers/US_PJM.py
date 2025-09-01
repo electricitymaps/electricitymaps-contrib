@@ -469,7 +469,7 @@ def fetch_grid_alerts(
         alertType = extract_alert_type(alert, i)
         message = extract_message(alert, i)
         startTime, endTime = extract_start_and_end_time(alert, i)
-        locationRegion = alert.find("span", {"class": "region-name"}).text.strip()
+        locationRegion = alert.find(class_=re.compile(r"region-name")).text.strip()
 
         alerts.append(
             zoneKey=ZONE_KEY,

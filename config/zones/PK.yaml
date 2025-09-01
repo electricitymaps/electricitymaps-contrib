@@ -128,3 +128,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Karachi
+zone_name: Pakistan
+country_name: Pakistan

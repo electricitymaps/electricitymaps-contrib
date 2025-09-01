@@ -109,7 +109,12 @@ def fetch_production_capacity_for_all_zones(
     if session is None:
         session = Session()
     for zone in US_ZONES:
-        zone_capacity = fetch_production_capacity(zone, target_datetime, session)
-        if zone_capacity:
-            eia_capacity[zone] = zone_capacity
+        try:
+            zone_capacity = fetch_production_capacity(zone, target_datetime, session)
+            if zone_capacity:
+                eia_capacity[zone] = zone_capacity
+        except Exception as e:
+            logger.error(
+                f"Error fetching production capacity for {zone} at {target_datetime.strftime('%Y-%m')}: {e}"
+            )
     return eia_capacity

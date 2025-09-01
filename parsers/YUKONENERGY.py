@@ -61,6 +61,7 @@ def fetch_production(
 
     session = session or Session()
 
+
     response = session.get(URL)
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
@@ -71,6 +72,7 @@ def fetch_production(
     )
     match_current = re.search(
         r"var rows_chart_current = parseDates\((\[\[.*?\]\])\);", html, re.DOTALL
+
     )
     if not match_past_day or not match_current:
         raise ParserException("YUKONENERGY.py", "Cannot find data", zone_key)
