@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-web",
-  "version": "1.289.0",
+  "version": "1.289.3",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
     "@capacitor/app": "^6.0.2",
     "@capacitor/core": "^6.2.1",
     "@capacitor/share": "^6.0.3",
+    "@capacitor/status-bar": "^7.0.2",
     "@google-cloud/storage": "^7.16.0",
     "@intercom/messenger-js-sdk": "^0.0.14",
     "@radix-ui/react-accordion": "^1.2.11",
@@ -83,6 +84,7 @@
     "@visx/group": "^3.12.0",
     "@visx/shape": "^3.12.0",
     "@visx/text": "^3.12.0",
+    "capacitor-plugin-safe-area": "^4.0.0",
     "country-flag-icons": "^1.5.19",
     "currency-symbol-map": "^5.1.0",
     "d3-array": "^3.2.4",

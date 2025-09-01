@@ -140,7 +140,7 @@ export default function ZoneDetails(): JSX.Element {
     <GlassContainer
       className={twMerge(
         'pointer-events-auto z-[21] flex h-full flex-col border-0 transition-all duration-500 sm:inset-3 sm:bottom-[8.5rem] sm:h-auto sm:border sm:pt-0',
-        'pt-[max(2.5rem,env(safe-area-inset-top))] sm:pt-0' // use safe-area, keep sm:pt-0
+        'pt-[max(2rem,env(safe-area-inset-top),var(--safe-area-inset-top))] sm:pt-0'
       )}
     >
       <section className="h-full w-full">
