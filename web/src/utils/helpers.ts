@@ -1,3 +1,4 @@
+import { Capacitor } from '@capacitor/core';
 import { callerLocation, useMeta } from 'api/getMeta';
 import { useCallback } from 'react';
 import {
@@ -300,3 +301,12 @@ export const getLocalTime = (date: Date, timezone?: string) => {
 
   return { localHours: hours, localMinutes: minutes };
 };
+
+// handle edge-to-edge changes
+export const isEdgeToEdgeAndroid = () => 
+  // const info = await Device.getInfo();
+   (
+    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android'
+    // && (Number(info.osVersion) ?? 15) >= 15
+  )
+;
