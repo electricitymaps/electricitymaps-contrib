@@ -31,6 +31,9 @@ ruff = "0.11.2"
 tzdata = "^2025.2"
 numpy = "^1.24.4"
 odfpy = { version = "^1.4.1", optional = true }
+plotly = "^6.3.0"
+nbformat = "^5.10.4"
+kaleido = "^1.0.0"
 
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
@@ -70,6 +73,7 @@ syrupy = "^4.8.0"
 requests-mock = "~1.3.0"
 testfixtures = "^7.0.0"
 click = "^8.0.0"
+ipykernel = "^6.30.1"
 
 
 [tool.pytest.ini_options]
