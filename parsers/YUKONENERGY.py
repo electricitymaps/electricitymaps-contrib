@@ -106,7 +106,6 @@ def fetch_production(
     all_production_breakdowns: list[ProductionBreakdownList] = []
 
     for item in past_day_data:
-        breakpoint()
         time, *datetime_data = item
 
         production_mode_list = ProductionBreakdownList(logger)
