@@ -58,7 +58,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -102,7 +102,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Install jsonlint-mod
@@ -123,7 +123,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Run translation out of sync script
@@ -168,7 +168,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -208,7 +208,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -265,7 +265,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -304,7 +304,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -337,7 +337,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -385,7 +385,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version-file: './web/.node-version'
       - name: Install ts-node
@@ -443,7 +443,7 @@ jobs:
   #       with:
   #         version: 9
   #     - name: Setup Node
-  #       uses: actions/setup-node@v4
+  #       uses: actions/setup-node@v5
   #       with:
   #         node-version-file: './web/.node-version'
   #     - name: Cache Cypress binary
