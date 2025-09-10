@@ -140,7 +140,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Run escaped quotes script
@@ -503,7 +503,7 @@ jobs:
         run: |
           echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Restore cache
@@ -544,7 +544,7 @@ jobs:
         run: |
           echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Restore cache
