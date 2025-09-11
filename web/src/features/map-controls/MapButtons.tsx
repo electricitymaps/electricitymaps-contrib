@@ -50,9 +50,10 @@ export default function MapButtons(): ReactElement {
 
   // Hide the layers button when on mobile and a zone is selected
   const shouldShowLayersButton = !(isMobile && zoneId);
-
   return (
-    <div className="pointer-events-none absolute right-3 z-20 mt-[max(0.75rem,env(safe-area-inset-top))] flex flex-col items-end sm:top-3 sm:mt-0">
+    <div
+      className={`pointer-events-none absolute right-3 z-20 mt-[max(0.75rem,env(safe-area-inset-top),var(--safe-area-inset-top))] flex flex-col items-end sm:top-3 sm:mt-0`}
+    >
       <div className="pointer-events-auto flex flex-col gap-2">
         <MapButton
           icon={<SettingsIcon size={20} />}
