@@ -79,15 +79,17 @@ def fetch_data(target_datetime: datetime, kind: str, session: Session) -> list:
     results = []
 
     target_datetime = target_datetime.replace(tzinfo=TR_TZ)
-
+    # Fetch for the last 2 days since start and end date are truncated to the day and to avoid missing last hours.
     while not is_last_page:
         payload = json.dumps(
             {
-                "startDate": (target_datetime).strftime("%Y-%m-%dT%H:%M:%S+03:00"),
+                "startDate": (target_datetime - timedelta(days=1)).strftime(
+                    "%Y-%m-%dT%H:%M:%S+03:00"
+                ),
                 "endDate": (target_datetime).strftime("%Y-%m-%dT%H:%M:%S+03:00"),
                 "page": {
                     "number": pagenum,
-                    "size": 24,
+                    "size": 48,
                     "sort": {"field": "date", "direction": "ASC"},
                 },
             }
