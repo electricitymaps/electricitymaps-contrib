@@ -23,6 +23,9 @@ capacity:
       source: ieso.ca
       value: 8868.0
   nuclear:
+    - datetime: '2025-03-01'
+      source: ieso.ca
+      value: 12184.0
     - datetime: '2023-12-01'
       source: ieso.ca
       value: 13144.0
@@ -128,15 +131,15 @@ emissionFactors:
         value: 90.96
     gas:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." Int J Life Cycle Assess 18,
+        377–391 (2013)
       value: 497
     hydro:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." Int J Life Cycle Assess 18,
+        377–391 (2013)
       value: 22
     hydro discharge:
       - datetime: '2015-01-01'
@@ -171,15 +174,15 @@ emissionFactors:
         value: 90.96
     nuclear:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." Int J Life Cycle Assess 18,
+        377–391 (2013)
       value: 4.8
     wind:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity
+        generation in the province of Ontario, Canada." Int J Life Cycle Assess 18,
+        377–391 (2013)
       value: 10.69
 fallbackZoneMixes:
   powerOriginRatios:
@@ -342,8 +345,9 @@ parsers:
   gridAlerts: CA_ON.fetch_grid_alerts
 region: Americas
 sources:
-  ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation\
-    \ in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377\u2013\
-    391 (2013)"
+  ? Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation
+    in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
   : link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
+zone_name: Ontario
+country_name: Canada

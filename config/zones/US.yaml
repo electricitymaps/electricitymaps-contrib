@@ -356,7 +356,6 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 26.22100877
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -520,3 +519,5 @@ subZoneNames:
   - US-TEN-TVA
   - US-TEX-ERCO
 timezone: US/Central
+zone_name: United States
+country_name: United States

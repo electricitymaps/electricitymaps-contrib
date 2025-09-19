@@ -5,6 +5,36 @@ bounding_box:
     - 43.00836
 capacity:
   battery storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 296.3
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 298.3
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 278.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 263.3
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 264.3
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 262.3
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 302.1
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 321.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 301.9
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 299.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 252.9
@@ -60,6 +90,60 @@ capacity:
       source: EIA.gov
       value: 418.8
   biomass:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2582.0
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 2580.4
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 2585.2
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 2579.7
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2468.2
+    - datetime: '2018-02-01'
+      source: EIA.gov
+      value: 2448.2
+    - datetime: '2018-05-01'
+      source: EIA.gov
+      value: 2413.0
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 2410.8
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 2407.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 2419.2
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 2402.5
+    - datetime: '2019-08-01'
+      source: EIA.gov
+      value: 2397.0
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 2387.2
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 2388.6
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 2383.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 2375.4
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 2297.2
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 2284.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2225.5
@@ -126,7 +210,70 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 2016.0
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 2008.5
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 63668.4
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 63428.3
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 62775.5
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 62165.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 60622.1
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 57731.1
+    - datetime: '2018-11-01'
+      source: EIA.gov
+      value: 57672.1
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 58034.5
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 56189.9
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 55675.1
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 55397.1
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 54444.3
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 54329.5
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 54231.5
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 53317.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 52269.9
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 52221.9
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 51460.3
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 50482.8
+    - datetime: '2020-08-01'
+      source: EIA.gov
+      value: 49894.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 53128.2
@@ -170,6 +317,102 @@ capacity:
       source: EIA.gov
       value: 38745.6
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 79145.8
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 79897.9
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 80751.9
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 80714.3
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 80054.6
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 81114.6
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 81957.9
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 82365.2
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 83107.2
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 85273.8
+    - datetime: '2018-05-01'
+      source: EIA.gov
+      value: 85365.5
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 86977.8
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 87808.4
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 88337.4
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 88858.9
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 90353.9
+    - datetime: '2018-11-01'
+      source: EIA.gov
+      value: 90381.9
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 93846.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 92903.5
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 93796.0
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 94321.0
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 94230.3
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 94231.8
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 95450.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 97270.8
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 97198.8
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 98233.8
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 98040.3
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 98057.6
+    - datetime: '2020-08-01'
+      source: EIA.gov
+      value: 98109.5
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 98111.5
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 98120.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 95496.7
@@ -278,11 +521,26 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 104760.4
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 104742.5
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3299.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 3288.0
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 3281.1
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 3270.4
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3297.1
@@ -302,14 +560,86 @@ capacity:
       source: EIA.gov
       value: 3291.6
   hydro storage:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 5103.3
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 5046.1
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 35947.9
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 35975.7
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 35425.7
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 35447.4
+    - datetime: '2019-09-01'
       source: EIA.gov
       value: 34466.6
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 6603.8
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 6605.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 6936.0
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 6937.0
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 6851.1
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 6860.1
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 6852.9
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 6849.9
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 6818.4
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 6790.2
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 6788.4
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 6718.4
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 6662.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 6009.4
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 5977.4
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 5975.6
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 5981.0
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 5979.2
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 5097.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 5882.4
@@ -370,7 +700,148 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 5395.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 5246.3
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1705.3
+    - datetime: '2017-02-01'
+      source: EIA.gov
+      value: 1706.7
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 1721.2
+    - datetime: '2017-05-01'
+      source: EIA.gov
+      value: 1724.9
+    - datetime: '2017-06-01'
+      source: EIA.gov
+      value: 1764.8
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 1775.9
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 1781.2
+    - datetime: '2017-09-01'
+      source: EIA.gov
+      value: 1783.7
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 1808.7
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 2200.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 2266.5
+    - datetime: '2018-02-01'
+      source: EIA.gov
+      value: 2285.8
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 2448.1
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 2448.8
+    - datetime: '2018-05-01'
+      source: EIA.gov
+      value: 2458.2
+    - datetime: '2018-06-01'
+      source: EIA.gov
+      value: 2473.1
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 2475.8
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 2496.6
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 2524.6
+    - datetime: '2018-10-01'
+      source: EIA.gov
+      value: 2564.9
+    - datetime: '2018-11-01'
+      source: EIA.gov
+      value: 2576.8
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 2762.0
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 2742.1
+    - datetime: '2019-02-01'
+      source: EIA.gov
+      value: 2743.6
+    - datetime: '2019-03-01'
+      source: EIA.gov
+      value: 2749.9
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 2773.3
+    - datetime: '2019-05-01'
+      source: EIA.gov
+      value: 2776.9
+    - datetime: '2019-06-01'
+      source: EIA.gov
+      value: 2830.3
+    - datetime: '2019-07-01'
+      source: EIA.gov
+      value: 2858.1
+    - datetime: '2019-08-01'
+      source: EIA.gov
+      value: 2873.7
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 2892.7
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 2978.8
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 2988.0
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 3315.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 3396.3
+    - datetime: '2020-02-01'
+      source: EIA.gov
+      value: 3416.3
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 3515.6
+    - datetime: '2020-04-01'
+      source: EIA.gov
+      value: 3519.8
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 3550.1
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 3570.5
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 3599.3
+    - datetime: '2020-08-01'
+      source: EIA.gov
+      value: 3642.1
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 3792.4
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 3904.5
+    - datetime: '2020-11-01'
+      source: EIA.gov
+      value: 4032.6
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 4556.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4682.0
@@ -527,7 +998,22 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 15855.9
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 15885.8
   unknown:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 211.2
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 11.2
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 17.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 113.2
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 107.2
@@ -535,6 +1021,54 @@ capacity:
       source: EIA.gov
       value: 11.2
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 7700.7
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 7800.7
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 7805.2
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 8268.9
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 8220.0
+    - datetime: '2018-09-01'
+      source: EIA.gov
+      value: 8332.5
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 8544.5
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 8726.0
+    - datetime: '2019-11-01'
+      source: EIA.gov
+      value: 8920.3
+    - datetime: '2019-12-01'
+      source: EIA.gov
+      value: 9215.5
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 9414.7
+    - datetime: '2020-03-01'
+      source: EIA.gov
+      value: 9629.7
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 9685.9
+    - datetime: '2020-08-01'
+      source: EIA.gov
+      value: 9694.9
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 9824.9
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 10153.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 10207.4
@@ -571,6 +1105,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 11459.6
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 11514.5
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch
@@ -697,12 +1234,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1049.3545804
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1056.79065
     gas:
       - datetime: '2020-01-01'
@@ -924,3 +1459,6 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: America/New_York
+zone_name: PJM Interconnection
+zone_short_name: PJM
+country_name: USA

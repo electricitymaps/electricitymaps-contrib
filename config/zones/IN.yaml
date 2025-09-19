@@ -93,7 +93,6 @@ emissionFactors:
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 26
-estimation_method: MODE_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -211,3 +210,5 @@ subZoneNames:
   - IN-WE
   - IN-SO
 timezone: Asia/Kolkata
+zone_name: Mainland India
+country_name: India

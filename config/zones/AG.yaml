@@ -39,3 +39,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Antigua
+zone_name: Antigua and Barbuda
+country_name: Antigua and Barbuda

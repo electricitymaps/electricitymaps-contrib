@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-from datetime import datetime
+import json
+import re
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -17,20 +19,12 @@ TIMEZONE = ZoneInfo("America/Whitehorse")
 URL = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
 ZONE_KEY = ZoneKey("CA-YT")
 
-
-def _parse_mw(text):
-    """
-    Extract the power value from the source's HTML text content. The text
-    is formatted as, e.g., "37.69 MW - hydro".
-    """
-    try:
-        return float(text[: text.index(" MW")])
-    except ValueError as e:
-        raise ParserException(
-            "YUKONENERGY.py",
-            f"Unable to parse power value from '{text}'",
-            ZONE_KEY,
-        ) from e
+FUEL_MAPPING = {
+    "thermal": "unknown",
+    "hydro": "hydro",
+    "wind": "wind",
+    "solar": "solar",
+}
 
 
 def fetch_production(
@@ -40,12 +34,10 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """
-    Requests the last known production mix (in MW) of a given region.
-
     We are using Yukon Energy's data from
     http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption
 
-    Generation in Yukon is done with hydro, diesel oil, and LNG.
+    Generation in Yukon is done with solar, wind, hydro, diesel oil, and LNG.
 
     There are two companies, Yukon Energy and ATCO aka Yukon Electric aka YECL.
     Yukon Energy does most of the generation and feeds into Yukon's grid. ATCO
@@ -54,66 +46,89 @@ def fetch_production(
 
     See schema of the grid at http://www.atcoelectricyukon.com/About-Us/
 
-    Per https://en.wikipedia.org/wiki/Yukon#Municipalities_by_population of
-    total population 35874 (2016 census), 28238 are in municipalities that are
-    connected to the grid - that is 78.7%.
-
-    Off-grid generation is with diesel generators, this is not reported online
-    as of 2017-06-23 and is not included in this calculation.
-
-    Yukon Energy reports only "hydro" and "thermal" generation. Per
-    http://www.yukonenergy.ca/ask-janet/lng-and-boil-off-gas, in 2016 the
-    thermal generation was about 50% diesel and 50% LNG. But since Yukon Energy
-    doesn't break it down on their website, we return all thermal as "unknown".
-
-    Per https://en.wikipedia.org/wiki/List_of_generating_stations_in_Yukon
-    Yukon Energy operates about 98% of Yukon's hydro capacity, the only
-    exception is the small 1.3 MW Fish Lake dam operated by ATCO/Yukon
-    Electrical. That's small enough to not matter, I think.
-
-    There is also a small 0.81 MW wind farm, its current generation is not
-    available.
+    Thermal is a mix of diesel oil and LNG, therefore thermal is set to unknown.
+    https://yukonenergy.ca/energy-in-yukon/projects-facilities/
     """
 
     if zone_key != ZONE_KEY:
-        raise ParserException("CA_YT.py", "Cannot parse zone '{zone_key}'", zone_key)
+        raise ParserException(
+            "YUKONENERGY.py", "Cannot parse zone '{zone_key}'", zone_key
+        )
     if target_datetime:
-        raise ParserException("CA_YT.py", "Unable to fetch historical data", zone_key)
+        raise ParserException(
+            "YUKONENERGY.py", "Unable to fetch historical data", zone_key
+        )
 
     session = session or Session()
-    soup = BeautifulSoup(session.get(URL).text, "html.parser")
 
-    # Extract the relevant HTML data.
-    # The date is formatted as, e.g., "Thursday, June 22, 2017".
-    date = soup.find("div", class_="current_date").text
-    # The time is formatted as, e.g., "11:55 pm" or "2:25 am".
-    time = soup.find("div", class_="current_time").text
-    # Note: hydro capacity is not provided when thermal is in use.
-    _hydro_capacity = soup.find(
-        "div", class_="avail_hydro"
-    )  # Should we just remove the capacity parsing?
-    thermal = soup.find("div", class_="load_thermal").div
+    response = session.get(URL)
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
 
-    production_mix = ProductionMix()
-    production_mix.add_value("coal", 0)
-    production_mix.add_value("geothermal", 0)
-    production_mix.add_value(
-        "hydro", _parse_mw(soup.find("div", class_="load_hydro").div.text)
+    # Extract JavaScript data
+    match_past_day = re.search(
+        r"var rows_chart_past_day = parseDates\((\[\[.*?\]\])\);", html, re.DOTALL
     )
-    production_mix.add_value("nuclear", 0)
-    production_mix.add_value("unknown", _parse_mw(thermal.text) if thermal else 0)
-
-    production_breakdowns = ProductionBreakdownList(logger=logger)
-    production_breakdowns.append(
-        datetime=datetime.strptime(f"{date} {time}", "%A, %B %d, %Y %I:%M %p").replace(
-            tzinfo=TIMEZONE
-        ),
-        production=production_mix,
-        source=SOURCE,
-        zoneKey=ZONE_KEY,
+    match_current = re.search(
+        r"var rows_chart_current = parseDates\((\[\[.*?\]\])\);", html, re.DOTALL
     )
+    if not match_past_day or not match_current:
+        raise ParserException("YUKONENERGY.py", "Cannot find data", zone_key)
 
-    return production_breakdowns.to_list()
+    past_day_data = json.loads(match_past_day.group(1))
+    current_data = json.loads(match_current.group(1))
+
+    # Search html for when the data was updatead
+    pane = soup.find("div", class_="consumption-pane total")
+    updated_text = pane.find("p").get_text(strip=True) if pane else None
+
+    timestamp = None
+    if updated_text:
+        match = re.search(r"Updated (\d+) minute", updated_text)
+        if match:
+            minutes_ago = int(match.group(1))
+            timestamp = datetime.now(TIMEZONE) - timedelta(minutes=minutes_ago)
+        else:
+            timestamp = datetime.now(TIMEZONE)
+
+    else:
+        timestamp = datetime.now(TIMEZONE)
+
+    timestamp = timestamp.replace(second=0, microsecond=0).isoformat(timespec="seconds")
+
+    if timestamp != past_day_data[-1][0]:
+        new_row = [timestamp] + [source[1] for source in current_data[:-1]]
+        past_day_data.append(new_row)
+
+    # Remove capacity
+    production_mode_order = [item[0].lower() for item in current_data][:-1]
+
+    all_production_breakdowns: list[ProductionBreakdownList] = []
+
+    for item in past_day_data:
+        time, *datetime_data = item
+
+        production_mode_list = ProductionBreakdownList(logger)
+        productionMix = ProductionMix()
+
+        for i, data in enumerate(datetime_data):
+            production_mode = FUEL_MAPPING.get(production_mode_order[i])
+            productionMix.add_value(production_mode, round(float(data), 3))
+
+        production_mode_list.append(
+            zoneKey=zone_key,
+            datetime=datetime.fromisoformat(time).replace(tzinfo=TIMEZONE),
+            source=SOURCE,
+            production=productionMix,
+        )
+        all_production_breakdowns.append(production_mode_list)
+
+        production_events = ProductionBreakdownList.merge_production_breakdowns(
+            all_production_breakdowns, logger
+        )
+        production_events = production_events.to_list()
+
+    return production_events
 
 
 if __name__ == "__main__":

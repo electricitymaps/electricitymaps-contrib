@@ -116,3 +116,5 @@ parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Africa/Algiers
+zone_name: Algeria
+country_name: Algeria

@@ -137,3 +137,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yerevan
+zone_name: Armenia
+country_name: Armenia

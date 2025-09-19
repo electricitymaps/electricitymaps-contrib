@@ -54,12 +54,6 @@ export const getZoneDataStatus = (
     return ZoneDataStatus.NO_INFORMATION;
   }
 
-  // If there are no production parsers or no defined estimation method in the config,
-  // we assume we do not have data for the zone
-  if (zoneConfig.parsers === false && zoneConfig.estimation_method === undefined) {
-    return ZoneDataStatus.NO_INFORMATION;
-  }
-
   // Otherwise, we assume we have data but it is currently missing
   return ZoneDataStatus.NO_REAL_TIME_DATA;
 };

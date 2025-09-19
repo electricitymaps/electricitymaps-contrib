@@ -107,6 +107,28 @@ def _fetch_xml(
     return date_, ElementTree.fromstring(response.text)
 
 
+def _fetch_xmls(
+    logger: Logger,
+    session: Session,
+    target_datetime: datetime | None,
+    url_template: str,
+) -> dict[date, ElementTree.Element | None]:
+    # If target_datetime is not specified, it means that we are fetching data in a 'real-time' manner.
+    # Then, we fetch for the last 2 days to avoid missing last hour of the previous day.
+    date_xml = {}
+    if target_datetime is None:
+        for i in range(2):
+            target_datetime = datetime.now(TIMEZONE).astimezone(TIMEZONE) - timedelta(
+                days=i
+            )
+            date, xml = _fetch_xml(logger, session, target_datetime, url_template)
+            date_xml[date] = xml
+    else:
+        date, xml = _fetch_xml(logger, session, target_datetime, url_template)
+        date_xml[date] = xml
+    return date_xml
+
+
 def _parse_hour(element: ElementTree.Element) -> int:
     # Decrement the reported hour to convert from the hour-ending ([1, 24])
     # convention used by the source to our hour-starting ([0, 23]) convention.
@@ -120,46 +142,45 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given region."""
-
     if zone_key != ZONE_KEY:
         raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    date_, xml = _fetch_xml(logger, session, target_datetime, PRODUCTION_URL)
-
-    if xml is None:
-        return []
-
-    # Collect the source data into a dictionary keying ProductionMix objects by
-    # the time of day at which they occurred.
-    mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
-    for generator in xml.iter(NAMESPACE + "Generator"):
-        try:
-            mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
-        except KeyError as error:
-            logger.warning(error)
+    date_xml = _fetch_xmls(logger, session, target_datetime, PRODUCTION_URL)
+    production_breakdowns = ProductionBreakdownList(logger)
+    for date_, xml in date_xml.items():
+        if xml is None:
             continue
-        for output in generator.iter(NAMESPACE + "Output"):
+
+        # Collect the source data into a dictionary keying ProductionMix objects by
+        # the time of day at which they occurred.
+        mixes: defaultdict[time, ProductionMix] = defaultdict(ProductionMix)
+        for generator in xml.iter(NAMESPACE + "Generator"):
             try:
-                hour = _parse_hour(output)
-            except (TypeError, ValueError) as error:
+                mode = MODES[generator.findtext(NAMESPACE + "FuelType")]
+            except KeyError as error:
                 logger.warning(error)
                 continue
-            # The "EnergyMW" element will occasionally be absent from the XML
-            # for a given plant at a given hour. In the browser, this is
-            # displayed as an "N/A" entry in the table.
-            generation = output.findtext(NAMESPACE + "EnergyMW")
-            mixes[time(hour=hour)].add_value(
-                mode, None if generation is None else float(generation)
-            )
+            for output in generator.iter(NAMESPACE + "Output"):
+                try:
+                    hour = _parse_hour(output)
+                except (TypeError, ValueError) as error:
+                    logger.warning(error)
+                    continue
+                # The "EnergyMW" element will occasionally be absent from the XML
+                # for a given plant at a given hour. In the browser, this is
+                # displayed as an "N/A" entry in the table.
+                generation = output.findtext(NAMESPACE + "EnergyMW")
+                mixes[time(hour=hour)].add_value(
+                    mode, None if generation is None else float(generation)
+                )
 
-    production_breakdowns = ProductionBreakdownList(logger)
-    for time_, mix in mixes.items():
-        production_breakdowns.append(
-            datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
-            production=mix,
-            source=SOURCE,
-            zoneKey=ZONE_KEY,
-        )
+        for time_, mix in mixes.items():
+            production_breakdowns.append(
+                datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
+                production=mix,
+                source=SOURCE,
+                zoneKey=ZONE_KEY,
+            )
 
     return production_breakdowns.to_list()
 
@@ -175,29 +196,29 @@ def fetch_price(
     if zone_key != ZONE_KEY:
         raise NotImplementedError(f"unimplemented zone '{zone_key}'")
 
-    date_, xml = _fetch_xml(logger, session, target_datetime, PRICE_URL)
-
-    if not xml:
-        return []
-
-    # "HOEP" stands for "Hourly Ontario Energy Price". There also exists a
-    # 5-minute price, but its archives only go back roughly 4 days (see "5
-    # Minute Market Clearing Price" at http://www.ieso.ca/power-data ).
+    date_xml = _fetch_xmls(logger, session, target_datetime, PRICE_URL)
     prices = PriceList(logger)
-    for hoep in xml.iter(NAMESPACE + "HOEP"):
-        try:
-            hour = _parse_hour(hoep)
-        except (TypeError, ValueError) as error:
-            logger.warning(error)
+    for date_, xml in date_xml.items():
+        if xml is None:
             continue
-        price = hoep.findtext(NAMESPACE + "Price")
-        prices.append(
-            currency="CAD",
-            datetime=datetime.combine(date_, time(hour=hour), tzinfo=TIMEZONE),
-            price=None if price is None else float(price),
-            source=SOURCE,
-            zoneKey=zone_key,
-        )
+
+        # "HOEP" stands for "Hourly Ontario Energy Price". There also exists a
+        # 5-minute price, but its archives only go back roughly 4 days (see "5
+        # Minute Market Clearing Price" at http://www.ieso.ca/power-data ).
+        for hoep in xml.iter(NAMESPACE + "HOEP"):
+            try:
+                hour = _parse_hour(hoep)
+            except (TypeError, ValueError) as error:
+                logger.warning(error)
+                continue
+            price = hoep.findtext(NAMESPACE + "Price")
+            prices.append(
+                currency="CAD",
+                datetime=datetime.combine(date_, time(hour=hour), tzinfo=TIMEZONE),
+                price=None if price is None else float(price),
+                source=SOURCE,
+                zoneKey=zone_key,
+            )
 
     return prices.to_list()
 
@@ -216,50 +237,53 @@ def fetch_exchange(
     if sorted_zone_keys not in EXCHANGES.values():
         raise NotImplementedError(f"unimplemented exchange '{sorted_zone_keys}'")
 
-    date_, xml = _fetch_xml(logger, session, target_datetime, EXCHANGE_URL)
-
-    if not xml:
-        return []
-
-    # Collect the source data into a dictionary keying exchange flows by the
-    # time of day at which they occurred for the exchange of interest.
-    flows: defaultdict[time, float] = defaultdict(float)
-    for intertie in xml.iter(NAMESPACE + "IntertieZone"):
-        zone_name = intertie.findtext(NAMESPACE + "IntertieZoneName")
-        if zone_name not in EXCHANGES:
-            logger.warning(f"unrecognized intertie '{zone_name}', please implement!")
-            continue
-        if EXCHANGES[zone_name] != sorted_zone_keys:
-            # Ignore exchanges that we aren't interested in.
-            continue
-        for actual in intertie.iter(NAMESPACE + "Actual"):
-            try:
-                flow = float(actual.findtext(NAMESPACE + "Flow"))
-                hour = _parse_hour(actual)
-                # The source reports flows in twelve five-minute intervals
-                # using an interval-ending convention (i.e., [1, 12]). Subtract
-                # one from the interval and multiply the result by five to
-                # convert to a minute-starting convention (0, 5, ..., 50, 55).
-                minute = 5 * (int(actual.findtext(NAMESPACE + "Interval")) - 1)
-            except (TypeError, ValueError) as error:
-                logger.warning(error)
-                continue
-            # In the source data, flows out of Ontario (i.e., exports) are
-            # positive. For us, positive flow follows the direction of the
-            # arrow in sorted_zone_keys, so change the sign of the flow if
-            # necessary.
-            if not sorted_zone_keys.startswith("CA-ON->"):
-                flow *= -1
-            flows[time(hour=hour, minute=minute)] += flow
+    date_xml = _fetch_xmls(logger, session, target_datetime, EXCHANGE_URL)
 
     exchanges = ExchangeList(logger)
-    for time_, flow in flows.items():
-        exchanges.append(
-            datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
-            netFlow=flow,
-            source=SOURCE,
-            zoneKey=sorted_zone_keys,
-        )
+    for date_, xml in date_xml.items():
+        if xml is None:
+            continue
+
+        # Collect the source data into a dictionary keying exchange flows by the
+        # time of day at which they occurred for the exchange of interest.
+        flows: defaultdict[time, float] = defaultdict(float)
+        for intertie in xml.iter(NAMESPACE + "IntertieZone"):
+            zone_name = intertie.findtext(NAMESPACE + "IntertieZoneName")
+            if zone_name not in EXCHANGES:
+                logger.warning(
+                    f"unrecognized intertie '{zone_name}', please implement!"
+                )
+                continue
+            if EXCHANGES[zone_name] != sorted_zone_keys:
+                # Ignore exchanges that we aren't interested in.
+                continue
+            for actual in intertie.iter(NAMESPACE + "Actual"):
+                try:
+                    flow = float(actual.findtext(NAMESPACE + "Flow"))
+                    hour = _parse_hour(actual)
+                    # The source reports flows in twelve five-minute intervals
+                    # using an interval-ending convention (i.e., [1, 12]). Subtract
+                    # one from the interval and multiply the result by five to
+                    # convert to a minute-starting convention (0, 5, ..., 50, 55).
+                    minute = 5 * (int(actual.findtext(NAMESPACE + "Interval")) - 1)
+                except (TypeError, ValueError) as error:
+                    logger.warning(error)
+                    continue
+                # In the source data, flows out of Ontario (i.e., exports) are
+                # positive. For us, positive flow follows the direction of the
+                # arrow in sorted_zone_keys, so change the sign of the flow if
+                # necessary.
+                if not sorted_zone_keys.startswith("CA-ON->"):
+                    flow *= -1
+                flows[time(hour=hour, minute=minute)] += flow
+
+        for time_, flow in flows.items():
+            exchanges.append(
+                datetime=datetime.combine(date_, time_, tzinfo=TIMEZONE),
+                netFlow=flow,
+                source=SOURCE,
+                zoneKey=sorted_zone_keys,
+            )
 
     return exchanges.to_list()
 

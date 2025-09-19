@@ -5,11 +5,14 @@ bounding_box:
     - 45.5057600000001
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 16.9
+    - datetime: '2017-05-01'
       source: EIA.gov
       value: 15.3
     - datetime: '2023-01-01'
@@ -19,7 +22,13 @@ capacity:
       source: EIA.gov
       value: 9.8
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 7923.5
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 7841.5
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 7447.5
     - datetime: '2023-01-01'
@@ -29,6 +38,18 @@ capacity:
       source: EIA.gov
       value: 5824.3
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 3346.4
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 3399.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 3784.3
+    - datetime: '2020-07-01'
+      source: EIA.gov
+      value: 3774.5
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3767.4
@@ -93,13 +114,25 @@ capacity:
       source: EIA.gov
       value: 4611.5
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 83.8
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 77.1
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 269.3
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 264.4
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 264.2
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 271.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 271.8
@@ -107,19 +140,31 @@ capacity:
       source: EIA.gov
       value: 271.9
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 10.2
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 855.8
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 949.8
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 1007.4
+    - datetime: '2020-10-01'
+      source: EIA.gov
+      value: 1129.4
+    - datetime: '2020-11-01'
       source: EIA.gov
       value: 1286.4
     - datetime: '2021-03-01'
@@ -168,10 +213,25 @@ capacity:
       source: EIA.gov
       value: 2197.9
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 52.8
   wind:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 1846.2
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 1948.1
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 1923.0
+    - datetime: '2020-09-01'
+      source: EIA.gov
+      value: 1906.2
+    - datetime: '2020-12-01'
+      source: EIA.gov
+      value: 2690.1
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2708.6
@@ -207,9 +267,8 @@ delays:
   consumptionForecast: 30
   production: 48
 disclaimer:
-  This zone includes all gas related electricity production from the generation-only
-  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
-  page.
+  This zone includes all gas related electricity production from the generation-only balancing authority Avangrid Renewables, LLC. Read
+  more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -308,12 +367,10 @@ emissionFactors:
         value: 741.42
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1107.353715
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1097.158105
     gas:
       - datetime: '2020-01-01'
@@ -518,3 +575,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
+zone_name: Pacificorp East
+country_name: USA

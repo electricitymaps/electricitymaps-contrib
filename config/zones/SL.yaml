@@ -32,3 +32,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Freetown
+zone_name: Sierra Leone
+country_name: Sierra Leone

@@ -103,3 +103,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tunis
+zone_name: Tunisia
+country_name: Tunisia

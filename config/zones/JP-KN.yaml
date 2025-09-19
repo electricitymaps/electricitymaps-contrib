@@ -130,7 +130,6 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: Electricity Maps, 2024 average
         value: 361.77
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -275,3 +274,5 @@ parsers:
   generationForecast: JP.fetch_generation_forecast
 region: Asia
 timezone: Asia/Tokyo
+zone_name: Kansai
+country_name: Japan

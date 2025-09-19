@@ -360,3 +360,5 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
+zone_name: North Norway
+country_name: Norway
