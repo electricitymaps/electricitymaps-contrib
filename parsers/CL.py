@@ -88,6 +88,7 @@ def fetch_production(
     url = API_BASE_URL + date_component
 
     req = s.get(url, headers=headers)
+    req.raise_for_status()
     raw_data = req.json()["aggs"]
     historical_data = production_processor_historical(raw_data)
 
