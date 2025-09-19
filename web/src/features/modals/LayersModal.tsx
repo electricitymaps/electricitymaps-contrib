@@ -8,6 +8,7 @@ import { XIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { MoonLoader } from 'react-spinners';
 import { ToggleOptions } from 'utils/constants';
+import { isEdgeToEdgeAndroid } from 'utils/helpers';
 import { areWeatherLayersAllowedAtom } from 'utils/state/atoms';
 
 import { isLayersModalOpenAtom } from './modalAtoms';
@@ -102,6 +103,8 @@ export default function LayersModal() {
     setIsOpen(false);
   };
 
+  const isNativeAndroid = isEdgeToEdgeAndroid();
+
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
@@ -115,7 +118,11 @@ export default function LayersModal() {
             }
           }}
         >
-          <div className="pointer-events-auto absolute inset-x-0 top-3 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+          <div
+            className={`pointer-events-auto absolute inset-x-0 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start ${
+              isNativeAndroid ? 'top-20' : ''
+            }`}
+          >
             <GlassContainer className="w-full max-w-xs rounded-xl shadow-lg md:w-72">
               <LayersModalContent />
             </GlassContainer>
