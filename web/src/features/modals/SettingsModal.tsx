@@ -347,7 +347,9 @@ export default function SettingsModal() {
             }
           }}
         >
-          <div className="pointer-events-auto absolute inset-x-0 top-3 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+          <div
+            className={`pointer-events-auto absolute inset-x-0 flex justify-center pt-[max(0.75rem,env(safe-area-inset-top),var(--safe-area-inset-top))] md:inset-x-auto md:right-72 md:mr-14 md:justify-start`}
+          >
             <GlassContainer
               ref={modalReference}
               className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
