@@ -100,9 +100,9 @@ class CyprusParser:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         res = self.session.get(url, headers=headers)
-        assert res.status_code == 200, (
-            f"CY parser: GET {url} returned {res.status_code}"
-        )
+        assert (
+            res.status_code == 200
+        ), f"CY parser: GET {url} returned {res.status_code}"
 
         html = BeautifulSoup(res.text, "lxml")
 
