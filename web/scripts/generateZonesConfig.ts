@@ -15,7 +15,7 @@ import {
 } from '../geo/types.js';
 import { round } from '../geo/utilities.js';
 
-const BASE_CONFIG_PATH = '../../config';
+const BASE_CONFIG_PATH = '../../electricitymap/contrib/config/static/';
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const verifyConfig = {
