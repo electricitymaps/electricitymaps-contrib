@@ -9,7 +9,6 @@ import { getStaleTime } from 'utils/refetching';
 import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
-  cacheBuster,
   getBasePath,
   getHeaders,
   getParameters,
@@ -28,21 +27,22 @@ const getState = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${getParameters(
+    `v11/state/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}${getParameters(
       shouldQueryHistorical,
       targetDatetime
     )}`,
     getBasePath()
   );
+  console.log('path', path);
 
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
   };
 
-  if (!targetDatetime) {
-    path.searchParams.append('cacheKey', cacheBuster());
-  }
+  // if (!targetDatetime) {
+  //   path.searchParams.append('cacheKey', cacheBuster());
+  // }
   const response = await fetch(path, requestOptions);
   if (response.ok) {
     const result = (await response.json()) as GridState;
@@ -61,6 +61,7 @@ const useGetState = (): UseQueryResult<GridState> => {
       {
         aggregate: timeRange,
         targetDatetime: urlDatetime,
+        includeForecasts: true,
       },
     ],
     queryFn: () => getState(timeRange, urlDatetime),

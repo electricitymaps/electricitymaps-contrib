@@ -118,7 +118,7 @@ export const getParameters = (
   targetDatetime?: string
 ) => {
   if (shouldQueryHistorical) {
-    return `?targetDate=${targetDatetime}`;
+    return `?targetDate=${targetDatetime}&includeForecasts=true`;
   }
-  return '';
+  return '?includeForecasts=true';
 };

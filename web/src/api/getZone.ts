@@ -11,7 +11,6 @@ import { getStaleTime } from 'utils/refetching';
 import { timeRangeAtom } from 'utils/state/atoms';
 
 import {
-  cacheBuster,
   getBasePath,
   getHeaders,
   getParameters,
@@ -33,15 +32,15 @@ const getZone = async (
     isValidHistoricalTimeRange(timeRange);
 
   const path: URL = new URL(
-    `v10/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${getParameters(
+    `v11/details/${TIME_RANGE_TO_BACKEND_PATH[timeRange]}/${zoneId}${getParameters(
       shouldQueryHistorical,
       targetDatetime
     )}`,
     getBasePath()
   );
-  if (!targetDatetime) {
-    path.searchParams.append('cacheKey', cacheBuster());
-  }
+  // if (!targetDatetime) {
+  //   path.searchParams.append('cacheKey', cacheBuster());
+  // }
   const requestOptions: RequestInit = {
     method: 'GET',
     headers: await getHeaders(path),
@@ -71,6 +70,7 @@ const useGetZone = (): UseQueryResult<ZoneDetails> => {
         zone: zoneId,
         aggregate: timeRange,
         targetDatetime: urlDatetime,
+        includeForecasts: true,
       },
     ],
     queryFn: async () => {
