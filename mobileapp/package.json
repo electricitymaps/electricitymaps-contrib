@@ -1,6 +1,6 @@
 {
   "name": "electricitymaps-mobile",
-  "version": "1.244.0",
+  "version": "1.289.3",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "AGPL-3.0-or-later",
   "main": "index.js",
@@ -26,7 +26,9 @@
     "@capacitor/app": "^7.0.1",
     "@capacitor/core": "^7.4.2",
     "@capacitor/ios": "^7.4.2",
-    "@capacitor/share": "^7.0.1"
+    "@capacitor/share": "^7.0.1",
+    "@capacitor/status-bar": "^7.0.2",
+    "capacitor-plugin-safe-area": "^4.0.0"
   },
   "devDependencies": {
     "@capacitor/assets": "^1.0.14",
