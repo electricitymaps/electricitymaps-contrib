@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from parsers.lib.config import refetch_frequency
+from parsers.lib.config import refetch_frequency, use_proxy
 from parsers.lib.exceptions import ParserException
 
 EGAT_GENERATION_URL = "https://www.sothailand.com/sysgen/ws/sysgen"
@@ -94,6 +94,7 @@ def _fetch_data(
 
 
 @refetch_frequency(timedelta(days=1))
+@use_proxy(country_code="TH")
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("TH"),
     session: Session | None = None,
