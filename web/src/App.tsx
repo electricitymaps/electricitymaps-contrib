@@ -1,5 +1,5 @@
 import { App as Cap } from '@capacitor/app';
-import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 import Intercom, { shutdown } from '@intercom/messenger-js-sdk';
 import { ToastProvider } from '@radix-ui/react-toast';
 import { useReducedMotion } from '@react-spring/web';
@@ -29,12 +29,20 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { metaTitleSuffix, Mode } from 'utils/constants';
-import { useNavigateWithParameters } from 'utils/helpers';
+import { isEdgeToEdgeAndroid, useNavigateWithParameters } from 'utils/helpers';
 import { productionConsumptionAtom } from 'utils/state/atoms';
 
 const MapWrapper = lazy(async () => import('features/map/MapWrapper'));
 const LeftPanel = lazy(async () => import('features/panels/LeftPanel'));
 const MapOverlays = lazy(() => import('components/MapOverlays'));
+
+const setStatusBarStyleDark = async () => {
+  await StatusBar.setStyle({ style: Style.Dark });
+};
+
+const setStatusBarStyleLight = async () => {
+  await StatusBar.setStyle({ style: Style.Light });
+};
 
 export default function App(): ReactElement {
   // Triggering the useReducedMotion hook here ensures the global animation settings are set as soon as possible
@@ -53,6 +61,14 @@ export default function App(): ReactElement {
   const location = useLocation();
   const navigate = useNavigateWithParameters();
   const setIsMapMoving = useSetAtom(mapMovingAtom);
+
+  // const getDeviceInfo = async () => {
+  //   const info = await Device.getInfo();
+  // };
+
+  // useEffect(() => {
+  //   getDeviceInfo();
+  // }, []);
 
   useEffect(() => {
     if (isIntercomEnabled) {
@@ -73,11 +89,12 @@ export default function App(): ReactElement {
   // Update classes on theme change
   useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', shouldUseDarkMode);
+    shouldUseDarkMode ? setStatusBarStyleDark() : setStatusBarStyleLight();
   }, [shouldUseDarkMode]);
 
   // Handle back button on Android
   useEffect(() => {
-    if (Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android') {
+    if (isEdgeToEdgeAndroid()) {
       Cap.addListener('backButton', () => {
         if (window.location.pathname === '/map/72h/hourly') {
           Cap.exitApp();
@@ -86,7 +103,7 @@ export default function App(): ReactElement {
         }
       });
     }
-  }, []);
+  }, [shouldUseDarkMode]);
 
   // Close zone panel and focus search
   const navigateToSearchAndFocus = useCallback(() => {
