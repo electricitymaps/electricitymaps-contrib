@@ -9,8 +9,8 @@ from requests import Response, Session
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
 from electricitymap.contrib.config.constants import PRODUCTION_MODES
-from parsers.EIA import REGIONS
-from parsers.lib.utils import get_token
+from electricitymap.contrib.parsers.EIA import REGIONS
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 logger = getLogger(__name__)
 
