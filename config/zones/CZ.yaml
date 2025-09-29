@@ -518,3 +518,4 @@ sources:
 timezone: Europe/Prague
 zone_name: Czechia
 country_name: Czechia
+currency: CZK

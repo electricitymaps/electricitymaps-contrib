@@ -525,3 +525,4 @@ sources:
 timezone: Europe/Ljubljana
 zone_name: Slovenia
 country_name: Slovenia
+currency: EUR

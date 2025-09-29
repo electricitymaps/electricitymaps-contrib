@@ -540,3 +540,4 @@ sources:
 timezone: Europe/Copenhagen
 zone_name: West Denmark
 country_name: Denmark
+currency: DKK

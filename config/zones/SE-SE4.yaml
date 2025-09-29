@@ -388,3 +388,4 @@ sources:
 timezone: Europe/Stockholm
 zone_name: South Sweden
 country_name: Sweden
+currency: SEK

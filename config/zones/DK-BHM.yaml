@@ -323,3 +323,4 @@ sources:
 timezone: Europe/Copenhagen
 zone_name: Bornholm
 country_name: Denmark
+currency: DKK

@@ -403,3 +403,4 @@ sources:
 timezone: Europe/Stockholm
 zone_name: South Central Sweden
 country_name: Sweden
+currency: SEK

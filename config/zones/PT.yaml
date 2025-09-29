@@ -584,3 +584,4 @@ sources:
 timezone: Europe/Lisbon
 zone_name: Portugal
 country_name: Portugal
+currency: EUR
