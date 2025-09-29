@@ -319,4 +319,5 @@ subZoneNames:
 timezone: Europe/Oslo
 zone_name: Norway
 country_name: Norway
-currency: NOK
+# Electricity is traded in EUR
+currency: EUR

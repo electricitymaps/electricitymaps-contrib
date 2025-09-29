@@ -323,4 +323,5 @@ sources:
 timezone: Europe/Copenhagen
 zone_name: Bornholm
 country_name: Denmark
-currency: DKK
+# Electricity is traded in EUR
+currency: EUR

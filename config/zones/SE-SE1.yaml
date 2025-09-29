@@ -315,4 +315,5 @@ sources:
 timezone: Europe/Stockholm
 zone_name: North Sweden
 country_name: Sweden
-currency: SEK
+# Electricity is traded in EUR
+currency: EUR
