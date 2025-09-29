@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "electricitymap-contrib"
-version = "1.0.1"
+version = "1.1.0"
 description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
@@ -74,8 +74,8 @@ click = "^8.0.0"
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
-    "parsers/test",
-    "parsers/lib/tests",
+    "electricitymap/contrib/parsers/tests",
+    "electricitymap/contrib/parsers/lib/tests",
     "electricitymap/contrib/capacity_parsers/tests",
     "electricitymap/contrib/lib/tests",
 ]
@@ -110,7 +110,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
-    "parsers/archived",
+    "electricitymap/contrib/parsers/archived",
 ]
 
 # Same as Black.
