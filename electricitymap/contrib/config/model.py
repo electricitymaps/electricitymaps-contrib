@@ -21,6 +21,7 @@ from electricitymap.contrib.config import (
     ZONES_CONFIG,
 )
 from electricitymap.contrib.config.types import Point
+from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
@@ -144,6 +145,13 @@ class Zone(StrictBaseModelWithAlias):
     zone_name: str | None
     zone_short_name: str | None
     country_name: str | None
+    currency: str | None
+
+    @validator("currency")
+    def currency_is_valid(cls, v):
+        if v and v not in VALID_CURRENCIES:
+            raise ValueError(f"Currency {v} is not a valid ISO 4217 currency code")
+        return v
 
     def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
