@@ -94,12 +94,12 @@ def fetch_production(
 
             objData.loc[battery_mask, "output"] = -objData.loc[battery_mask, "output"]
 
-    assert not objData.capacity.isna().all(), (
-        "capacity data is entirely NaN - input column order may have changed"
-    )
-    assert not objData.output.isna().all(), (
-        "output data is entirely NaN - input column order may have changed"
-    )
+    assert (
+        not objData.capacity.isna().all()
+    ), "capacity data is entirely NaN - input column order may have changed"
+    assert (
+        not objData.output.isna().all()
+    ), "output data is entirely NaN - input column order may have changed"
 
     objData.drop(
         columns=["additional_1", "name", "additional_2", "percentage", "additional_3"],
