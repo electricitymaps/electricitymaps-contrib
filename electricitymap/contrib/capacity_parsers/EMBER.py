@@ -29,6 +29,7 @@ SPECIFIC_MODE_MAPPING = {
     "NZ": {"other renewables": "geothermal"},
     "SG": {"other fossil": "coal"},
     "SV": {"other renewables": "geothermal"},
+    "TC": {"other fossil": "oil"},
     "TR": {"other fossil": "oil", "other renewables": "geothermal"},
     "TW": {"other fossil": "oil"},
     "UY": {"other fossil": "unknown"},
@@ -81,7 +82,7 @@ def _ember_production_mode_mapper(row: pd.Series) -> str | None:
     # Ember also reports the following, which we exclude due to:
     # 'Wind and solar' is contained in 'wind' and 'solar' data
     # 'Fossil' contained in all non-renewable sources, i.e. 'coal', 'gas', 'oil', 'other fossil
-    # 'Clean' containd in all renewable sources, i.e. 'wind', 'solar', 'other renewables', ...
+    # 'Clean' contained in all renewable sources, i.e. 'wind', 'solar', 'other renewables', ...
     ember_mapper = {
         "other fossil": "unknown",
         "bioenergy": "biomass",
