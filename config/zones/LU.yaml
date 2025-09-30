@@ -448,3 +448,4 @@ sources:
 timezone: Europe/Brussels
 zone_name: Luxembourg
 country_name: Luxembourg
+currency: EUR

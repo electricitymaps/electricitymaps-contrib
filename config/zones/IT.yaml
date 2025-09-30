@@ -395,3 +395,4 @@ subZoneNames:
 timezone: Europe/Rome
 zone_name: Italy
 country_name: Italy
+currency: EUR

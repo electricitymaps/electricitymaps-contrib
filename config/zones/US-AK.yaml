@@ -62,3 +62,4 @@ sources:
 timezone: America/Anchorage
 zone_name: Alaska
 country_name: USA
+currency: USD

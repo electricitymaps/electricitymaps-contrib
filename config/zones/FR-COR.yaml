@@ -325,3 +325,4 @@ sources:
 timezone: Europe/Paris
 zone_name: Corsica
 country_name: France
+currency: EUR

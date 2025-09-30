@@ -379,3 +379,5 @@ sources:
 timezone: Europe/Oslo
 zone_name: Middle Norway
 country_name: Norway
+# Electricity is traded in EUR
+currency: EUR

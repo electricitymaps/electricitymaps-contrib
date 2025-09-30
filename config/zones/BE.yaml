@@ -572,3 +572,4 @@ sources:
 timezone: Europe/Brussels
 zone_name: Belgium
 country_name: Belgium
+currency: EUR

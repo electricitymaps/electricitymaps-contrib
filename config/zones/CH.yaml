@@ -509,3 +509,4 @@ sources:
 timezone: Europe/Zurich
 zone_name: Switzerland
 country_name: Switzerland
+currency: EUR

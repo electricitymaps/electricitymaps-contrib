@@ -56,11 +56,11 @@ Note: This requires you to have [Python 3.10][python homepage] and [Poetry][poet
 
 ### Parser information
 
-For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [parsers/README.md][parser readme] with specific information about the parser functions located in the [parser/example][parser examples folder] folder
+For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [electricitymap/contrib/parsers/README.md][parser readme] with specific information about the parser functions located in the [electricitymap/contrib/parser/example][parser examples folder] folder
 
 #### Example parser:
 
-For an example of how a parser can look we have an example here: </br> [parsers/examples/example_parser.py][example parser]
+For an example of how a parser can look we have an example here: </br> [electricitymap/contrib/parsers/examples/example_parser.py][example parser]
 
 ### Formatting the parsers
 
@@ -185,7 +185,7 @@ If it is frontend changes it will be deployed to our staging environment at http
 [python homepage]: https://www.python.org/
 [python install guide]: https://wiki.python.org/moin/BeginnersGuide/Download
 [poetry install guide]: https://python-poetry.org/docs/#installation
-[example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/example_parser.py
+[example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/example_parser.py
 [black homepage]: https://github.com/psf/black
 [isort homepage]: https://pycqa.github.io/isort/
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
@@ -214,4 +214,4 @@ If it is frontend changes it will be deployed to our staging environment at http
 [config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
 [config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
 [parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers/README.md
-[parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/parsers/examples/
+[parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/

@@ -322,3 +322,4 @@ sources:
 timezone: Atlantic/Canary
 zone_name: El Hierro
 country_name: Spain
+currency: EUR
