@@ -398,3 +398,4 @@ sources:
 timezone: Europe/Rome
 zone_name: North Italy
 country_name: Italy
+currency: EUR

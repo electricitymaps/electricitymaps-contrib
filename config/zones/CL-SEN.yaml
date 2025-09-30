@@ -358,3 +358,4 @@ sources:
 timezone: America/Santiago
 zone_name: Sistema Eléctrico Nacional
 country_name: Chile
+currency: CLP

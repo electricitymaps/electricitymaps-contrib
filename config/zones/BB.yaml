@@ -56,9 +56,9 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: BB.fetch_consumption
-  # production: BB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Barbados
 zone_name: Barbados
 country_name: Barbados
+currency: BBD

@@ -555,3 +555,4 @@ sources:
 timezone: Europe/Amsterdam
 zone_name: Netherlands
 country_name: Netherlands
+currency: EUR
