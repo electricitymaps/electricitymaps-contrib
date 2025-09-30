@@ -3,6 +3,7 @@ import io
 import re
 from datetime import datetime
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -11,6 +12,8 @@ import pandas as pd
 from requests import Session, get
 
 from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers import occtonet
 
 TIMEZONE = ZoneInfo("Asia/Tokyo")
@@ -21,29 +24,12 @@ def fetch_production(
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict | list:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": None,
-        "production": {
-            "biomass": 0,
-            "coal": 0,
-            "gas": 0,
-            "hydro": None,
-            "nuclear": None,
-            "oil": 0,
-            "solar": None,
-            "wind": None,
-            "geothermal": None,
-            "unknown": 0,
-        },
-        "storage": {},
-        "source": "www.kyuden.co.jp",
-    }
+    production_list = ProductionBreakdownList(logger)
 
     # url for consumption and solar
     url = f"https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{datetime.now(tz=TIMEZONE).strftime('%Y%m%d')}.csv"
@@ -56,7 +42,7 @@ def fetch_production(
         logger.error(
             "Could not find time series data section in solar and consumption CSV"
         )
-        return []
+        return production_list.to_list()
     time_series_section = content[start_idx:]
     df = pd.read_csv(io.StringIO(time_series_section))
 
@@ -69,7 +55,6 @@ def fetch_production(
         f"{last_complete_row['DATE']} {last_complete_row['TIME']}", "%Y/%m/%d %H:%M"
     )
     dt = dt.replace(tzinfo=TIMEZONE)
-    data["datetime"] = dt
 
     # Get values in MW - convert from 10000 kW to MW
     consumption = last_complete_row["consumption"].astype(float) * 10
@@ -112,13 +97,22 @@ def fetch_production(
     if abs(dt - exchange["datetime"]).seconds <= 900:
         generation = consumption - exchange["netFlow"]
         unknown = generation - nuclear - solar
-        data["production"]["solar"] = solar
-        data["production"]["nuclear"] = nuclear
-        data["production"]["unknown"] = unknown
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=ProductionMix(
+                biomass=0,
+                coal=0,
+                gas=0,
+                nuclear=nuclear,
+                oil=0,
+                solar=solar,
+                unknown=unknown,
+            ),
+            source="www.kyuden.co.jp",
+        )
 
-        return [data]
-    else:
-        return []
+    return production_list.to_list()
 
 
 if __name__ == "__main__":
