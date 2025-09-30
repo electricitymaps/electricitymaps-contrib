@@ -10,13 +10,14 @@ import pandas as pd
 # The request library is used to fetch content through HTTP
 from requests import Session, get
 
+from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.parsers import occtonet
 
 TIMEZONE = ZoneInfo("Asia/Tokyo")
 
 
 def fetch_production(
-    zone_key: str = "JP-KY",
+    zone_key: ZoneKey = ZoneKey("JP-KY"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
