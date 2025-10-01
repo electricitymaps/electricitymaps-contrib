@@ -62,6 +62,7 @@ DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 # TODO: Switch this to a string enum when we migrate to Python 3.11
 class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
+    INTRADAY_PRICE = "A07"
     TOTAL = "A05"
     INTRADAY = "A40"
     CURRENT = "A18"
@@ -417,7 +418,10 @@ def query_exchange_forecast(
 
 
 def query_price(
-    domain: str, session: Session, target_datetime: datetime | None = None
+    domain: str,
+    session: Session,
+    target_datetime: datetime | None = None,
+    marketType: EntsoeTypeEnum = EntsoeTypeEnum.DAY_AHEAD,
 ) -> str | None:
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
@@ -427,6 +431,10 @@ def query_price(
         "documentType": "A44",
         "in_Domain": domain,
         "out_Domain": domain,
+        "contract_MarketAgreement.type": marketType,
+        # TODO: There are multiple series available, we should parse all of them but we need to model this properly first
+        # This only affects INTRADAY prices as far as we know
+        # classificationSequence_AttributeInstanceComponent.position: "1", # OR "2" OR "3"
     }
     return query_ENTSOE(
         session,
@@ -1068,6 +1076,40 @@ def fetch_price(
     domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
     try:
         raw_price_data = query_price(domain, session, target_datetime=target_datetime)
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to fetch price for {zone_key}",
+            zone_key=zone_key,
+        ) from e
+    if raw_price_data is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No price data found for {zone_key}",
+            zone_key=zone_key,
+        )
+    return parse_prices(raw_price_data, zone_key, logger).to_list()
+
+
+@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+def fetch_price_intraday(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Gets day-ahead price for specified zone."""
+    if not session:
+        session = Session()
+
+    domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
+    try:
+        raw_price_data = query_price(
+            domain,
+            session,
+            target_datetime=target_datetime,
+            marketType=EntsoeTypeEnum.INTRADAY_PRICE,
+        )
     except Exception as e:
         raise ParserException(
             parser="ENTSOE.py",
