@@ -423,3 +423,4 @@ sources:
 timezone: US/Eastern
 zone_name: Florida Municipal Power Pool
 country_name: USA
+currency: USD

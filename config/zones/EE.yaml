@@ -565,3 +565,4 @@ sources:
 timezone: Europe/Tallinn
 zone_name: Estonia
 country_name: Estonia
+currency: EUR

@@ -12,7 +12,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.config.reading import read_zones_config
 from electricitymap.contrib.lib.data_types import ParserDataType
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
+from electricitymap.contrib.parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from scripts.utils import write_zone_config
 
 logger = logging.getLogger(__name__)

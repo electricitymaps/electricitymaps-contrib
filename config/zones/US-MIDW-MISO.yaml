@@ -1309,10 +1309,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1076.354463
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1066.379379
     gas:
       - datetime: '2020-01-01'
@@ -1536,3 +1538,4 @@ timezone: US/Central
 zone_name: Midcontinent ISO
 zone_short_name: MISO
 country_name: USA
+currency: USD

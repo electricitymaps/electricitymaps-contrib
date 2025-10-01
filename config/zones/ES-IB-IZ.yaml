@@ -324,3 +324,4 @@ sources:
 timezone: Europe/Madrid
 zone_name: Ibiza
 country_name: Spain
+currency: EUR

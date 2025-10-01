@@ -29,3 +29,4 @@ sources:
 timezone: Europe/Vaduz
 zone_name: Liechtenstein
 country_name: Liechtenstein
+currency: CHF

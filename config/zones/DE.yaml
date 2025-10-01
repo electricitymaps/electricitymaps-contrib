@@ -662,3 +662,4 @@ sources:
 timezone: Europe/Berlin
 zone_name: Germany
 country_name: Germany
+currency: EUR

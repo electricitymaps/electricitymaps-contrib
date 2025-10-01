@@ -68,7 +68,6 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: Electricity Maps, 2024 average
         value: 91.48
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -200,3 +199,4 @@ subZoneNames:
 timezone: America/Sao_Paulo
 zone_name: Brazil
 country_name: Brazil
+currency: BRL

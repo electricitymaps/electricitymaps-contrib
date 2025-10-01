@@ -196,7 +196,6 @@ emissionFactors:
       source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
         wind, 0.3% other
       value: 558
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -360,9 +359,9 @@ isRenewable:
 parsers:
   consumption: IL.fetch_consumption
   price: IL.fetch_price
-  # production: IL.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Jerusalem
 zone_name: Israel
 country_name: Israel
+currency: ILS

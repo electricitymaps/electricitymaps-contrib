@@ -536,3 +536,4 @@ sources:
 timezone: Europe/Vilnius
 zone_name: Lithuania
 country_name: Lithuania
+currency: EUR

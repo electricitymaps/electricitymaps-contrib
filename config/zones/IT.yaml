@@ -214,7 +214,6 @@ emissionFactors:
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -396,3 +395,4 @@ subZoneNames:
 timezone: Europe/Rome
 zone_name: Italy
 country_name: Italy
+currency: EUR
