@@ -9,6 +9,7 @@ class ParserDataType(Enum):
     EXCHANGE = "exchange"
     GENERATION_FORECAST = "generationForecast"
     PRICE = "price"
+    PRICE_INTRADAY = "priceIntraday"
     PRODUCTION = "production"
     PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
     REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
