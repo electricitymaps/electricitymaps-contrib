@@ -59,7 +59,7 @@
     "@capacitor/core": "^6.2.1",
     "@capacitor/share": "^6.0.3",
     "@google-cloud/storage": "^7.16.0",
-    "@intercom/messenger-js-sdk": "^0.0.14",
+    "@intercom/messenger-js-sdk": "^0.0.18",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
