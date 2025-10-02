@@ -1091,6 +1091,7 @@ def fetch_price(
     return parse_prices(raw_price_data, zone_key, logger).to_list()
 
 
+# DO NOT USE, THIS IS FOR FUTURE USE CASES
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_price_intraday(
     zone_key: ZoneKey,
@@ -1098,7 +1099,10 @@ def fetch_price_intraday(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    """Gets day-ahead price for specified zone."""
+    """
+    DO NOT USE, THIS IS FOR FUTURE USE CASES.
+    Gets intraday price for specified zone.
+    """
     if not session:
         session = Session()
 
