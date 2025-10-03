@@ -1446,7 +1446,6 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
   gridAlerts: US_PJM.fetch_grid_alerts
-  price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_PJM.fetch_wind_solar_forecasts

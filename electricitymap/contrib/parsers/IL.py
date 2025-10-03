@@ -33,7 +33,6 @@ IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
-IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
 TZ = ZoneInfo("Asia/Jerusalem")
 
 
@@ -65,45 +64,6 @@ def fetch_all() -> list:
         return flat_list
 
     return flatten_list(cleaned_list)
-
-
-def fetch_price(
-    zone_key: str = "IL",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> dict:
-    """Fetch price from IEC table."""
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    with get(IEC_PRICE) as response:
-        soup = BeautifulSoup(response.content, "lxml")
-
-    price = soup.find("td", class_="ms-rteTableEvenCol-6")
-
-    return {
-        "zoneKey": zone_key,
-        "currency": "NIS",
-        "datetime": extract_price_date(soup),
-        "price": float(price.p.text),
-        "source": IEC_URL,
-    }
-
-
-def extract_price_date(soup):
-    """Fetch updated price date."""
-    span_soup = soup.find("span", lang="HE")
-    if span_soup:
-        date_str = span_soup.text
-    else:
-        raise ValueError("Could not parse IEC price date")
-    date_str = date_str.split(sep=" - ")
-    date_str = date_str.pop(1)
-
-    date = datetime.strptime(date_str, "%d.%m.%Y")
-
-    return date
 
 
 def fetch_noga_iso_data(session: Session, logger: Logger):
@@ -199,5 +159,3 @@ if __name__ == "__main__":
     print(fetch_production())
     print("fetch_consumption() ->")
     print(fetch_consumption())
-    print("fetch_price() ->")
-    print(fetch_price())
