@@ -358,7 +358,6 @@ isRenewable:
     value: 0.056
 parsers:
   consumption: IL.fetch_consumption
-  price: IL.fetch_price
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Jerusalem
