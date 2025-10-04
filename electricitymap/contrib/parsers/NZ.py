@@ -4,11 +4,19 @@
 import json
 from datetime import datetime, timezone
 from logging import Logger, getLogger
+from typing import Any
 
 from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
 from requests import Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 
 time_zone = "Pacific/Auckland"
 
@@ -30,11 +38,11 @@ def fetch(session: Session | None = None):
 
 
 def fetch_price(
-    zone_key: str = "NZ",
+    zone_key: ZoneKey = ZoneKey("NZ"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """
     Requests the current price of electricity based on the zone key.
 
@@ -64,24 +72,23 @@ def fetch_price(
     date_time = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ").replace(
         tzinfo=timezone.utc
     )
-
-    return [
-        {
-            "datetime": date_time,
-            "price": avg_price,
-            "currency": "NZD",
-            "source": "api.em6.co.nz",
-            "zoneKey": zone_key,
-        }
-    ]
+    price_list = PriceList(logger)
+    price_list.append(
+        zoneKey=zone_key,
+        price=avg_price,
+        currency="NZD",
+        datetime=date_time,
+        source="api.em6.co.nz",
+    )
+    return price_list.to_list()
 
 
 def fetch_production(
-    zone_key: str = "NZ",
+    zone_key: ZoneKey = ZoneKey("NZ"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
@@ -94,54 +101,43 @@ def fetch_production(
 
     region_key = "New Zealand"
     productions = obj["soPgenGraph"]["data"][region_key]
-
-    data = [
-        {
-            "zoneKey": zone_key,
-            "datetime": date_time,
-            "production": {
-                "coal": productions.get("Coal", {"generation": None})["generation"],
-                "oil": productions.get("Diesel/Oil", {"generation": None})[
-                    "generation"
-                ],
-                "gas": productions.get("Gas", {"generation": None})["generation"],
-                "geothermal": productions.get("Geothermal", {"generation": None})[
-                    "generation"
-                ],
-                "wind": productions.get("Wind", {"generation": None})["generation"],
-                "hydro": productions.get("Hydro", {"generation": None})["generation"],
-                "solar": productions.get("Solar", {"generation": None})["generation"],
-                "unknown": productions.get("Co-Gen", {"generation": None})[
-                    "generation"
-                ],
-                "nuclear": 0,  # famous issue in NZ politics
-            },
-            "capacity": {
-                "coal": productions.get("Coal", {"capacity": None})["capacity"],
-                "oil": productions.get("Diesel/Oil", {"capacity": None})["capacity"],
-                "gas": productions.get("Gas", {"capacity": None})["capacity"],
-                "geothermal": productions.get("Geothermal", {"capacity": None})[
-                    "capacity"
-                ],
-                "wind": productions.get("Wind", {"capacity": None})["capacity"],
-                "hydro": productions.get("Hydro", {"capacity": None})["capacity"],
-                "solar": productions.get("Solar", {"capacity": None})["capacity"],
-                "battery storage": productions.get("Battery", {"capacity": None})[
-                    "capacity"
-                ],
-                "unknown": productions.get("Co-Gen", {"capacity": None})["capacity"],
-                "nuclear": 0,  # famous issue in NZ politics
-            },
-            "storage": {
-                "battery": productions.get("Battery", {"generation": None})[
-                    "generation"
-                ],
-            },
-            "source": "transpower.co.nz",
-        }
+    production_breakdowns = ProductionBreakdownList(logger)
+    production_mix = ProductionMix()
+    mix_mapping = {
+        "coal": "Coal",
+        "oil": "Diesel/Oil",
+        "gas": "Gas",
+        "geothermal": "Geothermal",
+        "wind": "Wind",
+        "hydro": "Hydro",
+        "solar": "Solar",
+        "unknown": "Co-Gen",
+    }
+    for mix_key, prod_key in mix_mapping.items():
+        production_mix.add_value(
+            mix_key, productions.get(prod_key, {"generation": None})["generation"]
+        )
+    production_mix.add_value("nuclear", 0)  # famous issue in NZ politics
+    storage_mix = StorageMix()
+    storage_mix.add_value(
+        "battery", productions.get("Battery", {"generation": None})["generation"]
+    )
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=date_time,
+        production=production_mix,
+        storage=storage_mix,
+        source="transpower.co.nz",
+    )
+    capacity = {
+        mix_key: productions.get(prod_key, {"capacity": None})["capacity"]
+        for mix_key, prod_key in mix_mapping.items()
+    }
+    capacity["battery storage"] = productions.get("Battery", {"capacity": None})[
+        "capacity"
     ]
-
-    return data
+    capacity["nuclear"] = 0  # famous issue in NZ politics
+    return [{**e, **{"capacity": capacity}} for e in production_breakdowns.to_list()]
 
 
 if __name__ == "__main__":
