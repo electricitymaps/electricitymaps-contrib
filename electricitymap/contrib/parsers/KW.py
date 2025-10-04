@@ -10,11 +10,17 @@ import re
 import ssl
 from datetime import datetime
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 import requests
 import urllib3
 from requests import Session
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    TotalConsumptionList,
+)
 
 
 # A workaround is required to connect to the API as of 2025-01-14, to avoid the
@@ -48,11 +54,11 @@ def _patch_session_for_legacy_connect(session):
 
 
 def fetch_consumption(
-    zone_key: str = "KW",
+    zone_key: ZoneKey = ZoneKey("KW"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-):
+) -> list[dict[str, Any]]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     r = _patch_session_for_legacy_connect(session or Session())
@@ -66,15 +72,15 @@ def fetch_consumption(
     load = re.findall(r'"currentValue":(\d+)', response.text)
     load = int(load[0])
     consumption = load
+    consumption_list = TotalConsumptionList(logger=logger)
+    consumption_list.append(
+        zoneKey=zone_key,
+        datetime=datetime.now(tz=ZoneInfo("Asia/Kuwait")),
+        consumption=consumption,
+        source="mew.gov.kw",
+    )
 
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": datetime.now(tz=ZoneInfo("Asia/Kuwait")),
-        "consumption": consumption,
-        "source": "mew.gov.kw",
-    }
-
-    return [datapoint]
+    return consumption_list.to_list()
 
 
 if __name__ == "__main__":
