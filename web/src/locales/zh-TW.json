@@ -37,7 +37,7 @@
     },
     "view6": {
       "header": "探索過去",
-      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更聚合數據，或透過瀏覽時間軸來查看隨時間的變化。"
+      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更彙總數據，或透過瀏覽時間軸來查看隨時間的變化。"
     },
     "view7": {
       "header": "風力、太陽能即時資訊",
@@ -61,7 +61,7 @@
     "dataIsEstimated": "該地區的部分資料爲估計值。請參考我們的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>估計方法</a>。",
     "exchangesAreMissing": "電力交換已被納入計算，但尚未顯示。請參考我們的先前的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>合計資料</a>。",
     "estimatedTooltip": "該區域的即時資料是基於其過往資料與模型預測的估計值。",
-    "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
+    "aggregatedTooltip": "該區域的的資料是由過去的每小時資料彙總而成。",
     "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
     "now": "現在"
@@ -96,12 +96,12 @@
     },
     "aggregated": {
       "title": "數據已匯總",
-      "body": "數據由每小時值聚合組成。"
+      "body": "數據由每小時值彙總組成。"
     },
     "aggregated_estimated": {
       "title": "數據已匯總",
       "pill": " 估計為 {{percentage}}% ",
-      "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
+      "body": "數據由每小時值彙總組成。 {{percentage}}% 的生產值為估計值。"
     }
   },
   "ranking-panel": {
