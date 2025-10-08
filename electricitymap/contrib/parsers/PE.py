@@ -57,7 +57,7 @@ def fetch_production(
             "indicador": 0,
         },
     )
-    # Data in MHw + local time, be careful.
+    # Data in MW (it is production not generation) + local time, be careful.
 
     production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
 
@@ -90,22 +90,6 @@ def fetch_production(
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
     df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
     df = df.set_index("datetime")
-
-    # Convert MWh to MW by dividing by time interval
-    # Calculate time interval between consecutive data points
-    if len(df) > 1:
-        time_diff = df.index[1] - df.index[0]
-        time_interval_hours = time_diff.total_seconds() / 3600  # Convert to hours
-
-        # Convert all energy source columns from MWh to MW
-        energy_columns = [col for col in df.columns if col != "datetime"]
-        for col in energy_columns:
-            df[col] = df[col] / time_interval_hours
-
-        logger.info(
-            f"Converted MWh to MW using time interval of {time_interval_hours} hours"
-        )
-
     # Create production events from DataFrame
     production_events = []
 
