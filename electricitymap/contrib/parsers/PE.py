@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+import pandas as pd
 from requests import Response, Session
 
-from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
@@ -57,47 +57,79 @@ def fetch_production(
             "indicador": 0,
         },
     )
+    # Data in MHw + local time, be careful.
+
     production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
 
-    all_production_breakdowns: list[ProductionBreakdownList] = []
+    # Transform production_data into a pandas DataFrame
+    # First, collect all datetime values and validate consistency across all sources
+    datetime_values = []
+    if production_data and production_data[0]["Data"]:
+        datetime_values = [data["Nombre"] for data in production_data[0]["Data"]]
+
+    # Validate that all energy sources have the same datetime values
     for item in production_data:
-        production_mode_list = ProductionBreakdownList(logger)
-        production_mode = MAP_GENERATION[item["Name"]]
-        for data in item["Data"]:
-            productionMix = ProductionMix()
-            productionMix.add_value(production_mode, round(float(data["Valor"]), 3))
-            production_mode_list.append(
-                zoneKey=zone_key,
-                datetime=parse_datetime(data["Nombre"]),
-                source=SOURCE,
-                production=productionMix,
+        source_datetimes = [data["Nombre"] for data in item["Data"]]
+        if source_datetimes != datetime_values:
+            raise ValueError(
+                f"Datetime values are not consistent across all sources: {source_datetimes} != {datetime_values}"
             )
-        all_production_breakdowns.append(production_mode_list)
-    production_events = ProductionBreakdownList.merge_production_breakdowns(
-        all_production_breakdowns, logger
-    )
-    production_events = production_events.to_list()
 
-    # Drop last datapoints if it "looks" incomplete.
-    # The last hour often only contains data from some power plants
-    # which results in the last datapoint being significantly lower than expected.
-    # This is a hacky check, but since we are only potentially discarding the last hour
-    # it will be included when the next datapoint comes in anyway.
-    # We only run this check when target_datetime is None, as to not affect refetches
-    # TODO: remove this in the future, when this is automatically detected by QA layer
+    # Create DataFrame with datetime as index and energy sources as columns
+    df_data = {"datetime": datetime_values}
 
-    total_production_per_datapoint = [
-        sum(d["production"].values()) for d in production_events
-    ]
-    mean_production = sum(total_production_per_datapoint) / len(
-        total_production_per_datapoint
-    )
-    if (
-        total_production_per_datapoint[-1] < mean_production * 0.9
-        and target_datetime is None
-    ):
-        logger.warning(
-            "Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean."
+    for item in production_data:
+        source_name = item["Name"]
+        values = [data["Valor"] for data in item["Data"]]
+        df_data[source_name] = values
+
+    # Convert to pandas DataFrame
+    df = pd.DataFrame(df_data)
+
+    # Parse datetime column with Peru timezone and set as index
+    df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
+    df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
+    df = df.set_index("datetime")
+
+    # Convert MWh to MW by dividing by time interval
+    # Calculate time interval between consecutive data points
+    if len(df) > 1:
+        time_diff = df.index[1] - df.index[0]
+        time_interval_hours = time_diff.total_seconds() / 3600  # Convert to hours
+
+        # Convert all energy source columns from MWh to MW
+        energy_columns = [col for col in df.columns if col != "datetime"]
+        for col in energy_columns:
+            df[col] = df[col] / time_interval_hours
+
+        logger.info(
+            f"Converted MWh to MW using time interval of {time_interval_hours} hours"
         )
-        production_events = production_events[:-1]
+
+    # Create production events from DataFrame
+    production_events = []
+
+    for datetime_idx, row in df.iterrows():
+        productionMix = ProductionMix()
+
+        # Add each energy source to the production mix
+        for energy_source, value in row.items():
+            if energy_source in MAP_GENERATION:
+                production_mode = MAP_GENERATION[energy_source]
+                productionMix.add_value(production_mode, round(float(value), 3))
+            else:
+                raise ValueError(f"Unknown energy source: {energy_source}")
+
+        # Create production event
+        production_event = {
+            "zoneKey": zone_key,
+            "datetime": datetime_idx,
+            "source": SOURCE,
+            "production": productionMix,
+        }
+        production_events.append(production_event)
     return production_events
+
+
+if __name__ == "__main__":
+    fetch_production()
