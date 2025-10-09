@@ -4,7 +4,7 @@ import gzip
 import json
 import time
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from enum import Enum
 from io import BytesIO
 from logging import Logger, getLogger
@@ -53,14 +53,10 @@ DAYAHEAD_LMP_URL = f"{US_PROXY}/api/public-reports/np4-190-cd/dam_stlmnt_pnt_pri
 REALTIME_LMP_URL = f"{US_PROXY}/api/public-reports/np6-788-cd/lmp_node_zone_hub"
 
 # These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
-HISTORICAL_GENERATION_URL = {
-    "2024": f"{US_PROXY}/files/docs/2024/02/08/IntGenbyFuel2024.xlsx?{HOST_PARAMETER}",
-    "2023": f"{US_PROXY}/files/docs/2023/02/07/IntGenbyFuel2023.xlsx?{HOST_PARAMETER}",
-    "2022": f"{US_PROXY}/files/docs/2022/02/08/IntGenbyFuel2022.xlsx?{HOST_PARAMETER}",
-    "2021": f"{US_PROXY}/files/docs/2021/02/08/IntGenbyFuel2021.xlsx?{HOST_PARAMETER}",
-    "all_previous": f"{US_PROXY}/files/docs/2021/03/10/FuelMixReport_PreviousYears.zip?{HOST_PARAMETER}",
-}
-
+# HISTORICAL_GENERATION_URL = {
+#     "2025": f"{US_PROXY}/files/docs/2025/02/08/IntGenbyFuel2025.xlsx?{HOST_PARAMETER}",
+#     "all_previous": f"{US_PROXY}/files/docs/2021/03/10/FuelMixReport_PreviousYears.zip?{HOST_PARAMETER}",
+# }
 GENERATION_MAPPING = {
     "Coal and Lignite": "coal",
     "Hydro": "hydro",
@@ -107,26 +103,25 @@ def get_data(
     return data_json
 
 
-def parse_storage_data(session: Session):
+def parse_storage_data_live(session: Session) -> pd.DataFrame:
+    """
+    Parse the storage data from the ERCOT API. The data is returned in 5 minute intervals.
+    """
     storage_data_json = get_data(url=RT_STORAGE_URL, session=session)
-
-    storage_by_hour = {}
-    for day_key in ["previousDay", "currentDay"]:
-        if day_key not in storage_data_json:
-            continue
-
-        for entry in storage_data_json[day_key]["data"]:
-            dt = datetime.strptime(entry["timestamp"], "%Y-%m-%d %H:%M:%S%z").replace(
-                tzinfo=TX_TZ
-            )
-            hour_dt = dt.replace(minute=0, second=0, microsecond=0)
-
-            if hour_dt not in storage_by_hour:
-                storage_by_hour[hour_dt] = []
-
-            storage_by_hour[hour_dt].append(entry["netOutput"])
-
-    return storage_by_hour
+    df = pd.concat(
+        [
+            pd.DataFrame(storage_data_json["previousDay"]["data"]),
+            pd.DataFrame(storage_data_json["currentDay"]["data"]),
+        ]
+    )
+    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor("5min")
+    df.rename(columns={"netOutput": "battery_storage"}, inplace=True)
+    df["battery_storage"] = -df["battery_storage"].astype(
+        float
+    )  # Storage is positive when charging'
+    df = df[["battery_storage", "datetime"]].groupby("datetime").mean().reset_index()
+    df.set_index("datetime", inplace=True)
+    return df[["battery_storage"]]
 
 
 def fetch_live_consumption(
@@ -157,153 +152,152 @@ def fetch_live_production(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
+    """
+    Fetch the live production data from the ERCOT API at a 5 minute interval.
+    The data is returned in 5 minute intervals.
+    """
     session = session or Session()
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
     production_breakdowns = ProductionBreakdownList(logger)
 
-    # Process storage data first
-    # storage_by_hour = parse_storage_data(session)
+    # Process storage data first - keep at 15-minute intervals
+    df_storage = parse_storage_data_live(session)
 
     # Process generation data
-    for day in gen_data_json:
-        date_dict = gen_data_json[day]
-        hourly_data = {}
+    df_generation = process_generation_dataframe(
+        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json])
+    )
+    if not df_storage.empty:
+        df_generation_storage = df_generation.merge(
+            df_storage, left_index=True, right_index=True, how="inner"
+        )
+    else:
+        df_generation_storage = df_generation.copy()
 
-        for date in date_dict:
-            dt = datetime.strptime(date, "%Y-%m-%d %H:%M:%S%z").replace(tzinfo=TX_TZ)
-            hour_dt = dt.replace(minute=0, second=0, microsecond=0)
+    # Round up to 2 decimals
+    df_generation_storage = df_generation_storage.round(2)
+    # Create production breakdowns for each timestamp - optimized version
+    timestamps = df_generation_storage.index
+    production_columns = [
+        col for col in df_generation_storage.columns if col != "battery_storage"
+    ]
+    has_storage = "battery_storage" in df_generation_storage.columns
 
-            if hour_dt not in hourly_data:
-                hourly_data[hour_dt] = {
-                    mode: [] for mode in GENERATION_MAPPING.values()
-                }
+    # Use iloc for faster access instead of iterrows()
+    for i, timestamp in enumerate(timestamps):
+        production = ProductionMix()
+        storage = StorageMix()
 
-            for mode, data in date_dict[date].items():
-                production_source = GENERATION_MAPPING[mode]
-                if production_source != "battery":  # Skip battery from generation data
-                    hourly_data[hour_dt][production_source].append(data["gen"])
+        # Get row data using iloc (faster than iterrows)
+        row_data = df_generation_storage.iloc[i]
 
-        for hour_dt, modes in hourly_data.items():
-            production = ProductionMix()
-            # storage = StorageMix()
-
-            # Add generation data
-            for mode, values in modes.items():
-                if values:
-                    production.add_value(
-                        mode,
-                        (sum(values) / len(values)),
-                        correct_negative_with_zero=True,
-                    )
-
-            # Add storage data if available for this hour
-            # if hour_dt in storage_by_hour:
-            #     storage_values = storage_by_hour[hour_dt]
-            #     if storage_values:
-            #         storage.add_value(
-            #             "battery", sum(storage_values) / len(storage_values)
-            #         )
-
-            production_breakdowns.append(
-                zoneKey=ZoneKey(zone_key),
-                datetime=hour_dt,
-                source=SOURCE,
-                production=production,
-                # storage=storage,
+        # Add production values efficiently
+        for col in production_columns:
+            production.add_value(
+                col,
+                row_data[col],
+                correct_negative_with_zero=True,
             )
 
-    return production_breakdowns
+        # Add storage data if available
+        if has_storage:
+            storage.add_value("battery", row_data["battery_storage"])
 
-
-def get_sheet_from_date(year: int, month: str, session: Session | None = None):
-    if not session:
-        session = Session()
-
-    if year > 2020:
-        url = HISTORICAL_GENERATION_URL[str(year)]
-        return pd.read_excel(url, engine="openpyxl", sheet_name=month)
-    else:
-        url = HISTORICAL_GENERATION_URL["all_previous"]
-        response = session.get(url)
-
-        if response.content.startswith(b"PK"):
-            zip_data = BytesIO(response.content)
-        else:
-            try:
-                decompressed = gzip.decompress(response.content)
-                zip_data = BytesIO(decompressed)
-            except gzip.BadGzipFile as err:
-                raise ValueError("File is neither a ZIP nor a gzipped file") from err
-
-        year_file = f"IntGenbyFuel{year}.xlsx"
-
-        with zipfile.ZipFile(zip_data) as zf:
-            if year_file not in zf.namelist():
-                raise NotImplementedError(
-                    f"Data for year {year} not found in historical data"
-                )
-            with zf.open(year_file) as excel_file:
-                return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
-
-
-def fetch_historical_production(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: datetime,
-    logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
-    if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
-
-    year = target_datetime.year
-    month = target_datetime.strftime("%b")
-
-    production_breakdowns = ProductionBreakdownList(logger)
-
-    df = get_sheet_from_date(year, month, session)
-
-    df["Date"] = pd.to_datetime(df["Date"])
-    time_columns = df.columns[4:]
-    datapoints_by_date = {}
-
-    for _, row in df.iterrows():
-        date = datetime.strptime(str(row["Date"]), "%Y-%m-%d %H:%M:%S").replace(
-            tzinfo=TX_TZ
-        )
-
-        production_source = GENERATION_MAPPING[row["Fuel"]]
-
-        for hour in range(0, 24):
-            hour_dt = date + timedelta(hours=hour)
-
-            # We get the data in 15 minute intervals, so we need to sum the 4 columns that represent an hour
-            start_idx = hour * 4
-            end_idx = start_idx + 4
-            hour_cols = time_columns[start_idx:end_idx]
-            hour_value = row[hour_cols].sum()
-
-            if hour_dt not in datapoints_by_date:
-                datapoints_by_date[hour_dt] = {
-                    "storage": StorageMix(),
-                    "production": ProductionMix(),
-                }
-
-            target = "storage" if production_source == "battery" else "production"
-            datapoints_by_date[hour_dt][target].add_value(production_source, hour_value)
-
-    for hour_dt, production_and_storage in datapoints_by_date.items():
-        production = production_and_storage.get("production", ProductionMix())
-        # storage = production_and_storage.get("storage", StorageMix())
-
+        # Add breakdown for each timestamp
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
-            datetime=hour_dt,
+            datetime=timestamp,
             source=SOURCE,
             production=production,
-            # storage=storage,
+            storage=storage,
         )
 
     return production_breakdowns
+
+
+# def get_sheet_from_date(year: int, month: str, session: Session | None = None):
+#     """Unit is MWh and not MW"""
+#     if not session:
+#         session = Session()
+
+#     if year > 2024:
+#         url = HISTORICAL_GENERATION_URL[str(year)]
+#         return pd.read_excel(url, engine="openpyxl", sheet_name=month)
+#     else:
+#         url = HISTORICAL_GENERATION_URL["all_previous"]
+#         response = session.get(url)
+
+#         if response.content.startswith(b"PK"):
+#             zip_data = BytesIO(response.content)
+#         else:
+#             try:
+#                 decompressed = gzip.decompress(response.content)
+#                 zip_data = BytesIO(decompressed)
+#             except gzip.BadGzipFile as err:
+#                 raise ValueError("File is neither a ZIP nor a gzipped file") from err
+
+#         year_file = f"IntGenbyFuel{year}.xlsx"
+
+#         with zipfile.ZipFile(zip_data) as zf:
+#             if year_file not in zf.namelist():
+#                 raise NotImplementedError(
+#                     f"Data for year {year} not found in historical data"
+#                 )
+#             with zf.open(year_file) as excel_file:
+#                 return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
+
+
+# def fetch_historical_production(
+#     zone_key: ZoneKey,
+#     session: Session,
+#     target_datetime: datetime,
+#     logger: Logger = getLogger(__name__),
+# ) -> ProductionBreakdownList:
+#     if target_datetime.tzinfo is None:
+#         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+
+#     year = target_datetime.year
+#     month = target_datetime.strftime("%b")
+
+#     production_breakdowns = ProductionBreakdownList(logger)
+
+#     df = get_sheet_from_date(year, month, session)
+#     df_standardized = transform_historical_production(df)
+
+#     # Process the standardized DataFrame to create ProductionBreakdown objects
+#     if df_standardized.empty:
+#         logger.warning(f"No production data found for {year}-{month}")
+#         return production_breakdowns
+
+#     for i, timestamp in enumerate(df_standardized.index):
+#         production = ProductionMix()
+#         storage = StorageMix()
+
+#         # Get row data using iloc (faster than iterrows)
+#         row_data = df_standardized.iloc[i]
+
+#         # Add production values efficiently
+#         for col in df_standardized.columns:
+#             production.add_value(
+#                 col,
+#                 row_data[col],
+#                 correct_negative_with_zero=True,
+#             )
+
+#         # Add storage data if available
+#         if "battery" in df_standardized.columns:
+#             storage.add_value("battery", row_data["battery"])
+
+#         # Add breakdown for each timestamp
+#         production_breakdowns.append(
+#             zoneKey=ZoneKey(zone_key),
+#             datetime=timestamp,
+#             source=SOURCE,
+#             production=production,
+#             storage=storage,
+#         )
+
+#     return production_breakdowns
 
 
 def fetch_live_exchange(
@@ -348,19 +342,12 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    if target_datetime is None or target_datetime > (
-        datetime.now(tz=timezone.utc) - timedelta(days=1)
-    ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
-        production = fetch_live_production(
-            zone_key=zone_key, session=session, logger=logger
-        )
-    else:
-        production = fetch_historical_production(
-            zone_key=zone_key,
-            session=session,
-            target_datetime=target_datetime,
-            logger=logger,
-        )
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates.")
+
+    production = fetch_live_production(
+        zone_key=zone_key, session=session, logger=logger
+    )
     return production.to_list()
 
 
@@ -654,6 +641,80 @@ def fetch_realtime_locational_marginal_price(
     return prices.to_list()
 
 
+def process_generation_dataframe(df):
+    """
+    Process generation DataFrame by:
+    1. Flooring timestamps to nearest 5 minutes
+    2. Extracting 'gen' values from dictionary format
+    3. Grouping by datetime index and taking mean (temporal aggregation)
+    4. Standardizing columns using GENERATION_MAPPING (column aggregation)
+    """
+    df_processed = df.copy()
+
+    # Convert to DatetimeIndex if it isn't already
+    if not isinstance(df_processed.index, pd.DatetimeIndex):
+        df_processed.index = pd.to_datetime(df_processed.index)
+
+    df_processed.index = df_processed.index.floor("5min")
+
+    # Extract 'gen' values from dictionaries
+    df_processed = df_processed.apply(
+        lambda col: col.apply(
+            lambda x: x["gen"] if isinstance(x, dict) and "gen" in x else None
+        )
+    )
+
+    # First group by datetime index to aggregate multiple rows with same 5-minute timestamp
+    df_processed = df_processed.groupby(df_processed.index).mean()
+
+    # Then group columns by their target names and sum (for columns that map to same target)
+    column_mapping = pd.Series(
+        {col: GENERATION_MAPPING.get(col, col) for col in df_processed.columns}
+    )
+    df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum()
+
+    return df_generation_standardized[
+        [col for col in df_generation_standardized.columns if col != "battery"]
+    ]
+
+
+def transform_historical_production(df):
+    """
+    Transform the historical production data to a standardized format.
+    The input is unstandardized MWH per 15min and the output is standardized MW per 15min.
+    """
+    # Identify time columns (all except 'Date', 'Fuel', 'Settlement Type', 'Total')
+    time_columns = [
+        col
+        for col in df.columns
+        if col not in ["Date", "Fuel", "Settlement Type", "Total"]
+    ]
+    records = []
+    for _, row in df.iterrows():
+        fuel = row["Fuel"]
+        date_str = row["Date"].strftime("%Y-%m-%d")
+        for time_col in time_columns:
+            dt_str = f"{date_str} {time_col}"
+            dt = pd.to_datetime(dt_str, format="%Y-%m-%d %H:%M").tz_localize(TX_TZ)
+            value = row[time_col]
+            records.append({"datetime": dt, "fuel": fuel, "value": value})
+    df_records = pd.DataFrame(records)
+    df_pivot = df_records.pivot(index="datetime", columns="fuel", values="value")
+    column_mapping = pd.Series(
+        {col: GENERATION_MAPPING.get(col, col) for col in df_pivot.columns}
+    )
+    df_pivot_standardized = df_pivot.groupby(column_mapping, axis=1).sum()
+    # From MWH to MW. The step are 15min steps
+    df_result = (
+        df_pivot_standardized[
+            [col for col in df_pivot_standardized.columns if col != "battery"]
+        ]
+        * 60
+        / 15
+    )
+    return df_result
+
+
 def get_id_token():
     ERCOT_API_PASSWORD = get_token("ERCOT_API_PASSWORD")
     ERCOT_API_USERNAME = get_token("ERCOT_API_USERNAME")
@@ -672,12 +733,13 @@ if __name__ == "__main__":
 
     from pprint import pprint
 
-    # print("fetch_consumption() ->")
-    # pprint(fetch_consumption())
+    pprint(fetch_production())
+    # pprint(fetch_production(target_datetime = datetime(2023,5,14)))
 
+    # pprint(parse_storage_data(session=Session()))
     # print("fetch_consumption_forecast() -->")
     # pprint(fetch_consumption_forecast(target_datetime=datetime(2025,3,14)))
-    pprint(fetch_consumption_forecast())
+    # pprint(fetch_consumption_forecast())
 
     # print("fetch_wind_solar_forecasts() -->")
     # pprint(fetch_wind_solar_forecasts())
