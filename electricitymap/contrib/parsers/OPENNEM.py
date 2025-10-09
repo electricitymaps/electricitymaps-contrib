@@ -1,3 +1,30 @@
+"""
+OpenNEM parser for Australian electricity data.
+
+This parser fetches electricity data from the OpenElectricity API v4, including:
+- Price data (migrated to v4 API)
+- Production data (still using v3 API format)
+- Exchange data between Australian states
+
+The price functionality has been migrated to use the v4 API with:
+- Bearer token authentication
+- Flexible interval parameters (5m, 1h, 1d, 7d, 1M, 3M, season, 1y, fy)
+- Improved error handling and data validation
+
+Supported zones:
+- AU-NSW (New South Wales)
+- AU-QLD (Queensland)
+- AU-SA (South Australia)
+- AU-TAS (Tasmania)
+- AU-VIC (Victoria)
+- AU-WA (Western Australia)
+
+Environment variables required:
+- OPENELECTRICITY_TOKEN: API token for authentication
+- OPENELECTRICITY_BASE_URL: Base URL (defaults to v4 API)
+"""
+
+import os
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
@@ -13,6 +40,7 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 REFETCH_FREQUENCY = timedelta(days=7)
 
@@ -100,8 +128,33 @@ SOURCE = "opennem.org.au"
 
 
 def fetch_datasets(
-    zone_key: ZoneKey, session: Session, target_datetime: datetime | None
-):
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime | None,
+    *,
+    kind: str = "power",
+    interval: str | None = None,
+    date_start: str | None = None,
+    date_end: str | None = None,
+) -> list:
+    """
+    Fetch datasets from the OpenElectricity v4 API.
+
+    Args:
+        zone_key: The zone to fetch data for
+        session: HTTP session for making requests
+        target_datetime: Target datetime for data (used for interval derivation)
+        kind: Type of data to fetch ("power" or "price")
+        interval: Data interval (5m, 1h, 1d, 7d, 1M, 3M, season, 1y, fy)
+        date_start: Start date for data range (ISO format)
+        date_end: End date for data range (ISO format)
+
+    Returns:
+        List of datasets from the API response
+
+    Raises:
+        ParserException: If zone_key is invalid or API request fails
+    """
     region = ZONE_KEY_TO_REGION.get(zone_key)
     if not region:
         raise ParserException(
@@ -109,31 +162,120 @@ def fetch_datasets(
             message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
             zone_key=zone_key,
         )
+
     url = generate_url(
         zone_key=zone_key,
         target_datetime=target_datetime,
+        kind=kind,
+        interval=interval,
+        date_start=date_start,
+        date_end=date_end,
     )
-    response = session.get(url)
+
+    # v4 API authentication using Bearer token
+    token = get_token("OPENELECTRICITY_TOKEN")
+    headers = {"Authorization": f"Bearer {token}"}
+
+    response = session.get(url, headers=headers)
     response.raise_for_status()
 
     return response.json()["data"]
 
 
-def generate_url(zone_key: ZoneKey, target_datetime: datetime | None) -> str:
-    # Only 7d or 30d data is available
-    duration = (
-        "7d"
-        if not target_datetime
-        or (datetime.now() - target_datetime.replace(tzinfo=None)) < timedelta(days=7)
-        else "30d"
+def generate_url(
+    zone_key: ZoneKey,
+    target_datetime: datetime | None,
+    *,
+    kind: str = "power",
+    interval: str | None = None,
+    date_start: str | None = None,
+    date_end: str | None = None,
+) -> str:
+    """
+    Generate URL for OpenElectricity v4 API requests.
+
+    Args:
+        zone_key: The zone to fetch data for
+        target_datetime: Target datetime for data (used for interval derivation)
+        kind: Type of data to fetch ("power" or "price")
+        interval: Data interval (5m, 1h, 1d, 7d, 1M, 3M, season, 1y, fy)
+        date_start: Start date for data range (ISO format)
+        date_end: End date for data range (ISO format)
+
+    Returns:
+        Complete URL for the API request
+    """
+    network = ZONE_KEY_TO_NETWORK.get(zone_key)
+    base_url = os.getenv(
+        "OPENELECTRICITY_BASE_URL", "https://api.openelectricity.org.au/v4"
     )
-    network = ZONE_KEY_TO_NETWORK[zone_key]
-    region = ZONE_KEY_TO_REGION.get(zone_key)
-    # Western Australia have no region in url
-    region = "" if region == "WEM" else f"/{region}"
-    url = f"https://data.openelectricity.org.au/v4/stats/au/{network}{region}/power/{duration}.json"
+
+    # Build base URL based on data type
+    if kind == "price":
+        url = f"{base_url}/market/network/{network}"
+    elif kind == "power":
+        url = f"{base_url}/data/network/{network}"
+    else:
+        # Default to network data
+        url = f"{base_url}/data/network/{network}"
+
+    # Derive interval from target_datetime when not explicitly provided
+    derived_interval = interval
+    if not derived_interval and target_datetime:
+        derived_interval = _derive_interval_from_datetime(target_datetime)
+
+    # Build query parameters
+    params = []
+
+    # Add required metrics parameter
+    if kind == "power":
+        params.append("metrics=power")
+    elif kind == "price":
+        params.append("metrics=price")
+
+    # Add optional parameters
+    if derived_interval:
+        params.append(f"interval={derived_interval}")
+    if date_start:
+        params.append(f"date_start={date_start}")
+    if date_end:
+        params.append(f"date_end={date_end}")
+
+    if params:
+        url += "?" + "&".join(params)
 
     return url
+
+
+def _derive_interval_from_datetime(target_datetime: datetime) -> str:
+    """
+    Derive appropriate interval based on time difference from target datetime.
+
+    Args:
+        target_datetime: The target datetime to compare against current time
+
+    Returns:
+        Appropriate interval string for the API
+    """
+    delta = datetime.now(tz=timezone.utc) - target_datetime.replace(tzinfo=timezone.utc)
+    days = delta.days
+
+    if delta <= timedelta(hours=1):
+        return "5m"
+    elif delta <= timedelta(days=1):
+        return "1h"
+    elif days <= 7:
+        return "1d"
+    elif days <= 31:
+        return "7d"
+    elif days <= 92:
+        return "1M"
+    elif days <= 184:
+        return "3M"
+    elif days <= 366:
+        return "1y"
+    else:
+        return "fy"
 
 
 def process_production_datasets(
@@ -143,6 +285,7 @@ def process_production_datasets(
 ) -> ProductionBreakdownList:
     """
     Process production datasets and return a production breakdown list.
+    Note: This function still uses v3 API format - production migration not implemented yet.
     """
     now = datetime.now(tz=timezone.utc)
     unmerged_production_breakdown_lists = []
@@ -253,6 +396,7 @@ def fetch_production(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
+        kind="power",
     )
 
     return process_production_datasets(
@@ -268,33 +412,69 @@ def process_price_datasets(
     logger: Logger,
 ) -> PriceList:
     """
-    Process price datasets and return a price list.
+    Process price datasets from OpenElectricity v4 API and return a price list.
+
+    Args:
+        datasets: List of datasets from the v4 API response
+        zone_key: The zone these datasets belong to
+        logger: Logger instance for debugging
+
+    Returns:
+        PriceList containing valid price data points
+
+    Note:
+        This function handles the v4 API response structure where results contain
+        objects with 'data' fields containing timestamp-value pairs.
     """
     now = datetime.now(tz=timezone.utc)
     price_list = PriceList(logger=logger)
+    network = ZONE_KEY_TO_NETWORK.get(zone_key)
 
     for dataset in datasets:
-        if dataset["type"] != "price":
+        # v4 API uses 'metric' instead of 'type' and 'network_code' instead of 'region'
+        if dataset.get("metric") != "price" or dataset.get("network_code") != network:
             continue
-        history = dataset["history"]
-        start = datetime.fromisoformat(history["start"])
-        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
-        delta = timedelta(minutes=interval_min)
-        data = history["data"]
-        for i, value in enumerate(data):
-            dt = start + i * delta
-            if dt > now:
-                logger.debug(
-                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
-                )
+
+        # v4 API structure: results contains objects with 'data' field
+        results = dataset.get("results", [])
+        if not results:
+            continue
+
+        # Process each result object
+        for result in results:
+            if not isinstance(result, dict) or "data" not in result:
                 continue
-            price_list.append(
-                zoneKey=zone_key,
-                datetime=dt,
-                currency="AUD",
-                price=value,
-                source=SOURCE,
-            )
+
+            data_points = result.get("data", [])
+            for data_point in data_points:
+                if len(data_point) < 2:
+                    continue
+
+                timestamp_str, value = data_point[0], data_point[1]
+
+                # Skip None values (they will be filtered out by PriceList validation)
+                if value is None:
+                    continue
+
+                # Parse timestamp and skip future data
+                try:
+                    dt = datetime.fromisoformat(timestamp_str.replace("Z", "+00:00"))
+                    if dt > now:
+                        logger.debug(
+                            f"Skipping future datetime {dt} for zone {zone_key}"
+                        )
+                        continue
+                except ValueError:
+                    logger.warning(f"Invalid timestamp format: {timestamp_str}")
+                    continue
+
+                price_list.append(
+                    zoneKey=zone_key,
+                    datetime=dt,
+                    currency="AUD",
+                    price=value,
+                    source=SOURCE,
+                )
 
     return price_list
 
@@ -304,14 +484,42 @@ def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
+    interval: str | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    """
+    Fetch electricity price data from OpenElectricity v4 API.
+
+    Args:
+        zone_key: The zone to fetch price data for (e.g., "AU-VIC", "AU-SA")
+        session: HTTP session for making requests (optional)
+        target_datetime: Target datetime for data (optional)
+        interval: Data interval - defaults to "1h" if not specified
+                 Options: 5m, 1h, 1d, 7d, 1M, 3M, season, 1y, fy
+        logger: Logger instance for debugging (optional)
+
+    Returns:
+        List of price data points with datetime, price, currency, and source
+
+    Raises:
+        ParserException: If zone_key is invalid or API request fails
+
+    Example:
+        >>> prices = fetch_price(ZoneKey("AU-VIC"))
+        >>> prices = fetch_price(ZoneKey("AU-SA"), interval="7d")
+    """
     session = session or Session()
+
+    # Default to 1h interval for optimal balance of granularity and API efficiency
+    if interval is None:
+        interval = "1h"
 
     datasets = fetch_datasets(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
+        kind="price",
+        interval=interval,
     )
 
     return process_price_datasets(
@@ -375,7 +583,7 @@ def _fetch_regular_exchange(
     """
     Calculate netflows for zones that have a single exchange.
     """
-    url = generate_url(zone_key=zone_key, target_datetime=target_datetime)
+    url = generate_url(zone_key=zone_key, target_datetime=target_datetime, kind="power")
     response = session.get(url)
     response.raise_for_status()
 
@@ -449,8 +657,12 @@ def _fetch_au_nsw_au_vic_exchange(
     nsw_zk = ZoneKey("AU-NSW")
     qld_zk = ZoneKey("AU-QLD")
 
-    nsw_url = generate_url(zone_key=nsw_zk, target_datetime=target_datetime)
-    qld_url = generate_url(zone_key=qld_zk, target_datetime=target_datetime)
+    nsw_url = generate_url(
+        zone_key=nsw_zk, target_datetime=target_datetime, kind="power"
+    )
+    qld_url = generate_url(
+        zone_key=qld_zk, target_datetime=target_datetime, kind="power"
+    )
 
     # potential race condition here
     # if the first request if right before a 5 minute interval and
@@ -534,12 +746,30 @@ def _fetch_au_nsw_au_vic_exchange(
 
 
 if __name__ == "__main__":
-    """Main method, never used by the electricityMap backend, but handy for testing."""
-    # print(fetch_price(ZoneKey("AU-SA")))
+    """
+    Main method for testing the parser functions.
+    
+    This is never used by the electricityMap backend, but is handy for development
+    and testing purposes. Set the OPENELECTRICITY_TOKEN environment variable
+    before running this script.
+    """
+    # Example usage of the fetch_price function
+    # print("Testing OPENNEM price parser...")
+    # try:
+    #     # Test with default 1h interval
+    #     prices = fetch_price(ZoneKey("AU-VIC"))
+    #     print(f"Successfully fetched {len(prices)} price points for AU-VIC")
+    #     print(prices)
 
-    print(fetch_production(ZoneKey("AU-TAS")))
-    # print(fetch_production(ZoneKey("AU-NSW")))
-    # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
-    # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
-    #
-    # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
+    #     # Test with custom interval
+    #     weekly_prices = fetch_price(ZoneKey("AU-SA"), interval="7d")
+    #     print(
+    #         f"Successfully fetched {len(weekly_prices)} price points for AU-SA (7d interval)"
+    #     )
+    #     print(weekly_prices)
+
+    # except Exception as e:
+    #     print(f"Error during testing: {e}")
+    #     import traceback
+
+    #     traceback.print_exc()
