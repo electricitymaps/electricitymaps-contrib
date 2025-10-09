@@ -2,20 +2,20 @@
 # name: test_snapshot_fetch_production
   list([
     dict({
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2025, 4, 25, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 0,
         'coal': 0,
         'gas': 0,
-        'geothermal': None,
-        'hydro': None,
         'nuclear': 3119.0,
         'oil': 0,
         'solar': 2100.0,
         'unknown': 3861.0,
-        'wind': None,
       }),
       'source': 'www.kyuden.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'JP-KY',
