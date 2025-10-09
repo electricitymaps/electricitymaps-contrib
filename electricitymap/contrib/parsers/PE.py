@@ -47,45 +47,10 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
-    r = session or Session()
+    df_current = _get_production_data(session, target_datetime)
+    df_yesterday = _get_production_data(session, target_datetime - timedelta(days=1))
 
-    # To guarantee a full 24 hours of data we must make 2 requests.
-    response_url: Response = r.post(
-        API_ENDPOINT,
-        data={
-            "fechaInicial": (target_datetime).strftime("%d/%m/%Y"),
-            "fechaFinal": (target_datetime + timedelta(days=1)).strftime("%d/%m/%Y"),
-            "indicador": 0,
-        },
-    )
-    # Data in MW (it is production not generation) + local time, be careful.
-
-    production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
-
-    # Transform production_data into a pandas DataFrame
-    # First, collect all datetime values and validate consistency across all sources
-    datetime_values = []
-    if production_data and production_data[0]["Data"]:
-        datetime_values = [data["Nombre"] for data in production_data[0]["Data"]]
-
-    # Validate that all energy sources have the same datetime values
-    for item in production_data:
-        source_datetimes = [data["Nombre"] for data in item["Data"]]
-        if source_datetimes != datetime_values:
-            raise ValueError(
-                f"Datetime values are not consistent across all sources: {source_datetimes} != {datetime_values}"
-            )
-
-    # Create DataFrame with datetime as index and energy sources as columns
-    df_data = {"datetime": datetime_values}
-
-    for item in production_data:
-        source_name = item["Name"]
-        values = [data["Valor"] for data in item["Data"]]
-        df_data[source_name] = values
-
-    # Convert to pandas DataFrame
-    df = pd.DataFrame(df_data)
+    df = pd.concat([df_yesterday, df_current]).reset_index(drop=True)
 
     # Parse datetime column with Peru timezone and set as index
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
@@ -116,6 +81,51 @@ def fetch_production(
         )
 
     return production_breakdown_list.to_list()
+
+
+def _get_production_data(session: Session, target_datetime: datetime) -> pd.DataFrame:
+    """Get the production data for the target datetime."""
+    r = session or Session()
+
+    # To guarantee a full 24 hours of data we must make 2 requests.
+    response_url_current: Response = r.post(
+        API_ENDPOINT,
+        data={
+            "fechaInicial": (target_datetime).strftime("%d/%m/%Y"),
+            "fechaFinal": (target_datetime + timedelta(days=1)).strftime("%d/%m/%Y"),
+            "indicador": 0,
+        },
+    )
+    # Data in MW (it is production not generation) + local time, be careful.
+
+    production_data = response_url_current.json()["GraficoTipoCombustible"]["Series"]
+
+    # Transform production_data into a pandas DataFrame
+    # First, collect all datetime values and validate consistency across all sources
+    datetime_values = []
+    if production_data and production_data[0]["Data"]:
+        datetime_values = [data["Nombre"] for data in production_data[0]["Data"]]
+
+    # Validate that all energy sources have the same datetime values
+    for item in production_data:
+        source_datetimes = [data["Nombre"] for data in item["Data"]]
+        if source_datetimes != datetime_values:
+            raise ValueError(
+                f"Datetime values are not consistent across all sources: {source_datetimes} != {datetime_values}"
+            )
+
+    # Create DataFrame with datetime as index and energy sources as columns
+    df_data = {"datetime": datetime_values}
+
+    for item in production_data:
+        source_name = item["Name"]
+        values = [data["Valor"] for data in item["Data"]]
+        df_data[source_name] = values
+
+    # Convert to pandas DataFrame
+    df = pd.DataFrame(df_data)
+
+    return df
 
 
 if __name__ == "__main__":
