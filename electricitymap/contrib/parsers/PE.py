@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 from requests import Response, Session
 
+from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
@@ -52,8 +53,8 @@ def fetch_production(
     response_url: Response = r.post(
         API_ENDPOINT,
         data={
-            "fechaInicial": (target_datetime - timedelta(days=1)).strftime("%d/%m/%Y"),
-            "fechaFinal": target_datetime.strftime("%d/%m/%Y"),
+            "fechaInicial": (target_datetime).strftime("%d/%m/%Y"),
+            "fechaFinal": (target_datetime + timedelta(days=1)).strftime("%d/%m/%Y"),
             "indicador": 0,
         },
     )
@@ -90,8 +91,8 @@ def fetch_production(
     df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
     df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
     df = df.set_index("datetime")
-    # Create production events from DataFrame
-    production_events = []
+    # Create production breakdown list
+    production_breakdown_list = ProductionBreakdownList(logger)
 
     for datetime_idx, row in df.iterrows():
         productionMix = ProductionMix()
@@ -104,15 +105,17 @@ def fetch_production(
             else:
                 raise ValueError(f"Unknown energy source: {energy_source}")
 
-        # Create production event
-        production_event = {
-            "zoneKey": zone_key,
-            "datetime": datetime_idx,
-            "source": SOURCE,
-            "production": productionMix,
-        }
-        production_events.append(production_event)
-    return production_events
+        # Add production breakdown to the list
+        # Convert pandas Timestamp to native datetime object
+        native_datetime = datetime_idx.to_pydatetime()
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=native_datetime,
+            source=SOURCE,
+            production=productionMix,
+        )
+
+    return production_breakdown_list.to_list()
 
 
 if __name__ == "__main__":
