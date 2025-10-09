@@ -210,7 +210,7 @@ def test_fetch_production_with_distant_exchange_data(
     ]
 
     with patch(  # noqa: SIM117
-        "requests.get",
+        "electricitymap.contrib.parsers.JP_KY.get",
         side_effect=[
             mock_csv_response_at_night,
             mock_nuclear_responses[0],

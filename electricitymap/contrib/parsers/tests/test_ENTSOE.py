@@ -50,17 +50,32 @@ def test_fetch_generation_forecast(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_generation_forecast(ZoneKey("SE-SE3"), session)
 
 
-def test_fetch_prices(adapter, session, snapshot):
+def test_fetch_prices_day_ahead(adapter, session, snapshot):
     with open(
-        "electricitymap/contrib/parsers/tests/mocks/ENTSOE/FR_prices.xml", "rb"
-    ) as price_fr_data:
+        "electricitymap/contrib/parsers/tests/mocks/ENTSOE/ES_day_ahead_price.xml",
+        "rb",
+    ) as price_es_day_ahead_data:
         adapter.register_uri(
             GET,
             ANY,
-            content=price_fr_data.read(),
+            content=price_es_day_ahead_data.read(),
         )
 
-    assert snapshot == ENTSOE.fetch_price(ZoneKey("FR"), session)
+    assert snapshot == ENTSOE.fetch_price(ZoneKey("ES"), session)
+
+
+def test_fetch_prices_intraday(adapter, session, snapshot):
+    with open(
+        "electricitymap/contrib/parsers/tests/mocks/ENTSOE/ES_intraday_price.xml",
+        "rb",
+    ) as price_es_intraday_data:
+        adapter.register_uri(
+            GET,
+            ANY,
+            content=price_es_intraday_data.read(),
+        )
+
+    assert snapshot == ENTSOE.fetch_price_intraday(ZoneKey("ES"), session)
 
 
 def test_fetch_prices_integrated_zone(adapter, session, snapshot):

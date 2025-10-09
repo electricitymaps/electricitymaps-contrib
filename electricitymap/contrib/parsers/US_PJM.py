@@ -17,7 +17,6 @@ from requests import Response, Session
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     GridAlertList,
-    PriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
@@ -40,10 +39,6 @@ DATA_MINER_API_ENDPOINT = "https://api.pjm.com/api/v1/"
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 DATA_PATH = "api/v1"
-
-# Used for price data.
-PRICE_API_ENDPOINT = "http://www.pjm.com/markets-and-operations.aspx"
-CURRENCY = "USD"
 
 SOURCE = "pjm.com"
 
@@ -282,46 +277,6 @@ def fetch_wind_solar_forecasts(
     return production_list.to_list()
 
 
-def fetch_price(
-    zone_key: ZoneKey = ZONE_KEY,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list[dict]:
-    """Requests the last known power price of a given country."""
-
-    if target_datetime is not None:
-        raise ParserException(
-            PARSER, "This parser is not yet able to parse historical data", zone_key
-        )
-
-    session = session or Session()
-    now = datetime.now(TIMEZONE)
-    response = session.get(PRICE_API_ENDPOINT)
-    if not response.ok:
-        raise ParserException(
-            PARSER,
-            f"Exception when fetching production error code: {response.status_code}: {response.text}",
-            zone_key,
-        )
-
-    soup = BeautifulSoup(response.text, "html.parser")
-    price_tag = soup.find("span", class_="rtolmpico")
-    price_data = price_tag.find_next("h2")
-    price_string = price_data.text.split("$")[1]
-    price = float(price_string)
-
-    price_list = PriceList(logger)
-    price_list.append(
-        zoneKey=zone_key,
-        datetime=now.replace(microsecond=0),  # truncate to seconds,
-        source=SOURCE,
-        price=price,
-        currency=CURRENCY,
-    )
-    return price_list.to_list()
-
-
 def _get_interface_data(
     interface: str, session: Session
 ) -> list[tuple[datetime, float]]:
@@ -530,8 +485,6 @@ if __name__ == "__main__":
     # print("fetch_production() ->")
     # print(fetch_production())
 
-    # print("fetch_price() ->")
-    # print(fetch_price())
     """
     for neighbor in [
         "US-CAR-DUK",

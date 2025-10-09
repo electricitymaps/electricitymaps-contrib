@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
@@ -46,58 +47,86 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
+    df_current = _get_production_data(session, target_datetime)
+    df_yesterday = _get_production_data(session, target_datetime - timedelta(days=1))
+
+    df = pd.concat([df_yesterday, df_current]).reset_index(drop=True)
+
+    # Parse datetime column with Peru timezone and set as index
+    df["datetime"] = pd.to_datetime(df["datetime"], format="%Y/%m/%d %H:%M:%S")
+    df["datetime"] = df["datetime"].dt.tz_localize(TIMEZONE)
+    df = df.set_index("datetime")
+    # Create production breakdown list
+    production_breakdown_list = ProductionBreakdownList(logger)
+
+    for datetime_idx, row in df.iterrows():
+        productionMix = ProductionMix()
+
+        # Add each energy source to the production mix
+        for energy_source, value in row.items():
+            if energy_source in MAP_GENERATION:
+                production_mode = MAP_GENERATION[energy_source]
+                productionMix.add_value(production_mode, round(float(value), 3))
+            else:
+                raise ValueError(f"Unknown energy source: {energy_source}")
+
+        # Add production breakdown to the list
+        # Convert pandas Timestamp to native datetime object
+        native_datetime = datetime_idx.to_pydatetime()
+        production_breakdown_list.append(
+            zoneKey=zone_key,
+            datetime=native_datetime,
+            source=SOURCE,
+            production=productionMix,
+        )
+
+    return production_breakdown_list.to_list()
+
+
+def _get_production_data(session: Session, target_datetime: datetime) -> pd.DataFrame:
+    """Get the production data for the target datetime."""
     r = session or Session()
 
     # To guarantee a full 24 hours of data we must make 2 requests.
-    response_url: Response = r.post(
+    response_url_current: Response = r.post(
         API_ENDPOINT,
         data={
-            "fechaInicial": (target_datetime - timedelta(days=1)).strftime("%d/%m/%Y"),
-            "fechaFinal": target_datetime.strftime("%d/%m/%Y"),
+            "fechaInicial": (target_datetime).strftime("%d/%m/%Y"),
+            "fechaFinal": (target_datetime + timedelta(days=1)).strftime("%d/%m/%Y"),
             "indicador": 0,
         },
     )
-    production_data = response_url.json()["GraficoTipoCombustible"]["Series"]
+    # Data in MW (it is production not generation) + local time, be careful.
 
-    all_production_breakdowns: list[ProductionBreakdownList] = []
+    production_data = response_url_current.json()["GraficoTipoCombustible"]["Series"]
+
+    # Transform production_data into a pandas DataFrame
+    # First, collect all datetime values and validate consistency across all sources
+    datetime_values = []
+    if production_data and production_data[0]["Data"]:
+        datetime_values = [data["Nombre"] for data in production_data[0]["Data"]]
+
+    # Validate that all energy sources have the same datetime values
     for item in production_data:
-        production_mode_list = ProductionBreakdownList(logger)
-        production_mode = MAP_GENERATION[item["Name"]]
-        for data in item["Data"]:
-            productionMix = ProductionMix()
-            productionMix.add_value(production_mode, round(float(data["Valor"]), 3))
-            production_mode_list.append(
-                zoneKey=zone_key,
-                datetime=parse_datetime(data["Nombre"]),
-                source=SOURCE,
-                production=productionMix,
+        source_datetimes = [data["Nombre"] for data in item["Data"]]
+        if source_datetimes != datetime_values:
+            raise ValueError(
+                f"Datetime values are not consistent across all sources: {source_datetimes} != {datetime_values}"
             )
-        all_production_breakdowns.append(production_mode_list)
-    production_events = ProductionBreakdownList.merge_production_breakdowns(
-        all_production_breakdowns, logger
-    )
-    production_events = production_events.to_list()
 
-    # Drop last datapoints if it "looks" incomplete.
-    # The last hour often only contains data from some power plants
-    # which results in the last datapoint being significantly lower than expected.
-    # This is a hacky check, but since we are only potentially discarding the last hour
-    # it will be included when the next datapoint comes in anyway.
-    # We only run this check when target_datetime is None, as to not affect refetches
-    # TODO: remove this in the future, when this is automatically detected by QA layer
+    # Create DataFrame with datetime as index and energy sources as columns
+    df_data = {"datetime": datetime_values}
 
-    total_production_per_datapoint = [
-        sum(d["production"].values()) for d in production_events
-    ]
-    mean_production = sum(total_production_per_datapoint) / len(
-        total_production_per_datapoint
-    )
-    if (
-        total_production_per_datapoint[-1] < mean_production * 0.9
-        and target_datetime is None
-    ):
-        logger.warning(
-            "Dropping last datapoint as it is probably incomplete. Total production is less than 90% of the mean."
-        )
-        production_events = production_events[:-1]
-    return production_events
+    for item in production_data:
+        source_name = item["Name"]
+        values = [data["Valor"] for data in item["Data"]]
+        df_data[source_name] = values
+
+    # Convert to pandas DataFrame
+    df = pd.DataFrame(df_data)
+
+    return df
+
+
+if __name__ == "__main__":
+    fetch_production()
