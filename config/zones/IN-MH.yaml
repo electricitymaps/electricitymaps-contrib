@@ -129,7 +129,6 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: Electricity Maps, 2024 average
         value: 704.21
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -288,3 +287,4 @@ region: Asia
 timezone: Asia/Kolkata
 country_name: India
 zone_name: Unknown
+currency: INR

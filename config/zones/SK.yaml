@@ -500,3 +500,4 @@ sources:
 timezone: Europe/Bratislava
 zone_name: Slovakia
 country_name: Slovakia
+currency: EUR

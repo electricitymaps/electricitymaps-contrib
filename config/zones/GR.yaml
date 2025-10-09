@@ -538,3 +538,4 @@ sources:
 timezone: Europe/Athens
 zone_name: Greece
 country_name: Greece
+currency: EUR

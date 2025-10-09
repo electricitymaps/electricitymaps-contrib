@@ -471,3 +471,4 @@ sources:
 timezone: Europe/Helsinki
 zone_name: Finland
 country_name: Finland
+currency: EUR

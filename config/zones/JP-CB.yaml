@@ -220,3 +220,4 @@ sources:
 timezone: Asia/Tokyo
 zone_name: Chūbu
 country_name: Japan
+currency: JPY

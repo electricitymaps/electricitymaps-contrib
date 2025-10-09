@@ -651,3 +651,4 @@ sources:
 timezone: Europe/Paris
 zone_name: France
 country_name: France
+currency: EUR

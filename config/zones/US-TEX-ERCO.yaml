@@ -925,10 +925,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1081.455715
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1070.074826
     gas:
       - datetime: '2020-01-01'
@@ -1136,3 +1138,4 @@ timezone: US/Central
 zone_name: Electric Reliability Council of Texas
 zone_short_name: ERCOT
 country_name: USA
+currency: USD

@@ -236,3 +236,4 @@ sources:
 timezone: Asia/Tokyo
 zone_name: Shikoku
 country_name: Japan
+currency: JPY

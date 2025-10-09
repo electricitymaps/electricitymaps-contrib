@@ -303,3 +303,4 @@ sources:
 timezone: Europe/Madrid
 zone_name: Mallorca
 country_name: Spain
+currency: EUR

@@ -173,11 +173,18 @@
     "AO": {
       "zoneName": "앙골라"
     },
+    "AR": {
+      "zoneName": "아르헨티나"
+    },
     "AT": {
       "zoneName": "오스트리아"
     },
-    "AR": {
-      "zoneName": "아르헨티나"
+    "AU": {
+      "zoneName": "호주"
+    },
+    "AU-LH": {
+      "countryName": "호주",
+      "zoneName": "로드하우 섬"
     },
     "AU-NSW": {
       "countryName": "호주",
@@ -199,9 +206,17 @@
       "countryName": "호주",
       "zoneName": "태즈메이니아 주"
     },
+    "AU-TAS-CBI": {
+      "countryName": "호주",
+      "zoneName": "케이프 바렌섬"
+    },
     "AU-TAS-KI": {
       "countryName": "태즈메이니아 주",
       "zoneName": "킹섬"
+    },
+    "AU-TAS-FI": {
+      "countryName": "호주",
+      "zoneName": "플린더스섬"
     },
     "AU-VIC": {
       "countryName": "호주",
@@ -210,6 +225,10 @@
     "AU-WA": {
       "countryName": "호주",
       "zoneName": "웨스턴 오스트레일리아 주"
+    },
+    "AU-WA-RI": {
+      "countryName": "호주",
+      "zoneName": "로트네스트 섬"
     },
     "AW": {
       "zoneName": "아루바"
@@ -233,7 +252,7 @@
       "zoneName": "벨기에"
     },
     "BF": {
-      "zoneName": "부르키나 파소"
+      "zoneName": "부르키나파소"
     },
     "BG": {
       "zoneName": "불가리아"
@@ -285,7 +304,7 @@
       "zoneName": "보츠와나"
     },
     "BY": {
-      "zoneName": "벨로루시"
+      "zoneName": "벨라루스"
     },
     "BZ": {
       "zoneName": "벨리즈"
@@ -305,21 +324,21 @@
       "countryName": "캐나다",
       "zoneName": "매니토바 주"
     },
-    "CA-NL": {
-      "countryName": "캐나다",
-      "zoneName": "뉴펀들랜드 래브라도 주"
-    },
     "CA-NB": {
       "countryName": "캐나다",
       "zoneName": "뉴브런즈윅 주"
     },
-    "CA-NT": {
+    "CA-NL": {
       "countryName": "캐나다",
-      "zoneName": "노스웨스트 준주"
+      "zoneName": "뉴펀들랜드 래브라도 주"
     },
     "CA-NS": {
       "countryName": "캐나다",
       "zoneName": "노바스코샤 주"
+    },
+    "CA-NT": {
+      "countryName": "캐나다",
+      "zoneName": "노스웨스트 준주"
     },
     "CA-NU": {
       "countryName": "캐나다",
@@ -360,13 +379,22 @@
     "CI": {
       "zoneName": "코트디부아르"
     },
+    "CL-CHP": {
+      "countryName": "칠레",
+      "zoneName": "이스터섬"
+    },
+
+    "CL-SEA": {
+      "countryName": "칠레",
+      "zoneName": "SEA"
+    },
     "CL-SEM": {
       "countryName": "칠레",
       "zoneName": "SEM"
     },
-    "CL-SEA": {
+    "CL-SEN": {
       "countryName": "칠레",
-      "zoneName": "SEA"
+      "zoneName": "SEN"
     },
     "CM": {
       "zoneName": "카메룬"
@@ -435,13 +463,17 @@
       "zoneName": "이집트"
     },
     "EH": {
-      "zoneName": "서 사하라"
+      "zoneName": "서사하라"
     },
     "ER": {
       "zoneName": "에리트레아"
     },
     "ES": {
       "zoneName": "스페인"
+    },
+    "ES-CE": {
+      "countryName": "스페인",
+      "zoneName": "세우타"
     },
     "ES-IB-FO": {
       "countryName": "스페인",
@@ -487,6 +519,10 @@
       "countryName": "스페인",
       "zoneName": "테네리페섬"
     },
+    "ES-ML": {
+      "countryName": "스페인",
+      "zoneName": "멜리야"
+    },
     "ET": {
       "zoneName": "에티오피아"
     },
@@ -500,10 +536,18 @@
       "zoneName": "포클랜드 제도"
     },
     "FM": {
-      "zoneName": "미크로네시아"
+      "zoneName": "미크로네시아 연방"
     },
     "FO": {
       "zoneName": "패로 제도"
+    },
+    "FO-MI": {
+      "countryName": "패로 제도",
+      "zoneName": "본섬"
+    },
+    "FO-SI": {
+      "countryName": "패로 제도",
+      "zoneName": "남섬"
     },
     "FR": {
       "zoneName": "프랑스"
@@ -607,6 +651,29 @@
     "IM": {
       "zoneName": "맨섬"
     },
+    "IN": {
+      "zoneName": "인도 본토"
+    },
+    "IN-EA": {
+      "countryName": "인도",
+      "zoneName": "동부 인도"
+    },
+    "IN-NE": {
+      "countryName": "인도",
+      "zoneName": "북동부 인도"
+    },
+    "IN-NO": {
+      "countryName": "인도",
+      "zoneName": "북부 인도"
+    },
+    "IN-SO": {
+      "countryName": "인도",
+      "zoneName": "남부 인도"
+    },
+    "IN-WE": {
+      "countryName": "인도",
+      "zoneName": "서부 인도"
+    },
     "IN-AN": {
       "countryName": "인도",
       "zoneName": "안다만 니코바르 제도"
@@ -670,6 +737,9 @@
     },
     "JO": {
       "zoneName": "요르단"
+    },
+    "JP": {
+      "zoneName": "일본"
     },
     "JP-CB": {
       "countryName": "일본",
@@ -829,6 +899,10 @@
       "countryName": "멕시코",
       "zoneName": "바하칼리포르니아 주"
     },
+    "MX-BCS": {
+      "countryName": "멕시코",
+      "zoneName": "바하칼리포르니아 수르"
+    },
     "MX-CE": {
       "countryName": "멕시코",
       "zoneName": "중앙부"
@@ -889,6 +963,9 @@
     "NL": {
       "zoneName": "네덜란드"
     },
+    "NO": {
+      "zoneName": "노르웨이"
+    },
     "NO-NO1": {
       "countryName": "노르웨이",
       "zoneName": "동남부 노르웨이"
@@ -923,6 +1000,10 @@
       "countryName": "뉴질랜드",
       "zoneName": "채텀 제도"
     },
+    "NZ-NZST": {
+      "countryName": "뉴질랜드",
+      "zoneName": "스튜어트섬"
+    },
     "OM": {
       "zoneName": "오만"
     },
@@ -940,6 +1021,18 @@
     },
     "PH": {
       "zoneName": "필리핀"
+    },
+    "PH-LU": {
+      "countryName": "필리핀",
+      "zoneName": "루손"
+    },
+    "PH-MI": {
+      "countryName": "필리핀",
+      "zoneName": "민다나오"
+    },
+    "PH-VI": {
+      "countryName": "필리핀",
+      "zoneName": "비사야"
     },
     "PK": {
       "zoneName": "파키스탄"
@@ -996,11 +1089,17 @@
       "countryName": "러시아",
       "zoneName": "시베리아"
     },
-    "RU-EU": {
-      "zoneName": "러시아"
-    },
     "RU-AS": {
-      "zoneName": "러시아"
+      "countryName": "러시아",
+      "zoneName": "동부"
+    },
+    "RU-EU": {
+      "countryName": "러시아",
+      "zoneName": "북극"
+    },
+    "RU-FE": {
+      "countryName": "러시아",
+      "zoneName": "극동"
     },
     "RU-KGD": {
       "countryName": "러시아",
@@ -1023,6 +1122,22 @@
     },
     "SE": {
       "zoneName": "스웨덴"
+    },
+    "SE-SE1": {
+      "countryName": "스웨덴",
+      "zoneName": "북부 스웨덴"
+    },
+    "SE-SE2": {
+      "countryName": "스웨덴",
+      "zoneName": "중북부 스웨덴"
+    },
+    "SE-SE3": {
+      "countryName": "스웨덴",
+      "zoneName": "남중부 스웨덴"
+    },
+    "SE-SE4": {
+      "countryName": "스웨덴",
+      "zoneName": "남부 스웨덴"
     },
     "SG": {
       "zoneName": "싱가포르"
@@ -1091,7 +1206,7 @@
       "zoneName": "통가"
     },
     "TR": {
-      "zoneName": "터키"
+      "zoneName": "튀르키예"
     },
     "TT": {
       "zoneName": "트리니다드토바고"
@@ -1114,6 +1229,14 @@
     },
     "US": {
       "zoneName": "미국"
+    },
+    "US-AK": {
+      "countryName": "미국",
+      "zoneName": "알래스카"
+    },
+    "US-HI": {
+      "countryName": "미국",
+      "zoneName": "하와이"
     },
     "UY": {
       "zoneName": "우루과이"
@@ -1139,6 +1262,9 @@
     },
     "WS": {
       "zoneName": "사모아"
+    },
+    "XK": {
+      "zoneName": "코소보"
     },
     "XX": {
       "zoneName": "북부 키프로스"

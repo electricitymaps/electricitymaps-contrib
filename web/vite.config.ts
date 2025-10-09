@@ -199,6 +199,7 @@ export default defineConfig(({ mode }) => ({
           eslintPlugin(),
           VitePWA({
             registerType: 'autoUpdate',
+            selfDestroying: true,
             workbox: {
               skipWaiting: true,
               clientsClaim: true,

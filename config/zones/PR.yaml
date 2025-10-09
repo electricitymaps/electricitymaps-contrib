@@ -307,7 +307,6 @@ isRenewable:
   unknown:
     value: 1
 parsers:
-  # production: US_PREPA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 sources:
@@ -316,3 +315,4 @@ sources:
 timezone: America/Puerto_Rico
 zone_name: Puerto Rico
 country_name: Puerto Rico
+currency: USD

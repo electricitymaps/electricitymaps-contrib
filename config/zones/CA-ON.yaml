@@ -351,3 +351,4 @@ sources:
 timezone: America/Toronto
 zone_name: Ontario
 country_name: Canada
+currency: CAD
