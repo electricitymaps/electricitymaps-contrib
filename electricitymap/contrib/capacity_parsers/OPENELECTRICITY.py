@@ -6,8 +6,8 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
-from parsers.lib.utils import get_token
-from parsers.OPENNEM import ZONE_KEY_TO_REGION
+from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.parsers.OPENNEM import ZONE_KEY_TO_REGION
 
 """Disclaimer: only works for real-time data. There is retired capacity included but we do not have the information on when the capacity was retired."""
 logger = getLogger(__name__)

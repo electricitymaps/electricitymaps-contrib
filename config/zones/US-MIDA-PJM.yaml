@@ -1234,10 +1234,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1049.3545804
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1056.79065
     gas:
       - datetime: '2020-01-01'
@@ -1444,7 +1446,6 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
   gridAlerts: US_PJM.fetch_grid_alerts
-  price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_PJM.fetch_wind_solar_forecasts
@@ -1462,3 +1463,4 @@ timezone: America/New_York
 zone_name: PJM Interconnection
 zone_short_name: PJM
 country_name: USA
+currency: USD

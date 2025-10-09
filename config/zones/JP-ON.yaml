@@ -209,3 +209,4 @@ sources:
 timezone: Asia/Tokyo
 zone_name: Okinawa
 country_name: Japan
+currency: JPY
