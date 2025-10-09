@@ -4,7 +4,7 @@ import gzip
 import json
 import time
 import zipfile
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from enum import Enum
 from io import BytesIO
 from logging import Logger, getLogger
@@ -28,6 +28,7 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.parsers.lib.validation import validate_exchange
 
@@ -52,10 +53,10 @@ DAYAHEAD_LMP_URL = f"{US_PROXY}/api/public-reports/np4-190-cd/dam_stlmnt_pnt_pri
 REALTIME_LMP_URL = f"{US_PROXY}/api/public-reports/np6-788-cd/lmp_node_zone_hub"
 
 # These links are found at https://www.ercot.com/gridinfo/generation, and should be updated as new data is released
-HISTORICAL_GENERATION_URL = {
-    "2025": f"{US_PROXY}/files/docs/2025/02/08/IntGenbyFuel2025.xlsx?{HOST_PARAMETER}",
-    "all_previous": f"{US_PROXY}/files/docs/2021/03/10/FuelMixReport_PreviousYears.zip?{HOST_PARAMETER}",
-}
+# HISTORICAL_GENERATION_URL = {
+#     "2025": f"{US_PROXY}/files/docs/2025/02/08/IntGenbyFuel2025.xlsx?{HOST_PARAMETER}",
+#     "all_previous": f"{US_PROXY}/files/docs/2021/03/10/FuelMixReport_PreviousYears.zip?{HOST_PARAMETER}",
+# }
 GENERATION_MAPPING = {
     "Coal and Lignite": "coal",
     "Hydro": "hydro",
@@ -214,89 +215,89 @@ def fetch_live_production(
     return production_breakdowns
 
 
-def get_sheet_from_date(year: int, month: str, session: Session | None = None):
-    """Unit is MWh and not MW"""
-    if not session:
-        session = Session()
+# def get_sheet_from_date(year: int, month: str, session: Session | None = None):
+#     """Unit is MWh and not MW"""
+#     if not session:
+#         session = Session()
 
-    if year > 2024:
-        url = HISTORICAL_GENERATION_URL[str(year)]
-        return pd.read_excel(url, engine="openpyxl", sheet_name=month)
-    else:
-        url = HISTORICAL_GENERATION_URL["all_previous"]
-        response = session.get(url)
+#     if year > 2024:
+#         url = HISTORICAL_GENERATION_URL[str(year)]
+#         return pd.read_excel(url, engine="openpyxl", sheet_name=month)
+#     else:
+#         url = HISTORICAL_GENERATION_URL["all_previous"]
+#         response = session.get(url)
 
-        if response.content.startswith(b"PK"):
-            zip_data = BytesIO(response.content)
-        else:
-            try:
-                decompressed = gzip.decompress(response.content)
-                zip_data = BytesIO(decompressed)
-            except gzip.BadGzipFile as err:
-                raise ValueError("File is neither a ZIP nor a gzipped file") from err
+#         if response.content.startswith(b"PK"):
+#             zip_data = BytesIO(response.content)
+#         else:
+#             try:
+#                 decompressed = gzip.decompress(response.content)
+#                 zip_data = BytesIO(decompressed)
+#             except gzip.BadGzipFile as err:
+#                 raise ValueError("File is neither a ZIP nor a gzipped file") from err
 
-        year_file = f"IntGenbyFuel{year}.xlsx"
+#         year_file = f"IntGenbyFuel{year}.xlsx"
 
-        with zipfile.ZipFile(zip_data) as zf:
-            if year_file not in zf.namelist():
-                raise NotImplementedError(
-                    f"Data for year {year} not found in historical data"
-                )
-            with zf.open(year_file) as excel_file:
-                return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
+#         with zipfile.ZipFile(zip_data) as zf:
+#             if year_file not in zf.namelist():
+#                 raise NotImplementedError(
+#                     f"Data for year {year} not found in historical data"
+#                 )
+#             with zf.open(year_file) as excel_file:
+#                 return pd.read_excel(excel_file, engine="openpyxl", sheet_name=month)
 
 
-def fetch_historical_production(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: datetime,
-    logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
-    if target_datetime.tzinfo is None:
-        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+# def fetch_historical_production(
+#     zone_key: ZoneKey,
+#     session: Session,
+#     target_datetime: datetime,
+#     logger: Logger = getLogger(__name__),
+# ) -> ProductionBreakdownList:
+#     if target_datetime.tzinfo is None:
+#         target_datetime = target_datetime.replace(tzinfo=timezone.utc)
 
-    year = target_datetime.year
-    month = target_datetime.strftime("%b")
+#     year = target_datetime.year
+#     month = target_datetime.strftime("%b")
 
-    production_breakdowns = ProductionBreakdownList(logger)
+#     production_breakdowns = ProductionBreakdownList(logger)
 
-    df = get_sheet_from_date(year, month, session)
-    df_standardized = transform_historical_production(df)
+#     df = get_sheet_from_date(year, month, session)
+#     df_standardized = transform_historical_production(df)
 
-    # Process the standardized DataFrame to create ProductionBreakdown objects
-    if df_standardized.empty:
-        logger.warning(f"No production data found for {year}-{month}")
-        return production_breakdowns
+#     # Process the standardized DataFrame to create ProductionBreakdown objects
+#     if df_standardized.empty:
+#         logger.warning(f"No production data found for {year}-{month}")
+#         return production_breakdowns
 
-    for i, timestamp in enumerate(df_standardized.index):
-        production = ProductionMix()
-        storage = StorageMix()
+#     for i, timestamp in enumerate(df_standardized.index):
+#         production = ProductionMix()
+#         storage = StorageMix()
 
-        # Get row data using iloc (faster than iterrows)
-        row_data = df_standardized.iloc[i]
+#         # Get row data using iloc (faster than iterrows)
+#         row_data = df_standardized.iloc[i]
 
-        # Add production values efficiently
-        for col in df_standardized.columns:
-            production.add_value(
-                col,
-                row_data[col],
-                correct_negative_with_zero=True,
-            )
+#         # Add production values efficiently
+#         for col in df_standardized.columns:
+#             production.add_value(
+#                 col,
+#                 row_data[col],
+#                 correct_negative_with_zero=True,
+#             )
 
-        # Add storage data if available
-        if "battery" in df_standardized.columns:
-            storage.add_value("battery", row_data["battery"])
+#         # Add storage data if available
+#         if "battery" in df_standardized.columns:
+#             storage.add_value("battery", row_data["battery"])
 
-        # Add breakdown for each timestamp
-        production_breakdowns.append(
-            zoneKey=ZoneKey(zone_key),
-            datetime=timestamp,
-            source=SOURCE,
-            production=production,
-            storage=storage,
-        )
+#         # Add breakdown for each timestamp
+#         production_breakdowns.append(
+#             zoneKey=ZoneKey(zone_key),
+#             datetime=timestamp,
+#             source=SOURCE,
+#             production=production,
+#             storage=storage,
+#         )
 
-    return production_breakdowns
+#     return production_breakdowns
 
 
 def fetch_live_exchange(
@@ -333,6 +334,7 @@ def fetch_live_exchange(
     return validated_data_points
 
 
+@refetch_frequency(timedelta(days=28))  # A month
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session | None = None,
