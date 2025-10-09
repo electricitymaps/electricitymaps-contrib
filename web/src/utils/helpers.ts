@@ -303,10 +303,7 @@ export const getLocalTime = (date: Date, timezone?: string) => {
 };
 
 // handle edge-to-edge changes
-export const isEdgeToEdgeAndroid = () => 
+export const isEdgeToEdgeAndroid = () =>
   // const info = await Device.getInfo();
-   (
-    Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android'
-    // && (Number(info.osVersion) ?? 15) >= 15
-  )
-;
+  Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android';
+  // && (Number(info.osVersion) ?? 15) >= 15
