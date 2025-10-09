@@ -104,17 +104,24 @@ def get_data(
 
 
 def parse_storage_data_live(session: Session) -> pd.DataFrame:
-    """ 
+    """
     Parse the storage data from the ERCOT API. The data is returned in 5 minute intervals, so we need to group by 15 minute intervals and take the mean.
     """
     storage_data_json = get_data(url=RT_STORAGE_URL, session=session)
-    df = pd.concat([pd.DataFrame(storage_data_json['previousDay']['data']), pd.DataFrame(storage_data_json['currentDay']['data'])])
-    df['datetime'] = pd.to_datetime(df['timestamp']).dt.floor('15min')
-    df.rename(columns={'netOutput': 'battery_storage'}, inplace=True)
-    df['battery_storage'] = -df['battery_storage'].astype(float) # Storage is positive when charging'
-    df = df[['battery_storage', 'datetime']].groupby('datetime').mean().reset_index()
-    df.set_index('datetime', inplace=True)
-    return df[['battery_storage']]
+    df = pd.concat(
+        [
+            pd.DataFrame(storage_data_json["previousDay"]["data"]),
+            pd.DataFrame(storage_data_json["currentDay"]["data"]),
+        ]
+    )
+    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor("15min")
+    df.rename(columns={"netOutput": "battery_storage"}, inplace=True)
+    df["battery_storage"] = -df["battery_storage"].astype(
+        float
+    )  # Storage is positive when charging'
+    df = df[["battery_storage", "datetime"]].groupby("datetime").mean().reset_index()
+    df.set_index("datetime", inplace=True)
+    return df[["battery_storage"]]
 
 
 def fetch_live_consumption(
@@ -145,7 +152,7 @@ def fetch_live_production(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
-    """ 
+    """
     Fetch the live production data from the ERCOT API at a 15 minute interval.
     The data is returned in 5 minute intervals, so we need to group by 15 minute intervals and take the mean.
     """
@@ -157,25 +164,31 @@ def fetch_live_production(
     df_storage = parse_storage_data_live(session)
 
     # Process generation data
-    df_generation = process_generation_dataframe(pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json]))
+    df_generation = process_generation_dataframe(
+        pd.concat([pd.DataFrame(gen_data_json[day]).T for day in gen_data_json])
+    )
     if not df_storage.empty:
-        df_generation_storage = df_generation.merge(df_storage, left_index=True, right_index=True, how='inner')
+        df_generation_storage = df_generation.merge(
+            df_storage, left_index=True, right_index=True, how="inner"
+        )
     else:
         df_generation_storage = df_generation.copy()
 
     # Create production breakdowns for each timestamp - optimized version
     timestamps = df_generation_storage.index
-    production_columns = [col for col in df_generation_storage.columns if col != 'battery_storage']
-    has_storage = 'battery_storage' in df_generation_storage.columns
-    
+    production_columns = [
+        col for col in df_generation_storage.columns if col != "battery_storage"
+    ]
+    has_storage = "battery_storage" in df_generation_storage.columns
+
     # Use iloc for faster access instead of iterrows()
     for i, timestamp in enumerate(timestamps):
         production = ProductionMix()
         storage = StorageMix()
-        
+
         # Get row data using iloc (faster than iterrows)
         row_data = df_generation_storage.iloc[i]
-        
+
         # Add production values efficiently
         for col in production_columns:
             production.add_value(
@@ -183,11 +196,11 @@ def fetch_live_production(
                 row_data[col],
                 correct_negative_with_zero=True,
             )
-        
+
         # Add storage data if available
         if has_storage:
-            storage.add_value("battery", row_data['battery_storage'])
-        
+            storage.add_value("battery", row_data["battery_storage"])
+
         # Add breakdown for each timestamp
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
@@ -201,7 +214,7 @@ def fetch_live_production(
 
 
 def get_sheet_from_date(year: int, month: str, session: Session | None = None):
-    """ Unit is MWh and not MW"""
+    """Unit is MWh and not MW"""
     if not session:
         session = Session()
 
@@ -257,10 +270,10 @@ def fetch_historical_production(
     for i, timestamp in enumerate(df_standardized.index):
         production = ProductionMix()
         storage = StorageMix()
-        
+
         # Get row data using iloc (faster than iterrows)
         row_data = df_standardized.iloc[i]
-        
+
         # Add production values efficiently
         for col in df_standardized.columns:
             production.add_value(
@@ -268,11 +281,11 @@ def fetch_historical_production(
                 row_data[col],
                 correct_negative_with_zero=True,
             )
-        
+
         # Add storage data if available
-        if 'battery' in df_standardized.columns:
-            storage.add_value("battery", row_data['battery'])
-        
+        if "battery" in df_standardized.columns:
+            storage.add_value("battery", row_data["battery"])
+
         # Add breakdown for each timestamp
         production_breakdowns.append(
             zoneKey=ZoneKey(zone_key),
@@ -283,6 +296,7 @@ def fetch_historical_production(
         )
 
     return production_breakdowns
+
 
 def fetch_live_exchange(
     zone_key1: str,
@@ -631,6 +645,7 @@ def fetch_realtime_locational_marginal_price(
         )
     return prices.to_list()
 
+
 def process_generation_dataframe(df):
     """
     Process generation DataFrame by:
@@ -640,50 +655,68 @@ def process_generation_dataframe(df):
     4. Standardizing columns using GENERATION_MAPPING (column aggregation)
     """
     df_processed = df.copy()
-    
+
     # Convert to DatetimeIndex if it isn't already
     if not isinstance(df_processed.index, pd.DatetimeIndex):
         df_processed.index = pd.to_datetime(df_processed.index)
-    
-    df_processed.index = df_processed.index.floor('15min')
-    
+
+    df_processed.index = df_processed.index.floor("15min")
+
     # Extract 'gen' values from dictionaries
-    df_processed = df_processed.apply(lambda col: col.apply(lambda x: x['gen'] if isinstance(x, dict) and 'gen' in x else None))
-    
+    df_processed = df_processed.apply(
+        lambda col: col.apply(
+            lambda x: x["gen"] if isinstance(x, dict) and "gen" in x else None
+        )
+    )
+
     # First group by datetime index to aggregate multiple rows with same 15-minute timestamp
     df_processed = df_processed.groupby(df_processed.index).mean()
-    
+
     # Then group columns by their target names and sum (for columns that map to same target)
-    column_mapping = pd.Series({col: GENERATION_MAPPING.get(col, col) 
-                        for col in df_processed.columns})
+    column_mapping = pd.Series(
+        {col: GENERATION_MAPPING.get(col, col) for col in df_processed.columns}
+    )
     df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum()
 
-    return df_generation_standardized[[col for col in df_generation_standardized.columns if col != 'battery']]
+    return df_generation_standardized[
+        [col for col in df_generation_standardized.columns if col != "battery"]
+    ]
 
 
 def transform_historical_production(df):
-    """ 
+    """
     Transform the historical production data to a standardized format.
     The input is unstandardized MWH per 15min and the output is standardized MW per 15min.
     """
     # Identify time columns (all except 'Date', 'Fuel', 'Settlement Type', 'Total')
-    time_columns = [col for col in df.columns if col not in ['Date', 'Fuel', 'Settlement Type', 'Total']]
+    time_columns = [
+        col
+        for col in df.columns
+        if col not in ["Date", "Fuel", "Settlement Type", "Total"]
+    ]
     records = []
-    for idx, row in df.iterrows():
-        fuel = row['Fuel']
-        date_str = row['Date'].strftime("%Y-%m-%d")
+    for _, row in df.iterrows():
+        fuel = row["Fuel"]
+        date_str = row["Date"].strftime("%Y-%m-%d")
         for time_col in time_columns:
             dt_str = f"{date_str} {time_col}"
             dt = pd.to_datetime(dt_str, format="%Y-%m-%d %H:%M").tz_localize(TX_TZ)
             value = row[time_col]
-            records.append({'datetime': dt, 'fuel': fuel, 'value': value})
+            records.append({"datetime": dt, "fuel": fuel, "value": value})
     df_records = pd.DataFrame(records)
-    df_pivot = df_records.pivot(index='datetime', columns='fuel', values='value')
-    column_mapping = pd.Series({col: GENERATION_MAPPING.get(col, col) 
-                    for col in df_pivot.columns})
+    df_pivot = df_records.pivot(index="datetime", columns="fuel", values="value")
+    column_mapping = pd.Series(
+        {col: GENERATION_MAPPING.get(col, col) for col in df_pivot.columns}
+    )
     df_pivot_standardized = df_pivot.groupby(column_mapping, axis=1).sum()
     # From MWH to MW. The step are 15min steps
-    df_result = df_pivot_standardized[[col for col in df_pivot_standardized.columns if col != 'battery']] * 60/15
+    df_result = (
+        df_pivot_standardized[
+            [col for col in df_pivot_standardized.columns if col != "battery"]
+        ]
+        * 60
+        / 15
+    )
     return df_result
 
 
@@ -705,8 +738,8 @@ if __name__ == "__main__":
 
     from pprint import pprint
 
-    # pprint(fetch_production())
-    pprint(fetch_production(target_datetime = datetime(2023,5,14)))
+    pprint(fetch_production())
+    # pprint(fetch_production(target_datetime = datetime(2023,5,14)))
 
     # pprint(parse_storage_data(session=Session()))
     # print("fetch_consumption_forecast() -->")
