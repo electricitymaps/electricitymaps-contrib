@@ -28,7 +28,6 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.parsers.lib.validation import validate_exchange
 
@@ -105,7 +104,7 @@ def get_data(
 
 def parse_storage_data_live(session: Session) -> pd.DataFrame:
     """
-    Parse the storage data from the ERCOT API. The data is returned in 5 minute intervals, so we need to group by 15 minute intervals and take the mean.
+    Parse the storage data from the ERCOT API. The data is returned in 5 minute intervals.
     """
     storage_data_json = get_data(url=RT_STORAGE_URL, session=session)
     df = pd.concat(
@@ -114,7 +113,7 @@ def parse_storage_data_live(session: Session) -> pd.DataFrame:
             pd.DataFrame(storage_data_json["currentDay"]["data"]),
         ]
     )
-    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor("15min")
+    df["datetime"] = pd.to_datetime(df["timestamp"]).dt.floor("5min")
     df.rename(columns={"netOutput": "battery_storage"}, inplace=True)
     df["battery_storage"] = -df["battery_storage"].astype(
         float
@@ -153,8 +152,8 @@ def fetch_live_production(
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     """
-    Fetch the live production data from the ERCOT API at a 15 minute interval.
-    The data is returned in 5 minute intervals, so we need to group by 15 minute intervals and take the mean.
+    Fetch the live production data from the ERCOT API at a 5 minute interval.
+    The data is returned in 5 minute intervals.
     """
     session = session or Session()
     gen_data_json = get_data(url=RT_GENERATION_URL, session=session)["data"]
@@ -174,6 +173,8 @@ def fetch_live_production(
     else:
         df_generation_storage = df_generation.copy()
 
+    # Round up to 2 decimals
+    df_generation_storage = df_generation_storage.round(2)
     # Create production breakdowns for each timestamp - optimized version
     timestamps = df_generation_storage.index
     production_columns = [
@@ -332,7 +333,6 @@ def fetch_live_exchange(
     return validated_data_points
 
 
-@refetch_frequency(timedelta(days=28))  # A month
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("US-TEX-ERCO"),
     session: Session | None = None,
@@ -340,19 +340,12 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    if target_datetime is None or target_datetime > (
-        datetime.now(tz=timezone.utc) - timedelta(days=1)
-    ).replace(tzinfo=target_datetime.tzinfo if target_datetime else timezone.utc):
-        production = fetch_live_production(
-            zone_key=zone_key, session=session, logger=logger
-        )
-    else:
-        production = fetch_historical_production(
-            zone_key=zone_key,
-            session=session,
-            target_datetime=target_datetime,
-            logger=logger,
-        )
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates.")
+
+    production = fetch_live_production(
+        zone_key=zone_key, session=session, logger=logger
+    )
     return production.to_list()
 
 
@@ -649,7 +642,7 @@ def fetch_realtime_locational_marginal_price(
 def process_generation_dataframe(df):
     """
     Process generation DataFrame by:
-    1. Flooring timestamps to nearest 15 minutes
+    1. Flooring timestamps to nearest 5 minutes
     2. Extracting 'gen' values from dictionary format
     3. Grouping by datetime index and taking mean (temporal aggregation)
     4. Standardizing columns using GENERATION_MAPPING (column aggregation)
@@ -660,7 +653,7 @@ def process_generation_dataframe(df):
     if not isinstance(df_processed.index, pd.DatetimeIndex):
         df_processed.index = pd.to_datetime(df_processed.index)
 
-    df_processed.index = df_processed.index.floor("15min")
+    df_processed.index = df_processed.index.floor("5min")
 
     # Extract 'gen' values from dictionaries
     df_processed = df_processed.apply(
@@ -669,7 +662,7 @@ def process_generation_dataframe(df):
         )
     )
 
-    # First group by datetime index to aggregate multiple rows with same 15-minute timestamp
+    # First group by datetime index to aggregate multiple rows with same 5-minute timestamp
     df_processed = df_processed.groupby(df_processed.index).mean()
 
     # Then group columns by their target names and sum (for columns that map to same target)
