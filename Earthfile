@@ -7,9 +7,9 @@ linting-files:
   SAVE ARTIFACT .
 
 parser-files:
-  COPY parsers ./parsers
-  COPY electricitymap ./electricitymap
-  SAVE ARTIFACT .
+  COPY electricitymap/contrib/parsers ./parsers
+  COPY electricitymap/contrib/capacity_parsers ./capacity_parsers
+  SAVE ARTIFACT *
 
 src-files:
   COPY electricitymap/contrib/config ./electricitymap/contrib/config
@@ -24,7 +24,8 @@ src-files:
 
 src-files-with-parsers:
   COPY +src-files/* .
-  COPY +parser-files/* .
+  COPY +parser-files/parsers ./electricitymap/contrib/parsers
+  COPY +parser-files/capacity_parsers ./electricitymap/contrib/capacity_parsers
   SAVE ARTIFACT .
 
 poetry-lock:
@@ -57,4 +58,3 @@ test-all:
   BUILD ./config+test
   # BUILD ./web+build # TODO: This currently fails for unknown reasons, disabling for now
   BUILD ./web+test
-

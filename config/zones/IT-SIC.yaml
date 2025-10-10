@@ -397,3 +397,4 @@ sources:
 timezone: Europe/Rome
 zone_name: Sicily
 country_name: Italy
+currency: EUR

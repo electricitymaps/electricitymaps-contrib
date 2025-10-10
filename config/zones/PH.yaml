@@ -200,3 +200,4 @@ subZoneNames:
 timezone: Asia/Manila
 zone_name: Philippines
 country_name: Philippines
+currency: PHP

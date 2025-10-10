@@ -290,7 +290,6 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: SFOE, Electricity Maps
         value: 165
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -510,3 +509,4 @@ sources:
 timezone: Europe/Zurich
 zone_name: Switzerland
 country_name: Switzerland
+currency: EUR

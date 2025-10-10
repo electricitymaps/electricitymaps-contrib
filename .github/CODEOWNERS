@@ -1,8 +1,5 @@
 # Codeowners file
 
-parsers/* @VIKTORVAV99
-config/* @VIKTORVAV99
-web/* @electricitymaps/advocacy
-mobileapp/* @electricitymaps/advocacy
-mockserver/* @electricitymaps/advocacy
-web/public/locales/en.json @electricitymaps/self-service
+electricitymap/** @electricitymaps/grid-modelling-methodology
+config/** @electricitymaps/grid-modelling-methodology
+tests/** @electricitymaps/grid-modelling-methodology

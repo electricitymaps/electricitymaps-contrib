@@ -25,12 +25,12 @@ from utils import ROOT_PATH, run_shell_command
 from electricitymap.contrib.config import CONFIG_DIR
 from electricitymap.contrib.config.reading import read_zones_config
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.ENTSOE import (
+from electricitymap.contrib.parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_DESC,
     ENTSOE_PARAMETER_GROUPS,
 )
-from parsers.lib.utils import get_token
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 

@@ -600,3 +600,4 @@ sources:
 timezone: Europe/Vienna
 zone_name: Austria
 country_name: Austria
+currency: EUR

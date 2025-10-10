@@ -334,3 +334,4 @@ sources:
 timezone: Europe/London
 zone_name: Northern Ireland
 country_name: Northern Ireland
+currency: EUR

@@ -7,7 +7,7 @@ from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
-from parsers.ENTSOE import (
+from electricitymap.contrib.parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_BY_GROUP,
     query_ENTSOE,

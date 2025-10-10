@@ -540,3 +540,5 @@ sources:
 timezone: Europe/Copenhagen
 zone_name: West Denmark
 country_name: Denmark
+# Electricity is traded in EUR
+currency: EUR

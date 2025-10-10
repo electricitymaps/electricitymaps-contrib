@@ -601,3 +601,4 @@ sources:
 timezone: Europe/Warsaw
 zone_name: Poland
 country_name: Poland
+currency: EUR

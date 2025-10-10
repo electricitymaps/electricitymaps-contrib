@@ -374,3 +374,4 @@ sources:
 timezone: Europe/Madrid
 zone_name: Menorca
 country_name: Spain
+currency: EUR
