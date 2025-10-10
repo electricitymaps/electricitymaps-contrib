@@ -30,7 +30,9 @@ def fetch_production(
         ZoneKey("SE-SE3"),
         ZoneKey("SE-SE4"),
     }, f"Zone {zone_key} is not supported by the SE parser."
-    target_datetime = (target_datetime or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    target_datetime = (target_datetime or datetime.now(timezone.utc)).astimezone(
+        timezone.utc
+    )
 
     if target_datetime < datetime(2022, 1, 1, tzinfo=timezone.utc):
         return fetch_production_esett(zone_key, session, target_datetime, logger)
