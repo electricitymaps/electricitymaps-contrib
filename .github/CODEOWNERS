@@ -1,5 +1,5 @@
 # Codeowners file
 
-electricitymap/* @electricitymaps/grid-modelling-methodology
-config/* @electricitymaps/grid-modelling-methodology
-tests/* @electricitymaps/grid-modelling-methodology
+electricitymap/** @electricitymaps/grid-modelling-methodology
+config/** @electricitymaps/grid-modelling-methodology
+tests/** @electricitymaps/grid-modelling-methodology

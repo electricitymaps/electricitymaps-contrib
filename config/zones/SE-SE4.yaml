@@ -362,7 +362,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: NORDPOOL.fetch_price
-  production: ENTSOE.fetch_production
+  production: SE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
 sources:
