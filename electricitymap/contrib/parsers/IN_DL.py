@@ -2,11 +2,18 @@
 
 from datetime import datetime, time
 from logging import Logger, getLogger
+from typing import Any
 from zoneinfo import ZoneInfo
 
 from requests import Session
 
-from .lib import IN, web, zonekey
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+    TotalConsumptionList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.parsers.lib import IN, web, zonekey
 
 ZONE_INFO = ZoneInfo
 
@@ -25,11 +32,11 @@ _TOTAL_ROW_TITLE = "Total"
 
 
 def fetch_consumption(
-    zone_key: str = "IN-DL",
+    zone_key: ZoneKey = ZoneKey("IN-DL"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Fetch Delhi consumption"""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -45,27 +52,31 @@ def fetch_consumption(
 
     demand_value = IN.read_value_from_span_id(html, "DynamicData1_LblLoad")
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": india_date_time,
-        "consumption": demand_value,
-        "source": "delhisldc.org",
-    }
+    consumption_list = TotalConsumptionList(logger=logger)
+    consumption_list.append(
+        zoneKey=zone_key,
+        datetime=india_date_time,
+        consumption=demand_value,
+        source="delhisldc.org",
+    )
 
-    return data
+    return consumption_list.to_list()
 
 
 def fetch_production(
-    zone_key: str = "IN-DL",
+    zone_key: ZoneKey = ZoneKey("IN-DL"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> dict:
+) -> list[dict[str, Any]]:
     """Fetch Delhi production"""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy: dict[str, float] = {"gas": 0, "biomass": 0, "coal": 0}
+    production_mix = ProductionMix()
+    default_types = ["gas", "biomass", "coal"]
+    for plant_type in default_types:
+        production_mix.add_value(plant_type, 0.0)
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 
@@ -104,16 +115,17 @@ def fetch_production(
                 f"Unknown plant '{plant_name}'; manually add the type of this plant to `_PLANT_NAME_TO_TYPE`"
             ) from e
         power = max(0.0, float(cells[value_column_index].text))
-        energy[plant_type] += power
+        production_mix.add_value(plant_type, power)
 
-    data = {
-        "zoneKey": zone_key,
-        "datetime": india_date_time,
-        "production": energy,
-        "source": "delhisldc.org",
-    }
+    production_breakdowns = ProductionBreakdownList(logger)
+    production_breakdowns.append(
+        zoneKey=zone_key,
+        datetime=india_date_time,
+        production=production_mix,
+        source="delhisldc.org",
+    )
 
-    return data
+    return production_breakdowns.to_list()
 
 
 if __name__ == "__main__":
