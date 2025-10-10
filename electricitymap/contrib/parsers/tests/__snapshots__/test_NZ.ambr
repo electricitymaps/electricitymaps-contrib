@@ -7,6 +7,7 @@
         'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
         'price': 79.8623076923077,
         'source': 'api.em6.co.nz',
+        'sourceType': <EventSourceType.measured: 'measured'>,
         'zoneKey': 'NZ',
       }),
     ]),
@@ -16,6 +17,7 @@
         'datetime': datetime.datetime(2024, 4, 24, 18, 30, tzinfo=datetime.timezone.utc),
         'price': 79.8623076923077,
         'source': 'api.em6.co.nz',
+        'sourceType': <EventSourceType.measured: 'measured'>,
         'zoneKey': 'NZ',
       }),
     ]),
@@ -37,6 +39,8 @@
           'unknown': 168,
           'wind': 1259,
         }),
+        'correctedModes': list([
+        ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
         'production': dict({
           'coal': 156,
@@ -50,6 +54,7 @@
           'wind': 814,
         }),
         'source': 'transpower.co.nz',
+        'sourceType': <EventSourceType.measured: 'measured'>,
         'storage': dict({
           'battery': 0,
         }),
@@ -70,6 +75,8 @@
           'unknown': 168,
           'wind': 1259,
         }),
+        'correctedModes': list([
+        ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
         'production': dict({
           'coal': 156,
@@ -83,6 +90,7 @@
           'wind': 814,
         }),
         'source': 'transpower.co.nz',
+        'sourceType': <EventSourceType.measured: 'measured'>,
         'storage': dict({
           'battery': 0,
         }),
