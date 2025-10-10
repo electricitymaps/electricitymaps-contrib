@@ -12,21 +12,19 @@ from electricitymap.contrib.parsers.lib.config import refetch_frequency
 BASE_URL = "https://api.opendata.esett.com"
 PRODUCTION_URL = f"{BASE_URL}/EXP16/Aggregate"
 
-IGNORED_PRODUCTION_KEYS = {'timestamp', 'timestampUTC', 'mba', 'total'}
+IGNORED_PRODUCTION_KEYS = {"timestamp", "timestampUTC", "mba", "total"}
 
 PRODUCTION_MAPPINGS = {
-  'hydro': 'hydro',
-  'wind': 'wind',
-  'windOffshore': 'wind',
-  'nuclear': 'nuclear',
-  'solar': 'solar',
-  'thermal': 'unknown',
-  'other': 'unknown',
+    "hydro": "hydro",
+    "wind": "wind",
+    "windOffshore": "wind",
+    "nuclear": "nuclear",
+    "solar": "solar",
+    "thermal": "unknown",
+    "other": "unknown",
 }
 
-STORAGE_MAPPINGS = {'energyStorage': 'battery'}
-
-
+STORAGE_MAPPINGS = {"energyStorage": "battery"}
 
 
 @refetch_frequency(timedelta(days=3))
@@ -60,14 +58,14 @@ def fetch_production(
     for entry in json or []:
         production_mix = ProductionMix()
         storage_mix = StorageMix()
-        timestamp = datetime.fromisoformat(entry['timestampUTC'].replace("Z", "+00:00"))
+        timestamp = datetime.fromisoformat(entry["timestampUTC"].replace("Z", "+00:00"))
         for key, value in entry.items():
             if key in IGNORED_PRODUCTION_KEYS:
                 continue
             elif key in PRODUCTION_MAPPINGS:
-              production_mix.add_value(PRODUCTION_MAPPINGS[key], value)
+                production_mix.add_value(PRODUCTION_MAPPINGS[key], value)
             elif key in STORAGE_MAPPINGS:
-              storage_mix.add_value(STORAGE_MAPPINGS[key], value)
+                storage_mix.add_value(STORAGE_MAPPINGS[key], value)
             else:
                 logger.warning(f"Unknown production key: {key}")
 
