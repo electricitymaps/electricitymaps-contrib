@@ -38,7 +38,7 @@ A real time and historical visualisation of the Greenhouse Gas Intensity (in ter
 
 This project aims to provide a free, open-source, and transparent visualisation of the carbon intensity of electricity consumption around the world.
 
-We fetch the raw production data from public, free, and official sources. They include official government and transmission system operators' data. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing) to calculate the actual carbon intensity of a country's electricity consumption.
+We fetch the raw production data from public, free, and official sources. They include official government and transmission system operators' data. For regions that do not report live data we run [our general purpose zone development model](https://github.com/electricitymaps/electricitymaps-contrib/wiki/General-Purpose-Zone-Development) to estimate the electricity production. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing) to calculate the actual carbon intensity of a country's electricity consumption. 
 
 _Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)._
 
@@ -46,7 +46,7 @@ _Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or do
 
 The Electricity Maps app is a community project and we welcome contributions from anyone!
 
-We are always looking for help to build parsers for new countries, fix broken parsers, improve the frontend app, improve accuracy of data sources, discuss new potential data sources, update region capacities, and much more.
+We are always looking for help to fix broken parsers, improve accuracy of data sources, discuss new potential data sources, update region capacities, and much more.
 
 Read our [contribution guidelines](/CONTRIBUTING.md) to get started.
 
