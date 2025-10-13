@@ -4,6 +4,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -12,6 +14,7 @@
         'wind': 36.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -19,6 +22,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -27,6 +32,7 @@
         'wind': 29.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -34,6 +40,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -42,6 +50,7 @@
         'wind': 28.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -49,6 +58,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -57,6 +68,7 @@
         'wind': 31.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -64,6 +76,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -72,6 +86,7 @@
         'wind': 27.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -79,6 +94,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -87,6 +104,7 @@
         'wind': 32.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -94,6 +112,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -102,6 +122,7 @@
         'wind': 35.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -109,6 +130,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -117,6 +140,7 @@
         'wind': 47.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -124,6 +148,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -132,6 +158,7 @@
         'wind': 46.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -139,6 +166,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -147,6 +176,7 @@
         'wind': 60.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -154,6 +184,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -162,6 +194,7 @@
         'wind': 55.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -169,6 +202,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -177,6 +212,7 @@
         'wind': 48.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -184,6 +220,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -192,6 +230,7 @@
         'wind': 34.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -199,6 +238,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -207,6 +248,7 @@
         'wind': 33.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -214,6 +256,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -222,6 +266,7 @@
         'wind': 39.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -229,6 +274,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -237,6 +284,7 @@
         'wind': 43.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -244,6 +292,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -252,6 +302,7 @@
         'wind': 37.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -259,6 +310,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -267,6 +320,7 @@
         'wind': 41.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -274,6 +328,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -282,6 +338,7 @@
         'wind': 45.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -289,6 +346,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -297,6 +356,7 @@
         'wind': 37.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -304,6 +364,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -312,6 +374,7 @@
         'wind': 31.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -319,6 +382,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -327,6 +392,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -334,6 +400,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -342,6 +410,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -349,6 +418,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -357,6 +428,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -364,6 +436,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -372,6 +446,7 @@
         'wind': 31.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -379,6 +454,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -387,6 +464,7 @@
         'wind': 31.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -394,6 +472,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -402,6 +482,7 @@
         'wind': 31.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -409,6 +490,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -417,6 +500,7 @@
         'wind': 36.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -424,6 +508,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -432,6 +518,7 @@
         'wind': 42.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -439,6 +526,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -447,6 +536,7 @@
         'wind': 38.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -454,6 +544,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -462,6 +554,7 @@
         'wind': 41.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -469,6 +562,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -477,6 +572,7 @@
         'wind': 38.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -484,6 +580,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -492,6 +590,7 @@
         'wind': 35.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -499,6 +598,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -507,6 +608,7 @@
         'wind': 29.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -514,6 +616,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -522,6 +626,7 @@
         'wind': 23.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -529,6 +634,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -537,6 +644,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -544,6 +652,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -552,6 +662,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -559,6 +670,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -567,6 +680,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -574,6 +688,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -582,6 +698,7 @@
         'wind': 19.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -589,6 +706,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -597,6 +716,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -604,6 +724,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -612,6 +734,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -619,6 +742,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -627,6 +752,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -634,6 +760,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -642,6 +770,7 @@
         'wind': 11.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -649,6 +778,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -657,6 +788,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -664,6 +796,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -672,6 +806,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -679,6 +814,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -687,6 +824,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -694,6 +832,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -702,6 +842,7 @@
         'wind': 13.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -709,6 +850,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -717,6 +860,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -724,6 +868,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -732,6 +878,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -739,6 +886,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -747,6 +896,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -754,6 +904,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -762,6 +914,7 @@
         'wind': 8.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -769,6 +922,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -777,6 +932,7 @@
         'wind': 7.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -784,6 +940,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -792,6 +950,7 @@
         'wind': 10.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -799,6 +958,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -807,6 +968,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -814,6 +976,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -822,6 +986,7 @@
         'wind': 11.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -829,6 +994,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -837,6 +1004,7 @@
         'wind': 10.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -844,6 +1012,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -852,6 +1022,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -859,6 +1030,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -867,6 +1040,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -874,6 +1048,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -882,6 +1058,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -889,6 +1066,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -897,6 +1076,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -904,6 +1084,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -912,6 +1094,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -919,6 +1102,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -927,6 +1112,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -934,6 +1120,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -942,6 +1130,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -949,6 +1138,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -957,6 +1148,7 @@
         'wind': 24.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -964,6 +1156,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -972,6 +1166,7 @@
         'wind': 23.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -979,6 +1174,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -987,6 +1184,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -994,6 +1192,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1002,6 +1202,7 @@
         'wind': 22.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1009,6 +1210,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1017,6 +1220,7 @@
         'wind': 27.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1024,6 +1228,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1032,6 +1238,7 @@
         'wind': 27.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1039,6 +1246,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1047,6 +1256,7 @@
         'wind': 28.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1054,6 +1264,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1062,6 +1274,7 @@
         'wind': 28.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1069,6 +1282,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1077,6 +1292,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1084,6 +1300,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1092,6 +1310,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1099,6 +1318,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1107,6 +1328,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1114,6 +1336,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1122,6 +1346,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1129,6 +1354,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1137,6 +1364,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1144,6 +1372,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1152,6 +1382,7 @@
         'wind': 17.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1159,6 +1390,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1167,6 +1400,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1174,6 +1408,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1182,6 +1418,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1189,6 +1426,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1197,6 +1436,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1204,6 +1444,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1212,6 +1454,7 @@
         'wind': 23.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1219,6 +1462,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1227,6 +1472,7 @@
         'wind': 27.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1234,6 +1480,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1242,6 +1490,7 @@
         'wind': 27.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1249,6 +1498,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1257,6 +1508,7 @@
         'wind': 34.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1264,6 +1516,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1272,6 +1526,7 @@
         'wind': 28.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1279,6 +1534,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1287,6 +1544,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1294,6 +1552,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1302,6 +1562,7 @@
         'wind': 21.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1309,6 +1570,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1317,6 +1580,7 @@
         'wind': 28.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1324,6 +1588,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1332,6 +1598,7 @@
         'wind': 23.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1339,6 +1606,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1347,6 +1616,7 @@
         'wind': 19.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1354,6 +1624,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1362,6 +1634,7 @@
         'wind': 21.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1369,6 +1642,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1377,6 +1652,7 @@
         'wind': 30.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1384,6 +1660,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1392,6 +1670,7 @@
         'wind': 40.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1399,6 +1678,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1407,6 +1688,7 @@
         'wind': 41.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1414,6 +1696,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1422,6 +1706,7 @@
         'wind': 42.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1429,6 +1714,8 @@
     dict({
       'capacity': dict({
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 3, 18, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1437,6 +1724,7 @@
         'wind': 33.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1452,6 +1740,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1460,6 +1750,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1471,6 +1762,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1479,6 +1772,7 @@
         'wind': 9.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1490,6 +1784,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1498,6 +1794,7 @@
         'wind': 8.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1509,6 +1806,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1517,6 +1816,7 @@
         'wind': 9.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1528,6 +1828,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1536,6 +1838,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1547,6 +1850,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1555,6 +1860,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1566,6 +1872,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1574,6 +1882,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1585,6 +1894,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1593,6 +1904,7 @@
         'wind': 22.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1604,6 +1916,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1612,6 +1926,7 @@
         'wind': 25.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1623,6 +1938,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1631,6 +1948,7 @@
         'wind': 29.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1642,6 +1960,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1650,6 +1970,7 @@
         'wind': 24.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1661,6 +1982,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1669,6 +1992,7 @@
         'wind': 21.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1680,6 +2004,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1688,6 +2014,7 @@
         'wind': 19.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1699,6 +2026,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1707,6 +2036,7 @@
         'wind': 21.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1718,6 +2048,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1726,6 +2058,7 @@
         'wind': 19.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1737,6 +2070,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1745,6 +2080,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1756,6 +2092,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1764,6 +2102,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1775,6 +2114,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1783,6 +2124,7 @@
         'wind': 12.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1794,6 +2136,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1802,6 +2146,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1813,6 +2158,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1821,6 +2168,7 @@
         'wind': 14.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1832,6 +2180,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1840,6 +2190,7 @@
         'wind': 15.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1851,6 +2202,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1859,6 +2212,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1870,6 +2224,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1878,6 +2234,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1889,6 +2246,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1897,6 +2256,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1908,6 +2268,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1916,6 +2278,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1927,6 +2290,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1935,6 +2300,7 @@
         'wind': 19.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1946,6 +2312,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1954,6 +2322,7 @@
         'wind': 20.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1965,6 +2334,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1973,6 +2344,7 @@
         'wind': 18.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -1984,6 +2356,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -1992,6 +2366,7 @@
         'wind': 16.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2003,6 +2378,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2011,6 +2388,7 @@
         'wind': 11.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2022,6 +2400,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2030,6 +2410,7 @@
         'wind': 7.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2041,6 +2422,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2049,6 +2432,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2060,6 +2444,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2068,6 +2454,7 @@
         'wind': 3.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2079,6 +2466,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2087,6 +2476,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2098,6 +2488,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2106,6 +2498,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2117,6 +2510,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2125,6 +2520,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2136,6 +2532,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2144,6 +2542,7 @@
         'wind': 3.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2155,6 +2554,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2163,6 +2564,7 @@
         'wind': 3.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2174,6 +2576,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2182,6 +2586,7 @@
         'wind': 1.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2193,6 +2598,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2201,6 +2608,7 @@
         'wind': 1.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2212,6 +2620,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2220,6 +2630,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2231,6 +2642,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2239,6 +2652,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2250,6 +2664,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2258,6 +2674,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2269,6 +2686,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2277,6 +2696,7 @@
         'wind': 1.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2288,6 +2708,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2296,6 +2718,7 @@
         'wind': 1.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2307,6 +2730,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2315,6 +2740,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2326,6 +2752,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2334,6 +2762,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2345,6 +2774,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2353,6 +2784,7 @@
         'wind': 2.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2364,6 +2796,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2372,6 +2806,7 @@
         'wind': 3.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2383,6 +2818,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2391,6 +2828,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2402,6 +2840,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2410,6 +2850,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2421,6 +2862,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2429,6 +2872,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2440,6 +2884,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2448,6 +2894,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2459,6 +2906,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2467,6 +2916,7 @@
         'wind': 5.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2478,6 +2928,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2486,6 +2938,7 @@
         'wind': 6.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2497,6 +2950,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2505,6 +2960,7 @@
         'wind': 7.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2516,6 +2972,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2524,6 +2982,7 @@
         'wind': 7.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2535,6 +2994,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2543,6 +3004,7 @@
         'wind': 5.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2554,6 +3016,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2562,6 +3026,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
@@ -2573,6 +3038,8 @@
         'solar': 674.46,
         'wind': 155.1,
       }),
+      'correctedModes': list([
+      ]),
       'datetime': datetime.datetime(2024, 4, 1, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Nicosia')),
       'production': dict({
         'biomass': 10.0,
@@ -2581,6 +3048,7 @@
         'wind': 4.0,
       }),
       'source': 'tsoc.org.cy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
       }),
       'zoneKey': 'CY',
