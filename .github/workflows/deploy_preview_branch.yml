@@ -22,7 +22,7 @@ jobs:
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
