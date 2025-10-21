@@ -231,7 +231,13 @@ def fetch_price(
     prices.append(
         zoneKey=zone_key,
         currency="THB",
-        datetime=_as_localtime(datetime.now()),
+        datetime=_as_localtime(
+            datetime.now().replace(
+                minute=0,
+                second=0,
+                microsecond=0,
+            )
+        ),
         price=float(price_base) * 1000 + float(price_ft) * 10,
         source=MEA_URL,
     )

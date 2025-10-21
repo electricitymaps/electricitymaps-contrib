@@ -11,6 +11,11 @@ from bs4 import BeautifulSoup
 from requests import Session
 
 # Local library imports
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
 
 REALTIME_SOURCE = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
@@ -48,44 +53,45 @@ class CyprusParser:
         return capacity
 
     def parse_production(self, html, capacity: dict) -> list:
-        data = []
         table = html.find(id="production_graph_data")
         columns = [th.string for th in table.find_all("th")]
         biomass_estimate = 0.0
+        production_breakdowns = ProductionBreakdownList(self.logger)
         for tr in table.tbody.find_all("tr"):
             values = [td.string for td in tr.find_all("td")]
             if None in values or "" in values:
                 break
-            production = {}
-            datum = {
-                "zoneKey": "CY",
-                "production": production,
-                "capacity": capacity,
-                "storage": {},
-                "source": "tsoc.org.cy",
-            }
+            production_mix = ProductionMix()
+            date_time = None
             for col, val in zip(columns, values, strict=True):
                 if col == "Timestamp":
-                    datum["datetime"] = datetime.fromisoformat(val).replace(
-                        tzinfo=TIMEZONE
-                    )
+                    date_time = datetime.fromisoformat(val).replace(tzinfo=TIMEZONE)
                 elif col == "Αιολική Παραγωγή στο ΣΜ":
-                    production["wind"] = float(val)
+                    production_mix.add_value("wind", float(val))
                 elif col == "Συμβατική Παραγωγή στο ΣΜ":
-                    production["oil"] = float(val)
+                    production_mix.add_value("oil", float(val))
                 elif col == "Εκτίμηση Διεσπαρμένης Παραγωγής":
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)
                     # and there is no sunlight between 10pm and 3am (https://www.timeanddate.com/sun/cyprus/nicosia),
                     # we use the nightly biomass+solar generation reported to determine the portion of biomass+solar
                     # which constitutes biomass.
                     value = float(val)
-                    hour = datum["datetime"].hour
+                    hour = date_time.hour
                     if hour < 3 or hour >= 22:
                         biomass_estimate = value
-                    production["biomass"] = biomass_estimate
-                    production["solar"] = max(value - biomass_estimate, 0.0)
-            data.append(datum)
-        return data
+                    production_mix.add_value("biomass", biomass_estimate)
+                    production_mix.add_value(
+                        "solar", max(value - biomass_estimate, 0.0)
+                    )
+            production_breakdowns.append(
+                zoneKey=ZoneKey("CY"),
+                datetime=date_time,
+                production=production_mix,
+                source="tsoc.org.cy",
+            )
+        return [
+            {**e, **{"capacity": capacity}} for e in production_breakdowns.to_list()
+        ]
 
     def fetch_production(self, target_datetime: datetime | None) -> list:
         if target_datetime is None:
@@ -118,13 +124,13 @@ class CyprusParser:
 @refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="DK")
 def fetch_production(
-    zone_key: str = "CY",
+    zone_key: ZoneKey = ZoneKey("CY"),
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
-    assert zone_key == "CY"
+    assert zone_key == ZoneKey("CY")
 
     parser = CyprusParser(session or Session(), logger)
     return parser.fetch_production(target_datetime)
