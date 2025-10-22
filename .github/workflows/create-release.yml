@@ -1,0 +1,41 @@
+name: Create release
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Release type'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: master
+      - name: Install poetry
+        run: |
+          pipx install "poetry==2.*"
+      - name: Configure git
+        run: |
+          git config --global user.email "engineering+github@electricitymaps.com"
+          git config --global user.name "electricitymapsbot"
+      - name: Bump version
+        run: |
+          poetry version ${{ inputs.type }}
+      - name: Commit changes
+        run: |
+          git add pyproject.toml
+          git commit -m "Bumps version"
+      - name: Push changes
+        uses: ad-m/github-push-action@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
