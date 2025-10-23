@@ -20,13 +20,14 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: master
-      - name: Install poetry
-        run: |
-          pipx install "poetry==2.*"
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
       - name: Configure git
         run: |
           git config --global user.email "engineering+github@electricitymaps.com"
           git config --global user.name "electricitymapsbot"
+      - name: Install poetry
+        run: |
+          pipx install "poetry==2.*"
       - name: Bump version
         run: |
           poetry version ${{ inputs.type }}
@@ -37,5 +38,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@v1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
           branch: master
