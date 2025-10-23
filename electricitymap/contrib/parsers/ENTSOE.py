@@ -549,7 +549,7 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> Generator[tuple[float, datetime], None, None]:
+) -> Generator[tuple[datetime, float], None, None]:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -563,10 +563,7 @@ def parse_scalar(
             and not timeseries.find("outBiddingZone_Domain.mRID".lower())
         ):
             continue
-        points = _get_datetime_value_from_timeseries(timeseries, "quantity")
-        for entry in points:
-            dt, value = entry
-            yield (value, dt)
+        yield from _get_datetime_value_from_timeseries(timeseries, "quantity")
 
 
 def parse_production(
@@ -1203,7 +1200,7 @@ def fetch_generation_forecast(
             message=f"No generation forecast data found for {zone_key}",
             zone_key=zone_key,
         )
-    for value, dt in parsed:
+    for dt, value in parsed:
         generation_list.append(
             zoneKey=zone_key,
             datetime=dt,
@@ -1251,7 +1248,7 @@ def get_raw_consumption_list(
             message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
             zone_key=zone_key,
         )
-    for value, dt in parsed:
+    for dt, value in parsed:
         consumption_list.append(
             zoneKey=zone_key,
             datetime=dt,
