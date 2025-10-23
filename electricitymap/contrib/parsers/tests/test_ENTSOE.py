@@ -130,7 +130,7 @@ def test_fetch_with_negative_values(adapter, session, snapshot):
     )
 
 
-@pytest.mark.parametrize("zone", ["FI", "LU", "NO-NO5"])
+@pytest.mark.parametrize("zone", ["FI", "LU", "NO-NO5", "SE-SE4"])
 def test_production_with_snapshot(adapter, session, snapshot, zone):
     raw_data = Path(base_path_to_mock, f"{zone}_production.xml")
     adapter.register_uri(

@@ -555,10 +555,6 @@ def parse_scalar(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
-        )
         if (
             only_inBiddingZone_Domain
             and not timeseries.find("inBiddingZone_Domain.mRID".lower())
@@ -567,11 +563,9 @@ def parse_scalar(
             and not timeseries.find("outBiddingZone_Domain.mRID".lower())
         ):
             continue
-        points = _unpack_timeseries_points(timeseries, "quantity")
-        decompressed_points = _reverse_A3_curve_compression(points)
-        for entry in decompressed_points:
-            position, value = entry
-            dt = datetime_from_position(datetime_start, position, resolution)
+        points = _get_datetime_value_from_timeseries(timeseries, "quantity")
+        for entry in points:
+            dt, value = entry
             yield (value, dt)
 
 
@@ -621,24 +615,15 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
     list_of_raw_data = []
     # Each timeserie is dedicated to a different fuel type.
     for timeseries in soup.find_all("timeseries"):
-        # The resolution is the time between each point in the timeseries.
-        resolution = str(timeseries.find("resolution").contents[0])
-        # The start time of the timeseries.
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find("start").contents[0])
-        )
         # The fuel code is the ENTSOE code for the fuel type.
         fuel_code = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
-        points = _unpack_timeseries_points(
+        points = _get_datetime_value_from_timeseries(
             timeseries, "quantity", production_parsing=True
         )
-        decompressed_points = _reverse_A3_curve_compression(points)
 
         # Loop over all the points in the timeseries.
-        for entry in decompressed_points:
-            position, quantity = entry
-            # Calculate the datetime of the point based on the start time and the position.
-            dt = datetime_from_position(datetime_start, position, resolution)
+        for entry in points:
+            dt, quantity = entry
             # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
             list_of_raw_data.append(
                 {"datetime": dt, "fuel_code": fuel_code, "quantity": quantity}
@@ -714,52 +699,73 @@ def _group_production_data_by_datetime(
     return grouped_data
 
 
-def _unpack_timeseries_points(
+def _get_datetime_value_from_timeseries(
     timeseries, target_str, production_parsing: bool = False
-) -> Generator[tuple[int, float], None, None]:
+) -> Generator[tuple[datetime, float], None, None]:
     """
-    Unpacks the timeseries points into a generator of (position, quantity) tuples.
+    Extracts the datetime and value from a timeseries object.
     - timeseries: BeautifulSoup object representing the timeseries
     - target_str: The target string to extract the value from (e.g., "quantity" or "price.amount")
-    - production_parsing: If True, checks if the value is production or consumption and adjusts the sign accordingly.
-    Yields tuples of (position, value).
+    Returns a tuple of (datetime, value).
     """
-    for entry in timeseries.find_all("point"):
-        position = int(entry.find("position").contents[0])
-        value = float(entry.find(target_str).contents[0])
-        if production_parsing:
-            # Since all values in ENTSOE are positive, we need to check if
-            # the value is production or consumption so we can set the quantity
-            # to a negative value if it is consumption.
-            is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
-            if not is_production:
-                value *= -1
-        yield (position, value)
+    values: list[tuple[int, float, datetime, str]] = []
+    curve_type = str(timeseries.find("curvetype").contents[0])
+    for period in timeseries.find_all("period"):
+        datetime_start = datetime.fromisoformat(
+            zulu_to_utc(period.find("start").contents[0])
+        )
+        resolution = str(period.find("resolution").contents[0])
+        for point in period.find_all("point"):
+            position = int(point.find("position").contents[0])
+            value = float(point.find(target_str).contents[0])
+            if production_parsing:
+                # Since all values in ENTSOE are positive, we need to check if
+                # the value is production or consumption so we can set the quantity
+                # to a negative value if it is consumption.
+                is_production = bool(
+                    timeseries.find("inBiddingZone_Domain.mRID".lower())
+                )
+                if not is_production:
+                    value *= -1
+            values.append((position, value, datetime_start, resolution))
+    if curve_type == "A01":
+        for value in values:
+            position, value, datetime_start, resolution = value
+            dt = datetime_from_position(datetime_start, position, resolution)
+            yield (dt, value)
+    elif curve_type == "A03":
+        yield from _reverse_A3_curve_compression(
+            values,
+        )
+    else:
+        raise NotImplementedError(f"Curve type {curve_type} not implemented.")
 
 
 def _reverse_A3_curve_compression(
-    points: Iterable[tuple[int, float]],
-) -> list[tuple[int, float]]:
+    values: Iterable[tuple[int, float, datetime, str]],
+) -> Generator[tuple[datetime, float], None, None]:
     """
     Reverses the A3 curve compression by filling in missing points with the
     last known value.
     """
-    if not points:
-        return []
+    if not values:
+        return
+    values = sorted(values, key=itemgetter(0))
 
-    sorted_points = sorted(points, key=itemgetter(0))
-
-    decompressed_points = []
-
-    for (frame_start, value), (frame_end, _) in pairwise(sorted_points):
+    for (frame_start, value, datetime_start, resolution), (
+        frame_end,
+        _,
+        _,
+        _,
+    ) in pairwise(values):
         for position in range(frame_start, frame_end):
-            decompressed_points.append((position, value))
+            dt = datetime_from_position(datetime_start, position, resolution)
+            yield (dt, value)
 
     # The loop above only processes up to the start of the last segment.
-    last_frame, last_value = sorted_points[-1]
-    decompressed_points.append((last_frame, last_value))
-
-    return decompressed_points
+    last_frame, last_value, last_datetime_start, last_resolution = values[-1]
+    last_dt = datetime_from_position(last_datetime_start, last_frame, last_resolution)
+    yield (last_dt, last_value)
 
 
 def parse_exchange(
@@ -773,18 +779,12 @@ def parse_exchange(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find("resolution").contents[0])
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find("start").contents[0])
-        )
-        points = _unpack_timeseries_points(timeseries, "quantity")
-        decompressed_points = _reverse_A3_curve_compression(points)
+        points = _get_datetime_value_from_timeseries(timeseries, "quantity")
 
-        for entry in decompressed_points:
-            position, quantity = entry
+        for entry in points:
+            dt, quantity = entry
             if is_import:
                 quantity *= -1
-            dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
@@ -808,24 +808,18 @@ def parse_exchange_forecast(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = str(timeseries.find_all("resolution")[0].contents[0])
         marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
             0
         ]
         if marketAgreementType and marketAgreementType != market_type:
             continue
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find_all("start")[0].contents[0])
-        )
 
-        points = _unpack_timeseries_points(timeseries, "quantity")
-        decompressed_points = _reverse_A3_curve_compression(points)
+        points = _get_datetime_value_from_timeseries(timeseries, "quantity")
 
-        for entry in decompressed_points:
-            position, quantity = entry
+        for entry in points:
+            dt, quantity = entry
             if is_import:
                 quantity *= -1
-            dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
@@ -849,15 +843,9 @@ def parse_prices(
     prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
-        resolution = str(timeseries.find("resolution").contents[0])
-        datetime_start = datetime.fromisoformat(
-            zulu_to_utc(timeseries.find("start").contents[0])
-        )
-        points = _unpack_timeseries_points(timeseries, "price.amount")
-        decompressed_points = _reverse_A3_curve_compression(points)
-        for entry in decompressed_points:
-            position, price = entry
-            dt = datetime_from_position(datetime_start, position, resolution)
+        points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
+        for entry in points:
+            dt, price = entry
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
