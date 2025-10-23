@@ -15,11 +15,12 @@ Link to the API documentation:
 https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 
-import itertools
 import re
+from collections.abc import Generator, Iterable
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from functools import lru_cache
+from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Any
@@ -46,9 +47,8 @@ from electricitymap.contrib.parsers.lib.config import (
     StorageModes,
     refetch_frequency,
 )
-
-from .lib.exceptions import ParserException
-from .lib.utils import get_token
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 SOURCE = "entsoe.eu"
 
@@ -128,7 +128,7 @@ ENTSOE_PARAMETER_BY_GROUP = {
 
 # Get all the individual storage parameters in one list
 ENTSOE_STORAGE_PARAMETERS = list(
-    itertools.chain.from_iterable(ENTSOE_PARAMETER_GROUPS["storage"].values())
+    chain.from_iterable(ENTSOE_PARAMETER_GROUPS["storage"].values())
 )
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
@@ -549,13 +549,11 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> list[tuple[float, datetime]] | None:
+) -> Generator[tuple[float, datetime], None, None]:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
-    values: list[float] = []
-    datetimes: list[datetime] = []
     for timeseries in soup.find_all("timeseries"):
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start = datetime.fromisoformat(
@@ -569,14 +567,12 @@ def parse_scalar(
             and not timeseries.find("outBiddingZone_Domain.mRID".lower())
         ):
             continue
-        for entry in timeseries.find_all("point"):
-            position = int(entry.find("position").contents[0])
-            value = float(entry.find("quantity").contents[0])
+        points = _unpack_timeseries_points(timeseries, "quantity")
+        decompressed_points = _reverse_A3_curve_compression(points)
+        for entry in decompressed_points:
+            position, value = entry
             dt = datetime_from_position(datetime_start, position, resolution)
-            values.append(value)
-            datetimes.append(dt)
-
-    return list(zip(values, datetimes, strict=True))
+            yield (value, dt)
 
 
 def parse_production(
@@ -633,25 +629,19 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
         )
         # The fuel code is the ENTSOE code for the fuel type.
         fuel_code = str(timeseries.find("mktpsrtype").find("psrtype").contents[0])
+        points = _unpack_timeseries_points(
+            timeseries, "quantity", production_parsing=True
+        )
+        decompressed_points = _reverse_A3_curve_compression(points)
+
         # Loop over all the points in the timeseries.
-        for entry in timeseries.find_all("point"):
-            # The quantity is the amount of energy produced or consumed at the given position.
-            quantity = float(entry.find("quantity").contents[0])
-            # The position is the index of the point in the timeseries.
-            position = int(entry.find("position").contents[0])
-            # Since all values in ENTSOE are positive, we need to check if
-            # the value is production or consumption so we can set the quantity
-            # to a negative value if it is consumption.
-            is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
+        for entry in decompressed_points:
+            position, quantity = entry
             # Calculate the datetime of the point based on the start time and the position.
             dt = datetime_from_position(datetime_start, position, resolution)
             # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
             list_of_raw_data.append(
-                {
-                    "datetime": dt,
-                    "fuel_code": fuel_code,
-                    "quantity": quantity if is_production else -quantity,
-                }
+                {"datetime": dt, "fuel_code": fuel_code, "quantity": quantity}
             )
 
     return list_of_raw_data
@@ -718,11 +708,58 @@ def _group_production_data_by_datetime(
     list_of_raw_data.sort(key=itemgetter("datetime"))
     # Group the data by the datetime key. It requires the data to be sorted by the datetime key first.
     grouped_data = {
-        k: list(v)
-        for k, v in itertools.groupby(list_of_raw_data, key=itemgetter("datetime"))
+        k: list(v) for k, v in groupby(list_of_raw_data, key=itemgetter("datetime"))
     }
 
     return grouped_data
+
+
+def _unpack_timeseries_points(
+    timeseries, target_str, production_parsing: bool = False
+) -> Generator[tuple[int, float], None, None]:
+    """
+    Unpacks the timeseries points into a generator of (position, quantity) tuples.
+    - timeseries: BeautifulSoup object representing the timeseries
+    - target_str: The target string to extract the value from (e.g., "quantity" or "price.amount")
+    - production_parsing: If True, checks if the value is production or consumption and adjusts the sign accordingly.
+    Yields tuples of (position, value).
+    """
+    for entry in timeseries.find_all("point"):
+        position = int(entry.find("position").contents[0])
+        value = float(entry.find(target_str).contents[0])
+        if production_parsing:
+            # Since all values in ENTSOE are positive, we need to check if
+            # the value is production or consumption so we can set the quantity
+            # to a negative value if it is consumption.
+            is_production = bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
+            if not is_production:
+                value *= -1
+        yield (position, value)
+
+
+def _reverse_A3_curve_compression(
+    points: Iterable[tuple[int, float]],
+) -> list[tuple[int, float]]:
+    """
+    Reverses the A3 curve compression by filling in missing points with the
+    last known value.
+    """
+    if not points:
+        return []
+
+    sorted_points = sorted(points, key=itemgetter(0))
+
+    decompressed_points = []
+
+    for (frame_start, value), (frame_end, _) in pairwise(sorted_points):
+        for position in range(frame_start, frame_end):
+            decompressed_points.append((position, value))
+
+    # The loop above only processes up to the start of the last segment.
+    last_frame, last_value = sorted_points[-1]
+    decompressed_points.append((last_frame, last_value))
+
+    return decompressed_points
 
 
 def parse_exchange(
@@ -740,12 +777,13 @@ def parse_exchange(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find("start").contents[0])
         )
+        points = _unpack_timeseries_points(timeseries, "quantity")
+        decompressed_points = _reverse_A3_curve_compression(points)
 
-        for entry in timeseries.find_all("point"):
-            quantity = float(entry.find_all("quantity")[0].contents[0])
+        for entry in decompressed_points:
+            position, quantity = entry
             if is_import:
                 quantity *= -1
-            position = int(entry.find_all("position")[0].contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
@@ -780,11 +818,13 @@ def parse_exchange_forecast(
             zulu_to_utc(timeseries.find_all("start")[0].contents[0])
         )
 
-        for entry in timeseries.find_all("point"):
-            quantity = float(entry.find("quantity").contents[0])
+        points = _unpack_timeseries_points(timeseries, "quantity")
+        decompressed_points = _reverse_A3_curve_compression(points)
+
+        for entry in decompressed_points:
+            position, quantity = entry
             if is_import:
                 quantity *= -1
-            position = int(entry.find("position").contents[0])
             dt = datetime_from_position(datetime_start, position, resolution)
             # Find out whether or not we should update the net production
             exchange_list.append(
@@ -813,13 +853,15 @@ def parse_prices(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(timeseries.find("start").contents[0])
         )
-        for entry in timeseries.find_all("point"):
-            position = int(entry.find("position").contents[0])
+        points = _unpack_timeseries_points(timeseries, "price.amount")
+        decompressed_points = _reverse_A3_curve_compression(points)
+        for entry in decompressed_points:
+            position, price = entry
             dt = datetime_from_position(datetime_start, position, resolution)
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
-                price=float(entry.find("price.amount").contents[0]),
+                price=price,
                 source="entsoe.eu",
                 currency=currency,
             )
