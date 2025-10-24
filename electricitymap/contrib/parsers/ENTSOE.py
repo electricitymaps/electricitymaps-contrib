@@ -15,7 +15,6 @@ Link to the API documentation:
 https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 
-import re
 from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -24,9 +23,9 @@ from functools import cache, lru_cache
 from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
 from operator import attrgetter, itemgetter
+from re import fullmatch
 from typing import Any, NamedTuple
 
-import numpy as np
 from bs4 import BeautifulSoup
 from requests import Response, Session
 
@@ -263,13 +262,6 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
 }
-
-
-def closest_in_time_key(x, target_datetime: datetime | None, datetime_key="datetime"):
-    if target_datetime is None:
-        target_datetime = datetime.now(timezone.utc)
-    if isinstance(target_datetime, datetime):
-        return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
 def query_ENTSOE(
@@ -738,7 +730,7 @@ def _resolution_to_timedelta(resolution: str) -> timedelta:
     """
     Converts an ENTSOE resolution string (e.g., 'PT15M') to a timedelta object.
     """
-    m = re.search(r"PT(\d+)([M])", resolution)
+    m = fullmatch(r"PT(\d+)([M])", resolution)
     if m is not None:
         digits = int(m.group(1))
         scale = m.group(2)
