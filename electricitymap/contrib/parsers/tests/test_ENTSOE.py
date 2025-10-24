@@ -349,7 +349,9 @@ def test_refetch_frequency():
 
     assert func.__name__ == "fetch_production"
 
+
 # Below are tests for the time series parsing functions.
+
 
 def _make_soup(xml: str):
     return BeautifulSoup(xml, "html.parser")
@@ -481,6 +483,7 @@ def test_a03_curve_compression_expands_1_datapoint_correctly():
     assert results[0] == (dt0, 10.0)
     assert results[1] == (dt0 + timedelta(hours=1), 10.0)
     assert results[2] == (dt0 + timedelta(hours=2), 10.0)
+
 
 @pytest.mark.parametrize(
     "fixture",
