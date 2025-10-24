@@ -17,13 +17,14 @@ https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 
 import re
 from collections.abc import Generator, Iterable
+from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
-from functools import lru_cache
+from functools import cache, lru_cache
 from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
-from operator import itemgetter
-from typing import Any
+from operator import attrgetter, itemgetter
+from typing import Any, NamedTuple
 
 import numpy as np
 from bs4 import BeautifulSoup
@@ -276,7 +277,6 @@ def query_ENTSOE(
     params: dict[str, str],
     span: tuple,
     target_datetime: datetime | None = None,
-    function_name: str = "",
 ) -> str:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
@@ -346,7 +346,6 @@ def query_consumption(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_REALTIME,
-        function_name=query_consumption.__name__,
     )
 
 
@@ -367,7 +366,6 @@ def query_production(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_REALTIME,
-        function_name=query_production.__name__,
     )
 
 
@@ -389,7 +387,6 @@ def query_exchange(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_REALTIME,
-        function_name=query_exchange.__name__,
     )
 
 
@@ -413,7 +410,6 @@ def query_exchange_forecast(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_FORECAST,
-        function_name=query_exchange_forecast.__name__,
     )
 
 
@@ -441,7 +437,6 @@ def query_price(
         params,
         target_datetime=target_datetime,
         span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
-        function_name=query_price.__name__,
     )
 
 
@@ -464,7 +459,6 @@ def query_generation_forecast(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_FORECAST,
-        function_name=query_generation_forecast.__name__,
     )
 
 
@@ -487,7 +481,6 @@ def query_consumption_forecast(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_FORECAST,
-        function_name=query_consumption_forecast.__name__,
     )
 
 
@@ -521,7 +514,6 @@ def query_wind_solar_production_forecast(
         params,
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_FORECAST,
-        function_name=query_wind_solar_production_forecast.__name__,
     )
 
 
@@ -533,16 +525,11 @@ def zulu_to_utc(datetime_string: str) -> str:
 
 
 @lru_cache(maxsize=1024)
-def datetime_from_position(start: datetime, position: int, resolution: str) -> datetime:
-    """Finds time granularity of data."""
-
-    m = re.search(r"PT(\d+)([M])", resolution)
-    if m is not None:
-        digits = int(m.group(1))
-        scale = m.group(2)
-        if scale == "M":
-            return start + timedelta(minutes=(position - 1) * digits)
-    raise NotImplementedError(f"Could not recognise resolution {resolution}")
+def datetime_from_position(
+    start: datetime, position: int, resolution: timedelta
+) -> datetime:
+    """Calculates the datetime from a given start datetime, position, and resolution."""
+    return start + resolution * (position - 1)
 
 
 def parse_scalar(
@@ -619,8 +606,7 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
         )
 
         # Loop over all the points in the timeseries.
-        for entry in points:
-            dt, quantity = entry
+        for dt, quantity in points:
             # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
             list_of_raw_data.append(
                 {"datetime": dt, "fuel_code": fuel_code, "quantity": quantity}
@@ -696,89 +682,168 @@ def _group_production_data_by_datetime(
     return grouped_data
 
 
-def _get_datetime_value_from_timeseries(
-    timeseries, target_str, production_parsing: bool = False
-) -> Generator[tuple[datetime, float], None, None]:
+class IntPoint(NamedTuple):
+    """A single point in time, referenced by position."""
+
+    position: int
+    value: float
+
+
+class DateTimePoint(NamedTuple):
+    """The final processed point with an absolute datetime."""
+
+    dt: datetime
+    value: float
+
+
+@dataclass(slots=True, kw_only=True)
+class Period:
+    """Represents one <Period> block from the XML."""
+
+    datetime_start: datetime
+    datetime_end: datetime
+    resolution: timedelta
+    points: Iterable[IntPoint]
+
+
+@dataclass(slots=True, kw_only=True)
+class TimeSeries:
+    """The top-level object, representing the entire <TimeSeries> block."""
+
+    curve_type: str
+    periods: Iterable[Period]
+
+
+def _iter_points(
+    period_xml: Any,
+    target_str: str,
+    is_consumption: bool,
+) -> Generator[IntPoint, None, None]:
     """
-    Extracts the datetime and value from a timeseries object.
-    - timeseries: BeautifulSoup object representing the timeseries
-    - target_str: The target string to extract the value from (e.g., "quantity" or "price.amount")
-    Returns a tuple of (datetime, value).
+    A generator that parses and yields one <Point> object at a time
+    from a single <period> XML element.
     """
-    values: list[tuple[int, float, datetime, datetime, str]] = []
-    curve_type = str(timeseries.find("curvetype").contents[0])
-    for period in timeseries.find_all("period"):
+    for point in period_xml.find_all("point"):
+        position = int(point.find("position").contents[0])
+        value = float(point.find(target_str).contents[0])
+
+        if is_consumption:
+            value *= -1
+
+        yield IntPoint(position=position, value=value)
+
+
+@cache
+def _resolution_to_timedelta(resolution: str) -> timedelta:
+    """
+    Converts an ENTSOE resolution string (e.g., 'PT15M') to a timedelta object.
+    """
+    m = re.search(r"PT(\d+)([M])", resolution)
+    if m is not None:
+        digits = int(m.group(1))
+        scale = m.group(2)
+        if scale == "M":
+            return timedelta(minutes=digits)
+    raise NotImplementedError(f"Could not recognise resolution {resolution}")
+
+
+def _iter_periods(
+    timeseries_xml: Any,
+    target_str: str,
+    is_consumption: bool,
+) -> Generator[Period, None, None]:
+    """
+    A generator that parses and yields one <Period> object at a time.
+    The points *within* each period are also a generator.
+    """
+    for period in timeseries_xml.find_all("period"):
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(period.find("start").contents[0])
         )
         datetime_end = datetime.fromisoformat(
             zulu_to_utc(period.find("end").contents[0])
         )
-        resolution = str(period.find("resolution").contents[0])
-        for point in period.find_all("point"):
-            position = int(point.find("position").contents[0])
-            value = float(point.find(target_str).contents[0])
-            if production_parsing:
-                # Since all values in ENTSOE are positive, we need to check if
-                # the value is production or consumption so we can set the quantity
-                # to a negative value if it is consumption.
-                is_production = bool(
-                    timeseries.find("inBiddingZone_Domain.mRID".lower())
-                )
-                if not is_production:
-                    value *= -1
-            values.append((position, value, datetime_start, datetime_end, resolution))
-    if curve_type == "A01":
-        for value in values:
-            position, value, datetime_start, datetime_end, resolution = value
-            dt = datetime_from_position(datetime_start, position, resolution)
-            yield (dt, value)
-    elif curve_type == "A03":
-        yield from _reverse_A3_curve_compression(
-            values,
+        resolution = _resolution_to_timedelta(
+            str(period.find("resolution").contents[0])
         )
+
+        points_generator = _iter_points(period, target_str, is_consumption)
+
+        yield Period(
+            datetime_start=datetime_start,
+            datetime_end=datetime_end,
+            resolution=resolution,
+            points=points_generator,
+        )
+
+
+def _get_datetime_value_from_timeseries(
+    timeseries: Any,  # BeautifulSoup object
+    target_str: str,
+    production_parsing: bool = False,
+) -> Generator[DateTimePoint, None, None]:
+    """
+    Extracts DateTimePoints from a timeseries XML object
+    by streaming periods one at a time.
+    """
+
+    curve_type = str(timeseries.find("curvetype").contents[0])
+
+    is_consumption = False
+    if production_parsing:
+        is_consumption = not bool(timeseries.find("inBiddingZone_Domain.mRID".lower()))
+
+    periods_generator = _iter_periods(timeseries, target_str, is_consumption)
+
+    ts_object = TimeSeries(
+        curve_type=curve_type,
+        periods=periods_generator,
+    )
+
+    if ts_object.curve_type == "A01":
+        for period in ts_object.periods:
+            for point in period.points:
+                dt = datetime_from_position(
+                    period.datetime_start, point.position, period.resolution
+                )
+                yield DateTimePoint(dt, point.value)
+    elif ts_object.curve_type == "A03":
+        for period in ts_object.periods:
+            yield from _reverse_A3_curve_compression_for_period(period)
     else:
-        raise NotImplementedError(f"Curve type {curve_type} not implemented.")
+        raise NotImplementedError(f"Curve type {ts_object.curve_type} not implemented.")
 
 
-def _reverse_A3_curve_compression(
-    values: Iterable[tuple[int, float, datetime, datetime, str]],
-) -> Generator[tuple[datetime, float], None, None]:
+def _reverse_A3_curve_compression_for_period(
+    period: Period,
+) -> Generator[DateTimePoint, None, None]:
     """
-    Reverses the A3 curve compression by filling in missing points with the
-    last known value.
+    Reverses the A3 curve compression for a *single* Period object.
+    Fills in missing points with the last known value.
     """
-    if not values:
+    if not period.points:
         return
 
-    values = list(values)
+    points_list = sorted(period.points, key=attrgetter("position"))
 
-    start, end, resolution = values[0][2], values[-1][3], values[0][4]
+    start_time = period.datetime_start
+    end_time = period.datetime_end
+    resolution = period.resolution
 
-    expected_points = int(
-        (end - start).total_seconds()
-        / (datetime_from_position(start, 2, resolution) - start).total_seconds()
-    )
-    values = sorted(values, key=itemgetter(0))
+    point_duration_sec = resolution.total_seconds()
+    period_duration_sec = (end_time - start_time).total_seconds()
 
-    for (frame_start, value, datetime_start, _, resolution), (
-        frame_end,
-        _,
-        _,
-        _,
-        _,
-    ) in pairwise(values):
-        for position in range(frame_start, frame_end):
-            dt = datetime_from_position(datetime_start, position, resolution)
-            yield (dt, value)
+    expected_points = int(period_duration_sec / point_duration_sec)
 
-    # The loop above only processes up to the start of the last segment.
-    last_frame, last_value, last_datetime_start, datetime_end, last_resolution = values[
-        -1
-    ]
-    for position in range(last_frame, expected_points + 1):
-        dt = datetime_from_position(last_datetime_start, position, last_resolution)
-        yield (dt, last_value)
+    for p1, p2 in pairwise(points_list):
+        for position in range(p1.position, p2.position):
+            dt = datetime_from_position(start_time, position, resolution)
+            yield DateTimePoint(dt, p1.value)
+
+    last_point = points_list[-1]
+    for position in range(last_point.position, expected_points + 1):
+        dt = datetime_from_position(start_time, position, resolution)
+        yield DateTimePoint(dt, last_point.value)
 
 
 def parse_exchange(
@@ -788,23 +853,17 @@ def parse_exchange(
     logger: Logger,
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
-
-    soup = BeautifulSoup(xml_text, "html.parser")
-    # Get all points
-    for timeseries in soup.find_all("timeseries"):
-        points = _get_datetime_value_from_timeseries(timeseries, "quantity")
-
-        for entry in points:
-            dt, quantity = entry
-            if is_import:
-                quantity *= -1
-            # Find out whether or not we should update the net production
-            exchange_list.append(
-                zoneKey=sorted_zone_keys,
-                datetime=dt,
-                source=SOURCE,
-                netFlow=quantity,
-            )
+    points = parse_scalar(xml_text)
+    for dt, quantity in points:
+        if is_import:
+            quantity *= -1
+        # Find out whether or not we should update the net production
+        exchange_list.append(
+            zoneKey=sorted_zone_keys,
+            datetime=dt,
+            source=SOURCE,
+            netFlow=quantity,
+        )
 
     return exchange_list
 
@@ -829,8 +888,7 @@ def parse_exchange_forecast(
 
         points = _get_datetime_value_from_timeseries(timeseries, "quantity")
 
-        for entry in points:
-            dt, quantity = entry
+        for dt, quantity in points:
             if is_import:
                 quantity *= -1
             # Find out whether or not we should update the net production
@@ -857,12 +915,11 @@ def parse_prices(
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
-        for entry in points:
-            dt, price = entry
+        for dt, value in points:
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
-                price=price,
+                price=value,
                 source="entsoe.eu",
                 currency=currency,
             )
@@ -1254,7 +1311,7 @@ def get_raw_consumption_list(
     if raw_data is None:
         raise ParserException(
             parser="ENTSOE.py",
-            message=f"No {'consumption forcast' if forecasted else 'consumption'} data returned for {zone_key}",
+            message=f"No {'consumption forecast' if forecasted else 'consumption'} data returned for {zone_key}",
             zone_key=zone_key,
         )
     parsed = parse_scalar(raw_data, only_outBiddingZone_Domain=True)
