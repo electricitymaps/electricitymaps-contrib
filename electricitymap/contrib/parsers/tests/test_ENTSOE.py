@@ -1,13 +1,19 @@
 import logging
 import os
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
+from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ENTSOE
-from electricitymap.contrib.parsers.ENTSOE import fetch_production
+from electricitymap.contrib.parsers.ENTSOE import (
+    _get_datetime_value_from_timeseries,
+    fetch_production,
+    zulu_to_utc,
+)
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
 
@@ -342,3 +348,156 @@ def test_refetch_frequency():
     func = fetch_production
 
     assert func.__name__ == "fetch_production"
+
+
+# Below are tests for the time series parsing functions.
+
+
+def _make_soup(xml: str):
+    return BeautifulSoup(xml, "html.parser")
+
+
+def test_a01_timeseries_parsing_production_and_consumption():
+    """A01 curve: simple per-position points. Check datetimes and sign handling for production_parsing."""
+    xml = """
+    <timeseries>
+      <curvetype>A01</curvetype>
+      <inbiddingzone_domain.mrid>TEST</inbiddingzone_domain.mrid>
+      <period>
+        <start>2023-01-01T00:00:00Z</start>
+        <end>2023-01-01T02:00:00Z</end>
+        <resolution>PT60M</resolution>
+        <point>
+          <position>1</position>
+          <quantity>10</quantity>
+        </point>
+        <point>
+          <position>2</position>
+          <quantity>20</quantity>
+        </point>
+      </period>
+    </timeseries>
+    """
+
+    soup = _make_soup(xml)
+    ts = soup.find("timeseries")
+
+    results = list(
+        _get_datetime_value_from_timeseries(ts, "quantity", production_parsing=True)
+    )
+
+    assert len(results) == 2
+
+    dt0_expected = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
+    dt1_expected = dt0_expected + timedelta(hours=1)
+
+    assert results[0][0] == dt0_expected and results[0][1] == 10.0
+    assert results[1][0] == dt1_expected and results[1][1] == 20.0
+
+    # Now test consumption (no inbidding tag) becomes negative when production_parsing=True
+    xml_consumption = xml.replace(
+        "<inbiddingzone_domain.mrid>TEST</inbiddingzone_domain.mrid>", ""
+    )
+    soup2 = _make_soup(xml_consumption)
+    ts2 = soup2.find("timeseries")
+    results2 = list(
+        _get_datetime_value_from_timeseries(ts2, "quantity", production_parsing=True)
+    )
+    assert results2[0][1] == -10.0
+    assert results2[1][1] == -20.0
+
+
+def test_a03_curve_compression_expands_segments_correctly():
+    """A03 curve: compressed segments. Frame start positions indicate start of a constant segment up to next frame start."""
+    # We'll create two frames: frame at position 1 value 10, frame at position 3 value 20
+    # With resolution PT60M and start 2023-01-01T00:00:00Z this should yield:
+    # pos1 -> 00:00 value 10
+    # pos2 -> 01:00 value 10 (filled from frame 1)
+    # pos3 -> 02:00 value 20 (last frame)
+    xml = """
+    <timeseries>
+      <curvetype>A03</curvetype>
+      <period>
+        <start>2023-01-01T00:00:00Z</start>
+        <end>2023-01-01T03:00:00Z</end>
+        <resolution>PT60M</resolution>
+        <point>
+          <position>1</position>
+          <quantity>10</quantity>
+        </point>
+        <point>
+          <position>3</position>
+          <quantity>20</quantity>
+        </point>
+      </period>
+    </timeseries>
+    """
+
+    soup = _make_soup(xml)
+    ts = soup.find("timeseries")
+    results = list(
+        _get_datetime_value_from_timeseries(ts, "quantity", production_parsing=False)
+    )
+
+    # Expect three datapoints as explained above
+    assert len(results) == 3
+
+    dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
+    assert results[0] == (dt0, 10.0)
+    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
+    assert results[2] == (dt0 + timedelta(hours=2), 20.0)
+
+
+def test_a03_curve_compression_expands_1_datapoint_correctly():
+    """A03 curve: compressed segments. Frame start positions indicate start of a constant segment up to next frame start."""
+    # We'll create two frames: frame at position 1 value 10, frame at position 3 value 20
+    # With resolution PT60M and start 2023-01-01T00:00:00Z this should yield:
+    # pos1 -> 00:00 value 10
+    # pos2 -> 01:00 value 10 (filled from frame 1)
+    # pos3 -> 02:00 value 20 (last frame)
+    xml = """
+    <timeseries>
+      <curvetype>A03</curvetype>
+      <period>
+        <start>2023-01-01T00:00:00Z</start>
+        <end>2023-01-01T03:00:00Z</end>
+        <resolution>PT60M</resolution>
+        <point>
+          <position>1</position>
+          <quantity>10</quantity>
+        </point>
+      </period>
+    </timeseries>
+    """
+
+    soup = _make_soup(xml)
+    ts = soup.find("timeseries")
+    results = list(
+        _get_datetime_value_from_timeseries(ts, "quantity", production_parsing=False)
+    )
+
+    # Expect three datapoints as explained above
+    assert len(results) == 3
+
+    dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
+    assert results[0] == (dt0, 10.0)
+    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
+    assert results[2] == (dt0 + timedelta(hours=2), 10.0)
+
+
+@pytest.mark.parametrize(
+    "fixture",
+    [
+        "fake_time_series.xml",
+        "fake_time_series_all_0.xml",
+    ],
+)
+def test_a03_curve_decompression(fixture, snapshot):
+    """A03 curve: compressed segments. Full example from ENTSOE with production data."""
+    soup = _make_soup(Path(base_path_to_mock, fixture).read_text())
+    ts = soup.find("timeseries")
+    results = list(
+        _get_datetime_value_from_timeseries(ts, "quantity", production_parsing=True)
+    )
+
+    assert snapshot == results

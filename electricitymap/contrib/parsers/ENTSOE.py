@@ -705,11 +705,14 @@ def _get_datetime_value_from_timeseries(
     - target_str: The target string to extract the value from (e.g., "quantity" or "price.amount")
     Returns a tuple of (datetime, value).
     """
-    values: list[tuple[int, float, datetime, str]] = []
+    values: list[tuple[int, float, datetime, datetime, str]] = []
     curve_type = str(timeseries.find("curvetype").contents[0])
     for period in timeseries.find_all("period"):
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(period.find("start").contents[0])
+        )
+        datetime_end = datetime.fromisoformat(
+            zulu_to_utc(period.find("end").contents[0])
         )
         resolution = str(period.find("resolution").contents[0])
         for point in period.find_all("point"):
@@ -724,10 +727,10 @@ def _get_datetime_value_from_timeseries(
                 )
                 if not is_production:
                     value *= -1
-            values.append((position, value, datetime_start, resolution))
+            values.append((position, value, datetime_start, datetime_end, resolution))
     if curve_type == "A01":
         for value in values:
-            position, value, datetime_start, resolution = value
+            position, value, datetime_start, datetime_end, resolution = value
             dt = datetime_from_position(datetime_start, position, resolution)
             yield (dt, value)
     elif curve_type == "A03":
@@ -739,7 +742,7 @@ def _get_datetime_value_from_timeseries(
 
 
 def _reverse_A3_curve_compression(
-    values: Iterable[tuple[int, float, datetime, str]],
+    values: Iterable[tuple[int, float, datetime, datetime, str]],
 ) -> Generator[tuple[datetime, float], None, None]:
     """
     Reverses the A3 curve compression by filling in missing points with the
@@ -747,10 +750,20 @@ def _reverse_A3_curve_compression(
     """
     if not values:
         return
+
+    values = list(values)
+
+    start, end, resolution = values[0][2], values[-1][3], values[0][4]
+
+    expected_points = int(
+        (end - start).total_seconds()
+        / (datetime_from_position(start, 2, resolution) - start).total_seconds()
+    )
     values = sorted(values, key=itemgetter(0))
 
-    for (frame_start, value, datetime_start, resolution), (
+    for (frame_start, value, datetime_start, _, resolution), (
         frame_end,
+        _,
         _,
         _,
         _,
@@ -760,9 +773,12 @@ def _reverse_A3_curve_compression(
             yield (dt, value)
 
     # The loop above only processes up to the start of the last segment.
-    last_frame, last_value, last_datetime_start, last_resolution = values[-1]
-    last_dt = datetime_from_position(last_datetime_start, last_frame, last_resolution)
-    yield (last_dt, last_value)
+    last_frame, last_value, last_datetime_start, datetime_end, last_resolution = values[
+        -1
+    ]
+    for position in range(last_frame, expected_points + 1):
+        dt = datetime_from_position(last_datetime_start, position, last_resolution)
+        yield (dt, last_value)
 
 
 def parse_exchange(
