@@ -6349,6 +6349,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 0, 45, tzinfo=datetime.timezone.utc),
+      'price': 100.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 1, 0, tzinfo=datetime.timezone.utc),
       'price': 97.57,
       'source': 'entsoe.eu',
@@ -6358,6 +6366,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 1, 15, tzinfo=datetime.timezone.utc),
+      'price': 97.51,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 1, 30, tzinfo=datetime.timezone.utc),
       'price': 97.51,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -6909,6 +6925,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 18, 45, tzinfo=datetime.timezone.utc),
+      'price': 230.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 19, 0, tzinfo=datetime.timezone.utc),
       'price': 150.0,
       'source': 'entsoe.eu',
@@ -7029,6 +7053,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 22, 45, tzinfo=datetime.timezone.utc),
+      'price': 103.33,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 23, 0, tzinfo=datetime.timezone.utc),
       'price': 102.28,
       'source': 'entsoe.eu',
@@ -7069,6 +7101,30 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 0, 15, tzinfo=datetime.timezone.utc),
+      'price': 95.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 0, 30, tzinfo=datetime.timezone.utc),
+      'price': 95.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 0, 45, tzinfo=datetime.timezone.utc),
+      'price': 95.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 1, 0, tzinfo=datetime.timezone.utc),
       'price': 95.5,
       'source': 'entsoe.eu',
@@ -7101,6 +7157,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 2, 0, tzinfo=datetime.timezone.utc),
+      'price': 98.7,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 2, 15, tzinfo=datetime.timezone.utc),
       'price': 99.0,
       'source': 'entsoe.eu',
@@ -7118,6 +7182,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 2, 45, tzinfo=datetime.timezone.utc),
+      'price': 103.29,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 3, 0, tzinfo=datetime.timezone.utc),
       'price': 103.29,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -7422,6 +7494,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 12, 30, tzinfo=datetime.timezone.utc),
+      'price': 16.79,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 12, 45, tzinfo=datetime.timezone.utc),
       'price': 16.79,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -8350,6 +8430,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 1, 45, tzinfo=datetime.timezone.utc),
+      'price': 34.5,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 1, 45, tzinfo=datetime.timezone.utc),
       'price': 36.69,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -8949,6 +9037,22 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 10, 45, tzinfo=datetime.timezone.utc),
+      'price': 24.99,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 10, 45, tzinfo=datetime.timezone.utc),
+      'price': 35.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 11, 0, tzinfo=datetime.timezone.utc),
       'price': 23.29,
       'source': 'entsoe.eu',
@@ -9006,6 +9110,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 11, 30, tzinfo=datetime.timezone.utc),
+      'price': 23.33,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 11, 30, tzinfo=datetime.timezone.utc),
       'price': 26.63,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -9015,6 +9127,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 11, 45, tzinfo=datetime.timezone.utc),
       'price': 20.3,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 11, 45, tzinfo=datetime.timezone.utc),
+      'price': 23.33,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -9047,6 +9167,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 12, 0, tzinfo=datetime.timezone.utc),
       'price': 20.95,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 12, 15, tzinfo=datetime.timezone.utc),
+      'price': 16.98,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -9142,6 +9270,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 13, 15, tzinfo=datetime.timezone.utc),
+      'price': 22.55,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 13, 15, tzinfo=datetime.timezone.utc),
       'price': 22.94,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -9158,7 +9294,23 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 13, 30, tzinfo=datetime.timezone.utc),
+      'price': 22.55,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 13, 30, tzinfo=datetime.timezone.utc),
       'price': 22.97,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 13, 30, tzinfo=datetime.timezone.utc),
+      'price': 18.94,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -9981,6 +10133,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 22, 15, tzinfo=datetime.timezone.utc),
+      'price': 94.96,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 22, 30, tzinfo=datetime.timezone.utc),
       'price': 90.36,
       'source': 'entsoe.eu',
@@ -10055,6 +10215,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 29, 23, 30, tzinfo=datetime.timezone.utc),
       'price': 93.25,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 29, 23, 45, tzinfo=datetime.timezone.utc),
+      'price': 88.25,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -10166,7 +10334,23 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 1, 30, tzinfo=datetime.timezone.utc),
+      'price': 76.28,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 1, 30, tzinfo=datetime.timezone.utc),
       'price': 84.07,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 1, 45, tzinfo=datetime.timezone.utc),
+      'price': 76.28,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -10190,6 +10374,22 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 2, 0, tzinfo=datetime.timezone.utc),
+      'price': 85.55,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 2, 15, tzinfo=datetime.timezone.utc),
+      'price': 77.5,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 2, 15, tzinfo=datetime.timezone.utc),
       'price': 85.55,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -10686,6 +10886,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 10, 0, tzinfo=datetime.timezone.utc),
+      'price': 48.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 10, 0, tzinfo=datetime.timezone.utc),
       'price': 63.5,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -10814,6 +11022,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 11, 30, tzinfo=datetime.timezone.utc),
+      'price': 37.9,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 11, 30, tzinfo=datetime.timezone.utc),
       'price': 37.7,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -10893,6 +11109,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 12, 15, tzinfo=datetime.timezone.utc),
+      'price': 65.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 12, 30, tzinfo=datetime.timezone.utc),
       'price': 49.04,
       'source': 'entsoe.eu',
@@ -10903,6 +11127,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 12, 30, tzinfo=datetime.timezone.utc),
       'price': 48.84,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 12, 30, tzinfo=datetime.timezone.utc),
+      'price': 65.0,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -11213,6 +11445,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 15, 45, tzinfo=datetime.timezone.utc),
+      'price': 69.94,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 16, 0, tzinfo=datetime.timezone.utc),
       'price': 33.1,
       'source': 'entsoe.eu',
@@ -11454,6 +11694,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 18, 30, tzinfo=datetime.timezone.utc),
+      'price': 199.34,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 18, 30, tzinfo=datetime.timezone.utc),
       'price': 239.67,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -11463,6 +11711,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 9, 30, 18, 30, tzinfo=datetime.timezone.utc),
       'price': 249.34,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 9, 30, 18, 45, tzinfo=datetime.timezone.utc),
+      'price': 199.34,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -11943,6 +12199,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 0, 30, tzinfo=datetime.timezone.utc),
       'price': 92.7,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 0, 45, tzinfo=datetime.timezone.utc),
+      'price': 99.38,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -12615,6 +12879,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 10, 45, tzinfo=datetime.timezone.utc),
       'price': 7.99,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 10, 45, tzinfo=datetime.timezone.utc),
+      'price': 0.0,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -13494,6 +13766,14 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 20, 0, tzinfo=datetime.timezone.utc),
+      'price': 120.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 20, 0, tzinfo=datetime.timezone.utc),
       'price': 114.01,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -13621,6 +13901,22 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 21, 30, tzinfo=datetime.timezone.utc),
+      'price': 115.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 21, 30, tzinfo=datetime.timezone.utc),
+      'price': 107.0,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 21, 45, tzinfo=datetime.timezone.utc),
       'price': 115.15,
       'source': 'entsoe.eu',
@@ -13741,8 +14037,24 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 23, 30, tzinfo=datetime.timezone.utc),
+      'price': 91.05,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 1, 23, 45, tzinfo=datetime.timezone.utc),
       'price': 96.47,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 1, 23, 45, tzinfo=datetime.timezone.utc),
+      'price': 91.05,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -13837,6 +14149,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 1, 15, tzinfo=datetime.timezone.utc),
+      'price': 79.8,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 1, 30, tzinfo=datetime.timezone.utc),
       'price': 95.3,
       'source': 'entsoe.eu',
@@ -13877,6 +14197,14 @@
     }),
     dict({
       'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 2, 0, tzinfo=datetime.timezone.utc),
+      'price': 85.1,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 2, 15, tzinfo=datetime.timezone.utc),
       'price': 98.0,
       'source': 'entsoe.eu',
@@ -13911,6 +14239,14 @@
       'currency': 'EUR',
       'datetime': datetime.datetime(2025, 10, 2, 2, 45, tzinfo=datetime.timezone.utc),
       'price': 100.99,
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES',
+    }),
+    dict({
+      'currency': 'EUR',
+      'datetime': datetime.datetime(2025, 10, 2, 2, 45, tzinfo=datetime.timezone.utc),
+      'price': 91.11,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'ES',
@@ -24204,6 +24540,1217 @@
         'hydro': -114.0,
       }),
       'zoneKey': 'NO-NO5',
+    }),
+  ])
+# ---
+# name: test_production_with_snapshot[SE-SE4]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 90.23,
+        'solar': 300.51,
+        'unknown': 184.23,
+        'wind': 1434.47,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 90.23,
+        'solar': 250.13,
+        'unknown': 176.87,
+        'wind': 1399.7,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.6,
+        'hydro': 90.22,
+        'solar': 164.41,
+        'unknown': 172.11,
+        'wind': 1367.78,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 91.13,
+        'solar': 71.24,
+        'unknown': 170.46,
+        'wind': 1353.7,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 96.14,
+        'solar': 10.1,
+        'unknown': 166.67,
+        'wind': 1401.78,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.5,
+        'hydro': 97.02,
+        'solar': 1.63,
+        'unknown': 175.77,
+        'wind': 1505.79,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 95.01,
+        'solar': 1.61,
+        'unknown': 176.44,
+        'wind': 1584.07,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 47.0,
+        'solar': 1.6,
+        'unknown': 155.37,
+        'wind': 1619.49,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 43.72,
+        'solar': 1.62,
+        'unknown': 148.88,
+        'wind': 1620.61,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 36.28,
+        'solar': 1.61,
+        'unknown': 147.8,
+        'wind': 1576.38,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 30.64,
+        'solar': 1.59,
+        'unknown': 141.83,
+        'wind': 1523.93,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 30.42,
+        'solar': 1.61,
+        'unknown': 145.35,
+        'wind': 1538.7,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.1,
+        'hydro': 30.41,
+        'solar': 1.55,
+        'unknown': 141.38,
+        'wind': 1471.41,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 31.24,
+        'solar': 1.55,
+        'unknown': 142.64,
+        'wind': 1435.03,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.0,
+        'hydro': 32.19,
+        'solar': 1.51,
+        'unknown': 139.72,
+        'wind': 1421.61,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 33.38,
+        'solar': 1.49,
+        'unknown': 137.79,
+        'wind': 1437.14,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 41.61,
+        'solar': 1.47,
+        'unknown': 144.99,
+        'wind': 1452.18,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 47.53,
+        'solar': 1.45,
+        'unknown': 154.99,
+        'wind': 1428.93,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 58.41,
+        'solar': 1.85,
+        'unknown': 155.28,
+        'wind': 1434.73,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 55.16,
+        'solar': 4.03,
+        'unknown': 149.29,
+        'wind': 1414.15,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 54.1,
+        'solar': 18.91,
+        'unknown': 147.19,
+        'wind': 1383.86,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 37.16,
+        'solar': 38.52,
+        'unknown': 149.85,
+        'wind': 1338.12,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 1.0,
+        'hydro': 40.08,
+        'solar': 60.84,
+        'unknown': 147.82,
+        'wind': 1306.66,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 37.7,
+        'solar': 72.74,
+        'unknown': 144.6,
+        'wind': 1271.92,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 37.59,
+        'solar': 75.8,
+        'unknown': 142.98,
+        'wind': 1258.16,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 35.4,
+        'solar': 66.15,
+        'unknown': 144.43,
+        'wind': 1249.52,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.6,
+        'hydro': 35.25,
+        'solar': 44.65,
+        'unknown': 142.68,
+        'wind': 1042.17,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 36.91,
+        'solar': 20.26,
+        'unknown': 145.09,
+        'wind': 1062.59,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 40.4,
+        'solar': 2.37,
+        'unknown': 144.7,
+        'wind': 1124.62,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 40.39,
+        'solar': 1.4,
+        'unknown': 144.53,
+        'wind': 1177.42,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 40.73,
+        'solar': 1.41,
+        'unknown': 149.06,
+        'wind': 1199.63,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 37.82,
+        'solar': 1.42,
+        'unknown': 150.73,
+        'wind': 1210.85,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 31.3,
+        'solar': 1.41,
+        'unknown': 147.72,
+        'wind': 1196.37,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 26.78,
+        'solar': 1.38,
+        'unknown': 134.67,
+        'wind': 1167.89,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 21.41,
+        'solar': 1.35,
+        'unknown': 129.98,
+        'wind': 1119.76,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 21.32,
+        'solar': 1.32,
+        'unknown': 116.69,
+        'wind': 1009.49,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 22.96,
+        'solar': 1.27,
+        'unknown': 111.26,
+        'wind': 922.42,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 21.34,
+        'solar': 1.27,
+        'unknown': 113.36,
+        'wind': 847.43,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.0,
+        'hydro': 25.76,
+        'solar': 1.24,
+        'unknown': 111.93,
+        'wind': 786.47,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 28.55,
+        'solar': 1.24,
+        'unknown': 111.1,
+        'wind': 731.39,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 32.44,
+        'solar': 1.23,
+        'unknown': 115.51,
+        'wind': 687.4,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 31.81,
+        'solar': 1.21,
+        'unknown': 131.03,
+        'wind': 666.75,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.6,
+        'hydro': 77.15,
+        'solar': 1.35,
+        'unknown': 135.26,
+        'wind': 664.38,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 79.45,
+        'solar': 4.98,
+        'unknown': 133.35,
+        'wind': 658.35,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 82.08,
+        'solar': 23.12,
+        'unknown': 133.92,
+        'wind': 640.22,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 84.03,
+        'solar': 49.45,
+        'unknown': 130.69,
+        'wind': 628.48,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 85.97,
+        'solar': 75.98,
+        'unknown': 125.05,
+        'wind': 614.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 88.04,
+        'solar': 91.8,
+        'unknown': 134.73,
+        'wind': 605.11,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 94.0,
+        'solar': 87.74,
+        'unknown': 133.39,
+        'wind': 564.75,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 94.06,
+        'solar': 67.24,
+        'unknown': 131.42,
+        'wind': 528.13,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 96.15,
+        'solar': 41.37,
+        'unknown': 130.18,
+        'wind': 488.68,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 96.82,
+        'solar': 16.7,
+        'unknown': 146.25,
+        'wind': 458.91,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 98.81,
+        'solar': 2.14,
+        'unknown': 138.2,
+        'wind': 485.58,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 97.29,
+        'solar': 1.12,
+        'unknown': 131.53,
+        'wind': 507.48,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 96.44,
+        'solar': 1.12,
+        'unknown': 118.24,
+        'wind': 491.92,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 89.64,
+        'solar': 1.17,
+        'unknown': 112.88,
+        'wind': 450.95,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 52.77,
+        'solar': 1.17,
+        'unknown': 111.29,
+        'wind': 411.28,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.1,
+        'hydro': 46.22,
+        'solar': 1.15,
+        'unknown': 102.95,
+        'wind': 367.27,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 37.93,
+        'solar': 1.15,
+        'unknown': 110.67,
+        'wind': 330.22,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 24.381,
+        'solar': 1.083,
+        'unknown': 107.653,
+        'wind': 226.75725,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 22, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.2,
+        'hydro': 24.53275,
+        'solar': 1.0615,
+        'unknown': 114.4825,
+        'wind': 179.6465,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 24.40925,
+        'solar': 1.082,
+        'unknown': 112.38575,
+        'wind': 138.22025,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.0,
+        'hydro': 25.4345,
+        'solar': 1.0605,
+        'unknown': 115.55875,
+        'wind': 105.75175,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 28.31925,
+        'solar': 1.0745,
+        'unknown': 115.3715,
+        'wind': 90.368,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.4,
+        'hydro': 52.16075,
+        'solar': 1.082,
+        'unknown': 118.5755,
+        'wind': 88.58325,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.3,
+        'hydro': 55.63225,
+        'solar': 1.0945,
+        'unknown': 126.912,
+        'wind': 107.64775,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.5,
+        'hydro': 86.885,
+        'solar': 1.19775,
+        'unknown': 127.9035,
+        'wind': 150.92675,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.7,
+        'hydro': 85.15275,
+        'solar': 4.3105,
+        'unknown': 126.171,
+        'wind': 218.576,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 87.76075,
+        'solar': 20.73975,
+        'unknown': 127.5785,
+        'wind': 299.371,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.8,
+        'hydro': 86.48775,
+        'solar': 44.0625,
+        'unknown': 144.81475,
+        'wind': 402.71525,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 10, 23, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'gas': 0.9,
+        'hydro': 80.24725,
+        'solar': 66.613,
+        'unknown': 149.37175,
+        'wind': 506.93375,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'SE-SE4',
     }),
   ])
 # ---
