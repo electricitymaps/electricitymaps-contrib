@@ -351,10 +351,10 @@ def fetch_consumption(
 
 
 def format_ren_production_data(
-    url: str, zone_key: str, target_datetime: datetime
+    content: bytes, zone_key: str, target_datetime: datetime
 ) -> dict[str, Any]:
     """Formats daily renewable production data for each zone"""
-    df_ren = pd.read_excel(url, engine="openpyxl", header=5)
+    df_ren = pd.read_excel(content, engine="openpyxl", header=5)
     df_ren = df_ren.dropna(axis=0, how="all")
 
     # They changed format of the data from 2024/07/01
@@ -415,7 +415,12 @@ def fetch_cea_production(
     cea_data_url = (
         "https://cea.nic.in/wp-admin/admin-ajax.php?action=getpostsfordatatables"
     )
-    r_all_data: Response = session.get(cea_data_url)
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0",
+    }
+
+    r_all_data: Response = session.get(cea_data_url, headers=headers, verify=False)
     if r_all_data.status_code == 200:
         all_data = r_all_data.json()["data"]
         target_elem = [
@@ -427,9 +432,9 @@ def fetch_cea_production(
         if len(target_elem) > 0 and target_elem[0]["link"] != "file_not_found":
             target_url = target_elem[0]["link"].split(": ")[0]
             formatted_url = target_url.split("^")[0]
-            r: Response = session.get(formatted_url)
+            r: Response = session.get(formatted_url, headers=headers, verify=False)
             renewable_production = format_ren_production_data(
-                url=r.url, zone_key=zone_key, target_datetime=target_datetime
+                content=r.content, zone_key=zone_key, target_datetime=target_datetime
             )
             return renewable_production
         else:
