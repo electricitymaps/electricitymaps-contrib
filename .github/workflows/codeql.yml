@@ -6,7 +6,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-24.04
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     permissions:
       actions: read
       contents: read
