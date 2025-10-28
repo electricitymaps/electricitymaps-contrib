@@ -40,17 +40,20 @@ def generate_zone_neighbours(
             # Interconnector config has no parser, and will therefore not be part
             # of the flowtracing graph.
             continue
-        zone_1, zone_2 = k.split("->")
-        zone_1 = ZoneKey(zone_1)
-        zone_2 = ZoneKey(zone_2)
-        if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
-            "subZoneNames"
-        ):
-            # Both zones must not have subzones.
+        try:
+            zone_1, zone_2 = k.split("->")
+            zone_1 = ZoneKey(zone_1)
+            zone_2 = ZoneKey(zone_2)
+            if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
+                "subZoneNames"
+            ):
+                # Both zones must not have subzones.
+                continue
+            pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+            for zone_name_1, zone_name_2 in pairs:
+                zone_neighbours[zone_name_1].add(zone_name_2)
+        except Exception:
             continue
-        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
-        for zone_name_1, zone_name_2 in pairs:
-            zone_neighbours[zone_name_1].add(zone_name_2)
     # Sort the lists of neighbours for each zone.
     return {k: sorted(v) for k, v in zone_neighbours.items()}
 
