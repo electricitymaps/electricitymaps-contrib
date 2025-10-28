@@ -33,6 +33,8 @@ contributors:
   - nessie2013
   - Pantkowsky
 country: ME
+country_name: Montenegro
+currency: EUR
 delays:
   production: 6
 emissionFactors:
@@ -318,5 +320,3 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Podgorica
 zone_name: Montenegro
-country_name: Montenegro
-currency: EUR
