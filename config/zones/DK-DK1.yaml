@@ -23,6 +23,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 902.0
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 902.8
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -54,7 +57,7 @@ capacity:
       value: 1018.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 991.0
+      value: 991.2
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -67,7 +70,7 @@ capacity:
       value: 7.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 5.0
+      value: 5.3
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -86,7 +89,7 @@ capacity:
       value: 196.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 195.0
+      value: 195.4
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -105,7 +108,7 @@ capacity:
       value: 1086.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1702.0
+      value: 1701.5
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 2738.0
@@ -130,7 +133,7 @@ capacity:
       value: 113.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 112.0
+      value: 112.1
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -152,7 +155,7 @@ capacity:
       value: 5165.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 5233.0
+      value: 5232.1
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 5713.0
@@ -160,6 +163,8 @@ contributors:
   - corradio
   - tmslaine
 country: DK
+country_name: Denmark
+currency: EUR
 delays:
   production: 7
 emissionFactors:
@@ -539,6 +544,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Copenhagen
 zone_name: West Denmark
-country_name: Denmark
-# Electricity is traded in EUR
-currency: EUR

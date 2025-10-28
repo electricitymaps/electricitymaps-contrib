@@ -14,6 +14,12 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 227.0
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 377.0
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 459.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -167,6 +173,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 781.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 780.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -187,6 +196,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -509,4 +519,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
 zone_name: Idaho Power Company
-country_name: USA

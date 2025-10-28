@@ -11,6 +11,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 292.0
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 492.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -158,6 +161,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 194.2
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 196.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -172,6 +178,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -463,4 +470,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
 zone_name: Portland General Electric Company
-country_name: USA
