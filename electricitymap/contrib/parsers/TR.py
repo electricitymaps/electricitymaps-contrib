@@ -16,7 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 from .lib.utils import get_token
@@ -117,7 +117,9 @@ def fetch_data(target_datetime: datetime, kind: str, session: Session) -> list:
     return results
 
 
+
 @refetch_frequency(timedelta(days=1))
+@use_proxy("TR")
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("TR"),
     session: Session | None = None,
