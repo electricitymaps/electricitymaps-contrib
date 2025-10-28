@@ -22,9 +22,12 @@ def read_zones_config(config_dir, retired=False) -> dict[ZoneKey, Any]:
     for zone_path in config_dir.joinpath(
         "retired_zones" if retired is True else "zones"
     ).glob("*.yaml"):
-        zone_key = ZoneKey(zone_path.stem)
-        with open(zone_path, encoding="utf-8") as file:
-            zones_config[zone_key] = yaml.load(file)
+        try:
+            zone_key = ZoneKey(zone_path.stem)
+            with open(zone_path, encoding="utf-8") as file:
+                zones_config[zone_key] = yaml.load(file)
+        except Exception as e:
+            print(f"Error reading zone config for {zone_path.stem}: {e}")
     return zones_config
 
 
