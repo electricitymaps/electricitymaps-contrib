@@ -116,6 +116,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 338.6
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 388.6
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -130,6 +133,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -439,4 +443,3 @@ sources:
 timezone: US/Pacific
 zone_name: Balancing Authority of Northern California
 zone_short_name: BANC
-country_name: USA

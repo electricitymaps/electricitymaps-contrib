@@ -223,7 +223,16 @@ capacity:
       value: 12510.3
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 13059.7
+      value: 13060.1
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 13562.1
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 13818.6
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 14467.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -324,6 +333,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 831.4
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 835.0
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -475,7 +487,10 @@ capacity:
       value: 31881.9
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 31875.3
+      value: 31883.3
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 31884.9
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -850,7 +865,16 @@ capacity:
       value: 23621.3
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 23629.9
+      value: 23659.9
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 23663.6
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 23820.4
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 24163.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -970,6 +994,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 6361.7
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 6377.2
 comment: California Independent System Operator
 contributors:
   - systemcatch
@@ -977,6 +1004,8 @@ contributors:
   - KabelWlan
   - alejandranavcas
 country: US
+country_name: USA
+currency: USD
 delays:
   production: 5
 emissionFactors:
@@ -1336,5 +1365,3 @@ sources:
 timezone: US/Pacific
 zone_name: CAISO
 zone_short_name: California ISO
-country_name: USA
-currency: USD

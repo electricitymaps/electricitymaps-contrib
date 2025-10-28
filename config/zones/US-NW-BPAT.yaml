@@ -175,19 +175,24 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3617.1
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 3817.1
 comment: Bonneville Power Administration
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
 disclaimer:
-  This zone includes all wind related electricity production from the generation-only balancing authority Avangrid Renewables, LLC.
-  Read more on the zone definition wiki page.
+  This zone includes all wind related electricity production from the generation-only
+  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
+  page.
 emissionFactors:
   direct:
     battery discharge:
@@ -503,4 +508,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
 zone_name: Bonneville Power Administration
-country_name: USA

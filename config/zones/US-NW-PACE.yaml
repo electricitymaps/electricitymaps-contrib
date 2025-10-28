@@ -212,6 +212,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2197.9
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 2297.9
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 2497.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -262,13 +268,15 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
 disclaimer:
-  This zone includes all gas related electricity production from the generation-only balancing authority Avangrid Renewables, LLC. Read
-  more on the zone definition wiki page.
+  This zone includes all gas related electricity production from the generation-only
+  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
+  page.
 emissionFactors:
   direct:
     battery discharge:
@@ -367,10 +375,12 @@ emissionFactors:
         value: 741.42
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1107.353715
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1097.158105
     gas:
       - datetime: '2020-01-01'
@@ -576,4 +586,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
 zone_name: Pacificorp East
-country_name: USA
