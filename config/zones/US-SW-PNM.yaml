@@ -32,6 +32,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 638.0
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 738.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -206,6 +209,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1784.0
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 2064.0
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -245,6 +251,7 @@ contributors:
   - KabelWlan
   - brandongalbraith
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -340,10 +347,12 @@ emissionFactors:
         value: 247.54
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1246.197747
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1249.5799459999998
     gas:
       - datetime: '2020-01-01'
@@ -542,4 +551,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
 zone_name: Public Service Company of New Mexico
-country_name: USA

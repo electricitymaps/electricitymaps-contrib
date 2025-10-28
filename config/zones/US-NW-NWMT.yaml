@@ -79,6 +79,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 701.2
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 704.7
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -142,19 +145,23 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 763.6
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 1011.6
 comment: Northwestern Energy (Nwmt)
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all electricity production from the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner
-  Wind Watch, LLC. Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC.
+  Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -256,10 +263,12 @@ emissionFactors:
         value: 539.26
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1070.1093959999998
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1037.2593519999998
     gas:
       - datetime: '2020-01-01'
@@ -473,4 +482,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Mountain
 zone_name: Northwestern Energy
-country_name: USA

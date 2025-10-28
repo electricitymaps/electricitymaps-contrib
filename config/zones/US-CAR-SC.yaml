@@ -103,13 +103,14 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas
-  Company. Read more on the zone definition wiki page.
+disclaimer: This zone includes a third of the nuclear related electricity production
+  from the balancing authority South Carolina Electric & Gas Company. Read more on
+  the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -218,10 +219,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1165.692392
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1153.7182579999999
     gas:
       - datetime: '2020-01-01'
@@ -438,4 +441,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: South Carolina Public Service Authority
-country_name: USA
