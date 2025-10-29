@@ -8,7 +8,6 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Response, Session
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -21,10 +20,10 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
-# TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data. 
+# TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data.
 # TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.
 
-# This parsers does not work locally with all VPN. It does not work with SurfShark, but it works with NordVPN. Local proxies could also be used. 
+# This parsers does not work locally with all VPN. It does not work with SurfShark, but it works with NordVPN. Local proxies could also be used.
 IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 # 1 MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
@@ -149,6 +148,7 @@ STATES_MAPPING = {
         "puducherry",
     ],
 }
+
 
 def fetch_consumption_from_meritindia(
     zone_key: ZoneKey,
@@ -373,11 +373,11 @@ def fetch_grid_india_report(
     session: Session = Session(),
 ) -> bytes | None:
     """
-    Rely on grid-india.in backend API to fetch data report. 
-    First query the backend to get the list of files available for a given date.  
+    Rely on grid-india.in backend API to fetch data report.
+    First query the backend to get the list of files available for a given date.
     Reports can be found here : https://grid-india.in/en/reports/daily-psp-report
     And also here here : https://report.grid-india.in/index.php?p=
-    
+
     """
 
     GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in/api/v1/file"
@@ -571,9 +571,7 @@ def parse_daily_production_grid_india_report(
 
     # Next, create a DatetimeIndex for the 24 hours of the target_datetime
     start_of_day = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
-    hourly_index = pd.date_range(
-        start=start_of_day, periods=24, freq="H"
-    )
+    hourly_index = pd.date_range(start=start_of_day, periods=24, freq="H")
 
     # Set this as the index of your new DataFrame
     df_hourly.index = hourly_index
@@ -590,7 +588,7 @@ def parse_daily_production_grid_india_report(
             production=production_mix,
             source=GRID_INDIA_SOURCE,
         )
-    return all_data_points
+    return all_data_points.to_list()
 
 
 def parse_15m_production_grid_india_report(
@@ -600,10 +598,10 @@ def parse_15m_production_grid_india_report(
     logger: Logger = getLogger(__name__),
 ) -> ProductionBreakdownList:
     """
-    Parses production data from grid india report. Uses the 15-minute data in the TimeSeries sheet of the report. 
+    Parses production data from grid india report. Uses the 15-minute data in the TimeSeries sheet of the report.
     Since 15-minute data aggregated to daily values do not match the daily production value from the first sheet of the report, we rescale the 15-minute data so that the total matches the daily production value.
     Then, we assume that each zone has the same share of the production share for a given mode over the whole day.
-    We then breakdown the (15-minute, country-level, per mode) data, to (15-minute, zone-level, per mode) data. 
+    We then breakdown the (15-minute, country-level, per mode) data, to (15-minute, zone-level, per mode) data.
     """
     # Get total production for the whole country, from the daily data report.
     daily_india_generation = parse_daily_total_production_grid_india_report(
@@ -664,7 +662,7 @@ def parse_15m_production_grid_india_report(
             production=production_mix,
             source=GRID_INDIA_SOURCE,
         )
-    return all_data_points
+    return all_data_points.to_list()
 
 
 def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
@@ -823,10 +821,10 @@ def fetch_production(
             target_datetime=_target_datetime,
         )
         return production_data
-    elif _target_datetime >= datetime(2023, 4, 1, tzinfo=IN_TZ) and _target_datetime < datetime(
-        2024, 11, 4, tzinfo=IN_TZ
-    ):
-        # PSP Reports are available as spreadsheet since 2023/04/01, but without TimeSeries (15-minute) data. 
+    elif _target_datetime >= datetime(
+        2023, 4, 1, tzinfo=IN_TZ
+    ) and _target_datetime < datetime(2024, 11, 4, tzinfo=IN_TZ):
+        # PSP Reports are available as spreadsheet since 2023/04/01, but without TimeSeries (15-minute) data.
         report_content = fetch_grid_india_report(target_datetime=_target_datetime)
         production_data = parse_daily_production_grid_india_report(
             content=report_content,
@@ -892,18 +890,21 @@ def parse_production_from_cea_npp(
             zone_key=zone_key,
             logger=logger,
         )
-    return hourly_production_data
+    return hourly_production_data.to_list()
 
 
 def daily_to_hourly_production_data(
-    target_datetime: datetime, production: dict, zone_key: str, logger: Logger) -> ProductionBreakdownList:
+    target_datetime: datetime, production: dict, zone_key: str, logger: Logger
+) -> ProductionBreakdownList:
     """convert daily power production average to hourly values"""
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
         production_mix.add_value(mode, value / CONVERSION_GWH_MW)
 
-    start_of_day_local = target_datetime.astimezone(IN_TZ).replace(hour=0, minute=0, second=0, microsecond=0)
+    start_of_day_local = target_datetime.astimezone(IN_TZ).replace(
+        hour=0, minute=0, second=0, microsecond=0
+    )
     for hour in range(0, 24):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),
@@ -911,7 +912,7 @@ def daily_to_hourly_production_data(
             production=production_mix,
             source=GRID_INDIA_SOURCE,
         )
-    return all_hourly_production
+    return all_hourly_production.to_list()
 
 
 if __name__ == "__main__":
