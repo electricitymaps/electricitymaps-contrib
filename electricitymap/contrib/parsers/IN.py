@@ -420,6 +420,11 @@ def fetch_grid_india_report(
                 parser="IN.py",
                 message=f"{target_datetime}: Grid India daily production data is not available",
             )
+    else: 
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: Grid India daily production data is not available, {r.status_code}",
+        )
 
 
 def get_daily_generation_table(content: bytes) -> pd.DataFrame:
