@@ -544,7 +544,7 @@ class TotalProduction(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "generation": self.value,
+            "value": self.value,
             "source": self.source,
             "sourceType": self.sourceType,
         }
