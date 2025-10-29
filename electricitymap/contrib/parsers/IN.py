@@ -2,7 +2,7 @@
 
 """Parser for all of India"""
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -10,6 +10,8 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 from bs4 import BeautifulSoup
 from requests import Response, Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
@@ -19,20 +21,16 @@ from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
+# TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data. 
+# TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.
+
+# This parsers does not work locally with all VPN. It does not work with SurfShark, but it works with NordVPN. Local proxies could also be used. 
 IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 # 1 MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 # So MU / 0.024 = MW
 CONVERSION_GWH_MW = 0.024
-GENERATION_MAPPING = {
-    "THERMAL GENERATION": "coal",
-    "GAS GENERATION": "gas",
-    "HYDRO GENERATION": "hydro",
-    "NUCLEAR GENERATION": "nuclear",
-    "RENEWABLE GENERATION": "unknown",
-}
 INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
-GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 NPP_MODE_MAPPING = {
     "THER (GT)": "gas",
@@ -69,16 +67,6 @@ GRID_INDIA_REGION_MAPPING = {
 
 GRID_INDIA_SOURCE = "grid-india.in"
 
-MODE_MAPPING = {
-    "Coal": "coal",
-    "Lignite": "coal",
-    "Hydro": "hydro",
-    "Nuclear": "nuclear",
-    "Gas, Naphta & Diesel": "gas",
-    "Wind": "wind",
-    "Solar": "solar",
-}
-
 CEA_REGION_MAPPING = {
     "northern region": "IN-NO",
     "western region": "IN-WE",
@@ -87,7 +75,6 @@ CEA_REGION_MAPPING = {
     "north-eastern region": "IN-NE",
 }
 
-DEMAND_URL_VIDYUTPRAVAH = "{proxy}/state-data/{state}?host=https://vidyutpravah.in"
 DEMAND_URL_MERITINDIA = (
     "{proxy}/StateWiseDetails/BindCurrentStateStatus?host=https://meritindia.in"
 )
@@ -162,121 +149,6 @@ STATES_MAPPING = {
         "puducherry",
     ],
 }
-
-
-def get_data(session: Session | None) -> dict[str, Any]:
-    """
-    Requests html then extracts generation data.
-    Returns a dictionary.
-    """
-
-    s = session or Session()
-    req: Response = s.get(GENERATION_URL)
-
-    soup = BeautifulSoup(req.text, "lxml")
-    tables = soup.findAll("table")
-
-    gen_info = tables[-1]
-    rows = gen_info.findAll("td")
-
-    generation = {}
-    for row in rows:
-        gen_title = row.find("div", {"class": "gen_title_sec"})
-        gen_val = row.find("div", {"class": "gen_value_sec"})
-        val = gen_val.find("span", {"class": "counter"})
-        generation[gen_title.text] = val.text.strip()
-
-    return generation
-
-
-def fetch_live_production(
-    zone_key: str = "IN",
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> dict[str, Any]:
-    """Requests the last known production mix (in MW) of a given zone."""
-
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    raw_data = get_data(session)
-    processed_data = {k: float(v.replace(",", "")) for k, v in raw_data.items()}
-    processed_data.pop("DEMANDMET", None)
-
-    for k in processed_data:
-        if k not in GENERATION_MAPPING:
-            processed_data.pop(k)
-            logger.warning(
-                f"Key '{k}' in IN is not mapped to type.", extra={"key": "IN"}
-            )
-
-    mapped_production = {GENERATION_MAPPING[k]: v for k, v in processed_data.items()}
-
-    data = {
-        "zoneKey": zone_key,
-        "datetime": datetime.now(tz=IN_TZ),
-        "production": mapped_production,
-        "storage": {},
-        "source": "meritindia.in",
-    }
-
-    return data
-
-
-def fetch_consumption_from_vidyutpravah(
-    zone_key: str,
-    session: Session = Session(),
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> TotalConsumptionList:
-    """Fetches live consumption from government dashboard. Consumption is available per state and is then aggregated at regional level.
-    Data is not available for the following states: Ladakh (disputed territory), Daman & Diu, Dadra & Nagar Haveli, Lakshadweep
-    """
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    total_consumption = 0
-    for state in STATES_MAPPING[zone_key]:
-        # By default the request headers are set to accept gzip.
-        # If this header is set, the proxy will not decompress the content, therefore we set it to an empty string.
-        resp: Response = session.get(
-            DEMAND_URL_VIDYUTPRAVAH.format(proxy=INDIA_PROXY, state=state),
-            headers={"User-Agent": "Mozilla/5.0", "Accept-Encoding": ""},
-        )
-        soup = BeautifulSoup(resp.content, "html.parser")
-        try:
-            state_consumption = int(
-                soup.find(
-                    "span", attrs={"class": "value_DemandMET_en value_StateDetails_en"}
-                )
-                .text.strip()
-                .split()[0]
-                .replace(",", "")
-            )
-        except Exception as e:
-            raise ParserException(
-                parser="IN.py",
-                message=f"{target_datetime}: consumption data is not available for {zone_key}",
-            ) from e
-        total_consumption += state_consumption
-
-    if total_consumption == 0:
-        raise ParserException(
-            parser="IN.py",
-            message=f"{target_datetime}: No valid consumption data found for {zone_key}",
-        )
-
-    consumption_list = TotalConsumptionList(logger=logger)
-    consumption_list.append(
-        zoneKey=ZoneKey(zone_key),
-        datetime=datetime.now(tz=IN_TZ),
-        consumption=total_consumption,
-        source="vidyupravah.in",
-    )
-
-    return consumption_list
-
 
 def fetch_consumption_from_meritindia(
     zone_key: ZoneKey,
@@ -356,7 +228,7 @@ def fetch_npp_production(
         df_zone["production_mode"] = df_zone["production_mode"].map(NPP_MODE_MAPPING)
         production_in_zone = df_zone.groupby(["production_mode"])["value"].sum()
         production_dict = {
-            mode: round(production_in_zone.get(mode) / CONVERSION_GWH_MW, 3)
+            mode: round(production_in_zone.get(mode), 3)
             for mode in production_in_zone.index
         }
         return production_dict
@@ -428,7 +300,6 @@ def format_ren_production_data(
             parser="IN.py",
             message=f"{target_datetime}: {zone_key} renewable production data is not available",
         )
-    zone_data = (zone_data / CONVERSION_GWH_MW).round(3)
     zone_data = zone_data.iloc[0, :].to_dict()
 
     return zone_data
@@ -451,6 +322,23 @@ def fetch_cea_production(
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0",
     }
 
+    retry_strategy = Retry(
+        total=3,  # Total number of retries
+        backoff_factor=1,  # A delay factor to apply between attempts
+        status_forcelist=[
+            429,
+            500,
+            502,
+            503,
+            504,
+        ],  # A set of HTTP status codes that we should force a retry on
+        allowed_methods=[
+            "GET"
+        ],  # Set of uppercased HTTP method verbs that we should retry on.
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
     r_all_data: Response = session.get(cea_data_url, headers=headers, verify=False)
     if r_all_data.status_code == 200:
         all_data = r_all_data.json()["data"]
@@ -484,7 +372,13 @@ def fetch_grid_india_report(
     target_datetime: datetime,
     session: Session = Session(),
 ) -> bytes | None:
-    """Gets production data for grid india"""
+    """
+    Rely on grid-india.in backend API to fetch data report. 
+    First query the backend to get the list of files available for a given date.  
+    Reports can be found here : https://grid-india.in/en/reports/daily-psp-report
+    And also here here : https://report.grid-india.in/index.php?p=
+    
+    """
 
     GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in/api/v1/file"
     GRID_INDIA_CDN_URL = "https://webcdn.grid-india.in/"
@@ -654,46 +548,62 @@ def get_wind_solar(content: bytes, zone_key: str) -> pd.DataFrame:
 
     return wind_solar_df
 
+
 def parse_daily_production_grid_india_report(
     content: bytes,
     zone_key: str,
     target_datetime: datetime,
     logger: Logger = getLogger(__name__),
-) -> pd.DataFrame:
+) -> ProductionBreakdownList:
     """
     Parses production data from grid india daily report.
     Will split the daily production evenly across the 24 hours of the day.
-    This will then be reestimated by the estimation pipeline and the mode breakdown. 
+    This will then be reestimated by the estimation pipeline and the mode breakdown.
     """
     daily_production_breakdown = get_production_breakdown(
         content=content, zone_key=zone_key
     )
-    daily_production_breakdown['value'] = daily_production_breakdown['value'] / CONVERSION_GWH_MW
+    daily_production_breakdown["value"] = (
+        daily_production_breakdown["value"] / CONVERSION_GWH_MW
+    )
     df_pivoted = daily_production_breakdown.T
     df_hourly = pd.concat([df_pivoted] * 24, ignore_index=True)
 
     # Next, create a DatetimeIndex for the 24 hours of the target_datetime
     start_of_day = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
     hourly_index = pd.date_range(
-        start=start_of_day, 
-        periods=24, 
-        freq='H', 
-        tz='Asia/Kolkata'
+        start=start_of_day, periods=24, freq="H"
     )
 
     # Set this as the index of your new DataFrame
     df_hourly.index = hourly_index
 
-    return df_hourly
+    all_data_points = ProductionBreakdownList(logger)
+    for timestamp, production_series in df_hourly.iterrows():
+        production_dict = production_series.dropna().to_dict()
+        production_mix = ProductionMix()
+        for mode, value in production_dict.items():
+            production_mix.add_value(mode, value)
+        all_data_points.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=timestamp.to_pydatetime(),
+            production=production_mix,
+            source=GRID_INDIA_SOURCE,
+        )
+    return all_data_points
+
 
 def parse_15m_production_grid_india_report(
     content: bytes,
     zone_key: str,
     target_datetime: datetime,
     logger: Logger = getLogger(__name__),
-) -> pd.DataFrame:
+) -> ProductionBreakdownList:
     """
-    Parses production data from grid india report
+    Parses production data from grid india report. Uses the 15-minute data in the TimeSeries sheet of the report. 
+    Since 15-minute data aggregated to daily values do not match the daily production value from the first sheet of the report, we rescale the 15-minute data so that the total matches the daily production value.
+    Then, we assume that each zone has the same share of the production share for a given mode over the whole day.
+    We then breakdown the (15-minute, country-level, per mode) data, to (15-minute, zone-level, per mode) data. 
     """
     # Get total production for the whole country, from the daily data report.
     daily_india_generation = parse_daily_total_production_grid_india_report(
@@ -742,7 +652,19 @@ def parse_15m_production_grid_india_report(
     )
     _15min_scaled_generation_df = _15min_scaled_generation_df.drop(columns=["TIME"])
 
-    return _15min_scaled_generation_df
+    all_data_points = ProductionBreakdownList(logger)
+    for timestamp, production_series in _15min_scaled_generation_df.iterrows():
+        production_dict = production_series.dropna().to_dict()
+        production_mix = ProductionMix()
+        for mode, value in production_dict.items():
+            production_mix.add_value(mode, value)
+        all_data_points.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=timestamp.to_pydatetime(),
+            production=production_mix,
+            source=GRID_INDIA_SOURCE,
+        )
+    return all_data_points
 
 
 def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
@@ -875,75 +797,123 @@ def parse_total_production_15min_grid_india_report(
 
 def fetch_production(
     zone_key: str,
-    session: Session = Session(),
     target_datetime: datetime | None = None,
+    session: Session = Session(),
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    all_data_points = ProductionBreakdownList(logger)
-    days_lookback_to_try = list(range(1, 3))
-    for days_lookback in days_lookback_to_try:
-        _target_datetime = target_datetime - timedelta(days=days_lookback)
+    """
+    Indian parser has a long history. There have been many sources being used, with different formats and different periods of availability.
+    Here we try to resolve how to fetch and parse the production data for the given zone key and target datetime.
+    """
+    if target_datetime is None:
+        # If in continuous node, always fetch report of yesterday since they are published with a 1 day delay.
+        _target_datetime = datetime.now(tz=IN_TZ) - timedelta(days=1)
+    else:
+        if target_datetime.tzinfo is None:
+            _target_datetime = target_datetime.replace(tzinfo=IN_TZ)
+        else:
+            _target_datetime = target_datetime.astimezone(IN_TZ)
+
+    if _target_datetime > datetime(2024, 11, 4, tzinfo=IN_TZ):
+        # PSP Reports with TimeSeries sheets are only available since 2024/11/04
         report_content = fetch_grid_india_report(target_datetime=_target_datetime)
-        if report_content is not None:
-            if _target_datetime > datetime(2024, 11, 4):
-                # PSP Reports with TimeSeries sheets are only available since 2024/11/04
-                production_data = parse_15m_production_grid_india_report(
-                    content=report_content,
-                    zone_key=zone_key,
-                    target_datetime=_target_datetime,
-                )
-            elif _target_datetime >= datetime(2023, 4, 1) and _target_datetime < datetime(2024, 11, 4):
-                # For historical data, rely on daily data (available as spreadsheet since 2023/04/01)
-                production_data = parse_daily_production_grid_india_report(
-                    content=report_content,
-                    zone_key=zone_key,
-                    target_datetime=_target_datetime,
-                )
-            else: 
-                raise ParserException(
-                    parser="IN.py",
-                    message=f"{target_datetime}: {zone_key} production data is not available before 2023/04/01",
-                )
-            for timestamp, production_series in production_data.iterrows():
-                production_dict = production_series.dropna().to_dict()
-                production_mix = ProductionMix()
-                for mode, value in production_dict.items():
-                    production_mix.add_value(mode, value)
-                all_data_points.append(
-                    zoneKey=ZoneKey(zone_key),
-                    datetime=timestamp.to_pydatetime(),
-                    production=production_mix,
-                    source=GRID_INDIA_SOURCE,
-                )
-    
-        
-    return all_data_points
+        production_data = parse_15m_production_grid_india_report(
+            content=report_content,
+            zone_key=zone_key,
+            target_datetime=_target_datetime,
+        )
+        return production_data
+    elif _target_datetime >= datetime(2023, 4, 1, tzinfo=IN_TZ) and _target_datetime < datetime(
+        2024, 11, 4, tzinfo=IN_TZ
+    ):
+        # PSP Reports are available as spreadsheet since 2023/04/01, but without TimeSeries (15-minute) data. 
+        report_content = fetch_grid_india_report(target_datetime=_target_datetime)
+        production_data = parse_daily_production_grid_india_report(
+            content=report_content,
+            zone_key=zone_key,
+            target_datetime=_target_datetime,
+        )
+        return production_data
+    elif _target_datetime > START_DATE_RENEWABLE_DATA and _target_datetime < datetime(
+        2023, 4, 1, tzinfo=IN_TZ
+    ):
+        production_data = parse_production_from_cea_npp(
+            zone_key=zone_key,
+            target_datetime=_target_datetime,
+            session=session,
+        )
+        return production_data
+    else:
+        # An alternative here would be to parse the PDF from Grid India.
+        raise ParserException(
+            parser="IN.py",
+            message=f"{target_datetime}: {zone_key} production data is not available before {START_DATE_RENEWABLE_DATA}",
+        )
+
+
+def parse_production_from_cea_npp(
+    zone_key: str,
+    target_datetime: datetime,
+    session: Session = Session(),
+    logger: Logger = getLogger(__name__),
+) -> ProductionBreakdownList:
+    """
+    Parses production data from CEA NPP.
+    """
+    renewable_production = {}
+    try:
+        renewable_production = fetch_cea_production(
+            zone_key=zone_key,
+            session=session,
+            target_datetime=target_datetime,
+        )
+    except ParserException:
+        logger.warning(
+            f"{zone_key}: renewable production not available for {target_datetime} - will compute production with conventional production only"
+        )
+
+    conventional_production = None
+    try:
+        conventional_production = fetch_npp_production(
+            zone_key=zone_key,
+            session=session,
+            target_datetime=target_datetime,
+        )
+    except ParserException:
+        logger.warning(
+            f"{zone_key}: conventional production not available for {target_datetime} - do not return any production data"
+        )
+
+    if conventional_production is not None:
+        production = {**conventional_production, **renewable_production}
+        hourly_production_data = daily_to_hourly_production_data(
+            target_datetime=target_datetime,
+            production=production,
+            zone_key=zone_key,
+            logger=logger,
+        )
+    return hourly_production_data
 
 
 def daily_to_hourly_production_data(
-    target_datetime: datetime, production: dict, zone_key: str, logger: Logger
-) -> list[dict[str, Any]]:
+    target_datetime: datetime, production: dict, zone_key: str, logger: Logger) -> ProductionBreakdownList:
     """convert daily power production average to hourly values"""
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
         production_mix.add_value(mode, value / CONVERSION_GWH_MW)
-    for hour in list(range(0, 24)):
+
+    start_of_day_local = target_datetime.astimezone(IN_TZ).replace(hour=0, minute=0, second=0, microsecond=0)
+    for hour in range(0, 24):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),
-            datetime=target_datetime.replace(hour=hour),
+            datetime=start_of_day_local + timedelta(hours=hour),
             production=production_mix,
             source=GRID_INDIA_SOURCE,
         )
-    return all_hourly_production.to_list()
-
-
-def get_start_of_day(dt: datetime) -> datetime:
-    dt_localised = dt.astimezone(IN_TZ)
-    dt_start = dt_localised.replace(hour=0, minute=0, second=0, microsecond=0)
-    return dt_start
+    return all_hourly_production
 
 
 if __name__ == "__main__":
-    # print(fetch_production(target_datetime=datetime(2021, 8, 16), zone_key="IN-WE"))
+    print(fetch_production(target_datetime=datetime(2024, 12, 24), zone_key="IN-WE"))
     print(fetch_consumption(zone_key=ZoneKey("IN-NO")))

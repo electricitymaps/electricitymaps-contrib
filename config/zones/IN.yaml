@@ -201,7 +201,7 @@ fallbackZoneMixes:
         unknown: 0.003025741785798069
         wind: 0.018569211812215346
 parsers:
-  production: IN.fetch_live_production
+  production: IN.fetch_production
 region: Asia
 subZoneNames:
   - IN-NO
