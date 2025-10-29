@@ -117,7 +117,6 @@ def fetch_data(target_datetime: datetime, kind: str, session: Session) -> list:
     return results
 
 
-
 @refetch_frequency(timedelta(days=1))
 @use_proxy("TR")
 def fetch_production(
