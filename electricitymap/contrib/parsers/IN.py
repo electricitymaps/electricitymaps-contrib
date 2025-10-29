@@ -21,7 +21,8 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
-# 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
+# 1 MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
+# So MU / 0.024 = MW
 CONVERSION_GWH_MW = 0.024
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -46,6 +47,36 @@ NPP_REGION_MAPPING = {
     "WESTERN": "IN-WE",
     "SOUTHERN": "IN-SO",
     "NORTH EASTERN": "IN-NE",
+}
+
+GRID_INDIA_REGION_MAPPING = {
+    "NR": "IN-NO",
+    "ER": "IN-EA",
+    "WR": "IN-WE",
+    "SR": "IN-SO",
+    "NER": "IN-NE",
+    "TOTAL": "IN",
+}
+
+GRID_INDIA_REGION_MAPPING = {
+    "IN-NO": "NR",
+    "IN-EA": "ER",
+    "IN-WE": "WR",
+    "IN-SO": "SR",
+    "IN-NE": "NER",
+    "IN": "TOTAL",
+}
+
+GRID_INDIA_SOURCE = "grid-india.in"
+
+MODE_MAPPING = {
+    "Coal": "coal",
+    "Lignite": "coal",
+    "Hydro": "hydro",
+    "Nuclear": "nuclear",
+    "Gas, Naphta & Diesel": "gas",
+    "Wind": "wind",
+    "Solar": "solar",
 }
 
 CEA_REGION_MAPPING = {
@@ -449,59 +480,443 @@ def fetch_cea_production(
         )
 
 
+def fetch_grid_india_report(
+    target_datetime: datetime,
+    session: Session = Session(),
+) -> bytes | None:
+    """Gets production data for grid india"""
+
+    GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in/api/v1/file"
+    GRID_INDIA_CDN_URL = "https://webcdn.grid-india.in/"
+
+    # Reports are stored per fiscal year, which goes from April N to March N+1.
+    fiscal_year_start = (
+        target_datetime.year - 1 if target_datetime.month < 4 else target_datetime.year
+    )
+    fiscal_year_end_short = (fiscal_year_start + 1) % 100
+
+    payload = {
+        "_source": "GRDW",
+        "_type": "DAILY_PSP_REPORT",
+        "_fileDate": f"{fiscal_year_start}-{fiscal_year_end_short}",
+        "_month": target_datetime.strftime("%m"),
+    }
+
+    r: Response = session.post(GRID_INDIA_BACKEND_URL, json=payload)
+    file_url = None
+    if r.status_code == 200:
+        file_list = r.json()["retData"]
+        for file in file_list:
+            if (
+                (
+                    file["MimeType"] == "attachment/xls"
+                    or file["MimeType"] == "application/vnd.ms-excel"
+                )
+                and file["FileType"] == "DAILY_PSP_REPORT"
+                and file["Title_"].startswith(target_datetime.strftime("%d.%m.%y"))
+            ):
+                file_url = file["FilePath"]
+                break
+        if file_url is not None:
+            file_full_url = GRID_INDIA_CDN_URL + file_url
+            r: Response = session.get(file_full_url)
+            return r.content
+        else:
+            raise ParserException(
+                parser="IN.py",
+                message=f"{target_datetime}: Grid India daily production data is not available",
+            )
+
+
+def get_daily_generation_table(content: bytes) -> pd.DataFrame:
+    """
+    Get the G. Sourcewise generation (Gross) (MU) table from the daily report.
+    Returns a DataFrame with the generation for each mode.
+    Shape of the dataframe :
+    'mode' is the mode name.
+    'value' is the generation, in MU/GWh :
+    | mode | value |
+    |------|-------|
+    | coal | 100   |
+    | lignite| 200   |
+    | hydro | 300   |
+    | nuclear | 400   |
+    | gas | 500   |
+    | unknown | 600   |
+    """
+    df = pd.read_excel(content, engine="xlrd", header=4)
+
+    START_PATTERN = "Sourcewise generation"
+    END_PATTERN = "Demand Diversity Factor"
+    SECOND_END_PATTERN = "Total"
+
+    description_column = df.columns[0]
+    start_index = df.index[
+        df[description_column].str.contains(START_PATTERN, na=False, case=False)
+    ].tolist()[0]
+    end_index = df.index[
+        df[description_column].str.contains(END_PATTERN, na=False, case=False)
+    ].tolist()[0]
+
+    if not start_index or not end_index:
+        raise ParserException(
+            parser="IN.py",
+            message="Could not find the generation table in the daily report; the format may have changed.",
+        )
+    generation_df = df.iloc[start_index + 1 : end_index, 0:]
+
+    second_end_index = generation_df.index[
+        generation_df[description_column].str.contains(
+            SECOND_END_PATTERN, na=False, case=False
+        )
+    ].tolist()[0]
+
+    if not second_end_index:
+        raise ParserException(
+            parser="IN.py",
+            message="Could not find the second end of the generation table in the daily report; the format may have changed.",
+        )
+    total_row_position = generation_df.index.get_loc(
+        generation_df[
+            generation_df[description_column].str.contains("Total", na=False)
+        ].index[0]
+    )
+
+    generation_df_without_re_share = generation_df.iloc[: total_row_position + 1, :]
+    generation_df_without_re_share = generation_df_without_re_share.set_index(
+        generation_df_without_re_share.columns[0]
+    )
+    generation_df_without_re_share.columns = generation_df_without_re_share.iloc[0]
+    generation_df_without_re_share = generation_df_without_re_share.iloc[1:].dropna(
+        axis=1, how="all"
+    )
+    generation_df_without_re_share.index.name = "mode"
+
+    return generation_df_without_re_share
+
+
+def get_wind_solar(content: bytes, zone_key: str) -> pd.DataFrame:
+    """
+    Gets the wind and solar production for a given zone key.
+    Retrieves it from the daily report,
+    in the A. Power Supply Position at All India and Regional level table.
+    Returns a DataFrame with the wind and solar production for the given zone key.
+    Shape of the dataframe :
+    'mode' is 'wind' and 'solar'.
+    'value' is the generation, in MU/GWh :
+    | mode | value |
+    |------|-------|
+    | wind | 100   |
+    | solar| 200   |
+    """
+
+    df = pd.read_excel(content, engine="xlrd", header=2)
+    START_PATTERN = "A. Power Supply Position"
+    END_PATTERN = "B. Frequency Profile"
+
+    description_column = df.columns[0]
+
+    start_mask = df[description_column].str.contains(
+        START_PATTERN, na=False, case=False
+    )
+    end_mask = df[description_column].str.contains(END_PATTERN, na=False, case=False)
+    start_index = start_mask[start_mask].first_valid_index()
+    end_index = end_mask[end_mask].first_valid_index()
+
+    if start_index is None or end_index is None:
+        raise ParserException(
+            parser="IN.py",
+            message="Could not find the generation table in the daily report; the format may have changed.",
+        )
+    # Only keep the first table (A. Power Supply Position at All India and Regional level)
+    generation_df = df.iloc[start_index + 1 : end_index].copy()
+
+    # Set the row that contains the region names as the header.
+    generation_df.columns = generation_df.iloc[0]
+    generation_df = generation_df.iloc[1:].reset_index(drop=True)
+
+    # The descriptions ('Wind Gen', etc.) are now in the first data column.
+    # Let's search this column to find the integer index of the rows we want.
+    description_col = generation_df.iloc[:, 0]
+    wind_mask = description_col.str.contains("Wind Gen", na=False, case=False)
+    solar_mask = description_col.str.contains("Solar Gen", na=False, case=False)
+    wind_row_index = description_col[wind_mask].index[0]
+    solar_row_index = description_col[solar_mask].index[0]
+
+    region_column = GRID_INDIA_REGION_MAPPING[zone_key]
+    wind_gen_nr = generation_df.loc[wind_row_index, region_column]
+    solar_gen_nr = generation_df.loc[solar_row_index, region_column]
+
+    wind_solar_df = pd.DataFrame(
+        {"value": [wind_gen_nr, solar_gen_nr]}, index=["wind", "solar"]
+    )
+    wind_solar_df.index.name = "mode"
+
+    return wind_solar_df
+
+def parse_daily_production_grid_india_report(
+    content: bytes,
+    zone_key: str,
+    target_datetime: datetime,
+    logger: Logger = getLogger(__name__),
+) -> pd.DataFrame:
+    """
+    Parses production data from grid india daily report.
+    Will split the daily production evenly across the 24 hours of the day.
+    This will then be reestimated by the estimation pipeline and the mode breakdown. 
+    """
+    daily_production_breakdown = get_production_breakdown(
+        content=content, zone_key=zone_key
+    )
+    daily_production_breakdown['value'] = daily_production_breakdown['value'] / CONVERSION_GWH_MW
+    df_pivoted = daily_production_breakdown.T
+    df_hourly = pd.concat([df_pivoted] * 24, ignore_index=True)
+
+    # Next, create a DatetimeIndex for the 24 hours of the target_datetime
+    start_of_day = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
+    hourly_index = pd.date_range(
+        start=start_of_day, 
+        periods=24, 
+        freq='H', 
+        tz='Asia/Kolkata'
+    )
+
+    # Set this as the index of your new DataFrame
+    df_hourly.index = hourly_index
+
+    return df_hourly
+
+def parse_15m_production_grid_india_report(
+    content: bytes,
+    zone_key: str,
+    target_datetime: datetime,
+    logger: Logger = getLogger(__name__),
+) -> pd.DataFrame:
+    """
+    Parses production data from grid india report
+    """
+    # Get total production for the whole country, from the daily data report.
+    daily_india_generation = parse_daily_total_production_grid_india_report(
+        content=content
+    )
+    # Get total production for the whole country, from the 15-minute time series report.
+    _15min_india_generation_aggregated_daily = (
+        parse_total_production_15min_grid_india_report(content=content)
+    )
+
+    # Compute the scaling factor that will be used to scale the 15-minute data so that its total matches the daily production value.
+    generation_scaling_factor = (
+        daily_india_generation / _15min_india_generation_aggregated_daily
+    )
+    # Scale the 15-minute data
+    _15min_scaled_generation_df = scale_15min_production(
+        content=content, scaling_factor=generation_scaling_factor
+    )
+
+    # Now, compute the share of the considered zone key in the India-level production, for each mode.
+    zone_mode_share_out_of_country = compute_zone_key_share_per_mode_out_of_total(
+        content=content, zone_key=zone_key
+    )
+
+    # Scale the 15-minute by the share of the mode for the considered zone key out of the country-level production.
+    ## Get the scaling factors
+    scaling_factors = zone_mode_share_out_of_country["value"]
+    ## Do not scale the time column
+    mode_columns = _15min_scaled_generation_df.columns.intersection(
+        scaling_factors.index
+    )
+    ordered_scaling_factors = scaling_factors.reindex(mode_columns)
+
+    # Multiply the modes columns by the scaling factors
+    _15min_scaled_generation_df[mode_columns] = _15min_scaled_generation_df[
+        mode_columns
+    ].mul(ordered_scaling_factors)
+
+    ## Convert the time column to a datetime index and drop the TIME column
+    datetime_series = pd.to_datetime(
+        target_datetime.strftime("%Y-%m-%d") + " " + _15min_scaled_generation_df["TIME"]
+    )
+    _15min_scaled_generation_df.index = datetime_series
+    _15min_scaled_generation_df.index = _15min_scaled_generation_df.index.tz_localize(
+        IN_TZ
+    )
+    _15min_scaled_generation_df = _15min_scaled_generation_df.drop(columns=["TIME"])
+
+    return _15min_scaled_generation_df
+
+
+def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
+    """
+    Computes the share of the zone key in the total production for each mode.
+    Returns a dictionary with the mode as key and the share as value.
+    We will then assume this percentage is uniform across the day.
+    """
+    daily_generation_df = get_daily_generation_table(content)
+    if zone_key == "IN":
+        all_india_generation = daily_generation_df["All India"]
+    else:
+        all_india_generation = daily_generation_df[GRID_INDIA_REGION_MAPPING[zone_key]]
+
+    # Removes Total row
+    modes = ["coal", "lignite", "hydro", "nuclear", "gas", "RES"]
+    pattern = "|".join(modes)
+    mask = all_india_generation.index.str.contains(pattern, case=False, na=False)
+    selected_df = all_india_generation[mask]
+
+    # Sum the 'Coal' and 'Lignite'
+    numeric_df = selected_df.apply(pd.to_numeric, errors="coerce")
+    coal_lignite_sum = numeric_df.loc[["Coal", "Lignite"]].sum()
+    numeric_df.loc["coal"] = coal_lignite_sum
+    all_modes_except_wind_solar = numeric_df.drop(["Coal", "Lignite"])
+    all_modes_except_wind_solar_india_df = all_modes_except_wind_solar.to_frame(
+        name="value"
+    )
+
+    # Get wind and solar for the considered zone key
+    wind_solar_india_df = get_wind_solar(content=content, zone_key=zone_key)
+
+    all_modes_df = pd.concat(
+        [all_modes_except_wind_solar_india_df, wind_solar_india_df]
+    )
+    all_modes_df.index = all_modes_df.index.str.lower()
+    # Rename the "Gas, Naphta & Diesel" mode to "gas"
+    gas_mask = all_modes_df.index.str.contains("gas", na=False)
+    if gas_mask.any():
+        old_gas_label = all_modes_df.index[gas_mask][0]
+        all_modes_df = all_modes_df.rename(index={old_gas_label: "gas"})
+
+    # RES contains wind, solar, biomass and others.
+    # Substract wind and solar from RES, and map it to unknown.
+    res_mask = all_modes_df.index.str.contains("res", na=False)
+    if res_mask.any():
+        old_res_label = all_modes_df.index[res_mask][0]
+        all_modes_cleaned_df = all_modes_df.rename(index={old_res_label: "unknown"})
+
+    all_modes_cleaned_df.loc["unknown", "value"] = (
+        all_modes_cleaned_df.loc["unknown", "value"]
+        - all_modes_cleaned_df.loc["wind", "value"]
+        - all_modes_cleaned_df.loc["solar", "value"]
+    )
+
+    return all_modes_cleaned_df
+
+
+def compute_zone_key_share_per_mode_out_of_total(
+    content: bytes, zone_key: str
+) -> dict[str, float]:
+    country_production_breakdown = get_production_breakdown(
+        content=content, zone_key="IN"
+    )
+    zone_production_breakdown = get_production_breakdown(
+        content=content, zone_key=zone_key
+    )
+    return zone_production_breakdown / country_production_breakdown
+
+
+def scale_15min_production(content: bytes, scaling_factor: float) -> pd.DataFrame:
+    df = pd.read_excel(content, engine="xlrd", header=2, sheet_name="TimeSeries")
+
+    KEYWORD_MAPPING = {
+        "NUCLEAR": "nuclear",
+        "WIND": "wind",
+        "SOLAR": "solar",
+        "HYDRO": "hydro",
+        "GAS": "gas",
+        "THERMAL": "coal",
+        "OTHERS": "unknown",
+    }
+
+    # Columns names are like NUCLEAR\n(MW) or WIND**\n(MW), etc.
+    # Try to make mapping robust by not relying on exact match.
+    dynamic_rename_mapping = {}
+    for col_name in df.columns:
+        for source_mode, mode in KEYWORD_MAPPING.items():
+            if source_mode.lower() in str(col_name).lower():
+                dynamic_rename_mapping[col_name] = mode
+                break
+
+    df = df[list(dynamic_rename_mapping.keys()) + ["TIME"]]
+    df.rename(columns=dynamic_rename_mapping, inplace=True)
+
+    # The first and last rows are not part of the time series and should be deleted.
+    df = df.iloc[1:-1].reset_index(drop=True)
+    mode_columns = list(dynamic_rename_mapping.values())
+    scaled_generation = df[mode_columns].mul(scaling_factor, axis=0)
+    scaled_generation = pd.concat([df["TIME"], scaled_generation], axis=1)
+    return scaled_generation
+
+
+def parse_daily_total_production_grid_india_report(
+    content: bytes,
+) -> float:
+    """
+    Extract the total production across the whole country from the daily report.
+    Returns it in MWh.
+    """
+    generation_df = get_daily_generation_table(content)
+    # Data is in MU=GWh.
+    total_all_india_generation = generation_df.loc["Total", "All India"] * 1000
+    return float(total_all_india_generation)
+
+
+def parse_total_production_15min_grid_india_report(
+    content: bytes,
+) -> float:
+    """
+    Computes the total production from the 15-minute data, in MWh.
+    """
+    df = pd.read_excel(content, engine="xlrd", header=2, sheet_name="TimeSeries")
+    total_gen_col = "TOTAL GENERATION\n(MW)"
+    df[total_gen_col] = pd.to_numeric(df[total_gen_col], errors="coerce")
+    df["15min_energy"] = df[total_gen_col] / 4
+    total_generation_from_15_min = df["15min_energy"].sum()
+    return float(total_generation_from_15_min)
+
+
 def fetch_production(
     zone_key: str,
     session: Session = Session(),
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    if target_datetime is None:
-        target_datetime = get_start_of_day(dt=datetime.now(timezone.utc))
-    else:
-        target_datetime = get_start_of_day(dt=target_datetime)
-        if target_datetime < START_DATE_RENEWABLE_DATA:
-            raise ParserException(
-                parser="IN.py",
-                message=f"{target_datetime}: {zone_key} renewable production data is not available before 2020/12/17, data is not collected prior to this data",
-            )
-
-    all_data_points = []
-    days_lookback_to_try = list(range(1, 8))
+    all_data_points = ProductionBreakdownList(logger)
+    days_lookback_to_try = list(range(1, 3))
     for days_lookback in days_lookback_to_try:
         _target_datetime = target_datetime - timedelta(days=days_lookback)
-
-        renewable_production = {}
-        try:
-            renewable_production = fetch_cea_production(
-                zone_key=zone_key,
-                session=session,
-                target_datetime=_target_datetime,
-            )
-        except ParserException:
-            logger.warning(
-                f"{zone_key}: renewable production not available for {_target_datetime} - will compute production with conventional production only"
-            )
-
-        conventional_production = None
-        try:
-            conventional_production = fetch_npp_production(
-                zone_key=zone_key,
-                session=session,
-                target_datetime=_target_datetime,
-            )
-        except ParserException:
-            logger.warning(
-                f"{zone_key}: conventional production not available for {_target_datetime} - do not return any production data"
-            )
-
-        if conventional_production is not None:
-            production = {**conventional_production, **renewable_production}
-            all_data_points += daily_to_hourly_production_data(
-                target_datetime=_target_datetime,
-                production=production,
-                zone_key=zone_key,
-                logger=logger,
-            )
+        report_content = fetch_grid_india_report(target_datetime=_target_datetime)
+        if report_content is not None:
+            if _target_datetime > datetime(2024, 11, 4):
+                # PSP Reports with TimeSeries sheets are only available since 2024/11/04
+                production_data = parse_15m_production_grid_india_report(
+                    content=report_content,
+                    zone_key=zone_key,
+                    target_datetime=_target_datetime,
+                )
+            elif _target_datetime >= datetime(2023, 4, 1) and _target_datetime < datetime(2024, 11, 4):
+                # For historical data, rely on daily data (available as spreadsheet since 2023/04/01)
+                production_data = parse_daily_production_grid_india_report(
+                    content=report_content,
+                    zone_key=zone_key,
+                    target_datetime=_target_datetime,
+                )
+            else: 
+                raise ParserException(
+                    parser="IN.py",
+                    message=f"{target_datetime}: {zone_key} production data is not available before 2023/04/01",
+                )
+            for timestamp, production_series in production_data.iterrows():
+                production_dict = production_series.dropna().to_dict()
+                production_mix = ProductionMix()
+                for mode, value in production_dict.items():
+                    production_mix.add_value(mode, value)
+                all_data_points.append(
+                    zoneKey=ZoneKey(zone_key),
+                    datetime=timestamp.to_pydatetime(),
+                    production=production_mix,
+                    source=GRID_INDIA_SOURCE,
+                )
+    
+        
     return all_data_points
 
 
@@ -512,13 +927,13 @@ def daily_to_hourly_production_data(
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
-        production_mix.add_value(mode, value)
+        production_mix.add_value(mode, value / CONVERSION_GWH_MW)
     for hour in list(range(0, 24)):
         all_hourly_production.append(
             zoneKey=ZoneKey(zone_key),
             datetime=target_datetime.replace(hour=hour),
             production=production_mix,
-            source="npp.gov.in, cea.nic.in",
+            source=GRID_INDIA_SOURCE,
         )
     return all_hourly_production.to_list()
 
