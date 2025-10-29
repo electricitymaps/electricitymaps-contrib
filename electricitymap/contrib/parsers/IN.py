@@ -912,7 +912,7 @@ def daily_to_hourly_production_data(
             production=production_mix,
             source=GRID_INDIA_SOURCE,
         )
-    return all_hourly_production.to_list()
+    return all_hourly_production
 
 
 if __name__ == "__main__":
