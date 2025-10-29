@@ -26,6 +26,9 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 173.5
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 323.5
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -83,6 +86,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 4591.3
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 4561.3
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -197,6 +203,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 1316.5
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 1517.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -211,6 +220,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -543,4 +553,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
 zone_name: Los Angeles Department of Water and Power
-country_name: USA

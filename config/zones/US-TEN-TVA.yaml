@@ -17,6 +17,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 101.0
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 151.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -39,6 +42,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 213.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 218.1
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -92,6 +98,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 18498.8
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 18090.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -136,6 +145,9 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 677.8
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 176.2
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -224,6 +236,15 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 1508.8
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 1529.7
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 1536.2
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 1790.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -241,6 +262,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -354,10 +376,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1152.251617
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1171.170411
     gas:
       - datetime: '2020-01-01'
@@ -557,4 +581,3 @@ sources:
 timezone: US/Central
 zone_name: Tennessee Valley Authority
 zone_short_name: TVA
-country_name: USA

@@ -169,7 +169,16 @@ capacity:
       value: 8482.2
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 8745.7
+      value: 8845.7
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 9265.3
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 9925.1
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 10205.1
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -380,6 +389,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 67159.2
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 67339.2
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -620,6 +632,15 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 24655.4
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 25399.8
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 25496.8
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 26011.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -805,6 +826,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 39227.4
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 39393.8
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch
@@ -813,6 +837,8 @@ contributors:
   - silkeholmebonnen
   - alejandranavcas
 country: US
+country_name: USA
+currency: USD
 emissionFactors:
   direct:
     battery discharge:
@@ -1137,5 +1163,3 @@ sources:
 timezone: US/Central
 zone_name: Electric Reliability Council of Texas
 zone_short_name: ERCOT
-country_name: USA
-currency: USD

@@ -39,6 +39,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 70.0
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 69.2
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -154,6 +157,9 @@ capacity:
     - datetime: '2021-02-01'
       source: EIA.gov
       value: 128.1
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 130.4
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -346,6 +352,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -444,10 +451,12 @@ emissionFactors:
         value: 306.16
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 941.3628778000001
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 863.063492
     gas:
       - datetime: '2020-01-01'
@@ -664,4 +673,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: Duke Energy Carolinas
-country_name: USA

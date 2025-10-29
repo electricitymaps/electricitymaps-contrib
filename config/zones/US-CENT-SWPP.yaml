@@ -109,6 +109,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 20639.3
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 20279.3
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -217,7 +220,16 @@ capacity:
       value: 35489.3
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 35470.7
+      value: 35324.7
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 36098.4
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 36458.4
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 36704.1
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -487,7 +499,10 @@ capacity:
       value: 889.6
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 1078.6
+      value: 1084.7
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 1157.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -634,12 +649,20 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 34080.3
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 34273.8
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 34426.8
 comment: Southwest Power Pool
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
+currency: USD
 delays:
   production: 5
 emissionFactors:
@@ -987,5 +1010,3 @@ sources:
 timezone: US/Central
 zone_name: Southwest Power Pool
 zone_short_name: SPP
-country_name: USA
-currency: USD

@@ -58,6 +58,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   production: 48
 emissionFactors:
@@ -344,4 +345,3 @@ sources:
 timezone: US/Eastern
 zone_name: Alcoa Power Generating, Inc. Yadkin Division
 zone_short_name: Alcoa Power Generating
-country_name: USA

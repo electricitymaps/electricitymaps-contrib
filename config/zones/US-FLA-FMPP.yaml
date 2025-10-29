@@ -97,6 +97,8 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
+currency: USD
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -422,5 +424,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: Florida Municipal Power Pool
-country_name: USA
-currency: USD

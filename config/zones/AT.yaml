@@ -7,13 +7,13 @@ capacity:
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 618.0
+      value: 617.9
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 641.0
+      value: 640.8
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 650.0
+      value: 649.8
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 647.0
@@ -42,32 +42,32 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 4466.0
+      value: 4465.8
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 4468.0
+      value: 4467.7
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 4463.0
+      value: 4463.2
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 4015.0
+      value: 4015.3
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 4449.0
     - datetime: '2022-01-01'
       source: entsoe.eu
-      value: 4350.0
+      value: 4349.5
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 4206.0
+      value: 4206.12
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4225.0
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 1.0
+      value: 0.9
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 0.0
@@ -75,30 +75,36 @@ capacity:
       source: entsoe.eu
       value: 1.0
     - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 0.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 0.25
+    - datetime: '2025-01-01'
       source: entsoe.eu
       value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 8546.0
+      value: 8545.7
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 8590.0
+      value: 8589.3
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 7998.0
+      value: 7997.4
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 8160.0
+      value: 8159.7
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 8371.0
     - datetime: '2022-01-01'
       source: entsoe.eu
-      value: 8312.0
+      value: 8311.82
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 8673.0
+      value: 8672.56
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 8336.0
@@ -108,19 +114,19 @@ capacity:
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 3401.0
+      value: 3401.1
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 3120.0
+      value: 3120.1
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 3459.0
     - datetime: '2022-01-01'
       source: entsoe.eu
-      value: 3503.0
+      value: 3503.28
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 3363.0
+      value: 3362.5
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 3485.0
@@ -134,10 +140,13 @@ capacity:
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 178.0
+      value: 177.9
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 164.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 163.61
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 120.0
@@ -151,6 +160,9 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 1193.0
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1192.7
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 1333.0
@@ -162,7 +174,7 @@ capacity:
       value: 2500.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 3265.0
+      value: 3265.3
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 7294.0
@@ -172,13 +184,13 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 56.0
+      value: 55.3
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 65.0
+      value: 65.1
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 123.0
+      value: 122.8
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 957.0
@@ -187,7 +199,7 @@ capacity:
       value: 954.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 845.0
+      value: 845.24
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 879.0
@@ -203,7 +215,7 @@ capacity:
       value: 2887.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 3035.0
+      value: 3034.6
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 3133.0
@@ -215,7 +227,7 @@ capacity:
       value: 3500.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 3569.0
+      value: 3568.82
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4021.0
@@ -226,6 +238,8 @@ contributors:
   - corradio
   - brandongalbraith
 country: AT
+country_name: Austria
+currency: EUR
 delays:
   production: 6
 emissionFactors:
@@ -599,5 +613,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Vienna
 zone_name: Austria
-country_name: Austria
-currency: EUR
