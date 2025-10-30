@@ -52,6 +52,7 @@ IGNORED_KEYS = ["total", "date", "importExport", "hour"]
 SOURCE = "epias.com.tr"
 
 
+@use_proxy(country_code="TR")
 def fetch_ticket_TGT(session: Session) -> str:
     url = "https://giris.epias.com.tr/cas/v1/tickets"
 
