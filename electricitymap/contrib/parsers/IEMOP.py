@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import NamedTuple
