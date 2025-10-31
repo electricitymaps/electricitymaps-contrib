@@ -32,7 +32,7 @@ capacity:
       value: 0.83
 country: FM
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Chuuk
 zone_name: Micronesia

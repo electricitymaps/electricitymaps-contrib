@@ -6,41 +6,32 @@ bounding_box:
 capacity:
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 0.0
-    - datetime: '2020-01-01'
-      source: IRENA.org
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
       value: 220.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 981.19
+      source: Ember, Yearly electricity data
+      value: 980.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 994.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 12.0
+      source: Ember, Yearly electricity data
+      value: 990.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.22
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 1.45
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 4.87
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 4.9
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 5.04
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: BN
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Brunei
 zone_name: Brunei

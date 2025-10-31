@@ -6,47 +6,29 @@ bounding_box:
 capacity:
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 47.63
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 48.65
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 49.2
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 210.38
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 216.38
+      source: Ember, Yearly electricity data
+      value: 50.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 34.8
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 38.1
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 41.1
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 44.61
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 45.68
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 52.12
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 52.87
+      source: Ember, Yearly electricity data
+      value: 50.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.25
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - autipial
 country: PF
@@ -151,7 +133,7 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   production: PF.fetch_production
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tahiti
 zone_name: French Polynesia

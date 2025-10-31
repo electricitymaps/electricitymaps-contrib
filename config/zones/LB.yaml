@@ -6,57 +6,52 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 9.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 7.0
+      source: Ember, Yearly electricity data
+      value: 10.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1140.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 740.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 282.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 3409.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 3401.12
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 2931.12
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 2781.12
+      source: Ember, Yearly electricity data
+      value: 280.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 36.71
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 54.92
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 76.08
+      source: Ember, Yearly electricity data
+      value: 80.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 89.84
+      source: Ember, Yearly electricity data
+      value: 90.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 189.84
+      source: Ember, Yearly electricity data
+      value: 190.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 874.89
+      source: Ember, Yearly electricity data
+      value: 870.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 1004.89
+      source: Ember, Yearly electricity data
+      value: 1000.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1950.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 3.0
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: LB
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Beirut
 zone_name: Lebanon

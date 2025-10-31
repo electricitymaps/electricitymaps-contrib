@@ -15,8 +15,6 @@ capacity:
       source: IRENA.org
       value: 0.01
 country: GS
-parsers:
-  productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: Atlantic/South_Georgia
 zone_name: South Georgia and the South Sandwich Islands
