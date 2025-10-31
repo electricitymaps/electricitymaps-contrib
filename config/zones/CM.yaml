@@ -6,53 +6,32 @@ bounding_box:
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 268.21
+      source: Ember, Yearly electricity data
+      value: 220.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 732.1
+      source: Ember, Yearly electricity data
+      value: 730.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 812.52
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 814.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 426.74
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 433.01
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 434.37
+      source: Ember, Yearly electricity data
+      value: 810.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 11.58
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 11.84
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 12.7
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 13.56
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 26.24
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 26.31
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 62.31
+      source: Ember, Yearly electricity data
+      value: 60.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
 country: CM
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Douala
 zone_name: Cameroon

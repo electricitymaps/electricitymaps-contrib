@@ -6,55 +6,40 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 32.13
+      source: Ember, Yearly electricity data
+      value: 30.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 120.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 145.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 339.0
+      source: Ember, Yearly electricity data
+      value: 310.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 489.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 499.0
+      source: Ember, Yearly electricity data
+      value: 460.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 30.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 892.0
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 891.66
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 55.51
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 107.01
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 107.06
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 109.61
+      source: Ember, Yearly electricity data
+      value: 110.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 890.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 102.0
+      source: Ember, Yearly electricity data
+      value: 100.0
 country: JM
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Jamaica
 zone_name: Jamaica

@@ -1,48 +1,23 @@
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.02
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 0.05
+      source: Ember, Yearly electricity data
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.35
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 316.27
+      source: Ember, Yearly electricity data
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.04
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 0.82
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 0.59
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 0.36
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.35
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 0.39
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 0.41
+      source: Ember, Yearly electricity data
+      value: 0.0
   unknown:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 29.4
+      source: Ember, Yearly electricity data
+      value: 350.0
 country: TL
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dili
 zone_name: Timor-Leste

@@ -6,53 +6,44 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.9
+      source: Ember, Yearly electricity data
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 34.6
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 36.6
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 289.16
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 339.16
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 389.16
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 395.0
+      source: Ember, Yearly electricity data
+      value: 30.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 38.25
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 53.7
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 55.43
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 55.92
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 56.7
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 87.3
+      source: Ember, Yearly electricity data
+      value: 90.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 176.91
+      source: Ember, Yearly electricity data
+      value: 180.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 340.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 390.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
 country: BF
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Ouagadougou
 zone_name: Burkina Faso

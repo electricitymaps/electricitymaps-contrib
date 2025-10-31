@@ -6,37 +6,28 @@ bounding_box:
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 6271.0
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 6506.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 3967.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 4240.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 4540.0
+      source: Ember, Yearly electricity data
+      value: 9870.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 4725.0
+      source: Ember, Yearly electricity data
+      value: 11040.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 5.11
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1680.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1840.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 6.33
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 8.33
+      source: Ember, Yearly electricity data
+      value: 2320.0
 country: LY
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tripoli
 zone_name: Libya

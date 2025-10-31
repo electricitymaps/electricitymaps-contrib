@@ -31,8 +31,6 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: CW
-parsers:
-  productionCapacity: IRENA.fetch_production_capacity
 region: Americas
 timezone: America/Curacao
 zone_name: Curaçao

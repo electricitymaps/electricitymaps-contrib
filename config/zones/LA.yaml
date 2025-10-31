@@ -1,57 +1,50 @@
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 39.7
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 123.08
+      source: Ember, Yearly electricity data
+      value: 120.0
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1653.0
+      source: Ember, Yearly electricity data
+      value: 1880.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 5102.19
+      source: Ember, Yearly electricity data
+      value: 5110.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 5380.19
+      source: Ember, Yearly electricity data
+      value: 5390.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 6223.99
+      source: Ember, Yearly electricity data
+      value: 6230.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 8013.19
+      source: Ember, Yearly electricity data
+      value: 8020.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 8955.79
+      source: Ember, Yearly electricity data
+      value: 8960.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 9645.79
+      source: Ember, Yearly electricity data
+      value: 9650.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 9756.33
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.02
+      source: Ember, Yearly electricity data
+      value: 9780.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 8.37
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 34.29
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 45.31
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 59.34
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 59.36
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: LA
 fallbackZoneMixes:
   _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
@@ -64,7 +57,7 @@ fallbackZoneMixes:
       hydro: 0.713395716573259
       solar: 0.0010758606885508
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Vientiane
 zone_name: Laos

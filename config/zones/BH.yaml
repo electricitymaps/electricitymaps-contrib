@@ -6,50 +6,31 @@ bounding_box:
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 6821.0
+      source: Ember, Yearly electricity data
+      value: 5310.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 8613.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 9618.0
+      source: Ember, Yearly electricity data
+      value: 7100.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 9735.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 150.0
+      source: Ember, Yearly electricity data
+      value: 8600.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 6.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 6.31
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 9.7
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 10.1
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 21.34
+      source: Ember, Yearly electricity data
+      value: 20.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 45.59
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 56.62
+      source: Ember, Yearly electricity data
+      value: 60.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.68
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 2.68
+      source: Ember, Yearly electricity data
+      value: 0.0
 contributors:
   - q--
   - nessie2013
@@ -125,7 +106,7 @@ fallbackZoneMixes:
         wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Bahrain
 zone_name: Bahrain

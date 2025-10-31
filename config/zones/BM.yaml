@@ -6,6 +6,8 @@ bounding_box:
 contributors:
   - VIKTORVAV99
 country: BM
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Bermuda
 zone_name: Bermuda

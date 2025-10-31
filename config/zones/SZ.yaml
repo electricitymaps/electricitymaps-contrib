@@ -6,32 +6,23 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 106.0
+      source: Ember, Yearly electricity data
+      value: 110.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 62.2
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 9.9
+      source: Ember, Yearly electricity data
+      value: 60.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.13
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 0.14
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 0.18
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 10.18
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 10.16
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: SZ
 emissionFactors:
   lifecycle:
@@ -82,7 +73,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mbabane
 zone_name: Eswatini

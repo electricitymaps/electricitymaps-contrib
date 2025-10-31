@@ -6,57 +6,35 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 72.95
+      source: Ember, Yearly electricity data
+      value: 70.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 347.84
+      source: Ember, Yearly electricity data
+      value: 410.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 453.84
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 453.64
+      source: Ember, Yearly electricity data
+      value: 660.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2193.03
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 2193.63
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 206.6
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 221.0
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 207.6
+      source: Ember, Yearly electricity data
+      value: 2190.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2.65
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 2.85
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 43.32
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 45.44
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 45.96
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 87.53
+      source: Ember, Yearly electricity data
+      value: 90.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 102.53
+      source: Ember, Yearly electricity data
+      value: 100.0
 country: MZ
 emissionFactors:
   lifecycle:
@@ -107,7 +85,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo
 zone_name: Mozambique

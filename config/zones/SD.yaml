@@ -1,47 +1,48 @@
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 199.0
+      source: Ember, Yearly electricity data
+      value: 200.0
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 810.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1322.0
+      source: Ember, Yearly electricity data
+      value: 1320.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 1482.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1810.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 1932.0
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 1935.0
+      source: Ember, Yearly electricity data
+      value: 1480.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 35.8
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 59.49
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 80.49
+      source: Ember, Yearly electricity data
+      value: 80.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 117.13
+      source: Ember, Yearly electricity data
+      value: 120.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 135.86
+      source: Ember, Yearly electricity data
+      value: 140.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 189.86
+      source: Ember, Yearly electricity data
+      value: 190.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1190.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1340.0
 country: SD
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Khartoum
 zone_name: Sudan

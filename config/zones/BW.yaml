@@ -6,28 +6,19 @@ bounding_box:
 capacity:
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 757.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 160.0
+      source: Ember, Yearly electricity data
+      value: 730.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 3.42
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 3.72
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 5.92
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 6.3
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 6.29
+      source: Ember, Yearly electricity data
+      value: 10.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
 country: BW
 emissionFactors:
   lifecycle:
@@ -78,7 +69,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Gaborone
 zone_name: Botswana

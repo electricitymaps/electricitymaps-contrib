@@ -47,9 +47,6 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
-    - datetime: '2025-01-01'
-      source: bnamericas
-      value: 201
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data

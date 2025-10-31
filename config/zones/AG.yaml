@@ -4,13 +4,6 @@ bounding_box:
   - - -61.170416704166996
     - 17.66459631058453
 capacity:
-  gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
