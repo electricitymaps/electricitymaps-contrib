@@ -16,6 +16,7 @@ Usage:
 
 import argparse
 import logging
+import re
 
 from requests import Session
 from ruamel.yaml import YAML
@@ -40,7 +41,7 @@ def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     This function REPLACES THE ENTIRE 'capacity' section with EMBER data only.
     All existing capacity data from other sources (ENTSOE, manual entries, etc.)
     will be removed. Other sections (emissionFactors, parsers, etc.) remain
-    completely untouched and preserve their original formatting.
+    completely untouched with EXACT original formatting preserved.
 
     Args:
         zone_key: The zone key to update
@@ -51,30 +52,44 @@ def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     if not zone_file.exists():
         raise ValueError(f"Zone file for {zone_key} does not exist")
 
-    # Use ruamel.yaml with round-trip mode to preserve formatting
+    # Read the entire file as text
+    with open(zone_file, encoding="utf-8") as f:
+        original_content = f.read()
+
+    # Sort capacity keys
+    sorted_capacity = sort_config_keys(capacity_data)
+
+    # Generate just the capacity section using ruamel.yaml
     yaml = YAML()
     yaml.preserve_quotes = True
     yaml.default_flow_style = False
-    # Indent settings to match existing zone YAML format:
-    # - mapping=2: each dict level indents 2 spaces
-    # - sequence=4: list item properties indent 4 spaces from the dash
-    # - offset=2: the dash itself indents 2 spaces from the key
     yaml.indent(mapping=2, sequence=4, offset=2)
 
-    # Read the file with formatting preserved
-    with open(zone_file, encoding="utf-8") as f:
-        zone_config = yaml.load(f)
+    # Create a minimal dict with just capacity for serialization
+    from io import StringIO
 
-    # Replace entire capacity section with EMBER data
-    # This removes ALL existing capacity data (from any source) and writes only EMBER data
-    zone_config["capacity"] = capacity_data
+    capacity_stream = StringIO()
+    yaml.dump({"capacity": sorted_capacity}, capacity_stream)
+    new_capacity_yaml = capacity_stream.getvalue()
 
-    # Sort capacity keys
-    zone_config["capacity"] = sort_config_keys(zone_config["capacity"])
+    # Extract just the capacity section (remove the trailing newline and get content)
+    # The output will be "capacity:\n  biomass:\n  ..."
 
-    # Write back with formatting preserved
+    # Find and replace the capacity section in the original file
+    # Pattern: match from "capacity:" to the next top-level key (or end of file)
+    pattern = r"^capacity:.*?(?=^[a-zA-Z]|\Z)"
+
+    # Replace the capacity section
+    updated_content = re.sub(
+        pattern,
+        new_capacity_yaml.rstrip() + "\n",
+        original_content,
+        flags=re.MULTILINE | re.DOTALL,
+    )
+
+    # Write back
     with open(zone_file, "w", encoding="utf-8") as f:
-        yaml.dump(zone_config, f)
+        f.write(updated_content)
 
     logger.info(f"Updated {zone_key} with {len(capacity_data)} modes")
 
