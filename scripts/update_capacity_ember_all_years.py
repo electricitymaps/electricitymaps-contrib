@@ -101,8 +101,8 @@ def main():
     if args.all:
         logger.info(f"Updating capacity data for all {len(EMBER_ZONES)} EMBER zones...")
 
-        success_count = 0
-        fail_count = 0
+        success_zones = []
+        failed_zones = []
 
         for zone_key in sorted(EMBER_ZONES):
             try:
@@ -112,18 +112,21 @@ def main():
                 if capacity_data:
                     update_zone_with_all_years(zone_key, capacity_data)
                     logger.info(f"✓ Updated {zone_key}")
-                    success_count += 1
+                    success_zones.append(zone_key)
                 else:
                     logger.warning(f"⚠ No capacity data found for {zone_key}")
-                    fail_count += 1
+                    failed_zones.append(zone_key)
             except Exception as e:
                 logger.error(f"✗ Failed to update {zone_key}: {e}")
-                fail_count += 1
+                failed_zones.append(zone_key)
                 continue
 
         logger.info("\n=== Summary ===")
-        logger.info(f"Successfully updated: {success_count}/{len(EMBER_ZONES)}")
-        logger.info(f"Failed: {fail_count}/{len(EMBER_ZONES)}")
+        logger.info(f"Successfully updated: {len(success_zones)}/{len(EMBER_ZONES)}")
+        logger.info(f"Failed: {len(failed_zones)}/{len(EMBER_ZONES)}")
+
+        if failed_zones:
+            logger.info(f"\nFailed zones: {', '.join(failed_zones)}")
 
     elif args.zone_key:
         zone_key = args.zone_key

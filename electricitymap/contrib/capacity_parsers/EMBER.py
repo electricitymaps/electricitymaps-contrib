@@ -56,11 +56,15 @@ def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> s
         raise ValueError("EMBER_CAPACITY_KEY not found in environment variables")
 
     # Go from ISO2 to country name, capitalize each word
-    country = pycountry.countries.get(alpha_2=country_iso2)
-    if country:
-        country_name = country.name.title()
+
+    if country_iso2 in SPECIAL_MAPPING_ZONE_KEY:
+        country_name = SPECIAL_MAPPING_ZONE_KEY[country_iso2]
     else:
-        raise ValueError(f"Invalid ISO2 country code: {country_iso2}")
+        country = pycountry.countries.get(alpha_2=country_iso2)
+        if country:
+            country_name = country.name.title()
+        else:
+            raise ValueError(f"Invalid ISO2 country code: {country_iso2}")
 
     query_params = {
         "entity": country_name,
@@ -408,6 +412,15 @@ def fetch_production_capacity_for_all_zones_all_years(
     return all_capacity
 
 
+SPECIAL_MAPPING_ZONE_KEY = {
+    "FK": "Falkland Islands [Malvinas]",
+    "MO": "Macao (SAR of China)",
+    "PS": "Palestine (State of)",
+    "RU": "Russia",
+    "TR": "Türkiye",
+    "TW": "Taiwan (China)",
+    "VI": "Virgin Islands (U.S.)",
+}
 if __name__ == "__main__":
     import logging
 
