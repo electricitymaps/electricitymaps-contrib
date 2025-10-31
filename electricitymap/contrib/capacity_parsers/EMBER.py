@@ -194,13 +194,44 @@ def get_capacity_dict_from_df(
     for _i, data in df_year.iterrows():
         mode_capacity = {}
         mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
-        mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
         mode_capacity["source"] = SOURCE
+        mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
 
         # Store single dict per mode (not a list)
         zone_capacity[data["mode"]] = mode_capacity
 
     return zone_capacity
+
+
+def remove_consecutive_duplicates(
+    capacity_list: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Remove consecutive entries with the same value, keeping only the first occurrence.
+
+    This optimizes the capacity data by removing redundant year-over-year entries
+    where the capacity hasn't changed.
+
+    Args:
+        capacity_list: List of capacity entries sorted by datetime
+
+    Returns:
+        Optimized list with consecutive duplicates removed
+    """
+    if not capacity_list:
+        return []
+
+    # Sort by datetime to ensure chronological order
+    sorted_list = sorted(capacity_list, key=lambda x: x["datetime"])
+
+    # Always keep the first entry
+    optimized = [sorted_list[0]]
+
+    # Only add entries where the value changed from the previous entry
+    for entry in sorted_list[1:]:
+        if entry["value"] != optimized[-1]["value"]:
+            optimized.append(entry)
+
+    return optimized
 
 
 def get_capacity_dict_all_years_from_df(
@@ -222,8 +253,8 @@ def get_capacity_dict_all_years_from_df(
     for _i, data in df_capacity.iterrows():
         mode_capacity = {}
         mode_capacity["datetime"] = data["datetime"].strftime("%Y-%m-%d")
-        mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
         mode_capacity["source"] = SOURCE
+        mode_capacity["value"] = round(float(data["capacity_mw"]), 2)
 
         # Initialize list for this mode if it doesn't exist
         if data["mode"] not in zone_capacity:
@@ -231,6 +262,10 @@ def get_capacity_dict_all_years_from_df(
 
         # Append the entry to the list for this mode
         zone_capacity[data["mode"]].append(mode_capacity)
+
+    # Remove consecutive duplicates for each mode
+    for mode in zone_capacity:
+        zone_capacity[mode] = remove_consecutive_duplicates(zone_capacity[mode])
 
     return zone_capacity
 
@@ -266,21 +301,25 @@ def fetch_production_capacity(
 def fetch_production_capacity_all_years(
     zone_key: ZoneKey, session: Session | None = None
 ) -> dict[str, Any]:
-    """Get capacity data for a specific zone for ALL available years. The unit is the MW
+    """Get capacity data for a specific zone for ALL available years >= 2017. The unit is the MW
 
     This function fetches all years available from EMBER in one API call and returns
     them in the list format that matches the zone YAML configuration structure.
+
+    Data is filtered to start from 2017 and consecutive duplicate values are
+    automatically removed to optimize the data.
 
     Args:
         zone_key: The zone key (ISO2 country code)
         session: The requests session
 
     Returns:
-        Dictionary with capacity data per mode as lists containing all years:
+        Dictionary with capacity data per mode as lists containing all years >= 2017
+        (with consecutive duplicates removed):
         {
             "coal": [
-                {"datetime": "2021-01-01", "value": 1234.56, "source": "..."},
-                {"datetime": "2022-01-01", "value": 1245.67, "source": "..."}
+                {"datetime": "2017-01-01", "value": 1234.56, "source": "..."},
+                {"datetime": "2022-01-01", "value": 1245.67, "source": "..."}  # 2018-2021 removed (duplicates)
             ],
             "solar": [...]
         }
@@ -291,6 +330,8 @@ def fetch_production_capacity_all_years(
         session=session,
     )
     df_capacity = transform_ember_data(df_capacity)
+    # Filter to only include years >= 2017
+    df_capacity = df_capacity[df_capacity["datetime"].dt.year >= 2017]
     capacity = get_capacity_dict_all_years_from_df(df_capacity, zone_key)
 
     if capacity:

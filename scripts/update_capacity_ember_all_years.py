@@ -16,56 +16,71 @@ Usage:
 
 import argparse
 import logging
-from copy import deepcopy
 
 from requests import Session
+from ruamel.yaml import YAML
 
 from electricitymap.contrib.capacity_parsers.EMBER import (
     EMBER_ZONES,
     fetch_production_capacity_all_years,
-    fetch_production_capacity_for_all_zones_all_years,
 )
 from electricitymap.contrib.config import CONFIG_DIR
-from electricitymap.contrib.config.reading import read_zones_config
 from electricitymap.contrib.lib.types import ZoneKey
 from scripts.update_capacity_configuration import sort_config_keys
-from scripts.utils import write_zone_config
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
-ZONES_CONFIG = read_zones_config(CONFIG_DIR)
-
 
 def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     """Update a zone's capacity configuration with all years from EMBER.
+
+    This function ONLY modifies the 'capacity' section of the zone YAML file,
+    leaving all other sections (emissionFactors, parsers, etc.) completely untouched
+    and preserving their original formatting.
 
     Args:
         zone_key: The zone key to update
         capacity_data: Dictionary with capacity per mode as lists of years
     """
-    if zone_key not in ZONES_CONFIG:
-        raise ValueError(f"Zone {zone_key} does not exist in the zones config")
+    zone_file = CONFIG_DIR.joinpath(f"zones/{zone_key}.yaml")
 
-    _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
+    if not zone_file.exists():
+        raise ValueError(f"Zone file for {zone_key} does not exist")
+
+    # Use ruamel.yaml with round-trip mode to preserve formatting
+    yaml = YAML()
+    yaml.preserve_quotes = True
+    yaml.default_flow_style = False
+    # Indent settings to match existing zone YAML format:
+    # - mapping=2: each dict level indents 2 spaces
+    # - sequence=4: list item properties indent 4 spaces from the dash
+    # - offset=2: the dash itself indents 2 spaces from the key
+    yaml.indent(mapping=2, sequence=4, offset=2)
+
+    # Read the file with formatting preserved
+    with open(zone_file, encoding="utf-8") as f:
+        zone_config = yaml.load(f)
 
     # Initialize capacity if it doesn't exist
-    if "capacity" not in _new_zone_config:
-        _new_zone_config["capacity"] = {}
+    if "capacity" not in zone_config:
+        zone_config["capacity"] = {}
 
-    # For EMBER data, we replace existing data with the complete dataset from EMBER
-    # This ensures we have the most up-to-date data for all years
+    # Replace EMBER capacity data
     for mode, mode_data in capacity_data.items():
         if mode_data:  # Only update if we have data
-            _new_zone_config["capacity"][mode] = mode_data
+            zone_config["capacity"][mode] = mode_data
 
-    # Sort keys
-    _new_zone_config["capacity"] = sort_config_keys(_new_zone_config["capacity"])
+    # Sort capacity keys
+    zone_config["capacity"] = sort_config_keys(zone_config["capacity"])
 
-    logger.info(f"Updating {zone_key} with {len(capacity_data)} modes")
-    write_zone_config(zone_key, _new_zone_config)
+    # Write back with formatting preserved
+    with open(zone_file, "w", encoding="utf-8") as f:
+        yaml.dump(zone_config, f)
+
+    logger.info(f"Updated {zone_key} with {len(capacity_data)} modes")
 
 
 def main():
@@ -88,15 +103,31 @@ def main():
     session = Session()
 
     if args.all:
-        logger.info(f"Fetching capacity data for all {len(EMBER_ZONES)} EMBER zones...")
-        all_capacity = fetch_production_capacity_for_all_zones_all_years(session)
+        logger.info(f"Updating capacity data for all {len(EMBER_ZONES)} EMBER zones...")
 
-        for zone_key, capacity_data in all_capacity.items():
+        success_count = 0
+        fail_count = 0
+
+        for zone_key in sorted(EMBER_ZONES):
             try:
-                update_zone_with_all_years(zone_key, capacity_data)
-                logger.info(f"✓ Updated {zone_key}")
+                logger.info(f"Processing {zone_key}...")
+                capacity_data = fetch_production_capacity_all_years(zone_key, session)
+
+                if capacity_data:
+                    update_zone_with_all_years(zone_key, capacity_data)
+                    logger.info(f"✓ Updated {zone_key}")
+                    success_count += 1
+                else:
+                    logger.warning(f"⚠ No capacity data found for {zone_key}")
+                    fail_count += 1
             except Exception as e:
                 logger.error(f"✗ Failed to update {zone_key}: {e}")
+                fail_count += 1
+                continue
+
+        logger.info("\n=== Summary ===")
+        logger.info(f"Successfully updated: {success_count}/{len(EMBER_ZONES)}")
+        logger.info(f"Failed: {fail_count}/{len(EMBER_ZONES)}")
 
     elif args.zone_key:
         zone_key = args.zone_key
