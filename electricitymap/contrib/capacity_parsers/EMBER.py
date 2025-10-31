@@ -414,11 +414,16 @@ def fetch_production_capacity_for_all_zones_all_years(
 
 SPECIAL_MAPPING_ZONE_KEY = {
     "FK": "Falkland Islands [Malvinas]",
+    "KP": "North Korea",
+    "KR": "South Korea",
+    "LA": "Lao",
     "MO": "Macao (SAR of China)",
     "PS": "Palestine (State of)",
     "RU": "Russia",
+    "SY": "Syria",
     "TR": "Türkiye",
     "TW": "Taiwan (China)",
+    "TZ": "Tanzania (the United Republic of)",
     "VI": "Virgin Islands (U.S.)",
 }
 if __name__ == "__main__":
