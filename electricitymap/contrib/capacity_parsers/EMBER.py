@@ -17,6 +17,7 @@ from electricitymap.contrib.parsers.lib.utils import get_token
 logger = getLogger(__name__)
 EMBER_URL = "https://ember-climate.org"
 SOURCE = "Ember, Yearly electricity data"
+START_YEAR = 2017
 SPECIFIC_MODE_MAPPING = {
     "AR": {"other fossil": "unknown"},
     "BD": {"other fossil": "oil"},
@@ -335,7 +336,7 @@ def fetch_production_capacity_all_years(
     )
     df_capacity = transform_ember_data(df_capacity)
     # Filter to only include years >= 2017
-    df_capacity = df_capacity[df_capacity["datetime"].dt.year >= 2017]
+    df_capacity = df_capacity[df_capacity["datetime"].dt.year >= START_YEAR]
     capacity = get_capacity_dict_all_years_from_df(df_capacity, zone_key)
 
     if capacity:
