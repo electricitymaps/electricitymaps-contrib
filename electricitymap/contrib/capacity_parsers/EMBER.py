@@ -1,5 +1,5 @@
-from datetime import datetime
 import logging
+from datetime import datetime
 from time import sleep
 from typing import Any
 
@@ -103,6 +103,11 @@ def get_ember_capacity_yearly_data(country_iso2: ZoneKey, session: Session) -> s
                     f"Failed to fetch Ember data for {country_iso2} after {max_retries} attempts: {e}"
                 )
                 raise
+
+    # This should never be reached as the loop always returns or raises
+    raise RuntimeError(
+        f"Failed to fetch Ember data for {country_iso2}: retry loop completed without returning"
+    )
 
 
 def _ember_production_mode_mapper(row: pd.Series) -> str | None:
@@ -427,11 +432,7 @@ SPECIAL_MAPPING_ZONE_KEY = {
     "TZ": "Tanzania (the United Republic of)",
     "VI": "Virgin Islands (U.S.)",
 }
-    # import logging  # Removed to avoid duplicate import style
-    import logging
-
-    from requests import Session
-
+if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     session = Session()
