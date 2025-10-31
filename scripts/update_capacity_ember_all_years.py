@@ -37,9 +37,10 @@ logging.basicConfig(
 def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     """Update a zone's capacity configuration with all years from EMBER.
 
-    This function ONLY modifies the 'capacity' section of the zone YAML file,
-    leaving all other sections (emissionFactors, parsers, etc.) completely untouched
-    and preserving their original formatting.
+    This function REPLACES THE ENTIRE 'capacity' section with EMBER data only.
+    All existing capacity data from other sources (ENTSOE, manual entries, etc.)
+    will be removed. Other sections (emissionFactors, parsers, etc.) remain
+    completely untouched and preserve their original formatting.
 
     Args:
         zone_key: The zone key to update
@@ -64,14 +65,9 @@ def update_zone_with_all_years(zone_key: ZoneKey, capacity_data: dict) -> None:
     with open(zone_file, encoding="utf-8") as f:
         zone_config = yaml.load(f)
 
-    # Initialize capacity if it doesn't exist
-    if "capacity" not in zone_config:
-        zone_config["capacity"] = {}
-
-    # Replace EMBER capacity data
-    for mode, mode_data in capacity_data.items():
-        if mode_data:  # Only update if we have data
-            zone_config["capacity"][mode] = mode_data
+    # Replace entire capacity section with EMBER data
+    # This removes ALL existing capacity data (from any source) and writes only EMBER data
+    zone_config["capacity"] = capacity_data
 
     # Sort capacity keys
     zone_config["capacity"] = sort_config_keys(zone_config["capacity"])
