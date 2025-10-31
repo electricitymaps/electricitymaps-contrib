@@ -1,5 +1,5 @@
 from datetime import datetime
-from logging import getLogger
+import logging
 from time import sleep
 from typing import Any
 
@@ -14,7 +14,7 @@ from electricitymap.contrib.config.constants import ENERGIES
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 """ Collects capacity data from the yearly electricity data from Ember. The data and documentation can be found here: https://ember-climate.org/data-catalogue/yearly-electricity-data/"""
-logger = getLogger(__name__)
+logger = logging.getLogger(__name__)
 EMBER_URL = "https://ember-climate.org"
 SOURCE = "Ember, Yearly electricity data"
 START_YEAR = 2017
@@ -427,7 +427,7 @@ SPECIAL_MAPPING_ZONE_KEY = {
     "TZ": "Tanzania (the United Republic of)",
     "VI": "Virgin Islands (U.S.)",
 }
-if __name__ == "__main__":
+    # import logging  # Removed to avoid duplicate import style
     import logging
 
     from requests import Session
