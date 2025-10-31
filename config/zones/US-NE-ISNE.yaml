@@ -181,7 +181,13 @@ capacity:
       value: 403.0
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 563.0
+      value: 571.4
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 575.7
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 580.7
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -394,6 +400,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1896.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 1897.3
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -760,7 +769,16 @@ capacity:
       value: 3419.2
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 3432.9
+      value: 3479.8
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 3492.4
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 3496.9
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 3501.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -817,6 +835,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 1664.2
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 1723.0
 comment: Iso New England Inc.
 contributors:
   - systemcatch
@@ -824,6 +845,8 @@ contributors:
   - KabelWlan
   - alejandranavcas
 country: US
+country_name: USA
+currency: USD
 delays:
   production: 5
 emissionFactors:
@@ -941,10 +964,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1133.712784
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1141.09706
     gas:
       - datetime: '2020-01-01'
@@ -1166,4 +1191,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: ISO New England
-country_name: USA

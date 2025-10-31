@@ -33,7 +33,6 @@ const getConfig = (): CombinedZonesConfig => {
   const USED_CONFIG_FIELDS = new Set([
     'contributors',
     'disclaimer',
-    'estimation_method',
     'parsers',
     'subZoneNames',
     'generation_only',

@@ -62,6 +62,8 @@ contributors:
   - nessie2013
   - autipial
 country: AL
+country_name: Albania
+currency: ALL
 emissionFactors:
   lifecycle:
     hydro:
@@ -85,4 +87,3 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Europe/Tirane
 zone_name: Albania
-country_name: Albania

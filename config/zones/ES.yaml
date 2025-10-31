@@ -437,6 +437,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
+  # priceIntraday: ENTSOE.fetch_price_intraday # DO NOT USE, THIS IS FOR FUTURE USE CASES
   production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
@@ -462,3 +463,4 @@ sources:
 timezone: Europe/Madrid
 zone_name: Spain
 country_name: Spain
+currency: EUR

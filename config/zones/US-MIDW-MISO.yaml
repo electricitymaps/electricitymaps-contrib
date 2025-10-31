@@ -71,6 +71,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 412.0
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 616.9
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -183,6 +186,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 2163.8
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 2150.5
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -304,6 +310,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 46599.2
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 46306.2
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -508,7 +517,10 @@ capacity:
       value: 83097.3
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 83151.6
+      value: 83449.7
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 83698.0
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -991,7 +1003,16 @@ capacity:
       value: 15442.5
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 16253.0
+      value: 16263.0
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 16807.3
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 17064.3
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 17475.6
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1020,6 +1041,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 495.5
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 491.7
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1183,6 +1207,12 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 32482.1
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 32485.5
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 32629.5
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch
@@ -1190,6 +1220,8 @@ contributors:
   - KabelWlan
   - alejandranavcas
 country: US
+country_name: USA
+currency: USD
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -1309,10 +1341,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1076.354463
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1066.379379
     gas:
       - datetime: '2020-01-01'
@@ -1535,4 +1569,3 @@ sources:
 timezone: US/Central
 zone_name: Midcontinent ISO
 zone_short_name: MISO
-country_name: USA

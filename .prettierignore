@@ -5,7 +5,7 @@ pnpm-lock.yaml
 .earthlyignore
 
 .venv
-**/parsers/test/mocks
+**/parsers/tests/mocks
 .pytest_cache/
 
 mobileapp/android

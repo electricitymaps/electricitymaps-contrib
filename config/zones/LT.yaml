@@ -106,6 +106,9 @@ capacity:
     - datetime: '2025-08-04'
       source: litgrid.eu
       value: 2725
+    - datetime: '2025-10-13'
+      source: litgrid.eu
+      value: 2936
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -159,11 +162,16 @@ capacity:
     - datetime: '2025-08-04'
       source: litgrid.eu
       value: 1890
+    - datetime: '2025-10-13'
+      source: litgrid.eu
+      value: 2467
 contributors:
   - corradio
   - nessie2013
   - pnook
 country: LT
+country_name: Lithuania
+currency: EUR
 delays:
   production: 6
 emissionFactors:
@@ -535,4 +543,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Vilnius
 zone_name: Lithuania
-country_name: Lithuania

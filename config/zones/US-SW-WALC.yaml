@@ -47,6 +47,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1517.0
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 1599.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -127,13 +130,14 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the
-  zone definition wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
+  page.
 emissionFactors:
   direct:
     battery discharge:
@@ -222,10 +226,12 @@ emissionFactors:
         value: 511.56
     coal:
       - datetime: '2012-01-01'
-        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 817.120985
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 894.610985
     gas:
       - datetime: '2020-01-01'
@@ -419,4 +425,3 @@ sources:
 timezone: US/Arizona
 zone_name: Western Area Power Administration - Desert Southwest Region
 zone_short_name: WAPA Desert Southwest
-country_name: USA

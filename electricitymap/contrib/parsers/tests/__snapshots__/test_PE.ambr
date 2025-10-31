@@ -1,0 +1,1829 @@
+# serializer version: 1
+# name: test_fetch_production_with_target_datetime
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 57.9,
+        'coal': 0.0,
+        'gas': 2564.9,
+        'hydro': 2894.175,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 440.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.8,
+        'coal': 0.0,
+        'gas': 2562.1,
+        'hydro': 2791.586,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 398.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.4,
+        'coal': 0.0,
+        'gas': 2566.7,
+        'hydro': 2794.35,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 299.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.8,
+        'coal': 0.0,
+        'gas': 2609.8,
+        'hydro': 2757.581,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 227.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.1,
+        'coal': 0.0,
+        'gas': 2611.2,
+        'hydro': 2751.545,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 205.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.5,
+        'coal': 0.0,
+        'gas': 2605.8,
+        'hydro': 2764.811,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 195.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.2,
+        'coal': 0.0,
+        'gas': 2607.7,
+        'hydro': 2794.797,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 165.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.1,
+        'coal': 0.0,
+        'gas': 2607.7,
+        'hydro': 2812.719,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 143.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.7,
+        'coal': 0.0,
+        'gas': 2593.5,
+        'hydro': 2832.66,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 130.1,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 71.3,
+        'coal': 0.0,
+        'gas': 2624.3,
+        'hydro': 2792.109,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 119.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 73.3,
+        'coal': 0.0,
+        'gas': 2649.6,
+        'hydro': 2900.177,
+        'oil': 0.0,
+        'solar': 0.1,
+        'wind': 115.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.0,
+        'coal': 0.0,
+        'gas': 2661.8,
+        'hydro': 2977.049,
+        'oil': 0.0,
+        'solar': 17.5,
+        'wind': 116.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.9,
+        'coal': 0.0,
+        'gas': 2660.9,
+        'hydro': 2931.098,
+        'oil': 0.0,
+        'solar': 208.4,
+        'wind': 112.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 80.4,
+        'coal': 0.0,
+        'gas': 2660.9,
+        'hydro': 2618.37,
+        'oil': 0.0,
+        'solar': 472.2,
+        'wind': 97.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 80.4,
+        'coal': 0.0,
+        'gas': 2656.3,
+        'hydro': 2546.013,
+        'oil': 0.0,
+        'solar': 733.2,
+        'wind': 97.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.3,
+        'coal': 0.0,
+        'gas': 2652.6,
+        'hydro': 2680.726,
+        'oil': 0.0,
+        'solar': 798.3,
+        'wind': 99.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 76.4,
+        'coal': 0.0,
+        'gas': 2680.5,
+        'hydro': 2923.774,
+        'oil': 0.0,
+        'solar': 812.4,
+        'wind': 91.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 77.3,
+        'coal': 0.0,
+        'gas': 2732.5,
+        'hydro': 2863.517,
+        'oil': 0.0,
+        'solar': 825.7,
+        'wind': 104.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 75.3,
+        'coal': 0.0,
+        'gas': 2800.3,
+        'hydro': 2965.253,
+        'oil': 0.0,
+        'solar': 831.0,
+        'wind': 106.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 74.5,
+        'coal': 0.0,
+        'gas': 2853.4,
+        'hydro': 2925.418,
+        'oil': 0.0,
+        'solar': 830.9,
+        'wind': 137.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 72.7,
+        'coal': 0.0,
+        'gas': 2871.3,
+        'hydro': 2901.0,
+        'oil': 0.0,
+        'solar': 825.6,
+        'wind': 165.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 71.2,
+        'coal': 0.0,
+        'gas': 2861.5,
+        'hydro': 2769.1,
+        'oil': 0.0,
+        'solar': 870.9,
+        'wind': 182.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 74.8,
+        'coal': 0.0,
+        'gas': 2863.3,
+        'hydro': 2781.436,
+        'oil': 0.0,
+        'solar': 876.0,
+        'wind': 223.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 74.4,
+        'coal': 0.0,
+        'gas': 2860.5,
+        'hydro': 2782.444,
+        'oil': 0.0,
+        'solar': 880.5,
+        'wind': 276.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 76.6,
+        'coal': 0.0,
+        'gas': 2867.3,
+        'hydro': 2613.536,
+        'oil': 0.0,
+        'solar': 889.7,
+        'wind': 273.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.1,
+        'coal': 0.0,
+        'gas': 2868.6,
+        'hydro': 2595.605,
+        'oil': 0.0,
+        'solar': 902.3,
+        'wind': 297.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.2,
+        'coal': 0.0,
+        'gas': 2866.9,
+        'hydro': 2529.552,
+        'oil': 0.0,
+        'solar': 901.7,
+        'wind': 356.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.0,
+        'coal': 0.0,
+        'gas': 2869.0,
+        'hydro': 2427.856,
+        'oil': 0.0,
+        'solar': 897.3,
+        'wind': 378.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 77.7,
+        'coal': 0.0,
+        'gas': 2867.5,
+        'hydro': 2479.46,
+        'oil': 0.0,
+        'solar': 883.9,
+        'wind': 442.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 79.5,
+        'coal': 0.0,
+        'gas': 2877.0,
+        'hydro': 2450.538,
+        'oil': 0.0,
+        'solar': 870.8,
+        'wind': 519.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 80.1,
+        'coal': 0.0,
+        'gas': 2869.7,
+        'hydro': 2368.53,
+        'oil': 0.0,
+        'solar': 842.7,
+        'wind': 634.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.8,
+        'coal': 0.0,
+        'gas': 2878.8,
+        'hydro': 2329.748,
+        'oil': 0.0,
+        'solar': 778.3,
+        'wind': 646.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 82.1,
+        'coal': 0.0,
+        'gas': 2887.3,
+        'hydro': 2517.25,
+        'oil': 0.0,
+        'solar': 542.0,
+        'wind': 683.1,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.8,
+        'coal': 0.0,
+        'gas': 2892.4,
+        'hydro': 2812.631,
+        'oil': 0.0,
+        'solar': 231.8,
+        'wind': 686.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.0,
+        'coal': 0.0,
+        'gas': 2901.6,
+        'hydro': 3071.717,
+        'oil': 0.0,
+        'solar': 21.1,
+        'wind': 667.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 80.3,
+        'coal': 0.0,
+        'gas': 2899.0,
+        'hydro': 3037.118,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 649.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.0,
+        'coal': 0.0,
+        'gas': 2901.0,
+        'hydro': 3228.483,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 696.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.5,
+        'coal': 0.0,
+        'gas': 2899.3,
+        'hydro': 3158.956,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 755.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.6,
+        'coal': 0.0,
+        'gas': 2902.1,
+        'hydro': 3131.279,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 803.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.8,
+        'coal': 0.0,
+        'gas': 2902.2,
+        'hydro': 3087.98,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 797.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 81.4,
+        'coal': 0.0,
+        'gas': 2897.9,
+        'hydro': 3101.956,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 779.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 79.0,
+        'coal': 0.0,
+        'gas': 2895.6,
+        'hydro': 3072.529,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 772.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.4,
+        'coal': 0.0,
+        'gas': 2900.4,
+        'hydro': 2999.837,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 784.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 78.0,
+        'coal': 0.0,
+        'gas': 2901.7,
+        'hydro': 3036.871,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 751.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 79.3,
+        'coal': 0.0,
+        'gas': 2895.3,
+        'hydro': 2864.727,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 741.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 79.2,
+        'coal': 0.0,
+        'gas': 2777.6,
+        'hydro': 2714.683,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 741.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 9, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 79.4,
+        'coal': 0.0,
+        'gas': 2740.6,
+        'hydro': 2519.6,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 742.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 80.5,
+        'coal': 0.0,
+        'gas': 2700.0,
+        'hydro': 2453.267,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 681.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.2,
+        'coal': 0.0,
+        'gas': 2670.56,
+        'hydro': 2378.363,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 646.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.2,
+        'coal': 0.0,
+        'gas': 2669.26,
+        'hydro': 2359.61,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 594.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.5,
+        'coal': 0.0,
+        'gas': 2671.77,
+        'hydro': 2310.082,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 600.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.1,
+        'coal': 0.0,
+        'gas': 2679.3,
+        'hydro': 2204.907,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 588.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.5,
+        'coal': 0.0,
+        'gas': 2657.71,
+        'hydro': 2334.144,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 538.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.9,
+        'coal': 0.0,
+        'gas': 2654.28,
+        'hydro': 2465.332,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 468.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.6,
+        'coal': 0.0,
+        'gas': 2662.98,
+        'hydro': 2389.06,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 459.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.9,
+        'coal': 0.0,
+        'gas': 2673.53,
+        'hydro': 2230.464,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 511.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.7,
+        'coal': 0.0,
+        'gas': 2679.82,
+        'hydro': 2368.83,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 547.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.4,
+        'coal': 0.0,
+        'gas': 2684.58,
+        'hydro': 2321.968,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 563.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.6,
+        'coal': 0.0,
+        'gas': 2672.58,
+        'hydro': 2406.309,
+        'oil': 0.0,
+        'solar': 0.1,
+        'wind': 578.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.0,
+        'coal': 0.0,
+        'gas': 2684.68,
+        'hydro': 2508.268,
+        'oil': 0.0,
+        'solar': 20.5,
+        'wind': 687.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.4,
+        'coal': 0.0,
+        'gas': 2675.58,
+        'hydro': 2346.888,
+        'oil': 0.0,
+        'solar': 206.9,
+        'wind': 751.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.5,
+        'coal': 0.0,
+        'gas': 2578.63,
+        'hydro': 2262.673,
+        'oil': 0.0,
+        'solar': 474.5,
+        'wind': 762.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.6,
+        'coal': 0.0,
+        'gas': 2538.69,
+        'hydro': 2185.569,
+        'oil': 0.0,
+        'solar': 747.0,
+        'wind': 769.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.6,
+        'coal': 0.0,
+        'gas': 2452.1,
+        'hydro': 2310.064,
+        'oil': 0.0,
+        'solar': 822.2,
+        'wind': 758.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.4,
+        'coal': 0.0,
+        'gas': 2655.24,
+        'hydro': 2440.903,
+        'oil': 0.0,
+        'solar': 665.4,
+        'wind': 771.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.0,
+        'coal': 0.0,
+        'gas': 2653.51,
+        'hydro': 2547.51,
+        'oil': 0.0,
+        'solar': 681.1,
+        'wind': 777.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.6,
+        'coal': 0.0,
+        'gas': 2621.0,
+        'hydro': 2463.837,
+        'oil': 0.0,
+        'solar': 699.4,
+        'wind': 790.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.3,
+        'coal': 0.0,
+        'gas': 2608.77,
+        'hydro': 2335.952,
+        'oil': 0.0,
+        'solar': 834.2,
+        'wind': 802.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.2,
+        'coal': 0.0,
+        'gas': 2611.65,
+        'hydro': 2552.777,
+        'oil': 0.0,
+        'solar': 791.5,
+        'wind': 814.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.6,
+        'coal': 0.0,
+        'gas': 2597.83,
+        'hydro': 2656.748,
+        'oil': 0.0,
+        'solar': 795.2,
+        'wind': 819.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.3,
+        'coal': 0.0,
+        'gas': 2608.22,
+        'hydro': 2487.844,
+        'oil': 0.0,
+        'solar': 839.5,
+        'wind': 821.3,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.7,
+        'coal': 0.0,
+        'gas': 2616.86,
+        'hydro': 2523.757,
+        'oil': 0.0,
+        'solar': 897.0,
+        'wind': 833.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.9,
+        'coal': 0.0,
+        'gas': 2569.59,
+        'hydro': 2689.933,
+        'oil': 0.0,
+        'solar': 751.4,
+        'wind': 814.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.0,
+        'coal': 0.0,
+        'gas': 2588.21,
+        'hydro': 2438.571,
+        'oil': 0.0,
+        'solar': 785.2,
+        'wind': 805.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.6,
+        'coal': 0.0,
+        'gas': 2586.35,
+        'hydro': 2371.616,
+        'oil': 0.0,
+        'solar': 908.0,
+        'wind': 791.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.5,
+        'coal': 0.0,
+        'gas': 2561.61,
+        'hydro': 2425.157,
+        'oil': 0.0,
+        'solar': 903.0,
+        'wind': 783.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 64.0,
+        'coal': 0.0,
+        'gas': 2579.68,
+        'hydro': 2549.879,
+        'oil': 0.0,
+        'solar': 894.6,
+        'wind': 772.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 66.9,
+        'coal': 0.0,
+        'gas': 2590.0,
+        'hydro': 2480.17,
+        'oil': 0.0,
+        'solar': 876.9,
+        'wind': 776.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.4,
+        'coal': 0.0,
+        'gas': 2584.26,
+        'hydro': 2454.602,
+        'oil': 0.0,
+        'solar': 842.9,
+        'wind': 789.4,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.3,
+        'coal': 0.0,
+        'gas': 2472.79,
+        'hydro': 2666.166,
+        'oil': 0.0,
+        'solar': 772.2,
+        'wind': 796.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.1,
+        'coal': 0.0,
+        'gas': 2474.19,
+        'hydro': 2832.345,
+        'oil': 0.0,
+        'solar': 546.6,
+        'wind': 814.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.6,
+        'coal': 0.0,
+        'gas': 2608.84,
+        'hydro': 2966.63,
+        'oil': 0.0,
+        'solar': 230.1,
+        'wind': 833.1,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.3,
+        'coal': 0.0,
+        'gas': 2637.81,
+        'hydro': 3028.573,
+        'oil': 0.0,
+        'solar': 21.9,
+        'wind': 818.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.1,
+        'coal': 0.0,
+        'gas': 2647.85,
+        'hydro': 2981.944,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 813.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.9,
+        'coal': 0.0,
+        'gas': 2673.63,
+        'hydro': 3214.258,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 802.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.3,
+        'coal': 0.0,
+        'gas': 2673.53,
+        'hydro': 3249.182,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 810.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.8,
+        'coal': 0.0,
+        'gas': 2675.05,
+        'hydro': 3249.839,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 810.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.5,
+        'coal': 0.0,
+        'gas': 2671.28,
+        'hydro': 3288.65,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 778.8,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 68.6,
+        'coal': 0.0,
+        'gas': 2664.6,
+        'hydro': 3328.954,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 726.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.5,
+        'coal': 0.0,
+        'gas': 2674.22,
+        'hydro': 3334.196,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 684.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 67.6,
+        'coal': 0.0,
+        'gas': 2678.84,
+        'hydro': 3260.097,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 629.7,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.5,
+        'coal': 0.0,
+        'gas': 2677.01,
+        'hydro': 3225.619,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 603.0,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.5,
+        'coal': 0.0,
+        'gas': 2656.47,
+        'hydro': 3191.703,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 576.5,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 69.6,
+        'coal': 0.0,
+        'gas': 2625.7,
+        'hydro': 3173.034,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 477.2,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 10, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.4,
+        'coal': 0.0,
+        'gas': 2629.4,
+        'hydro': 2894.729,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 495.6,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 9, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'production': dict({
+        'biomass': 70.4,
+        'coal': 0.0,
+        'gas': 2629.3,
+        'hydro': 2713.826,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 586.9,
+      }),
+      'source': 'coes.org.pe',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'PE',
+    }),
+  ])
+# ---

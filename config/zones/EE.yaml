@@ -13,7 +13,10 @@ capacity:
       value: 121.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 176.0
+      value: 175.73999999999998
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 175.5
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 192.0
@@ -25,12 +28,15 @@ capacity:
       value: 169.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 167.0
+      value: 167.3
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 1976.0
     - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 1970.3
+    - datetime: '2020-01-01'
       source: entsoe.eu
       value: 1970.0
     - datetime: '2021-01-01'
@@ -45,16 +51,16 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 214.0
+      value: 214.4
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 204.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 176.0
+      value: 176.56
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 212.0
+      value: 212.2
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 172.0
@@ -66,10 +72,10 @@ capacity:
       value: 188.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 93.0
+      value: 93.7
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 92.0
+      value: 91.9
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -80,8 +86,11 @@ capacity:
       value: 8.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 7.0
+      value: 7.13
     - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 8.4
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 8.0
     - datetime: '2022-01-01'
@@ -104,7 +113,10 @@ capacity:
       value: 0.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 8.0
+      value: 7.87
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 7.9
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 0.0
@@ -117,13 +129,13 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 1.0
+      value: 1.4
     - datetime: '2019-01-01'
       source: entsoe.eu
       value: 33.0
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 123.0
+      value: 122.7
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 164.0
@@ -148,7 +160,10 @@ capacity:
       value: 5.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 12.0
+      value: 11.83
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 11.8
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 10.0
@@ -167,8 +182,11 @@ capacity:
       value: 487.0
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 462.0
+      value: 462.4
     - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 328.8
+    - datetime: '2021-01-01'
       source: entsoe.eu
       value: 329.0
     - datetime: '2022-01-01'
@@ -187,6 +205,8 @@ contributors:
   - corradio
   - nessie2013
 country: EE
+country_name: Estonia
+currency: EUR
 delays:
   production: 6
 emissionFactors:
@@ -564,4 +584,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Tallinn
 zone_name: Estonia
-country_name: Estonia

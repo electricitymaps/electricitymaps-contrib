@@ -1,0 +1,69 @@
+name: Create release
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Release type'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: master
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+      - name: Configure git
+        run: |
+          git config --global user.email "engineering+github@electricitymaps.com"
+          git config --global user.name "electricitymapsbot"
+      - uses: 'google-github-actions/auth@v3'
+        with:
+          project_id: 'tmrow-152415'
+          workload_identity_provider: 'projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib'
+          service_account: contrib-registry-writer@tmrow-152415.iam.gserviceaccount.com
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v3'
+        with:
+          version: '>= 363.0.0'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.10.13'
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry==2.1.1
+      - name: Bump version
+        run: |
+          poetry version ${{ inputs.type }}
+      - name: Commit changes
+        run: |
+          git add pyproject.toml
+          git commit -m "Bumps version"
+      - name: Push changes
+        uses: ad-m/github-push-action@v1.0.0
+        with:
+          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          branch: master
+      - name: Build package
+        run: |
+          poetry build
+      - name: Publish package
+        run: |
+          export ACCESS_TOKEN=$(gcloud auth print-access-token)
+          poetry config keyring.enabled false
+          poetry config repositories.internal https://europe-west1-python.pkg.dev/tmrow-152415/libs/
+          poetry publish --repository=internal --skip-existing --username=oauth2accesstoken --password "$ACCESS_TOKEN"

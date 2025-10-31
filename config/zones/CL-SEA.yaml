@@ -20,3 +20,4 @@ region: Americas
 timezone: America/Santiago
 zone_name: Sistema Eléctrico de Aysén
 country_name: Chile
+currency: CLP

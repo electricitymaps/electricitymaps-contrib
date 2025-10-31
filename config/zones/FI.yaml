@@ -62,6 +62,9 @@ capacity:
     - datetime: '2025-07-07'
       source: fingrid.fi
       value: 1485
+    - datetime: '2025-10-15'
+      source: fingrid.fi
+      value: 1512
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -91,6 +94,9 @@ capacity:
     - datetime: '2025-07-07'
       source: fingrid.fi
       value: 8885
+    - datetime: '2025-10-15'
+      source: fingrid.fi
+      value: 9237
 contributors:
   - corradio
   - nessie2013
@@ -471,3 +477,4 @@ sources:
 timezone: Europe/Helsinki
 zone_name: Finland
 country_name: Finland
+currency: EUR

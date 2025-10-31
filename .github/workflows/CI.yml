@@ -26,7 +26,7 @@ jobs:
       workflows: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2
       - name: Check which files have changed
@@ -52,13 +52,13 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -100,9 +100,9 @@ jobs:
     timeout-minutes: 1
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Install jsonlint-mod
@@ -121,9 +121,9 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Run translation out of sync script
@@ -138,9 +138,9 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Run escaped quotes script
@@ -162,13 +162,13 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -202,13 +202,13 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -241,7 +241,7 @@ jobs:
           --output-file eslint-results.sarif
         continue-on-error: true
       - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: web/eslint-results.sarif
           wait-for-processing: true
@@ -259,13 +259,13 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -298,13 +298,13 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -331,13 +331,13 @@ jobs:
         working-directory: web
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
@@ -354,7 +354,7 @@ jobs:
       - name: Build Storybook
         run: pnpm run storybook:build
       - name: Upload Storybook artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.ref_name == 'master' || github.event_name == 'pull_request'
         with:
           name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
@@ -379,13 +379,13 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: './web/.node-version'
       - name: Install ts-node
@@ -424,7 +424,7 @@ jobs:
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: component-screenshots
@@ -437,13 +437,13 @@ jobs:
   #   timeout-minutes: 10
   #   steps:
   #     - name: Checkout
-  #       uses: actions/checkout@v4
+  #       uses: actions/checkout@v5
   #     - name: Setup PNPM
   #       uses: pnpm/action-setup@v4
   #       with:
   #         version: 9
   #     - name: Setup Node
-  #       uses: actions/setup-node@v4
+  #       uses: actions/setup-node@v6
   #       with:
   #         node-version-file: './web/.node-version'
   #     - name: Cache Cypress binary
@@ -477,7 +477,7 @@ jobs:
   #         start: pnpm run preview
   #         config: baseUrl=http://127.0.0.1:4173/
   #     - name: Upload screenshots
-  #       uses: actions/upload-artifact@v4
+  #       uses: actions/upload-artifact@v5
   #       if: failure()
   #       with:
   #         name: e2e-screenshots
@@ -494,7 +494,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install poetry
         run: |
           pipx install "poetry==2.*"
@@ -503,7 +503,7 @@ jobs:
         run: |
           echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Restore cache
@@ -535,7 +535,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install poetry
         run: |
           pipx install "poetry==2.*"
@@ -544,7 +544,7 @@ jobs:
         run: |
           echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version-file: '.python-version'
       - name: Restore cache
@@ -577,7 +577,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Validate config filenames
         run: python scripts/validate_config_filenames.py
 

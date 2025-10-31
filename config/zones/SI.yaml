@@ -11,19 +11,19 @@ capacity:
       value: 57.0
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 61.0
+      value: 61.3
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 20.0
+      value: 20.200000000000003
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 47.0
+      value: 47.43
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 49.0
+      value: 49.7
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 39.0
+      value: 39.010000000000005
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -36,26 +36,29 @@ capacity:
       value: 981.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1191.0
+      value: 1190.5
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 491.0
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 546.0
+      value: 545.76
     - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 548.37
+    - datetime: '2022-01-01'
       source: entsoe.eu
       value: 548.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 618.0
+      value: 618.02
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 756.0
+      value: 756.04
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 764.0
+      value: 764.4
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -66,19 +69,19 @@ capacity:
       value: 1053.0
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 1111.0
+      value: 1110.58
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 1125.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1129.0
+      value: 1128.94
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 1125.0
+      value: 1125.24
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 1146.0
+      value: 1145.54
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -106,22 +109,22 @@ capacity:
       value: 266.0
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 275.0
+      value: 275.34
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 278.0
+      value: 277.62
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 459.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 702.0
+      value: 702.4
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 1110.0
+      value: 1109.53
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 1411.0
+      value: 1411.46
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -136,15 +139,26 @@ capacity:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 3.0
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 3.31
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 3.29
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 3.3
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 2.0
+      value: 2.39
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3.0
+      value: 3.25
 contributors:
   - corradio
 country: SI
+country_name: Slovenia
+currency: EUR
 delays:
   production: 7
 emissionFactors:
@@ -524,4 +538,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Ljubljana
 zone_name: Slovenia
-country_name: Slovenia

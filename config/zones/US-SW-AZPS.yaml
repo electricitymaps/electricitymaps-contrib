@@ -38,6 +38,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 2161.8
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 2236.8
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -155,6 +158,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 2189.3
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 2489.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -175,6 +181,8 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
+currency: USD
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -284,10 +292,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1072.158303
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1047.8344789999999
     gas:
       - datetime: '2020-01-01'
@@ -486,4 +496,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
 zone_name: Arizona Public Service Company
-country_name: USA

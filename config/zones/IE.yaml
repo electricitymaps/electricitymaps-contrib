@@ -479,3 +479,4 @@ sources:
 timezone: Europe/Dublin
 zone_name: Ireland
 country_name: Ireland
+currency: EUR

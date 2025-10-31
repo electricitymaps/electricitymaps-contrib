@@ -22,6 +22,8 @@ capacity:
 contributors:
   - veqtrus
 country: XK
+country_name: Kosovo
+currency: EUR
 delays:
   production: 8
 emissionFactors:
@@ -217,4 +219,3 @@ parsers:
 region: Europe
 timezone: Europe/Belgrade
 zone_name: Kosovo
-country_name: Kosovo

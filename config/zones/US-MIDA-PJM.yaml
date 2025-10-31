@@ -89,6 +89,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 418.8
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 419.9
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -213,6 +216,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 2008.5
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 2011.7
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -524,6 +530,15 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 104742.5
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 104358.5
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 104356.5
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 104359.1
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1000,7 +1015,16 @@ capacity:
       value: 15855.9
     - datetime: '2025-05-01'
       source: EIA.gov
-      value: 15885.8
+      value: 15974.3
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 16051.2
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 16282.4
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 16309.7
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1117,6 +1141,8 @@ contributors:
   - VIKTORVAV99
   - alejandranavcas
 country: US
+country_name: USA
+currency: USD
 delays:
   production: 7
 emissionFactors:
@@ -1234,10 +1260,12 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1049.3545804
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1056.79065
     gas:
       - datetime: '2020-01-01'
@@ -1444,7 +1472,6 @@ parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
   gridAlerts: US_PJM.fetch_grid_alerts
-  price: US_PJM.fetch_price
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_PJM.fetch_wind_solar_forecasts
@@ -1461,4 +1488,3 @@ sources:
 timezone: America/New_York
 zone_name: PJM Interconnection
 zone_short_name: PJM
-country_name: USA

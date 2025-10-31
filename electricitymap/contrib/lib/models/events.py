@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.config import ProductionModes, StorageModes
+from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -544,7 +544,7 @@ class TotalProduction(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "generation": self.value,
+            "value": self.value,
             "source": self.source,
             "sourceType": self.sourceType,
         }

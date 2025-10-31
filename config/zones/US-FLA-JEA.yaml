@@ -90,6 +90,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -195,7 +196,8 @@ emissionFactors:
         value: 277.252
     coal:
       datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
       value: 880.658933
     gas:
       - datetime: '2020-01-01'
@@ -412,4 +414,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: Jacksonville Electric Authority
-country_name: USA

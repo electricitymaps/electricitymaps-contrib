@@ -77,9 +77,6 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 8442.1
-    - datetime: '2025-05-01'
-      source: EIA.gov
-      value: 7759.3
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -109,9 +106,6 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 0.0
-    - datetime: '2025-05-01'
-      source: EIA.gov
-      value: 163.2
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -172,13 +166,14 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all electricity production from the generation-only balancing authorities Arlington Valley, LLC - AVBA and New
-  Harquahala Generating Company, LLC - HGBA. Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only
+  balancing authorities Arlington Valley, LLC - AVBA and New Harquahala Generating
+  Company, LLC - HGBA. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -472,4 +467,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Arizona
 zone_name: Salt River Project
-country_name: USA

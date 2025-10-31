@@ -100,6 +100,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -198,10 +199,12 @@ emissionFactors:
         value: 854.24
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1040.9717968
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+          of coal power generation."
         value: 1043.382738
     gas:
       - datetime: '2020-01-01'
@@ -413,4 +416,3 @@ sources:
 timezone: US/Central
 zone_name: Louisville Gas and Electric Company and Kentucky Utilities
 zone_short_name: Louisville Gas And Electric Company
-country_name: USA

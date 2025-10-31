@@ -188,6 +188,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 1936.9
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 2011.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -205,6 +208,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -547,4 +551,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
 zone_name: Duke Energy Florida
-country_name: USA

@@ -7,62 +7,70 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 270.0
+      value: 270.2
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 252.0
+      value: 252.44
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 256.0
+      value: 256.4
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 5105.0
+      value: 5104.429999999999
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 5272.0
+      value: 5272.389999999999
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 5304.0
+      value: 5304.209999999999
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 5345.0
+      value: 5344.879999999999
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 5473.0
+      value: 5473.23
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 5487.0
+      value: 5487.150000000001
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 5594.0
+      value: 5593.219999999999
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 5636.0
+      value: 5636.5
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 77.0
+      value: 77.28
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 77.3
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 209.0
+      value: 208.65
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 226.0
+      value: 226.05
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 654.0
+      value: 654.45
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 1151.0
+      value: 1150.75
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1160.0
+      value: 1159.95
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 1160.1
 country: 'NO'
+country_name: Norway
+currency: EUR
 delays:
   production: 7
 emissionFactors:
@@ -361,4 +369,3 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
 zone_name: North Norway
-country_name: Norway
