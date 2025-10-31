@@ -21,7 +21,7 @@ START_YEAR = 2017
 SPECIFIC_MODE_MAPPING = {
     "AR": {"other fossil": "unknown"},
     "BD": {"other fossil": "oil"},
-    "BO": {"other fossil": "oil", "gas": "gas"},
+    "BO": {"other fossil": "oil"},
     "CO": {"other fossil": "oil"},
     "CR": {"other fossil": "oil", "other renewables": "geothermal"},
     "CY": {"other fossil": "oil"},
