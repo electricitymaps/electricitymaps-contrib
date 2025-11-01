@@ -1,9 +1,9 @@
 # serializer version: 1
-# name: test_fetch_exchange_actual_at
+# name: test_fetch_exchange[AT]
   list([
   ])
 # ---
-# name: test_fetch_exchange_actual_de
+# name: test_fetch_exchange[DE]
   list([
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
@@ -1358,7 +1358,7 @@
     }),
   ])
 # ---
-# name: test_fetch_exchange_actual_pl
+# name: test_fetch_exchange[PL]
   list([
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
