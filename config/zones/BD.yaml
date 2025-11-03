@@ -104,9 +104,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 850.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+    - _comment: https://en.powerchina.cn/2023-10/13/c_828590.htm
+      datetime: '2023-10-12'
+      source: POWERCHINA
+      value: 66.0
 contributors:
   - systemcatch
   - alixunderplatz
