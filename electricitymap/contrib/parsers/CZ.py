@@ -103,7 +103,6 @@ def __get_exchange_data(
     content = make_request(session, payload, zone_key1).text
     xml = BeautifulSoup(content, "xml")
     mapper = get_mapper(xml)
-
     data_tag = xml.find("data")
     exchanges = ExchangeList(logger)
 
@@ -132,7 +131,7 @@ def __get_exchange_data(
 
     else:
         zone_key = f"{zone_key1}->{zone_key2}"
-        ParserException(
+        raise ParserException(
             "CZ.py",
             f"There was no data returned for {zone_key1} and {zone_key2} at {target_datetime}",
             zone_key,
