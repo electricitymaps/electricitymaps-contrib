@@ -1,4 +1,6 @@
 country: MG
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Antananarivo
 zone_name: Madagascar

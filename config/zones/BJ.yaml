@@ -1,44 +1,38 @@
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 0.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 127.0
+      source: Ember, Yearly electricity data
+      value: 130.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.5
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 200.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 174.0
+      source: Ember, Yearly electricity data
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2.44
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 2.59
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 3.81
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 4.85
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 6.02
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 33.38
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
 country: BJ
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Porto-Novo
 zone_name: Benin

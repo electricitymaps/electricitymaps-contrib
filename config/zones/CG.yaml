@@ -6,39 +6,33 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 12.2
+      source: Ember, Yearly electricity data
+      value: 10.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 364.0
+      source: Ember, Yearly electricity data
+      value: 310.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 534.0
+      source: Ember, Yearly electricity data
+      value: 480.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 530.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 213.9
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 62.66
+      source: Ember, Yearly electricity data
+      value: 210.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.06
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 0.52
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.56
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 0.64
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: CG
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Brazzaville
 zone_name: Congo

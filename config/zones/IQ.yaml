@@ -3,7 +3,50 @@ bounding_box:
     - 28.56313669900004
   - - 49.059255405000044
     - 37.562000619000116
-capacity: {}
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20080.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20330.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 21670.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 25970.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 27510.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 32560.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 34030.0
+  hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1560.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10930.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10990.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11290.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 12120.0
 contributors:
   - alixunderplatz
   - systemcatch
@@ -72,6 +115,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baghdad
 zone_name: Iraq

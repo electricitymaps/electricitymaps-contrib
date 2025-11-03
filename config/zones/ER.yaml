@@ -1,37 +1,28 @@
 capacity:
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 205.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 206.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 23.35
+      source: Ember, Yearly electricity data
+      value: 20.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 25.86
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 25.92
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 25.91
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 25.13
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 24.79
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.83
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: ER
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Asmara
 zone_name: Eritrea

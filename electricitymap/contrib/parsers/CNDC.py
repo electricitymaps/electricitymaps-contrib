@@ -8,6 +8,8 @@ from zoneinfo import ZoneInfo
 
 from requests import Session
 
+from electricitymap.contrib.config import CONFIG_DIR
+from electricitymap.contrib.config.reading import read_zones_config
 from electricitymap.contrib.lib.models.event_lists import (
     EventSourceType,
     ProductionBreakdownList,
@@ -18,6 +20,11 @@ from electricitymap.contrib.lib.types import ZoneKey
 
 tz_bo = ZoneInfo("America/La_Paz")
 
+ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
+gas_oil_ratio = ZONES_CONFIG["BO"]["capacity"]["gas"][-1]["value"] / (
+    ZONES_CONFIG["BO"]["capacity"]["gas"][-1]["value"]
+    + ZONES_CONFIG["BO"]["capacity"]["oil"][-1]["value"]
+)
 INDEX_URL = "https://www.cndc.bo/gene/index.php"
 DATA_URL = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
 SOURCE = "cndc.bo"
@@ -106,9 +113,9 @@ def parser_production_breakdown(
                 solar=solar,
                 wind=wind,
                 biomass=bagasse,
-                # NOTE: thermo includes gas + oil mixed, so we set these as unknown for now
-                # The modes here should match the ones we extract in the production payload
-                unknown=total - (hydro + solar + wind + bagasse),
+                gas=round(thermo * gas_oil_ratio, 3),
+                oil=round(thermo * (1 - gas_oil_ratio), 3),
+                unknown=round(total - thermo - hydro - solar - wind - bagasse, 3),
             ),
             source=SOURCE,
         )
@@ -148,5 +155,5 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
 
-    print("fetch_generation_forecast() ->")
-    print(fetch_generation_forecast())
+    # print("fetch_generation_forecast() ->")
+    # print(fetch_generation_forecast())

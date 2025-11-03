@@ -6,64 +6,61 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 25.0
+      source: Ember, Yearly electricity data
+      value: 50.0
   coal:
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 125.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 160.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 133.5
+      source: Ember, Yearly electricity data
+      value: 130.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 162.9
+      source: Ember, Yearly electricity data
+      value: 160.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 282.9
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 570.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 690.8
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 680.8
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 683.25
+      source: Ember, Yearly electricity data
+      value: 280.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 103.66
+      source: Ember, Yearly electricity data
+      value: 90.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 146.61
+      source: Ember, Yearly electricity data
+      value: 130.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 170.75
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 171.37
+      source: Ember, Yearly electricity data
+      value: 160.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 238.85
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 262.34
-  wind:
+      source: Ember, Yearly electricity data
+      value: 230.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 570.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 690.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 55.2
+      source: Ember, Yearly electricity data
+      value: 680.0
+  wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 158.7
+      source: Ember, Yearly electricity data
+      value: 160.0
 country: SN
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Dakar
 zone_name: Senegal

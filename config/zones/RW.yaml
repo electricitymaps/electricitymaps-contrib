@@ -1,58 +1,43 @@
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.84
+      source: Ember, Yearly electricity data
+      value: 0.0
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 15.0
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2022-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 50.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 25.0
+      source: Ember, Yearly electricity data
+      value: 30.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 98.13
+      source: Ember, Yearly electricity data
+      value: 100.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 109.0
+      source: Ember, Yearly electricity data
+      value: 110.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 118.82
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 124.16
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 74.14
+      source: Ember, Yearly electricity data
+      value: 120.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 16.85
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 18.54
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 22.05
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 23.65
+      source: Ember, Yearly electricity data
+      value: 20.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 25.01
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 26.32
+      source: Ember, Yearly electricity data
+      value: 30.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
 country: RW
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kigali
 zone_name: Rwanda
