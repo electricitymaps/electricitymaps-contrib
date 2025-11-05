@@ -167,6 +167,9 @@ def parser_production_breakdown(
         if total is None or None in modes_extracted:
             continue
 
+        unknown_value = round(total - thermo - hydro - solar - wind - bagasse, 3)
+        unknown_value = None if abs(unknown_value) < 0.05 else unknown_value
+
         result.append(
             zoneKey=zone_key,
             datetime=timestamp,
@@ -177,7 +180,7 @@ def parser_production_breakdown(
                 biomass=bagasse,
                 gas=round(thermo * gas_oil_ratio, 3),
                 oil=round(thermo * (1 - gas_oil_ratio), 3),
-                unknown=round(total - thermo - hydro - solar - wind - bagasse, 3),
+                unknown=unknown_value,
             ),
             source=SOURCE,
         )
