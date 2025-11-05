@@ -17,6 +17,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalProductionList,
 )
 from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.parsers.lib.config import use_proxy
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 tz_bo = ZoneInfo("America/La_Paz")
@@ -184,6 +185,7 @@ def parser_production_breakdown(
     return result
 
 
+@use_proxy(country_code="BO")
 def fetch_production(
     zone_key: ZoneKey = ZoneKey("BO"),
     session: Session | None = None,
