@@ -99,17 +99,10 @@
     "now": "Ahora"
   },
   "estimation-badge": {
-    "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "No disponible"
   },
   "estimation-card": {
     "link": "Más información sobre nuestros modelos de estimación",
-    "estimated_generic_method": {
-      "title": "Los datos son estimados",
-      "pill": "Datos imprecisos",
-      "body": "Los datos publicados para esta zona no están disponibles o están incompletos. Los datos mostrados en el mapa han sido estimados mediante nuestros modelos de estimación, pudiendo diferir de los valores reales."
-    },
     "threshold_filtered": {
       "title": "Datos no disponibles",
       "pill": "Interrupción",
@@ -1275,7 +1268,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Estados Unidos contiguos"
+      "zoneName": "Estados Unidos"
     },
     "US-CAL-BANC": {
       "countryName": "Estados Unidos",

@@ -1,21 +1,29 @@
 {
   "info": {
     "version": "Wersja aplikacji: {{version}}",
-    "share-app": "Podziel się aplikacją:"
+    "share-app": "Podziel się aplikacją:",
+    "title": "Informacje o Electricity Maps",
+    "text": "To platforma API, która udostępnia dane o zużyciu energii elektrycznej w czasie rzeczywistym i prognozowanym, umożliwiając urządzeniom ograniczenie kosztów i emisji poprzez informowanie o najlepszym czasie na zużycie prądu."
   },
   "settings-modal": {
-    "title": "Ustawienia"
+    "title": "Ustawienia",
+    "flows": "Przepływy energii elektrycznej",
+    "flow-tracing-link-label": "Śledzenie przepływu",
+    "flow-tracing-link-description": "pokazuje, jak energia elektryczna przekazywana jest przez połączenia między różnymi strefami",
+    "home-link-description": "oferuje API dostarczające dane z sieci energetycznej w czasie rzeczywistym i prognozowane.",
+    "weather-layers-disallowed": "Dane pogodowe niedostępne dla tej agregacji - przełącz na tryb na żywo, aby zobaczyć aktualne dane pogodowe"
   },
   "ranking-panel": {
     "title": "Wpływ na klimat według obszaru",
     "subtitle": "Podział według intensywności emisji dwutlenku węgla w zużytej energii elektrycznej (gCO₂eq/kWh)",
-    "search": "Szukaj"
+    "search": "Szukaj",
+    "no-results": "Nic nie znaleziono. Spróbuj wyszukać czegoś innego."
   },
   "button": {
     "reddit": "Dołącz do r/electricitymaps",
     "github": "Współtwórz na GitHub",
-    "twitter": "Śledź nas na Twitter",
-    "twitter-share": "Podziel się na Twitter",
+    "twitter": "Śledź nas na X (Twitter)",
+    "twitter-share": "Podziel się na X (Twitter)",
     "linkedin": "Śledź nas na LinkedIn",
     "linkedin-share": "Udostępnij na LinkedIn",
     "facebook": "Śledź nas na Facebook",
@@ -23,7 +31,11 @@
     "feedback": "Podziel się opinią",
     "faq": "FAQ",
     "privacy-policy": "Polityka prywatności",
-    "legal-notice": "Informacja prawna"
+    "legal-notice": "Informacja prawna",
+    "bluesky-share": "Sprawdź dane o globalnych emisjach energii elektrycznej w czasie rzeczywistym: {{baseUrl}}",
+    "reddit-share": "Udostępnij na Reddit",
+    "api": "Dostęp do API",
+    "docs": "Dokumentacja API"
   },
   "mobile-main-menu": {
     "map": "Electricity Maps",
@@ -145,18 +157,11 @@
     "submit": "Prześlij"
   },
   "estimation-badge": {
-    "partially-estimated": "Częściowo oszacowane",
-    "fully-estimated": "Oczacowane",
     "outage": "Niedostępne"
   },
   "estimation-card": {
     "link": "Dowiedz się więcej o naszych modelach estymacji.",
     "outage-details": "Zobacz szczegóły",
-    "estimated_generic_method": {
-      "title": "Dane są szacowane",
-      "pill": "Niedokładne",
-      "body": "Opublikowane dane dla tej strefy są niedostępne lub niekompletne. Dane pokazane na mapie są szacowane według naszych najlepszych starań, ale mogą różnić się od rzeczywistych wartości."
-    },
     "threshold_filtered": {
       "title": "Brakujące dane",
       "pill": "Brak danych",
@@ -193,56 +198,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Godzinowa intensywność węglowa",
+      "24h": "Intensywność węglowa",
+      "72h": "Intensywność węglowa",
       "3mo": "Dzienne intensywność węglowa",
       "12mo": "Miesięczna intensywność węglowa",
       "all_months": "Miesięczna intensywność węglowa",
       "all_years": "Roczna intensywność węglowa"
     },
     "emissions": {
-      "72h": "Godzinowe emisje dwutlenku węgla",
+      "24h": "Emisje dwutlenku węgla",
+      "72h": "Emisje dwutlenku węgla",
       "3mo": "Dzienne emisje dwutlenku węgla",
       "12mo": "Miesięczne emisje dwutlenku węgla",
       "all_months": "Miesięczne emisje dwutlenku węgla",
       "all_years": "Roczne emisje dwutlenku węgla"
     },
     "emissionsorigin": {
-      "72h": "Godzinowe pochodzenie emisji dwutlenku węgla",
+      "24h": "Pochodzenie emisji dwutlenku węgla",
+      "72h": "Pochodzenie emisji dwutlenku węgla",
       "3mo": "Dzienne pochodzenie emisji dwutlenku węgla",
       "12mo": "Miesięczne pochodzenie emisji dwutlenku węgla",
       "all_months": "Miesięczne pochodzenie emisji dwutlenku węgla",
       "all_years": "Roczne pochodzenie emisji dwutlenku węgla"
     },
     "emissionsproduction": {
-      "72h": "Godzinowe emisje z produkcji",
+      "24h": "Emisje z produkcji",
+      "72h": "Emisje z produkcji",
       "3mo": "Dzienne emisje z produkcji",
       "12mo": "Miesięczne emisje z produkcji",
       "all_months": "Miesięczne emisje z produkcji",
       "all_years": "Roczne emisje z produkcji"
     },
     "electricityorigin": {
-      "72h": "Godzinowe pochodzenie energii elektrycznej",
+      "24h": "Pochodzenie energii elektrycznej",
+      "72h": "Pochodzenie energii elektrycznej",
       "3mo": "Dzienne pochodzenie energii elektrycznej",
       "12mo": "Miesięczne pochodzenie energii elektrycznej",
       "all_months": "Miesięczne pochodzenie energii elektrycznej",
       "all_years": "Roczne pochodzenie energii elektrycznej"
     },
     "electricityproduction": {
-      "72h": "Godzinowa produkcja energii elektrycznej",
+      "24h": "Produkcja energii elektrycznej",
+      "72h": "Produkcja energii elektrycznej",
       "3mo": "Dzienne produkcja energii elektrycznej",
       "12mo": "Miesięczna produkcja energii elektrycznej",
       "all_months": "Miesięczna produkcja energii elektrycznej",
       "all_years": "Roczna produkcja energii elektrycznej"
     },
     "electricityprices": {
-      "72h": "Godzinowe ceny energii elektrycznej",
+      "24h": "Ceny energii elektrycznej",
+      "72h": "Ceny energii elektrycznej",
       "3mo": "Dzienne ceny energii elektrycznej",
       "12mo": "Miesięczne ceny energii elektrycznej",
       "all_months": "Miesięczne ceny energii elektrycznej",
       "all_years": "Roczne ceny energii elektrycznej"
     },
     "netExchange": {
-      "72h": "Godzinowa wymiana netto",
+      "24h": "Wymiana netto",
+      "72h": "Wymiana netto",
       "3mo": "Dzienne wymiana netto",
       "12mo": "Miesięczna wymiana netto",
       "all_months": "Miesięczna wymiana netto",
@@ -259,7 +272,7 @@
   "legends": {
     "windpotential": "Potencjał wiatrowy",
     "solarpotential": "Potencjał słoneczny",
-    "colorblindmode": "tryb dla daltonistów",
+    "colorblindmode": "Tryb dla daltonistów",
     "carbonintensity": "Emisja CO₂"
   },
   "tooltips": {
@@ -278,6 +291,7 @@
     "withcarbonintensity": "z emisją CO₂",
     "zoomIn": "Powiększ",
     "zoomOut": "Pomniejsz",
+    "layers": "Warstwy mapy",
     "showWindLayer": "Pokaż warstwę wiatru",
     "hideWindLayer": "Ukryj warstwę wiatru",
     "showSolarLayer": "Pokaż warstwę słoneczną",
@@ -295,8 +309,11 @@
     "dataIsDelayed": "Dane są opóźnione",
     "price": "Cena",
     "netExchange": "Wymiana netto",
+    "load": "Pobór mocy",
     "importing": "Import",
-    "exporting": "Eksport"
+    "exporting": "Eksport",
+    "flowTraced": "Dane śledzące przepływ uwzględniają fizyczny przepływ energii elektrycznej",
+    "nonFlowTraced": "Dane bez śledzenia przepływu nie uwzględniają importu i eksportu"
   },
   "aria": {
     "label": {
@@ -306,7 +323,10 @@
       "solarLayer": "Warstwa słoneczna",
       "changeTheme": "Zmień motyw",
       "hideSidePanel": "Ukryj panel boczny",
-      "showSidePanel": "Pokaż panel boczny"
+      "showSidePanel": "Pokaż panel boczny",
+      "layers": "Warstwy mapy",
+      "zoomIn": "Powiększ",
+      "zoomOut": "Pomniejsz"
     }
   },
   "aggregateButtons": {
@@ -1519,7 +1539,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Contiguous United States"
+      "zoneName": "United States"
     },
     "US-AK": {
       "countryName": "USA",
@@ -1790,6 +1810,43 @@
     },
     "YT": {
       "zoneName": "Majotta"
+    }
+  },
+  "experiment": {
+    "5min": {
+      "title": "Nowa funkcjonalność: rozdzielczość 5-minutowa",
+      "description": "Funkcjonalność eksperymentalna. Dostępna bez dodatkowych opłat, gdy zbieramy opinie i dopracowujemy funkcje."
+    },
+    "feedbackCta": "Podziel się swoją opinią"
+  },
+  "more-options-dropdown": {
+    "title": "Udostępnij",
+    "download": "Pobierz CSV",
+    "chart-title": "Udostępnij wykres",
+    "zone-title": "Udostępnij obszar",
+    "mobile-share-via": "Udostępnij za pomocą",
+    "copy-link": "Skopiuj link",
+    "copy-chart-link": "Skopiuj link do wykresu",
+    "copy-zone-link": "Skopiuj link to obszaru",
+    "preliminary-data": "Wstępne dane mogą się z czasem zmieniać.",
+    "summary": "Odkryj dane o energii elektrycznej w czasie rzeczywistym dzięki aplikacji Electricity Maps!"
+  },
+  "new-feature-popover": {
+    "title": "Nowa funkcjonalność: widok 72-godzinny",
+    "content": "Poznaj trendy w danych na żywo i historycznych dzięki nowemu 72-godzinnemu oknu czasowemu."
+  },
+  "time-controller": {
+    "24h": "24 godziny",
+    "72h": "72 godziny",
+    "3mo": "90 dni",
+    "12mo": "12 miesięcy",
+    "all_months": "Wszystkie miesiące",
+    "all_years": "Wszystkie lata",
+    "navigate": "Nawiguj",
+    "live": "Na żywo",
+    "date-unavailable": {
+      "title": "Data niedostępna",
+      "description": "Przekierowanie do danych na żywo."
     }
   }
 }

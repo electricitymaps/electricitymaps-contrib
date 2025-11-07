@@ -297,3 +297,6 @@ subZoneNames:
   - FO-MI
   - FO-SI
 timezone: Atlantic/Faroe
+zone_name: Faroe Islands
+country_name: Faroe Islands
+currency: DKK

@@ -19,13 +19,16 @@ capacity:
       value: 4070.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 4280.0
+      value: 4490.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 4420.0
+      value: 4500.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 4520.0
+      value: 4430.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4350.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -36,25 +39,28 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 30560.0
+      value: 30120.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 31470.0
+      value: 31030.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 32090.0
+      value: 31640.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 32350.0
+      value: 31680.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 33600.0
+      value: 32930.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 36490.0
+      value: 35260.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 37800.0
+      value: 36110.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 38060.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -62,6 +68,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 3110.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3130.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -72,15 +81,18 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 2990.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 2980.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 3070.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 3190.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 3300.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 3380.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -94,6 +106,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 1550.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1540.0
 contributors:
   - PPsyrius
 country: TH
@@ -317,3 +332,6 @@ sources:
   EPPO:
     link: https://www.eppo.go.th/index.php/en/en-energystatistics/co2-statistic
 timezone: Asia/Bangkok
+zone_name: Thailand
+country_name: Thailand
+currency: THB

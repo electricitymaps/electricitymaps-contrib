@@ -8,5 +8,9 @@ contributors:
 country: SA
 parsers:
   consumption: GCCIA.fetch_consumption
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Riyadh
+zone_name: Saudi Arabia
+country_name: Saudi Arabia
+currency: SAR

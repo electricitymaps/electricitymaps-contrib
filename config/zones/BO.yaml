@@ -16,7 +16,7 @@ capacity:
       value: 190.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 250.0
+      value: 270.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -35,7 +35,7 @@ capacity:
       value: 1620.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2550.0
+      value: 2650.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -46,20 +46,10 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 740.0
-  solar:
-    - datetime: '2017-01-01'
+    - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
-  unknown:
+      value: 720.0
+  oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 140.0
@@ -77,7 +67,23 @@ capacity:
       value: 140.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 130.0
+      value: 40.0
+  solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 170.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -312,3 +318,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/La_Paz
+zone_name: Bolivia
+country_name: Bolivia
+currency: BOB

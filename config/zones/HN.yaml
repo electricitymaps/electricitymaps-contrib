@@ -22,9 +22,6 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -60,13 +57,13 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 800.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 840.0
+      value: 770.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 920.0
+      value: 860.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 910.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -279,3 +276,5 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Tegucigalpa
+zone_name: Honduras
+country_name: Honduras

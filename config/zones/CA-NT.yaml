@@ -6,3 +6,6 @@ bounding_box:
 country: CA
 region: Americas
 timezone: America/Yellowknife
+zone_name: Northwest Territories
+country_name: Canada
+currency: CAD

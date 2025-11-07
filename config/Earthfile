@@ -1,10 +1,14 @@
-VERSION 0.7
+VERSION 0.8
 FROM alpine:latest
 WORKDIR /contrib/config
 
 
 src-files:
   COPY . .
+  SAVE ARTIFACT .
+
+data-centers-files:
+  COPY data_centers/data_centers.json ./data_centers/data_centers.json
   SAVE ARTIFACT .
 
 test:

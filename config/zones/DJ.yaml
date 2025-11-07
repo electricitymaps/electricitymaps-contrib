@@ -22,3 +22,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Djibouti
+zone_name: Djibouti
+country_name: Djibouti
+currency: DJF

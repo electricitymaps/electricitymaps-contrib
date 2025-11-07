@@ -7,6 +7,7 @@ import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
+    GridAlertList,
     LocationalMarginalPriceList,
     PriceList,
     ProductionBreakdownList,
@@ -15,6 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
+    GridAlertType,
     ProductionMix,
     StorageMix,
 )
@@ -284,6 +286,37 @@ def test_append_to_locational_marginal_price_list_logs_error():
             source="trust.me",
             currency="EUR",
             node="",
+        )
+        mock_error.assert_called_once()
+
+
+def test_grid_alert_list():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    grid_alert_list.append(
+        zoneKey=ZoneKey("US-MIDA-PJM"),
+        locationRegion="Test Region",
+        source="trust.me",
+        alertType=GridAlertType.action,
+        message="This is a test message",
+        issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+        startTime=None,
+        endTime=None,
+    )
+    assert len(grid_alert_list.events) == 1
+
+
+def test_append_to_grid_alert_list_logs_error():
+    grid_alert_list = GridAlertList(logging.Logger("test"))
+    with patch.object(grid_alert_list.logger, "error") as mock_error:
+        grid_alert_list.append(
+            zoneKey=ZoneKey("US-MIDA-PJM"),
+            locationRegion="",
+            source="trust.me",
+            alertType=GridAlertType.action,
+            message="",
+            issuedTime=datetime(2025, 3, 1, tzinfo=timezone.utc),
+            startTime=None,
+            endTime=None,
         )
         mock_error.assert_called_once()
 
@@ -965,135 +998,6 @@ def test_update_stroage_with_empty_new_list():
     assert updated_list.events[0].storage is not None
     assert updated_list.events[0].storage.hydro == 1
     assert updated_list.events[0].source == "trust.me"
-
-
-def test_filter_expected_modes():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 3, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 4, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=12, coal=12, solar=12, gas=12, unknown=12, hydro=12
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output.events) == 1
-    assert output.events[0].datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
-
-
-def test_filter_expected_modes_none():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=None,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output.events) == 0
-
-
-def test_filter_corrected_negatives():
-    production_list_1 = ProductionBreakdownList(logging.Logger("test"))
-    production_list_1.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=-10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        storage=StorageMix(hydro=1),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list_1)
-    assert len(output) == 1
-    assert output.events[0].production.corrected_negative_modes == {"solar"}
-
-
-def test_not_strict_mode():
-    production_list = ProductionBreakdownList(logging.Logger("test"))
-    production_list.append(
-        zoneKey=ZoneKey("AT"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            biomass=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(production_list)
-    assert len(output) == 1
-
-
-def test_filter_by_passed_modes():
-    production_list = ProductionBreakdownList(logging.Logger("test"))
-    production_list.append(
-        zoneKey=ZoneKey("US-NW-PGE"),
-        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        production=ProductionMix(
-            wind=10,
-            coal=None,
-            solar=10,
-            gas=10,
-            unknown=10,
-            hydro=10,
-            oil=10,
-        ),
-        source="trust.me",
-    )
-    output = ProductionBreakdownList.filter_expected_modes(
-        production_list, by_passed_modes=["biomass"]
-    )
-    assert len(output) == 1
 
 
 def test_total_production_list():

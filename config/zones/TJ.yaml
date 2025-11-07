@@ -15,13 +15,13 @@ capacity:
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 4980.0
+      value: 4960.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 5740.0
+      value: 5720.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 5760.0
+      value: 5740.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -31,3 +31,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dushanbe
+zone_name: Tajikistan
+country_name: Tajikistan
+currency: TJS

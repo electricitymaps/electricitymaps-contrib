@@ -519,3 +519,7 @@ subZoneNames:
   - SE-SE3
   - SE-SE4
 timezone: Europe/Stockholm
+zone_name: Sweden
+country_name: Sweden
+# Electricity is traded in EUR
+currency: EUR

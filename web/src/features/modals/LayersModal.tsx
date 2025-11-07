@@ -38,7 +38,7 @@ function WeatherToggleSwitch({
       <div className="flex items-center">
         <Icon size={20} className="mr-2 text-secondary dark:text-secondary-dark" />
         <span className="text-sm font-medium text-secondary dark:text-secondary-dark">
-          {t(`${typeAsTitlecase} layer`)}
+          {t(`aria.label.${type}Layer`)}
         </span>
       </div>
 
@@ -49,7 +49,7 @@ function WeatherToggleSwitch({
           className={` ${
             !allowed || isLoadingLayer ? 'cursor-not-allowed opacity-50' : ''
           }`}
-          ariaLabel={t(`Toggle ${typeAsTitlecase} layer`)}
+          ariaLabel={t(`tooltips.${isEnabled ? 'hide' : 'show'}${typeAsTitlecase}Layer`)}
         />
         {isLoadingLayer && (
           <span className="absolute inset-0 mb-[6px] ml-4 flex items-center justify-center">
@@ -63,6 +63,7 @@ function WeatherToggleSwitch({
 
 export function LayersModalContent() {
   const areWeatherLayersAllowed = useAtomValue(areWeatherLayersAllowedAtom);
+  const { t } = useTranslation();
 
   return (
     <div className="p-2">
@@ -70,8 +71,7 @@ export function LayersModalContent() {
       <WeatherToggleSwitch allowed={areWeatherLayersAllowed} type="solar" />
       {!areWeatherLayersAllowed && (
         <p className="px-4 py-2 text-sm text-secondary dark:text-secondary-dark">
-          Weather data not available for this aggregation, switch to real-time to see live
-          weather data
+          {t('settings-modal.weather-layers-disallowed')}
         </p>
       )}
     </div>

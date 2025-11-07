@@ -7,7 +7,7 @@ capacity:
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 1876.0
+      value: 1875.5
     - datetime: '2020-01-01'
       source: entsoe.eu
       value: 1875.0
@@ -20,13 +20,13 @@ capacity:
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 2170.0
+      value: 2169.8
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 1790.0
+      value: 1790.4
     - datetime: '2022-01-01'
       source: entsoe.eu
-      value: 1747.0
+      value: 1746.7
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 1708.0
@@ -37,27 +37,29 @@ capacity:
   solar:
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 30.0
+      value: 29.9
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 51.0
+      value: 50.6
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 87.0
+      value: 86.6
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 145.0
     - datetime: '2022-01-01'
       source: entsoe.eu
-      value: 135.0
+      value: 134.6
 contributors:
   - corradio
   - nessie2013
 country: BA
+country_name: Bosnia and Herzegovina
+currency: BAM
 delays:
   production: 72
 emissionFactors:
@@ -294,3 +296,4 @@ sources:
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
 timezone: Asia/Bahrain
+zone_name: Bosnia and Herzegovina

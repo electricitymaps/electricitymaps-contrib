@@ -28,3 +28,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Thimphu
+zone_name: Bhutan
+country_name: Bhutan
+currency: BTN

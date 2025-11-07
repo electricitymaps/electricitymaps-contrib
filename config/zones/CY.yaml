@@ -12,9 +12,6 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 1850.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1790.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -36,7 +33,10 @@ capacity:
       value: 420.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 610.0
+      value: 580.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 720.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -354,8 +354,12 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.035798118790591575
 parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia
 sources:
   EU-ETS, CERA 2018 Report:
@@ -384,3 +388,6 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Asia/Nicosia
+zone_name: Cyprus
+country_name: Cyprus
+currency: EUR

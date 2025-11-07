@@ -11,6 +11,9 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -24,3 +27,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Efate
+zone_name: Vanuatu
+country_name: Vanuatu
+currency: VUV

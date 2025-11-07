@@ -8,9 +8,6 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 80.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -30,13 +27,13 @@ capacity:
       value: 950.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 1480.0
+      value: 1700.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 1630.0
+      value: 1850.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 1800.0
+      value: 2240.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -44,6 +41,9 @@ capacity:
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
       value: 620.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 630.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,16 +56,19 @@ capacity:
       value: 330.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 380.0
+      value: 390.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 580.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 730.0
+      value: 740.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 1070.0
+      value: 1080.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1420.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -95,6 +98,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 420.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 430.0
 contributors:
   - systemcatch
   - nessie2013
@@ -313,3 +319,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Santo_Domingo
+zone_name: Dominican Republic
+country_name: Dominican Republic
+currency: DOP

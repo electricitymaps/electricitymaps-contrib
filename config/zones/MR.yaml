@@ -23,3 +23,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Nouakchott
+zone_name: Mauritania
+country_name: Mauritania
+currency: MRU

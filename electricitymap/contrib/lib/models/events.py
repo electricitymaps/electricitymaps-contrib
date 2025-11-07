@@ -9,7 +9,7 @@ from logging import Logger
 from typing import Any
 
 import pandas as pd
-from pydantic import BaseModel, PrivateAttr, ValidationError, validator
+from pydantic import BaseModel, PrivateAttr, ValidationError, root_validator, validator
 
 from electricitymap.contrib.config import (
     EXCHANGES_CONFIG,
@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.lib.types import ZoneKey
-from parsers.lib.config import ProductionModes, StorageModes
+from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -544,7 +544,7 @@ class TotalProduction(Event):
         return {
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
-            "generation": self.value,
+            "value": self.value,
             "source": self.source,
             "sourceType": self.sourceType,
         }
@@ -710,7 +710,7 @@ class ProductionBreakdown(AggregatableEvent):
             "sourceType": self.sourceType,
             "correctedModes": []
             if self.production is None
-            else list(map(str, self.production._corrected_negative_values)),
+            else sorted(map(str, self.production._corrected_negative_values)),
         }
 
 
@@ -891,4 +891,110 @@ class LocationalMarginalPrice(Price):
             "node": self.node,
             "source": self.source,
             "sourceType": self.sourceType,
+        }
+
+
+class GridAlertType(str, Enum):
+    informational = "informational"
+    action = "action"
+    undefined = "undefined"
+
+
+class GridAlert(Event):
+    locationRegion: str | None = None
+    alertType: GridAlertType
+    message: str
+    issuedTime: datetime
+    startTime: datetime | None
+    endTime: datetime | None
+
+    @validator("alertType")
+    def _validate_alert_type(cls, v: GridAlertType) -> GridAlertType:
+        if v not in GridAlertType:
+            raise ValueError(f"Unknown alert type: {v}")
+        return v
+
+    @validator("message")
+    def _validate_message(cls, v: str) -> str:
+        if not v:
+            raise ValueError(f"message cannot be empty: {v}")
+        return v
+
+    @validator("issuedTime")
+    def _validate_issued_time(cls, v: datetime) -> datetime:
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @validator("startTime")
+    def _validate_start_time(cls, v: datetime | None) -> datetime | None:
+        if v and _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v and v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @root_validator
+    def _default_start_time(cls, values):
+        if values.get("startTime") is None:
+            values["startTime"] = values["issuedTime"]
+        return values
+
+    @validator("endTime")
+    def _validate_end_time(cls, v: datetime | None) -> datetime | None:
+        if v is None:
+            return v
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        locationRegion: str | None,
+        source: str,
+        alertType: GridAlertType,
+        message: str,
+        issuedTime: datetime,
+        startTime: datetime | None,
+        endTime: datetime | None,
+    ) -> "GridAlert | None":
+        try:
+            return GridAlert(
+                zoneKey=zoneKey,
+                locationRegion=locationRegion,
+                source=source,
+                alertType=alertType,
+                message=message,
+                issuedTime=issuedTime,
+                startTime=startTime,
+                endTime=endTime,
+                datetime=issuedTime,  # Event requires a datetime field
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating Grid Alert Event {issuedTime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "issuedTime": issuedTime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "Grid Alert",
+                },
+            )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "zoneKey": self.zoneKey,
+            "locationRegion": self.locationRegion,
+            "alertType": self.alertType,
+            "message": self.message,
+            "issuedTime": self.issuedTime,
+            "startTime": self.startTime,
+            "endTime": self.endTime,
+            "source": self.source,
+            "datetime": self.datetime,
         }

@@ -6,3 +6,6 @@ bounding_box:
 country: CA
 region: Americas
 timezone: America/St_Johns
+zone_name: Newfoundland and Labrador
+country_name: Canada
+currency: CAD

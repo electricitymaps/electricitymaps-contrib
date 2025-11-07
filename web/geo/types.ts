@@ -9,7 +9,6 @@ export interface ZoneConfig {
   bounding_box?: number[][];
   contributors?: string[];
   disclaimer?: string;
-  estimation_method?: string;
   generation_only?: boolean;
   parsers?: {
     consumption?: string;
@@ -18,7 +17,6 @@ export interface ZoneConfig {
     price?: string;
     production?: string;
     productionPerModeForecast?: string;
-    productionPerUnit?: string;
   };
   [key: string]:
     | undefined
@@ -32,7 +30,6 @@ export interface ZoneConfig {
 export interface OptimizedZoneConfig {
   contributors?: number[];
   disclaimer?: string;
-  estimation_method?: string;
   parsers: boolean;
   subZoneNames?: string[];
   generation_only?: boolean;

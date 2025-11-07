@@ -194,3 +194,6 @@ parsers:
   production: FR_O.fetch_production
 region: Americas
 timezone: Europe/Paris
+zone_name: Martinique
+country_name: Martinique
+currency: EUR

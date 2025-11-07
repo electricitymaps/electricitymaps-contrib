@@ -213,3 +213,6 @@ sources:
   Wikipedia page for Renewable energy in Ukraine:
     link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
 timezone: Europe/Kiev
+zone_name: Ukraine
+country_name: Ukraine
+currency: UAH

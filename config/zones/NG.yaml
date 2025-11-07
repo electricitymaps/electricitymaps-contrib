@@ -31,16 +31,19 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 11290.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 11340.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11910.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 2110.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 2150.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2850.0
+      value: 2860.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -59,7 +62,7 @@ capacity:
       value: 100.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 110.0
+      value: 140.0
 contributors:
   - byronwilliams
   - kruschk
@@ -170,3 +173,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lagos
+zone_name: Nigeria
+country_name: Nigeria
+currency: NGN

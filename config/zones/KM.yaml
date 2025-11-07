@@ -21,3 +21,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Comoro
+zone_name: Comoros
+country_name: Comoros
+currency: KMF

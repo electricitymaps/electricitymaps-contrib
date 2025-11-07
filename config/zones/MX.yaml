@@ -11,9 +11,6 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 880.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 870.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 890.0
@@ -24,25 +21,28 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 33880.0
+      value: 34630.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 34990.0
+      value: 35870.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 38000.0
+      value: 38890.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 40410.0
+      value: 41300.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 42260.0
+      value: 42790.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 43510.0
+      value: 43620.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 44950.0
+      value: 44280.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 45050.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -53,6 +53,9 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 13300.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 12840.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -60,44 +63,47 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1130.0
+      value: 1070.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 2580.0
+      value: 2770.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 4740.0
+      value: 6250.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 6710.0
+      value: 7160.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 8180.0
+      value: 8930.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 9360.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 10910.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 11990.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 18650.0
+      value: 18750.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 25140.0
+      value: 25240.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 25910.0
+      value: 26000.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 26090.0
+      value: 26190.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 26020.0
+      value: 40000.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 25940.0
+      value: 39930.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -110,8 +116,11 @@ capacity:
       value: 7000.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 7150.0
+      value: 7470.0
     - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 7630.0
+    - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 7320.0
 contributors:
@@ -120,7 +129,7 @@ contributors:
   - consideRatio
 country: MX
 delays:
-  production: 1080 # = 45 * 24 Mexico is known for having a maximum delay of 45 days
+  production: 1080
 emissionFactors:
   direct:
     unknown:
@@ -148,3 +157,6 @@ sources:
   IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
 timezone: America/Mexico_City
+zone_name: Mexico
+country_name: Mexico
+currency: MXN

@@ -97,18 +97,11 @@
     "submit": "Enviar"
   },
   "estimation-badge": {
-    "partially-estimated": "Parcialmente estimado",
-    "fully-estimated": "Estimado",
     "outage": "Indisponível"
   },
   "estimation-card": {
     "link": "Leia sobre os nossos modelos de estimativa",
     "outage-details": "Ver detalhes",
-    "estimated_generic_method": {
-      "title": "Os dados são estimados",
-      "pill": "Impreciso",
-      "body": "Os dados publicados para esta zona estão indisponíveis ou incompletos. Os dados mostrados no mapa são estimados ao melhor da nossa habilidade, mas podem diferir dos valores reais."
-    },
     "threshold_filtered": {
       "title": "Dados em falta",
       "pill": "Indisponível",
@@ -150,56 +143,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "Intensidade de carbono horária",
+      "24h": "Intensidade de carbono",
+      "72h": "Intensidade de carbono",
       "3mo": "Intensidade de carbono diária",
       "12mo": "Intensidade de carbono mensal",
       "all_months": "Intensidade de carbono mensal",
       "all_years": "Intensidade de carbono anual"
     },
     "emissions": {
-      "72h": "Emissões de carbono horárias",
+      "24h": "Emissões de carbono",
+      "72h": "Emissões de carbono",
       "3mo": "Emissões de carbono diárias",
       "12mo": "Emissões de carbono mensais",
       "all_months": "Emissões de carbono mensais",
       "all_years": "Emissões de carbono anuais"
     },
     "emissionsorigin": {
-      "72h": "Origem horária das emissões de carbono",
+      "24h": "Origem das emissões de carbono",
+      "72h": "Origem das emissões de carbono",
       "3mo": "Origem diária das emissões de carbono",
       "12mo": "Origem mensal das emissões de carbono",
       "all_months": "Origem mensal das emissões de carbono",
       "all_years": "Origem anual das emissões de carbono"
     },
     "emissionsproduction": {
-      "72h": "Emissões horárias de produção",
+      "24h": "Emissões de produção",
+      "72h": "Emissões de produção",
       "3mo": "Emissões diárias de produção",
       "12mo": "Emissões mensais de produção",
       "all_months": "Emissões mensais de produção",
       "all_years": "Emissões anuais de produção"
     },
     "electricityorigin": {
-      "72h": "Origem horária da eletricidade",
+      "24h": "Origem da eletricidade",
+      "72h": "Origem da eletricidade",
       "3mo": "Origem diária da eletricidade",
       "12mo": "Origem mensal da eletricidade",
       "all_months": "Origem mensal da eletricidade",
       "all_years": "Origem anual da eletricidade"
     },
     "electricityproduction": {
-      "72h": "Produção horária de eletricidade",
+      "24h": "Produção de eletricidade",
+      "72h": "Produção de eletricidade",
       "3mo": "Produção diária de eletricidade",
       "12mo": "Produção mensal de eletricidade",
       "all_months": "Produção mensal de eletricidade",
       "all_years": "Produção anual de eletricidade"
     },
     "electricityprices": {
-      "72h": "Preços horários da eletricidade",
+      "24h": "Preços da eletricidade",
+      "72h": "Preços da eletricidade",
       "3mo": "Preços diários da eletricidade",
       "12mo": "Preços mensais da eletricidade",
       "all_months": "Preços mensais da eletricidade",
       "all_years": "Preços anuais da eletricidade"
     },
     "netExchange": {
-      "72h": "Troca líquida horária",
+      "24h": "Troca líquida",
+      "72h": "Troca líquida",
       "3mo": "Troca líquida diária",
       "12mo": "Troca líquida mensal",
       "all_months": "Troca líquida mensal",
@@ -1437,7 +1438,7 @@
       "zoneName": "Uganda"
     },
     "US": {
-      "zoneName": "Estados Unidos da América Contíguos"
+      "zoneName": "Estados Unidos da América"
     },
     "US-AK": {
       "countryName": "USA",

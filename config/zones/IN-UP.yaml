@@ -108,7 +108,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 583.82
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -219,3 +218,6 @@ fallbackZoneMixes:
 parsers: {}
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Unknown
+country_name: India
+currency: INR

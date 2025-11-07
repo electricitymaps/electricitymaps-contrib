@@ -356,3 +356,6 @@ sources:
       https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677
       (average thermoelectric emission factors)
 timezone: America/Santiago
+zone_name: Sistema Eléctrico Nacional
+country_name: Chile
+currency: CLP

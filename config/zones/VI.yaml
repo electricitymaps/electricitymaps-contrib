@@ -22,3 +22,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/St_Thomas
+zone_name: Virgin Islands
+country_name: USA
+currency: USD

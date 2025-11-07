@@ -5,18 +5,30 @@ bounding_box:
     - 30.44528
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 116.1
   coal:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 250.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 0.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 370.5
+    - datetime: '2017-07-01'
+      source: EIA.gov
+      value: 377.9
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 328.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 579.4
@@ -26,36 +38,42 @@ capacity:
     - datetime: '2021-07-01'
       source: EIA.gov
       value: 574.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 478.8
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 2.8
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 4.8
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Gainesville Regional Utilities
@@ -64,6 +82,7 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -397,3 +416,4 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
+zone_name: Gainesville Regional Utilities

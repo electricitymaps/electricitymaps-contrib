@@ -4,7 +4,7 @@ bounding_box:
   - - -123.31910336003193
     - 70.15420156500005
 capacity:
-  hydro: 92
+  hydro: 116
 contributors:
   - jarek
   - nessie2013
@@ -216,5 +216,10 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.17414929934515255
         wind: 0.0
+parsers:
+  production: YUKONENERGY.fetch_production
 region: Americas
 timezone: America/Whitehorse
+zone_name: Yukon
+country_name: Canada
+currency: CAD

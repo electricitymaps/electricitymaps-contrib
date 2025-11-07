@@ -5,37 +5,40 @@ bounding_box:
     - 22.755921
 capacity:
   biomass:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 3740.7
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 3740.7
   coal:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 41357.5
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 41357.5
   gas:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 6491.8
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 6491.8
   hydro:
-    datetime: '2023-12-01'
-    source: cea.nic.in, mnre.gov.in
-    value: 13675.65
+    - datetime: '2023-12-01'
+      source: cea.nic.in, mnre.gov.in
+      value: 13675.65
   nuclear:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 3320.0
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 3320.0
   oil:
-    datetime: '2023-12-01'
-    source: cea.nic.in
-    value: 460.49
+    - datetime: '2023-12-01'
+      source: cea.nic.in
+      value: 460.49
   solar:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 26954.5
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 26954.5
+    - datetime: '2025-06-30'
+      source: mnre.gov.in
+      value: 32702.85
   wind:
-    datetime: '2023-12-01'
-    source: mnre.gov.in
-    value: 20312.4
+    - datetime: '2023-12-01'
+      source: mnre.gov.in
+      value: 20312.4
 contributors:
   - hectorespert
   - gopikrishna1793
@@ -238,3 +241,6 @@ parsers:
   productionCapacity: CEA.fetch_production_capacity
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Southern India
+country_name: India
+currency: INR

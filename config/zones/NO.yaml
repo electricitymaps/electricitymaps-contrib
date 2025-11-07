@@ -317,3 +317,7 @@ subZoneNames:
   - NO-NO4
   - NO-NO5
 timezone: Europe/Oslo
+zone_name: Norway
+country_name: Norway
+# Electricity is traded in EUR
+currency: EUR

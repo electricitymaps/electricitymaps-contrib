@@ -7,10 +7,10 @@ capacity:
   biomass:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 60.0
+      value: 40.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 70.0
+      value: 50.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -18,10 +18,16 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 4380.0
+      value: 4600.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 4270.0
+      value: 4490.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 4430.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4820.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -29,29 +35,35 @@ capacity:
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 830.0
+      value: 880.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 260.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 30.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 50.0
+      value: 60.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 100.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 150.0
+      value: 160.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 230.0
+      value: 250.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 290.0
+      value: 340.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 740.0
+      value: 890.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1340.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -77,7 +89,10 @@ capacity:
       value: 4540.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 4810.0
+      value: 4740.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4940.0
 contributors:
   - corradio
   - nessie2013
@@ -441,7 +456,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: SMARTGRIDDASHBOARD.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
-  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_forecasts
+  productionPerModeForecast: SMARTGRIDDASHBOARD.fetch_wind_solar_forecasts
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
@@ -462,3 +477,6 @@ sources:
       https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Dublin
+zone_name: Ireland
+country_name: Ireland
+currency: EUR

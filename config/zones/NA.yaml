@@ -79,3 +79,6 @@ fallbackZoneMixes:
         wind: 0.018079403291716912
 region: Africa
 timezone: Africa/Windhoek
+zone_name: Namibia
+country_name: Namibia
+currency: NAD

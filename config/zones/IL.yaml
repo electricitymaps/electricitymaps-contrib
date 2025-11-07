@@ -33,7 +33,7 @@ capacity:
       value: 12320.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 12720.0
+      value: 12910.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -56,10 +56,10 @@ capacity:
       value: 3590.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 4410.0
+      value: 4630.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 4520.0
+      value: 5520.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -73,7 +73,7 @@ capacity:
       value: 140.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 320.0
+      value: 340.0
 contributors:
   - alixunderplatz
   - jarek
@@ -196,7 +196,6 @@ emissionFactors:
       source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
         wind, 0.3% other
       value: 558
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -359,8 +358,9 @@ isRenewable:
     value: 0.056
 parsers:
   consumption: IL.fetch_consumption
-  price: IL.fetch_price
-  production: IL.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Jerusalem
+zone_name: Israel
+country_name: Israel
+currency: ILS

@@ -26,3 +26,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bujumbura
+zone_name: Burundi
+country_name: Burundi
+currency: BIF

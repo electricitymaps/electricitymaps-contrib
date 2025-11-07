@@ -37,7 +37,7 @@
     },
     "view6": {
       "header": "探索過去",
-      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更聚合數據，或透過瀏覽時間軸來查看隨時間的變化。"
+      "text": "在左下角，你可以查看全球即時和過去的碳排放量及電力數據。 使用切換按鈕變更彙總數據，或透過瀏覽時間軸來查看隨時間的變化。"
     },
     "view7": {
       "header": "風力、太陽能即時資訊",
@@ -61,7 +61,7 @@
     "dataIsEstimated": "該地區的部分資料爲估計值。請參考我們的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>估計方法</a>。",
     "exchangesAreMissing": "電力交換已被納入計算，但尚未顯示。請參考我們的先前的<a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>合計資料</a>。",
     "estimatedTooltip": "該區域的即時資料是基於其過往資料與模型預測的估計值。",
-    "aggregatedTooltip": "該區域的的資料是由過去的每小時資料聚合而成。",
+    "aggregatedTooltip": "該區域的的資料是由過去的每小時資料彙總而成。",
     "helpUs": "請檢視<a href='{{link}}' target='_blank'>執行環境日誌</a>並幫助我們找出問題。",
     "noParserInfo": "尚無該地區的資訊。<br/>想要解決這個問題嗎？你可以幫忙<a href='{{link}}' target='_blank'>新增這個地區的資料</a>！",
     "now": "現在"
@@ -81,17 +81,10 @@
     "submit": "提交"
   },
   "estimation-badge": {
-    "partially-estimated": "部分估計",
-    "fully-estimated": "已估計",
     "outage": "不可用"
   },
   "estimation-card": {
     "link": "了解我們的估計模型",
-    "estimated_generic_method": {
-      "title": "數據為估計值",
-      "pill": "不精確",
-      "body": "該區域發布的數據不可用或不完整。地圖上顯示的數據是我們盡力估計的，但可能與實際值有所不同。"
-    },
     "threshold_filtered": {
       "title": "缺失數據",
       "pill": "數據中斷",
@@ -103,12 +96,12 @@
     },
     "aggregated": {
       "title": "數據已匯總",
-      "body": "數據由每小時值聚合組成。"
+      "body": "數據由每小時值彙總組成。"
     },
     "aggregated_estimated": {
       "title": "數據已匯總",
       "pill": " 估計為 {{percentage}}% ",
-      "body": "數據由每小時值聚合組成。 {{percentage}}% 的生產值為估計值。"
+      "body": "數據由每小時值彙總組成。 {{percentage}}% 的生產值為估計值。"
     }
   },
   "ranking-panel": {
@@ -118,56 +111,64 @@
   },
   "country-history": {
     "carbonintensity": {
-      "72h": "每小時碳強度",
+      "24h": "碳強度",
+      "72h": "碳強度",
       "3mo": "每日碳強度",
       "12mo": "每月碳強度",
       "all_months": "每月碳強度",
       "all_years": "每年碳強度"
     },
     "emissions": {
-      "72h": "每小時碳排放",
+      "24h": "碳排放",
+      "72h": "碳排放",
       "3mo": "每日碳排放",
       "12mo": "每月碳排放",
       "all_months": "每月碳排放",
       "all_years": "每年碳排放"
     },
     "emissionsorigin": {
-      "72h": "每小時碳排放來源",
+      "24h": "碳排放來源",
+      "72h": "碳排放來源",
       "3mo": "每日碳排放來源",
       "12mo": "每月碳排放來源",
       "all_months": "每月碳排放來源",
       "all_years": "每年碳排放來源"
     },
     "emissionsproduction": {
-      "72h": "每小時生產排放",
+      "24h": "生產排放",
+      "72h": "生產排放",
       "3mo": "每日生產排放",
       "12mo": "每月生產排放",
       "all_months": "每月生產排放",
       "all_years": "每年生產排放"
     },
     "electricityorigin": {
-      "72h": "每小時電力來源",
+      "24h": "電力來源",
+      "72h": "電力來源",
       "3mo": "每日電力來源",
       "12mo": "每月電力來源",
       "all_months": "每月電力來源",
       "all_years": "每年電力來源"
     },
     "electricityproduction": {
-      "72h": "每小時電力生產",
+      "24h": "電力生產",
+      "72h": "電力生產",
       "3mo": "每日電力生產",
       "12mo": "每月電力生產",
       "all_months": "每月電力生產",
       "all_years": "每年電力生產"
     },
     "electricityprices": {
-      "72h": "每小時電價",
+      "24h": "電價",
+      "72h": "電價",
       "3mo": "每日電價",
       "12mo": "每月電價",
       "all_months": "每月電價",
       "all_years": "每年電價"
     },
     "netExchange": {
-      "72h": "每小時淨交換",
+      "24h": "淨交換",
+      "72h": "淨交換",
       "3mo": "每日淨交換",
       "12mo": "每月淨交換",
       "all_months": "每月淨交換",

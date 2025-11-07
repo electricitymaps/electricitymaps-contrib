@@ -40,6 +40,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 510.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 770.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -100,3 +103,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tunis
+zone_name: Tunisia
+country_name: Tunisia
+currency: TND

@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 
 function MapMobileHeader() {
   return (
-    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent pb-4 pl-3 pt-3 dark:from-black/60">
+    <div className="flex w-full items-center justify-between bg-gradient-to-b to-transparent pb-4 pl-3 pt-[max(0.75rem,env(safe-area-inset-top))] dark:from-black/60 sm:pt-3">
       <Logo className=" h-8 w-28  fill-black dark:fill-white" />
     </div>
   );
@@ -15,7 +15,7 @@ function OuterPanel({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className={`absolute left-0 right-0 top-0 z-20 sm:hidden`}>
+      <div className={`pointer-events-none absolute left-0 right-0 top-0 z-20 sm:hidden`}>
         <MapMobileHeader />
       </div>
       <div

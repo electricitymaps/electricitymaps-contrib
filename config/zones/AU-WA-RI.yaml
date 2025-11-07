@@ -103,3 +103,6 @@ parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Perth
+zone_name: Rottnest Island
+country_name: Australia
+currency: AUD

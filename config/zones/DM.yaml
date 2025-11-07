@@ -25,3 +25,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Dominica
+zone_name: Dominica
+country_name: Dominica
+currency: XCD

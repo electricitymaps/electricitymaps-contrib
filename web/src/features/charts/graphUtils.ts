@@ -7,6 +7,7 @@ import { MouseEvent } from 'react';
 import { ElectricityStorageType, GenerationType, Maybe, ZoneDetail } from 'types';
 import { EstimationMethods, modeOrder } from 'utils/constants';
 import { formatCo2, formatEnergy, formatPower } from 'utils/formatting';
+import getEstimationOrAggregationTranslation from 'utils/getEstimationTranslation';
 import { round } from 'utils/helpers';
 
 import { AreaGraphElement } from './types';
@@ -126,7 +127,7 @@ export const determineUnit = (
   displayByEmissions: boolean,
   currentZoneDetail: ZoneDetail,
   isConsumption: boolean,
-  isHourly: boolean,
+  isFineGranularity: boolean,
   t: TFunction
 ) => {
   if (displayByEmissions) {
@@ -137,7 +138,7 @@ export const determineUnit = (
     );
   }
 
-  return isHourly
+  return isFineGranularity
     ? getUnit(
         formatPower({
           value: getTotalElectricityAvailable(currentZoneDetail, isConsumption),
@@ -236,10 +237,17 @@ const analyzeChartData = (chartData: AreaGraphElement[]) => {
 
 export const getBadgeTextAndIcon = (
   chartData: AreaGraphElement[],
-  t: TFunction
+  t: TFunction,
+  isAggregated: boolean
 ): { text?: string; icon?: LucideIcon } => {
-  const { allTimeSlicerAverageMethod, allEstimated, hasEstimation, estimatedTotal } =
-    analyzeChartData(chartData);
+  const { allTimeSlicerAverageMethod, estimatedTotal } = analyzeChartData(chartData);
+  const estimationTranslation = getEstimationOrAggregationTranslation(
+    t,
+    'pill',
+    isAggregated,
+    undefined,
+    estimatedTotal
+  );
 
   if (estimatedTotal === 0) {
     return {};
@@ -247,26 +255,16 @@ export const getBadgeTextAndIcon = (
 
   if (estimatedTotal) {
     return {
-      text: t('estimation-card.aggregated_estimated.pill', {
-        percentage: estimatedTotal,
-      }),
+      text: estimationTranslation,
       icon: TrendingUpDown,
     };
   }
 
   if (allTimeSlicerAverageMethod) {
     return {
-      text: t(`estimation-card.${EstimationMethods.TSA}.pill`),
+      text: estimationTranslation,
       icon: CircleDashed,
     };
-  }
-
-  if (allEstimated) {
-    return { text: t('estimation-badge.fully-estimated'), icon: TrendingUpDown };
-  }
-
-  if (hasEstimation) {
-    return { text: t('estimation-badge.partially-estimated'), icon: TrendingUpDown };
   }
   return {};
 };

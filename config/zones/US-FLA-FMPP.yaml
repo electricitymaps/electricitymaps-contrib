@@ -5,60 +5,90 @@ bounding_box:
     - 30.69435
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 45.5
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 0.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1292.8
     - datetime: '2021-04-01'
       source: EIA.gov
       value: 929.0
   gas:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 2535.8
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 2506.3
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 2483.9
+    - datetime: '2020-06-01'
+      source: EIA.gov
+      value: 2487.9
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 2502.9
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 2562.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 2622.9
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 2597.3
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 93.8
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 87.8
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 220.3
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 9.0
+    - datetime: '2017-09-01'
+      source: EIA.gov
+      value: 17.9
+    - datetime: '2020-06-01'
       source: EIA.gov
       value: 166.9
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
 comment: Florida Municipal Power Pool
@@ -67,6 +97,8 @@ contributors:
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
+currency: USD
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -391,3 +423,4 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Eastern
+zone_name: Florida Municipal Power Pool

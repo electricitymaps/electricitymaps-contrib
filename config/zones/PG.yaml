@@ -18,16 +18,19 @@ capacity:
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 210.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 250.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 220.0
+      value: 260.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 260.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 330.0
+      value: 320.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -41,3 +44,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Port_Moresby
+zone_name: Papua New Guinea
+country_name: Papua New Guinea
+currency: PGK

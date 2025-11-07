@@ -7,13 +7,13 @@ capacity:
   biomass:
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 4.0
+      value: 4.2
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 19.0
+      value: 18.84
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 20.0
+      value: 19.4
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -24,62 +24,73 @@ capacity:
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 4003.0
+      value: 4003.33
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 4475.0
+      value: 4475.65
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 4571.0
+      value: 4570.37
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 4700.0
+      value: 4699.97
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 4851.0
+      value: 4851.26
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 4854.0
+      value: 4854.35
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4815.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 4922.0
+      value: 4921.5
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 53.0
+      value: 52.7
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 60.0
+      value: 60.3
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 60.2
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 53.0
+      value: 53.459999999999994
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 53.4
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 356.0
+      value: 355.95
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 320.0
+      value: 319.6
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 509.0
+      value: 508.6
     - datetime: '2020-01-01'
       source: entsoe.eu
-      value: 1902.0
+      value: 1902.3
     - datetime: '2021-01-01'
       source: entsoe.eu
-      value: 2126.0
+      value: 2125.6
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 2120.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2120.4
 country: 'NO'
+country_name: Norway
+currency: EUR
 delays:
   production: 7
 emissionFactors:
@@ -377,3 +388,4 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
+zone_name: Middle Norway

@@ -288,3 +288,6 @@ parsers:
   production: CA_QC.fetch_production
 region: Americas
 timezone: America/Toronto
+zone_name: Québec
+country_name: Canada
+currency: CAD

@@ -17,6 +17,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 50.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -35,11 +38,14 @@ capacity:
       value: 510.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 230.0
+      value: 240.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 10850.0
+      value: 10880.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -55,13 +61,16 @@ capacity:
       value: 330.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 490.0
+      value: 480.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 630.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 770.0
+      value: 920.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1160.0
 contributors:
   - corradio
   - jarek
@@ -346,3 +355,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Singapore
+zone_name: Singapore
+country_name: Singapore
+currency: SGD

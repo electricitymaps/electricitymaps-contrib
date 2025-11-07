@@ -7,6 +7,7 @@ Earthfile
 
 dist/
 config/
+electricitymaps/contrib/parsers/
 public/images/
 .husky/_
 pnpm-lock.yaml

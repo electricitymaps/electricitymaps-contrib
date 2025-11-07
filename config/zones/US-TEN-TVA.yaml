@@ -5,14 +5,26 @@ bounding_box:
     - 38.101846827
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2017-12-01'
       source: EIA.gov
       value: 1.0
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 51.0
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 101.0
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 151.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 286.7
+    - datetime: '2019-06-01'
       source: EIA.gov
       value: 284.9
     - datetime: '2022-01-01'
@@ -21,15 +33,51 @@ capacity:
     - datetime: '2022-12-01'
       source: EIA.gov
       value: 216.9
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 213.3
+    - datetime: '2025-02-01'
+      source: EIA.gov
+      value: 218.1
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 213.3
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 218.1
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 12642.1
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 11234.1
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 10734.1
+    - datetime: '2018-03-01'
+      source: EIA.gov
+      value: 9744.1
+    - datetime: '2020-01-01'
       source: EIA.gov
       value: 8593.9
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 7643.9
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 14674.0
+    - datetime: '2017-04-01'
+      source: EIA.gov
+      value: 15834.0
+    - datetime: '2017-08-01'
+      source: EIA.gov
+      value: 15840.3
+    - datetime: '2018-04-01'
+      source: EIA.gov
+      value: 17011.2
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 17067.4
     - datetime: '2022-01-01'
@@ -44,19 +92,46 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 17880.6
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 17906.6
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 18498.8
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 18090.8
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 4866.8
+    - datetime: '2018-01-01'
+      source: EIA.gov
+      value: 4749.3
+    - datetime: '2019-01-01'
+      source: EIA.gov
+      value: 4731.8
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 4756.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 4846.8
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 4871.8
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 1808.6
   nuclear:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 8474.8
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 8548.3
@@ -64,13 +139,46 @@ capacity:
       source: EIA.gov
       value: 8834.8
   oil:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 57.0
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 677.8
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 176.2
   solar:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 150.7
+    - datetime: '2017-10-01'
+      source: EIA.gov
+      value: 166.7
+    - datetime: '2017-12-01'
+      source: EIA.gov
+      value: 179.7
+    - datetime: '2018-07-01'
+      source: EIA.gov
+      value: 194.7
+    - datetime: '2018-08-01'
+      source: EIA.gov
+      value: 196.3
+    - datetime: '2018-12-01'
+      source: EIA.gov
+      value: 283.4
+    - datetime: '2019-04-01'
+      source: EIA.gov
+      value: 284.0
+    - datetime: '2019-09-01'
+      source: EIA.gov
+      value: 286.3
+    - datetime: '2019-10-01'
+      source: EIA.gov
+      value: 291.3
+    - datetime: '2020-01-01'
+      source: EIA.gov
+      value: 293.0
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 292.8
@@ -122,20 +230,39 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 1307.7
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 1308.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1508.8
+    - datetime: '2025-06-01'
+      source: EIA.gov
+      value: 1529.7
+    - datetime: '2025-07-01'
+      source: EIA.gov
+      value: 1536.2
+    - datetime: '2025-08-01'
+      source: EIA.gov
+      value: 1790.2
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 28.8
+    - datetime: '2025-03-01'
+      source: EIA.gov
+      value: 1.8
 comment: Tennessee Valley Authority
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -452,3 +579,5 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Tennessee Valley Authority
+zone_short_name: TVA

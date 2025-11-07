@@ -16,3 +16,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Stanley
+zone_name: Falkland Islands
+country_name: Falkland Islands
+currency: FKP

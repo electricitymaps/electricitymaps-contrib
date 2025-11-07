@@ -37,6 +37,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1300.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1410.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -50,6 +53,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 280.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 290.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -67,6 +73,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 70.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
 country: AZ
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE
@@ -80,3 +89,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baku
+zone_name: Azerbaijan
+country_name: Azerbaijan
+currency: AZN

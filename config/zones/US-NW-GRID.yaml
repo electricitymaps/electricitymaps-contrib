@@ -57,6 +57,7 @@ contributors:
   - systemcatch
   - robertahunt
 country: US
+country_name: USA
 delays:
   production: 48
 emissionFactors:
@@ -355,3 +356,4 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Pacific
+zone_name: Gridforce Energy Management

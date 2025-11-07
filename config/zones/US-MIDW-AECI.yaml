@@ -5,38 +5,44 @@ bounding_box:
     - 41.779649115
 capacity:
   battery storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   biomass:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 4.0
   coal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 2481.7
   gas:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 3044.6
   geothermal:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   hydro:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 27.0
+    - datetime: '2019-01-01'
       source: EIA.gov
       value: 30.0
   hydro storage:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 31.0
   nuclear:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   oil:
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 54.7
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 44.3
@@ -44,7 +50,10 @@ capacity:
       source: EIA.gov
       value: 97.5
   solar:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 0.0
+    - datetime: '2018-06-01'
       source: EIA.gov
       value: 2.5
     - datetime: '2022-12-01'
@@ -54,19 +63,35 @@ capacity:
       source: EIA.gov
       value: 1.5
   unknown:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
   wind:
-    - datetime: '2021-01-01'
+    - datetime: '2017-01-01'
+      source: EIA.gov
+      value: 462.9
+    - datetime: '2020-05-01'
+      source: EIA.gov
+      value: 704.9
+    - datetime: '2020-12-01'
       source: EIA.gov
       value: 941.4
+    - datetime: '2025-01-01'
+      source: EIA.gov
+      value: 959.4
+    - datetime: '2025-04-01'
+      source: EIA.gov
+      value: 941.4
+    - datetime: '2025-05-01'
+      source: EIA.gov
+      value: 959.4
 comment: Associated Electric Cooperative, Inc.
 contributors:
   - systemcatch
   - robertahunt
   - KabelWlan
 country: US
+country_name: USA
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -393,3 +418,4 @@ sources:
   eGrid 2021:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: US/Central
+zone_name: Associated Electric Cooperative

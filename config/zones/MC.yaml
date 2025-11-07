@@ -8,3 +8,6 @@ contributors:
 country: MC
 region: Europe
 timezone: Europe/Monaco
+zone_name: Monaco
+country_name: Monaco
+currency: EUR

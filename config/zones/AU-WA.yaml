@@ -8,10 +8,16 @@ capacity:
     - datetime: '2024-01-01'
       source: opennem.org.au
       value: 100.0
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 885.0
   biomass:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 65.13
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 102.23
   coal:
     - datetime: '2020-01-01'
       source: opennem.org.au
@@ -20,27 +26,40 @@ capacity:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 3430.4
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 3462.6
+  hydro:
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1.5
   oil:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 104.1
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 104.5
   solar:
-    - datetime: '2021-01-01'
-      source: opennem.org.au
-      value: 2765.64
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 2665.64
-  wind:
-    - datetime: '2023-01-01'
-      source: opennem.org.au
-      value: 1090.42
     - datetime: '2021-01-01'
       source: opennem.org.au
-      value: 1014.82
+      value: 2765.64
+  wind:
     - datetime: '2020-01-01'
       source: opennem.org.au
       value: 611.57
+    - datetime: '2021-01-01'
+      source: opennem.org.au
+      value: 1014.82
+    - datetime: '2023-01-01'
+      source: opennem.org.au
+      value: 1090.42
+    - datetime: '2025-01-01'
+      source: https://openelectricity.org.au/
+      value: 1105.87
 contributors:
   - jarek
   - corradio
@@ -314,6 +333,9 @@ fallbackZoneMixes:
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
-  productionCapacity: OPENNEM.fetch_production_capacity
+  productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
 timezone: Australia/Perth
+zone_name: Western Australia
+country_name: Australia
+currency: AUD

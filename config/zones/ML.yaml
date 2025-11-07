@@ -44,8 +44,14 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 510.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 610.0
 country: ML
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bamako
+zone_name: Mali
+country_name: Mali
+currency: XOF

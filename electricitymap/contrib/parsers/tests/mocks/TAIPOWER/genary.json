@@ -1,0 +1,2096 @@
+{
+    "": "2025-05-14 15:30",
+    "dataset": [
+        [
+            "<A NAME='nuclear'></A><b>NUCLEAR</b>",
+            "",
+            "NPP3#2",
+            "951.0",
+            "841.4",
+            "88.475%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='nuclear'></A><b>NUCLEAR</b>",
+            "",
+            "Subtotal",
+            "951.0(1.685%)",
+            "841.4(2.424%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Linkou#1",
+            "800.0",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Linkou#2",
+            "800.0",
+            "757.9",
+            "94.738%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Linkou#3",
+            "800.0",
+            "764.8",
+            "95.600%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#1",
+            "550.0",
+            "407.7",
+            "74.127%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#2",
+            "550.0",
+            "430.3",
+            "78.236%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#3",
+            "550.0",
+            "515.6",
+            "93.745%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#4",
+            "550.0",
+            "424.9",
+            "77.255%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#5",
+            "550.0",
+            "523.9",
+            "95.255%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#6",
+            "550.0",
+            "420.7",
+            "76.491%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#7",
+            "550.0",
+            "422.4",
+            "76.800%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#8",
+            "550.0",
+            "428.9",
+            "77.982%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#9",
+            "550.0",
+            "419.8",
+            "76.327%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Taichung#10",
+            "550.0",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Xinda#1(Remark XV)",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Xingda#2(Remark XV)",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Xingda#3(Remark XII)",
+            "550.0",
+            "0.0",
+            "0.000%",
+            "28",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Xingda#4(Remark XII)",
+            "550.0",
+            "0.0",
+            "0.000%",
+            "28",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Dalin#1",
+            "800.0",
+            "761.0",
+            "95.125%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Dalin#2",
+            "800.0",
+            "757.9",
+            "94.738%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='coal'></A><b>COAL</b>",
+            "",
+            "Subtotal",
+            "10600.0(18.778%)",
+            "7035.8(20.266%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='cogen'></A><b>COGEN</b>",
+            "",
+            "Co-Generation",
+            "631.4",
+            "1791.3",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='cogen'></A><b>COGEN</b>",
+            "",
+            "Subtotal",
+            "631.4(1.119%)",
+            "1791.3(5.160%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='ippcoal'></A><b>IPPCOAL</b>",
+            "",
+            "Hoping#1",
+            "648.6",
+            "608.1",
+            "93.763%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ippcoal'></A><b>IPPCOAL</b>",
+            "",
+            "Hoping#2",
+            "660.0",
+            "0.0",
+            "0.000%",
+            "3",
+            ""
+        ],
+        [
+            "<A NAME='ippcoal'></A><b>IPPCOAL</b>",
+            "",
+            "Mailiao#1",
+            "600.0",
+            "420.1",
+            "70.017%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='ippcoal'></A><b>IPPCOAL</b>",
+            "",
+            "Mailiao#3",
+            "600.0",
+            "573.7",
+            "95.617%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ippcoal'></A><b>IPPCOAL</b>",
+            "",
+            "Subtotal",
+            "2508.6(4.444%)",
+            "1601.9(4.614%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#1",
+            "742.7",
+            "0.0",
+            "0.000%",
+            "16",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#2",
+            "742.7",
+            "687.9",
+            "92.622%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#3",
+            "724.7",
+            "659.6",
+            "91.017%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#4",
+            "724.7",
+            "677.2",
+            "93.446%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#5",
+            "724.7",
+            "690.3",
+            "95.253%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#6",
+            "724.7",
+            "686.3",
+            "94.701%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#7(Remark X)",
+            "-",
+            "887.8",
+            "-",
+            "19",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#8",
+            "1123.6",
+            "1059.9",
+            "94.331%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Datan#9(Remark X)",
+            "-",
+            "537.7",
+            "-",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Tongxiao#1",
+            "892.6",
+            "866.0",
+            "97.020%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Tongxiao#2",
+            "892.6",
+            "870.9",
+            "97.569%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Tongxiao#3",
+            "892.6",
+            "875.9",
+            "98.129%",
+            "3",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Tongxiao#6",
+            "321.2",
+            "337.1",
+            "104.950%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "TongxiaoGT#9",
+            "180.9",
+            "0.0",
+            "0.000%",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda New CC#1(Remark X)",
+            "-",
+            "0.7",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda CC#1",
+            "445.2",
+            "429.9",
+            "96.566%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda CC#2",
+            "445.2",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda CC#3",
+            "445.2",
+            "392.0",
+            "88.052%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda CC#4",
+            "445.2",
+            "333.0",
+            "74.800%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Xingda CC#5",
+            "445.2",
+            "431.8",
+            "96.992%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Nanbu#1",
+            "288.8",
+            "274.6",
+            "95.083%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Nanbu#2",
+            "288.8",
+            "83.9",
+            "29.051%",
+            "16",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Nanbu#3",
+            "288.8",
+            "296.7",
+            "102.735%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Nanbu#4",
+            "251.4",
+            "230.3",
+            "91.607%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Dalin#5",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Dalin#6",
+            "550.0",
+            "223.3",
+            "40.600%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='lng'></A><b>LNG</b>",
+            "",
+            "Subtotal",
+            "12581.4(22.288%)",
+            "11532.8(33.220%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Haihu#1",
+            "450.0",
+            "442.6",
+            "98.356%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Haihu#2",
+            "450.0",
+            "0.0",
+            "0.000%",
+            "6",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Hsintao#1",
+            "630.0",
+            "637.6",
+            "101.206%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Guoguang#1",
+            "480.0",
+            "0.0",
+            "0.000%",
+            "6",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Xingzhang#1",
+            "506.9",
+            "174.4",
+            "34.408%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Xingyuan#1",
+            "549.1",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Jiahui#1",
+            "700.0",
+            "689.0",
+            "98.429%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Jiahui#2",
+            "510.0",
+            "447.4",
+            "87.725%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Fongde#1",
+            "506.9",
+            "478.3",
+            "94.366%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Fongde#2",
+            "506.9",
+            "0.0",
+            "0.000%",
+            "6",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Fongde#3(Remark X)",
+            "-",
+            "953.6",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='ipplng'></A><b>IPPLNG</b>",
+            "",
+            "Subtotal",
+            "5289.7(9.371%)",
+            "3822.9(11.012%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='oil'></A><b>OIL</b>",
+            "",
+            "Xiehe#3",
+            "500.0",
+            "138.3",
+            "27.660%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='oil'></A><b>OIL</b>",
+            "",
+            "Xiehe#4",
+            "500.0",
+            "142.1",
+            "28.420%",
+            "4",
+            ""
+        ],
+        [
+            "<A NAME='oil'></A><b>OIL</b>",
+            "",
+            "Penghu-Jianshan(Remark IV)",
+            "129.8",
+            "44.0",
+            "33.898%",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='oil'></A><b>OIL</b>",
+            "",
+            "Subtotal",
+            "1129.8(2.001%)",
+            "324.4(0.934%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "NPP2 Gas1",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "NPP2 Gas2",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "NPP3 Gas1",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "NPP3 Gas2",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Taichung Gas1&amp;2",
+            "140.0",
+            "58.5",
+            "41.786%",
+            "31",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Taichung Gas3&amp;4",
+            "140.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Kinmen-Tashan(Remark IV)",
+            "113.3",
+            "28.8",
+            "25.421%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Masu-Zhushan(Remark IV)",
+            "28.6",
+            "8.1",
+            "28.282%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Other outlying Islands(Remark IV)",
+            "40.2",
+            "N/A",
+            "N/A",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='diesel'></A><b>DIESEL</b>",
+            "",
+            "Subtotal(Remark V)",
+            "462.2(0.819%)",
+            "95.4(0.275%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Deji#1",
+            "78.0",
+            "33.0",
+            "42.308%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Deji#2",
+            "78.0",
+            "32.3",
+            "41.410%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Deji#3",
+            "78.0",
+            "32.7",
+            "41.923%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Qingshan#1",
+            "92.0",
+            "44.7",
+            "48.587%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Qingshan#2",
+            "92.0",
+            "44.5",
+            "48.370%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Qingshan#3",
+            "92.0",
+            "43.9",
+            "47.717%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Qingshan#4",
+            "92.0",
+            "43.2",
+            "46.957%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Guguan#1",
+            "54.4",
+            "42.5",
+            "78.053%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Guguan#2",
+            "54.4",
+            "41.6",
+            "76.400%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Guguan#3",
+            "54.4",
+            "41.6",
+            "76.400%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Guguan#4",
+            "54.4",
+            "41.0",
+            "75.298%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Tienlun#1",
+            "22.5",
+            "20.8",
+            "92.444%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Tienlun#2",
+            "22.5",
+            "20.6",
+            "91.556%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Tienlun#3",
+            "22.5",
+            "21.5",
+            "95.556%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Tienlun#4",
+            "22.5",
+            "18.8",
+            "83.556%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Tienlun#5",
+            "105.0",
+            "101.6",
+            "96.762%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Ma-an#1",
+            "66.7",
+            "65.6",
+            "98.292%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Ma-an#2",
+            "66.7",
+            "63.0",
+            "94.396%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Zhuolan#1",
+            "40.0",
+            "42.3",
+            "105.750%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Zhuolan#2",
+            "40.0",
+            "41.7",
+            "104.250%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Wanda#1",
+            "10.4",
+            "10.0",
+            "96.618%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Wanda#2",
+            "10.4",
+            "10.0",
+            "96.618%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Wanda#3",
+            "15.3",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Wanda#4",
+            "19.7",
+            "0.0",
+            "0.000%",
+            "2",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Songlin#1&amp;2",
+            "20.9",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Daguan1#1",
+            "22.0",
+            "4.9",
+            "22.273%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Daguan1#2",
+            "22.0",
+            "5.0",
+            "22.727%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Daguan1#3",
+            "22.0",
+            "5.5",
+            "25.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Daguan1#4",
+            "22.0",
+            "5.0",
+            "22.727%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Daguan1#5",
+            "22.0",
+            "4.7",
+            "21.364%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Jugong#1",
+            "21.8",
+            "3.9",
+            "17.931%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Jugong#2",
+            "21.8",
+            "5.9",
+            "27.126%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Shuili#1",
+            "12.8",
+            "2.5",
+            "19.608%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Liwu#1&amp;#2",
+            "32.0",
+            "0.0",
+            "0.000%",
+            "2",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Longjian#1",
+            "48.6",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Longjian#2",
+            "48.6",
+            "10.3",
+            "21.193%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Bihai",
+            "61.2",
+            "10.2",
+            "16.667%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Wulai&amp;Gueishan&amp;Cukeng",
+            "40.5",
+            "34.5",
+            "85.185%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Small hydro in the northern region(Remark VI)",
+            "31.1",
+            "22.4",
+            "71.978%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Small hydro in the central region(Remark VI)",
+            "31.3",
+            "17.8",
+            "56.878%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Small hydro in the southern region(Remark VI)",
+            "7.2",
+            "2.6",
+            "36.262%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Small hydro in the eastern region(Remark VI)",
+            "54.6",
+            "33.8",
+            "61.905%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Feicuei#1",
+            "70.0",
+            "61.4",
+            "87.714%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Shihmen#1",
+            "45.0",
+            "25.1",
+            "55.778%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Shihmen#2",
+            "45.0",
+            "30.2",
+            "67.111%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Zengwun#1",
+            "50.0",
+            "0.0",
+            "0.000%",
+            "2",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Yising#1",
+            "40.0",
+            "0.0",
+            "0.000%",
+            "2",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Mingjian",
+            "16.7",
+            "8.0",
+            "47.904%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Jiananxikou&amp;Wushantou&amp;Batian",
+            "22.5",
+            "6.3",
+            "28.042%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Beinan",
+            "2.0",
+            "1.0",
+            "50.505%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "GuanShan",
+            "1.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Remaining Small Hydropower Purchases",
+            "5.5",
+            "N/A",
+            "N/A",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='hydro'></A><b>HYDRO</b>",
+            "",
+            "Subtotal",
+            "2123.9(3.762%)",
+            "1157.9(3.335%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Guanyuan",
+            "30.0",
+            "2.5",
+            "8.333%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Taichung Harbor",
+            "35.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Wanggong",
+            "23.0",
+            "2.4",
+            "10.435%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Zhanggong",
+            "86.2",
+            "6.3",
+            "7.309%",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Yunmai",
+            "46.0",
+            "2.6",
+            "5.652%",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Sihhu",
+            "28.0",
+            "3.3",
+            "11.786%",
+            "17",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind TPC(Remark XIII)",
+            "Remaining Wind TPC",
+            "91.0",
+            "2.9",
+            "3.185%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "Miaoli-Dapong",
+            "42.0",
+            "1.0",
+            "2.381%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "Luwei-Zhangbin",
+            "55.2",
+            "4.2",
+            "7.609%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "Guanwei-Guanyin&amp;Taowei-Xinwu",
+            "48.3",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "Zhongwei Da-an",
+            "75.9",
+            "6.2",
+            "8.169%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "ChuangWei Wind",
+            "49.2",
+            "4.0",
+            "8.130%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "wpd,SinYuan-Lunbei",
+            "25.2",
+            "4.7",
+            "18.651%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Onshore Wind Purchases(Remark XIII)",
+            "Remaining Wind Purchases",
+            "178.4",
+            "4.3",
+            "2.410%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind TPC(Remark XIII)",
+            "Offshore Wind Generation Project Phase I",
+            "109.2",
+            "11.5",
+            "10.531%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "Formosa 1 Offshore Wind Farm,HaiYang Zhunan",
+            "128.0",
+            "5.0",
+            "3.906%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "Formosa 2 Offshore Wind Farm,HaiNeng Wind",
+            "376.0",
+            "16.2",
+            "4.309%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "Orsted Greater Changhua-southeast,WoYi Wind",
+            "605.2",
+            "11.2",
+            "1.851%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "Orsted Greater Changhua-southwest,WoEr Wind",
+            "294.8",
+            "0.6",
+            "0.190%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "CHANGFANG-XIDAO OFFSHORE WIND FARMS I,FangYi Wind",
+            "96.0",
+            "6.4",
+            "6.708%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "Changfang - phase II Offshore Wind Farm,FangEr Wind",
+            "451.2",
+            "25.5",
+            "5.652%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "OWF Yunlin,YunHu(Remark X)",
+            "-",
+            "9.8",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "OWF Yunlin,YunSi(Remark X)",
+            "-",
+            "27.7",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "Offshore Wind Purchases(Remark XIII)",
+            "ZHONGNENG OFFSHORE WIND FARM(Remark X)",
+            "-",
+            "23.6",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='wind'></A><b>WIND</b>",
+            "",
+            "Subtotal",
+            "2873.8(5.091%)",
+            "181.9(0.524%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR TPC(Remark XIII)",
+            "Jhangbin Solar Power",
+            "100.0",
+            "50.260",
+            "50.261%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR TPC(Remark XIII)",
+            "Tainan Salt Field Solar",
+            "150.0",
+            "72.735",
+            "48.490%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR TPC(Remark XIII)",
+            "Remaining Solar TPC",
+            "24.3",
+            "5.539",
+            "22.794%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "Lunwei Solar Power",
+            "-",
+            "113.680",
+            "-",
+            "43",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "TianChon PV",
+            "-",
+            "117.600",
+            "-",
+            "43",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "TianPeng PV",
+            "80.0",
+            "39.760",
+            "49.712%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "Pau Shing PV(Remark X)",
+            "-",
+            "27.720",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "URECO/HuahSuan Green Energy/HEXA Renewables Taiwan,LianHua Solar",
+            "-",
+            "95.328",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "SunnyRichPower,SianYang PV(Remark X)",
+            "-",
+            "83.017",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "SingWeiPV(Remark X)",
+            "-",
+            "38.080",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "Shuo Li PV(Remark X)",
+            "-",
+            "141.848",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "TianYing Solar(Remark X)",
+            "-",
+            "66.640",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "JhihGuang Solar(Remark X)",
+            "-",
+            "44.240",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "YongYao Solar Power Plant(Remark X)",
+            "-",
+            "21.504",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "GreenPeak Renewables,Yu Chang Solar(Remark X)",
+            "-",
+            "11.550",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "ASTER RENEWABLE ENERGY, SinLun Solar(Remark X)",
+            "-",
+            "56.280",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "ARK Solar Energy Corp.,Sin He Solar(Remark X)",
+            "-",
+            "54.040",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "StarShiningEnergy,ShengLi PV(Remark X)",
+            "-",
+            "20.440",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "Ting Jie Electric Power,TingHe Solar(Remark X)",
+            "-",
+            "25.480",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "STAR Energy,SingGu Solar(Remark X)",
+            "-",
+            "20.720",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "SOLAR Purchases(Remark XIII)",
+            "Remaining Solar Purchases",
+            "13699.4",
+            "5669.528",
+            "41.385%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='solar'></A><b>SOLAR</b>",
+            "",
+            "Subtotal",
+            "14053.7(24.896%)",
+            "6776.0(19.518%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='OtherRenewableEnergy'></A><b>OTHERRENEWABLEENERGY</b>",
+            "",
+            "TPC Geothermal",
+            "0.8",
+            "0.3",
+            "35.714%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='OtherRenewableEnergy'></A><b>OTHERRENEWABLEENERGY</b>",
+            "",
+            "Geothermal Purchases",
+            "6.4",
+            "2.0",
+            "31.013%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='OtherRenewableEnergy'></A><b>OTHERRENEWABLEENERGY</b>",
+            "",
+            "Biofuel",
+            "60.7",
+            "31.9",
+            "52.588%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='OtherRenewableEnergy'></A><b>OTHERRENEWABLEENERGY</b>",
+            "",
+            "Subtotal",
+            "67.9(0.120%)",
+            "34.2(0.099%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "DaGuan2#1",
+            "250.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "DaGuan2#2",
+            "250.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "DaGuan2#3",
+            "250.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "DaGuan2#4",
+            "250.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#1",
+            "267.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#2",
+            "267.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#3",
+            "267.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#4",
+            "267.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#5",
+            "267.0",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Pumped Hydro",
+            "Mingtan#6",
+            "267.0",
+            "0.0",
+            "0.000%",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "Battery",
+            "Battery(Remark XVI)",
+            "573.3",
+            "0.0",
+            "0.000%",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystem'></A><b>ENERGYSTORAGESYSTEM</b>",
+            "",
+            "Subtotal",
+            "3175.3(5.625%)",
+            "0.0(0.000%)",
+            "",
+            "",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "DaGuan2#1",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "DaGuan2#2",
+            "-",
+            "-238.4",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "DaGuan2#3",
+            "-",
+            "-235.6",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "DaGuan2#4",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#1",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#2",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#3",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#4",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#5",
+            "-",
+            "0.0",
+            "-",
+            " ",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Pumped Hydro",
+            "Mingtan#6",
+            "-",
+            "0.0",
+            "-",
+            "1",
+            ""
+        ],
+        [
+            "<A NAME='EnergyStorageSystemLoad'></A><b>ENERGYSTORAGESYSTEMLOAD</b>",
+            "Battery",
+            "Battery(Remark XVI)",
+            "-",
+            "-5.2",
+            "-",
+            " ",
+            ""
+        ]
+    ],
+    "SubUnitSet": []
+}

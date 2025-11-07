@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from ruamel.yaml import YAML
@@ -21,9 +22,12 @@ def read_zones_config(config_dir, retired=False) -> dict[ZoneKey, Any]:
     for zone_path in config_dir.joinpath(
         "retired_zones" if retired is True else "zones"
     ).glob("*.yaml"):
-        zone_key = ZoneKey(zone_path.stem)
-        with open(zone_path, encoding="utf-8") as file:
-            zones_config[zone_key] = yaml.load(file)
+        try:
+            zone_key = ZoneKey(zone_path.stem)
+            with open(zone_path, encoding="utf-8") as file:
+                zones_config[zone_key] = yaml.load(file)
+        except Exception as e:
+            print(f"Error reading zone config for {zone_path.stem}: {e}")
     return zones_config
 
 
@@ -38,3 +42,15 @@ def read_exchanges_config(config_dir) -> dict[ZoneKey, Any]:
         with open(exchange_path, encoding="utf-8") as file:
             exchanges_config[exchange_key] = yaml.load(file)
     return exchanges_config
+
+
+def read_data_centers_config(config_dir) -> dict[str, Any]:
+    data_centers_config = {}
+    for data_center_path in config_dir.joinpath("data_centers").glob("*.json"):
+        with open(data_center_path, encoding="utf-8") as file:
+            data_centers_config[data_center_path.stem] = json.load(file)
+    # Flatten
+    all_data_centers = {}
+    for data_centers in data_centers_config.values():
+        all_data_centers.update(data_centers)
+    return all_data_centers

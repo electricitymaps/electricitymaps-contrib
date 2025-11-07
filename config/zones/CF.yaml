@@ -19,3 +19,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bangui
+zone_name: Central African Republic
+country_name: Central African Republic
+currency: XAF

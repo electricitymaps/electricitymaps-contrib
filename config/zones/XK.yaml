@@ -22,6 +22,8 @@ capacity:
 contributors:
   - veqtrus
 country: XK
+country_name: Kosovo
+currency: EUR
 delays:
   production: 8
 emissionFactors:
@@ -214,6 +216,6 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-  productionPerUnit: ENTSOE.fetch_production_per_units
 region: Europe
 timezone: Europe/Belgrade
+zone_name: Kosovo

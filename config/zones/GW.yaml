@@ -12,3 +12,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bissau
+zone_name: Guinea-Bissau
+country_name: Guinea-Bissau
+currency: XOF

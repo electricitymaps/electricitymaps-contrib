@@ -201,3 +201,6 @@ parsers:
   production: IN_DL.fetch_production
 region: Asia
 timezone: Asia/Kolkata
+zone_name: Unknown
+country_name: India
+currency: INR

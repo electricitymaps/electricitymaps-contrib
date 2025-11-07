@@ -222,3 +222,5 @@ parsers:
   productionCapacity: MY_WM.fetch_production_capacity
 region: Asia
 timezone: Asia/Kuala_Lumpur
+zone_name: Peninsula
+country_name: Malaysia

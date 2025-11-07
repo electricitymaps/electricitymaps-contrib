@@ -14,14 +14,14 @@ capacity:
   coal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 500.0
+      value: 750.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1820.0
+      value: 1320.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 1920.0
+      value: 1420.0
   geothermal:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -35,6 +35,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1050.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1280.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -63,10 +66,13 @@ capacity:
       value: 190.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 270.0
+      value: 260.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 370.0
+      value: 360.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 570.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -80,6 +86,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1060.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1260.0
 contributors:
   - BobGrun
   - corradio
@@ -355,3 +364,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Auckland
+zone_name: New Zealand
+country_name: New Zealand
+currency: NZD

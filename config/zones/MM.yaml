@@ -21,16 +21,16 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 1570.0
+      value: 1400.0
     - datetime: '2018-01-01'
       source: Ember, Yearly electricity data
-      value: 1900.0
+      value: 1730.0
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
-      value: 2280.0
+      value: 2100.0
     - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
-      value: 2900.0
+      value: 2730.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 3040.0
@@ -60,6 +60,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 180.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 220.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -73,3 +76,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yangon
+zone_name: Myanmar
+country_name: Myanmar
+currency: MMK

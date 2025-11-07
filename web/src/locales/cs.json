@@ -1,12 +1,62 @@
 {
+  "info": {
+    "title": "O Electricity Maps",
+    "text": "je API platforma, která poskytuje informace o uhlíkové intenzitě spotřebované elektřiny v reálném čase a predice uhlíkové intenzity v budoucnu, čímž umožňuje libovolnému zařízení snížit cenu a emise spotřebované elektřiny pomocí informace, kdy je nejlepší čas pro spotřebu elektřiny.",
+    "version": "Verze aplikace: {{version}}",
+    "share-app": "Sdílej aplikaci"
+  },
+  "settings-modal": {
+    "title": "Nastavení",
+    "flows": "Tok elektřiny"
+  },
   "mobile-main-menu": {
     "map": "Electricity Maps",
     "areas": "Oblasti",
     "about": "Info"
   },
+  "button": {
+    "bluesky-share": "Prohlédněte si celosvětové emise z elektřiny v reálném čase na: {{baseUrl}}",
+    "reddit": "Připojte se k r/electricitymaps",
+    "reddit-share": "Sdílej na Redditu",
+    "github": "Přispěj na GitHubu",
+    "twitter": "Sleduj nás na X (Twitteru)",
+    "twitter-share": "Sdílej na X (Twitteru)",
+    "linkedin": "Sleduj nás na LinkedInu",
+    "linkedin-share": "Sdílej na LinkedInu",
+    "facebook": "Sleduj nás na Facebooku",
+    "facebook-share": "Sdílej na Facebooku",
+    "feedback": "Dej nám zpětnou vazbu",
+    "faq": "Často kladené otázky",
+    "privacy-policy": "Zásady ochrany osobních údajů",
+    "legal-notice": "Právní informace",
+    "api": "Přistupte k API",
+    "docs": "Dokumentace API"
+  },
+  "app-banner": {
+    "cta": "Získejte aplikaci",
+    "description": "Data o elektřině živě"
+  },
+  "share-button": {
+    "clipboard": "URL zkopírována do schránky!",
+    "clipboard-error": "Chyba při kopírování URL do schránky",
+    "share-error": "Chyba při sdílení URL"
+  },
+  "more-options-dropdown": {
+    "title": "Sdílet",
+    "download": "Stáhnout CSV",
+    "chart-title": "Sdílet graf",
+    "zone-title": "Sdílet oblast",
+    "mobile-share-via": "Sdílet",
+    "copy-link": "Kopírovat odkaz",
+    "copy-chart-link": "Kopírovat odkaz na graf",
+    "copy-zone-link": "Kopírovat odkaz na oblast",
+    "preliminary-data": "Data jsou předběžná a mohou se změnit.",
+    "summary": "Objevte nové informace o elektřině s aplikací Electricity Maps!"
+  },
   "onboarding-modal": {
     "view1": {
-      "header": "Mapování dopadu spotřeby elektřiny na klima"
+      "header": "Vítejte v aplikaci Electricity Maps",
+      "text": "Mapování dopadu spotřeby elektřiny na klima"
     },
     "view2": {
       "header": "Sledujte, kolik CO₂ je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
@@ -16,26 +66,216 @@
       "header": "Zjistěte, odkud pochází Vaše elektřina",
       "text": "Šipky na mapě znázorňují tok elektřiny mezi různými oblastmi. Klikněte na oblast, pro kterou chcete zobrazit více informací o původu její elektřiny."
     },
+    "view4": {
+      "header": "Přepínejte mezi jednotlivými pohledy",
+      "text": "Přepínejte mezi Výrobou a Spotřebou elektřiny a mezi zobrazením Státu a Oblasti"
+    },
+    "view5": {
+      "header": "Přepánejte mezi zobrazením elektřiny a emisí",
+      "text": "Přepánejte mezi grafy zobrazujícími informace o elektřině a emise CO₂. Zobrazené hodnoty představují sumu příslušné veličiny za vybrané období. Informace odpovídají (dle výběru) buď datům o výrobě nebo datům zahrnující přeshraniční toky."
+    },
+    "view6": {
+      "header": "Prohlédněte si historická data",
+      "text": "Vlevo dole můžete vidět okamžitá i historická data pro celý svět. Změňte časový rámec pro agregaci dat, nebo se posuňte na časové ose tak, abyste viděli změny v čase"
+    },
     "view7": {
       "header": "Větrné a solární podmínky v reálném čase",
       "text": "Produkce větrné a solární energie je závislá na počasí. Stiskněte tlačítka Slunce a Vítr k zobrazení aktuální síly větru a slunečního záření na celém světě."
     }
   },
+  "data-sources": {
+    "title": "Zdroje dat",
+    "capacity": "Data o instalovaném výkonu",
+    "power": "Data o výrobě elektřiny",
+    "exchange": "Data o přeshraničním toku",
+    "emission": "Data o emisním faktoru"
+  },
   "country-panel": {
+    "forecastCta": "Hledáte předpovědní data?",
     "source": "Zdroj",
     "carbonintensity": "Uhlíková intenzita",
     "lowcarbon": "Nízké emise",
     "renewable": "Obnovitelné",
-    "helpfrom": "s pomocí od",
+    "electricityconsumption": "Elektřina",
+    "emissions": "Emise",
+    "helpfrom": "S přispěním: ",
     "noDataAtTimestamp": "Data pro vybraný čas jsou dočasně nedostupná",
     "noLiveData": "Živá data pro tuto oblast jsou dočasně nedostupná",
+    "disabledPriceReasons": {
+      "licensing": "Ceny elektřiny jsou nedostupné pro tuto oblast z licenčních důvodů."
+    },
+    "emissionFactorDataSourcesTooltip": "Emisní faktory výroby elektřiny mohou pocházet z více zdrojů, např. z dat specifických pro konkrétní elektrárnu nebo z dat o záložních zdrojích",
+    "dataIsDelayed": "Data pro tuto oblast mohou být zpožděna až o {{hours}} hodin. Živá data nemohou být zobrazena.",
+    "estimated": "odhad",
+    "aggregated": "agregace",
+    "dataIsEstimated": "Některá data pro tuto oblast jsou odhadnuta. Přečtěte si více o našich předpovědních modelech <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>zde</a>.",
+    "exchangesAreMissing": "Tento graf neobsahuje data o přeshraničních tocích. Přeshraniční toky jsou k dispozici v hodinovém zobrazení. Přečtěte si více o našich agregacích <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>zde</a>.",
+    "estimatedTooltip": "Data v reálním čase pro tuto oblast jsou odhadnuta na základě dat z externího zdroje a predicke našeho modelu.",
+    "aggregatedTooltip": "Data pro tuto oblast jsou agregována na základě historických dat.",
+    "helpUs": "Pomožte nám identifikovat problém v <a href='{{link}}' target='_blank'>lozích</a> nebo kontaktujte poskytovatle dat.",
     "noParserInfo": "Zatím nemáme žádné informace pro tuto oblast.<br/> Chcete nám pomoct to napravit? Můžete se zapojit <a href='{{link}}' target='_blank'>přidáním dat</a>.",
-    "now": "Teď"
+    "now": "Teď",
+    "by-source": {
+      "emissions": "Uhlíkové emise",
+      "electricity-mix": "Mix zdrojů elektřiny",
+      "total-electricity-mix": "Celkový mix zdrojů elektřiny",
+      "total-emissions": "Celkové emise"
+    },
+    "graph-legends": {
+      "installed-capacity": "Instalovaná kapacita ",
+      "exchange-capacity": "Kapacita přeshraničního toku ",
+      "exported": "Exportováno",
+      "imported": "Importováno",
+      "stored": "Uloženo",
+      "produced": "Vyrobeno"
+    },
+    "price-chart": {
+      "see": "Zobrazit nadcházející ceny",
+      "hide": "Skrýt nadcházející ceny",
+      "today": "Dnes",
+      "tomorrow": "Zítra",
+      "price-disclaimer": "Všechny ceny jsou za MWh, bez daně a distribučních poplatků.",
+      "time-disclaimer": "Všechny časy jsou uvedeny v",
+      "at": "V",
+      "now": "Teď"
+    }
+  },
+  "estimation-badge": {
+    "outage": "Nedostupné"
+  },
+  "estimation-card": {
+    "link": "Přečtěte si o našich predikčních modelech",
+    "outage-details": "Detaily",
+    "ESTIMATED_FORECASTS_HIERARCHY": {
+      "title": "Data jsou předběžná",
+      "body": "Data pro tuto hodinu dosud nebyla zveřejněna. Naše modely zaplňují tyto mezery a v reálném čase dodávají úplný dataset s konzistentní granularitou."
+    },
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "Data jsou předběžná",
+      "body": "Data pro tuto hodinu dosud nebyla zveřejněna. Naše modely zaplňují tyto mezery a v reálném čase dodávají úplný dataset s konzistentní granularitou."
+    },
+    "ESTIMATED_MODE_BREAKDOWN": {
+      "title": "Data jsou částečně odhadnuta",
+      "body": "Zveřejněná data pro tuto oblast jsou neúplná; naše modely doplňují chybějící typy zdrojů a přeshraniční toky."
+    },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Data jsou vždy odhadována",
+      "pill": "Odhad",
+      "body": "Zdroj dat v reálném čase pro tuto oblast není k dispozici. Data jsou modelována na základě živých dat o počasí a historických datech o produkci."
+    },
+    "threshold_filtered": {
+      "title": "Data nejsou k dispozici",
+      "pill": "Výpadek dat",
+      "body": "Poskytovatel dat pro tuto oblast je již delší dobu nemá k dispozici. Tento problém monitorujeme a doplníme data pro tuto oblast, jakmile zdrojová data splní naše požadavky na kvalitu dat."
+    },
+    "outage": {
+      "title": "Přetrvávající výpadek dat",
+      "pill": "Data nedostupná"
+    },
+    "aggregated": {
+      "title": "Data jsou agregována",
+      "body": "Data agregují hodnoty po jednotlivých hodinách."
+    },
+    "aggregated_estimated": {
+      "title": "Data jsou agregována",
+      "pill": " {{percentage}}% dat je odhadnuto",
+      "body": "Data obsahují agregované hodnoty po jednotlivých hodinách. {{percentage}}% produkčních hodnot je odhadnuto."
+    }
   },
   "ranking-panel": {
     "title": "Dopad na klima podle oblasti",
     "subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
-    "search": "Hledej oblasti"
+    "search": "Hledej oblasti",
+    "no-results": "Žádné výsledky. Zkuste hledat jinou oblast."
+  },
+  "time-controller": {
+    "72h": "72 hodin",
+    "3mo": "90 dní",
+    "12mo": "12 měsíců",
+    "all_months": "Všechny měsíce",
+    "all_years": "Všechny roky",
+    "navigate": "Přesunout",
+    "live": "Živě",
+    "date-unavailable": {
+      "title": "Data pro vybrané datum nedostupné",
+      "description": "Přesměrování na živá data"
+    }
+  },
+  "country-history": {
+    "carbonintensity": {
+      "24h": "Uhlíková intenzita",
+      "72h": "Uhlíková intenzita",
+      "3mo": "Denní uhlíková intenzita",
+      "12mo": "Měsíční uhlíková intenzita",
+      "all_months": "Měsíční uhlíková intenzita",
+      "all_years": "Roční uhlíková intenzita"
+    },
+    "emissions": {
+      "24h": "Uhlíkové emise",
+      "72h": "Uhlíkové emise",
+      "3mo": "Denní uhlíkové emise",
+      "12mo": "Měsíční uhlíkové emise",
+      "all_months": "Měsíční uhlíkové emise",
+      "all_years": "Roční uhlíkové emise"
+    },
+    "emissionsorigin": {
+      "24h": "Zdroje uhlíkových emisí",
+      "72h": "Zdroje uhlíkových emisí",
+      "3mo": "Denní zdroje uhlíkových emisí",
+      "12mo": "Měsíční zdroje uhlíkových emisí",
+      "all_months": "Měsíční zdroje uhlíkových emisí",
+      "all_years": "Roční zdroje uhlíkových emisí"
+    },
+    "emissionsproduction": {
+      "24h": "Produkce emisí",
+      "72h": "Produkce emisí",
+      "3mo": "Denní produkce emisí",
+      "12mo": "Měsíční produkce emisí",
+      "all_months": "Měsíční produkce emisí",
+      "all_years": "Roční produkce emisí"
+    },
+    "electricityorigin": {
+      "24h": "Energetický mix",
+      "72h": "Energetický mix",
+      "3mo": "Denní energetický mix",
+      "12mo": "Měsíční energetický mix",
+      "all_months": "Měsíční energetický mix",
+      "all_years": "Roční energetický mix"
+    },
+    "electricityproduction": {
+      "24h": "Energetický mix",
+      "72h": "Energetický mix",
+      "3mo": "Denní energetický mix",
+      "12mo": "Měsíční energetický mix",
+      "all_months": "Měsíční energetický mix",
+      "all_years": "Roční energetický mix"
+    },
+    "electricityprices": {
+      "24h": "Ceny elektřiny",
+      "72h": "Ceny elektřiny",
+      "3mo": "Denní ceny elektřiny",
+      "12mo": "Měsíční ceny elektřiny",
+      "all_months": "Měsíční ceny elektřiny",
+      "all_years": "Roční ceny elektřiny"
+    },
+    "netExchange": {
+      "24h": "Přeshraniční tok",
+      "72h": "Přeshraniční tok",
+      "3mo": "Denní přeshraniční tok",
+      "12mo": "Měsíční přeshraniční tok",
+      "all_months": "Měsíční přeshraniční tok",
+      "all_years": "Roční přeshraniční tok"
+    },
+    "electricityLoad": {
+      "24h": "Zatížení sítě",
+      "72h": "Zatížení sítě",
+      "3mo": "Denní zatížení sítě",
+      "12mo": "Měsíční zatížení sítě",
+      "all_months": "Měsíční zatížení sítě",
+      "all_years": "Roční zatížení sítě"
+    },
+    "not-enough-data": "Pro zobrazení tohoto grafu není k dispozici dostatek dat",
+    "exchange-delay": "Data o přeshraničním toku mohou být zpožděna až o 48 hodin."
   },
   "footer": {
     "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",
@@ -49,24 +289,87 @@
     "colorblindmode": "Mód pro barvoslepé",
     "carbonintensity": "Uhlíková intenzita"
   },
+  "left-panel": {
+    "applied-methodologies": {
+      "title": "Použité metody",
+      "estimations": "Electricity Maps - Odhady",
+      "flowtracing": "Electricity Maps - Sledování toků",
+      "carbonintensity": "Electricity Maps - Uhlíková intenzita",
+      "historicalAggregations": "Electricity Maps - Historické agregace"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Metodologie a zdroje dat"
+    }
+  },
+  "header": {
+    "blog": "Blog",
+    "open-source": "Komunita",
+    "hiring": "Volná místa",
+    "methodology": "Metodologie",
+    "faq": "Často kladené otázky"
+  },
   "tooltips": {
     "carbonintensity": "Uhlíková intenzita",
-    "crossborderexport": "Zahraniční export",
+    "zoneHeader": {
+      "lowcarbon": "Obsahuje obnovitelné a jaderné zdroje",
+      "renewable": "Obsahuje solární, větrné, vodní a geotermální zdroje a spalování biomasy",
+      "carbonIntensity": "Gramy CO₂ ekvivalentu na kilowatthodinu (gCO₂eq/kWh) měřící emise skleníkových plynů z produkce elektrické energie"
+    },
+    "crossborderexport": "Přeshraniční export",
     "carbonintensityexport": "Uhlíková intenzita exportu",
     "ofinstalled": "instalované kapacity",
-    "utilizing": "využití",
+    "utilizing": "využívajíce",
+    "representing": "představující",
+    "ofemissions": "emisí",
     "withcarbonintensity": "s uhlíkovou intenzitou",
+    "zoomIn": "Zvětšit",
+    "zoomOut": "Zmenšit",
+    "layers": "Vrstvy mapy",
     "showWindLayer": "Zobraz větrnou vrstvu",
     "hideWindLayer": "Skryj větrnou vrstvu",
     "showSolarLayer": "Zobraz solární vrstvu",
     "hideSolarLayer": "Skryj solární vrstvu",
-    "changeTheme": "Přepni na tmavý režim",
+    "weatherDisabled": "Data o počasí momentálně nejsou dostupná.",
+    "changeTheme": "Přepnout režim zobrazení",
     "noParserInfo": "Žádná data",
     "temporaryDataOutage": "Data momentálně nedostupná",
+    "temporarilyUnavailable": "Dočasně nedostupné",
     "production": "výroba",
     "consumption": "spotřeba",
     "cpinfo": "<b>spotřeba</b> bere v úvahu dovoz a vývoz, <b>výroba</b> je ignoruje",
-    "selectLanguage": "Vyberte jazyk"
+    "aggregateInfo": "Přepněte mezi zobrazením zóny a agregovaným zobrazením země",
+    "selectLanguage": "Vyberte jazyk",
+    "dataIsDelayed": "Data jsou zpožděná",
+    "price": "Cena",
+    "netExchange": "Přeshraniční tok",
+    "load": "Zatížení sítě",
+    "importing": "Dovoz",
+    "exporting": "Vývoz",
+    "flowTraced": "Data berou v potaz přeshraniční toky elektřiny.",
+    "nonFlowTraced": "Data neberou v potaz import a export elektřiny"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Výběr jazyka",
+      "colorBlindMode": "Mód pro barvoslepé",
+      "windLayer": "Větrná vrstva",
+      "solarLayer": "Solární vrstva",
+      "changeTheme": "Změna režimu zobrazení",
+      "hideSidePanel": "Schovat postranní panel",
+      "showSidePanel": "Zobrazit postranní panel",
+      "layers": "Vrstvy mapy",
+      "zoomIn": "Zvětšit",
+      "zoomOut": "Zmenšit"
+    }
+  },
+  "aggregateButtons": {
+    "country": "země",
+    "zone": "oblast"
+  },
+  "themeOptions": {
+    "dark": "Tmavý",
+    "light": "Světlý",
+    "system": "Systém"
   },
   "updatePrompt": {
     "description": "Je dostupná nová verze aplikace, aktualizovat nyní?",
@@ -77,10 +380,13 @@
     "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
     "faq": "Často kladené otázky",
     "dismiss": "Zavřít",
-    "reload": "Znovu načíst"
+    "reload": "Znovu načíst",
+    "slow-loading-text": "Načítání stále probíhá, zkuste načíst znovu..."
   },
   "wind": "větrná",
+  "windDataError": "Data o větru momentálně nejsou dostupná.",
   "solar": "solární",
+  "solarDataError": "Data o slunečním záření momentálně nejsou dostupná.",
   "hydro": "vodní",
   "hydro storage": "přečerpávací",
   "battery storage": "baterie",
@@ -91,14 +397,24 @@
   "coal": "uhlí",
   "oil": "ropa",
   "unknown": "neznámé",
+  "electricityStoredUsing": "je ukládáno do",
+  "emissionsStoredUsing": "je ukládáno do",
+  "electricityExportedTo": "je exportováno do",
+  "emissionsExportedTo": "je exportováno do",
+  "electricityImportedFrom": "je importováno z",
+  "emissionsImportedFrom": "je importováno z",
+  "electricityAvailableIn": "elektřiny dostupné v",
+  "emissionsAvailableIn": "emisí z elektřiny dostupné v",
+  "comesFrom": "pochází z",
+  "ofCO2eq": "CO₂eq",
   "theMap": {
     "groupName": "Mapa",
     "mapColors-question": "Co znamenají barvy na mapě?",
     "mapColors-answer": "Barevně vyznačujeme oblasti podle množství skleníkových plynů vyprodukovaných na jednotku spotřebované elektřiny v dané oblasti (její <a href='#carbonIntensity' class='entry-link'>uhlíkovou intenzitu</a>)",
     "mapArrows-question": "Co znamenají šipky mezi oblastmi na mapě?",
-    "mapArrows-answer": "Šipky mezi oblastmi znázorňují fyzický tok (import a export) elektřiny mezi oblastmi: čím rychlejší je blikání, tím rychlejší tok je. Tok elektřiny je důležitý, protože když importujete něco z Vaší elektřiny od sousední oblasti, tak importujete i uhlíkové emise související s její produkcí.",
+    "mapArrows-answer": "Šipky mezi oblastmi znázorňují fyzický tok (import a export) elektřiny mezi oblastmi: čím rychlejší je blikání, tím rychlejší tok je. Tok elektřiny je důležitý, protože importem elektřiny ze sousední oblasti importujete i uhlíkové emise související s její produkcí.",
     "mapSolarWindButtons-question": "Co dělají tlačítka „slunce“ a „vítr“ na mapě?",
-    "mapSolarWindButtons-answer": "Tato tlačítka přepínají zobrazení aktuální rychlosti větru a intenzity slunečního záření, což naznačuje potenciál přechodu na solární a větrné energetické alternativy v různých oblastech. Berte v úvahu, že jde jen o přibližnou indikaci, protože skutečný potenciál v instalaci větrných turbín a solárních jednotek je závislý na množství dalších faktorů.",
+    "mapSolarWindButtons-answer": "Tato tlačítka přepínají zobrazení aktuální intenzity slunečního záření a rychlosti větru, což naznačuje potenciál přechodu na solární a větrné energetické alternativy v různých oblastech. Berte v úvahu, že jde jen o přibližnou indikaci, protože skutečný potenciál v instalaci větrných turbín a solárních jednotek je závislý na množství dalších faktorů.",
     "mapNuclearColors-question": "Proč jsou oblasti s velkým zastoupením jaderné energie na mapě zobrazené jako zelené?",
     "mapNuclearColors-answer": "Produkce jaderné energie má hodně nízkou uhlíkovou intenzitu (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank' >zdroj</a>), a tyto oblasti jsou proto zobrazené na mapě zelenou barvou. To ale neznamená, že s jadernou energií nejsou spojené jiné enviromentální výzvy (obdobně jako v případe jiných forem energetické produkce), ale tyto výzvy nejsou spojené s emisemi skleníkových plynů a jsou tedy mimo zaměření této mapy.",
     "mapColorBlind-question": "Jsem barvoslepý. Jak můžu číst vaši mapu?",
@@ -111,16 +427,16 @@
     "whySmallAreas-question": "Proč dělíte svět do malých oblastí a raději nezobrazíte průměry států?",
     "whySmallAreas-answer": "Tyto oblasti jsou nejmenší geografické oblasti, pro která máme data. Díky přístupu k informacím na nejjemnější úrovni, může mít spotřebitel energie v různých oblastech přesnější přehled o původu elektřiny, kterou spotřebovává a s tím spojeným dopadem na klima.",
     "divideExistingArea-question": "Můžete rozdělit mou oblast na menší?",
-    "divideExistingArea-answer": "Určitě, když existují separátní zdroje dat pro každou část dané oblasti. Můžete <a href='#contribute' class='entry-link'>nám pomoci přidáním nových datových zdrojů</a>.",
+    "divideExistingArea-answer": "Určitě, pokud existují separátní zdroje dat pro každou část dané oblasti. Můžete <a href='#contribute' class='entry-link'>nám pomoci přidáním nových datových zdrojů</a>.",
     "seeHistoricalData-question": "Můžu zobrazit historii oblasti starší než 24 hodin?",
-    "seeHistoricalData-answer": "Můžete si zakoupíte přístup do <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databáze historických dat</a>."
+    "seeHistoricalData-answer": "Můžete si zakoupit přístup do <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>databáze historických dat</a>."
   },
   "methodology": {
     "groupName": "Metogologie",
     "carbonIntensity-question": "Co je 'uhlíková intenzita'?",
-    "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO₂eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO₂, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
-    "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi „obnovitelnou“ a „nízko-emisní“ energií?",
-    "renewableLowCarbonDifference-answer": "Obnovitelná produkce energie je založená na obnovitelných zdrojích energie jako například na větru, vodním proudu, slunečním záření nebo geotermální energii. Nízko-emisní produkce energie znamená, že tato produkce produkuje nízkou úroveň emisí skleníkových plynů, jako například jaderná energie.",
+    "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO₂eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO₂, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach), což znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny (stavba, produkce paliva, operativní emise, vyřazení).",
+    "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi „obnovitelnou“ a „nízkoemisní“ energií?",
+    "renewableLowCarbonDifference-answer": "Obnovitelná produkce energie je založená na obnovitelných zdrojích energie jako například na větru, vodním proudu, slunečním záření nebo geotermální energii. Nízkoemisní produkce energie znamená nízkou úroveň emisí skleníkových plynů, jako například jaderná energie.",
     "importsAndExports-question": "Berete v úvahu import a export elektřiny?",
     "importsAndExports-answer": "Ano, bereme. Import a export je na mapě znázorněný malou <a href='#mapArrows' class='entry-link'> šipkou mezi různými oblastmi. Bližší informace jsou uvedeny v grafu, který se zobrazí po kliknutí na oblast.",
     "emissionsOfStored-question": "A co emise z generování elektrické energie, která je pak uschována v bateriích nebo použita na plnění nádrží?",
@@ -128,11 +444,11 @@
     "guaranteesOfOrigin-question": "Co jsou zelené certifikáty a kolik jich berete v úvahu?",
     "guaranteesOfOrigin-answer": "Když výrobci obnovitelné energie produkují elektřinu, mohou vytvořit Záruku původu (Guarantee of Origin nebo Renewable Energy Cerificates) - důkaz toho, že obnovitelná elektřina byla vyprodukována a distribuována do rozvodné sítě. Tyto záruky mohou být prodány nebo dány výrobci s neobnovitelnou energií jako způsob 'kompenzace' za jeho emise a právo tvrdit, že elektřina kterou produkuje je z obnovitelných zdrojů. <br><br> Toto znamená, že spotřebitelům elektrické energie může být řečeno, že jejich elektrická energie je zelená, i když to není pravda ve fyzickém smyslu. To může představovat problém, protože certifikace odstraňuje stimuly spotřebitelů spotřebovávat elektřinu v nejlepším čase (například když množství obnovitelné elektřiny v síti je nejvyšší). Tato mapa tedy vylučuje Záruky původu, místo toho nabízí fyzický obraz rozvodní sítě na základe lokace, aby si mohli spotřebitelé plně uvědomit svou zodpovědnost.",
     "otherSources-question": "Proč nezobrazujete jiné zdroje emisí kromě produkce elektřiny?",
-    "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v electricityMap aktivně pracujeme na vývoji <a href='#whoAreYou' class='entry-link'>nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
+    "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v ElectricityMaps aktivně pracujeme na vývoji <a href='#whoAreYou' class='entry-link'>nového řešení pro kvantifikaci dopadu našich každodenních rozhodnutí na klima</a>.",
     "homeSolarPanel-question": "Co když mám doma nainstalovaný solární panel?",
     "homeSolarPanel-answer": "Měříme uhlíkovou intenzitu lokální rozvodní sítě, takže jakákoliv elektřina, kterou spotřebováváte z vašeho solárního panelu (mimo sítě) není součástí našich měření. Ale když váš solární panel dodává energii do vaší lokální rozvodné sítě, jeho produkce je zahrnuta v našich statistikách v oblastech, kde jsou odhady produkce lokální solární energie veřejně dostupné (jako například ve Francii nebo Velké Británii).",
     "emissionsPerCapita-question": "Proč nezobrazujete emise přepočtené na jednoho obyvatele?",
-    "emissionsPerCapita-answer": "Některé části z elektřiny spotřebované v oblasti jsou použity na výrobu zboží nebo produktů, které jsou poté exportovány a konzumovány v jiných oblastech. Tato výroba a taky její spotřeba elektřiny a souvisící emise je způsobená spotřebou zboží v <em>dovážejících zemích</em>, ne v zemích jejich původu. Věříme, že lidé by měli být zodpovědní za to, co spotřebují, ne za produkty vyrobené v oblastech, ve kterých žijí, když je sami nekonzumují. V tomhle smyslu by zobrazení emisí spotřebované elektřiny na obyvatele mohlo působit klamavě."
+    "emissionsPerCapita-answer": "Některé části z elektřiny spotřebované v oblasti jsou použity na výrobu zboží nebo produktů, které jsou poté exportovány a konzumovány v jiných oblastech. Tato výroba a taky její spotřeba elektřiny a souvisící emise je způsobená spotřebou zboží v <em>dovážejících zemích</em>, ne v zemích jejich původu. Věříme, že lidé by měli být zodpovědní za to, co spotřebují, ne za produkty vyrobené v oblastech, ve kterých žijí, když je sami nekonzumují. V tomto smyslu by zobrazení emisí spotřebované elektřiny na obyvatele mohlo působit klamavě."
   },
   "data": {
     "groupName": "Naše data",
@@ -203,6 +519,18 @@
     "AU-TAS": {
       "countryName": "Austrálie",
       "zoneName": "Tasmánie"
+    },
+    "AU-TAS-CBI": {
+      "countryName": "Austrálie",
+      "zoneName": "Cape Barren Island"
+    },
+    "AU-TAS-KI": {
+      "countryName": "Austrálie",
+      "zoneName": "King Island"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Austrálie",
+      "zoneName": "Flinders"
     },
     "AU-VIC": {
       "countryName": "Austrálie",
@@ -361,13 +689,21 @@
     "CI": {
       "zoneName": "Pobřeží Slonoviny"
     },
-    "CL-SEM": {
+    "CL-CHP": {
       "countryName": "Chile",
-      "zoneName": "SEM"
+      "zoneName": "Velikonoční ostrov"
     },
     "CL-SEA": {
       "countryName": "Chile",
-      "zoneName": "SEA"
+      "zoneName": "Sistema Eléctrico de Aysén"
+    },
+    "CL-SEM": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico de Magallanes"
+    },
+    "CL-SEN": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico Nacional"
     },
     "CM": {
       "zoneName": "Kamerun"
@@ -514,6 +850,14 @@
     "FO": {
       "zoneName": "Faerské ostrovy"
     },
+    "FO-MI": {
+      "countryName": "Fearské ostrovy",
+      "zoneName": "Hlavní ostrovy"
+    },
+    "FO-SI": {
+      "countryName": "Fearské ostrovy",
+      "zoneName": "Jižní ostrov"
+    },
     "FR": {
       "zoneName": "Francie"
     },
@@ -557,7 +901,7 @@
       "zoneName": "Grónsko"
     },
     "GM": {
-      "zoneName": "Gambia"
+      "zoneName": "Gambie"
     },
     "GN": {
       "zoneName": "Guinea"
@@ -590,7 +934,7 @@
       "zoneName": "Hongkong"
     },
     "HM": {
-      "zoneName": "Heardův ostrov a McDonaldovy ostrovy "
+      "zoneName": "Heardův ostrov a McDonaldovy ostrovy"
     },
     "HN": {
       "zoneName": "Honduras"
@@ -615,6 +959,29 @@
     },
     "IM": {
       "zoneName": "Ostrov Man"
+    },
+    "IN": {
+      "zoneName": "Mainland India"
+    },
+    "IN-EA": {
+      "countryName": "Indie",
+      "zoneName": "Východní Indie"
+    },
+    "IN-NE": {
+      "countryName": "Indie",
+      "zoneName": "Severovýchodní Indie"
+    },
+    "IN-NO": {
+      "countryName": "Indie",
+      "zoneName": "Severní Indie"
+    },
+    "IN-SO": {
+      "countryName": "Indie",
+      "zoneName": "Jižní Indie"
+    },
+    "IN-WE": {
+      "countryName": "Indie",
+      "zoneName": "Západní Indie"
     },
     "IN-AN": {
       "countryName": "Indie",
@@ -649,15 +1016,15 @@
     },
     "IT-CNO": {
       "countryName": "Itálie",
-      "zoneName": "Středo-severní"
+      "zoneName": "Středo-severní Itálie"
     },
     "IT-CSO": {
       "countryName": "Itálie",
-      "zoneName": "Středo-jižní"
+      "zoneName": "Středo-jižní Itálie"
     },
     "IT-NO": {
       "countryName": "Itálie",
-      "zoneName": "Severní"
+      "zoneName": "Severní Itálie"
     },
     "IT-SAR": {
       "countryName": "Itálie",
@@ -669,7 +1036,7 @@
     },
     "IT-SO": {
       "countryName": "Itálie",
-      "zoneName": "Jižní"
+      "zoneName": "Jižní Itálie"
     },
     "JE": {
       "zoneName": "Jersey"
@@ -838,6 +1205,10 @@
       "countryName": "Mexiko",
       "zoneName": "Baja California"
     },
+    "MX-BCS": {
+      "countryName": "Mexiko",
+      "zoneName": "Baja California Sur"
+    },
     "MX-CE": {
       "countryName": "Mexiko",
       "zoneName": "Střední Mexiko"
@@ -932,6 +1303,10 @@
       "countryName": "Novy Zéland",
       "zoneName": "Chathamské ostrovy"
     },
+    "NZ-NZST": {
+      "countryName": "Nový Zéland",
+      "zoneName": "Stewartův ostrov"
+    },
     "OM": {
       "zoneName": "Omán"
     },
@@ -949,6 +1324,18 @@
     },
     "PH": {
       "zoneName": "Filipíny"
+    },
+    "PH-LU": {
+      "countryName": "Filipíny",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Filipíny",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Filipíny",
+      "zoneName": "Visayas"
     },
     "PK": {
       "zoneName": "Pákistán"
@@ -1005,15 +1392,21 @@
       "countryName": "Rusko",
       "zoneName": "Sibiř"
     },
-    "RU-EU": {
-      "zoneName": "Rusko"
-    },
     "RU-AS": {
-      "zoneName": "Rusko"
+      "countryName": "Rusko",
+      "zoneName": "Východní Rusko"
+    },
+    "RU-EU": {
+      "countryName": "Rusko",
+      "zoneName": "Arktické Rusko"
+    },
+    "RU-FE": {
+      "countryName": "Rusko",
+      "zoneName": "Dálný Východ"
     },
     "RU-KGD": {
       "countryName": "Rusko",
-      "zoneName": "Kaliningrad"
+      "zoneName": "Královec"
     },
     "RW": {
       "zoneName": "Rwanda"
@@ -1032,6 +1425,22 @@
     },
     "SE": {
       "zoneName": "Švédsko"
+    },
+    "SE-SE1": {
+      "countryName": "Švédsko",
+      "zoneName": "Severní Švédsko"
+    },
+    "SE-SE2": {
+      "countryName": "Švédsko",
+      "zoneName": "Středo-severní Švédsko"
+    },
+    "SE-SE3": {
+      "countryName": "Švédsko",
+      "zoneName": "Středo-jižní Švédsko"
+    },
+    "SE-SE4": {
+      "countryName": "Švédsko",
+      "zoneName": "Jižní Švédsko"
     },
     "SG": {
       "zoneName": "Singapur"
@@ -1061,7 +1470,7 @@
       "zoneName": "Jižní Súdán"
     },
     "ST": {
-      "zoneName": "Svatý Tomáš a Princův ostrov "
+      "zoneName": "Svatý Tomáš a Princův ostrov"
     },
     "SV": {
       "zoneName": "Salvador"
@@ -1121,6 +1530,18 @@
     "UG": {
       "zoneName": "Uganda"
     },
+    "US": {
+      "zoneName": "Spojené státy americké",
+      "seoZoneName": "Spojené státy americké - USA"
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Aljaška"
+    },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Havaj"
+    },
     "UY": {
       "zoneName": "Uruguay"
     },
@@ -1134,7 +1555,7 @@
       "zoneName": "Venezuela"
     },
     "VI": {
-      "countryName": "Spojené státy americké",
+      "countryName": "USA",
       "zoneName": "Americké Panenské ostrovy"
     },
     "VN": {
@@ -1145,6 +1566,9 @@
     },
     "WS": {
       "zoneName": "Samoa"
+    },
+    "XK": {
+      "zoneName": "Kosovo"
     },
     "XX": {
       "zoneName": "Severokyperská turecká republika"
@@ -1163,10 +1587,6 @@
     },
     "ZW": {
       "zoneName": "Zimbabwe"
-    },
-    "AU-TAS-KI": {
-      "countryName": "Tasmánie",
-      "zoneName": "King Island"
     }
   }
 }

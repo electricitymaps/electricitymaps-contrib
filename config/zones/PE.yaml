@@ -43,6 +43,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 6690.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 6700.0
   hydro:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -59,6 +62,9 @@ capacity:
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 5500.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 5520.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -69,6 +75,12 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 330.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 450.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 530.0
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -88,6 +100,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2060.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1980.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -103,7 +118,10 @@ capacity:
       value: 540.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 710.0
+      value: 1010.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 1150.0
 contributors:
   - corradio
   - nessie2013
@@ -376,3 +394,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Lima
+zone_name: Peru
+country_name: Peru
+currency: PEN

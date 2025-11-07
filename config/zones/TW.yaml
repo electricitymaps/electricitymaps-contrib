@@ -8,7 +8,7 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 80.0
-    - datetime: '2021-01-01'
+    - datetime: '2020-01-01'
       source: Ember, Yearly electricity data
       value: 90.0
     - datetime: '2023-01-01'
@@ -29,7 +29,7 @@ capacity:
       value: 19210.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
-      value: 19160.0
+      value: 19120.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -51,6 +51,9 @@ capacity:
       value: 17510.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
+      value: 17690.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
       value: 18810.0
   hydro:
     - datetime: '2017-01-01'
@@ -59,6 +62,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2100.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 2120.0
   nuclear:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -69,12 +75,15 @@ capacity:
     - datetime: '2019-01-01'
       source: Ember, Yearly electricity data
       value: 3870.0
-    - datetime: '2022-01-01'
+    - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
       value: 2890.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 1900.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 950.0
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -91,6 +100,9 @@ capacity:
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 2420.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 2440.0
   solar:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -113,6 +125,9 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 12420.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 14280.0
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -128,13 +143,16 @@ capacity:
       value: 940.0
     - datetime: '2021-01-01'
       source: Ember, Yearly electricity data
-      value: 1030.0
+      value: 1090.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data
       value: 1580.0
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
-      value: 2670.0
+      value: 2680.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 3890.0
 contributors:
   - corradio
   - MariusKroon
@@ -410,3 +428,6 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Taipei
+zone_name: Taiwan
+country_name: Taiwan
+currency: TWD

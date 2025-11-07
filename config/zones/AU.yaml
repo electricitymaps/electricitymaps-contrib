@@ -83,7 +83,6 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: Electricity Maps, 2024 average
         value: 366.9
-estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -221,3 +220,6 @@ subZoneNames:
   - AU-WA
   - AU-WA-RI
 timezone: Australia/Sydney
+zone_name: Australia
+country_name: Australia
+currency: AUD
