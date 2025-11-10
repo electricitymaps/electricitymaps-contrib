@@ -1,3 +1,5 @@
+# Archived reason: Switched to ENTSOE parser for production data as it has higer resolution.
+
 """Fetch the status of the Georgian electricity grid."""
 
 import urllib.parse
