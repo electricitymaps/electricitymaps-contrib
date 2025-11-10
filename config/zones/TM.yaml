@@ -6,30 +6,24 @@ bounding_box:
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 5432.4
+      source: Ember, Yearly electricity data
+      value: 4940.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 7006.4
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 6511.2
+      source: Ember, Yearly electricity data
+      value: 6520.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 6943.2
+      source: Ember, Yearly electricity data
+      value: 6950.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 7000.0
+      source: Ember, Yearly electricity data
+      value: 7090.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.2
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 2.2
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TM
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Ashgabat
 zone_name: Turkmenistan

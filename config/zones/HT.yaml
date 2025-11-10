@@ -1,50 +1,26 @@
 capacity:
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 56.29
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 77.89
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 77.99
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 400.22
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 400.37
+      source: Ember, Yearly electricity data
+      value: 80.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2.77
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 3.01
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 3.06
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 2.98
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 3.2
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 3.89
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 400.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 0.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 0.02
 country: HT
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Port-au-Prince
 zone_name: Haiti

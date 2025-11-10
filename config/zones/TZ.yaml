@@ -6,64 +6,55 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 70.19
+      source: Ember, Yearly electricity data
+      value: 70.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 734.0
+      source: Ember, Yearly electricity data
+      value: 620.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 974.0
+      source: Ember, Yearly electricity data
+      value: 890.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1020.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 1100.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1150.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 589.14
+      source: Ember, Yearly electricity data
+      value: 590.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 588.54
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 596.04
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 597.74
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 598.24
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 598.55
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 342.72
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 343.68
+      source: Ember, Yearly electricity data
+      value: 600.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 680.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 13.21
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 17.48
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 15.54
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 16.77
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 19.15
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 19.92
+      source: Ember, Yearly electricity data
+      value: 130.0
   wind:
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 2.4
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TZ
 emissionFactors:
   lifecycle:
@@ -114,7 +105,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Dar_es_Salaam
 zone_name: Tanzania

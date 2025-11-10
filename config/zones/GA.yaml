@@ -4,6 +4,8 @@ bounding_box:
   - - 14.999144991449924
     - 2.809956504477071
 country: GA
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Libreville
 zone_name: Gabon

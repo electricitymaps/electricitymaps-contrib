@@ -4,44 +4,29 @@ bounding_box:
   - - -60.02920529205288
     - 11.851537843107792
 capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2018.5
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 2036.5
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 2006.5
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 2404.2
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 2019.25
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 12.5
+      source: Ember, Yearly electricity data
+      value: 2060.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 4.0
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 4.1
+      source: Ember, Yearly electricity data
+      value: 0.0
   unknown:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 8.5
+      source: Ember, Yearly electricity data
+      value: 20.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.01
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: TT
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Port_of_Spain
 zone_name: Trinidad and Tobago

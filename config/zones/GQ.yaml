@@ -1,44 +1,26 @@
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 154.2
+      source: Ember, Yearly electricity data
+      value: 150.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 156.0
+      source: Ember, Yearly electricity data
+      value: 160.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 125.6
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 127.14
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 116.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 117.97
+      source: Ember, Yearly electricity data
+      value: 130.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.35
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 0.34
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 0.33
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.19
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 0.01
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 120.0
 country: GQ
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Malabo
 zone_name: Equatorial Guinea

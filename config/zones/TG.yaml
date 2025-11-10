@@ -1,4 +1,6 @@
 country: TG
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lome
 zone_name: Togo

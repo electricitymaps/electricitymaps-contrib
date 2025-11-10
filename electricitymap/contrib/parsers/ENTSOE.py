@@ -813,10 +813,11 @@ def _reverse_A3_curve_compression_for_period(
     Reverses the A3 curve compression for a *single* Period object.
     Fills in missing points with the last known value.
     """
-    if not period.points:
-        return
 
     points_list = sorted(period.points, key=attrgetter("position"))
+
+    if not points_list:
+        return
 
     start_time = period.datetime_start
     end_time = period.datetime_end

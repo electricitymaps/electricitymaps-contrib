@@ -1,31 +1,19 @@
 capacity:
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.92
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 27.6
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 28.3
+      source: Ember, Yearly electricity data
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.35
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 0.34
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.2
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 0.01
+      source: Ember, Yearly electricity data
+      value: 0.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30.0
 country: ST
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Sao_Tome
 zone_name: São Tomé and Príncipe
