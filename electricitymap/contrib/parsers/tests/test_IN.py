@@ -7,6 +7,7 @@ from pandas.testing import assert_series_equal
 from electricitymap.contrib.parsers.IN import (
     compute_zone_key_share_per_mode_out_of_total,
     parse_15m_production_grid_india_report,
+    parse_daily_production_grid_india_report,
     parse_daily_total_production_grid_india_report,
     parse_total_production_15min_grid_india_report,
     scale_15min_production,
@@ -52,4 +53,11 @@ def test_scale_15min_production(snapshot):
 
 def test_parse_15m_production_grid_india_report(snapshot):
     result = parse_15m_production_grid_india_report(content, "IN-NO", datetime(2025, 4, 8, 0, 0))
+    assert snapshot == result
+
+
+def test_parse_daily_production_grid_india_report(snapshot):
+    # This test uses the same file as the one for the 15m production report, but it does not use the 15m data.
+    # This is to test the behavior of the parser for the period 2023/04/01 - 2024/11/04.
+    result = parse_daily_production_grid_india_report(content, "IN-EA", datetime(2025, 4, 8, 0, 0))
     assert snapshot == result

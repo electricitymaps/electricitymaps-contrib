@@ -550,6 +550,9 @@ def get_wind_solar(content: bytes, zone_key: str) -> pd.DataFrame:
         {"value": [wind_gen_nr, solar_gen_nr]}, index=["wind", "solar"]
     )
     wind_solar_df.index.name = "mode"
+    wind_solar_df["value"] = pd.to_numeric(
+        wind_solar_df["value"].replace("-", 0), errors="coerce"
+    ).fillna(0)
 
     return wind_solar_df
 
@@ -636,7 +639,9 @@ def parse_15m_production_grid_india_report(
     mode_columns = _15min_scaled_generation_df.columns.intersection(
         zone_mode_share_out_of_country.index
     )
-    ordered_zone_mode_share_out_of_country = zone_mode_share_out_of_country.reindex(mode_columns)
+    ordered_zone_mode_share_out_of_country = zone_mode_share_out_of_country.reindex(
+        mode_columns
+    )
 
     # Multiply the modes columns by the scaling factors
     _15min_scaled_generation_df[mode_columns] = _15min_scaled_generation_df[
@@ -715,6 +720,12 @@ def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
         old_res_label = all_modes_df.index[res_mask][0]
         all_modes_cleaned_df = all_modes_df.rename(index={old_res_label: "unknown"})
 
+    # Replace any '-' strings with 0 and ensure the value column is numeric.
+    # Coerce errors will turn any other non-numeric values into NaN, which we then fill with 0.
+    all_modes_cleaned_df["value"] = pd.to_numeric(
+        all_modes_cleaned_df["value"].replace("-", 0), errors="coerce"
+    ).fillna(0)
+
     all_modes_cleaned_df.loc["unknown", "value"] = (
         all_modes_cleaned_df.loc["unknown", "value"]
         - all_modes_cleaned_df.loc["wind", "value"]
@@ -764,6 +775,11 @@ def scale_15min_production(content: bytes, scaling_factor: float) -> pd.DataFram
     # The first and last rows are not part of the time series and should be deleted.
     df = df.iloc[1:-1].reset_index(drop=True)
     mode_columns = list(dynamic_rename_mapping.values())
+
+    # Ensure all mode columns are numeric before scaling
+    for col in mode_columns:
+        df[col] = pd.to_numeric(df[col].replace("-", 0), errors="coerce").fillna(0)
+
     scaled_generation = df[mode_columns].mul(scaling_factor, axis=0)
     scaled_generation = pd.concat([df["TIME"], scaled_generation], axis=1)
     return scaled_generation
@@ -778,7 +794,11 @@ def parse_daily_total_production_grid_india_report(
     """
     generation_df = get_daily_generation_table(content)
     # Data is in MU=GWh.
-    total_all_india_generation = generation_df.loc["Total", "All India"] * 1000
+    total_generation = generation_df.loc["Total", "All India"]
+    total_generation_numeric = pd.to_numeric(
+        str(total_generation).replace("-", "0"), errors="coerce"
+    )
+    total_all_india_generation = total_generation_numeric * 1000
     return float(total_all_india_generation)
 
 
