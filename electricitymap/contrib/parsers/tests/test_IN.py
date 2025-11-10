@@ -1,16 +1,18 @@
 from datetime import datetime
 from pathlib import Path
+from json import dumps
 
-from electricitymap.contrib.parsers.IN import (
-    parse_daily_total_production_grid_india_report,
-    parse_total_production_15min_grid_india_report,
-    compute_zone_key_share_per_mode_out_of_total,
-    scale_15min_production,
-    parse_15m_production_grid_india_report,
-    parse_daily_production_grid_india_report,
-)
 import pandas as pd
 from pandas.testing import assert_series_equal
+
+from electricitymap.contrib.parsers.IN import (
+    compute_zone_key_share_per_mode_out_of_total,
+    parse_15m_production_grid_india_report,
+    parse_daily_production_grid_india_report,
+    parse_daily_total_production_grid_india_report,
+    parse_total_production_15min_grid_india_report,
+    scale_15min_production,
+)
 
 file_path = Path(__file__).parent / "mocks" / "IN" / "08.04.25_NLDC_PSP.xls"
 content = file_path.read_bytes()
@@ -47,11 +49,14 @@ def test_compute_zone_key_share_per_mode_out_of_total():
 def test_scale_15min_production(snapshot):
     generation_scaling_factor = 0.5
     result = scale_15min_production(content, generation_scaling_factor)
-    assert snapshot == result
+    result_dict = result.to_dict(orient="records")
+    snapshot.assert_match(dumps(result_dict, indent=2))
 
 
 def test_parse_15m_production_grid_india_report(snapshot):
-    result = parse_15m_production_grid_india_report(content, "IN-NO", datetime(2025, 4, 8, 0, 0))
+    result = parse_15m_production_grid_india_report(
+        content, "IN-NO", datetime(2025, 4, 8, 0, 0)
+    )
     assert snapshot == result
 
 
