@@ -420,7 +420,7 @@ def fetch_grid_india_report(
                 parser="IN.py",
                 message=f"{target_datetime}: Grid India daily production data is not available",
             )
-    else: 
+    else:
         raise ParserException(
             parser="IN.py",
             message=f"{target_datetime}: Grid India daily production data is not available, {r.status_code}",
@@ -632,18 +632,16 @@ def parse_15m_production_grid_india_report(
     )
 
     # Scale the 15-minute by the share of the mode for the considered zone key out of the country-level production.
-    ## Get the scaling factors
-    scaling_factors = zone_mode_share_out_of_country["value"]
     ## Do not scale the time column
     mode_columns = _15min_scaled_generation_df.columns.intersection(
-        scaling_factors.index
+        zone_mode_share_out_of_country.index
     )
-    ordered_scaling_factors = scaling_factors.reindex(mode_columns)
+    ordered_zone_mode_share_out_of_country = zone_mode_share_out_of_country.reindex(mode_columns)
 
     # Multiply the modes columns by the scaling factors
     _15min_scaled_generation_df[mode_columns] = _15min_scaled_generation_df[
         mode_columns
-    ].mul(ordered_scaling_factors)
+    ].mul(ordered_zone_mode_share_out_of_country)
 
     ## Convert the time column to a datetime index and drop the TIME column
     datetime_series = pd.to_datetime(
@@ -728,14 +726,14 @@ def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
 
 def compute_zone_key_share_per_mode_out_of_total(
     content: bytes, zone_key: str
-) -> dict[str, float]:
+) -> pd.Series:
     country_production_breakdown = get_production_breakdown(
         content=content, zone_key="IN"
     )
     zone_production_breakdown = get_production_breakdown(
         content=content, zone_key=zone_key
     )
-    return zone_production_breakdown / country_production_breakdown
+    return zone_production_breakdown["value"] / country_production_breakdown["value"]
 
 
 def scale_15min_production(content: bytes, scaling_factor: float) -> pd.DataFrame:
