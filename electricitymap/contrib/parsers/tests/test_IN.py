@@ -1,17 +1,16 @@
 from datetime import datetime
 from pathlib import Path
 
-import pandas as pd
-from pandas.testing import assert_series_equal
-
 from electricitymap.contrib.parsers.IN import (
-    compute_zone_key_share_per_mode_out_of_total,
-    parse_15m_production_grid_india_report,
-    parse_daily_production_grid_india_report,
     parse_daily_total_production_grid_india_report,
     parse_total_production_15min_grid_india_report,
+    compute_zone_key_share_per_mode_out_of_total,
     scale_15min_production,
+    parse_15m_production_grid_india_report,
+    parse_daily_production_grid_india_report,
 )
+import pandas as pd
+from pandas.testing import assert_series_equal
 
 file_path = Path(__file__).parent / "mocks" / "IN" / "08.04.25_NLDC_PSP.xls"
 content = file_path.read_bytes()
@@ -59,5 +58,7 @@ def test_parse_15m_production_grid_india_report(snapshot):
 def test_parse_daily_production_grid_india_report(snapshot):
     # This test uses the same file as the one for the 15m production report, but it does not use the 15m data.
     # This is to test the behavior of the parser for the period 2023/04/01 - 2024/11/04.
-    result = parse_daily_production_grid_india_report(content, "IN-EA", datetime(2025, 4, 8, 0, 0))
+    result = parse_daily_production_grid_india_report(
+        content, "IN-EA", datetime(2025, 4, 8, 0, 0)
+    )
     assert snapshot == result

@@ -1829,6 +1829,462 @@
 # ---
 # name: test_parse_daily_production_grid_india_report
   list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 4, 8, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'production': dict({
+        'coal': 29960.0,
+        'gas': 0.0,
+        'hydro': 1070.416667,
+        'nuclear': 0.0,
+        'solar': 169.166667,
+        'unknown': 40.833333,
+        'wind': 0.0,
+      }),
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'IN-EA',
+    }),
   ])
 # ---
 # name: test_scale_15min_production

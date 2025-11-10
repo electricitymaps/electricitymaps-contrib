@@ -28,7 +28,7 @@ IN_TZ = ZoneInfo("Asia/Kolkata")
 START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 # 1 MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 # So MU / 0.024 = MW
-CONVERSION_GWH_MW = 0.024
+CONVERSION_DAILY_GWH_TO_HOURLY_MW = 0.024
 INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 
 NPP_MODE_MAPPING = {
@@ -572,14 +572,16 @@ def parse_daily_production_grid_india_report(
         content=content, zone_key=zone_key
     )
     daily_production_breakdown["value"] = (
-        daily_production_breakdown["value"] / CONVERSION_GWH_MW
+        daily_production_breakdown["value"] / CONVERSION_DAILY_GWH_TO_HOURLY_MW
     )
     df_pivoted = daily_production_breakdown.T
     df_hourly = pd.concat([df_pivoted] * 24, ignore_index=True)
 
     # Next, create a DatetimeIndex for the 24 hours of the target_datetime
     start_of_day = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
-    hourly_index = pd.date_range(start=start_of_day, periods=24, freq="H")
+    hourly_index = pd.date_range(start=start_of_day, periods=24, freq="H").tz_localize(
+        IN_TZ
+    )
 
     # Set this as the index of your new DataFrame
     df_hourly.index = hourly_index
@@ -681,31 +683,27 @@ def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
     """
     daily_generation_df = get_daily_generation_table(content)
     if zone_key == "IN":
-        all_india_generation = daily_generation_df["All India"]
+        zone_generation = daily_generation_df["All India"]
     else:
-        all_india_generation = daily_generation_df[GRID_INDIA_REGION_MAPPING[zone_key]]
+        zone_generation = daily_generation_df[GRID_INDIA_REGION_MAPPING[zone_key]]
 
     # Removes Total row
     modes = ["coal", "lignite", "hydro", "nuclear", "gas", "RES"]
     pattern = "|".join(modes)
-    mask = all_india_generation.index.str.contains(pattern, case=False, na=False)
-    selected_df = all_india_generation[mask]
+    mask = zone_generation.index.str.contains(pattern, case=False, na=False)
+    selected_df = zone_generation[mask]
 
     # Sum the 'Coal' and 'Lignite'
     numeric_df = selected_df.apply(pd.to_numeric, errors="coerce")
     coal_lignite_sum = numeric_df.loc[["Coal", "Lignite"]].sum()
     numeric_df.loc["coal"] = coal_lignite_sum
     all_modes_except_wind_solar = numeric_df.drop(["Coal", "Lignite"])
-    all_modes_except_wind_solar_india_df = all_modes_except_wind_solar.to_frame(
-        name="value"
-    )
+    all_modes_except_wind_solar_df = all_modes_except_wind_solar.to_frame(name="value")
 
     # Get wind and solar for the considered zone key
     wind_solar_india_df = get_wind_solar(content=content, zone_key=zone_key)
 
-    all_modes_df = pd.concat(
-        [all_modes_except_wind_solar_india_df, wind_solar_india_df]
-    )
+    all_modes_df = pd.concat([all_modes_except_wind_solar_df, wind_solar_india_df])
     all_modes_df.index = all_modes_df.index.str.lower()
     # Rename the "Gas, Naphta & Diesel" mode to "gas"
     gas_mask = all_modes_df.index.str.contains("gas", na=False)
@@ -923,7 +921,7 @@ def daily_to_hourly_production_data(
     all_hourly_production = ProductionBreakdownList(logger)
     production_mix = ProductionMix()
     for mode, value in production.items():
-        production_mix.add_value(mode, value / CONVERSION_GWH_MW)
+        production_mix.add_value(mode, value / CONVERSION_DAILY_GWH_TO_HOURLY_MW)
 
     start_of_day_local = target_datetime.astimezone(IN_TZ).replace(
         hour=0, minute=0, second=0, microsecond=0
