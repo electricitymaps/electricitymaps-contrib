@@ -23,6 +23,9 @@ importers:
       '@capacitor/share':
         specifier: ^7.0.1
         version: 7.0.1(@capacitor/core@7.4.2)
+      '@capacitor/status-bar':
+        specifier: ^7.0.2
+        version: 7.0.2(@capacitor/core@7.4.2)
     devDependencies:
       '@capacitor/assets':
         specifier: ^1.0.14
@@ -82,6 +85,11 @@ packages:
 
   '@capacitor/share@7.0.1':
     resolution: {integrity: sha512-7GAtWrb2inEWohC8E7mx38qAX6D9yqPDDnUtJaZ8JRpo15jjFRS40Cx388M8h4NlBWjV5NU3qf1sHXnyOBSJ5g==}
+    peerDependencies:
+      '@capacitor/core': '>=7.0.0'
+
+  '@capacitor/status-bar@7.0.2':
+    resolution: {integrity: sha512-fYYkkdzCbQV+MjZVnaQTFl5I4bddnFW8ZrPVxDjNoGVPTUG7H58Ij1+NcuNxHLXjJvZOoZeYJ3w3I16Wb2zssw==}
     peerDependencies:
       '@capacitor/core': '>=7.0.0'
 
@@ -1845,6 +1853,10 @@ snapshots:
       '@capacitor/core': 7.4.2
 
   '@capacitor/share@7.0.1(@capacitor/core@7.4.2)':
+    dependencies:
+      '@capacitor/core': 7.4.2
+
+  '@capacitor/status-bar@7.0.2(@capacitor/core@7.4.2)':
     dependencies:
       '@capacitor/core': 7.4.2
 

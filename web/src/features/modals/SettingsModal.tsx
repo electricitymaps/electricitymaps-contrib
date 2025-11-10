@@ -19,6 +19,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { languageNames } from 'translation/locales';
 import { Mode, ThemeOptions } from 'utils/constants';
+import { isEdgeToEdgeAndroid } from 'utils/helpers';
 import {
   colorblindModeAtom,
   productionConsumptionAtom,
@@ -330,6 +331,8 @@ export default function SettingsModal() {
     return null;
   }
 
+  const isNativeAndroid = isEdgeToEdgeAndroid();
+
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Portal>
@@ -347,7 +350,11 @@ export default function SettingsModal() {
             }
           }}
         >
-          <div className="pointer-events-auto absolute inset-x-0 top-3 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start">
+          <div
+            className={`pointer-events-auto absolute inset-x-0 mt-[env(safe-area-inset-top)] flex justify-center md:inset-x-auto md:right-72 md:mr-14 md:justify-start ${
+              isNativeAndroid ? 'top-20' : ''
+            }`}
+          >
             <GlassContainer
               ref={modalReference}
               className="w-full max-w-xs rounded-xl shadow-lg md:w-72"
