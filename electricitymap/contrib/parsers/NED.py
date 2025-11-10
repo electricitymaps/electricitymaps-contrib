@@ -231,6 +231,7 @@ def format_data(
         ],
         inplace=True,
     )
+    df.drop_duplicates(subset=["validfrom", "type"], inplace=True)
 
     df = df.groupby(by="validfrom")
 
@@ -312,3 +313,7 @@ def fetch_production_forecast(
     NED_data = format_data(json_data, logger, forecast=True)
 
     return NED_data.to_list()
+
+
+if __name__ == "__main__":
+    print(fetch_production())
