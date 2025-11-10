@@ -559,7 +559,7 @@ def parse_daily_production_grid_india_report(
     zone_key: str,
     target_datetime: datetime,
     logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
+) -> list[dict[str, Any]]:
     """
     Parses production data from grid india daily report.
     Will split the daily production evenly across the 24 hours of the day.
@@ -601,7 +601,7 @@ def parse_15m_production_grid_india_report(
     zone_key: str,
     target_datetime: datetime,
     logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
+) -> list[dict[str, Any]]:
     """
     Parses production data from grid india report. Uses the 15-minute data in the TimeSeries sheet of the report.
     Since 15-minute data aggregated to daily values do not match the daily production value from the first sheet of the report, we rescale the 15-minute data so that the total matches the daily production value.
@@ -800,8 +800,8 @@ def parse_total_production_15min_grid_india_report(
 
 def fetch_production(
     zone_key: str,
+    session: Session,
     target_datetime: datetime | None = None,
-    session: Session = Session(),
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     """
@@ -859,7 +859,7 @@ def parse_production_from_cea_npp(
     target_datetime: datetime,
     session: Session = Session(),
     logger: Logger = getLogger(__name__),
-) -> ProductionBreakdownList:
+) -> list[dict[str, Any]]:
     """
     Parses production data from CEA NPP.
     """
