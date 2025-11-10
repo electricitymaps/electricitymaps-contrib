@@ -19,6 +19,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
 
 # TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data.
 # TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.
@@ -814,6 +815,8 @@ def parse_total_production_15min_grid_india_report(
     return float(total_generation_from_15_min)
 
 
+# @use_proxy(country_code="IN", monkeypatch_for_pydataxm=True)
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
     session: Session,
