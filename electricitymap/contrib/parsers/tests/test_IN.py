@@ -1,6 +1,6 @@
 from datetime import datetime
-from pathlib import Path
 from json import dumps
+from pathlib import Path
 
 import pandas as pd
 from pandas.testing import assert_series_equal

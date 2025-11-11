@@ -18,8 +18,8 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
 
 # TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data.
 # TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.
@@ -30,7 +30,9 @@ START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 # 1 MU = 1 GWH = 1000 MWH then assume uniform production per hour -> 1000/24 = 41.6666 = 1/0.024
 # So MU / 0.024 = MW
 CONVERSION_DAILY_GWH_TO_HOURLY_MW = 0.024
-INDIA_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
+
+# Some of the websites we use work with the VPC connector, some work without it.
+INDIA_PROXY_NO_VPC_CONNECTOR = "https://in-proxy-no-vpc-connector-jfnx5klx2a-el.a.run.app"
 
 NPP_MODE_MAPPING = {
     "THER (GT)": "gas",
@@ -169,7 +171,7 @@ def fetch_consumption_from_meritindia(
 
     def fetch_state_consumption(session, state):
         resp: Response = session.post(
-            DEMAND_URL_MERITINDIA.format(proxy=INDIA_PROXY),
+            DEMAND_URL_MERITINDIA.format(proxy=INDIA_PROXY_NO_VPC_CONNECTOR),
             data={"StateCode": STATE_CODES[state]},
         )
         data = resp.json()[0]
@@ -370,8 +372,7 @@ def fetch_cea_production(
 
 
 def fetch_grid_india_report(
-    target_datetime: datetime,
-    session: Session = Session(),
+    target_datetime: datetime, session: Session
 ) -> bytes | None:
     """
     Rely on grid-india.in backend API to fetch data report.
@@ -381,8 +382,12 @@ def fetch_grid_india_report(
 
     """
 
-    GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in/api/v1/file"
+    GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in"
     GRID_INDIA_CDN_URL = "https://webcdn.grid-india.in/"
+
+    GRID_INDIA_BACKEND_WITH_PROXY_URL = (
+        f"{INDIA_PROXY_NO_VPC_CONNECTOR}/api/v1/file?host={GRID_INDIA_BACKEND_URL}"
+    )
 
     # Reports are stored per fiscal year, which goes from April N to March N+1.
     fiscal_year_start = (
@@ -397,24 +402,43 @@ def fetch_grid_india_report(
         "_month": target_datetime.strftime("%m"),
     }
 
-    r: Response = session.post(GRID_INDIA_BACKEND_URL, json=payload)
-    file_url = None
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0",
+        "Content-Type": "application/json",
+    }
+
+    r: Response = session.post(
+        GRID_INDIA_BACKEND_WITH_PROXY_URL, json=payload, headers=headers
+    )
+    # We process the file that pass the file type filters and that is the most recent one
+    # before target_datetime.
     if r.status_code == 200:
         file_list = r.json()["retData"]
+        latest_file_url = None
+        latest_file_date = None
         for file in file_list:
-            if (
-                (
-                    file["MimeType"] == "attachment/xls"
-                    or file["MimeType"] == "application/vnd.ms-excel"
-                )
-                and file["FileType"] == "DAILY_PSP_REPORT"
-                and file["Title_"].startswith(target_datetime.strftime("%d.%m.%y"))
-            ):
-                file_url = file["FilePath"]
-                break
-        if file_url is not None:
-            file_full_url = GRID_INDIA_CDN_URL + file_url
-            r: Response = session.get(file_full_url)
+            is_correct_type = (
+                file.get("MimeType") in ("attachment/xls", "application/vnd.ms-excel")
+            ) and file.get("FileType") == "DAILY_PSP_REPORT"
+
+            if is_correct_type:
+                try:
+                    # Title_ is expected to start with "dd.mm.yy"
+                    file_date_str = file["Title_"].split("_")[0]
+                    file_date = datetime.strptime(file_date_str, "%d.%m.%y").replace(
+                        tzinfo=IN_TZ
+                    )
+
+                    if file_date <= target_datetime and (latest_file_date is None or file_date > latest_file_date):
+                            latest_file_date = file_date
+                            latest_file_url = file.get("FilePath")
+                except (ValueError, IndexError):
+                    # Ignore files with titles that don't match the expected date format
+                    continue
+
+        if latest_file_url is not None:
+            file_full_url = f"{INDIA_PROXY_NO_VPC_CONNECTOR}/{latest_file_url}?host={GRID_INDIA_CDN_URL}"
+            r: Response = session.get(file_full_url, headers=headers)
             return r.content
         else:
             raise ParserException(
@@ -815,11 +839,10 @@ def parse_total_production_15min_grid_india_report(
     return float(total_generation_from_15_min)
 
 
-# @use_proxy(country_code="IN", monkeypatch_for_pydataxm=True)
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str,
-    session: Session,
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
@@ -827,9 +850,9 @@ def fetch_production(
     Indian parser has a long history. There have been many sources being used, with different formats and different periods of availability.
     Here we try to resolve how to fetch and parse the production data for the given zone key and target datetime.
     """
+    session = session or Session()
     if target_datetime is None:
-        # If in continuous node, always fetch report of yesterday since they are published with a 1 day delay.
-        _target_datetime = datetime.now(tz=IN_TZ) - timedelta(days=1)
+        _target_datetime = datetime.now(tz=IN_TZ)
     else:
         if target_datetime.tzinfo is None:
             _target_datetime = target_datetime.replace(tzinfo=IN_TZ)
@@ -838,7 +861,9 @@ def fetch_production(
 
     if _target_datetime > datetime(2024, 11, 4, tzinfo=IN_TZ):
         # PSP Reports with TimeSeries sheets are only available since 2024/11/04
-        report_content = fetch_grid_india_report(target_datetime=_target_datetime)
+        report_content = fetch_grid_india_report(
+            target_datetime=_target_datetime, session=session
+        )
         production_data = parse_15m_production_grid_india_report(
             content=report_content,
             zone_key=zone_key,
@@ -849,7 +874,9 @@ def fetch_production(
         2023, 4, 1, tzinfo=IN_TZ
     ) and _target_datetime < datetime(2024, 11, 4, tzinfo=IN_TZ):
         # PSP Reports are available as spreadsheet since 2023/04/01, but without TimeSeries (15-minute) data.
-        report_content = fetch_grid_india_report(target_datetime=_target_datetime)
+        report_content = fetch_grid_india_report(
+            target_datetime=_target_datetime, session=session
+        )
         production_data = parse_daily_production_grid_india_report(
             content=report_content,
             zone_key=zone_key,
