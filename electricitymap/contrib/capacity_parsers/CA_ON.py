@@ -33,14 +33,15 @@ def get_data_from_url(session: Session, target_datetime: datetime) -> pd.DataFra
         return df
     else:
         raise ValueError(
-            f"Failed to fetch capacity data for IESO from url: {target_datetime.date()}"
+            f"Failed to fetch capacity data for IESO from url: {file_url} with date {target_datetime.date()}"
         )
 
 
 def fetch_production_capacity(
     zone_key: ZoneKey, target_datetime: datetime, session: Session
 ) -> dict[str, Any]:
-    df = get_data_from_url(session, target_datetime)
+    last_full_quarter_month = get_last_month_of_last_full_quarter(target_datetime)
+    df = get_data_from_url(session, last_full_quarter_month)
 
     df = df.rename(
         columns={"Fuel Type": "mode", "Total Installed Capacity\n(MW)": "value"}
@@ -51,7 +52,7 @@ def fetch_production_capacity(
     capacity = {}
     for _idx, data in df.iterrows():
         capacity[data["mode"]] = {
-            "datetime": target_datetime.strftime("%Y-%m-%d"),
+            "datetime": last_full_quarter_month.strftime("%Y-%m-%d"),
             "value": round(data["value"], 0),
             "source": "ieso.ca",
         }
@@ -59,6 +60,20 @@ def fetch_production_capacity(
         f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
     )
     return capacity
+
+
+def get_last_month_of_last_full_quarter(
+    target_datetime: datetime,
+) -> datetime:
+    # Calculate the last month of the last full quarter
+    current_quarter = ((target_datetime.month - 1) // 3) + 1
+    last_full_quarter = current_quarter - 1 if current_quarter > 1 else 4
+    year = target_datetime.year if current_quarter > 1 else target_datetime.year - 1
+    quarter_end_month = last_full_quarter * 3
+    last_day_of_month = 31 if quarter_end_month in [3, 12] else 30
+    return target_datetime.replace(
+        year=year, month=quarter_end_month, day=last_day_of_month
+    )
 
 
 if __name__ == "__main__":

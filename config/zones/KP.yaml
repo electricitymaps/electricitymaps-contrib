@@ -1,63 +1,61 @@
 capacity:
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2960.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 3360.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3380.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 4761.0
+      source: Ember, Yearly electricity data
+      value: 4760.0
     - datetime: '2018-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 4790.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 4865.0
+      source: Ember, Yearly electricity data
+      value: 4860.0
     - datetime: '2022-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 4890.0
   nuclear:
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 20.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 36.31
+      source: Ember, Yearly electricity data
+      value: 40.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 49.94
+      source: Ember, Yearly electricity data
+      value: 50.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 64.97
+      source: Ember, Yearly electricity data
+      value: 60.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 78.97
+      source: Ember, Yearly electricity data
+      value: 80.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 101.97
+      source: Ember, Yearly electricity data
+      value: 100.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 115.52
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 129.19
+      source: Ember, Yearly electricity data
+      value: 120.0
   unknown:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2960.5
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 3360.5
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 3380.5
+      source: Ember, Yearly electricity data
+      value: 0.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.33
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 1.6
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: KP
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Pyongyang
 zone_name: North Korea

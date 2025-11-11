@@ -5,51 +5,48 @@ bounding_box:
     - 19.49495125393824
 capacity:
   biomass:
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 0.01
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 341.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1179.0
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 1268.0
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 1293.75
+      source: Ember, Yearly electricity data
+      value: 400.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 1403.75
+      source: Ember, Yearly electricity data
+      value: 530.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 790.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 103.08
+      source: Ember, Yearly electricity data
+      value: 100.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 253.34
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 254.16
+      source: Ember, Yearly electricity data
+      value: 250.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 257.67
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 257.71
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 263.73
+      source: Ember, Yearly electricity data
+      value: 260.0
     - datetime: '2023-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 290.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1180.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1270.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 1290.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1400.0
 country: YE
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Aden
 zone_name: Yemen

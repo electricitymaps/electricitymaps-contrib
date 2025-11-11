@@ -6,6 +6,10 @@ bounding_box:
   - - 46.6379081561
     - 43.553104153
 capacity:
+  biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -271,7 +275,7 @@ parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
-  production: GE.fetch_production
+  production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Asia

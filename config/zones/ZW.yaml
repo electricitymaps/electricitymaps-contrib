@@ -6,54 +6,42 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 100.0
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1190.0
+      source: Ember, Yearly electricity data
+      value: 950.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 1240.0
+      source: Ember, Yearly electricity data
+      value: 1000.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 1840.0
+      source: Ember, Yearly electricity data
+      value: 1330.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 780.04
+      source: Ember, Yearly electricity data
+      value: 780.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 1080.04
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 1080.02
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 10.75
+      source: Ember, Yearly electricity data
+      value: 1080.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 5.04
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 8.59
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 11.85
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 14.15
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 33.08
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 45.95
+      source: Ember, Yearly electricity data
+      value: 50.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: ZW
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Harare
 zone_name: Zimbabwe

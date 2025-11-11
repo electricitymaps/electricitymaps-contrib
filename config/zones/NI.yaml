@@ -6,70 +6,36 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 178.51
+      source: Ember, Yearly electricity data
+      value: 180.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 220.11
-  geothermal:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 154.5
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 153.24
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 165.44
+      source: Ember, Yearly electricity data
+      value: 220.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 142.45
+      source: Ember, Yearly electricity data
+      value: 140.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 157.17
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 158.38
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 158.57
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 160.05
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 808.66
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 888.56
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 883.13
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 883.22
+      source: Ember, Yearly electricity data
+      value: 160.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 13.96
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 16.36
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 16.29
+      source: Ember, Yearly electricity data
+      value: 20.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 600.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 17.39
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 18.49
+      source: Ember, Yearly electricity data
+      value: 620.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 186.2
+      source: Ember, Yearly electricity data
+      value: 190.0
 contributors:
   - corradio
   - systemcatch
@@ -341,7 +307,7 @@ fallbackZoneMixes:
 parsers:
   price: NI.fetch_price
   production: NI.fetch_production
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Managua
 zone_name: Nicaragua

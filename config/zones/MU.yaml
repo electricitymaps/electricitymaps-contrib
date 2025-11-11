@@ -6,49 +6,43 @@ bounding_box:
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 90.65
+      source: Ember, Yearly electricity data
+      value: 90.0
   coal:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 182.8
+      source: Ember, Yearly electricity data
+      value: 190.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 61.14
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 61.2
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 529.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 457.2
+      source: Ember, Yearly electricity data
+      value: 60.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 32.76
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 74.55
+      source: Ember, Yearly electricity data
+      value: 80.0
     - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 99.36
+      source: Ember, Yearly electricity data
+      value: 100.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 107.68
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 109.67
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 107.65
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 530.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 460.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 10.63
+      source: Ember, Yearly electricity data
+      value: 10.0
 country: MU
 emissionFactors:
   lifecycle:
@@ -99,7 +93,7 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.004813099721722564
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Mauritius
 zone_name: Mauritius

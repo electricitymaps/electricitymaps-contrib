@@ -6,50 +6,32 @@ bounding_box:
 capacity:
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 809.0
+      source: Ember, Yearly electricity data
+      value: 830.0
     - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 990.0
+      source: Ember, Yearly electricity data
+      value: 1080.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 879.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 516.14
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 546.14
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 586.14
+      source: Ember, Yearly electricity data
+      value: 880.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 1.01
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 2.1
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 4.21
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 6.4
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 7.75
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 9.0
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 46.5
+      source: Ember, Yearly electricity data
+      value: 40.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 200.0
 country: CI
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Abidjan
 zone_name: Ivory Coast

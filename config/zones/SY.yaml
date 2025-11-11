@@ -1,58 +1,44 @@
 capacity:
   biomass:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 6.71
+      source: Ember, Yearly electricity data
+      value: 10.0
+  coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 60.0
   gas:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 4819.5
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 4787.5
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 4801.0
+      source: Ember, Yearly electricity data
+      value: 7470.0
   hydro:
     - datetime: '2017-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 1490.0
-  oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 3425.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 3779.5
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 3824.0
   solar:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.13
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 1.38
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 2.47
+      source: Ember, Yearly electricity data
+      value: 0.0
     - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 11.52
+      source: Ember, Yearly electricity data
+      value: 10.0
     - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 33.0
+      source: Ember, Yearly electricity data
+      value: 30.0
     - datetime: '2022-01-01'
-      source: IRENA.org
+      source: Ember, Yearly electricity data
       value: 60.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 680.0
   wind:
     - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.6
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: SY
 parsers:
-  productionCapacity: IRENA.fetch_production_capacity
+  productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Damascus
 zone_name: Syria

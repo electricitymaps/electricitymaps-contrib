@@ -52,6 +52,8 @@ fallbackZoneMixes:
         solar: 0.024552889130142887
         unknown: 0.0
         wind: 0.0
+parsers:
+  productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Luanda
 zone_name: Angola

@@ -13,35 +13,36 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
 )
 from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.parsers.ENTSOE import ENTSOE_DOMAIN_MAPPINGS
+from electricitymap.contrib.parsers.ENTSOE import (
+    parse_production as ENTSOE_parse_production,
+)
+from electricitymap.contrib.parsers.ENTSOE import (
+    query_production as ENTSOE_query_production,
+)
 from electricitymap.contrib.parsers.lib.config import ProductionModes, refetch_frequency
-
-from .ENTSOE import ENTSOE_DOMAIN_MAPPINGS
-from .ENTSOE import parse_production as ENTSOE_parse_production
-from .ENTSOE import query_production as ENTSOE_query_production
-from .lib.exceptions import ParserException
-from .lib.utils import get_token
+from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 URL = "https://api.ned.nl/v1/utilizations"
 
 TYPE_MAPPING = {
-    1: ProductionModes.WIND,
-    51: ProductionModes.WIND,
-    2: ProductionModes.SOLAR,
-    10: ProductionModes.UNKNOWN,
-    26: ProductionModes.UNKNOWN,
-    18: ProductionModes.GAS,
-    35: ProductionModes.GAS,
-    19: ProductionModes.COAL,
-    20: ProductionModes.NUCLEAR,
-    21: ProductionModes.BIOMASS,
-    25: ProductionModes.BIOMASS,
+    1: ProductionModes.WIND,  # Wind Onshore (Wind)
+    2: ProductionModes.SOLAR,  # Solar (Zon)
+    18: ProductionModes.GAS,  # Fossil Gas Power (Aardgas)
+    19: ProductionModes.COAL,  # Fossil Hard Coal (Steenkool)
+    20: ProductionModes.NUCLEAR,  # Nuclear (Kernenergie)
+    21: ProductionModes.BIOMASS,  # Waste Power (Aftval)
+    25: ProductionModes.BIOMASS,  # Biomass Power (Biomassa)
+    26: ProductionModes.UNKNOWN,  # Other Power (Overig)
+    35: ProductionModes.GAS,  # CHP (WKK)
+    51: ProductionModes.WIND,  # Wind Offshore (ZeeWind)
 }
 
 
 class NedType(Enum):
     WIND = 1
     SOLAR = 2
-    OTHER = 10
     FOSSILGASPOWER = 18
     FOSSILHARDCOAL = 19
     NUCLEAR = 20
@@ -80,9 +81,36 @@ class NedPoint(Enum):
     NETHERLANDS = 0
 
 
-# kWh to MWh with 3 decimal places
-def _kwh_to_mw(kwh):
-    return round((kwh / 1000) * 4, 3)
+# kWh to MW conversion based on granularity with 6 decimal places
+def _kwh_to_mw(kwh: float, granularity: int) -> float:
+    """
+    Convert kWh to MW based on the time granularity.
+
+    Args:
+        kwh: Energy in kilowatt-hours
+        granularity: NedGranularity value (3=TEN_MINUTES, 4=FIFTEEN_MINUTES, 5=HOURLY)
+
+    Returns:
+        Power in megawatts
+
+    Raises:
+        ParserException: If granularity is not supported
+    """
+    # Map granularity to periods per hour
+    granularity_multipliers = {
+        NedGranularity.TEN_MINUTES.value: 6,  # 6 x 10-minute periods per hour
+        NedGranularity.FIFTEEN_MINUTES.value: 4,  # 4 x 15-minute periods per hour
+        NedGranularity.HOURLY.value: 1,  # 1 hour per hour
+    }
+
+    if granularity not in granularity_multipliers:
+        raise ParserException(
+            parser="NED.py",
+            message=f"Unsupported granularity: {granularity}. Only TEN_MINUTES, FIFTEEN_MINUTES, and HOURLY are supported.",
+        )
+
+    multiplier = granularity_multipliers[granularity]
+    return round((kwh / 1000) * multiplier, 6)
 
 
 # It seems the API can take max itemPerPage 200. We fetch x items per page as this is: x = (# types * 4 quaters * n hours) < 200
@@ -106,7 +134,6 @@ def call_api(target_datetime: datetime, forecast: bool = False):
             "type[]": [
                 NedType.WIND.value,
                 NedType.SOLAR.value,
-                NedType.OTHER.value,
                 NedType.FOSSILGASPOWER.value,
                 NedType.FOSSILHARDCOAL.value,
                 NedType.NUCLEAR.value,
@@ -177,6 +204,17 @@ def format_data(
     json: Any, logger: Logger, forecast: bool = False
 ) -> ProductionBreakdownList:
     df = pd.DataFrame(json)
+
+    # Capture and parse granularity before dropping it (format: "/v1/granularities/4")
+    if "granularity" in df.columns and not df.empty:
+        granularity_raw = df["granularity"].iloc[0]
+        granularity = int(granularity_raw.split("/")[-1])
+    else:
+        raise ParserException(
+            parser="NED.py",
+            message="Granularity not found in API response",
+        )
+
     df.drop(
         columns=[
             "id",
@@ -210,7 +248,9 @@ def format_data(
         for data in data_dict:
             clean_type = int(data["type"].split("/")[-1])
             if clean_type in TYPE_MAPPING:
-                mix.add_value(TYPE_MAPPING[clean_type], _kwh_to_mw(data["volume"]))
+                mix.add_value(
+                    TYPE_MAPPING[clean_type], _kwh_to_mw(data["volume"], granularity)
+                )
 
             else:
                 logger.warning(f"Unknown type: {clean_type}")
