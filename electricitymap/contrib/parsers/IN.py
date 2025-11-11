@@ -32,7 +32,9 @@ START_DATE_RENEWABLE_DATA = datetime(2020, 12, 17, tzinfo=IN_TZ)
 CONVERSION_DAILY_GWH_TO_HOURLY_MW = 0.024
 
 # Some of the websites we use work with the VPC connector, some work without it.
-INDIA_PROXY_NO_VPC_CONNECTOR = "https://in-proxy-no-vpc-connector-jfnx5klx2a-el.a.run.app"
+INDIA_PROXY_NO_VPC_CONNECTOR = (
+    "https://in-proxy-no-vpc-connector-jfnx5klx2a-el.a.run.app"
+)
 
 NPP_MODE_MAPPING = {
     "THER (GT)": "gas",
@@ -429,9 +431,11 @@ def fetch_grid_india_report(
                         tzinfo=IN_TZ
                     )
 
-                    if file_date <= target_datetime and (latest_file_date is None or file_date > latest_file_date):
-                            latest_file_date = file_date
-                            latest_file_url = file.get("FilePath")
+                    if file_date <= target_datetime and (
+                        latest_file_date is None or file_date > latest_file_date
+                    ):
+                        latest_file_date = file_date
+                        latest_file_url = file.get("FilePath")
                 except (ValueError, IndexError):
                     # Ignore files with titles that don't match the expected date format
                     continue
