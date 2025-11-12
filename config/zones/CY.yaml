@@ -120,6 +120,9 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: EU-ETS, TSOC 2021 Report
         value: 709.61
+      - datetime: '2022-01-01'
+        source: EU-ETS, TSOC 2022 Report
+        value: 730.32
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
         value: 641.08
@@ -219,6 +222,9 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: EU-ETS, TSOC 2021 Report; IPCC 2014
         value: 953.61
+      - datetime: '2022-01-01'
+        source: EU-ETS, TSOC 2022 Report; IPCC 2014
+        value: 974.32
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
         value: 885.08
@@ -376,6 +382,8 @@ sources:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
   EU-ETS, TSOC 2021 Report:
     link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2021.pdf#page=34
+  EU-ETS, TSOC 2022 Report:
+    link: https://tsoc.org.cy/files/reports/annual-reports/TSOC_Annual_Report_2022.pdf#page=32
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
