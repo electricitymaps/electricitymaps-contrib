@@ -385,7 +385,7 @@ def fetch_grid_india_report(
     """
 
     GRID_INDIA_BACKEND_URL = "https://webapi.grid-india.in"
-    GRID_INDIA_CDN_URL = "https://webcdn.grid-india.in/"
+    GRID_INDIA_CDN_URL = "https://webcdn.grid-india.in"
 
     GRID_INDIA_BACKEND_WITH_PROXY_URL = (
         f"{INDIA_PROXY_NO_VPC_CONNECTOR}/api/v1/file?host={GRID_INDIA_BACKEND_URL}"
@@ -607,10 +607,10 @@ def parse_daily_production_grid_india_report(
     df_hourly = pd.concat([df_pivoted] * 24, ignore_index=True)
 
     # Next, create a DatetimeIndex for the 24 hours of the target_datetime
-    start_of_day = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
-    hourly_index = pd.date_range(start=start_of_day, periods=24, freq="H").tz_localize(
-        IN_TZ
+    start_of_day = target_datetime.replace(
+        hour=0, minute=0, second=0, microsecond=0, tzinfo=IN_TZ
     )
+    hourly_index = pd.date_range(start=start_of_day, periods=24, freq="H")
 
     # Set this as the index of your new DataFrame
     df_hourly.index = hourly_index
