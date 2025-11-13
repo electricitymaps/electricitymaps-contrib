@@ -375,7 +375,7 @@ def fetch_cea_production(
 
 def fetch_grid_india_report(
     target_datetime: datetime, session: Session
-) -> bytes | None:
+) -> tuple[datetime, bytes | None]:
     """
     Rely on grid-india.in backend API to fetch data report.
     First query the backend to get the list of files available for a given date.
@@ -443,7 +443,7 @@ def fetch_grid_india_report(
         if latest_file_url is not None:
             file_full_url = f"{INDIA_PROXY_NO_VPC_CONNECTOR}/{latest_file_url}?host={GRID_INDIA_CDN_URL}"
             r: Response = session.get(file_full_url, headers=headers)
-            return r.content
+            return latest_file_date, r.content
         else:
             raise ParserException(
                 parser="IN.py",
@@ -865,26 +865,26 @@ def fetch_production(
 
     if _target_datetime > datetime(2024, 11, 4, tzinfo=IN_TZ):
         # PSP Reports with TimeSeries sheets are only available since 2024/11/04
-        report_content = fetch_grid_india_report(
+        report_date, report_content = fetch_grid_india_report(
             target_datetime=_target_datetime, session=session
         )
         production_data = parse_15m_production_grid_india_report(
             content=report_content,
             zone_key=zone_key,
-            target_datetime=_target_datetime,
+            target_datetime=report_date,
         )
         return production_data
     elif _target_datetime >= datetime(
         2023, 4, 1, tzinfo=IN_TZ
     ) and _target_datetime < datetime(2024, 11, 4, tzinfo=IN_TZ):
         # PSP Reports are available as spreadsheet since 2023/04/01, but without TimeSeries (15-minute) data.
-        report_content = fetch_grid_india_report(
+        report_date, report_content = fetch_grid_india_report(
             target_datetime=_target_datetime, session=session
         )
         production_data = parse_daily_production_grid_india_report(
             content=report_content,
             zone_key=zone_key,
-            target_datetime=_target_datetime,
+            target_datetime=report_date,
         )
         return production_data
     elif _target_datetime > START_DATE_RENEWABLE_DATA and _target_datetime < datetime(
