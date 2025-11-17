@@ -17,6 +17,32 @@ from electricitymap.contrib.lib.types import ZoneKey
 
 
 def get_zone_specific_co2eq_parameter(
+    co2eq_parameters: dict,
+    zone_key: str,
+    key: str,
+    sub_key: str,
+    dt: datetime,
+    metadata: bool = False,
+) -> dict[str, float]:
+    if metadata:
+        return _get_zone_specific_co2eq_parameter_with_metadata(
+            co2eq_parameters=co2eq_parameters,
+            zone_key=zone_key,
+            key=key,
+            sub_key=sub_key,
+            dt=dt,
+        )
+    else:
+        return _get_zone_specific_co2eq_parameter_no_metadata(
+            co2eq_parameters=co2eq_parameters,
+            zone_key=zone_key,
+            key=key,
+            sub_key=sub_key,
+            dt=dt,
+        )
+
+
+def _get_zone_specific_co2eq_parameter_no_metadata(
     co2eq_parameters: dict, zone_key: str, key: str, sub_key: str, dt: datetime
 ) -> dict[str, float]:  # TODO: actually this returns Union[Dict, bool]
     """Accessor for co2eq_parameters.
@@ -207,12 +233,13 @@ def _get_emission_factor_lifecycle_and_direct(
         ("lifecycle", CO2EQ_PARAMETERS_LIFECYCLE),
         ("direct", CO2EQ_PARAMETERS_DIRECT),
     ]:
-        result = _get_zone_specific_co2eq_parameter_with_metadata(
+        result = get_zone_specific_co2eq_parameter(
             co2eq_parameters=data,
             zone_key=zone_key,
             key="emissionFactors",
             sub_key=mode,
             dt=dt,
+            metadata=True,
         )
         d = {
             f"{description}_{k}": v
@@ -220,6 +247,7 @@ def _get_emission_factor_lifecycle_and_direct(
             if k in ("datetime", "source", "value", "variant")
         }
         item = {**item, **d}
+    print(item)
     model_obj = YearZoneModeEmissionFactor(**item)
     return model_obj
 
