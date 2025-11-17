@@ -1,4 +1,4 @@
-from electricitymap.contrib.config.emission_factors import (
+from electricitymap.contrib.config.emission_factors_lookup import (
     get_emission_factors_with_metadata_all_years,
 )
 
