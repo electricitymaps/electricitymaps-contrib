@@ -1,5 +1,6 @@
 from collections.abc import Callable
-from datetime import date, datetime
+from datetime import date, datetime, timezone
+from enum import Enum
 
 from pydantic import (
     BaseModel,
@@ -399,6 +400,77 @@ class DataCenters(StrictBaseModel):
                 raise ValueError(
                     f"Data center ID {data_center.ID} does not match the key {dict_ID}"
                 )
+        return v
+
+
+class EmissionFactorVariant(Enum):
+    """
+    Describes where an emission factor (EF) comes from.
+    See electricitymap/contrib/config/emission_factors.py::_get_zone_specific_co2eq_parameter_with_metadata
+    """
+
+    GLOBAL_EXACT_TIMELESS = "global_exact_timeless"
+    GLOBAL_EXACT_TIMELY = "global_exact_timely"
+    GLOBAL_FALLBACK_LATEST = "global_fallback_latest"
+    GLOBAL_FALLBACK_OLDER = "global_fallback_older"
+    GLOBAL_FALLBACK_OLDEST = "global_fallback_oldest"
+
+    ZONE_EXACT_TIMELESS = "zone_exact_timeless"
+    ZONE_EXACT_TIMELY = "zone_exact_timely"
+    ZONE_FALLBACK_LATEST = "zone_fallback_latest"
+    ZONE_FALLBACK_OLDER = "zone_fallback_older"
+    ZONE_FALLBACK_OLDEST = "zone_fallback_oldest"
+
+
+class EmissionFactorMode(Enum):
+    BIOMASS = "biomass"
+    COAL = "coal"
+    GAS = "gas"
+    GEOTHERMAL = "geothermal"
+    HYDRO = "hydro"
+    NUCLEAR = "nuclear"
+    OIL = "oil"
+    SOLAR = "solar"
+    UNKNOWN = "unknown"
+    WIND = "wind"
+    BATTERY_DISCHARGE = "battery discharge"
+    HYDRO_DISCHARGE = "hydro discharge"
+
+
+class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
+    dt: datetime = Field(..., alias="datetime")
+    zone_key: ZoneKey
+    mode: EmissionFactorMode
+    lifecycle_value: NonNegativeFloat
+    lifecycle_source: str
+    lifecycle_variant: EmissionFactorVariant
+    lifecycle_datetime: datetime | None
+    direct_value: NonNegativeFloat
+    direct_source: str
+    direct_variant: EmissionFactorVariant
+    direct_datetime: datetime | None
+
+    @validator("dt", "lifecycle_datetime", "direct_datetime", pre=True)
+    def validate_timezone_aware(cls, v: datetime | None) -> datetime | None:
+        if v is None:
+            return v
+
+        if isinstance(v, str):
+            v = datetime.fromisoformat(v).replace(tzinfo=timezone.utc)
+
+        if v.tzinfo is None or v.tzinfo.utcoffset(v) is None:
+            raise ValueError("Datetime must be timezone-aware")
+
+        truncated_to_year = v.replace(
+            month=1,
+            day=1,
+            hour=0,
+            minute=0,
+            second=0,
+            microsecond=0,
+        )
+        if v != truncated_to_year:
+            raise ValueError("Datetime must be truncated to year.")
         return v
 
 
