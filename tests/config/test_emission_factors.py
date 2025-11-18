@@ -7,10 +7,10 @@ from electricitymap.contrib.config.emission_factors_lookup import (
 )
 
 
-def test_all_emission_factors():
+def test_all_emission_factors(snapshot):
     efs = get_emission_factors_with_metadata_all_years()
-    expected_len = 51216
-    assert len(efs) == expected_len
+    efs = [ef.json(by_alias=True) for ef in efs]
+    assert snapshot == efs
 
 
 def test_get_zone_specific_co2eq_parameter_identical_return():
