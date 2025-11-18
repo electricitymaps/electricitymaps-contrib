@@ -247,18 +247,20 @@ def _get_emission_factor_lifecycle_and_direct(
             if k in ("datetime", "source", "value", "variant")
         }
         item = {**item, **d}
-    print(item)
     model_obj = YearZoneModeEmissionFactor(**item)
     return model_obj
 
 
-def get_emission_factors_with_metadata_all_years() -> list[YearZoneModeEmissionFactor]:
-    start = 2015
-    end = datetime.now(tz=timezone.utc).year
+def get_emission_factors_with_metadata_all_years(
+    start: int | None = None,
+    end: int | None = None,
+) -> list[YearZoneModeEmissionFactor]:
+    start = 2015 if start is None else start
+    end = datetime.now(tz=timezone.utc).year if end is None else end
 
     acc = []
     for zone_key in ZONES_CONFIG:
-        for i in range(start, end):
+        for i in range(start, end + 1):
             dt = datetime(year=i, month=1, day=1, tzinfo=timezone.utc)
             for mode in ENERGIES:
                 model_obj = _get_emission_factor_lifecycle_and_direct(
