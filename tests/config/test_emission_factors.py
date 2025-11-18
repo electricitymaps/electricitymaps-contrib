@@ -9,7 +9,7 @@ from electricitymap.contrib.config.emission_factors_lookup import (
 
 def test_all_emission_factors(snapshot):
     efs = get_emission_factors_with_metadata_all_years()
-    efs = [ef.json(by_alias=True) for ef in efs]
+    efs = sorted(ef.json(by_alias=True) for ef in efs)
     assert snapshot == efs
 
 
