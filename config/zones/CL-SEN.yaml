@@ -4,11 +4,41 @@ bounding_box:
   - - -66.51396683799987
     - -17.006588197999946
 capacity:
-  geothermal: 95.0
-  hydro: 7514.0
-  solar: 9171.0
-  unknown: 12786.0
-  wind: 4710.0
+  geothermal:
+    - datetime: '2023-12-01'
+      source: coordinador.cl
+      value: 95.0
+    - datetime: '2022-12-01'
+      source: coordinador.cl
+      value: 82.0
+  hydro:
+    - datetime: '2023-12-01'
+      source: coordinador.cl
+      value: 7514.0
+    - datetime: '2022-12-01'
+      source: coordinador.cl
+      value: 7396.0
+  solar:
+    - datetime: '2023-12-01'
+      source: coordinador.cl
+      value: 9171.0
+    - datetime: '2022-12-01'
+      source: coordinador.cl
+      value: 8018.0
+  unknown:
+    - datetime: '2023-12-01'
+      source: coordinador.cl
+      value: 12786.0
+    - datetime: '2022-12-01'
+      source: coordinador.cl
+      value: 13394.0
+  wind:
+    - datetime: '2023-12-01'
+      source: coordinador.cl
+      value: 4710.0
+    - datetime: '2022-12-01'
+      source: coordinador.cl
+      value: 4328.0
 contributors:
   - systemcatch
   - alixunderplatz
