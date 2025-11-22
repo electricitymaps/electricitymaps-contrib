@@ -1,0 +1,24 @@
+bypass_aggregation_checks: []
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 97.3
+  geothermal: 95.0
+  hydro: 7539.9
+  hydro storage: 0
+  nuclear: 0
+  oil: 66.2
+  solar: 9174.1
+  unknown: 12786.0
+  wind: 4724.7
+contributors:
+- alixunderplatz
+- systemcatch
+- autipial
+subZoneNames:
+- CL-CHP
+- CL-SEA
+- CL-SEM
+- CL-SEN
+timezone: America/Santiago
