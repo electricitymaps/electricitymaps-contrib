@@ -13,12 +13,12 @@ capacity:
   unknown: 12786.0
   wind: 4724.7
 contributors:
-- alixunderplatz
-- systemcatch
-- autipial
+  - alixunderplatz
+  - systemcatch
+  - autipial
 subZoneNames:
-- CL-CHP
-- CL-SEA
-- CL-SEM
-- CL-SEN
+  - CL-CHP
+  - CL-SEA
+  - CL-SEM
+  - CL-SEN
 timezone: America/Santiago
