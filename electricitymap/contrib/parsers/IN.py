@@ -771,7 +771,24 @@ def compute_zone_key_share_per_mode_out_of_total(
     zone_production_breakdown = get_production_breakdown(
         content=content, zone_key=zone_key
     )
-    return zone_production_breakdown["value"] / country_production_breakdown["value"]
+
+    total_production_zone_share_out_of_country = (
+        zone_production_breakdown.sum() / country_production_breakdown.sum()
+    )["value"]
+
+    zone_key_share_per_mode_out_of_country = (
+        zone_production_breakdown["value"] / country_production_breakdown["value"]
+    )
+
+    # We ensure that all share are between 0 and 1.
+    # If not, we replace the value by the share of the total production of the zone out of the total production of the country.
+    condition = (zone_key_share_per_mode_out_of_country >= 0) & (
+        zone_key_share_per_mode_out_of_country <= 1
+    )
+
+    return zone_key_share_per_mode_out_of_country.where(
+        condition, total_production_zone_share_out_of_country
+    )
 
 
 def scale_15min_production(content: bytes, scaling_factor: float) -> pd.DataFrame:
