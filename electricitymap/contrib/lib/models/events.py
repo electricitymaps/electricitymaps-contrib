@@ -305,7 +305,8 @@ class Event(BaseModel, ABC):
     # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
     sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
-    datetime: datetime
+    datetime: dt.datetime
+    datetime_end: dt.datetime | None = None
     source: str
 
     @validator("zoneKey")
@@ -382,14 +383,27 @@ class AggregatableEvent(Event):
         return target_datetime[0].to_pydatetime()
 
     @staticmethod
+    def _unique_datetime_end(df_view: pd.DataFrame) -> datetime | None:
+        target_datetime_end = df_view["datetime_end"].unique()
+        if len(target_datetime_end) > 1:
+            raise ValueError(
+                f"Cannot merge events from different datetime_ends: {target_datetime_end}"
+            )
+        datetime_end = target_datetime_end[0]
+        if pd.isna(datetime_end):
+            return None
+        return datetime_end.to_pydatetime()
+
+    @staticmethod
     def _aggregated_fields(
         df_view: pd.DataFrame,
-    ) -> tuple[ZoneKey, str, EventSourceType, datetime]:
+    ) -> tuple[ZoneKey, str, EventSourceType, datetime, datetime | None]:
         return (
             AggregatableEvent._unique_zone_key(df_view),
             AggregatableEvent._sources(df_view),
             AggregatableEvent._unique_source_type(df_view),
             AggregatableEvent._unique_datetime(df_view),
+            AggregatableEvent._unique_datetime_end(df_view),
         )
 
     @staticmethod
@@ -596,6 +610,7 @@ class ProductionBreakdown(AggregatableEvent):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
@@ -611,6 +626,7 @@ class ProductionBreakdown(AggregatableEvent):
             return ProductionBreakdown(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 production=production,
                 storage=storage,
@@ -636,6 +652,7 @@ class ProductionBreakdown(AggregatableEvent):
                 {
                     "zoneKey": event.zoneKey,
                     "datetime": event.datetime,
+                    "datetime_end": event.datetime_end,
                     "source": event.source,
                     "sourceType": event.sourceType,
                     "data": event,
@@ -648,6 +665,7 @@ class ProductionBreakdown(AggregatableEvent):
             sources,
             source_type,
             target_datetime,
+            target_datetime_end,
         ) = ProductionBreakdown._aggregated_fields(df_view)
 
         production_mix = ProductionMix.merge(
@@ -659,6 +677,7 @@ class ProductionBreakdown(AggregatableEvent):
         return ProductionBreakdown(
             zoneKey=zoneKey,
             datetime=target_datetime,
+            datetime_end=target_datetime_end,
             source=sources,
             production=production_mix,
             storage=storage_mix,
@@ -699,6 +718,7 @@ class ProductionBreakdown(AggregatableEvent):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "datetime_end": self.datetime_end,
             "zoneKey": self.zoneKey,
             "production": self.production.dict(
                 exclude_unset=True, keep_corrected_negative_values=True
