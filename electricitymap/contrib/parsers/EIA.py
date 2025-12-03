@@ -527,7 +527,7 @@ def fetch_production_mix(
             for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
-        # hardcoded exception for US-SW-AZPS nuclear production : Palo Verde nuclear plant is doucle counted in US-SW-AZPS and US-SW-SRP. 
+        # hardcoded exception for US-SW-AZPS nuclear production : Palo Verde nuclear plant is doucle counted in US-SW-AZPS and US-SW-SRP.
         # Even though the plant is operated by US-SW-AZPS, the reporting is consistently done by US-SW-SRP on the time period below but also after.
         # So keep US-SW-SRP nuclear production and set US-SW-AZPS nuclear production to 0.0.
         if zone_key == "US-SW-AZPS" and production_mode == "nuclear":
