@@ -63,7 +63,7 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 0.0
+      value: 150
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
