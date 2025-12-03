@@ -5,7 +5,7 @@ bounding_box:
     - 43.047539
 capacity:
   biomass: 2.295
-  gas: 125
+  gas: 250
   geothermal: 0
   hydro: 223.266
   oil: 224
