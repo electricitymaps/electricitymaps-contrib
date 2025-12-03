@@ -5,38 +5,38 @@ bounding_box:
     - -20.421464
 capacity:
   biomass:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
-      value: 215.0
-    - datetime: '2025-04-12'
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
+      value: 115.0
+    - datetime: '2024-11-01'
       source: reunion.edf.fr
       value: 377.0
   coal:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
       value: 211.0
-    - datetime: '2025-04-12'
+    - datetime: '2025-05-01'
       source: reunion.edf.fr
       value: 0.0
   gas:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
-      value: 80.0
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
+      value: 175
+    - datetime: '2020-01-01'
+      source: oer.energies-reunion.com
+      value: 150
     - datetime: '2025-04-12'
       source: reunion.edf.fr
       value: 121.0
   hydro:
-    - datetime: '2022-10-10'
+    - datetime: '2017-01-01'
       source: reunion.edf.fr
       value: 138.0
-    - datetime: '2025-04-12'
-      source: reunion.edf.fr
-      value: 139.0
   oil:
     - datetime: '2022-10-10'
       source: reunion.edf.fr
       value: 221.0
-    - datetime: '2025-04-12'
+    - datetime: '2025-05-01'
       source: reunion.edf.fr
       value: 0.0
   solar:
@@ -53,6 +53,7 @@ capacity:
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
+  - PaulRoms
 country: RE
 emissionFactors:
   direct:
