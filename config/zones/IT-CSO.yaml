@@ -5,19 +5,105 @@ bounding_box:
   - - 16.29054702002901
     - 43.40156077856554
 capacity:
-  biomass: 486.7
-  coal: 1865
-  gas: 7300.1
-  geothermal: 0
-  hydro: 1990.6
-  hydro storage: 1708.7
-  nuclear: 0
-  oil: 96
-  solar: 3706.9
-  wind: 2115.3
+  biomass:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 486.7
+  coal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1865
+  gas:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 2500
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 3000
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 3500
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 3500
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 4500
+  geothermal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 0
+  hydro:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 2200
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 3260
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1708.7
+  nuclear:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 0
+  oil:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 96
+  solar:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 3300
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 3450
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 3700
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 4100
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 4860
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 6660
+  wind:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1700
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 2060
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 2010
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 2250
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 2300
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 2530
+  unknown:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 2500
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 1000
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 700
 contributors:
   - corradio
   - nessie2013
+  - PaulRoms
 country: IT
 delays:
   production: 7

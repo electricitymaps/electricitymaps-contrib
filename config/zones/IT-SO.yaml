@@ -5,16 +5,74 @@ bounding_box:
   - - 19.01742597700013
     - 42.57794649582388
 capacity:
-  biomass: 661.9
-  coal: 1815
-  gas: 8551.7
-  geothermal: 0
-  hydro: 1100.7
-  hydro storage: 0
-  nuclear: 0
-  oil: 66
-  solar: 4090.2
-  wind: 5737.4
+  biomass:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 665
+  coal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1815
+  gas:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 8551.7
+  hydro:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1100
+  oil:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 100
+  solar:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 3700
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 3900
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 4000
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 4100
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 4250
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 4750
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 5300
+  wind:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 5000
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 5300
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 5400
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 5700
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 6000
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 6200
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 6400
+  unknown:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1000
 contributors:
   - corradio
   - nessie2013
