@@ -169,19 +169,13 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 60.0
+      value: 100
     - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 40.0
+      value: 150
     - datetime: '2019-01-01'
       source: entsoe.eu
-      value: 36.2
-    - datetime: '2020-01-01'
-      source: entsoe.eu
-      value: 8.0
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 28.0
+      value: 100
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
