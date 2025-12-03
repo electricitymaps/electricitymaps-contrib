@@ -6,29 +6,59 @@ bounding_box:
     - 61.0795442346
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 4930
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 6450
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 6500
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 6600
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 4572
     - datetime: '2023-01-01'
       source: bmreports.com
       value: 4438
-    - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 3535
-    - datetime: '2025-01-01'
-      source: bmreports.com
-      value: 4332
   coal:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 14300
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 11450
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 8730
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 5410
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 5410
     - datetime: '2022-01-01'
-      source: bmreports.com
-      value: 1491
+      source: Ember, Yearly electricity data
+      value: 4310
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1250
     - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 1988
-    - datetime: '2025-01-01'
-      source: bmreports.com
+      source: Ember, Yearly electricity data
       value: 0
   gas:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 31000
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 32000
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 33000
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 38985
@@ -42,6 +72,9 @@ capacity:
       source: bmreports.com
       value: 40470
   hydro:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3000
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 4190
@@ -68,16 +101,31 @@ capacity:
       source: bmreports.com
       value: 11080
   nuclear:
-    - datetime: '2022-01-01'
-      source: IRENA.org
-      value: 7833
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 9300
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 7830
     - datetime: '2023-01-01'
       source: IRENA.org
       value: 5883
-    - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 6075
   solar:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 12750
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 13000
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 13250
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 13750
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 14000
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 13324
@@ -88,6 +136,9 @@ capacity:
       source: bmreports.com
       value: 15896
   unknown:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 5000
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 4906
@@ -101,6 +152,21 @@ capacity:
       source: bmreports.com
       value: 6238
   wind:
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 16300
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20940
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 21760
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 23150
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 25410
     - datetime: '2022-01-01'
       source: bmreports.com
       value: 27330
