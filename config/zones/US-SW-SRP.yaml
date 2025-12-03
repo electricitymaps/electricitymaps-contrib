@@ -48,7 +48,7 @@ capacity:
       value: 2428.0
     - datetime: '2019-11-01'
       source: EIA.gov
-      value: 821.8
+      value: 1000
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -109,25 +109,16 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
-      value: 304.2
-    - datetime: '2017-05-01'
+      value: 550
+    - datetime: '2018-01-01'
       source: EIA.gov
-      value: 305.4
-    - datetime: '2018-04-01'
-      source: EIA.gov
-      value: 325.4
+      value: 600
     - datetime: '2019-01-01'
       source: EIA.gov
-      value: 155.4
+      value: 650
     - datetime: '2020-01-01'
       source: EIA.gov
-      value: 155.2
-    - datetime: '2020-03-01'
-      source: EIA.gov
-      value: 159.8
-    - datetime: '2020-12-01'
-      source: EIA.gov
-      value: 259.8
+      value: 750
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 359.8
