@@ -21,7 +21,7 @@ jobs:
       id-token: 'write'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: master
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
