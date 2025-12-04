@@ -255,46 +255,31 @@ capacity:
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
-      value: 311.9
-    - datetime: '2017-05-01'
+      value: 375
+    - datetime: '2018-01-01'
       source: EIA.gov
-      value: 301.4
-    - datetime: '2017-12-01'
+      value: 400
+    - datetime: '2019-01-01'
       source: EIA.gov
-      value: 376.4
-    - datetime: '2018-06-01'
+      value: 550
+    - datetime: '2020-01-01'
       source: EIA.gov
-      value: 406.4
-    - datetime: '2019-12-01'
-      source: EIA.gov
-      value: 503.1
-    - datetime: '2020-06-01'
-      source: EIA.gov
-      value: 729.1
-    - datetime: '2020-11-01'
-      source: EIA.gov
-      value: 781.6
+      value: 800
     - datetime: '2021-01-01'
       source: EIA.gov
-      value: 782.3
-    - datetime: '2021-04-01'
+      value: 1100
+    - datetime: '2022-01-01'
       source: EIA.gov
-      value: 886.3
-    - datetime: '2021-11-01'
+      value: 1300
+    - datetime: '2023-01-01'
       source: EIA.gov
-      value: 1091.9
-    - datetime: '2022-06-01'
+      value: 1400
+    - datetime: '2024-01-01'
       source: EIA.gov
-      value: 1236.9
-    - datetime: '2023-12-01'
-      source: EIA.gov
-      value: 1342.6
-    - datetime: '2024-12-01'
-      source: EIA.gov
-      value: 1466.9
+      value: 1500
     - datetime: '2025-01-01'
       source: EIA.gov
-      value: 1857.3
+      value: 1900
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

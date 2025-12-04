@@ -5,16 +5,66 @@ bounding_box:
   - - 10.326670769000089
     - 41.76264069200013
 capacity:
-  biomass: 112.5
-  coal: 966
-  gas: 1110.4
-  geothermal: 0
-  hydro: 263.2
-  hydro storage: 240
-  nuclear: 0
-  oil: 145
-  solar: 1001
-  wind: 1093.8
+  biomass:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 112.5
+  coal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1000
+  gas:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 750
+  hydro:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 450
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 240
+  oil:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 145
+  solar:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 750
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 790
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 870
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 1000
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 1150
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 1360
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 1750
+  wind:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1094
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 1200
+  unknown:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 1000
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 100
 contributors:
   - corradio
   - nessie2013

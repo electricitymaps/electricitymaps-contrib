@@ -7,9 +7,6 @@ capacity:
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 234.0
-    - datetime: '2018-01-01'
-      source: entsoe.eu
       value: 1173.0
     - datetime: '2019-01-01'
       source: entsoe.eu

@@ -248,7 +248,10 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
-      value: 0.0
+      value: 100
+    - datetime: '2024-01-01'
+      source: EIA.gov
+      value: 250
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov

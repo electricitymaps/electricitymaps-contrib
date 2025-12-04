@@ -21,12 +21,6 @@ capacity:
   gas:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 900.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 950.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
       value: 1700.0
     - datetime: '2022-01-01'
       source: Ember, Yearly electricity data

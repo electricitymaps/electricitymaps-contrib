@@ -58,7 +58,7 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
-      value: 0.0
+      value: 10
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 74.5

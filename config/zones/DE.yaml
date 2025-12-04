@@ -224,7 +224,7 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 3261.0
+      value: 5500.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
       value: 3304.0

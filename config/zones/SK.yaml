@@ -76,7 +76,7 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 2003.0
-    - datetime: '2023-12-31'
+    - datetime: '2023-01-01'
       source: IAEA
       value: 2471.0
   oil:

@@ -5,16 +5,91 @@ bounding_box:
   - - 14.394686320000034
     - 47.585214945000075
 capacity:
-  biomass: 2573.5
-  coal: 952
-  gas: 27268
-  geothermal: 0
-  hydro: 13188.7
-  hydro storage: 4764.8
-  nuclear: 0
-  oil: 80
-  solar: 10195.2
-  wind: 167
+  biomass:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 2400
+  coal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 2000
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 1000
+  gas:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 27268
+  geothermal:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 0
+  hydro:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 14000
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 16700
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 17100
+  hydro storage:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 4764.8
+  oil:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 100
+  solar:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 8700
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 8950
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 9250
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 9650
+    - datetime: '2021-01-01'
+      source: dati.terna.it
+      value: 10200
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 11500
+    - datetime: '2023-01-01'
+      source: dati.terna.it
+      value: 14600
+    - datetime: '2024-01-01'
+      source: dati.terna.it
+      value: 17660
+  wind:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 120
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 170
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 250
+  unknown:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 100000
+    - datetime: '2018-01-01'
+      source: dati.terna.it
+      value: 8000
+    - datetime: '2019-01-01'
+      source: dati.terna.it
+      value: 3500
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 2500
 contributors:
   - corradio
   - nessie2013

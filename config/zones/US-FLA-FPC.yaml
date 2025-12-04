@@ -194,10 +194,7 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
-      value: 21.0
-    - datetime: '2020-01-01'
-      source: EIA.gov
-      value: 18.8
+      value: 150
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov

@@ -5,12 +5,9 @@ bounding_box:
     - 62.50688674370767
 capacity:
   biomass: 2561
-  coal: 0
   gas: 950
-  geothermal: 0
   hydro: 2593
-  nuclear: 6882
-  oil: 0
+  nuclear: 9000
   solar: 1130
   wind: 3678
 country: SE
