@@ -13,6 +13,7 @@ def capacitor_pods
   pod 'CapacitorCordova', :path => '../../node_modules/.pnpm/@capacitor+ios@7.4.2_@capacitor+core@7.4.2/node_modules/@capacitor/ios'
   pod 'CapacitorApp', :path => '../../node_modules/.pnpm/@capacitor+app@7.0.1_@capacitor+core@7.4.2/node_modules/@capacitor/app'
   pod 'CapacitorShare', :path => '../../node_modules/.pnpm/@capacitor+share@7.0.1_@capacitor+core@7.4.2/node_modules/@capacitor/share'
+  pod 'CapacitorStatusBar', :path => '../../node_modules/.pnpm/@capacitor+status-bar@7.0.2_@capacitor+core@7.4.2/node_modules/@capacitor/status-bar'
 end
 
 target "Electricity Maps" do
