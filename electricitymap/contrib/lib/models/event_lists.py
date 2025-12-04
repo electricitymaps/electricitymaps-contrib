@@ -240,13 +240,21 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = ProductionBreakdown.create(
-            self.logger, zoneKey, datetime, source, production, storage, sourceType
+            self.logger,
+            zoneKey,
+            datetime,
+            datetime_end,
+            source,
+            production,
+            storage,
+            sourceType,
         )
         if event:
             self.events.append(event)
