@@ -4,13 +4,47 @@ bounding_box:
   - - -60.732382
     - 14.888562
 capacity:
-  biomass: 15.082
-  gas: 129
-  geothermal: 0
-  hydro: 0
-  oil: 292
-  solar: 53.97
-  wind: 1.1
+  battery storage:
+    - datetime: '2021-10-25'
+      source: opendata-martinique.edf.fr
+      value: 12.0
+  biomass:
+    - datetime: '2017-01-01'
+      source: opendata-martinique.edf.fr
+      value: 8.0
+    - datetime: '2018-09-26'
+      source: opendata-martinique.edf.fr
+      value: 44.5
+  gas:
+    - datetime: '2021-01-01'
+      source: opendata-martinique.edf.fr
+      value: 0
+  geothermal:
+    - datetime: '2021-01-01'
+      source: opendata-martinique.edf.fr
+      value: 0
+  hydro:
+    - datetime: '2021-01-01'
+      source: opendata-martinique.edf.fr
+      value: 0
+  oil:
+    - datetime: '2017-01-01'
+      source: opendata-martinique.edf.fr
+      value: 428.0
+  solar:
+    - datetime: '2017-01-01'
+      source:
+      value: 70.0
+    - datetime: '2020-01-01'
+      source: opendata-martinique.edf.fr
+      value: 79.0
+    - datetime: '2022-01-01'
+      source: opendata-martinique.edf.fr
+      value: 84.0
+  wind:
+    - datetime: '2019-01-14'
+      source: opendata-martinique.edf.fr
+      value: 14.0
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99

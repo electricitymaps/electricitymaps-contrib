@@ -527,6 +527,23 @@ def fetch_production_mix(
             for point in production_and_storage_values:
                 point.update({"value": point["value"] * (1 - SC_VIRGIL_OWNERSHIP)})
 
+        # hardcoded exception for US-SW-AZPS nuclear production : Palo Verde nuclear plant is doucle counted in US-SW-AZPS and US-SW-SRP.
+        # Even though the plant is operated by US-SW-AZPS, the reporting is consistently done by US-SW-SRP on the time period below but also after.
+        # So keep US-SW-SRP nuclear production and set US-SW-AZPS nuclear production to 0.0.
+        if zone_key == "US-SW-AZPS" and production_mode == "nuclear":
+            first_appearance = datetime(
+                year=2018, month=7, day=1, hour=7, tzinfo=timezone.utc
+            )
+            last_apperance = datetime(
+                year=2019, month=12, day=4, hour=6, tzinfo=timezone.utc
+            )
+            for event in production_and_storage_values:
+                if (
+                    event["datetime"] >= first_appearance
+                    and event["datetime"] <= last_apperance
+                ):
+                    event["value"] = 0.0
+
         # hardcoded exception
         # parser is double counting "geothermal" and "unknown"
         # we set unknown to 0.0 and keep geothermal as is

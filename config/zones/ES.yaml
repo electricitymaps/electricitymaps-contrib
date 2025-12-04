@@ -8,71 +8,218 @@ bounding_box:
     - 43.6758180933
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 1009.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 1007.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 1010.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 1210.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 1225.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 1219.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 1226.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 1230.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 1222.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 1231.0
   coal:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 9562.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 9215.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 5144.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 3523.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 3223.0
-    - datetime: '2024-09-01'
+    - datetime: '2024-01-01'
       source: ree.es
       value: 1820.0
   gas:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 30949.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 30788.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 30330.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 30222.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 30202.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 30154.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 30160.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 30140.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 30152.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 30132.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30088.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 30076.0
   hydro:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 17048.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 17056.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 17063.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 17097.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 17092.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 17093.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 17092.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 17096.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 17097.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 17095.0
   hydro storage:
     - datetime: '2022-12-01'
       source: ree.es
       value: 3331.0
   nuclear:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 7573.0
+    - datetime: '2018-01-01'
       source: ree.es
       value: 7117.0
   solar:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 6746.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 6748.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 6887.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 10952.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 13887.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 17758.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 21815.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 22317.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 26866.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 28155.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30070.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 34807.0
   unknown:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 410.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 404.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 394.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 407.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 387.0
   wind:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
-      value: 29556.0
-    - datetime: '2023-12-01'
+      value: 22818.0
+    - datetime: '2018-01-01'
       source: ree.es
-      value: 30100.0
+      value: 22856.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 23050.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 25299.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 27222.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 28147.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 29597.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 30202.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30848.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 31558.0
 contributors:
   - brandongalbraith
   - corradio
@@ -82,6 +229,8 @@ contributors:
   - gadakast
   - silimotion
 country: ES
+country_name: Spain
+currency: EUR
 delays:
   production: 6
 emissionFactors:
@@ -437,7 +586,6 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  # priceIntraday: ENTSOE.fetch_price_intraday # DO NOT USE, THIS IS FOR FUTURE USE CASES
   production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
@@ -462,5 +610,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Madrid
 zone_name: Spain
-country_name: Spain
-currency: EUR
