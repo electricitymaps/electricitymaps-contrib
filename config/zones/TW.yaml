@@ -69,21 +69,24 @@ capacity:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
       value: 5140.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
+    - datetime: '2018-12-05'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
       value: 4510.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
+    - datetime: '2019-07-15'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
       value: 3870.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
+    - datetime: '2021-12-27'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
       value: 2890.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
+    - datetime: '2023-03-14'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
       value: 1900.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
+    - datetime: '2024-07-27'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
       value: 950.0
+    - datetime: '2025-05-18'
+      source: Ember, Yearly electricity data, https://en.wikipedia.org/wiki/Nuclear_power_in_Taiwan#List_of_nuclear_power_stations_in_Taiwan
+      value: 0
   oil:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
