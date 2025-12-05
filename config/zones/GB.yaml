@@ -44,10 +44,13 @@ capacity:
       source: Ember, Yearly electricity data
       value: 4310
     - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1250
+      source: bmrs.elexon.co.uk
+      value: 1998
     - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
+      source: bmrs.elexon.co.uk
+      value: 1998
+    - datetime: '2025-01-01'
+      source: bmrs.elexon.co.uk
       value: 0
   gas:
     - datetime: '2017-01-01'
@@ -145,9 +148,6 @@ capacity:
     - datetime: '2023-01-01'
       source: bmreports.com
       value: 4775
-    - datetime: '2024-01-01'
-      source: bmreports.com
-      value: 745
     - datetime: '2025-01-01'
       source: bmreports.com
       value: 6238
