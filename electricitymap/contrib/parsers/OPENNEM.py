@@ -265,7 +265,7 @@ def fetch_production(
     ).to_list()
 
 
-@refetch_frequency(REFETCH_FREQUENCY)
+@refetch_frequency(NETWORK_FETCH_WINDOW)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -509,6 +509,7 @@ def _build_network_url(
 ) -> tuple[str, dict[str, Any]]:
     base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
 
+    # API expects naive datetime in network-local time; target_datetime is UTC -> convert and drop tzinfo.
     def format_datetime(dt: datetime) -> str:
         local_dt = dt.astimezone(ZoneInfo("Australia/Sydney"))
         naive_dt = local_dt.replace(tzinfo=None)
