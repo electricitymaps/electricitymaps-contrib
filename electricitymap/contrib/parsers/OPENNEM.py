@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from requests import Session
 
@@ -13,8 +14,10 @@ from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.utils import get_token
 
 REFETCH_FREQUENCY = timedelta(days=7)
+NETWORK_FETCH_WINDOW = timedelta(days=2)
 
 
 ZONE_KEY_TO_REGION = {
@@ -262,44 +265,7 @@ def fetch_production(
     ).to_list()
 
 
-def process_price_datasets(
-    datasets: list,
-    zone_key: ZoneKey,
-    logger: Logger,
-) -> PriceList:
-    """
-    Process price datasets and return a price list.
-    """
-    now = datetime.now(tz=timezone.utc)
-    price_list = PriceList(logger=logger)
-
-    for dataset in datasets:
-        if dataset["type"] != "price":
-            continue
-        history = dataset["history"]
-        start = datetime.fromisoformat(history["start"])
-        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
-        delta = timedelta(minutes=interval_min)
-        data = history["data"]
-        for i, value in enumerate(data):
-            dt = start + i * delta
-            if dt > now:
-                logger.debug(
-                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
-                )
-                continue
-            price_list.append(
-                zoneKey=zone_key,
-                datetime=dt,
-                currency="AUD",
-                price=value,
-                source=SOURCE,
-            )
-
-    return price_list
-
-
-@refetch_frequency(REFETCH_FREQUENCY)
+@refetch_frequency(NETWORK_FETCH_WINDOW)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -307,18 +273,19 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
+    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
 
-    datasets = fetch_datasets(
+    datasets = _fetch_network_datasets(
         zone_key=zone_key,
         session=session,
+        dataset_type="market",
         target_datetime=target_datetime,
+        metrics=["price"],
     )
 
-    return process_price_datasets(
-        datasets=datasets,
-        zone_key=zone_key,
-        logger=logger,
-    ).to_list()
+    price_list = _build_price_list(datasets, zone_key, logger)
+
+    return price_list.to_list()
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -533,11 +500,90 @@ def _fetch_au_nsw_au_vic_exchange(
     return datetimes_and_netflows
 
 
+def _build_network_url(
+    path: str,
+    network_code: str,
+    metrics: list[str],
+    target_datetime: datetime,
+    network_region: str,
+) -> tuple[str, dict[str, Any]]:
+    base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
+
+    # API expects naive datetime in network-local time; target_datetime is UTC -> convert and drop tzinfo.
+    def format_datetime(dt: datetime) -> str:
+        local_dt = dt.astimezone(ZoneInfo("Australia/Sydney"))
+        naive_dt = local_dt.replace(tzinfo=None)
+        return naive_dt.isoformat()
+
+    params = {
+        "metrics": metrics,
+        "date_start": format_datetime(target_datetime - NETWORK_FETCH_WINDOW),
+        "date_end": format_datetime(target_datetime),
+        "network_region": network_region,
+    }
+
+    return base_url, params
+
+
+def _fetch_network_datasets(
+    zone_key: str,
+    session: Session,
+    dataset_type: str,
+    target_datetime: datetime,
+    metrics: list[str],
+) -> list[dict[str, Any]]:
+    network_region = ZONE_KEY_TO_REGION.get(zone_key)
+    network_code = ZONE_KEY_TO_NETWORK.get(zone_key)
+
+    if not network_region or not network_code:
+        raise ParserException(
+            parser="OPENNEM",
+            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
+            zone_key=zone_key,
+        )
+
+    url, params = _build_network_url(
+        path=dataset_type,
+        network_code=network_code,
+        metrics=metrics,
+        target_datetime=target_datetime,
+        network_region=network_region,
+    )
+
+    token = get_token("OPENELECTRICITY_TOKEN")
+    headers = {
+        "Authorization": f"Bearer {token}",
+    }
+
+    response = session.get(url, headers=headers, params=params)
+    response.raise_for_status()
+
+    return response.json()["data"]
+
+
+def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
+    price_list = PriceList(logger=logger)
+    for dataset in datasets:
+        if dataset["metric"] != "price":
+            continue
+        for result in dataset["results"]:
+            for ts, price in result["data"]:
+                price_list.append(
+                    zoneKey=zone_key,
+                    datetime=datetime.fromisoformat(ts),
+                    currency="AUD",
+                    price=price,
+                    source=SOURCE,
+                )
+
+    return price_list
+
+
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
-    # print(fetch_price(ZoneKey("AU-SA")))
-
-    print(fetch_production(ZoneKey("AU-TAS")))
+    # print("fetch_price(zone_key='AU-SA') ->")
+    # print(fetch_price(zone_key="AU-SA"))
+    # print(fetch_production(ZoneKey("AU-TAS")))
     # print(fetch_production(ZoneKey("AU-NSW")))
     # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
     # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
