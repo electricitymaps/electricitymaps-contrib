@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import Any
-from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -18,6 +17,7 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
 
 REFETCH_FREQUENCY = timedelta(days=7)
+NETWORK_FETCH_WINDOW = timedelta(days=2)
 
 
 ZONE_KEY_TO_REGION = {
@@ -506,26 +506,22 @@ def _build_network_url(
     metrics: list[str],
     target_datetime: datetime,
     network_region: str,
-) -> str:
-    target_datetime_local = target_datetime.astimezone(ZoneInfo("Australia/Sydney"))
-    target_datetime_naive = target_datetime_local.replace(tzinfo=None)
+) -> tuple[str, dict[str, Any]]:
+    base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
 
-    date_start = (target_datetime_naive - REFETCH_FREQUENCY).strftime(
-        "%Y-%m-%dT%H:%M:%S"
-    )
-    date_end = target_datetime_naive.strftime("%Y-%m-%dT%H:%M:%S")
+    def format_datetime(dt: datetime) -> str:
+        local_dt = dt.astimezone(ZoneInfo("Australia/Sydney"))
+        naive_dt = local_dt.replace(tzinfo=None)
+        return naive_dt.isoformat()
 
-    params = [("metrics", m) for m in metrics]
-    params += [
-        ("date_start", date_start),
-        ("date_end", date_end),
-        ("network_region", network_region),
-    ]
+    params = {
+        "metrics": metrics,
+        "date_start": format_datetime(target_datetime - NETWORK_FETCH_WINDOW),
+        "date_end": format_datetime(target_datetime),
+        "network_region": network_region,
+    }
 
-    query = urlencode(params)
-    base = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
-
-    return f"{base}?{query}"
+    return base_url, params
 
 
 def _fetch_network_datasets(
@@ -538,14 +534,14 @@ def _fetch_network_datasets(
     network_region = ZONE_KEY_TO_REGION.get(zone_key)
     network_code = ZONE_KEY_TO_NETWORK.get(zone_key)
 
-    if not network_region:
+    if not network_region or not network_code:
         raise ParserException(
             parser="OPENNEM",
             message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
             zone_key=zone_key,
         )
 
-    url = _build_network_url(
+    url, params = _build_network_url(
         path=dataset_type,
         network_code=network_code,
         metrics=metrics,
@@ -553,12 +549,12 @@ def _fetch_network_datasets(
         network_region=network_region,
     )
 
-    token = get_token("OPEN_ELECTRICITY_API_KEY")
+    token = get_token("OPENELECTRICITY_TOKEN")
     headers = {
         "Authorization": f"Bearer {token}",
     }
 
-    response = session.get(url, headers=headers)
+    response = session.get(url, headers=headers, params=params)
     response.raise_for_status()
 
     return response.json()["data"]
@@ -571,10 +567,9 @@ def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
             continue
         for result in dataset["results"]:
             for ts, price in result["data"]:
-                dt = datetime.fromisoformat(ts).astimezone(timezone.utc)
                 price_list.append(
                     zoneKey=zone_key,
-                    datetime=dt,
+                    datetime=datetime.fromisoformat(ts),
                     currency="AUD",
                     price=price,
                     source=SOURCE,

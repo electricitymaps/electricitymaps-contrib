@@ -16,8 +16,8 @@ base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/OPENNEM")
 
 
 @pytest.fixture(autouse=True)
-def open_electricity_key_env():
-    os.environ["OPEN_ELECTRICITY_API_KEY"] = "token"
+def openelectricity_token_env():
+    os.environ["OPENELECTRICITY_TOKEN"] = "token"
 
 
 @pytest.mark.parametrize(
