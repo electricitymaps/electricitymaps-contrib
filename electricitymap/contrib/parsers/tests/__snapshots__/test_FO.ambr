@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.28,
         'hydro': 0,
@@ -21,6 +22,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.24,
         'hydro': 0,
@@ -37,6 +39,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -53,6 +56,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.22,
         'hydro': 0,
@@ -69,6 +73,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.27,
         'hydro': 0,
@@ -85,6 +90,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -101,6 +107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.16,
         'hydro': 0,
@@ -117,6 +124,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 0,
@@ -133,6 +141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -149,6 +158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.38,
         'hydro': 0,
@@ -165,6 +175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.13,
         'hydro': 0.13,
@@ -181,6 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.15,
@@ -197,6 +209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.27,
         'hydro': 0.93,
@@ -213,6 +226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.21,
         'hydro': 0.91,
@@ -229,6 +243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.94,
@@ -245,6 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.44,
         'hydro': 0.99,
@@ -261,6 +277,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.23,
         'hydro': 1,
@@ -277,6 +294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.95,
@@ -293,6 +311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'hydro': 1.2,
@@ -309,6 +328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.31,
         'hydro': 1.66,
@@ -325,6 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.62,
@@ -341,6 +362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.08,
         'hydro': 1.2,
@@ -357,6 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 0.69,
@@ -373,6 +396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.53,
@@ -389,6 +413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.52,
         'hydro': 0.37,
@@ -405,6 +430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'hydro': 0.03,
@@ -421,6 +447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -437,6 +464,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.41,
         'hydro': 0,
@@ -453,6 +481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.08,
         'hydro': 0,
@@ -469,6 +498,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -485,6 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.3,
         'hydro': 0,
@@ -501,6 +532,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.34,
         'hydro': 0,
@@ -517,6 +549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -533,6 +566,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.34,
         'hydro': 0,
@@ -549,6 +583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.15,
         'hydro': 0,
@@ -565,6 +600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -581,6 +617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.25,
         'hydro': 0,
@@ -597,6 +634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.19,
         'hydro': 0,
@@ -613,6 +651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -629,6 +668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.42,
         'hydro': 0.09,
@@ -645,6 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.26,
         'hydro': 3.24,
@@ -661,6 +702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.76,
@@ -677,6 +719,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.22,
         'hydro': 6.79,
@@ -693,6 +736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.28,
         'hydro': 5.36,
@@ -709,6 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 4.15,
@@ -725,6 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.12,
         'hydro': 2.42,
@@ -741,6 +787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.32,
         'hydro': 1.63,
@@ -757,6 +804,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.65,
@@ -777,6 +825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.8,
@@ -793,6 +842,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.25,
@@ -809,6 +859,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.63,
@@ -825,6 +876,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.78,
@@ -841,6 +893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.2,
@@ -857,6 +910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -873,6 +927,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -889,6 +944,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -905,6 +961,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -921,6 +978,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -937,6 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -953,6 +1012,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -969,6 +1029,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -985,6 +1046,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1001,6 +1063,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1017,6 +1080,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1033,6 +1097,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1049,6 +1114,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1065,6 +1131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1081,6 +1148,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1097,6 +1165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1113,6 +1182,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1129,6 +1199,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1145,6 +1216,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1161,6 +1233,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1177,6 +1250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1193,6 +1267,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1209,6 +1284,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1225,6 +1301,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1241,6 +1318,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1257,6 +1335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1273,6 +1352,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1289,6 +1369,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1305,6 +1386,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1321,6 +1403,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1337,6 +1420,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1353,6 +1437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1369,6 +1454,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1385,6 +1471,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1401,6 +1488,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -1417,6 +1505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.42,
         'oil': 0,
@@ -1433,6 +1522,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2.91,
         'oil': 0,
@@ -1449,6 +1539,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3.02,
         'oil': 0,
@@ -1465,6 +1556,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3.01,
         'oil': 0,
@@ -1481,6 +1573,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2.71,
         'oil': 0,
@@ -1497,6 +1590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2.12,
         'oil': 0,
@@ -1513,6 +1607,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.63,
         'oil': 0,
@@ -1529,6 +1624,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.75,
         'oil': 0,
@@ -1549,6 +1645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.28,
         'hydro': 0,
@@ -1566,6 +1663,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.24,
         'hydro': 0,
@@ -1583,6 +1681,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -1600,6 +1699,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.22,
         'hydro': 0,
@@ -1617,6 +1717,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.27,
         'hydro': 0,
@@ -1634,6 +1735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -1651,6 +1753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.16,
         'hydro': 0,
@@ -1668,6 +1771,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 0,
@@ -1685,6 +1789,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -1702,6 +1807,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.38,
         'hydro': 0,
@@ -1719,6 +1825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.13,
         'hydro': 0.13,
@@ -1736,6 +1843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.15,
@@ -1753,6 +1861,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.27,
         'hydro': 0.93,
@@ -1770,6 +1879,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.21,
         'hydro': 0.91,
@@ -1787,6 +1897,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.94,
@@ -1804,6 +1915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.44,
         'hydro': 0.99,
@@ -1821,6 +1933,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.23,
         'hydro': 1,
@@ -1838,6 +1951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.95,
@@ -1855,6 +1969,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'hydro': 1.2,
@@ -1872,6 +1987,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.31,
         'hydro': 1.66,
@@ -1889,6 +2005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.62,
@@ -1906,6 +2023,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.08,
         'hydro': 1.2,
@@ -1923,6 +2041,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 0.69,
@@ -1940,6 +2059,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0.53,
@@ -1957,6 +2077,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.52,
         'hydro': 0.37,
@@ -1974,6 +2095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'hydro': 0.03,
@@ -1991,6 +2113,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -2008,6 +2131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.41,
         'hydro': 0,
@@ -2025,6 +2149,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.08,
         'hydro': 0,
@@ -2042,6 +2167,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -2059,6 +2185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.3,
         'hydro': 0,
@@ -2076,6 +2203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.34,
         'hydro': 0,
@@ -2093,6 +2221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -2110,6 +2239,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.34,
         'hydro': 0,
@@ -2127,6 +2257,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.15,
         'hydro': 0,
@@ -2144,6 +2275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -2161,6 +2293,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.25,
         'hydro': 0,
@@ -2178,6 +2311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.19,
         'hydro': 0,
@@ -2195,6 +2329,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 0,
@@ -2212,6 +2347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.42,
         'hydro': 0.09,
@@ -2229,6 +2365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.26,
         'hydro': 3.66,
@@ -2246,6 +2383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 8.67,
@@ -2263,6 +2401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.22,
         'hydro': 9.81,
@@ -2280,6 +2419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.28,
         'hydro': 8.37,
@@ -2297,6 +2437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 6.86,
@@ -2314,6 +2455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.12,
         'hydro': 4.54,
@@ -2331,6 +2473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.32,
         'hydro': 3.26,
@@ -2348,6 +2491,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 7.4,
@@ -2369,6 +2513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 26.56,
@@ -2385,6 +2530,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 24.57,
@@ -2401,6 +2547,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.02,
         'hydro': 22.01,
@@ -2417,6 +2564,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.81,
         'hydro': 22.0,
@@ -2433,6 +2581,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.79,
         'hydro': 25.22,
@@ -2449,6 +2598,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.76,
         'hydro': 25.6,
@@ -2465,6 +2615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.01,
         'hydro': 29.55,
@@ -2481,6 +2632,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1,
         'hydro': 32.51,
@@ -2497,6 +2649,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 30.9,
@@ -2513,6 +2666,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 29.25,
@@ -2529,6 +2683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 30.01,
@@ -2545,6 +2700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.08,
         'hydro': 29.93,
@@ -2561,6 +2717,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 30.33,
@@ -2577,6 +2734,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 30.33,
@@ -2593,6 +2751,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.05,
         'hydro': 29.59,
@@ -2609,6 +2768,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 27.07,
@@ -2625,6 +2785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 27.79,
@@ -2641,6 +2802,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.81,
         'hydro': 25.35,
@@ -2657,6 +2819,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.91,
         'hydro': 23.86,
@@ -2673,6 +2836,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.98,
         'hydro': 23.33,
@@ -2689,6 +2853,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.89,
         'hydro': 23.55,
@@ -2705,6 +2870,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.92,
         'hydro': 23.28,
@@ -2721,6 +2887,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.06,
         'hydro': 23.36,
@@ -2737,6 +2904,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.92,
         'hydro': 21.6,
@@ -2753,6 +2921,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 17.69,
@@ -2769,6 +2938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.8,
         'hydro': 17.05,
@@ -2785,6 +2955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.91,
         'hydro': 17.09,
@@ -2801,6 +2972,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.07,
         'hydro': 17.14,
@@ -2817,6 +2989,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.9,
         'hydro': 18.96,
@@ -2833,6 +3006,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.86,
         'hydro': 19.05,
@@ -2849,6 +3023,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 22.64,
@@ -2865,6 +3040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.95,
         'hydro': 27.53,
@@ -2881,6 +3057,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.01,
         'hydro': 27.13,
@@ -2897,6 +3074,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.78,
         'hydro': 26.62,
@@ -2913,6 +3091,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 26.89,
@@ -2929,6 +3108,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.46,
         'hydro': 24.46,
@@ -2945,6 +3125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.67,
         'hydro': 24.1,
@@ -2961,6 +3142,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.97,
         'hydro': 25.33,
@@ -2977,6 +3159,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 25.11,
@@ -2993,6 +3176,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 24.84,
@@ -3009,6 +3193,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.99,
         'hydro': 24.95,
@@ -3025,6 +3210,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.9,
         'hydro': 26.36,
@@ -3041,6 +3227,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.88,
         'hydro': 26.34,
@@ -3057,6 +3244,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 25.27,
@@ -3073,6 +3261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.03,
         'hydro': 31.18,
@@ -3089,6 +3278,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.99,
         'hydro': 31.96,
@@ -3105,6 +3295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 32.15,
@@ -3121,6 +3312,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 29.79,
@@ -3141,6 +3333,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3,
@@ -3157,6 +3350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.56,
@@ -3173,6 +3367,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.02,
@@ -3189,6 +3384,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.03,
@@ -3205,6 +3401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.03,
@@ -3221,6 +3418,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.52,
@@ -3237,6 +3435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.02,
         'oil': 1.26,
@@ -3253,6 +3452,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.53,
         'oil': 3.38,
@@ -3269,6 +3469,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.6,
         'oil': 4.16,
@@ -3285,6 +3486,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 4.81,
@@ -3301,6 +3503,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 5.03,
@@ -3317,6 +3520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 5.36,
@@ -3333,6 +3537,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 5.85,
@@ -3349,6 +3554,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.01,
         'oil': 6.17,
@@ -3365,6 +3571,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.13,
         'oil': 5.41,
@@ -3381,6 +3588,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.17,
         'oil': 4.04,
@@ -3397,6 +3605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2.03,
         'oil': 2.97,
@@ -3413,6 +3622,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.11,
         'oil': 2.81,
@@ -3429,6 +3639,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.31,
         'oil': 2.53,
@@ -3445,6 +3656,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.12,
         'oil': 2.98,
@@ -3461,6 +3673,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.07,
         'oil': 2.9,
@@ -3477,6 +3690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.97,
@@ -3493,6 +3707,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.02,
@@ -3509,6 +3724,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.26,
@@ -3525,6 +3741,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.94,
@@ -3541,6 +3758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.88,
@@ -3557,6 +3775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.93,
@@ -3573,6 +3792,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.92,
@@ -3589,6 +3809,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.85,
@@ -3605,6 +3826,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.88,
@@ -3621,6 +3843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.92,
@@ -3637,6 +3860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.74,
@@ -3653,6 +3877,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.27,
@@ -3669,6 +3894,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.13,
         'oil': 2.63,
@@ -3685,6 +3911,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.02,
         'oil': 2.47,
@@ -3701,6 +3928,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.92,
@@ -3717,6 +3945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.37,
@@ -3733,6 +3962,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.61,
@@ -3749,6 +3979,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.72,
@@ -3765,6 +3996,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.58,
         'oil': 3.19,
@@ -3781,6 +4013,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.84,
         'oil': 2.61,
@@ -3797,6 +4030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.14,
         'oil': 2.59,
@@ -3813,6 +4047,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.85,
@@ -3829,6 +4064,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.53,
         'oil': 2.96,
@@ -3845,6 +4081,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1.04,
         'oil': 3.32,
@@ -3861,6 +4098,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.9,
         'oil': 3.05,
@@ -3877,6 +4115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.9,
         'oil': 3.27,
@@ -3893,6 +4132,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.71,
         'oil': 3.08,
@@ -3913,6 +4153,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 26.56,
@@ -3930,6 +4171,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 24.57,
@@ -3947,6 +4189,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.02,
         'hydro': 22.01,
@@ -3964,6 +4207,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.81,
         'hydro': 22.0,
@@ -3981,6 +4225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.79,
         'hydro': 25.22,
@@ -3998,6 +4243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.76,
         'hydro': 25.6,
@@ -4015,6 +4261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.01,
         'hydro': 29.57,
@@ -4032,6 +4279,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1,
         'hydro': 33.04,
@@ -4049,6 +4297,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 31.5,
@@ -4066,6 +4315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 29.25,
@@ -4083,6 +4333,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 30.01,
@@ -4100,6 +4351,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.08,
         'hydro': 29.93,
@@ -4117,6 +4369,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 30.33,
@@ -4134,6 +4387,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 30.34,
@@ -4151,6 +4405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.05,
         'hydro': 29.72,
@@ -4168,6 +4423,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 28.24,
@@ -4185,6 +4441,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 29.82,
@@ -4202,6 +4459,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.81,
         'hydro': 26.46,
@@ -4219,6 +4477,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.91,
         'hydro': 24.17,
@@ -4236,6 +4495,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.98,
         'hydro': 23.45,
@@ -4253,6 +4513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.89,
         'hydro': 24.62,
@@ -4270,6 +4531,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.92,
         'hydro': 23.28,
@@ -4287,6 +4549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.06,
         'hydro': 23.36,
@@ -4304,6 +4567,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.92,
         'hydro': 21.6,
@@ -4321,6 +4585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 17.69,
@@ -4338,6 +4603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.8,
         'hydro': 17.05,
@@ -4355,6 +4621,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.91,
         'hydro': 17.09,
@@ -4372,6 +4639,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.07,
         'hydro': 17.14,
@@ -4389,6 +4657,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.9,
         'hydro': 18.96,
@@ -4406,6 +4675,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.86,
         'hydro': 19.05,
@@ -4423,6 +4693,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 22.64,
@@ -4440,6 +4711,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.95,
         'hydro': 27.53,
@@ -4457,6 +4729,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.01,
         'hydro': 27.13,
@@ -4474,6 +4747,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.78,
         'hydro': 26.75,
@@ -4491,6 +4765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 26.91,
@@ -4508,6 +4783,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.46,
         'hydro': 24.46,
@@ -4525,6 +4801,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.67,
         'hydro': 24.1,
@@ -4542,6 +4819,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.97,
         'hydro': 25.33,
@@ -4559,6 +4837,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.84,
         'hydro': 25.11,
@@ -4576,6 +4855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 25.42,
@@ -4593,6 +4873,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.99,
         'hydro': 26.79,
@@ -4610,6 +4891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.9,
         'hydro': 27.5,
@@ -4627,6 +4909,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.88,
         'hydro': 26.34,
@@ -4644,6 +4927,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.83,
         'hydro': 25.8,
@@ -4661,6 +4945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.03,
         'hydro': 32.22,
@@ -4678,6 +4963,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.99,
         'hydro': 32.86,
@@ -4695,6 +4981,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 33.05,
@@ -4712,6 +4999,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 2, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.85,
         'hydro': 30.5,
@@ -4733,6 +5021,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.09,
@@ -4749,6 +5038,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.79,
         'hydro': 2.69,
@@ -4765,6 +5055,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -4781,6 +5072,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -4797,6 +5089,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -4813,6 +5106,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -4829,6 +5123,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 2.67,
@@ -4845,6 +5140,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.11,
         'hydro': 10.07,
@@ -4861,6 +5157,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.73,
         'hydro': 8.78,
@@ -4877,6 +5174,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.8,
         'hydro': 9.92,
@@ -4893,6 +5191,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 9.73,
@@ -4909,6 +5208,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.26,
@@ -4925,6 +5225,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.21,
@@ -4941,6 +5242,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 10.68,
@@ -4957,6 +5259,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.92,
@@ -4973,6 +5276,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 14.41,
@@ -4989,6 +5293,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 15.8,
@@ -5005,6 +5310,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.21,
         'hydro': 13.55,
@@ -5021,6 +5327,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.7,
         'hydro': 12.6,
@@ -5037,6 +5344,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 10.09,
@@ -5053,6 +5361,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 8.06,
@@ -5069,6 +5378,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.33,
         'hydro': 7.3,
@@ -5085,6 +5395,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.54,
         'hydro': 9.66,
@@ -5101,6 +5412,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.33,
@@ -5117,6 +5429,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.89,
@@ -5133,6 +5446,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 2.29,
@@ -5149,6 +5463,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.98,
@@ -5165,6 +5480,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.53,
@@ -5181,6 +5497,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.11,
@@ -5197,6 +5514,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.55,
         'hydro': 1.98,
@@ -5213,6 +5531,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 4.36,
@@ -5229,6 +5548,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.86,
         'hydro': 5.37,
@@ -5245,6 +5565,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.88,
@@ -5261,6 +5582,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 6.62,
@@ -5282,6 +5604,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5298,6 +5621,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5314,6 +5638,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5330,6 +5655,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5346,6 +5672,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5362,6 +5689,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5378,6 +5706,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5394,6 +5723,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5410,6 +5740,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -5426,6 +5757,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.72,
@@ -5442,6 +5774,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.47,
@@ -5458,6 +5791,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.77,
@@ -5474,6 +5808,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.24,
@@ -5490,6 +5825,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.35,
@@ -5506,6 +5842,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.4,
@@ -5522,6 +5859,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.29,
@@ -5538,6 +5876,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.16,
@@ -5554,6 +5893,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.99,
@@ -5570,6 +5910,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.18,
@@ -5586,6 +5927,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.73,
@@ -5602,6 +5944,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.68,
@@ -5618,6 +5961,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.69,
@@ -5634,6 +5978,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.82,
@@ -5650,6 +5995,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.95,
@@ -5666,6 +6012,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.95,
@@ -5682,6 +6029,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.95,
@@ -5698,6 +6046,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.15,
@@ -5714,6 +6063,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.32,
@@ -5730,6 +6080,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.84,
@@ -5746,6 +6097,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.84,
@@ -5762,6 +6114,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.8,
@@ -5778,6 +6131,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 2.91,
@@ -5794,6 +6148,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0,
         'oil': 3.18,
@@ -5810,6 +6165,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 3.77,
@@ -5830,6 +6186,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.09,
@@ -5847,6 +6204,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.79,
         'hydro': 2.69,
@@ -5864,6 +6222,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -5881,6 +6240,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -5898,6 +6258,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -5915,6 +6276,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 1.3,
@@ -5932,6 +6294,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 2.67,
@@ -5949,6 +6312,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.11,
         'hydro': 10.07,
@@ -5966,6 +6330,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.73,
         'hydro': 8.78,
@@ -5983,6 +6348,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.8,
         'hydro': 9.92,
@@ -6000,6 +6366,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 9.73,
@@ -6017,6 +6384,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.26,
@@ -6034,6 +6402,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.21,
@@ -6051,6 +6420,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 10.68,
@@ -6068,6 +6438,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 11.92,
@@ -6085,6 +6456,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 14.41,
@@ -6102,6 +6474,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 15.8,
@@ -6119,6 +6492,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.21,
         'hydro': 13.55,
@@ -6136,6 +6510,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.7,
         'hydro': 12.6,
@@ -6153,6 +6528,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 10.09,
@@ -6170,6 +6546,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 8.06,
@@ -6187,6 +6564,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.33,
         'hydro': 7.3,
@@ -6204,6 +6582,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.54,
         'hydro': 9.66,
@@ -6221,6 +6600,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.33,
@@ -6238,6 +6618,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.89,
@@ -6255,6 +6636,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 2.29,
@@ -6272,6 +6654,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.98,
@@ -6289,6 +6672,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.53,
@@ -6306,6 +6690,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 5.11,
@@ -6323,6 +6708,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.55,
         'hydro': 1.98,
@@ -6340,6 +6726,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.37,
         'hydro': 4.36,
@@ -6357,6 +6744,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.86,
         'hydro': 5.37,
@@ -6374,6 +6762,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 3.88,
@@ -6391,6 +6780,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 5, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.75,
         'hydro': 6.62,

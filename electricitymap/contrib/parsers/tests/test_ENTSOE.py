@@ -10,6 +10,7 @@ from requests_mock import ANY, GET
 from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
+    DateTimePoint,
     _get_datetime_value_from_timeseries,
     fetch_production,
     zulu_to_utc,
@@ -348,8 +349,12 @@ def test_a01_timeseries_parsing_production_and_consumption():
     dt0_expected = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
     dt1_expected = dt0_expected + timedelta(hours=1)
 
-    assert results[0][0] == dt0_expected and results[0][1] == 10.0
-    assert results[1][0] == dt1_expected and results[1][1] == 20.0
+    assert results[0] == DateTimePoint(
+        dt0_expected, dt0_expected + timedelta(hours=1), 10.0
+    )
+    assert results[1] == DateTimePoint(
+        dt1_expected, dt1_expected + timedelta(hours=1), 20.0
+    )
 
     # Now test consumption (no inbidding tag) becomes negative when production_parsing=True
     xml_consumption = xml.replace(
@@ -360,8 +365,8 @@ def test_a01_timeseries_parsing_production_and_consumption():
     results2 = list(
         _get_datetime_value_from_timeseries(ts2, "quantity", production_parsing=True)
     )
-    assert results2[0][1] == -10.0
-    assert results2[1][1] == -20.0
+    assert results2[0][2] == -10.0
+    assert results2[1][2] == -20.0
 
 
 def test_a03_curve_compression_expands_segments_correctly():
@@ -400,9 +405,13 @@ def test_a03_curve_compression_expands_segments_correctly():
     assert len(results) == 3
 
     dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
-    assert results[0] == (dt0, 10.0)
-    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
-    assert results[2] == (dt0 + timedelta(hours=2), 20.0)
+    assert results[0] == DateTimePoint(dt0, dt0 + timedelta(hours=1), 10.0)
+    assert results[1] == DateTimePoint(
+        dt0 + timedelta(hours=1), dt0 + timedelta(hours=2), 10.0
+    )
+    assert results[2] == DateTimePoint(
+        dt0 + timedelta(hours=2), dt0 + timedelta(hours=3), 20.0
+    )
 
 
 def test_a03_curve_compression_expands_1_datapoint_correctly():
@@ -437,9 +446,13 @@ def test_a03_curve_compression_expands_1_datapoint_correctly():
     assert len(results) == 3
 
     dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
-    assert results[0] == (dt0, 10.0)
-    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
-    assert results[2] == (dt0 + timedelta(hours=2), 10.0)
+    assert results[0] == DateTimePoint(dt0, dt0 + timedelta(hours=1), 10.0)
+    assert results[1] == DateTimePoint(
+        dt0 + timedelta(hours=1), dt0 + timedelta(hours=2), 10.0
+    )
+    assert results[2] == DateTimePoint(
+        dt0 + timedelta(hours=2), dt0 + timedelta(hours=3), 10.0
+    )
 
 
 @pytest.mark.parametrize(

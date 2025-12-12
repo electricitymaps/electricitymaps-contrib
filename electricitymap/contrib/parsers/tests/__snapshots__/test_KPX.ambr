@@ -16,6 +16,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14191.075,
         'gas': 21242.1,
@@ -37,6 +38,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14190.524,
         'gas': 20873.5,
@@ -58,6 +60,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14269.455,
         'gas': 20567.0,
@@ -79,6 +82,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14152.906,
         'gas': 20524.3,
@@ -100,6 +104,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14328.314,
         'gas': 20407.2,
@@ -121,6 +126,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14329.32,
         'gas': 20069.5,
@@ -142,6 +148,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14340.718,
         'gas': 19835.6,
@@ -163,6 +170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14346.741,
         'gas': 19896.6,
@@ -184,6 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14397.983,
         'gas': 19803.7,
@@ -205,6 +214,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14358.304,
         'gas': 19471.2,
@@ -226,6 +236,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14350.904,
         'gas': 19210.3,
@@ -247,6 +258,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14435.728,
         'gas': 18670.9,
@@ -268,6 +280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14471.603,
         'gas': 18609.3,
@@ -289,6 +302,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14475.367,
         'gas': 18661.9,
@@ -310,6 +324,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14494.358,
         'gas': 18465.5,
@@ -331,6 +346,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14614.655,
         'gas': 18171.0,
@@ -352,6 +368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14649.917,
         'gas': 17903.9,
@@ -373,6 +390,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14691.644,
         'gas': 18197.8,
@@ -394,6 +412,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14758.653,
         'gas': 18476.2,
@@ -415,6 +434,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14676.438,
         'gas': 18811.1,
@@ -436,6 +456,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14776.08,
         'gas': 19150.4,
@@ -457,6 +478,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14694.186,
         'gas': 19086.6,
@@ -478,6 +500,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14647.789,
         'gas': 18789.5,
@@ -499,6 +522,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14733.222,
         'gas': 18719.4,
@@ -520,6 +544,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14693.522,
         'gas': 18862.6,
@@ -541,6 +566,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14740.635,
         'gas': 18588.2,
@@ -562,6 +588,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14735.524,
         'gas': 18774.6,
@@ -583,6 +610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14784.575,
         'gas': 18670.2,
@@ -604,6 +632,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14682.459,
         'gas': 18336.4,
@@ -625,6 +654,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14788.176,
         'gas': 18301.8,
@@ -646,6 +676,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14807.431,
         'gas': 18604.8,
@@ -667,6 +698,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14695.139,
         'gas': 18450.2,
@@ -688,6 +720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14788.887,
         'gas': 18321.5,
@@ -709,6 +742,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14695.884,
         'gas': 18175.4,
@@ -730,6 +764,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14695.67,
         'gas': 17937.5,
@@ -751,6 +786,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14805.29,
         'gas': 17934.9,
@@ -772,6 +808,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14705.931,
         'gas': 18006.2,
@@ -793,6 +830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14718.189,
         'gas': 18006.2,
@@ -814,6 +852,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14582.49,
         'gas': 18003.0,
@@ -835,6 +874,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14827.51,
         'gas': 17955.3,
@@ -856,6 +896,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14710.301,
         'gas': 18175.1,
@@ -877,6 +918,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14722.374,
         'gas': 18190.4,
@@ -898,6 +940,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14572.086,
         'gas': 18054.0,
@@ -919,6 +962,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14696.645,
         'gas': 17773.0,
@@ -940,6 +984,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14823.097,
         'gas': 17861.3,
@@ -961,6 +1006,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14726.755,
         'gas': 17964.4,
@@ -982,6 +1028,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14636.741,
         'gas': 18028.6,
@@ -1003,6 +1050,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14701.459,
         'gas': 17916.9,
@@ -1024,6 +1072,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14748.136,
         'gas': 17857.0,
@@ -1045,6 +1094,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14729.739,
         'gas': 17944.8,
@@ -1066,6 +1116,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14722.703,
         'gas': 18350.0,
@@ -1087,6 +1138,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14697.844,
         'gas': 18161.6,
@@ -1108,6 +1160,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14699.083,
         'gas': 18190.5,
@@ -1129,6 +1182,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14640.634,
         'gas': 18097.8,
@@ -1150,6 +1204,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14716.59,
         'gas': 18302.0,
@@ -1171,6 +1226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14680.718,
         'gas': 18303.0,
@@ -1192,6 +1248,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14719.983,
         'gas': 18398.0,
@@ -1213,6 +1270,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14637.215,
         'gas': 18260.6,
@@ -1234,6 +1292,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14695.546,
         'gas': 18396.5,
@@ -1255,6 +1314,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14630.773,
         'gas': 18657.9,
@@ -1276,6 +1336,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14609.153,
         'gas': 18411.7,
@@ -1297,6 +1358,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14688.644,
         'gas': 18392.9,
@@ -1318,6 +1380,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14621.345,
         'gas': 18321.7,
@@ -1339,6 +1402,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14769.89,
         'gas': 18274.1,
@@ -1360,6 +1424,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14569.166,
         'gas': 18086.1,
@@ -1381,6 +1446,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14576.728,
         'gas': 17674.6,
@@ -1402,6 +1468,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14626.859,
         'gas': 17513.7,
@@ -1423,6 +1490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14773.405,
         'gas': 17563.2,
@@ -1444,6 +1512,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14770.749,
         'gas': 17315.3,
@@ -1465,6 +1534,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14669.963,
         'gas': 17071.8,
@@ -1486,6 +1556,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14677.046,
         'gas': 17269.1,
@@ -1507,6 +1578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14656.166,
         'gas': 16730.1,
@@ -1528,6 +1600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14607.146,
         'gas': 16677.6,
@@ -1549,6 +1622,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14777.451,
         'gas': 16834.6,
@@ -1570,6 +1644,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14686.697,
         'gas': 16870.2,
@@ -1591,6 +1666,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14644.128,
         'gas': 16841.0,
@@ -1612,6 +1688,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14673.976,
         'gas': 16758.6,
@@ -1633,6 +1710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14679.67,
         'gas': 16945.6,
@@ -1654,6 +1732,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14594.354,
         'gas': 16964.6,
@@ -1675,6 +1754,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14671.482,
         'gas': 17219.9,
@@ -1696,6 +1776,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14727.151,
         'gas': 17165.3,
@@ -1717,6 +1798,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14772.489,
         'gas': 17262.6,
@@ -1738,6 +1820,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14602.203,
         'gas': 17302.5,
@@ -1759,6 +1842,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14727.253,
         'gas': 17106.5,
@@ -1780,6 +1864,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14679.925,
         'gas': 17126.5,
@@ -1801,6 +1886,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14750.532,
         'gas': 17295.8,
@@ -1822,6 +1908,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14839.293,
         'gas': 17600.1,
@@ -1843,6 +1930,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14657.483,
         'gas': 17693.5,
@@ -1864,6 +1952,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14588.903,
         'gas': 17498.6,
@@ -1885,6 +1974,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14744.932,
         'gas': 17479.6,
@@ -1906,6 +1996,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14700.32,
         'gas': 17286.0,
@@ -1927,6 +2018,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14693.073,
         'gas': 17477.4,
@@ -1948,6 +2040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14536.17,
         'gas': 17256.1,
@@ -1969,6 +2062,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14713.636,
         'gas': 17291.6,
@@ -1990,6 +2084,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14667.559,
         'gas': 17580.9,
@@ -2011,6 +2106,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14636.139,
         'gas': 17853.3,
@@ -2032,6 +2128,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14761.259,
         'gas': 18016.5,
@@ -2053,6 +2150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14665.232,
         'gas': 17810.0,
@@ -2074,6 +2172,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14723.398,
         'gas': 17544.4,
@@ -2095,6 +2194,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14799.977,
         'gas': 17797.6,
@@ -2116,6 +2216,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14743.577,
         'gas': 17830.4,
@@ -2137,6 +2238,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14678.755,
         'gas': 18015.8,
@@ -2158,6 +2260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14649.989,
         'gas': 18245.0,
@@ -2179,6 +2282,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14717.842,
         'gas': 18499.0,
@@ -2200,6 +2304,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14773.479,
         'gas': 18711.1,
@@ -2221,6 +2326,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14733.828,
         'gas': 18748.7,
@@ -2242,6 +2348,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14744.424,
         'gas': 18881.6,
@@ -2263,6 +2370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14655.684,
         'gas': 18909.1,
@@ -2284,6 +2392,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14567.097,
         'gas': 18982.3,
@@ -2305,6 +2414,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14795.776,
         'gas': 18687.9,
@@ -2326,6 +2436,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14588.011,
         'gas': 18448.6,
@@ -2347,6 +2458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14720.534,
         'gas': 18773.3,
@@ -2368,6 +2480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14817.175,
         'gas': 18872.4,
@@ -2389,6 +2502,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14681.176,
         'gas': 19007.0,
@@ -2410,6 +2524,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14709.72,
         'gas': 19190.6,
@@ -2431,6 +2546,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14826.476,
         'gas': 19157.3,
@@ -2452,6 +2568,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14718.005,
         'gas': 19201.8,
@@ -2473,6 +2590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14761.946,
         'gas': 19193.9,
@@ -2494,6 +2612,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14732.1,
         'gas': 19200.5,
@@ -2515,6 +2634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14598.156,
         'gas': 19238.8,
@@ -2536,6 +2656,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14608.99,
         'gas': 19326.6,
@@ -2557,6 +2678,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14653.176,
         'gas': 19471.9,
@@ -2578,6 +2700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14552.653,
         'gas': 19267.8,
@@ -2599,6 +2722,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14586.284,
         'gas': 19049.6,
@@ -2620,6 +2744,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14807.574,
         'gas': 19181.6,
@@ -2641,6 +2766,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14716.001,
         'gas': 19082.3,
@@ -2662,6 +2788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14586.907,
         'gas': 19060.6,
@@ -2683,6 +2810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14617.462,
         'gas': 19027.3,
@@ -2704,6 +2832,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14730.209,
         'gas': 18984.8,
@@ -2725,6 +2854,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14684.161,
         'gas': 18880.6,
@@ -2746,6 +2876,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14668.104,
         'gas': 18638.1,
@@ -2767,6 +2898,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14720.015,
         'gas': 18687.3,
@@ -2788,6 +2920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14691.904,
         'gas': 18897.2,
@@ -2809,6 +2942,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14574.746,
         'gas': 19156.6,
@@ -2830,6 +2964,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14508.208,
         'gas': 19175.4,
@@ -2851,6 +2986,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14649.322,
         'gas': 18979.4,
@@ -2872,6 +3008,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14642.678,
         'gas': 18996.2,
@@ -2893,6 +3030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14461.491,
         'gas': 19262.8,
@@ -2914,6 +3052,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14547.047,
         'gas': 19070.7,
@@ -2935,6 +3074,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14628.722,
         'gas': 18870.7,
@@ -2956,6 +3096,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14484.815,
         'gas': 18880.1,
@@ -2977,6 +3118,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14610.64,
         'gas': 19033.3,
@@ -2998,6 +3140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14454.209,
         'gas': 19137.8,
@@ -3019,6 +3162,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14596.9,
         'gas': 18915.0,
@@ -3040,6 +3184,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14595.607,
         'gas': 19094.8,
@@ -3061,6 +3206,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14686.684,
         'gas': 19035.6,
@@ -3082,6 +3228,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14615.159,
         'gas': 19153.8,
@@ -3103,6 +3250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14654.952,
         'gas': 19043.2,
@@ -3124,6 +3272,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14627.149,
         'gas': 18954.6,
@@ -3145,6 +3294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14680.197,
         'gas': 19135.1,
@@ -3166,6 +3316,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14576.466,
         'gas': 19146.8,
@@ -3187,6 +3338,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14577.198,
         'gas': 19188.4,
@@ -3208,6 +3360,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14635.534,
         'gas': 19124.3,
@@ -3229,6 +3382,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14600.853,
         'gas': 19063.5,
@@ -3250,6 +3404,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14698.863,
         'gas': 19327.3,
@@ -3271,6 +3426,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14714.31,
         'gas': 19222.2,
@@ -3292,6 +3448,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14686.642,
         'gas': 19242.3,
@@ -3313,6 +3470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14757.046,
         'gas': 19230.5,
@@ -3334,6 +3492,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14759.703,
         'gas': 19452.9,
@@ -3355,6 +3514,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14691.241,
         'gas': 19414.1,
@@ -3376,6 +3536,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14622.655,
         'gas': 19364.9,
@@ -3397,6 +3558,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14624.593,
         'gas': 19325.8,
@@ -3418,6 +3580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14628.759,
         'gas': 19252.7,
@@ -3439,6 +3602,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14613.539,
         'gas': 19589.4,
@@ -3460,6 +3624,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14763.469,
         'gas': 19525.7,
@@ -3481,6 +3646,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14586.906,
         'gas': 19420.8,
@@ -3502,6 +3668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14559.597,
         'gas': 19161.7,
@@ -3523,6 +3690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14684.497,
         'gas': 19320.0,
@@ -3544,6 +3712,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14727.884,
         'gas': 19379.0,
@@ -3565,6 +3734,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14640.283,
         'gas': 19397.7,
@@ -3586,6 +3756,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14594.745,
         'gas': 19224.7,
@@ -3607,6 +3778,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14667.559,
         'gas': 19055.1,
@@ -3628,6 +3800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14675.042,
         'gas': 18993.9,
@@ -3649,6 +3822,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14707.336,
         'gas': 19251.3,
@@ -3670,6 +3844,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14761.128,
         'gas': 19320.5,
@@ -3691,6 +3866,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14592.19,
         'gas': 19157.1,
@@ -3712,6 +3888,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14628.428,
         'gas': 18947.9,
@@ -3733,6 +3910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14794.518,
         'gas': 18962.9,
@@ -3754,6 +3932,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14869.41,
         'gas': 19227.0,
@@ -3775,6 +3954,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14690.103,
         'gas': 19307.7,
@@ -3796,6 +3976,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14767.304,
         'gas': 19194.9,
@@ -3817,6 +3998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14642.42,
         'gas': 19292.9,
@@ -3838,6 +4020,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14749.979,
         'gas': 19480.2,
@@ -3859,6 +4042,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14736.397,
         'gas': 19486.8,
@@ -3880,6 +4064,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14632.976,
         'gas': 19548.3,
@@ -3901,6 +4086,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14748.697,
         'gas': 19702.4,
@@ -3922,6 +4108,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14782.228,
         'gas': 19810.9,
@@ -3943,6 +4130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14714.922,
         'gas': 19923.7,
@@ -3964,6 +4152,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14669.442,
         'gas': 20015.7,
@@ -3985,6 +4174,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14727.603,
         'gas': 20131.5,
@@ -4006,6 +4196,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14735.903,
         'gas': 20302.2,
@@ -4027,6 +4218,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14783.994,
         'gas': 20642.5,
@@ -4048,6 +4240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14872.376,
         'gas': 20491.9,
@@ -4069,6 +4262,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14753.859,
         'gas': 20184.7,
@@ -4090,6 +4284,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14735.697,
         'gas': 19945.2,
@@ -4111,6 +4306,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14800.104,
         'gas': 20045.9,
@@ -4132,6 +4328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14792.244,
         'gas': 20253.8,
@@ -4153,6 +4350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14819.097,
         'gas': 20360.4,
@@ -4174,6 +4372,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14828.744,
         'gas': 20398.5,
@@ -4195,6 +4394,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14702.896,
         'gas': 20502.0,
@@ -4216,6 +4416,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14890.631,
         'gas': 20946.6,
@@ -4237,6 +4438,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14919.984,
         'gas': 21313.6,
@@ -4258,6 +4460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14822.142,
         'gas': 21164.3,
@@ -4279,6 +4482,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14850.87,
         'gas': 21714.0,
@@ -4300,6 +4504,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14899.389,
         'gas': 22011.0,
@@ -4321,6 +4526,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14913.51,
         'gas': 22335.2,
@@ -4342,6 +4548,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14910.99,
         'gas': 22304.7,
@@ -4363,6 +4570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14990.222,
         'gas': 22564.0,
@@ -4384,6 +4592,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15010.059,
         'gas': 22382.2,
@@ -4405,6 +4614,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14972.617,
         'gas': 22764.9,
@@ -4426,6 +4636,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14961.186,
         'gas': 23010.9,
@@ -4447,6 +4658,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15051.158,
         'gas': 22779.4,
@@ -4468,6 +4680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15029.825,
         'gas': 23009.8,
@@ -4489,6 +4702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15014.545,
         'gas': 22861.9,
@@ -4510,6 +4724,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15080.638,
         'gas': 23042.6,
@@ -4531,6 +4746,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15164.055,
         'gas': 23097.6,
@@ -4552,6 +4768,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15121.835,
         'gas': 23232.0,
@@ -4573,6 +4790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15045.283,
         'gas': 23109.4,
@@ -4594,6 +4812,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15055.88,
         'gas': 23083.1,
@@ -4615,6 +4834,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15153.629,
         'gas': 22969.8,
@@ -4636,6 +4856,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15069.707,
         'gas': 23131.0,
@@ -4657,6 +4878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15100.022,
         'gas': 23168.2,
@@ -4678,6 +4900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15104.184,
         'gas': 22967.7,
@@ -4699,6 +4922,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15002.427,
         'gas': 22967.6,
@@ -4720,6 +4944,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15023.528,
         'gas': 22839.2,
@@ -4741,6 +4966,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15011.299,
         'gas': 22763.6,
@@ -4762,6 +4988,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15106.152,
         'gas': 22826.9,
@@ -4783,6 +5010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15066.324,
         'gas': 22673.4,
@@ -4804,6 +5032,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15093.794,
         'gas': 22621.1,
@@ -4825,6 +5054,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15170.136,
         'gas': 22655.0,
@@ -4846,6 +5076,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15063.736,
         'gas': 22522.1,
@@ -4867,6 +5098,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15099.336,
         'gas': 22457.5,
@@ -4888,6 +5120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15130.901,
         'gas': 22468.3,
@@ -4909,6 +5142,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15071.193,
         'gas': 22441.9,
@@ -4930,6 +5164,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15033.062,
         'gas': 22404.5,
@@ -4951,6 +5186,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15019.153,
         'gas': 22215.5,
@@ -4972,6 +5208,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15060.501,
         'gas': 22052.3,
@@ -4993,6 +5230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15123.617,
         'gas': 22184.1,
@@ -5014,6 +5252,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15153.125,
         'gas': 21947.2,
@@ -5035,6 +5274,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15099.527,
         'gas': 21826.3,
@@ -5056,6 +5296,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15206.593,
         'gas': 21716.4,
@@ -5077,6 +5318,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15089.451,
         'gas': 21674.5,
@@ -5098,6 +5340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15076.389,
         'gas': 21682.8,
@@ -5119,6 +5362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15063.435,
         'gas': 21440.2,
@@ -5140,6 +5384,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15115.576,
         'gas': 21531.9,
@@ -5161,6 +5406,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15043.306,
         'gas': 21449.1,
@@ -5182,6 +5428,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15058.227,
         'gas': 21343.7,
@@ -5203,6 +5450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15031.315,
         'gas': 21098.8,
@@ -5224,6 +5472,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15085.245,
         'gas': 20972.2,
@@ -5245,6 +5494,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15192.942,
         'gas': 21056.6,
@@ -5266,6 +5516,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15103.93,
         'gas': 21002.2,
@@ -5287,6 +5538,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15069.19,
         'gas': 20741.9,
@@ -5308,6 +5560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15161.289,
         'gas': 20534.4,
@@ -5329,6 +5582,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15038.37,
         'gas': 20194.8,
@@ -5350,6 +5604,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15160.428,
         'gas': 20151.8,
@@ -5371,6 +5626,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15044.104,
         'gas': 20059.6,
@@ -5392,6 +5648,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15020.079,
         'gas': 19797.8,
@@ -5413,6 +5670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 14969.672,
         'gas': 19778.4,
@@ -5434,6 +5692,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15078.911,
         'gas': 19913.5,
@@ -5455,6 +5714,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15063.844,
         'gas': 19654.5,
@@ -5476,6 +5736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15064.077,
         'gas': 19575.4,
@@ -5497,6 +5758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15096.811,
         'gas': 19798.2,
@@ -5518,6 +5780,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15021.958,
         'gas': 19370.0,
@@ -5539,6 +5802,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15107.118,
         'gas': 19446.2,
@@ -5560,6 +5824,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15137.151,
         'gas': 19615.1,
@@ -5581,6 +5846,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15101.597,
         'gas': 19895.9,
@@ -5602,6 +5868,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15098.284,
         'gas': 19938.2,
@@ -5623,6 +5890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15208.759,
         'gas': 19971.8,
@@ -5644,6 +5912,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15187.914,
         'gas': 20129.5,
@@ -5665,6 +5934,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15170.538,
         'gas': 19947.9,
@@ -5686,6 +5956,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15153.494,
         'gas': 19858.7,
@@ -5707,6 +5978,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15110.663,
         'gas': 19949.8,
@@ -5728,6 +6000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15083.22,
         'gas': 19575.5,
@@ -5749,6 +6022,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15089.41,
         'gas': 19604.8,
@@ -5770,6 +6044,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15089.653,
         'gas': 19548.0,
@@ -5791,6 +6066,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15063.484,
         'gas': 19408.0,
@@ -5812,6 +6088,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15256.879,
         'gas': 19565.2,
@@ -5833,6 +6110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15338.959,
         'gas': 20393.7,
@@ -5854,6 +6132,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 5, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 15280.791,
         'gas': 20716.8,
@@ -5879,6 +6158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22908.953,
         'gas': 13844.6,
@@ -5899,6 +6179,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22938.433,
         'gas': 13555.1,
@@ -5919,6 +6200,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23041.143,
         'gas': 13276.3,
@@ -5939,6 +6221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23081.68,
         'gas': 13092.5,
@@ -5959,6 +6242,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22909.484,
         'gas': 12739.8,
@@ -5979,6 +6263,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22966.015,
         'gas': 12579.7,
@@ -5999,6 +6284,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22810.238,
         'gas': 12370.4,
@@ -6019,6 +6305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22660.447,
         'gas': 12195.8,
@@ -6039,6 +6326,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22802.104,
         'gas': 12057.4,
@@ -6059,6 +6347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22701.316,
         'gas': 11852.1,
@@ -6079,6 +6368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22672.138,
         'gas': 11671.5,
@@ -6099,6 +6389,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22629.656,
         'gas': 11507.0,
@@ -6119,6 +6410,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22680.822,
         'gas': 11554.4,
@@ -6139,6 +6431,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22596.407,
         'gas': 11538.1,
@@ -6159,6 +6452,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22662.533,
         'gas': 11496.0,
@@ -6179,6 +6473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22513.185,
         'gas': 11290.9,
@@ -6199,6 +6494,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22523.333,
         'gas': 11000.5,
@@ -6219,6 +6515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22584.408,
         'gas': 11000.1,
@@ -6239,6 +6536,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22556.164,
         'gas': 10939.0,
@@ -6259,6 +6557,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22591.473,
         'gas': 10969.8,
@@ -6279,6 +6578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22531.011,
         'gas': 10821.3,
@@ -6299,6 +6599,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22612.05,
         'gas': 10769.7,
@@ -6319,6 +6620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22437.457,
         'gas': 10520.8,
@@ -6339,6 +6641,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22580.309,
         'gas': 10555.8,
@@ -6359,6 +6662,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22748.751,
         'gas': 10613.8,
@@ -6379,6 +6683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22790.83,
         'gas': 10728.1,
@@ -6399,6 +6704,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22835.378,
         'gas': 10230.1,
@@ -6419,6 +6725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22973.235,
         'gas': 9954.98,
@@ -6439,6 +6746,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22868.857,
         'gas': 10116.1,
@@ -6459,6 +6767,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22761.722,
         'gas': 10383.8,
@@ -6479,6 +6788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22846.713,
         'gas': 10453.0,
@@ -6499,6 +6809,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22862.853,
         'gas': 10366.4,
@@ -6519,6 +6830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23086.51,
         'gas': 10386.3,
@@ -6539,6 +6851,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23060.001,
         'gas': 10409.3,
@@ -6559,6 +6872,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22996.375,
         'gas': 10255.8,
@@ -6579,6 +6893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22752.437,
         'gas': 10013.8,
@@ -6599,6 +6914,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22703.064,
         'gas': 9986.0,
@@ -6619,6 +6935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22644.175,
         'gas': 9871.57,
@@ -6639,6 +6956,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22598.767,
         'gas': 9940.93,
@@ -6659,6 +6977,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22565.326,
         'gas': 10045.3,
@@ -6679,6 +6998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22483.343,
         'gas': 9987.6,
@@ -6699,6 +7019,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22579.889,
         'gas': 10102.7,
@@ -6719,6 +7040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22600.16,
         'gas': 10148.5,
@@ -6739,6 +7061,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22894.034,
         'gas': 10120.0,
@@ -6759,6 +7082,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22960.917,
         'gas': 10091.0,
@@ -6779,6 +7103,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22939.481,
         'gas': 10287.4,
@@ -6799,6 +7124,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22945.114,
         'gas': 10188.4,
@@ -6819,6 +7145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22858.257,
         'gas': 10053.7,
@@ -6839,6 +7166,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22813.236,
         'gas': 10154.9,
@@ -6859,6 +7187,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22693.475,
         'gas': 10201.8,
@@ -6879,6 +7208,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22890.955,
         'gas': 10053.5,
@@ -6899,6 +7229,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22952.471,
         'gas': 10111.0,
@@ -6919,6 +7250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22704.578,
         'gas': 9998.75,
@@ -6939,6 +7271,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22751.1,
         'gas': 10068.3,
@@ -6959,6 +7292,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23002.691,
         'gas': 10200.6,
@@ -6979,6 +7313,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22982.019,
         'gas': 10318.3,
@@ -6999,6 +7334,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22792.641,
         'gas': 10203.0,
@@ -7019,6 +7355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22781.908,
         'gas': 10172.8,
@@ -7039,6 +7376,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22931.14,
         'gas': 10362.2,
@@ -7059,6 +7397,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22854.252,
         'gas': 10387.5,
@@ -7079,6 +7418,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22941.884,
         'gas': 10259.4,
@@ -7099,6 +7439,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22993.939,
         'gas': 10446.5,
@@ -7119,6 +7460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23057.661,
         'gas': 10618.2,
@@ -7139,6 +7481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22762.978,
         'gas': 10340.2,
@@ -7159,6 +7502,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23009.264,
         'gas': 10470.5,
@@ -7179,6 +7523,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22808.523,
         'gas': 10626.6,
@@ -7199,6 +7544,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22801.413,
         'gas': 10615.6,
@@ -7219,6 +7565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22853.189,
         'gas': 10810.3,
@@ -7239,6 +7586,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23064.794,
         'gas': 10925.9,
@@ -7259,6 +7607,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22961.33,
         'gas': 10947.6,
@@ -7279,6 +7628,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22847.785,
         'gas': 11038.7,
@@ -7299,6 +7649,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22704.194,
         'gas': 11238.6,
@@ -7319,6 +7670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22913.381,
         'gas': 11449.5,
@@ -7339,6 +7691,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23026.936,
         'gas': 11830.9,
@@ -7359,6 +7712,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22863.35,
         'gas': 11902.0,
@@ -7379,6 +7733,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22876.532,
         'gas': 12087.2,
@@ -7399,6 +7754,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22811.51,
         'gas': 12184.7,
@@ -7419,6 +7775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22777.535,
         'gas': 12385.7,
@@ -7439,6 +7796,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22820.481,
         'gas': 12623.1,
@@ -7459,6 +7817,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22905.216,
         'gas': 12924.5,
@@ -7479,6 +7838,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22821.618,
         'gas': 13079.4,
@@ -7499,6 +7859,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23069.908,
         'gas': 13161.6,
@@ -7519,6 +7880,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23056.439,
         'gas': 13448.3,
@@ -7539,6 +7901,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23111.071,
         'gas': 13883.5,
@@ -7559,6 +7922,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22916.071,
         'gas': 14017.6,
@@ -7579,6 +7943,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23111.008,
         'gas': 14329.0,
@@ -7599,6 +7964,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23229.201,
         'gas': 14512.1,
@@ -7619,6 +7985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23268.339,
         'gas': 14674.6,
@@ -7639,6 +8006,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23272.622,
         'gas': 14942.8,
@@ -7659,6 +8027,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23395.793,
         'gas': 15193.3,
@@ -7679,6 +8048,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23449.431,
         'gas': 15641.6,
@@ -7699,6 +8069,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23495.594,
         'gas': 15513.2,
@@ -7719,6 +8090,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23549.854,
         'gas': 15750.1,
@@ -7739,6 +8111,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23378.999,
         'gas': 15960.1,
@@ -7759,6 +8132,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23563.134,
         'gas': 16148.9,
@@ -7779,6 +8153,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23535.486,
         'gas': 16333.2,
@@ -7799,6 +8174,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23799.813,
         'gas': 16786.0,
@@ -7819,6 +8195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24029.552,
         'gas': 17295.6,
@@ -7839,6 +8216,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24094.418,
         'gas': 17573.2,
@@ -7859,6 +8237,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24312.984,
         'gas': 17914.5,
@@ -7879,6 +8258,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24216.765,
         'gas': 18084.6,
@@ -7899,6 +8279,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24194.405,
         'gas': 18597.7,
@@ -7919,6 +8300,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24245.197,
         'gas': 19118.7,
@@ -7939,6 +8321,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24431.668,
         'gas': 19637.3,
@@ -7959,6 +8342,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24323.158,
         'gas': 19788.6,
@@ -7979,6 +8363,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24403.508,
         'gas': 19988.9,
@@ -7999,6 +8384,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24314.961,
         'gas': 19883.6,
@@ -8019,6 +8405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24339.798,
         'gas': 20176.3,
@@ -8039,6 +8426,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24298.768,
         'gas': 20135.7,
@@ -8059,6 +8447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24294.466,
         'gas': 20480.5,
@@ -8079,6 +8468,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24299.535,
         'gas': 20421.7,
@@ -8099,6 +8489,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24310.564,
         'gas': 20299.3,
@@ -8119,6 +8510,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24325.17,
         'gas': 20355.3,
@@ -8139,6 +8531,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24252.843,
         'gas': 20354.7,
@@ -8159,6 +8552,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24240.619,
         'gas': 20354.8,
@@ -8179,6 +8573,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24226.206,
         'gas': 20239.9,
@@ -8199,6 +8594,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23955.794,
         'gas': 20123.9,
@@ -8219,6 +8615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23965.175,
         'gas': 20147.9,
@@ -8239,6 +8636,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23833.672,
         'gas': 20189.7,
@@ -8259,6 +8657,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23768.628,
         'gas': 19957.2,
@@ -8279,6 +8678,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23572.387,
         'gas': 19850.4,
@@ -8299,6 +8699,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23315.242,
         'gas': 19683.6,
@@ -8319,6 +8720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23262.46,
         'gas': 20171.2,
@@ -8339,6 +8741,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23283.227,
         'gas': 20375.8,
@@ -8359,6 +8762,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23357.071,
         'gas': 20443.5,
@@ -8379,6 +8783,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23180.094,
         'gas': 20277.2,
@@ -8399,6 +8804,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23068.843,
         'gas': 20204.1,
@@ -8419,6 +8825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22909.01,
         'gas': 20269.6,
@@ -8439,6 +8846,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22916.342,
         'gas': 20475.9,
@@ -8459,6 +8867,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22921.763,
         'gas': 20341.2,
@@ -8479,6 +8888,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22977.844,
         'gas': 20362.5,
@@ -8499,6 +8909,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22775.636,
         'gas': 20195.2,
@@ -8519,6 +8930,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22498.578,
         'gas': 20062.0,
@@ -8539,6 +8951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22392.149,
         'gas': 19736.9,
@@ -8559,6 +8972,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22183.236,
         'gas': 19830.8,
@@ -8579,6 +8993,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21813.962,
         'gas': 19855.5,
@@ -8599,6 +9014,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21609.876,
         'gas': 19977.0,
@@ -8619,6 +9035,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21285.135,
         'gas': 19919.8,
@@ -8639,6 +9056,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21034.558,
         'gas': 19737.7,
@@ -8659,6 +9077,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20736.034,
         'gas': 19722.2,
@@ -8679,6 +9098,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20594.542,
         'gas': 19869.8,
@@ -8699,6 +9119,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20498.104,
         'gas': 19668.3,
@@ -8719,6 +9140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20304.412,
         'gas': 19413.6,
@@ -8739,6 +9161,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20119.292,
         'gas': 19505.0,
@@ -8759,6 +9182,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19933.018,
         'gas': 19412.6,
@@ -8779,6 +9203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20067.798,
         'gas': 19312.8,
@@ -8799,6 +9224,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20002.405,
         'gas': 19321.2,
@@ -8819,6 +9245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20163.36,
         'gas': 18932.9,
@@ -8839,6 +9266,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19992.882,
         'gas': 19060.9,
@@ -8859,6 +9287,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19916.488,
         'gas': 19329.0,
@@ -8879,6 +9308,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19982.088,
         'gas': 19112.0,
@@ -8899,6 +9329,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19957.615,
         'gas': 19157.2,
@@ -8919,6 +9350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19860.863,
         'gas': 19151.4,
@@ -8939,6 +9371,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 19949.37,
         'gas': 19121.6,
@@ -8959,6 +9392,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20120.64,
         'gas': 19183.4,
@@ -8979,6 +9413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20083.426,
         'gas': 19144.7,
@@ -8999,6 +9434,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20289.844,
         'gas': 19427.9,
@@ -9019,6 +9455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20331.763,
         'gas': 19480.7,
@@ -9039,6 +9476,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20472.564,
         'gas': 19681.1,
@@ -9059,6 +9497,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20576.456,
         'gas': 19765.7,
@@ -9079,6 +9518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20652.643,
         'gas': 19973.1,
@@ -9099,6 +9539,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20689.413,
         'gas': 19929.4,
@@ -9119,6 +9560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20663.463,
         'gas': 19680.9,
@@ -9139,6 +9581,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20567.591,
         'gas': 20271.7,
@@ -9159,6 +9602,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20509.298,
         'gas': 20468.5,
@@ -9179,6 +9623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20769.256,
         'gas': 20552.3,
@@ -9199,6 +9644,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20775.139,
         'gas': 20490.2,
@@ -9219,6 +9665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20901.622,
         'gas': 20375.3,
@@ -9239,6 +9686,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21076.323,
         'gas': 20493.4,
@@ -9259,6 +9707,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21088.716,
         'gas': 20615.7,
@@ -9279,6 +9728,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21162.083,
         'gas': 20710.3,
@@ -9299,6 +9749,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21101.586,
         'gas': 20880.3,
@@ -9319,6 +9770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21037.362,
         'gas': 21116.1,
@@ -9339,6 +9791,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20933.08,
         'gas': 21369.1,
@@ -9359,6 +9812,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20845.932,
         'gas': 21266.1,
@@ -9379,6 +9833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20878.787,
         'gas': 21556.8,
@@ -9399,6 +9854,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20633.238,
         'gas': 21799.6,
@@ -9419,6 +9875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20605.203,
         'gas': 21992.1,
@@ -9439,6 +9896,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20681.5,
         'gas': 22130.5,
@@ -9459,6 +9917,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20635.499,
         'gas': 22167.6,
@@ -9479,6 +9938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20667.562,
         'gas': 22052.2,
@@ -9499,6 +9959,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20380.209,
         'gas': 22142.6,
@@ -9519,6 +9980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20400.596,
         'gas': 22385.7,
@@ -9539,6 +10001,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20465.478,
         'gas': 22448.1,
@@ -9559,6 +10022,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20674.282,
         'gas': 22632.0,
@@ -9579,6 +10043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21100.148,
         'gas': 22615.5,
@@ -9599,6 +10064,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 20974.627,
         'gas': 22289.6,
@@ -9619,6 +10085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21087.523,
         'gas': 22225.1,
@@ -9639,6 +10106,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21209.571,
         'gas': 22439.5,
@@ -9659,6 +10127,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21438.831,
         'gas': 22699.2,
@@ -9679,6 +10148,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21557.544,
         'gas': 22784.1,
@@ -9699,6 +10169,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21687.137,
         'gas': 22930.8,
@@ -9719,6 +10190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 21765.66,
         'gas': 22966.4,
@@ -9739,6 +10211,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22134.453,
         'gas': 22687.9,
@@ -9759,6 +10232,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22312.844,
         'gas': 22920.9,
@@ -9779,6 +10253,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22438.734,
         'gas': 23003.0,
@@ -9799,6 +10274,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22626.833,
         'gas': 22967.8,
@@ -9819,6 +10295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22790.516,
         'gas': 23153.9,
@@ -9839,6 +10316,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23072.195,
         'gas': 23084.9,
@@ -9859,6 +10337,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23108.655,
         'gas': 23244.5,
@@ -9879,6 +10358,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23290.401,
         'gas': 23321.6,
@@ -9899,6 +10379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23205.405,
         'gas': 23505.8,
@@ -9919,6 +10400,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23297.478,
         'gas': 23533.2,
@@ -9939,6 +10421,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23239.017,
         'gas': 23221.7,
@@ -9959,6 +10442,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23507.726,
         'gas': 22950.6,
@@ -9979,6 +10463,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23436.016,
         'gas': 22943.2,
@@ -9999,6 +10484,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23385.524,
         'gas': 23177.7,
@@ -10019,6 +10505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23556.282,
         'gas': 23153.8,
@@ -10039,6 +10526,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23794.602,
         'gas': 23199.4,
@@ -10059,6 +10547,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23828.465,
         'gas': 23328.3,
@@ -10079,6 +10568,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23924.36,
         'gas': 23286.7,
@@ -10099,6 +10589,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23881.682,
         'gas': 23244.8,
@@ -10119,6 +10610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23919.53,
         'gas': 23097.5,
@@ -10139,6 +10631,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24209.082,
         'gas': 23214.9,
@@ -10159,6 +10652,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24046.168,
         'gas': 23382.2,
@@ -10179,6 +10673,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23920.998,
         'gas': 23429.0,
@@ -10199,6 +10694,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24070.109,
         'gas': 23412.3,
@@ -10219,6 +10715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24028.683,
         'gas': 23177.3,
@@ -10239,6 +10736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23989.188,
         'gas': 23102.9,
@@ -10259,6 +10757,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24049.078,
         'gas': 23280.3,
@@ -10279,6 +10778,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24002.906,
         'gas': 23383.5,
@@ -10299,6 +10799,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24087.934,
         'gas': 23459.0,
@@ -10319,6 +10820,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24014.974,
         'gas': 23570.9,
@@ -10339,6 +10841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24081.693,
         'gas': 23455.8,
@@ -10359,6 +10862,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24029.884,
         'gas': 23512.7,
@@ -10379,6 +10883,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24070.041,
         'gas': 23676.2,
@@ -10399,6 +10904,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23979.064,
         'gas': 23759.8,
@@ -10419,6 +10925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24090.607,
         'gas': 23722.8,
@@ -10439,6 +10946,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24050.508,
         'gas': 23885.8,
@@ -10459,6 +10967,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23963.986,
         'gas': 23663.5,
@@ -10479,6 +10988,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24166.168,
         'gas': 23747.8,
@@ -10499,6 +11009,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24169.009,
         'gas': 23921.9,
@@ -10519,6 +11030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24028.65,
         'gas': 23734.7,
@@ -10539,6 +11051,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24086.551,
         'gas': 23580.2,
@@ -10559,6 +11072,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24083.823,
         'gas': 23400.1,
@@ -10579,6 +11093,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24126.745,
         'gas': 23361.1,
@@ -10599,6 +11114,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24169.886,
         'gas': 23265.8,
@@ -10619,6 +11135,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 24004.291,
         'gas': 23017.2,
@@ -10639,6 +11156,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23999.299,
         'gas': 22711.5,
@@ -10659,6 +11177,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23903.872,
         'gas': 22464.1,
@@ -10679,6 +11198,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23904.274,
         'gas': 22343.4,
@@ -10699,6 +11219,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23735.531,
         'gas': 22163.1,
@@ -10719,6 +11240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23788.623,
         'gas': 22228.9,
@@ -10739,6 +11261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23716.283,
         'gas': 22062.2,
@@ -10759,6 +11282,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23865.067,
         'gas': 21668.2,
@@ -10779,6 +11303,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23677.975,
         'gas': 21589.5,
@@ -10799,6 +11324,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23572.688,
         'gas': 21194.2,
@@ -10819,6 +11345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23715.04,
         'gas': 21045.2,
@@ -10839,6 +11366,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23680.071,
         'gas': 20979.4,
@@ -10859,6 +11387,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23673.816,
         'gas': 20634.5,
@@ -10879,6 +11408,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23598.092,
         'gas': 20176.3,
@@ -10899,6 +11429,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23778.58,
         'gas': 20296.1,
@@ -10919,6 +11450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23730.25,
         'gas': 20034.2,
@@ -10939,6 +11471,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23673.292,
         'gas': 20144.6,
@@ -10959,6 +11492,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23725.711,
         'gas': 20034.4,
@@ -10979,6 +11513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23810.198,
         'gas': 19838.2,
@@ -10999,6 +11534,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23538.073,
         'gas': 19526.7,
@@ -11019,6 +11555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23561.426,
         'gas': 19350.6,
@@ -11039,6 +11576,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23504.916,
         'gas': 19256.3,
@@ -11059,6 +11597,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23553.68,
         'gas': 19025.8,
@@ -11079,6 +11618,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23537.016,
         'gas': 18836.5,
@@ -11099,6 +11639,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23514.322,
         'gas': 18769.6,
@@ -11119,6 +11660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23489.485,
         'gas': 18448.1,
@@ -11139,6 +11681,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23470.457,
         'gas': 18438.6,
@@ -11159,6 +11702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23534.018,
         'gas': 18335.7,
@@ -11179,6 +11723,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23451.878,
         'gas': 18449.6,
@@ -11199,6 +11744,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23646.245,
         'gas': 18351.9,
@@ -11219,6 +11765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23688.954,
         'gas': 18242.5,
@@ -11239,6 +11786,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23889.313,
         'gas': 18128.7,
@@ -11259,6 +11807,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23823.157,
         'gas': 17945.8,
@@ -11279,6 +11828,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23738.947,
         'gas': 17659.7,
@@ -11299,6 +11849,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23673.077,
         'gas': 17514.7,
@@ -11319,6 +11870,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23760.353,
         'gas': 17397.9,
@@ -11339,6 +11891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23757.735,
         'gas': 17108.9,
@@ -11359,6 +11912,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23787.083,
         'gas': 16936.5,
@@ -11379,6 +11933,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23653.436,
         'gas': 16769.4,
@@ -11399,6 +11954,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23664.894,
         'gas': 16684.1,
@@ -11419,6 +11975,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23539.45,
         'gas': 16717.7,
@@ -11439,6 +11996,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23636.02,
         'gas': 16600.0,
@@ -11459,6 +12017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23568.115,
         'gas': 16460.8,
@@ -11479,6 +12038,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23564.371,
         'gas': 16313.8,
@@ -11499,6 +12059,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23461.98,
         'gas': 15918.8,
@@ -11519,6 +12080,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23283.904,
         'gas': 15557.2,
@@ -11539,6 +12101,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23271.213,
         'gas': 15435.1,
@@ -11559,6 +12122,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23268.711,
         'gas': 15103.3,
@@ -11579,6 +12143,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23301.872,
         'gas': 14911.3,
@@ -11599,6 +12164,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 23196.116,
         'gas': 14573.8,
@@ -11619,6 +12185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 1, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Asia/Seoul')),
+      'datetime_end': None,
       'production': dict({
         'coal': 22896.78,
         'gas': 14224.4,

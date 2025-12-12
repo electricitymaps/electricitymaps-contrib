@@ -2093,6 +2093,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 4346.501953,
         'nuclear': 26255.0,
@@ -2110,6 +2111,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3537.502197,
         'nuclear': 26214.0,
@@ -2127,6 +2129,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3500.501953,
         'nuclear': 26224.0,
@@ -2144,6 +2147,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3494.501953,
         'nuclear': 26236.0,
@@ -2161,6 +2165,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3546.502197,
         'nuclear': 26270.0,
@@ -2178,6 +2183,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 4343.501953,
         'nuclear': 26319.0,
@@ -2195,6 +2201,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 5991.301758,
         'nuclear': 26328.300781,
@@ -2212,6 +2219,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 6839.999512,
         'nuclear': 26289.300781,
@@ -2229,6 +2237,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8181.468262,
         'nuclear': 26260.300781,
@@ -2246,6 +2255,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8614.632812,
         'nuclear': 26196.300781,
@@ -2263,6 +2273,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9778.923828,
         'nuclear': 26135.300781,
@@ -2280,6 +2291,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9524.998047,
         'nuclear': 26070.300781,
@@ -2297,6 +2309,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10300.410156,
         'nuclear': 26025.0,
@@ -2314,6 +2327,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10797.139648,
         'nuclear': 26000.0,
@@ -2331,6 +2345,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10744.229492,
         'nuclear': 25977.300781,
@@ -2348,6 +2363,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10400.150391,
         'nuclear': 25819.0,
@@ -2365,6 +2381,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8797.742188,
         'nuclear': 25763.941406,
@@ -2382,6 +2399,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9014.041016,
         'nuclear': 25650.0,
@@ -2399,6 +2417,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8586.829102,
         'nuclear': 25590.0,
@@ -2416,6 +2435,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8125.947266,
         'nuclear': 25560.0,
@@ -2433,6 +2453,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8059.025879,
         'nuclear': 25545.0,
@@ -2450,6 +2471,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 7902.702148,
         'nuclear': 25596.0,
@@ -2467,6 +2489,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 7275.902344,
         'nuclear': 25615.0,
@@ -2484,6 +2507,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 5289.202148,
         'nuclear': 25607.0,
@@ -2505,6 +2529,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11902.007812,
         'nuclear': None,
@@ -2522,6 +2547,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11968.030273,
         'nuclear': None,
@@ -2539,6 +2565,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12199.666016,
         'nuclear': None,
@@ -2556,6 +2583,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12457.5,
         'nuclear': None,
@@ -2573,6 +2601,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13121.564453,
         'nuclear': None,
@@ -2590,6 +2619,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14036.282227,
         'nuclear': None,
@@ -2607,6 +2637,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13385.181641,
         'nuclear': None,
@@ -2624,6 +2655,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13647.104492,
         'nuclear': None,
@@ -2641,6 +2673,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13966.766602,
         'nuclear': None,
@@ -2658,6 +2691,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14082.213867,
         'nuclear': None,
@@ -2675,6 +2709,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13634.400391,
         'nuclear': None,
@@ -2692,6 +2727,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14025.966797,
         'nuclear': None,
@@ -2709,6 +2745,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13690.520508,
         'nuclear': None,
@@ -2726,6 +2763,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13629.388672,
         'nuclear': None,
@@ -2743,6 +2781,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13720.821289,
         'nuclear': None,
@@ -2760,6 +2799,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14000.866211,
         'nuclear': None,
@@ -2777,6 +2817,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14406.917969,
         'nuclear': None,
@@ -2794,6 +2835,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13838.950195,
         'nuclear': None,
@@ -2811,6 +2853,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13639.786133,
         'nuclear': None,
@@ -2828,6 +2871,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12841.951172,
         'nuclear': None,
@@ -2845,6 +2889,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12144.849609,
         'nuclear': None,
@@ -2862,6 +2907,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11886.116211,
         'nuclear': None,
@@ -2879,6 +2925,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11135.402344,
         'nuclear': None,
@@ -2896,6 +2943,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10917.832031,
         'nuclear': None,
@@ -2917,6 +2965,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3083.657246,
         'nuclear': 0.0,
@@ -2932,6 +2981,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3182.169485,
         'nuclear': 0.0,
@@ -2947,6 +2997,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3344.528174,
         'nuclear': 0.0,
@@ -2962,6 +3013,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3369.626544,
         'nuclear': 0.0,
@@ -2977,6 +3029,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3402.629042,
         'nuclear': 0.0,
@@ -2992,6 +3045,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3362.047411,
         'nuclear': 0.0,
@@ -3007,6 +3061,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3325.311096,
         'nuclear': 0.0,
@@ -3022,6 +3077,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3345.680769,
         'nuclear': 0.0,
@@ -3037,6 +3093,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3364.623899,
         'nuclear': 0.0,
@@ -3052,6 +3109,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3336.32972,
         'nuclear': 0.0,
@@ -3067,6 +3125,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3341.319969,
         'nuclear': 0.0,
@@ -3082,6 +3141,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3373.015831,
         'nuclear': 0.0,
@@ -3097,6 +3157,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3405.095705,
         'nuclear': 0.0,
@@ -3112,6 +3173,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3388.80739,
         'nuclear': 0.0,
@@ -3127,6 +3189,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3398.377864,
         'nuclear': 0.0,
@@ -3142,6 +3205,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3400.495094,
         'nuclear': 0.0,
@@ -3157,6 +3221,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3394.743685,
         'nuclear': 0.0,
@@ -3172,6 +3237,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3232.661113,
         'nuclear': 0.0,
@@ -3187,6 +3253,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 3020.427729,
         'nuclear': 0.0,
@@ -3202,6 +3269,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2901.185758,
         'nuclear': 0.0,
@@ -3217,6 +3285,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2846.328785,
         'nuclear': 0.0,
@@ -3232,6 +3301,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2886.874579,
         'nuclear': 0.0,
@@ -3247,6 +3317,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2947.675003,
         'nuclear': 0.0,
@@ -3262,6 +3333,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2996.120854,
         'nuclear': 0.0,
@@ -3281,6 +3353,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11902.007812,
         'nuclear': None,
@@ -3298,6 +3371,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11968.030273,
         'nuclear': None,
@@ -3315,6 +3389,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12199.666016,
         'nuclear': None,
@@ -3332,6 +3407,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12457.5,
         'nuclear': None,
@@ -3349,6 +3425,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13121.564453,
         'nuclear': None,
@@ -3366,6 +3443,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14036.282227,
         'nuclear': None,
@@ -3383,6 +3461,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13385.181641,
         'nuclear': None,
@@ -3400,6 +3479,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13647.104492,
         'nuclear': None,
@@ -3417,6 +3497,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13966.766602,
         'nuclear': None,
@@ -3434,6 +3515,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14082.213867,
         'nuclear': None,
@@ -3451,6 +3533,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13634.400391,
         'nuclear': None,
@@ -3468,6 +3551,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14025.966797,
         'nuclear': None,
@@ -3485,6 +3569,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13690.520508,
         'nuclear': None,
@@ -3502,6 +3587,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13629.388672,
         'nuclear': None,
@@ -3519,6 +3605,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13720.821289,
         'nuclear': None,
@@ -3536,6 +3623,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14000.866211,
         'nuclear': None,
@@ -3553,6 +3641,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 14406.917969,
         'nuclear': None,
@@ -3570,6 +3659,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13838.950195,
         'nuclear': None,
@@ -3587,6 +3677,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 13639.786133,
         'nuclear': None,
@@ -3604,6 +3695,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12841.951172,
         'nuclear': None,
@@ -3621,6 +3713,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 12144.849609,
         'nuclear': None,
@@ -3638,6 +3731,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11886.116211,
         'nuclear': None,
@@ -3655,6 +3749,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 11135.402344,
         'nuclear': None,
@@ -3672,6 +3767,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2025, 7, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 10917.832031,
         'nuclear': None,

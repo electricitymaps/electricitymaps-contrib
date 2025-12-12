@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2075.84,
@@ -19,6 +20,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1906.32,
@@ -33,6 +35,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1835.3,
@@ -47,6 +50,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 6.45,
         'wind': 1611.24,
@@ -61,6 +65,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 92.67,
         'wind': 1279.4,
@@ -75,6 +80,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 255.75,
         'wind': 951.19,
@@ -89,6 +95,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 378.89,
         'wind': 896.19,
@@ -103,6 +110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 592.6,
         'wind': 751.44,
@@ -117,6 +125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 744.04,
         'wind': 587.83,
@@ -131,6 +140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 945.51,
         'wind': 428.2,
@@ -145,6 +155,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1044.34,
         'wind': 318.69,
@@ -159,6 +170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1017.66,
         'wind': 327.06,
@@ -173,6 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1051.89,
         'wind': 380.76,
@@ -187,6 +200,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 875.65,
         'wind': 400.51,
@@ -201,6 +215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 438.7,
         'wind': 474.17,
@@ -215,6 +230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 49.55,
         'wind': 682.37,
@@ -229,6 +245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1153.81,
@@ -243,6 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1998.39,
@@ -257,6 +275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2734.04,
@@ -271,6 +290,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 18, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3223.62,
@@ -285,6 +305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3354.24,
@@ -299,6 +320,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3343.46,
@@ -313,6 +335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3108.56,
@@ -327,6 +350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2972.83,
@@ -341,6 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2815.32,
@@ -355,6 +380,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2398.31,
@@ -369,6 +395,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2203.6,
@@ -383,6 +410,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 37.0,
         'wind': 2179.59,
@@ -397,6 +425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 425.15,
         'wind': 1937.05,
@@ -411,6 +440,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1052.06,
         'wind': 1676.27,
@@ -425,6 +455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1394.69,
         'wind': 1571.24,
@@ -439,6 +470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1542.91,
         'wind': 1413.35,
@@ -453,6 +485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1526.05,
         'wind': 1463.77,
@@ -467,6 +500,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1520.99,
         'wind': 1599.64,
@@ -481,6 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1459.68,
         'wind': 1683.99,
@@ -495,6 +530,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1474.66,
         'wind': 1884.76,
@@ -509,6 +545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1302.4,
         'wind': 2054.58,
@@ -523,6 +560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 903.29,
         'wind': 2066.41,
@@ -537,6 +575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 367.85,
         'wind': 2151.22,
@@ -551,6 +590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 34.62,
         'wind': 2446.55,
@@ -565,6 +605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2787.36,
@@ -579,6 +620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3005.29,
@@ -593,6 +635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2958.56,
@@ -607,6 +650,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 19, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2728.82,
@@ -621,6 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2872.64,
@@ -635,6 +680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3057.42,
@@ -649,6 +695,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2760.59,
@@ -663,6 +710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2761.04,
@@ -677,6 +725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.16,
         'wind': 2518.45,
@@ -691,6 +740,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2630.01,
@@ -705,6 +755,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2684.44,
@@ -719,6 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 26.79,
         'wind': 2726.33,
@@ -733,6 +785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 270.37,
         'wind': 2695.77,
@@ -747,6 +800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 684.02,
         'wind': 2608.56,
@@ -761,6 +815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 980.8,
         'wind': 2581.71,
@@ -775,6 +830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1052.13,
         'wind': 2664.17,
@@ -789,6 +845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1067.09,
         'wind': 2723.39,
@@ -803,6 +860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1063.03,
         'wind': 2749.84,
@@ -817,6 +875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1002.02,
         'wind': 2805.44,
@@ -831,6 +890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 924.19,
         'wind': 2819.94,
@@ -845,6 +905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 793.55,
         'wind': 2728.52,
@@ -859,6 +920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 573.29,
         'wind': 2545.87,
@@ -873,6 +935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 248.39,
         'wind': 2336.72,
@@ -887,6 +950,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 26.89,
         'wind': 2196.89,
@@ -901,6 +965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2127.59,
@@ -915,6 +980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2085.43,
@@ -929,6 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2138.91,
@@ -943,6 +1010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2296.83,
@@ -957,6 +1025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2501.88,
@@ -971,6 +1040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2623.14,
@@ -985,6 +1055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2664.52,
@@ -999,6 +1070,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2609.34,
@@ -1013,6 +1085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2454.05,
@@ -1027,6 +1100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2306.57,
@@ -1041,6 +1115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2229.69,
@@ -1055,6 +1130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 39.76,
         'wind': 2247.47,
@@ -1069,6 +1145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 385.04,
         'wind': 2325.91,
@@ -1083,6 +1160,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 957.74,
         'wind': 2402.4,
@@ -1097,6 +1175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1198.69,
         'wind': 2520.28,
@@ -1111,6 +1190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1275.6,
         'wind': 2769.0,
@@ -1125,6 +1205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1377.96,
         'wind': 3026.26,
@@ -1139,6 +1220,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1397.03,
         'wind': 3159.56,
@@ -1153,6 +1235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1349.97,
         'wind': 3224.79,
@@ -1167,6 +1250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1241.67,
         'wind': 3263.18,
@@ -1181,6 +1265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1113.24,
         'wind': 3163.95,
@@ -1195,6 +1280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 807.78,
         'wind': 3002.09,
@@ -1209,6 +1295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 338.54,
         'wind': 2924.69,
@@ -1223,6 +1310,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 37.67,
         'wind': 2905.45,
@@ -1237,6 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2882.94,
@@ -1251,6 +1340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2905.29,
@@ -1265,6 +1355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2888.12,
@@ -1279,6 +1370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 21, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2774.21,
@@ -1293,6 +1385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2757.69,
@@ -1307,6 +1400,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2693.8,
@@ -1321,6 +1415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2501.02,
@@ -1335,6 +1430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2337.3,
@@ -1349,6 +1445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2289.05,
@@ -1363,6 +1460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2289.41,
@@ -1377,6 +1475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2314.28,
@@ -1391,6 +1490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 35.84,
         'wind': 2359.24,
@@ -1405,6 +1505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 336.2,
         'wind': 2388.96,
@@ -1419,6 +1520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 883.09,
         'wind': 2263.51,
@@ -1433,6 +1535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1176.49,
         'wind': 2232.78,
@@ -1447,6 +1550,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1271.94,
         'wind': 2456.57,
@@ -1461,6 +1565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1283.86,
         'wind': 2661.78,
@@ -1475,6 +1580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1289.17,
         'wind': 2787.19,
@@ -1489,6 +1595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1283.37,
         'wind': 2863.95,
@@ -1503,6 +1610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1224.96,
         'wind': 2832.66,
@@ -1517,6 +1625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1118.23,
         'wind': 2663.64,
@@ -1531,6 +1640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 844.65,
         'wind': 2308.15,
@@ -1545,6 +1655,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 381.27,
         'wind': 1846.8,
@@ -1559,6 +1670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 44.23,
         'wind': 1466.25,
@@ -1573,6 +1685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1286.42,
@@ -1587,6 +1700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1350.13,
@@ -1601,6 +1715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1552.23,
@@ -1615,6 +1730,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 22, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1856.1,
@@ -1629,6 +1745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2172.01,
@@ -1643,6 +1760,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2331.96,
@@ -1657,6 +1775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2443.43,
@@ -1671,6 +1790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2537.34,
@@ -1685,6 +1805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2538.76,
@@ -1699,6 +1820,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2474.68,
@@ -1713,6 +1835,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2331.5,
@@ -1727,6 +1850,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 40.94,
         'wind': 2171.29,
@@ -1741,6 +1865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 343.79,
         'wind': 2046.98,
@@ -1755,6 +1880,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 761.01,
         'wind': 1915.01,
@@ -1769,6 +1895,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1095.24,
         'wind': 1836.61,
@@ -1783,6 +1910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1225.34,
         'wind': 1865.58,
@@ -1797,6 +1925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1244.38,
         'wind': 1980.43,
@@ -1811,6 +1940,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1218.48,
         'wind': 2171.58,
@@ -1825,6 +1955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1105.9,
         'wind': 2365.33,
@@ -1839,6 +1970,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 924.7,
         'wind': 2462.26,
@@ -1853,6 +1985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 715.81,
         'wind': 2463.87,
@@ -1867,6 +2000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 500.26,
         'wind': 2476.2,
@@ -1881,6 +2015,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 207.14,
         'wind': 2549.52,
@@ -1895,6 +2030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 22.0,
         'wind': 2682.49,
@@ -1909,6 +2045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2824.99,
@@ -1923,6 +2060,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3004.88,
@@ -1937,6 +2075,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3222.3,
@@ -1951,6 +2090,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3432.0,
@@ -1965,6 +2105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3410.77,
@@ -1979,6 +2120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3347.85,
@@ -1993,6 +2135,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3336.45,
@@ -2007,6 +2150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3381.71,
@@ -2021,6 +2165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3489.38,
@@ -2035,6 +2180,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3615.25,
@@ -2049,6 +2195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 3648.05,
@@ -2063,6 +2210,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 39.21,
         'wind': 3592.14,
@@ -2077,6 +2225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 347.06,
         'wind': 3544.68,
@@ -2091,6 +2240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 839.6,
         'wind': 3451.86,
@@ -2105,6 +2255,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1099.13,
         'wind': 3315.51,
@@ -2119,6 +2270,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1166.37,
         'wind': 3203.98,
@@ -2133,6 +2285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1181.96,
         'wind': 3184.4,
@@ -2147,6 +2300,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1184.72,
         'wind': 3249.39,
@@ -2161,6 +2315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1171.91,
         'wind': 3305.01,
@@ -2175,6 +2330,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1113.87,
         'wind': 3238.0,
@@ -2189,6 +2345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 996.96,
         'wind': 3050.58,
@@ -2203,6 +2360,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 737.12,
         'wind': 2866.87,
@@ -2217,6 +2375,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 332.57,
         'wind': 2750.01,
@@ -2231,6 +2390,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 40.25,
         'wind': 2677.44,
@@ -2245,6 +2405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2596.28,
@@ -2259,6 +2420,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2434.07,
@@ -2273,6 +2435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2193.09,
@@ -2287,6 +2450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 24, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1972.17,
@@ -2301,6 +2465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1954.94,
@@ -2315,6 +2480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1861.77,
@@ -2329,6 +2495,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1663.76,
@@ -2343,6 +2510,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1487.08,
@@ -2357,6 +2525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1386.28,
@@ -2371,6 +2540,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1343.79,
@@ -2385,6 +2555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1285.85,
@@ -2399,6 +2570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 83.25,
         'wind': 1199.83,
@@ -2413,6 +2585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 608.86,
         'wind': 1117.63,
@@ -2427,6 +2600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1235.43,
         'wind': 981.59,
@@ -2441,6 +2615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1480.63,
         'wind': 807.26,
@@ -2455,6 +2630,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1524.12,
         'wind': 660.33,
@@ -2469,6 +2645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1507.31,
         'wind': 545.48,
@@ -2483,6 +2660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1482.3,
         'wind': 461.07,
@@ -2497,6 +2675,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1392.35,
         'wind': 387.29,
@@ -2511,6 +2690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1189.23,
         'wind': 343.33,
@@ -2525,6 +2705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 927.13,
         'wind': 332.73,
@@ -2539,6 +2720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 658.17,
         'wind': 335.67,
@@ -2553,6 +2735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 299.52,
         'wind': 384.62,
@@ -2567,6 +2750,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 36.22,
         'wind': 478.75,
@@ -2581,6 +2765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 592.31,
@@ -2595,6 +2780,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 738.91,
@@ -2609,6 +2795,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 940.19,
@@ -2623,6 +2810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 25, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1218.63,
@@ -2637,6 +2825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1382.06,
@@ -2651,6 +2840,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1371.95,
@@ -2665,6 +2855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1376.56,
@@ -2679,6 +2870,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1398.32,
@@ -2693,6 +2885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1424.7,
@@ -2707,6 +2900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1466.54,
@@ -2721,6 +2915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1418.28,
@@ -2735,6 +2930,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 101.49,
         'wind': 1269.18,
@@ -2749,6 +2945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 674.47,
         'wind': 1126.72,
@@ -2763,6 +2960,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1288.7,
         'wind': 979.06,
@@ -2777,6 +2975,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1508.01,
         'wind': 838.16,
@@ -2791,6 +2990,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1529.61,
         'wind': 725.9,
@@ -2805,6 +3005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1507.52,
         'wind': 666.05,
@@ -2819,6 +3020,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1495.4,
         'wind': 666.97,
@@ -2833,6 +3035,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1486.39,
         'wind': 694.43,
@@ -2847,6 +3050,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1458.18,
         'wind': 734.62,
@@ -2861,6 +3065,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1348.36,
         'wind': 793.65,
@@ -2875,6 +3080,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1031.83,
         'wind': 893.54,
@@ -2889,6 +3095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 492.13,
         'wind': 1026.32,
@@ -2903,6 +3110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 67.68,
         'wind': 1173.18,
@@ -2917,6 +3125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1326.32,
@@ -2931,6 +3140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1484.26,
@@ -2945,6 +3155,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1669.98,
@@ -2959,6 +3170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 26, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1890.94,
@@ -2973,6 +3185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2012.26,
@@ -2987,6 +3200,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 27, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2015.65,
@@ -3001,6 +3215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 27, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2040.9,
@@ -3015,6 +3230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 27, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Canada/Mountain')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 2080.44,

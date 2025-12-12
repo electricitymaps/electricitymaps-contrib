@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': FakeDatetime(2024, 4, 3, 8, 37, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -7.5,
       'sortedZoneKeys': 'CR->NI',
       'source': 'enteoperador.org',
@@ -16,6 +17,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 3, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'unknown': 1460.3,
       }),

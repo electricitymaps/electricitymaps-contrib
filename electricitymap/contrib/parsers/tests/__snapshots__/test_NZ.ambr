@@ -42,6 +42,7 @@
         'correctedModes': list([
         ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+        'datetime_end': None,
         'production': dict({
           'coal': 156,
           'gas': 252,
@@ -78,6 +79,7 @@
         'correctedModes': list([
         ]),
         'datetime': datetime.datetime(2024, 4, 24, 18, 0, tzinfo=datetime.timezone.utc),
+        'datetime_end': None,
         'production': dict({
           'coal': 156,
           'gas': 252,

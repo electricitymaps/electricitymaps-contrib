@@ -177,6 +177,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 733.676,
@@ -196,6 +197,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 686.045,
@@ -215,6 +217,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 651.565,
@@ -234,6 +237,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 652.905,
@@ -253,6 +257,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 651.319,
@@ -272,6 +277,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 637.872,
@@ -291,6 +297,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 660.412,
@@ -310,6 +317,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 706.624,
@@ -329,6 +337,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 758.264,
@@ -348,6 +357,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 832.553,
@@ -367,6 +377,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/La_Paz')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'gas': 907.295,
