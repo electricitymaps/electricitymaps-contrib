@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2023, 9, 13, 12, 29, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
+      'datetime_end': None,
       'netFlow': -15.4,
       'sortedZoneKeys': 'DK-BHM->SE-SE4',
       'source': 'bornholm.powerlab.dk',
@@ -16,6 +17,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 12, 29, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.2,
         'solar': 3.6,

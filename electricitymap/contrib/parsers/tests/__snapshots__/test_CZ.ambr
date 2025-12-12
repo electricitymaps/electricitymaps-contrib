@@ -7,6 +7,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -945.9063,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -14,6 +15,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -923.2897,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -21,6 +23,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -963.7902,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -28,6 +31,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -910.4536,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -35,6 +39,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -894.2134,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -42,6 +47,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -827.9028,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -49,6 +55,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1122.0476,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -56,6 +63,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1123.993,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -63,6 +71,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1207.6045,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -70,6 +79,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1072.005,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -77,6 +87,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1137.9245,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -84,6 +95,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1079.4685,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -91,6 +103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1021.0584,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -98,6 +111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -940.766,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -105,6 +119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -771.1873,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -112,6 +127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -670.3645,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -119,6 +135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -585.7323,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -126,6 +143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -395.763,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -133,6 +151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -448.3363,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -140,6 +159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -487.5962,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -147,6 +167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -498.2775,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -154,6 +175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -569.8564,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -161,6 +183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -937.5903,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -168,6 +191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1012.7687,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -175,6 +199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -983.8809,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -182,6 +207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1018.5339,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -189,6 +215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1146.0785,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -196,6 +223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1211.1605,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -203,6 +231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1177.7117,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -210,6 +239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1129.5327,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -217,6 +247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1048.3628,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -224,6 +255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -982.6947,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -231,6 +263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -997.3606,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -238,6 +271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -957.3019,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -245,6 +279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -995.6192,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -252,6 +287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1117.1008,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -259,6 +295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1188.6488,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -266,6 +303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1238.5546,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -273,6 +311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1242.3167,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -280,6 +319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1237.9788,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -287,6 +327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1393.5097,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -294,6 +335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1543.8016,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -301,6 +343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1557.71859,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -308,6 +351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1616.61734,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -315,6 +359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1832.839,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -322,6 +367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1955.6913,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -329,6 +375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1656.6452,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -336,6 +383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1732.0868,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -343,6 +391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1802.9514,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -350,6 +399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1554.93046,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -357,6 +407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1464.03669,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -364,6 +415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1337.7347,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -371,6 +423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1175.0664,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -378,6 +431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -989.781,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -385,6 +439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1072.9161,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -392,6 +447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1027.6792,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -399,6 +455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1112.9563,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -406,6 +463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1108.976,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -413,6 +471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1246.92105,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -420,6 +479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1083.17361,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -427,6 +487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1097.09843,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -434,6 +495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1181.46987,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -441,6 +503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1194.3882,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -448,6 +511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1274.5261,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -455,6 +519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1376.8211,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -462,6 +527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1392.1789,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -469,6 +535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1435.2792,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -476,6 +543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1443.4772,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -483,6 +551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1409.4424,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -490,6 +559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1367.622,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -497,6 +567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1342.9108,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -504,6 +575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1384.2359,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -511,6 +583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1374.3862,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -518,6 +591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1418.9706,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -525,6 +599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1472.4263,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -532,6 +607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1602.6618,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -539,6 +615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1547.4233,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -546,6 +623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1372.8728,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -553,6 +631,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1258.1199,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -560,6 +639,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1251.078,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -567,6 +647,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1533.0624,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -574,6 +655,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1710.9126,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -581,6 +663,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1640.7719,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -588,6 +671,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1798.4459,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -595,6 +679,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1825.036,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -602,6 +687,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1808.836,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -609,6 +695,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1581.958,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -616,6 +703,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1800.3497,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -623,6 +711,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1792.47767,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -630,6 +719,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1739.87914,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -637,6 +727,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1309.3606,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -644,6 +735,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1105.0605,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -651,6 +743,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1050.1044,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -658,6 +751,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -915.3804,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -665,6 +759,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -811.8441,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -672,6 +767,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -864.5746,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -679,6 +775,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -858.5301,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -686,6 +783,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.2001,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -693,6 +791,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -883.1092,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -700,6 +799,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -889.9686,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -707,6 +807,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -833.7164,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -714,6 +815,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -763.7695,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -721,6 +823,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -857.0317,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -728,6 +831,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -717.1108,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -735,6 +839,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -757.1704,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -742,6 +847,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -670.3173,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -749,6 +855,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -862.2165,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -756,6 +863,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -838.1472,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -763,6 +871,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -706.8542,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -770,6 +879,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -657.774,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -777,6 +887,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -999.8816,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -784,6 +895,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -877.8081,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -791,6 +903,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -594.683,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -798,6 +911,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -558.542,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -805,6 +919,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -661.031,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -812,6 +927,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -698.2905,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -819,6 +935,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -635.7221,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -826,6 +943,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -574.0871,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -833,6 +951,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -289.609,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -840,6 +959,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -311.78,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -847,6 +967,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -309.989,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -854,6 +975,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -234.782,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -861,6 +983,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -147.062,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -868,6 +991,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -108.021,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -875,6 +999,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -82.392,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -882,6 +1007,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -84.516,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -889,6 +1015,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1.282,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -896,6 +1023,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 1.389,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -903,6 +1031,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 24.1148,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -910,6 +1039,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -11.0681,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -917,6 +1047,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -122.2093,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -924,6 +1055,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -51.6483,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -931,6 +1063,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -13.464,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -938,6 +1071,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -118.0592,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -945,6 +1079,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -470.1381,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -952,6 +1087,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -554.8008,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -959,6 +1095,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -556.4052,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -966,6 +1103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -769.7773,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -973,6 +1111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -869.4816,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -980,6 +1119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1097.863,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -987,6 +1127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1248.5736,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -994,6 +1135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1411.7561,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1001,6 +1143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1595.1754,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1008,6 +1151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1646.36457,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1015,6 +1159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1762.78874,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1022,6 +1167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1729.39437,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1029,6 +1175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1385.04036,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1036,6 +1183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1309.99286,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1043,6 +1191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1062.8917,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1050,6 +1199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -714.1602,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1057,6 +1207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -517.4842,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1064,6 +1215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -337.3895,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1071,6 +1223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -83.4221,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1078,6 +1231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 131.1706,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1085,6 +1239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 57.8336,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1092,6 +1247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -23.6801,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1099,6 +1255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -126.7365,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1106,6 +1263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -167.9415,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1113,6 +1271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 120.6595,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1120,6 +1279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 168.7888,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1127,6 +1287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 251.3108,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1134,6 +1295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 269.907,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1141,6 +1303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 330.4658,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1148,6 +1311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 385.6534,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1155,6 +1319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 320.221,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1162,6 +1327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 273.2344,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1169,6 +1335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 164.9011,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1176,6 +1343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1.2296,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1183,6 +1351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -19.8414,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1190,6 +1359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 178.4839,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1197,6 +1367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 71.5409,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1204,6 +1375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -15.8556,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1211,6 +1383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -37.837,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1218,6 +1391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -8.9547,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1225,6 +1399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -83.1891,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1232,6 +1407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -424.9436,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1239,6 +1415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -484.3081,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1246,6 +1423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -770.9435,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1253,6 +1431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -826.6251,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1260,6 +1439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1143.10833,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1267,6 +1447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1264.9026,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1274,6 +1455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1398.8176,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1281,6 +1463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1201.6356,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1288,6 +1471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1321.612582,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1295,6 +1479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1354.66632,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1302,6 +1487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1355.71361,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1309,6 +1495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1276.39347,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1316,6 +1503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1378.39388,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1323,6 +1511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1399.96272,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1330,6 +1519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1356.94016,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1337,6 +1527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1460.22529,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1344,6 +1535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1443.259,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1351,6 +1543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1485.9194,
       'sortedZoneKeys': 'CZ->DE',
       'source': 'ceps.cz',
@@ -1362,6 +1555,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 57.34669,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1369,6 +1563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -21.2968,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1376,6 +1571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -180.7892,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1383,6 +1579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -212.625,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1390,6 +1587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -121.0926,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1397,6 +1595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2.916756,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1404,6 +1603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -260.1294,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1411,6 +1611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -359.7804,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1418,6 +1619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -420.2181,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1425,6 +1627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -347.3683,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1432,6 +1635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -488.6016,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1439,6 +1643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -558.5971,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1446,6 +1651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -446.0436,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1453,6 +1659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -508.0216,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1460,6 +1667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -957.1111,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1467,6 +1675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1083.484,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1474,6 +1683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1093.271,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1481,6 +1691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1177.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1488,6 +1699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1282.823,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1495,6 +1707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1194.153,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1502,6 +1715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1216.976,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1509,6 +1723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1203.175,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1516,6 +1731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1156.538,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1523,6 +1739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1297.514,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1530,6 +1747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1341.878,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1537,6 +1755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1370.745,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1544,6 +1763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1481.579,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1551,6 +1771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1462.878,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1558,6 +1779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1488.255,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1565,6 +1787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1466.427,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1572,6 +1795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1531.823,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1579,6 +1803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1492.828,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1586,6 +1811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1512.735,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1593,6 +1819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1513.857,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1600,6 +1827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1450.72,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1607,6 +1835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1539.611,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1614,6 +1843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1558.753,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1621,6 +1851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1521.258,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1628,6 +1859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1642.194,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1635,6 +1867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1597.64,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1642,6 +1875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1633.347,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1649,6 +1883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1418.629,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1656,6 +1891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1093.578,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1663,6 +1899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1069.965,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1670,6 +1907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1102.484,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1677,6 +1915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1138.785,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1684,6 +1923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -988.2491,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1691,6 +1931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -962.4423,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1698,6 +1939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1047.353,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1705,6 +1947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -971.3198,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1712,6 +1955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1151.263,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1719,6 +1963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1258.991,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1726,6 +1971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1203.425,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1733,6 +1979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1106.238,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1740,6 +1987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1155.085,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1747,6 +1995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1047.058,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1754,6 +2003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -887.6027,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1761,6 +2011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.4426,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1768,6 +2019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1043.641,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1775,6 +2027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1229.851,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1782,6 +2035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1257.556,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1789,6 +2043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1206.823,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1796,6 +2051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1165.509,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1803,6 +2059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1096.422,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1810,6 +2067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1084.969,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1817,6 +2075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1058.067,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1824,6 +2083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1048.228,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1831,6 +2091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -954.2005,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1838,6 +2099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -917.0439,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1845,6 +2107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -918.5978,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1852,6 +2115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1083.117,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1859,6 +2123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1020.895,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1866,6 +2131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -949.0921,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1873,6 +2139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1041.434,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1880,6 +2147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1122.948,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1887,6 +2155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -968.808,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1894,6 +2163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -980.1707,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1901,6 +2171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -960.9024,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1908,6 +2179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -991.0405,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1915,6 +2187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -939.0203,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1922,6 +2195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1008.56,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1929,6 +2203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1063.174,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1936,6 +2211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1108.698,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1943,6 +2219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1166.516,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1950,6 +2227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1154.239,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1957,6 +2235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1216.68,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1964,6 +2243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1120.435,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1971,6 +2251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1219.383,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1978,6 +2259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1207.281,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1985,6 +2267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1336.379,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1992,6 +2275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1349.651,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -1999,6 +2283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1578.245,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2006,6 +2291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1838.891,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2013,6 +2299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1935.048,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2020,6 +2307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1988.37,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2027,6 +2315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1988.173,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2034,6 +2323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2054.686,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2041,6 +2331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1980.631,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2048,6 +2339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2076.869,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2055,6 +2347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2078.229,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2062,6 +2355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1935.405,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2069,6 +2363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1968.21,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2076,6 +2371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2050.053,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2083,6 +2379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1929.907,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2090,6 +2387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1860.124,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2097,6 +2395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1793.402,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2104,6 +2403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1983.054,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2111,6 +2411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1967.747,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2118,6 +2419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1967.437,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2125,6 +2427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1918.294,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2132,6 +2435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1911.315,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2139,6 +2443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1995.521,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2146,6 +2451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1953.497,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2153,6 +2459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1916.981,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2160,6 +2467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1947.135,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2167,6 +2475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2076.953,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2174,6 +2483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2119.115,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2181,6 +2491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2094.367,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2188,6 +2499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2116.227,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2195,6 +2507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2087.86,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2202,6 +2515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -2045.088,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2209,6 +2523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1988.343,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2216,6 +2531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1896.855,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2223,6 +2539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1853.709,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2230,6 +2547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1837.28,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2237,6 +2555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1836.376,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2244,6 +2563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1817.729,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2251,6 +2571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1792.44,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2258,6 +2579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1768.738,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2265,6 +2587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1761.688,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2272,6 +2595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1797.975,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2279,6 +2603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1800.884,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2286,6 +2611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1788.972,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2293,6 +2619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1770.364,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2300,6 +2627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1667.427,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2307,6 +2635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1641.134,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2314,6 +2643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1673.105,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2321,6 +2651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1658.9,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2328,6 +2659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1409.562,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2335,6 +2667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1348.678,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2342,6 +2675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1358.964,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2349,6 +2683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1319.181,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2356,6 +2691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1113.538,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2363,6 +2699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1174.805,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2370,6 +2707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1235.508,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2377,6 +2715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1361.635,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2384,6 +2723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1471.268,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2391,6 +2731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1458.236,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2398,6 +2739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1450.016,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2405,6 +2747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1337.559,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2412,6 +2755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1427.817,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2419,6 +2763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1427.628,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2426,6 +2771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1278.326,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2433,6 +2779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1190.114,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2440,6 +2787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1054.859,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2447,6 +2795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1089.437,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2454,6 +2803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1222.252,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2461,6 +2811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1257.162,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2468,6 +2819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1452.764,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2475,6 +2827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1484.646,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2482,6 +2835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1439.999,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2489,6 +2843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1497.89,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2496,6 +2851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1566.017,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2503,6 +2859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1539.284,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2510,6 +2867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1560.712,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2517,6 +2875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1523.553,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2524,6 +2883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1486.812,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2531,6 +2891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1439.545,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2538,6 +2899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1303.006,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2545,6 +2907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1131.616,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2552,6 +2915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -1010.663,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2559,6 +2923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -915.9167,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2566,6 +2931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -866.4733,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2573,6 +2939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -895.4972,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2580,6 +2947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -622.2483,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2587,6 +2955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -594.0666,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2594,6 +2963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -721.8358,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2601,6 +2971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -561.6174,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2608,6 +2979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 27.66017,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2615,6 +2987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 189.562,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2622,6 +2995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 88.53818,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2629,6 +3003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -96.01603,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2636,6 +3011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -61.92467,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2643,6 +3019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -57.12955,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2650,6 +3027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -130.1398,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2657,6 +3035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -179.6035,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2664,6 +3043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -229.1808,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2671,6 +3051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -153.5911,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2678,6 +3059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -137.893,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2685,6 +3067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -161.5014,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2692,6 +3075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -206.4308,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2699,6 +3083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -230.2321,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2706,6 +3091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -264.4792,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2717,6 +3103,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 494.95,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2724,6 +3111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 494.95,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2731,6 +3119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 366.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2738,6 +3127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 366.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2745,6 +3135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 366.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2752,6 +3143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 366.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2759,6 +3151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 200.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2766,6 +3159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 200.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2773,6 +3167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 200.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2780,6 +3175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 200.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2787,6 +3183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 21.8,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2794,6 +3191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 21.8,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2801,6 +3199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 21.8,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2808,6 +3207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 21.8,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2815,6 +3215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -300.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2822,6 +3223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -300.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2829,6 +3231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -300.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2836,6 +3239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -300.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2843,6 +3247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -402.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2850,6 +3255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -402.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2857,6 +3263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -402.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2864,6 +3271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 29, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -402.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2871,6 +3279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -358.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2878,6 +3287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -358.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2885,6 +3295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -358.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2892,6 +3303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -358.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2899,6 +3311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -603.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2906,6 +3319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -603.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2913,6 +3327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -603.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2920,6 +3335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -603.675,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2927,6 +3343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -725.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2934,6 +3351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -725.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2941,6 +3359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -725.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2948,6 +3367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -725.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2955,6 +3375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -645.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2962,6 +3383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -645.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2969,6 +3391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -645.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2976,6 +3399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -645.7,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2983,6 +3407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -693.2,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2990,6 +3415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -693.2,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -2997,6 +3423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -693.2,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3004,6 +3431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -693.2,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3011,6 +3439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -446.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3018,6 +3447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -446.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3025,6 +3455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -446.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3032,6 +3463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -446.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3039,6 +3471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -296.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3046,6 +3479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -296.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3053,6 +3487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -296.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3060,6 +3495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -296.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3067,6 +3503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -456.875,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3074,6 +3511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -456.875,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3081,6 +3519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -456.875,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3088,6 +3527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -456.875,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3095,6 +3535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -236.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3102,6 +3543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -236.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3109,6 +3551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -236.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3116,6 +3559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -236.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3123,6 +3567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -466.575,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3130,6 +3575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -466.575,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3137,6 +3583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -466.575,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3144,6 +3591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -466.575,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3151,6 +3599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -658.6,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3158,6 +3607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -658.6,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3165,6 +3615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -658.6,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3172,6 +3623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -658.6,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3179,6 +3631,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -445.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3186,6 +3639,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -445.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3193,6 +3647,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -445.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3200,6 +3655,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -445.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3207,6 +3663,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -542.225,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3214,6 +3671,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -542.225,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3221,6 +3679,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -542.225,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3228,6 +3687,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -542.225,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3235,6 +3695,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -580.4,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3242,6 +3703,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -580.4,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3249,6 +3711,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -580.4,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3256,6 +3719,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -580.4,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3263,6 +3727,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -479.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3270,6 +3735,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -479.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3277,6 +3743,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -479.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3284,6 +3751,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -479.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3291,6 +3759,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -366.025,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3298,6 +3767,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -366.025,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3305,6 +3775,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -366.025,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3312,6 +3783,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -366.025,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3319,6 +3791,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -263.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3326,6 +3799,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -263.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3333,6 +3807,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -263.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3340,6 +3815,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -263.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3347,6 +3823,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -422.625,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3354,6 +3831,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -422.625,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3361,6 +3839,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -422.625,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3368,6 +3847,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -422.625,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3375,6 +3855,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -681.05,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3382,6 +3863,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -681.05,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3389,6 +3871,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -681.05,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3396,6 +3879,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -681.05,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3403,6 +3887,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -698.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3410,6 +3895,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -698.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3417,6 +3903,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -698.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3424,6 +3911,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -698.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3431,6 +3919,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -543.925,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3438,6 +3927,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -543.925,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3445,6 +3935,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -543.925,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3452,6 +3943,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -543.925,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3459,6 +3951,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -827.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3466,6 +3959,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -827.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3473,6 +3967,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -827.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3480,6 +3975,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -827.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3487,6 +3983,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -843.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3494,6 +3991,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -843.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3501,6 +3999,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -843.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3508,6 +4007,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -843.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3515,6 +4015,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -851.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3522,6 +4023,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -851.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3529,6 +4031,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -851.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3536,6 +4039,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 30, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -851.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3543,6 +4047,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -890.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3550,6 +4055,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -890.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3557,6 +4063,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -890.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3564,6 +4071,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -890.0,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3571,6 +4079,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -817.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3578,6 +4087,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -817.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3585,6 +4095,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -817.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3592,6 +4103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -817.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3599,6 +4111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -815.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3606,6 +4119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -815.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3613,6 +4127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -815.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3620,6 +4135,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -815.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3627,6 +4143,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -787.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3634,6 +4151,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -787.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3641,6 +4159,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -787.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3648,6 +4167,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -787.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3655,6 +4175,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -750.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3662,6 +4183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -750.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3669,6 +4191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -750.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3676,6 +4199,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -750.25,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3683,6 +4207,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -619.725,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3690,6 +4215,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -619.725,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3697,6 +4223,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -619.725,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3704,6 +4231,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -619.725,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3711,6 +4239,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -499.425,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3718,6 +4247,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -499.425,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3725,6 +4255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -499.425,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3732,6 +4263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -499.425,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3739,6 +4271,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -416.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3746,6 +4279,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -416.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3753,6 +4287,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -416.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3760,6 +4295,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -416.775,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3767,6 +4303,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -535.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3774,6 +4311,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -535.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3781,6 +4319,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -535.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3788,6 +4327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -535.375,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3795,6 +4335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -705.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3802,6 +4343,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -705.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3809,6 +4351,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -705.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3816,6 +4359,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -705.65,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3823,6 +4367,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3830,6 +4375,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3837,6 +4383,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3844,6 +4391,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -867.275,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3851,6 +4399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -982.075,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3858,6 +4407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -982.075,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3865,6 +4415,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -982.075,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3872,6 +4423,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -982.075,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3879,6 +4431,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -682.125,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3886,6 +4439,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -682.125,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3893,6 +4447,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -682.125,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3900,6 +4455,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -682.125,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3907,6 +4463,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -219.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3914,6 +4471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -219.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3921,6 +4479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -219.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3928,6 +4487,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': -219.475,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3935,6 +4495,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 31.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3942,6 +4503,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 31.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3949,6 +4511,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 31.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3956,6 +4519,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 31.35,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3963,6 +4527,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 499.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3970,6 +4535,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 499.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3977,6 +4543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 499.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3984,6 +4551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 499.3,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3991,6 +4559,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 442.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -3998,6 +4567,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 442.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4005,6 +4575,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 442.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4012,6 +4583,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 442.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4019,6 +4591,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 352.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4026,6 +4599,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 352.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4033,6 +4607,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 352.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4040,6 +4615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 352.5,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4047,6 +4623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 320.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4054,6 +4631,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 320.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',
@@ -4061,6 +4639,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 10, 31, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
+      'datetime_end': None,
       'netFlow': 320.75,
       'sortedZoneKeys': 'CZ->PL',
       'source': 'ceps.cz',

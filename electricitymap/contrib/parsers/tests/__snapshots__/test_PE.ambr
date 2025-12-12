@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 57.9,
         'coal': 0.0,
@@ -24,6 +25,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.8,
         'coal': 0.0,
@@ -43,6 +45,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.4,
         'coal': 0.0,
@@ -62,6 +65,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.8,
         'coal': 0.0,
@@ -81,6 +85,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.1,
         'coal': 0.0,
@@ -100,6 +105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.5,
         'coal': 0.0,
@@ -119,6 +125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.2,
         'coal': 0.0,
@@ -138,6 +145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.1,
         'coal': 0.0,
@@ -157,6 +165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.7,
         'coal': 0.0,
@@ -176,6 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 71.3,
         'coal': 0.0,
@@ -195,6 +205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 73.3,
         'coal': 0.0,
@@ -214,6 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.0,
         'coal': 0.0,
@@ -233,6 +245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.9,
         'coal': 0.0,
@@ -252,6 +265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 80.4,
         'coal': 0.0,
@@ -271,6 +285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 80.4,
         'coal': 0.0,
@@ -290,6 +305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.3,
         'coal': 0.0,
@@ -309,6 +325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 76.4,
         'coal': 0.0,
@@ -328,6 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 77.3,
         'coal': 0.0,
@@ -347,6 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 75.3,
         'coal': 0.0,
@@ -366,6 +385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 74.5,
         'coal': 0.0,
@@ -385,6 +405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 72.7,
         'coal': 0.0,
@@ -404,6 +425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 71.2,
         'coal': 0.0,
@@ -423,6 +445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 74.8,
         'coal': 0.0,
@@ -442,6 +465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 74.4,
         'coal': 0.0,
@@ -461,6 +485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 76.6,
         'coal': 0.0,
@@ -480,6 +505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.1,
         'coal': 0.0,
@@ -499,6 +525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.2,
         'coal': 0.0,
@@ -518,6 +545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.0,
         'coal': 0.0,
@@ -537,6 +565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 77.7,
         'coal': 0.0,
@@ -556,6 +585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 79.5,
         'coal': 0.0,
@@ -575,6 +605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 80.1,
         'coal': 0.0,
@@ -594,6 +625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.8,
         'coal': 0.0,
@@ -613,6 +645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 82.1,
         'coal': 0.0,
@@ -632,6 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.8,
         'coal': 0.0,
@@ -651,6 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.0,
         'coal': 0.0,
@@ -670,6 +705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 80.3,
         'coal': 0.0,
@@ -689,6 +725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.0,
         'coal': 0.0,
@@ -708,6 +745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.5,
         'coal': 0.0,
@@ -727,6 +765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.6,
         'coal': 0.0,
@@ -746,6 +785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.8,
         'coal': 0.0,
@@ -765,6 +805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 81.4,
         'coal': 0.0,
@@ -784,6 +825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 79.0,
         'coal': 0.0,
@@ -803,6 +845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.4,
         'coal': 0.0,
@@ -822,6 +865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 78.0,
         'coal': 0.0,
@@ -841,6 +885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 79.3,
         'coal': 0.0,
@@ -860,6 +905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 79.2,
         'coal': 0.0,
@@ -879,6 +925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 9, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 79.4,
         'coal': 0.0,
@@ -898,6 +945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 80.5,
         'coal': 0.0,
@@ -917,6 +965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.2,
         'coal': 0.0,
@@ -936,6 +985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.2,
         'coal': 0.0,
@@ -955,6 +1005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.5,
         'coal': 0.0,
@@ -974,6 +1025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.1,
         'coal': 0.0,
@@ -993,6 +1045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.5,
         'coal': 0.0,
@@ -1012,6 +1065,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.9,
         'coal': 0.0,
@@ -1031,6 +1085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.6,
         'coal': 0.0,
@@ -1050,6 +1105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.9,
         'coal': 0.0,
@@ -1069,6 +1125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.7,
         'coal': 0.0,
@@ -1088,6 +1145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.4,
         'coal': 0.0,
@@ -1107,6 +1165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.6,
         'coal': 0.0,
@@ -1126,6 +1185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.0,
         'coal': 0.0,
@@ -1145,6 +1205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.4,
         'coal': 0.0,
@@ -1164,6 +1225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.5,
         'coal': 0.0,
@@ -1183,6 +1245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.6,
         'coal': 0.0,
@@ -1202,6 +1265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.6,
         'coal': 0.0,
@@ -1221,6 +1285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.4,
         'coal': 0.0,
@@ -1240,6 +1305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.0,
         'coal': 0.0,
@@ -1259,6 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.6,
         'coal': 0.0,
@@ -1278,6 +1345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 0.0,
@@ -1297,6 +1365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.2,
         'coal': 0.0,
@@ -1316,6 +1385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.6,
         'coal': 0.0,
@@ -1335,6 +1405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 0.0,
@@ -1354,6 +1425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.7,
         'coal': 0.0,
@@ -1373,6 +1445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.9,
         'coal': 0.0,
@@ -1392,6 +1465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.0,
         'coal': 0.0,
@@ -1411,6 +1485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.6,
         'coal': 0.0,
@@ -1430,6 +1505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.5,
         'coal': 0.0,
@@ -1449,6 +1525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 64.0,
         'coal': 0.0,
@@ -1468,6 +1545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 66.9,
         'coal': 0.0,
@@ -1487,6 +1565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.4,
         'coal': 0.0,
@@ -1506,6 +1585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 0.0,
@@ -1525,6 +1605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.1,
         'coal': 0.0,
@@ -1544,6 +1625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.6,
         'coal': 0.0,
@@ -1563,6 +1645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.3,
         'coal': 0.0,
@@ -1582,6 +1665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.1,
         'coal': 0.0,
@@ -1601,6 +1685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.9,
         'coal': 0.0,
@@ -1620,6 +1705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.3,
         'coal': 0.0,
@@ -1639,6 +1725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.8,
         'coal': 0.0,
@@ -1658,6 +1745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.5,
         'coal': 0.0,
@@ -1677,6 +1765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 68.6,
         'coal': 0.0,
@@ -1696,6 +1785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.5,
         'coal': 0.0,
@@ -1715,6 +1805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 67.6,
         'coal': 0.0,
@@ -1734,6 +1825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.5,
         'coal': 0.0,
@@ -1753,6 +1845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.5,
         'coal': 0.0,
@@ -1772,6 +1865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 69.6,
         'coal': 0.0,
@@ -1791,6 +1885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 10, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.4,
         'coal': 0.0,
@@ -1810,6 +1905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 9, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Lima')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 70.4,
         'coal': 0.0,

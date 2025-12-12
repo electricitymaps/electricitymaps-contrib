@@ -265,6 +265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 646.85,
@@ -285,6 +286,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 646.58,
@@ -305,6 +307,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 646.87,
@@ -325,6 +328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 645.67,
@@ -345,6 +349,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 645.66,
@@ -365,6 +370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 645.56,
@@ -385,6 +391,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 642.73,
@@ -405,6 +412,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 645.51,
@@ -425,6 +433,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 625.63,
@@ -445,6 +454,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 501.42,
@@ -465,6 +475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 401.97,
@@ -485,6 +496,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 390.35,
@@ -505,6 +517,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 392.48,
@@ -525,6 +538,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 392.23,
@@ -545,6 +559,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 525.43,
@@ -565,6 +580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 507.28,
@@ -585,6 +601,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 472.48,
@@ -605,6 +622,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 463.86,
@@ -625,6 +643,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 459.65,
@@ -645,6 +664,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 465.05,
@@ -665,6 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 553.4,
@@ -685,6 +706,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0.2,
         'coal': 579.5,
@@ -705,6 +727,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 625.5,
@@ -725,6 +748,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 612.3,
@@ -749,6 +773,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 320.97,
         'coal': 476.04,
@@ -770,6 +795,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 323.26,
         'coal': 476.91,
@@ -791,6 +817,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 316.96,
         'coal': 476.78,
@@ -812,6 +839,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 322.07,
         'coal': 476.24,
@@ -833,6 +861,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 313.16,
         'coal': 475.63,
@@ -854,6 +883,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 314.84,
         'coal': 476.17,
@@ -875,6 +905,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 309.27,
         'coal': 474.33,
@@ -896,6 +927,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 313.72,
         'coal': 475.38,
@@ -917,6 +949,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 308.08,
         'coal': 475.22,
@@ -938,6 +971,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 308.41,
         'coal': 475.56,
@@ -959,6 +993,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 307.72,
         'coal': 476.54,
@@ -980,6 +1015,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 4, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 304.24,
         'coal': 476.7,

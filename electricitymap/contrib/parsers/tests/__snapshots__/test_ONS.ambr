@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -0.009936,
       'sortedZoneKeys': 'AR->BR-S',
       'source': 'ons.org.br',
@@ -14,6 +15,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -0.009936,
       'sortedZoneKeys': 'AR->BR-S',
       'source': 'ons.org.br',
@@ -25,6 +27,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -942.2021,
       'sortedZoneKeys': 'AR->BR-S',
       'source': 'ons.org.br',
@@ -36,6 +39,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -2816.56787,
       'sortedZoneKeys': 'BR-CS->BR-N',
       'source': 'ons.org.br',
@@ -47,6 +51,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -2816.56787,
       'sortedZoneKeys': 'BR-CS->BR-N',
       'source': 'ons.org.br',
@@ -58,6 +63,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -3529.24756,
       'sortedZoneKeys': 'BR-CS->BR-N',
       'source': 'ons.org.br',
@@ -69,6 +75,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 785.116638,
       'sortedZoneKeys': 'BR-CS->BR-NE',
       'source': 'ons.org.br',
@@ -80,6 +87,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 785.116638,
       'sortedZoneKeys': 'BR-CS->BR-NE',
       'source': 'ons.org.br',
@@ -91,6 +99,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -5336.844,
       'sortedZoneKeys': 'BR-CS->BR-NE',
       'source': 'ons.org.br',
@@ -102,6 +111,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 203.333054,
       'sortedZoneKeys': 'BR-CS->BR-S',
       'source': 'ons.org.br',
@@ -113,6 +123,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 203.333054,
       'sortedZoneKeys': 'BR-CS->BR-S',
       'source': 'ons.org.br',
@@ -124,6 +135,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': 4357.55273,
       'sortedZoneKeys': 'BR-CS->BR-S',
       'source': 'ons.org.br',
@@ -135,6 +147,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 2967.768,
       'sortedZoneKeys': 'BR-N->BR-NE',
       'source': 'ons.org.br',
@@ -146,6 +159,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 2967.768,
       'sortedZoneKeys': 'BR-N->BR-NE',
       'source': 'ons.org.br',
@@ -157,6 +171,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -4413.3833,
       'sortedZoneKeys': 'BR-N->BR-NE',
       'source': 'ons.org.br',
@@ -168,6 +183,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -0.0,
       'sortedZoneKeys': 'BR-S->PY',
       'source': 'ons.org.br',
@@ -179,6 +195,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': -0.0,
       'sortedZoneKeys': 'BR-S->PY',
       'source': 'ons.org.br',
@@ -190,6 +207,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -0.0,
       'sortedZoneKeys': 'BR-S->PY',
       'source': 'ons.org.br',
@@ -201,6 +219,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 14.0,
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'ons.org.br',
@@ -212,6 +231,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'netFlow': 14.0,
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'ons.org.br',
@@ -223,6 +243,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': -0.9615,
       'sortedZoneKeys': 'BR-S->UY',
       'source': 'ons.org.br',
@@ -236,6 +257,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 35888.05363,
         'nuclear': 1829.29529,
@@ -258,6 +280,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 35888.05363,
         'nuclear': 1829.29529,
@@ -279,6 +302,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 17603.9198,
         'nuclear': 2011.05078,
@@ -300,6 +324,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9856.75,
         'nuclear': 0.0,
@@ -321,6 +346,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9856.75,
         'nuclear': 0.0,
@@ -342,6 +368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2854.34839,
         'nuclear': 0.0,
@@ -364,6 +391,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1921.36816,
         'nuclear': 0.0,
@@ -386,6 +414,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 1921.36816,
         'nuclear': 0.0,
@@ -407,6 +436,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 2081.71338,
         'nuclear': 0.0,
@@ -428,6 +458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9273.746,
         'nuclear': 0.0,
@@ -449,6 +480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 9273.746,
         'nuclear': 0.0,
@@ -470,6 +502,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'hydro': 8748.055,
         'nuclear': 0.0,

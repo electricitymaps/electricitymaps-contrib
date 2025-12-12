@@ -450,6 +450,7 @@ class Exchange(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -458,6 +459,7 @@ class Exchange(Event):
             return Exchange(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 netFlow=_none_safe_round(netFlow),
                 sourceType=sourceType,
@@ -502,6 +504,7 @@ class Exchange(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "datetime_end": self.datetime_end,
             "sortedZoneKeys": self.zoneKey,
             "netFlow": self.netFlow,
             "source": self.source,
@@ -532,6 +535,7 @@ class TotalProduction(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -540,6 +544,7 @@ class TotalProduction(Event):
             return TotalProduction(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 value=_none_safe_round(value),
                 sourceType=sourceType,
@@ -759,6 +764,7 @@ class TotalConsumption(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -767,6 +773,7 @@ class TotalConsumption(Event):
             return TotalConsumption(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 consumption=_none_safe_round(consumption),
                 sourceType=sourceType,
@@ -824,6 +831,7 @@ class Price(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         price: float | None,
         currency: str,
@@ -833,6 +841,7 @@ class Price(Event):
             return Price(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 price=price,
                 currency=currency,
@@ -876,6 +885,7 @@ class LocationalMarginalPrice(Price):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        datetime_end: datetime | None,
         source: str,
         price: float | None,
         currency: str,
@@ -886,6 +896,7 @@ class LocationalMarginalPrice(Price):
             return LocationalMarginalPrice(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                datetime_end=datetime_end,
                 source=source,
                 price=price,
                 currency=currency,

@@ -124,6 +124,7 @@ def test_exchange_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DER->FR"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             netFlow=-1,
             source="trust.me",
         )
@@ -222,6 +223,7 @@ def test_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             consumption=-1,
             source="trust.me",
         )
@@ -474,6 +476,7 @@ def test_negative_production_gets_corrected():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             production=mix,
             source="trust.me",
         )
@@ -500,6 +503,7 @@ def test_self_report_negative_value():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             production=mix,
             source="trust.me",
         )
@@ -573,6 +577,7 @@ def test_static_create_logs_error_with_none():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             production=ProductionMix(wind=None),
             source="trust.me",
         )
@@ -586,6 +591,7 @@ def test_static_create_logs_with_nan():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             production=ProductionMix(wind=math.nan),
             source="trust.me",
         )
@@ -599,6 +605,7 @@ def test_static_create_logs_with_nan_using_numpy():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             production=ProductionMix(wind=np.nan),
             source="trust.me",
         )
@@ -653,6 +660,7 @@ def test_total_production_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            datetime_end=None,
             value=-1,
             source="trust.me",
         )

@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 4, 25, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 0,
         'coal': 0,

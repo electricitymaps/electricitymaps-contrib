@@ -524,7 +524,7 @@ class StartEndDatetime(NamedTuple):
 @lru_cache(maxsize=1024)
 def datetime_from_position(
     start: datetime, position: int, resolution: timedelta
-) -> tuple[datetime, datetime]:
+) -> StartEndDatetime:
     """Calculates the datetime from a given start datetime, position, and resolution."""
     return StartEndDatetime(
         start=start + (position - 1) * resolution,
@@ -536,7 +536,7 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> Generator[tuple[datetime, float], None, None]:
+) -> Generator[tuple[datetime, datetime, float], None, None]:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
@@ -865,13 +865,14 @@ def parse_exchange(
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
     points = parse_scalar(xml_text)
-    for dt, quantity in points:
+    for dt, dt_end, quantity in points:
         if is_import:
             quantity *= -1
         # Find out whether or not we should update the net production
         exchange_list.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             netFlow=quantity,
         )
@@ -899,13 +900,14 @@ def parse_exchange_forecast(
 
         points = _get_datetime_value_from_timeseries(timeseries, "quantity")
 
-        for dt, quantity in points:
+        for dt, dt_end, quantity in points:
             if is_import:
                 quantity *= -1
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
                 datetime=dt,
+                datetime_end=dt_end,
                 source=SOURCE,
                 netFlow=quantity,
                 sourceType=EventSourceType.forecasted,
@@ -926,10 +928,11 @@ def parse_prices(
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
-        for dt, value in points:
+        for dt, dt_end, value in points:
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
+                datetime_end=dt_end,
                 price=value,
                 source="entsoe.eu",
                 currency=currency,
@@ -1284,10 +1287,11 @@ def fetch_generation_forecast(
             message=f"No generation forecast data found for {zone_key}",
             zone_key=zone_key,
         )
-    for dt, value in parsed:
+    for dt, dt_end, value in parsed:
         generation_list.append(
             zoneKey=zone_key,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             value=value,
             sourceType=EventSourceType.forecasted,
@@ -1332,10 +1336,11 @@ def get_raw_consumption_list(
             message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
             zone_key=zone_key,
         )
-    for dt, value in parsed:
+    for dt, dt_end, value in parsed:
         consumption_list.append(
             zoneKey=zone_key,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             consumption=value,
             sourceType=EventSourceType.forecasted
