@@ -4,15 +4,55 @@ bounding_box:
   - - 17.699686739075773
     - 58.013078824484765
 capacity:
-  biomass: 883
-  coal: 0
-  gas: 582
-  geothermal: 0
-  hydro: 345
-  nuclear: 0
-  oil: 662
-  solar: 1091
-  wind: 2098
+  biomass:
+    - datetime: '2017-01-01'
+      value: 883
+  coal:
+    - datetime: '2017-01-01'
+      value: 0
+  gas:
+    - datetime: '2017-01-01'
+      value: 582
+  geothermal:
+    - datetime: '2017-01-01'
+      value: 0
+  hydro:
+    - datetime: '2017-01-01'
+      value: 345
+  nuclear:
+    - datetime: '2017-01-01'
+      value: 0
+  oil:
+    - datetime: '2017-01-01'
+      value: 662
+  solar:
+    - datetime: '2017-01-01'
+      value: 1091
+  wind:
+    - datetime: '2017-01-01'
+      value: 1627.49
+      source: energimyndigheten.se
+    - datetime: '2018-01-01'
+      value: 1630.66
+      source: energimyndigheten.se
+    - datetime: '2019-01-01'
+      value: 1652.93
+      source: energimyndigheten.se
+    - datetime: '2020-01-01'
+      value: 1649.20
+      source: energimyndigheten.se
+    - datetime: '2021-01-01'
+      value: 1921.89
+      source: energimyndigheten.se
+    - datetime: '2022-01-01'
+      value: 2183.00
+      source: energimyndigheten.se
+    - datetime: '2023-01-01'
+      value: 2431.34
+      source: energimyndigheten.se
+    - datetime: '2024-01-01'
+      value: 2443.88
+      source: energimyndigheten.se
 country: SE
 delays:
   production: 7
