@@ -4,12 +4,40 @@ bounding_box:
   - - 19.873529599638907
     - 62.50688674370767
 capacity:
-  biomass: 2561
-  gas: 950
-  hydro: 2593
-  nuclear: 9000
-  solar: 1130
-  wind: 3678
+  biomass:
+    - datetime: '2017-01-01'
+      value: 2561
+  gas:
+    - datetime: '2017-01-01'
+      value: 950
+  hydro:
+    - datetime: '2017-01-01'
+      value: 2593
+  nuclear:
+    - datetime: '2017-01-01'
+      value: 9076.00
+      source: entsoe.eu
+    - datetime: '2018-01-01'
+      value: 8603.00
+      source: entsoe.eu
+    - datetime: '2019-01-01'
+      value: 8586.00
+      source: entsoe.eu
+    - datetime: '2020-01-01'
+      value: 7710.00
+      source: entsoe.eu
+    - datetime: '2021-01-01'
+      value: 6871.00
+      source: entsoe.eu
+    - datetime: '2022-01-01'
+      value: 6900.00
+      source: entsoe.eu
+  solar:
+    - datetime: '2017-01-01'
+      value: 1130
+  wind:
+    - datetime: '2017-01-01'
+      value: 3678
 country: SE
 delays:
   production: 7
