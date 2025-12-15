@@ -23,7 +23,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
