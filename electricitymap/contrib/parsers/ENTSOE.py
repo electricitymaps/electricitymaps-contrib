@@ -60,8 +60,8 @@ DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
 
 # SoupStrainer instances for efficient XML parsing
 # Only parse the elements we care about in each context
-STRAINER_TIMESERIES = SoupStrainer("timeseries")
-STRAINER_TEXT = SoupStrainer("text")
+STRAINER_TIMESERIES = SoupStrainer("TimeSeries")
+STRAINER_TEXT = SoupStrainer("Text")
 
 
 # TODO: Switch this to a string enum when we migrate to Python 3.11
