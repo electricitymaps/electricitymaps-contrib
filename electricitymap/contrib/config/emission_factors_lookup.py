@@ -274,9 +274,9 @@ def get_emission_factors_with_metadata_all_years(
                 except ValidationError as e:
                     errors.append(
                         {
+                            "mode": mode,
                             "zone_key": zone_key,
                             "dt": dt,
-                            "mode": mode,
                             "errors": e.errors(),
                         }
                     )
