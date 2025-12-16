@@ -30,6 +30,7 @@ ruff = "0.11.2"
 tzdata = "^2025.2"
 numpy = "^1.24.4"
 odfpy = { version = "^1.4.1", optional = true }
+pdfplumber = "^0.11.7"
 
 [tool.poetry.scripts]
 test-parser = 'test_parser:test_parser'
@@ -59,6 +60,7 @@ parsers = [
     "pydataxm",
     "pycountry",
     "odfpy",
+    "pdfplumber"
 ]
 
 scripts = ["xmltodict"]

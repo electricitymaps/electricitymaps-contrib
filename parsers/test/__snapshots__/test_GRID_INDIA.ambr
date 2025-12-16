@@ -1,0 +1,78 @@
+# serializer version: 1
+# name: test_exchanges[BD]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': -936.667,
+      'sortedZoneKeys': 'BD->IN-EA',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[BT]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': 731.25,
+      'sortedZoneKeys': 'BT->IN-EA',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[IN-NE]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': -1150.0,
+      'sortedZoneKeys': 'IN-EA->IN-NE',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[IN-NO]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': -1637.5,
+      'sortedZoneKeys': 'IN-EA->IN-NO',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[IN-SO]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': -3083.333,
+      'sortedZoneKeys': 'IN-EA->IN-SO',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[IN-WE]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': 2029.167,
+      'sortedZoneKeys': 'IN-EA->IN-WE',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
+# name: test_exchanges[NP]
+  list([
+    dict({
+      'datetime': datetime.datetime(2023, 6, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
+      'netFlow': -253.333,
+      'sortedZoneKeys': 'IN-EA->NP',
+      'source': 'grid-india.in',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---
