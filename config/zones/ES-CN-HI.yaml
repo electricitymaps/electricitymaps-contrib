@@ -297,6 +297,7 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.4601475232281346
+has_day_ahead_price_license: True
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
