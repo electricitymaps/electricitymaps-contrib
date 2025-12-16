@@ -15,8 +15,8 @@ def test_all_emission_factor_error(snapshot):
         pd.DataFrame(errors)
         .sort_values(
             by=[
-                "zone_key",
                 "mode",
+                "zone_key",
                 "dt",
             ]
         )
