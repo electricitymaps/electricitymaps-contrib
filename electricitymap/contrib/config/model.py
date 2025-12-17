@@ -2,7 +2,8 @@ from collections.abc import Callable
 from datetime import date, datetime, timezone
 from enum import Enum
 
-from pydantic import (
+# Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
+from pydantic.v1 import (
     BaseModel,
     Field,
     NonNegativeFloat,
@@ -11,7 +12,7 @@ from pydantic import (
     root_validator,
     validator,
 )
-from pydantic.utils import import_string
+from pydantic.v1.utils import import_string
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
