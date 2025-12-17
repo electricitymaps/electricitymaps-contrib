@@ -1,56 +1,35 @@
 bounding_box:
-  - - -188
-    - 51
-  - - -130
-    - 72
+- - -188
+  - 51
+- - -130
+  - 72
 country: US
+country_name: USA
+currency: USD
 emissionFactors:
-  direct:
-    coal:
-      - datetime: '2020-01-01'
-        source: eGrid 2020
-        value: 1054.589992
-      - datetime: '2021-01-01'
-        source: eGrid 2021
-        value: 1040.21
-    gas:
-      - datetime: '2020-01-01'
-        source: eGrid 2020
-        value: 470.7986093
-      - datetime: '2021-01-01'
-        source: eGrid 2021
-        value: 442.92
-    oil:
-      - datetime: '2020-01-01'
-        source: eGrid 2020
-        value: 713.1828107
-      - datetime: '2021-01-01'
-        source: eGrid 2021
-        value: 663.88
   lifecycle:
+    biomass:
+    - _comment: Mean of all US zones
+      datetime: '2021-01-01'
+      source: eGrid 2021
+      value: 280.6015234636058
     coal:
-      - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
-        value: 1061.619377
-      - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
-        value: 1047.239385
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 1100.2108414955262
     gas:
-      - datetime: '2020-01-01'
-        source: eGrid 2020; IPCC 2014
-        value: 590.7986093
-      - datetime: '2021-01-01'
-        source: eGrid 2021; IPCC 2014
-        value: 562.9200000000001
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 562.923719134925
+    geothermal:
+    - _comment: Mean of all US zones
+      datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 116.28737905336972
     oil:
-      - datetime: '2020-01-01'
-        source: eGrid 2020; IPCC 2014
-        value: 957.1828107
-      - datetime: '2021-01-01'
-        source: eGrid 2021; IPCC 2014
-        value: 907.88
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 907.8839597479941
 region: Americas
 sources:
   IPCC 2014:
@@ -61,5 +40,3 @@ sources:
     link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
 timezone: America/Anchorage
 zone_name: Alaska
-country_name: USA
-currency: USD
