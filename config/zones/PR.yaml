@@ -114,6 +114,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: BEIS 2021
       value: 0.0
+    - datetime: '2022-01-01'
+      source: BEIS 2021
+      value: 0.0
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -121,6 +124,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 1014.2941036716782
+    - datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 1036.401437700579
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -128,11 +134,18 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 527.7229942577874
+    - datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 546.0634245928852
     geothermal:
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021
       value: 78.28737905336972
+    - _comment: Mean of all US zones
+      datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 29.707905036391203
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -162,6 +175,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 769.7242211326042
+    - datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 807.9594211794373
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -190,19 +206,33 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2021
       value: 280.6015234636058
+    - _comment: Mean of all US zones
+      datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 274.05045073430733
     coal:
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 1074.2941036716782
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 1096.401437700579
     gas:
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 647.7229942577874
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 666.0634245928852
     geothermal:
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 116.28737905336972
+    - _comment: Mean of all US zones
+      datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 67.7079050363912
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -229,6 +259,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 1013.7242211326042
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 1051.9594211794374
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
