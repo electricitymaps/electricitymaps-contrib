@@ -313,6 +313,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 923.04
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 828.47
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -323,6 +326,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 391.99
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 415.47
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -355,6 +361,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 657.06
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 889.95
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -403,6 +412,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 983.04
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 888.47
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -413,6 +425,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 511.99
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 535.47
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -462,6 +477,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 901.06
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 1133.95
     solar:
       datetime: '2021-01-01'
       source: INCER ACV

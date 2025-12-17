@@ -247,6 +247,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 1048.2
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 1041.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -257,6 +260,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 410.56
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 415.69
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -335,6 +341,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 1108.2
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 1101.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -345,6 +354,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 530.56
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 535.69
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
