@@ -1138,11 +1138,11 @@
     },
     "NO-NO1": {
       "countryName": "挪威",
-      "zoneName": "挪威東南部"
+      "zoneName": "挪威東部"
     },
     "NO-NO2": {
       "countryName": "挪威",
-      "zoneName": "挪威西南部"
+      "zoneName": "挪威南部"
     },
     "NO-NO3": {
       "countryName": "挪威",
@@ -1154,7 +1154,7 @@
     },
     "NO-NO5": {
       "countryName": "挪威",
-      "zoneName": "西部挪威"
+      "zoneName": "挪威西部"
     },
     "NP": {
       "zoneName": "尼泊爾"

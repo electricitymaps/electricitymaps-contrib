@@ -945,23 +945,23 @@
     },
     "NO-NO1": {
       "countryName": "Norway",
-      "zoneName": "Southeast Norway"
+      "zoneName": "Eastern Norway"
     },
     "NO-NO2": {
       "countryName": "Norway",
-      "zoneName": "Southwest Norway"
+      "zoneName": "Southern Norway"
     },
     "NO-NO3": {
       "countryName": "Norway",
-      "zoneName": "Middle Norway"
+      "zoneName": "Central Norway"
     },
     "NO-NO4": {
       "countryName": "Norway",
-      "zoneName": "North Norway"
+      "zoneName": "Northern Norway"
     },
     "NO-NO5": {
       "countryName": "Norway",
-      "zoneName": "West Norway"
+      "zoneName": "Western Norway"
     },
     "NP": {
       "zoneName": "Nepal"
