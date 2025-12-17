@@ -2,16 +2,30 @@ from collections.abc import Callable
 from datetime import date, datetime, timezone
 from enum import Enum
 
-from pydantic import (
-    BaseModel,
-    Field,
-    NonNegativeFloat,
-    PositiveInt,
-    confloat,
-    root_validator,
-    validator,
-)
-from pydantic.utils import import_string
+try:
+    # Pydantic v2 with v1 compatibility
+    from pydantic.v1 import (
+        BaseModel,
+        Field,
+        NonNegativeFloat,
+        PositiveInt,
+        confloat,
+        root_validator,
+        validator,
+    )
+    from pydantic.v1.utils import import_string
+except ImportError:
+    # Pydantic v1
+    from pydantic import (
+        BaseModel,
+        Field,
+        NonNegativeFloat,
+        PositiveInt,
+        confloat,
+        root_validator,
+        validator,
+    )
+    from pydantic.utils import import_string
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
