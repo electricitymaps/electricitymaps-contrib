@@ -193,6 +193,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: BEIS 2021
       value: 0.0
+    - datetime: '2023-01-01'
+      source: BEIS 2021
+      value: 0.0
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -203,6 +206,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022
       value: 1019.8754600552801
+    - datetime: '2023-01-01'
+      source: eGrid 2023
+      value: 1041.256839238835
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -213,6 +219,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022
       value: 585.8110833393567
+    - datetime: '2023-01-01'
+      source: eGrid 2023
+      value: 581.6705529835303
     geothermal:
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
@@ -222,6 +231,10 @@ emissionFactors:
       datetime: '2022-01-01'
       source: eGrid 2022
       value: 29.707905036391203
+    - _comment: Mean of all US zones
+      datetime: '2023-01-01'
+      source: eGrid 2023
+      value: 28.739435464835893
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -254,6 +267,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022
       value: 838.4331666962912
+    - datetime: '2023-01-01'
+      source: eGrid 2023
+      value: 837.1102281005788
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -295,6 +311,10 @@ emissionFactors:
       datetime: '2022-01-01'
       source: eGrid 2022
       value: 274.05045073430733
+    - _comment: Mean of all US zones
+      datetime: '2023-01-01'
+      source: eGrid 2023
+      value: 282.7016835752059
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -306,6 +326,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022; IPCC 2014
       value: 1079.8754600552802
+    - datetime: '2023-01-01'
+      source: eGrid 2023; IPCC 2014
+      value: 1101.256839238835
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
@@ -316,6 +339,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022; IPCC 2014
       value: 705.8110833393567
+    - datetime: '2023-01-01'
+      source: eGrid 2023; IPCC 2014
+      value: 701.6705529835303
     geothermal:
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
@@ -325,6 +351,10 @@ emissionFactors:
       datetime: '2022-01-01'
       source: eGrid 2022; IPCC 2014
       value: 67.7079050363912
+    - _comment: Mean of all US zones
+      datetime: '2023-01-01'
+      source: eGrid 2023; IPCC 2014
+      value: 66.73943546483589
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -366,6 +396,9 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: eGrid 2022; IPCC 2014
       value: 1082.4331666962912
+    - datetime: '2023-01-01'
+      source: eGrid 2023; IPCC 2014
+      value: 1081.1102281005788
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
