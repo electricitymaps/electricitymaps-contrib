@@ -354,6 +354,7 @@ fallbackZoneMixes:
         solar: 0.0007275091951828923
         unknown: 0.00041495388875751785
         wind: 0.014746060245185884
+has_day_ahead_price_license: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -367,4 +368,4 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
-zone_name: West Norway
+zone_name: Western Norway

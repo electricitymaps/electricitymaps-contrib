@@ -360,6 +360,7 @@ fallbackZoneMixes:
         solar: 0.0033313057652980278
         unknown: 0.004530321106530987
         wind: 0.08058754580014128
+has_day_ahead_price_license: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -373,4 +374,4 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
-zone_name: Southeast Norway
+zone_name: Eastern Norway

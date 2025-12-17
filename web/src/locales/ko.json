@@ -383,7 +383,6 @@
       "countryName": "칠레",
       "zoneName": "이스터섬"
     },
-
     "CL-SEA": {
       "countryName": "칠레",
       "zoneName": "SEA"
@@ -968,11 +967,11 @@
     },
     "NO-NO1": {
       "countryName": "노르웨이",
-      "zoneName": "동남부 노르웨이"
+      "zoneName": "동부 노르웨이"
     },
     "NO-NO2": {
       "countryName": "노르웨이",
-      "zoneName": "서남부 노르웨이"
+      "zoneName": "남부 노르웨이"
     },
     "NO-NO3": {
       "countryName": "노르웨이",

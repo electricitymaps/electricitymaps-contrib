@@ -375,6 +375,7 @@ fallbackZoneMixes:
         solar: 0.0003611325736471347
         unknown: 0.00822168167101805
         wind: 0.23964172535285017
+has_day_ahead_price_license: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -388,4 +389,4 @@ sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Oslo
-zone_name: Middle Norway
+zone_name: Central Norway
