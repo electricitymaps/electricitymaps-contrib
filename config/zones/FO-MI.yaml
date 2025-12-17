@@ -1,8 +1,8 @@
 bounding_box:
-  - - -7.963117272061591
-    - 61.248550888568346
-  - - -5.905608910181027
-    - 62.89259194164544
+- - -7.963117272061591
+  - 61.248550888568346
+- - -5.905608910181027
+  - 62.89259194164544
 capacity:
   biomass: 1.3
   hydro: 37.3
@@ -10,11 +10,13 @@ capacity:
   unknown: 0.1
   wind: 37.5
 contributors:
-  - corradio
-  - q--
-  - VIKTORVAV99
-  - amv213
+- corradio
+- q--
+- VIKTORVAV99
+- amv213
 country: FO
+country_name: Faroe Islands
+currency: DKK
 emissionFactors:
   direct:
     biomass:
@@ -22,103 +24,103 @@ emissionFactors:
       source: BEIS 2021
       value: 0
     coal:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 1057.262766
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 1075.5
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 1037.31
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 1057.262766
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022
+      value: 1075.5
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023
+      value: 1048.2
     gas:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 481.60707
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 412.38
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 410.39
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 481.60707
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022
+      value: 412.38
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023
+      value: 410.56
     oil:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021
-        value: 880.903938
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022
-        value: 925.95
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023
-        value: 641.08
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021
+      value: 880.903938
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022
+      value: 925.95
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023
+      value: 641.08
     unknown:
       comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
       source: IPCC 2014
       value: 0
   lifecycle:
     battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 561.19
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 452.83
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 396.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 561.19
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 452.83
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 396.29
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230
     coal:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
-          hotspots of coal power generation."
-        value: 1168.890109
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1144.294608
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1097.31
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+        hotspots of coal power generation."
+      value: 1168.890109
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022; IPCC 2014
+      value: 1144.294608
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023; IPCC 2014
+      value: 1108.2
     gas:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 539.8221756
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 532.38
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 530.39
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      value: 539.8221756
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022; IPCC 2014
+      value: 532.38
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023; IPCC 2014
+      value: 530.56
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 561.19
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 452.83
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 396.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 561.19
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 452.83
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 396.29
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
     oil:
-      - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; IPCC 2014
-        value: 1124.903938
-      - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; IPCC 2014
-        value: 1169.95
-      - datetime: '2023-01-01'
-        source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 885.08
+    - datetime: '2021-01-01'
+      source: EU-ETS, ENTSO-E 2021; IPCC 2014
+      value: 1124.903938
+    - datetime: '2022-01-01'
+      source: EU-ETS, ENTSO-E 2022; IPCC 2014
+      value: 1169.95
+    - datetime: '2023-01-01'
+      source: EU-ETS, ENTSO-E 2023; IPCC 2014
+      value: 885.08
     unknown:
       comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
       source: IPCC 2014
@@ -130,51 +132,51 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2022 average
-      datetime: '2022-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.015358770249353101
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.32013528405183933
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.4716367064030261
-        solar: 0.0
-        unknown: 1.2556994099172868e-05
-        wind: 0.19285617699004856
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.010851775017550648
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.23049654152193183
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.5023903760386292
-        solar: 0.0
-        unknown: 1.6916288038008052e-05
-        wind: 0.25624515141645876
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.01747571033546078
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.246998157847731
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.43595547729955675
-        solar: 0.0
-        unknown: 0.0
-        wind: 0.29956949622511475
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.015358770249353101
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.32013528405183933
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.4716367064030261
+      solar: 0.0
+      unknown: 1.2556994099172868e-05
+      wind: 0.19285617699004856
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.010851775017550648
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.23049654152193183
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.5023903760386292
+      solar: 0.0
+      unknown: 1.6916288038008052e-05
+      wind: 0.25624515141645876
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.01747571033546078
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.246998157847731
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.43595547729955675
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.29956949622511475
 isLowCarbon:
   unknown:
     value: 1
@@ -197,10 +199,7 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
     for 2022-2026" Wind Europe Proceedings (2021)
-  : link:
-      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+  : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Faroe
 zone_name: Main Islands
-country_name: Faroe Islands
-currency: DKK
