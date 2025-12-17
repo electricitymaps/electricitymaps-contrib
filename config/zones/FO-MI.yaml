@@ -33,6 +33,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 1048.2
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 1041.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -43,6 +46,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 410.56
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 415.69
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -53,6 +59,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024
+      value: 889.87
     unknown:
       comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
       source: IPCC 2014
@@ -83,6 +92,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 1108.2
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 1101.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -93,6 +105,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 530.56
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 535.69
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -121,6 +136,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
+    - datetime: '2024-01-01'
+      source: EU-ETS, ENTSO-E 2024; IPCC 2014
+      value: 1133.87
     unknown:
       comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
       source: IPCC 2014
