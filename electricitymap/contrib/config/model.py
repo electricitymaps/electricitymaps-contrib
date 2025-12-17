@@ -188,7 +188,7 @@ class PowerOriginRatiosValues(StrictBaseModelWithAlias):
     unknown: Percentage | None
     wind: Percentage | None
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     def check_sum(cls, values):
         """Check that the sum of all values is approximately 1."""
         _v = [0 if v is None else v for v in values.values()]
@@ -253,7 +253,7 @@ class CategoryContribution(StrictBaseModelWithAlias):
     unknown: ModeCategoryContribution | list[ModeCategoryContribution] | None
     wind: ModeCategoryContribution | list[ModeCategoryContribution] | None
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     def check_contributions(cls, values):
         for v in values.values():
             if isinstance(v, list):
@@ -306,7 +306,7 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     unknown: list[ModeEmissionFactor] | ModeEmissionFactor | None
     wind: list[ModeEmissionFactor] | ModeEmissionFactor | None
 
-    @model_validator(mode='before')
+    @model_validator(mode="before")
     def check_emission_factors(cls, values):
         """
         Check that all emission factors given as list are not empty.
@@ -448,7 +448,7 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
     direct_variant: EmissionFactorVariant
     direct_datetime: datetime | None
 
-    @field_validator("dt", "lifecycle_datetime", "direct_datetime", mode='before')
+    @field_validator("dt", "lifecycle_datetime", "direct_datetime", mode="before")
     def validate_timezone_aware(cls, v: datetime | None) -> datetime | None:
         if v is None:
             return v
