@@ -166,26 +166,26 @@ emissionFactors:
   lifecycle:
     biomass:
     - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 280.6015234636058
+      datetime: '2022-01-01'
+      source: eGrid 2022
+      value: 274.05045073430733
     coal:
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 1091.1107560999872
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 1079.8754600552802
     gas:
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 723.2813480693219
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 705.8110833393567
     geothermal:
     - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 116.28737905336972
+      datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 67.7079050363912
     oil:
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 1074.0476571185673
+    - datetime: '2022-01-01'
+      source: eGrid 2022; IPCC 2014
+      value: 1082.4331666962912
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
