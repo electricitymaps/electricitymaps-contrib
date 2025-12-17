@@ -4,26 +4,26 @@ emissionFactors:
   lifecycle:
     biomass:
     - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 274.05045073430733
+      datetime: '2021-01-01'
+      source: eGrid 2021
+      value: 280.6015234636058
     coal:
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 1131.2929245810315
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 1155.1521821569359
     gas:
     - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 529.0168159348194
+      datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 522.4735945289923
     geothermal:
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 78.29924039587993
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 142.4450431024423
     oil:
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 998.2186987590492
+    - datetime: '2021-01-01'
+      source: eGrid 2021; IPCC 2014
+      value: 997.3092286793209
 region: Americas
 timezone: Pacific/Honolulu
 zone_name: Hawaii
