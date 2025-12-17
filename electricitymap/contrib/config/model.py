@@ -8,8 +8,8 @@ from pydantic import (
     NonNegativeFloat,
     PositiveInt,
     confloat,
-    root_validator,
-    validator,
+    field_validator,
+    model_validator,
 )
 from pydantic.utils import import_string
 
@@ -85,7 +85,7 @@ class ParsersBaseModel(StrictBaseModel):
     def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
-        This requires the consumer to have install all parser dependencies.
+        This requires the consumer to have installed all parser dependencies.
 
         Returns:
             Optional[Callable]: parser function
@@ -149,7 +149,7 @@ class Zone(StrictBaseModelWithAlias):
     country_name: str | None
     currency: str | None
 
-    @validator("currency")
+    @field_validator("currency")
     def currency_is_valid(cls, v):
         if v and v not in VALID_CURRENCIES:
             raise ValueError(f"Currency {v} is not a valid ISO 4217 currency code")
@@ -188,8 +188,7 @@ class PowerOriginRatiosValues(StrictBaseModelWithAlias):
     unknown: Percentage | None
     wind: Percentage | None
 
-    @root_validator
-    @classmethod
+    @model_validator(mode='before')
     def check_sum(cls, values):
         """Check that the sum of all values is approximately 1."""
         _v = [0 if v is None else v for v in values.values()]
@@ -254,8 +253,7 @@ class CategoryContribution(StrictBaseModelWithAlias):
     unknown: ModeCategoryContribution | list[ModeCategoryContribution] | None
     wind: ModeCategoryContribution | list[ModeCategoryContribution] | None
 
-    @root_validator
-    @classmethod
+    @model_validator(mode='before')
     def check_contributions(cls, values):
         for v in values.values():
             if isinstance(v, list):
@@ -308,15 +306,14 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     unknown: list[ModeEmissionFactor] | ModeEmissionFactor | None
     wind: list[ModeEmissionFactor] | ModeEmissionFactor | None
 
-    @root_validator
-    @classmethod
+    @model_validator(mode='before')
     def check_emission_factors(cls, values):
         """
         Check that all emission factors given as list are not empty.
         """
         for v in values.values():
-            if isinstance(v, list):
-                assert len(v) > 0, "Emission factors must not be an empty list"
+            if isinstance(v, list) and len(v) == 0:
+                raise ValueError("Emission factors must not be an empty list")
         return values
 
 
@@ -372,7 +369,7 @@ class DataCenter(StrictBaseModel):
     def ID(self) -> str:
         return f"{self.provider}-{self.region}"
 
-    @validator("status")
+    @field_validator("status")
     def status_exists(cls, v):
         AVAILABLE_STATUSES = ["operational"]
         if v not in AVAILABLE_STATUSES:
@@ -381,7 +378,7 @@ class DataCenter(StrictBaseModel):
             )
         return v
 
-    @validator("zoneKey")
+    @field_validator("zoneKey")
     def zone_key_exists(cls, v):
         if v not in ZONES_CONFIG:
             raise ValueError(
@@ -394,7 +391,7 @@ class DataCenters(StrictBaseModel):
     data_centers: dict[str, DataCenter]
 
     # check that the ID for each data center is unique and matches the key in the dataCenters dict
-    @validator("data_centers")
+    @field_validator("data_centers")
     def ids_match_configs(cls, v):
         for dict_ID, data_center in v.items():
             if dict_ID != data_center.ID:
@@ -451,7 +448,7 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
     direct_variant: EmissionFactorVariant
     direct_datetime: datetime | None
 
-    @validator("dt", "lifecycle_datetime", "direct_datetime", pre=True)
+    @field_validator("dt", "lifecycle_datetime", "direct_datetime", mode='before')
     def validate_timezone_aware(cls, v: datetime | None) -> datetime | None:
         if v is None:
             return v
