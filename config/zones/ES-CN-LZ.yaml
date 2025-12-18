@@ -183,6 +183,8 @@ emissionFactors:
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 has_day_ahead_price_license: True
+
+hide_day_ahead_price: False
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

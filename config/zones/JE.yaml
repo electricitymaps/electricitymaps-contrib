@@ -4,3 +4,6 @@ timezone: Europe/Jersey
 zone_name: Jersey
 country_name: Jersey
 currency: GBP
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

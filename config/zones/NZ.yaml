@@ -358,6 +358,9 @@ fallbackZoneMixes:
         solar: 0.0022427556771429237
         unknown: 0.020886705386506124
         wind: 0.09329579500153248
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production

@@ -21,3 +21,6 @@ timezone: America/Santiago
 zone_name: Sistema Eléctrico de Aysén
 country_name: Chile
 currency: CLP
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

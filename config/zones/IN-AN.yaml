@@ -12,3 +12,6 @@ timezone: Asia/Kolkata
 zone_name: Andaman and Nicobar Islands
 country_name: India
 currency: INR
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

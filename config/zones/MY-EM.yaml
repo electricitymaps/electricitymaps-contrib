@@ -184,3 +184,6 @@ region: Asia
 timezone: Asia/Kuala_Lumpur
 zone_name: Borneo
 country_name: Malaysia
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

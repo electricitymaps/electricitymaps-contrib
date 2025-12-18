@@ -4,3 +4,6 @@ timezone: Australia/Lord_Howe
 zone_name: Cape Barren Island
 country_name: Australia
 currency: AUD
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

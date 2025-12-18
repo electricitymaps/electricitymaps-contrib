@@ -368,6 +368,9 @@ fallbackZoneMixes:
         solar: 0.02698552858936858
         unknown: 0.5265037188143048
         wind: 0.11199192793014612
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

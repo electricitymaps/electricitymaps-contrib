@@ -17,6 +17,9 @@ contributors:
   - lorrieq
   - gopikrishna1793
 country: IN
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: IN_UT.fetch_production
 region: Asia

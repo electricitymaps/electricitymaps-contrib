@@ -284,3 +284,6 @@ timezone: Asia/Jakarta
 zone_name: Indonesia
 country_name: Indonesia
 currency: IDR
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

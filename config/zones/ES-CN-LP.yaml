@@ -294,6 +294,8 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0686308771428057
 has_day_ahead_price_license: True
+
+hide_day_ahead_price: False
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

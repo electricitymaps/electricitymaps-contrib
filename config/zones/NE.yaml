@@ -31,6 +31,9 @@ capacity:
       source: Ember, Yearly electricity data
       value: 390.0
 country: NE
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

@@ -36,3 +36,6 @@ timezone: America/Curacao
 zone_name: Curaçao
 country_name: Curaçao
 currency: ANG
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

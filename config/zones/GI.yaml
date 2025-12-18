@@ -9,3 +9,6 @@ timezone: Europe/Gibraltar
 zone_name: Gibraltar
 country_name: Gibraltar
 currency: GIP
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

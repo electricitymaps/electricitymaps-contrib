@@ -74,6 +74,9 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

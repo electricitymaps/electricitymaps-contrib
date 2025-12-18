@@ -56,6 +56,9 @@ fallbackZoneMixes:
       coal: 0.28410228182546
       hydro: 0.713395716573259
       solar: 0.0010758606885508
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
