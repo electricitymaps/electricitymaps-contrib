@@ -413,6 +413,8 @@ fallbackZoneMixes:
         unknown: 0.014809349860570501
         wind: 0.30866761246294394
 has_day_ahead_price_license: True
+
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -271,6 +271,9 @@ fallbackZoneMixes:
         solar: 0.08937585918740454
         unknown: 0.0017265823617785528
         wind: 0.06533864088864909
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

@@ -21,3 +21,6 @@ timezone: America/Punta_Arenas
 zone_name: Sistema Eléctrico de Magallanes
 country_name: Chile
 currency: CLP
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

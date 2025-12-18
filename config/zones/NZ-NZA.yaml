@@ -3,3 +3,6 @@ region: Oceania
 timezone: Pacific/Auckland
 zone_name: Auckland Islands
 country_name: New Zealand
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

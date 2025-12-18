@@ -9,3 +9,6 @@ timezone: America/St_Johns
 zone_name: Newfoundland and Labrador
 country_name: Canada
 currency: CAD
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

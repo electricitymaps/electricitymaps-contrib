@@ -30,3 +30,6 @@ timezone: Asia/Samarkand
 zone_name: Uzbekistan
 country_name: Uzbekistan
 currency: UZS
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

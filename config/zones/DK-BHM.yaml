@@ -298,6 +298,9 @@ fallbackZoneMixes:
         solar: 0.16518645440178217
         unknown: 0.018417287743792213
         wind: 0.44424635536462476
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   price: ENTSOE.fetch_price
   production: BORNHOLM_POWERLAB.fetch_production

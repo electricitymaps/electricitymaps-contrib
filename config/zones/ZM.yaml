@@ -51,6 +51,9 @@ fallbackZoneMixes:
       coal: 0.11
       hydro: 0.83
       oil: 0.06
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

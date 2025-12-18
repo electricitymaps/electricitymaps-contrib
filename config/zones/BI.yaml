@@ -22,6 +22,9 @@ capacity:
       source: Ember, Yearly electricity data
       value: 50.0
 country: BI
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

@@ -216,6 +216,9 @@ isLowCarbon:
 isRenewable:
   unknown:
     value: 0.92
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production

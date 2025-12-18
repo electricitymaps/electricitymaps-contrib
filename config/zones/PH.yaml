@@ -201,3 +201,6 @@ timezone: Asia/Manila
 zone_name: Philippines
 country_name: Philippines
 currency: PHP
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

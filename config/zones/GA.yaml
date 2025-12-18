@@ -4,6 +4,9 @@ bounding_box:
   - - 14.999144991449924
     - 2.809956504477071
 country: GA
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

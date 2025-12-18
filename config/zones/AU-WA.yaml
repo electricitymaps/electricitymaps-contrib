@@ -330,6 +330,9 @@ fallbackZoneMixes:
         solar: 0.23467167868922628
         unknown: 0.0
         wind: 0.1699992813333499
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production

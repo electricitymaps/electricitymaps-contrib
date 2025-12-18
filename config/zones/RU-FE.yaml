@@ -8,3 +8,5 @@ region: Europe
 timezone: Asia/Kamchatka
 zone_name: Far East
 country_name: Russia
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

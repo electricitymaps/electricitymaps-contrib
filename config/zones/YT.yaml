@@ -28,6 +28,9 @@ capacity:
       source: IRENA.org
       value: 31.23
 country: YT
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa

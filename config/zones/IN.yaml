@@ -200,6 +200,9 @@ fallbackZoneMixes:
         solar: 0.05470488852485778
         unknown: 0.003025741785798069
         wind: 0.018569211812215346
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: IN.fetch_production
 region: Asia

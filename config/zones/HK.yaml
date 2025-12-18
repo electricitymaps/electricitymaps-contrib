@@ -278,3 +278,6 @@ timezone: Asia/Hong_Kong
 zone_name: Hong Kong
 country_name: Hong Kong
 currency: HKD
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

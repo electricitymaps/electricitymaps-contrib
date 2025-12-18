@@ -12,3 +12,6 @@ timezone: Europe/Andorra
 zone_name: Andorra
 country_name: Andorra
 currency: EUR
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

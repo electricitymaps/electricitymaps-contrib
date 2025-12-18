@@ -92,6 +92,9 @@ fallbackZoneMixes:
         solar: 0.04942291741728504
         unknown: 0.0
         wind: 0.004813099721722564
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

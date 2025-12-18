@@ -77,6 +77,7 @@ emissionFactors:
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 has_day_ahead_price_license: True
+hide_day_ahead_price: False
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

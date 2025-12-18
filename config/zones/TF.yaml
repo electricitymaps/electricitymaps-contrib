@@ -3,3 +3,6 @@ region: Africa
 timezone: Indian/Kerguelen
 zone_name: French Southern Territories
 country_name: French Southern Territories
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

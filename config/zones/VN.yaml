@@ -165,6 +165,9 @@ isRenewable:
       source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
         3.09% wind, 0.14% biomass and 0.27% from other thermal
       value: 0.5028
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: VN.fetch_consumption
   price: VN.fetch_price

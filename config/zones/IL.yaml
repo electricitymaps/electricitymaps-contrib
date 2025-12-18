@@ -356,6 +356,9 @@ isRenewable:
   unknown:
     _comment: Sum of renewable sources in IL unknown production
     value: 0.056
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: IL.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

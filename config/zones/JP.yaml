@@ -215,3 +215,6 @@ timezone: Asia/Tokyo
 zone_name: Japan
 country_name: Japan
 currency: JPY
+
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
