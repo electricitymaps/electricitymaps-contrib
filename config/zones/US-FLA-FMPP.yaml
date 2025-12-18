@@ -128,6 +128,9 @@ emissionFactors:
       source: Electricity Maps, 2021 average
       value: 490.1531912006671
     biomass:
+    - datetime: '2020-01-01'
+      source: BEIS 2021
+      value: 0.0
     - datetime: '2021-01-01'
       source: BEIS 2021
       value: 0.0
@@ -140,7 +143,7 @@ emissionFactors:
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 768.4856555
+      value: 768.4856555485999
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 806.7004193423496
@@ -153,7 +156,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 446.015972
+      value: 446.01597200626395
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 439.9025360279061
@@ -164,6 +167,10 @@ emissionFactors:
       source: eGrid 2023
       value: 396.92867418651286
     geothermal:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 70.87985131255388
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021
@@ -199,6 +206,10 @@ emissionFactors:
       source: Electricity Maps, 2021 average
       value: 490.1531912006671
     oil:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 803.8986689024886
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 791.3672765485921
@@ -244,6 +255,10 @@ emissionFactors:
       value: 537.85
     biomass:
     - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 281.38853074481284
+    - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021
       value: 280.6015234636058
@@ -258,7 +273,7 @@ emissionFactors:
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 828.4856555
+      value: 828.4856555485999
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 866.7004193423496
@@ -271,7 +286,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 566.0159719999999
+      value: 566.015972006264
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 559.9025360279061
@@ -282,6 +297,10 @@ emissionFactors:
       source: eGrid 2023; IPCC 2014
       value: 516.9286741865128
     geothermal:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 108.87985131255388
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
@@ -329,6 +348,10 @@ emissionFactors:
     - datetime: '2014-01-01'
       source: IPCC 2014; EIA 2020/BEIS 2021
       value: 650.0
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1047.8986689024887
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 1035.3672765485921
