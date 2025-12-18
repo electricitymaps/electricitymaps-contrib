@@ -2,7 +2,8 @@ from collections.abc import Callable
 from datetime import date, datetime, timezone
 from enum import Enum
 
-from pydantic import (
+# Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
+from pydantic.v1 import (
     BaseModel,
     Field,
     NonNegativeFloat,
@@ -11,7 +12,7 @@ from pydantic import (
     root_validator,
     validator,
 )
-from pydantic.utils import import_string
+from pydantic.v1.utils import import_string
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
@@ -85,7 +86,7 @@ class ParsersBaseModel(StrictBaseModel):
     def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
-        This requires the consumer to have install all parser dependencies.
+        This requires the consumer to have installed all parser dependencies.
 
         Returns:
             Optional[Callable]: parser function
@@ -315,8 +316,8 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
         Check that all emission factors given as list are not empty.
         """
         for v in values.values():
-            if isinstance(v, list):
-                assert len(v) > 0, "Emission factors must not be an empty list"
+            if isinstance(v, list) and len(v) == 0:
+                raise ValueError("Emission factors must not be an empty list")
         return values
 
 
