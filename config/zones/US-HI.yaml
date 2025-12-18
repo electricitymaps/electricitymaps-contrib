@@ -1,5 +1,51 @@
 country: US
 country_name: USA
+emissionFactors:
+  direct:
+    biomass:
+    - datetime: '2020-01-01'
+      source: BEIS 2021
+      value: 0.0
+    coal:
+    - datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 1088.282255881974
+    gas:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 406.0343467262286
+    geothermal:
+    - datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 0.0
+    oil:
+    - datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 753.165664537952
+  lifecycle:
+    biomass:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 281.38853074481284
+    coal:
+    - datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1148.282255881974
+    gas:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 526.0343467262286
+    geothermal:
+    - datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 38.0
+    oil:
+    - datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 997.165664537952
 region: Americas
 timezone: Pacific/Honolulu
 zone_name: Hawaii
