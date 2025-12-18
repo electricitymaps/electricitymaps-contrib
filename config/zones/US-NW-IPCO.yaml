@@ -235,6 +235,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: BEIS 2021
       value: 0.0
+    - datetime: '2020-01-01'
+      source: BEIS 2021
+      value: 0.0
     coal:
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
@@ -248,10 +251,14 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 1019.6370786222118
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 991.3927748632145
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 434.3409586
+      value: 434.3409585758064
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 441.2147276174657
@@ -309,6 +316,10 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 692.2365799135232
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 803.8986689024886
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -354,6 +365,10 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 282.7016835752059
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 281.38853074481284
     coal:
     - datetime: '2014-01-01'
       source: IPCC 2014
@@ -370,10 +385,14 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 1079.637078622212
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1051.3927748632145
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 554.3409586
+      value: 554.3409585758063
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 561.2147276174658
@@ -443,6 +462,10 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 936.2365799135232
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 1047.8986689024887
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
