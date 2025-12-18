@@ -135,10 +135,6 @@ emissionFactors:
       - datetime: '2021-01-01'
         source: Electricity Maps, 2021 average
         value: 367.8411069030223
-    unknown:
-      _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
-      value: 361
   lifecycle:
     battery discharge:
       - datetime: '2017-01-01'
