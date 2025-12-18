@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.14,
         'hydro': 2700.906657,
@@ -22,6 +23,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.26,
         'hydro': 2462.475625,
@@ -39,6 +41,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.79,
         'hydro': 2379.239039,
@@ -56,6 +59,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.38,
         'hydro': 2354.243241,
@@ -73,6 +77,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.56,
         'hydro': 2283.744427,
@@ -90,6 +95,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.56,
         'hydro': 2303.131467,
@@ -107,6 +113,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.17,
         'hydro': 2410.308194,
@@ -124,6 +131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.96,
         'hydro': 2631.740156,
@@ -141,6 +149,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.56,
         'hydro': 2611.38258,
@@ -158,6 +167,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 52.9,
         'hydro': 2576.73036,
@@ -175,6 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 52.15,
         'hydro': 2319.68927,
@@ -192,6 +203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 49.11,
         'hydro': 2234.245319,
@@ -209,6 +221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 48.82,
         'hydro': 2172.62459,
@@ -226,6 +239,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 49.19,
         'hydro': 2144.243675,
@@ -243,6 +257,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 46.03,
         'hydro': 2263.655016,
@@ -260,6 +275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 42.12,
         'hydro': 2246.264277,
@@ -277,6 +293,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 42.29,
         'hydro': 2129.363594,
@@ -294,6 +311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 43.37,
         'hydro': 2269.306443,
@@ -311,6 +329,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 42.92,
         'hydro': 2130.077228,
@@ -328,6 +347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 49.96,
         'hydro': 2679.453131,
@@ -345,6 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 52.22,
         'hydro': 3204.530755,
@@ -362,6 +383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.13,
         'hydro': 3339.080773,
@@ -379,6 +401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 53.31,
         'hydro': 3397.70348,
@@ -396,6 +419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.39,
         'hydro': 3050.825042,
@@ -413,6 +437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 55.44,
         'hydro': 2921.135053,
@@ -430,6 +455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 54.72,
         'hydro': 2873.639079,
@@ -447,6 +473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 45.19,
         'hydro': 2779.006138,
@@ -464,6 +491,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 36.36,
         'hydro': 2535.719159,
@@ -481,6 +509,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 50.56,
         'hydro': 2455.683144,
@@ -498,6 +527,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 50.6,
         'hydro': 2344.02243,
@@ -515,6 +545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 49.93,
         'hydro': 2436.928362,
@@ -532,6 +563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 50.17,
         'hydro': 2612.45783,
@@ -549,6 +581,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 49.77,
         'hydro': 2416.600953,
@@ -566,6 +599,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 48.89,
         'hydro': 2422.68662,
@@ -583,6 +617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 50.32,
         'hydro': 2125.226312,
@@ -600,6 +635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 47.35,
         'hydro': 2150.054145,
@@ -617,6 +653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 45.0,
         'hydro': 2085.775046,
@@ -634,6 +671,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 43.41,
         'hydro': 2192.233165,
@@ -651,6 +689,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 24, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Chile/Continental')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 43.09,
         'hydro': 2270.685839,

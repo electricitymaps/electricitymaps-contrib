@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 12, 19, 15, 53, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Reykjavik')),
+      'datetime_end': None,
       'production': dict({
         'geothermal': 653.1291,
         'hydro': 1588.2567,

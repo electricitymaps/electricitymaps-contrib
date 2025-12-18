@@ -155,11 +155,11 @@ def fetch_production(
             mode, -1 * production.loc[storage_modes_in_df].output.sum()
         )
     production_breakdown.append(
-        zone_key,
-        dt,
-        SOURCE,
-        production_mix,
-        storage_mix,
+        zoneKey=zone_key,
+        datetime=dt,
+        source=SOURCE,
+        production=production_mix,
+        storage=storage_mix,
     )
 
     capacity = {}

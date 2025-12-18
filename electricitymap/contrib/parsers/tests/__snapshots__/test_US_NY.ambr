@@ -1017,6 +1017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8406.0,
         'hydro': 1576.0,
@@ -1035,6 +1036,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8225.0,
         'hydro': 1565.0,
@@ -1053,6 +1055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8091.0,
         'hydro': 1569.0,
@@ -1071,6 +1074,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8028.0,
         'hydro': 1572.0,
@@ -1089,6 +1093,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7984.0,
         'hydro': 1550.0,
@@ -1107,6 +1112,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7909.0,
         'hydro': 1531.0,
@@ -1125,6 +1131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7854.0,
         'hydro': 1555.0,
@@ -1143,6 +1150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7822.0,
         'hydro': 1565.0,
@@ -1161,6 +1169,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7812.0,
         'hydro': 1567.0,
@@ -1179,6 +1188,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7827.0,
         'hydro': 1550.0,
@@ -1197,6 +1207,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7852.0,
         'hydro': 1502.0,
@@ -1215,6 +1226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7905.0,
         'hydro': 1530.0,
@@ -1233,6 +1245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8144.0,
         'hydro': 1672.0,
@@ -1251,6 +1264,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8289.0,
         'hydro': 1693.0,
@@ -1269,6 +1283,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8291.0,
         'hydro': 1660.0,
@@ -1287,6 +1302,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8227.0,
         'hydro': 1642.0,
@@ -1305,6 +1321,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8152.0,
         'hydro': 1629.0,
@@ -1323,6 +1340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8081.0,
         'hydro': 1593.0,
@@ -1341,6 +1359,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8002.0,
         'hydro': 1583.0,
@@ -1359,6 +1378,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7944.0,
         'hydro': 1574.0,
@@ -1377,6 +1397,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7870.0,
         'hydro': 1581.0,
@@ -1395,6 +1416,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7775.0,
         'hydro': 1599.0,
@@ -1413,6 +1435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7732.0,
         'hydro': 1575.0,
@@ -1431,6 +1454,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7716.0,
         'hydro': 1554.0,
@@ -1449,6 +1473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7704.0,
         'hydro': 1514.0,
@@ -1467,6 +1492,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7687.0,
         'hydro': 1535.0,
@@ -1485,6 +1511,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7672.0,
         'hydro': 1557.0,
@@ -1503,6 +1530,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7671.0,
         'hydro': 1561.0,
@@ -1521,6 +1549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7671.0,
         'hydro': 1542.0,
@@ -1539,6 +1568,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7669.0,
         'hydro': 1506.0,
@@ -1557,6 +1587,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7658.0,
         'hydro': 1459.0,
@@ -1575,6 +1606,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7640.0,
         'hydro': 1422.0,
@@ -1593,6 +1625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7636.0,
         'hydro': 1412.0,
@@ -1611,6 +1644,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7633.0,
         'hydro': 1431.0,
@@ -1629,6 +1663,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7613.0,
         'hydro': 1422.0,
@@ -1647,6 +1682,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7584.0,
         'hydro': 1444.0,
@@ -1665,6 +1701,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7552.0,
         'hydro': 1481.0,
@@ -1683,6 +1720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7553.0,
         'hydro': 1486.0,
@@ -1701,6 +1739,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7547.0,
         'hydro': 1497.0,
@@ -1719,6 +1758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7524.0,
         'hydro': 1520.0,
@@ -1737,6 +1777,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7528.0,
         'hydro': 1518.0,
@@ -1755,6 +1796,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7545.0,
         'hydro': 1499.0,
@@ -1773,6 +1815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7560.0,
         'hydro': 1487.0,
@@ -1791,6 +1834,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7557.0,
         'hydro': 1485.0,
@@ -1809,6 +1853,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7553.0,
         'hydro': 1490.0,
@@ -1827,6 +1872,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7568.0,
         'hydro': 1508.0,
@@ -1845,6 +1891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7606.0,
         'hydro': 1501.0,
@@ -1863,6 +1910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7584.0,
         'hydro': 1488.0,
@@ -1881,6 +1929,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7521.0,
         'hydro': 1437.0,
@@ -1899,6 +1948,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7435.0,
         'hydro': 1450.0,
@@ -1917,6 +1967,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7458.0,
         'hydro': 1468.0,
@@ -1935,6 +1986,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7504.0,
         'hydro': 1493.0,
@@ -1953,6 +2005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7522.0,
         'hydro': 1485.0,
@@ -1971,6 +2024,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7551.0,
         'hydro': 1480.0,
@@ -1989,6 +2043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7563.0,
         'hydro': 1447.0,
@@ -2007,6 +2062,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7556.0,
         'hydro': 1452.0,
@@ -2025,6 +2081,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7576.0,
         'hydro': 1478.0,
@@ -2043,6 +2100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7593.0,
         'hydro': 1425.0,
@@ -2061,6 +2119,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7600.0,
         'hydro': 1428.0,
@@ -2079,6 +2138,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7599.0,
         'hydro': 1456.0,
@@ -2097,6 +2157,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7710.0,
         'hydro': 1583.0,
@@ -2115,6 +2176,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7849.0,
         'hydro': 1717.0,
@@ -2133,6 +2195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7927.0,
         'hydro': 1736.0,
@@ -2151,6 +2214,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7994.0,
         'hydro': 1710.0,
@@ -2169,6 +2233,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8005.0,
         'hydro': 1704.0,
@@ -2187,6 +2252,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8067.0,
         'hydro': 1725.0,
@@ -2205,6 +2271,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8132.0,
         'hydro': 1748.0,
@@ -2223,6 +2290,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8176.0,
         'hydro': 1776.0,
@@ -2241,6 +2309,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8216.0,
         'hydro': 1832.0,
@@ -2259,6 +2328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8285.0,
         'hydro': 1950.0,
@@ -2277,6 +2347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8361.0,
         'hydro': 1984.0,
@@ -2295,6 +2366,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8359.0,
         'hydro': 2158.0,
@@ -2313,6 +2385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8534.0,
         'hydro': 2426.0,
@@ -2331,6 +2404,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8888.0,
         'hydro': 2575.0,
@@ -2349,6 +2423,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8913.0,
         'hydro': 2634.0,
@@ -2367,6 +2442,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8885.0,
         'hydro': 2768.0,
@@ -2385,6 +2461,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8877.0,
         'hydro': 2930.0,
@@ -2403,6 +2480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8883.0,
         'hydro': 3075.0,
@@ -2421,6 +2499,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8884.0,
         'hydro': 3174.0,
@@ -2439,6 +2518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8896.0,
         'hydro': 3275.0,
@@ -2457,6 +2537,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8974.0,
         'hydro': 3282.0,
@@ -2475,6 +2556,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9092.0,
         'hydro': 3329.0,
@@ -2493,6 +2575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9223.0,
         'hydro': 3384.0,
@@ -2511,6 +2594,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9152.0,
         'hydro': 3357.0,
@@ -2529,6 +2613,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8990.0,
         'hydro': 3391.0,
@@ -2547,6 +2632,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9009.0,
         'hydro': 3397.0,
@@ -2565,6 +2651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9037.0,
         'hydro': 3425.0,
@@ -2583,6 +2670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9032.0,
         'hydro': 3439.0,
@@ -2601,6 +2689,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9026.0,
         'hydro': 3394.0,
@@ -2619,6 +2708,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9046.0,
         'hydro': 3432.0,
@@ -2637,6 +2727,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9079.0,
         'hydro': 3444.0,
@@ -2655,6 +2746,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9097.0,
         'hydro': 3452.0,
@@ -2673,6 +2765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9094.0,
         'hydro': 3488.0,
@@ -2691,6 +2784,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9116.0,
         'hydro': 3498.0,
@@ -2709,6 +2803,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9180.0,
         'hydro': 3486.0,
@@ -2727,6 +2822,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9216.0,
         'hydro': 3485.0,
@@ -2745,6 +2841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9304.0,
         'hydro': 3427.0,
@@ -2763,6 +2860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9339.0,
         'hydro': 3406.0,
@@ -2781,6 +2879,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9289.0,
         'hydro': 3364.0,
@@ -2799,6 +2898,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9158.0,
         'hydro': 3266.0,
@@ -2817,6 +2917,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9058.0,
         'hydro': 3164.0,
@@ -2835,6 +2936,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9025.0,
         'hydro': 3153.0,
@@ -2853,6 +2955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8960.0,
         'hydro': 3147.0,
@@ -2871,6 +2974,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8873.0,
         'hydro': 3137.0,
@@ -2889,6 +2993,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8801.0,
         'hydro': 3175.0,
@@ -2907,6 +3012,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8763.0,
         'hydro': 3182.0,
@@ -2925,6 +3031,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8767.0,
         'hydro': 3119.0,
@@ -2943,6 +3050,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8901.0,
         'hydro': 3028.0,
@@ -2961,6 +3069,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8941.0,
         'hydro': 3126.0,
@@ -2979,6 +3088,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8895.0,
         'hydro': 3218.0,
@@ -2997,6 +3107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8870.0,
         'hydro': 3159.0,
@@ -3015,6 +3126,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8880.0,
         'hydro': 3172.0,
@@ -3033,6 +3145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8911.0,
         'hydro': 3179.0,
@@ -3051,6 +3164,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8903.0,
         'hydro': 3155.0,
@@ -3069,6 +3183,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8931.0,
         'hydro': 3151.0,
@@ -3087,6 +3202,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8928.0,
         'hydro': 3153.0,
@@ -3105,6 +3221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8898.0,
         'hydro': 3174.0,
@@ -3123,6 +3240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8845.0,
         'hydro': 3151.0,
@@ -3141,6 +3259,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8807.0,
         'hydro': 3107.0,
@@ -3159,6 +3278,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8820.0,
         'hydro': 2974.0,
@@ -3177,6 +3297,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8749.0,
         'hydro': 2773.0,
@@ -3195,6 +3316,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8563.0,
         'hydro': 2683.0,
@@ -3213,6 +3335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8436.0,
         'hydro': 2692.0,
@@ -3231,6 +3354,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8375.0,
         'hydro': 2653.0,
@@ -3249,6 +3373,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8265.0,
         'hydro': 2650.0,
@@ -3267,6 +3392,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8140.0,
         'hydro': 2681.0,
@@ -3285,6 +3411,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8088.0,
         'hydro': 2666.0,
@@ -3303,6 +3430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7989.0,
         'hydro': 2626.0,
@@ -3321,6 +3449,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7960.0,
         'hydro': 2609.0,
@@ -3339,6 +3468,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7917.0,
         'hydro': 2593.0,
@@ -3357,6 +3487,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7817.0,
         'hydro': 2595.0,
@@ -3375,6 +3506,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7689.0,
         'hydro': 2604.0,
@@ -3393,6 +3525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7548.0,
         'hydro': 2562.0,
@@ -3411,6 +3544,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7479.0,
         'hydro': 2490.0,
@@ -3429,6 +3563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7487.0,
         'hydro': 2499.0,
@@ -3447,6 +3582,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7546.0,
         'hydro': 2549.0,
@@ -3465,6 +3601,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7585.0,
         'hydro': 2569.0,
@@ -3483,6 +3620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7536.0,
         'hydro': 2609.0,
@@ -3501,6 +3639,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7545.0,
         'hydro': 2655.0,
@@ -3519,6 +3658,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7556.0,
         'hydro': 2682.0,
@@ -3537,6 +3677,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7569.0,
         'hydro': 2751.0,
@@ -3555,6 +3696,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7591.0,
         'hydro': 2768.0,
@@ -3573,6 +3715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7599.0,
         'hydro': 2770.0,
@@ -3591,6 +3734,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7626.0,
         'hydro': 2728.0,
@@ -3609,6 +3753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7607.0,
         'hydro': 2700.0,
@@ -3627,6 +3772,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7577.0,
         'hydro': 2717.0,
@@ -3645,6 +3791,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7557.0,
         'hydro': 2737.0,
@@ -3663,6 +3810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7508.0,
         'hydro': 2778.0,
@@ -3681,6 +3829,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7451.0,
         'hydro': 2745.0,
@@ -3699,6 +3848,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7476.0,
         'hydro': 2781.0,
@@ -3717,6 +3867,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7537.0,
         'hydro': 2808.0,
@@ -3735,6 +3886,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7626.0,
         'hydro': 2792.0,
@@ -3753,6 +3905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7716.0,
         'hydro': 2768.0,
@@ -3771,6 +3924,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7728.0,
         'hydro': 2735.0,
@@ -3789,6 +3943,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7775.0,
         'hydro': 2713.0,
@@ -3807,6 +3962,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7776.0,
         'hydro': 2661.0,
@@ -3825,6 +3981,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7744.0,
         'hydro': 2627.0,
@@ -3843,6 +4000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7710.0,
         'hydro': 2638.0,
@@ -3861,6 +4019,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7689.0,
         'hydro': 2648.0,
@@ -3879,6 +4038,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7650.0,
         'hydro': 2620.0,
@@ -3897,6 +4057,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7606.0,
         'hydro': 2649.0,
@@ -3915,6 +4076,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7575.0,
         'hydro': 2668.0,
@@ -3933,6 +4095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7560.0,
         'hydro': 2716.0,
@@ -3951,6 +4114,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7560.0,
         'hydro': 2730.0,
@@ -3969,6 +4133,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7601.0,
         'hydro': 2718.0,
@@ -3987,6 +4152,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7635.0,
         'hydro': 2722.0,
@@ -4005,6 +4171,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7643.0,
         'hydro': 2724.0,
@@ -4023,6 +4190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7682.0,
         'hydro': 2696.0,
@@ -4041,6 +4209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7754.0,
         'hydro': 2699.0,
@@ -4059,6 +4228,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7833.0,
         'hydro': 2733.0,
@@ -4077,6 +4247,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7884.0,
         'hydro': 2729.0,
@@ -4095,6 +4266,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7882.0,
         'hydro': 2684.0,
@@ -4113,6 +4285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7861.0,
         'hydro': 2657.0,
@@ -4131,6 +4304,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7860.0,
         'hydro': 2674.0,
@@ -4149,6 +4323,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7849.0,
         'hydro': 2704.0,
@@ -4167,6 +4342,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7857.0,
         'hydro': 2737.0,
@@ -4185,6 +4361,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7879.0,
         'hydro': 2811.0,
@@ -4203,6 +4380,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7976.0,
         'hydro': 2806.0,
@@ -4221,6 +4399,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8097.0,
         'hydro': 2763.0,
@@ -4239,6 +4418,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8147.0,
         'hydro': 2677.0,
@@ -4257,6 +4437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8098.0,
         'hydro': 2560.0,
@@ -4275,6 +4456,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8035.0,
         'hydro': 2544.0,
@@ -4293,6 +4475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7993.0,
         'hydro': 2661.0,
@@ -4311,6 +4494,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7970.0,
         'hydro': 2703.0,
@@ -4329,6 +4513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7978.0,
         'hydro': 2667.0,
@@ -4347,6 +4532,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8067.0,
         'hydro': 2651.0,
@@ -4365,6 +4551,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8168.0,
         'hydro': 2625.0,
@@ -4383,6 +4570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8209.0,
         'hydro': 2603.0,
@@ -4401,6 +4589,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 37, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8233.0,
         'hydro': 2631.0,
@@ -4419,6 +4608,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8249.0,
         'hydro': 2671.0,
@@ -4437,6 +4627,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8264.0,
         'hydro': 2696.0,
@@ -4455,6 +4646,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8260.0,
         'hydro': 2691.0,
@@ -4473,6 +4665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8281.0,
         'hydro': 2685.0,
@@ -4491,6 +4684,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8317.0,
         'hydro': 2831.0,
@@ -4509,6 +4703,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8421.0,
         'hydro': 3057.0,
@@ -4527,6 +4722,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8555.0,
         'hydro': 3138.0,
@@ -4545,6 +4741,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8636.0,
         'hydro': 3238.0,
@@ -4563,6 +4760,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8767.0,
         'hydro': 3261.0,
@@ -4581,6 +4779,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8816.0,
         'hydro': 3233.0,
@@ -4599,6 +4798,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8814.0,
         'hydro': 3222.0,
@@ -4617,6 +4817,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8807.0,
         'hydro': 3176.0,
@@ -4635,6 +4836,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8848.0,
         'hydro': 3158.0,
@@ -4653,6 +4855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8852.0,
         'hydro': 3165.0,
@@ -4671,6 +4874,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8883.0,
         'hydro': 3159.0,
@@ -4689,6 +4893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 46, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8870.0,
         'hydro': 3138.0,
@@ -4707,6 +4912,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8875.0,
         'hydro': 3097.0,
@@ -4725,6 +4931,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8943.0,
         'hydro': 3078.0,
@@ -4743,6 +4950,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8996.0,
         'hydro': 3123.0,
@@ -4761,6 +4969,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8968.0,
         'hydro': 3135.0,
@@ -4779,6 +4988,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8935.0,
         'hydro': 3022.0,
@@ -4797,6 +5007,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8896.0,
         'hydro': 3165.0,
@@ -4815,6 +5026,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8971.0,
         'hydro': 3197.0,
@@ -4833,6 +5045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8910.0,
         'hydro': 3296.0,
@@ -4851,6 +5064,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8996.0,
         'hydro': 3341.0,
@@ -4869,6 +5083,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9089.0,
         'hydro': 3362.0,
@@ -4887,6 +5102,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9131.0,
         'hydro': 3387.0,
@@ -4905,6 +5121,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9156.0,
         'hydro': 3447.0,
@@ -4923,6 +5140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9321.0,
         'hydro': 3407.0,
@@ -4941,6 +5159,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9358.0,
         'hydro': 3436.0,
@@ -4959,6 +5178,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9408.0,
         'hydro': 3507.0,
@@ -4977,6 +5197,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9488.0,
         'hydro': 3657.0,
@@ -4995,6 +5216,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9643.0,
         'hydro': 3786.0,
@@ -5013,6 +5235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9672.0,
         'hydro': 3722.0,
@@ -5031,6 +5254,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9766.0,
         'hydro': 3680.0,
@@ -5049,6 +5273,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9775.0,
         'hydro': 3665.0,
@@ -5067,6 +5292,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9742.0,
         'hydro': 3660.0,
@@ -5085,6 +5311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9726.0,
         'hydro': 3647.0,
@@ -5103,6 +5330,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9689.0,
         'hydro': 3651.0,
@@ -5121,6 +5349,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9641.0,
         'hydro': 3651.0,
@@ -5139,6 +5368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9606.0,
         'hydro': 3660.0,
@@ -5157,6 +5387,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9584.0,
         'hydro': 3666.0,
@@ -5175,6 +5406,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9607.0,
         'hydro': 3647.0,
@@ -5193,6 +5425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9668.0,
         'hydro': 3442.0,
@@ -5211,6 +5444,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9611.0,
         'hydro': 3377.0,
@@ -5229,6 +5463,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9505.0,
         'hydro': 3413.0,
@@ -5247,6 +5482,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9457.0,
         'hydro': 3419.0,
@@ -5265,6 +5501,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9435.0,
         'hydro': 3433.0,
@@ -5283,6 +5520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 22, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9423.0,
         'hydro': 3424.0,
@@ -5301,6 +5539,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9423.0,
         'hydro': 3441.0,
@@ -5319,6 +5558,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9385.0,
         'hydro': 3416.0,
@@ -5337,6 +5577,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9320.0,
         'hydro': 3399.0,
@@ -5355,6 +5596,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9258.0,
         'hydro': 3450.0,
@@ -5373,6 +5615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 42, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9265.0,
         'hydro': 3391.0,
@@ -5391,6 +5634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9267.0,
         'hydro': 3400.0,
@@ -5409,6 +5653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9298.0,
         'hydro': 3410.0,
@@ -5427,6 +5672,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9309.0,
         'hydro': 3386.0,
@@ -5445,6 +5691,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9317.0,
         'hydro': 3393.0,
@@ -5463,6 +5710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9344.0,
         'hydro': 3366.0,
@@ -5481,6 +5729,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9542.0,
         'hydro': 3332.0,
@@ -5499,6 +5748,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9674.0,
         'hydro': 3282.0,
@@ -5517,6 +5767,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9646.0,
         'hydro': 3275.0,
@@ -5535,6 +5786,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9654.0,
         'hydro': 3311.0,
@@ -5553,6 +5805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9662.0,
         'hydro': 3276.0,
@@ -5571,6 +5824,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9608.0,
         'hydro': 3258.0,
@@ -5589,6 +5843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9576.0,
         'hydro': 3243.0,
@@ -5607,6 +5862,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9458.0,
         'hydro': 3278.0,
@@ -5625,6 +5881,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9404.0,
         'hydro': 3288.0,
@@ -5643,6 +5900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9346.0,
         'hydro': 3217.0,
@@ -5661,6 +5919,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9260.0,
         'hydro': 3211.0,
@@ -5679,6 +5938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9228.0,
         'hydro': 3126.0,
@@ -5697,6 +5957,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9174.0,
         'hydro': 2923.0,
@@ -5715,6 +5976,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 9019.0,
         'hydro': 2820.0,
@@ -5733,6 +5995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8969.0,
         'hydro': 2823.0,
@@ -5751,6 +6014,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8956.0,
         'hydro': 2911.0,
@@ -5769,6 +6033,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8959.0,
         'hydro': 2926.0,
@@ -5787,6 +6052,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8936.0,
         'hydro': 2877.0,
@@ -5805,6 +6071,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8948.0,
         'hydro': 2855.0,
@@ -5823,6 +6090,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8952.0,
         'hydro': 2839.0,
@@ -5841,6 +6109,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8916.0,
         'hydro': 2819.0,
@@ -5859,6 +6128,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8902.0,
         'hydro': 2810.0,
@@ -5877,6 +6147,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8909.0,
         'hydro': 2765.0,
@@ -5895,6 +6166,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8894.0,
         'hydro': 2670.0,
@@ -5913,6 +6185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8678.0,
         'hydro': 2504.0,
@@ -5931,6 +6204,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8351.0,
         'hydro': 2421.0,
@@ -5949,6 +6223,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8266.0,
         'hydro': 2446.0,
@@ -5967,6 +6242,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8294.0,
         'hydro': 2429.0,
@@ -5985,6 +6261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8184.0,
         'hydro': 2559.0,
@@ -6003,6 +6280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 8052.0,
         'hydro': 2608.0,
@@ -6021,6 +6299,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7987.0,
         'hydro': 2600.0,
@@ -6039,6 +6318,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7932.0,
         'hydro': 2564.0,
@@ -6057,6 +6337,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7865.0,
         'hydro': 2513.0,
@@ -6075,6 +6356,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7788.0,
         'hydro': 2469.0,
@@ -6093,6 +6375,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7767.0,
         'hydro': 2379.0,
@@ -6111,6 +6394,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7745.0,
         'hydro': 2290.0,
@@ -6129,6 +6413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7673.0,
         'hydro': 2261.0,
@@ -6147,6 +6432,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7617.0,
         'hydro': 2181.0,
@@ -6165,6 +6451,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7606.0,
         'hydro': 2138.0,
@@ -6183,6 +6470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7568.0,
         'hydro': 2112.0,
@@ -6201,6 +6489,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7526.0,
         'hydro': 2109.0,
@@ -6219,6 +6508,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7476.0,
         'hydro': 2106.0,
@@ -6237,6 +6527,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7432.0,
         'hydro': 2079.0,
@@ -6255,6 +6546,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7373.0,
         'hydro': 2041.0,
@@ -6273,6 +6565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7323.0,
         'hydro': 2063.0,
@@ -6291,6 +6584,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7307.0,
         'hydro': 2066.0,
@@ -6309,6 +6603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 20, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7307.0,
         'hydro': 2023.0,
@@ -6327,6 +6622,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 21, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'datetime_end': None,
       'production': dict({
         'gas': 7355.0,
         'hydro': 1945.0,

@@ -17,6 +17,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 5, 14, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Taipei')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 31.9,
         'coal': 8637.7,

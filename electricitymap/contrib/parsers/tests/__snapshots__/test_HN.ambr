@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 27.6,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -10,6 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 21.5,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -17,6 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 22.7,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -24,6 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 23.3,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -31,6 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 14.4,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -38,6 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 5.9,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -45,6 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 5.2,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -52,6 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 24.4,
       'sortedZoneKeys': 'GT->HN',
       'source': 'ods.org.hn',
@@ -63,6 +71,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -98.5,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -70,6 +79,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -97.4,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -77,6 +87,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -98.0,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -84,6 +95,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -91.8,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -91,6 +103,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -101.6,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -98,6 +111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -108.0,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -105,6 +119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -82.7,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -112,6 +127,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': -66.3,
       'sortedZoneKeys': 'HN->NI',
       'source': 'ods.org.hn',
@@ -123,6 +139,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 58.5,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -130,6 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 51.5,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -137,6 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 33.9,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -144,6 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 23.8,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -151,6 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 36.3,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -158,6 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 45.0,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -165,6 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 28.7,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -172,6 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'netFlow': 20.1,
       'sortedZoneKeys': 'HN->SV',
       'source': 'ods.org.hn',
@@ -191,6 +215,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 35.5,
         'coal': 106.4,
@@ -212,6 +237,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 43.4,
         'coal': 105.8,
@@ -233,6 +259,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 35.3,
         'coal': 105.6,
@@ -254,6 +281,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 35.8,
         'coal': 106.1,
@@ -275,6 +303,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 35.4,
         'coal': 106.3,
@@ -296,6 +325,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 39.7,
         'coal': 106.0,
@@ -316,6 +346,7 @@
         'oil',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 42.3,
         'coal': 106.0,
@@ -336,6 +367,7 @@
         'oil',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 47.4,
         'coal': 106.1,
