@@ -495,9 +495,6 @@ emissionFactors:
       source: Electricity Maps, 2023 average
       value: 247.54
     oil:
-    - datetime: '2014-01-01'
-      source: IPCC 2014; EIA 2020/BEIS 2021
-      value: 650
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
