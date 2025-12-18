@@ -363,10 +363,6 @@ emissionFactors:
       source: eGrid 2023
       value: 282.7016835752059
     coal:
-    - datetime: '2012-01-01'
-      source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 811.451201
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
