@@ -489,7 +489,7 @@ emissionFactors:
       value: 385.44064889984975
     biomass:
     - datetime: '2020-01-01'
-      source: eGrid 2020
+      source: BEIS 2021
       value: 0.0
     - datetime: '2021-01-01'
       source: BEIS 2021
@@ -503,7 +503,7 @@ emissionFactors:
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 865.2241498
+      value: 867.1160983983897
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 872.6874296995918
@@ -516,7 +516,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 403.2500634
+      value: 403.2838165867553
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 391.97215165358426
@@ -527,6 +527,10 @@ emissionFactors:
       source: eGrid 2023
       value: 424.35485209409916
     geothermal:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 70.87985131255388
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021
@@ -564,7 +568,7 @@ emissionFactors:
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 569.2843708
+      value: 569.2843707617432
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 554.5699717082107
@@ -604,9 +608,10 @@ emissionFactors:
       source: Electricity Maps, 2023 average
       value: 432.22
     biomass:
-    - datetime: '2020-01-01'
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
       source: eGrid 2020
-      value: 72.20359898
+      value: 281.38853074481284
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021
@@ -621,9 +626,8 @@ emissionFactors:
       value: 282.7016835752059
     coal:
     - datetime: '2020-01-01'
-      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-        of coal power generation."
-      value: 943.0750138
+      source: eGrid 2020; IPCC 2014
+      value: 927.1160983983897
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 932.6874296995918
@@ -636,7 +640,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 523.2500634
+      value: 523.2838165867553
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 511.97215165358426
@@ -647,6 +651,10 @@ emissionFactors:
       source: eGrid 2023; IPCC 2014
       value: 544.3548520940992
     geothermal:
+    - _comment: Mean of all US zones
+      datetime: '2020-01-01'
+      source: eGrid 2020; IPCC 2014
+      value: 108.87985131255388
     - _comment: Mean of all US zones
       datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
@@ -690,7 +698,7 @@ emissionFactors:
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 813.2843708
+      value: 813.2843707617432
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 798.5699717082107
