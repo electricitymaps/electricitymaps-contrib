@@ -18,13 +18,10 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: BEIS 2021
       value: 0.0
-    - datetime: '2020-01-01'
-      source: BEIS 2021
-      value: 0.0
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 1054.5899917811341
+      value: 1054.589992
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 1040.2108414955262
@@ -37,7 +34,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 470.79860929575693
+      value: 470.7986093
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 442.92371913492497
@@ -60,14 +57,10 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 70.87985131255388
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 713.1828106549987
+      value: 713.1828107
     - datetime: '2021-01-01'
       source: eGrid 2021
       value: 663.8839597479941
@@ -91,14 +84,11 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 282.7016835752059
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 281.38853074481284
     coal:
     - datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1114.5899917811341
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1061.619377
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 1100.2108414955262
@@ -111,7 +101,7 @@ emissionFactors:
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 590.7986092957569
+      value: 590.7986093
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 562.923719134925
@@ -134,14 +124,10 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 108.87985131255388
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 957.1828106549987
+      value: 957.1828107
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
       value: 907.8839597479941
