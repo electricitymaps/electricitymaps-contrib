@@ -363,9 +363,6 @@ emissionFactors:
       datetime: '2021-01-01'
       source: INCER ACV
       value: 29.03333333
-    unknown:
-      source: HOPS 2018; HOPS 2018 derived calculation
-      value: 240
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -510,10 +507,6 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
-  HOPS 2018:
-    link: https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf
-  HOPS 2018 derived calculation:
-    link: https://github.com/electricitymaps/electricitymaps-contrib/pull/1965
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
