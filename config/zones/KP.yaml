@@ -1,63 +1,99 @@
 capacity:
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 2960.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 3360.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 3380.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 2960.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 3360.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 3380.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 4760.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 4790.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 4860.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 4890.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 4760.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 4790.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 4860.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 4890.0
   nuclear:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: KP
+country_name: North Korea
+currency: KPW
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 341.33
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 341.33
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 388.66
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 388.66
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.4301689565181732
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.5322005152702332
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.03546616807579994
+      solar: 0.0021642607171088457
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Pyongyang
 zone_name: North Korea
-country_name: North Korea
-currency: KPW

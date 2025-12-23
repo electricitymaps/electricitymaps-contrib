@@ -326,66 +326,24 @@ emissionFactors:
       value: 658.585745654576
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 548.2643271082043
+      value: 547.0
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 563.0295272027809
-    biomass:
-    - datetime: '2020-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2021-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2022-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: BEIS 2021
-      value: 0.0
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 1078.7421604341275
+      value: 1078.74216
     - datetime: '2021-01-01'
       source: eGrid 2021
-      value: 1052.61822786813
-    - datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 1041.816747591299
-    - datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 1087.1965526428457
+      value: 1052.62
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020
-      value: 480.4971118923412
+      value: 480.4971119
     - datetime: '2021-01-01'
       source: eGrid 2021
-      value: 468.99710753062755
-    - datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 525.3410692589177
-    - datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 450.847303672373
-    geothermal:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 70.87985131255388
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 78.28737905336972
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 29.707905036391203
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 28.739435464835893
+      value: 469.0
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -404,27 +362,10 @@ emissionFactors:
       value: 658.585745654576
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 548.2643271082043
+      value: 547.0
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 563.0295272027809
-    oil:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 803.8986689024886
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 754.5315891025153
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 740.5235575792449
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 692.2365799135232
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -444,7 +385,7 @@ emissionFactors:
       value: 710.78
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 606.86
+      value: 605.7
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 599.96
@@ -454,66 +395,22 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 511.43
-    biomass:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 281.38853074481284
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 280.6015234636058
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 274.05045073430733
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 282.7016835752059
     coal:
     - datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1138.7421604341275
+      source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1117.644366
     - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 1112.61822786813
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 1101.816747591299
-    - datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 1147.1965526428457
+      source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
+        of coal power generation."
+      value: 1091.5222059999999
     gas:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
-      value: 600.4971118923412
+      value: 600.4971118999999
     - datetime: '2021-01-01'
       source: eGrid 2021; IPCC 2014
-      value: 588.9971075306275
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 645.3410692589177
-    - datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 570.8473036723731
-    geothermal:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 108.87985131255388
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 116.28737905336972
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 67.7079050363912
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 66.73943546483589
+      value: 589.0
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -532,7 +429,7 @@ emissionFactors:
       value: 710.78
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 606.86
+      value: 605.7
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 599.96
@@ -543,22 +440,9 @@ emissionFactors:
       source: Electricity Maps, 2023 average
       value: 511.43
     oil:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1047.8986689024887
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 998.5315891025153
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 984.5235575792449
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 936.2365799135232
+      datetime: '2014-01-01'
+      source: IPCC 2014; EIA 2020/BEIS 2021
+      value: 650.0
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -644,17 +528,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 2.1010255045777316e-06
-      coal: 0.3480634978708961
-      gas: 0.35567093498465524
-      geothermal: 1.8594974472612433e-09
-      hydro: 0.023300776976545583
-      hydro discharge: 2.194206987768267e-07
-      nuclear: 0.0004066483314708744
-      oil: 1.978794539044426e-05
-      solar: 0.022885862559089146
-      unknown: 3.47963625089447e-05
-      wind: 0.2496152398129808
+      biomass: 3.134965254503186e-06
+      coal: 0.3481077551841736
+      gas: 0.3537387251853943
+      geothermal: 1.2382195269111662e-09
+      hydro: 0.02320457622408867
+      hydro discharge: 1.8573294013890518e-09
+      nuclear: 0.0005577109986916184
+      oil: 2.2452015400631353e-05
+      solar: 0.02272612415254116
+      unknown: 3.995301085524261e-05
+      wind: 0.25159952044487
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:

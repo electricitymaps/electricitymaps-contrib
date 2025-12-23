@@ -1,49 +1,85 @@
 bounding_box:
-  - - 24.727252272522747
-    - -22.8976886065485
-  - - 33.53573035730358
-    - -15.11435597832601
+- - 24.727252272522747
+  - -22.8976886065485
+- - 33.53573035730358
+  - -15.11435597832601
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 950.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1000.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1330.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 950.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1000.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 1330.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 780.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 1080.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 780.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 1080.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
 country: ZW
+country_name: Zimbabwe
+currency: ZWL
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 312.61
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 312.61
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 354.52
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 354.52
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.014690698124468327
+      coal: 0.41133221983909607
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.5703784823417664
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.00359839154407382
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Harare
 zone_name: Zimbabwe
-country_name: Zimbabwe
-currency: ZWL

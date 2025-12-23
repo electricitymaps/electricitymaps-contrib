@@ -1,33 +1,69 @@
 bounding_box:
-  - - 88.23188731887316
-    - 26.19990122658588
-  - - 92.58352083520836
-    - 28.85852622998459
+- - 88.23188731887316
+  - 26.19990122658588
+- - 92.58352083520836
+  - 28.85852622998459
 capacity:
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1610.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 2330.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1610.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 2330.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: BT
+country_name: Bhutan
+currency: BTN
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.57
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.57
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.59
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.59
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0007434964063577354
+      gas: 3.7376338468675385e-08
+      geothermal: 0.0
+      hydro: 0.9992496967315674
+      hydro discharge: 0.0
+      nuclear: 6.021742393613749e-08
+      oil: 4.921217851006077e-07
+      solar: 0.0
+      unknown: 6.144254712125985e-06
+      wind: 8.305852894352483e-09
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Thimphu
 zone_name: Bhutan
-country_name: Bhutan
-currency: BTN

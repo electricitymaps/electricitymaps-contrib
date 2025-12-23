@@ -1,24 +1,60 @@
 bounding_box:
-  - - 113.02779759582114
-    - 21.57645485902869
-  - - 114.13042179357811
-    - 22.71674764489182
+- - 113.02779759582114
+  - 21.57645485902869
+- - 114.13042179357811
+  - 22.71674764489182
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 270.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 270.0
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: MO
+country_name: Macao
+currency: MOP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 303.04
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 303.04
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 461.79
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 461.79
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.33926573395729065
+      coal: 0.0
+      gas: 0.3750174641609192
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.28571411967277527
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Macau
 zone_name: Macao
-country_name: Macao
-currency: MOP

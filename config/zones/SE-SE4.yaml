@@ -78,7 +78,7 @@ emissionFactors:
       value: 38.91845040864397
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 6.380305856936989
+      value: 11.26
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 15.369236620057007
@@ -93,12 +93,6 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: EU-ETS, ENTSO-E 2022
       value: 1075.5
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023
-      value: 1048.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1041.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -109,9 +103,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 312.59
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.69
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -130,7 +121,7 @@ emissionFactors:
       value: 38.91845040864397
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 6.380305856936989
+      value: 11.26
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 15.369236620057007
@@ -144,9 +135,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 373.49
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 597.49
     unknown:
     - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
         the sources in unknown
@@ -173,7 +161,7 @@ emissionFactors:
       value: 78.81
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 39.51
+      value: 37.11
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 59.62
@@ -199,12 +187,6 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
         hotspots of coal power generation."
       value: 1171.867209
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1108.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1101.07
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -215,9 +197,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 432.59
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.69
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -240,7 +219,7 @@ emissionFactors:
       value: 78.81
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 39.51
+      value: 37.11
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 59.62
@@ -267,9 +246,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 617.49
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 841.49
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -322,17 +298,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.004884572650574876
-      coal: 0.006277046019724963
-      gas: 0.005309220895234022
-      geothermal: 5.919487775826679e-06
-      hydro: 0.3265650937346932
-      hydro discharge: 0.0016216577702062326
-      nuclear: 0.2862972003672944
-      oil: 0.0002987140681796447
-      solar: 0.02255594854313073
-      unknown: 0.07060926069954462
-      wind: 0.2755752355382071
+      biomass: 0.005304940976202488
+      coal: 0.006653394550085068
+      gas: 0.0055556995794177055
+      geothermal: 6.056957772671012e-06
+      hydro: 0.37460169196128845
+      hydro discharge: 0.0015340019017457962
+      nuclear: 0.2954157292842865
+      oil: 0.0003154490259476006
+      solar: 0.009490986354649067
+      unknown: 0.0598880797624588
+      wind: 0.24123379588127136
   - _source: Electricity Maps, 2018 average
     datetime: '2018-01-01'
     value:

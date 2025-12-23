@@ -1,28 +1,64 @@
 capacity:
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 400.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 400.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: HT
+country_name: Haiti
+currency: HTG
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 348.28
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 348.28
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.07
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.07
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.1392405927181244
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.8578357100486755
+      solar: 0.0029226618353277445
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Port-au-Prince
 zone_name: Haiti
-country_name: Haiti
-currency: HTG

@@ -1,8 +1,8 @@
 bounding_box:
-  - - -76.21141516799992
-    - -49.75087001999994
-  - - -70.62239823399997
-    - -43.0301774319999
+- - -76.21141516799992
+  - -49.75087001999994
+- - -70.62239823399997
+  - -43.0301774319999
 capacity:
   battery storage: 0
   biomass: 0
@@ -16,8 +16,8 @@ capacity:
   solar: 2.96
   wind: 1.8
 country: CL
-region: Americas
-timezone: America/Santiago
-zone_name: Sistema Eléctrico de Aysén
 country_name: Chile
 currency: CLP
+region: Americas
+timezone: America/Santiago
+zone_name: "Sistema El\xE9ctrico de Ays\xE9n"

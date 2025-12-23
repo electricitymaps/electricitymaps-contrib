@@ -1,102 +1,133 @@
 _comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273
   CHP
 bounding_box:
-  - - 23.1994938494
-    - 51.3195034857
-  - - 32.6936430193
-    - 56.1691299506
+- - 23.1994938494
+  - 51.3195034857
+- - 32.6936430193
+  - 56.1691299506
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 9880.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 9810.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 9820.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 9800.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 9680.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 9720.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 9730.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 9880.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 9810.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 9820.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 9800.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 9680.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 9720.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 9730.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
   nuclear:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 1170.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 2340.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 1170.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 2340.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 150.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 270.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 260.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 150.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 270.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 260.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
 contributors:
-  - admetny
+- admetny
 country: BY
+country_name: Belarus
+currency: BYN
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 381.79
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 381.79
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 492.93
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 492.93
 fallbackZoneMixes:
-  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
   powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
-      gas: 0.98
-      hydro: 0.01
-      unknown: 0.01
+      battery discharge: 0.0
+      biomass: 0.006024281028658152
+      coal: 0.009065039455890656
+      gas: 0.7757184505462646
+      geothermal: 7.886712949378705e-10
+      hydro: 0.013267714530229568
+      hydro discharge: 0.0001578983064973727
+      nuclear: 0.033592574298381805
+      oil: 1.0225649930362124e-05
+      solar: 0.0037751749623566866
+      unknown: 0.1526932269334793
+      wind: 0.005695286672562361
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -108,5 +139,3 @@ parsers:
 region: Europe
 timezone: Europe/Minsk
 zone_name: Belarus
-country_name: Belarus
-currency: BYN

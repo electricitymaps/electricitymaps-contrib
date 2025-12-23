@@ -1,74 +1,110 @@
 bounding_box:
-  - - 34.4509495094951
-    - 28.689985355933374
-  - - 39.79992274590594
-    - 33.87779736975472
+- - 34.4509495094951
+  - 28.689985355933374
+- - 39.79992274590594
+  - 33.87779736975472
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 3310.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 4000.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 3310.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 4000.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 420.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 760.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 970.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 1540.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 1810.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1970.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 420.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 760.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 970.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 1540.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 1810.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1970.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 520.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 520.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 290.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 380.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 530.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 630.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 290.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 380.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 530.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 630.0
 country: JO
+country_name: Jordan
+currency: JOD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 301.38
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 301.38
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.88
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.88
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00014495945652015507
+      coal: 0.0
+      gas: 0.7706975936889648
+      geothermal: 0.0
+      hydro: 0.0008696214063093066
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.03995524346828461
+      solar: 0.12175660580396652
+      unknown: 0.0
+      wind: 0.06657592207193375
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Amman
 zone_name: Jordan
-country_name: Jordan
-currency: JOD

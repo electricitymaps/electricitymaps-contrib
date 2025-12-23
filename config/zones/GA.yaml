@@ -1,13 +1,49 @@
 bounding_box:
-  - - 8.195886958869607
-    - -4.4367200613860405
-  - - 14.999144991449924
-    - 2.809956504477071
+- - 8.195886958869607
+  - -4.4367200613860405
+- - 14.999144991449924
+  - 2.809956504477071
 country: GA
+country_name: Gabon
+currency: XAF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 194.02
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 194.02
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 284.71
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 284.71
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00341558619402349
+      coal: 0.0
+      gas: 0.37470391392707825
+      geothermal: 0.0
+      hydro: 0.485470175743103
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.1364099532365799
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Libreville
 zone_name: Gabon
-country_name: Gabon
-currency: XAF

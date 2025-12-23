@@ -306,7 +306,7 @@ emissionFactors:
       value: 410.23558916667355
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 363.2165970493008
+      value: 322.18
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 419.4076679907016
@@ -323,10 +323,7 @@ emissionFactors:
       value: 1087.81
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 1038.23
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1057.62
+      value: 1018.94
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -336,10 +333,7 @@ emissionFactors:
       value: 451.55
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 418.64
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 409.44
+      value: 409.62
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -358,7 +352,7 @@ emissionFactors:
       value: 410.23558916667355
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 363.2165970493008
+      value: 349.52
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 419.4076679907016
@@ -372,9 +366,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -394,7 +385,7 @@ emissionFactors:
       value: 432.36
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 385.61
+      value: 386.92
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 437.1
@@ -422,10 +413,7 @@ emissionFactors:
       value: 1167.165561
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1098.23
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1117.62
+      value: 1078.94
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -435,10 +423,7 @@ emissionFactors:
       value: 571.55
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 538.64
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 529.44
+      value: 529.62
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -461,7 +446,7 @@ emissionFactors:
       value: 383.86
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 333.56
+      value: 349.52
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 392.1
@@ -488,9 +473,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -581,17 +563,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.08707530342267537
-      coal: 0.23065944576205252
-      gas: 0.1231628286445281
-      geothermal: 0.00037836048102482864
-      hydro: 0.04308155976575074
-      hydro discharge: 0.01993541264649448
-      nuclear: 0.1386626193228
-      oil: 0.007514912875153696
-      solar: 0.0894190626263083
-      unknown: 0.009703466518651933
-      wind: 0.2504070271537337
+      biomass: 0.08824541419744492
+      coal: 0.2288977950811386
+      gas: 0.134614035487175
+      geothermal: 0.0003736845392268151
+      hydro: 0.04635394364595413
+      hydro discharge: 0.008639136329293251
+      nuclear: 0.13822725415229797
+      oil: 0.0071877408772706985
+      solar: 0.08902145177125931
+      unknown: 0.009150316007435322
+      wind: 0.24928921461105347
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:

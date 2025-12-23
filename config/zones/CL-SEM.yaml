@@ -1,8 +1,8 @@
 bounding_box:
-  - - -76.16104081899994
-    - -56.4185042229999
-  - - -65.92080644399994
-    - -48.13730234199994
+- - -76.16104081899994
+  - -56.4185042229999
+- - -65.92080644399994
+  - -48.13730234199994
 capacity:
   battery storage: 0
   biomass: 0
@@ -16,8 +16,8 @@ capacity:
   solar: 0
   wind: 12.9
 country: CL
-region: Americas
-timezone: America/Punta_Arenas
-zone_name: Sistema Eléctrico de Magallanes
 country_name: Chile
 currency: CLP
+region: Americas
+timezone: America/Punta_Arenas
+zone_name: "Sistema El\xE9ctrico de Magallanes"

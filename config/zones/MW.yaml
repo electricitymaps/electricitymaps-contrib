@@ -1,48 +1,84 @@
 bounding_box:
-  - - 32.1757267572676
-    - -17.629872698428883
-  - - 36.4049590495905
-    - -8.907749731785735
+- - 32.1757267572676
+  - -17.629872698428883
+- - 36.4049590495905
+  - -8.907749731785735
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 370.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 390.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 370.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 390.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
 country: MW
+country_name: Malawi
+currency: MWK
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 3.29
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 3.29
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 33.87
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 33.87
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.02855999581515789
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.9600088596343994
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.005716050509363413
+      unknown: 0.00571429030969739
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre
 zone_name: Malawi
-country_name: Malawi
-currency: MWK

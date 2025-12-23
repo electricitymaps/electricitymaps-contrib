@@ -1,11 +1,47 @@
 bounding_box:
-  - - -136.94538692906352
-    - 59.5000589062935
-  - - -101.48658586274732
-    - 79.26634349200017
+- - -136.94538692906352
+  - 59.5000589062935
+- - -101.48658586274732
+  - 79.26634349200017
 country: CA
+country_name: Canada
+currency: CAD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 115.13
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 115.13
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 179.08
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 179.08
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.21020005643367767
+      geothermal: 0.0
+      hydro: 0.6492354869842529
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.09200452268123627
+      solar: 0.004660876467823982
+      unknown: 0.0
+      wind: 0.043892767280340195
 region: Americas
 timezone: America/Yellowknife
 zone_name: Northwest Territories
-country_name: Canada
-currency: CAD

@@ -144,7 +144,7 @@ emissionFactors:
       value: 334.85814452148867
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 306.71014083284183
+      value: 261.32
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 349.7739207801914
@@ -161,10 +161,7 @@ emissionFactors:
       value: 1300.76
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 1080.36
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 772.24
+      value: 764.9
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -174,10 +171,7 @@ emissionFactors:
       value: 347.58
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 368.49
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 362.01
+      value: 514.8
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -196,7 +190,7 @@ emissionFactors:
       value: 334.85814452148867
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 306.71014083284183
+      value: 304.25
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 349.7739207801914
@@ -210,9 +204,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -232,7 +223,7 @@ emissionFactors:
       value: 327.73
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 295.15
+      value: 300.09
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 325.55
@@ -260,10 +251,7 @@ emissionFactors:
       value: 1310.210498
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1140.36
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 832.24
+      value: 824.9
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -273,10 +261,7 @@ emissionFactors:
       value: 467.58
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 488.49
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 482.01
+      value: 634.8
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -299,7 +284,7 @@ emissionFactors:
       value: 326.15
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 298.04
+      value: 304.25
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 342.44
@@ -326,9 +311,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -419,17 +401,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.03214129978920068
-      coal: 0.1597658007964095
-      gas: 0.11335439064889521
-      geothermal: 1.0663649634087268e-05
-      hydro: 0.11957332078969245
-      hydro discharge: 0.010667548142264734
-      nuclear: 0.4576875955632772
-      oil: 0.011664797983631637
-      solar: 0.02303952815894718
-      unknown: 0.05076868248375398
-      wind: 0.021326241596403762
+      biomass: 0.030970903113484383
+      coal: 0.1720823496580124
+      gas: 0.11022314429283142
+      geothermal: 1.0273031875840388e-05
+      hydro: 0.11850063502788544
+      hydro discharge: 0.011775389313697815
+      nuclear: 0.45946815609931946
+      oil: 0.011351381428539753
+      solar: 0.022877492010593414
+      unknown: 0.04203730449080467
+      wind: 0.020702902227640152
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:

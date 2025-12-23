@@ -36,7 +36,7 @@ emissionFactors:
       value: 281.4515250173106
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 269.922150686734
+      value: 275.2
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 239.8490653738602
@@ -52,17 +52,10 @@ emissionFactors:
       value: 281.4515250173106
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 269.922150686734
+      value: 269.68
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 239.8490653738602
-    unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category
-        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
-        mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
-        issue number 1809
-      value: 0.0
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -76,7 +69,7 @@ emissionFactors:
       value: 292.17
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 281.48
+      value: 281.51
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 244.99
@@ -95,7 +88,7 @@ emissionFactors:
       value: 281.26
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 269.66
+      value: 269.68
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 239.45
@@ -108,7 +101,7 @@ emissionFactors:
         mix
       source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
         issue number 1809
-      value: 28.0
+      value: 28
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -160,17 +153,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.000741683991074143
-      coal: 0.26858395474362196
-      gas: 0.10042702803341369
-      geothermal: 3.5875438696470174e-07
-      hydro: 0.053625640644993276
-      hydro discharge: 0.00023836674894553778
-      nuclear: 0.5187925726462157
-      oil: 0.00024380577165180974
-      solar: 0.0004421171590188602
-      unknown: 0.05611170814842644
-      wind: 0.0007927279538897991
+      biomass: 0.0007377475849352777
+      coal: 0.2688836455345154
+      gas: 0.10106412321329117
+      geothermal: 3.58066358785436e-07
+      hydro: 0.053666602820158005
+      hydro discharge: 0.00026211992371827364
+      nuclear: 0.5187242031097412
+      oil: 0.00024210962874349207
+      solar: 0.0004452339489944279
+      unknown: 0.0551687553524971
+      wind: 0.000805123127065599
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:

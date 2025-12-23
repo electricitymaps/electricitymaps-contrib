@@ -1,39 +1,75 @@
 bounding_box:
-  - - 113.50054000540004
-    - 3.521531572695231
-  - - 115.86135361353612
-    - 5.554773378091141
+- - 113.50054000540004
+  - 3.521531572695231
+- - 115.86135361353612
+  - 5.554773378091141
 capacity:
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 220.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 220.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 980.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 990.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 980.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 990.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
 country: BN
+country_name: Brunei
+currency: BND
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 453.51
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 453.51
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.52
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.52
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.213674858212471
+      gas: 0.7793463468551636
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0068042525090277195
+      solar: 0.00017436916823498905
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Brunei
 zone_name: Brunei
-country_name: Brunei
-currency: BND

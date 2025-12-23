@@ -1,8 +1,8 @@
 bounding_box:
-  - - 83.31609381672638
-    - 26.33196174127239
-  - - 84.17810344629932
-    - 29.2389869272311
+- - 83.31609381672638
+  - 26.33196174127239
+- - 84.17810344629932
+  - 29.2389869272311
 capacity:
   biomass: 0
   coal: 0
@@ -13,10 +13,46 @@ capacity:
   solar: 0.7804
   wind: 0
 contributors:
-  - Subarna578
+- Subarna578
 country: NP
+country_name: Nepal
+currency: NPR
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.06
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.06
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.36
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.36
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 8.312860154546797e-05
+      gas: 5.968381628917996e-07
+      geothermal: 0.0
+      hydro: 0.9861440062522888
+      hydro discharge: 0.0
+      nuclear: 1.2975564231965109e-06
+      oil: 5.666184854646872e-09
+      solar: 0.013770004734396935
+      unknown: 7.649350095562113e-07
+      wind: 1.775404712134332e-07
 region: Asia
 timezone: Asia/Kathmandu
 zone_name: Nepal
-country_name: Nepal
-currency: NPR

@@ -189,13 +189,6 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 373.2994356894946
-    unknown:
-      _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
-        22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
-        567 g/kWh; 2015 production'
-      _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
-      source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
-      value: 460.06
   lifecycle:
     battery discharge:
     - datetime: '2018-01-01'
@@ -247,7 +240,7 @@ emissionFactors:
         567 g/kWh; 2015 production'
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
-      value: 567.5
+      value: 567
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average
