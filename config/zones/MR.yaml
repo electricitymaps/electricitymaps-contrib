@@ -24,39 +24,39 @@ currency: MRU
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 411.24
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.26
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 411.24
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.26
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 508.51
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 506.0
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 508.51
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 506.0
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.1329084187746048
+      hydro: 0.12883800268173218
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.08860772103071213
-      unknown: 0.7151927947998047
-      wind: 0.06329022347927094
+      solar: 0.08588317781686783
+      unknown: 0.7117584943771362
+      wind: 0.07351943105459213
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

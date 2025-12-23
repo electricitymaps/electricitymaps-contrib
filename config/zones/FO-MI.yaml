@@ -20,9 +20,9 @@ currency: DKK
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 412.62
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 417.93
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -48,9 +48,9 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2023
       value: 410.39
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 412.62
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 417.93
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -76,9 +76,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 396.29
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 536.24
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 542.97
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -118,9 +118,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 396.29
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 536.24
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 542.97
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -191,21 +191,21 @@ fallbackZoneMixes:
       solar: 0.0
       unknown: 0.0
       wind: 0.29956949622511475
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.014340288005769253
+      biomass: 0.014376647770404816
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.2600991129875183
+      hydro: 0.2514737546443939
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4683801531791687
+      oil: 0.47442933917045593
       solar: 0.0
       unknown: 0.0
-      wind: 0.25710394978523254
+      wind: 0.2597033977508545
 isLowCarbon:
   unknown:
     value: 1

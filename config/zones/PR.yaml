@@ -103,10 +103,10 @@ emissionFactors:
       value: 697.9827697209355
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 716.3495131110815
+      value: 602.14
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 592.59
+      value: 691.6232949567844
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -137,10 +137,10 @@ emissionFactors:
       value: 697.9827697209355
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 716.3495131110815
+      value: 602.14
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 592.59
+      value: 691.6232949567844
     oil:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -164,10 +164,10 @@ emissionFactors:
       value: 609.5049770315596
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 622.06
+      value: 305.54
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 365.37
+      value: 606.54
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -186,10 +186,10 @@ emissionFactors:
       value: 609.5049770315596
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 622.06
+      value: 305.54
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 365.37
+      value: 606.54
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
@@ -276,32 +276,32 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.003056801711021606
-      coal: 0.20995060374384983
-      gas: 0.3142132207951985
-      geothermal: 0.0
-      hydro: 0.0033693584812000276
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.4421993502836153
-      solar: 0.01723713584912138
-      unknown: 0.0008220597962560202
-      wind: 0.009151475705779812
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
       biomass: 0.0
-      coal: 0.17437857389450073
-      gas: 0.4278731048107147
+      coal: 0.16730661690235138
+      gas: 0.30938011407852173
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.016684740781784058
-      unknown: 0.37137484550476074
-      wind: 0.009688649326562881
+      solar: 0.015907838940620422
+      unknown: 0.4991771876811981
+      wind: 0.008228186517953873
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.000588897955689813
+      coal: 0.1762597940083661
+      gas: 0.3587532208923845
+      geothermal: 0.0
+      hydro: 0.0030917180825297858
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.43894189064846695
+      solar: 0.012790315399735448
+      unknown: 0.0009000191751649909
+      wind: 0.008674031627125225
 isLowCarbon:
   unknown:
     value: 1

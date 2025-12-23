@@ -36,39 +36,39 @@ currency: PYG
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 13.99
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 8.78
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 13.99
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 8.78
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 42.52
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 34.95
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 42.52
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 34.95
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0052988724783062935
-      coal: 0.0009170106495730579
-      gas: 0.03115074522793293
+      biomass: 3.451668089837767e-05
+      coal: 0.00026928092120215297
+      gas: 0.020068950951099396
       geothermal: 0.0
-      hydro: 0.9510660171508789
-      hydro discharge: 0.0007111825398169458
-      nuclear: 0.00370799214579165
-      oil: 0.0011223027249798179
-      solar: 0.00045212043914943933
-      unknown: 0.0019555489998310804
-      wind: 0.003618231974542141
+      hydro: 0.9724661111831665
+      hydro discharge: 0.00020150050113443285
+      nuclear: 0.0025465197395533323
+      oil: 0.0005184081383049488
+      solar: 0.00024150579702109098
+      unknown: 0.001543319784104824
+      wind: 0.0021099557634443045
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

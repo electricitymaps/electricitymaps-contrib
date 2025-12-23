@@ -46,36 +46,36 @@ currency: SDG
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 152.89
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 144.04
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 152.89
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 144.04
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 259.74
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 246.09
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 259.74
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 246.09
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.6234130859375
+      hydro: 0.6452312469482422
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.37658682465553284
+      oil: 0.3547687530517578
       solar: 0.0
       unknown: 0.0
       wind: 0.0

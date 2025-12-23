@@ -54,13 +54,13 @@ currency: EUR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 274.82
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 284.47
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 274.82
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 284.47
   lifecycle:
     battery discharge:
     - datetime: '2016-01-01'
@@ -178,32 +178,32 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.15125047240940298
+      biomass: 0.15124492347240448
       coal: 0.0
-      gas: 0.768832000768264
+      gas: 0.7688340544700623
       geothermal: 0.0
-      hydro: 9.555521785338824e-06
+      hydro: 9.556490113027394e-06
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.05221617533910009
+      solar: 0.05222056061029434
       unknown: 0.0
-      wind: 0.027691795961447635
+      wind: 0.027690904214978218
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.16890718042850494
+      biomass: 0.1689072850360248
       coal: 0.0
-      gas: 0.7427634596824646
+      gas: 0.7427632170828681
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.05590685084462166
+      solar: 0.05590676451155423
       unknown: 0.0
-      wind: 0.03242245689034462
+      wind: 0.0324227333695527
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:

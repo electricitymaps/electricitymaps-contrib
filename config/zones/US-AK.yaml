@@ -9,9 +9,9 @@ currency: USD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 407.61
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 419.07
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -27,9 +27,9 @@ emissionFactors:
       source: eGrid 2021
       value: 442.92
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 407.61
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 419.07
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -39,9 +39,9 @@ emissionFactors:
       value: 663.88
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 507.18
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 519.16
     coal:
     - datetime: '2020-01-01'
       source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
@@ -59,9 +59,9 @@ emissionFactors:
       source: eGrid 2021; IPCC 2014
       value: 562.9200000000001
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 507.18
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 519.16
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
@@ -71,21 +71,21 @@ emissionFactors:
       value: 907.88
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.005850488319993019
-      coal: 0.10144279897212982
-      gas: 0.47414860129356384
+      biomass: 0.0063416725024580956
+      coal: 0.09780590981245041
+      gas: 0.4286530911922455
       geothermal: 0.0
-      hydro: 0.259549081325531
+      hydro: 0.28630584478378296
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.13869145512580872
+      oil: 0.1600155085325241
       solar: 0.0
       unknown: 0.0
-      wind: 0.020316943526268005
+      wind: 0.02087746374309063
 region: Americas
 sources:
   IPCC 2014:

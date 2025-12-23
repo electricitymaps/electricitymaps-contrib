@@ -61,13 +61,13 @@ currency: TZS
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 233.96
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 217.21
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 233.96
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 217.21
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
@@ -76,9 +76,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 350.48
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 321.75
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 300.76
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
@@ -86,9 +86,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 350.48
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 321.75
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 300.76
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -121,19 +121,19 @@ fallbackZoneMixes:
       solar: 0.003117324755408123
       unknown: 0.0
       wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.008441373705863953
+      biomass: 0.00931921973824501
       coal: 0.0
-      gas: 0.6201379299163818
+      gas: 0.5757148265838623
       geothermal: 0.0
-      hydro: 0.3568507432937622
+      hydro: 0.4007914960384369
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.01110068242996931
-      solar: 0.0034690063912421465
+      oil: 0.010342124849557877
+      solar: 0.0038320408202707767
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -4,37 +4,37 @@ currency: MGA
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 338.25
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 275.09
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 338.25
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 275.09
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 478.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 414.38
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 478.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 414.38
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.009538902901113033
-      coal: 0.18560685217380524
+      biomass: 0.011168111115694046
+      coal: 0.09684130549430847
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.3048478364944458
+      hydro: 0.3803440034389496
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4856969118118286
-      solar: 0.014308678917586803
+      oil: 0.4962849020957947
+      solar: 0.01536053791642189
       unknown: 0.0
       wind: 0.0
 parsers:

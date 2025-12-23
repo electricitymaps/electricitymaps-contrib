@@ -79,7 +79,7 @@ emissionFactors:
       value: 293.6952019257576
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 269.6187929820843
+      value: 302.66
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
       value: 124.29277033293447
@@ -92,9 +92,6 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 269.6478450016261
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 307.38
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -104,7 +101,7 @@ emissionFactors:
       value: 293.6952019257576
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 269.6187929820843
+      value: 302.66
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
       value: 124.29277033293447
@@ -117,9 +114,6 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 269.6478450016261
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 307.38
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020
@@ -137,7 +131,7 @@ emissionFactors:
       value: 411.55
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 312.0
+      value: 351.03
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
       value: 172.63
@@ -147,9 +141,6 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 372.95
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 380.6
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -162,7 +153,7 @@ emissionFactors:
       value: 411.55
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 312.0
+      value: 351.03
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
       value: 172.63
@@ -172,9 +163,6 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 372.95
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 380.6
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020
@@ -230,17 +218,17 @@ fallbackZoneMixes:
     datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0012660920830537574
-      coal: 0.33996932189350915
-      gas: 0.0012023232670759013
-      geothermal: 0.02525457709390598
-      hydro: 0.5629133900030246
+      biomass: 0.001363494899123907
+      coal: 0.3575131297111511
+      gas: 0.05110213905572891
+      geothermal: 0.025526374578475952
+      hydro: 0.4784557819366455
       hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.025391496985978212
-      solar: 0.01742560042451506
-      unknown: 0.0009033550660467637
-      wind: 0.0256737413401755
+      nuclear: 0.002941512269899249
+      oil: 0.024353880435228348
+      solar: 0.020345035940408707
+      unknown: 0.006954639684408903
+      wind: 0.03144415095448494
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:
@@ -286,21 +274,6 @@ fallbackZoneMixes:
       solar: 0.01427310682024955
       unknown: 0.11712930277035961
       wind: 0.02062521914028993
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.08327411860227585
-      coal: 0.337009072303772
-      gas: 0.0643964484333992
-      geothermal: 0.024173330515623093
-      hydro: 0.3594105839729309
-      hydro discharge: 0.0
-      nuclear: 0.0035575826186686754
-      oil: 0.059819675981998444
-      solar: 0.025235183537006378
-      unknown: 0.008928731083869934
-      wind: 0.034195393323898315
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production

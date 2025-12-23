@@ -25,10 +25,10 @@ emissionFactors:
       value: 178.2122761644179
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 226.36203583322924
+      value: 347.85
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 309.89
+      value: 198.47674260721914
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -56,10 +56,10 @@ emissionFactors:
       value: 178.2122761644179
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 226.36203583322924
+      value: 347.85
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 309.89
+      value: 198.47674260721914
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -95,10 +95,10 @@ emissionFactors:
       value: 402.29
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 517.67
+      value: 476.54
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 423.62
+      value: 467.49
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
       value: 474.77
@@ -141,10 +141,10 @@ emissionFactors:
       value: 149.65
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 190.51
+      value: 476.54
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 423.62
+      value: 169.7
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
       value: 168.17
@@ -233,12 +233,12 @@ fallbackZoneMixes:
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
-      hydro discharge: 0.0364815520400542
+      hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.5377108096444623
+      oil: 0.5025261044502258
       solar: 0.0
       unknown: 0.0
-      wind: 0.42576721218362756
+      wind: 0.4974503815174103
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
     value:
@@ -248,12 +248,12 @@ fallbackZoneMixes:
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
-      hydro discharge: 0.0
+      hydro discharge: 0.0349716015189203
       nuclear: 0.0
-      oil: 0.4380169212818146
+      oil: 0.4767118975482077
       solar: 0.0
       unknown: 0.0
-      wind: 0.5619410276412964
+      wind: 0.48829033452562287
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:

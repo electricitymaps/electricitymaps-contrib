@@ -33,10 +33,7 @@ emissionFactors:
       value: 431.5915354455722
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 394.3704932143435
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 445.47
+      value: 455.24
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -49,10 +46,7 @@ emissionFactors:
       value: 431.5915354455722
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 394.3704932143435
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 445.47
+      value: 455.24
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -66,10 +60,7 @@ emissionFactors:
       value: 479.75
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 443.45
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 511.19
+      value: 521.85
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -82,10 +73,7 @@ emissionFactors:
       value: 479.75
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 443.45
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 511.19
+      value: 521.85
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -136,33 +124,18 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2020 average
     datetime: '2020-01-01'
     value:
-      battery discharge: 6.045213280580344e-08
-      biomass: 0.026186821132183152
-      coal: 0.5194228002551721
-      gas: 0.17446986675935836
+      battery discharge: 2.1281657325289416e-08
+      biomass: 0.03288644924759865
+      coal: 0.5026283264160156
+      gas: 0.19344498217105865
       geothermal: 0.0
-      hydro: 0.06156233622478202
+      hydro: 0.13092151284217834
       hydro discharge: 0.0
-      nuclear: 0.00019428408701793138
-      oil: 3.9293886323772237e-07
-      solar: 3.1737369723046804e-06
-      unknown: 0.03514963872097663
-      wind: 0.18301042620050328
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 1.8186854333634983e-07
-      biomass: 0.03909420222043991
-      coal: 0.4990290105342865
-      gas: 0.174473837018013
-      geothermal: 0.0
-      hydro: 0.1316920518875122
-      hydro discharge: 0.0
-      nuclear: 0.025211697444319725
-      oil: 0.004054511897265911
-      solar: 0.00021254798048175871
-      unknown: 3.136541272397153e-05
-      wind: 0.12620022892951965
+      nuclear: 0.025386691093444824
+      oil: 0.0041360571049153805
+      solar: 0.0002218713634647429
+      unknown: 5.464905370899942e-06
+      wind: 0.11036856472492218
 region: Americas
 timezone: America/Halifax
 zone_name: Nova Scotia

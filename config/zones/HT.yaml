@@ -24,37 +24,37 @@ currency: HTG
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 352.44
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 348.28
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 352.44
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 348.28
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 567.48
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.07
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 567.48
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 561.07
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.129004567861557
+      hydro: 0.1392405927181244
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.8680842518806458
-      solar: 0.002909862669184804
+      oil: 0.8578357100486755
+      solar: 0.0029226618353277445
       unknown: 0.0
       wind: 0.0
 parsers:

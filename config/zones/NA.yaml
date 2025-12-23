@@ -25,9 +25,9 @@ emissionFactors:
     - datetime: '2019-01-01'
       source: Electricity Maps, 2019 average
       value: 14.38993486068608
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 21.01
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 22.98
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -35,9 +35,9 @@ emissionFactors:
     - datetime: '2019-01-01'
       source: Electricity Maps, 2019 average
       value: 14.38993486068608
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 21.01
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 22.98
   lifecycle:
     battery discharge:
     - datetime: '2018-01-01'
@@ -46,9 +46,9 @@ emissionFactors:
     - datetime: '2019-01-01'
       source: Electricity Maps, 2019 average
       value: 42.98
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 52.21
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 53.22
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -56,9 +56,9 @@ emissionFactors:
     - datetime: '2019-01-01'
       source: Electricity Maps, 2019 average
       value: 42.98
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 52.21
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 53.22
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average
@@ -91,21 +91,21 @@ fallbackZoneMixes:
       solar: 0.17650734047230604
       unknown: 0.0
       wind: 0.018079403291716912
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.027285438030958176
+      coal: 0.027842475101351738
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.6603095531463623
+      hydro: 0.748424768447876
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0006818530382588506
-      solar: 0.29739758372306824
+      oil: 0.004479163326323032
+      solar: 0.20881026983261108
       unknown: 0.0
-      wind: 0.014323899522423744
+      wind: 0.010442574508488178
 region: Africa
 timezone: Africa/Windhoek
 zone_name: Namibia

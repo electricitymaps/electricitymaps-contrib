@@ -30,39 +30,39 @@ currency: UZS
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 371.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 372.95
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 371.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 372.95
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 483.11
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 481.89
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 483.11
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 481.89
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.06943579018115997
-      gas: 0.8415820002555847
+      coal: 0.07824178040027618
+      gas: 0.8397269248962402
       geothermal: 0.0
-      hydro: 0.06967294216156006
+      hydro: 0.07517406344413757
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.01860852725803852
-      solar: 0.0006866466137580574
+      oil: 0.006857231725007296
+      solar: 0.0
       unknown: 0.0
-      wind: 1.4001979252498131e-05
+      wind: 0.0
 region: Asia
 timezone: Asia/Samarkand
 zone_name: Uzbekistan

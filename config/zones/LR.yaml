@@ -21,38 +21,38 @@ currency: LRD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 378.29
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 408.87
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 378.29
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 408.87
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 468.74
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 504.69
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 468.74
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 504.69
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.3421063721179962
+      hydro: 0.2889116108417511
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.6578906774520874
+      unknown: 0.7110860347747803
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

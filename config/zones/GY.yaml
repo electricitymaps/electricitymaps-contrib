@@ -39,29 +39,29 @@ currency: GYD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 564.73
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 564.81
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 564.73
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 564.81
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 689.96
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 690.03
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 689.96
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 690.03
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.008928641676902771
+      biomass: 0.008854221552610397
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
@@ -69,8 +69,8 @@ fallbackZoneMixes:
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.008927909657359123
-      unknown: 0.9821427464485168
+      solar: 0.008860956877470016
+      unknown: 0.9822841882705688
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

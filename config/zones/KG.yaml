@@ -34,38 +34,38 @@ currency: KGS
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 100.82
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 66.53
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 100.82
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 66.53
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 130.65
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 94.23
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 130.65
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 94.23
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.1255304366350174
-      gas: 0.011346686631441116
+      coal: 0.08311343938112259
+      gas: 0.003957770299166441
       geothermal: 0.0
-      hydro: 0.8609950542449951
+      hydro: 0.909630537033081
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.0021276979241520166
+      unknown: 0.0032981475815176964
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

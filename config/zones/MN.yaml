@@ -61,13 +61,13 @@ currency: MNT
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 667.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 689.95
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 667.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 689.95
     unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
@@ -78,16 +78,16 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 712.24
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 723.95
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 745.67
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 712.24
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 723.95
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 745.67
     unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
@@ -110,21 +110,21 @@ fallbackZoneMixes:
       solar: 0.025727593324883617
       unknown: 0.8876911885022577
       wind: 0.06354042950942215
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.8695152401924133
-      gas: 8.336777682416141e-05
+      coal: 0.9068287014961243
+      gas: 3.215535116396495e-06
       geothermal: 0.0
-      hydro: 0.020500095561146736
+      hydro: 0.0017833106685429811
       hydro discharge: 0.0
-      nuclear: 1.1605379768298008e-05
+      nuclear: 3.3913615880010184e-06
       oil: 0.0
-      solar: 7.660773553652689e-05
-      unknown: 0.011916697956621647
-      wind: 0.09789605438709259
+      solar: 4.188540060567902e-06
+      unknown: 0.0013211527839303017
+      wind: 0.09005577117204666
 isLowCarbon:
   unknown:
   - _url: https://www.iea.org/fuels-and-technologies/electricity

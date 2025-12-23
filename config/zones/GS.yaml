@@ -20,22 +20,22 @@ currency: GBP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.0
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 5.24
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.0
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 5.24
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 23.83
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 31.91
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 23.83
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 31.91
 region: Americas
 timezone: Atlantic/South_Georgia
 zone_name: South Georgia and the South Sandwich Islands

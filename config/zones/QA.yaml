@@ -39,12 +39,12 @@ currency: QAR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
       value: 370.0
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
       value: 370.0
   lifecycle:
     battery discharge:
@@ -57,8 +57,8 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 468.56
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
       value: 490.0
     hydro discharge:
     - datetime: '2022-01-01'
@@ -70,8 +70,8 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 468.56
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
       value: 490.0
 fallbackZoneMixes:
   powerOriginRatios:
@@ -120,8 +120,8 @@ fallbackZoneMixes:
       solar: 0.04696731182387401
       unknown: 0.0
       wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0

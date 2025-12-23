@@ -23,10 +23,10 @@ emissionFactors:
       value: 880.9
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 880.8999999999999
+      value: 697.33
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 707.28
+      value: 880.9
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -54,10 +54,10 @@ emissionFactors:
       value: 880.9
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 880.8999999999999
+      value: 697.33
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 707.28
+      value: 880.9
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -233,7 +233,7 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9998975884225004
+      oil: 0.9998974204063416
       solar: 0.0
       unknown: 0.0
       wind: 0.0
@@ -248,7 +248,7 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9998971223831177
+      oil: 0.9998973391667373
       solar: 0.0
       unknown: 0.0
       wind: 0.0

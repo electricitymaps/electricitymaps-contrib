@@ -70,39 +70,39 @@ currency: JOD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 286.65
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 301.38
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 286.65
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 301.38
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 392.36
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.88
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 392.36
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 409.88
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 9.361253614770249e-05
+      biomass: 0.00014495945652015507
       coal: 0.0
-      gas: 0.7262957096099854
+      gas: 0.7706975936889648
       geothermal: 0.0
-      hydro: 0.0008424154948443174
+      hydro: 0.0008696214063093066
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.04413478821516037
-      solar: 0.15398262441158295
+      oil: 0.03995524346828461
+      solar: 0.12175660580396652
       unknown: 0.0
-      wind: 0.07465081661939621
+      wind: 0.06657592207193375
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

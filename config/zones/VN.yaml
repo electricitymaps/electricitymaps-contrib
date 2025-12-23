@@ -134,13 +134,13 @@ currency: VND
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 392.84
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 432.32
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 392.84
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 432.32
     unknown:
     - datetime: '2022-01-01'
       source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
@@ -148,13 +148,13 @@ emissionFactors:
       value: 336
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 446.18
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 489.26
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 446.18
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 489.26
     unknown:
     - datetime: '2022-01-01'
       source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
@@ -162,21 +162,21 @@ emissionFactors:
       value: 386
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.4636252522468567
-      gas: 0.10942550748586655
+      coal: 0.4940109848976135
+      gas: 0.1485513150691986
       geothermal: 0.0
-      hydro: 0.31023600697517395
+      hydro: 0.3079880475997925
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.1076531931757927
-      unknown: 5.336282242751622e-07
-      wind: 0.009059436619281769
+      solar: 0.03876658156514168
+      unknown: 0.005665263626724482
+      wind: 0.005017802119255066
 isLowCarbon:
   unknown:
   - datetime: '2022-01-01'

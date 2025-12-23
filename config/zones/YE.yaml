@@ -50,37 +50,37 @@ currency: YER
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 320.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 328.79
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 320.71
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 328.79
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 520.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 532.37
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 520.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 532.37
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.02670605294406414
+      gas: 0.02417551726102829
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7655801177024841
-      solar: 0.2077130675315857
+      oil: 0.7877962589263916
+      solar: 0.1880279928445816
       unknown: 0.0
       wind: 0.0
 parsers:

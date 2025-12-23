@@ -29,39 +29,39 @@ currency: BTN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.76
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.57
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.76
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.57
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 24.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.59
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 24.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.59
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.000988510437309742
-      gas: 2.730306505327462e-07
+      coal: 0.0007434964063577354
+      gas: 3.7376338468675385e-08
       geothermal: 0.0
-      hydro: 0.9990010857582092
+      hydro: 0.9992496967315674
       hydro discharge: 0.0
-      nuclear: 9.181919153888884e-07
-      oil: 5.460613010654924e-07
+      nuclear: 6.021742393613749e-08
+      oil: 4.921217851006077e-07
       solar: 0.0
-      unknown: 7.531601113441866e-06
-      wind: 9.424612699149293e-07
+      unknown: 6.144254712125985e-06
+      wind: 8.305852894352483e-09
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

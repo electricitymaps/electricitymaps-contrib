@@ -40,13 +40,13 @@ currency: BHD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 369.38
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 369.7
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 369.38
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 369.7
   lifecycle:
     battery discharge:
     - datetime: '2022-01-01'
@@ -58,9 +58,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 700.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 489.26
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 489.64
     hydro discharge:
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
@@ -71,9 +71,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 700.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 489.26
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 489.64
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2022 average
@@ -121,21 +121,21 @@ fallbackZoneMixes:
       solar: 0.0
       unknown: 1.0
       wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9983303546905518
+      gas: 0.9991998672485352
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.0016342096496373415
+      solar: 0.0007639694958925247
       unknown: 0.0
-      wind: 3.5447334084892645e-05
+      wind: 3.6053184885531664e-05
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

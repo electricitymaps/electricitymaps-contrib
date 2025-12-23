@@ -94,37 +94,37 @@ currency: KHR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 300.95
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 374.97
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 300.95
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 374.97
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 351.25
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 427.78
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 351.25
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 427.78
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.004997835494577885
-      coal: 0.37012094259262085
+      biomass: 0.00748192286118865
+      coal: 0.46992555260658264
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.5143480896949768
+      hydro: 0.44539526104927063
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.04840727522969246
-      solar: 0.062125686556100845
+      oil: 0.043901871889829636
+      solar: 0.033295296132564545
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -42,38 +42,38 @@ currency: AFN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 75.75
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 61.63
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 75.75
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 61.63
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 111.89
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 96.04
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 111.89
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 96.04
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.028299935162067413
+      coal: 0.0169549398124218
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.8018866777420044
+      hydro: 0.8389562964439392
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.07547060400247574
-      unknown: 0.09434220939874649
+      solar: 0.059323202818632126
+      unknown: 0.08476445823907852
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

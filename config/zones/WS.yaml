@@ -31,38 +31,38 @@ currency: WST
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 304.41
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 351.42
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 304.41
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 351.42
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 396.47
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 439.49
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 396.47
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 439.49
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.05880986899137497
+      biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.2941250801086426
+      hydro: 0.27773699164390564
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.11764683574438095
-      unknown: 0.5294084548950195
+      solar: 0.1110868901014328
+      unknown: 0.6111718416213989
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

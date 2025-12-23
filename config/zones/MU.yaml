@@ -49,13 +49,13 @@ currency: MUR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 467.59
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 448.9
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 467.59
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 448.9
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
@@ -64,9 +64,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 604.51
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 613.64
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 597.93
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
@@ -74,9 +74,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 604.51
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 613.64
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 597.93
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -109,21 +109,21 @@ fallbackZoneMixes:
       solar: 0.04942291741728504
       unknown: 0.0
       wind: 0.004813099721722564
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.12312142550945282
-      coal: 0.41953790187835693
+      biomass: 0.1416693925857544
+      coal: 0.3947868347167969
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.035464562475681305
+      hydro: 0.040325287729501724
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.3663462698459625
-      solar: 0.05051015317440033
+      oil: 0.3666519522666931
+      solar: 0.05031704902648926
       unknown: 0.0
-      wind: 0.005018365569412708
+      wind: 0.006248250603675842
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

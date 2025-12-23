@@ -31,37 +31,37 @@ currency: CDF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.16
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 0.06
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 0.16
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 24.56
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.74
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 24.56
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 24.74
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.002047522459179163
+      biomass: 0.0021609689574688673
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.9957532286643982
+      hydro: 0.9952849745750427
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.00015170428378041834
-      solar: 0.0020474239718168974
+      oil: 0.00039889413164928555
+      solar: 0.0021549181547015905
       unknown: 0.0
       wind: 0.0
 parsers:

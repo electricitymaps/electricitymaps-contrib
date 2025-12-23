@@ -95,39 +95,39 @@ currency: BYN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 336.55
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 381.79
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 336.55
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 381.79
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 436.07
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 492.93
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 436.07
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 492.93
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.005757462233304977
-      coal: 0.0004850456607528031
-      gas: 0.6841180324554443
-      geothermal: 3.893095623652698e-09
-      hydro: 0.011515023186802864
-      hydro discharge: 7.571317837573588e-05
-      nuclear: 0.1452660709619522
-      oil: 3.4729005164990667e-06
-      solar: 0.004406031221151352
-      unknown: 0.1443503201007843
-      wind: 0.004022728186100721
+      biomass: 0.006024281028658152
+      coal: 0.009065039455890656
+      gas: 0.7757184505462646
+      geothermal: 7.886712949378705e-10
+      hydro: 0.013267714530229568
+      hydro discharge: 0.0001578983064973727
+      nuclear: 0.033592574298381805
+      oil: 1.0225649930362124e-05
+      solar: 0.0037751749623566866
+      unknown: 0.1526932269334793
+      wind: 0.005695286672562361
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

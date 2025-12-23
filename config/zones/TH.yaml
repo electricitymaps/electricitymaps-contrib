@@ -117,13 +117,13 @@ currency: THB
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 394.29
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 398.95
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 394.29
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 398.95
     unknown:
       _url: https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing
       source: IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6%
@@ -140,9 +140,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 409.05
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 503.07
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 507.19
     hydro discharge:
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
@@ -153,9 +153,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 409.05
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 503.07
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 507.19
     unknown:
     - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
         SPP, and VSPP
@@ -329,21 +329,21 @@ fallbackZoneMixes:
       solar: 5.013384228280907e-06
       unknown: 0.9997733243942888
       wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0755673497915268
-      coal: 0.20455248653888702
-      gas: 0.6412879824638367
+      biomass: 0.06963237375020981
+      coal: 0.2089008241891861
+      gas: 0.644780158996582
       geothermal: 0.0
-      hydro: 0.025805674493312836
+      hydro: 0.025845253840088844
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 1.2353750378224504e-07
-      solar: 0.02438114397227764
-      unknown: 0.004026946611702442
-      wind: 0.02437828667461872
+      oil: 0.0
+      solar: 0.028026605024933815
+      unknown: 0.004189975094050169
+      wind: 0.018624911084771156
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in TH unknown production

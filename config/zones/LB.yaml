@@ -55,37 +55,37 @@ currency: LBP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 369.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 379.11
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 369.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 379.11
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 594.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 608.93
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 594.79
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 608.93
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
     value:
       battery discharge: 0.0
-      biomass: 2.183738132544022e-07
+      biomass: 0.0011520490515977144
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.05930517241358757
+      hydro: 0.05782216042280197
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9108016490936279
-      solar: 0.029892945662140846
+      oil: 0.9337767958641052
+      solar: 0.007249009795486927
       unknown: 0.0
       wind: 0.0
 parsers:

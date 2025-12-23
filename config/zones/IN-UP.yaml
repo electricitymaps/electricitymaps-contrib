@@ -39,10 +39,10 @@ emissionFactors:
       value: 670.8790412297265
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 668.9373334044878
+      value: 538.51
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 473.32
+      value: 672.5834947566543
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -61,10 +61,10 @@ emissionFactors:
       value: 670.8790412297265
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 668.9373334044878
+      value: 538.51
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 473.32
+      value: 672.5834947566543
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -84,7 +84,7 @@ emissionFactors:
       value: 665.62
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 656.82
+      value: 657.27
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 583.82
@@ -106,7 +106,7 @@ emissionFactors:
       value: 665.62
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
-      value: 656.82
+      value: 657.27
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 583.82
@@ -195,12 +195,12 @@ fallbackZoneMixes:
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.0566120055563359
+      hydro: 0.05629289150238037
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.008319381331478082
-      unknown: 0.9350686046344332
+      solar: 0.00800050888210535
+      unknown: 0.935706615447998
       wind: 0.0
   - _source: Electricity Maps, 2021 average
     datetime: '2021-01-01'
@@ -210,12 +210,12 @@ fallbackZoneMixes:
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.01890689507126808
+      hydro: 0.018906747695549193
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.14726987481117249
-      unknown: 0.8338232040405273
+      solar: 0.14726885443688845
+      unknown: 0.8338243983672093
       wind: 0.0
 parsers: {}
 region: Asia
