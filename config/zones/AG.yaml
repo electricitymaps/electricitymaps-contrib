@@ -1,37 +1,73 @@
 bounding_box:
-  - - -62.382818828188235
-    - 16.548678601114915
-  - - -61.170416704166996
-    - 17.66459631058453
+- - -62.382818828188235
+  - 16.548678601114915
+- - -61.170416704166996
+  - 17.66459631058453
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
 country: AG
+country_name: Antigua and Barbuda
+currency: XCD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 542.57
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 542.57
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 663.06
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 663.06
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.05640087276697159
+      unknown: 0.9435983300209045
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Antigua
 zone_name: Antigua and Barbuda
-country_name: Antigua and Barbuda
-currency: XCD

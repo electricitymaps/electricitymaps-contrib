@@ -107,62 +107,21 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 691.6232949567844
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 601.39
     biomass:
-    - datetime: '2020-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2021-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2022-01-01'
-      source: BEIS 2021
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: BEIS 2021
-      value: 0.0
-    coal:
-    - datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 995.611869962089
-    - datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 1014.2941036716782
-    - datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 1036.401437700579
-    - datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 1026.7228249260704
-    gas:
-    - datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 480.12220481693174
-    - datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 527.7229942577874
-    - datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 546.0634245928852
-    - datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 544.6086048281159
-    geothermal:
-    - _comment: Mean of all US zones
       datetime: '2020-01-01'
       source: eGrid 2020
-      value: 70.87985131255388
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 78.28737905336972
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 29.707905036391203
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 28.739435464835893
+      value: 0.0
+    coal:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 995.61187
+    gas:
+      datetime: '2020-01-01'
+      source: eGrid 2020
+      value: 480.1222048
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -185,24 +144,13 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 691.6232949567844
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 601.39
     oil:
-    - datetime: '2020-01-01'
+      datetime: '2020-01-01'
       source: eGrid 2020
-      value: 786.0859157554912
-    - datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 769.7242211326042
-    - datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 807.9594211794373
-    - datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 755.5503294336717
-    unknown:
-      _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
-      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
-        October 2019-September 2020
-      value: 0.0
+      value: 786.0859158
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -226,66 +174,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 606.54
-    biomass:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 281.38853074481284
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021
-      value: 280.6015234636058
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022
-      value: 274.05045073430733
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023
-      value: 282.7016835752059
-    coal:
-    - datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1055.611869962089
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 1074.2941036716782
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 1096.401437700579
-    - datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 1086.7228249260704
-    gas:
-    - datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 600.1222048169318
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 647.7229942577874
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 666.0634245928852
-    - datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 664.6086048281159
-    geothermal:
-    - _comment: Mean of all US zones
-      datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 108.87985131255388
-    - _comment: Mean of all US zones
-      datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 116.28737905336972
-    - _comment: Mean of all US zones
-      datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 67.7079050363912
-    - _comment: Mean of all US zones
-      datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 66.73943546483589
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 360.19
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -308,24 +199,14 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 606.54
-    oil:
-    - datetime: '2020-01-01'
-      source: eGrid 2020; IPCC 2014
-      value: 1030.0859157554912
-    - datetime: '2021-01-01'
-      source: eGrid 2021; IPCC 2014
-      value: 1013.7242211326042
-    - datetime: '2022-01-01'
-      source: eGrid 2022; IPCC 2014
-      value: 1051.9594211794374
-    - datetime: '2023-01-01'
-      source: eGrid 2023; IPCC 2014
-      value: 999.5503294336717
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 360.19
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
         October 2019-September 2020
-      value: 31.939999999999998
+      value: 31.94
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
@@ -433,6 +314,21 @@ fallbackZoneMixes:
       solar: 0.012790315399735448
       unknown: 0.0009000191751649909
       wind: 0.008674031627125225
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.1826903074979782
+      gas: 0.4023868441581726
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.011927258223295212
+      unknown: 0.39357900619506836
+      wind: 0.009416498243808746
 isLowCarbon:
   unknown:
     value: 1

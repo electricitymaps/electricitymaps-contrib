@@ -1,105 +1,114 @@
 bounding_box:
-  - - 29.054495544955472
-    - -1.969533257365882
-  - - 35.47974979749799
-    - 4.719021003643483
+- - 29.054495544955472
+  - -1.969533257365882
+- - 35.47974979749799
+  - 4.719021003643483
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 700.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 740.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 1000.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 1010.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1030.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 700.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 740.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 1000.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 1010.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1030.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
 country: UG
+country_name: Uganda
+currency: UGX
 emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 10.29
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 10.29
   lifecycle:
     battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 58.74
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 58.74
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 58.74
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 59.97
     hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 58.74
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 58.74
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 58.74
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 59.97
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.08659463755380915
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8619674957821306
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.026151723457783355
-        solar: 0.02528580375353232
-        unknown: 0.0
-        wind: 0.0
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.08659508173891416
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8619659873381036
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.026150638258165812
-        solar: 0.02528760510767805
-        unknown: 0.0
-        wind: 0.0
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.08659463755380915
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.8619674957821306
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.026151723457783355
+      solar: 0.02528580375353232
+      unknown: 0.0
+      wind: 0.0
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0949765220284462
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.8545162677764893
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.025355786085128784
+      solar: 0.025151105597615242
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kampala
 zone_name: Uganda
-country_name: Uganda
-currency: UGX

@@ -60,6 +60,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 575.0
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 455.42
     hydro discharge:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
@@ -67,10 +70,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 575.0
-    unknown:
-      _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 62.3% gas, 37.7% oil
-      value: 383.572
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 455.42
   lifecycle:
     battery discharge:
     - datetime: '2020-01-01'
@@ -85,6 +87,9 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 550.0
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 515.0
     hydro discharge:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
@@ -98,10 +103,13 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 550.0
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 515.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2019; assumes 62.3% gas, 37.7% oil
-      value: 550.3199999999999
+      value: 550
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2020 average
@@ -163,6 +171,21 @@ fallbackZoneMixes:
       oil: 0.0
       solar: 0.0
       unknown: 0.9999999920933934
+      wind: 0.0
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.5832950472831726
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.4167049527168274
       wind: 0.0
 parsers:
   consumption: KW.fetch_consumption

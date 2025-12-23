@@ -1,119 +1,128 @@
 bounding_box:
-  - - -3.763432634326307
-    - 4.237072989174393
-  - - 1.686211862118654
-    - 11.66263490915729
+- - -3.763432634326307
+  - 4.237072989174393
+- - 1.686211862118654
+  - 11.66263490915729
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 2310.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 2870.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 3060.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 2310.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 2870.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 3060.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1580.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1580.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 190.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 190.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 960.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 980.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 880.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 410.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 370.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 960.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 980.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 880.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 410.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 370.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: GH
+country_name: Ghana
+currency: GHS
 emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 239.22
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 239.22
   lifecycle:
     battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 324.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 324.25
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 324.25
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 326.6
     hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 324.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 324.25
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 324.25
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 326.6
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.6261871418950762
-        geothermal: 0.0
-        hydro: 0.3536090544623948
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.013253273113866659
-        solar: 0.006950425624501335
-        unknown: 0.0
-        wind: 0.0
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.6261869282985468
-        geothermal: 0.0
-        hydro: 0.35360908212088166
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.013253557917185226
-        solar: 0.006950597869928555
-        unknown: 0.0
-        wind: 0.0
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.6261871418950762
+      geothermal: 0.0
+      hydro: 0.3536090544623948
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.013253273113866659
+      solar: 0.006950425624501335
+      unknown: 0.0
+      wind: 0.0
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.6355009078979492
+      geothermal: 0.0
+      hydro: 0.34643012285232544
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.010048952884972095
+      solar: 0.00801992416381836
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Accra
 zone_name: Ghana
-country_name: Ghana
-currency: GHS

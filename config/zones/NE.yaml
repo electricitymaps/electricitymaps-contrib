@@ -1,40 +1,76 @@
 capacity:
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 280.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 290.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 390.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 280.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 290.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 390.0
 country: NE
+country_name: Niger
+currency: XOF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 464.15
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 464.15
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 658.37
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 658.37
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.20240847766399384
+      gas: 0.05570396035909653
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.7135718464851379
+      solar: 0.028313511982560158
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Niamey
 zone_name: Niger
-country_name: Niger
-currency: XOF

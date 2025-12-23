@@ -1,11 +1,47 @@
 bounding_box:
-  - - -121.1808194650578
-    - 51.41864655200018
-  - - -60.585479295999846
-    - 83.61652252800013
+- - -121.1808194650578
+  - 51.41864655200018
+- - -60.585479295999846
+  - 83.61652252800013
 country: CA
+country_name: Canada
+currency: CAD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 405.28
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 405.28
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 648.92
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 648.92
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.9982147216796875
+      solar: 0.0017823558300733566
+      unknown: 0.0
+      wind: 0.0
 region: Americas
 timezone: America/Rankin_Inlet
 zone_name: Nunavut
-country_name: Canada
-currency: CAD

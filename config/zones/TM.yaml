@@ -1,31 +1,67 @@
 bounding_box:
-  - - 51.94196246947864
-    - 34.647583189538906
-  - - 67.14566645666457
-    - 43.28097902053864
+- - 51.94196246947864
+  - 34.647583189538906
+- - 67.14566645666457
+  - 43.28097902053864
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 4940.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 6520.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 6950.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 7090.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 4940.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 6520.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 6950.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 7090.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: TM
+country_name: Turkmenistan
+currency: TMT
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 369.94
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 369.94
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 489.93
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 489.93
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9998457431793213
+      geothermal: 0.0
+      hydro: 0.00015417901158798486
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Ashgabat
 zone_name: Turkmenistan
-country_name: Turkmenistan
-currency: TMT

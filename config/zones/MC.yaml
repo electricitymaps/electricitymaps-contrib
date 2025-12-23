@@ -1,13 +1,13 @@
 bounding_box:
-  - - 6.908986027133928
-    - 43.22474953690665
-  - - 7.939894931523015
-    - 44.25193523970334
+- - 6.908986027133928
+  - 43.22474953690665
+- - 7.939894931523015
+  - 44.25193523970334
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: MC
+country_name: Monaco
+currency: EUR
 region: Europe
 timezone: Europe/Monaco
 zone_name: Monaco
-country_name: Monaco
-currency: EUR

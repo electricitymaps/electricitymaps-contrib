@@ -1,57 +1,93 @@
 bounding_box:
-  - - -12.763522635226309
-    - 9.662308008919425
-  - - 4.768044213572687
-    - 25.495481572532512
+- - -12.763522635226309
+  - 9.662308008919425
+- - 4.768044213572687
+  - 25.495481572532512
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 320.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 460.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 320.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 460.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 460.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 470.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 480.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 490.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 510.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 610.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 460.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 470.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 480.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 490.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 510.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 610.0
 country: ML
+country_name: Mali
+currency: XOF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 328.03
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 328.03
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 413.67
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 413.67
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.01588408462703228
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.3782781660556793
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.03534701466560364
+      unknown: 0.5704905986785889
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bamako
 zone_name: Mali
-country_name: Mali
-currency: XOF

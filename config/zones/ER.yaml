@@ -1,30 +1,66 @@
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 210.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 210.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: ER
+country_name: Eritrea
+currency: ERN
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 395.02
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 395.02
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 633.47
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 633.47
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.9729522466659546
+      solar: 0.022172074764966965
+      unknown: 0.0
+      wind: 0.004873712547123432
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Asmara
 zone_name: Eritrea
-country_name: Eritrea
-currency: ERN

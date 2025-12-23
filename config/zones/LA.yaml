@@ -1,65 +1,91 @@
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1880.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1880.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 5110.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 5390.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 6230.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 8020.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 8960.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 9650.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 9780.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 5110.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 5390.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 6230.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 8020.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 8960.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 9650.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 9780.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
 country: LA
+country_name: Laos
+currency: LAK
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 170.05
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 170.05
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 202.25
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 202.25
 fallbackZoneMixes:
-  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
-    generation not broken down by type). Biomass includes waste.
-  _url: https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
   powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
     value:
-      biomass: 0.0014261409127302
-      coal: 0.28410228182546
-      hydro: 0.713395716573259
-      solar: 0.0010758606885508
+      battery discharge: 0.0
+      biomass: 0.0005775281460955739
+      coal: 0.22374442219734192
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.7740240693092346
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0016539221396669745
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Vientiane
 zone_name: Laos
-country_name: Laos
-currency: LAK

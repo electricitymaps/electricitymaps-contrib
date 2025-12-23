@@ -1,28 +1,64 @@
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 180.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 180.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 240.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 240.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
 country: MR
+country_name: Mauritania
+currency: MRU
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 419.77
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 419.77
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 518.53
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 518.53
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.126972034573555
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0846124216914177
+      unknown: 0.73004150390625
+      wind: 0.05837292969226837
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Nouakchott
 zone_name: Mauritania
-country_name: Mauritania
-currency: MRU

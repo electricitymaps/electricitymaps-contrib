@@ -1,225 +1,231 @@
 bounding_box:
-  - - -141.50554863710892
-    - 59.500058906146876
-  - - -123.31910336003193
-    - 70.15420156500005
+- - -141.50554863710892
+  - 59.500058906146876
+- - -123.31910336003193
+  - 70.15420156500005
 capacity:
   hydro: 116
 contributors:
-  - jarek
-  - nessie2013
+- jarek
+- nessie2013
 country: CA
+country_name: Canada
+currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 18.703845502208086
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 47.74663381843209
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 88.3984817436756
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 70.38340934276286
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 40.57246138409451
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 18.703845502208086
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 47.74663381843209
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 88.3984817436756
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 70.38340934276286
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 40.57246138409451
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 137.52
     hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 18.703845502208086
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 47.74663381843209
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 88.3984817436756
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 70.38340934276286
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 40.57246138409451
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 18.703845502208086
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 47.74663381843209
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 88.3984817436756
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 70.38340934276286
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 40.57246138409451
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 137.52
   lifecycle:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 45.99
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 80.13
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 127.93
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 106.75
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 71.7
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 78.15
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 83.55
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 141.74
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 45.99
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 80.13
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 127.93
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 106.75
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 71.7
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 78.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 83.55
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 215.4
     hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 45.99
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 80.13
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 127.93
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 106.75
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 71.7
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 78.15
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 83.55
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 141.74
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 45.99
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 80.13
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 127.93
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 106.75
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 71.7
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 78.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 83.55
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 215.4
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2017 average
-      datetime: '2017-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.967476651899137
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.032517202004381136
-        wind: 0.0
-    - _source: Electricity Maps, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.9169828307800725
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.08301560927090088
-        wind: 0.0
-    - _source: Electricity Maps, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8462514526314489
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.15374461759092864
-        wind: 0.0
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8776223943387789
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.12237477752865522
-        wind: 0.0
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.9294644200962948
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.07053099734146236
-        wind: 0.0
-    - _source: Electricity Maps, 2022 average
-      datetime: '2022-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.9199420366541917
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.08005333158071602
-        wind: 0.0
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.9119476561348878
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.08804942933376388
-        wind: 0.0
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8258501891508444
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.0
-        unknown: 0.17414929934515255
-        wind: 0.0
+  - _source: Electricity Maps, 2017 average
+    datetime: '2017-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.967476651899137
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.032517202004381136
+      wind: 0.0
+  - _source: Electricity Maps, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.9169828307800725
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.08301560927090088
+      wind: 0.0
+  - _source: Electricity Maps, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.8462514526314489
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.15374461759092864
+      wind: 0.0
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.8776223943387789
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.12237477752865522
+      wind: 0.0
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.9294644200962948
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.07053099734146236
+      wind: 0.0
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.9199420366541917
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.08005333158071602
+      wind: 0.0
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.9119476561348878
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.08804942933376388
+      wind: 0.0
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.006065794732421637
+      coal: 0.0
+      gas: 0.20934200286865234
+      geothermal: 0.0
+      hydro: 0.6342979669570923
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.14794261753559113
+      solar: 0.0005427624564617872
+      unknown: 0.0
+      wind: 0.0018053706735372543
 parsers:
   production: YUKONENERGY.fetch_production
 region: Americas
 timezone: America/Whitehorse
 zone_name: Yukon
-country_name: Canada
-currency: CAD

@@ -1,68 +1,104 @@
 bounding_box:
-  - - -18.037575375753732
-    - 11.806070092691002
-  - - -10.88511385113847
-    - 17.143682159387694
+- - -18.037575375753732
+  - 11.806070092691002
+- - -10.88511385113847
+  - 17.143682159387694
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 280.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 280.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 230.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 230.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 570.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 690.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 680.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 570.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 690.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 680.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
 country: SN
+country_name: Senegal
+currency: XOF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 356.51
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 356.51
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 572.46
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 572.46
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0122282225638628
+      coal: 0.00960217323154211
+      gas: 0.0017263698391616344
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.8527898788452148
+      solar: 0.07199718803167343
+      unknown: 0.004075676668435335
+      wind: 0.04757999628782272
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Dakar
 zone_name: Senegal
-country_name: Senegal
-currency: XOF

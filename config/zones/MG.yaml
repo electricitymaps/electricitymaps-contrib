@@ -1,8 +1,44 @@
 country: MG
+country_name: Madagascar
+currency: MGA
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 340.96
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 340.96
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 475.34
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 475.34
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00888224970549345
+      coal: 0.2040906846523285
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.3058546781539917
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.4577597677707672
+      solar: 0.023411933332681656
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Antananarivo
 zone_name: Madagascar
-country_name: Madagascar
-currency: MGA

@@ -53,6 +53,10 @@ country_name: Malta
 currency: EUR
 emissionFactors:
   direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 324.13
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -66,10 +70,7 @@ emissionFactors:
       value: 1075.5
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 1048.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1041.07
+      value: 1037.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -79,10 +80,11 @@ emissionFactors:
       value: 412.38
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 410.56
+      value: 410.39
+    hydro discharge:
     - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.69
+      source: Electricity Maps, 2024 average
+      value: 324.13
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -93,10 +95,11 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 425.9
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -110,10 +113,7 @@ emissionFactors:
       value: 1135.5
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1108.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1101.07
+      value: 1097.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -123,14 +123,15 @@ emissionFactors:
       value: 532.38
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 530.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.69
+      value: 530.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 425.9
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -145,14 +146,28 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     wind:
       datetime: '2014-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
         outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.006172401364892721
+      coal: 0.0005015050992369652
+      gas: 0.7611033320426941
+      geothermal: 6.640332867391407e-05
+      hydro: 0.002777424640953541
+      hydro discharge: 0.00270069926045835
+      nuclear: 0.0001998554216697812
+      oil: 0.006150172092020512
+      solar: 0.1516416370868683
+      unknown: 0.007514360826462507
+      wind: 0.061170995235443115
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Europe

@@ -1,41 +1,77 @@
 capacity:
   oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 32.0
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 31.36
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 29.48
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 30.14
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 32.0
+  - datetime: '2018-01-01'
+    source: IRENA.org
+    value: 31.36
+  - datetime: '2019-01-01'
+    source: IRENA.org
+    value: 29.48
+  - datetime: '2020-01-01'
+    source: IRENA.org
+    value: 30.14
   solar:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 2.1
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 2.5
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 2.62
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 2.92
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 4.34
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 19.62
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 2.1
+  - datetime: '2018-01-01'
+    source: IRENA.org
+    value: 2.5
+  - datetime: '2019-01-01'
+    source: IRENA.org
+    value: 2.62
+  - datetime: '2020-01-01'
+    source: IRENA.org
+    value: 2.92
+  - datetime: '2021-01-01'
+    source: IRENA.org
+    value: 4.34
+  - datetime: '2023-01-01'
+    source: IRENA.org
+    value: 19.62
 country: PW
+country_name: Palau
+currency: USD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 377.85
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 377.85
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 608.06
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 608.06
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.9306638240814209
+      solar: 0.06931795179843903
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Palau
 zone_name: Palau
-country_name: Palau
-currency: USD

@@ -29,6 +29,65 @@ disclaimer: The data provided for solar power production is suspected to be too 
   (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 396.47
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 396.47
+  lifecycle:
+    battery discharge:
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 550.64
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 534.36
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 536.92
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 518.73
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 513.06
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 508.36
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 478.85
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 479.36
+    hydro discharge:
+    - datetime: '2017-01-01'
+      source: Electricity Maps, 2017 average
+      value: 546.54
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 545.98
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 545.16
+    - datetime: '2020-01-01'
+      source: Electricity Maps, 2020 average
+      value: 518.73
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 513.06
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 508.36
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 478.85
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 479.36
     unknown:
       _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018
         Chubu Electric report'
@@ -37,7 +96,7 @@ emissionFactors:
       - http://denki-yoho.chuden.jp/denki_yoho_content_data/areabalance_current_term.csv
       source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas,
         9% hydro and wind
-      value: 440.062
+      value: 538
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -149,17 +208,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0145982517550128
-      coal: 0.32424405411028556
-      gas: 0.36426889211505287
-      geothermal: 3.60577970334292e-05
-      hydro: 0.09890660573881178
-      hydro discharge: 4.691653761935748e-05
-      nuclear: 0.034020188696820004
-      oil: 0.033614977239555956
-      solar: 0.12244614660850632
-      unknown: 0.003769750267899515
-      wind: 0.004048155359128435
+      biomass: 0.014579107984900475
+      coal: 0.32379746437072754
+      gas: 0.3637673556804657
+      geothermal: 3.6102919693803415e-05
+      hydro: 0.09877122193574905
+      hydro discharge: 0.0
+      nuclear: 0.03409310430288315
+      oil: 0.0335683599114418
+      solar: 0.1225053071975708
+      unknown: 0.003775625256821513
+      wind: 0.005106389056891203
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast

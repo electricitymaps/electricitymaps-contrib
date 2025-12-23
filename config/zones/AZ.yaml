@@ -1,94 +1,122 @@
 bounding_box:
-  - - 44.27455855300013
-    - 37.892644755000035
-  - - 51.125743035000085
-    - 42.390441590000094
+- - 44.27455855300013
+  - 37.892644755000035
+- - 51.125743035000085
+  - 42.390441590000094
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 5080.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 5480.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 5860.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 5080.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 5480.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 5860.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1110.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 1130.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 1140.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 1150.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 1160.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1300.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 1410.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1110.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 1130.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 1140.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 1150.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 1160.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 1300.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 1410.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 280.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 290.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 280.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 290.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
 country: AZ
+country_name: Azerbaijan
+currency: AZN
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 324.02
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 324.02
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 431.11
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 431.11
 fallbackZoneMixes:
-  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE
   powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
     value:
-      gas: 0.46
-      hydro: 0.07
-      oil: 0.46
-      unknown: 0.01
+      battery discharge: 0.0
+      biomass: 2.0644712606099347e-07
+      coal: 3.54847579728812e-05
+      gas: 0.8620182275772095
+      geothermal: 6.438896527072302e-09
+      hydro: 0.1167028546333313
+      hydro discharge: 1.2072930433149054e-09
+      nuclear: 0.001489916816353798
+      oil: 1.2072930433149054e-09
+      solar: 0.010907735675573349
+      unknown: 0.008781254291534424
+      wind: 6.42195445834659e-05
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baku
 zone_name: Azerbaijan
-country_name: Azerbaijan
-currency: AZN

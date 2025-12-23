@@ -1,11 +1,47 @@
 bounding_box:
-  - - -5.863121599699786
-    - 35.609147955711094
-  - - -4.838010782916699
-    - 36.65567746511084
+- - -5.863121599699786
+  - 35.609147955711094
+- - -4.838010782916699
+  - 36.65567746511084
 country: GI
+country_name: Gibraltar
+currency: GIP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 370.0
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 370.0
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 490.0
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 490.0
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9999983906745911
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.0
 region: Europe
 timezone: Europe/Gibraltar
 zone_name: Gibraltar
-country_name: Gibraltar
-currency: GIP

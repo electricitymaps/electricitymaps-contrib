@@ -1,46 +1,82 @@
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 7470.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 7470.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1490.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1490.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 680.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 680.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: SY
+country_name: Syria
+currency: SYP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 374.53
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 374.53
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 563.77
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 563.77
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.36221009492874146
+      geothermal: 0.0
+      hydro: 0.038262609392404556
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.592385470867157
+      solar: 0.007141817361116409
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Damascus
 zone_name: Syria
-country_name: Syria
-currency: SYP

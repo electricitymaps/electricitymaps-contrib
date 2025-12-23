@@ -1,141 +1,147 @@
 bounding_box:
-  - - -155.0369766919999
-    - -28.14120859199994
-  - - -134.44298255099994
-    - -7.450127862999921
+- - -155.0369766919999
+  - -28.14120859199994
+- - -134.44298255099994
+  - -7.450127862999921
 capacity:
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 210.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 220.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 210.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 220.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 contributors:
-  - autipial
+- autipial
 country: PF
+country_name: French Polynesia
+currency: XPF
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 268.5319609262505
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 268.5319609262505
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 221.87
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 268.5319609262505
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 268.5319609262505
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 221.87
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 439.51
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 355.92
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 420.63
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 367.53
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 439.51
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 355.92
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 420.63
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 367.97
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 439.51
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 355.92
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 420.63
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 367.53
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 439.51
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 355.92
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 420.63
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 367.97
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.268676684368378
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.6614984662103188
-        solar: 0.0698236314028944
-        unknown: 0.0
-        wind: 0.0
-    - _source: Electricity Maps, 2022 average
-      datetime: '2022-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.3460027205785064
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.5259751744008679
-        solar: 0.12802333116592324
-        unknown: 0.0
-        wind: 0.0
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.2871922962924065
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.6308824117719226
-        solar: 0.0819242574881353
-        unknown: 0.0
-        wind: 0.0
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.3581810505035641
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.5455574648757916
-        solar: 0.09626067428950572
-        unknown: 0.0
-        wind: 0.0
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.268676684368378
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.6614984662103188
+      solar: 0.0698236314028944
+      unknown: 0.0
+      wind: 0.0
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.3460027205785064
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.5259751744008679
+      solar: 0.12802333116592324
+      unknown: 0.0
+      wind: 0.0
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.2871922962924065
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.6308824117719226
+      solar: 0.0819242574881353
+      unknown: 0.0
+      wind: 0.0
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.3641963601112366
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.5464886426925659
+      solar: 0.08931386470794678
+      unknown: 0.0
+      wind: 0.0
 parsers:
   production: PF.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tahiti
 zone_name: French Polynesia
-country_name: French Polynesia
-currency: XPF

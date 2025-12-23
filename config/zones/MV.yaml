@@ -1,50 +1,86 @@
 bounding_box:
-  - - 72.57531291255368
-    - -1.2023642515857569
-  - - 74.0538126436328
-    - 4.74016710592131
+- - 72.57531291255368
+  - -1.2023642515857569
+- - 74.0538126436328
+  - 4.74016710592131
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 210.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 530.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 210.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 530.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: MV
+country_name: Maldives
+currency: MVR
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 532.95
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 532.95
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 652.1
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 652.1
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.07313206791877747
+      unknown: 0.9268670082092285
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Indian/Maldives
 zone_name: Maldives
-country_name: Maldives
-currency: MVR

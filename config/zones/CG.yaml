@@ -1,40 +1,76 @@
 bounding_box:
-  - - 10.615111151111535
-    - -5.520049765935497
-  - - 19.124786247862488
-    - 4.2081244322773586
+- - 10.615111151111535
+  - -5.520049765935497
+- - 19.124786247862488
+  - 4.2081244322773586
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 310.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 480.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 530.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 310.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 480.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 530.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 210.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 210.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
 country: CG
+country_name: Congo
+currency: XAF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 292.06
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 292.06
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 398.49
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 398.49
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.7261999249458313
+      geothermal: 0.0
+      hydro: 0.21409213542938232
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.05756281316280365
+      solar: 0.0021449620835483074
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Brazzaville
 zone_name: Congo
-country_name: Congo
-currency: XAF

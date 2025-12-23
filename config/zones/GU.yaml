@@ -1,32 +1,68 @@
 bounding_box:
-  - - 144.15484654846549
-    - 12.746291513944627
-  - - 145.45364953649536
-    - 14.139839293008166
+- - 144.15484654846549
+  - 12.746291513944627
+- - 145.45364953649536
+  - 14.139839293008166
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 490.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 420.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 490.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 420.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: GU
+country_name: Guam
+currency: USD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 521.6
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 521.6
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 639.17
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 639.17
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.09287591278553009
+      unknown: 0.9071235656738281
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guam
 zone_name: Guam
-country_name: Guam
-currency: USD

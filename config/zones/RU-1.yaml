@@ -31,6 +31,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 391.0229938122812
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 386.68
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -44,14 +47,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 391.0229938122812
-    unknown:
-      _comment: 'Assumes weighted average emission factor based on estimated 2021
-        fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0%
-        * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323
-        2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South,
-        Ural'
-      source: assumes 89% gas, 7% coal, <1% oil, 4% other
-      value: 401.56
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 386.68
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -77,7 +75,7 @@ emissionFactors:
       value: 353.63
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 357.99
+      value: 353.98
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -102,7 +100,7 @@ emissionFactors:
       value: 353.63
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 357.99
+      value: 353.98
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021
         fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0%
@@ -110,7 +108,7 @@ emissionFactors:
         2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South,
         Ural'
       source: assumes 89% gas, 7% coal, <1% oil, 4% other
-      value: 518.0
+      value: 517
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -222,17 +220,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 8.529546694656989e-05
-      coal: 0.007424009054518622
-      gas: 0.002688711204816861
-      geothermal: 4.80101908775185e-07
-      hydro: 0.07450745278622957
-      hydro discharge: 1.6274499223796437e-06
-      nuclear: 0.2441131755510679
-      oil: 0.00012114000193701839
-      solar: 0.0022832634472736636
-      unknown: 0.6684971552103295
-      wind: 0.0003232508531472728
+      biomass: 9.228700946550816e-05
+      coal: 0.005407978314906359
+      gas: 0.003354521468281746
+      geothermal: 4.7589864493602363e-07
+      hydro: 0.07411777973175049
+      hydro discharge: 1.574915131641319e-06
+      nuclear: 0.2422260046005249
+      oil: 4.804413947567809e-06
+      solar: 0.00239825458265841
+      unknown: 0.66312175989151
+      wind: 0.009274431504309177
 parsers:
   production: RU.fetch_production
 region: Europe

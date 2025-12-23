@@ -1,35 +1,71 @@
 bounding_box:
-  - - 8.786292862928661
-    - 18.995830245473655
-  - - 25.651651516515187
-    - 33.68127537705416
+- - 8.786292862928661
+  - 18.995830245473655
+- - 25.651651516515187
+  - 33.68127537705416
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 9870.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 11040.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 9870.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 11040.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1680.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 1840.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 2320.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1680.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 1840.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 2320.0
 country: LY
+country_name: Libya
+currency: LYD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 378.15
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 378.15
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 526.52
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 526.52
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.7707576751708984
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.22898033261299133
+      solar: 0.0002619685255922377
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tripoli
 zone_name: Libya
-country_name: Libya
-currency: LYD

@@ -1,31 +1,67 @@
 bounding_box:
-  - - -81.92729962458039
-    - 18.761071915595686
-  - - -79.22230689375876
-    - 20.255142692881883
+- - -81.92729962458039
+  - 18.761071915595686
+- - -79.22230689375876
+  - 20.255142692881883
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 190.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 190.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: KY
+country_name: Cayman Islands
+currency: KYD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 558.41
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 558.41
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 681.1
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 681.1
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.028850367292761803
+      unknown: 0.9711487293243408
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Cayman
 zone_name: Cayman Islands
-country_name: Cayman Islands
-currency: KYD

@@ -1,38 +1,74 @@
 bounding_box:
-  - - 68.72689226892268
-    - 38.690392192646186
-  - - 80.71060210602107
-    - 43.761822852412635
+- - 68.72689226892268
+  - 38.690392192646186
+- - 80.71060210602107
+  - 43.761822852412635
 capacity:
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 810.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 810.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 3690.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 3670.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 2780.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 3140.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 3260.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 3690.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 3670.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 2780.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 3140.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 3260.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: KG
+country_name: Kyrgyzstan
+currency: KGS
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 96.21
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 96.21
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 127.08
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 127.08
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.10616549849510193
+      gas: 0.010356022976338863
+      geothermal: 0.0
+      hydro: 0.8631436228752136
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.02033470943570137
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Bishkek
 zone_name: Kyrgyzstan
-country_name: Kyrgyzstan
-currency: KGS

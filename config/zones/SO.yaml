@@ -1,33 +1,69 @@
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: SO
+country_name: Somalia
+currency: SOS
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 457.58
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 457.58
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 565.44
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 565.44
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.18072043359279633
+      unknown: 0.7957883477210999
+      wind: 0.02348698116838932
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mogadishu
 zone_name: Somalia
-country_name: Somalia
-currency: SOS

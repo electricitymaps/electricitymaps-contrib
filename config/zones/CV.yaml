@@ -1,33 +1,69 @@
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
 country: CV
+country_name: Cabo Verde
+currency: CVE
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 391.65
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 391.65
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 486.65
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 486.65
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.1864960491657257
+      unknown: 0.681136965751648
+      wind: 0.13236530125141144
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Atlantic/Cape_Verde
 zone_name: Cabo Verde
-country_name: Cabo Verde
-currency: CVE

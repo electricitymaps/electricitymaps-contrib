@@ -1,32 +1,68 @@
 bounding_box:
-  - - 55.497790533287294
-    - 36.68830730933749
-  - - 73.61853118531187
-    - 46.06232808111943
+- - 55.497790533287294
+  - 36.68830730933749
+- - 73.61853118531187
+  - 46.06232808111943
 capacity:
-  solar:
-    - datetime: '2024-08-30'
-      source: gov.uz
-      comment: The Ministry of Energy of the Republic of Uzbekistan
-      value: 2300
-  wind:
-    - datetime: '2024-08-30'
-      source: gov.uz
-      comment: The Ministry of Energy of the Republic of Uzbekistan
-      value: 500
-  hydro:
-    - datetime: '2024-08-29'
-      source: stat.uz
-      comment: Statistics Agency under the President of the Republic of Uzbekistan
-      value: 2381
   gas:
-    - datetime: '2024-08-29'
-      source: stat.uz
-      comment: Statistics Agency under the President of the Republic of Uzbekistan
-      value: 13874
+  - comment: Statistics Agency under the President of the Republic of Uzbekistan
+    datetime: '2024-08-29'
+    source: stat.uz
+    value: 13874
+  hydro:
+  - comment: Statistics Agency under the President of the Republic of Uzbekistan
+    datetime: '2024-08-29'
+    source: stat.uz
+    value: 2381
+  solar:
+  - comment: The Ministry of Energy of the Republic of Uzbekistan
+    datetime: '2024-08-30'
+    source: gov.uz
+    value: 2300
+  wind:
+  - comment: The Ministry of Energy of the Republic of Uzbekistan
+    datetime: '2024-08-30'
+    source: gov.uz
+    value: 500
 country: UZ
+country_name: Uzbekistan
+currency: UZS
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 364.77
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 364.77
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 471.7
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 471.7
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.07931074500083923
+      gas: 0.8143427968025208
+      geothermal: 0.0
+      hydro: 0.0903337150812149
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.007841413840651512
+      solar: 0.008171333000063896
+      unknown: 0.0
+      wind: 0.0
 region: Asia
 timezone: Asia/Samarkand
 zone_name: Uzbekistan
-country_name: Uzbekistan
-currency: UZS

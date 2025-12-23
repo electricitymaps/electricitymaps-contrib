@@ -1,40 +1,76 @@
 bounding_box:
-  - - 177.13333
-    - -19.62909541607167
-  - - 179.9
-    - -15.649580957852429
+- - 177.13333
+  - -19.62909541607167
+- - 179.9
+  - -15.649580957852429
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 150.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 150.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
 country: FJ
+country_name: Fiji
+currency: FJD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 205.92
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 205.92
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 290.29
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 290.29
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.11658583581447601
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.5167631506919861
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.008528525941073895
+      unknown: 0.3581208884716034
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Fiji
 zone_name: Fiji
-country_name: Fiji
-currency: FJD

@@ -1,4 +1,6 @@
 country: LI
+country_name: Liechtenstein
+currency: CHF
 emissionFactors:
   direct:
     biomass:
@@ -28,5 +30,3 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Vaduz
 zone_name: Liechtenstein
-country_name: Liechtenstein
-currency: CHF

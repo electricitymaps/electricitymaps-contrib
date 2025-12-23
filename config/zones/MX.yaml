@@ -1,154 +1,189 @@
 bounding_box:
-  - - -117.12776
-    - 14.5388286402
-  - - -86.811982388
-    - 32.72083
+- - -117.12776
+  - 14.5388286402
+- - -86.811982388
+  - 32.72083
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 870.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 880.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 890.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 870.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 880.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 890.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 5380.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 5380.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 34630.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 35870.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 38890.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 41300.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 42790.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 43620.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 44280.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 45050.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 34630.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 35870.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 38890.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 41300.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 42790.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 43620.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 44280.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 45050.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 12630.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 13080.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 13300.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 12840.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 12630.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 13080.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 13300.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 12840.0
   nuclear:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1610.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1610.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1070.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 2770.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 6250.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 7160.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 8930.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 9360.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 10910.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 11990.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1070.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 2770.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 6250.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 7160.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 8930.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 9360.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 10910.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 11990.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 18750.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 25240.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 26000.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 26190.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 40000.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 39930.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 18750.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 25240.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 26000.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 26190.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 40000.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 39930.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 4180.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 6540.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 7000.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 7470.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 7630.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 7320.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 4180.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 6540.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 7000.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 7470.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 7630.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 7320.0
 contributors:
-  - scriptator
-  - tuxity
-  - consideRatio
+- scriptator
+- tuxity
+- consideRatio
 country: MX
+country_name: Mexico
+currency: MXN
 delays:
   production: 1080
 emissionFactors:
   direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 296.31
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 296.31
     unknown:
-      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
-          values.
-        datetime: '2020-01-01'
-        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
-          2020, IEA, Paris
-        value: 305
+    - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+        coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+        values.
+      datetime: '2020-01-01'
+      source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+        2020, IEA, Paris
+      value: 305
   lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 391.68
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 391.68
     unknown:
-      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
-          values.
-        datetime: '2020-01-01'
-        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
-          2020, IEA, Paris
-        value: 411
+    - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
+        coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
+        values.
+      datetime: '2020-01-01'
+      source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
+        2020, IEA, Paris
+      value: 411
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0002853062469512224
+      coal: 0.03684377297759056
+      gas: 0.6480445861816406
+      geothermal: 0.010024184361100197
+      hydro: 0.06749867647886276
+      hydro discharge: 0.0
+      nuclear: 0.034023087471723557
+      oil: 0.0
+      solar: 0.0529416985809803
+      unknown: 0.0935351699590683
+      wind: 0.056803468614816666
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -158,5 +193,3 @@ sources:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
 timezone: America/Mexico_City
 zone_name: Mexico
-country_name: Mexico
-currency: MXN

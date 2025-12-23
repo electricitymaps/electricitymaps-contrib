@@ -1,10 +1,10 @@
 bounding_box:
-  - - 31.981618686000104
-    - 43.88104889500005
-  - - 37.13835696700005
-    - 46.716899045472104
+- - 31.981618686000104
+  - 43.88104889500005
+- - 37.13835696700005
+  - 46.716899045472104
 country: UA
+country_name: Ukraine
 region: Europe
 timezone: Europe/Kiev
 zone_name: Crimea
-country_name: Ukraine

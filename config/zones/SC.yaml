@@ -1,37 +1,73 @@
 bounding_box:
-  - - 54.70826687574969
-    - -5.302634091088595
-  - - 56.356329489439965
-    - -3.7757178049977007
+- - 54.70826687574969
+  - -5.302634091088595
+- - 56.356329489439965
+  - -3.7757178049977007
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: SC
+country_name: Seychelles
+currency: SCR
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 490.61
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 490.61
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 603.33
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 603.33
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.13082271814346313
+      unknown: 0.8532343506813049
+      wind: 0.015940802171826363
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Mahe
 zone_name: Seychelles
-country_name: Seychelles
-currency: SCR

@@ -1,39 +1,75 @@
 bounding_box:
-  - - 8.008685086850903
-    - 1.234661205627823
-  - - 16.69836198361986
-    - 13.581716988154412
+- - 8.008685086850903
+  - 1.234661205627823
+- - 16.69836198361986
+  - 13.581716988154412
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 220.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 220.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 730.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 810.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 730.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 810.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 150.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 150.0
 country: CM
+country_name: Cameroon
+currency: XAF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 99.4
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 99.4
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 159.55
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 159.55
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.004325210116803646
+      coal: 0.0
+      gas: 0.17890459299087524
+      geothermal: 0.0
+      hydro: 0.7303958535194397
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.08177712559700012
+      solar: 0.004597116261720657
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Douala
 zone_name: Cameroon
-country_name: Cameroon
-currency: XAF

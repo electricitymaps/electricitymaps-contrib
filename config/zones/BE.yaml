@@ -229,6 +229,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 166.74150748371184
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 109.95
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -242,10 +245,7 @@ emissionFactors:
       value: 1075.5
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 1048.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1041.07
+      value: 1037.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -256,9 +256,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 393.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 408.56
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -281,6 +278,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 166.74150748371184
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 130.57
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -291,9 +291,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -325,7 +322,7 @@ emissionFactors:
       value: 177.58
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 146.95
+      value: 153.17
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -341,10 +338,7 @@ emissionFactors:
       value: 1170.245378
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1108.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1101.07
+      value: 1097.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -355,9 +349,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 513.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 528.56
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -392,7 +383,7 @@ emissionFactors:
       value: 150.98
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 122.84
+      value: 130.57
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -407,9 +398,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -559,18 +547,18 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 9.746697456154453e-06
-      biomass: 0.03435602059494842
-      coal: 0.010980056751155542
-      gas: 0.1540536842762035
-      geothermal: 8.826583054065535e-06
-      hydro: 0.024214504064261802
-      hydro discharge: 0.013925442328146726
-      nuclear: 0.4243686476776474
-      oil: 0.0005749646468571695
-      solar: 0.10308608811761544
-      unknown: 0.055460468391665484
-      wind: 0.17896151273177904
+      battery discharge: 1.0577007742540445e-05
+      biomass: 0.037031110376119614
+      coal: 0.01066550612449646
+      gas: 0.1584092229604721
+      geothermal: 1.0121590094058774e-05
+      hydro: 0.025375964120030403
+      hydro discharge: 0.013620743528008461
+      nuclear: 0.41602909564971924
+      oil: 0.0005594766116701066
+      solar: 0.10093401372432709
+      unknown: 0.061540208756923676
+      wind: 0.17581385374069214
 has_day_ahead_price_license: true
 parsers:
   consumption: ENTSOE.fetch_consumption

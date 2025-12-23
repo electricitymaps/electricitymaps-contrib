@@ -1,29 +1,65 @@
 capacity:
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
 country: SS
+country_name: South Sudan
+currency: SSP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 370.1
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 370.1
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 596.5
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 596.5
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.9115637540817261
+      solar: 0.08843572437763214
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Juba
 zone_name: South Sudan
-country_name: South Sudan
-currency: SSP

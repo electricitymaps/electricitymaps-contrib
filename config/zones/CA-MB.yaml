@@ -1,10 +1,10 @@
 _comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not
   reflected in latest report from March 2021)
 bounding_box:
-  - - -102.50159786704786
-    - 48.492669576869844
-  - - -88.44699962056833
-    - 60.500059011375754
+- - -102.50159786704786
+  - 48.492669576869844
+- - -88.44699962056833
+  - 60.500059011375754
 capacity:
   coal: 0
   gas: 237
@@ -12,18 +12,46 @@ capacity:
   oil: 13
   wind: 258
 contributors:
-  - felixvanoost
+- felixvanoost
 country: CA
+country_name: Canada
+currency: CAD
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 27.05
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 27.05
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 54.71
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 54.71
 fallbackZoneMixes:
-  _source: Statistics Canada - average production in 2020
-  _url: https://docs.google.com/spreadsheets/d/1gobOiDRBsxKEKQPG2x5o2Qx17bQLXTSJLtF1JeasKWI/edit?usp=sharing
   powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
     value:
-      gas: 0.003
-      hydro: 0.9715
-      wind: 0.0254
+      battery discharge: 0.0
+      biomass: 0.0024504326283931732
+      coal: 0.014255031943321228
+      gas: 0.031160373240709305
+      geothermal: 0.0
+      hydro: 0.9081553816795349
+      hydro discharge: 8.076627366904177e-09
+      nuclear: 0.014293008483946323
+      oil: 0.0005464054993353784
+      solar: 0.00139355449937284
+      unknown: 0.00028667403967119753
+      wind: 0.02745904214680195
 region: Americas
 timezone: America/Winnipeg
 zone_name: Manitoba
-country_name: Canada
-currency: CAD

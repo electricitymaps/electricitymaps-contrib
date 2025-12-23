@@ -1,37 +1,73 @@
 bounding_box:
-  - - 33.698541985419865
-    - 30.712105398903503
-  - - 36.05935559355595
-    - 33.04301243355475
+- - 33.698541985419865
+  - 30.712105398903503
+- - 36.05935559355595
+  - 33.04301243355475
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 180.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 190.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 180.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 190.0
 country: PS
+country_name: State of Palestine
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 357.45
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 357.45
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 452.18
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 452.18
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.37835565209388733
+      unknown: 0.621644139289856
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Gaza
 zone_name: State of Palestine
-country_name: State of Palestine

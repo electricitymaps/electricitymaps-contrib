@@ -1,28 +1,64 @@
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 150.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 150.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
 country: GQ
+country_name: Equatorial Guinea
+currency: XAF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 257.01
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 257.01
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 348.6
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 348.6
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.6859866976737976
+      geothermal: 0.0
+      hydro: 0.30614060163497925
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.007872280664741993
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Malabo
 zone_name: Equatorial Guinea
-country_name: Equatorial Guinea
-currency: XAF

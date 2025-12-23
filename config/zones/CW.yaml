@@ -1,38 +1,74 @@
 bounding_box:
-  - - -69.65514614798195
-    - 11.537431473445437
-  - - -68.23200926588031
-    - 12.889546858796207
+- - -69.65514614798195
+  - 11.537431473445437
+- - -68.23200926588031
+  - 12.889546858796207
 capacity:
   oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 165.0
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 204.2
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 165.0
+  - datetime: '2019-01-01'
+    source: IRENA.org
+    value: 204.2
   solar:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 11.13
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 11.93
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 13.23
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 13.36
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 11.13
+  - datetime: '2018-01-01'
+    source: IRENA.org
+    value: 11.93
+  - datetime: '2020-01-01'
+    source: IRENA.org
+    value: 13.23
+  - datetime: '2023-01-01'
+    source: IRENA.org
+    value: 13.36
   wind:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 46.5
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 46.5
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: CW
+country_name: "Cura\xE7ao"
+currency: ANG
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 306.27
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 306.27
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 494.1
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 494.1
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.7543517351150513
+      solar: 0.03156755492091179
+      unknown: 0.0
+      wind: 0.21407875418663025
 region: Americas
 timezone: America/Curacao
-zone_name: Curaçao
-country_name: Curaçao
-currency: ANG
+zone_name: "Cura\xE7ao"

@@ -1,59 +1,95 @@
 bounding_box:
-  - - 34.60575105751059
-    - 32.586823910078905
-  - - 37.103366033660365
-    - 35.14956636366941
+- - 34.60575105751059
+  - 32.586823910078905
+- - 37.103366033660365
+  - 35.14956636366941
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1140.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 740.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1140.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 740.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 280.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 280.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 190.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 870.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 1000.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 190.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 870.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 1000.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 1950.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 1950.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: LB
+country_name: Lebanon
+currency: LBP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 178.09
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 178.09
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 307.13
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 307.13
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.15445221960544586
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.43863457441329956
+      solar: 0.40691277384757996
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Beirut
 zone_name: Lebanon
-country_name: Lebanon
-currency: LBP

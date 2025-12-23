@@ -19,6 +19,10 @@ country_name: Faroe Islands
 currency: DKK
 emissionFactors:
   direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 279.48
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -32,10 +36,7 @@ emissionFactors:
       value: 1075.5
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 1048.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1041.07
+      value: 1037.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -45,10 +46,11 @@ emissionFactors:
       value: 412.38
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 410.56
+      value: 410.39
+    hydro discharge:
     - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.69
+      source: Electricity Maps, 2024 average
+      value: 279.48
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -59,9 +61,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
     unknown:
       comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
       source: IPCC 2014
@@ -91,10 +90,7 @@ emissionFactors:
       value: 1144.294608
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1108.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1101.07
+      value: 1097.31
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -104,10 +100,7 @@ emissionFactors:
       value: 532.38
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 530.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.69
+      value: 530.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -136,9 +129,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     unknown:
       comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
       source: IPCC 2014
@@ -184,17 +174,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.01747571033546078
+      biomass: 0.017475709319114685
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.246998157847731
+      hydro: 0.2469981461763382
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.43595547729955675
+      oil: 0.4359554648399353
       solar: 0.0
       unknown: 0.0
-      wind: 0.29956949622511475
+      wind: 0.2995694875717163
 isLowCarbon:
   unknown:
     value: 1

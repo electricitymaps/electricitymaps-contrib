@@ -1,8 +1,8 @@
 bounding_box:
-  - - 11.217621290000068
-    - -29.45936818399987
-  - - 25.759780721000112
-    - -16.451057230999922
+- - 11.217621290000068
+  - -29.45936818399987
+- - 25.759780721000112
+  - -16.451057230999922
 capacity:
   coal: 120
   hydro: 347
@@ -10,75 +10,102 @@ capacity:
   solar: 116
   wind: 5
 contributors:
-  - systemcatch
-  - jarek
-  - alixunderplatz
+- systemcatch
+- jarek
+- alixunderplatz
 country: NA
+country_name: Namibia
+currency: NAD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 13.22109957334399
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 14.38993486068608
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 9.26
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 13.22109957334399
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 14.38993486068608
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 9.26
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 39.67
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 42.98
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 43.0
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
+    - datetime: '2018-01-01'
+      source: Electricity Maps, 2018 average
+      value: 39.67
+    - datetime: '2019-01-01'
+      source: Electricity Maps, 2019 average
+      value: 42.98
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 43.0
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.01803505384488233
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.8705440884693868
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.00026907197874802605
-        solar: 0.09385330815488581
-        unknown: 0.0
-        wind: 0.01729765961938319
-    - _source: Electricity Maps, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.018176214280430668
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.7852276548720167
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0020082363810398013
-        solar: 0.17650734047230604
-        unknown: 0.0
-        wind: 0.018079403291716912
+  - _source: Electricity Maps, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.01803505384488233
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.8705440884693868
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.00026907197874802605
+      solar: 0.09385330815488581
+      unknown: 0.0
+      wind: 0.01729765961938319
+  - _source: Electricity Maps, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.018176214280430668
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.7852276548720167
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0020082363810398013
+      solar: 0.17650734047230604
+      unknown: 0.0
+      wind: 0.018079403291716912
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.011501199565827847
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.5288661122322083
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0012780479155480862
+      solar: 0.4412528872489929
+      unknown: 0.0
+      wind: 0.017100676894187927
 region: Africa
 timezone: Africa/Windhoek
 zone_name: Namibia
-country_name: Namibia
-currency: NAD

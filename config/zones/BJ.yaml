@@ -1,40 +1,76 @@
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 130.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 130.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 170.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 170.0
 country: BJ
+country_name: Benin
+currency: XOF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 362.39
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 362.39
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 508.29
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 508.29
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.721355676651001
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.2351914495229721
+      solar: 0.04345130920410156
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Porto-Novo
 zone_name: Benin
-country_name: Benin
-currency: XOF

@@ -1,16 +1,52 @@
 bounding_box:
-  - - 34.07276451900009
-    - 15.87095774900007
-  - - 56.13756473800004
-    - 32.62134796200006
+- - 34.07276451900009
+  - 15.87095774900007
+- - 56.13756473800004
+  - 32.62134796200006
 contributors:
-  - q--
+- q--
 country: SA
+country_name: Saudi Arabia
+currency: SAR
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 381.78
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 381.78
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 551.54
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 551.54
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.5847098231315613
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.4074908494949341
+      solar: 0.002396028721705079
+      unknown: 0.0
+      wind: 0.005403194110840559
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Riyadh
 zone_name: Saudi Arabia
-country_name: Saudi Arabia
-currency: SAR

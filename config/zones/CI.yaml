@@ -1,39 +1,75 @@
 bounding_box:
-  - - -9.12028620286199
-    - 3.8535427899415637
-  - - -2.007425074250705
-    - 11.220430313773178
+- - -9.12028620286199
+  - 3.8535427899415637
+- - -2.007425074250705
+  - 11.220430313773178
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 830.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1080.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 830.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1080.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 880.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 880.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
 country: CI
+country_name: Ivory Coast
+currency: XOF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 285.36
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 285.36
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 389.44
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 389.44
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.012430239468812943
+      coal: 0.0
+      gas: 0.7381166815757751
+      geothermal: 0.0
+      hydro: 0.21819771826267242
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.030185725539922714
+      solar: 0.0010695960372686386
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Abidjan
 zone_name: Ivory Coast
-country_name: Ivory Coast
-currency: XOF

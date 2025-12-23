@@ -1,22 +1,41 @@
 capacity:
   hydro:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.18
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 0.19
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 0.18
+  - datetime: '2023-01-01'
+    source: IRENA.org
+    value: 0.19
   oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.13
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 0.13
   wind:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 0.01
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 0.01
 country: GS
+country_name: South Georgia and the South Sandwich Islands
+currency: GBP
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 0.0
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 0.0
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 23.83
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 23.83
 region: Americas
 timezone: Atlantic/South_Georgia
 zone_name: South Georgia and the South Sandwich Islands
-country_name: South Georgia and the South Sandwich Islands
-currency: GBP

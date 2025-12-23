@@ -5,10 +5,10 @@ capacity:
   nuclear: 0
   oil: 40.05
 contributors:
-  - gopikrishna1793
+- gopikrishna1793
 country: IN
+country_name: India
+currency: INR
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Andaman and Nicobar Islands
-country_name: India
-currency: INR

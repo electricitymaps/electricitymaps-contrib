@@ -51,13 +51,13 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 295.25335109382246
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 222.58
     gas:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 410.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.69
+      value: 410.39
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -80,13 +80,13 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 295.25335109382246
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 222.58
     oil:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -118,14 +118,11 @@ emissionFactors:
       value: 298.08
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 306.35
+      value: 308.53
     gas:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 530.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.69
+      value: 530.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -160,14 +157,11 @@ emissionFactors:
       value: 298.08
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 306.35
+      value: 308.53
     oil:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -313,18 +307,18 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 6.98315658157476e-07
-      biomass: 0.06629979638874206
-      coal: 0.0021132967534361127
-      gas: 0.5331136867289081
-      geothermal: 6.972749492779566e-08
-      hydro: 0.016935756361284374
-      hydro discharge: 0.0004632965347311419
-      nuclear: 0.054134168723671994
-      oil: 0.00130082781970192
-      solar: 0.02743493748522642
-      unknown: 0.004058241153559021
-      wind: 0.29414430089880955
+      battery discharge: 9.751590823725564e-07
+      biomass: 0.06751090288162231
+      coal: 0.002220911905169487
+      gas: 0.5370301008224487
+      geothermal: 9.678738877028081e-08
+      hydro: 0.017869971692562103
+      hydro discharge: 0.0004735120455734432
+      nuclear: 0.057603053748607635
+      oil: 0.0013088060077279806
+      solar: 0.019178317859768867
+      unknown: 0.0043253786861896515
+      wind: 0.2924771010875702
 parsers:
   consumption: SMARTGRIDDASHBOARD.fetch_consumption
   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast

@@ -128,6 +128,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 16.23380919585552
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 44.32
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -150,10 +153,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 16.23380919585552
-    unknown:
-      _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
-      source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
-      value: 333.54639999999995
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 44.32
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -185,7 +187,7 @@ emissionFactors:
       value: 70.46
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 94.08
+      value: 94.12
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -216,11 +218,11 @@ emissionFactors:
       value: 70.46
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 94.08
+      value: 94.12
     unknown:
       _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
       source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
-      value: 463.63399999999996
+      value: 463.75
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
@@ -362,17 +364,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.006855793489018667
+      biomass: 0.00685503426939249
       coal: 0.0
-      gas: 0.0002036679285601743
-      geothermal: 0.11898027071322358
-      hydro: 0.6642496564974198
+      gas: 0.0002994256792590022
+      geothermal: 0.11888259649276733
+      hydro: 0.6643079519271851
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.1089015737638526
-      solar: 0.0013911656652474905
+      oil: 0.10888612270355225
+      solar: 0.001443118671886623
       unknown: 0.0
-      wind: 0.09941766316203218
+      wind: 0.09932555258274078
 parsers:
   production: CR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

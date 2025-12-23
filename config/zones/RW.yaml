@@ -1,45 +1,81 @@
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 10.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 10.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 120.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 120.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 20.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 20.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
 country: RW
+country_name: Rwanda
+currency: RWF
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 251.54
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 251.54
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 335.12
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 335.12
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0016753270756453276
+      coal: 0.15669724345207214
+      gas: 0.1767210066318512
+      geothermal: 0.0
+      hydro: 0.48549675941467285
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.16517144441604614
+      solar: 0.014237873256206512
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kigali
 zone_name: Rwanda
-country_name: Rwanda
-currency: RWF

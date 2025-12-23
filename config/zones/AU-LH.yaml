@@ -1,15 +1,15 @@
 bounding_box:
-  - - 158.53754045700703
-    - -32.09797652357255
-  - - 159.60462909730177
-    - -31.011655274959526
+- - 158.53754045700703
+  - -32.09797652357255
+- - 159.60462909730177
+  - -31.011655274959526
 capacity:
   battery storage: 1
   gas: 0.84
   solar: 1
 country: AU
+country_name: Australia
+currency: AUD
 region: Oceania
 timezone: Australia/Lord_Howe
 zone_name: Lord Howe Island
-country_name: Australia
-currency: AUD

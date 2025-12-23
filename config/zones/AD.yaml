@@ -1,14 +1,14 @@
 bounding_box:
-  - - 0.9064563390001013
-    - 41.92867747000005
-  - - 2.2650907800001505
-    - 43.14936167400003
+- - 0.9064563390001013
+  - 41.92867747000005
+- - 2.2650907800001505
+  - 43.14936167400003
 contributors:
-  - Manu1400
-  - autipial
+- Manu1400
+- autipial
 country: AD
+country_name: Andorra
+currency: EUR
 region: Europe
 timezone: Europe/Andorra
 zone_name: Andorra
-country_name: Andorra
-currency: EUR

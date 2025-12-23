@@ -131,6 +131,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 152.40959845868178
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 43.35
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -145,9 +148,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 718.07
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 718.67
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -158,9 +158,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 476.61
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 426.15
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -183,6 +180,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 152.40959845868178
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 43.35
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -193,9 +193,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -227,7 +224,7 @@ emissionFactors:
       value: 82.34
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 75.74
+      value: 75.72
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -244,9 +241,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 778.07
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 778.67
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -257,9 +251,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 596.61
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 546.15
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -294,7 +285,7 @@ emissionFactors:
       value: 82.34
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 75.74
+      value: 75.72
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -309,9 +300,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
     wind:
       datetime: '2012-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -458,17 +446,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.07638071549553743
-      coal: 0.03500728593466532
-      gas: 0.015270931279160457
-      geothermal: 4.801148511938404e-08
-      hydro: 0.22058946776480864
-      hydro discharge: 2.6659738262889315e-05
-      nuclear: 0.3758105564651526
-      oil: 7.819647905125822e-05
-      solar: 0.015558684526736201
-      unknown: 0.02072893283843738
-      wind: 0.24054849102643136
+      biomass: 0.07638543099164963
+      coal: 0.0349959135055542
+      gas: 0.015263148583471775
+      geothermal: 4.714698675911677e-08
+      hydro: 0.22057735919952393
+      hydro discharge: 2.6262729079462588e-05
+      nuclear: 0.37581947445869446
+      oil: 7.840506441425532e-05
+      solar: 0.015542551875114441
+      unknown: 0.02071409299969673
+      wind: 0.2405971884727478
 has_day_ahead_price_license: true
 parsers:
   consumption: ENTSOE.fetch_consumption

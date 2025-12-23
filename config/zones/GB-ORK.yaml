@@ -29,6 +29,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 460.40202785294656
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 461.39
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -42,10 +45,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 460.40202785294656
-    unknown:
-      _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
-      source: assumes 95% wind, 5% solar
-      value: 0.0
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 461.39
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -71,7 +73,7 @@ emissionFactors:
       value: 79.98
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 61.72
+      value: 64.92
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -96,7 +98,7 @@ emissionFactors:
       value: 79.98
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 61.72
+      value: 64.92
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -104,7 +106,7 @@ emissionFactors:
     unknown:
       _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
       source: assumes 95% wind, 5% solar
-      value: 12.7
+      value: 14.169
     wind:
       datetime: '2021-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -221,17 +223,17 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.018604081025039725
-      coal: 0.0022204868102424164
-      gas: 0.08202137864852199
+      biomass: 0.020143713802099228
+      coal: 0.002487396588549018
+      gas: 0.08761560916900635
       geothermal: 0.0
-      hydro: 0.01325308604811471
-      hydro discharge: 0.00042690325024233983
-      nuclear: 0.044822498989780864
-      oil: 6.072592464329157e-05
-      solar: 0.018364994384586993
-      unknown: 0.7528324740036654
-      wind: 0.06733637529731847
+      hydro: 0.014449289999902248
+      hydro discharge: 0.00045401291572488844
+      nuclear: 0.04937528818845749
+      oil: 7.195448415586725e-05
+      solar: 0.013690011575818062
+      unknown: 0.7428927421569824
+      wind: 0.06876862794160843
 isLowCarbon:
   unknown:
     value: 1

@@ -1,36 +1,72 @@
 bounding_box:
-  - - 44.5418504185042
-    - -13.386712098707434
-  - - 45.700252002520045
-    - -12.19780916475694
+- - 44.5418504185042
+  - -13.386712098707434
+- - 45.700252002520045
+  - -12.19780916475694
 capacity:
   oil:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 99.0
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 99.0
   solar:
-    - datetime: '2017-01-01'
-      source: IRENA.org
-      value: 15.15
-    - datetime: '2018-01-01'
-      source: IRENA.org
-      value: 15.73
-    - datetime: '2019-01-01'
-      source: IRENA.org
-      value: 16.81
-    - datetime: '2020-01-01'
-      source: IRENA.org
-      value: 18.57
-    - datetime: '2021-01-01'
-      source: IRENA.org
-      value: 30.03
-    - datetime: '2023-01-01'
-      source: IRENA.org
-      value: 31.23
+  - datetime: '2017-01-01'
+    source: IRENA.org
+    value: 15.15
+  - datetime: '2018-01-01'
+    source: IRENA.org
+    value: 15.73
+  - datetime: '2019-01-01'
+    source: IRENA.org
+    value: 16.81
+  - datetime: '2020-01-01'
+    source: IRENA.org
+    value: 18.57
+  - datetime: '2021-01-01'
+    source: IRENA.org
+    value: 30.03
+  - datetime: '2023-01-01'
+    source: IRENA.org
+    value: 31.23
 country: YT
+country_name: Mayotte
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 352.81
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 352.81
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 570.74
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 570.74
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.8689978718757629
+      solar: 0.13099981844425201
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mayotte
 zone_name: Mayotte
-country_name: Mayotte

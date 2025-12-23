@@ -1,15 +1,15 @@
 bounding_box:
-  - - -65.3842596183096
-    - 31.747150655733627
-  - - -64.1476046795164
-    - 32.88957682629426
+- - -65.3842596183096
+  - 31.747150655733627
+- - -64.1476046795164
+  - 32.88957682629426
 contributors:
-  - VIKTORVAV99
+- VIKTORVAV99
 country: BM
+country_name: Bermuda
+currency: BMD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Bermuda
 zone_name: Bermuda
-country_name: Bermuda
-currency: BMD

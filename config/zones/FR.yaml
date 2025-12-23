@@ -299,6 +299,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 66.82067058776849
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 32.59
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -313,9 +316,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 923.04
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 828.47
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -325,10 +325,7 @@ emissionFactors:
       value: 381.61
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
-      value: 391.99
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.47
+      value: 391.79
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -351,6 +348,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 66.82067058776849
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 26.9
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -361,9 +361,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023
       value: 657.06
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.95
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -395,7 +392,7 @@ emissionFactors:
       value: 48.77
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 34.26
+      value: 32.59
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -412,9 +409,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 983.04
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 888.47
     gas:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -424,10 +418,7 @@ emissionFactors:
       value: 501.61
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 511.99
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.47
+      value: 511.79
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -462,7 +453,7 @@ emissionFactors:
       value: 43.51
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 26.53
+      value: 26.9
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -477,9 +468,6 @@ emissionFactors:
     - datetime: '2023-01-01'
       source: EU-ETS, ENTSO-E 2023; IPCC 2014
       value: 901.06
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.95
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -629,18 +617,18 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 5.24803239253299e-05
-      biomass: 0.012620126817696989
-      coal: 0.001530549082462334
-      gas: 0.03603334028768703
-      geothermal: 2.1041309530707855e-06
-      hydro: 0.12044394027574781
-      hydro discharge: 0.013662019445778311
-      nuclear: 0.6746800863132116
-      oil: 0.002640214353842674
-      solar: 0.04719155478803789
-      unknown: 0.00038720954386614967
-      wind: 0.09075636778437683
+      battery discharge: 5.696817970601842e-05
+      biomass: 0.013779488392174244
+      coal: 0.0015244890237227082
+      gas: 0.036058854311704636
+      geothermal: 2.0975296592951054e-06
+      hydro: 0.12072860449552536
+      hydro discharge: 0.013393931090831757
+      nuclear: 0.6737077832221985
+      oil: 0.002636187244206667
+      solar: 0.04714149236679077
+      unknown: 0.00035105986171402037
+      wind: 0.09061909466981888
 has_day_ahead_price_license: true
 parsers:
   consumption: FR.fetch_consumption

@@ -1,79 +1,113 @@
 bounding_box:
-  - - 19.3044861183
-    - 39.624997667
-  - - 21.0200403175
-    - 42.6882473822
+- - 19.3044861183
+  - 39.624997667
+- - 21.0200403175
+  - 42.6882473822
 capacity:
   biomass:
-    - datetime: '2018-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2018-01-01'
+    source: entsoe.eu
+    value: 0.0
   coal:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   gas:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   geothermal:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   hydro:
-    - datetime: '2018-01-01'
-      source: entsoe.eu
-      value: 1492.0
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 2203.0
+  - datetime: '2018-01-01'
+    source: entsoe.eu
+    value: 1492.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 2203.0
   hydro storage:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   oil:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 97.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 97.0
   solar:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 5.0
-    - datetime: '2024-01-01'
-      source: entsoe.eu
-      value: 195.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
+  - datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 5.0
+  - datetime: '2024-01-01'
+    source: entsoe.eu
+    value: 195.0
   unknown:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   wind:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
 contributors:
-  - corradio
-  - nessie2013
-  - autipial
+- corradio
+- nessie2013
+- autipial
 country: AL
 country_name: Albania
 currency: ALL
 emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 60.92
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 60.92
   lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 80.03
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 80.03
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 1.5729865410207822e-08
+      biomass: 0.0009871780639514327
+      coal: 0.05726325884461403
+      gas: 0.03451428934931755
+      geothermal: 0.00012717909703496844
+      hydro: 0.8117517828941345
+      hydro discharge: 0.0014908754965290427
+      nuclear: 0.003924285527318716
+      oil: 6.114302959758788e-05
+      solar: 0.06282775104045868
+      unknown: 0.0005620899610221386
+      wind: 0.02648944780230522
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

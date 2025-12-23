@@ -1,109 +1,140 @@
 bounding_box:
-  - - 87.23570886300013
-    - 41.086144918000016
-  - - 120.40702681500011
-    - 52.62958404600003
+- - 87.23570886300013
+  - 41.086144918000016
+- - 120.40702681500011
+  - 52.62958404600003
 capacity:
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 880.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 910.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 960.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 1150.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 880.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 910.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 960.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 1150.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 110.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 110.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 100.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 150.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 160.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 100.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 150.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 160.0
 contributors:
-  - q--
-  - alixunderplatz
-  - MuffinCompiler
-  - consideRatio
+- q--
+- alixunderplatz
+- MuffinCompiler
+- consideRatio
 country: MN
+country_name: Mongolia
+currency: MNT
 emissionFactors:
   direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 690.31
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 690.31
     unknown:
-      - _url: https://www.iea.org/fuels-and-technologies/electricity
-        datetime: '2020-01-01'
-        source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
-        value: 729.1
+    - _url: https://www.iea.org/fuels-and-technologies/electricity
+      datetime: '2020-01-01'
+      source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
+      value: 729.1
   lifecycle:
     battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 712.24
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 712.24
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 745.85
     hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 712.24
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 712.24
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 745.85
     unknown:
-      - _url: https://www.iea.org/fuels-and-technologies/electricity
-        datetime: '2020-01-01'
-        source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
-        value: 799.2
+    - _url: https://www.iea.org/fuels-and-technologies/electricity
+      datetime: '2020-01-01'
+      source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
+      value: 799.2
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0008970047023211626
-        gas: 0.00023905248863756158
-        geothermal: 0.0
-        hydro: 0.021838461260731995
-        hydro discharge: 0.0
-        nuclear: 6.232263775723864e-05
-        oil: 9.31594030933825e-06
-        solar: 0.025727593324883617
-        unknown: 0.8876911885022577
-        wind: 0.06354042950942215
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0008970047023211626
+      gas: 0.00023905248863756158
+      geothermal: 0.0
+      hydro: 0.021838461260731995
+      hydro discharge: 0.0
+      nuclear: 6.232263775723864e-05
+      oil: 9.31594030933825e-06
+      solar: 0.025727593324883617
+      unknown: 0.8876911885022577
+      wind: 0.06354042950942215
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.9081734418869019
+      gas: 9.577696147289316e-08
+      geothermal: 0.0
+      hydro: 0.00020090634643565863
+      hydro discharge: 0.0
+      nuclear: 8.592948006480583e-07
+      oil: 0.0
+      solar: 8.741333772377402e-07
+      unknown: 0.0001699528656899929
+      wind: 0.09145388007164001
 isLowCarbon:
   unknown:
-    - _url: https://www.iea.org/fuels-and-technologies/electricity
-      datetime: '2020-01-01'
-      value: 0.0137
+  - _url: https://www.iea.org/fuels-and-technologies/electricity
+    datetime: '2020-01-01'
+    value: 0.0137
 isRenewable:
   unknown:
-    - _url: https://www.iea.org/fuels-and-technologies/electricity
-      datetime: '2020-01-01'
-      value: 0.0137
+  - _url: https://www.iea.org/fuels-and-technologies/electricity
+    datetime: '2020-01-01'
+    value: 0.0137
 parsers:
   consumption: MN.fetch_consumption
   production: MN.fetch_production
@@ -111,5 +142,3 @@ parsers:
 region: Asia
 timezone: Asia/Ulaanbaatar
 zone_name: Mongolia
-country_name: Mongolia
-currency: MNT

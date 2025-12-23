@@ -1,98 +1,134 @@
 bounding_box:
-  - - 101.82922329223291
-    - 9.919902918851918
-  - - 108.10687606876067
-    - 15.204564920729169
+- - 101.82922329223291
+  - 9.919902918851918
+- - 108.10687606876067
+  - 15.204564920729169
 capacity:
   biomass:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
   coal:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 500.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 660.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 710.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 1460.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 500.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 660.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 710.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 1460.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 980.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 1330.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 1340.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 980.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 1330.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 1340.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 30.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 40.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 140.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 330.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 400.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 480.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 490.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 880.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 30.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 40.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 140.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 330.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 400.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 480.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 490.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 880.0
   unknown:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 300.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 270.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 660.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 620.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 640.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 650.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 300.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 270.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 660.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 620.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 640.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 650.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 0.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 0.0
 country: KH
+country_name: Cambodia
+currency: KHR
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 232.0
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 232.0
+  lifecycle:
+    battery discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 273.49
+    hydro discharge:
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 273.49
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0008633360848762095
+      coal: 0.2928144633769989
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.6048728823661804
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.02330164797604084
+      solar: 0.07814738899469376
+      unknown: 0.0
+      wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Phnom_Penh
 zone_name: Cambodia
-country_name: Cambodia
-currency: KHR
