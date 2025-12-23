@@ -121,3 +121,5 @@ export const futurePriceCollapsedAtom = atom<boolean>(true);
 export const isRedirectedToLatestDatetimeAtom = atom<boolean>(false);
 
 export const openTooltipIdAtom = atom<string | null>(null);
+
+export const zoneDetailsScrollHashAtom = atom<string | undefined>(undefined);
