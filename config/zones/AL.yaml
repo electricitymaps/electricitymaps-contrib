@@ -67,47 +67,47 @@ currency: ALL
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 141.49
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 100.54
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 141.49
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 100.54
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 166.39
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 121.66
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 166.39
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 121.66
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0009333239868283272
-      coal: 0.1306454986333847
-      gas: 0.06468841433525085
-      geothermal: 0.00033257651375606656
-      hydro: 0.7178348302841187
-      hydro discharge: 0.002016033511608839
-      nuclear: 0.004726219456642866
-      oil: 0.0004091229347977787
-      solar: 0.04003789648413658
-      unknown: 0.0007898274925537407
-      wind: 0.037586066871881485
+      biomass: 0.0006051528034731746
+      coal: 0.09401021897792816
+      gas: 0.05197494477033615
+      geothermal: 0.0002563109155744314
+      hydro: 0.8067677617073059
+      hydro discharge: 0.001655458938330412
+      nuclear: 0.003724876558408141
+      oil: 2.0151774151599966e-05
+      solar: 0.013953149318695068
+      unknown: 0.0008291965932585299
+      wind: 0.026202311739325523
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

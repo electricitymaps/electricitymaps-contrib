@@ -42,37 +42,37 @@ currency: SYP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 374.85
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 375.15
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 374.85
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 375.15
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 561.94
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 557.09
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 561.94
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 557.09
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.3840981721878052
+      gas: 0.43446239829063416
       geothermal: 0.0
-      hydro: 0.03758755698800087
+      hydro: 0.03478734940290451
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.5732309818267822
-      solar: 0.005083250813186169
+      oil: 0.5280742049217224
+      solar: 0.0026758823078125715
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -94,10 +94,7 @@ emissionFactors:
       value: 413.23528090975884
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 396.4082786080585
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 360.4
+      value: 396.41
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -119,10 +116,7 @@ emissionFactors:
       value: 413.23528090975884
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 396.4082786080585
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 360.4
+      value: 396.41
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -282,32 +276,32 @@ fallbackZoneMixes:
     datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.004641582266558719
-      coal: 0.3776045733107258
-      gas: 0.2955604059954736
+      biomass: 0.004641619045287371
+      coal: 0.37761104106903076
+      gas: 0.29556065797805786
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0002204270012878005
-      solar: 0.15431131557135006
+      oil: 0.0002204287884524092
+      solar: 0.15430061519145966
       unknown: 0.0
-      wind: 0.1676618423490851
+      wind: 0.1676657795906067
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.004359734244644642
-      coal: 0.30632248520851135
-      gas: 0.3447572588920593
+      biomass: 0.004359734080492649
+      coal: 0.3063224741549013
+      gas: 0.3447572427712224
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.00013920973287895322
-      solar: 0.1737033873796463
+      oil: 0.00013920974771888702
+      solar: 0.17370337704109487
       unknown: 0.0
-      wind: 0.1707180142402649
+      wind: 0.17071803351215314
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:

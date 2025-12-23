@@ -4,37 +4,37 @@ currency: MGA
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 335.2
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 338.25
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 335.2
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 338.25
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 469.89
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 478.06
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 469.89
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 478.06
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.009193542413413525
-      coal: 0.19493913650512695
+      biomass: 0.009538902901113033
+      coal: 0.18560685217380524
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.31488391757011414
+      hydro: 0.3048478364944458
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4607040286064148
-      solar: 0.0202783215790987
+      oil: 0.4856969118118286
+      solar: 0.014308678917586803
       unknown: 0.0
       wind: 0.0
 parsers:

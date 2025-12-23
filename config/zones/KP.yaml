@@ -59,37 +59,37 @@ currency: KPW
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 273.76
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 272.41
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 273.76
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 272.41
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 315.11
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 313.35
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 315.11
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 313.35
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.3486894369125366
+      coal: 0.3478407561779022
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.6272776126861572
+      hydro: 0.6297813057899475
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.02157602086663246
-      solar: 0.002456889022141695
+      oil: 0.01983517035841942
+      solar: 0.0025426754727959633
       unknown: 0.0
       wind: 0.0
 parsers:

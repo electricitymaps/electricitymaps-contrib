@@ -26,38 +26,38 @@ currency: XCD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 498.29
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 492.86
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 498.29
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 492.86
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 609.81
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 603.43
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 609.81
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 603.43
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.13341093063354492
+      hydro: 0.1428542137145996
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.8665814399719238
+      unknown: 0.8571428060531616
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

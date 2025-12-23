@@ -20,26 +20,26 @@ currency: TOP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 503.16
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 492.86
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 503.16
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 492.86
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 618.17
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 606.43
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 618.17
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 606.43
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -50,8 +50,8 @@ fallbackZoneMixes:
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.12492942065000534
-      unknown: 0.8750585913658142
+      solar: 0.14285127818584442
+      unknown: 0.8571359515190125
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

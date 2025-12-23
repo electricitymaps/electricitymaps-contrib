@@ -210,39 +210,39 @@ currency: CNY
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 485.75
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 498.44
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 485.75
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 498.44
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 538.8
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 551.89
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 538.8
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 551.89
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.020493283867836
-      coal: 0.6230137944221497
-      gas: 0.030074307695031166
+      biomass: 0.01929881051182747
+      coal: 0.6387265920639038
+      gas: 0.03159395977854729
       geothermal: 0.0
-      hydro: 0.1394585371017456
+      hydro: 0.14248254895210266
       hydro discharge: 0.0
-      nuclear: 0.048063889145851135
+      nuclear: 0.04869963973760605
       oil: 0.0
-      solar: 0.04916616529226303
-      unknown: 0.001973987789824605
-      wind: 0.08775604516267776
+      solar: 0.038937732577323914
+      unknown: 0.002290423959493637
+      wind: 0.07797020673751831
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

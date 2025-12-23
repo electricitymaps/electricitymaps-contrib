@@ -36,37 +36,37 @@ currency: XOF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 471.34
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 484.21
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 471.34
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 484.21
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 660.87
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 663.82
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 660.87
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 663.82
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.22437599301338196
-      gas: 0.058969710022211075
+      coal: 0.2663056254386902
+      gas: 0.070734404027462
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.6871708631515503
-      solar: 0.029481833800673485
+      oil: 0.6296707987785339
+      solar: 0.03328712657094002
       unknown: 0.0
       wind: 0.0
 parsers:

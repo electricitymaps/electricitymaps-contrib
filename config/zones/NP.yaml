@@ -20,39 +20,39 @@ currency: NPR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 70.46
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 7.69
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 70.46
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 7.69
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 97.72
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 32.21
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 97.72
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 32.21
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.09206845611333847
-      gas: 0.00028820362058468163
+      coal: 0.010040946304798126
+      gas: 5.286499435896985e-05
       geothermal: 0.0
-      hydro: 0.8938196301460266
+      hydro: 0.9806540012359619
       hydro discharge: 0.0
-      nuclear: 0.0008582867449149489
-      oil: 4.840824112761766e-05
-      solar: 0.01094629243016243
-      unknown: 0.000985611230134964
-      wind: 0.0009850149508565664
+      nuclear: 0.00010010060213971883
+      oil: 5.698663244402269e-06
+      solar: 0.00894137006253004
+      unknown: 9.872673399513587e-05
+      wind: 0.00010632180783431977
 region: Asia
 timezone: Asia/Kathmandu
 zone_name: Nepal

@@ -9,13 +9,13 @@ currency: AOA
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 106.17
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 106.37
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 106.17
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 106.37
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
@@ -24,9 +24,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 176.83
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 176.83
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 176.64
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
@@ -34,9 +34,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 176.83
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 176.83
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 176.64
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -69,19 +69,19 @@ fallbackZoneMixes:
       solar: 0.024552889130142887
       unknown: 0.0
       wind: 0.0
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.10893764346837997
+      gas: 0.10911649465560913
       geothermal: 0.0
-      hydro: 0.704301118850708
+      hydro: 0.7270784378051758
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.16221469640731812
-      solar: 0.024546293541789055
+      oil: 0.16256052255630493
+      solar: 0.001244390499778092
       unknown: 0.0
       wind: 0.0
 parsers:

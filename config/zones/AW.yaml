@@ -41,10 +41,7 @@ emissionFactors:
       value: 343.28017347038013
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 337.3545610645565
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 323.33
+      value: 338.48
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -57,10 +54,7 @@ emissionFactors:
       value: 343.28017347038013
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 337.3545610645565
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 323.33
+      value: 338.48
   lifecycle:
     battery discharge:
     - datetime: '2018-01-01'
@@ -74,10 +68,10 @@ emissionFactors:
       value: 551.83
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 542.22
+      value: 544.05
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 520.16
+      value: 519.64
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 563.27
@@ -96,10 +90,10 @@ emissionFactors:
       value: 551.83
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 542.22
+      value: 544.05
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 520.16
+      value: 519.64
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 563.27
@@ -164,10 +158,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.8298272126210017
-      solar: 0.012127157143873933
-      unknown: 0.0007192733326606231
-      wind: 0.1573257926991776
+      oil: 0.8324304819107056
+      solar: 0.014878028072416782
+      unknown: 0.0008485431899316609
+      wind: 0.15184225142002106
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:
@@ -179,10 +173,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7946668863296509
-      solar: 0.01584453135728836
-      unknown: 0.0012501162709668279
-      wind: 0.18823549151420593
+      oil: 0.7939078589008981
+      solar: 0.014544986130697591
+      unknown: 0.001272621935162575
+      wind: 0.19027148505956717
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:

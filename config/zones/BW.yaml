@@ -25,13 +25,13 @@ currency: BWP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 745.57
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 744.29
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 745.57
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 744.29
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
@@ -40,9 +40,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 812.1
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 812.11
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 811.44
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
@@ -50,9 +50,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 812.1
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 812.11
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 811.44
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -85,19 +85,19 @@ fallbackZoneMixes:
       solar: 0.002355337032443158
       unknown: 0.0
       wind: 0.0
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.9619420766830444
+      coal: 0.9584904909133911
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.035703618079423904
-      solar: 0.0023539478424936533
+      oil: 0.03901875764131546
+      solar: 0.0024906436447054148
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -42,7 +42,7 @@ emissionFactors:
       value: 668.9373334044878
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 672.5834947566543
+      value: 473.32
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -64,7 +64,7 @@ emissionFactors:
       value: 668.9373334044878
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 672.5834947566543
+      value: 473.32
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -210,12 +210,12 @@ fallbackZoneMixes:
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.018906747695549193
+      hydro: 0.01890689507126808
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.14726885443688845
-      unknown: 0.8338243983672093
+      solar: 0.14726987481117249
+      unknown: 0.8338232040405273
       wind: 0.0
 parsers: {}
 region: Asia

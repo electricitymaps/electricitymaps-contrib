@@ -28,39 +28,39 @@ currency: VUV
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 431.26
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 431.24
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 431.26
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 431.24
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 533.63
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 533.62
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 533.63
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 533.62
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.1250421404838562
+      hydro: 0.12499154359102249
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.12493861466646194
-      unknown: 0.7500116229057312
-      wind: 0.0
+      solar: 0.1250000298023224
+      unknown: 0.7499839067459106
+      wind: 8.999966667033732e-06
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania

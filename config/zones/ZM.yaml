@@ -48,37 +48,37 @@ currency: ZMW
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 84.51
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 58.33
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 84.51
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 58.33
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 113.48
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 87.5
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 113.48
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 87.5
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.003851841203868389
-      coal: 0.11114532500505447
+      biomass: 0.004347909241914749
+      coal: 0.07318330556154251
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.8775638937950134
+      hydro: 0.9075039029121399
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.00010259533883072436
-      solar: 0.0073361764661967754
+      oil: 0.006664346903562546
+      solar: 0.008300519548356533
       unknown: 0.0
       wind: 0.0
 parsers:

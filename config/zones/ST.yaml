@@ -17,37 +17,37 @@ currency: STN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 388.4
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 387.52
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 388.4
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 387.52
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 622.87
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 621.54
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 622.87
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 621.54
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.04324614629149437
+      hydro: 0.04363678768277168
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9566507935523987
-      solar: 5.951179991825484e-05
+      oil: 0.954471230506897
+      solar: 0.001876570051535964
       unknown: 0.0
       wind: 0.0
 parsers:

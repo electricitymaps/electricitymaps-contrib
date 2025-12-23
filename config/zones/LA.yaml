@@ -51,37 +51,37 @@ currency: LAK
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 181.39
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 201.05
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 181.39
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 201.05
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 214.16
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 234.82
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 214.16
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 234.82
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0007054590969346464
-      coal: 0.23866543173789978
+      biomass: 0.0010687733301892877
+      coal: 0.26453647017478943
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.7590819597244263
+      hydro: 0.7329029440879822
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.0015470661455765367
+      solar: 0.0014918347587808967
       unknown: 0.0
       wind: 0.0
 parsers:

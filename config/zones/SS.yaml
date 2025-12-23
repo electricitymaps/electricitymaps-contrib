@@ -25,26 +25,26 @@ currency: SSP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 379.56
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 394.48
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 379.56
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 394.48
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 610.61
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 632.84
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 610.61
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 632.84
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -54,8 +54,8 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9348883628845215
-      solar: 0.06509851664304733
+      oil: 0.9716318845748901
+      solar: 0.028364872559905052
       unknown: 0.0
       wind: 0.0
 parsers:

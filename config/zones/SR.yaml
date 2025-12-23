@@ -24,37 +24,37 @@ currency: SRD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 224.78
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 208.6
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 224.78
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 208.6
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 370.71
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 345.77
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 370.71
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 345.77
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.4401298463344574
+      hydro: 0.47989943623542786
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.5536389350891113
-      solar: 0.006230913568288088
+      oil: 0.51380455493927
+      solar: 0.006295217666774988
       unknown: 0.0
       wind: 0.0
 parsers:

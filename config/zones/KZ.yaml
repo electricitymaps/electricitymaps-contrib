@@ -112,39 +112,39 @@ currency: KZT
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 564.77
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 576.8
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 564.77
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 576.8
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 632.86
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 646.44
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 632.86
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 646.44
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 8.374452590942383e-06
-      coal: 0.5997668504714966
-      gas: 0.24015666544437408
-      geothermal: 2.5593753782970907e-09
-      hydro: 0.08121060580015182
-      hydro discharge: 3.2212827960620416e-08
-      nuclear: 0.008502602577209473
-      oil: 6.557296217124531e-08
-      solar: 0.014992684125900269
-      unknown: 0.03493537753820419
-      wind: 0.020426789298653603
+      biomass: 3.876632945321035e-06
+      coal: 0.6225624084472656
+      gas: 0.21937541663646698
+      geothermal: 2.787690522865205e-09
+      hydro: 0.08502022922039032
+      hydro discharge: 1.4548260374169786e-08
+      nuclear: 0.004803945776075125
+      oil: 7.605169827229474e-08
+      solar: 0.014196403324604034
+      unknown: 0.03910320624709129
+      wind: 0.01493432279676199
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

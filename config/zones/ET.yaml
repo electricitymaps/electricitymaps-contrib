@@ -63,12 +63,12 @@ currency: ETB
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
       value: 0.05
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
       value: 0.05
   lifecycle:
     battery discharge:
@@ -78,9 +78,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 23.72
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 23.72
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 23.66
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
@@ -88,9 +88,9 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 23.72
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 23.72
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 23.66
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -123,21 +123,21 @@ fallbackZoneMixes:
       solar: 0.002018939705847075
       unknown: 0.0
       wind: 0.030513859522903735
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.967346727848053
+      hydro: 0.9615539908409119
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.00011522288696141914
-      solar: 0.0020172973163425922
+      oil: 0.00012921963934786618
+      solar: 0.002132158726453781
       unknown: 0.0
-      wind: 0.03052067756652832
+      wind: 0.03618452325463295
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

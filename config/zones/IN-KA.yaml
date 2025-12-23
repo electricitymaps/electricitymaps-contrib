@@ -35,10 +35,7 @@ emissionFactors:
       value: 328.23315640174513
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 397.01248324147633
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 359.81
+      value: 397.01
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -54,10 +51,7 @@ emissionFactors:
       value: 328.23315640174513
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 397.01248324147633
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 359.81
+      value: 397.01
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -174,32 +168,32 @@ fallbackZoneMixes:
     datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.04013061048132367
-      coal: 0.29468639173352495
+      biomass: 0.040130943059921265
+      coal: 0.29468968510627747
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.17586195896940404
+      hydro: 0.17586243152618408
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.11411321903698891
-      unknown: 0.30118297389939097
-      wind: 0.0740248596561391
+      solar: 0.11411401629447937
+      unknown: 0.30117571353912354
+      wind: 0.07402721792459488
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.03540101274847984
-      coal: 0.24446585774421692
+      biomass: 0.03540101405331797
+      coal: 0.2444658712422697
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.19881606101989746
+      hydro: 0.19881606557742182
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.11359434574842453
-      unknown: 0.3029012084007263
-      wind: 0.10482147336006165
+      solar: 0.11359435059370196
+      unknown: 0.30290121772116885
+      wind: 0.10482148081211963
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:

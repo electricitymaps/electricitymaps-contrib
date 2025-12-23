@@ -64,39 +64,39 @@ currency: XOF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 376.01
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 362.08
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 376.01
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 362.08
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 576.61
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 561.44
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 576.61
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 561.44
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.013390813022851944
-      coal: 0.07898504287004471
-      gas: 0.002120430115610361
+      biomass: 0.015841007232666016
+      coal: 0.06273429095745087
+      gas: 0.0036077224649488926
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.769784152507782
-      solar: 0.07873360067605972
-      unknown: 0.0046384939923882484
-      wind: 0.05234741419553757
+      oil: 0.7633342146873474
+      solar: 0.08641878515481949
+      unknown: 0.005490157287567854
+      wind: 0.06257347762584686
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

@@ -19,39 +19,39 @@ currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 26.41
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 30.53
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 26.41
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 30.53
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 53.2
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 57.32
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 53.2
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 57.32
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.002454844070598483
-      coal: 0.017944153398275375
-      gas: 0.01985478214919567
+      biomass: 0.0025324670132249594
+      coal: 0.021578550338745117
+      gas: 0.020152471959590912
       geothermal: 0.0
-      hydro: 0.9199080467224121
-      hydro discharge: 1.374035107915006e-09
-      nuclear: 0.011016945354640484
-      oil: 0.0005177355487830937
-      solar: 0.0006263356190174818
-      unknown: 0.0005742290522903204
-      wind: 0.027102947235107422
+      hydro: 0.8986955881118774
+      hydro discharge: 3.85342460162974e-08
+      nuclear: 0.014107929542660713
+      oil: 0.000522359914612025
+      solar: 0.0004498058115132153
+      unknown: 0.0009215245372615755
+      wind: 0.041039127856492996
 region: Americas
 timezone: America/Winnipeg
 zone_name: Manitoba

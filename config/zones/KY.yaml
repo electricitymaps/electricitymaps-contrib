@@ -27,26 +27,26 @@ currency: KYD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 558.58
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 558.57
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 558.58
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 558.57
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 681.3
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 681.28
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 681.3
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 681.28
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -57,8 +57,8 @@ fallbackZoneMixes:
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.028555747121572495
-      unknown: 0.9714429974555969
+      solar: 0.028574975207448006
+      unknown: 0.971423864364624
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

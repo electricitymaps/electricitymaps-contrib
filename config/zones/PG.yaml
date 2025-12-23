@@ -45,38 +45,38 @@ currency: PGK
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 425.37
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 406.61
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 425.37
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 406.61
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 530.73
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 508.37
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 530.73
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 508.37
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.00218101404607296
+      biomass: 0.0022073378786444664
       coal: 0.0
-      gas: 0.1982598751783371
+      gas: 0.18984676897525787
       geothermal: 0.0
-      hydro: 0.18518774211406708
+      hydro: 0.22296473383903503
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.0021736675407737494
-      unknown: 0.6121969819068909
+      solar: 0.0
+      unknown: 0.5849807858467102
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

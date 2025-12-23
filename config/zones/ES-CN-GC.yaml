@@ -24,10 +24,7 @@ emissionFactors:
       value: 699.5225539166477
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 691.4218966954642
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 521.09
+      value: 543.31
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -58,10 +55,7 @@ emissionFactors:
       value: 699.5225539166477
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 691.4218966954642
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 521.09
+      value: 543.31
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -100,10 +94,10 @@ emissionFactors:
       value: 771.86
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 737.73
+      value: 737.77
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 709.36
+      value: 709.2
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 719.58
@@ -146,10 +140,10 @@ emissionFactors:
       value: 771.86
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
-      value: 737.73
+      value: 737.77
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 709.36
+      value: 709.2
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
       value: 719.58
@@ -252,10 +246,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7848651691552683
-      solar: 0.016829948801388127
+      oil: 0.7849044799804688
+      solar: 0.016847729682922363
       unknown: 0.0
-      wind: 0.19830501455282273
+      wind: 0.1982479840517044
   - _source: Electricity Maps, 2022 average
     datetime: '2022-01-01'
     value:
@@ -267,10 +261,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7571099996566772
-      solar: 0.035668399184942245
+      oil: 0.7569352640926051
+      solar: 0.0356487083837875
       unknown: 0.0
-      wind: 0.20722176134586334
+      wind: 0.20741615936530067
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:

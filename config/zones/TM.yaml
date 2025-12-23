@@ -27,33 +27,33 @@ currency: TMT
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 369.94
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 369.93
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 369.94
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 369.93
   lifecycle:
     battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 489.93
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 489.92
     hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 489.93
+    - datetime: '2021-01-01'
+      source: Electricity Maps, 2021 average
+      value: 489.92
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9998466372489929
+      gas: 0.9998238682746887
       geothermal: 0.0
-      hydro: 0.0001532648311695084
+      hydro: 0.0001760422601364553
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
