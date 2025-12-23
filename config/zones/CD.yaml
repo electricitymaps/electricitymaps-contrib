@@ -31,37 +31,37 @@ currency: CDF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 0.12
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 0.12
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 24.65
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 24.65
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0020150623749941587
+      biomass: 0.0020365617237985134
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.9956467747688293
+      hydro: 0.99562668800354
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0003036943089682609
-      solar: 0.0020343256182968616
+      oil: 0.0003017448470927775
+      solar: 0.0020348418038338423
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -23,13 +23,13 @@ disclaimer: The Northern Territory power grid is not connected to the (Australia
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 369.5
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 368.66
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 369.5
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 368.66
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -204,31 +204,31 @@ fallbackZoneMixes:
     datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.00448960362442088
+      biomass: 0.004489603918045759
       coal: 0.0
-      gas: 0.993923909474167
+      gas: 0.9939239025115967
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.001580552544332671
+      unknown: 0.001580552663654089
       wind: 0.0
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.006025746464729309
+      biomass: 0.006025746608255038
       coal: 0.0
-      gas: 0.9855306148529053
+      gas: 0.985530676989566
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.008444015868008137
+      unknown: 0.008444016543152163
       wind: 0.0
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'

@@ -30,37 +30,37 @@ currency: TTD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 369.9
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 369.9
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 490.31
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 490.31
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9956984519958496
+      gas: 0.9956790208816528
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0036717823240906
-      solar: 0.0006296801730059087
+      oil: 0.0036882199347019196
+      solar: 0.0006325840367935598
       unknown: 0.0
       wind: 0.0
 parsers:

@@ -50,39 +50,39 @@ currency: XPF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 476.77
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 492.53
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 476.77
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 492.53
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 551.48
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 568.47
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 551.48
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 568.47
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.3549404740333557
+      coal: 0.36893394589424133
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.1903882771730423
+      hydro: 0.17475801706314087
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.08224225044250488
-      unknown: 0.3600265085697174
-      wind: 0.012402177788317204
+      solar: 0.07443184405565262
+      unknown: 0.36893972754478455
+      wind: 0.01293573435395956
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania

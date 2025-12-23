@@ -40,34 +40,22 @@ currency: BHD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 368.39
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 368.7
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 368.39
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 368.7
   lifecycle:
     battery discharge:
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 700.0
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 488.06
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 700.0
+      value: 488.43
     hydro discharge:
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 700.0
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 488.06
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 700.0
+      value: 488.43
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2022 average
@@ -76,45 +64,15 @@ fallbackZoneMixes:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.0
+      gas: 0.9964857697486877
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.0
-      unknown: 0.9999999999999998
-      wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.995647132396698
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.004317523445934057
+      solar: 0.0034787897020578384
       unknown: 0.0
-      wind: 3.5210265195928514e-05
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 1.0
-      wind: 0.0
+      wind: 3.5399563785176724e-05
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

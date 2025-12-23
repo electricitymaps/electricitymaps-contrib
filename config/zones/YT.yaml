@@ -32,26 +32,26 @@ country_name: Mayotte
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 354.15
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 356.96
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 354.15
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 356.96
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 572.74
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 576.93
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 572.74
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 576.93
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -61,8 +61,8 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.8722965121269226
-      solar: 0.12770234048366547
+      oil: 0.8792180418968201
+      solar: 0.12078140676021576
       unknown: 0.0
       wind: 0.0
 parsers:

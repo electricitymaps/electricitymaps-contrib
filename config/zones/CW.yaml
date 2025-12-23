@@ -36,26 +36,26 @@ currency: ANG
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 305.76
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 304.73
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 305.76
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 304.73
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 493.31
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 491.68
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 493.31
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 491.68
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -65,10 +65,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7531090378761292
-      solar: 0.031429458409547806
+      oil: 0.7505752444267273
+      solar: 0.031150052323937416
       unknown: 0.0
-      wind: 0.21546036005020142
+      wind: 0.21827352046966553
 region: Americas
 timezone: America/Curacao
 zone_name: "Cura\xE7ao"

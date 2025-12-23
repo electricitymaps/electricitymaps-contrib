@@ -66,22 +66,34 @@ currency: DZD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 367.31
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 367.33
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 367.31
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 367.33
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 487.08
+      value: 487.25
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 487.26
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 487.06
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 487.08
+      value: 487.25
+    - datetime: '2024-01-01'
+      source: Electricity Maps, 2024 average
+      value: 487.26
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 487.06
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -90,15 +102,45 @@ fallbackZoneMixes:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9896572828292847
+      gas: 0.9889616849323075
       geothermal: 0.0
-      hydro: 0.00024055255926214159
+      hydro: 0.00017536621953407952
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0027921514119952917
-      solar: 0.007173850201070309
+      oil: 0.0035953872632283087
+      solar: 0.007103075358023904
       unknown: 0.0
-      wind: 0.00013613581540994346
+      wind: 0.00016441212685149015
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9889742986324795
+      geothermal: 0.0
+      hydro: 0.00017961719018977343
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0036047228087590687
+      solar: 0.0070754161021284396
+      unknown: 0.0
+      wind: 0.00016600744389401443
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9901788830757141
+      geothermal: 0.0
+      hydro: 0.00017538493557367474
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.002378124976530671
+      solar: 0.007103081326931715
+      unknown: 0.0
+      wind: 0.0001644297590246424
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

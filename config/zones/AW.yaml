@@ -42,9 +42,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 337.3545610645565
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 342.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 323.33
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -58,9 +58,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 337.3545610645565
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 342.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 323.33
   lifecycle:
     battery discharge:
     - datetime: '2018-01-01'
@@ -77,10 +77,10 @@ emissionFactors:
       value: 542.22
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 519.64
+      value: 520.16
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 549.45
+      value: 563.27
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 577.04
@@ -99,10 +99,10 @@ emissionFactors:
       value: 542.22
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 519.64
+      value: 520.16
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 549.45
+      value: 563.27
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 577.04
@@ -179,10 +179,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7939078589008981
-      solar: 0.014544986130697591
-      unknown: 0.001272621935162575
-      wind: 0.19027148505956717
+      oil: 0.7946668863296509
+      solar: 0.01584453135728836
+      unknown: 0.0012501162709668279
+      wind: 0.18823549151420593
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
@@ -194,10 +194,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.839599609375
-      solar: 0.008994641713798046
-      unknown: 0.0018140034517273307
-      wind: 0.14959178864955902
+      oil: 0.8609520728550746
+      solar: 0.008366461052547531
+      unknown: 0.0018877833779848713
+      wind: 0.12879356403066494
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:

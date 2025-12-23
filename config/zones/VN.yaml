@@ -134,13 +134,13 @@ currency: VND
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 388.7
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 331.04
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 388.7
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 331.04
     unknown:
     - datetime: '2022-01-01'
       source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
@@ -148,13 +148,13 @@ emissionFactors:
       value: 336
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 440.65
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 380.93
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 440.65
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 380.93
     unknown:
     - datetime: '2022-01-01'
       source: EMBER 2022; assumes 38.76% coal, 36.91% hydro, 10.68% gas, 10.14% solar,
@@ -162,21 +162,21 @@ emissionFactors:
       value: 386
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.4596399664878845
-      gas: 0.10116031765937805
+      coal: 0.3830541968345642
+      gas: 0.10788995772600174
       geothermal: 0.0
-      hydro: 0.2988468110561371
+      hydro: 0.3755517303943634
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.09677765518426895
-      unknown: 0.0057836733758449554
-      wind: 0.0377914197742939
+      solar: 0.10217136889696121
+      unknown: 0.0
+      wind: 0.03133265674114227
 isLowCarbon:
   unknown:
   - datetime: '2022-01-01'

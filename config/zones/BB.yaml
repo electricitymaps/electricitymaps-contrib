@@ -32,28 +32,28 @@ currency: BBD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 522.36
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 527.16
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 522.36
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 527.16
   lifecycle:
     battery discharge:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 649.96
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 640.67
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 646.15
     hydro discharge:
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 640.61
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 640.67
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 646.15
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2024 average
@@ -71,20 +71,20 @@ fallbackZoneMixes:
       solar: 0.014305633100344143
       unknown: 0.0
       wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.027274686843156815
+      gas: 0.027521919459104538
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.08183197677135468
-      unknown: 0.8908922672271729
+      solar: 0.07339292019605637
+      unknown: 0.8990841507911682
       wind: 0.0
 parsers:
   consumption: BB.fetch_consumption

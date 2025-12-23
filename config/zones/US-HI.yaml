@@ -3,39 +3,39 @@ country_name: USA
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 638.34
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 659.13
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 638.34
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 659.13
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 843.32
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 852.57
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 843.32
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 852.57
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.03131144493818283
-      coal: 0.0
+      biomass: 0.02967168390750885
+      coal: 0.06938784569501877
       gas: 0.0
-      geothermal: 0.020947357639670372
-      hydro: 0.010147168301045895
+      geothermal: 0.022314852103590965
+      hydro: 0.011788607574999332
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7786746621131897
-      solar: 0.07100743800401688
-      unknown: 0.018929434940218925
-      wind: 0.0689823180437088
+      oil: 0.7127238512039185
+      solar: 0.0594443716108799
+      unknown: 0.02768983133137226
+      wind: 0.06697848439216614
 region: Americas
 timezone: Pacific/Honolulu
 zone_name: Hawaii

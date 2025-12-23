@@ -9,31 +9,31 @@ currency: GIP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 370.0
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 370.0
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 490.0
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 490.0
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9999982714653015
+      gas: 0.9999972581863403
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0

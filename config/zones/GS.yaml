@@ -20,21 +20,21 @@ currency: GBP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 0.0
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 0.0
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 23.83
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
       value: 23.83
 region: Americas
 timezone: Atlantic/South_Georgia

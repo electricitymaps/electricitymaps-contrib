@@ -61,13 +61,13 @@ currency: MNT
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 671.94
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 669.75
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 671.94
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 669.75
     unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
@@ -77,11 +77,17 @@ emissionFactors:
     battery discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 730.59
+      value: 712.24
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 728.88
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 730.59
+      value: 712.24
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 728.88
     unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
@@ -94,16 +100,31 @@ fallbackZoneMixes:
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.8648502230644226
-      gas: 0.0003131876001134515
+      coal: 0.0008970047023211626
+      gas: 0.00023905248863756158
       geothermal: 0.0
-      hydro: 0.023612506687641144
+      hydro: 0.021838461260731995
       hydro discharge: 0.0
-      nuclear: 0.00011452806938905269
+      nuclear: 6.232263775723864e-05
+      oil: 9.31594030933825e-06
+      solar: 0.025727593324883617
+      unknown: 0.8876911885022577
+      wind: 0.06354042950942215
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.8593521118164062
+      gas: 0.00035902662784792483
+      geothermal: 0.0
+      hydro: 0.024561427533626556
+      hydro discharge: 0.0
+      nuclear: 2.8861262762802653e-05
       oil: 0.0
-      solar: 0.00019566749688237906
-      unknown: 0.025279119610786438
-      wind: 0.08563446253538132
+      solar: 0.0001757153804646805
+      unknown: 0.028704287484288216
+      wind: 0.08681827038526535
 isLowCarbon:
   unknown:
   - _url: https://www.iea.org/fuels-and-technologies/electricity

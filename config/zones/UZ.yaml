@@ -30,37 +30,37 @@ currency: UZS
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 365.09
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 365.47
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 365.09
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 365.47
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 472.3
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 473.22
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 472.3
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 473.22
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.07822754234075546
-      gas: 0.8169962167739868
+      coal: 0.0759274959564209
+      gas: 0.8218156695365906
       geothermal: 0.0
-      hydro: 0.08936965465545654
+      hydro: 0.08730772882699966
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.008249136619269848
-      solar: 0.007157506421208382
+      oil: 0.009090571664273739
+      solar: 0.005858423188328743
       unknown: 0.0
       wind: 0.0
 region: Asia

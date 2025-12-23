@@ -27,9 +27,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 880.9
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 662.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 693.63
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -61,9 +61,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 880.9
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 662.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 693.63
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -108,7 +108,7 @@ emissionFactors:
       value: 937.63
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 889.74
+      value: 889.67
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 861.68
@@ -154,7 +154,7 @@ emissionFactors:
       value: 937.63
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 889.74
+      value: 889.67
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 861.68
@@ -269,7 +269,7 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9998911646928592
+      oil: 0.9998911023139954
       solar: 0.0
       unknown: 0.0
       wind: 0.0
@@ -284,10 +284,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9284870624542236
+      oil: 0.9284115678299145
       solar: 0.0
       unknown: 0.0
-      wind: 0.07147955894470215
+      wind: 0.07155506292990885
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:

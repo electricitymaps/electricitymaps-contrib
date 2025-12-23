@@ -40,6 +40,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 239.8490653738602
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 234.23
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -56,6 +59,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 239.8490653738602
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 231.15
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -75,7 +81,7 @@ emissionFactors:
       value: 244.99
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 240.05
+      value: 240.18
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -94,7 +100,7 @@ emissionFactors:
       value: 239.45
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 231.03
+      value: 231.15
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
@@ -183,17 +189,17 @@ fallbackZoneMixes:
     datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0005856419728721687
-      coal: 0.2197402850455743
-      gas: 0.075657311046996
-      geothermal: 1.1470637943463454e-07
-      hydro: 0.07490293221673931
-      hydro discharge: 0.00022645177467557376
-      nuclear: 0.5626005759244308
-      oil: 0.00024069649584799584
-      solar: 0.0003683239452081555
-      unknown: 0.06410479689732768
-      wind: 0.001572880539009946
+      biomass: 0.0005500168772414327
+      coal: 0.22004225850105286
+      gas: 0.07544384151697159
+      geothermal: 1.0615045198392181e-07
+      hydro: 0.07491371780633926
+      hydro discharge: 0.00022581472876481712
+      nuclear: 0.5626137256622314
+      oil: 0.00023778682225383818
+      solar: 0.0003717824292834848
+      unknown: 0.06399445980787277
+      wind: 0.0016064279479905963
 isLowCarbon:
   unknown:
     value: 1

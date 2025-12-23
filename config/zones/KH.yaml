@@ -94,37 +94,37 @@ currency: KHR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 240.09
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 257.23
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 240.09
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 257.23
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 282.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 300.91
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 282.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 300.91
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0009772045304998755
-      coal: 0.3024692237377167
+      biomass: 0.0011276865843683481
+      coal: 0.3229369521141052
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.5964282155036926
+      hydro: 0.5786559581756592
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.025161899626255035
-      solar: 0.0749632939696312
+      oil: 0.029046928510069847
+      solar: 0.06823216378688812
       unknown: 0.0
       wind: 0.0
 parsers:

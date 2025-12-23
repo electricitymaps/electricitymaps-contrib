@@ -30,13 +30,13 @@ disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live d
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 375.99
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 384.64
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 375.99
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 384.64
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -56,10 +56,10 @@ emissionFactors:
       value: 459.38
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 464.14
+      value: 463.65
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 453.87
+      value: 454.8
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -78,10 +78,10 @@ emissionFactors:
       value: 459.38
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 464.14
+      value: 463.65
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 453.87
+      value: 454.8
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462
@@ -166,32 +166,32 @@ fallbackZoneMixes:
     datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.021156034412579863
-      coal: 0.30501265369494224
-      gas: 0.33632505765580967
-      geothermal: 3.566391513806196e-06
-      hydro: 0.22247845388725035
-      hydro discharge: 2.998471303743143e-05
-      nuclear: 0.002632732940489325
-      oil: 0.04244315896328942
-      solar: 0.04429607337496356
-      unknown: 0.020138554037338424
-      wind: 0.005483735729460718
+      biomass: 0.02113344520330429
+      coal: 0.30467918515205383
+      gas: 0.33595770597457886
+      geothermal: 3.6148246636003023e-06
+      hydro: 0.22223146259784698
+      hydro discharge: 0.0
+      nuclear: 0.002676950301975012
+      oil: 0.04239622876048088
+      solar: 0.04443860799074173
+      unknown: 0.02012733370065689
+      wind: 0.006355488207191229
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.020527493208646774
-      coal: 0.29746875166893005
-      gas: 0.3280147910118103
-      geothermal: 8.057886589085683e-06
-      hydro: 0.21591225266456604
-      hydro discharge: 0.0
-      nuclear: 0.0089800376445055
-      oil: 0.04138154163956642
-      solar: 0.06040869280695915
-      unknown: 0.020473511889576912
-      wind: 0.006824847310781479
+      biomass: 0.020574382443580876
+      coal: 0.2981041185281297
+      gas: 0.32871436927087055
+      geothermal: 7.921986583234417e-06
+      hydro: 0.21641925135180048
+      hydro discharge: 5.5286122996899204e-05
+      nuclear: 0.008815784107593923
+      oil: 0.04147172214201565
+      solar: 0.05969048291522835
+      unknown: 0.02047979428559259
+      wind: 0.005666854920707754
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast

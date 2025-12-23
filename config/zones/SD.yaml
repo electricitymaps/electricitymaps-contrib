@@ -46,36 +46,36 @@ currency: SDG
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 108.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 116.24
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 108.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 116.24
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 190.78
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 203.22
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 190.78
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 203.22
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.7335731983184814
+      hydro: 0.7137024998664856
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.2664266526699066
+      oil: 0.28629741072654724
       solar: 0.0
       unknown: 0.0
       wind: 0.0

@@ -67,47 +67,47 @@ currency: ALL
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 68.01
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 141.49
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 68.01
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 141.49
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 86.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 166.39
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 86.17
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 166.39
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.000491247745230794
-      coal: 0.07536495476961136
-      gas: 0.019418638199567795
-      geothermal: 3.375312371645123e-05
-      hydro: 0.8357244729995728
-      hydro discharge: 0.0014895136700943112
-      nuclear: 0.002470929641276598
-      oil: 3.428671334404498e-05
-      solar: 0.04708101600408554
-      unknown: 0.0002921429986599833
-      wind: 0.017598196864128113
+      biomass: 0.0009333239868283272
+      coal: 0.1306454986333847
+      gas: 0.06468841433525085
+      geothermal: 0.00033257651375606656
+      hydro: 0.7178348302841187
+      hydro discharge: 0.002016033511608839
+      nuclear: 0.004726219456642866
+      oil: 0.0004091229347977787
+      solar: 0.04003789648413658
+      unknown: 0.0007898274925537407
+      wind: 0.037586066871881485
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -9,26 +9,26 @@ currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 405.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 405.3
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 405.29
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 405.3
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 648.94
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 648.96
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 648.94
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 648.96
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -38,8 +38,8 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9982413649559021
-      solar: 0.001756833866238594
+      oil: 0.9982826709747314
+      solar: 0.0017173028318211436
       unknown: 0.0
       wind: 0.0
 region: Americas

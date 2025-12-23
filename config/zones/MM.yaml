@@ -77,38 +77,38 @@ currency: MMK
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 243.53
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 227.35
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 243.53
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 227.35
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 320.19
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 305.13
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 320.19
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 305.13
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.06521031260490417
-      gas: 0.5153416991233826
+      coal: 0.031538400799036026
+      gas: 0.5411615371704102
       geothermal: 0.0
-      hydro: 0.4008655250072479
+      hydro: 0.4154159724712372
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.012860401533544064
-      unknown: 0.005721899215131998
+      solar: 0.00639910576865077
+      unknown: 0.0054849376901984215
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

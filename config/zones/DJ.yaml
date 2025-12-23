@@ -23,26 +23,26 @@ currency: DJF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 373.85
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 374.05
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 373.85
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 374.05
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 458.97
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 459.21
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 458.97
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 459.21
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -54,8 +54,8 @@ fallbackZoneMixes:
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.6501758098602295
-      wind: 0.3498195707798004
+      unknown: 0.6505248546600342
+      wind: 0.3494662940502167
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

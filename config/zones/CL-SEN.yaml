@@ -73,9 +73,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 202.17925507417564
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 217.48
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 261.56
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -98,9 +98,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 202.17925507417564
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 217.48
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 261.56
     unknown:
     - datetime: '2017-01-01'
       source: Electricity Maps, CEN
@@ -316,29 +316,29 @@ fallbackZoneMixes:
       biomass: 0.0
       coal: 0.0
       gas: 0.0
-      geothermal: 0.005614724723295743
-      hydro: 0.2436224822106043
+      geothermal: 0.005614724475890398
+      hydro: 0.24362248182296753
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.17425348037145824
-      unknown: 0.4699217854763043
-      wind: 0.10658748614233722
+      solar: 0.17425347864627838
+      unknown: 0.4699217975139618
+      wind: 0.1065874919295311
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 2.800731635943521e-06
+      biomass: 2.6818070251046415e-06
       coal: 0.0
       gas: 0.0
-      geothermal: 0.005234641022980213
-      hydro: 0.28639814257621765
+      geothermal: 0.005234727449613446
+      hydro: 0.28639830144967904
       hydro discharge: 0.0
-      nuclear: 2.2401907699531876e-05
-      oil: 3.180475616204603e-08
-      solar: 0.19909080862998962
-      unknown: 0.3907194137573242
-      wind: 0.11853170394897461
+      nuclear: 2.1452782238629655e-05
+      oil: 3.013131973455658e-08
+      solar: 0.19909377377558787
+      unknown: 0.3907161538240819
+      wind: 0.11853282856158798
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:

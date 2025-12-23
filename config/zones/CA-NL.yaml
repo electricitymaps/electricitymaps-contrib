@@ -9,39 +9,39 @@ currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 2.25
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 2.56
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 2.25
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 2.56
   lifecycle:
     battery discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 27.16
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 27.6
     hydro discharge:
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 27.16
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 27.6
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.0024565572384744883
+      gas: 0.00279577961191535
       geothermal: 0.0
-      hydro: 0.9898648262023926
+      hydro: 0.9890772104263306
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.003304914105683565
-      solar: 2.700603181438055e-05
+      oil: 0.0037605396937578917
+      solar: 2.6101182811544277e-05
       unknown: 0.0
-      wind: 0.004346601665019989
+      wind: 0.0043402621522545815
 region: Americas
 timezone: America/St_Johns
 zone_name: Newfoundland and Labrador

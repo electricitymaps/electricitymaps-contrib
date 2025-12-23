@@ -29,9 +29,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 198.47674260721914
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 439.94
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 350.45
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -63,9 +63,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 198.47674260721914
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 215.16
+    - datetime: '2022-01-01'
+      source: Electricity Maps, 2022 average
+      value: 167.23
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -107,10 +107,10 @@ emissionFactors:
       value: 467.49
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 474.77
+      value: 472.68
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 594.92
+      value: 595.12
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 505.45
@@ -153,10 +153,10 @@ emissionFactors:
       value: 169.7
     - datetime: '2022-01-01'
       source: Electricity Maps, 2022 average
-      value: 168.17
+      value: 167.23
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 215.16
+      value: 215.81
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 183.6
@@ -269,12 +269,12 @@ fallbackZoneMixes:
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
-      hydro discharge: 0.03402602434651732
+      hydro discharge: 0.03238965943455696
       nuclear: 0.0
-      oil: 0.4804657455533628
+      oil: 0.47980061173439026
       solar: 0.0
       unknown: 0.0
-      wind: 0.4854842382621434
+      wind: 0.4877917170524597
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
@@ -284,12 +284,12 @@ fallbackZoneMixes:
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
-      hydro discharge: 0.018132004886865616
+      hydro discharge: 0.018029759077066207
       nuclear: 0.0
-      oil: 0.6148337721824646
+      oil: 0.6141811841786473
       solar: 0.0
       unknown: 0.0
-      wind: 0.36700958013534546
+      wind: 0.3677736527078204
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
