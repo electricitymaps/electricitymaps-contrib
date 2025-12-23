@@ -34,9 +34,9 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 394.3704932143435
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 342.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 348.29
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -50,9 +50,9 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 394.3704932143435
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 342.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 348.29
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -67,9 +67,9 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 443.45
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 396.27
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 402.93
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -83,9 +83,9 @@ emissionFactors:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
       value: 443.45
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 396.27
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 402.93
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -148,21 +148,21 @@ fallbackZoneMixes:
       solar: 3.1737369723046804e-06
       unknown: 0.03514963872097663
       wind: 0.18301042620050328
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
-      battery discharge: 1.7824082760853344e-06
-      biomass: 0.04035399854183197
-      coal: 0.393011212348938
-      gas: 0.11797700822353363
+      battery discharge: 6.824769371860384e-08
+      biomass: 0.039645854383707047
+      coal: 0.39787426590919495
+      gas: 0.12379058450460434
       geothermal: 0.0
-      hydro: 0.13855482637882233
+      hydro: 0.1439761519432068
       hydro discharge: 0.0
-      nuclear: 0.01738656684756279
-      oil: 0.00016369354852940887
-      solar: 0.00027728130226023495
-      unknown: 8.340305612364318e-06
-      wind: 0.292264848947525
+      nuclear: 0.024194816127419472
+      oil: 0.0002616385754663497
+      solar: 0.00022298622934613377
+      unknown: 1.7334915582978283e-06
+      wind: 0.2700316905975342
 region: Americas
 timezone: America/Halifax
 zone_name: Nova Scotia

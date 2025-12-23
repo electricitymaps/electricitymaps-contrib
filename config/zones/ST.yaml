@@ -17,36 +17,36 @@ currency: STN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 388.43
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 388.41
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 388.43
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 388.41
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 622.91
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 622.88
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 622.91
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 622.88
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.04319944232702255
+      hydro: 0.04324718192219734
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9567331075668335
+      oil: 0.9566625952720642
       solar: 0.0
       unknown: 0.0
       wind: 0.0

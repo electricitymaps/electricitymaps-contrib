@@ -93,13 +93,13 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 332.9
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 309.67
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 332.9
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 309.67
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -247,32 +247,32 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.006536343860492528
-      coal: 0.28624019284956276
+      biomass: 0.006536343600600958
+      coal: 0.28624019026756287
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.41469112152057924
+      hydro: 0.41469112038612366
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.22709918190011136
-      solar: 0.006463054105010098
+      oil: 0.2270991951227188
+      solar: 0.006463054101914167
       unknown: 0.0
-      wind: 0.058969853256126574
+      wind: 0.058969855308532715
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.00730143440887332
-      coal: 0.3555810749530792
+      biomass: 0.007301433844119725
+      coal: 0.3555810574845595
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.4225212037563324
+      hydro: 0.4225211920247607
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.15463533997535706
-      solar: 0.013187346048653126
+      oil: 0.15463533756001555
+      solar: 0.013187344859185718
       unknown: 0.0
-      wind: 0.04677363112568855
+      wind: 0.04677362839649372
 parsers:
   production: CEB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

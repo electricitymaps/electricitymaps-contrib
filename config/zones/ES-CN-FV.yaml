@@ -27,9 +27,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 692.2103624985839
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 565.16
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 595.82
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -61,9 +61,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 692.2103624985839
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 565.16
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 595.82
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -108,10 +108,7 @@ emissionFactors:
       value: 945.76
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 949.44
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 755.25
+      value: 795.72
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -154,10 +151,7 @@ emissionFactors:
       value: 945.76
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 949.44
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 755.25
+      value: 795.72
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -198,8 +192,8 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
@@ -209,10 +203,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7636467218399048
-      solar: 0.060771308839321136
+      oil: 0.8071202635765076
+      solar: 0.0415017195045948
       unknown: 0.0
-      wind: 0.1755826771259308
+      wind: 0.15137836337089539
 has_day_ahead_price_license: true
 parsers:
   consumption: ES.fetch_consumption

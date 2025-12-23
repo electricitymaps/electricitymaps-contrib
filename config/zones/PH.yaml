@@ -23,13 +23,13 @@ currency: PHP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 614.28
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 608.22
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 629.41
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 617.92
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -55,7 +55,7 @@ emissionFactors:
       value: 608.22
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 614.28
+      value: 614.18
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -176,33 +176,33 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
-      battery discharge: 3.461297305828186e-05
-      biomass: 0.00744516132556792
-      coal: 0.6040014995262041
-      gas: 0.15625630493903678
-      geothermal: 0.05575488324019781
-      hydro: 0.08386567821371473
-      hydro discharge: 0.00892988361578852
+      battery discharge: 3.461297455942258e-05
+      biomass: 0.007445161696523428
+      coal: 0.604001522064209
+      gas: 0.1562562882900238
+      geothermal: 0.0557548850774765
+      hydro: 0.0838656798005104
+      hydro discharge: 0.008929884061217308
       nuclear: 0.0
-      oil: 0.011811070038675283
-      solar: 0.021163900778911664
-      unknown: 0.0403371629146604
-      wind: 0.010399800612539627
+      oil: 0.011811071075499058
+      solar: 0.021163901314139366
+      unknown: 0.04033716768026352
+      wind: 0.010399800725281239
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 9.557695011608303e-05
-      biomass: 0.0082531264051795
-      coal: 0.5970143675804138
-      gas: 0.14385245740413666
-      geothermal: 0.06133326515555382
-      hydro: 0.07639292627573013
-      hydro discharge: 0.009462393820285797
+      battery discharge: 9.557677670278338e-05
+      biomass: 0.008253137539945636
+      coal: 0.5970143201508179
+      gas: 0.14385229387123766
+      geothermal: 0.06133333856978963
+      hydro: 0.07639293669113786
+      hydro discharge: 0.009462392847536688
       nuclear: 0.0
-      oil: 0.013204867020249367
-      solar: 0.021186117082834244
-      unknown: 0.05981321260333061
-      wind: 0.009391698986291885
+      oil: 0.013204871989751846
+      solar: 0.021186116587224194
+      unknown: 0.05981327473921477
+      wind: 0.009391697715065647
 region: Asia
 subZoneNames:
 - PH-LU

@@ -135,13 +135,13 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 296.31
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 298.61
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 296.31
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 298.61
     unknown:
     - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
         coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
@@ -152,13 +152,13 @@ emissionFactors:
       value: 305
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 391.68
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 393.88
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 391.68
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 393.88
     unknown:
     - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
         coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
@@ -169,21 +169,21 @@ emissionFactors:
       value: 411
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0002853062469512224
-      coal: 0.03684377297759056
-      gas: 0.6480445861816406
-      geothermal: 0.010024184361100197
-      hydro: 0.06749867647886276
+      biomass: 0.00027971938834525645
+      coal: 0.04116380214691162
+      gas: 0.6395981311798096
+      geothermal: 0.011881253682076931
+      hydro: 0.059381596744060516
       hydro discharge: 0.0
-      nuclear: 0.034023087471723557
+      nuclear: 0.034785762429237366
       oil: 0.0
-      solar: 0.0529416985809803
-      unknown: 0.0935351699590683
-      wind: 0.056803468614816666
+      solar: 0.05259788781404495
+      unknown: 0.10057458281517029
+      wind: 0.05973714217543602
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

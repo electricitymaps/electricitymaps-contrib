@@ -25,28 +25,22 @@ currency: BWP
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 743.79
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 744.39
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 743.79
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 744.39
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 812.1
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 811.22
+      value: 811.51
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 812.1
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 811.22
+      value: 811.51
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -54,29 +48,14 @@ fallbackZoneMixes:
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.9619304874032478
+      coal: 0.9586511254310608
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.03571381405585137
-      solar: 0.0023545054483024835
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.9570056796073914
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.04056090861558914
-      solar: 0.002432834357023239
+      oil: 0.038941435515880585
+      solar: 0.00240694941021502
       unknown: 0.0
       wind: 0.0
 parsers:

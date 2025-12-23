@@ -25,13 +25,13 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 492.23
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 489.75
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 492.23
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 489.75
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -54,10 +54,10 @@ emissionFactors:
       value: 596.99
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 590.65
+      value: 590.29
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 593.07
+      value: 593.34
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -79,10 +79,10 @@ emissionFactors:
       value: 596.99
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 590.65
+      value: 590.29
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 593.07
+      value: 593.34
     unknown:
       source: Enerdata 2022 Japanese National Average
       value: 462
@@ -182,32 +182,32 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.04229121034147396
-      coal: 0.40318028037604
-      gas: 0.4529905069109142
+      biomass: 0.042264923453330994
+      coal: 0.40293002128601074
+      gas: 0.45270928740501404
       geothermal: 0.0
-      hydro: 0.0009393086184611133
+      hydro: 0.0009386941092088819
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.03947179996916049
-      solar: 0.058710877767871775
+      oil: 0.03944716975092888
+      solar: 0.05872039124369621
       unknown: 0.0
-      wind: 0.00241288392871925
+      wind: 0.002986230654641986
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.042479008436203
-      coal: 0.4049706757068634
-      gas: 0.455002099275589
+      biomass: 0.04249911341264845
+      coal: 0.4051622305990068
+      gas: 0.45521728968736763
       geothermal: 0.0
-      hydro: 0.0009434357634745538
+      hydro: 0.0009438912416695306
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.03964703530073166
-      solar: 0.05436680093407631
+      oil: 0.03966584859850861
+      solar: 0.054360569237001784
       unknown: 0.0
-      wind: 0.0025878152810037136
+      wind: 0.002148162038523783
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast

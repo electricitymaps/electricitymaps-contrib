@@ -9,39 +9,39 @@ currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 56.63
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 62.2
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 56.63
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 62.2
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 104.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 112.53
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 104.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 112.53
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.05728403851389885
+      gas: 0.0628850907087326
       geothermal: 0.0
-      hydro: 0.7616810202598572
+      hydro: 0.7524183392524719
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.08728580921888351
-      solar: 0.011133584193885326
+      oil: 0.09589603543281555
+      solar: 0.010171109810471535
       unknown: 0.0
-      wind: 0.08261081576347351
+      wind: 0.07862293720245361
 region: Americas
 timezone: America/Yellowknife
 zone_name: Northwest Territories

@@ -23,13 +23,13 @@ disclaimer: The Northern Territory power grid is not connected to the (Australia
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 373.8
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 369.5
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 373.8
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 369.5
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -61,7 +61,7 @@ emissionFactors:
       value: 490.21
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 494.57
+      value: 494.59
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -92,7 +92,7 @@ emissionFactors:
       value: 490.21
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 494.57
+      value: 494.59
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
@@ -219,31 +219,31 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.006025746608255038
+      biomass: 0.006025746464729309
       coal: 0.0
-      gas: 0.985530676989566
+      gas: 0.9855306148529053
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.008444016543152163
+      unknown: 0.008444015868008137
       wind: 0.0
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.005694365128874779
+      biomass: 0.0056937251530382975
       coal: 0.0
-      gas: 0.9655081033706665
+      gas: 0.965386606333278
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
       solar: 0.0
-      unknown: 0.028797052800655365
+      unknown: 0.028919092948344192
       wind: 0.0
 parsers:
   consumption: NTESMO.fetch_consumption

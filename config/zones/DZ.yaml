@@ -66,28 +66,22 @@ currency: DZD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 367.34
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 367.31
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 367.34
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 367.31
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 487.25
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 487.12
+      value: 487.08
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 487.25
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 487.12
+      value: 487.08
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -96,30 +90,15 @@ fallbackZoneMixes:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.9889616849323075
+      gas: 0.9896572828292847
       geothermal: 0.0
-      hydro: 0.00017536621953407952
+      hydro: 0.00024055255926214159
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0035953872632283087
-      solar: 0.007103075358023904
+      oil: 0.0027921514119952917
+      solar: 0.007173850201070309
       unknown: 0.0
-      wind: 0.00016441212685149015
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.9897239208221436
-      geothermal: 0.0
-      hydro: 0.00021130172535777092
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.002807033248245716
-      solar: 0.007123601622879505
-      unknown: 0.0
-      wind: 0.00013399156159721315
+      wind: 0.00013613581540994346
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

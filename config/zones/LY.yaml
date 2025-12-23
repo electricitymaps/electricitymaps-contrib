@@ -31,37 +31,37 @@ currency: LYD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 378.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 378.27
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 378.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 378.27
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 526.52
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 527.05
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 526.52
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 527.05
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.7707576751708984
+      gas: 0.7674275040626526
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.22898033261299133
-      solar: 0.0002619685255922377
+      oil: 0.23231253027915955
+      solar: 0.0002599179570097476
       unknown: 0.0
       wind: 0.0
 parsers:

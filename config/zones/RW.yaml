@@ -41,37 +41,37 @@ currency: RWF
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 251.54
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 244.07
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 251.54
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 244.07
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 335.12
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 327.81
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 335.12
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 327.81
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0016753270756453276
-      coal: 0.15669724345207214
-      gas: 0.1767210066318512
+      biomass: 0.0017184307798743248
+      coal: 0.14427228271961212
+      gas: 0.18134626746177673
       geothermal: 0.0
-      hydro: 0.48549675941467285
+      hydro: 0.4921296536922455
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.16517144441604614
-      solar: 0.014237873256206512
+      oil: 0.16581563651561737
+      solar: 0.014714420773088932
       unknown: 0.0
       wind: 0.0
 parsers:

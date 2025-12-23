@@ -42,9 +42,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 337.3545610645565
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 357.27
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 342.17
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -58,9 +58,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 337.3545610645565
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 357.27
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 342.17
   lifecycle:
     battery discharge:
     - datetime: '2018-01-01'
@@ -80,10 +80,10 @@ emissionFactors:
       value: 519.64
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 563.27
+      value: 549.45
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 573.18
+      value: 577.04
     hydro discharge:
     - datetime: '2018-01-01'
       source: Electricity Maps, 2018 average
@@ -102,10 +102,10 @@ emissionFactors:
       value: 519.64
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 563.27
+      value: 549.45
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 573.18
+      value: 577.04
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average
@@ -194,10 +194,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.8609520728550746
-      solar: 0.008366461052547531
-      unknown: 0.0018877833779848713
-      wind: 0.12879356403066494
+      oil: 0.839599609375
+      solar: 0.008994641713798046
+      unknown: 0.0018140034517273307
+      wind: 0.14959178864955902
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
@@ -209,10 +209,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.8776381611824036
-      solar: 0.006346120033413172
-      unknown: 0.0015994771383702755
-      wind: 0.11440965533256531
+      oil: 0.8836829657096846
+      solar: 0.006176899034154593
+      unknown: 0.0015510181027602445
+      wind: 0.10858758715681341
 parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

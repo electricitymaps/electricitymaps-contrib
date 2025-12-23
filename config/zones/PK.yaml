@@ -129,39 +129,39 @@ currency: PKR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 205.9
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 233.3
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 205.9
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 233.3
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 261.47
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 291.07
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 261.47
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 291.07
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.005675046239048243
-      coal: 0.1441883146762848
-      gas: 0.24528831243515015
+      biomass: 0.005439054220914841
+      coal: 0.1621699035167694
+      gas: 0.26150432229042053
       geothermal: 0.0
-      hydro: 0.2717718780040741
+      hydro: 0.27495884895324707
       hydro discharge: 0.0
-      nuclear: 0.15988227725028992
+      nuclear: 0.16016602516174316
       oil: 0.0
-      solar: 0.1390037089586258
-      unknown: 0.009668604470789433
-      wind: 0.02452182024717331
+      solar: 0.08129964768886566
+      unknown: 0.02311600372195244
+      wind: 0.031346164643764496
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

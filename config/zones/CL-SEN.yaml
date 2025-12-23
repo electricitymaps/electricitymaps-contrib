@@ -73,9 +73,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 202.17925507417564
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 185.06
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 217.48
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -98,9 +98,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 202.17925507417564
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 185.06
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 217.48
     unknown:
     - datetime: '2017-01-01'
       source: Electricity Maps, CEN
@@ -328,17 +328,17 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 2.6818070251046415e-06
+      biomass: 2.800731635943521e-06
       coal: 0.0
       gas: 0.0
-      geothermal: 0.005234727449613446
-      hydro: 0.28639830144967904
+      geothermal: 0.005234641022980213
+      hydro: 0.28639814257621765
       hydro discharge: 0.0
-      nuclear: 2.1452782238629655e-05
-      oil: 3.013131973455658e-08
-      solar: 0.19909377377558787
-      unknown: 0.3907161538240819
-      wind: 0.11853282856158798
+      nuclear: 2.2401907699531876e-05
+      oil: 3.180475616204603e-08
+      solar: 0.19909080862998962
+      unknown: 0.3907194137573242
+      wind: 0.11853170394897461
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
@@ -346,14 +346,14 @@ fallbackZoneMixes:
       biomass: 0.0
       coal: 0.0
       gas: 0.0
-      geothermal: 0.003629047190770507
-      hydro: 0.3172697424888611
+      geothermal: 0.003629047388238401
+      hydro: 0.3172697632119462
       hydro discharge: 0.0
-      nuclear: 7.061591866808214e-10
+      nuclear: 0.0
       oil: 0.0
-      solar: 0.21683385968208313
-      unknown: 0.3324781060218811
-      wind: 0.12978917360305786
+      solar: 0.2168338706293335
+      unknown: 0.332478120180111
+      wind: 0.12978916493011286
 parsers:
   production: CL.fetch_production
   productionCapacity: CL_SEN.fetch_production_capacity

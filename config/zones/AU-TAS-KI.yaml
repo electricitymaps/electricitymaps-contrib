@@ -33,9 +33,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 234.9079158157338
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 403.92
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 470.15
     hydro discharge:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
@@ -43,9 +43,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 234.9079158157338
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 277.69
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 302.81
   lifecycle:
     battery discharge:
     - datetime: '2020-01-01'
@@ -59,10 +59,10 @@ emissionFactors:
       value: 343.54
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 472.6
+      value: 470.15
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 403.92
+      value: 403.63
     hydro discharge:
     - datetime: '2020-01-01'
       source: Electricity Maps, 2020 average
@@ -75,10 +75,10 @@ emissionFactors:
       value: 372.01
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 489.75
+      value: 488.21
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 451.95
+      value: 445.96
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2020 average
@@ -129,7 +129,7 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
-      battery discharge: 0.0021662109674944877
+      battery discharge: 0.002685047686100006
       biomass: 0.0
       coal: 0.0
       gas: 0.0
@@ -137,14 +137,14 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7465224481039286
-      solar: 0.010407381940730554
+      oil: 0.7437217235565186
+      solar: 0.010881029069423676
       unknown: 0.0
-      wind: 0.24087231857114963
+      wind: 0.24265603721141815
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 0.004211060237139463
+      battery discharge: 0.0045280562830267625
       biomass: 0.0
       coal: 0.0
       gas: 0.0
@@ -152,10 +152,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.6805607676506042
-      solar: 0.11263217777013779
+      oil: 0.6700376563202181
+      solar: 0.1199307309665122
       unknown: 0.0
-      wind: 0.20254752039909363
+      wind: 0.2054531930390045
 parsers:
   production: ajenti.fetch_production
 region: Oceania

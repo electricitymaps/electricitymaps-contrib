@@ -151,39 +151,39 @@ currency: CAD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 134.22
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 126.8
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 87.74
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 88.91
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 134.22
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 126.8
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 131.97
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 131.63
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
-      battery discharge: 5.266496373224072e-06
-      biomass: 0.023538947105407715
-      coal: 0.024631155654788017
-      gas: 0.17817874252796173
-      geothermal: 1.2408268048602622e-05
-      hydro: 0.5590931177139282
-      hydro discharge: 4.829742161760464e-10
-      nuclear: 0.12911537289619446
-      oil: 0.0012307636206969619
-      solar: 0.007442178670316935
-      unknown: 0.0035007577389478683
-      wind: 0.07325135916471481
+      battery discharge: 3.369733121871832e-06
+      biomass: 0.02343609556555748
+      coal: 0.033554255962371826
+      gas: 0.15725529193878174
+      geothermal: 1.6835729184094816e-05
+      hydro: 0.5782164335250854
+      hydro discharge: 9.63545909726804e-10
+      nuclear: 0.1274971216917038
+      oil: 0.0013239247491583228
+      solar: 0.0063825068064033985
+      unknown: 0.006913290359079838
+      wind: 0.06540074199438095
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

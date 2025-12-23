@@ -82,39 +82,39 @@ currency: AZN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 324.02
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 344.12
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 324.02
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 344.12
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 431.11
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 456.8
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 431.11
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 456.8
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 2.0644712606099347e-07
-      coal: 3.54847579728812e-05
-      gas: 0.8620182275772095
-      geothermal: 6.438896527072302e-09
-      hydro: 0.1167028546333313
-      hydro discharge: 1.2072930433149054e-09
-      nuclear: 0.001489916816353798
-      oil: 1.2072930433149054e-09
-      solar: 0.010907735675573349
-      unknown: 0.008781254291534424
-      wind: 6.42195445834659e-05
+      biomass: 3.7858538348700677e-07
+      coal: 5.153106940269936e-06
+      gas: 0.9202214479446411
+      geothermal: 0.0
+      hydro: 0.07027480006217957
+      hydro discharge: 0.0
+      nuclear: 0.0007323198951780796
+      oil: 0.0
+      solar: 0.0024086679331958294
+      unknown: 0.006326169241219759
+      wind: 3.070427919737995e-05
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

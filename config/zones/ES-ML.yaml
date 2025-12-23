@@ -32,13 +32,13 @@ currency: EUR
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 376.14
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 377.21
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 376.14
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 377.21
   lifecycle:
     battery discharge:
     - datetime: '2022-01-01'
@@ -46,7 +46,7 @@ emissionFactors:
       value: 618.54
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 620.13
+      value: 620.19
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 618.95
@@ -56,7 +56,7 @@ emissionFactors:
       value: 618.54
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 620.13
+      value: 620.19
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
       value: 618.95
@@ -81,14 +81,14 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.07107893270299667
+      biomass: 0.07094494253396988
       coal: 0.0
-      gas: 0.0002213449138309281
+      gas: 0.00022083513613324612
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9286989174925765
+      oil: 0.9288333654403687
       solar: 0.0
       unknown: 0.0
       wind: 0.0
@@ -96,14 +96,14 @@ fallbackZoneMixes:
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0734974816441536
+      biomass: 0.07349749030325115
       coal: 0.0
-      gas: 0.0012876316905021667
+      gas: 0.0012876318227207154
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9252105951309204
+      oil: 0.9252105767656325
       solar: 0.0
       unknown: 0.0
       wind: 0.0

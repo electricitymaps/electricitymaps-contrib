@@ -20,37 +20,37 @@ country_name: Timor-Leste
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 405.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 405.49
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 405.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 405.49
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 649.28
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 649.26
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 649.28
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 649.26
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 9.692271123640239e-05
+      biomass: 0.00010021414345828816
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.9987770318984985
-      solar: 0.0011233844561502337
+      oil: 0.9987419247627258
+      solar: 0.0011555406963452697
       unknown: 0.0
       wind: 0.0
 parsers:

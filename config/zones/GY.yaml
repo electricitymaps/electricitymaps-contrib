@@ -39,38 +39,38 @@ currency: GYD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 527.17
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 534.85
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 527.17
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 534.85
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 657.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 664.1
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 657.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 664.1
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.06340637058019638
+      biomass: 0.05223831161856651
       coal: 0.0
-      gas: 0.008451035246253014
+      gas: 0.007462351582944393
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.016770001500844955
-      unknown: 0.9113710522651672
+      solar: 0.014928002841770649
+      unknown: 0.9253700971603394
       wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity

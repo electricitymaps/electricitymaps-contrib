@@ -29,16 +29,16 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 292.8252892705995
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 322.11
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 304.54
     hydro discharge:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 292.8252892705995
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 322.11
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 304.54
   lifecycle:
     battery discharge:
     - datetime: '2021-01-01'
@@ -46,20 +46,20 @@ emissionFactors:
       value: 475.16042054489543
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 494.21
+      value: 492.99
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 520.01
+      value: 519.99
     hydro discharge:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 475.16042054489543
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 494.21
+      value: 492.99
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 520.01
+      value: 519.99
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2021 average
@@ -88,10 +88,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7519217191707342
-      solar: 0.07833126006705768
+      oil: 0.7499777674674988
+      solar: 0.07878007739782333
       unknown: 0.0
-      wind: 0.16976688744150792
+      wind: 0.17122288048267365
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
@@ -103,10 +103,10 @@ fallbackZoneMixes:
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.7932097315788269
-      solar: 0.060198135673999786
+      oil: 0.7931552125610936
+      solar: 0.06026681890829423
       unknown: 0.0
-      wind: 0.14638356864452362
+      wind: 0.1463649654920588
 parsers:
   production: ajenti.fetch_production
 region: Oceania

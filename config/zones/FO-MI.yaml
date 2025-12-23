@@ -20,9 +20,9 @@ currency: DKK
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 279.48
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 322.05
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -48,9 +48,9 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2023
       value: 410.39
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 279.48
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 322.05
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -159,32 +159,32 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.010851775017550648
+      biomass: 0.010851774364709854
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.23049654152193183
+      hydro: 0.23049654066562653
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.5023903760386292
+      oil: 0.5023903846740723
       solar: 0.0
-      unknown: 1.6916288038008052e-05
-      wind: 0.25624515141645876
+      unknown: 1.6916286767809652e-05
+      wind: 0.2562451660633087
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.017475709319114685
+      biomass: 0.01747571033546078
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.2469981461763382
+      hydro: 0.246998157847731
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4359554648399353
+      oil: 0.43595547729955675
       solar: 0.0
       unknown: 0.0
-      wind: 0.2995694875717163
+      wind: 0.29956949622511475
 isLowCarbon:
   unknown:
     value: 1

@@ -36,6 +36,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 397.01248324147633
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 385.41
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -52,6 +55,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 397.01248324147633
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 385.41
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -74,7 +80,7 @@ emissionFactors:
       value: 418.92
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 443.23
+      value: 443.24
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -96,7 +102,7 @@ emissionFactors:
       value: 418.92
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 443.23
+      value: 443.24
     unknown:
       _comment: calculated 20% nuclear, 80% thermal (coal)
       source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC
@@ -198,17 +204,17 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.021689488766784618
-      coal: 0.275131626560813
+      biomass: 0.021689489483833313
+      coal: 0.2751316428184509
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.13230959468087589
+      hydro: 0.13230960071086884
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.1367409665303756
-      unknown: 0.3069428488851126
-      wind: 0.1271854795574422
+      solar: 0.13674096763134003
+      unknown: 0.3069428503513336
+      wind: 0.12718549370765686
 parsers:
   consumption: IN_KA.fetch_consumption
   production: IN_KA.fetch_production

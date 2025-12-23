@@ -29,39 +29,39 @@ currency: BTN
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 93.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 41.28
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 93.15
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 41.28
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 121.6
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 67.27
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 121.6
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 67.27
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.12219145894050598
-      gas: 0.0003864131576847285
+      coal: 0.05416330695152283
+      gas: 0.00017423969984520227
       geothermal: 0.0
-      hydro: 0.8709291219711304
+      hydro: 0.9428667426109314
       hydro discharge: 0.0
-      nuclear: 0.0011173782404512167
-      oil: 0.00011474773054942489
-      solar: 0.0028086986858397722
-      unknown: 0.0005092171486467123
-      wind: 0.0019428790546953678
+      nuclear: 0.0006008300697430968
+      oil: 6.33733652648516e-05
+      solar: 0.001319881179369986
+      unknown: 0.0001792829280020669
+      wind: 0.0006323652341961861
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

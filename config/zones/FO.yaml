@@ -35,9 +35,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 538.8952236011929
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 281.04
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 318.9
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -78,9 +78,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 538.8952236011929
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 281.04
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 318.9
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -250,32 +250,32 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.00998756171580095
+      biomass: 0.009987561963498592
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.22153216131807327
+      hydro: 0.2215321809053421
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.49746346910044176
-      solar: 0.0004717713489983989
-      unknown: 1.5547855248811606e-05
-      wind: 0.27053075698155554
+      oil: 0.49746349453926086
+      solar: 0.00047177140368148685
+      unknown: 1.5547855582553893e-05
+      wind: 0.2705307900905609
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.016165897250175476
+      biomass: 0.016165896296414132
       coal: 0.0
       gas: 0.0
       geothermal: 0.0
-      hydro: 0.23226413130760193
+      hydro: 0.23226413273678534
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4383898675441742
-      solar: 0.00037176243495196104
+      oil: 0.4383898553239989
+      solar: 0.000371762432307948
       unknown: 0.0
-      wind: 0.3128076195716858
+      wind: 0.3128075908110926
 isLowCarbon:
   unknown:
     value: 1

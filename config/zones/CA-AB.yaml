@@ -29,9 +29,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 483.05444890890203
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 428.04
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 435.8
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -48,9 +48,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 483.05444890890203
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 301.9
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 339.1
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -73,10 +73,10 @@ emissionFactors:
       value: 466.55
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 435.83
+      value: 435.8
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 428.04
+      value: 428.44
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -98,10 +98,10 @@ emissionFactors:
       value: 455.51
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 437.85
+      value: 437.66
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 402.02
+      value: 402.2
     unknown:
       source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
         plant
@@ -201,33 +201,33 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
-      battery discharge: 2.3778483164947189e-07
-      biomass: 0.025487664991835086
-      coal: 0.08083712919245124
-      gas: 0.6749269782007778
-      geothermal: 8.542855049260295e-07
-      hydro: 0.022474028984387214
-      hydro discharge: 6.228802663208117e-08
-      nuclear: 6.569658519932574e-05
-      oil: 0.00027748411122305885
-      solar: 0.02658053660529694
-      unknown: 0.05313852726480508
-      wind: 0.11621074286928665
+      battery discharge: 3.388384186564508e-07
+      biomass: 0.02617526240646839
+      coal: 0.08073095977306366
+      gas: 0.6752493977546692
+      geothermal: 8.393819257435098e-07
+      hydro: 0.029044192284345627
+      hydro discharge: 0.0
+      nuclear: 5.7817833294393495e-05
+      oil: 0.0002817386412061751
+      solar: 0.026686277240514755
+      unknown: 0.045819271355867386
+      wind: 0.1159539520740509
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 1.5999270885913575e-07
-      biomass: 0.023767463862895966
-      coal: 0.022412341088056564
-      gas: 0.7343748211860657
-      geothermal: 3.2358838097934495e-07
-      hydro: 0.02223348431289196
+      battery discharge: 1.865632231173499e-07
+      biomass: 0.02344634646359736
+      coal: 0.022608288477437694
+      gas: 0.7340459989683934
+      geothermal: 5.227598339974988e-07
+      hydro: 0.019220915317458048
       hydro discharge: 0.0
-      nuclear: 3.5819790355162695e-05
-      oil: 0.00010202626435784623
-      solar: 0.03187123313546181
-      unknown: 0.02160877361893654
-      wind: 0.14359357953071594
+      nuclear: 4.9118707658858676e-05
+      oil: 9.853690727516585e-05
+      solar: 0.03183536456739056
+      unknown: 0.024948048115312323
+      wind: 0.14374665671413908
 parsers:
   gridAlerts: CA_AB.fetch_grid_alerts
   price: CA_AB.fetch_price

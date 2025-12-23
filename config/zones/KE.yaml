@@ -84,39 +84,39 @@ currency: KES
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 40.58
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 41.72
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 40.58
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 41.72
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 95.26
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 96.95
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 95.26
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 96.95
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.014745230786502361
+      biomass: 0.01566823571920395
       coal: 0.0
       gas: 0.0
-      geothermal: 0.48588278889656067
-      hydro: 0.19528593122959137
+      geothermal: 0.4749286472797394
+      hydro: 0.20990709960460663
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.09995222836732864
-      solar: 0.04432610794901848
+      oil: 0.10274897515773773
+      solar: 0.03864732384681702
       unknown: 0.0
-      wind: 0.1598074585199356
+      wind: 0.15809957683086395
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

@@ -8,9 +8,9 @@ country_name: Portugal
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 519.13
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 585.87
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -30,9 +30,9 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2022
       value: 371.49
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 519.13
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 585.87
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -42,9 +42,9 @@ emissionFactors:
       value: 925.95
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 675.41
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 757.68
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -70,9 +70,9 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 675.41
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 757.68
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -95,21 +95,21 @@ emissionFactors:
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.05092068016529083
+      biomass: 0.04792399704456329
       coal: 0.0
-      gas: 0.17122630774974823
+      gas: 0.13734087347984314
       geothermal: 0.0
-      hydro: 0.07441578060388565
+      hydro: 0.072889044880867
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.4919453561306
-      solar: 0.03645849972963333
+      oil: 0.5776205658912659
+      solar: 0.03598774969577789
       unknown: 0.0
-      wind: 0.1750299036502838
+      wind: 0.12823480367660522
 has_day_ahead_price_license: true
 region: Europe
 sources:

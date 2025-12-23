@@ -107,9 +107,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 691.6232949567844
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 601.39
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 588.44
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -144,9 +144,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 691.6232949567844
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 601.39
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 588.44
     oil:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -174,9 +174,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 606.54
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 360.19
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 353.43
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -199,9 +199,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 606.54
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 360.19
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 353.43
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
@@ -314,21 +314,21 @@ fallbackZoneMixes:
       solar: 0.012790315399735448
       unknown: 0.0009000191751649909
       wind: 0.008674031627125225
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.1826903074979782
-      gas: 0.4023868441581726
+      coal: 0.15546463429927826
+      gas: 0.43424898386001587
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0
-      solar: 0.011927258223295212
-      unknown: 0.39357900619506836
-      wind: 0.009416498243808746
+      solar: 0.01344241201877594
+      unknown: 0.3915838301181793
+      wind: 0.005260062869638205
 isLowCarbon:
   unknown:
     value: 1

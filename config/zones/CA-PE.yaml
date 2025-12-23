@@ -30,9 +30,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 113.32483679178162
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 45.21
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 62.04
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -49,9 +49,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 113.32483679178162
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 45.21
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 62.04
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -74,10 +74,10 @@ emissionFactors:
       value: 99.97
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 118.17
+      value: 90.89
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 70.91
+      value: 110.71
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -99,10 +99,10 @@ emissionFactors:
       value: 99.97
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 118.17
+      value: 90.89
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 70.91
+      value: 110.71
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -198,33 +198,33 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
-      battery discharge: 1.4864914644001877e-06
-      biomass: 0.005551607371055158
-      coal: 0.00033895558754374645
-      gas: 0.0025172755773953327
+      battery discharge: 9.101532896238496e-07
+      biomass: 0.013347134925425053
+      coal: 0.04446542263031006
+      gas: 0.06257982552051544
       geothermal: 0.0
-      hydro: 0.2019658583114239
+      hydro: 0.22123001515865326
       hydro discharge: 0.0
-      nuclear: 0.002466965836399
-      oil: 0.0020237959448749744
-      solar: 4.866927033641731e-05
-      unknown: 0.5001841235841762
-      wind: 0.2848988931146308
+      nuclear: 0.14264321327209473
+      oil: 0.012400396168231964
+      solar: 0.00038607200258411467
+      unknown: 1.105544015445048e-05
+      wind: 0.5029357075691223
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 1.4363687341756304e-06
-      biomass: 0.0117628313601017
-      coal: 0.02942245826125145
-      gas: 0.04358884319663048
+      battery discharge: 3.7331475954339115e-06
+      biomass: 0.0063224888910080445
+      coal: 0.000178760750564063
+      gas: 0.005037113457983096
       geothermal: 0.0
-      hydro: 0.1545468419790268
+      hydro: 0.21603741272301671
       hydro discharge: 0.0
-      nuclear: 0.09741631895303726
-      oil: 0.016350116580724716
-      solar: 0.0004918929771520197
-      unknown: 3.135719816782512e-05
-      wind: 0.6463866233825684
+      nuclear: 0.005369557244284258
+      oil: 0.0007211107118926344
+      solar: 0.00014838992733089316
+      unknown: 0.45975793302739665
+      wind: 0.30642071370616963
 region: Americas
 timezone: America/Halifax
 zone_name: Prince Edward Island

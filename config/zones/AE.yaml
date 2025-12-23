@@ -101,13 +101,13 @@ currency: AED
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 285.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 291.65
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 285.44
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 291.65
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -130,10 +130,10 @@ emissionFactors:
       value: 325.52
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 381.54
+      value: 390.87
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 382.92
+      value: 340.3
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -155,10 +155,10 @@ emissionFactors:
       value: 325.52
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 381.54
+      value: 390.87
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 382.92
+      value: 340.3
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -256,30 +256,30 @@ fallbackZoneMixes:
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.0
-      gas: 0.7661878052566268
+      coal: 0.0015479371650144458
+      gas: 0.779281497001648
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
-      nuclear: 0.1702784339815322
-      oil: 0.0
-      solar: 0.061690443983189604
-      unknown: 0.001843265887442152
+      nuclear: 0.1604336053133011
+      oil: 0.005258206743746996
+      solar: 0.053478725254535675
+      unknown: 0.0
       wind: 0.0
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.0013691697968170047
-      gas: 0.7630082368850708
+      coal: 0.0
+      gas: 0.6795480056248291
       geothermal: 0.0
       hydro: 0.0
       hydro discharge: 0.0
-      nuclear: 0.1753694862127304
-      oil: 0.005128982476890087
-      solar: 0.055124133825302124
-      unknown: 0.0
+      nuclear: 0.24752923194499274
+      oil: 0.0
+      solar: 0.07128789104234305
+      unknown: 0.0016348372505816842
       wind: 0.0
 parsers:
   consumption: GCCIA.fetch_consumption

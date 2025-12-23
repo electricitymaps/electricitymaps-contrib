@@ -151,9 +151,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 130.40744854523433
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 127.72
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 152.09
     hydro discharge:
     - datetime: '2015-01-01'
       source: Electricity Maps, 2015 average
@@ -176,9 +176,9 @@ emissionFactors:
     - datetime: '2021-01-01'
       source: Electricity Maps, 2021 average
       value: 130.40744854523433
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 127.72
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 152.09
   lifecycle:
     battery discharge:
     - datetime: '2015-01-01'
@@ -368,32 +368,32 @@ fallbackZoneMixes:
     datetime: '2023-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.006979070080912979
+      biomass: 0.006979070603847504
       coal: 0.0
-      gas: 0.3941425191048746
+      gas: 0.3941425383090973
       geothermal: 0.0
-      hydro: 0.5223748840792997
+      hydro: 0.5223749279975891
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.015406352917966345
-      solar: 0.01768410110352372
+      oil: 0.015406355261802673
+      solar: 0.017684102058410645
       unknown: 0.0
-      wind: 0.04341302859425622
+      wind: 0.043413031846284866
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
       battery discharge: 0.0
-      biomass: 0.0073202988132834435
+      biomass: 0.007320029105831322
       coal: 0.0
-      gas: 0.3437860906124115
+      gas: 0.34378473239714524
       geothermal: 0.0
-      hydro: 0.5623980164527893
+      hydro: 0.5623771365162856
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.0012643731897696853
-      solar: 0.02264055609703064
+      oil: 0.001270293832835364
+      solar: 0.022634861767733317
       unknown: 0.0
-      wind: 0.0625905990600586
+      wind: 0.06261290684751358
 parsers:
   production: PE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

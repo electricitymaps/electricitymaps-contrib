@@ -32,33 +32,33 @@ currency: TJS
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 47.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 38.84
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 47.5
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 38.84
   lifecycle:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 74.77
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 65.55
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 74.77
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 65.55
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
     value:
       battery discharge: 0.0
       biomass: 0.0
-      coal: 0.056174542754888535
-      gas: 0.012999027967453003
+      coal: 0.0457063727080822
+      gas: 0.011080341413617134
       geothermal: 0.0
-      hydro: 0.9308263063430786
+      hydro: 0.9432132840156555
       hydro discharge: 0.0
       nuclear: 0.0
       oil: 0.0

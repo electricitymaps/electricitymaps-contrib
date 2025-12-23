@@ -36,13 +36,13 @@ currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 445.73
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 414.49
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 366.92
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
+      value: 367.51
   lifecycle:
     battery discharge:
     - datetime: '2017-01-01'
@@ -65,10 +65,10 @@ emissionFactors:
       value: 503.82
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 414.18
+      value: 414.49
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 445.73
+      value: 445.65
     hydro discharge:
     - datetime: '2017-01-01'
       source: Electricity Maps, 2017 average
@@ -90,10 +90,10 @@ emissionFactors:
       value: 461.67
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 367.5
+      value: 367.51
     - datetime: '2024-01-01'
       source: Electricity Maps, 2024 average
-      value: 366.92
+      value: 366.9
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
@@ -189,33 +189,33 @@ fallbackZoneMixes:
   - _source: Electricity Maps, 2023 average
     datetime: '2023-01-01'
     value:
-      battery discharge: 0.001354435203081272
-      biomass: 0.001458227431313655
-      coal: 0.5399693682544393
-      gas: 0.07862482421941185
+      battery discharge: 0.0013605765998363495
+      biomass: 0.0014583125011995435
+      coal: 0.539989709854126
+      gas: 0.07861389964818954
       geothermal: 0.0
-      hydro: 0.06667854838383991
-      hydro discharge: 1.5141667178907328e-06
+      hydro: 0.06667827814817429
+      hydro discharge: 1.5138516573642846e-06
       nuclear: 0.0
-      oil: 0.00018759295327671713
-      solar: 0.1778970210150275
-      unknown: 5.457981705763607e-05
-      wind: 0.13377389560743355
+      oil: 0.00018758852093014866
+      solar: 0.17785924673080444
+      unknown: 5.456845974549651e-05
+      wind: 0.1337963193655014
   - _source: Electricity Maps, 2024 average
     datetime: '2024-01-01'
     value:
-      battery discharge: 0.001887031365185976
-      biomass: 0.0018673023441806436
-      coal: 0.5332552790641785
-      gas: 0.07862365245819092
+      battery discharge: 0.00188694682777796
+      biomass: 0.0018671287738742375
+      coal: 0.5332681648583506
+      gas: 0.07860819484672399
       geothermal: 0.0
-      hydro: 0.05795595422387123
-      hydro discharge: 1.1114076187368482e-05
+      hydro: 0.05795957772034905
+      hydro discharge: 1.1114753293322062e-05
       nuclear: 0.0
-      oil: 0.00037075110594742
-      solar: 0.1932305097579956
-      unknown: 0.00019038440950680524
-      wind: 0.13260802626609802
+      oil: 0.00037077718062013645
+      solar: 0.19323819121037497
+      unknown: 0.00019039581980082146
+      wind: 0.13259950282926702
 region: Oceania
 subZoneNames:
 - AU-LH

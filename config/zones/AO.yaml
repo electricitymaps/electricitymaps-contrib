@@ -9,28 +9,22 @@ currency: AOA
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
       value: 106.55
     hydro discharge:
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
+    - datetime: '2023-01-01'
+      source: Electricity Maps, 2023 average
       value: 106.55
   lifecycle:
     battery discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 176.83
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 177.15
+      value: 177.21
     hydro discharge:
     - datetime: '2023-01-01'
       source: Electricity Maps, 2023 average
-      value: 176.83
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 177.15
+      value: 177.21
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average
@@ -39,28 +33,13 @@ fallbackZoneMixes:
       battery discharge: 0.0
       biomass: 0.0
       coal: 0.0
-      gas: 0.10893289709207192
+      gas: 0.11216656863689423
       geothermal: 0.0
-      hydro: 0.70428882343253
+      hydro: 0.6972484588623047
       hydro discharge: 0.0
       nuclear: 0.0
-      oil: 0.1622255605690663
-      solar: 0.02455261358974591
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.11354760080575943
-      geothermal: 0.0
-      hydro: 0.6925008296966553
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.15895022451877594
-      solar: 0.03500117361545563
+      oil: 0.16022875905036926
+      solar: 0.030356071889400482
       unknown: 0.0
       wind: 0.0
 parsers:
