@@ -1,74 +1,72 @@
-[tool.poetry]
+[project]
 name = "electricitymap-contrib"
 version = "1.1.19"
 description = ""
+authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
+requires-python = ">= 3.10, < 3.11"
 license = "AGPL-3.0-or-later"
-authors = ["Electricity Maps <app@electricitymaps.com>"]
-packages = [{ include = "electricitymap" }, { include = "config" }]
-
-[tool.poetry.dependencies]
-python = '>= 3.10, < 3.11'
-pydantic = "^1.10.17"
-beautifulsoup4 = { version = "~4.6.0", optional = true }
-demjson3 = { version = "^3.0.5", optional = true }
-freezegun = { version = "^0.3.15", optional = true }
-imageio = { version = "^2.18.0", optional = true }
-lxml = { version = "^4.9.1", optional = true }
-opencv-python = { version = "4.8.1.78", optional = true }
-pandas = { version = "^1.4.4", optional = true }
-pytesseract = { version = "0.2.0", optional = true }
-requests = { version = "~2.32.2", optional = true }
-signalr-client-threads = { version = "~0.0.12", optional = true }
-xlrd = { version = "^2.0.1", optional = true }
-xmltodict = { version = "^0.13.0", optional = true }
-PyYAML = "^6.0"
-openpyxl = { version = "^3.1.2", optional = true }
-pydataxm = { version = "^0.3.2", optional = true }
-ruamel-yaml = "^0.17.24"
-pycountry = { version = "^22.3.5", optional = true }
-ruff = "0.11.2"
-tzdata = "^2025.2"
-numpy = "^1.24.4"
-odfpy = { version = "^1.4.1", optional = true }
-
-[tool.poetry.scripts]
-test-parser = 'test_parser:test_parser'
-test_parser = 'test_parser:test_parser'
-capacity_update = 'capacity_update:capacity_update'
-check = 'scripts.tooling:check'
-format = 'scripts.tooling:format'
-lint = 'scripts.tooling:lint'
-test = 'scripts.tooling:test'
-
-
-[tool.poetry.extras]
-parsers = [
-    "beautifulsoup4",
-    "demjson3",
-    "eiapy",
-    "imageio",
-    "lxml",
-    "pandas",
-    "pytesseract",
-    "requests",
-    "opencv-python",
-    "xlrd",
-    "freezegun",
-    "signalr-client-threads",
-    "openpyxl",
-    "pydataxm",
-    "pycountry",
-    "odfpy",
+dependencies = [
+    "pydantic>=1.10.17,<2",
+    "PyYAML>=6.0,<7",
+    "ruamel-yaml>=0.17.24,<0.18",
+    "ruff==0.11.2",
+    "tzdata>=2025.2,<2026",
+    "numpy>=1.24.4,<2",
 ]
 
-scripts = ["xmltodict"]
+[project.optional-dependencies]
+parsers = [
+    "beautifulsoup4~=4.6.0",
+    "demjson3>=3.0.5,<4",
+    "imageio>=2.18.0,<3",
+    "lxml>=4.9.1,<5",
+    "pandas>=1.4.4,<2",
+    "pytesseract==0.2.0",
+    "requests~=2.32.2",
+    "opencv-python==4.8.1.78",
+    "xlrd>=2.0.1,<3",
+    "freezegun>=0.3.15,<0.4",
+    "signalr-client-threads~=0.0.12",
+    "openpyxl>=3.1.2,<4",
+    "pydataxm>=0.3.2,<0.4",
+    "pycountry>=22.3.5,<23",
+    "odfpy>=1.4.1,<2",
+]
+scripts = ["xmltodict>=0.13.0,<0.14"]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-syrupy = "^4.8.0"
-requests-mock = "~1.3.0"
-testfixtures = "^7.0.0"
-click = "^8.0.0"
+[project.scripts]
+test-parser = "test_parser:test_parser"
+test_parser = "test_parser:test_parser"
+capacity_update = "capacity_update:capacity_update"
+check = "scripts.tooling:check"
+format = "scripts.tooling:format"
+lint = "scripts.tooling:lint"
+test = "scripts.tooling:test"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.0,<8",
+    "syrupy>=4.8.0,<5",
+    "requests-mock~=1.3.0",
+    "testfixtures>=7.0.0,<8",
+    "click>=8.0.0,<9",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "electricitymap",
+    "config",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "electricitymap",
+    "config",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 
 [tool.pytest.ini_options]
@@ -80,11 +78,6 @@ testpaths = [
     "electricitymap/contrib/lib/tests",
 ]
 addopts = "--color=yes --durations=10"
-
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
