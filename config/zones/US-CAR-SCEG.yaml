@@ -263,11 +263,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
-    hydro discharge:
-    - _comment: used storage values equal to zero.
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 382.77
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -345,11 +340,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
-    hydro discharge:
-    - _comment: used storage values equal to zero.
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 469.58
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

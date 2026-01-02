@@ -26,10 +26,6 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 370.72
-    - _comment: used storage values greater than zero.
-      datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average
-      value: 320.8
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -79,10 +75,6 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 480.4
-    - _comment: used storage values greater than zero.
-      datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average
-      value: 424.88
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014

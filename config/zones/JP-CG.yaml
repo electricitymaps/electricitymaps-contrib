@@ -25,18 +25,7 @@ currency: JPY
 delays:
   production: 5
 emissionFactors:
-  direct:
-    hydro discharge:
-    - _comment: used storage values equal to zero.
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 419.3
-  lifecycle:
-    hydro discharge:
-    - _comment: used storage values equal to zero.
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 509.31
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
