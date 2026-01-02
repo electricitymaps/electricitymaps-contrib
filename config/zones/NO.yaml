@@ -31,6 +31,18 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 10.95
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 7.74
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 12.03
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 11.2
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -45,6 +57,18 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 36.9
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 32.77
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 36.51
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 36.22
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
