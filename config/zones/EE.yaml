@@ -211,28 +211,6 @@ delays:
   production: 6
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 445.94514524557206
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 570.171367647654
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 620.5903589088964
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 597.6845142217643
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 423.10210320540324
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 280.74799216104805
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 352.3791809484922
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -263,28 +241,6 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: EU-ETS, ENTSO-E 2024
       value: 415.69
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 445.94514524557206
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 570.171367647654
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 620.5903589088964
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 597.6845142217643
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 423.10210320540324
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 280.74799216104805
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 352.3791809484922
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -296,37 +252,6 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2023
       value: 641.08
   lifecycle:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 553.92
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 639.64
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 685.01
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 652.13
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 464.6
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 306.91
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 386.24
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 425.96
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 285.14
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 293.79
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -361,37 +286,6 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 553.92
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 639.64
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 685.01
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 652.13
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 464.6
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 306.91
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 386.24
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 425.96
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 285.14
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 293.79
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

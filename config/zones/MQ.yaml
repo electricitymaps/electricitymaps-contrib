@@ -1,233 +1,183 @@
 bounding_box:
-  - - -61.252194
-    - 14.364404
-  - - -60.732382
-    - 14.888562
+- - -61.252194
+  - 14.364404
+- - -60.732382
+  - 14.888562
 capacity:
   battery storage:
-    - datetime: '2021-10-25'
-      source: opendata-martinique.edf.fr
-      value: 12.0
+  - datetime: '2021-10-25'
+    source: opendata-martinique.edf.fr
+    value: 12.0
   biomass:
-    - datetime: '2017-01-01'
-      source: opendata-martinique.edf.fr
-      value: 8.0
-    - datetime: '2018-09-26'
-      source: opendata-martinique.edf.fr
-      value: 44.5
+  - datetime: '2017-01-01'
+    source: opendata-martinique.edf.fr
+    value: 8.0
+  - datetime: '2018-09-26'
+    source: opendata-martinique.edf.fr
+    value: 44.5
   gas:
-    - datetime: '2021-01-01'
-      source: opendata-martinique.edf.fr
-      value: 0
+  - datetime: '2021-01-01'
+    source: opendata-martinique.edf.fr
+    value: 0
   geothermal:
-    - datetime: '2021-01-01'
-      source: opendata-martinique.edf.fr
-      value: 0
+  - datetime: '2021-01-01'
+    source: opendata-martinique.edf.fr
+    value: 0
   hydro:
-    - datetime: '2021-01-01'
-      source: opendata-martinique.edf.fr
-      value: 0
+  - datetime: '2021-01-01'
+    source: opendata-martinique.edf.fr
+    value: 0
   oil:
-    - datetime: '2017-01-01'
-      source: opendata-martinique.edf.fr
-      value: 428.0
+  - datetime: '2017-01-01'
+    source: opendata-martinique.edf.fr
+    value: 428.0
   solar:
-    - datetime: '2017-01-01'
-      source:
-      value: 70.0
-    - datetime: '2020-01-01'
-      source: opendata-martinique.edf.fr
-      value: 79.0
-    - datetime: '2022-01-01'
-      source: opendata-martinique.edf.fr
-      value: 84.0
+  - datetime: '2017-01-01'
+    source: null
+    value: 70.0
+  - datetime: '2020-01-01'
+    source: opendata-martinique.edf.fr
+    value: 79.0
+  - datetime: '2022-01-01'
+    source: opendata-martinique.edf.fr
+    value: 84.0
   wind:
-    - datetime: '2019-01-14'
-      source: opendata-martinique.edf.fr
-      value: 14.0
+  - datetime: '2019-01-14'
+    source: opendata-martinique.edf.fr
+    value: 14.0
 contributors:
-  - PETILLON-Sebastien
-  - VIKTORVAV99
+- PETILLON-Sebastien
+- VIKTORVAV99
 country: MQ
+country_name: Martinique
+currency: EUR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 461.87
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 463.84
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 450.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 410.13
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.17
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 405.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 403.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 582.42
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 461.87
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 463.84
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 450.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 410.13
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.17
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 405.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 403.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 582.42
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2016 average
-      datetime: '2016-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.018037581154105913
-        coal: 0.0
-        gas: 0.9293491860452057
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.05180106897931069
-        unknown: 0.0
-        wind: 0.0008027475935538607
-    - _source: Electricity Maps, 2017 average
-      datetime: '2017-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.015855763567265684
-        coal: 0.0
-        gas: 0.9346625886042824
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.04902159431035597
-        unknown: 0.0
-        wind: 0.00045101715311000217
-    - _source: Electricity Maps, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.05967459288642641
-        coal: 0.0
-        gas: 0.886303793757585
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.050158672766496736
-        unknown: 0.0
-        wind: 0.0038540488497428105
-    - _source: Electricity Maps, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.1631953300607567
-        coal: 0.0
-        gas: 0.7549780567928813
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.051697067270874954
-        unknown: 0.0
-        wind: 0.03012954587548692
-    - _source: Electricity Maps, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.15125047240940298
-        coal: 0.0
-        gas: 0.768832000768264
-        geothermal: 0.0
-        hydro: 9.555521785338824e-06
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.05221617533910009
-        unknown: 0.0
-        wind: 0.027691795961447635
-    - _source: Electricity Maps, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.1689072850360248
-        coal: 0.0
-        gas: 0.7427632170828681
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.05590676451155423
-        unknown: 0.0
-        wind: 0.0324227333695527
-    - _source: Electricity Maps, 2022 average
-      datetime: '2022-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.18470658572078466
-        coal: 0.0
-        gas: 0.7310544260016312
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0
-        solar: 0.05736040412275236
-        unknown: 0.0
-        wind: 0.026878584154831818
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.13640136542248113
-        coal: 0.0
-        gas: 0.053188842396340204
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.8073994932839522
-        solar: 0.003008907522797206
-        unknown: 0.0
-        wind: 0.0
+  - _source: Electricity Maps, 2016 average
+    datetime: '2016-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.018037581154105913
+      coal: 0.0
+      gas: 0.9293491860452057
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.05180106897931069
+      unknown: 0.0
+      wind: 0.0008027475935538607
+  - _source: Electricity Maps, 2017 average
+    datetime: '2017-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.015855763567265684
+      coal: 0.0
+      gas: 0.9346625886042824
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.04902159431035597
+      unknown: 0.0
+      wind: 0.00045101715311000217
+  - _source: Electricity Maps, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.05967459288642641
+      coal: 0.0
+      gas: 0.886303793757585
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.050158672766496736
+      unknown: 0.0
+      wind: 0.0038540488497428105
+  - _source: Electricity Maps, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.1631953300607567
+      coal: 0.0
+      gas: 0.7549780567928813
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.051697067270874954
+      unknown: 0.0
+      wind: 0.03012954587548692
+  - _source: Electricity Maps, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.15125047240940298
+      coal: 0.0
+      gas: 0.768832000768264
+      geothermal: 0.0
+      hydro: 9.555521785338824e-06
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.05221617533910009
+      unknown: 0.0
+      wind: 0.027691795961447635
+  - _source: Electricity Maps, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.1689072850360248
+      coal: 0.0
+      gas: 0.7427632170828681
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.05590676451155423
+      unknown: 0.0
+      wind: 0.0324227333695527
+  - _source: Electricity Maps, 2022 average
+    datetime: '2022-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.18470658572078466
+      coal: 0.0
+      gas: 0.7310544260016312
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.05736040412275236
+      unknown: 0.0
+      wind: 0.026878584154831818
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.13640136542248113
+      coal: 0.0
+      gas: 0.053188842396340204
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.8073994932839522
+      solar: 0.003008907522797206
+      unknown: 0.0
+      wind: 0.0
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Americas
 timezone: Europe/Paris
 zone_name: Martinique
-country_name: Martinique
-currency: EUR

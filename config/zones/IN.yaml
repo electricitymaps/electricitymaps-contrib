@@ -21,80 +21,10 @@ country_name: India
 currency: INR
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 655.7137340694026
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 616.6763356484563
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 605.8048490716371
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 622.1542087942669
-    hydro discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 655.7137340694026
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 616.6763356484563
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 605.8048490716371
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 622.1542087942669
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 0.0
   lifecycle:
-    battery discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 647.58
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 647.59
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 640.64
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 632.23
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 637.66
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 658.02
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 662.48
-    hydro discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 647.58
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 647.59
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 640.64
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 632.23
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 637.66
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 658.02
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 662.48
     unknown:
       source: assumes 43% solar PV and 57% wind
       value: 25.62

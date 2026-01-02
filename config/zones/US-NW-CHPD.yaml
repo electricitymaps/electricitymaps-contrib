@@ -86,28 +86,6 @@ delays:
   production: 48
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 0.0
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 0.0
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 0.0
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 1.7792003190258112
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 2.1229301765499535
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 0.5671460485620797
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 1.327344899514185
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -172,28 +150,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 0.0
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 0.0
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 0.0
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 1.7792003190258112
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 2.1229301765499535
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 0.5671460485620797
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 1.327344899514185
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -212,37 +168,6 @@ emissionFactors:
       source: eGrid 2023
       value: 692.2365799135232
   lifecycle:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 23.96977726277787
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 23.969777262777868
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 23.97
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 26.11
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 26.41
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 24.73
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 25.43
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 24.95
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 28.0
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 27.21
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -314,37 +239,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 23.96977726277787
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 23.969777262777868
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 23.97
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 26.11
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 26.41
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 24.73
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 25.43
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 24.95
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 28.0
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 27.21
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

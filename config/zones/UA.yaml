@@ -24,38 +24,6 @@ country_name: Ukraine
 currency: UAH
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 318.09882554851464
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 297.52677918830636
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 281.4515250173106
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 269.922150686734
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 239.8490653738602
-    hydro discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 318.09882554851464
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 297.52677918830636
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 281.4515250173106
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 269.922150686734
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 239.8490653738602
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
@@ -64,44 +32,6 @@ emissionFactors:
         issue number 1809
       value: 0.0
   lifecycle:
-    battery discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 324.68
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 307.52
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 292.17
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 281.48
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 244.99
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 240.05
-    hydro discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 317.95
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 297.16
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 281.26
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 269.66
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 239.45
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 231.03
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable

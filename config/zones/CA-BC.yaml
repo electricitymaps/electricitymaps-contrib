@@ -1,8 +1,8 @@
 bounding_box:
-  - - -139.56020662181913
-    - 47.80609772300011
-  - - -113.53745235883926
-    - 60.50005890629359
+- - -139.56020662181913
+  - 47.80609772300011
+- - -113.53745235883926
+  - 60.50005890629359
 capacity:
   biomass: 838
   gas: 507
@@ -10,79 +10,65 @@ capacity:
   solar: 1
   wind: 704
 contributors:
-  - daveachuk
+- daveachuk
 country: CA
+country_name: Canada
+currency: CAD
 emissionFactors:
   direct:
     unknown:
-      - datetime: '2019-01-01'
-        source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
-        value: 28.6
+    - datetime: '2019-01-01'
+      source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
+      value: 28.6
   lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 72.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 77.05
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 72.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 77.05
     unknown:
-      - datetime: '2019-01-01'
-        source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
-        value: 56
+    - datetime: '2019-01-01'
+      source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
+      value: 56
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 1.618280213356176e-05
-        biomass: 0.0005565384532473826
-        coal: 0.007331006468692466
-        gas: 0.023878577074405886
-        geothermal: 0.00013007675846959645
-        hydro: 0.06755360050596161
-        hydro discharge: 4.749450337088534e-10
-        nuclear: 0.009321481869692404
-        oil: 0.0002622337761868377
-        solar: 0.002537145921281953
-        unknown: 0.8682911931354651
-        wind: 0.020121937824903843
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 5.145101223398466e-05
-        biomass: 0.0010076535472723026
-        coal: 0.006493454703211018
-        gas: 0.03949552600524888
-        geothermal: 0.00015904815442854389
-        hydro: 0.08964769920069912
-        hydro discharge: 4.267365170239728e-09
-        nuclear: 0.014721031478377073
-        oil: 0.0001861432815573179
-        solar: 0.004466797839768633
-        unknown: 0.813708734346893
-        wind: 0.03006242547855752
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 1.618280213356176e-05
+      biomass: 0.0005565384532473826
+      coal: 0.007331006468692466
+      gas: 0.023878577074405886
+      geothermal: 0.00013007675846959645
+      hydro: 0.06755360050596161
+      hydro discharge: 4.749450337088534e-10
+      nuclear: 0.009321481869692404
+      oil: 0.0002622337761868377
+      solar: 0.002537145921281953
+      unknown: 0.8682911931354651
+      wind: 0.020121937824903843
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 5.145101223398466e-05
+      biomass: 0.0010076535472723026
+      coal: 0.006493454703211018
+      gas: 0.03949552600524888
+      geothermal: 0.00015904815442854389
+      hydro: 0.08964769920069912
+      hydro discharge: 4.267365170239728e-09
+      nuclear: 0.014721031478377073
+      oil: 0.0001861432815573179
+      solar: 0.004466797839768633
+      unknown: 0.813708734346893
+      wind: 0.03006242547855752
 isLowCarbon:
   unknown:
-    - datetime: '2019-01-01'
-      source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
-      value: 0.94
+  - datetime: '2019-01-01'
+    source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
+    value: 0.94
 isRenewable:
   unknown:
-    - datetime: '2019-01-01'
-      source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
-      value: 0.94
+  - datetime: '2019-01-01'
+    source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
+    value: 0.94
 parsers:
   consumption: CA_BC.fetch_consumption
 region: Americas
 timezone: America/Vancouver
 zone_name: British Columbia
-country_name: Canada
-currency: CAD

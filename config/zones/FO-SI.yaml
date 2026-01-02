@@ -62,16 +62,6 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 889.87
   lifecycle:
-    battery discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 625.53
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 396.93
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 421.44
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -107,16 +97,6 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 625.53
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 396.93
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 421.44
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

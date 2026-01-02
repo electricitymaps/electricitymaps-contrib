@@ -53,51 +53,11 @@ country_name: Kuwait
 currency: KWD
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 575.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 575.0
-    hydro discharge:
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 575.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 575.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2019; assumes 62.3% gas, 37.7% oil
       value: 383.572
   lifecycle:
-    battery discharge:
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 550.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 550.0
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 550.0
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 550.0
-    hydro discharge:
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 550.0
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 550.0
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 550.0
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 550.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2019; assumes 62.3% gas, 37.7% oil
