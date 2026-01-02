@@ -189,6 +189,11 @@ delays:
   production: 48
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 273.16
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -263,6 +268,11 @@ emissionFactors:
       source: eGrid 2023
       value: 692.2365799135232
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 319.13
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

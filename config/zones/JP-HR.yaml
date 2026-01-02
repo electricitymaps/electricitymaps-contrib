@@ -34,12 +34,20 @@ emissionFactors:
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
       value: 365.09
+    - _comment: used storage values equal to zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 402.51
   lifecycle:
     hydro discharge:
     - _comment: used storage values equal to zero.
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
       value: 441.69
+    - _comment: used storage values equal to zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 483.29
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

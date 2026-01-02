@@ -841,6 +841,11 @@ country_name: USA
 currency: USD
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 264.87
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -911,6 +916,11 @@ emissionFactors:
       source: eGrid 2023
       value: 1479.6758322526446
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 320.31
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

@@ -167,23 +167,23 @@ emissionFactors:
   direct:
     hydro discharge:
     - _comment: used storage values greater than zero.
-      datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average
-      value: 278.69
-    - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
       value: 255.55
-  lifecycle:
-    hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 369.61
+      value: 278.69
+  lifecycle:
+    hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
       value: 342.12
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 369.61
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

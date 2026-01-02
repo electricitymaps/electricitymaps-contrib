@@ -26,17 +26,17 @@ emissionFactors:
   direct:
     hydro discharge:
     - _comment: used storage values greater than zero.
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 229.98
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 270.84
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
       value: 243.77
     - _comment: used storage values greater than zero.
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 270.84
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 229.98
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
@@ -47,17 +47,17 @@ emissionFactors:
   lifecycle:
     hydro discharge:
     - _comment: used storage values greater than zero.
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 220.79
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 267.26
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
       value: 229.23
     - _comment: used storage values greater than zero.
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 267.26
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 220.79
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable

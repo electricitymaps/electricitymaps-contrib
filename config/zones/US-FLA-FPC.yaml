@@ -217,6 +217,10 @@ emissionFactors:
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
       value: 429.95
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 396.86
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -298,6 +302,10 @@ emissionFactors:
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
       value: 537.12
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 501.95
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
