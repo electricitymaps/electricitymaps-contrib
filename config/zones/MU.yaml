@@ -46,7 +46,8 @@ capacity:
 country: MU
 country_name: Mauritius
 currency: MUR
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average

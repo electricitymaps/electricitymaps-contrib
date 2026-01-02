@@ -33,7 +33,8 @@ contributors:
 country: CA
 country_name: Canada
 currency: CAD
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

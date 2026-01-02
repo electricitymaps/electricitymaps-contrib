@@ -27,7 +27,8 @@ contributors:
 country: JP
 country_name: Japan
 currency: JPY
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

@@ -105,6 +105,7 @@ country_name: Dominican Republic
 currency: DOP
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

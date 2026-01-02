@@ -58,7 +58,8 @@ capacity:
 country: TZ
 country_name: Tanzania
 currency: TZS
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average

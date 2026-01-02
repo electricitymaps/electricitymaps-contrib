@@ -56,6 +56,7 @@ country_name: Iraq
 currency: IQD
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average

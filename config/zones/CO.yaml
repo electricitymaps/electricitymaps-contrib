@@ -129,7 +129,8 @@ country_name: Colombia
 currency: COP
 delays:
   production: 84
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

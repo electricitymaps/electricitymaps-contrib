@@ -22,7 +22,8 @@ capacity:
 country: BW
 country_name: Botswana
 currency: BWP
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average

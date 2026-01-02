@@ -6,7 +6,8 @@ bounding_box:
 country: AO
 country_name: Angola
 currency: AOA
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2023 average

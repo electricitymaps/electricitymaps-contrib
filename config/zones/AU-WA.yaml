@@ -73,6 +73,7 @@ disclaimer: Western Australia's power grid is not connected to the (Australian) 
   Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

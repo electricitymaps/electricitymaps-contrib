@@ -28,7 +28,8 @@ delays:
 disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live
   data only for solar and unknown. We are working on improving the data quality for
   this zone.
-emissionFactors: {}
+emissionFactors:
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2016 average

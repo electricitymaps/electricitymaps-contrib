@@ -16,6 +16,7 @@ disclaimer: Real-time consumption and generation mix data is not available and i
   fully estimated.
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

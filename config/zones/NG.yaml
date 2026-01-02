@@ -73,6 +73,7 @@ country_name: Nigeria
 currency: NGN
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2021 average

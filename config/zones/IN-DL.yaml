@@ -20,6 +20,7 @@ country_name: India
 currency: INR
 emissionFactors:
   direct: {}
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average
