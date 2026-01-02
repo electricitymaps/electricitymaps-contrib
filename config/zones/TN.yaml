@@ -1,108 +1,94 @@
 bounding_box:
-  - - 6.979074790747944
-    - 29.728951492661125
-  - - 12.065115651156532
-    - 37.83570884113219
+- - 6.979074790747944
+  - 29.728951492661125
+- - 12.065115651156532
+  - 37.83570884113219
 capacity:
   gas:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 4700.0
-    - datetime: '2021-01-01'
-      source: Ember, Yearly electricity data
-      value: 5320.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 5770.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 4700.0
+  - datetime: '2021-01-01'
+    source: Ember, Yearly electricity data
+    value: 5320.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 5770.0
   hydro:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 70.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 70.0
   solar:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 50.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 60.0
-    - datetime: '2019-01-01'
-      source: Ember, Yearly electricity data
-      value: 80.0
-    - datetime: '2020-01-01'
-      source: Ember, Yearly electricity data
-      value: 90.0
-    - datetime: '2022-01-01'
-      source: Ember, Yearly electricity data
-      value: 200.0
-    - datetime: '2023-01-01'
-      source: Ember, Yearly electricity data
-      value: 510.0
-    - datetime: '2024-01-01'
-      source: Ember, Yearly electricity data
-      value: 770.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 50.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 60.0
+  - datetime: '2019-01-01'
+    source: Ember, Yearly electricity data
+    value: 80.0
+  - datetime: '2020-01-01'
+    source: Ember, Yearly electricity data
+    value: 90.0
+  - datetime: '2022-01-01'
+    source: Ember, Yearly electricity data
+    value: 200.0
+  - datetime: '2023-01-01'
+    source: Ember, Yearly electricity data
+    value: 510.0
+  - datetime: '2024-01-01'
+    source: Ember, Yearly electricity data
+    value: 770.0
   wind:
-    - datetime: '2017-01-01'
-      source: Ember, Yearly electricity data
-      value: 240.0
-    - datetime: '2018-01-01'
-      source: Ember, Yearly electricity data
-      value: 250.0
+  - datetime: '2017-01-01'
+    source: Ember, Yearly electricity data
+    value: 240.0
+  - datetime: '2018-01-01'
+    source: Ember, Yearly electricity data
+    value: 250.0
 country: TN
+country_name: Tunisia
+currency: TND
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 478.2
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 478.14
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 478.2
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 478.14
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: Electricity Maps, 2023 average
-      datetime: '2023-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.9581679311959953
-        geothermal: 0.0
-        hydro: 0.000653601950745065
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.0013072328477531723
-        solar: 0.014893328548024278
-        unknown: 0.009991049199192015
-        wind: 0.014986784359507897
-    - _source: Electricity Maps, 2024 average
-      datetime: '2024-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.9580032395060685
-        geothermal: 0.0
-        hydro: 0.0006531734473420515
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.001337065870002075
-        solar: 0.014851571340234765
-        unknown: 0.009993849327866806
-        wind: 0.01516080650910127
+  - _source: Electricity Maps, 2023 average
+    datetime: '2023-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9581679311959953
+      geothermal: 0.0
+      hydro: 0.000653601950745065
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0013072328477531723
+      solar: 0.014893328548024278
+      unknown: 0.009991049199192015
+      wind: 0.014986784359507897
+  - _source: Electricity Maps, 2024 average
+    datetime: '2024-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.9580032395060685
+      geothermal: 0.0
+      hydro: 0.0006531734473420515
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.001337065870002075
+      solar: 0.014851571340234765
+      unknown: 0.009993849327866806
+      wind: 0.01516080650910127
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tunis
 zone_name: Tunisia
-country_name: Tunisia
-currency: TND

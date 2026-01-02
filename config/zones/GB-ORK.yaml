@@ -16,87 +16,11 @@ delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 500.43029243797986
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 461.9632215111321
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 479.9261719393477
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 460.40202785294656
-    hydro discharge:
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 500.43029243797986
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 461.9632215111321
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 479.9261719393477
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 460.40202785294656
     unknown:
       _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
       source: assumes 95% wind, 5% solar
       value: 0.0
   lifecycle:
-    battery discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 14.17
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 25.8
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 84.33
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 47.46
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 86.2
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 65.59
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 79.98
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 61.72
-    hydro discharge:
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 14.17
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 25.8
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 84.33
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 47.46
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 86.2
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 65.59
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 79.98
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 61.72
     solar:
       datetime: '2021-01-01'
       source: INCER ACV

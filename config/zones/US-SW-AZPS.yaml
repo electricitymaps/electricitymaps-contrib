@@ -189,28 +189,6 @@ delays:
   production: 48
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 287.4394383608348
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 358.99917192529836
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 358.7864539742484
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 333.39391247326176
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 295.81849021123355
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 433.19170627807307
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 394.89508781910087
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -267,28 +245,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 287.4394383608348
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 358.99917192529836
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 358.7864539742484
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 333.39391247326176
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 295.81849021123355
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 433.19170627807307
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 394.89508781910087
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -307,34 +263,6 @@ emissionFactors:
       source: eGrid 2023
       value: 692.2365799135232
   lifecycle:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 342.4822573202384
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 402.78963651897595
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 457.4
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 370.7
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 331.61
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 500.89
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 448.01
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 466.17
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 430.05
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -395,34 +323,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 342.4822573202384
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 402.78963651897595
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 457.4
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 370.7
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 331.61
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 500.89
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 448.01
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 466.17
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 430.05
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

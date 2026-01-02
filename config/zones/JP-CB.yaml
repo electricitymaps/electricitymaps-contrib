@@ -38,6 +38,7 @@ emissionFactors:
       source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas,
         9% hydro and wind
       value: 440.062
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

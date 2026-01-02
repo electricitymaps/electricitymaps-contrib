@@ -1,66 +1,66 @@
 bounding_box:
-  - - 19.3044861183
-    - 39.624997667
-  - - 21.0200403175
-    - 42.6882473822
+- - 19.3044861183
+  - 39.624997667
+- - 21.0200403175
+  - 42.6882473822
 capacity:
   biomass:
-    - datetime: '2018-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2018-01-01'
+    source: entsoe.eu
+    value: 0.0
   coal:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   gas:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   geothermal:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   hydro:
-    - datetime: '2018-01-01'
-      source: entsoe.eu
-      value: 1492.0
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 2203.0
+  - datetime: '2018-01-01'
+    source: entsoe.eu
+    value: 1492.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 2203.0
   hydro storage:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   nuclear:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   oil:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 97.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 97.0
   solar:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
-    - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 5.0
-    - datetime: '2024-01-01'
-      source: entsoe.eu
-      value: 195.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
+  - datetime: '2023-01-01'
+    source: entsoe.eu
+    value: 5.0
+  - datetime: '2024-01-01'
+    source: entsoe.eu
+    value: 195.0
   unknown:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
   wind:
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 0.0
+  - datetime: '2021-01-01'
+    source: entsoe.eu
+    value: 0.0
 contributors:
-  - corradio
-  - nessie2013
-  - autipial
+- corradio
+- nessie2013
+- autipial
 country: AL
 country_name: Albania
 currency: ALL

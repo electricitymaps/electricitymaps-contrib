@@ -65,34 +65,6 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 889.87
   lifecycle:
-    battery discharge:
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 289.46
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 322.19
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 330.92
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 374.51
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 333.12
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 350.13
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 483.95
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 397.96
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 428.61
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -129,34 +101,6 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 289.46
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 322.19
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 330.92
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 374.51
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 333.12
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 350.13
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 483.95
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 441.06
-    - datetime: '2024-01-01'
-      source: Electricity Maps, 2024 average
-      value: 449.78
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

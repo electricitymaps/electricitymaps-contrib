@@ -465,28 +465,6 @@ delays:
   production: 48
 emissionFactors:
   direct:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 356.58538124958676
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 395.87585698070444
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 390.4120200382159
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 430.9875307935109
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 402.93609098694236
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 363.30442521652844
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 385.44064889984975
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -543,28 +521,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 356.58538124958676
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 395.87585698070444
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 390.4120200382159
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 430.9875307935109
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 402.93609098694236
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 363.30442521652844
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 385.44064889984975
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -579,34 +535,6 @@ emissionFactors:
       source: eGrid 2023
       value: 249.87130843532887
   lifecycle:
-    battery discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 436.84809804697466
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 479.48803925651623
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 464.37
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 505.25
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 488.33
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 447.76
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 464.22
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 465.66
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 432.22
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -667,34 +595,6 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
-    hydro discharge:
-    - datetime: '2015-01-01'
-      source: Electricity Maps, 2015 average
-      value: 436.84809804697466
-    - datetime: '2016-01-01'
-      source: Electricity Maps, 2016 average
-      value: 479.48803925651623
-    - datetime: '2017-01-01'
-      source: Electricity Maps, 2017 average
-      value: 464.37
-    - datetime: '2018-01-01'
-      source: Electricity Maps, 2018 average
-      value: 505.25
-    - datetime: '2019-01-01'
-      source: Electricity Maps, 2019 average
-      value: 488.33
-    - datetime: '2020-01-01'
-      source: Electricity Maps, 2020 average
-      value: 447.76
-    - datetime: '2021-01-01'
-      source: Electricity Maps, 2021 average
-      value: 464.22
-    - datetime: '2022-01-01'
-      source: Electricity Maps, 2022 average
-      value: 465.66
-    - datetime: '2023-01-01'
-      source: Electricity Maps, 2023 average
-      value: 432.22
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
