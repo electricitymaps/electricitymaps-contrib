@@ -152,15 +152,47 @@ emissionFactors:
   direct:
     battery discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 99.03
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 89.69
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 89.48
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 89.07
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 92.49
   lifecycle:
     battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 141.97
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 133.29
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 133.88
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 134.78
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 139.59
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

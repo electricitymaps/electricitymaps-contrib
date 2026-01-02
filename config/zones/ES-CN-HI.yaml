@@ -35,10 +35,30 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2022
       value: 426.61
     hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 348.45
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 310.64
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 180.84
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 242.56
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 195.08
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 210.58
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -90,10 +110,30 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 477.34
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 424.6
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 251.78
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 334.23
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 271.09
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 291.63
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

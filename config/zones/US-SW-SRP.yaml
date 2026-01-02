@@ -169,9 +169,17 @@ emissionFactors:
   direct:
     battery discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 236.92
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 230.77
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 228.62
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -230,9 +238,29 @@ emissionFactors:
       value: 28.739435464835893
     hydro discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 237.06
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 214.07
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 204.58
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 252.79
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 222.23
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 229.9
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -253,9 +281,17 @@ emissionFactors:
   lifecycle:
     battery discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 292.87
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 281.29
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 285.96
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -318,9 +354,29 @@ emissionFactors:
       value: 66.73943546483589
     hydro discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 302.69
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 269.32
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 257.42
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 312.62
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 273.76
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 280.73
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

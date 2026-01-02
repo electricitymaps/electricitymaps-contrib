@@ -207,6 +207,11 @@ delays:
   production: 6
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 141.07
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -239,9 +244,29 @@ emissionFactors:
       value: 408.56
     hydro discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 151.28
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 123.46
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 131.73
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 118.69
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 98.82
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 117.17
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -256,6 +281,11 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 889.87
   lifecycle:
+    battery discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 194.85
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -294,9 +324,29 @@ emissionFactors:
       value: 10.7
     hydro discharge:
     - _comment: used storage values greater than zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 210.12
+    - _comment: used storage values greater than zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 172.14
+    - _comment: used storage values greater than zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 184.44
+    - _comment: used storage values greater than zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 166.63
+    - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 141.5
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 166.75
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

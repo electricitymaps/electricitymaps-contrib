@@ -101,9 +101,29 @@ emissionFactors:
       value: 0.0
     hydro discharge:
     - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 6.47
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 4.0
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 5.04
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 5.99
+    - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 7.53
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 7.54
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -115,9 +135,29 @@ emissionFactors:
       value: 490.0
     hydro discharge:
     - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 29.14
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 25.88
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 27.13
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 28.11
+    - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 29.85
+    - _comment: used storage values greater than zero.
+      datetime: '2025-01-01'
+      source: Electricity Maps, 2025 zone average
+      value: 28.99
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
