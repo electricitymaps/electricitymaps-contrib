@@ -29,8 +29,7 @@ contributors:
 country: ES
 country_name: Spain
 currency: EUR
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2022 average

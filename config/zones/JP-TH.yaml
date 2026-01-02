@@ -26,8 +26,7 @@ country_name: Japan
 currency: JPY
 delays:
   production: 5
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

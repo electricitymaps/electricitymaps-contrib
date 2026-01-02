@@ -7,8 +7,7 @@ contributors:
 - FelixDQ
 country: MY
 country_name: Malaysia
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

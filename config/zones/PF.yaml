@@ -36,7 +36,6 @@ country_name: French Polynesia
 currency: XPF
 emissionFactors:
   direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2021 average

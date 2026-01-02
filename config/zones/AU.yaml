@@ -33,8 +33,7 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

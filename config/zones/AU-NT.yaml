@@ -20,8 +20,7 @@ delays:
   production: 96
 disclaimer: The Northern Territory power grid is not connected to the (Australian)
   National Electricity Market or Western Australia's grid.
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

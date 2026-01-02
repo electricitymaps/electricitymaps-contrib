@@ -86,7 +86,6 @@ delays:
   production: 5
 emissionFactors:
   direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

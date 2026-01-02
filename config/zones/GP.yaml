@@ -17,8 +17,7 @@ contributors:
 country: GP
 country_name: Guadeloupe
 currency: EUR
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2016 average

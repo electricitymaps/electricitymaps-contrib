@@ -119,8 +119,7 @@ country_name: Bangladesh
 currency: BDT
 delays:
   production: 10
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

@@ -20,8 +20,7 @@ contributors:
 country: PH
 country_name: Philippines
 currency: PHP
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

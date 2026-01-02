@@ -29,8 +29,7 @@ capacity:
 country: BB
 country_name: Barbados
 currency: BBD
-emissionFactors:
-  lifecycle: {}
+emissionFactors: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2024 average

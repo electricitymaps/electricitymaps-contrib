@@ -59,7 +59,6 @@ country_name: "R\xE9union"
 currency: EUR
 emissionFactors:
   direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2016 average
