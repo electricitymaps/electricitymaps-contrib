@@ -222,6 +222,11 @@ country_name: United States
 currency: USD
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 329.4
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -238,11 +243,21 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 70.87985131
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 332.02
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020
       value: 803.8986689
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 396.95
     biomass:
       datetime: '2020-01-01'
       source: eGrid 2020
@@ -259,6 +274,11 @@ emissionFactors:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014
       value: 108.87985131
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 399.08
     oil:
       datetime: '2021-01-01'
       source: eGrid 2020; IPCC 2014

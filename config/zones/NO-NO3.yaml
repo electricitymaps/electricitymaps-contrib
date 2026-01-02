@@ -99,6 +99,11 @@ emissionFactors:
       datetime: '2021-01-01'
       source: EU-ETS 2021
       value: 0.0
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 7.53
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -108,6 +113,11 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 490.0
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 29.85
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014

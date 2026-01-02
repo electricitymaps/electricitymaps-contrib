@@ -99,6 +99,19 @@ country_name: New Zealand
 currency: NZD
 delays:
   production: 6
+emissionFactors:
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 82.49
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 120.96
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

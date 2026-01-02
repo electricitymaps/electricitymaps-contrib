@@ -80,6 +80,19 @@ country_name: Australia
 currency: AUD
 delays:
   production: 96
+emissionFactors:
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 441.88
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 489.79
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

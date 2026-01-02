@@ -103,6 +103,19 @@ country_name: South Africa
 currency: ZAR
 delays:
   production: 96
+emissionFactors:
+  direct:
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 658.28
+  lifecycle:
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 715.53
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

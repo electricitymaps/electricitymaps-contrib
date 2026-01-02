@@ -258,6 +258,11 @@ delays:
   production: 48
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 298.46
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -315,6 +320,11 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023
       value: 28.739435464835893
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 179.13
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -333,6 +343,11 @@ emissionFactors:
       source: eGrid 2023
       value: 692.2365799135232
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 352.53
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -394,6 +409,11 @@ emissionFactors:
       datetime: '2023-01-01'
       source: eGrid 2023; IPCC 2014
       value: 66.73943546483589
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 213.14
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
