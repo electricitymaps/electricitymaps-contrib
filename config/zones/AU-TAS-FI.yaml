@@ -24,9 +24,6 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2021 average

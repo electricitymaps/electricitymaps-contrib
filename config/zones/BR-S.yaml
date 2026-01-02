@@ -32,9 +32,6 @@ delays:
   production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
   coal and oil.
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

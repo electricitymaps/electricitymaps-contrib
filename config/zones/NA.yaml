@@ -16,9 +16,6 @@ contributors:
 country: NA
 country_name: Namibia
 currency: NAD
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2018 average

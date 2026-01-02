@@ -127,9 +127,6 @@ country_name: Peru
 currency: PEN
 delays:
   production: 22
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

@@ -80,9 +80,6 @@ country_name: Australia
 currency: AUD
 delays:
   production: 96
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

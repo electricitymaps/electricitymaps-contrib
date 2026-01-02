@@ -72,9 +72,6 @@ contributors:
 country: AM
 country_name: Armenia
 currency: AMD
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2019 average

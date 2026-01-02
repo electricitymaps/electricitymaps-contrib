@@ -14,9 +14,6 @@ country_name: Hong Kong
 currency: HKD
 disclaimer: Real-time consumption and generation mix data is not available and is
   fully estimated.
-emissionFactors:
-  direct: {}
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average
