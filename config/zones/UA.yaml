@@ -28,15 +28,15 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
-      value: 270.84
+      value: 231.06
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 243.77
+      value: 197.61
     - _comment: used storage values greater than zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 229.98
+      value: 188.55
     unknown:
       _comment: estimated yearly share of solar & wind in this mixed renewable category
         based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable

@@ -863,19 +863,19 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 162.93
+      value: 164.74
     - _comment: used storage values equal to zero.
       datetime: '2023-01-01'
       source: Electricity Maps, 2023 zone average
-      value: 183.04
+      value: 182.77
     - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 205.92
+      value: 205.61
     - _comment: used storage values equal to zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 205.98
+      value: 208.79
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -950,27 +950,27 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
-      value: 251.91
+      value: 243.49
     - _comment: used storage values equal to zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 239.03
+      value: 238.98
     - _comment: used storage values equal to zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 235.33
+      value: 236.75
     - _comment: used storage values equal to zero.
       datetime: '2023-01-01'
       source: Electricity Maps, 2023 zone average
-      value: 260.67
+      value: 260.59
     - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 288.26
+      value: 288.12
     - _comment: used storage values equal to zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 287.08
+      value: 289.85
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

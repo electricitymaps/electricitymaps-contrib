@@ -135,7 +135,7 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 363.08
+      value: 354.28
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -222,7 +222,7 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 455.87
+      value: 449.6
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

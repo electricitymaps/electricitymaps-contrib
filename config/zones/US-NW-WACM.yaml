@@ -353,7 +353,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 660.87
+      value: 671.46
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020
@@ -432,7 +432,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 689.36
+      value: 723.56
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014
