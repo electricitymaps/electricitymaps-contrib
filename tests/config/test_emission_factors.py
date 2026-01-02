@@ -11,14 +11,17 @@ from electricitymap.contrib.config.emission_factors_lookup import (
 
 def test_all_emission_factor_error(snapshot):
     _, errors = get_emission_factors_with_metadata_all_years()
-    df = pd.DataFrame(errors).sort_values(
-        by=[
-            "mode",
-            "zone_key",
-            "dt",
-        ]
-    )
-    serialized = df.to_csv(index=False)
+    if errors:
+        df = pd.DataFrame(errors).sort_values(
+            by=[
+                "mode",
+                "zone_key",
+                "dt",
+            ]
+        )
+        serialized = df.to_csv(index=False)
+    else:
+        serialized = []
     assert snapshot == serialized
     assert not len(errors)
 
