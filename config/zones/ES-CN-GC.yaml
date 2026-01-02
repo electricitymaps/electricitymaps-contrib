@@ -35,6 +35,22 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 512.88
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 529.05
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 521.08
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 543.28
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 567.81
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -90,6 +106,22 @@ emissionFactors:
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
       value: 698.04
+    - _comment: used storage values equal to zero.
+      datetime: '2023-01-01'
+      source: Electricity Maps, 2023 zone average
+      value: 719.76
+    - _comment: used storage values equal to zero.
+      datetime: '2022-01-01'
+      source: Electricity Maps, 2022 zone average
+      value: 709.35
+    - _comment: used storage values equal to zero.
+      datetime: '2021-01-01'
+      source: Electricity Maps, 2021 zone average
+      value: 737.73
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 771.45
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

@@ -28,7 +28,18 @@ disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live d
   only for solar and unknown. We are working on improving the data quality for this
   zone.
 emissionFactors:
-  lifecycle: {}
+  direct:
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 365.09
+  lifecycle:
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2020-01-01'
+      source: Electricity Maps, 2020 zone average
+      value: 441.69
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
