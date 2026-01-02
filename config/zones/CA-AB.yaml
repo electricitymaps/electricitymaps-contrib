@@ -12,8 +12,18 @@ currency: CAD
 delays:
   production: 5
 emissionFactors:
-  direct: {}
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 313.76
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 418.35
     unknown:
       source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
         plant

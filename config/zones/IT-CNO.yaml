@@ -69,6 +69,11 @@ delays:
   production: 7
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 261.9
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -99,6 +104,11 @@ emissionFactors:
     - datetime: '2024-01-01'
       source: EU-ETS, ENTSO-E 2024
       value: 434.62
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 263.48
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -113,6 +123,11 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 905.42
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 343.91
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -149,6 +164,11 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 346.09
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

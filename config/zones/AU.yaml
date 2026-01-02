@@ -34,7 +34,28 @@ country: AU
 country_name: Australia
 currency: AUD
 emissionFactors:
-  lifecycle: {}
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 406.52
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 363.29
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 458.74
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 414.5
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

@@ -21,6 +21,11 @@ delays:
   production: 6
 emissionFactors:
   direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 370.72
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -65,6 +70,11 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 889.87
   lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 480.4
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014

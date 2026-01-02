@@ -30,6 +30,11 @@ emissionFactors:
     - datetime: '2022-01-01'
       source: EU-ETS, ENTSO-E 2022
       value: 426.61
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 560.55
     oil:
     - datetime: '2017-01-01'
       source: EU-ETS, REE
@@ -80,6 +85,11 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+    - _comment: used storage values equal to zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 761.18
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

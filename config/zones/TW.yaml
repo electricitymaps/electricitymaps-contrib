@@ -167,6 +167,29 @@ country_name: Taiwan
 currency: TWD
 delays:
   production: 5
+emissionFactors:
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 388.71
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 400.95
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 476.41
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 484.65
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

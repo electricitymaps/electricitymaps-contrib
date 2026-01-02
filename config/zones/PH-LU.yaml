@@ -27,7 +27,28 @@ country_name: Philippines
 delays:
   production: 25
 emissionFactors:
-  lifecycle: {}
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 548.1
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 579.61
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 620.93
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 653.54
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

@@ -63,12 +63,22 @@ currency: BAM
 delays:
   production: 72
 emissionFactors:
-  direct: {}
+  direct:
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 314.09
   lifecycle:
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
+    hydro discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 354.55
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

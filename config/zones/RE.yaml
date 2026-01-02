@@ -57,6 +57,19 @@ contributors:
 country: RE
 country_name: "R\xE9union"
 currency: EUR
+emissionFactors:
+  direct:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 316.62
+  lifecycle:
+    battery discharge:
+    - _comment: used storage values greater than zero.
+      datetime: '2024-01-01'
+      source: Electricity Maps, 2024 zone average
+      value: 468.03
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2016 average
