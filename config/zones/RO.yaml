@@ -180,7 +180,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 285.65
+      value: 287.45
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -229,7 +229,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 328.35
+      value: 330.15
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014

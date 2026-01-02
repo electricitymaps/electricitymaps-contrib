@@ -156,7 +156,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 174.26
+      value: 183.93
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -243,7 +243,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 219.88
+      value: 238.74
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

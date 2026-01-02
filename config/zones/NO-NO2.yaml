@@ -127,23 +127,23 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 41.74
+      value: 40.82
     - _comment: used storage values equal to zero.
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 55.1
+      value: 53.9
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
       source: Electricity Maps, 2023 zone average
-      value: 86.67
+      value: 84.4
     - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 36.45
+      value: 36.0
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 29.54
+      value: 29.36
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014

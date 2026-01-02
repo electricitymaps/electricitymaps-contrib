@@ -25,11 +25,11 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 273.1
+      value: 281.73
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 204.44
+      value: 210.83
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -80,11 +80,11 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 188.14
+      value: 193.24
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 199.63
+      value: 205.81
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -103,11 +103,11 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 357.51
+      value: 366.15
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 271.98
+      value: 278.37
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -164,11 +164,11 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 251.05
+      value: 256.14
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 267.07
+      value: 273.25
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
