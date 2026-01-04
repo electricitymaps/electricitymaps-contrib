@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import json
+import re
 import urllib
-from datetime import datetime, timedelta
+from datetime import datetime, date, timedelta
 from io import StringIO
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -22,7 +23,9 @@ from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
-MX_PRODUCTION_URL = "https://www.cenace.gob.mx/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx"
+MX_PRODUCTION_URL = (
+    "https://www.cenace.gob.mx/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx"
+)
 MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
 EXCHANGES = {
@@ -70,6 +73,11 @@ MAPPING = {
     "Termica Convencional": "unknown",
     "Turbo Gas": "gas",
 }
+MONTH_NAMES = {
+    1: "Enero", 2: "Febrero", 3: "Marzo", 4: "Abril", 5: "Mayo", 6: "Junio",
+    7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
+}
+MONTH_MAP = dict(map(reversed, MONTH_NAMES.items()))
 SOURCE = "cenace.gob.mx"
 TIMEZONE = ZoneInfo("America/Mexico_City")
 
@@ -84,52 +92,63 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     throws an exception data is not available.
     """
     session = session or Session()
-    # Set User-Agent header to avoid 403 errors
     session.headers.update({"User-Agent": "Mozilla/5.0"})
 
     response = session.get(MX_PRODUCTION_URL)
     response.raise_for_status()
-
-    # extract necessary viewstate, validation tokens
     soup = BeautifulSoup(response.content, "html.parser")
-    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
-    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
+    parsed_date = parse_month_from_html(soup)
 
-    # format date string for the requested date
-    datestr = dt.strftime("%m/%d/%Y")
-    client_state = {"minDateStr": f"{datestr} 0:0:0", "maxDateStr": f"{datestr} 0:0:0"}
+    dt = dt.date().replace(day=1)
 
-    # build parameters for POST request
+    if parsed_date < dt:
+        raise Exception(
+            f"{dt} has no data yet, try {parsed_date}"
+        )
+    elif parsed_date > dt:
+        datestr = dt.strftime("%m/%d/%Y")
+        client_state = {"minDateStr": f"{datestr}+0:0:0", "maxDateStr": f"{datestr}+0:0:0"}
+        parameters = {
+            "ctl00$ContentPlaceHolder1$ScriptManager1": "ctl00$ContentPlaceHolder1$UpdatePanel1|ctl00$ContentPlaceHolder1$FechaConsulta",
+            "ctl00_ContentPlaceHolder1_FechaConsulta_AD": json.dumps([["2016-04-30", 4, 30], [2025, 1, 1], [2025, 1, 1]]),
+            "ctl00$ContentPlaceHolder1$FechaConsulta": dt.strftime("%Y-%m-%d"),
+            "ctl00$ContentPlaceHolder1$FechaConsulta$dateInput": f"{MONTH_NAMES[dt.month]}+de+{dt.year}",
+            "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": json.dumps(client_state),
+            "ctl00_ContentPlaceHolder1_FechaConsulta_dateInput_ClientState": json.dumps({
+                "enabled": True,
+                "emptyMessage": "",
+                "validationText": f"{dt.strftime('%Y-%m-%d')}-00-00-00",
+                "valueAsString": f"{dt.strftime('%Y-%m-%d')}-00-00-00",
+                "minDateStr": "2016-04-30-00-00-00",
+                "maxDateStr": "2025-11-16-00-00-00",
+                "lastSetTextBoxValue": f"{MONTH_NAMES[dt.month]}+de+{dt.year}"
+            }),
+        }
+
+        response = submit_form(session, soup, parameters)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, "html.parser")
+        parsed_date = parse_month_from_html(soup)
+
+        if parsed_date != dt:
+            raise ParserException(
+                "CENACE.py",
+                f"request returned wrong date {parsed_date} expected {dt}"
+            )
+
+
+    pattern = re.compile(
+        r"^ctl00\$ContentPlaceHolder1\$GridRadResultado\$ctl00\$ctl\d+\$gbccolumn$"
+    )
+    image_inputs = soup.find_all("input", {"type": "image", "name": pattern})
+    button_name = image_inputs[-1]["name"]
     parameters = {
-        "__VIEWSTATE": viewstate,
-        "__EVENTVALIDATION": eventvalidation,
-        "ctl00_ContentPlaceHolder1_FechaConsulta_ClientState": json.dumps(client_state),
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.x": "0",
-        "ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn.y": "0",
+        f"{button_name}.x": "0",
+        f"{button_name}.y": "0"
     }
 
-    # urlencode the data in the weird form which is expected by the API
-    # plus signs MUST be contained in the date strings but MAY NOT be contained in the VIEWSTATE...
-    data = urllib.parse.urlencode(parameters, quote_via=urllib.parse.quote).replace(
-        "%2B0", "+0"
-    )
+    response = submit_form(session, soup, parameters)
 
-    response = session.post(
-        MX_PRODUCTION_URL,
-        data=data,
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-    )
-    response.raise_for_status()
-
-    # API returns normally status 200 but content type text/html when data is missing
-    if "Content-Type" not in response.headers or "text/html" in response.headers.get(
-        "Content-Type", ""
-    ):
-        return None
-
-    # skip non-csv data, the header starts with "Sistema"
     csv_str = response.text
     df = pd.read_csv(
         StringIO(csv_str),
@@ -156,6 +175,48 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     return df
 
 
+def submit_form(
+    session: Session,
+    soup: BeautifulSoup,
+    parameters,
+) -> Response:
+    # Extract VIEWSTATE and EVENTVALIDATION from the HTML
+    viewstate = soup.find("input", {"name": "__VIEWSTATE"})["value"]
+    viewstate_generator = soup.find("input", {"name": "__VIEWSTATEGENERATOR"})["value"]
+    eventvalidation = soup.find("input", {"name": "__EVENTVALIDATION"})["value"]
+
+    # Build form parameters
+    parameters.update({
+        "__VIEWSTATE": viewstate,
+        "__VIEWSTATEGENERATOR": viewstate_generator,
+        "__EVENTVALIDATION": eventvalidation,
+    })
+
+    # urlencode the data in the weird form which is expected by the API
+    # plus signs MUST be contained in the date strings but MAY NOT be contained in the VIEWSTATE...
+    data = urllib.parse.urlencode(parameters, quote_via=urllib.parse.quote).replace(
+        "%2B0", "+0"
+    )
+
+    response = session.post(
+        MX_PRODUCTION_URL,
+        data=data,
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    )
+    response.raise_for_status()
+
+    return response
+
+
+def parse_month_from_html(soup: BeautifulSoup) -> datetime.date:
+    text = soup.select_one('#ctl00_ContentPlaceHolder1_GridRadResultado_ctl00 tbody tr td')
+    month, year = text.get_text(strip=True).split()
+
+    return date(int(year), MONTH_MAP[month], 1)
+
+
 def convert_production(series: pd.Series) -> ProductionMix:
     mix = ProductionMix()
 
@@ -179,29 +240,14 @@ def fetch_production(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
 
-    original_target_datetime = target_datetime
-    df = None
-    up_to_months = 6  # Try up to 6 previous months
-    for _ in range(up_to_months):
-        cache_key = target_datetime.strftime("%Y-%m")
-        if cache_key in DATA_CACHE:
-            df = DATA_CACHE[cache_key]
-            break
-        else:
-            df = fetch_csv_for_date(target_datetime, session=session)
-            if df is not None and not df.empty:
-                DATA_CACHE[cache_key] = df
-                break
-            else:
-                logger.warning(f"No data found for {cache_key}. Trying previous month.")
-                target_datetime = (
-                    target_datetime.replace(day=1) - timedelta(days=1)
-                ).replace(day=1)
+    cache_key = target_datetime.strftime("%Y-%m")
 
-    if df is None or df.empty:
-        raise Exception(
-            f"No data found for {original_target_datetime}, or any previous {up_to_months} months."
-        )
+    # Check cache first
+    if cache_key in DATA_CACHE:
+        df = DATA_CACHE[cache_key]
+    else:
+        df = fetch_csv_for_date(target_datetime, session)
+        DATA_CACHE[cache_key] = df
 
     production = ProductionBreakdownList(logger)
     for _idx, series in df.iterrows():
