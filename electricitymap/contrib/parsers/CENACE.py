@@ -22,9 +22,8 @@ from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
-CAISO_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
-MX_PRODUCTION_URL = f"{CAISO_PROXY}/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx?host=https://www.cenace.gob.mx"
-MX_EXCHANGE_URL = f"{CAISO_PROXY}/Paginas/Publicas/Info/DemandaRegional.aspx?host=https://www.cenace.gob.mx"
+MX_PRODUCTION_URL = "https://www.cenace.gob.mx/Paginas/SIM/Reportes/EnergiaGeneradaTipoTec.aspx"
+MX_EXCHANGE_URL = "https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx"
 
 EXCHANGES = {
     "MX-NO->MX-NW": "IntercambioNTE-NOR",
@@ -92,6 +91,8 @@ def fetch_csv_for_date(dt, session: Session | None = None):
     throws an exception data is not available.
     """
     session = session or Session()
+    # Set User-Agent header to avoid 403 errors
+    session.headers.update({"User-Agent": "Mozilla/5.0"})
 
     response = session.get(MX_PRODUCTION_URL)
     response.raise_for_status()
