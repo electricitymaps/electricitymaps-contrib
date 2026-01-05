@@ -130,10 +130,10 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used non-null storage values
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 102.01
+      value: 87.74
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -179,10 +179,10 @@ emissionFactors:
       value: 889.87
   lifecycle:
     battery discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used non-null storage values
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 155.5
+      source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+      value: 120.74
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014

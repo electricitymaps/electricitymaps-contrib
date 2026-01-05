@@ -194,30 +194,30 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2024
       value: 415.69
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
-      value: 239.97
-    - _comment: used storage values equal to zero.
+      value: 0.0
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 253.41
-    - _comment: used storage values equal to zero.
+      value: 0.0
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 256.47
+      value: 0.0
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
       source: Electricity Maps, 2023 zone average
       value: 281.03
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 200.9
-    - _comment: used storage values equal to zero.
+      value: 0.0
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 172.81
+      value: 0.0
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -269,30 +269,30 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 261.08
-    - _comment: used storage values equal to zero.
+      source: Electricity Maps, 2020 zone average; IPCC 2014
+      value: 24.0
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average
-      value: 275.32
-    - _comment: used storage values equal to zero.
+      source: Electricity Maps, 2021 zone average; IPCC 2014
+      value: 24.0
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 282.55
+      source: Electricity Maps, 2022 zone average; IPCC 2014
+      value: 24.0
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average
-      value: 320.88
-    - _comment: used storage values equal to zero.
+      source: Electricity Maps, 2023 zone average; IPCC 2014
+      value: 305.03
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average
-      value: 231.43
-    - _comment: used storage values equal to zero.
+      source: Electricity Maps, 2024 zone average; IPCC 2014
+      value: 24.0
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 206.73
+      source: Electricity Maps, 2025 zone average; IPCC 2014
+      value: 24.0
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

@@ -302,8 +302,8 @@ emissionFactors:
     hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average
-      value: 927.67
+      source: Electricity Maps, 2024 zone average; IPCC 2014
+      value: 891.13
     oil:
     - datetime: '2020-01-01'
       source: eGrid 2020; IPCC 2014

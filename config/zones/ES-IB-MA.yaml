@@ -15,10 +15,10 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used non-null storage values
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 378.26
+      value: 378.29
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -38,10 +38,10 @@ emissionFactors:
       source: EU-ETS, ENTSO-E 2022
       value: 426.61
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2022-01-01'
       source: Electricity Maps, 2022 zone average
-      value: 378.26
+      value: 0.0
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -51,10 +51,10 @@ emissionFactors:
       value: 925.95
   lifecycle:
     battery discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used non-null storage values
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 492.81
+      source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+      value: 411.29
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -80,10 +80,10 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 492.81
+      source: Electricity Maps, 2022 zone average; IPCC 2014
+      value: 24.0
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
