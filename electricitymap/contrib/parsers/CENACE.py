@@ -77,13 +77,6 @@ TIMEZONE = ZoneInfo("America/Mexico_City")
 DATA_CACHE = {}
 
 
-def parse_date(date, hour):
-    tzoffset = tz.tzoffset("CST", -3600 * 6)
-    dt = datetime.strptime(date, "%d/%m/%Y")
-    dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
-    return dt
-
-
 def fetch_csv_for_date(dt, session: Session | None = None):
     """
     Fetches the whole month of the give datetime.
