@@ -83,7 +83,7 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 260.95
+      value: 287.88
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
@@ -161,7 +161,7 @@ emissionFactors:
     - _comment: used storage values equal to zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 399.22
+      value: 440.43
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
@@ -222,7 +222,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 253.6
+      value: 253.61
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
