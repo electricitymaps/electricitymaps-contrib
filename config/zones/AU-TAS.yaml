@@ -55,8 +55,8 @@ emissionFactors:
     battery discharge:
     - _comment: used storage values greater than zero.
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 21.58
+      source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+      value: 33.38
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

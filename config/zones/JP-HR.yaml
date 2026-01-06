@@ -30,24 +30,24 @@ disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live d
 emissionFactors:
   direct:
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2020-01-01'
       source: Electricity Maps, 2020 zone average
-      value: 365.09
-    - _comment: used storage values equal to zero.
+      value: 0.0
+    - _comment: used default IPCC 2014 value of 0.0
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 402.51
+      value: 0.0
   lifecycle:
     hydro discharge:
-    - _comment: used storage values equal to zero.
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 445.61
-    - _comment: used storage values equal to zero.
+      source: Electricity Maps, 2020 zone average; IPCC 2014
+      value: 24.0
+    - _comment: used default IPCC 2014 value of 24.0
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 488.19
+      source: Electricity Maps, 2025 zone average; IPCC 2014
+      value: 24.0
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average

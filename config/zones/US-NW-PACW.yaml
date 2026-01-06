@@ -263,7 +263,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
       source: Electricity Maps, 2021 zone average
-      value: 395.8
+      value: 395.79
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'
@@ -349,12 +349,12 @@ emissionFactors:
     hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 219.99
+      source: Electricity Maps, 2020 zone average; IPCC 2014
+      value: 211.81
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average
-      value: 447.07
+      source: Electricity Maps, 2021 zone average; IPCC 2014
+      value: 419.79
     oil:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

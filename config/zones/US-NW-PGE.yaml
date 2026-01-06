@@ -189,7 +189,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 213.1
+      value: 213.12
     biomass:
     - datetime: '2020-01-01'
       source: BEIS 2021
@@ -270,8 +270,8 @@ emissionFactors:
     battery discharge:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 274.46
+      source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+      value: 246.12
     biomass:
     - _comment: Mean of all US zones
       datetime: '2020-01-01'

@@ -46,37 +46,37 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
       source: Electricity Maps, 2024 zone average
-      value: 489.77
+      value: 489.78
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 463.6
+      value: 463.63
   lifecycle:
     battery discharge:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 534.14
+      source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+      value: 508.45
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average
-      value: 543.04
+      source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+      value: 516.32
     - _comment: used storage values greater than zero.
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 543.04
+      source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+      value: 516.32
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average
-      value: 517.16
+      source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+      value: 490.32
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average
-      value: 549.42
+      source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+      value: 522.78
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 521.68
+      source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+      value: 496.63
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2017 average
