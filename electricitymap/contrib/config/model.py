@@ -136,7 +136,6 @@ class Zone(StrictBaseModelWithAlias):
     delays: Delays | None
     disclaimer: str | None
     parsers: Parsers = Parsers()
-    price_displayed: bool | None
     generation_only: bool | None
     has_day_ahead_price_license: bool | None
     hide_day_ahead_price: bool | None
