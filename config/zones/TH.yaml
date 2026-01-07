@@ -322,7 +322,7 @@ isRenewable:
     _comment: Sum of renewable sources in TH unknown production
     value: 0.159
 
-hide_day_ahead_price: False
+hide_day_ahead_price: True
 has_day_ahead_price_license: False
 parsers:
   consumption: TH.fetch_consumption
