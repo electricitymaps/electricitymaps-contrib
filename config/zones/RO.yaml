@@ -533,7 +533,6 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
