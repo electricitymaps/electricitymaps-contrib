@@ -106,7 +106,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 410.59
+      value: 411.08
   lifecycle:
     battery discharge:
     - _comment: used storage values greater than zero.
@@ -132,7 +132,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-      value: 443.59
+      value: 444.08
 fallbackZoneMixes:
   powerOriginRatios:
   - _source: Electricity Maps, 2015 average

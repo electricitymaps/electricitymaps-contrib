@@ -246,7 +246,7 @@ emissionFactors:
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
       source: Electricity Maps, 2025 zone average
-      value: 206.6
+      value: 206.61
     oil:
     - datetime: '2021-01-01'
       source: EU-ETS, ENTSO-E 2021
@@ -300,28 +300,28 @@ emissionFactors:
     hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average; IPCC 2014
-      value: 288.14
+      source: Electricity Maps, 2020 zone average; UNECE 2022
+      value: 274.84
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average; IPCC 2014
-      value: 318.01
+      source: Electricity Maps, 2021 zone average; UNECE 2022
+      value: 304.71
     - _comment: used storage values greater than zero.
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average; IPCC 2014
-      value: 351.35
+      source: Electricity Maps, 2022 zone average; UNECE 2022
+      value: 338.05
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average; IPCC 2014
-      value: 282.08
+      source: Electricity Maps, 2023 zone average; UNECE 2022
+      value: 268.78
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average; IPCC 2014
-      value: 212.92
+      source: Electricity Maps, 2024 zone average; UNECE 2022
+      value: 199.62
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average; IPCC 2014
-      value: 230.6
+      source: Electricity Maps, 2025 zone average; UNECE 2022
+      value: 217.31
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
