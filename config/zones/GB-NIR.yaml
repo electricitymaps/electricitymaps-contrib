@@ -313,7 +313,7 @@ fallbackZoneMixes:
         wind: 0.29414430089880955
 
 hide_day_ahead_price: False
-has_day_ahead_price_license: False
+has_day_ahead_price_license: True
 parsers:
   consumption: SMARTGRIDDASHBOARD.fetch_consumption
   consumptionForecast: SMARTGRIDDASHBOARD.fetch_consumption_forecast

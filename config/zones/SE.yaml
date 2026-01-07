@@ -478,7 +478,7 @@ isRenewable:
       value: 0.9826
 
 hide_day_ahead_price: False
-has_day_ahead_price_license: False
+has_day_ahead_price_license: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
