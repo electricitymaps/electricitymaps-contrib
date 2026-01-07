@@ -234,7 +234,7 @@ isRenewable:
     value: 1
 
 hide_day_ahead_price: False
-has_day_ahead_price_license: False
+has_day_ahead_price_license: True
 parsers:
   production: GB_ORK.fetch_production
 region: Europe
