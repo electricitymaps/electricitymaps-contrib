@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "electricitymap-contrib"
-version = "1.1.19"
+version = "1.1.20"
 description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
