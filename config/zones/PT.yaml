@@ -312,28 +312,28 @@ emissionFactors:
     hydro discharge:
     - _comment: used storage values greater than zero.
       datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average; IPCC 2014
-      value: 190.7
+      source: Electricity Maps, 2020 zone average; UNECE 2022
+      value: 177.4
     - _comment: used storage values greater than zero.
       datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average; IPCC 2014
-      value: 151.8
+      source: Electricity Maps, 2021 zone average; UNECE 2022
+      value: 138.5
     - _comment: used storage values greater than zero.
       datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average; IPCC 2014
-      value: 173.33
+      source: Electricity Maps, 2022 zone average; UNECE 2022
+      value: 160.03
     - _comment: used storage values greater than zero.
       datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average; IPCC 2014
-      value: 116.36
+      source: Electricity Maps, 2023 zone average; UNECE 2022
+      value: 103.06
     - _comment: used storage values greater than zero.
       datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average; IPCC 2014
-      value: 76.74
+      source: Electricity Maps, 2024 zone average; UNECE 2022
+      value: 63.44
     - _comment: used storage values greater than zero.
       datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average; IPCC 2014
-      value: 90.92
+      source: Electricity Maps, 2025 zone average; UNECE 2022
+      value: 77.62
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
