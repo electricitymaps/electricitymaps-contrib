@@ -8,7 +8,7 @@ import { useEvents, useTrackEvent } from 'hooks/useTrackEvent';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { RouteParameters } from 'types';
 import { Charts, SpatialAggregate, TimeRange } from 'utils/constants';
@@ -18,6 +18,7 @@ import {
   selectedDatetimeStringAtom,
   spatialAggregateAtom,
   timeRangeAtom,
+  zoneDetailsScrollHashAtom,
 } from 'utils/state/atoms';
 
 import AreaGraphContainer from './AreaGraphContainer';
@@ -64,7 +65,8 @@ export default function ZoneDetails(): JSX.Element {
     }
   }, [hasSubZones, isSubZone, setViewMode]);
 
-  useScrollHashIntoView(isLoading);
+  useUpdateHashOnScroll(isLoading, 'panel-scroller');
+  useScrollHashIntoView(isLoading, 'panel-scroller');
 
   const datetimes = useMemo(
     () => Object.keys(data?.zoneStates || {})?.map((key) => new Date(key)),
@@ -96,7 +98,6 @@ export default function ZoneDetails(): JSX.Element {
               displayByEmissions={displayByEmissions}
             />
           )}
-
           <GridAlertsCard
             datetimes={datetimes}
             timeRange={timeRange}
@@ -204,20 +205,23 @@ function ZoneDetailsContent({
 
   return children as JSX.Element;
 }
-
-const useScrollHashIntoView = (isLoading: boolean) => {
-  const { hash, pathname, search } = useLocation();
-  const anchor = hash.toLowerCase();
+const useScrollHashIntoView = (isLoading: boolean, containerId: string) => {
+  //const { hash, pathname, search } = useLocation();
+  //const anchor = hash.toLowerCase();
+  const setZoneDetailsScrollHash = useSetAtom(zoneDetailsScrollHashAtom);
+  const zoneDetailsScrollHash = useAtomValue(zoneDetailsScrollHashAtom);
 
   useEffect(() => {
     if (isLoading) {
       return;
     }
-
+    const anchor = zoneDetailsScrollHash ? `#${zoneDetailsScrollHash}` : '';
     const chartIds = Object.values<string>(Charts);
     const anchorId = anchor.slice(1).toLowerCase(); // remove leading #
 
-    if (anchor && chartIds.includes(anchorId)) {
+    const sectionIds = getSectionIds(chartIds, containerId);
+    if (anchor && sectionIds.has(anchorId)) {
+      // scroll to same element as previously scrolled to, if it exists on this zone's details
       const anchorElement = anchor ? document.querySelector(anchor) : null;
       if (anchorElement) {
         anchorElement.scrollIntoView({
@@ -227,10 +231,61 @@ const useScrollHashIntoView = (isLoading: boolean) => {
       }
     } else {
       // If already scrolled to element, then reset scroll on re-navigation (i.e. clicking on new zone on map)
-      const element = document.querySelector('#panel-scroller');
+      const element = document.querySelector(`#${containerId}`);
       if (element) {
+        setZoneDetailsScrollHash('');
         element.scrollTop = 0;
       }
     }
-  }, [anchor, isLoading, pathname, search]);
+  }, [isLoading, containerId]); //removed anchor/scroll hash vars from deps else scrolling would run every time they changed
 };
+
+function useUpdateHashOnScroll(isLoading: boolean, containerId: string) {
+  const sectionIds = Object.values<string>(Charts);
+  const setZoneDetailsScrollHash = useSetAtom(zoneDetailsScrollHashAtom);
+  useEffect(() => {
+    const container = document.querySelector(`#${containerId}`);
+    if (isLoading || !container) {
+      return;
+    }
+    // monitor when elements enter or leave viewport
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        // get visible elements, sorted by visibility area ratio
+        if (visible.length > 0) {
+          const id = visible[0].target.id;
+          //window.history.replaceState(null, '', `#${id}`);
+          setZoneDetailsScrollHash(id);
+        }
+      },
+      { root: container }
+    );
+
+    for (const id of sectionIds) {
+      const element = document.querySelector(`#${id}`);
+      if (element) {
+        observer.observe(element);
+      }
+    }
+
+    return () => observer.disconnect();
+  }, [isLoading, sectionIds, containerId, setZoneDetailsScrollHash]);
+}
+
+function getSectionIds(sectionIds: string[], containerId: string): Set<string> {
+  const container = document.querySelector(`#${containerId}`);
+  const observedIds = new Set<string>();
+  if (!container) {
+    return observedIds;
+  }
+  for (const id of sectionIds) {
+    const element = document.querySelector(`#${id}`);
+    if (element) {
+      observedIds.add(id);
+    }
+  }
+  return observedIds;
+}
