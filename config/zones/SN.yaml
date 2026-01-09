@@ -59,10 +59,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 160.0
 country: SN
+country_name: Senegal
+currency: XOF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Dakar
 zone_name: Senegal
-country_name: Senegal
-currency: XOF

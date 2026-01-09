@@ -16,10 +16,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 100.0
 country: LR
+country_name: Liberia
+currency: LRD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Monrovia
 zone_name: Liberia
-country_name: Liberia
-currency: LRD

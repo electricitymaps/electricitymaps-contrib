@@ -16,8 +16,8 @@ capacity:
   solar: 2.96
   wind: 1.8
 country: CL
+country_name: Chile
+currency: CLP
 region: Americas
 timezone: America/Santiago
 zone_name: Sistema Eléctrico de Aysén
-country_name: Chile
-currency: CLP

@@ -31,10 +31,10 @@ capacity:
       source: IRENA.org
       value: 0.83
 country: FM
+country_name: Micronesia
+currency: USD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Chuuk
 zone_name: Micronesia
-country_name: Micronesia
-currency: USD

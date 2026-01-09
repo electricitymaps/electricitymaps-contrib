@@ -89,10 +89,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: KH
+country_name: Cambodia
+currency: KHR
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Phnom_Penh
 zone_name: Cambodia
-country_name: Cambodia
-currency: KHR

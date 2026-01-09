@@ -19,10 +19,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: HT
+country_name: Haiti
+currency: HTG
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Port-au-Prince
 zone_name: Haiti
-country_name: Haiti
-currency: HTG

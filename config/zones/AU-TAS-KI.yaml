@@ -1,8 +1,4 @@
-_comment:
-  'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf
-  . Oil capacity is said to run with blended biodiesel : hense the diesel capacity
-  is equal to the biomass capacity. Parsing for production is done on instantaneous
-  measurements : this is not reliable at all'
+_comment: 'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Oil capacity is said to run with blended biodiesel : hense the diesel capacity is equal to the biomass capacity. Parsing for production is done on instantaneous measurements : this is not reliable at all'
 bounding_box:
   - - 143.33716881600026
     - -40.627373955999886

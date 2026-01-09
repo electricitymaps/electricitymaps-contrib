@@ -55,7 +55,7 @@ contributors:
   - VIKTORVAV99
   - PaulRoms
 country: RE
-country_name: "R\xE9union"
+country_name: "Réunion"
 currency: EUR
 emissionFactors:
   direct:
@@ -254,4 +254,4 @@ parsers:
   production: FR_O.fetch_production
 region: Africa
 timezone: Indian/Reunion
-zone_name: "R\xE9union"
+zone_name: "Réunion"

@@ -24,14 +24,12 @@ emissionFactors:
   direct:
     unknown:
       - datetime: '2019-01-01'
-        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53%
-          gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 163.5
   lifecycle:
     unknown:
       - datetime: '2019-01-01'
-        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53%
-          gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 211.9
 fallbackZoneMixes:
   powerOriginRatios:

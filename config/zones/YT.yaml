@@ -28,9 +28,9 @@ capacity:
       source: IRENA.org
       value: 31.23
 country: YT
+country_name: Mayotte
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa
 timezone: Indian/Mayotte
 zone_name: Mayotte
-country_name: Mayotte

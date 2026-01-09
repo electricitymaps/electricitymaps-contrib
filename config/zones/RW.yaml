@@ -36,10 +36,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 70.0
 country: RW
+country_name: Rwanda
+currency: RWF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kigali
 zone_name: Rwanda
-country_name: Rwanda
-currency: RWF

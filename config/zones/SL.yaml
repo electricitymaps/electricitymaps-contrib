@@ -28,10 +28,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 140.0
 country: SL
+country_name: Sierra Leone
+currency: SLE
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Freetown
 zone_name: Sierra Leone
-country_name: Sierra Leone
-currency: SLE

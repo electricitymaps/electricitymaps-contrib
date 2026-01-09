@@ -39,10 +39,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 430.0
 country: GN
+country_name: Guinea
+currency: GNF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Conakry
 zone_name: Guinea
-country_name: Guinea
-currency: GNF

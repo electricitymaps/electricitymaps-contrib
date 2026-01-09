@@ -8,8 +8,8 @@ capacity:
   gas: 0.84
   solar: 1
 country: AU
+country_name: Australia
+currency: AUD
 region: Oceania
 timezone: Australia/Lord_Howe
 zone_name: Lord Howe Island
-country_name: Australia
-currency: AUD

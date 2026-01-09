@@ -101,8 +101,7 @@ contributors:
 country: BO
 country_name: Bolivia
 currency: BOB
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
-  coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 emissionFactors:
   direct:
     unknown:

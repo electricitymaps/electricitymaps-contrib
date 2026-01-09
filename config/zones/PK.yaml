@@ -124,10 +124,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 1850.0
 country: PK
+country_name: Pakistan
+currency: PKR
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Karachi
 zone_name: Pakistan
-country_name: Pakistan
-currency: PKR

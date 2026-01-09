@@ -108,9 +108,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes a third of the nuclear related electricity production
-  from the balancing authority South Carolina Electric & Gas Company. Read more on
-  the zone definition wiki page.
+disclaimer: This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas Company. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     biomass:

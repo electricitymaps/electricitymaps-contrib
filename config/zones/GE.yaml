@@ -1,5 +1,4 @@
-_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas
-  incl. 13 MW of coal
+_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal
 bounding_box:
   - - 39.9550085793
     - 41.0644446885

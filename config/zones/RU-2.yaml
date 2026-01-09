@@ -17,10 +17,7 @@ emissionFactors:
   direct: {}
   lifecycle:
     unknown:
-      _comment: 'Assumes weighted average emission factor based on estimated 2021
-        fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1%
-        * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323
-        2018-06-26 Table 7.3., p.80, Siberian zone'
+      _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1% * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone'
       source: assumes 86% coal, 9% gas, <1% oil, 5% other
       value: 784
 fallbackZoneMixes:

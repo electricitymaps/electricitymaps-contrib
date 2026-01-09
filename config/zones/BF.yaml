@@ -42,10 +42,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 400.0
 country: BF
+country_name: Burkina Faso
+currency: XOF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Ouagadougou
 zone_name: Burkina Faso
-country_name: Burkina Faso
-currency: XOF

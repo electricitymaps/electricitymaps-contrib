@@ -48,10 +48,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 610.0
 country: ML
+country_name: Mali
+currency: XOF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bamako
 zone_name: Mali
-country_name: Mali
-currency: XOF

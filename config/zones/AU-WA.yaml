@@ -69,8 +69,7 @@ country_name: Australia
 currency: AUD
 delays:
   production: 96
-disclaimer: Western Australia's power grid is not connected to the (Australian) National
-  Electricity Market or the Northern Territory grid.
+disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct:
     battery discharge:

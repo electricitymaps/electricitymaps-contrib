@@ -22,10 +22,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: TM
+country_name: Turkmenistan
+currency: TMT
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Ashgabat
 zone_name: Turkmenistan
-country_name: Turkmenistan
-currency: TMT

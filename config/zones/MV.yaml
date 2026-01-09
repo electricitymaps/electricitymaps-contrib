@@ -41,10 +41,10 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: MV
+country_name: Maldives
+currency: MVR
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Indian/Maldives
 zone_name: Maldives
-country_name: Maldives
-currency: MVR

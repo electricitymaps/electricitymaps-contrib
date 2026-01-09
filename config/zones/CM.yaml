@@ -30,10 +30,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 150.0
 country: CM
+country_name: Cameroon
+currency: XAF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Douala
 zone_name: Cameroon
-country_name: Cameroon
-currency: XAF

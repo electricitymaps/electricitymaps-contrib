@@ -47,8 +47,7 @@ country_name: Chile
 currency: CLP
 delays:
   production: 22
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
-  coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 emissionFactors:
   direct:
     unknown:
@@ -248,8 +247,6 @@ parsers:
 region: Americas
 sources:
   Electricity Maps, CEN:
-    link:
-      https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677
-      (average thermoelectric emission factors)
+    link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677 (average thermoelectric emission factors)
 timezone: America/Santiago
-zone_name: "Sistema El\xE9ctrico Nacional"
+zone_name: "Sistema Eléctrico Nacional"

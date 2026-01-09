@@ -45,10 +45,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
 country: NC
+country_name: New Caledonia
+currency: XPF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Noumea
 zone_name: New Caledonia
-country_name: New Caledonia
-currency: XPF

@@ -1,8 +1,8 @@
 country: TG
+country_name: Togo
+currency: XOF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lome
 zone_name: Togo
-country_name: Togo
-currency: XOF

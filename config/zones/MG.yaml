@@ -1,8 +1,8 @@
 country: MG
+country_name: Madagascar
+currency: MGA
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Antananarivo
 zone_name: Madagascar
-country_name: Madagascar
-currency: MGA

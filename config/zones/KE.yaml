@@ -79,10 +79,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 440.0
 country: KE
+country_name: Kenya
+currency: KES
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Nairobi
 zone_name: Kenya
-country_name: Kenya
-currency: KES

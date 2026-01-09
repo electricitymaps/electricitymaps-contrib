@@ -6,8 +6,8 @@ bounding_box:
 contributors:
   - VIKTORVAV99
 country: MC
+country_name: Monaco
+currency: EUR
 region: Europe
 timezone: Europe/Monaco
 zone_name: Monaco
-country_name: Monaco
-currency: EUR

@@ -82,14 +82,12 @@ emissionFactors:
   direct:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
-        7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
       value: 192.444
   lifecycle:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
-        7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
       value: 339.42599999999993
 fallbackZoneMixes:
   powerOriginRatios:

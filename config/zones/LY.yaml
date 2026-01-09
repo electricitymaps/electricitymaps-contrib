@@ -26,10 +26,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 2320.0
 country: LY
+country_name: Libya
+currency: LYD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tripoli
 zone_name: Libya
-country_name: Libya
-currency: LYD

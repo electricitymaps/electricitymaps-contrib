@@ -24,9 +24,7 @@ country_name: Japan
 currency: JPY
 delays:
   production: 5
-disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data
-  only for solar and unknown. We are working on improving the data quality for this
-  zone.
+disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   direct:
     hydro discharge:

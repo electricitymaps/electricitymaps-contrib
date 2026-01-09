@@ -57,8 +57,7 @@ emissionFactors:
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
         value: 316.86
     unknown:
-      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
-        plant
+      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
       value: 655
 fallbackZoneMixes:
   powerOriginRatios:

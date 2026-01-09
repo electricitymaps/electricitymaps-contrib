@@ -18,10 +18,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 80.0
 country: DJ
+country_name: Djibouti
+currency: DJF
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Djibouti
 zone_name: Djibouti
-country_name: Djibouti
-currency: DJF

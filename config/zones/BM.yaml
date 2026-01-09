@@ -6,10 +6,10 @@ bounding_box:
 contributors:
   - VIKTORVAV99
 country: BM
+country_name: Bermuda
+currency: BMD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Bermuda
 zone_name: Bermuda
-country_name: Bermuda
-currency: BMD

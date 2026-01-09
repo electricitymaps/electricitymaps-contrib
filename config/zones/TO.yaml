@@ -15,10 +15,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: TO
+country_name: Tonga
+currency: TOP
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Tongatapu
 zone_name: Tonga
-country_name: Tonga
-currency: TOP

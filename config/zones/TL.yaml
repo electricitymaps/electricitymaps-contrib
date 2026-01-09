@@ -16,9 +16,9 @@ capacity:
       source: Ember, Yearly electricity data
       value: 350.0
 country: TL
+country_name: Timor-Leste
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dili
 zone_name: Timor-Leste
-country_name: Timor-Leste

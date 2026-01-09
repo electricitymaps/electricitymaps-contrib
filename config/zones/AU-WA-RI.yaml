@@ -1,6 +1,4 @@
-_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
-  Parsing for production is done on instantaneous measurements : this is not reliable
-  at all'
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all'
 bounding_box:
   - - 114.94014224400007
     - -32.52536222099991

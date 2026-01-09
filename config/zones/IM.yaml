@@ -20,6 +20,8 @@ contributors:
   - AJDelusion
   - CHirch
 country: IM
+country_name: Isle of Man
+currency: GBP
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: https://www.manxutilities.im/media/2830/mu_annual-report_r9.pdf
@@ -38,5 +40,3 @@ fallbackZoneMixes:
 region: Europe
 timezone: Europe/Isle_of_Man
 zone_name: Isle of Man
-country_name: Isle of Man
-currency: GBP

@@ -86,15 +86,13 @@ country_name: El Salvador
 emissionFactors:
   direct:
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
-        factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 387.6470588235294
   lifecycle:
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
-        factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil

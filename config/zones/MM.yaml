@@ -72,10 +72,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: MM
+country_name: Myanmar
+currency: MMK
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Yangon
 zone_name: Myanmar
-country_name: Myanmar
-currency: MMK

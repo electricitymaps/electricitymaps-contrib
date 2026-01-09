@@ -31,10 +31,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: PY
+country_name: Paraguay
+currency: PYG
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Asuncion
 zone_name: Paraguay
-country_name: Paraguay
-currency: PYG

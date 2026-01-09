@@ -38,10 +38,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 100.0
 country: JM
+country_name: Jamaica
+currency: JMD
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Jamaica
 zone_name: Jamaica
-country_name: Jamaica
-currency: JMD

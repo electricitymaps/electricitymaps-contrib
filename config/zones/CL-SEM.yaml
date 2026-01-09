@@ -16,8 +16,8 @@ capacity:
   solar: 0
   wind: 12.9
 country: CL
+country_name: Chile
+currency: CLP
 region: Americas
 timezone: America/Punta_Arenas
 zone_name: Sistema Eléctrico de Magallanes
-country_name: Chile
-currency: CLP
