@@ -1,40 +1,40 @@
 bounding_box:
-- - 29.713302133021358
-  - -27.35642468684171
-- - 41.34420844208444
-  - -9.975337525172648
+  - - 29.713302133021358
+    - -27.35642468684171
+  - - 41.34420844208444
+    - -9.975337525172648
 capacity:
   biomass:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 70.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
   gas:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 410.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 660.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 410.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 660.0
   hydro:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 2190.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2190.0
   solar:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 40.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 50.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 90.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 100.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 50.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 90.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 100.0
 country: MZ
 country_name: Mozambique
 currency: MZN
@@ -42,36 +42,36 @@ emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.006391846142397455
-      coal: 0.0
-      gas: 0.1565248293372076
-      geothermal: 0.0
-      hydro: 0.8270095032266226
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.006442975204848462
-      solar: 0.003630665070320534
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.006503774148449837
-      coal: 0.0
-      gas: 0.1575577949534047
-      geothermal: 0.0
-      hydro: 0.8259654510216987
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.006499783922426881
-      solar: 0.003473283673712482
-      unknown: 0.0
-      wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006391846142397455
+        coal: 0.0
+        gas: 0.1565248293372076
+        geothermal: 0.0
+        hydro: 0.8270095032266226
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.006442975204848462
+        solar: 0.003630665070320534
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006503774148449837
+        coal: 0.0
+        gas: 0.1575577949534047
+        geothermal: 0.0
+        hydro: 0.8259654510216987
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.006499783922426881
+        solar: 0.003473283673712482
+        unknown: 0.0
+        wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

@@ -1,24 +1,24 @@
 bounding_box:
-- - 19.49864845733816
-  - -27.391288702037656
-- - 29.849293492934947
-  - -17.288170801589715
+  - - 19.49864845733816
+    - -27.391288702037656
+  - - 29.849293492934947
+    - -17.288170801589715
 capacity:
   coal:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 730.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 730.0
   solar:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 10.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
   unknown:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 70.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 70.0
 country: BW
 country_name: Botswana
 currency: BWP
@@ -26,36 +26,36 @@ emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.9619304874032478
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.03571381405585137
-      solar: 0.0023545054483024835
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.9619291778474338
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.035714912118947006
-      solar: 0.002355337032443158
-      unknown: 0.0
-      wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.9619304874032478
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.03571381405585137
+        solar: 0.0023545054483024835
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.9619291778474338
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.035714912118947006
+        solar: 0.002355337032443158
+        unknown: 0.0
+        wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

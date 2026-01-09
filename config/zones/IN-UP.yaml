@@ -1,8 +1,8 @@
 bounding_box:
-- - 76.5581702012937
-  - 23.411047268416667
-- - 85.11243777868054
-  - 30.902020574789645
+  - - 76.5581702012937
+    - 23.411047268416667
+  - - 85.11243777868054
+    - 30.902020574789645
 capacity:
   biomass: 2117.3
   coal: 24389
@@ -13,119 +13,119 @@ capacity:
   solar: 1840.3
   wind: 0
 contributors:
-- sahitya-pavurala
-- pierresegonne
-- gopikrishna1793
+  - sahitya-pavurala
+  - pierresegonne
+  - gopikrishna1793
 country: IN
 country_name: India
 currency: INR
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2015 average
-    datetime: '2015-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 5.7491707335275146e-05
-      coal: 0.8522704258451176
-      gas: 0.06249441219165629
-      geothermal: 0.0
-      hydro: 0.0603967042104172
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.024780855142426905
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2016 average
-    datetime: '2016-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 5.637556043821551e-05
-      coal: 0.8356742877212078
-      gas: 0.061277472478525434
-      geothermal: 0.0
-      hydro: 0.05922062123143805
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.04377116129066554
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2017 average
-    datetime: '2017-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 5.71138157577985e-05
-      coal: 0.8462001536566379
-      gas: 0.06204930628348994
-      geothermal: 0.0
-      hydro: 0.059966596747296916
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.031726833579913245
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2018 average
-    datetime: '2018-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.04376317743153851
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.004901085092889169
-      unknown: 0.9513357355500861
-      wind: 0.0
-  - _source: Electricity Maps, 2019 average
-    datetime: '2019-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.048076222387756815
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0037114742363852423
-      unknown: 0.9482123153683726
-      wind: 0.0
-  - _source: Electricity Maps, 2020 average
-    datetime: '2020-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0566120055563359
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.008319381331478082
-      unknown: 0.9350686046344332
-      wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.018906747695549193
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.14726885443688845
-      unknown: 0.8338243983672093
-      wind: 0.0
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.7491707335275146e-05
+        coal: 0.8522704258451176
+        gas: 0.06249441219165629
+        geothermal: 0.0
+        hydro: 0.0603967042104172
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.024780855142426905
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.637556043821551e-05
+        coal: 0.8356742877212078
+        gas: 0.061277472478525434
+        geothermal: 0.0
+        hydro: 0.05922062123143805
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.04377116129066554
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 5.71138157577985e-05
+        coal: 0.8462001536566379
+        gas: 0.06204930628348994
+        geothermal: 0.0
+        hydro: 0.059966596747296916
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.031726833579913245
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.04376317743153851
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.004901085092889169
+        unknown: 0.9513357355500861
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.048076222387756815
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0037114742363852423
+        unknown: 0.9482123153683726
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0566120055563359
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.008319381331478082
+        unknown: 0.9350686046344332
+        wind: 0.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.018906747695549193
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.14726885443688845
+        unknown: 0.8338243983672093
+        wind: 0.0
 parsers: {}
 region: Asia
 timezone: Asia/Kolkata
