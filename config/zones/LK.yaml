@@ -90,7 +90,6 @@ country_name: Sri Lanka
 currency: LKR
 delays:
   production: 30
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

@@ -45,7 +45,6 @@ contributors:
 country: OM
 country_name: Oman
 currency: OMR
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average

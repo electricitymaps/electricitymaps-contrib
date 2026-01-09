@@ -37,7 +37,6 @@ contributors:
 country: BH
 country_name: Bahrain
 currency: BHD
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average

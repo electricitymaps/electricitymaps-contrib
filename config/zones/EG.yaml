@@ -93,7 +93,6 @@ capacity:
 country: EG
 country_name: Egypt
 currency: EGP
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

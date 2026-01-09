@@ -64,7 +64,6 @@ capacity:
 country: GH
 country_name: Ghana
 currency: GHS
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

@@ -28,7 +28,6 @@ contributors:
 country: GF
 country_name: French Guiana
 currency: EUR
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average

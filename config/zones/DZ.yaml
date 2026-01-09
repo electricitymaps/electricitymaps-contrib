@@ -63,7 +63,6 @@ capacity:
 country: DZ
 country_name: Algeria
 currency: DZD
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

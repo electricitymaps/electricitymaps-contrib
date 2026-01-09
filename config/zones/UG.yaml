@@ -50,7 +50,6 @@ capacity:
 country: UG
 country_name: Uganda
 currency: UGX
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

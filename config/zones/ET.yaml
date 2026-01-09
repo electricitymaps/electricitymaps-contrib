@@ -60,7 +60,6 @@ capacity:
 country: ET
 country_name: Ethiopia
 currency: ETB
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

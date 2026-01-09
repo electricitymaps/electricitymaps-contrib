@@ -73,7 +73,6 @@ contributors:
 country: MA
 country_name: Morocco
 currency: MAD
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

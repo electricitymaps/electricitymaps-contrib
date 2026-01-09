@@ -26,7 +26,6 @@ capacity:
 country: SZ
 country_name: Eswatini
 currency: SZL
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

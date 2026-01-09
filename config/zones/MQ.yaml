@@ -51,7 +51,6 @@ contributors:
 country: MQ
 country_name: Martinique
 currency: EUR
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average

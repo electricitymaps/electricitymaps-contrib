@@ -38,7 +38,6 @@ capacity:
 country: MZ
 country_name: Mozambique
 currency: MZN
-emissionFactors:
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average
