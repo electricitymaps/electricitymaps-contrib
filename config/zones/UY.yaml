@@ -62,6 +62,8 @@ contributors:
   - ZachEichen
   - ananyasharma20
 country: UY
+country_name: Uruguay
+currency: UYU
 delays:
   production: 7
 emissionFactors:
@@ -325,9 +327,8 @@ fallbackZoneMixes:
         solar: 0.03225785414410065
         unknown: 0.0002458679526720795
         wind: 0.3311423018301735
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: UY.fetch_consumption
   production: UY.fetch_production
@@ -335,5 +336,3 @@ parsers:
 region: Americas
 timezone: America/Montevideo
 zone_name: Uruguay
-country_name: Uruguay
-currency: UYU

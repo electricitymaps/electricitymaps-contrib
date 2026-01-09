@@ -100,6 +100,8 @@ contributors:
   - mlucchini
   - nessie2013
 country: CR
+country_name: Costa Rica
+currency: CRC
 delays:
   production: 7
 emissionFactors:
@@ -367,14 +369,11 @@ fallbackZoneMixes:
         solar: 0.0013911656652474905
         unknown: 0.0
         wind: 0.09941766316203218
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: CR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Costa_Rica
 zone_name: Costa Rica
-country_name: Costa Rica
-currency: CRC

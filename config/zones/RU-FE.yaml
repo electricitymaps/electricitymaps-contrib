@@ -4,9 +4,9 @@ bounding_box:
   - - 179.9
     - 71.6
 country: RU
+country_name: Russia
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Asia/Kamchatka
 zone_name: Far East
-country_name: Russia
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

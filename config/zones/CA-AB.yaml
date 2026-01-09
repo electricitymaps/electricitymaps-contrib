@@ -7,6 +7,8 @@ contributors:
   - mlucchini
   - alejandranavcas
 country: CA
+country_name: Canada
+currency: CAD
 delays:
   production: 5
 emissionFactors:
@@ -95,8 +97,7 @@ emissionFactors:
         source: Electricity Maps, 2024 average
         value: 402.2
     unknown:
-      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
-        plant
+      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
       value: 655
 fallbackZoneMixes:
   powerOriginRatios:
@@ -220,9 +221,8 @@ fallbackZoneMixes:
         solar: 0.03183536456739056
         unknown: 0.024948048115312323
         wind: 0.14374665671413908
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
@@ -231,5 +231,3 @@ parsers:
 region: Americas
 timezone: America/Edmonton
 zone_name: Alberta
-country_name: Canada
-currency: CAD

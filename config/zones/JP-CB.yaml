@@ -21,10 +21,11 @@ contributors:
   - wobniarin
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
-disclaimer: The data provided for solar power production is suspected to be too high
-  (source; Chubu Electric Power Co.,Inc.).
+disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -78,13 +79,11 @@ emissionFactors:
         source: Electricity Maps, 2024 average
         value: 480.02
     unknown:
-      _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018
-        Chubu Electric report'
+      _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018 Chubu Electric report'
       _url:
         - https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
         - http://denki-yoho.chuden.jp/denki_yoho_content_data/areabalance_current_term.csv
-      source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas,
-        9% hydro and wind
+      source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas, 9% hydro and wind
       value: 538
 fallbackZoneMixes:
   powerOriginRatios:
@@ -208,9 +207,8 @@ fallbackZoneMixes:
         solar: 0.12244614660850632
         unknown: 0.003769750267899515
         wind: 0.004048155359128435
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -222,5 +220,3 @@ sources:
     link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
 timezone: Asia/Tokyo
 zone_name: Chūbu
-country_name: Japan
-currency: JPY

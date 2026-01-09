@@ -19,13 +19,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 30.0
 country: MR
-
-hide_day_ahead_price: False
+country_name: Mauritania
+currency: MRU
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Nouakchott
 zone_name: Mauritania
-country_name: Mauritania
-currency: MRU

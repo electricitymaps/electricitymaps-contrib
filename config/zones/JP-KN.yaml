@@ -19,6 +19,8 @@ contributors:
   - kongkille
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
 emissionFactors:
@@ -267,9 +269,8 @@ fallbackZoneMixes:
         solar: 0.07460594186010626
         unknown: 0.030073678811974553
         wind: 0.002427072768801394
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -278,5 +279,3 @@ parsers:
 region: Asia
 timezone: Asia/Tokyo
 zone_name: Kansai
-country_name: Japan
-currency: JPY

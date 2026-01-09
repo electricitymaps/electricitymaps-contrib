@@ -16,6 +16,8 @@ contributors:
   - hectorespert
   - gopikrishna1793
 country: IN
+country_name: India
+currency: INR
 emissionFactors:
   direct:
     battery discharge:
@@ -97,8 +99,7 @@ emissionFactors:
         value: 443.23
     unknown:
       _comment: calculated 20% nuclear, 80% thermal (coal)
-      source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC
-        2018-2019 derived calculation for Karnataka
+      source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC 2018-2019 derived calculation for Karnataka
       value: 658.4
 fallbackZoneMixes:
   powerOriginRatios:
@@ -207,9 +208,8 @@ fallbackZoneMixes:
         solar: 0.1367409665303756
         unknown: 0.3069428488851126
         wind: 0.1271854795574422
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: IN_KA.fetch_consumption
   production: IN_KA.fetch_production
@@ -221,5 +221,3 @@ sources:
     link: http://srldc.org/2018-19srallocation.aspx
 timezone: Asia/Kolkata
 zone_name: Unknown
-country_name: India
-currency: INR

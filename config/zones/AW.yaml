@@ -25,6 +25,8 @@ capacity:
 contributors:
   - pascalheraud
 country: AW
+country_name: Aruba
+currency: AWG
 emissionFactors:
   direct:
     battery discharge:
@@ -205,14 +207,11 @@ fallbackZoneMixes:
         solar: 0.006176899034154593
         unknown: 0.0015510181027602445
         wind: 0.10858758715681341
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: AW.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Aruba
 zone_name: Aruba
-country_name: Aruba
-currency: AWG

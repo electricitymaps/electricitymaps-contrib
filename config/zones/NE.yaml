@@ -31,13 +31,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 390.0
 country: NE
-
-hide_day_ahead_price: False
+country_name: Niger
+currency: XOF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Niamey
 zone_name: Niger
-country_name: Niger
-currency: XOF

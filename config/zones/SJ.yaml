@@ -1,9 +1,8 @@
 country: SJ
+country_name: Svalbard and Jan Mayen
+currency: NOK
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Arctic/Longyearbyen
 zone_name: Svalbard and Jan Mayen
-country_name: Svalbard and Jan Mayen
-currency: NOK
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -12,6 +12,8 @@ contributors:
   - systemcatch
   - alixunderplatz
 country: RU
+country_name: Russia
+currency: RUB
 delays:
   production: 6
 emissionFactors:
@@ -94,11 +96,7 @@ emissionFactors:
         source: Electricity Maps, 2024 average
         value: 357.99
     unknown:
-      _comment: 'Assumes weighted average emission factor based on estimated 2021
-        fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0%
-        * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323
-        2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South,
-        Ural'
+      _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural'
       source: assumes 89% gas, 7% coal, <1% oil, 4% other
       value: 517
 fallbackZoneMixes:
@@ -223,13 +221,10 @@ fallbackZoneMixes:
         solar: 0.0022832634472736636
         unknown: 0.6684971552103295
         wind: 0.0003232508531472728
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: RU.fetch_production
 region: Europe
 timezone: Europe/Moscow
 zone_name: Europe-Ural
-country_name: Russia
-currency: RUB

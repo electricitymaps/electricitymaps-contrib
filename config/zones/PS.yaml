@@ -29,12 +29,11 @@ capacity:
       source: Ember, Yearly electricity data
       value: 190.0
 country: PS
-
-hide_day_ahead_price: False
+country_name: State of Palestine
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Gaza
 zone_name: State of Palestine
-country_name: State of Palestine

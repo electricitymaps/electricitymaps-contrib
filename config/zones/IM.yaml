@@ -20,6 +20,8 @@ contributors:
   - AJDelusion
   - CHirch
 country: IM
+country_name: Isle of Man
+currency: GBP
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: https://www.manxutilities.im/media/2830/mu_annual-report_r9.pdf
@@ -35,11 +37,8 @@ fallbackZoneMixes:
         hydro: 0.006
         oil: 0.003
         unknown: 0.041
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Isle_of_Man
 zone_name: Isle of Man
-country_name: Isle of Man
-currency: GBP
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

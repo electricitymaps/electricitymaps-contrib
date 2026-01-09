@@ -54,13 +54,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: KP
-
-hide_day_ahead_price: False
+country_name: North Korea
+currency: KPW
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Pyongyang
 zone_name: North Korea
-country_name: North Korea
-currency: KPW

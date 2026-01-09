@@ -201,10 +201,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: A third of the nuclear-related electricity production is attributed to
-  the balancing authority South Carolina Public Service Authority (US-CAR-SC) due
-  to an agreement between the two balancing authorities. Read more on the zone definition
-  wiki page.
+disclaimer: A third of the nuclear-related electricity production is attributed to the balancing authority South Carolina Public Service Authority (US-CAR-SC) due to an agreement between the two balancing authorities. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -313,12 +310,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 932.0702837
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 968.568923
     gas:
       - datetime: '2020-01-01'
@@ -518,9 +513,8 @@ fallbackZoneMixes:
         solar: 0.06997543369820834
         unknown: 0.00226721784513369
         wind: 0.00011411094674027499
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

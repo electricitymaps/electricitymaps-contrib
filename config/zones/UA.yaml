@@ -20,6 +20,8 @@ contributors:
   - MariusKroon
   - alixunderplatz
 country: UA
+country_name: Ukraine
+currency: UAH
 emissionFactors:
   direct:
     battery discharge:
@@ -94,11 +96,8 @@ emissionFactors:
         source: Electricity Maps, 2022 average
         value: 231.03
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category
-        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
-        mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
-        issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
       value: 28
 fallbackZoneMixes:
   powerOriginRatios:
@@ -192,15 +191,14 @@ fallbackZoneMixes:
         solar: 0.0003683239452081555
         unknown: 0.06410479689732768
         wind: 0.001572880539009946
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
 isRenewable:
   unknown:
     value: 1
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -217,5 +215,3 @@ sources:
     link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
 timezone: Europe/Kiev
 zone_name: Ukraine
-country_name: Ukraine
-currency: UAH

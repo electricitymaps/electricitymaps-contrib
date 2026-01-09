@@ -23,13 +23,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: GU
-
-hide_day_ahead_price: False
+country_name: Guam
+currency: USD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Guam
 zone_name: Guam
-country_name: Guam
-currency: USD

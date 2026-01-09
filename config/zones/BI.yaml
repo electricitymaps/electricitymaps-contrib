@@ -22,13 +22,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 50.0
 country: BI
-
-hide_day_ahead_price: False
+country_name: Burundi
+currency: BIF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bujumbura
 zone_name: Burundi
-country_name: Burundi
-currency: BIF

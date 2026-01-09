@@ -23,6 +23,7 @@ contributors:
   - pierresegonne
   - xomanuel
 country: PH
+country_name: Philippines
 delays:
   production: 25
 emissionFactors:
@@ -199,12 +200,10 @@ fallbackZoneMixes:
         solar: 0.020418652513402993
         unknown: 0.054426137887670575
         wind: 0.01113649280728119
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IEMOP.fetch_production
 region: Asia
 timezone: Asia/Manila
 zone_name: Luzon
-country_name: Philippines

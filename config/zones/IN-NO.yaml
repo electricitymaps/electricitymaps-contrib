@@ -48,6 +48,8 @@ contributors:
   - willbeaufoy
   - mathilde-daugy
 country: IN
+country_name: India
+currency: INR
 delays:
   production: 120
 emissionFactors:
@@ -210,15 +212,14 @@ fallbackZoneMixes:
         solar: 0.10640189695651557
         unknown: 0.006269657448041951
         wind: 0.0008745467698962447
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 0.92
 isRenewable:
   unknown:
     value: 0.92
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
@@ -226,5 +227,3 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Northern India
-country_name: India
-currency: INR

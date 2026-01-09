@@ -50,6 +50,8 @@ contributors:
   - SNPerkin
   - nessie2013
 country: IS
+country_name: Iceland
+currency: ISK
 delays:
   production: 5
 emissionFactors:
@@ -267,9 +269,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: amper_landsnet.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -279,5 +280,3 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Atlantic/Reykjavik
 zone_name: Iceland
-country_name: Iceland
-currency: ISK

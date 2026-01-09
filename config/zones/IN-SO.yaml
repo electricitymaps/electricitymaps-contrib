@@ -44,6 +44,8 @@ contributors:
   - gopikrishna1793
   - unitrium
 country: IN
+country_name: India
+currency: INR
 delays:
   production: 120
 emissionFactors:
@@ -229,15 +231,14 @@ fallbackZoneMixes:
         solar: 0.11570950697748413
         unknown: 0.004660179852160788
         wind: 0.07570566354166786
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 0.92
 isRenewable:
   unknown:
     value: 0.92
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
@@ -245,5 +246,3 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Southern India
-country_name: India
-currency: INR

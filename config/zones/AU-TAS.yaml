@@ -40,6 +40,8 @@ contributors:
   - corradio
   - alejandranavcas
 country: AU
+country_name: Australia
+currency: AUD
 delays:
   production: 96
 emissionFactors:
@@ -303,9 +305,8 @@ fallbackZoneMixes:
         solar: 0.07151092912874732
         unknown: 0.0
         wind: 0.2039048715577342
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
@@ -314,5 +315,3 @@ parsers:
 region: Oceania
 timezone: Australia/Hobart
 zone_name: Tasmania
-country_name: Australia
-currency: AUD

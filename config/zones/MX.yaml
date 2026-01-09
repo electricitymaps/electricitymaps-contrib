@@ -128,30 +128,25 @@ contributors:
   - tuxity
   - consideRatio
 country: MX
+country_name: Mexico
+currency: MXN
 delays:
   production: 1080
 emissionFactors:
   direct:
     unknown:
-      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
-          values.
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014 values.
         datetime: '2020-01-01'
-        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
-          2020, IEA, Paris
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris
         value: 305
   lifecycle:
     unknown:
-      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2%
-          coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014
-          values.
+      - comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014 values.
         datetime: '2020-01-01'
-        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and
-          2020, IEA, Paris
+        source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris
         value: 411
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -161,5 +156,3 @@ sources:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
 timezone: America/Mexico_City
 zone_name: Mexico
-country_name: Mexico
-currency: MXN

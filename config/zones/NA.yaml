@@ -14,6 +14,8 @@ contributors:
   - jarek
   - alixunderplatz
 country: NA
+country_name: Namibia
+currency: NAD
 emissionFactors:
   direct:
     battery discharge:
@@ -77,11 +79,8 @@ fallbackZoneMixes:
         solar: 0.17650734047230604
         unknown: 0.0
         wind: 0.018079403291716912
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Africa
 timezone: Africa/Windhoek
 zone_name: Namibia
-country_name: Namibia
-currency: NAD
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -51,6 +51,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 250.0
 country: TN
+country_name: Tunisia
+currency: TND
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -99,13 +101,10 @@ fallbackZoneMixes:
         solar: 0.014851571340234765
         unknown: 0.009993849327866806
         wind: 0.01516080650910127
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Tunis
 zone_name: Tunisia
-country_name: Tunisia
-currency: TND

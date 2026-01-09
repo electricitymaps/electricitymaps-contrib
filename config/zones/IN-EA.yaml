@@ -42,6 +42,8 @@ capacity:
 contributors:
   - unitrium
 country: IN
+country_name: India
+currency: INR
 delays:
   production: 120
 emissionFactors:
@@ -218,9 +220,8 @@ fallbackZoneMixes:
         solar: 0.0029855668766264275
         unknown: 0.0002543184591433458
         wind: 0.0007162874658442403
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
@@ -228,5 +229,3 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Eastern India
-country_name: India
-currency: INR

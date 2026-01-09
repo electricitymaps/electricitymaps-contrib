@@ -17,6 +17,8 @@ contributors:
   - gopikrishna1793
   - unitrium
 country: IN
+country_name: India
+currency: INR
 emissionFactors:
   direct:
     battery discharge:
@@ -200,9 +202,8 @@ fallbackZoneMixes:
         solar: 0.05470488852485778
         unknown: 0.003025741785798069
         wind: 0.018569211812215346
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IN.fetch_production
 region: Asia
@@ -214,5 +215,3 @@ subZoneNames:
   - IN-SO
 timezone: Asia/Kolkata
 zone_name: Mainland India
-country_name: India
-currency: INR

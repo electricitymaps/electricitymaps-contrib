@@ -18,6 +18,9 @@ capacity:
 contributors:
   - corradio
 country: 'NO'
+country_name: Norway
+# Electricity is traded in EUR
+currency: EUR
 emissionFactors:
   direct:
     battery discharge:
@@ -106,8 +109,7 @@ emissionFactors:
       value: 230
     coal:
       datetime: '2012-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; IPCC 2014
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."; IPCC 2014
       value: 883.79433
     gas:
       datetime: '2014-01-01'
@@ -300,9 +302,8 @@ fallbackZoneMixes:
         solar: 0.005032172878244702
         unknown: 0.004538204352072401
         wind: 0.12701186508811527
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: True
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -321,6 +322,3 @@ subZoneNames:
   - NO-NO5
 timezone: Europe/Oslo
 zone_name: Norway
-country_name: Norway
-# Electricity is traded in EUR
-currency: EUR

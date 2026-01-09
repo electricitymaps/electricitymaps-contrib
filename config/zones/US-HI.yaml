@@ -1,8 +1,7 @@
 country: US
+country_name: USA
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: Pacific/Honolulu
 zone_name: Hawaii
-country_name: USA
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
