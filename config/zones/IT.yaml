@@ -346,7 +346,7 @@ fallbackZoneMixes:
         wind: 0.09017689210992368
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-price_displayed: false
+
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
