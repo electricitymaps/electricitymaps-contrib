@@ -17,8 +17,6 @@ contributors:
   - lav-julien
 country: CA
 country_name: Canada
-country_name: Canada
-currency: CAD
 currency: CAD
 fallbackZoneMixes:
   powerOriginRatios:

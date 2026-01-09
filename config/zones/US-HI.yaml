@@ -1,6 +1,5 @@
 country: US
 country_name: USA
-country_name: USA
 emissionFactors:
   direct:
     biomass:

@@ -5,7 +5,6 @@ bounding_box:
     - 71.6
 country: RU
 country_name: Russia
-country_name: Russia
 emissionFactors:
   direct:
     unknown:

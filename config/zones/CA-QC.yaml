@@ -183,4 +183,4 @@ parsers:
   production: CA_QC.fetch_production
 region: Americas
 timezone: America/Toronto
-zone_name: "Québec"
+zone_name: 'Québec'

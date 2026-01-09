@@ -7,7 +7,6 @@ contributors:
   - FelixDQ
 country: MY
 country_name: Malaysia
-country_name: Malaysia
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

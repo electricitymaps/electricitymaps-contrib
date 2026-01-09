@@ -11,8 +11,6 @@ contributors:
   - nessie2013
 country: HK
 country_name: Hong Kong
-country_name: Hong Kong
-currency: HKD
 currency: HKD
 disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:

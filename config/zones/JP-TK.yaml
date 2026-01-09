@@ -181,4 +181,4 @@ parsers:
   production: JP.fetch_production
 region: Asia
 timezone: Asia/Tokyo
-zone_name: "Tōkyō"
+zone_name: 'Tōkyō'
