@@ -37,7 +37,6 @@ country: QA
 country_name: Qatar
 currency: QAR
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average

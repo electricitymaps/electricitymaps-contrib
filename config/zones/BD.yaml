@@ -120,7 +120,6 @@ currency: BDT
 delays:
   production: 10
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average

@@ -91,7 +91,6 @@ currency: LKR
 delays:
   production: 30
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

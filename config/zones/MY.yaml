@@ -86,7 +86,6 @@ country_name: Malaysia
 currency: MYR
 disclaimer: This zone is partially using fully estimated data from MY-EM
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

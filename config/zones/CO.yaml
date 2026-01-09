@@ -130,7 +130,6 @@ currency: COP
 delays:
   production: 84
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average

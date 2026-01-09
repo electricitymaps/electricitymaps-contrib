@@ -54,7 +54,6 @@ country: TN
 country_name: Tunisia
 currency: TND
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

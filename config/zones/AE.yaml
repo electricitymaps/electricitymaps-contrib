@@ -99,7 +99,6 @@ country: AE
 country_name: United Arab Emirates
 currency: AED
 emissionFactors:
-  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
