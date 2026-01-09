@@ -8,6 +8,8 @@ contributors:
 country: SA
 country_name: Saudi Arabia
 currency: SAR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

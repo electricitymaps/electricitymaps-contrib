@@ -88,6 +88,8 @@ fallbackZoneMixes:
         solar: 0.025727593324883617
         unknown: 0.8876911885022577
         wind: 0.06354042950942215
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity

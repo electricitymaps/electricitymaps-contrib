@@ -269,6 +269,8 @@ fallbackZoneMixes:
         solar: 5.013384228280907e-06
         unknown: 0.9997733243942888
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: True
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in TH unknown production

@@ -19,6 +19,7 @@ contributors:
   - corradio
 country: 'NO'
 country_name: Norway
+# Electricity is traded in EUR
 currency: EUR
 emissionFactors:
   direct:
@@ -241,6 +242,8 @@ fallbackZoneMixes:
         solar: 0.005032172878244702
         unknown: 0.004538204352072401
         wind: 0.12701186508811527
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -20,6 +20,7 @@ contributors:
   - Manu1400
 country: DK
 country_name: Denmark
+# Electricity is traded in EUR
 currency: EUR
 emissionFactors:
   direct:
@@ -248,6 +249,8 @@ fallbackZoneMixes:
         solar: 0.0934880730481194
         unknown: 0.010149763251266004
         wind: 0.42361865325317705
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

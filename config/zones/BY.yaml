@@ -98,6 +98,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.01
       unknown: 0.01
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

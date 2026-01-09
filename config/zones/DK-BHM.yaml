@@ -9,6 +9,7 @@ contributors:
   - corradio
 country: DK
 country_name: Denmark
+# Electricity is traded in EUR
 currency: EUR
 delays:
   production: 6
@@ -239,6 +240,8 @@ fallbackZoneMixes:
         solar: 0.16518645440178217
         unknown: 0.018417287743792213
         wind: 0.44424635536462476
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: ENTSOE.fetch_price
   production: BORNHOLM_POWERLAB.fetch_production

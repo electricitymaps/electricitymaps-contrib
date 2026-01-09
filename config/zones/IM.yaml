@@ -37,6 +37,8 @@ fallbackZoneMixes:
         hydro: 0.006
         oil: 0.003
         unknown: 0.041
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Isle_of_Man
 zone_name: Isle of Man

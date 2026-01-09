@@ -6,6 +6,8 @@ bounding_box:
 country: GI
 country_name: Gibraltar
 currency: GIP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Gibraltar
 zone_name: Gibraltar

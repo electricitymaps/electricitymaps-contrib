@@ -21,6 +21,8 @@ capacity:
 country: MR
 country_name: Mauritania
 currency: MRU
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa

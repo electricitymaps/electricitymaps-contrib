@@ -11,6 +11,7 @@ contributors:
   - dpkruczek
 country: SE
 country_name: Sweden
+# Electricity is traded in EUR
 currency: EUR
 emissionFactors:
   direct:
@@ -320,6 +321,8 @@ fallbackZoneMixes:
         solar: 0.012774182149296296
         unknown: 0.03539409961324375
         wind: 0.2412564947378273
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _comment: Sum of renewable sources in SE unknown production for 2015

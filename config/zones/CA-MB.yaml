@@ -23,6 +23,8 @@ fallbackZoneMixes:
       gas: 0.003
       hydro: 0.9715
       wind: 0.0254
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Winnipeg
 zone_name: Manitoba

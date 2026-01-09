@@ -27,6 +27,8 @@ capacity:
 country: UZ
 country_name: Uzbekistan
 currency: UZS
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Samarkand
 zone_name: Uzbekistan

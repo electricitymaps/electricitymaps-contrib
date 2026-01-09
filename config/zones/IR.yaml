@@ -116,6 +116,8 @@ capacity:
 country: IR
 country_name: Iran
 currency: IRR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

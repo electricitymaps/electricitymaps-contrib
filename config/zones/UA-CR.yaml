@@ -5,6 +5,8 @@ bounding_box:
     - 46.716899045472104
 country: UA
 country_name: Ukraine
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Kiev
 zone_name: Crimea

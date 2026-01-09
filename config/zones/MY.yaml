@@ -209,6 +209,8 @@ fallbackZoneMixes:
         solar: 0.02105938582460856
         unknown: 0.006868112880627442
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Asia

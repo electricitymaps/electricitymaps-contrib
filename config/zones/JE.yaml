@@ -1,6 +1,8 @@
 country: JE
 country_name: Jersey
 currency: GBP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Jersey
 zone_name: Jersey

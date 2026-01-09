@@ -9,6 +9,8 @@ capacity:
       value: 0.0
 country: PM
 country_name: Saint Pierre and Miquelon
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

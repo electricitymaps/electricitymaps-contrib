@@ -5,6 +5,7 @@ bounding_box:
     - 55.78995961500016
 country: RU
 country_name: Russia
+<<<<<<< HEAD
 emissionFactors:
   direct:
     unknown:
@@ -18,6 +19,8 @@ emissionFactors:
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 567.5
+=======
+>>>>>>> master
 fallbackZoneMixes:
   _comment: see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.
   _source: Energy security in Kaliningrad and geopolitics (2/2014)
@@ -26,6 +29,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.005
       wind: 0.015
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Kaliningrad
 zone_name: Kaliningrad

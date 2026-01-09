@@ -17,6 +17,8 @@ capacity:
 country: GS
 country_name: South Georgia and the South Sandwich Islands
 currency: GBP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: Atlantic/South_Georgia
 zone_name: South Georgia and the South Sandwich Islands

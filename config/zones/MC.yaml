@@ -8,6 +8,8 @@ contributors:
 country: MC
 country_name: Monaco
 currency: EUR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Monaco
 zone_name: Monaco

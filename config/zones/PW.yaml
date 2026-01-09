@@ -34,6 +34,8 @@ capacity:
 country: PW
 country_name: Palau
 currency: USD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Oceania

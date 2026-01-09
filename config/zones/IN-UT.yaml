@@ -19,6 +19,8 @@ contributors:
 country: IN
 country_name: India
 currency: INR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IN_UT.fetch_production
 region: Asia

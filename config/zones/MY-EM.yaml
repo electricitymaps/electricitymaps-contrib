@@ -131,6 +131,8 @@ fallbackZoneMixes:
         solar: 0.020782275643506914
         unknown: 0.019652527923841243
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Kuala_Lumpur
 zone_name: Borneo

@@ -181,6 +181,8 @@ fallbackZoneMixes:
         solar: 0.011057473179244885
         unknown: 0.0013893975489840634
         wind: 0.0041693000739283495
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 0.92

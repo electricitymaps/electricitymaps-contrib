@@ -56,6 +56,8 @@ capacity:
 country: KP
 country_name: North Korea
 currency: KPW
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

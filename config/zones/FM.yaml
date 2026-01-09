@@ -33,6 +33,8 @@ capacity:
 country: FM
 country_name: Micronesia
 currency: USD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania

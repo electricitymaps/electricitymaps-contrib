@@ -62,6 +62,7 @@ capacity:
       value: 4233.36
 country: SE
 country_name: Sweden
+# Electricity is traded in EUR
 currency: EUR
 delays:
   production: 7
@@ -332,7 +333,8 @@ fallbackZoneMixes:
         solar: 0.01062997963303864
         unknown: 0.03717101809816512
         wind: 0.2021775270304475
-has_day_ahead_price_license: true
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

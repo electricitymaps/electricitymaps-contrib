@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "electricitymap-contrib"
-version = "1.1.18"
+version = "1.1.20"
 description = ""
 license = "AGPL-3.0-or-later"
 authors = ["Electricity Maps <app@electricitymaps.com>"]
@@ -8,7 +8,7 @@ packages = [{ include = "electricitymap" }, { include = "config" }]
 
 [tool.poetry.dependencies]
 python = '>= 3.10, < 3.11'
-pydantic = "^1.9.0"
+pydantic = "^1.10.17"
 beautifulsoup4 = { version = "~4.6.0", optional = true }
 demjson3 = { version = "^3.0.5", optional = true }
 freezegun = { version = "^0.3.15", optional = true }

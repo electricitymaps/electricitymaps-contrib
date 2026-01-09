@@ -168,6 +168,8 @@ fallbackZoneMixes:
         solar: 0.12244614660850632
         unknown: 0.003769750267899515
         wind: 0.004048155359128435
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
@@ -178,4 +180,8 @@ sources:
   Chubu Electric Power 2022:
     link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
 timezone: Asia/Tokyo
+<<<<<<< HEAD
 zone_name: "Chūbu"
+=======
+zone_name: Chūbu
+>>>>>>> master

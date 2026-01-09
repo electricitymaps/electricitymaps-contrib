@@ -149,6 +149,8 @@ fallbackZoneMixes:
         solar: 0.0022832634472736636
         unknown: 0.6684971552103295
         wind: 0.0003232508531472728
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: RU.fetch_production
 region: Europe

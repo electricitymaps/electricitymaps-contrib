@@ -467,6 +467,8 @@ fallbackZoneMixes:
         solar: 0.04950457002421131
         unknown: 0.016567806203726613
         wind: 0.12557913883108035
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -475,7 +477,6 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

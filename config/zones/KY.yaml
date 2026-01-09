@@ -24,6 +24,8 @@ contributors:
 country: KY
 country_name: Cayman Islands
 currency: KYD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

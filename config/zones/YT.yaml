@@ -29,6 +29,8 @@ capacity:
       value: 31.23
 country: YT
 country_name: Mayotte
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Africa

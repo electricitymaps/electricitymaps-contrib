@@ -245,6 +245,8 @@ fallbackZoneMixes:
         solar: 0.07300763261212727
         unknown: 0.0028733995131826184
         wind: 9.474408704417814e-05
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in IL unknown production

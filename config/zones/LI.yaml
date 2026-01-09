@@ -24,6 +24,8 @@ emissionFactors:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
       value: 650.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 sources:
   IPCC 2014:

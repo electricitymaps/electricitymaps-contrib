@@ -28,6 +28,8 @@ capacity:
 country: LY
 country_name: Libya
 currency: LYD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
