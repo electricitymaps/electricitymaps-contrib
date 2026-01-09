@@ -1,53 +1,53 @@
 bounding_box:
-- - 13.683604363000086
-  - 35.301214911
-- - 15.067149285000113
-  - 36.5755882830001
+  - - 13.683604363000086
+    - 35.301214911
+  - - 15.067149285000113
+    - 36.5755882830001
 capacity:
   biomass:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 10.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 10.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
   gas:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 360.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 360.0
   solar:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 110.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 130.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 150.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 180.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 190.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 210.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 230.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 110.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 130.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 150.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 180.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 210.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 230.0
   unknown:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 190.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 190.0
   wind:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 0.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 0.0
 country: MT
 country_name: Malta
 currency: EUR
@@ -58,75 +58,75 @@ emissionFactors:
       source: BEIS 2021
       value: 0.0
     coal:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 1057.262766
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 1075.5
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023
-      value: 1048.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 1041.07
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 1057.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 1075.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 1048.2
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 1041.07
     gas:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 419.8221756
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 412.38
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023
-      value: 410.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 415.69
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 419.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 412.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 410.56
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 415.69
     oil:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021
-      value: 880.903938
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022
-      value: 925.95
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023
-      value: 641.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024
-      value: 889.87
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021
+        value: 880.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022
+        value: 925.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023
+        value: 641.08
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 889.87
   lifecycle:
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1117.262766
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022; IPCC 2014
-      value: 1135.5
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 1108.2
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1101.07
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1117.262766
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1135.5
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 1108.2
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1101.07
     gas:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 539.8221756
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022; IPCC 2014
-      value: 532.38
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 530.56
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 535.69
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 539.8221756
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 532.38
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 530.56
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 535.69
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -136,18 +136,18 @@ emissionFactors:
       source: UNECE 2022
       value: 5.13
     oil:
-    - datetime: '2021-01-01'
-      source: EU-ETS, ENTSO-E 2021; IPCC 2014
-      value: 1124.903938
-    - datetime: '2022-01-01'
-      source: EU-ETS, ENTSO-E 2022; IPCC 2014
-      value: 1169.95
-    - datetime: '2023-01-01'
-      source: EU-ETS, ENTSO-E 2023; IPCC 2014
-      value: 885.08
-    - datetime: '2024-01-01'
-      source: EU-ETS, ENTSO-E 2024; IPCC 2014
-      value: 1133.87
+      - datetime: '2021-01-01'
+        source: EU-ETS, ENTSO-E 2021; IPCC 2014
+        value: 1124.903938
+      - datetime: '2022-01-01'
+        source: EU-ETS, ENTSO-E 2022; IPCC 2014
+        value: 1169.95
+      - datetime: '2023-01-01'
+        source: EU-ETS, ENTSO-E 2023; IPCC 2014
+        value: 885.08
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1133.87
     wind:
       datetime: '2014-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -169,7 +169,8 @@ sources:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
     for 2022-2026" Wind Europe Proceedings (2021)
-  : link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+  : link:
+      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Malta
 zone_name: Malta

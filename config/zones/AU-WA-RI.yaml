@@ -2,10 +2,10 @@ _comment: 'Capacity data fetched from the test payload (capacity is sent in all 
   Parsing for production is done on instantaneous measurements : this is not reliable
   at all'
 bounding_box:
-- - 114.94014224400007
-  - -32.52536222099991
-- - 116.05219218900004
-  - -31.493806526999947
+  - - 114.94014224400007
+    - -32.52536222099991
+  - - 116.05219218900004
+    - -31.493806526999947
 capacity:
   battery storage: 0
   biomass: 0
@@ -19,110 +19,110 @@ capacity:
   solar: 0.6
   wind: 0.6
 contributors:
-- ajoga
+  - ajoga
 country: AU
 country_name: Australia
 currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-    - _comment: used non-null storage values
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average
-      value: 311.06
-    - _comment: used non-null storage values
-      datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average
-      value: 310.93
-    - _comment: used non-null storage values
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average
-      value: 310.92
-    - _comment: used non-null storage values
-      datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average
-      value: 304.5
-    - _comment: used non-null storage values
-      datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average
-      value: 322.11
-    - _comment: used non-null storage values
-      datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average
-      value: 305.26
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 311.06
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 310.93
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 310.92
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 304.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 322.11
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 305.26
   lifecycle:
     battery discharge:
-    - _comment: used non-null storage values
-      datetime: '2020-01-01'
-      source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-      value: 344.06
-    - _comment: used non-null storage values
-      datetime: '2021-01-01'
-      source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-      value: 343.93
-    - _comment: used non-null storage values
-      datetime: '2022-01-01'
-      source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-      value: 343.92
-    - _comment: used non-null storage values
-      datetime: '2023-01-01'
-      source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-      value: 337.5
-    - _comment: used non-null storage values
-      datetime: '2024-01-01'
-      source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-      value: 355.11
-    - _comment: used non-null storage values
-      datetime: '2025-01-01'
-      source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-      value: 338.26
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 344.06
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 343.93
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 343.92
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 337.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 355.11
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 338.26
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.7214348874672578
-      solar: 0.09655515040514011
-      unknown: 0.0
-      wind: 0.18206372128287882
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.7519217191707342
-      solar: 0.07833126006705768
-      unknown: 0.0
-      wind: 0.16976688744150792
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.7931552125610936
-      solar: 0.06026681890829423
-      unknown: 0.0
-      wind: 0.1463649654920588
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7214348874672578
+        solar: 0.09655515040514011
+        unknown: 0.0
+        wind: 0.18206372128287882
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7519217191707342
+        solar: 0.07833126006705768
+        unknown: 0.0
+        wind: 0.16976688744150792
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.7931552125610936
+        solar: 0.06026681890829423
+        unknown: 0.0
+        wind: 0.1463649654920588
 parsers:
   production: ajenti.fetch_production
 region: Oceania

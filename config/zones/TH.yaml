@@ -1,116 +1,116 @@
 bounding_box:
-- - 96.85140100100011
-  - 5.129890035000059
-- - 106.15099776200003
-  - 20.94500640900013
+  - - 96.85140100100011
+    - 5.129890035000059
+  - - 106.15099776200003
+    - 20.94500640900013
 capacity:
   biomass:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 3630.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 3880.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 3940.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 4070.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 4490.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 4500.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 4430.0
-  - datetime: '2024-01-01'
-    source: Ember, Yearly electricity data
-    value: 4350.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3630.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 3880.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 3940.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 4070.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 4490.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 4500.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 4430.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 4350.0
   coal:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 5780.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 6140.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 5780.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 6140.0
   gas:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 30120.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 31030.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 31640.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 31680.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 32930.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 35260.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 36110.0
-  - datetime: '2024-01-01'
-    source: Ember, Yearly electricity data
-    value: 38060.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 30120.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 31030.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 31640.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 31680.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 32930.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 35260.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 36110.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 38060.0
   hydro:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 3090.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 3110.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 3130.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 3090.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 3110.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3130.0
   solar:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 2700.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 2970.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 2990.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 3070.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 3190.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 3300.0
-  - datetime: '2024-01-01'
-    source: Ember, Yearly electricity data
-    value: 3380.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 2700.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 2970.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 2990.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 3070.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 3190.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 3300.0
+    - datetime: '2024-01-01'
+      source: Ember, Yearly electricity data
+      value: 3380.0
   wind:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 630.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 1100.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 1510.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 1550.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 1540.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 630.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 1100.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 1510.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 1550.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 1540.0
 contributors:
-- PPsyrius
+  - PPsyrius
 country: TH
 country_name: Thailand
 currency: THB
@@ -123,178 +123,178 @@ emissionFactors:
       value: 386.645
   lifecycle:
     unknown:
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '1998-01-01'
-      source: EPPO
-      value: 636
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '1999-01-01'
-      source: EPPO
-      value: 646
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2000-01-01'
-      source: EPPO
-      value: 634
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2001-01-01'
-      source: EPPO
-      value: 604
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2002-01-01'
-      source: EPPO
-      value: 587
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2003-01-01'
-      source: EPPO
-      value: 573
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2004-01-01'
-      source: EPPO
-      value: 581
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2005-01-01'
-      source: EPPO
-      value: 571
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2006-01-01'
-      source: EPPO
-      value: 571
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2007-01-01'
-      source: EPPO
-      value: 571
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2008-01-01'
-      source: EPPO
-      value: 570
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2009-01-01'
-      source: EPPO
-      value: 560
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2010-01-01'
-      source: EPPO
-      value: 551
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2011-01-01'
-      source: EPPO
-      value: 530
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2012-01-01'
-      source: EPPO
-      value: 530
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2013-01-01'
-      source: EPPO
-      value: 532
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2014-01-01'
-      source: EPPO
-      value: 532
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2015-01-01'
-      source: EPPO
-      value: 507
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2016-01-01'
-      source: EPPO
-      value: 493
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2017-01-01'
-      source: EPPO
-      value: 471
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2018-01-01'
-      source: EPPO
-      value: 459
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2019-01-01'
-      source: EPPO
-      value: 445
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2020-01-01'
-      source: EPPO
-      value: 442
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2021-01-01'
-      source: EPPO
-      value: 433
-    - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
-        SPP, and VSPP
-      datetime: '2022-01-01'
-      source: EPPO
-      value: 409
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '1998-01-01'
+        source: EPPO
+        value: 636
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '1999-01-01'
+        source: EPPO
+        value: 646
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2000-01-01'
+        source: EPPO
+        value: 634
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2001-01-01'
+        source: EPPO
+        value: 604
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2002-01-01'
+        source: EPPO
+        value: 587
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2003-01-01'
+        source: EPPO
+        value: 573
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2004-01-01'
+        source: EPPO
+        value: 581
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2005-01-01'
+        source: EPPO
+        value: 571
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2006-01-01'
+        source: EPPO
+        value: 571
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2007-01-01'
+        source: EPPO
+        value: 571
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2008-01-01'
+        source: EPPO
+        value: 570
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2009-01-01'
+        source: EPPO
+        value: 560
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2010-01-01'
+        source: EPPO
+        value: 551
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2011-01-01'
+        source: EPPO
+        value: 530
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2012-01-01'
+        source: EPPO
+        value: 530
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2013-01-01'
+        source: EPPO
+        value: 532
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2014-01-01'
+        source: EPPO
+        value: 532
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2015-01-01'
+        source: EPPO
+        value: 507
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2016-01-01'
+        source: EPPO
+        value: 493
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2017-01-01'
+        source: EPPO
+        value: 471
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2018-01-01'
+        source: EPPO
+        value: 459
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2019-01-01'
+        source: EPPO
+        value: 445
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2020-01-01'
+        source: EPPO
+        value: 442
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2021-01-01'
+        source: EPPO
+        value: 433
+      - _comment: Gross Energy Generation of EGAT and Net Energy Generation of IPP,
+          SPP, and VSPP
+        datetime: '2022-01-01'
+        source: EPPO
+        value: 409
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.00019062279068365786
-      gas: 0.00011949183793993087
-      geothermal: 0.0
-      hydro: 1.640272240246278e-05
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 8.154954341849907e-07
-      solar: 3.943078585650569e-06
-      unknown: 0.9996687141995129
-      wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.00018602577310054943
-      gas: 0.00011413283154735553
-      geothermal: 0.0
-      hydro: 1.2664593581843584e-05
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 2.0313229294225035e-07
-      solar: 4.161377939220945e-06
-      unknown: 0.9996828060905045
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0001241579477810437
-      gas: 8.42965397887372e-05
-      geothermal: 0.0
-      hydro: 1.3041621780993996e-05
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 1.4245980224075304e-07
-      solar: 5.013384228280907e-06
-      unknown: 0.9997733243942888
-      wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.00019062279068365786
+        gas: 0.00011949183793993087
+        geothermal: 0.0
+        hydro: 1.640272240246278e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 8.154954341849907e-07
+        solar: 3.943078585650569e-06
+        unknown: 0.9996687141995129
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.00018602577310054943
+        gas: 0.00011413283154735553
+        geothermal: 0.0
+        hydro: 1.2664593581843584e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 2.0313229294225035e-07
+        solar: 4.161377939220945e-06
+        unknown: 0.9996828060905045
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0001241579477810437
+        gas: 8.42965397887372e-05
+        geothermal: 0.0
+        hydro: 1.3041621780993996e-05
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 1.4245980224075304e-07
+        solar: 5.013384228280907e-06
+        unknown: 0.9997733243942888
+        wind: 0.0
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in TH unknown production

@@ -1,14 +1,14 @@
 bounding_box:
-- - 113.337331576
-  - 21.677069403000075
-- - 114.90129642000011
-  - 23.06394603200009
+  - - 113.337331576
+    - 21.677069403000075
+  - - 114.90129642000011
+    - 23.06394603200009
 capacity:
   coal: 2875
   gas: 3225
   oil: 210
 contributors:
-- nessie2013
+  - nessie2013
 country: HK
 country_name: Hong Kong
 currency: HKD
@@ -16,156 +16,156 @@ disclaimer: Real-time consumption and generation mix data is not available and i
   fully estimated.
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2015 average
-    datetime: '2015-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.240000005422131
-      gas: 0.4799998492230482
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.2800003069760345
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2016 average
-    datetime: '2016-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.24000009547662696
-      gas: 0.4799998709491746
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.27999986570320606
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2017 average
-    datetime: '2017-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.23999990182223815
-      gas: 0.4799999679809028
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.2800001301968592
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2018 average
-    datetime: '2018-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.23999982486226049
-      gas: 0.47999998118178144
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.28000019395595815
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2019 average
-    datetime: '2019-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.2400000834279275
-      gas: 0.480000150905341
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.2799997656667316
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2020 average
-    datetime: '2020-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.2400000525324899
-      gas: 0.4799999259769462
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.2800000323443843
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.2399999736696371
-      gas: 0.4799999308827975
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.27999959078227754
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.24000026494832005
-      gas: 0.4800000374070727
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.2800002122685371
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.23999998146597376
-      gas: 0.4799998066208824
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.27999969273710634
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.24000003301249048
-      gas: 0.47999989763692297
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.28000024359358405
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.240000005422131
+        gas: 0.4799998492230482
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2800003069760345
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000009547662696
+        gas: 0.4799998709491746
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.27999986570320606
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.23999990182223815
+        gas: 0.4799999679809028
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2800001301968592
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.23999982486226049
+        gas: 0.47999998118178144
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.28000019395595815
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.2400000834279275
+        gas: 0.480000150905341
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2799997656667316
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.2400000525324899
+        gas: 0.4799999259769462
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2800000323443843
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.2399999736696371
+        gas: 0.4799999308827975
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.27999959078227754
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000026494832005
+        gas: 0.4800000374070727
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.2800002122685371
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.23999998146597376
+        gas: 0.4799998066208824
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.27999969273710634
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.24000003301249048
+        gas: 0.47999989763692297
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.28000024359358405
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 region: Asia
 timezone: Asia/Hong_Kong
 zone_name: Hong Kong

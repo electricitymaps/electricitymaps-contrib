@@ -1,91 +1,91 @@
 bounding_box:
-- - 38.27451135200005
-  - 28.56313669900004
-- - 49.059255405000044
-  - 37.562000619000116
+  - - 38.27451135200005
+    - 28.56313669900004
+  - - 49.059255405000044
+    - 37.562000619000116
 capacity:
   gas:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 20080.0
-  - datetime: '2018-01-01'
-    source: Ember, Yearly electricity data
-    value: 20330.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 21670.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 25970.0
-  - datetime: '2021-01-01'
-    source: Ember, Yearly electricity data
-    value: 27510.0
-  - datetime: '2022-01-01'
-    source: Ember, Yearly electricity data
-    value: 32560.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 34030.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 20080.0
+    - datetime: '2018-01-01'
+      source: Ember, Yearly electricity data
+      value: 20330.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 21670.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 25970.0
+    - datetime: '2021-01-01'
+      source: Ember, Yearly electricity data
+      value: 27510.0
+    - datetime: '2022-01-01'
+      source: Ember, Yearly electricity data
+      value: 32560.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 34030.0
   hydro:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 1560.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 1560.0
   solar:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 40.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 40.0
   unknown:
-  - datetime: '2017-01-01'
-    source: Ember, Yearly electricity data
-    value: 10930.0
-  - datetime: '2019-01-01'
-    source: Ember, Yearly electricity data
-    value: 10990.0
-  - datetime: '2020-01-01'
-    source: Ember, Yearly electricity data
-    value: 11290.0
-  - datetime: '2023-01-01'
-    source: Ember, Yearly electricity data
-    value: 12120.0
+    - datetime: '2017-01-01'
+      source: Ember, Yearly electricity data
+      value: 10930.0
+    - datetime: '2019-01-01'
+      source: Ember, Yearly electricity data
+      value: 10990.0
+    - datetime: '2020-01-01'
+      source: Ember, Yearly electricity data
+      value: 11290.0
+    - datetime: '2023-01-01'
+      source: Ember, Yearly electricity data
+      value: 12120.0
 contributors:
-- alixunderplatz
-- systemcatch
-- byronwilliams
+  - alixunderplatz
+  - systemcatch
+  - byronwilliams
 country: IQ
 country_name: Iraq
 currency: IQD
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2018 average
-    datetime: '2018-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.6710121204328401
-      geothermal: 0.0
-      hydro: 0.01882576318584281
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.31016211133910787
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2019 average
-    datetime: '2019-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.6833794239764248
-      geothermal: 0.0
-      hydro: 0.05656541075842008
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.2600551558085288
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6710121204328401
+        geothermal: 0.0
+        hydro: 0.01882576318584281
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.31016211133910787
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.6833794239764248
+        geothermal: 0.0
+        hydro: 0.05656541075842008
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.2600551558085288
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

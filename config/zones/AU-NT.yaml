@@ -1,16 +1,16 @@
 bounding_box:
-- - 128.50011587536375
-  - -26.499911390797962
-- - 138.50018768629417
-  - -10.468357028999876
+  - - 128.50011587536375
+    - -26.499911390797962
+  - - 138.50018768629417
+    - -10.468357028999876
 capacity:
   biomass: 1.1
   gas: 471.4
   solar: 158
 contributors:
-- unitrium
-- amv213
-- alejandranavcas
+  - unitrium
+  - amv213
+  - alejandranavcas
 country: AU
 country_name: Australia
 currency: AUD
@@ -24,156 +24,156 @@ emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2015 average
-    datetime: '2015-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.004049743326004118
-      coal: 0.0
-      gas: 0.9959422736692883
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2016 average
-    datetime: '2016-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.004788824752322285
-      coal: 0.0
-      gas: 0.9952019194657983
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2017 average
-    datetime: '2017-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.00430745683466228
-      coal: 0.0
-      gas: 0.9956835177498281
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2018 average
-    datetime: '2018-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.005315187638489253
-      coal: 0.0
-      gas: 0.9946750893723232
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2019 average
-    datetime: '2019-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.005625550562775195
-      coal: 0.0
-      gas: 0.9943652042902233
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2020 average
-    datetime: '2020-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.005647638619022797
-      coal: 0.0
-      gas: 0.9943416591759038
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0
-      wind: 0.0
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.004599004567105944
-      coal: 0.0
-      gas: 0.9940717329269835
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.0013217675287944528
-      wind: 0.0
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.00448960362442088
-      coal: 0.0
-      gas: 0.993923909474167
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.001580552544332671
-      wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.006025746608255038
-      coal: 0.0
-      gas: 0.985530676989566
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.008444016543152163
-      wind: 0.0
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0056937251530382975
-      coal: 0.0
-      gas: 0.965386606333278
-      geothermal: 0.0
-      hydro: 0.0
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.028919092948344192
-      wind: 0.0
+    - _source: Electricity Maps, 2015 average
+      datetime: '2015-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004049743326004118
+        coal: 0.0
+        gas: 0.9959422736692883
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2016 average
+      datetime: '2016-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004788824752322285
+        coal: 0.0
+        gas: 0.9952019194657983
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2017 average
+      datetime: '2017-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.00430745683466228
+        coal: 0.0
+        gas: 0.9956835177498281
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.005315187638489253
+        coal: 0.0
+        gas: 0.9946750893723232
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.005625550562775195
+        coal: 0.0
+        gas: 0.9943652042902233
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.005647638619022797
+        coal: 0.0
+        gas: 0.9943416591759038
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0
+        wind: 0.0
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.004599004567105944
+        coal: 0.0
+        gas: 0.9940717329269835
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.0013217675287944528
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.00448960362442088
+        coal: 0.0
+        gas: 0.993923909474167
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.001580552544332671
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006025746608255038
+        coal: 0.0
+        gas: 0.985530676989566
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.008444016543152163
+        wind: 0.0
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0056937251530382975
+        coal: 0.0
+        gas: 0.965386606333278
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.028919092948344192
+        wind: 0.0
 parsers:
   consumption: NTESMO.fetch_consumption
   consumptionForecast: NTESMO.fetch_consumption_forecast

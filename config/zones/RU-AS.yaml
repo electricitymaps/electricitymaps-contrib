@@ -1,10 +1,10 @@
 bounding_box:
-- - 105.0401526228452
-  - 41.79511139500006
-- - 163.3469389183963
-  - 77.62579987200007
+  - - 105.0401526228452
+    - 41.79511139500006
+  - - 163.3469389183963
+    - 77.62579987200007
 contributors:
-- JeanBaptisteScellier
+  - JeanBaptisteScellier
 country: RU
 country_name: Russia
 emissionFactors:
@@ -19,66 +19,66 @@ emissionFactors:
       value: 687
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: Electricity Maps, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.4611166445604393
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.5388833384110678
-      wind: 0.0
-  - _source: Electricity Maps, 2022 average
-    datetime: '2022-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.42492744254245113
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.575072561586696
-      wind: 0.0
-  - _source: Electricity Maps, 2023 average
-    datetime: '2023-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.00012849397816715088
-      coal: 0.002788675319302609
-      gas: 0.00170255828164373
-      geothermal: 2.2610388100990278e-05
-      hydro: 0.381245734752958
-      hydro discharge: 0.0
-      nuclear: 0.0007485427985507015
-      oil: 0.0002201591381808626
-      solar: 0.00016120186972724132
-      unknown: 0.6126318585565093
-      wind: 0.0003501697657526562
-  - _source: Electricity Maps, 2024 average
-    datetime: '2024-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0003039259231162928
-      coal: 0.0065960315340739244
-      gas: 0.00402704404435321
-      geothermal: 5.347159743513013e-05
-      hydro: 0.3571421316152572
-      hydro discharge: 0.0
-      nuclear: 0.0017705220239168712
-      oil: 0.0005207337209316853
-      solar: 0.00038128775981619397
-      unknown: 0.6283766030237664
-      wind: 0.0008282519218127808
+    - _source: Electricity Maps, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.4611166445604393
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.5388833384110678
+        wind: 0.0
+    - _source: Electricity Maps, 2022 average
+      datetime: '2022-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.42492744254245113
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.575072561586696
+        wind: 0.0
+    - _source: Electricity Maps, 2023 average
+      datetime: '2023-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.00012849397816715088
+        coal: 0.002788675319302609
+        gas: 0.00170255828164373
+        geothermal: 2.2610388100990278e-05
+        hydro: 0.381245734752958
+        hydro discharge: 0.0
+        nuclear: 0.0007485427985507015
+        oil: 0.0002201591381808626
+        solar: 0.00016120186972724132
+        unknown: 0.6126318585565093
+        wind: 0.0003501697657526562
+    - _source: Electricity Maps, 2024 average
+      datetime: '2024-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0003039259231162928
+        coal: 0.0065960315340739244
+        gas: 0.00402704404435321
+        geothermal: 5.347159743513013e-05
+        hydro: 0.3571421316152572
+        hydro discharge: 0.0
+        nuclear: 0.0017705220239168712
+        oil: 0.0005207337209316853
+        solar: 0.00038128775981619397
+        unknown: 0.6283766030237664
+        wind: 0.0008282519218127808
 parsers:
   production: RU.fetch_production
 region: Europe
