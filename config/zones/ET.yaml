@@ -60,22 +60,6 @@ capacity:
 country: ET
 country_name: Ethiopia
 currency: ETB
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 23.72
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 23.72
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 23.72
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 23.72
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

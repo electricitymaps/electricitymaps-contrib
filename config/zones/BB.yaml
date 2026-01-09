@@ -29,16 +29,6 @@ capacity:
 country: BB
 country_name: Barbados
 currency: BBD
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 649.96
-    hydro discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 640.61
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2024 average

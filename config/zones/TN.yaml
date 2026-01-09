@@ -53,22 +53,6 @@ capacity:
 country: TN
 country_name: Tunisia
 currency: TND
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 478.2
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 478.14
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 478.2
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 478.14
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

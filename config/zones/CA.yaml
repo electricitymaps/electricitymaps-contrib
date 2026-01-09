@@ -146,8 +146,6 @@ capacity:
       source: Ember, Yearly electricity data
       value: 18380.0
 country: CA
-country_name: Canada
-currency: CAD
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 parsers:

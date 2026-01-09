@@ -33,58 +33,6 @@ contributors:
 country: CA
 country_name: Canada
 currency: CAD
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 525.39
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 525.34
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 526.6
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 526.55
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 526.5
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 525.35
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 523.52
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 520.58
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 525.39
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 525.34
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 526.6
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 526.55
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 526.5
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 525.35
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 523.52
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 520.58
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

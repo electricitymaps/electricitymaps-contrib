@@ -71,43 +71,6 @@ contributors:
 country: NG
 country_name: Nigeria
 currency: NGN
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 280.82249604736285
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 280.82249604736285
-  lifecycle:
-    battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 377.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 372.06
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 377.68
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 374.23
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 377.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 372.06
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 377.68
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 374.23
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average

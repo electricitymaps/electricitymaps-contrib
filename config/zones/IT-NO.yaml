@@ -66,16 +66,6 @@ capacity:
     - datetime: '2024-01-01'
       source: dati.terna.it
       value: 17660
-  wind:
-    - datetime: '2017-01-01'
-      source: dati.terna.it
-      value: 120
-    - datetime: '2020-01-01'
-      source: dati.terna.it
-      value: 170
-    - datetime: '2022-01-01'
-      source: dati.terna.it
-      value: 250
   unknown:
     - datetime: '2017-01-01'
       source: dati.terna.it
@@ -89,6 +79,16 @@ capacity:
     - datetime: '2020-01-01'
       source: dati.terna.it
       value: 2500
+  wind:
+    - datetime: '2017-01-01'
+      source: dati.terna.it
+      value: 120
+    - datetime: '2020-01-01'
+      source: dati.terna.it
+      value: 170
+    - datetime: '2022-01-01'
+      source: dati.terna.it
+      value: 250
 contributors:
   - corradio
   - nessie2013
@@ -100,27 +100,14 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 340.2755218243683
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 437.39595037387386
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 447.438040478242
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 389.17729008287597
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 345.3772168122807
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 315.85508023626954
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 374.4052265220053
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 320.6
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 212.66
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -135,6 +122,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
         value: 1001.28
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 972.66
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -145,28 +135,34 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
         value: 415.98
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 434.62
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 340.2755218243683
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 437.39595037387386
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 447.438040478242
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 389.17729008287597
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 345.3772168122807
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 315.85508023626954
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 374.4052265220053
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 236.12
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 258.09
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 287.0
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 232.81
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 186.05
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 209.14
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -177,38 +173,19 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
         value: 860.73
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 905.42
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 341.8
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 394.98
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 404.65
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 380.57
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 335.06
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 305.91
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 327.2
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 369.48
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 298.62
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 249.34
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 353.6
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 245.66
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -223,6 +200,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
         value: 1061.28
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1032.66
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -233,41 +213,38 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
         value: 535.98
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 554.62
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 334.05
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 406.49
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 432.45
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 378.91
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 323.63
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 293.48
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 347.83
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 354.8
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 270.16
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 208.12
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; UNECE 2022
+        value: 246.82
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; UNECE 2022
+        value: 268.79
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; UNECE 2022
+        value: 297.7
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; UNECE 2022
+        value: 243.51
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; UNECE 2022
+        value: 196.75
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; UNECE 2022
+        value: 219.84
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -282,6 +259,9 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
         value: 1104.73
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1149.42
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -451,6 +431,7 @@ parsers:
   price: ENTSOE.fetch_price
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

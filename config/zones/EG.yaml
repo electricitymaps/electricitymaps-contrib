@@ -93,22 +93,6 @@ capacity:
 country: EG
 country_name: Egypt
 currency: EGP
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 447.34
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 447.34
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 447.34
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 447.34
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

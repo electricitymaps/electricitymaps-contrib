@@ -26,22 +26,6 @@ capacity:
 country: SZ
 country_name: Eswatini
 currency: SZL
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 113.62
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 113.89
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 113.62
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 113.89
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

@@ -46,22 +46,6 @@ capacity:
 country: MU
 country_name: Mauritius
 currency: MUR
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 604.5
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 604.51
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 604.5
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 604.51
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

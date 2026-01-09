@@ -22,22 +22,6 @@ capacity:
 country: BW
 country_name: Botswana
 currency: BWP
-emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 812.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 812.1
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 812.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 812.1
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average

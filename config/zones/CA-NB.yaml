@@ -27,56 +27,6 @@ emissionFactors:
         source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 163.5
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 171.76
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 152.7
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 153.72
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 145.32
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 145.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 144.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 158.29
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 152.98
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 171.76
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 152.7
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 153.72
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 145.32
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 145.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 144.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 158.29
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 152.98
     unknown:
       - datetime: '2019-01-01'
         source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
