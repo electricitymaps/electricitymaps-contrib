@@ -7,7 +7,7 @@ authors = ["Electricity Maps <app@electricitymaps.com>"]
 packages = [{ include = "electricitymap" }, { include = "config" }]
 
 [tool.poetry.dependencies]
-python = '>= 3.10, < 3.11'
+python = '>= 3.10, < 3.14'
 pydantic = "^1.10.17"
 beautifulsoup4 = { version = "~4.6.0", optional = true }
 demjson3 = { version = "^3.0.5", optional = true }
@@ -43,22 +43,22 @@ test = 'scripts.tooling:test'
 
 [tool.poetry.extras]
 parsers = [
-    "beautifulsoup4",
-    "demjson3",
-    "eiapy",
-    "imageio",
-    "lxml",
-    "pandas",
-    "pytesseract",
-    "requests",
-    "opencv-python",
-    "xlrd",
-    "freezegun",
-    "signalr-client-threads",
-    "openpyxl",
-    "pydataxm",
-    "pycountry",
-    "odfpy",
+  "beautifulsoup4",
+  "demjson3",
+  "eiapy",
+  "imageio",
+  "lxml",
+  "pandas",
+  "pytesseract",
+  "requests",
+  "opencv-python",
+  "xlrd",
+  "freezegun",
+  "signalr-client-threads",
+  "openpyxl",
+  "pydataxm",
+  "pycountry",
+  "odfpy",
 ]
 
 scripts = ["xmltodict"]
@@ -73,11 +73,11 @@ click = "^8.0.0"
 
 [tool.pytest.ini_options]
 testpaths = [
-    "tests",
-    "electricitymap/contrib/parsers/tests",
-    "electricitymap/contrib/parsers/lib/tests",
-    "electricitymap/contrib/capacity_parsers/tests",
-    "electricitymap/contrib/lib/tests",
+  "tests",
+  "electricitymap/contrib/parsers/tests",
+  "electricitymap/contrib/parsers/lib/tests",
+  "electricitymap/contrib/capacity_parsers/tests",
+  "electricitymap/contrib/lib/tests",
 ]
 addopts = "--color=yes --durations=10"
 
@@ -89,28 +89,28 @@ build-backend = "poetry.core.masonry.api"
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".hg",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    "__pypackages__",
-    "_build",
-    "buck-out",
-    "build",
-    "dist",
-    "node_modules",
-    "venv",
-    "electricitymap/contrib/parsers/archived",
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+  "electricitymap/contrib/parsers/archived",
 ]
 
 # Same as Black.
@@ -124,22 +124,22 @@ target-version = "py310"
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
 select = [
-    "E4",
-    "E7",
-    "E9",
-    "F",
-    "UP",
-    "I",
-    "DTZ003",
-    "DTZ004",
-    "B",
-    "A",
-    "C4",
-    "SIM",
+  "E4",
+  "E7",
+  "E9",
+  "F",
+  "UP",
+  "I",
+  "DTZ003",
+  "DTZ004",
+  "B",
+  "A",
+  "C4",
+  "SIM",
 ]
 ignore = [
-    "B008", # This flags every parser we have, let's ignore it for now
-    "B017", # TODO: Fix this
+  "B008", # This flags every parser we have, let's ignore it for now
+  "B017", # TODO: Fix this
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
