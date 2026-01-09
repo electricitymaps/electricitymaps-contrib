@@ -330,6 +330,8 @@ fallbackZoneMixes:
         solar: 0.07650531319955396
         unknown: 0.05260567945226856
         wind: 0.04436559558550984
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   hydro discharge:
     _comment: Average share of electricity coming from low carbon sources in 2021
@@ -378,8 +380,6 @@ isRenewable:
     - datetime: '2022-01-01'
       source: SFOE, Electricity Maps
       value: 0.85
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -11,6 +11,8 @@ contributors:
   - nessie2013
 country: HK
 country_name: Hong Kong
+country_name: Hong Kong
+currency: HKD
 currency: HKD
 disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:
@@ -165,10 +167,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Hong_Kong
 zone_name: Hong Kong
-country_name: Hong Kong
-currency: HKD
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

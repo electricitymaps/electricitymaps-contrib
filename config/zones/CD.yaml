@@ -26,12 +26,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
 country: CD
-hide_day_ahead_price: False
+country_name: Democratic Republic of the Congo
+currency: CDF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kinshasa
 zone_name: Democratic Republic of the Congo
-country_name: Democratic Republic of the Congo
-currency: CDF

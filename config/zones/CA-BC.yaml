@@ -57,6 +57,8 @@ fallbackZoneMixes:
         solar: 0.004466797839768633
         unknown: 0.813708734346893
         wind: 0.03006242547855752
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - datetime: '2019-01-01'
@@ -67,8 +69,6 @@ isRenewable:
     - datetime: '2019-01-01'
       source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
       value: 0.94
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: CA_BC.fetch_consumption
 region: Americas

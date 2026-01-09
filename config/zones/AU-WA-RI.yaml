@@ -121,8 +121,8 @@ fallbackZoneMixes:
         solar: 0.06026681890829423
         unknown: 0.0
         wind: 0.1463649654920588
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ajenti.fetch_production
 region: Oceania

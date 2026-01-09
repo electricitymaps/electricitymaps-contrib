@@ -153,6 +153,8 @@ fallbackZoneMixes:
         solar: 0.0008089179786866909
         unknown: 0.5950624478417121
         wind: 0.02144891669855655
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _comment: Sum of low carbon sources
@@ -164,8 +166,6 @@ isRenewable:
       datetime: '2019-01-01'
       value: 0.3284
 region: Americas
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 sources:
   Government of Canada 2019:
     link: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2

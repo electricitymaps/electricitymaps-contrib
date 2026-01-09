@@ -320,6 +320,8 @@ fallbackZoneMixes:
         solar: 0.012774182149296296
         unknown: 0.03539409961324375
         wind: 0.2412564947378273
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _comment: Sum of renewable sources in SE unknown production for 2015
@@ -366,8 +368,6 @@ isRenewable:
     - _comment: Sum of renewable sources in SE unknown production for 2022
       datetime: '2022-01-01'
       value: 0.9826
-hide_day_ahead_price: False
-has_day_ahead_price_license: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

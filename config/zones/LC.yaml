@@ -12,12 +12,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 90.0
 country: LC
-hide_day_ahead_price: False
+country_name: Saint Lucia
+currency: XCD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/St_Lucia
 zone_name: Saint Lucia
-country_name: Saint Lucia
-currency: XCD

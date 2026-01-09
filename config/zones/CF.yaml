@@ -15,12 +15,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 70.0
 country: CF
-hide_day_ahead_price: False
+country_name: Central African Republic
+currency: XAF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Bangui
 zone_name: Central African Republic
-country_name: Central African Republic
-currency: XAF

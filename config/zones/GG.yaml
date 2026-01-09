@@ -1,8 +1,8 @@
 country: GG
+country_name: Guernsey
+currency: GBP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Guernsey
 zone_name: Guernsey
-country_name: Guernsey
-currency: GBP
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -31,12 +31,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
 country: CG
-hide_day_ahead_price: False
+country_name: Congo
+currency: XAF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Brazzaville
 zone_name: Congo
-country_name: Congo
-currency: XAF

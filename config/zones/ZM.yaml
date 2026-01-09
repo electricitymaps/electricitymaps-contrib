@@ -43,6 +43,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 190.0
 country: ZM
+country_name: Zambia
+currency: ZMW
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB
@@ -51,12 +53,10 @@ fallbackZoneMixes:
       coal: 0.11
       hydro: 0.83
       oil: 0.06
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Maputo
 zone_name: Zambia
-country_name: Zambia
-currency: ZMW

@@ -308,14 +308,14 @@ fallbackZoneMixes:
         solar: 0.031763672924306964
         unknown: 0.0
         wind: 0.05303024755245981
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
 isRenewable:
   unknown:
     value: 1
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   production: ESKOM.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

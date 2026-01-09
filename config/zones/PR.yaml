@@ -343,14 +343,14 @@ fallbackZoneMixes:
         solar: 0.012790315399735448
         unknown: 0.0009000191751649909
         wind: 0.008674031627125225
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
 isRenewable:
   unknown:
     value: 1
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

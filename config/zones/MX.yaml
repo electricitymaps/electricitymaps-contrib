@@ -145,8 +145,8 @@ emissionFactors:
         datetime: '2020-01-01'
         source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris
         value: 411
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: CENACE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

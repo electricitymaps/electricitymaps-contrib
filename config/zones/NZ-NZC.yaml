@@ -1,7 +1,7 @@
 country: NZ
+country_name: New Zealand
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Oceania
 timezone: Pacific/Auckland
 zone_name: Chatham Islands
-country_name: New Zealand
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

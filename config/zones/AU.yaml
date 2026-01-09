@@ -32,6 +32,8 @@ contributors:
   - brandongalbraith
 country: AU
 country_name: Australia
+country_name: Australia
+currency: AUD
 currency: AUD
 emissionFactors:
   direct:
@@ -258,6 +260,8 @@ fallbackZoneMixes:
         solar: 0.19323819121037497
         unknown: 0.00019039581980082146
         wind: 0.13259950282926702
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Oceania
 subZoneNames:
   - AU-LH
@@ -274,7 +278,3 @@ subZoneNames:
   - AU-WA-RI
 timezone: Australia/Sydney
 zone_name: Australia
-country_name: Australia
-currency: AUD
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

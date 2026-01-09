@@ -41,12 +41,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 1340.0
 country: SD
-hide_day_ahead_price: False
+country_name: Sudan
+currency: SDG
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Khartoum
 zone_name: Sudan
-country_name: Sudan
-currency: SDG

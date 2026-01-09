@@ -1,5 +1,6 @@
 country: US
 country_name: USA
+country_name: USA
 emissionFactors:
   direct:
     biomass:
@@ -147,9 +148,8 @@ emissionFactors:
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
         value: 995.6602067865819
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: Pacific/Honolulu
 zone_name: Hawaii
-country_name: USA
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -15,10 +15,10 @@ capacity:
 contributors:
   - Subarna578
 country: NP
+country_name: Nepal
+currency: NPR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Kathmandu
 zone_name: Nepal
-country_name: Nepal
-currency: NPR
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

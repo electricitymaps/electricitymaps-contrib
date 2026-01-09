@@ -89,6 +89,8 @@ capacity:
 contributors:
   - admetny
 country: BY
+country_name: Belarus
+currency: BYN
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
   powerOriginRatios:
@@ -96,8 +98,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.01
       unknown: 0.01
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -109,5 +111,3 @@ parsers:
 region: Europe
 timezone: Europe/Minsk
 zone_name: Belarus
-country_name: Belarus
-currency: BYN

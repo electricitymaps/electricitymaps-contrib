@@ -199,8 +199,8 @@ fallbackZoneMixes:
         solar: 0.006548497102706934
         unknown: 0.007487106321175432
         wind: 9.209647219998301e-06
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IEMOP.fetch_production
 region: Asia

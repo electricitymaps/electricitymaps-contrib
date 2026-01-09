@@ -37,12 +37,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: SY
-hide_day_ahead_price: False
+country_name: Syria
+currency: SYP
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Damascus
 zone_name: Syria
-country_name: Syria
-currency: SYP

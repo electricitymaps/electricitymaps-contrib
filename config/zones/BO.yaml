@@ -235,8 +235,8 @@ fallbackZoneMixes:
         solar: 0.02987487302326382
         unknown: 0.6597806473912572
         wind: 0.04254825673223788
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   generationForecast: CNDC.fetch_generation_forecast
   production: CNDC.fetch_production

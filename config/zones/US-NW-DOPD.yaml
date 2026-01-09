@@ -399,8 +399,8 @@ fallbackZoneMixes:
         solar: 0.0012093544053328976
         unknown: 0.0019158823758407704
         wind: 0.011036652293410701
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

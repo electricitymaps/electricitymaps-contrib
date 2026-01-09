@@ -39,12 +39,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 130.0
 country: MW
-hide_day_ahead_price: False
+country_name: Malawi
+currency: MWK
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Blantyre
 zone_name: Malawi
-country_name: Malawi
-currency: MWK

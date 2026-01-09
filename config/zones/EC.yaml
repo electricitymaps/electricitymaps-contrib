@@ -83,12 +83,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 70.0
 country: EC
-hide_day_ahead_price: False
+country_name: Ecuador
+currency: USD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Guayaquil
 zone_name: Ecuador
-country_name: Ecuador
-currency: USD

@@ -11,6 +11,8 @@ contributors:
   - jarek
 country: CA
 country_name: Canada
+country_name: Canada
+currency: CAD
 currency: CAD
 fallbackZoneMixes:
   powerOriginRatios:
@@ -134,10 +136,8 @@ fallbackZoneMixes:
         solar: 0.00014838992733089316
         unknown: 0.45975793302739665
         wind: 0.30642071370616963
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Halifax
 zone_name: Prince Edward Island
-country_name: Canada
-currency: CAD
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

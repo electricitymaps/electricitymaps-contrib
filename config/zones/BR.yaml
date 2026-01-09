@@ -17,6 +17,8 @@ contributors:
   - VIKTORVAV99
 country: BR
 country_name: Brazil
+country_name: Brazil
+currency: BRL
 currency: BRL
 fallbackZoneMixes:
   powerOriginRatios:
@@ -140,6 +142,8 @@ fallbackZoneMixes:
         solar: 0.10611495139875048
         unknown: 0.0999112179259777
         wind: 0.15536177833506654
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 subZoneNames:
   - BR-CS
@@ -148,7 +152,3 @@ subZoneNames:
   - BR-S
 timezone: America/Sao_Paulo
 zone_name: Brazil
-country_name: Brazil
-currency: BRL
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

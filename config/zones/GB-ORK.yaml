@@ -155,14 +155,14 @@ fallbackZoneMixes:
         solar: 0.018364994384586993
         unknown: 0.7528324740036654
         wind: 0.06733637529731847
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
 isRenewable:
   unknown:
     value: 1
-hide_day_ahead_price: False
-has_day_ahead_price_license: True
 parsers:
   production: GB_ORK.fetch_production
 region: Europe

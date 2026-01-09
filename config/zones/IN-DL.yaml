@@ -125,8 +125,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: IN_DL.fetch_consumption
   production: IN_DL.fetch_production

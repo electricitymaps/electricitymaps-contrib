@@ -46,6 +46,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
 country: LA
+country_name: Laos
+currency: LAK
 fallbackZoneMixes:
   _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.
   _url: https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel
@@ -55,12 +57,10 @@ fallbackZoneMixes:
       coal: 0.28410228182546
       hydro: 0.713395716573259
       solar: 0.0010758606885508
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Vientiane
 zone_name: Laos
-country_name: Laos
-currency: LAK

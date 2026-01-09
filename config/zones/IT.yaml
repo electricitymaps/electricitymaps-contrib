@@ -344,10 +344,10 @@ fallbackZoneMixes:
         solar: 0.10768555146389387
         unknown: 0.05930511903984094
         wind: 0.09017689210992368
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 price_displayed: false
 region: Europe
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 sources:
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link

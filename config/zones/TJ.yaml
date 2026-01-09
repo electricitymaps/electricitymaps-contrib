@@ -27,12 +27,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: TJ
-hide_day_ahead_price: False
+country_name: Tajikistan
+currency: TJS
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Dushanbe
 zone_name: Tajikistan
-country_name: Tajikistan
-currency: TJS

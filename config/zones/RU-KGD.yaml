@@ -5,6 +5,7 @@ bounding_box:
     - 55.78995961500016
 country: RU
 country_name: Russia
+country_name: Russia
 emissionFactors:
   direct:
     unknown:
@@ -26,9 +27,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.005
       wind: 0.015
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Kaliningrad
 zone_name: Kaliningrad
-country_name: Russia
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -24,12 +24,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: SO
-hide_day_ahead_price: False
+country_name: Somalia
+currency: SOS
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Mogadishu
 zone_name: Somalia
-country_name: Somalia
-currency: SOS

@@ -223,8 +223,8 @@ fallbackZoneMixes:
         solar: 0.004465978250457551
         unknown: 1.999178117686635e-05
         wind: 0.08421782955516063
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: CA_ON.fetch_consumption_forecast
   gridAlerts: CA_ON.fetch_grid_alerts

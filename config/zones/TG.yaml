@@ -1,10 +1,10 @@
 country: TG
-hide_day_ahead_price: False
+country_name: Togo
+currency: XOF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Lome
 zone_name: Togo
-country_name: Togo
-currency: XOF

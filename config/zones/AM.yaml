@@ -104,8 +104,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 4.115911610833948e-07
         wind: 1.2884592868697575e-06
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia

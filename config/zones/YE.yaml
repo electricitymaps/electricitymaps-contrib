@@ -45,12 +45,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 1400.0
 country: YE
-hide_day_ahead_price: False
+country_name: Yemen
+currency: YER
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Aden
 zone_name: Yemen
-country_name: Yemen
-currency: YER

@@ -30,12 +30,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 200.0
 country: CI
-hide_day_ahead_price: False
+country_name: Ivory Coast
+currency: XOF
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Abidjan
 zone_name: Ivory Coast
-country_name: Ivory Coast
-currency: XOF

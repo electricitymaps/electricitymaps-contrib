@@ -26,6 +26,8 @@ contributors:
   - alejandranavcas
 country: JP
 country_name: Japan
+country_name: Japan
+currency: JPY
 currency: JPY
 emissionFactors:
   direct:
@@ -186,6 +188,8 @@ fallbackZoneMixes:
         solar: 0.10342626615078988
         unknown: 0.029215896952754124
         wind: 0.008046150827843417
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 subZoneNames:
   - JP-CB
@@ -200,7 +204,3 @@ subZoneNames:
   - JP-TK
 timezone: Asia/Tokyo
 zone_name: Japan
-country_name: Japan
-currency: JPY
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

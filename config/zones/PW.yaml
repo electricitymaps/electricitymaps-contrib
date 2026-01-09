@@ -32,12 +32,12 @@ capacity:
       source: IRENA.org
       value: 19.62
 country: PW
-hide_day_ahead_price: False
+country_name: Palau
+currency: USD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Palau
 zone_name: Palau
-country_name: Palau
-currency: USD
