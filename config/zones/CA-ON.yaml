@@ -54,7 +54,6 @@ currency: CAD
 delays:
   production: 6
 emissionFactors:
-  direct: {}
   lifecycle:
     gas:
       datetime: '2008-01-01'

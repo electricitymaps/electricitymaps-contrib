@@ -166,7 +166,6 @@ currency: TRY
 delays:
   production: 8
 emissionFactors:
-  direct: {}
   lifecycle:
     solar:
       datetime: '2021-01-01'

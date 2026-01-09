@@ -38,7 +38,6 @@ currency: EUR
 delays:
   production: 6
 emissionFactors:
-  direct: {}
   lifecycle:
     hydro:
       datetime: '2020-01-01'

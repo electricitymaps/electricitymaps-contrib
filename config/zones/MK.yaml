@@ -52,7 +52,6 @@ delays:
   production: 34
   productionPerModeForecast: 24
 emissionFactors:
-  direct: {}
   lifecycle:
     hydro:
       datetime: '2020-01-01'

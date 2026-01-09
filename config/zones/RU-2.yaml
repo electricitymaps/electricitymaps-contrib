@@ -14,7 +14,6 @@ country: RU
 country_name: Russia
 currency: RUB
 emissionFactors:
-  direct: {}
   lifecycle:
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021

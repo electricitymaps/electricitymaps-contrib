@@ -77,7 +77,6 @@ currency: MDL
 delays:
   production: 12
 emissionFactors:
-  direct: {}
   lifecycle:
     solar:
       datetime: '2021-01-01'
