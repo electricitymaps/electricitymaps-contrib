@@ -341,7 +341,7 @@ parsers:
   gridAlerts: CA_ON.fetch_grid_alerts
 region: Americas
 sources:
-  ? Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
-  : link: https://doi.org/10.1007/s11367-012-0501-0
+  Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013):
+    link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
 zone_name: Ontario
