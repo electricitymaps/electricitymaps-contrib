@@ -32,8 +32,6 @@ contributors:
   - brandongalbraith
 country: AU
 country_name: Australia
-country_name: Australia
-currency: AUD
 currency: AUD
 emissionFactors:
   direct:
