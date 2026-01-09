@@ -331,7 +331,7 @@ parsers:
   production: TR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
+
 region: Asia
 sources:
   INCER ACV:
