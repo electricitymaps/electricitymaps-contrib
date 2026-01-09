@@ -9,7 +9,7 @@ on:
         required: true
 jobs:
   deploy:
-    runs-on: ubuntu-24.04-arm
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     permissions:
       contents: read
       deployments: write
