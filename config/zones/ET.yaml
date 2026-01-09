@@ -58,6 +58,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 320.0
 country: ET
+country_name: Ethiopia
+currency: ETB
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -106,13 +108,10 @@ fallbackZoneMixes:
         solar: 0.002018939705847075
         unknown: 0.0
         wind: 0.030513859522903735
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Addis_Ababa
 zone_name: Ethiopia
-country_name: Ethiopia
-currency: ETB

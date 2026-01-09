@@ -44,6 +44,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10.0
 country: MU
+country_name: Mauritius
+currency: MUR
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -92,13 +94,10 @@ fallbackZoneMixes:
         solar: 0.04942291741728504
         unknown: 0.0
         wind: 0.004813099721722564
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Mauritius
 zone_name: Mauritius
-country_name: Mauritius
-currency: MUR

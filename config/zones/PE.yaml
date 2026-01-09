@@ -123,6 +123,8 @@ contributors:
   - corradio
   - nessie2013
 country: PE
+country_name: Peru
+currency: PEN
 delays:
   production: 22
 emissionFactors:
@@ -386,14 +388,11 @@ fallbackZoneMixes:
         solar: 0.022634861767733317
         unknown: 0.0
         wind: 0.06261290684751358
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: PE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Lima
 zone_name: Peru
-country_name: Peru
-currency: PEN

@@ -158,6 +158,8 @@ contributors:
   - corradio
   - nessie2013
 country: AR
+country_name: Argentina
+currency: ARS
 delays:
   production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
@@ -368,14 +370,11 @@ fallbackZoneMixes:
         solar: 0.02698552858936858
         unknown: 0.5265037188143048
         wind: 0.11199192793014612
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Argentina/Buenos_Aires
 zone_name: Argentina
-country_name: Argentina
-currency: ARS

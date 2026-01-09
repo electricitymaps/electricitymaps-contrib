@@ -6,13 +6,12 @@ bounding_box:
 contributors:
   - VIKTORVAV99
 country: BM
-
-hide_day_ahead_price: False
+country_name: Bermuda
+currency: BMD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: Atlantic/Bermuda
 zone_name: Bermuda
-country_name: Bermuda
-currency: BMD

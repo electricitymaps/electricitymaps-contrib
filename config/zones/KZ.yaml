@@ -107,6 +107,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 1410.0
 country: KZ
+country_name: Kazakhstan
+currency: KZT
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ
@@ -120,13 +122,10 @@ fallbackZoneMixes:
       solar: 0.00263474788812734
       unknown: 0.00452705822702292
       wind: 0.00449084176120673
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Almaty
 zone_name: Kazakhstan
-country_name: Kazakhstan
-currency: KZT

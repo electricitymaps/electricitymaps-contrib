@@ -20,13 +20,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 200.0
 country: SS
-
-hide_day_ahead_price: False
+country_name: South Sudan
+currency: SSP
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Juba
 zone_name: South Sudan
-country_name: South Sudan
-currency: SSP

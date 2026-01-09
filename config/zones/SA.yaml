@@ -6,14 +6,13 @@ bounding_box:
 contributors:
   - q--
 country: SA
-
-hide_day_ahead_price: False
+country_name: Saudi Arabia
+currency: SAR
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Riyadh
 zone_name: Saudi Arabia
-country_name: Saudi Arabia
-currency: SAR

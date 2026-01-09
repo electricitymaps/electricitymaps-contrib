@@ -20,11 +20,11 @@ contributors:
   - PPsyrius
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
-disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data
-  only for solar and unknown. We are working on improving the data quality for this
-  zone.
+disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -181,9 +181,8 @@ fallbackZoneMixes:
         solar: 0.05969048291522835
         unknown: 0.02047979428559259
         wind: 0.005666854920707754
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -195,5 +194,3 @@ sources:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
 timezone: Asia/Tokyo
 zone_name: Hokuriku
-country_name: Japan
-currency: JPY

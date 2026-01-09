@@ -115,6 +115,8 @@ contributors:
   - consideRatio
   - VIKTORVAV99
 country: BD
+country_name: Bangladesh
+currency: BDT
 delays:
   production: 10
 emissionFactors:
@@ -333,9 +335,8 @@ fallbackZoneMixes:
         solar: 0.01021179644515913
         unknown: 0.021465682698105372
         wind: 0.001123168509769495
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ERP_PGCB.fetch_consumption
   production: ERP_PGCB.fetch_production
@@ -343,5 +344,3 @@ parsers:
 region: Asia
 timezone: Asia/Dhaka
 zone_name: Bangladesh
-country_name: Bangladesh
-currency: BDT

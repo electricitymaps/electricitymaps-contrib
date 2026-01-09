@@ -91,6 +91,8 @@ contributors:
   - corradio
   - alejandranavcas
 country: AU
+country_name: Australia
+currency: AUD
 delays:
   production: 96
 emissionFactors:
@@ -354,9 +356,8 @@ fallbackZoneMixes:
         solar: 0.2085011484047794
         unknown: 0.0
         wind: 0.09586177067488971
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
@@ -365,5 +366,3 @@ parsers:
 region: Oceania
 timezone: Australia/Sydney
 zone_name: New South Wales
-country_name: Australia
-currency: AUD

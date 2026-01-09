@@ -67,6 +67,7 @@ contributors:
   - kruschk
   - amv213
 country: GT
+country_name: Guatemala
 emissionFactors:
   direct:
     battery discharge:
@@ -273,9 +274,8 @@ fallbackZoneMixes:
         solar: 0.01427310682024955
         unknown: 0.11712930277035961
         wind: 0.02062521914028993
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production
@@ -286,4 +286,3 @@ sources:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
 zone_name: Guatemala
-country_name: Guatemala

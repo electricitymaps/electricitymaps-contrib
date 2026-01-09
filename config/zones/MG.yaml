@@ -1,11 +1,10 @@
 country: MG
-
-hide_day_ahead_price: False
+country_name: Madagascar
+currency: MGA
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Indian/Antananarivo
 zone_name: Madagascar
-country_name: Madagascar
-currency: MGA

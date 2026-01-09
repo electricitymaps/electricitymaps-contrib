@@ -159,9 +159,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from the generation-only
-  balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC.
-  Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC. Read more on the wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -263,12 +261,10 @@ emissionFactors:
         value: 539.26
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1070.1093959999998
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1037.2593519999998
     gas:
       - datetime: '2020-01-01'
@@ -467,9 +463,8 @@ fallbackZoneMixes:
         solar: 0.024043798598998
         unknown: 0.0013187296690682232
         wind: 0.24723499458575396
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

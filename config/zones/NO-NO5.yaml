@@ -160,8 +160,7 @@ emissionFactors:
       value: 230.0
     coal:
       datetime: '2012-01-01'
-      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power
-        generation."; IPCC 2014
+      source: Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."; IPCC 2014
       value: 883.79433
     gas:
       datetime: '2014-01-01'
@@ -355,7 +354,6 @@ fallbackZoneMixes:
         unknown: 0.00041495388875751785
         wind: 0.014746060245185884
 has_day_ahead_price_license: True
-
 hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption

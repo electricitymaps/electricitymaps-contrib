@@ -16,14 +16,15 @@ contributors:
   - jarek
   - VIKTORVAV99
 country: CA
+country_name: Canada
+currency: CAD
 delays:
   production: 5
 emissionFactors:
   direct:
     unknown:
       - datetime: '2019-01-01'
-        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53%
-          gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 163.5
   lifecycle:
     battery discharge:
@@ -78,8 +79,7 @@ emissionFactors:
         value: 152.98
     unknown:
       - datetime: '2019-01-01'
-        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53%
-          gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
+        source: Government of Canada 2019; assumes 37.54% nuclear, 22.41% hydro, 14.53% gas, 13.71% coal, 6.65% wind, 3.78% biomass and 1.38% oil
         value: 211.9
 fallbackZoneMixes:
   powerOriginRatios:
@@ -203,6 +203,8 @@ fallbackZoneMixes:
         solar: 0.0008089179786866909
         unknown: 0.5950624478417121
         wind: 0.02144891669855655
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _comment: Sum of low carbon sources
@@ -214,13 +216,8 @@ isRenewable:
       datetime: '2019-01-01'
       value: 0.3284
 region: Americas
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 sources:
   Government of Canada 2019:
     link: https://open.canada.ca/data/en/dataset/5a6abd9d-d343-41ef-a525-7a1efb686300/resource/0c58139d-1811-466a-97ba-4c84b3fd83a2
 timezone: America/Moncton
 zone_name: New Brunswick
-country_name: Canada
-currency: CAD

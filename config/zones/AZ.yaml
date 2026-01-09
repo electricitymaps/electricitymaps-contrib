@@ -77,6 +77,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 60.0
 country: AZ
+country_name: Azerbaijan
+currency: AZN
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE
   powerOriginRatios:
@@ -85,13 +87,10 @@ fallbackZoneMixes:
       hydro: 0.07
       oil: 0.46
       unknown: 0.01
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baku
 zone_name: Azerbaijan
-country_name: Azerbaijan
-currency: AZN

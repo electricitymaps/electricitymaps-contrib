@@ -25,11 +25,10 @@ capacity:
       comment: Statistics Agency under the President of the Republic of Uzbekistan
       value: 13874
 country: UZ
+country_name: Uzbekistan
+currency: UZS
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Samarkand
 zone_name: Uzbekistan
-country_name: Uzbekistan
-currency: UZS
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

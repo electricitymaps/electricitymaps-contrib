@@ -48,6 +48,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 100.0
 country: UG
+country_name: Uganda
+currency: UGX
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -96,13 +98,10 @@ fallbackZoneMixes:
         solar: 0.02528760510767805
         unknown: 0.0
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Kampala
 zone_name: Uganda
-country_name: Uganda
-currency: UGX

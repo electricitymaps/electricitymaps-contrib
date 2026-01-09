@@ -41,6 +41,7 @@ contributors:
   - systemcatch
   - jarek
 country: NI
+country_name: Nicaragua
 delays:
   production: 5
 emissionFactors:
@@ -304,9 +305,8 @@ fallbackZoneMixes:
         solar: 0.011695191572445699
         unknown: 4.012659652412689e-05
         wind: 0.11489319131069319
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: NI.fetch_price
   production: NI.fetch_production
@@ -314,4 +314,3 @@ parsers:
 region: Americas
 timezone: America/Managua
 zone_name: Nicaragua
-country_name: Nicaragua

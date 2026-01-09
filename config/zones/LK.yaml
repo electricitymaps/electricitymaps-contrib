@@ -86,6 +86,8 @@ capacity:
 contributors:
   - q--
 country: LK
+country_name: Sri Lanka
+currency: LKR
 delays:
   production: 30
 emissionFactors:
@@ -262,14 +264,11 @@ fallbackZoneMixes:
         solar: 0.013187344859185718
         unknown: 0.0
         wind: 0.04677362839649372
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: CEB.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Colombo
 zone_name: Sri Lanka
-country_name: Sri Lanka
-currency: LKR

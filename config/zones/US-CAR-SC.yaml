@@ -108,9 +108,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes a third of the nuclear related electricity production
-  from the balancing authority South Carolina Electric & Gas Company. Read more on
-  the zone definition wiki page.
+disclaimer: This zone includes a third of the nuclear related electricity production from the balancing authority South Carolina Electric & Gas Company. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -219,12 +217,10 @@ emissionFactors:
         value: 277.252
     coal:
       - datetime: '2020-01-01'
-        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2020; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1165.692392
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 1153.7182579999999
     gas:
       - datetime: '2020-01-01'
@@ -424,9 +420,8 @@ fallbackZoneMixes:
         solar: 0.03903642520721052
         unknown: 0.020343396555049083
         wind: 0.00013469670798902004
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

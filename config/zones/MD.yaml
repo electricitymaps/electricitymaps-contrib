@@ -72,6 +72,8 @@ contributors:
   - Impelon
   - amv213
 country: MD
+country_name: Moldova
+currency: MDL
 delays:
   production: 12
 emissionFactors:
@@ -279,9 +281,8 @@ fallbackZoneMixes:
         solar: 0.012678326413849667
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -295,5 +296,3 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau
 zone_name: Moldova
-country_name: Moldova
-currency: MDL

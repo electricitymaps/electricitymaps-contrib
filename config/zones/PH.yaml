@@ -18,6 +18,8 @@ capacity:
 contributors:
   - xomanuel
 country: PH
+country_name: Philippines
+currency: PHP
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -192,6 +194,8 @@ fallbackZoneMixes:
         solar: 0.021186116587224194
         unknown: 0.05981327473921477
         wind: 0.009391697715065647
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 subZoneNames:
   - PH-LU
@@ -199,8 +203,3 @@ subZoneNames:
   - PH-VI
 timezone: Asia/Manila
 zone_name: Philippines
-country_name: Philippines
-currency: PHP
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
