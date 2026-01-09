@@ -274,3 +274,7 @@ subZoneNames:
   - AU-WA-RI
 timezone: Australia/Sydney
 zone_name: Australia
+country_name: Australia
+currency: AUD
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

@@ -6,6 +6,8 @@ bounding_box:
 contributors:
   - q--
 country: SA
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

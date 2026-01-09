@@ -135,9 +135,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from the generation-only
-  balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
-  page.
+disclaimer: This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     biomass:
@@ -448,6 +446,8 @@ fallbackZoneMixes:
         solar: 0.05133000190223975
         unknown: 0.006238086068185822
         wind: 0.06749767730316335
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

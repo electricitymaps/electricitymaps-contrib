@@ -159,9 +159,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from the generation-only
-  balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC.
-  Read more on the wiki page.
+disclaimer: This zone includes all electricity production from the generation-only balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC. Read more on the wiki page.
 emissionFactors:
   direct:
     biomass:
@@ -469,6 +467,8 @@ fallbackZoneMixes:
         solar: 0.024043798598998
         unknown: 0.0013187296690682232
         wind: 0.24723499458575396
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

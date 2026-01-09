@@ -148,6 +148,8 @@ fallbackZoneMixes:
         solar: 0.09302782105896609
         unknown: 0.02001169518819592
         wind: 0.028810073378378175
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
@@ -156,4 +158,4 @@ parsers:
 region: Asia
 sources: null
 timezone: Asia/Tokyo
-zone_name: "T\u014Dhoku"
+zone_name: "Tōhoku"

@@ -422,6 +422,8 @@ fallbackZoneMixes:
         solar: 0.06550111905166345
         unknown: 0.03142705539402686
         wind: 0.037479238587619625
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: TAIPOWER.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

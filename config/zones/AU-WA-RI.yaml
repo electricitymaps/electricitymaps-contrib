@@ -1,6 +1,4 @@
-_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
-  Parsing for production is done on instantaneous measurements : this is not reliable
-  at all'
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all'
 bounding_box:
   - - 114.94014224400007
     - -32.52536222099991
@@ -123,6 +121,8 @@ fallbackZoneMixes:
         solar: 0.06026681890829423
         unknown: 0.0
         wind: 0.1463649654920588
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: ajenti.fetch_production
 region: Oceania

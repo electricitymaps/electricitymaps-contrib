@@ -38,11 +38,8 @@ emissionFactors:
         source: Electricity Maps, 2022 zone average
         value: 188.55
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category
-        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
-        mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
-        issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
       value: 0.0
   lifecycle:
     hydro discharge:
@@ -59,11 +56,8 @@ emissionFactors:
         source: Electricity Maps, 2022 zone average; IPCC 2014
         value: 212.55
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category
-        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
-        mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
-        issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
       value: 28.0
 fallbackZoneMixes:
   powerOriginRatios:
@@ -163,6 +157,8 @@ isLowCarbon:
 isRenewable:
   unknown:
     value: 1
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

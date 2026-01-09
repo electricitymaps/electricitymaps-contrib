@@ -314,6 +314,8 @@ isLowCarbon:
 isRenewable:
   unknown:
     value: 1
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: ESKOM.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

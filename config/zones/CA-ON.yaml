@@ -57,27 +57,19 @@ emissionFactors:
   lifecycle:
     gas:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377–391 (2013)"
       value: 497
     hydro:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377–391 (2013)"
       value: 22
     nuclear:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377–391 (2013)"
       value: 4.8
     wind:
       datetime: '2008-01-01'
-      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity\
-        \ generation in the province of Ontario, Canada.\" Int J Life Cycle Assess\
-        \ 18, 377\u2013391 (2013)"
+      source: "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377–391 (2013)"
       value: 10.69
 fallbackZoneMixes:
   powerOriginRatios:
@@ -231,6 +223,8 @@ fallbackZoneMixes:
         solar: 0.004465978250457551
         unknown: 1.999178117686635e-05
         wind: 0.08421782955516063
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumptionForecast: CA_ON.fetch_consumption_forecast
   gridAlerts: CA_ON.fetch_grid_alerts
@@ -240,9 +234,7 @@ parsers:
   productionPerModeForecast: CA_ON.fetch_wind_solar_forecasts
 region: Americas
 sources:
-  ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation\
-    \ in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377\u2013\
-    391 (2013)"
+  ? "Mallia, E., Lewis, G. \"Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada.\" Int J Life Cycle Assess 18, 377–391 (2013)"
   : link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
 zone_name: Ontario

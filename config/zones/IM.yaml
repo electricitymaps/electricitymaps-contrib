@@ -40,3 +40,5 @@ timezone: Europe/Isle_of_Man
 zone_name: Isle of Man
 country_name: Isle of Man
 currency: GBP
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

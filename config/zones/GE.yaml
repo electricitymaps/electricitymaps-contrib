@@ -1,5 +1,4 @@
-_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas
-  incl. 13 MW of coal
+_comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal
 bounding_box:
   - - 39.9550085793
     - 41.0644446885
@@ -194,6 +193,8 @@ fallbackZoneMixes:
         solar: 9.334021495300608e-05
         unknown: 0.05224346510003176
         wind: 0.00475058940672753
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

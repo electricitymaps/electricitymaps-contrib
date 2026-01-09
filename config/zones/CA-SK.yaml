@@ -155,6 +155,8 @@ fallbackZoneMixes:
         solar: 0.002215298680144598
         unknown: 0.0622375038985566
         wind: 0.08044248483289065
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: CA_SK.fetch_consumption
 region: Americas

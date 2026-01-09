@@ -30,8 +30,7 @@ country_name: Brazil
 currency: BRL
 delays:
   production: 5
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
-  coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -184,6 +183,8 @@ fallbackZoneMixes:
         solar: 0.15130703599836154
         unknown: 0.03702929035700427
         wind: 0.5795009589558684
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity

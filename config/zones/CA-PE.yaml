@@ -137,3 +137,7 @@ fallbackZoneMixes:
 region: Americas
 timezone: America/Halifax
 zone_name: Prince Edward Island
+country_name: Canada
+currency: CAD
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

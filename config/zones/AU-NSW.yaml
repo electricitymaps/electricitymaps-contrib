@@ -342,6 +342,8 @@ fallbackZoneMixes:
         solar: 0.2085011484047794
         unknown: 0.0
         wind: 0.09586177067488971
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

@@ -1135,6 +1135,8 @@ fallbackZoneMixes:
         solar: 0.07115076013356555
         unknown: 0.0026028574593210904
         wind: 0.24233286045039404
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: US_ERCOT.fetch_consumption
   consumptionForecast: US_ERCOT.fetch_consumption_forecast

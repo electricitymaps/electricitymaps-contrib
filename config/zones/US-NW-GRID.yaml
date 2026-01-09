@@ -376,6 +376,8 @@ fallbackZoneMixes:
         unknown: 2.204823712007215e-06
         wind: 0.11728828923384033
 generation_only: true
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: EIA.fetch_production_mix
   productionCapacity: EIA.fetch_production_capacity

@@ -32,6 +32,8 @@ capacity:
       source: IRENA.org
       value: 19.62
 country: PW
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   productionCapacity: IRENA.fetch_production_capacity
 region: Oceania

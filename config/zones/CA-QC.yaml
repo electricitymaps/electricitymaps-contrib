@@ -176,9 +176,11 @@ fallbackZoneMixes:
         solar: 0.00025375135244732786
         unknown: 0.0003068364202573618
         wind: 0.05604954949834813
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: CA_QC.fetch_consumption
   production: CA_QC.fetch_production
 region: Americas
 timezone: America/Toronto
-zone_name: "Qu\xE9bec"
+zone_name: "Québec"

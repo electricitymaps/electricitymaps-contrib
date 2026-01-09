@@ -25,6 +25,8 @@ emissionFactors:
       source: EIA 2020/BEIS 2021; IPCC 2014
       value: 650.0
 region: Europe
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7

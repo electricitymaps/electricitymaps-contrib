@@ -189,10 +189,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer:
-  This zone includes all wind related electricity production from the generation-only
-  balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki
-  page.
+disclaimer: This zone includes all wind related electricity production from the generation-only balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     biomass:
@@ -485,6 +482,8 @@ fallbackZoneMixes:
         solar: 0.01534628263467043
         unknown: 0.01967825129629526
         wind: 0.11366870003676838
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

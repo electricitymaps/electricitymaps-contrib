@@ -1,5 +1,4 @@
-_comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says
-  available capacity is 2453 MW and wind capacity 567 MW
+_comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW
 bounding_box:
   - - -66.82774817599997
     - 42.92206452000019
@@ -84,3 +83,7 @@ fallbackZoneMixes:
 region: Americas
 timezone: America/Halifax
 zone_name: Nova Scotia
+country_name: Canada
+currency: CAD
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

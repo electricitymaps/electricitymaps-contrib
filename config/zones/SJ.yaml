@@ -4,3 +4,5 @@ timezone: Arctic/Longyearbyen
 zone_name: Svalbard and Jan Mayen
 country_name: Svalbard and Jan Mayen
 currency: NOK
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

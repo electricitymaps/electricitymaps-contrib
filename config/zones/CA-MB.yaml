@@ -1,5 +1,4 @@
-_comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not
-  reflected in latest report from March 2021)
+_comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)
 bounding_box:
   - - -102.50159786704786
     - 48.492669576869844
@@ -27,3 +26,5 @@ timezone: America/Winnipeg
 zone_name: Manitoba
 country_name: Canada
 currency: CAD
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

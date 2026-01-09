@@ -112,9 +112,7 @@ country_name: Switzerland
 currency: EUR
 delays:
   production: 7
-disclaimer: Data for the electricity consumption and generation mix is based on estimates
-  stemming from different data sources. As such, it may diverge from aggregated public
-  statistics of the Swiss Federal Office for Energy.
+disclaimer: Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.
 emissionFactors:
   direct:
     biomass:
@@ -380,6 +378,8 @@ isRenewable:
     - datetime: '2022-01-01'
       source: SFOE, Electricity Maps
       value: 0.85
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -387,7 +387,6 @@ parsers:
   price: ENTSOE.fetch_price
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   INCER ACV:

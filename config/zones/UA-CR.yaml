@@ -8,3 +8,5 @@ region: Europe
 timezone: Europe/Kiev
 zone_name: Crimea
 country_name: Ukraine
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

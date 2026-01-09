@@ -4,3 +4,5 @@ timezone: Africa/El_Aaiun
 zone_name: Western Sahara
 country_name: Western Sahara
 currency: MAD
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

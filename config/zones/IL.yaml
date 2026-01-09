@@ -81,21 +81,17 @@ contributors:
 country: IL
 country_name: Israel
 currency: ILS
-disclaimer: The data source (Israel Electric Corporation) has been blocking access
-  to real-time production mix data. The data is therefore fully estimated by Electricity
-  Maps.
+disclaimer: The data source (Israel Electric Corporation) has been blocking access to real-time production mix data. The data is therefore fully estimated by Electricity Maps.
 emissionFactors:
   direct:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
-        wind, 0.3% other
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
       value: 459.09
   lifecycle:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
-        wind, 0.3% other
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
       value: 558.188
 fallbackZoneMixes:
   powerOriginRatios:
@@ -257,6 +253,8 @@ isRenewable:
   unknown:
     _comment: Sum of renewable sources in IL unknown production
     value: 0.056
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: IL.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity

@@ -98,6 +98,8 @@ isRenewable:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
       datetime: '2020-01-01'
       value: 0.0137
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   consumption: MN.fetch_consumption
   production: MN.fetch_production

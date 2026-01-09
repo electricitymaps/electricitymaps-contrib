@@ -3,3 +3,5 @@ region: Europe
 timezone: Asia/Nicosia
 zone_name: Northern Cyprus
 country_name: Northern Cyprus
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

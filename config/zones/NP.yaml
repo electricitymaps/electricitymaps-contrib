@@ -20,3 +20,5 @@ timezone: Asia/Kathmandu
 zone_name: Nepal
 country_name: Nepal
 currency: NPR
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

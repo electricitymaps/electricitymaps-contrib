@@ -14,3 +14,5 @@ timezone: Pacific/Easter
 zone_name: Easter Island
 country_name: Chile
 currency: CLP
+hide_day_ahead_price: False
+has_day_ahead_price_license: False

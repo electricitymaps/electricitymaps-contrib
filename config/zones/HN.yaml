@@ -82,14 +82,12 @@ emissionFactors:
   direct:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
-        7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
       value: 192.444
   lifecycle:
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
-        7.8% wind, 2.8% geothermal
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
       value: 339.42599999999993
 fallbackZoneMixes:
   powerOriginRatios:
@@ -213,6 +211,8 @@ fallbackZoneMixes:
         solar: 0.08937585918740454
         unknown: 0.0017265823617785528
         wind: 0.06533864088864909
+hide_day_ahead_price: False
+has_day_ahead_price_license: False
 parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
