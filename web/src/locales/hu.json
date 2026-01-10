@@ -1,0 +1,1914 @@
+{
+  "experiment": {
+    "5min": {
+      "title": "Új: 5 perces felbontás",
+      "description": "Jelenleg kísérleti. További költség nélkül elérhető, amíg visszajelzést gyűjtünk és finomítjuk a funkcionialitást."
+    },
+    "feedbackCta": "Hagyjon visszajelzést"
+  },
+  "info": {
+    "title": "Az Electricity Map-ről",
+    "text": "egy API-platform, amely valós idejű és előrejelzett villamosenergia-jelzéseket biztosít, lehetővé téve bármely eszköz számára a költségek és a kibocsátások csökkentését azáltal, hogy tájékoztatja őket a villamosenergia-fogyasztás legkedvezőbb időpontjairól.",
+    "version": "App verzió: {{version}}",
+    "share-app": "Ossza meg az applikációt:"
+  },
+  "settings-modal": {
+    "title": "Beállítások",
+    "flows": "Villamosenergia-áramlások",
+    "flow-tracing-link-label": "Áramlás követés",
+    "flow-tracing-link-description": "nyomon követi, hogyan áramlik fizikailag a villamos energia a különböző zónákat összekötő interkonnektorokon keresztül",
+    "home-link-description": "olyan API-t kínál, amely valós idejű és előrejelzett villamosenergia-hálózati jelzéseket szolgáltat.",
+    "weather-layers-disallowed": "Időjárási adatok nem elérhetők ebben a felbontásban, váltson valós idejű módra az élő időjárási adatok megtekintéséhez."
+  },
+  "ranking-panel": {
+    "title": "Villamos Energia Hálózat Karbonkibocsátások",
+    "subtitle": "Tekintse meg, honnan ered az elektromos áram<br/> és mennyi szén-dioxid volt kibocsátva a megtermeléséhez",
+    "search": "Területek szerinti keresés",
+    "no-results": "Nincs találat. Próbáljon meg másra keresni."
+  },
+  "button": {
+    "bluesky-share": "Valós idejű globális villamosenergia-kibocsátási adatok ellenőrzése: {{baseUrl}}",
+    "reddit": "Csatlakozz a r/electricitymaps közösséghez",
+    "reddit-share": "Megosztás Reddit-en",
+    "github": "Contribute on GitHub",
+    "twitter": "Kövess minket az X-n (Twitter)",
+    "twitter-share": "Megosztás az X-en (Twitter)",
+    "linkedin": "Kövess minket a LinkedIn-en",
+    "linkedin-share": "Megosztás a LinkedIn-en",
+    "facebook": "Kövess minket a Facebook-on",
+    "facebook-share": "Megosztás a Facebook-on",
+    "feedback": "Visszajelzés megosztása",
+    "faq": "GYIK",
+    "privacy-policy": "Adatvédelmi Irányelvek",
+    "legal-notice": "Jogi Nyilatkozat",
+    "api": "Hozzáférés az API-hoz",
+    "docs": "API dokumentáció"
+  },
+  "mobile-main-menu": {
+    "map": "Electricity Maps",
+    "areas": "Területek",
+    "about": "Rólunk"
+  },
+  "app-banner": {
+    "cta": "Szerezd meg az appot",
+    "description": "Élő villamos energia adatok"
+  },
+  "share-button": {
+    "clipboard": "URL a vágólapra másolva!",
+    "clipboard-error": "Hiba történt a URL vágólapra másolásakor",
+    "share-error": "Hiba történt a URL megosztásakor"
+  },
+  "more-options-dropdown": {
+    "title": "Megosztás",
+    "download": "CSV letöltése",
+    "chart-title": "Diagram megosztása",
+    "zone-title": "Zóna megosztása",
+    "mobile-share-via": "Megosztás",
+    "copy-link": "Link másolása",
+    "copy-chart-link": "Diagram linkjének másolása",
+    "copy-zone-link": "Zóna linkjének másolása",
+    "preliminary-data": "Az előzetes adatok idővel változhatnak.",
+    "summary": "Fedezzen fel valós idejű rálátásokat az Electricity Maps applikációval!"
+  },
+  "new-feature-popover": {
+    "title": "Új funkció: 72 órás nézet",
+    "content": "Fedezzen fel új trendeket élő és történeti adatokkal az új, 72 órás időablakkal."
+  },
+  "onboarding-modal": {
+    "view1": {
+      "header": "Üdvözöljük az Electricity Maps alkalmazásban",
+      "text": "Itt világszerte felfedezheti a villamos energia klímahatását. <br/><br/>Engedje meg, hogy néhány egyszerű lépésben végigvezessük a térképen!"
+    },
+    "view2": {
+      "header": "Tekintse meg valós időben, mennyi szén-dioxid kerül kibocsátásra az Ön által felhasznált villamos energia előállításához",
+      "text": "A világ különböző területeit az elfogyasztott villamos energia szénintenzitása alapján színezzük (minden üvegházhatású gázt figyelembe véve). Minél zöldebb a szín, annál klímabarátabb a villamos energia."
+    },
+    "view3": {
+      "header": "Tudja meg honnan ered az Ön által használt villamos energia",
+      "text": "A térképen található nyilak jelzik a különböző területek közötti villamos energia áramlást. Kattintson egy területre, hogy többet tudjon meg a villamos energia eredetéről."
+    },
+    "view4": {
+      "header": "Váltson különböző nézetek között",
+      "text": "Váltson Villamos Energia Termelés és Fogyasztás között, valamint Ország- vagy Zónanézet között, és valós idejű betekintést nyerhet a globális energiadinamikába, hogy megalapozott döntéseket hozhasson egy fenntarthatóbb jövő érdekében."
+    },
+    "view5": {
+      "header": "Váltson villamos energia és kibocsátások nézetek között",
+      "text": "Kapcsoljon át a diagramok között, amelyek egy zóna villamosenergia-adatait vagy szén-dioxid-kibocsátását jelenítik meg. A megjelenített értékek a kiválasztott időszak összesített adatait mutatják, és az információk összhangban vannak a kiválasztott áramlás-követésen alapuló vagy termelési adatokkal."
+    },
+    "view6": {
+      "header": "Fedezze fel a múltat",
+      "text": "A bal alsó sarokban világszerte megtekintheti a valós idejű és a múltbeli kibocsátási és villamosenergia-adatokat. A kapcsolókkal módosíthatja az aggregált adatokat, vagy az idővonalon böngészve követheti a változásokat az idő múlásával."
+    },
+    "view7": {
+      "header": "Valós idejű szél- és napenergia-viszonyok",
+      "text": "A szél- és napenergia-termelés az időjárástól függ. A nap és szél ikonokra kattintva megjelenítheti a szél és a napsütés valós idejű erősségét világszerte."
+    }
+  },
+  "data-sources": {
+    "title": "Adatforrások",
+    "capacity": "Telepített kapacitás adatok",
+    "power": "Villamosenergia-termelési adatok",
+    "exchange": "Áramlási adatok",
+    "emission": "Kibocsátási tényező adatok"
+  },
+  "country-panel": {
+    "forecastCta": "Előrejelzési adatokat keres?",
+    "source": "Forrás",
+    "carbonintensity": "Szénintenzitás",
+    "lowcarbon": "Alacsony szén-dioxid-kibocsátású",
+    "renewable": "Megújuló",
+    "electricityconsumption": "Villamos energia",
+    "emissions": "Kibocsátások",
+    "helpfrom": "Közreműködők:",
+    "noDataAtTimestamp": "Az adatok átmenetileg nem érhetők el a kiválasztott időpontra",
+    "noLiveData": "Az élő adatok átmenetileg nem érhetők el ezen a területen",
+    "disabledPriceReasons": {
+      "licensing": "Az áramárak nem érhetők el ezen a területen licencfeltételek miatt"
+    },
+    "emissionFactorDataSourcesTooltip": "A villamosenergia-termelés kibocsátási tényezői több forrásból származhatnak. Ennek oka, hogy a kibocsátások számításakor több tényezőt is figyelembe veszünk, például erőműspecifikus adatokat, termelési adatokat és esetenként tartalék forrásokat.",
+    "dataIsDelayed": "Az adott régió adatai legfeljebb {{hours}} órás késéssel érkezhetnek. Élő adatok nem jeleníthetők meg.",
+    "estimated": "becsült",
+    "aggregated": "aggregált",
+    "dataIsEstimated": "Az adott régió adatainak egy része becsült. További információ a becslési módszertanunkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
+    "exchangesAreMissing": "Ez a diagram nem tartalmaz áramlási adatokat. Az áramlások az órás nézetekben láthatók. További információ a történeti aggregációkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
+    "estimatedTooltip": "Az adott zónára vonatkozó valós idejű adatok a forrásadatok és a modell feltételezései alapján becsültek.",
+    "aggregatedTooltip": "Az adott zónára vonatkozó adatok történeti órás értékek alapján aggregáltak",
+    "helpUs": "Segítsen azonosítani a problémát a <a href='{{link}}' target='_blank'>futásidejű naplók</a> megtekintésével, vagy vegye fel a kapcsolatot az adat szolgáltatójával.",
+    "noParserInfo": "Egyelőre nem rendelkezünk információval erről a területről.<br/> Szeretne segíteni a javításban? Hozzájárulhat azzal, hogy <a href='{{link}}' target='_blank'>területi adatokat ad hozzá</a>.",
+    "now": "Most",
+    "by-source": {
+      "emissions": "Szén-dioxid-kibocsátások",
+      "electricity-mix": "Villamosenergia-mix",
+      "total-electricity-mix": "Teljes villamosenergia-mix",
+      "total-emissions": "Teljes szén-dioxid-kibocsátás"
+    },
+    "graph-legends": {
+      "installed-capacity": "Telepített kapacitás",
+      "exchange-capacity": "Villamosenergia-áramlási kapacitás",
+      "exported": "Exportált",
+      "imported": "Importált",
+      "stored": "Tárolt",
+      "produced": "Termelt"
+    },
+    "price-chart": {
+      "see": "Közelgő árak megtekintése",
+      "hide": "Közelgő árak elrejtése",
+      "today": "Ma",
+      "tomorrow": "Holnap",
+      "price-disclaimer": "Minden ár MWh-ra vonatkozik, adók és hálózati díjak nélkül.",
+      "time-disclaimer": "Minden megjelenített idő",
+      "at": "Ekkor",
+      "now": "Most"
+    }
+  },
+  "grid-alerts-card": {
+    "show-more": "Továbbiak megjelenítése",
+    "show-less": "Kevesebb megjelenítése",
+    "experimental-mode": "Ez a funkció a kísérleti fázisban ingyenes",
+    "tooltip": "Ez a funkció jelenleg kísérleti fázisban van, és további költség nélkül érhető el, amíg visszajelzéseket gyűjtünk és finomítjuk a működését."
+  },
+  "feedback-card": {
+    "title": "Segítsen nekünk fejlődni!",
+    "success-message": "Válasza segít megérteni és javítani az alkalmazásunk minőségét.",
+    "success-subtitle": "Köszönjük a visszajelzését!",
+    "estimations": {
+      "subtitle": "Kérjük, értékelje az alábbi állítást.",
+      "secondary-question": "Van bármi, amin javíthatnánk?",
+      "primary-question": "Az adatbecslés leírása könnyen érthető volt:"
+    },
+    "primary-question": "Hogyan értékelné az Electricity Maps alkalmazással való általános elégedettségét?",
+    "secondary-question-low": "Miben lehetnénk jobbak?",
+    "secondary-question-high": "Milyen fejlesztéseket szeretne legközelebb látni?",
+    "optional": "Opcionális:",
+    "input-question": "Mondja el, milyen funkciókat látna szívesen!",
+    "agree": "Teljes mértékben egyetértek",
+    "disagree": "Egyáltalán nem értek egyet",
+    "satisfied": "Nagyon elégedett",
+    "unsatisfied": "Egyáltalán nem elégedett",
+    "placeholder": "Írja le néhány szóban...",
+    "submit": "Beküldés"
+  },
+  "estimation-badge": {
+    "outage": "Nem elérhető"
+  },
+  "estimation-card": {
+    "link": "Olvasson a becslési modelljeinkről",
+    "outage-details": "Részletek megtekintése",
+    "synthetic": "Szintetikus",
+    "preliminary": "Előzetes",
+    "ESTIMATED_FORECASTS_HIERARCHY": {
+      "title": "Az adatok előzetesek",
+      "body": "Az adott órára vonatkozó adatokat még nem jelentették. Modelljeink kitöltik ezeket a hiányokat, és valós időben teljes, részletes adatkészletet biztosítanak."
+    },
+    "ESTIMATED_TIME_SLICER_AVERAGE": {
+      "title": "Az adatok előzetesek",
+      "body": "Az adott órára vonatkozó adatokat még nem jelentették. Modelljeink kitöltik ezeket a hiányokat, és valós időben teljes, részletes adatkészletet biztosítanak."
+    },
+    "ESTIMATED_MODE_BREAKDOWN": {
+      "title": "Az adatok részben becsültek",
+      "body": "Az adott zónára vonatkozó jelentett adatok hiányosak; modelljeink pótolják a hiányzó termelési módokat és villamosenergia-áramlásokat, hogy teljes képet adjanak az áramlás-követett villamosenergia-mixről."
+    },
+    "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
+      "title": "Az adatok mindig becsültek",
+      "pill": "Becsült",
+      "body": "Az adott zónára vonatkozó valós idejű forrásadatok nem érhetők el. Az adatokat élő időjárási adatok és történeti termelési minták kombinációjával modellezzük, hogy pontos, áramlás-követett villamosenergia-mixet állítsunk elő."
+    },
+    "threshold_filtered": {
+      "title": "Hiányzó adatok",
+      "pill": "Adatkiesés",
+      "body": "Az adott zóna adatforrása hosszabb ideje nem szolgáltat adatokat. Figyelemmel kísérjük a problémát, és frissítjük a zónát, amint az adatok ismét megfelelnek a minőségi küszöbértéknek."
+    },
+    "outage": {
+      "title": "Folyamatban lévő problémák",
+      "pill": "Nem elérhető"
+    },
+    "aggregated": {
+      "title": "Az adatok aggregáltak",
+      "pill": "Aggregált",
+      "body": "Az adatok óránkénti értékek aggregációjából állnak."
+    },
+    "aggregated_estimated": {
+      "title": "Az adatok aggregáltak",
+      "pill": " {{percentage}}% becsült",
+      "body": "Az adatok óránkénti értékek aggregációjából állnak. A termelési értékek {{percentage}}%-a becsült."
+    }
+  },
+  "time-controller": {
+    "24h": "24 óra",
+    "72h": "72 óra",
+    "3mo": "90 nap",
+    "12mo": "12 hónap",
+    "all_months": "Minden hónap",
+    "all_years": "Minden év",
+    "navigate": "Navigálás",
+    "live": "Élő",
+    "date-unavailable": {
+      "title": "Dátum nem érhető el",
+      "description": "Átirányítás élő adatokra"
+    }
+  },
+  "left-panel": {
+    "applied-methodologies": {
+      "title": "Alkalmazott módszertanok",
+      "estimations": "Electricity Maps - Becslések",
+      "flowtracing": "Electricity Maps - Áramlás-követés",
+      "carbonintensity": "Electricity Maps - Szénintenzitás",
+      "historicalAggregations": "Electricity Maps - Történeti aggregációk"
+    },
+    "methodologies-and-data-sources": {
+      "title": "Módszertanok és adatforrások"
+    }
+  },
+  "header": {
+    "blog": "Blog",
+    "open-source": "Közösség",
+    "hiring": "Csatlakozz hozzánk!",
+    "methodology": "Módszertan",
+    "faq": "GYIK"
+  },
+  "country-history": {
+    "carbonintensity": {
+      "24h": "Szénintenzitás",
+      "72h": "Szénintenzitás",
+      "3mo": "Napi szénintenzitás",
+      "12mo": "Havi szénintenzitás",
+      "all_months": "Havi szénintenzitás",
+      "all_years": "Éves szénintenzitás"
+    },
+    "emissions": {
+      "24h": "Szén-dioxid-kibocsátások",
+      "72h": "Szén-dioxid-kibocsátások",
+      "3mo": "Napi szén-dioxid-kibocsátások",
+      "12mo": "Havi szén-dioxid-kibocsátások",
+      "all_months": "Havi szén-dioxid-kibocsátások",
+      "all_years": "Éves szén-dioxid-kibocsátások"
+    },
+    "emissionsorigin": {
+      "24h": "Szén-dioxid-kibocsátás eredete",
+      "72h": "Szén-dioxid-kibocsátás eredete",
+      "3mo": "Napi szén-dioxid-kibocsátás eredete",
+      "12mo": "Havi szén-dioxid-kibocsátás eredete",
+      "all_months": "Havi szén-dioxid-kibocsátás eredete",
+      "all_years": "Éves szén-dioxid-kibocsátás eredete"
+    },
+    "emissionsproduction": {
+      "24h": "Termelési kibocsátások",
+      "72h": "Termelési kibocsátások",
+      "3mo": "Napi termelési kibocsátások",
+      "12mo": "Havi termelési kibocsátások",
+      "all_months": "Havi termelési kibocsátások",
+      "all_years": "Éves termelési kibocsátások"
+    },
+    "electricityorigin": {
+      "24h": "Villamosenergia-mix",
+      "72h": "Villamosenergia-mix",
+      "3mo": "Napi villamosenergia-mix",
+      "12mo": "Havi villamosenergia-mix",
+      "all_months": "Havi villamosenergia-mix",
+      "all_years": "Éves villamosenergia-mix"
+    },
+    "electricityproduction": {
+      "24h": "Villamosenergia-mix",
+      "72h": "Villamosenergia-mix",
+      "3mo": "Napi villamosenergia-mix",
+      "12mo": "Havi villamosenergia-mix",
+      "all_months": "Havi villamosenergia-mix",
+      "all_years": "Éves villamosenergia-mix"
+    },
+    "electricityprices": {
+      "24h": "Villamosenergia-árak",
+      "72h": "Villamosenergia-árak",
+      "3mo": "Napi villamosenergia-árak",
+      "12mo": "Havi villamosenergia-árak",
+      "all_months": "Havi villamosenergia-árak",
+      "all_years": "Éves villamosenergia-árak"
+    },
+    "netExchange": {
+      "24h": "Villamosenergia nettó áramlás",
+      "72h": "Villamosenergia nettó áramlás",
+      "3mo": "Napi villamosenergia nettó áramlás",
+      "12mo": "Havi villamosenergia nettó áramlás",
+      "all_months": "Havi villamosenergia nettó áramlás",
+      "all_years": "Éves villamosenergia nettó áramlás"
+    },
+    "electricityLoad": {
+      "24h": "Villamosenergia-terhelés",
+      "72h": "Villamosenergia-terhelés",
+      "3mo": "Napi villamosenergia-terhelés",
+      "12mo": "Havi villamosenergia-terhelés",
+      "all_months": "Havi villamosenergia-terhelés",
+      "all_years": "Éves villamosenergia-terhelés"
+    },
+    "not-enough-data": "Nincs elegendő adat a diagram megjelenítéséhez",
+    "exchange-delay": "Az áramlási adatok akár 48 órás késéssel is érkezhetnek."
+  },
+  "footer": {
+    "foundbugs": "Hibát talált vagy ötlete van? Jelentse",
+    "faq-text": "Valami nem egyértelmű? Nézze meg a",
+    "faq": "gyakran ismételt kérdéseket.",
+    "here": "itt"
+  },
+  "legends": {
+    "windpotential": "Szélenergia-potenciál",
+    "solarpotential": "Napenergia-potenciál",
+    "colorblindmode": "Színtévesztő mód",
+    "carbonintensity": "Szénintenzitás"
+  },
+  "tooltips": {
+    "carbonintensity": "Szénintenzitás",
+    "zoneHeader": {
+      "lowcarbon": "Tartalmazza az összes megújuló- és a nukleáris energiát",
+      "renewable": "Tartalmazza a nap-, szél-, víz-, biomassza- és geotermikus energiát",
+      "carbonIntensity": "A villamosenergia-termelés üvegházhatásúgáz-kibocsátását mérő érték grammban kifejezve kilowattóránként (gCO2eq/kWh)"
+    },
+    "crossborderexport": "Határkeresztező export",
+    "carbonintensityexport": "Az export szénintenzitása",
+    "ofinstalled": "a telepített kapacitásból",
+    "utilizing": "felhasználva",
+    "representing": "képviselve",
+    "ofemissions": "a kibocsátásokból",
+    "withcarbonintensity": "ilyen szénintenzitással:",
+    "zoomIn": "Nagyítás",
+    "zoomOut": "Kicsinyítés",
+    "layers": "Térképrétegek",
+    "showWindLayer": "Szélréteg megjelenítése",
+    "hideWindLayer": "Szélréteg elrejtése",
+    "showSolarLayer": "Napréteg megjelenítése",
+    "hideSolarLayer": "Napréteg elrejtése",
+    "weatherDisabled": "Az időjárási adatok jelenleg nem érhetők el",
+    "changeTheme": "Téma váltása",
+    "noParserInfo": "Nincs elérhető adat",
+    "temporaryDataOutage": "Az élő adatok átmenetileg nem érhetők el",
+    "temporarilyUnavailable": "Átmenetileg nem elérhető",
+    "production": "termelés",
+    "consumption": "fogyasztás",
+    "cpinfo": "<b>Áramlás-követett</b> figyelembe veszi az importot és exportot, a <b>termelési</b> nem",
+    "aggregateInfo": "Váltás a részletes zónanézet és az aggregált országnézet között",
+    "selectLanguage": "Nyelv kiválasztása",
+    "dataIsDelayed": "Az adatok késnek",
+    "price": "Ár",
+    "netExchange": "Villamosenergia-áramlás",
+    "load": "Villamosenergia-terhelés",
+    "importing": "Importálás",
+    "exporting": "Exportálás",
+    "flowTraced": "Az áramlás-követett adatok figyelembe veszik a fizikai villamosenergia-áramlást",
+    "nonFlowTraced": "A nem áramlás-követett adatok nem veszik figyelembe az importot és exportot"
+  },
+  "aria": {
+    "label": {
+      "selectLanguage": "Nyelv kiválasztása",
+      "colorBlindMode": "Színtévesztő mód",
+      "windLayer": "Szélréteg",
+      "solarLayer": "Napréteg",
+      "changeTheme": "Téma váltása",
+      "hideSidePanel": "Oldalsáv elrejtése",
+      "showSidePanel": "Oldalsáv megjelenítése",
+      "layers": "Térképrétegek",
+      "zoomIn": "Nagyítás",
+      "zoomOut": "Kicsinyítés"
+    }
+  },
+  "aggregateButtons": {
+    "country": "ország",
+    "zone": "zóna"
+  },
+  "themeOptions": {
+    "dark": "Sötét",
+    "light": "Világos",
+    "system": "Rendszer"
+  },
+  "updatePrompt": {
+    "description": "Új verzió érhető el",
+    "update": "Újratöltés",
+    "dismiss": "Elutasítás"
+  },
+  "misc": {
+    "maintitle": "A villamosenergia-fogyasztás élő, 24/7 CO₂-kibocsátása",
+    "faq": "Gyakran Ismételt Kérdések",
+    "dismiss": "Elutasítás",
+    "reload": "Újratöltés",
+    "slow-loading-text": "Még töltődik, ha ez folytatódik, próbálja meg újratölteni..."
+  },
+  "wind": "szél",
+  "windDataError": "A széladatok jelenleg nem érhetők el",
+  "solar": "nap",
+  "solarDataError": "A napenergia-adatok jelenleg nem érhetők el",
+  "hydro": "vízenergia",
+  "hydro storage": "víztározós energia",
+  "battery storage": "akkumulátoros energiatároló rendszerek",
+  "biomass": "biomassza",
+  "nuclear": "nukleáris",
+  "geothermal": "geotermikus",
+  "gas": "gáz",
+  "coal": "szén",
+  "oil": "olaj",
+  "unknown": "ismeretlen",
+  "electricityStoredUsing": "tárolva ezzel:",
+  "emissionsStoredUsing": "tárolva ezzel:",
+  "electricityExportedTo": "exportálva ide:",
+  "emissionsExportedTo": "exportálva ide:",
+  "electricityImportedFrom": "importálva innen:",
+  "emissionsImportedFrom": "importálva innen:",
+  "electricityAvailableIn": "elérhető villamos energia itt:",
+  "emissionsAvailableIn": "villamos energiából származó kibocsátások itt:",
+  "comesFrom": "származik innen:",
+  "ofCO2eq": "CO₂-egyenérték",
+  "theMap": {
+    "groupName": "A térkép",
+    "mapColors-question": "Mit jelentenek a térképen látható színek?",
+    "mapColors-answer": "A térképen a területeket az ott elfogyasztott villamos energia egységére jutó üvegházhatásúgáz-kibocsátás alapján színezzük (szénintenzitás). Minél zöldebb a szín, annál klímabarátabb a villamosenergia-fogyasztás.",
+    "mapArrows-question": "Mit jelentenek a területek közötti nyilak a térképen?",
+    "mapArrows-answer": "A területek közötti nyilak a villamos energia fizikai áramlását (importot és exportot) jelzik: minél gyorsabban villognak, annál gyorsabb az áramlás. Az áramlás azért fontos, mert amikor szomszédos területekről importál villamos energiát, a termeléshez kapcsolódó szén-dioxid-kibocsátásokat is importálja.",
+    "mapSolarWindButtons-question": "Mit csinálnak a „nap” és „szél” gombok a térképen?",
+    "mapSolarWindButtons-answer": "Ezek a gombok a valós idejű szélsebesség és napsütés erősségének megjelenítését kapcsolják be vagy ki, jelezve a nap- és szélalapú energiára való átállás potenciálját az egyes területeken. Ez csak egy felületes jelzés, mivel a tényleges potenciál számos egyéb tényezőtől is függ.",
+    "mapNuclearColors-question": "Miért jelennek meg zöld színnel a nukleáris energiát használó országok?",
+    "mapNuclearColors-answer": "A nukleáris energiatermelés nagyon alacsony szénintenzitású (<a href='https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources' target='_blank'>forrás</a>), ezért a nukleáris energiát használó országok zöld színnel jelennek meg. Ez nem jelenti azt, hogy ne lennének más környezeti kihívások, de ezek nem az üvegházhatásúgáz-kibocsátásokhoz kapcsolódnak.",
+    "mapColorBlind-question": "Színtévesztő vagyok. Hogyan tudom olvasni a térképet?",
+    "mapColorBlind-answer": "A megjelenített színek módosíthatók a „színtévesztő mód” bekapcsolásával. Asztali nézetben az alkalmazás jobb oldalán, mobilon a beállítások panelen található."
+  },
+  "mapAreas": {
+    "groupName": "Területek a térképen",
+    "noData-question": "Miért nem érhetők el adatok a területemre?",
+    "noData-answer": " Vagy azért, mert a terület adatforrásai átmenetileg nem érhetők el, vagy mert még nem állnak rendelkezésre adatforrások. Segíthet <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>új adatforrások felkutatásában</a>.",
+    "whySmallAreas-question": "Miért osztják a világot kisebb területekre, miért nem csak országos átlagokat mutatnak?",
+    "whySmallAreas-answer": "A területek a legkisebb földrajzi egységek, amelyekre adataink vannak. A nagyobb részletesség pontosabb képet ad a villamos energia eredetéről és annak klímahatásáról.",
+    "divideExistingArea-question": "Fel lehet osztani a területemet kisebb részekre?",
+    "divideExistingArea-answer": "Igen, ha minden részhez külön adatforrások állnak rendelkezésre. Segíthet <a href='#contribute' class='entry-link'>új adatforrások hozzáadásában</a>.",
+    "seeHistoricalData-question": "Megnézhetem egy terület 24 óránál régebbi adatait?",
+    "seeHistoricalData-answer": "Minden történeti adatunkhoz vásárolhat hozzáférést <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>adatbázisunkon</a> keresztül."
+  },
+  "methodology": {
+    "groupName": "Módszereink",
+    "carbonIntensity-question": "Mi az a „szénintenzitás”?",
+    "carbonIntensity-answer": "A szénintenzitás annak a villamos energiának az előállításához kapcsolódó üvegházhatásúgáz-kibocsátás mértéke, amelyet Ön fogyaszt (gCO₂eq/kWh-ban - azaz az elfogyasztott villamos energia kilowattóránként kibocsátott szén-dioxid-egyenérték grammjaiban). <br><br>Az elektromos energia **fogyasztásához** kapcsolódó kibocsátásokat mérjük (nem a termelését), vagyis minden olyan üvegházhatású gáz kibocsátását (a CO₂-t és más gázokat, például a metánt is), amely az adott területen elfogyasztott villamos energia előállításához hozzájárult. Ez magában foglalja a más területekről importált villamos energia szénintenzitását is. Életciklus-elemzésen (LCA) alapuló megközelítést alkalmazunk, ami azt jelenti, hogy figyelembe vesszük az erőművek teljes életciklusából származó kibocsátásokat: a létesítést, az üzemanyag-előállítást, az üzemeltetés során keletkező kibocsátásokat, valamint a leszerelést.",
+    "methodology-question": "Hogyan számolták ki az értékeket?",
+    "methodology-answer": "A teljes módszertan elérhető a <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a> oldalon, további dokumentációval a <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>GitHub Wikiben</a>.",
+    "regionalEmissionFactors-question": "Miért változnak a kibocsátási tényezők a különböző területeken?",
+    "regionalEmissionFactors-answer": "Egyes zónák esetében a globális átlagként használt tartalékértéknél pontosabb kibocsátási tényezőkhöz is hozzáférünk. Például az Egyesült Államokban és az Európai Unióban az erőművek közvetlen kibocsátási adatai nyilvánosan elérhetők. Ezeket a kibocsátási adatokat az erőművi termelési adatokkal párosítjuk, majd erőművenkénti kibocsátási tényezőket számítunk, amelyeket zónaszinten aggregálunk. Részletekért lásd a <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/EU-emission-factors'>Wiki oldalt</a>.",
+    "renewableLowCarbonDifference-question": "Mi a különbség a „megújuló” és az „alacsony szén-dioxid-kibocsátású” között?",
+    "renewableLowCarbonDifference-answer": "A megújuló energia megújuló forrásokon alapul például a szél vagy a víz áramlása, napsütés vagy geotermikus energia. Az alacsony szén-dioxid-kibocsátású energia nagyon alacsony üvegházhatásúgáz-kibocsátással jár, például a nukleáris energia esetében.",
+    "importsAndExports-question": "Figyelembe veszik a villamos energia importját és exportját?",
+    "importsAndExports-answer": "Igen. Az import és export a térképen kis nyilakkal jelenik meg a különböző területek között, amikor a <strong>fogyasztás</strong> mód van kiválasztva. Részletesebb információk az adott területre kattintva megjelenő diagramokon láthatók.",
+    "emissionsOfStored-question": "Mi a helyzet azzal az elektromos energiával, amelyet megtermelnek, majd akkumulátorokban tárolnak vagy tározók feltöltésére használnak?",
+    "emissionsOfStored-answer": "Mivel jelenleg a villamos energia csak kis hányadát tárolják, az ezen kibocsátások modellezéséből adódó pontatlanságok jelenleg nem befolyásolják jelentősen az összesített értéket. Ugyanakkor a tárolás növekvő jelentősége miatt a közeljövőben várhatóan részletesebben figyelembe vesszük ezt a modellünkben.",
+    "guaranteesOfOrigin-question": "Mik a zöld tanúsítványok, és hogyan veszik ezeket figyelembe?",
+    "guaranteesOfOrigin-answer": "Amikor a megújuló energiát termelő erőművek villamos energiát állítanak elő, Származási Garanciákat (Guarantees of Origin, illetve Megújulóenergia-tanúsítványokat) hozhatnak létre - ez annak igazolása, hogy megújuló forrásból származó villamos energia került a villamosenergia-hálózatba. Ezek a garanciák értékesíthetők, így a villamosenergia-kereskedők azt állíthatják, hogy az általuk továbbértékesített áram megújuló forrásból származik, függetlenül annak tényleges, fizikai eredetétől.<br><br> Ez azt jelenti, hogy a fogyasztók akkor is azt az információt kaphatják, hogy az általuk használt áram nap- vagy szélenergiából származik, amikor például szélcsendes éjszaka van. Ez problémás, mert csökkenti a fogyasztók ösztönzését arra, hogy az elektromos energiát a legkedvezőbb időpontban használják (például akkor, amikor a hálózatban ténylegesen a legmagasabb a megújuló energia aránya). Ezért ez a térkép kizárja a Származási Garanciákat, és ehelyett a villamosenergia-hálózat földrajzi alapú, fizikai képét mutatja be, a fogyasztók döntéseinek támogatása érdekében.",
+    "otherSources-question": "Miért nem jelenítenek meg a villamosenergia-termelésen kívüli egyéb kibocsátási forrásokat?",
+    "otherSources-answer": "Jelenleg kizárólag a villamosenergia-termelésre összpontosítunk, mivel ez <a href='https://ourworldindata.org/emissions-by-sector#energy-electricity-heat-and-transport-73-2' target='_blank'>a legnagyobb kibocsátási forrás</a>, és ez az a terület, amely a legkönnyebben dekarbonizálható.",
+    "homeSolarPanel-question": "Mi történik, ha napelem van felszerelve az otthonomban?",
+    "homeSolarPanel-answer": "A helyi villamosenergia-hálózat szénintenzitását mérjük, ezért az a villamos energia, amelyet közvetlenül a saját napeleméből fogyaszt (hálózaton kívül), nem része a méréseinknek. Ha azonban a napeleme a helyi villamosenergia-hálózatba termel be, annak termelése szerepel a statisztikáinkban azokban a térségekben, ahol a helyi napenergia-termelés becslései nyilvánosan elérhetők (például Franciaországban és az Egyesült Királyságban).",
+    "emissionsPerCapita-question": "Miért nem jelenítenek meg egy főre jutó kibocsátási adatokat?",
+    "emissionsPerCapita-answer": "Az adott területen elfogyasztott villamos energia egy részét fizikai áruk és termékek előállítására használják, amelyeket később más területekre exportálnak és ott fogyasztanak el. Ez a gyártás - és így az ahhoz kapcsolódó villamosenergia-fogyasztás és kibocsátás - az <em>importáló területek</em> fogyasztását szolgálja, nem pedig azt a területet, ahol a termelés történik. Úgy véljük, hogy az embereknek csak azért kellene felelősséget vállalniuk, amit elfogyasztanak, nem pedig azokért a termékekért, amelyeket a lakóhelyükön gyártanak, de ők maguk nem fogyasztanak el. Ebben az értelemben az egy főre jutó villamosenergia-fogyasztási kibocsátások megjelenítése félrevezető."
+  },
+  "data": {
+    "groupName": "Adataink",
+    "dataOrigins-question": "Hogyan jutnak hozzá az adatokhoz?",
+    "dataOrigins-answer": "Minden adatunkat nyilvánosan elérhető forrásokból számítjuk, amelyeket villamosenergia-hálózati üzemeltetők, hivatalos szervezetek és más intézmények tesznek közzé. Egy adott területre kattintva részletesebb információkat is megtekinthet az adatok forrásáról.",
+    "dataDownload-question": "Letölthetem az adataikat?",
+    "dataDownload-answer": "A korábbi évekre vonatkozó adatokat ingyenesen közzétesszük az <a href='https://electricitymaps.com/data-portal?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>Adatportálunkon</a>. A frissebb és valós idejű adatokhoz az <a href='https://www.electricitymaps.com/pricing?utm_source=app.electricitymaps.com&utm_medium=referral'>API-nkat</a> használhatja, amely nem kereskedelmi célokra ingyenes, kereskedelmi felhasználásra pedig megvásárolható.",
+    "dataIntegration-question": "Integrálhatom az adataikat valós időben az alkalmazásomba vagy eszközömbe?",
+    "dataIntegration-answer": "Igen! Nem kereskedelmi felhasználásra ingyenes API-t biztosítunk, kereskedelmi célokra pedig hozzáférést értékesítünk a <a href='https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral' target='_blank'>valós idejű API-nkhoz</a>, amely előrejelzéseket és további funkciókat is tartalmaz."
+  },
+  "aboutUs": {
+    "groupName": "Rólunk",
+    "whoAreYou-question": "Kik vagytok?",
+    "whoAreYou-answer": "Az alkalmazást az <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a>, egy dán startup fejleszti és üzemelteti. Küldetésünk a világ villamosenergia-adatainak rendszerezése a teljesen dekarbonizált villamosenergia-rendszer felé való átmenet támogatására.",
+    "feedback-question": "Adhatok visszajelzést?",
+    "feedback-answer": "Örömmel fogadjuk! Töltse ki <a href='https://forms.gle/VHaeHzXyGodFKZY18' target='_blank'>visszajelzési űrlapunkat</a>.",
+    "contribute-question": "Hozzájárulhatok a projekthez?",
+    "contribute-answer": "Igen! Az alkalmazás nyílt forráskódú, önkéntes közreműködők segítségével. Csatlakozzon a <a href='https://github.com/electricityMaps/electricitymaps-contrib/' target='_blank'>GitHubon</a>.",
+    "workTogether-question": "Dolgozhatunk együtt?",
+    "workTogether-answer": "Nyitottak vagyunk együttműködésekre. <a href='mailto:app@electricitymaps.com'>Írjon nekünk emailt!</a>",
+    "disclaimer-question": "Jogi nyilatkozat",
+    "disclaimer-answer": "Az <a href='https://electricitymaps.com/' target='_blank'>Electricity Maps</a> az <a href='https://app.electricitymaps.com/' target='_blank'>Electricity Maps alkalmazásban</a> közzétett adatokat és képeket kizárólag tájékoztatási céllal teszi elérhetővé. Nem vállal garanciát azok helyességére, semmilyen jellegű szavatosságot nem biztosít, és fenntartja a jogot arra, hogy a tartalmat bármikor megváltoztassa, illetve annak egyes részeit előzetes értesítés nélkül eltávolítsa. Az Electricity Maps nem vállal felelősséget, és nem tehető felelőssé semmilyen kárért vagy költségért, amely az Electricity Maps alkalmazás, illetve az abból származó információk pontatlanságából, hiányosságából, időszerűtlenségéből vagy elavultságából ered. A weboldal, illetve annak bármely egyedi eleme más weboldalon történő megjelenítése a Electricity Maps előzetes, írásos engedélye nélkül nem megengedett.<br><br> Minden szellemi tulajdonjog a jogos tulajdonosokat és licencadóikat illeti. Az anyagok - különösen az energetikai adatok - másolása, terjesztése és bármilyen egyéb felhasználása az Electricity Maps írásos engedélye nélkül nem megengedett, kivéve és kizárólag a kötelező jogszabályok által biztosított mértékben (például az idézés joga), illetve ha egyes anyagok esetében ettől eltérően nem kerül meghatározásra.<br><br>Ez a jogi nyilatkozat időről időre frissülhet."
+  },
+  "zoneShortName": {
+    "AD": {
+      "zoneName": "Andorra"
+    },
+    "AE": {
+      "zoneName": "Egyesült Arab Emírségek"
+    },
+    "AF": {
+      "zoneName": "Afganisztán"
+    },
+    "AG": {
+      "zoneName": "Antigua és Barbuda"
+    },
+    "AL": {
+      "zoneName": "Albánia"
+    },
+    "AM": {
+      "zoneName": "Örményország"
+    },
+    "AO": {
+      "zoneName": "Angola"
+    },
+    "AR": {
+      "zoneName": "Argentína"
+    },
+    "AT": {
+      "zoneName": "Ausztria"
+    },
+    "AU": {
+      "zoneName": "Ausztrália"
+    },
+    "AU-LH": {
+      "countryName": "Ausztrália",
+      "zoneName": "Lord Howe-sziget"
+    },
+    "AU-NSW": {
+      "countryName": "Ausztrália",
+      "zoneName": "Új-Dél-Wales"
+    },
+    "AU-NT": {
+      "countryName": "Ausztrália",
+      "zoneName": "Északi terület"
+    },
+    "AU-QLD": {
+      "countryName": "Ausztrália",
+      "zoneName": "Queensland"
+    },
+    "AU-SA": {
+      "countryName": "Ausztrália",
+      "zoneName": "Dél-Ausztrália"
+    },
+    "AU-TAS": {
+      "countryName": "Ausztrália",
+      "zoneName": "Tazmánia"
+    },
+    "AU-TAS-CBI": {
+      "countryName": "Ausztrália",
+      "zoneName": "Cape Barren-sziget"
+    },
+    "AU-TAS-KI": {
+      "countryName": "Ausztrália",
+      "zoneName": "King-sziget"
+    },
+    "AU-TAS-FI": {
+      "countryName": "Ausztrália",
+      "zoneName": "Flinders-sziget"
+    },
+    "AU-VIC": {
+      "countryName": "Ausztrália",
+      "zoneName": "Victoria"
+    },
+    "AU-WA": {
+      "countryName": "Ausztrália",
+      "zoneName": "Nyugat-Ausztrália"
+    },
+    "AU-WA-RI": {
+      "countryName": "Ausztrália",
+      "zoneName": "Rottnest-sziget"
+    },
+    "AW": {
+      "zoneName": "Aruba"
+    },
+    "AX": {
+      "zoneName": "Åland-szigetek"
+    },
+    "AZ": {
+      "zoneName": "Azerbajdzsán"
+    },
+    "BA": {
+      "zoneName": "Bosznia-Hercegovina"
+    },
+    "BB": {
+      "zoneName": "Barbados"
+    },
+    "BD": {
+      "zoneName": "Banglades"
+    },
+    "BE": {
+      "zoneName": "Belgium"
+    },
+    "BF": {
+      "zoneName": "Burkina Faso"
+    },
+    "BG": {
+      "zoneName": "Bulgária"
+    },
+    "BH": {
+      "zoneName": "Bahrein"
+    },
+    "BI": {
+      "zoneName": "Burundi"
+    },
+    "BJ": {
+      "zoneName": "Benin"
+    },
+    "BM": {
+      "zoneName": "Bermuda"
+    },
+    "BN": {
+      "zoneName": "Brunei"
+    },
+    "BO": {
+      "zoneName": "Bolívia"
+    },
+    "BR": {
+      "zoneName": "Brazília"
+    },
+    "BR-CS": {
+      "countryName": "Brazília",
+      "zoneName": "Közép-Brazília"
+    },
+    "BR-N": {
+      "countryName": "Brazília",
+      "zoneName": "Észak-Brazília"
+    },
+    "BR-NE": {
+      "countryName": "Brazília",
+      "zoneName": "Északkelet-Brazília"
+    },
+    "BR-S": {
+      "countryName": "Brazília",
+      "zoneName": "Dél-Brazília"
+    },
+    "BS": {
+      "zoneName": "Bahama-szigetek"
+    },
+    "BT": {
+      "zoneName": "Bhután"
+    },
+    "BW": {
+      "zoneName": "Botswana"
+    },
+    "BY": {
+      "zoneName": "Fehéroroszország"
+    },
+    "BZ": {
+      "zoneName": "Belize"
+    },
+    "CA": {
+      "zoneName": "Kanada"
+    },
+    "CA-AB": {
+      "countryName": "Kanada",
+      "zoneName": "Alberta"
+    },
+    "CA-BC": {
+      "countryName": "Kanada",
+      "zoneName": "Brit Columbia"
+    },
+    "CA-MB": {
+      "countryName": "Kanada",
+      "zoneName": "Manitoba"
+    },
+    "CA-NB": {
+      "countryName": "Kanada",
+      "zoneName": "Új-Brunswick"
+    },
+    "CA-NL": {
+      "countryName": "Kanada",
+      "zoneName": "Újfundland és Labrador"
+    },
+    "CA-NS": {
+      "countryName": "Kanada",
+      "zoneName": "Új-Skóci"
+    },
+    "CA-NT": {
+      "countryName": "Kanada",
+      "zoneName": "Északnyugati terület"
+    },
+    "CA-NU": {
+      "countryName": "Kanada",
+      "zoneName": "Nunavut"
+    },
+    "CA-ON": {
+      "countryName": "Kanada",
+      "zoneName": "Ontario"
+    },
+    "CA-PE": {
+      "countryName": "Kanada",
+      "zoneName": "Prince Edward-sziget"
+    },
+    "CA-QC": {
+      "countryName": "Kanada",
+      "zoneName": "Québec"
+    },
+    "CA-SK": {
+      "countryName": "Kanada",
+      "zoneName": "Saskatchewan"
+    },
+    "CA-YT": {
+      "countryName": "Kanada",
+      "zoneName": "Yukon"
+    },
+    "CD": {
+      "zoneName": "Kongói Demokratikus Köztársaság"
+    },
+    "CF": {
+      "zoneName": "Közép-afrikai Köztársaság"
+    },
+    "CG": {
+      "zoneName": "Kongó"
+    },
+    "CH": {
+      "zoneName": "Svájc"
+    },
+    "CI": {
+      "zoneName": "Elefántcsontpart"
+    },
+    "CL-CHP": {
+      "countryName": "Chile",
+      "zoneName": "Húsvét-sziget"
+    },
+    "CL-SEA": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico de Aysén"
+    },
+    "CL-SEM": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico de Magallanes"
+    },
+    "CL-SEN": {
+      "countryName": "Chile",
+      "zoneName": "Sistema Eléctrico Nacional"
+    },
+    "CM": {
+      "zoneName": "Kamerun"
+    },
+    "CN": {
+      "zoneName": "Kína"
+    },
+    "CO": {
+      "zoneName": "Kolumbia"
+    },
+    "CR": {
+      "zoneName": "Costa Rica"
+    },
+    "CU": {
+      "zoneName": "Kuba"
+    },
+    "CV": {
+      "zoneName": "Zöld-foki Köztársaság"
+    },
+    "CW": {
+      "zoneName": "Curaçao"
+    },
+    "CY": {
+      "zoneName": "Ciprus"
+    },
+    "CZ": {
+      "zoneName": "Csehország"
+    },
+    "DE": {
+      "zoneName": "Németország"
+    },
+    "DJ": {
+      "zoneName": "Dzsibuti"
+    },
+    "DK": {
+      "zoneName": "Dánia"
+    },
+    "DK-DK1": {
+      "countryName": "Dánia",
+      "zoneName": "Nyugat-Dánia"
+    },
+    "DK-DK2": {
+      "countryName": "Dánia",
+      "zoneName": "Észak-Dánia"
+    },
+    "DK-BHM": {
+      "countryName": "Dánia",
+      "zoneName": "Bornholm"
+    },
+    "DM": {
+      "zoneName": "Dominikai Közösség"
+    },
+    "DO": {
+      "zoneName": "Dominikai Köztársaság"
+    },
+    "DZ": {
+      "zoneName": "Algéria"
+    },
+    "EC": {
+      "zoneName": "Ecuador"
+    },
+    "EE": {
+      "zoneName": "Észtorszég"
+    },
+    "EG": {
+      "zoneName": "Egyiptom"
+    },
+    "EH": {
+      "zoneName": "Nyugat-Szahara"
+    },
+    "ER": {
+      "zoneName": "Eritrea"
+    },
+    "ES": {
+      "zoneName": "Spanyolország"
+    },
+    "ES-CE": {
+      "countryName": "Spanyolország",
+      "zoneName": "Ceuta"
+    },
+    "ES-IB-FO": {
+      "countryName": "Spanyolország",
+      "zoneName": "Formentera"
+    },
+    "ES-IB-IZ": {
+      "countryName": "Spanyolország",
+      "zoneName": "Ibiza"
+    },
+    "ES-IB-MA": {
+      "countryName": "Spanyolország",
+      "zoneName": "Mallorca"
+    },
+    "ES-IB-ME": {
+      "countryName": "Spanyolország",
+      "zoneName": "Menorca"
+    },
+    "ES-CN-FV": {
+      "countryName": "Spanyolország",
+      "zoneName": "Fuerteventura"
+    },
+    "ES-CN-LZ": {
+      "countryName": "Spanyolország",
+      "zoneName": "Lanzarote"
+    },
+    "ES-CN-GC": {
+      "countryName": "Spanyolország",
+      "zoneName": "Gran Canaria"
+    },
+    "ES-CN-HI": {
+      "countryName": "Spanyolország",
+      "zoneName": "El Hierro"
+    },
+    "ES-CN-IG": {
+      "countryName": "Spanyolország",
+      "zoneName": "Isla de la Gomera"
+    },
+    "ES-CN-LP": {
+      "countryName": "Spanyolország",
+      "zoneName": "La Palma"
+    },
+    "ES-CN-TE": {
+      "countryName": "Spanyolország",
+      "zoneName": "Tenerife"
+    },
+    "ES-ML": {
+      "countryName": "Spanyolország",
+      "zoneName": "Melilla"
+    },
+    "ET": {
+      "zoneName": "Etiópia"
+    },
+    "FI": {
+      "zoneName": "Finnország"
+    },
+    "FJ": {
+      "zoneName": "Fidzsi-szigetek"
+    },
+    "FK": {
+      "zoneName": "Falkland-szigetek"
+    },
+    "FM": {
+      "zoneName": "Mikronézia"
+    },
+    "FO": {
+      "zoneName": "Feröer"
+    },
+    "FO-MI": {
+      "countryName": "Feröer",
+      "zoneName": "Main Islands"
+    },
+    "FO-SI": {
+      "countryName": "Feröer",
+      "zoneName": "South Island"
+    },
+    "FR": {
+      "zoneName": "Franciaország"
+    },
+    "FR-COR": {
+      "countryName": "Franciaország",
+      "zoneName": "Korzika"
+    },
+    "GA": {
+      "zoneName": "Gabon"
+    },
+    "GB": {
+      "zoneName": "Nagy-Britannia"
+    },
+    "GB-NIR": {
+      "zoneName": "Észak-Írország"
+    },
+    "GB-ORK": {
+      "countryName": "Nagy-Britannia",
+      "zoneName": "Orkney-szigetek"
+    },
+    "GB-ZET": {
+      "countryName": "Nagy-Britannia",
+      "zoneName": "Shetland-szigetek"
+    },
+    "GE": {
+      "zoneName": "Grúzia"
+    },
+    "GF": {
+      "zoneName": "Francia Guyana"
+    },
+    "GG": {
+      "zoneName": "Guernsey Bailiffség"
+    },
+    "GH": {
+      "zoneName": "Ghána"
+    },
+    "GI": {
+      "zoneName": "Gibraltár"
+    },
+    "GL": {
+      "zoneName": "Grönland"
+    },
+    "GM": {
+      "zoneName": "Gambia"
+    },
+    "GN": {
+      "zoneName": "Guinea"
+    },
+    "GP": {
+      "zoneName": "Guadeloupe"
+    },
+    "GQ": {
+      "zoneName": "Egyenlítői-Guinea"
+    },
+    "GR": {
+      "zoneName": "Görögország"
+    },
+    "GS": {
+      "zoneName": "Déli-Georgia és Déli-Sandwhich-szigetek"
+    },
+    "GT": {
+      "zoneName": "Guatemala"
+    },
+    "GU": {
+      "zoneName": "Guam"
+    },
+    "GW": {
+      "zoneName": "Bissau-Guinea"
+    },
+    "GY": {
+      "zoneName": "Guyana"
+    },
+    "HK": {
+      "zoneName": "Hong Kong"
+    },
+    "HM": {
+      "zoneName": "Heard-sziget és McDonald-szigetek"
+    },
+    "HN": {
+      "zoneName": "Honduras"
+    },
+    "HR": {
+      "zoneName": "Horvátország"
+    },
+    "HT": {
+      "zoneName": "Haiti"
+    },
+    "HU": {
+      "zoneName": "Magyarország"
+    },
+    "ID": {
+      "zoneName": "Indonézia"
+    },
+    "IE": {
+      "zoneName": "Írország"
+    },
+    "IL": {
+      "zoneName": "Izrael"
+    },
+    "IM": {
+      "zoneName": "Man-sziget"
+    },
+    "IN": {
+      "zoneName": "India"
+    },
+    "IN-EA": {
+      "countryName": "India",
+      "zoneName": "Kelet-India"
+    },
+    "IN-NE": {
+      "countryName": "India",
+      "zoneName": "Északkelet-India"
+    },
+    "IN-NO": {
+      "countryName": "India",
+      "zoneName": "Észak-India"
+    },
+    "IN-SO": {
+      "countryName": "India",
+      "zoneName": "Dél-India"
+    },
+    "IN-WE": {
+      "countryName": "India",
+      "zoneName": "Nyugat-India"
+    },
+    "IN-AN": {
+      "countryName": "India",
+      "zoneName": "Andamán- és Nikobár-szigetek"
+    },
+    "IN-HP": {
+      "countryName": "India",
+      "zoneName": "Himácsal Prades"
+    },
+    "IN-UP": {
+      "countryName": "India",
+      "zoneName": "Uttar Prades"
+    },
+    "IN-UT": {
+      "countryName": "India",
+      "zoneName": "Uttarakhand"
+    },
+    "IO": {
+      "zoneName": "Brit Indiai-óceáni Terület"
+    },
+    "IQ": {
+      "zoneName": "Irak"
+    },
+    "IR": {
+      "zoneName": "Irán"
+    },
+    "IS": {
+      "zoneName": "Izland"
+    },
+    "IT": {
+      "zoneName": "Olaszország"
+    },
+    "IT-CNO": {
+      "countryName": "Olaszország",
+      "zoneName": "Közép-észak-Olaszország"
+    },
+    "IT-CSO": {
+      "countryName": "Olaszország",
+      "zoneName": "Közép-dél-Olaszország"
+    },
+    "IT-NO": {
+      "countryName": "Olaszország",
+      "zoneName": "Észak-Olaszország"
+    },
+    "IT-SAR": {
+      "countryName": "Olaszország",
+      "zoneName": "Szardínia"
+    },
+    "IT-SIC": {
+      "countryName": "Olaszország",
+      "zoneName": "Szicília"
+    },
+    "IT-SO": {
+      "countryName": "Olaszország",
+      "zoneName": "Dél-Olaszország"
+    },
+    "JE": {
+      "zoneName": "Jersey Bailiffség"
+    },
+    "JM": {
+      "zoneName": "Jamaica"
+    },
+    "JO": {
+      "zoneName": "Jordánia"
+    },
+    "JP": {
+      "zoneName": "Japán"
+    },
+    "JP-CB": {
+      "countryName": "Japán",
+      "zoneName": "Chūbu"
+    },
+    "JP-CG": {
+      "countryName": "Japán",
+      "zoneName": "Chūgoku"
+    },
+    "JP-HKD": {
+      "countryName": "Japán",
+      "zoneName": "Hokkaidō"
+    },
+    "JP-HR": {
+      "countryName": "Japán",
+      "zoneName": "Hokuriku"
+    },
+    "JP-KN": {
+      "countryName": "Japán",
+      "zoneName": "Kansai"
+    },
+    "JP-KY": {
+      "countryName": "Japán",
+      "zoneName": "Kyūshū"
+    },
+    "JP-ON": {
+      "countryName": "Japán",
+      "zoneName": "Okinawa"
+    },
+    "JP-SK": {
+      "countryName": "Japán",
+      "zoneName": "Shikoku"
+    },
+    "JP-TH": {
+      "countryName": "Japán",
+      "zoneName": "Tōhoku"
+    },
+    "JP-TK": {
+      "countryName": "Japán",
+      "zoneName": "Tōkyō"
+    },
+    "KE": {
+      "zoneName": "Kenya"
+    },
+    "KG": {
+      "zoneName": "Kirgizisztán"
+    },
+    "KH": {
+      "zoneName": "Kambodzsa"
+    },
+    "KM": {
+      "zoneName": "Comore-szigetek"
+    },
+    "KP": {
+      "zoneName": "Észak-Korea"
+    },
+    "KR": {
+      "zoneName": "Dél-Korea"
+    },
+    "KW": {
+      "zoneName": "Kuvait"
+    },
+    "KY": {
+      "zoneName": "Kajmán-szigetek"
+    },
+    "KZ": {
+      "zoneName": "Kazahsztán"
+    },
+    "LA": {
+      "zoneName": "Laosz"
+    },
+    "LB": {
+      "zoneName": "Lebanon"
+    },
+    "LC": {
+      "zoneName": "Saint Lucia"
+    },
+    "LI": {
+      "zoneName": "Liechtenstein"
+    },
+    "LK": {
+      "zoneName": "Sri Lanka"
+    },
+    "LR": {
+      "zoneName": "Libéria"
+    },
+    "LS": {
+      "zoneName": "Lesotho"
+    },
+    "LT": {
+      "zoneName": "Litvánia"
+    },
+    "LU": {
+      "zoneName": "Luxemburg"
+    },
+    "LV": {
+      "zoneName": "Lettország"
+    },
+    "LY": {
+      "zoneName": "Líbia"
+    },
+    "MA": {
+      "zoneName": "Marokkó"
+    },
+    "MC": {
+      "zoneName": "Monaco"
+    },
+    "MD": {
+      "zoneName": "Moldova"
+    },
+    "ME": {
+      "zoneName": "Montenegro"
+    },
+    "MG": {
+      "zoneName": "Madagaszkár"
+    },
+    "MK": {
+      "zoneName": "Észak Macedonia"
+    },
+    "ML": {
+      "zoneName": "Mali"
+    },
+    "MM": {
+      "zoneName": "Mianmar"
+    },
+    "MN": {
+      "zoneName": "Mongólia"
+    },
+    "MO": {
+      "zoneName": "Makaó"
+    },
+    "MQ": {
+      "zoneName": "Martinique"
+    },
+    "MR": {
+      "zoneName": "Mauritánia"
+    },
+    "MS": {
+      "zoneName": "Montserrat"
+    },
+    "MT": {
+      "zoneName": "Málta"
+    },
+    "MU": {
+      "zoneName": "Mauritius"
+    },
+    "MV": {
+      "zoneName": "Maldív-szigetek"
+    },
+    "MW": {
+      "zoneName": "Malawi"
+    },
+    "MX": {
+      "zoneName": "Mexikó"
+    },
+    "MX-BC": {
+      "countryName": "Mexikó",
+      "zoneName": "Alsó-Kalifornia"
+    },
+    "MX-BCS": {
+      "countryName": "Mexikó",
+      "zoneName": "Dél-Alsó-Kalifornia"
+    },
+    "MX-CE": {
+      "countryName": "Mexikó",
+      "zoneName": "Közép"
+    },
+    "MX-NE": {
+      "countryName": "Mexikó",
+      "zoneName": "Északkelet"
+    },
+    "MX-NO": {
+      "countryName": "Mexikó",
+      "zoneName": "Észak"
+    },
+    "MX-NW": {
+      "countryName": "Mexikó",
+      "zoneName": "Északnyugat"
+    },
+    "MX-OC": {
+      "countryName": "Mexikó",
+      "zoneName": "Nyugati"
+    },
+    "MX-OR": {
+      "countryName": "Mexikó",
+      "zoneName": "Keleti"
+    },
+    "MX-PN": {
+      "countryName": "Mexikó",
+      "zoneName": "Félsziget"
+    },
+    "MY": {
+      "zoneName": "Malajzia"
+    },
+    "MY-EM": {
+      "countryName": "Malajzia",
+      "zoneName": "Borneo"
+    },
+    "MY-WM": {
+      "countryName": "Malajzia",
+      "zoneName": "Félsziget"
+    },
+    "MZ": {
+      "zoneName": "Mozambik"
+    },
+    "NA": {
+      "zoneName": "Namíbia"
+    },
+    "NC": {
+      "zoneName": "Új-Kaledónia"
+    },
+    "NE": {
+      "zoneName": "Niger"
+    },
+    "NG": {
+      "zoneName": "Nigéria"
+    },
+    "NI": {
+      "zoneName": "Nicaragua"
+    },
+    "NL": {
+      "zoneName": "Hollandia"
+    },
+    "NO": {
+      "zoneName": "Norvégia"
+    },
+    "NO-NO1": {
+      "countryName": "Norvégia",
+      "zoneName": "Kelet-Norvégia"
+    },
+    "NO-NO2": {
+      "countryName": "Norvégia",
+      "zoneName": "Dél-Norvégia"
+    },
+    "NO-NO3": {
+      "countryName": "Norvégia",
+      "zoneName": "Közép-Norvégia"
+    },
+    "NO-NO4": {
+      "countryName": "Norvégia",
+      "zoneName": "Észak-Norvégia"
+    },
+    "NO-NO5": {
+      "countryName": "Norvégia",
+      "zoneName": "Nyugat-Norvégia"
+    },
+    "NP": {
+      "zoneName": "Nepál"
+    },
+    "NZ": {
+      "zoneName": "Új-Zéland"
+    },
+    "NZ-NZA": {
+      "countryName": "Új-Zéland",
+      "zoneName": "Auckland-szigetek"
+    },
+    "NZ-NZC": {
+      "countryName": "Új-Zéland",
+      "zoneName": "Chatham-szigetek"
+    },
+    "NZ-NZST": {
+      "countryName": "Új-Zéland",
+      "zoneName": "Stewart-szigetek"
+    },
+    "OM": {
+      "zoneName": "Omán"
+    },
+    "PA": {
+      "zoneName": "Panama"
+    },
+    "PE": {
+      "zoneName": "Peru"
+    },
+    "PF": {
+      "zoneName": "Francia Polinézia"
+    },
+    "PG": {
+      "zoneName": "Pápua Új-Guinea"
+    },
+    "PH": {
+      "zoneName": "Fülöp-szigetek"
+    },
+    "PH-LU": {
+      "countryName": "Fülöp-szigetek",
+      "zoneName": "Luzon"
+    },
+    "PH-MI": {
+      "countryName": "Fülöp-szigetek",
+      "zoneName": "Mindanao"
+    },
+    "PH-VI": {
+      "countryName": "Fülöp-szigetek",
+      "zoneName": "Visayas"
+    },
+    "PK": {
+      "zoneName": "Pakisztán"
+    },
+    "PL": {
+      "zoneName": "Lengyelország"
+    },
+    "PM": {
+      "zoneName": "Saint-Pierre és Miquelon"
+    },
+    "PR": {
+      "zoneName": "Puerto Rico"
+    },
+    "PS": {
+      "zoneName": "Palesztina"
+    },
+    "PT": {
+      "zoneName": "Portugália"
+    },
+    "PT-AC": {
+      "countryName": "Portugália",
+      "zoneName": "Azores"
+    },
+    "PT-MA": {
+      "countryName": "Portugália",
+      "zoneName": "Madeira"
+    },
+    "PW": {
+      "zoneName": "Palau"
+    },
+    "PY": {
+      "zoneName": "Paraguay"
+    },
+    "QA": {
+      "zoneName": "Katar"
+    },
+    "RE": {
+      "zoneName": "Réunion"
+    },
+    "RO": {
+      "zoneName": "Románia"
+    },
+    "RS": {
+      "zoneName": "Szerbia"
+    },
+    "RU": {
+      "zoneName": "Oroszország"
+    },
+    "RU-1": {
+      "countryName": "Oroszország",
+      "zoneName": "Európa-Urál"
+    },
+    "RU-2": {
+      "countryName": "Oroszország",
+      "zoneName": "Szibéria"
+    },
+    "RU-AS": {
+      "countryName": "Oroszország",
+      "zoneName": "Kelet"
+    },
+    "RU-EU": {
+      "countryName": "Oroszország",
+      "zoneName": "Sarkvidék"
+    },
+    "RU-FE": {
+      "countryName": "Oroszország",
+      "zoneName": "Távol-Kelet"
+    },
+    "RU-KGD": {
+      "countryName": "Oroszország",
+      "zoneName": "Kalinyingrád"
+    },
+    "RW": {
+      "zoneName": "Ruanda"
+    },
+    "SA": {
+      "zoneName": "Szaúd-Arábia"
+    },
+    "SB": {
+      "zoneName": "Salamon-szigetek"
+    },
+    "SC": {
+      "zoneName": "Seychelle-szigetek"
+    },
+    "SD": {
+      "zoneName": "Szudán"
+    },
+    "SE": {
+      "zoneName": "Svédország"
+    },
+    "SE-SE1": {
+      "countryName": "Svédország",
+      "zoneName": "Észak-Svédország"
+    },
+    "SE-SE2": {
+      "countryName": "Svédország",
+      "zoneName": "Észak-közép-Svédország"
+    },
+    "SE-SE3": {
+      "countryName": "Svédország",
+      "zoneName": "Dél-közép-Svédország"
+    },
+    "SE-SE4": {
+      "countryName": "Svédország",
+      "zoneName": "Dél-Svédország"
+    },
+    "SG": {
+      "zoneName": "Szingapúr"
+    },
+    "SI": {
+      "zoneName": "Szlovénia"
+    },
+    "SJ": {
+      "zoneName": "Svalbard és Jan Mayen"
+    },
+    "SK": {
+      "zoneName": "Szlovákia"
+    },
+    "SL": {
+      "zoneName": "Sierra Leone"
+    },
+    "SN": {
+      "zoneName": "Szenegál"
+    },
+    "SO": {
+      "zoneName": "Szomália"
+    },
+    "SR": {
+      "zoneName": "Suriname"
+    },
+    "SS": {
+      "zoneName": "Dél-Szudán"
+    },
+    "ST": {
+      "zoneName": "São Tomé és Príncipe"
+    },
+    "SV": {
+      "zoneName": "Salvador"
+    },
+    "SY": {
+      "zoneName": "Szíria"
+    },
+    "SZ": {
+      "zoneName": "Szváziföld"
+    },
+    "TD": {
+      "zoneName": "Csád"
+    },
+    "TF": {
+      "zoneName": "Francia déli és antarktiszi területek"
+    },
+    "TG": {
+      "zoneName": "Togo"
+    },
+    "TH": {
+      "zoneName": "Thaiföld"
+    },
+    "TJ": {
+      "zoneName": "Tádzsikisztán"
+    },
+    "TL": {
+      "zoneName": "Kelet-Timor"
+    },
+    "TM": {
+      "zoneName": "Türkmenisztán"
+    },
+    "TN": {
+      "zoneName": "Tunézia"
+    },
+    "TO": {
+      "zoneName": "Tonga"
+    },
+    "TR": {
+      "zoneName": "Törökország"
+    },
+    "TT": {
+      "zoneName": "Trinidad és Tobago"
+    },
+    "TW": {
+      "zoneName": "Tajvan"
+    },
+    "TZ": {
+      "zoneName": "Tanzánia"
+    },
+    "UA": {
+      "zoneName": "Ukrajna"
+    },
+    "UA-CR": {
+      "countryName": "Ukrajna",
+      "zoneName": "Krím"
+    },
+    "UG": {
+      "zoneName": "Uganda"
+    },
+    "US": {
+      "zoneName": "Egyesült Államok",
+      "seoZoneName": "United States of America - U.S."
+    },
+    "US-AK": {
+      "countryName": "USA",
+      "zoneName": "Alaska"
+    },
+    "US-AK-SEAPA": {
+      "countryName": "USA",
+      "zoneName": "Southeast Alaska Power Agency"
+    },
+    "US-HI": {
+      "countryName": "USA",
+      "zoneName": "Hawaii"
+    },
+    "US-CAL-BANC": {
+      "countryName": "USA",
+      "displayName": "BANC",
+      "zoneName": "Balancing Authority of Northern California",
+      "seoZoneName": "Balancing Authority of Northern California - BANC"
+    },
+    "US-CAL-CISO": {
+      "countryName": "USA",
+      "displayName": "California ISO",
+      "zoneName": "CAISO",
+      "seoZoneName": "California ISO - CAISO "
+    },
+    "US-CAL-IID": {
+      "countryName": "USA",
+      "zoneName": "Imperial Irrigation District",
+      "seoZoneName": "Imperial Irrigation District - California"
+    },
+    "US-CAL-LDWP": {
+      "countryName": "USA",
+      "zoneName": "Los Angeles Department of Water and Power"
+    },
+    "US-CAL-TIDC": {
+      "countryName": "USA",
+      "zoneName": "Turlock Irrigation District"
+    },
+    "US-CAR-CPLE": {
+      "countryName": "USA",
+      "zoneName": "Duke Energy Progress East",
+      "seoZoneName": "Duke Energy Progress East - North Carolina"
+    },
+    "US-CAR-CPLW": {
+      "countryName": "USA",
+      "zoneName": "Duke Energy Progress West",
+      "seoZoneName": "Duke Energy Progress West - North Carolina"
+    },
+    "US-CAR-DUK": {
+      "countryName": "USA",
+      "zoneName": "Duke Energy Carolinas",
+      "seoZoneName": "Duke Energy Carolinas - North and South Carolina"
+    },
+    "US-CAR-SC": {
+      "countryName": "USA",
+      "zoneName": "South Carolina Public Service Authority"
+    },
+    "US-CAR-SCEG": {
+      "countryName": "USA",
+      "zoneName": "South Carolina Electric & Gas Company"
+    },
+    "US-CAR-YAD": {
+      "countryName": "USA",
+      "displayName": "Alcoa Power Generating",
+      "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+    },
+    "US-CENT-SPA": {
+      "countryName": "USA",
+      "zoneName": "Southwestern Power Administration"
+    },
+    "US-CENT-SWPP": {
+      "countryName": "USA",
+      "displayName": "SPP",
+      "zoneName": "Southwest Power Pool",
+      "seoZoneName": "Southwest Power Pool - SPP"
+    },
+    "US-FLA-FMPP": {
+      "countryName": "USA",
+      "zoneName": "Florida Municipal Power Pool"
+    },
+    "US-FLA-FPC": {
+      "countryName": "USA",
+      "zoneName": "Duke Energy Florida"
+    },
+    "US-FLA-FPL": {
+      "countryName": "USA",
+      "zoneName": "Florida Power and Light Company"
+    },
+    "US-FLA-GVL": {
+      "countryName": "USA",
+      "zoneName": "Gainesville Regional Utilities"
+    },
+    "US-FLA-HST": {
+      "countryName": "USA",
+      "zoneName": "City of Homestead"
+    },
+    "US-FLA-JEA": {
+      "countryName": "USA",
+      "zoneName": "Jacksonville Electric Authority"
+    },
+    "US-FLA-SEC": {
+      "countryName": "USA",
+      "zoneName": "Seminole Electric Cooperative"
+    },
+    "US-FLA-TAL": {
+      "countryName": "USA",
+      "zoneName": "City of Tallahassee"
+    },
+    "US-FLA-TEC": {
+      "countryName": "USA",
+      "zoneName": "Tampa Electric Company"
+    },
+    "US-MIDA-PJM": {
+      "countryName": "USA",
+      "displayName": "PJM",
+      "zoneName": "PJM Interconnection",
+      "seoZoneName": "PJM Interconnection - Mid-Atlantic US"
+    },
+    "US-MIDW-AECI": {
+      "countryName": "USA",
+      "zoneName": "Associated Electric Cooperative"
+    },
+    "US-MIDW-LGEE": {
+      "countryName": "USA",
+      "displayName": "Louisville Gas And Electric Company",
+      "zoneName": "Louisville Gas and Electric Company and Kentucky Utilities"
+    },
+    "US-MIDW-MISO": {
+      "countryName": "USA",
+      "displayName": "MISO",
+      "zoneName": "Midcontinent ISO",
+      "seoZoneName": "Midcontinent ISO - MISO"
+    },
+    "US-NE-ISNE": {
+      "countryName": "USA",
+      "zoneName": "ISO New England",
+      "seoZoneName": "ISO New England - ISO-NE"
+    },
+    "US-NW-AVA": {
+      "countryName": "USA",
+      "zoneName": "Avista Corporation"
+    },
+    "US-NW-BPAT": {
+      "countryName": "USA",
+      "zoneName": "Bonneville Power Administration"
+    },
+    "US-NW-CHPD": {
+      "countryName": "USA",
+      "zoneName": "Chelan County"
+    },
+    "US-NW-DOPD": {
+      "countryName": "USA",
+      "zoneName": "Douglas County"
+    },
+    "US-NW-GCPD": {
+      "countryName": "USA",
+      "zoneName": "Grant County"
+    },
+    "US-NW-GRID": {
+      "countryName": "USA",
+      "zoneName": "Gridforce Energy Management"
+    },
+    "US-NW-IPCO": {
+      "countryName": "USA",
+      "zoneName": "Idaho Power Company"
+    },
+    "US-NW-NEVP": {
+      "countryName": "USA",
+      "zoneName": "Nevada Power Company"
+    },
+    "US-NW-NWMT": {
+      "countryName": "USA",
+      "zoneName": "Northwestern Energy"
+    },
+    "US-NW-PACE": {
+      "countryName": "USA",
+      "zoneName": "Pacificorp East"
+    },
+    "US-NW-PACW": {
+      "countryName": "USA",
+      "zoneName": "Pacificorp West"
+    },
+    "US-NW-PGE": {
+      "countryName": "USA",
+      "zoneName": "Portland General Electric Company"
+    },
+    "US-NW-PSCO": {
+      "countryName": "USA",
+      "displayName": "PSCo",
+      "zoneName": "Public Service Company of Colorado",
+      "seoZoneName": "Public Service Company of Colorado - PSCo"
+    },
+    "US-NW-PSEI": {
+      "countryName": "USA",
+      "zoneName": "Puget Sound Energy"
+    },
+    "US-NW-SCL": {
+      "countryName": "USA",
+      "zoneName": "Seattle City Light"
+    },
+    "US-NW-TPWR": {
+      "countryName": "USA",
+      "zoneName": "City of Tacoma"
+    },
+    "US-NW-WACM": {
+      "countryName": "USA",
+      "displayName": "WAPA Rocky Mountains",
+      "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+    },
+    "US-NW-WAUW": {
+      "countryName": "USA",
+      "displayName": "WAPA Upper Great Plains",
+      "zoneName": "Western Area Power Administration - Upper Great Plains West"
+    },
+    "US-NY-NYIS": {
+      "countryName": "USA",
+      "zoneName": "New York ISO",
+      "seoZoneName": "New York ISO - NYISO"
+    },
+    "US-SE-SEPA": {
+      "countryName": "USA",
+      "zoneName": "Southeastern Power Administration"
+    },
+    "US-SE-SOCO": {
+      "countryName": "USA",
+      "zoneName": "Southern Company Services"
+    },
+    "US-SW-AZPS": {
+      "countryName": "USA",
+      "zoneName": "Arizona Public Service Company"
+    },
+    "US-SW-EPE": {
+      "countryName": "USA",
+      "zoneName": "El Paso Electric Company"
+    },
+    "US-SW-PNM": {
+      "countryName": "USA",
+      "zoneName": "Public Service Company of New Mexikó"
+    },
+    "US-SW-SRP": {
+      "countryName": "USA",
+      "zoneName": "Salt River Project"
+    },
+    "US-SW-TEPC": {
+      "countryName": "USA",
+      "zoneName": "Tucson Electric Power Company"
+    },
+    "US-SW-WALC": {
+      "countryName": "USA",
+      "displayName": "WAPA Desert Southwest",
+      "zoneName": "Western Area Power Administration - Desert Southwest Region"
+    },
+    "US-TEN-TVA": {
+      "countryName": "USA",
+      "displayName": "TVA",
+      "zoneName": "Tennessee Valley Authority",
+      "seoZoneName": "Tennessee Valley Authority - TVA"
+    },
+    "US-TEX-ERCO": {
+      "countryName": "USA",
+      "displayName": "ERCOT",
+      "zoneName": "Electric Reliability Council of Texas",
+      "seoZoneName": "Electric Reliability Council of Texas - ERCOT"
+    },
+    "UY": {
+      "zoneName": "Uruguay"
+    },
+    "UZ": {
+      "zoneName": "Üzbegisztán"
+    },
+    "VC": {
+      "zoneName": "Saint Vincent és a Grenadine-szigetek"
+    },
+    "VE": {
+      "zoneName": "Venezuela"
+    },
+    "VI": {
+      "countryName": "USA",
+      "zoneName": "Virgin-szigetek"
+    },
+    "VN": {
+      "zoneName": "Vietnám"
+    },
+    "VU": {
+      "zoneName": "Vanuatu"
+    },
+    "WS": {
+      "zoneName": "Samoa"
+    },
+    "XK": {
+      "zoneName": "Koszovó"
+    },
+    "XX": {
+      "zoneName": "Észak-Ciprus"
+    },
+    "YE": {
+      "zoneName": "Yemen"
+    },
+    "YT": {
+      "zoneName": "Mayotte"
+    },
+    "ZA": {
+      "zoneName": "Dél-Africa"
+    },
+    "ZM": {
+      "zoneName": "Zambia"
+    },
+    "ZW": {
+      "zoneName": "Zimbabwe"
+    }
+  }
+}
