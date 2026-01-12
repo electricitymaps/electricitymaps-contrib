@@ -12,12 +12,13 @@ contributors:
   - amv213
   - alejandranavcas
 country: AU
+country_name: Australia
+currency: AUD
 delays:
   consumption: 30
   price: 30
   production: 96
-disclaimer: The Northern Territory power grid is not connected to the (Australian)
-  National Electricity Market or Western Australia's grid.
+disclaimer: The Northern Territory power grid is not connected to the (Australian) National Electricity Market or Western Australia's grid.
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -234,9 +235,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.028919092948344192
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: NTESMO.fetch_consumption
   price: NTESMO.fetch_price
@@ -245,5 +245,3 @@ parsers:
 region: Oceania
 timezone: Australia/Darwin
 zone_name: Northern Territory
-country_name: Australia
-currency: AUD

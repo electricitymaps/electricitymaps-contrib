@@ -31,6 +31,8 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: CA
+country_name: Canada
+currency: CAD
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -205,13 +207,10 @@ fallbackZoneMixes:
         solar: 0.002215298680144598
         unknown: 0.0622375038985566
         wind: 0.08044248483289065
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: CA_SK.fetch_consumption
 region: Americas
 timezone: America/Regina
 zone_name: Saskatchewan
-country_name: Canada
-currency: CAD

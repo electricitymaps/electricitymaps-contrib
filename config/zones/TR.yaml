@@ -1,13 +1,9 @@
-_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically
-  viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769
-  says battery will be tendered summer 2018 so below battery storage will need to
-  be updated when built.
+_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.
 bounding_box:
   - - 25.16325931100002
     - 35.319778545000034
   - - 45.30699282900011
     - 42.598781643000095
-price_displayed: false
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -162,6 +158,8 @@ contributors:
   - nessie2013
   - lgrigoryeva1
 country: TR
+country_name: Turkey
+currency: TRY
 delays:
   production: 8
 emissionFactors:
@@ -429,9 +427,8 @@ fallbackZoneMixes:
         solar: 0.016206573078968178
         unknown: 0.0023705547277017153
         wind: 0.11272769958002037
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: TR.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -446,5 +443,3 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Istanbul
 zone_name: Turkey
-country_name: Turkey
-currency: TRY

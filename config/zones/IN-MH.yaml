@@ -20,6 +20,8 @@ contributors:
   - Manu1400
   - gopikrishna1793
 country: IN
+country_name: India
+currency: INR
 emissionFactors:
   direct:
     battery discharge:
@@ -281,13 +283,10 @@ fallbackZoneMixes:
         solar: 0.02944040476303649
         unknown: 0.004691684211499119
         wind: 0.02900752525848245
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IN_MH.fetch_production
 region: Asia
 timezone: Asia/Kolkata
-country_name: India
 zone_name: Unknown
-currency: INR

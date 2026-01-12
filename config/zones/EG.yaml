@@ -91,6 +91,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 2200.0
 country: EG
+country_name: Egypt
+currency: EGP
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -139,13 +141,10 @@ fallbackZoneMixes:
         solar: 0.023436075509726206
         unknown: 0.0
         wind: 0.027833902166199798
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Cairo
 zone_name: Egypt
-country_name: Egypt
-currency: EGP

@@ -49,6 +49,8 @@ contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
 country: MQ
+country_name: Martinique
+currency: EUR
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -223,14 +225,11 @@ fallbackZoneMixes:
         solar: 0.003008907522797206
         unknown: 0.0
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Americas
 timezone: Europe/Paris
 zone_name: Martinique
-country_name: Martinique
-currency: EUR

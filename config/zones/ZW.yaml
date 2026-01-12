@@ -40,13 +40,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10.0
 country: ZW
-
-hide_day_ahead_price: False
+country_name: Zimbabwe
+currency: ZWL
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Harare
 zone_name: Zimbabwe
-country_name: Zimbabwe
-currency: ZWL

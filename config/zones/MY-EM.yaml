@@ -6,6 +6,7 @@ bounding_box:
 contributors:
   - FelixDQ
 country: MY
+country_name: Malaysia
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -180,10 +181,8 @@ fallbackZoneMixes:
         solar: 0.020782275643506914
         unknown: 0.019652527923841243
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Kuala_Lumpur
 zone_name: Borneo
-country_name: Malaysia
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

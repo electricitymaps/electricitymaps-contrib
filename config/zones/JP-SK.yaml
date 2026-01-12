@@ -21,11 +21,11 @@ contributors:
   - PPsyrius
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
-disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live
-  data only for solar and unknown. We are working on improving the data quality for
-  this zone.
+disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -224,9 +224,8 @@ fallbackZoneMixes:
         solar: 0.15121531986285167
         unknown: 0.6105501241479387
         wind: 0.0012775695365145267
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -238,5 +237,3 @@ sources:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
 timezone: Asia/Tokyo
 zone_name: Shikoku
-country_name: Japan
-currency: JPY

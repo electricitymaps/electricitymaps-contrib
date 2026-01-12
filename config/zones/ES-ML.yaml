@@ -27,6 +27,8 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: ES
+country_name: Spain
+currency: EUR
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -97,7 +99,6 @@ fallbackZoneMixes:
         unknown: 0.0
         wind: 0.0
 has_day_ahead_price_license: True
-
 hide_day_ahead_price: False
 parsers:
   consumption: ES.fetch_consumption
@@ -106,5 +107,3 @@ parsers:
 region: Europe
 timezone: Europe/Madrid
 zone_name: Melilla
-country_name: Spain
-currency: EUR

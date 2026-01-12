@@ -95,6 +95,8 @@ contributors:
   - davidcole1340
   - drc38
 country: NZ
+country_name: New Zealand
+currency: NZD
 delays:
   production: 6
 emissionFactors:
@@ -358,9 +360,8 @@ fallbackZoneMixes:
         solar: 0.0022427556771429237
         unknown: 0.020886705386506124
         wind: 0.09329579500153248
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production
@@ -368,5 +369,3 @@ parsers:
 region: Oceania
 timezone: Pacific/Auckland
 zone_name: New Zealand
-country_name: New Zealand
-currency: NZD

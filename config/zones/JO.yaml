@@ -65,13 +65,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 630.0
 country: JO
-
-hide_day_ahead_price: False
+country_name: Jordan
+currency: JOD
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Amman
 zone_name: Jordan
-country_name: Jordan
-currency: JOD

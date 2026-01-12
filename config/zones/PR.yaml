@@ -81,6 +81,8 @@ contributors:
   - systemcatch
   - veqtrus
 country: PR
+country_name: Puerto Rico
+currency: USD
 emissionFactors:
   direct:
     battery discharge:
@@ -190,8 +192,7 @@ emissionFactors:
         value: 606.54
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
-      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
-        October 2019-September 2020
+      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation October 2019-September 2020
       value: 31.94
 fallbackZoneMixes:
   powerOriginRatios:
@@ -300,15 +301,14 @@ fallbackZoneMixes:
         solar: 0.012790315399735448
         unknown: 0.0009000191751649909
         wind: 0.008674031627125225
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
 isRenewable:
   unknown:
     value: 1
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
@@ -317,5 +317,3 @@ sources:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
 timezone: America/Puerto_Rico
 zone_name: Puerto Rico
-country_name: Puerto Rico
-currency: USD

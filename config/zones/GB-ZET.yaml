@@ -7,11 +7,10 @@ contributors:
   - systemcatch
   - maxbellec
 country: GB
+country_name: Great Britain
+currency: GBP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/London
 zone_name: Shetland Islands
-country_name: Great Britain
-currency: GBP
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -1,8 +1,7 @@
 country: null
+country_name: Northern Cyprus
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Asia/Nicosia
 zone_name: Northern Cyprus
-country_name: Northern Cyprus
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False

@@ -135,9 +135,7 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: This zone includes all electricity production from the generation-only
-  balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
-  page.
+disclaimer: This zone includes all electricity production from the generation-only balancing authority Griffith Energy, LLC. Read more on the zone definition wiki page.
 emissionFactors:
   direct:
     battery discharge:
@@ -226,12 +224,10 @@ emissionFactors:
         value: 511.56
     coal:
       - datetime: '2012-01-01'
-        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: IPCC 2014; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 817.120985
       - datetime: '2021-01-01'
-        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots
-          of coal power generation."
+        source: eGrid 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
         value: 894.610985
     gas:
       - datetime: '2020-01-01'
@@ -409,9 +405,8 @@ fallbackZoneMixes:
         solar: 0.05133000190223975
         unknown: 0.006238086068185822
         wind: 0.06749767730316335
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

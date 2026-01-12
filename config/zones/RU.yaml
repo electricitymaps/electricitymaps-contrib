@@ -159,6 +159,8 @@ contributors:
   - JeanBaptisteScellier
   - aekrylov
 country: RU
+country_name: Russia
+currency: RUB
 emissionFactors:
   direct:
     battery discharge:
@@ -233,9 +235,7 @@ emissionFactors:
         source: Electricity Maps, 2024 average
         value: 366.8
     unknown:
-      _comment: 'Assumes weighted average emission factor based on 2015-TWh production:
-        22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  =
-        567 g/kWh; 2015 production'
+      _comment: 'Assumes weighted average emission factor based on 2015-TWh production: 22.7% * 820 g/kWh (coal) + 1.4% * 650 g/kWh (oil) + 75.8% * 490 g/kWh (gas)  = 567 g/kWh; 2015 production'
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 567
@@ -346,9 +346,8 @@ fallbackZoneMixes:
         solar: 0.0021536301209946376
         unknown: 0.635339299328092
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -370,5 +369,3 @@ subZoneNames:
   - RU-KGD
 timezone: Europe/Moscow
 zone_name: Russia
-country_name: Russia
-currency: RUB

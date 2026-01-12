@@ -20,6 +20,8 @@ contributors:
   - PPsyrius
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
 emissionFactors:
@@ -199,9 +201,8 @@ fallbackZoneMixes:
         solar: 0.12844791109956524
         unknown: 0.0022459561300016023
         wind: 0.00644645444675968
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price
@@ -213,5 +214,3 @@ sources:
     link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
 timezone: Asia/Tokyo
 zone_name: Chūgoku
-country_name: Japan
-currency: JPY

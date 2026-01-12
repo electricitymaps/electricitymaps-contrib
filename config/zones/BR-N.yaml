@@ -26,10 +26,11 @@ contributors:
   - systemcatch
   - nessie2013
 country: BR
+country_name: Brazil
+currency: BRL
 delays:
   production: 5
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
-  coal and oil.
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 emissionFactors:
   direct:
     battery discharge:
@@ -291,14 +292,11 @@ fallbackZoneMixes:
         solar: 0.07866961740716195
         unknown: 0.16330391158139368
         wind: 0.21999600933875574
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
 region: Americas
 timezone: America/Sao_Paulo
 zone_name: North Brazil
-country_name: Brazil
-currency: BRL

@@ -27,6 +27,8 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: BB
+country_name: Barbados
+currency: BBD
 emissionFactors:
   lifecycle:
     battery discharge:
@@ -54,14 +56,11 @@ fallbackZoneMixes:
         solar: 0.014305633100344143
         unknown: 0.0
         wind: 0.0
-
-hide_day_ahead_price: False
 has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: BB.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Barbados
 zone_name: Barbados
-country_name: Barbados
-currency: BBD

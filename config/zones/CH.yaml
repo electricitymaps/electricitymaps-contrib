@@ -108,11 +108,11 @@ contributors:
   - KabelWlan
   - amv213
 country: CH
+country_name: Switzerland
+currency: EUR
 delays:
   production: 7
-disclaimer: Data for the electricity consumption and generation mix is based on estimates
-  stemming from different data sources. As such, it may diverge from aggregated public
-  statistics of the Swiss Federal Office for Energy.
+disclaimer: Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.
 emissionFactors:
   direct:
     battery discharge:
@@ -442,6 +442,8 @@ fallbackZoneMixes:
         solar: 0.07650531319955396
         unknown: 0.05260567945226856
         wind: 0.04436559558550984
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   hydro discharge:
     _comment: Average share of electricity coming from low carbon sources in 2021
@@ -490,9 +492,6 @@ isRenewable:
     - datetime: '2022-01-01'
       source: SFOE, Electricity Maps
       value: 0.85
-
-hide_day_ahead_price: False
-has_day_ahead_price_license: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -500,7 +499,6 @@ parsers:
   price: ENTSOE.fetch_price
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   INCER ACV:
@@ -511,5 +509,3 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
 timezone: Europe/Zurich
 zone_name: Switzerland
-country_name: Switzerland
-currency: EUR
