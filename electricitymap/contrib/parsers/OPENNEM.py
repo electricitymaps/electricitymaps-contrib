@@ -68,8 +68,6 @@ EXCHANGE_MAPPING_DICTIONARY = {
     },
 }
 
-# todo: mention in PR: followup PR idea: get more fresh data by using v4's fueltech_group
-#       and/or adding new production categories from https://docs.openelectricity.org.au/guides/fueltechs
 OPENNEM_PRODUCTION_CATEGORIES = {
     "coal": ["COAL_BLACK", "COAL_BROWN"],
     "gas": ["GAS_CCGT", "GAS_OCGT", "GAS_RECIP", "GAS_STEAM"],
@@ -105,7 +103,7 @@ IGNORED_FUEL_TECH_KEYS = {
 SOURCE = "opennem.org.au"
 
 
-# todo: work towards replacing with fetch_network_datasets and mark for deprecation (?)
+# TODO: after full v4 migration: deprecate this in favor of fetch_network_datasets
 def fetch_datasets(
     zone_key: ZoneKey, session: Session, target_datetime: datetime | None
 ):
@@ -126,7 +124,7 @@ def fetch_datasets(
     return response.json()["data"]
 
 
-# todo: work towards replacing with generate_network_url and mark for deprecation (?)
+# TODO: after full v4 migration: deprecate this in favor of generate_network_url
 def generate_url(zone_key: ZoneKey, target_datetime: datetime | None) -> str:
     # Only 7d or 30d data is available
     duration = (
@@ -284,7 +282,6 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
     session = session or Session()
-    # TODO: (?) refactor to move to _fetch_network_datasets
 
     # Get network_region for the zone (will be included if available)
     network_region = ZONE_KEY_TO_REGION.get(zone_key)
@@ -316,7 +313,6 @@ def fetch_price(
     logger: Logger = getLogger(__name__),
 ) -> list:
     session = session or Session()
-    # TODO: (?) refactor to move to _fetch_network_datasets
     target_datetime = target_datetime or datetime.now(tz=timezone.utc)
 
     datasets = _fetch_network_datasets(
@@ -550,7 +546,6 @@ def _build_network_url(
     metrics: list[str],
     target_datetime: datetime | None,
     network_region: str | None = None,
-    # todo: can try refactor
     secondary_grouping: str | None = None,
 ) -> tuple[str, dict[str, Any]]:
     base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
@@ -588,7 +583,6 @@ def _fetch_network_datasets(
     dataset_type: str,
     target_datetime: datetime | None,
     metrics: list[str],
-    # todo: can try refactor
     secondary_grouping: str | None = None,
     network_region: str | None = None,
 ) -> list[dict[str, Any]]:
@@ -649,7 +643,7 @@ if __name__ == "__main__":
     # print(fetch_price(zone_key="AU-SA"))
     # print(fetch_production(ZoneKey("AU-TAS")))
     # print(fetch_production(ZoneKey("AU-NSW")))
-    # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
-    # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
+    target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+    print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
     #
     # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
