@@ -501,7 +501,6 @@ jobs:
           enable-cache: true
           cache-suffix: 'formatting'
           python-version: '3.10'
-          cache-python: true
       - name: Install Dependencies
         run: |
           uv sync --group parsers
@@ -533,7 +532,6 @@ jobs:
           enable-cache: true
           cache-suffix: 'tests'
           python-version: ${{ matrix.python-version }}
-          cache-python: true
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
