@@ -7,6 +7,10 @@ src-files:
   COPY package.json .
   COPY pnpm-lock.yaml .
 
+api-files:
+  COPY config/geo/world.geojson ./config/geo/world.geojson
+  COPY config/zone_names.json ./config/zone_names.json
+  SAVE ARTIFACT .
 
 prepare:
   FROM +src-files
