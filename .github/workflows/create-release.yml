@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: "Release type"
+        description: 'Release type'
         required: true
         default: patch
         type: choice
@@ -18,8 +18,8 @@ jobs:
     timeout-minutes: 10
     # Add "id-token" with the intended permissions.
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: 'read'
+      id-token: 'write'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -29,19 +29,19 @@ jobs:
         run: |
           git config --global user.email "engineering+github@electricitymaps.com"
           git config --global user.name "electricitymapsbot"
-      - uses: "google-github-actions/auth@v3"
+      - uses: 'google-github-actions/auth@v3'
         with:
-          project_id: "tmrow-152415"
-          workload_identity_provider: "projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib"
+          project_id: 'tmrow-152415'
+          workload_identity_provider: 'projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib'
           service_account: contrib-registry-writer@tmrow-152415.iam.gserviceaccount.com
 
-      - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v3"
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v3'
         with:
-          version: ">= 363.0.0"
+          version: '>= 363.0.0'
       - uses: actions/setup-python@v6
         with:
-          python-version: "3.10.13"
+          python-version: '3.10.13'
       - name: Install uv
         uses: astral-sh/setup-uv@v5
       - name: Bump version
