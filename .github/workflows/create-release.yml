@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: 'Release type'
+        description: "Release type"
         required: true
         default: patch
         type: choice
@@ -11,44 +11,48 @@ on:
           - patch
           - minor
           - major
+          - dev
 jobs:
   create-release:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     # Add "id-token" with the intended permissions.
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      contents: "read"
+      id-token: "write"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          ref: master
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
       - name: Configure git
         run: |
           git config --global user.email "engineering+github@electricitymaps.com"
           git config --global user.name "electricitymapsbot"
-      - uses: 'google-github-actions/auth@v3'
+      - uses: "google-github-actions/auth@v3"
         with:
-          project_id: 'tmrow-152415'
-          workload_identity_provider: 'projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib'
+          project_id: "tmrow-152415"
+          workload_identity_provider: "projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib"
           service_account: contrib-registry-writer@tmrow-152415.iam.gserviceaccount.com
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v3'
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v3"
         with:
-          version: '>= 363.0.0'
+          version: ">= 363.0.0"
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.10.13'
-      - name: Install Poetry
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry==2.1.1
+          python-version: "3.10.13"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
       - name: Bump version
         run: |
-          poetry version ${{ inputs.type }}
+          if [[ "${{ inputs.type }}" == "dev" ]]; then
+            # Bump patch first to ensure we are moving forward, then add dev suffix
+            # This handles 1.2.1 -> 1.2.2.dev0
+            uv version --bump patch --bump dev
+          else
+             uv version --bump ${{ inputs.type }}
+          fi
       - name: Commit changes
         run: |
           git add pyproject.toml
@@ -57,13 +61,11 @@ jobs:
         uses: ad-m/github-push-action@v1.0.0
         with:
           github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
-          branch: master
+          branch: ${{ github.ref_name }}
       - name: Build package
         run: |
-          poetry build
+          uv build
       - name: Publish package
         run: |
           export ACCESS_TOKEN=$(gcloud auth print-access-token)
-          poetry config keyring.enabled false
-          poetry config repositories.internal https://europe-west1-python.pkg.dev/tmrow-152415/libs/
-          poetry publish --repository=internal --skip-existing --username=oauth2accesstoken --password "$ACCESS_TOKEN"
+          uv publish --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
