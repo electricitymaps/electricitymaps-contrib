@@ -643,7 +643,7 @@ if __name__ == "__main__":
     # print(fetch_price(zone_key="AU-SA"))
     # print(fetch_production(ZoneKey("AU-TAS")))
     # print(fetch_production(ZoneKey("AU-NSW")))
-    target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
-    print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
+    # target_datetime = datetime.fromisoformat("2020-01-01T00:00:00+00:00")
+    # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
     #
     # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
