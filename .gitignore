@@ -18,7 +18,6 @@ Thumbs.db
 mobileapp/*.zip
 dist
 parsers/.venv
-.python-version
 
 # Ignore top level vscode folder as it is symlinked
 #.vscode
