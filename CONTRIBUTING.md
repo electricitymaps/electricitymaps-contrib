@@ -46,13 +46,13 @@ The zone configurations hold information such as the installed capacity, which p
 
 To get started with editing the parsers use the following steps:
 
-1. Run `poetry install -E parsers` to install all needed dependencies.
-2. Use `poetry run test_parser ZONE_KEY` to test any parser changes.
+1. Run `uv sync --group parsers` to install all needed dependencies.
+2. Use `uv run test_parser ZONE_KEY` to test any parser changes.
 
-Note: This requires you to have [Python 3.10][python homepage] and [Poetry][poetry homepage] installed, you can see their respective installation guides here:
+Note: This requires you to have [Python 3.10][python homepage] and [uv][uv homepage] installed, you can see their respective installation guides here:
 
 - [Downloading Python][python install guide]
-- [poetry installation][poetry install guide]
+- [uv installation][uv install guide]
 
 ### Parser information
 
@@ -66,7 +66,7 @@ For an example of how a parser can look we have an example here: </br> [electric
 
 We use [black][black homepage] and [isort][isort homepage] as code formatters for python which is automatically checked in the CI job `Python / Formatting`.
 
-If this jobs fails and you need to manually format the code you can run `poetry run format` in the top level of the repository.
+If this jobs fails and you need to manually format the code you can run `uv run format` in the top level of the repository.
 
 Check the [wiki page][wiki python code formatting] for more details and tips.
 
@@ -181,10 +181,10 @@ If it is frontend changes it will be deployed to our staging environment at http
 
 <!-- Link definitions to keep the text clean -->
 
-[poetry homepage]: https://python-poetry.org/
+[uv homepage]: https://github.com/astral-sh/uv
 [python homepage]: https://www.python.org/
 [python install guide]: https://wiki.python.org/moin/BeginnersGuide/Download
-[poetry install guide]: https://python-poetry.org/docs/#installation
+[uv install guide]: https://docs.astral.sh/uv/getting-started/installation/
 [example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/example_parser.py
 [black homepage]: https://github.com/psf/black
 [isort homepage]: https://pycqa.github.io/isort/
