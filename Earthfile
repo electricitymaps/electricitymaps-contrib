@@ -17,7 +17,6 @@ src-files:
   COPY electricitymap/contrib/py.typed ./electricitymap/contrib/py.typed
   COPY ./config+src-files/* ./config
   COPY scripts ./scripts
-  COPY web/public/locales/en.json ./web/public/locales/en.json
   COPY __init__.py ./__init__.py
   COPY pyproject.toml .
   SAVE ARTIFACT .
@@ -26,6 +25,11 @@ src-files-with-parsers:
   COPY +src-files/* .
   COPY +parser-files/parsers ./electricitymap/contrib/parsers
   COPY +parser-files/capacity_parsers ./electricitymap/contrib/capacity_parsers
+  SAVE ARTIFACT .
+
+api-files:
+  COPY config/geo/world.geojson ./config/geo/world.geojson
+  COPY config/zone_names.json ./config/zone_names.json
   SAVE ARTIFACT .
 
 poetry-lock:

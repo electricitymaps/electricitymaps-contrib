@@ -7,10 +7,6 @@ src-files:
   COPY package.json .
   COPY pnpm-lock.yaml .
 
-api-files:
-  COPY geo/world.geojson ./geo/world.geojson
-  COPY public/locales/en.json ./public/locales/en.json
-  SAVE ARTIFACT .
 
 prepare:
   FROM +src-files
