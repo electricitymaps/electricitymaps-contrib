@@ -256,8 +256,4 @@ parsers:
   production: FR_O.fetch_production
 region: Africa
 timezone: Indian/Reunion
-<<<<<<< HEAD
 zone_name: "Réunion"
-=======
-zone_name: Réunion
->>>>>>> master
