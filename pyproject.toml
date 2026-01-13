@@ -14,8 +14,6 @@ dependencies = [
     "numpy>=1.24.4,<2",
 ]
 
-[project.optional-dependencies]
-
 [project.scripts]
 test-parser = "test_parser:test_parser"
 test_parser = "test_parser:test_parser"

@@ -43,7 +43,7 @@ jobs:
         with:
           python-version: '3.10.13'
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
       - name: Bump version
         run: |
           if [[ "${{ inputs.type }}" == "dev" ]]; then
@@ -51,7 +51,7 @@ jobs:
             # This handles 1.2.1 -> 1.2.2.dev0
             uv version --bump patch --bump dev
           else
-             uv version --bump ${{ inputs.type }}
+            uv version --bump ${{ inputs.type }}
           fi
       - name: Commit changes
         run: |

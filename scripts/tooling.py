@@ -1,5 +1,5 @@
 """
-Poetry scripts, runnable using 'uv run'.
+Utility Python scripts runnable using 'uv run'.
 
 For example:
     uv run lint

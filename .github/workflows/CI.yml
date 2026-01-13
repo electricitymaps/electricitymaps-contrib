@@ -538,7 +538,7 @@ jobs:
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
       - name: Install Dependencies
         run: |
-          uv sync --group parsers
+          uv sync --group parsers --group dev
       - name: Run tests
         run: |
           uv run test

@@ -36,7 +36,7 @@ prepare:
   FROM +src-files-with-parsers
   RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
   COPY uv.lock .
-  RUN uv sync --frozen --group parsers --compile-bytecode
+  RUN uv sync --frozen --group parsers --group dev --compile-bytecode
 
 build:
   FROM +prepare
