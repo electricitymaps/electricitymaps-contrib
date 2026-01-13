@@ -378,7 +378,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
-        value: 992.920614108907
+        value: 992.9479158763683
       - datetime: '2023-01-01'
         source: eGrid 2023
         value: 746.9759392468122
@@ -394,7 +394,7 @@ emissionFactors:
         value: 515.1156633369592
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 502.631898437239
+        value: 502.9548744078696
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -441,14 +441,14 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 754.5315891025153
+        value: 756.6867166175201
       - datetime: '2022-01-01'
         source: eGrid 2022
         value: 442.79655780749437
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 692.2365799135232
+        value: 757.3688858307635
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -482,7 +482,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 1052.920614108907
+        value: 1052.9479158763684
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
         value: 806.9759392468122
@@ -498,7 +498,7 @@ emissionFactors:
         value: 635.1156633369592
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 622.631898437239
+        value: 622.9548744078696
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -545,14 +545,14 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 998.5315891025153
+        value: 1000.6867166175201
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
         value: 686.7965578074943
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 936.2365799135232
+        value: 1001.3688858307635
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -709,8 +709,8 @@ fallbackZoneMixes:
         solar: 0.022160483501947582
         unknown: 0.004072615591024879
         wind: 0.00017802609034428662
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

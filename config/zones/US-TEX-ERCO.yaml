@@ -884,7 +884,7 @@ emissionFactors:
         value: 393.7660838295522
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 391.8932985233733
+        value: 392.3322057315127
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -963,7 +963,7 @@ emissionFactors:
         value: 513.7660838295521
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 511.8932985233733
+        value: 512.3322057315127
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1135,8 +1135,8 @@ fallbackZoneMixes:
         solar: 0.07115076013356555
         unknown: 0.0026028574593210904
         wind: 0.24233286045039404
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: US_ERCOT.fetch_consumption
   consumptionForecast: US_ERCOT.fetch_consumption_forecast
