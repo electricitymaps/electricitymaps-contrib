@@ -28,6 +28,11 @@ src-files-with-parsers:
   COPY +parser-files/capacity_parsers ./electricitymap/contrib/capacity_parsers
   SAVE ARTIFACT .
 
+api-files:
+  COPY geo/world.geojson ./geo/world.geojson
+  COPY config/zone_names.json ./config/zone_names.json
+  SAVE ARTIFACT .
+
 uv-lock:
   COPY uv.lock .
   SAVE ARTIFACT .
