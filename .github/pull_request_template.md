@@ -12,5 +12,5 @@
 
 ### Double check
 
-- [ ] I have tested my parser changes locally with `poetry run test_parser "zone_key"`
-- [ ] I have run `pnpx prettier@2 --write .` and `poetry run format` in the top level directory to format my changes.
+- [ ] I have tested my parser changes locally with `uv run test_parser "zone_key"`
+- [ ] I have run `pnpx prettier@2 --write .` and `uv run format` in the top level directory to format my changes.

@@ -8,10 +8,10 @@ years from EMBER in one go, rather than year-by-year.
 
 Usage:
     # Update a single zone with all years:
-    poetry run python scripts/update_capacity_ember_all_years.py FR
+    uv run python scripts/update_capacity_ember_all_years.py FR
 
     # Update all EMBER zones with all years (many API calls!):
-    poetry run python scripts/update_capacity_ember_all_years.py --all
+    uv run python scripts/update_capacity_ember_all_years.py --all
 """
 
 import argparse
