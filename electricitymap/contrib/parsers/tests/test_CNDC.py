@@ -5,7 +5,6 @@ from importlib import resources
 import pytest
 from requests_mock import GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.CNDC import (
     DATA_URL,
     INDEX_URL,
@@ -13,6 +12,7 @@ from electricitymap.contrib.parsers.CNDC import (
     fetch_production,
     tz_bo,
 )
+from electricitymap.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

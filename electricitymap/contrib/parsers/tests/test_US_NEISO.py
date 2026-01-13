@@ -4,12 +4,12 @@ from pathlib import Path
 import pytest
 from requests_mock import ANY, GET, POST
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.US_NEISO import (
     fetch_consumption_forecast,
     fetch_exchange,
     fetch_wind_solar_forecasts,
 )
+from electricitymap.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/US_NEISO")
 

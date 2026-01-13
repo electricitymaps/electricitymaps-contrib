@@ -8,8 +8,8 @@ from unittest.mock import patch
 
 import pandas as pd
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import US_CA
+from electricitymap.types import ZoneKey
 
 
 def test_snapshot_fetch_wind_solar_forecasts(snapshot):

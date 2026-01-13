@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 from electricitymap.contrib import config
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 

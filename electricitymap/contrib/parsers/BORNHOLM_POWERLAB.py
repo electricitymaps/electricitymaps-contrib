@@ -10,7 +10,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 PRODUCTION_MAPPING = {
     "wind": "wind_turbines",

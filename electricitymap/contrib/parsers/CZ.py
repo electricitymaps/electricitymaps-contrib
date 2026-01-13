@@ -12,9 +12,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.types import ZoneKey
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.

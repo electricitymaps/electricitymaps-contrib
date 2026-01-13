@@ -11,10 +11,10 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.types import ZoneKey
 
 REFETCH_FREQUENCY = timedelta(days=7)
 NETWORK_FETCH_WINDOW = timedelta(days=2)

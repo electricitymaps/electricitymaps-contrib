@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 
 class ValidationError(ValueError):

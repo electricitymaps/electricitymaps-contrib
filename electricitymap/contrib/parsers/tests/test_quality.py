@@ -1,6 +1,5 @@
 import pytest
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.quality import (
     validate_consumption,
     validate_exchange,
@@ -14,6 +13,7 @@ from electricitymap.contrib.parsers.tests.mocks.quality_check import (
     e3,
     e4,
 )
+from electricitymap.types import ZoneKey
 
 
 def test_validate_consumption_positive():

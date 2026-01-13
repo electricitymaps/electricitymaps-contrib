@@ -1,7 +1,5 @@
-from typing import NewType
+# DEPRECATED: Import from electricitymap.types instead.
+# This re-export is kept for backward compatibility.
+from electricitymap.types import ZoneKey
 
-# ZoneKey is used throughout the code to identify zones.
-# These are uppercase with 1-3 parts separated by dashes,
-# where the first part is a two-letter country code,
-# e.g. "AU", "AU-TAS", "AU-TAS-CBI".
-ZoneKey = NewType("ZoneKey", str)
+__all__ = ["ZoneKey"]

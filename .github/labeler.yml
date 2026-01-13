@@ -7,7 +7,7 @@ dependencies:
   - changed-files:
       - any-glob-to-any-file:
           [
-            'poetry.lock',
+            'uv.lock',
             'pyproject.toml',
             'mobileapp/package.json',
             'mobileapp/pnpm-lock.yaml',

@@ -12,9 +12,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib import config
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.types import ZoneKey
 
 TIMEZONE = ZoneInfo("America/Managua")
 

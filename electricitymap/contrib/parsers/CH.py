@@ -5,9 +5,9 @@ from logging import Logger, getLogger
 import pandas as pd
 from requests import Session
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.types import ZoneKey
 
 
 def get_solar_capacity_at(target_datetime: datetime) -> float:

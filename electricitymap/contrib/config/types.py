@@ -1,7 +1,5 @@
-from typing import NewType
+# DEPRECATED: Import from electricitymap.types instead.
+# This re-export is kept for backward compatibility.
+from electricitymap.types import BoundingBox, Point
 
-# BoundingBoxes indicate a geographic area of a zone.
-# An example bounding box looks like: [[140.46, -39.64], [150.47, -33.48]],
-# representing a box with corners at 140.46°E, 39.64°S and 150.47°E, 33.48°S.
-Point = NewType("Point", tuple[float, float])
-BoundingBox = NewType("BoundingBox", list[Point])
+__all__ = ["Point", "BoundingBox"]

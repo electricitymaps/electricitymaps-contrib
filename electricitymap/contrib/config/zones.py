@@ -3,8 +3,7 @@
 from collections import defaultdict
 from typing import Any
 
-from electricitymap.contrib.config.types import BoundingBox
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import BoundingBox, ZoneKey
 
 
 def zone_bounding_boxes(zones_config: dict[ZoneKey, Any]) -> dict[ZoneKey, BoundingBox]:

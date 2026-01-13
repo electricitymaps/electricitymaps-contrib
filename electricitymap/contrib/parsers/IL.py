@@ -25,7 +25,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalProductionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 URL = "https://www.noga-iso.co.il/Umbraco/Api/Documents/GetElectricalData"
 

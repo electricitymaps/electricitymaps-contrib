@@ -5,9 +5,9 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.ENTSOE import ENTSOE_DOMAIN_MAPPINGS
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.types import ZoneKey
 
 BASE_URL = "https://api.opendata.esett.com"
 PRODUCTION_URL = f"{BASE_URL}/EXP16/Aggregate"

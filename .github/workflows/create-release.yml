@@ -2,6 +2,14 @@ name: Create release
 on:
   workflow_dispatch:
     inputs:
+      package:
+        description: 'Package to release'
+        required: true
+        default: electricitymap-contrib
+        type: choice
+        options:
+          - electricitymap-contrib
+          - electricitymap-types
       type:
         description: 'Release type'
         required: true
@@ -44,7 +52,18 @@ jobs:
           python-version: '3.10.13'
       - name: Install uv
         uses: astral-sh/setup-uv@v7
+      - name: Set package directory
+        id: package-dir
+        run: |
+          if [[ "${{ inputs.package }}" == "electricitymap-types" ]]; then
+            echo "dir=libs/types" >> $GITHUB_OUTPUT
+            echo "pyproject=libs/types/pyproject.toml" >> $GITHUB_OUTPUT
+          else
+            echo "dir=." >> $GITHUB_OUTPUT
+            echo "pyproject=pyproject.toml" >> $GITHUB_OUTPUT
+          fi
       - name: Bump version
+        working-directory: ${{ steps.package-dir.outputs.dir }}
         run: |
           if [[ "${{ inputs.type }}" == "dev" ]]; then
             # Bump patch first to ensure we are moving forward, then add dev suffix
@@ -55,8 +74,8 @@ jobs:
           fi
       - name: Commit changes
         run: |
-          git add pyproject.toml
-          git commit -m "Bumps version"
+          git add ${{ steps.package-dir.outputs.pyproject }}
+          git commit -m "Bump ${{ inputs.package }} version"
       - name: Push changes
         uses: ad-m/github-push-action@v1.0.0
         with:
@@ -64,8 +83,8 @@ jobs:
           branch: ${{ github.ref_name }}
       - name: Build package
         run: |
-          uv build
+          uv build --package ${{ inputs.package }}
       - name: Publish package
         run: |
           export ACCESS_TOKEN=$(gcloud auth print-access-token)
-          uv publish --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
+          uv publish --package ${{ inputs.package }} --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"

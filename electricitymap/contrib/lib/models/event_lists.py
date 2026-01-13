@@ -21,7 +21,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 EventType = TypeVar("EventType", bound="Event")
 

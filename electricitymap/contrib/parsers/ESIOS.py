@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.types import ZoneKey
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token

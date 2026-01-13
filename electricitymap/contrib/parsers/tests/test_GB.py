@@ -5,8 +5,8 @@ import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.GB import fetch_price
+from electricitymap.types import ZoneKey
 
 
 @pytest.mark.parametrize(

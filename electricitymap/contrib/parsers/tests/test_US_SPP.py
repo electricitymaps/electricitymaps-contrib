@@ -8,8 +8,8 @@ from pandas import read_pickle
 from requests_mock import GET
 from testfixtures import LogCapture
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import US_SPP
+from electricitymap.types import ZoneKey
 
 
 def test_fetch_production():

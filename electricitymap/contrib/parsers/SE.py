@@ -7,7 +7,6 @@ from logging import Logger, getLogger
 
 from requests import Session
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.ENTSOE import (
     fetch_production as fetch_production_enstoe,
 )
@@ -15,6 +14,7 @@ from electricitymap.contrib.parsers.eSett import (
     fetch_production as fetch_production_esett,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.types import ZoneKey
 
 
 @refetch_frequency(timedelta(days=3))
