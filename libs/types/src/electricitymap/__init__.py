@@ -1,1 +1,0 @@
-# Electricitymap types namespace package
