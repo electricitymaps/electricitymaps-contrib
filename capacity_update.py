@@ -1,5 +1,5 @@
 """
-Usage: poetry run update_capacity --zone FR --target_datetime "2022-01-01"
+Usage: uv run update_capacity --zone FR --target_datetime "2022-01-01"
 """
 
 import logging
@@ -33,8 +33,8 @@ def capacity_update(
     \n
     Examples
     -------
-    >>> poetry run capacity_update --zone FR --target_datetime "2022-01-01"
-    >>> poetry run capacity_update --source ENTSOE --target_datetime "2022-01-01"
+    >>> uv run capacity_update --zone FR --target_datetime "2022-01-01"
+    >>> uv run capacity_update --source ENTSOE --target_datetime "2022-01-01"
     """
     logging.basicConfig(
         level=logging.DEBUG,

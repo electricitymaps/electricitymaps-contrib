@@ -4,7 +4,7 @@
 This script helps to remove a zone (including the zone config and exchanges).
 
 Example usage:
-  poetry run python scripts/remove_zone.py DK-DK1
+  uv run python scripts/remove_zone.py DK-DK1
 """
 
 import argparse
