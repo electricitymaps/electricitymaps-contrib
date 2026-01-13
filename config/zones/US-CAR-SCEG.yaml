@@ -201,7 +201,10 @@ delays:
   consumption: 30
   consumptionForecast: 30
   production: 48
-disclaimer: A third of the nuclear-related electricity production is attributed to the balancing authority South Carolina Public Service Authority (US-CAR-SC) due to an agreement between the two balancing authorities. Read more on the zone definition wiki page.
+disclaimer: A third of the nuclear-related electricity production is attributed to
+  the balancing authority South Carolina Public Service Authority (US-CAR-SC) due
+  to an agreement between the two balancing authorities. Read more on the zone definition
+  wiki page.
 emissionFactors:
   direct:
     biomass:
@@ -273,14 +276,14 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 754.5315891025153
+        value: 756.6867166175201
       - datetime: '2022-01-01'
         source: eGrid 2022
         value: 1297.8346930177995
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 692.2365799135232
+        value: 757.3688858307635
   lifecycle:
     biomass:
       - _comment: Mean of all US zones
@@ -355,14 +358,14 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 998.5315891025153
+        value: 1000.6867166175201
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
         value: 1541.8346930177995
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 936.2365799135232
+        value: 1001.3688858307635
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -519,8 +522,8 @@ fallbackZoneMixes:
         solar: 0.06997543369820834
         unknown: 0.00226721784513369
         wind: 0.00011411094674027499
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

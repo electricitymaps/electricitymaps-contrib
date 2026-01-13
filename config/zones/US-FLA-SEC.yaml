@@ -147,7 +147,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021
-        value: 754.5315891025153
+        value: 756.6867166175201
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022
@@ -155,7 +155,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023
-        value: 692.2365799135232
+        value: 757.3688858307635
   lifecycle:
     biomass:
       - _comment: Mean of all US zones
@@ -225,7 +225,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 998.5315891025153
+        value: 1000.6867166175201
       - _comment: Mean of all US zones
         datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
@@ -233,7 +233,7 @@ emissionFactors:
       - _comment: Mean of all US zones
         datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 936.2365799135232
+        value: 1001.3688858307635
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -390,8 +390,8 @@ fallbackZoneMixes:
         solar: 0.0018365194344341143
         unknown: 0.0011848510985980577
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

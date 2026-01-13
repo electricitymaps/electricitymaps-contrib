@@ -160,4 +160,4 @@ parsers:
 region: Asia
 sources: null
 timezone: Asia/Tokyo
-zone_name: "Tōhoku"
+zone_name: 'Tōhoku'

@@ -172,4 +172,4 @@ parsers:
   production: JP_KY.fetch_production
 region: Asia
 timezone: Asia/Tokyo
-zone_name: "Kyūshū"
+zone_name: 'Kyūshū'

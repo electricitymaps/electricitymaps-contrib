@@ -1197,20 +1197,20 @@ emissionFactors:
         value: 1005.4635485098644
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 1012.036123157226
+        value: 1013.0108447809346
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020
-        value: 398.30439387337873
+        value: 398.9853568004252
       - datetime: '2021-01-01'
         source: eGrid 2021
-        value: 394.6567779047474
+        value: 395.0916408590434
       - datetime: '2022-01-01'
         source: eGrid 2022
-        value: 396.39237447540444
+        value: 397.3283226131341
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 391.3347811532124
+        value: 395.91087384158783
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1296,20 +1296,20 @@ emissionFactors:
         value: 1065.4635485098643
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 1072.036123157226
+        value: 1073.0108447809346
     gas:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
-        value: 518.3043938733788
+        value: 518.9853568004253
       - datetime: '2021-01-01'
         source: eGrid 2021; IPCC 2014
-        value: 514.6567779047474
+        value: 515.0916408590434
       - datetime: '2022-01-01'
         source: eGrid 2022; IPCC 2014
-        value: 516.3923744754045
+        value: 517.3283226131341
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 511.3347811532124
+        value: 515.9108738415878
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1496,8 +1496,8 @@ fallbackZoneMixes:
         solar: 0.019468248300301277
         unknown: 0.006730017008187237
         wind: 0.03655739992719188
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast

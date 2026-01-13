@@ -705,7 +705,7 @@ emissionFactors:
         value: 470.80292727723975
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 489.3575468150737
+        value: 491.00210113204867
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -735,7 +735,7 @@ emissionFactors:
         value: 1291.2071450487374
       - datetime: '2023-01-01'
         source: eGrid 2023
-        value: 312.5429383607041
+        value: 473.2147534174965
   lifecycle:
     biomass:
       - _comment: Mean of all US zones
@@ -779,7 +779,7 @@ emissionFactors:
         value: 590.8029272772397
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 609.3575468150736
+        value: 611.0021011320487
     geothermal:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -809,7 +809,7 @@ emissionFactors:
         value: 1535.2071450487374
       - datetime: '2023-01-01'
         source: eGrid 2023; IPCC 2014
-        value: 556.542938360704
+        value: 717.2147534174965
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -966,8 +966,8 @@ fallbackZoneMixes:
         solar: 0.005079625055022232
         unknown: 0.0010075414538685166
         wind: 0.3731861627814639
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_SPP.fetch_load_forecast
