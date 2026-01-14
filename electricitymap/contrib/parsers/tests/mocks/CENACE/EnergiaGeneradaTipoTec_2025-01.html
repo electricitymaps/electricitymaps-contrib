@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<!-- PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Energía Generada por tipo de Tecnología
+</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="imagetoolbar" content="no" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300" rel="stylesheet" type="text/css" /><link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" /><link rel="stylesheet" href="/styles/layoutSIM.css" type="text/css" /><link rel="stylesheet" href="/styles/jquery-ui.css" type="text/css" /><link rel="stylesheet" href="/SIM/VISTA/styles/arbol.css" type="text/css" /><link href="https://framework-gb.cdn.gob.mx/favicon.ico" rel="shortcut icon" /><link href="../../../styles/APSIMStyles.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/af-2.3.3/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.css" /> 
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.min.js"></script> <!-- la active nuevamente para capacitacion -->
+    <script type="text/javascript" src="/scripts/jquery-ui.js"></script>
+ 
+     
+   
+    <script type="text/javascript" src="/scripts/ddimgtooltip.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/af-2.3.3/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.js"></script>
+  
+      <!-- Homepage Only Scripts -->
+  
+    <script type="text/javascript" src="/scripts/responsiveslides.js"></script>
+ 
+  
+    <!--<script src=“https://framework-gb.cdn.gob.mx/scripts/modal_sgb.js"></script>-->      
+    <!-- Respond.js soporte de media queries para Internet Explorer 8 -->
+    <!-- ie8.js EventTarget para cada nodo en Internet Explorer 8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ie8/0.2.2/ie8.js"></script>
+    <![endif]-->
+      
+     
+
+    <script type="text/javascript">
+        $(function () {
+            $(".rslides").responsiveSlides();
+
+        });
+        function removeClassName(elem, className) {
+            elem.className = elem.className.replace(className, "").trim();
+        }
+        function addCSSClass(elem, className) {
+            removeClassName(elem, className);
+            elem.className = (elem.className + " " + className).trim();
+        }
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/, "");
+        }
+        //function stripedTable() {
+        //    if (document.getElementById && document.getElementsByTagName) {
+        //        var allTables = document.getElementsByTagName('table');
+        //        if (!allTables) { return; }
+        //        for (var i = 0; i < allTables.length; i++) {
+        //            if (allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)) {
+        //                var trs = allTables[i].getElementsByTagName("tr");
+        //                for (var j = 0; j < trs.length; j++) {
+        //                    removeClassName(trs[j], 'alternateRow');
+        //                    addCSSClass(trs[j], 'normalRow');
+        //                }
+        //                for (var k = 0; k < trs.length; k += 2) {
+        //                    removeClassName(trs[k], 'normalRow');
+        //                    addCSSClass(trs[k], 'alternateRow');
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        function addIEonScroll() {
+            var thisContainer = document.getElementById('tableContainer');
+            if (!thisContainer) { return; }
+            var onClickAction = 'toggleSelectBoxes();';
+            thisContainer.onscroll = new Function(onClickAction);
+        }
+        function toggleSelectBoxes() {
+            var thisContainer = document.getElementById('tableContainer');
+            var thisHeader = document.getElementById('fixedHeader');
+            if (!thisContainer || !thisHeader) { return; }
+            var selectBoxes = thisContainer.getElementsByTagName('select');
+            if (!selectBoxes) { return; }
+            for (var i = 0; i < selectBoxes.length; i++) {
+                if (thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)) {
+                    selectBoxes[i].style.visibility = 'hidden';
+                } else {
+                    selectBoxes[i].style.visibility = 'visible';
+                }
+            }
+        }
+        window.onload = function () {
+            stripedTable(); addIEonScroll();
+        }
+
+        //$(document).ready(function () {
+        //    $('#zebra tbody tr:even').addClass('zebra');
+        //    /*HOVER's: start*/
+        //    $('#zebra tbody tr:even').mouseover(function () {
+        //        $(this).removeClass('zebra');
+        //        $(this).addClass('blue');
+
+        //        $('#zebra tbody tr:even').mouseout(function () {
+        //            $(this).removeClass('blue');
+        //            $(this).addClass('zebra');
+        //        });
+        //    });
+        //    $('#zebra tbody tr:odd').mouseover(function () {
+        //        $(this).addClass('grey');
+
+        //        $('#zebra tbody tr:odd').mouseout(function () {
+        //            $(this).removeClass('grey');
+        //        });
+
+        //    });
+        //    /*HOVER's: end*/
+        //    $(".menuIzq").find('a[href="#"]').attr("title", "Próximamente estará disponible");
+
+        //    $(".menuIzq").find('a[href="#"]').click(function () {
+        //        return false;
+        //    });
+        //});
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('#LoadPage').load('http://google.com', function (data) {
+                $(this).html(data)
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".submenuIzq").on('click', function (event) {
+
+                var sub = $(this);
+                if (sub.hasClass("submenuOculto")) {
+                    sub.addClass("submenuVisible").removeClass("submenuOculto");
+                    return false;
+                }
+
+                else {
+
+                    if ($(event.target).first().parents("li").first().hasClass("submenuVisible")) {
+                        sub.addClass("submenuOculto").removeClass("submenuVisible");
+                        // return false;
+                    }
+                }
+            });
+        });
+
+        //Capitaliza todos los titulos de las páginas 
+        $(document).ready(function (e) {
+            $('#LoadPage').load('http://google.com', function (data) {
+                $(this).html(data)
+            });
+            $('.titulo').append("<hr class='red' style='margin-bottom: 40px;' />");
+            $('.tituloSubtema').append("<hr class='red' style='margin-bottom: 40px;' />")
+            $('.tituloSIM').append("<hr class='red' style='margin-bottom: 40px;' />")
+            $('.tituloSIM2').append("<hr class='red' style='margin-bottom: 30px;' />")
+            $('.tituloN2').append("<hr class='red' style='margin-bottom: 40px;' />");
+        });
+    </script>
+
+    <!-- SCRIPT DE GOOGLE ANALYTICS PARA ESTADISTICAS -->
+    <script type="text/javascript">
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-146492062-1', 'auto');
+        ga('send', 'pageview');
+
+        $(document).ready(function () {
+            $('ul.nav li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+            });
+        });
+    </script>
+    <!--Temporal para modificar el posicionamiento del alert por las elecciones-->
+    <style>
+	.alert{ 
+	      margin-bottom: 0;
+	      border-radius: 0;
+	      width:100%;
+	      position:fixed;
+	      z-index:1030;
+	      top:86px;
+	    }
+
+   .modal-backdrop {
+    opacity: .5;
+    
+}
+   </style>
+
+    
+    <style type='text/css'>
+        #products {
+            width: 100%; /*Propiedades de la tabla de reportes: FECHA, REPORTE, ULTIMA ACTUALIZACION*/
+            border-collapse: collapse;
+            border: none;
+        }
+
+        .Titulo {
+            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 15px;
+            text-align:center;
+            font-weight: bold;
+        }
+
+        .Letras {
+            font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            margin-top: 10px; 
+            text-align: center; 
+            font-size: 14px; 
+            padding-right:20px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+
+        function bloqueaForm() {
+            $('#chartcurtain').fadeIn(1000);
+            return true;
+        }
+
+        /*****FUNCIONES DE RadTreeView ************/
+        function InicializaIMG() {
+            var productsTable = $get("products");
+            var firstRow;
+            var ii = 0;
+            for (var i = 0; i <= 47; i++) {
+                if (productsTable.tBodies) {
+                    firstRow = productsTable.tBodies[0].rows[ii];
+                }
+                else {
+                    firstRow = productsTable.rows[0];
+                }
+                var expandImg = firstRow.cells[0].getElementsByTagName("IMG")[0];
+                if (expandImg.src.indexOf("Plus") > -1) {
+                    toggleOrderDetails(expandImg);
+                }
+                ii = ii + 2;
+            }
+        }
+
+        function getNextRowSibling(row) {
+            var ret = row;
+            do {
+                ret = ret.nextSibling;
+            } while (ret && ret.tagName != "TR");
+            return ret;
+        }
+        /****************************************/
+    </script>
+<link href="/WebResource.axd?d=R7CL36hLJ8rx1G-Xs07pf-1QkTHnamBXEFu0SJ2c3u26gJr5POvznBSnQhSA7cjdEg5b3rjxyR9IRzdtRSpBTmoFr11283AKgBEg_jPY1Vlevnc3MkRznDCMyEBBBDCtYEmWHJu7DHzvqk9uF4BOPQ2&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mmnj17zXB6mDqq_mQUP_8xkPaExVT-fVGoqGL28z5KAycElHo7EvmtXZk8PzWHZjyOQWpnLu4RwACjTpNGAmb6vTS172Fdkn8cEBB7DeA4sMf9HdR7mMeNuo-PJ1yqZXjT0G25hm4dZ6JWltU5ZJ2OnJCOf7t_8kGDTkXmFDSX41&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=3FELlegsdLRrLVtkWqKiU_qcWTXp-Qg-CWNfv0OMcElajoAM7lk4AOEeUHNg8Gh40y3mhPwxbnTuU6-yT2aJ_cNlUfDiEdaSf3fEi_VVdlqOa9de44dju0wILIpuEB2W8oIAAOBNXuySdaRO54lrvQ2&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=pt6nZSemBR5seAf7kXPTJVoHsJNDqFQtHhwWbegWKSqXwSx_rm6TOiurGSxLCmw_4cIqEF3ZiLxVBQnloa3tOecOb0ig8tP9-YhtBHhBJ9EOP3fAqiHQ4wmMYcw1paVECJbSwmzo-V_2EA9yLYtATh7Z0vLC3HpLarQ_FwR3z8U1&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=kxbI5tJb85vMmRNk4rhPH9svUyjFPbAzvCyHkeyK2yKcCOywA8QiP3Q5IBF3aPDd346vM8JVkZ96aGxXt2emAdvdnXLBGZK-uKb5LGRnZ488L_O7oOq3dC_4zd55RiD0WMS9TyTC6VBZYy0JHYevQg2&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /><link href="/WebResource.axd?d=mWS4pJBj8g2r2oW36RxWb8gd-tATsCc3gAkkcf-ha8XX2MYFiFzaVApLqoZQ44quDhInqSsUU_hNM8fCgTIDsaf4wGlqpPveYqIsKEbMQQ0rbWbmqqg_XWLXtHM-lqOgh-0LpO7zChqu-BbOL4JHQUNNzoLiAdMmdH4bWEHef5o1&amp;t=637189345175040276" type="text/css" rel="stylesheet" class="Telerik_stylesheet" /></head>
+<!--INICIA ENCABEZADO -->
+<body id="top" style="margin: 0px; padding: 80px 0px 0px 0px;">
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+       <div class="container">
+           <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMainCollapse"><span class="sr-only">Interruptor de Navegación</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gob.mx/"><img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="128" height="48" alt="Página de inicio, Gobierno de México"></a></div><div class="collapse navbar-collapse" id="navbarMainCollapse"><ul class="nav navbar-nav navbar-right"><li><a href="https://www.gob.mx/tramites">Trámites</a></li><li><a href="https://www.gob.mx/gobierno">Gobierno</a></li><li><a href="https://www.gob.mx/busqueda"><span class="sr-only">Búsqueda</span><i class="icon-search"></i></a></li></ul></div></div></nav>
+    </header>
+      <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top" style="margin-top:80px;" >
+                <div class="container-fluid" style="padding-right: 0px;padding-left:0px;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
+                            <span class="sr-only">Interruptor de Navegación</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/"></a>
+                  </div>
+                    <div class="collapse navbar-collapse" id="subenlaces">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://www.gob.mx/cenace/archivo/articulos">Blog</a></li>
+                            <li><a href="http://www.gob.mx/cenace/archivo/multimedia">Multimedia</a></li>
+                            <li><a href="http://www.gob.mx/cenace/archivo/prensa">Prensa</a></li>
+                            <li><a href="https://www.gob.mx/cenace/es/archivo/documentos">Documentos</a></li>
+                            <li><a href="https://www.gob.mx/cenace/es/#2688">Contacto</a></li>
+                            <li><a href="http://www.gob.mx/cenace/archivo/acciones_y_programas">Acciones y Programas</a></li>
+                            <li><a href="/APSIM.aspx">SIM</a></li>
+                            <li><a href="/Transparencia.aspx">Transparencia</a></li>
+                            <li><a href="/ProteccionDatosPersonales.aspx">Protección de Datos Personales</a></li>
+                        </ul>
+                    </div>
+                          
+                </div>
+            </nav>
+          
+
+        <!--Quitar el estilo. Es temporal para modificar el posicionamiento del alert por las elecciones-->
+        <form method="post" action="./EnergiaGeneradaTipoTec.aspx" id="form2" style="padding-top:80px">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTYzMTMwODc2OQ9kFgJmD2QWAgIDD2QWAgIBD2QWAgIBD2QWAmYPZBYCAgMPZBYCZg9kFgRmD2QWBgIBDw8WBAUETWluRAYAQDE89yndCAUETWF4RAYAQDE89yndCA8WDh4HTWluRGF0ZQYAQDE89yndCB4MU2VsZWN0ZWREYXRlBgBAMTz3Kd0IHgdNYXhEYXRlBgBAMTz3Kd0IHhVFbmFibGVFbWJlZGRlZFNjcmlwdHNnHhxFbmFibGVFbWJlZGRlZEJhc2VTdHlsZXNoZWV0Zx4SUmVzb2x2ZWRSZW5kZXJNb2RlCylyVGVsZXJpay5XZWIuVUkuUmVuZGVyTW9kZSwgVGVsZXJpay5XZWIuVUksIFZlcnNpb249MjAxNC4yLjcyNC40NSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0AR4XRW5hYmxlQWpheFNraW5SZW5kZXJpbmdoZBYEZg8UKwAIDxYWHgxFbXB0eU1lc3NhZ2VlHwULKwQBHgRUZXh0BRMyMDI1LTAxLTAxLTAwLTAwLTAwHhFFbmFibGVBcmlhU3VwcG9ydGgfA2ceDUxhYmVsQ3NzQ2xhc3MFB3JpTGFiZWwfBmgfBGceBFNraW4FB0RlZmF1bHQfAAYAQDE89yndCB8CBgBAMTz3Kd0IZBYIHgVXaWR0aBsAAAAAAABZQAcAAAAeClJlc2l6ZU1vZGULKXJUZWxlcmlrLldlYi5VSS5SZXNpemVNb2RlLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDE0LjIuNzI0LjQ1LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTEyMWZhZTc4MTY1YmEzZDQAHghDc3NDbGFzcwURcmlUZXh0Qm94IHJpSG92ZXIeBF8hU0ICggIWCB8MGwAAAAAAAFlABwAAAB8NCysFAB8OBRFyaVRleHRCb3ggcmlFcnJvch8PAoICFggfDBsAAAAAAABZQAcAAAAfDQsrBQAfDgUTcmlUZXh0Qm94IHJpRm9jdXNlZB8PAoICFgYfDBsAAAAAAABZQAcAAAAfDgUTcmlUZXh0Qm94IHJpRW5hYmxlZB8PAoICFggfDBsAAAAAAABZQAcAAAAfDQsrBQAfDgUUcmlUZXh0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Zg8PFgQfJGUfJWVkZAIGD2QWAmYPDxYEHyRlHyVlZGQCBw8PFgIfCAUZMDUvMDkvMjAyNSAwNToxNTowMSBhLiBtLmRkAgkPZBYCZg8PFgIfImhkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WEQUnY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRGZWNoYUNvbnN1bHRhBSZjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEZlY2hhSW5pY2lhbAUkY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRGZWNoYUZpbmFsBSpjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRSYWRSZXN1bHRhZG8FQGN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwwNCRnYmNjb2x1bW4FQWN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwwNCRnYmNjb2x1bW4xBUFjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRSYWRSZXN1bHRhZG8kY3RsMDAkY3RsMDQkZ2JjY29sdW1uMgVAY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHcmlkUmFkUmVzdWx0YWRvJGN0bDAwJGN0bDA2JGdiY2NvbHVtbgVBY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHcmlkUmFkUmVzdWx0YWRvJGN0bDAwJGN0bDA2JGdiY2NvbHVtbjEFQWN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwwNiRnYmNjb2x1bW4yBUBjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRSYWRSZXN1bHRhZG8kY3RsMDAkY3RsMDgkZ2JjY29sdW1uBUFjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRSYWRSZXN1bHRhZG8kY3RsMDAkY3RsMDgkZ2JjY29sdW1uMQVBY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRHcmlkUmFkUmVzdWx0YWRvJGN0bDAwJGN0bDA4JGdiY2NvbHVtbjIFQGN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwxMCRnYmNjb2x1bW4FQWN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkR3JpZFJhZFJlc3VsdGFkbyRjdGwwMCRjdGwxMCRnYmNjb2x1bW4xBUFjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRSYWRSZXN1bHRhZG8kY3RsMDAkY3RsMTAkZ2JjY29sdW1uMgUoY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRidG5DZXJyYXJQYW5lbFCkyzEppHkWMsfLzS80zvqcNYDFgwWlWqv26TYlErty" />
+
+
+<script src="/ScriptResource.axd?d=-OoKg2sreSVTmu6ZtYgZVFEsV1vIm1c9JCW4z1tB66CGa65YGnZ85BRCS_3nRUsax2vaXHetzdcLQrgCraazov0vX5Q72Bcqp211zashGscOPn3A7PcLH4HySmoLF34Y0&amp;t=51e37521" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=0G7z_9VDMhhiVFTTfaJxY6Mt3oZoIpv_6LA4fk1Tz0lf2O0G7BaD04yUvMAwkcCJNWm3Z-8stpzzIMOLB5qdGm3QXUvUCGKOle-mCvdaEq3fmSlQkHr_dfFUQFXaZZ6AAweoTIqdTSXLhNnEKSZT_w2&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=bMaP_mAvAZWA-YXk7xdilvNXWizYimhvehJF_E8OHuOjl7ddlcIRqLN-Fm6Q-QHz9WdyXTzn3ayz-xLUeea7rA_2jXqDeQ2e71bpQiwAXn5K-zd6IlD7vXnBHGic0I4Y5qMLJO2_o3hrAtZ9wE9rKg2&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=UXdm6goCNnZ9QnjtK2eQIZfxvTJ7s7l7aOs4Kcs6BTioBpGdS0HHXAZjKnpVWaxJXTg1bTDKGLfduPzvRK6uShN1mQvjjE92QRlIwCQYa16-Dw-WkskPX21DuT-NmOlEbNt1XlhERwXJyCH-3S0tJliWwz1eSfpEZtx7wwIhLCylTvUrOtUrNHxN41gQt6Wd0&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=I-9Tt1gHKXBzkdD4CWyPIUUMFRoCT1FbsdodiRNexeQsdaeqbcz8KyBHoD40cKmEFQ86560Yz3tPB_CiQyHAdIXCP47OIxtt-g8B7wCUPlyWScyTejBI1HICuFekj0i_ZJJ3FRsGhwsX5tdQji-Fa9j7S_jH91N2es6T2MVbuYo1&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Lf8nalj2623gQhJ69i3BqDy-9eFKUxP7dkZNo8CVdyjGz8qyzqbyu7rXit7eDBGEQbiCd9G7H2j_3eEnFgu659CikzxB9RkLzWYTNloiKxp2GmepveUd2ir6hsXHdvwmHSh2g_ogAkQB23YQ1s8BCFQ8Erwx8AQ8ggLb62nVWHI1&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dT3Fwa3I5BvFcHYgbZE14tWjijFyXSdssQShDxszUx-voaBFR-AGvkvg-SqQwii6_2ICvaspXFSFhQ91_K8oBBgagQX8NGDZtbgoJUds7lPrR_E44w7GQC6CLr4nNM3sOo_Qo2HUVXOe--fTYUtl-V9t0YEeqMEXA5iI0HqA4Ro1&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=lctu5Ru3lpHM1kFQDhYBYEFlo1j7ELVRVgJuiYOkiwKkLfRS2K2uOuCuu937yXW0cH_4tw41_THiZoyFt7FveZ0aTmZaZPGaUqChIC_liYq2EziANmjh8JlvoW_iUAb0vH-4Bxa_YnBheihKrr9J7ymUevbBgTCZtkPUcZMZVwU1&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Ydq9kDpbvuaimo45s79j-cLp1DvJmWX9l6hw8xiBVgm7tKE3mTDXA1Xf2ZvtEIm2IKsa7r2LjmcR1IGhZxgdN2N_gZov9miFPYnOS6OU7fz5g828NpR0QJyOEJsTf64jw_74SVNd0RwNFJUangRfRxYRN2Xjd1UmOKNhVZlrxsY1&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=QIdVEFPBORSKElbE9c-atimOpmk_QamM7xT73nXLa9JTHLbiMjyzCa1xsd1nKbEGZ0P514TRzwqRcnRZ_qkS-pAXgIjMu_QyHt6Hv0Ci7wtQvIn0PU8mjTGZBJDNz0EI0g9K0QAcySYFVFVp62K8howCSPPmyUgxeEBBf8qBjS81&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=zfhmDvUgfFFqA47CxhaxcHZuYaTaroGgTyu7USAHpQg132JedG3YPCHoIqh8zzrLYwR0XlOkpW4qE8C3jMFc_bNmW8w0OfVbNwetKZ1jPJL6X6RZ4W-CfdFsZaec61eiMUyElljc44A8ow_9NUYvhQ2&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=zKnmEyFFmI0cjALLp6Sxi3HjPoaj_3wmpuRjrh0msmj_-0Jjo0PlkL_Yh_90-LZDErz7XcnXmtCGnh13oIdyNMXhbjIIxi0LI-dwZNTSt9mAS7nKjhooSv5BJHzEhdS6r_X8pIqkFOM3ACpXhXla8g2&amp;t=16fec49d" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=QRR4DzgZ7Hn23lxcwMV6n4lvmCvuC587X5RkBVRKNvdrGEQb2ItspqfCXosZFtWzT9-3xzXRcz5TUL6QI4Zbup3PLvl1cptEVpdECnSRQ3L63IBFXWe-BmM02U6KGHXiEgr4EcR-yIMOKWTRL9bAbG-9L4oHXxCE9V4kxytPRyU1&amp;t=16fec49d" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="20B9DAF2" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdABrjYU1CCW2Xo/st5aw6y8//0gsvRcXibJrviW3Dmsx0G+jYKkdCU41GOhiZPOlFyBecIegvepvm5r48BtByTWSkIC/PSPgmtogq3vXUp+YNvsMPaGT0F8ZMY05tsTP7KXY5p77wXhhk2nxxmhBw8yYO6yoq09PpCPpnHhKGI5XXqN0NAXFS9Kcv7U1TgXuCACxTET4yjIt6nVt9qCHIyzbla16U6SvCvrhBDl88f4l+A2AwM+Efhx0eY7z5UUNUDwDoCL/OENuuNNFPCRAmSpT1tJyLEbLwiFV42Q4kk9HyriawYzwMY7qjqD+AyzOYxGtsPnStejR/y7pvYgH5HNWmXTn8B01wuHTPYrkgdjHTuPv5Ij3u84VqXrCAD4PkZdppK4DR60QtYpfmsTXFZe1B/G/b+6rB6d8zbyvahtN3Bm8W80kTmwFa9O2zdj3NLuyVoKN6VigKD2Vhn9iGec5uvT6ojmy/kmNmmcUhonzP2o9PlPvvh0uCU4n5eG3VMXpLegsdpl+dOB5ekw34eDDUUS9I2ZU7W9T66aOmHQO3BwQGfonXuJvuAemNT6spOjMYiRw13BSYq5ZgHNE17FKO" />
+            <div id="espacioentremenutitulocontacto">
+            </div>
+            <div id="contenido" class="wrapper col4">
+                
+    
+        <div id="container" class="container-fluid vertical-buffer_ ">
+                        
+                <div class="row">
+                <div class="col-md-12">
+                    <div style="display: inline-block; width: 10%; float: left; line-height: 4em; text-align: left;" >
+                        <img src="../../../2023-10-17 logo-SIM.svg" alt="Logo SIM mini" style="width: 100%;" />
+                    </div>
+                    <div style="display: inline-block; width: 90%; float: right; padding-left: 30px;">
+                        <div class="titulo" style="display: inline-block">Energía Generada por Tipo de Tecnología</div>
+                    </div>
+                   </div>
+                </div>
+                
+                <div class="col-md-9 col-lg-9 col-sm-12">
+                    
+                    <div id="ContentPlaceHolder1_UpdatePanel1">
+	
+                            
+                            <br />
+                            
+                            <table id="ContentPlaceHolder1_TableEnergiaGenLiqAgregada" width="100%">
+		<tr>
+			<td valign="top" width="22%">
+                                        <div class="Titulo">Generación Liquidada</div>
+                                        <div class="Letras" style="text-align:center;">Mes de Operación </div>
+                                        <div class="Letras" style="text-align:right;">
+                                            Visualizar:
+                                            
+                                            <input type="hidden" name="ctl00_ContentPlaceHolder1_FechaConsulta_AD" id="ctl00_ContentPlaceHolder1_FechaConsulta_AD" value="[[2025,1,1],[2025,1,1],[2025,1,1]]" /><div id="ctl00_ContentPlaceHolder1_FechaConsulta_wrapper" class="RadPicker RadPicker_Default" style="width:160px;">
+				<!-- 2014.2.724.45 --><input style="visibility:hidden;display:block;float:right;margin:0 0 -1px -1px;width:1px;height:1px;overflow:hidden;border:0;padding:0;" id="ctl00_ContentPlaceHolder1_FechaConsulta" name="ctl00$ContentPlaceHolder1$FechaConsulta" type="text" class="rdfd_ radPreventDecorate" value="2025-01-01" title="Visually hidden input created for functionality purposes." /><table cellspacing="0" class="rcTable rcSingle" summary="Table holding date picker control for selection of dates." style="width:100%;">
+					<caption style="display:none;">
+						RadMonthYearPicker
+					</caption><tr>
+						<td class="rcInputCell" style="width:100%;"><span id="ctl00_ContentPlaceHolder1_FechaConsulta_dateInput_wrapper" class="riSingle RadInput RadInput_Default" style="display:block;width:100%;"><input id="ctl00_ContentPlaceHolder1_FechaConsulta_dateInput" name="ctl00$ContentPlaceHolder1$FechaConsulta$dateInput" class="riTextBox riEnabled" value="enero de 2025" type="text" /><input id="ctl00_ContentPlaceHolder1_FechaConsulta_dateInput_ClientState" name="ctl00_ContentPlaceHolder1_FechaConsulta_dateInput_ClientState" type="hidden" /></span></td><td><a title="Open the monthyear view popup." href="#" id="ctl00_ContentPlaceHolder1_FechaConsulta_popupButton" class="rcCalPopup">Open the monthyear view popup.</a></td><td><div id='ctl00_ContentPlaceHolder1_FechaConsulta_wrapperElement'  style="display: none" ><table summary="Table holding time picker for selecting time of day." id="ctl00_ContentPlaceHolder1_FechaConsulta_MonthYearTableViewID" class="RadCalendarMonthView RadCalendarMonthView_Default">
+							<caption style="display:none;">
+								Month year picker
+							</caption><thead>
+								<tr style="display:none;">
+									<th scope="col"></th>
+								</tr>
+							</thead><tbody>
+								<tr>
+									<td><a href="#">ene.</a></td><td><a href="#">feb.</a></td><td><a href="#">2021</a></td><td><a href="#">2026</a></td>
+								</tr><tr>
+									<td><a href="#">mar.</a></td><td><a href="#">abr.</a></td><td><a href="#">2022</a></td><td><a href="#">2027</a></td>
+								</tr><tr>
+									<td><a href="#">may.</a></td><td><a href="#">jun.</a></td><td><a href="#">2023</a></td><td><a href="#">2028</a></td>
+								</tr><tr>
+									<td><a href="#">jul.</a></td><td><a href="#">ago.</a></td><td><a href="#">2024</a></td><td><a href="#">2029</a></td>
+								</tr><tr>
+									<td><a href="#">sep.</a></td><td><a href="#">oct.</a></td><td><a href="#">2025</a></td><td><a href="#">2030</a></td>
+								</tr><tr>
+									<td><a href="#">nov.</a></td><td><a href="#">dic.</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaConsulta_FechaConsulta_NavigationPrevLink" title="&lt;" href="#">&lt;</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaConsulta_FechaConsulta_NavigationNextLink" title=">" href="#">&gt;</a></td>
+								</tr><tr>
+									<td class="rcButtons" colspan="4"><input type="button" name="ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_TodayButton" value="Today" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_TodayButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaConsulta_FechaConsulta_TodayButton" class="rcTodayButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_OkButton" value="OK" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_OkButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaConsulta_FechaConsulta_OkButton" class="rcOkButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_CancelButton" value="Cancel" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaConsulta$FechaConsulta_CancelButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaConsulta_FechaConsulta_CancelButton" class="rcCancelButton" /></td>
+								</tr>
+							</tbody>
+						</table></div></td>
+					</tr>
+				</table><input id="ctl00_ContentPlaceHolder1_FechaConsulta_ClientState" name="ctl00_ContentPlaceHolder1_FechaConsulta_ClientState" type="hidden" />
+			</div>
+                                        </div>
+                                        <div class="Letras">
+                                            Si desea descargar los reportes de un periodo específico, proporcione:
+                                        </div>
+                                        <div class="Letras" style="text-align:right;">
+                                            Fecha Inicial: 
+                                            <input type="hidden" name="ctl00_ContentPlaceHolder1_FechaInicial_AD" id="ctl00_ContentPlaceHolder1_FechaInicial_AD" value="[[2016,4,30],[2025,11,16],[2025,11,16]]" /><div id="ctl00_ContentPlaceHolder1_FechaInicial_wrapper" class="RadPicker RadPicker_Default" style="width:160px;">
+				<input style="visibility:hidden;display:block;float:right;margin:0 0 -1px -1px;width:1px;height:1px;overflow:hidden;border:0;padding:0;" id="ctl00_ContentPlaceHolder1_FechaInicial" name="ctl00$ContentPlaceHolder1$FechaInicial" type="text" class="rdfd_ radPreventDecorate" value="2025-11-16" title="Visually hidden input created for functionality purposes." /><table cellspacing="0" class="rcTable rcSingle" summary="Table holding date picker control for selection of dates." style="width:100%;">
+					<caption style="display:none;">
+						RadMonthYearPicker
+					</caption><tr>
+						<td class="rcInputCell" style="width:100%;"><span id="ctl00_ContentPlaceHolder1_FechaInicial_dateInput_wrapper" class="riSingle RadInput RadInput_Default" style="display:block;width:100%;"><input id="ctl00_ContentPlaceHolder1_FechaInicial_dateInput" name="ctl00$ContentPlaceHolder1$FechaInicial$dateInput" class="riTextBox riEnabled" value="noviembre de 2025" type="text" /><input id="ctl00_ContentPlaceHolder1_FechaInicial_dateInput_ClientState" name="ctl00_ContentPlaceHolder1_FechaInicial_dateInput_ClientState" type="hidden" /></span></td><td><a title="Open the monthyear view popup." href="#" id="ctl00_ContentPlaceHolder1_FechaInicial_popupButton" class="rcCalPopup">Open the monthyear view popup.</a></td><td><div id='ctl00_ContentPlaceHolder1_FechaInicial_wrapperElement'  style="display: none" ><table summary="Table holding time picker for selecting time of day." id="ctl00_ContentPlaceHolder1_FechaInicial_MonthYearTableViewID" class="RadCalendarMonthView RadCalendarMonthView_Default">
+							<caption style="display:none;">
+								Month year picker
+							</caption><thead>
+								<tr style="display:none;">
+									<th scope="col"></th>
+								</tr>
+							</thead><tbody>
+								<tr>
+									<td><a href="#">ene.</a></td><td><a href="#">feb.</a></td><td><a href="#">2021</a></td><td><a href="#">2026</a></td>
+								</tr><tr>
+									<td><a href="#">mar.</a></td><td><a href="#">abr.</a></td><td><a href="#">2022</a></td><td><a href="#">2027</a></td>
+								</tr><tr>
+									<td><a href="#">may.</a></td><td><a href="#">jun.</a></td><td><a href="#">2023</a></td><td><a href="#">2028</a></td>
+								</tr><tr>
+									<td><a href="#">jul.</a></td><td><a href="#">ago.</a></td><td><a href="#">2024</a></td><td><a href="#">2029</a></td>
+								</tr><tr>
+									<td><a href="#">sep.</a></td><td><a href="#">oct.</a></td><td><a href="#">2025</a></td><td><a href="#">2030</a></td>
+								</tr><tr>
+									<td><a href="#">nov.</a></td><td><a href="#">dic.</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaInicial_FechaInicial_NavigationPrevLink" title="&lt;" href="#">&lt;</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaInicial_FechaInicial_NavigationNextLink" title=">" href="#">&gt;</a></td>
+								</tr><tr>
+									<td class="rcButtons" colspan="4"><input type="button" name="ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_TodayButton" value="Today" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_TodayButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaInicial_FechaInicial_TodayButton" class="rcTodayButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_OkButton" value="OK" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_OkButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaInicial_FechaInicial_OkButton" class="rcOkButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_CancelButton" value="Cancel" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaInicial$FechaInicial_CancelButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaInicial_FechaInicial_CancelButton" class="rcCancelButton" /></td>
+								</tr>
+							</tbody>
+						</table></div></td>
+					</tr>
+				</table><input id="ctl00_ContentPlaceHolder1_FechaInicial_ClientState" name="ctl00_ContentPlaceHolder1_FechaInicial_ClientState" type="hidden" />
+			</div>
+                                        </div>
+                                        <div class="Letras" style="text-align:right;">
+                                            Fecha Final: 
+                                            <input type="hidden" name="ctl00_ContentPlaceHolder1_FechaFinal_AD" id="ctl00_ContentPlaceHolder1_FechaFinal_AD" value="[[2016,4,30],[2025,11,16],[2025,11,16]]" /><div id="ctl00_ContentPlaceHolder1_FechaFinal_wrapper" class="RadPicker RadPicker_Default" style="width:160px;">
+				<input style="visibility:hidden;display:block;float:right;margin:0 0 -1px -1px;width:1px;height:1px;overflow:hidden;border:0;padding:0;" id="ctl00_ContentPlaceHolder1_FechaFinal" name="ctl00$ContentPlaceHolder1$FechaFinal" type="text" class="rdfd_ radPreventDecorate" value="2025-11-16" title="Visually hidden input created for functionality purposes." /><table cellspacing="0" class="rcTable rcSingle" summary="Table holding date picker control for selection of dates." style="width:100%;">
+					<caption style="display:none;">
+						RadMonthYearPicker
+					</caption><tr>
+						<td class="rcInputCell" style="width:100%;"><span id="ctl00_ContentPlaceHolder1_FechaFinal_dateInput_wrapper" class="riSingle RadInput RadInput_Default" style="display:block;width:100%;"><input id="ctl00_ContentPlaceHolder1_FechaFinal_dateInput" name="ctl00$ContentPlaceHolder1$FechaFinal$dateInput" class="riTextBox riEnabled" value="noviembre de 2025" type="text" /><input id="ctl00_ContentPlaceHolder1_FechaFinal_dateInput_ClientState" name="ctl00_ContentPlaceHolder1_FechaFinal_dateInput_ClientState" type="hidden" /></span></td><td><a title="Open the monthyear view popup." href="#" id="ctl00_ContentPlaceHolder1_FechaFinal_popupButton" class="rcCalPopup">Open the monthyear view popup.</a></td><td><div id='ctl00_ContentPlaceHolder1_FechaFinal_wrapperElement'  style="display: none" ><table summary="Table holding time picker for selecting time of day." id="ctl00_ContentPlaceHolder1_FechaFinal_MonthYearTableViewID" class="RadCalendarMonthView RadCalendarMonthView_Default">
+							<caption style="display:none;">
+								Month year picker
+							</caption><thead>
+								<tr style="display:none;">
+									<th scope="col"></th>
+								</tr>
+							</thead><tbody>
+								<tr>
+									<td><a href="#">ene.</a></td><td><a href="#">feb.</a></td><td><a href="#">2021</a></td><td><a href="#">2026</a></td>
+								</tr><tr>
+									<td><a href="#">mar.</a></td><td><a href="#">abr.</a></td><td><a href="#">2022</a></td><td><a href="#">2027</a></td>
+								</tr><tr>
+									<td><a href="#">may.</a></td><td><a href="#">jun.</a></td><td><a href="#">2023</a></td><td><a href="#">2028</a></td>
+								</tr><tr>
+									<td><a href="#">jul.</a></td><td><a href="#">ago.</a></td><td><a href="#">2024</a></td><td><a href="#">2029</a></td>
+								</tr><tr>
+									<td><a href="#">sep.</a></td><td><a href="#">oct.</a></td><td><a href="#">2025</a></td><td><a href="#">2030</a></td>
+								</tr><tr>
+									<td><a href="#">nov.</a></td><td><a href="#">dic.</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaFinal_FechaFinal_NavigationPrevLink" title="&lt;" href="#">&lt;</a></td><td><a id="ctl00_ContentPlaceHolder1_FechaFinal_FechaFinal_NavigationNextLink" title=">" href="#">&gt;</a></td>
+								</tr><tr>
+									<td class="rcButtons" colspan="4"><input type="button" name="ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_TodayButton" value="Today" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_TodayButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaFinal_FechaFinal_TodayButton" class="rcTodayButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_OkButton" value="OK" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_OkButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaFinal_FechaFinal_OkButton" class="rcOkButton" /><input type="button" name="ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_CancelButton" value="Cancel" onclick="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$FechaFinal$FechaFinal_CancelButton&#39;,&#39;&#39;)" id="ctl00_ContentPlaceHolder1_FechaFinal_FechaFinal_CancelButton" class="rcCancelButton" /></td>
+								</tr>
+							</tbody>
+						</table></div></td>
+					</tr>
+				</table><input id="ctl00_ContentPlaceHolder1_FechaFinal_ClientState" name="ctl00_ContentPlaceHolder1_FechaFinal_ClientState" type="hidden" />
+			</div>
+                                        </div>
+                                        <div class="Letras">
+                                            
+                                            <input type="submit" name="ctl00$ContentPlaceHolder1$DescargarReportes" value="Descargar en archivo .zip" id="ContentPlaceHolder1_DescargarReportes" class="btn btn-default btn-sm pull-right webui" SingleClick="false" />
+                                        </div>
+                                    </td><td valign="top" width="78%">
+                                        <div style="height: 150px; width: auto">
+                                            <div id="ctl00_ContentPlaceHolder1_GridRadResultado" class="RadGrid RadGrid_Default" style="height:205px;">
+
+			<div class="rgHeaderWrapper"><div id="ctl00_ContentPlaceHolder1_GridRadResultado_GridHeader" class="rgHeaderDiv" style="overflow:hidden;">
+
+			<table class="rgMasterTable rgClipCells" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_Header" width="100%" style="table-layout:fixed;overflow:hidden;empty-cells:show;">
+				<colgroup>
+		<col style="width:190px" />
+		<col style="width:200px" />
+		<col style="width:50px" />
+		<col style="width:50px" />
+		<col style="width:50px" />
+		<col style="width:190px" />
+	</colgroup>
+<thead>
+					<tr>
+						<th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>Mes de Operación</b></font></th><th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>No. de Liquidación Asociada</b></font></th><th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>Csv</b></font></th><th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>Pdf</b></font></th><th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>Html</b></font></th><th scope="col" class="rgHeader" style="text-align:center;"><font color="DimGray"><b>Fecha de Publicación</b></font></th>
+					</tr>
+				</thead><tbody style="display:none;"><tr><td colspan="6"></td></tr></tbody>
+			</table>
+ </div></div>
+				<div id="ctl00_ContentPlaceHolder1_GridRadResultado_GridData" class="rgDataDiv" style="overflow-x:auto;overflow-y:auto;width:100%;height:350px;">
+
+			<table class="rgMasterTable rgClipCells" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00" width="100%" style="table-layout:fixed;overflow:hidden;empty-cells:show;">
+				<colgroup>
+		<col style="width:190px" />
+		<col style="width:200px" />
+		<col style="width:50px" />
+		<col style="width:50px" />
+		<col style="width:50px" />
+		<col style="width:190px" />
+	</colgroup>
+<thead style="display:none;">
+					<tr>
+						<th scope="col"></th>
+					</tr>
+				</thead><tbody>
+				<tr class="rgRow" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00__0">
+					<td class="Letras">Enero 2025</td><td class="Letras" align="center">0</td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl04_gbccolumn" src="../img/imgCsv.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn1" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl04_gbccolumn1" src="../img/imgPDF.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl04$gbccolumn2" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl04_gbccolumn2" src="../img/imgHTML.png" border="0" /></td><td class="Letras">14/02/2025 05:00:01 a. m.</td>
+				</tr><tr class="rgAltRow" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00__1">
+					<td class="Letras">Enero 2025</td><td class="Letras" align="center">1</td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl06$gbccolumn" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl06_gbccolumn" src="../img/imgCsv.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl06$gbccolumn1" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl06_gbccolumn1" src="../img/imgPDF.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl06$gbccolumn2" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl06_gbccolumn2" src="../img/imgHTML.png" border="0" /></td><td class="Letras">28/03/2025 05:05:01 a. m.</td>
+				</tr><tr class="rgRow" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00__2">
+					<td class="Letras">Enero 2025</td><td class="Letras" align="center">2</td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl08$gbccolumn" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl08_gbccolumn" src="../img/imgCsv.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl08$gbccolumn1" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl08_gbccolumn1" src="../img/imgPDF.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl08$gbccolumn2" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl08_gbccolumn2" src="../img/imgHTML.png" border="0" /></td><td class="Letras">23/05/2025 05:10:01 a. m.</td>
+				</tr><tr class="rgAltRow" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00__3">
+					<td class="Letras">Enero 2025</td><td class="Letras" align="center">3</td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl10$gbccolumn" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl10_gbccolumn" src="../img/imgCsv.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl10$gbccolumn1" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl10_gbccolumn1" src="../img/imgPDF.png" border="0" /></td><td class="Letras" width="30"><input type="image" name="ctl00$ContentPlaceHolder1$GridRadResultado$ctl00$ctl10$gbccolumn2" id="ctl00_ContentPlaceHolder1_GridRadResultado_ctl00_ctl10_gbccolumn2" src="../img/imgHTML.png" border="0" /></td><td class="Letras">05/09/2025 05:15:01 a. m.</td>
+				</tr>
+				</tbody>
+
+			</table>	</div>
+			<input id="ctl00_ContentPlaceHolder1_GridRadResultado_ClientState" name="ctl00_ContentPlaceHolder1_GridRadResultado_ClientState" type="hidden" />	</div>
+			
+                                        </div>
+                                    </td>
+		</tr>
+	</table>
+                            <br />
+                        
+</div>
+                    
+                    
+                    
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-12 Letras text-justify" style="text-align:justify !important;">
+                    <p>
+                        Se presenta la estadística de generación intermitente y firme a nivel agregado. Integra los valores históricos y pronosticados de la generación de energía por tipo de tecnología. La información se publica por Mes de Operación, por cada Liquidación disponible El día de publicación de los reportes, será de acuerdo con las fechas en que está disponible la información mensual completa de cada proceso de liquidación.
+                    </p>
+                </div>
+                <br />
+                <br />
+            
+            <div id="ContentPlaceHolder1_pnlMuestraMapa" class="modalPopUp" style="display: none">
+	
+                <table id="ContentPlaceHolder1_Table1" class="tableCompromisoManual" width="100%">
+		<tr>
+			<td class="tableCompromisoManual">
+                            <div class="iconoCerrar">
+                                <input type="image" name="ctl00$ContentPlaceHolder1$btnCerrarPanel" id="ContentPlaceHolder1_btnCerrarPanel" src="../../../images/MercadoOperacion/delete.jpg" align="right" />
+                            </div>
+                        </td>
+		</tr>
+	</table>
+                <img id="ContentPlaceHolder1_Image2" src="../../../images/MercadoOperacion/Mapa%20CTCP.png" height="700" width="900" />
+            
+</div>
+        </div>
+        <!-- end container  -->  
+    
+    <div style="height: 50px"></div>
+
+            </div>
+            <script src="/scripts/funciones.js" type="text/javascript"></script>
+            <script type="text/javascript" src="/scripts/classie.js"></script>
+            <script type="text/javascript">
+                var buttons7Click = Array.prototype.slice.call(document.querySelectorAll('#btn-click a')),
+                    totalButtons7Click = buttons7Click.length;
+
+                buttons7Click.forEach(function (el, i) { el.addEventListener('click', activate, false); });
+
+                function activate() {
+                    var self = this, activatedClass = 'btn-activated';
+
+                    if (!classie.has(this, activatedClass)) {
+                        classie.add(this, activatedClass);
+                        setTimeout(function () { classie.remove(self, activatedClass) }, 1000);
+                    }
+                }
+
+            </script>
+              <div style="height: 50px;">&nbsp;</div>
+        
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadDateInput, {"_displayText":"enero de 2025","_focused":false,"_initialValueAsText":"2025-01-01-00-00-00","_postBackEventReferenceScript":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$FechaConsulta\u0027,\u0027\u0027)","_skin":"Default","_validationText":"2025-01-01-00-00-00","autoPostBack":true,"clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaConsulta_dateInput_ClientState","dateFormat":"MMMM\u0027 de \u0027yyyy","dateFormatInfo":{"DayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"MonthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"AbbreviatedDayNames":["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],"AbbreviatedMonthNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"AMDesignator":"a. m.","PMDesignator":"p. m.","DateSeparator":"/","TimeSeparator":":","FirstDayOfWeek":0,"DateSlots":{"Day":1,"Year":2,"Month":0},"ShortYearCenturyEnd":2029,"TimeInputOnly":false,"MonthYearOnly":false},"displayDateFormat":"MMMM\u0027 de \u0027yyyy","enabled":true,"incrementSettings":{InterceptArrowKeys:true,InterceptMouseWheel:true,Step:1},"maxDate":"2025-01-01-00-00-00","minDate":"2025-01-01-00-00-00","styles":{HoveredStyle: ["width:100%;", "riTextBox riHover"],InvalidStyle: ["width:100%;", "riTextBox riError"],DisabledStyle: ["width:100%;", "riTextBox riDisabled"],FocusedStyle: ["width:100%;", "riTextBox riFocused"],EmptyMessageStyle: ["width:100%;", "riTextBox riEmpty"],ReadOnlyStyle: ["width:100%;", "riTextBox riRead"],EnabledStyle: ["width:100%;", "riTextBox riEnabled"]}}, null, null, $get("ctl00_ContentPlaceHolder1_FechaConsulta_dateInput"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMonthYearPicker, {"_FormatInfoArray":[["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt","dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","hh:mm:ss tt","d \u0027de\u0027 MMMM","ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","dd/MM/yyyy","hh:mm tt","yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","MMMM\u0027 de \u0027yyyy","a. m.","p. m.","/",":",0],"_PopupButtonSettings":{ ResolvedImageUrl : "", ResolvedHoverImageUrl : ""},"_animationSettings":{ShowAnimationDuration:300,ShowAnimationType:1,HideAnimationDuration:0,HideAnimationType:1},"_culture":"es-MX","_popupControlID":"ctl00_ContentPlaceHolder1_FechaConsulta_popupButton","clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaConsulta_ClientState","focusedDate":"2025-01-01-00-00-00","maxDate":"2025-01-01-00-00-00","minDate":"2025-01-01-00-00-00","monthYearNavigationSettings":["Today","OK","Cancel","Cancel","True","True","300","1","300","1","False"],"skin":"Default","stylesHash":{"FastNavigationStyle": ["", "RadCalendarMonthView RadCalendarMonthView_Default"]}}, null, {"dateInput":"ctl00_ContentPlaceHolder1_FechaConsulta_dateInput"}, $get("ctl00_ContentPlaceHolder1_FechaConsulta"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadDateInput, {"_displayText":"noviembre de 2025","_focused":false,"_initialValueAsText":"2025-11-16-00-00-00","_postBackEventReferenceScript":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$FechaInicial\u0027,\u0027\u0027)","_skin":"Default","_validationText":"2025-11-16-00-00-00","clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaInicial_dateInput_ClientState","dateFormat":"MMMM\u0027 de \u0027yyyy","dateFormatInfo":{"DayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"MonthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"AbbreviatedDayNames":["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],"AbbreviatedMonthNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"AMDesignator":"a. m.","PMDesignator":"p. m.","DateSeparator":"/","TimeSeparator":":","FirstDayOfWeek":0,"DateSlots":{"Day":1,"Year":2,"Month":0},"ShortYearCenturyEnd":2029,"TimeInputOnly":false,"MonthYearOnly":false},"displayDateFormat":"MMMM\u0027 de \u0027yyyy","enabled":true,"incrementSettings":{InterceptArrowKeys:true,InterceptMouseWheel:true,Step:1},"styles":{HoveredStyle: ["width:100%;", "riTextBox riHover"],InvalidStyle: ["width:100%;", "riTextBox riError"],DisabledStyle: ["width:100%;", "riTextBox riDisabled"],FocusedStyle: ["width:100%;", "riTextBox riFocused"],EmptyMessageStyle: ["width:100%;", "riTextBox riEmpty"],ReadOnlyStyle: ["width:100%;", "riTextBox riRead"],EnabledStyle: ["width:100%;", "riTextBox riEnabled"]}}, null, null, $get("ctl00_ContentPlaceHolder1_FechaInicial_dateInput"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMonthYearPicker, {"_FormatInfoArray":[["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt","dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","hh:mm:ss tt","d \u0027de\u0027 MMMM","ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","dd/MM/yyyy","hh:mm tt","yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","MMMM\u0027 de \u0027yyyy","a. m.","p. m.","/",":",0],"_PopupButtonSettings":{ ResolvedImageUrl : "", ResolvedHoverImageUrl : ""},"_animationSettings":{ShowAnimationDuration:300,ShowAnimationType:1,HideAnimationDuration:300,HideAnimationType:1},"_culture":"es-MX","_popupControlID":"ctl00_ContentPlaceHolder1_FechaInicial_popupButton","clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaInicial_ClientState","focusedDate":"2025-11-16-00-00-00","maxDate":"2025-11-16-00-00-00","minDate":"2016-04-30-00-00-00","monthYearNavigationSettings":["Today","OK","Cancel","Cancel","True","True","300","1","300","1","False"],"skin":"Default","stylesHash":{"FastNavigationStyle": ["", "RadCalendarMonthView RadCalendarMonthView_Default"]}}, null, {"dateInput":"ctl00_ContentPlaceHolder1_FechaInicial_dateInput"}, $get("ctl00_ContentPlaceHolder1_FechaInicial"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadDateInput, {"_displayText":"noviembre de 2025","_focused":false,"_initialValueAsText":"2025-11-16-00-00-00","_postBackEventReferenceScript":"__doPostBack(\u0027ctl00$ContentPlaceHolder1$FechaFinal\u0027,\u0027\u0027)","_skin":"Default","_validationText":"2025-11-16-00-00-00","clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaFinal_dateInput_ClientState","dateFormat":"MMMM\u0027 de \u0027yyyy","dateFormatInfo":{"DayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"MonthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"AbbreviatedDayNames":["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],"AbbreviatedMonthNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"AMDesignator":"a. m.","PMDesignator":"p. m.","DateSeparator":"/","TimeSeparator":":","FirstDayOfWeek":0,"DateSlots":{"Day":1,"Year":2,"Month":0},"ShortYearCenturyEnd":2029,"TimeInputOnly":false,"MonthYearOnly":false},"displayDateFormat":"MMMM\u0027 de \u0027yyyy","enabled":true,"incrementSettings":{InterceptArrowKeys:true,InterceptMouseWheel:true,Step:1},"styles":{HoveredStyle: ["width:100%;", "riTextBox riHover"],InvalidStyle: ["width:100%;", "riTextBox riError"],DisabledStyle: ["width:100%;", "riTextBox riDisabled"],FocusedStyle: ["width:100%;", "riTextBox riFocused"],EmptyMessageStyle: ["width:100%;", "riTextBox riEmpty"],ReadOnlyStyle: ["width:100%;", "riTextBox riRead"],EnabledStyle: ["width:100%;", "riTextBox riEnabled"]}}, null, null, $get("ctl00_ContentPlaceHolder1_FechaFinal_dateInput"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMonthYearPicker, {"_FormatInfoArray":[["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom.","lun.","mar.","mié.","jue.","vie.","sáb."],["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt","dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","hh:mm:ss tt","d \u0027de\u0027 MMMM","ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","dd/MM/yyyy","hh:mm tt","yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","MMMM\u0027 de \u0027yyyy","a. m.","p. m.","/",":",0],"_PopupButtonSettings":{ ResolvedImageUrl : "", ResolvedHoverImageUrl : ""},"_animationSettings":{ShowAnimationDuration:300,ShowAnimationType:1,HideAnimationDuration:300,HideAnimationType:1},"_culture":"es-MX","_popupControlID":"ctl00_ContentPlaceHolder1_FechaFinal_popupButton","clientStateFieldID":"ctl00_ContentPlaceHolder1_FechaFinal_ClientState","focusedDate":"2025-11-16-00-00-00","maxDate":"2025-11-16-00-00-00","minDate":"2016-04-30-00-00-00","monthYearNavigationSettings":["Today","OK","Cancel","Cancel","True","True","300","1","300","1","False"],"skin":"Default","stylesHash":{"FastNavigationStyle": ["", "RadCalendarMonthView RadCalendarMonthView_Default"]}}, null, {"dateInput":"ctl00_ContentPlaceHolder1_FechaFinal_dateInput"}, $get("ctl00_ContentPlaceHolder1_FechaFinal"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadGrid, {"ClientID":"ctl00_ContentPlaceHolder1_GridRadResultado","ClientSettings":{"AllowAutoScrollOnDragDrop":true,"ShouldCreateRows":true,"DataBinding":{},"Selecting":{"CellSelectionMode":0},"Scrolling":{"AllowScroll":true,"SaveScrollPosition":true,"ScrollHeight":"350px","UseStaticHeaders":true},"Resizing":{},"ClientMessages":{},"KeyboardNavigationSettings":{"AllowActiveRowCycle":false,"EnableKeyboardShortcuts":true,"FocusKey":89,"InitInsertKey":73,"RebindKey":82,"ExitEditInsertModeKey":27,"UpdateInsertItemKey":13,"DeleteActiveRow":127,"ExpandDetailTableKey":39,"CollapseDetailTableKey":37,"SaveChangesKey":85,"CancelChangesKey":67},"Animation":{},"Virtualization":{}},"Skin":"Default","UniqueID":"ctl00$ContentPlaceHolder1$GridRadResultado","_activeRowIndex":"","_controlToFocus":"","_currentPageIndex":0,"_defaultDateTimeFormat":"dd/MM/yyyy hh:mm:ss tt","_editIndexes":"[]","_embeddedSkin":true,"_gridTableViewsData":"[{\"ClientID\":\"ctl00_ContentPlaceHolder1_GridRadResultado_ctl00\",\"UniqueID\":\"ctl00$ContentPlaceHolder1$GridRadResultado$ctl00\",\"PageSize\":10,\"PageCount\":1,\"EditMode\":\"EditForms\",\"AllowPaging\":false,\"CurrentPageIndex\":0,\"VirtualItemCount\":0,\"AllowMultiColumnSorting\":false,\"AllowNaturalSort\":true,\"AllowFilteringByColumn\":false,\"PageButtonCount\":10,\"HasDetailTables\":false,\"HasMultiHeaders\":false,\"CheckListWebServicePath\":\"\",\"GroupLoadMode\":\"Server\",\"PagerAlwaysVisible\":false,\"IsItemInserted\":false,\"clientDataKeyNames\":[],\"hasDetailItemTemplate\":false,\"_dataBindTemplates\":false,\"_selectedItemStyle\":\"\",\"_selectedItemStyleClass\":\"rgSelectedRow\",\"_columnsData\":[{\"UniqueName\":\"FECHA_DATOS\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"FECHA_DATOS\",\"Display\":true},{\"UniqueName\":\"NumLiquidacion\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"NumLiquidacion\",\"Display\":true},{\"UniqueName\":\"column\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":false,\"Groupable\":false,\"ColumnType\":\"GridButtonColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"ButtonType\":\"ImageButton\",\"CommandName\":\"img_csv\",\"CommandArgument\":\"\",\"Text\":\"\",\"DataTextField\":\"Csv\",\"DataTextFormatString\":\"\",\"ImageUrl\":\"/Paginas/SIM/img/imgCsv.png\",\"Display\":true},{\"UniqueName\":\"column1\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":false,\"Groupable\":false,\"ColumnType\":\"GridButtonColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"ButtonType\":\"ImageButton\",\"CommandName\":\"img_pdf\",\"CommandArgument\":\"\",\"Text\":\"\",\"DataTextField\":\"Pdf\",\"DataTextFormatString\":\"\",\"ImageUrl\":\"/Paginas/SIM/img/imgPDF.png\",\"Display\":true},{\"UniqueName\":\"column2\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":false,\"Groupable\":false,\"ColumnType\":\"GridButtonColumn\",\"ColumnGroupName\":\"\",\"Editable\":false,\"DataTypeName\":\"System.String\",\"ButtonType\":\"ImageButton\",\"CommandName\":\"img_html\",\"CommandArgument\":\"\",\"Text\":\"\",\"DataTextField\":\"Html\",\"DataTextFormatString\":\"\",\"ImageUrl\":\"/Paginas/SIM/img/imgHTML.png\",\"Display\":true},{\"UniqueName\":\"FECHA_PUBLICACION\",\"Resizable\":true,\"Reorderable\":true,\"Selectable\":true,\"Groupable\":true,\"ColumnType\":\"GridBoundColumn\",\"ColumnGroupName\":\"\",\"Editable\":true,\"DataTypeName\":\"System.String\",\"DataField\":\"FECHA_PUBLICACION\",\"Display\":true}]}]","_masterClientID":"ctl00_ContentPlaceHolder1_GridRadResultado_ctl00","_shouldFocusOnPage":false,"allowMultiRowSelection":false,"clientStateFieldID":"ctl00_ContentPlaceHolder1_GridRadResultado_ClientState","expandItems":{}}, null, null, $get("ctl00_ContentPlaceHolder1_GridRadResultado"));
+});
+//]]>
+</script>
+</form>
+
+<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+<script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+</body>
+</html>
+<!--[if IE lte 9]>      
+<style>
+    head:first-child + body div[class].tableContainer {
+        height: 255px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 740px;
+    }
+    head:first-child + body tbody[class].scrollContent {
+    height: 0px;
+    }   
+ </style>
+<![endif] -->
