@@ -29,63 +29,7 @@ country: GF
 country_name: French Guiana
 currency: EUR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 238.86
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 177.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 186.2
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 257.84
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 245.02
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 168.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 160.62
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 420.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 393.11
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 238.86
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 177.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 186.2
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 257.84
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 245.02
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 168.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 160.62
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 420.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 393.11
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -232,3 +176,8 @@ parsers:
 region: Americas
 timezone: Europe/Paris
 zone_name: French Guiana
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

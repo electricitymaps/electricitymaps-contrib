@@ -18,27 +18,84 @@ country: ES
 country_name: Spain
 currency: EUR
 emissionFactors:
+  direct:
+    battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 405.89
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 389.51
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 405.93
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 405.96
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 405.82
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 405.86
+    hydro discharge:
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 0.0
   lifecycle:
     battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 649.29
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 649.82
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 649.21
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 438.89
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 422.51
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 438.93
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 438.96
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 438.82
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 438.86
     hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 649.29
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 649.82
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 649.21
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; IPCC 2014
+        value: 24.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -95,3 +152,8 @@ parsers:
 region: Europe
 timezone: Europe/Madrid
 zone_name: Ceuta
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

@@ -15,18 +15,10 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 603.8409632075713
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 529.9127397853163
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 331.0240049348508
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 338.22390791888375
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 378.29
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -46,18 +38,10 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 426.61
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 603.8409632075713
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 529.9127397853163
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 331.0240049348508
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 338.22390791888375
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 0.0
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -67,30 +51,10 @@ emissionFactors:
         value: 925.95
   lifecycle:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 535.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 780.97
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 611.16
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 427.7
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 480.6
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 397.04
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 369.49
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 411.29
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -114,30 +78,10 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 535.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 780.97
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 611.16
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 427.7
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 480.6
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 397.04
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 369.49
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; UNECE 2022
+        value: 10.7
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -286,6 +230,8 @@ parsers:
   production: ES.fetch_production
 region: Europe
 sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:

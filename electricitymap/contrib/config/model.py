@@ -453,7 +453,7 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
     direct_datetime: datetime | None
 
     @validator("dt", "lifecycle_datetime", "direct_datetime", pre=True)
-    def validate_timezone_aware(cls, v: datetime | None) -> datetime | None:
+    def validate_datetime_field(cls, v: datetime | None) -> datetime | None:
         if v is None:
             return v
 
@@ -474,6 +474,16 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
         if v != truncated_to_year:
             raise ValueError("Datetime must be truncated to year.")
         return v
+
+    @root_validator
+    def check_factor_relationship(cls, values):
+        direct_value = values["direct_value"]
+        lifecycle_value = values["lifecycle_value"]
+        if direct_value > lifecycle_value:
+            raise ValueError(
+                f"Direct factor must be <= lifecycle factor. Got {direct_value=}, {lifecycle_value=}"
+            )
+        return values
 
 
 DATA_CENTERS_CONFIG_MODEL = DataCenters(data_centers=DATA_CENTERS_CONFIG)

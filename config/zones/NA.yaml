@@ -16,37 +16,6 @@ contributors:
 country: NA
 country_name: Namibia
 currency: NAD
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average

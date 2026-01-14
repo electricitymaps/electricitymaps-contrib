@@ -33,7 +33,7 @@ capacity:
       value: 428.0
   solar:
     - datetime: '2017-01-01'
-      source:
+      source: null
       value: 70.0
     - datetime: '2020-01-01'
       source: opendata-martinique.edf.fr
@@ -52,57 +52,7 @@ country: MQ
 country_name: Martinique
 currency: EUR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 461.87
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 463.84
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 450.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 410.13
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.17
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 405.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 403.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 582.42
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 461.87
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 463.84
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 450.32
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 410.13
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 414.17
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 405.68
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 403.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 582.42
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -233,3 +183,8 @@ parsers:
 region: Americas
 timezone: Europe/Paris
 zone_name: Martinique
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

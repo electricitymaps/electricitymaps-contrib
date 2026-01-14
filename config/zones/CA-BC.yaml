@@ -21,20 +21,6 @@ emissionFactors:
         source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
         value: 28.6
   lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 72.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 77.05
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 72.1
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 77.05
     unknown:
       - datetime: '2019-01-01'
         source: assumes 87% hydro, 5% biomass, 4% gas, 2% wind and 2% from various sources
@@ -88,3 +74,8 @@ parsers:
 region: Americas
 timezone: America/Vancouver
 zone_name: British Columbia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
