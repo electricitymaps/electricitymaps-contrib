@@ -204,5 +204,10 @@ hide_day_ahead_price: False
 parsers:
   production: IEMOP.fetch_production
 region: Asia
+sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Asia/Manila
 zone_name: Mindanao

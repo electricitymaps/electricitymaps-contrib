@@ -181,6 +181,8 @@ parsers:
   production: IN_KA.fetch_production
 region: Asia
 sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   SRLDC 2018-2019 derived calculation for Karnataka:
     link: https://github.com/electricitymaps/electricitymaps-contrib/issues/1867
   Souther Regional Load Dispatch Center Allocation Limits 2018-2019:

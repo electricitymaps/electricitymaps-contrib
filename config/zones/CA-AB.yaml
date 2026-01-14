@@ -189,5 +189,8 @@ parsers:
   production: CA_AB.fetch_production
   productionPerModeForecast: CA_AB.fetch_wind_solar_forecasts
 region: Americas
+sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: America/Edmonton
 zone_name: Alberta
