@@ -6,7 +6,7 @@ from logging import Logger, getLogger
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 from .lib.config import refetch_frequency
 from .lib.utils import get_token

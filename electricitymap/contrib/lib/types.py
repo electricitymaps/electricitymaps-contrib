@@ -1,5 +1,5 @@
-# DEPRECATED: Import from electricitymap.types instead.
+# DEPRECATED: Import from electricitymap.contrib.types instead.
 # This re-export is kept for backward compatibility.
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 __all__ = ["ZoneKey"]

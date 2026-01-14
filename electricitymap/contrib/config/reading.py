@@ -4,7 +4,7 @@ from typing import Any
 from ruamel.yaml import YAML
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 yaml = YAML(typ="safe")
 

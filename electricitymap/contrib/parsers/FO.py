@@ -10,7 +10,7 @@ from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownLis
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 PARSER = "FO.py"
 TIMEZONE = ZoneInfo("Atlantic/Faroe")

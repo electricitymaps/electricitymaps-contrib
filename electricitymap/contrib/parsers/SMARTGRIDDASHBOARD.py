@@ -14,7 +14,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import EventSourceType, ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 IE_TZ = ZoneInfo("Europe/Dublin")
 URL = "https://www.smartgriddashboard.com/api/chart"

@@ -14,7 +14,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib import config
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 API_URL = urllib.parse.urlparse("https://niggrid.org/GenerationProfile2")
 API_URL_STRING = API_URL.geturl()

@@ -7,7 +7,7 @@ from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.parsers.FO import fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @freeze_time("2024-05-16 12:04:00")

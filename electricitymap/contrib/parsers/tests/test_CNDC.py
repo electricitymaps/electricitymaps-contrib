@@ -12,7 +12,7 @@ from electricitymap.contrib.parsers.CNDC import (
     fetch_production,
     tz_bo,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

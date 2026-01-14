@@ -15,7 +15,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # More info:
 # https://www.bchydro.com/energy-in-bc/our_system/transmission/transmission-system/actual-flow-data.html

@@ -20,7 +20,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 UY_TZ = ZoneInfo("America/Montevideo")
 UY_SOURCE = "pronos.adme.com.uy"

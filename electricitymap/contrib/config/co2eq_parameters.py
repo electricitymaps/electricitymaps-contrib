@@ -4,7 +4,7 @@ config read from defaults.yaml and zones/*.yaml.
 
 from typing import Any
 
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def generate_co2eq_parameters(

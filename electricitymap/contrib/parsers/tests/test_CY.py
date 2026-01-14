@@ -8,7 +8,7 @@ from electricitymap.contrib.parsers.CY import (
     REALTIME_SOURCE,
     fetch_production,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

@@ -1,5 +1,5 @@
 [project]
-name = "electricitymap-types"
+name = "electricitymap-contrib-types"
 version = "0.1.0"
 description = "Type definitions for Electricity Maps"
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]

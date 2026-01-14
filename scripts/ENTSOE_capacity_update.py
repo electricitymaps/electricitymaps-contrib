@@ -30,7 +30,7 @@ from electricitymap.contrib.parsers.ENTSOE import (
     ENTSOE_PARAMETER_GROUPS,
 )
 from electricitymap.contrib.parsers.lib.utils import get_token
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 ZONES_CONFIG = read_zones_config(config_dir=CONFIG_DIR)
 

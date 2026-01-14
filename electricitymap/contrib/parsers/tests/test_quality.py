@@ -13,7 +13,7 @@ from electricitymap.contrib.parsers.tests.mocks.quality_check import (
     e3,
     e4,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_validate_consumption_positive():

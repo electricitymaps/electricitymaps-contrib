@@ -5,7 +5,7 @@ from pathlib import Path
 from requests_mock import POST
 
 from electricitymap.contrib.parsers.PE import API_ENDPOINT, fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # Base path for mock data files
 MOCK_DATA_DIR = Path(__file__).parent / "mocks" / "PE"

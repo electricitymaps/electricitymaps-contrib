@@ -11,7 +11,7 @@ from electricitymap.contrib.lib.models.event_lists import PriceList
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 PARSER = "GB.py"
 TIMEZONE = ZoneInfo("Europe/London")

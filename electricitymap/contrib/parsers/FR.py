@@ -14,7 +14,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 API_ENDPOINT = "https://opendata.reseaux-energies.fr/api/records/1.0/search/"
 

@@ -3,7 +3,7 @@ from pathlib import Path
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.CA_AB import fetch_wind_solar_forecasts
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/CA_AB")
 

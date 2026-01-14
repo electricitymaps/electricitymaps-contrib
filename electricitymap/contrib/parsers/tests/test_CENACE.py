@@ -6,7 +6,7 @@ import pytest
 from requests_mock import ANY
 
 from electricitymap.contrib.parsers.CENACE import fetch_consumption
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

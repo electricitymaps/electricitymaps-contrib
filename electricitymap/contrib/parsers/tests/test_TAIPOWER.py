@@ -1,7 +1,7 @@
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.TAIPOWER import PRODUCTION_URL, fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_production(adapter, session, snapshot):

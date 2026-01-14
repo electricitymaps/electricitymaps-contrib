@@ -16,7 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 IN_WE_PROXY = "https://in-proxy-jfnx5klx2a-el.a.run.app"
 EXCHANGE_URL = f"{IN_WE_PROXY}/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise?host=https://www.wrldc.in"

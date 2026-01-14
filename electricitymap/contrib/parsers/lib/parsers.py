@@ -1,7 +1,7 @@
 import importlib
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
-from electricitymap.types import ParserDataType
+from electricitymap.contrib.types import ParserDataType
 
 # Prepare all parsers
 CONSUMPTION_PARSERS = {}

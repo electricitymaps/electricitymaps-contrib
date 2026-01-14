@@ -9,7 +9,7 @@ from electricitymap.contrib.parsers.ERP_PGCB import (
     fetch_exchange,
     fetch_production,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 historical_dt = datetime.fromisoformat("2025-01-01 00:00:00 +06:00")
 

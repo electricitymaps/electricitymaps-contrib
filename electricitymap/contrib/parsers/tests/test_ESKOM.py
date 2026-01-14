@@ -2,7 +2,7 @@ import freezegun
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.ESKOM import fetch_production, get_url
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @freezegun.freeze_time("2023-09-22")

@@ -27,7 +27,7 @@ from electricitymap.contrib.lib.models.events import (
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 US_NEISO_KEY = ZoneKey("US-NE-ISNE")
 SOURCE = "iso-ne.com"

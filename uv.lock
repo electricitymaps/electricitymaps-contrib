@@ -16,7 +16,7 @@ resolution-markers = [
 [manifest]
 members = [
     "electricitymap-contrib",
-    "electricitymap-types",
+    "electricitymap-contrib-types",
 ]
 
 [[package]]
@@ -286,7 +286,7 @@ name = "electricitymap-contrib"
 version = "1.2.0"
 source = { editable = "." }
 dependencies = [
-    { name = "electricitymap-types" },
+    { name = "electricitymap-contrib-types" },
     { name = "numpy" },
     { name = "pydantic" },
     { name = "pyyaml" },
@@ -326,7 +326,7 @@ scripts = [
 
 [package.metadata]
 requires-dist = [
-    { name = "electricitymap-types", editable = "libs/types" },
+    { name = "electricitymap-contrib-types", editable = "libs/types" },
     { name = "numpy", specifier = ">=1.24.4,<2" },
     { name = "pydantic", specifier = ">=1.10.17,<2" },
     { name = "pyyaml", specifier = ">=6.0,<7" },
@@ -363,7 +363,7 @@ parsers = [
 scripts = [{ name = "xmltodict", specifier = ">=0.13.0,<0.14" }]
 
 [[package]]
-name = "electricitymap-types"
+name = "electricitymap-contrib-types"
 version = "0.1.0"
 source = { editable = "libs/types" }
 dependencies = [

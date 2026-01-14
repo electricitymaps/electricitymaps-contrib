@@ -10,7 +10,7 @@ from electricitymap.contrib.parsers.ENTE import (
     fetch_exchange,
     fetch_production,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

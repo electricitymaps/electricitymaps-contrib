@@ -8,7 +8,7 @@ from datetime import datetime
 import click
 from requests import Session
 
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 from scripts.update_capacity_configuration import update_source, update_zone
 from scripts.utils import ROOT_PATH, run_shell_command
 

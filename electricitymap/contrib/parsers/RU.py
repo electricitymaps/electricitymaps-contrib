@@ -10,7 +10,7 @@ from requests import Session
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)

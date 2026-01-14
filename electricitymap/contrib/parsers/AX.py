@@ -12,7 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 from .lib.exceptions import ParserException
 

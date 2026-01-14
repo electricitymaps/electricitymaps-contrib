@@ -14,7 +14,7 @@ from electricitymap.contrib.parsers.eSett import (
     fetch_production as fetch_production_esett,
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @refetch_frequency(timedelta(days=3))

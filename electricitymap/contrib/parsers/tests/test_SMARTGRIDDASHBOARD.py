@@ -12,7 +12,7 @@ from electricitymap.contrib.parsers.SMARTGRIDDASHBOARD import (
     fetch_total_generation,
     fetch_wind_solar_forecasts,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_fetch_consumption(adapter, session, snapshot):

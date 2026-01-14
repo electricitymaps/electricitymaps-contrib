@@ -6,7 +6,7 @@ import pytest
 from requests_mock import GET
 
 from electricitymap.contrib.parsers import ONS
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # Base path for mock data files
 MOCK_DATA_DIR = Path(__file__).parent / "mocks" / "ONS"

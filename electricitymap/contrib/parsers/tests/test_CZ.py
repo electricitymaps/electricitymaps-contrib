@@ -6,7 +6,7 @@ from requests_mock import POST
 
 from electricitymap.contrib.parsers import CZ
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/CZ")
 

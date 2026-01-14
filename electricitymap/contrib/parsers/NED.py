@@ -22,7 +22,7 @@ from electricitymap.contrib.parsers.ENTSOE import (
 from electricitymap.contrib.parsers.lib.config import ProductionModes, refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 URL = "https://api.ned.nl/v1/utilizations"
 

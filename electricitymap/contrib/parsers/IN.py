@@ -19,7 +19,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import ProductionMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data.
 # TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.

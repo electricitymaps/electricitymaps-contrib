@@ -4,7 +4,7 @@ import pytest
 from requests_mock import GET, POST
 
 from electricitymap.contrib.parsers.IEMOP import REPORTS_ADMIN_URL, fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 zone_keys = [ZoneKey("PH-LU"), ZoneKey("PH-MI"), ZoneKey("PH-VI")]
 

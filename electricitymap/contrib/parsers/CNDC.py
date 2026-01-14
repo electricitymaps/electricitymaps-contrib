@@ -18,7 +18,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.parsers.lib.config import use_proxy
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 tz_bo = ZoneInfo("America/La_Paz")
 

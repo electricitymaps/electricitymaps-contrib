@@ -9,7 +9,7 @@ from electricitymap.contrib.parsers.US_ERCOT import (
     fetch_consumption_forecast,
     fetch_wind_solar_forecasts,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
 HOST_PARAMETER = "host=https://www.ercot.com"

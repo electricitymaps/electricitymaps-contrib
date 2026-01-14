@@ -3,7 +3,7 @@ import os
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.FR import API_ENDPOINT, fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_production(adapter, session, snapshot):

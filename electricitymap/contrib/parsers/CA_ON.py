@@ -20,7 +20,7 @@ from electricitymap.contrib.lib.models.events import (
     GridAlertType,
     ProductionMix,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # Some notes about timestamps:
 #

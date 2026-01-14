@@ -17,7 +17,7 @@ from electricitymap.contrib.config.zones import (
     zone_bounding_boxes,
     zone_parents,
 )
-from electricitymap.types import BoundingBox, ZoneKey
+from electricitymap.contrib.types import BoundingBox, ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 

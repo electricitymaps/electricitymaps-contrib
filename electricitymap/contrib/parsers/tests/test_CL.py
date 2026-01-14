@@ -6,7 +6,7 @@ import pytest
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.CL import API_BASE_URL, fetch_production
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

@@ -28,7 +28,7 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [

@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - electricitymap-contrib
-          - electricitymap-types
+          - electricitymap-contrib-types
       type:
         description: 'Release type'
         required: true

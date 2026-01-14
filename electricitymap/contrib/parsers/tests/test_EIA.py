@@ -8,7 +8,7 @@ from requests_mock import ANY, GET
 
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import EIA
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

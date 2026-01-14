@@ -18,7 +18,7 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 REPORTS_ADMIN_URL = "https://www.iemop.ph/wp-admin/admin-ajax.php"
 DIPC_URL = "https://www.iemop.ph/market-data/dipc-energy-results-raw/"

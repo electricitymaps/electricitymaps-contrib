@@ -13,7 +13,7 @@ from electricitymap.contrib.parsers.MD import (
     fetch_price,
     fetch_production,
 )
-from electricitymap.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 # the datetime corresponding to our mock live API response
 frozen_live_time = freeze_time("2024-04-11 06:32:00")
