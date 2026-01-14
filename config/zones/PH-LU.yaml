@@ -82,7 +82,7 @@ emissionFactors:
     battery discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
-        source: Electricity Maps, 2020 zone average; config/zones/AU-NSW.yaml
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
         value: 595.65
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
