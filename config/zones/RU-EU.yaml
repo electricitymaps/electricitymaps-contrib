@@ -18,6 +18,8 @@ emissionFactors:
       _url: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
       source: IEA 2015; assumes 76% gas, 23% coal, 1% oil
       value: 567.5
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 timezone: Europe/Moscow
 zone_name: Arctic
