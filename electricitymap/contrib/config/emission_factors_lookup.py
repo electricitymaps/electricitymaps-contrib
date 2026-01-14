@@ -94,7 +94,6 @@ def _get_zone_specific_co2eq_parameter_no_metadata(
             )
             if co2eq_dt <= dt:
                 return co2eq  # type: ignore[no-any-return]
-        breakpoint()
         return res[0]  # type: ignore[no-any-return]
 
     else:
