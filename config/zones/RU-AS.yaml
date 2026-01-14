@@ -81,5 +81,8 @@ hide_day_ahead_price: False
 parsers:
   production: RU.fetch_production
 region: Europe
+sources:
+  IEA 2015:
+    link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: East
