@@ -42,49 +42,36 @@ jobs:
           project_id: 'tmrow-152415'
           workload_identity_provider: 'projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib'
           service_account: contrib-registry-writer@tmrow-152415.iam.gserviceaccount.com
-
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v3'
         with:
           version: '>= 363.0.0'
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.10.13'
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-      - name: Set package directory
-        id: package-dir
-        run: |
-          if [[ "${{ inputs.package }}" == "electricitymap-types" ]]; then
-            echo "dir=libs/types" >> $GITHUB_OUTPUT
-            echo "pyproject=libs/types/pyproject.toml" >> $GITHUB_OUTPUT
-          else
-            echo "dir=." >> $GITHUB_OUTPUT
-            echo "pyproject=pyproject.toml" >> $GITHUB_OUTPUT
-          fi
+        with:
+          python-version: '3.10'
       - name: Bump version
-        working-directory: ${{ steps.package-dir.outputs.dir }}
         run: |
           if [[ "${{ inputs.type }}" == "dev" ]]; then
             # Bump patch first to ensure we are moving forward, then add dev suffix
             # This handles 1.2.1 -> 1.2.2.dev0
-            uv version --bump patch --bump dev
+            uv version --bump patch --bump dev --package ${{ inputs.package }}
           else
-            uv version --bump ${{ inputs.type }}
+            uv version --bump ${{ inputs.type }} --package ${{ inputs.package }}
           fi
       - name: Commit changes
         run: |
-          git add ${{ steps.package-dir.outputs.pyproject }}
+          git add .
           git commit -m "Bump ${{ inputs.package }} version"
-      - name: Push changes
-        uses: ad-m/github-push-action@v1.0.0
-        with:
-          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
       - name: Build package
         run: |
           uv build --package ${{ inputs.package }}
       - name: Publish package
         run: |
           export ACCESS_TOKEN=$(gcloud auth print-access-token)
-          uv publish --package ${{ inputs.package }} --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
+          uv publish --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
+      - name: Push changes
+        uses: ad-m/github-push-action@v1.0.0
+        with:
+          github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
