@@ -12,14 +12,13 @@ from typing import Any
 
 import click
 
-from electricitymap.contrib.lib.data_types import ParserDataType
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from electricitymap.contrib.parsers.lib.quality import (
     ValidationError,
     validate_consumption,
     validate_exchange,
 )
+from electricitymap.contrib.types import ParserDataType, ZoneKey
 
 logger = logging.getLogger(__name__)
 

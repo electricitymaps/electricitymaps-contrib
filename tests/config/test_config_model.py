@@ -6,7 +6,7 @@ from electricitymap.contrib.config.model import (
     ExchangeParsers,
     Parsers,
 )
-from electricitymap.contrib.lib.data_types import ParserDataType
+from electricitymap.contrib.types import ParserDataType
 
 
 class ConfigModelTestcase(unittest.TestCase):

@@ -6,6 +6,7 @@ authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.10, < 3.14"
 license = "AGPL-3.0-or-later"
 dependencies = [
+    "electricitymap-contrib-types",
     "pydantic>=1.10.17,<2",
     "PyYAML>=6.0,<7",
     "ruamel-yaml>=0.17.24,<0.18",
@@ -24,10 +25,21 @@ lint = "scripts.tooling:lint"
 test = "scripts.tooling:test"
 
 [tool.uv.workspace]
-members = ["."]
+members = [".", "libs/types"]
 
 [tool.uv]
 required-version = ">=0.9, <0.10"
+# The electricitymaps index is for consumers of the published package.
+# For local development, workspace sources take precedence.
+index = [
+    { name = "pypi", url = "https://pypi.org/simple/", default = true },
+    { name = "electricitymaps", url = "https://europe-west1-python.pkg.dev/tmrow-152415/libs/simple/", explicit = true },
+]
+
+# For local development, the workspace member takes precedence.
+# When published, consumers will use the index above.
+[tool.uv.sources]
+electricitymap-contrib-types = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -162,6 +174,9 @@ unfixable = []
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.isort]
+known-first-party = ["electricitymap"]
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.

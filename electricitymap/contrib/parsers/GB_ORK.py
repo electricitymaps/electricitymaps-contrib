@@ -14,8 +14,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.session import get_session_with_legacy_adapter
+from electricitymap.contrib.types import ZoneKey
 
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/

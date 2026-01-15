@@ -22,9 +22,8 @@ from electricitymap.contrib.config import (
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
 )
-from electricitymap.contrib.config.types import Point
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import Point, ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 

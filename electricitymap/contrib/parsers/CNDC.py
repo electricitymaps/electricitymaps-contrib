@@ -16,9 +16,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionMix,
     TotalProductionList,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import use_proxy
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 tz_bo = ZoneInfo("America/La_Paz")
 

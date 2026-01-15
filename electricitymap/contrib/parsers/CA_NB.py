@@ -13,7 +13,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "tso.nbpower.com"
 EXCHANGE_TO_FLOWS = {

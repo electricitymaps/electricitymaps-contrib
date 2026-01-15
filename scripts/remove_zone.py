@@ -21,7 +21,7 @@ from utils import (
 )
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 PRETTIER_CONFIG_PATH = ROOT_PATH / "web/.prettierrc.json"
 

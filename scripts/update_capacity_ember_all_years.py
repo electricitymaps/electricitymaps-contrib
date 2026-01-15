@@ -26,7 +26,7 @@ from electricitymap.contrib.capacity_parsers.EMBER import (
     fetch_production_capacity_all_years,
 )
 from electricitymap.contrib.config import CONFIG_DIR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 from scripts.update_capacity_configuration import sort_config_keys
 
 logger = logging.getLogger(__name__)

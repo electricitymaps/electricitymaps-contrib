@@ -18,5 +18,5 @@ json:
 python:
   - '**.py'
   - 'pyproject.toml'
-  - 'poetry.lock'
-  - '.poetry-version'
+  - 'uv.lock'
+  - '.python-version'

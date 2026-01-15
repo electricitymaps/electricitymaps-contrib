@@ -9,7 +9,7 @@ from typing import Any
 import yaml
 
 from electricitymap.contrib.config import CONFIG_DIR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"

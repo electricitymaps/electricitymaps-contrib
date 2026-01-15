@@ -6,8 +6,8 @@ from pathlib import Path
 import pytest
 from requests_mock import POST
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import TR
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/TR")
 

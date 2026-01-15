@@ -6,9 +6,9 @@ import pandas as pd
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import DK, ENTSOE
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.types import ZoneKey
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
 UTC = timezone.utc

@@ -15,7 +15,7 @@ from electricitymap.contrib.config.model import (
     EmissionFactorVariant,
     YearZoneModeEmissionFactor,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def get_zone_specific_co2eq_parameter(
