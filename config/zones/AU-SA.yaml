@@ -84,112 +84,56 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 195.34605602031309
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 195.35045278669472
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 244.8445316787786
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 253.4048988280059
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 260.323058651702
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 206.45227689976784
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 210.20870605862984
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 195.34605602031309
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 195.35045278669472
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 244.8445316787786
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 253.4048988280059
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 260.323058651702
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 206.45227689976784
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 210.20870605862984
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 161.54
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 127.38
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 96.37
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 105.57
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 115.74
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 89.97
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 195.34605602031309
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 195.35045278669472
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 161.75
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 222.03
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 243.77
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 202.54
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 183.37
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 142.6
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 129.79
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 146.75
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 195.34605602031309
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 195.35045278669472
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 198.79
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 242.14
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 267.34
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 234.33
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 199.48
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 167.81
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 184.08
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 183.83
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 194.54
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 160.38
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 129.37
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 138.57
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 148.74
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 122.97
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -352,3 +296,8 @@ parsers:
 region: Oceania
 timezone: Australia/Adelaide
 zone_name: South Australia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

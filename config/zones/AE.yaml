@@ -99,57 +99,7 @@ country: AE
 country_name: United Arab Emirates
 currency: AED
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 14.91
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 15.95
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 17.19
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 22.65
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 21.74
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 325.52
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 381.54
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 340.3
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 14.91
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 15.95
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 17.19
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 22.65
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 21.74
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 325.52
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 381.54
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 340.3
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

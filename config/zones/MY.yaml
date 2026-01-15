@@ -86,57 +86,7 @@ country_name: Malaysia
 currency: MYR
 disclaimer: This zone is partially using fully estimated data from MY-EM
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 555.18
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 564.02
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.39
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 572.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 551.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 542.43
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 544.35
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 541.73
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 555.18
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 564.02
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.39
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 572.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 551.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 542.43
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 544.35
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 541.73
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -269,3 +219,8 @@ subZoneNames:
   - MY-EM
 timezone: Asia/Kuala_Lumpur
 zone_name: Malaysia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

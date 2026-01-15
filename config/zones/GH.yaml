@@ -65,21 +65,7 @@ country: GH
 country_name: Ghana
 currency: GHS
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 324.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 324.25
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 324.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 324.25
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average
@@ -119,3 +105,8 @@ parsers:
 region: Africa
 timezone: Africa/Accra
 zone_name: Ghana
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

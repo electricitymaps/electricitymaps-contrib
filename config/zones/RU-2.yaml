@@ -14,78 +14,8 @@ country: RU
 country_name: Russia
 currency: RUB
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 261.87640141729236
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 296.5859943816046
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 355.9691647554508
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 325.8977916246751
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 261.87640141729236
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 296.5859943816046
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 355.9691647554508
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 325.8977916246751
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 368.14
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 414.7
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 491.53
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 452.59
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 417.17
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 399.19
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 390.84
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 368.14
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 414.7
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 491.53
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 452.59
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 417.17
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 399.19
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 390.84
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1% * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone'
       source: assumes 86% coal, 9% gas, <1% oil, 5% other
@@ -202,5 +132,8 @@ hide_day_ahead_price: False
 parsers:
   production: RU.fetch_production
 region: Europe
+sources:
+  IEA 2015:
+    link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: Siberia
