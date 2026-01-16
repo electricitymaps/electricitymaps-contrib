@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainer-community/devcontainer-features/astral.sh-uv:1": {}
   },
-  "postCreateCommand": "uv sync --group parser --group dev --group scripts",
+  "postCreateCommand": "uv sync --group dev --group scripts --extra parsers",
   "customizations": {
     "vscode": {
       "extensions": [
