@@ -7,8 +7,8 @@ from pathlib import Path
 
 from freezegun import freeze_time
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import US_NY
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):

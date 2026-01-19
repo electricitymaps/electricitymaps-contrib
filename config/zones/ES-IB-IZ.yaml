@@ -15,16 +15,6 @@ delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 597.7507608049816
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 398.58747156879605
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 442.5750739383493
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -55,16 +45,6 @@ emissionFactors:
       - datetime: '2022-01-01'
         source: EU-ETS, REE
         value: 570.7
-    hydro discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 597.7507608049816
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 398.58747156879605
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 442.5750739383493
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -73,31 +53,6 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 925.95
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 723.48
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 709.84
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 638.91
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 457.98
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 452.3
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 508.14
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 456.59
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 471.42
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -132,31 +87,6 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 723.48
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 709.84
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 638.91
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 457.98
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 452.3
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 508.14
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 456.59
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 471.42
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

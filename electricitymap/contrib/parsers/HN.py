@@ -11,8 +11,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 DATA_URL = "https://otr.ods.org.hn:3200/odsprd/ods_prd/r/operador-del-sistema-ods/producci%C3%B3n-horaria"
 

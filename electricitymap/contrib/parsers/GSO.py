@@ -21,10 +21,10 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
 
 # Local library imports
 from electricitymap.contrib.parsers.lib.config import refetch_frequency, use_proxy
+from electricitymap.contrib.types import ZoneKey
 
 DEFAULT_ZONE_KEY = ZoneKey("MY-WM")
 DOMAIN = "www.gso.org.my"

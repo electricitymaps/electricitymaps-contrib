@@ -54,129 +54,23 @@ currency: CAD
 delays:
   production: 6
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 29.431231035827615
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 29.43125619394837
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 28.895469972234196
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 25.2470538727056
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 24.48486910930771
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 25.3061525281097
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 32.100176825682105
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 29.431231035827615
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 29.43125619394837
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 28.895469972234196
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 25.2470538727056
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 24.48486910930771
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 25.3061525281097
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 32.100176825682105
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 53.48322359927377
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 53.48323094170299
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 59.74
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 43.86
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 43.21
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 44.35
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 53.61
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 63.01
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 76.42
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 90.96
     gas:
       datetime: '2008-01-01'
-      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
+      source: 'Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)'
       value: 497
     hydro:
       datetime: '2008-01-01'
-      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
+      source: 'Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)'
       value: 22
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 53.48322359927377
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 53.48323094170299
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 59.74
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 43.86
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 43.21
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 44.35
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 53.61
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 63.01
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 76.42
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 90.96
     nuclear:
       datetime: '2008-01-01'
-      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
+      source: 'Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)'
       value: 4.8
     wind:
       datetime: '2008-01-01'
-      source: Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)
+      source: 'Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)'
       value: 10.69
 fallbackZoneMixes:
   powerOriginRatios:
@@ -333,15 +227,15 @@ fallbackZoneMixes:
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
 parsers:
+  consumptionForecast: CA_ON.fetch_consumption_forecast
+  gridAlerts: CA_ON.fetch_grid_alerts
   price: CA_ON.fetch_price
   production: CA_ON.fetch_production
   productionCapacity: CA_ON.fetch_production_capacity
-  consumptionForecast: CA_ON.fetch_consumption_forecast
   productionPerModeForecast: CA_ON.fetch_wind_solar_forecasts
-  gridAlerts: CA_ON.fetch_grid_alerts
 region: Americas
 sources:
-  Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013):
+  'Mallia, E., Lewis, G. "Life cycle greenhouse gas emissions of electricity generation in the province of Ontario, Canada." Int J Life Cycle Assess 18, 377–391 (2013)':
     link: https://doi.org/10.1007/s11367-012-0501-0
 timezone: America/Toronto
 zone_name: Ontario

@@ -7,13 +7,13 @@ import pytest
 from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
     _get_datetime_value_from_timeseries,
     fetch_production,
     zulu_to_utc,
 )
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
 

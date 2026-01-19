@@ -12,9 +12,9 @@ from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 # from .lib.validation import validate, validate_production_diffs
 

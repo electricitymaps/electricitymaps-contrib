@@ -3,8 +3,8 @@ from importlib import resources
 
 from requests_mock import GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.AW import PRODUCTION_URL, fetch_production
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_fetch_production(adapter, session, snapshot):

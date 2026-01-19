@@ -2,6 +2,14 @@ name: Create release
 on:
   workflow_dispatch:
     inputs:
+      package:
+        description: 'Package to release'
+        required: true
+        default: electricitymap-contrib
+        type: choice
+        options:
+          - electricitymap-contrib
+          - electricitymap-contrib-types
       type:
         description: 'Release type'
         required: true
@@ -11,6 +19,7 @@ on:
           - patch
           - minor
           - major
+          - dev
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -23,7 +32,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          ref: master
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
       - name: Configure git
         run: |
@@ -34,36 +42,36 @@ jobs:
           project_id: 'tmrow-152415'
           workload_identity_provider: 'projects/533362582499/locations/global/workloadIdentityPools/github/providers/electricitymaps-contrib'
           service_account: contrib-registry-writer@tmrow-152415.iam.gserviceaccount.com
-
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v3'
         with:
           version: '>= 363.0.0'
-      - uses: actions/setup-python@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.10.13'
-      - name: Install Poetry
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry==2.1.1
+          python-version: '3.10'
       - name: Bump version
         run: |
-          poetry version ${{ inputs.type }}
+          if [[ "${{ inputs.type }}" == "dev" ]]; then
+            # Bump patch first to ensure we are moving forward, then add dev suffix
+            # This handles 1.2.1 -> 1.2.2.dev0
+            uv version --bump patch --bump dev --package ${{ inputs.package }}
+          else
+            uv version --bump ${{ inputs.type }} --package ${{ inputs.package }}
+          fi
       - name: Commit changes
         run: |
-          git add pyproject.toml
-          git commit -m "Bumps version"
+          git add .
+          git commit -m "Bump ${{ inputs.package }} version"
+      - name: Build package
+        run: |
+          uv build --package ${{ inputs.package }}
+      - name: Publish package
+        run: |
+          export ACCESS_TOKEN=$(gcloud auth print-access-token)
+          uv publish --publish-url https://europe-west1-python.pkg.dev/tmrow-152415/libs/ --username oauth2accesstoken --password "$ACCESS_TOKEN"
       - name: Push changes
         uses: ad-m/github-push-action@v1.0.0
         with:
           github_token: ${{ secrets.BOT_GITHUB_TOKEN }}
-          branch: master
-      - name: Build package
-        run: |
-          poetry build
-      - name: Publish package
-        run: |
-          export ACCESS_TOKEN=$(gcloud auth print-access-token)
-          poetry config keyring.enabled false
-          poetry config repositories.internal https://europe-west1-python.pkg.dev/tmrow-152415/libs/
-          poetry publish --repository=internal --skip-existing --username=oauth2accesstoken --password "$ACCESS_TOKEN"
+          branch: ${{ github.ref_name }}

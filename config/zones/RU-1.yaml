@@ -18,87 +18,15 @@ delays:
   production: 6
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 389.48811537370716
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 386.8520496144555
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 383.85097129388794
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 391.0229938122812
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 389.48811537370716
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 386.8520496144555
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 383.85097129388794
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 391.0229938122812
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 353.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.16
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 356.01
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 346.6
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 356.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 348.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 353.63
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 357.99
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 353.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.16
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 356.01
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 346.6
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 356.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 348.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 353.63
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 357.99
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural'
       source: assumes 89% gas, 7% coal, <1% oil, 4% other
-      value: 517
+      value: 401.56
+  lifecycle:
+    unknown:
+      _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural'
+      source: assumes 89% gas, 7% coal, <1% oil, 4% other
+      value: 518.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -226,5 +154,8 @@ hide_day_ahead_price: False
 parsers:
   production: RU.fetch_production
 region: Europe
+sources:
+  IEA 2015:
+    link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: Europe-Ural

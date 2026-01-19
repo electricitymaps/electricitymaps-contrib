@@ -15,9 +15,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "energy.gov.bb"
 base_url = "https://dataservices.acelerex.com/api"

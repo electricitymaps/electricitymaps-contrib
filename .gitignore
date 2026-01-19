@@ -1,3 +1,4 @@
+gha-creds-*.json
 *.pyc
 *.env
 web/public/dist
