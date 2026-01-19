@@ -1353,6 +1353,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4693.6,
         'wind': 10244.8,
@@ -1367,6 +1368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 5377.6,
         'wind': 10604.8,
@@ -1381,6 +1383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 5249.6,
         'wind': 13379.2,
@@ -1395,6 +1398,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4906.4,
         'wind': 16050.4,
@@ -1409,6 +1413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4701.6,
         'wind': 29812.0,
@@ -1423,6 +1428,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4021.6,
         'wind': 30736.8,
@@ -1437,6 +1443,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 3046.4,
         'wind': 31907.2,
@@ -1451,6 +1458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1661.6,
         'wind': 32556.0,
@@ -1465,6 +1473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 259.2,
         'wind': 33255.2,
@@ -1479,6 +1488,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1.6,
         'wind': 32872.0,
@@ -1493,6 +1503,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 31558.4,
@@ -1507,6 +1518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 31788.8,
@@ -1521,6 +1533,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 32656.8,
@@ -1535,6 +1548,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 34071.2,
@@ -1549,6 +1563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 35463.2,
@@ -1563,6 +1578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 36150.4,
@@ -1577,6 +1593,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 36074.4,
@@ -1591,6 +1608,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 35696.8,
@@ -1605,6 +1623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 35472.8,
@@ -1619,6 +1638,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 34880.8,
@@ -1633,6 +1653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 34392.0,
@@ -1647,6 +1668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.8,
         'wind': 33822.4,
@@ -1661,6 +1683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 275.2,
         'wind': 33194.4,
@@ -1675,6 +1698,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 1312.8,
         'wind': 32457.6,
@@ -1689,6 +1713,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 2480.8,
         'wind': 31860.0,
@@ -1703,6 +1728,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 3272.0,
         'wind': 30615.2,
@@ -1717,6 +1743,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 3880.0,
         'wind': 29368.8,
@@ -1731,6 +1758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4195.2,
         'wind': 28253.6,
@@ -1745,6 +1773,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4515.2,
         'wind': 27013.6,
@@ -1759,6 +1788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4399.2,
         'wind': 25938.4,
@@ -1773,6 +1803,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 3707.2,
         'wind': 24936.8,
@@ -1787,6 +1818,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 2155.2,
         'wind': 23464.0,
@@ -1801,6 +1833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 336.0,
         'wind': 21787.2,
@@ -1815,6 +1848,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 2.4,
         'wind': 20144.8,
@@ -1829,6 +1863,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 19039.2,
@@ -1843,6 +1878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 18060.8,
@@ -1857,6 +1893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 17521.6,
@@ -1871,6 +1908,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 16314.4,
@@ -1885,6 +1923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 14976.0,
@@ -1899,6 +1938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 13607.2,
@@ -1913,6 +1953,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 12222.4,
@@ -1927,6 +1968,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 10761.6,
@@ -1941,6 +1983,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 9357.6,
@@ -1955,6 +1998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 8112.0,
@@ -1969,6 +2013,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0.0,
         'wind': 7108.8,
@@ -1983,6 +2028,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 8.0,
         'wind': 6428.0,
@@ -1997,6 +2043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 700.8,
         'wind': 6066.4,
@@ -2011,6 +2058,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400), 'UTC-5')),
+      'datetime_end': None,
       'production': dict({
         'solar': 2576.0,
         'wind': 6376.8,

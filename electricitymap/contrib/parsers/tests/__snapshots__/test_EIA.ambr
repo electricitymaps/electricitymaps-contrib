@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 300.0,
         'gas': 300.0,
@@ -23,6 +24,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 400.0,
         'gas': 400.0,
@@ -45,6 +47,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 300.0,
         'gas': 300.0,
@@ -63,6 +66,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 400.0,
         'gas': 400.0,
@@ -85,6 +89,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'gas': 330.0,
         'hydro': 300.0,
@@ -101,6 +106,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'gas': 450.0,
         'hydro': 400.0,
@@ -121,6 +127,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'gas': 300.0,
         'hydro': 300.0,
@@ -138,6 +145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'gas': 400.0,
         'hydro': 400.0,
@@ -159,6 +167,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.0,
         'coal': 1.0,
@@ -183,6 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 2.0,
         'coal': 2.0,
@@ -211,6 +221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 400.0,
         'coal': 400.0,
@@ -239,6 +250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 27, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'biomass': 1.0,
         'coal': 1.0,
@@ -267,6 +279,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 10, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 300.0,
         'gas': 300.0,
@@ -286,6 +299,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2022, 10, 31, 11, 0, tzinfo=datetime.timezone.utc),
+      'datetime_end': None,
       'production': dict({
         'coal': 400.0,
         'gas': 400.0,

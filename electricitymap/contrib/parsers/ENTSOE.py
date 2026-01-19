@@ -521,19 +521,27 @@ def zulu_to_utc(datetime_string: str) -> str:
     return datetime_string.replace("Z", "+00:00")
 
 
+class StartEndDatetime(NamedTuple):
+    start: datetime
+    end: datetime
+
+
 @lru_cache(maxsize=1024)
 def datetime_from_position(
     start: datetime, position: int, resolution: timedelta
-) -> datetime:
+) -> StartEndDatetime:
     """Calculates the datetime from a given start datetime, position, and resolution."""
-    return start + resolution * (position - 1)
+    return StartEndDatetime(
+        start=start + (position - 1) * resolution,
+        end=start + position * resolution,
+    )
 
 
 def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> Generator[tuple[datetime, float], None, None]:
+) -> Generator[tuple[datetime, datetime, float], None, None]:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
@@ -568,9 +576,9 @@ def parse_production(
     expected_length = _get_expected_production_group_length(grouped_data)
 
     # Loop over the grouped data and create production and storage mixes for each datetime.
-    for dt, values in grouped_data.items():
+    for datetimes, values in grouped_data.items():
         production, storage = _create_production_and_storage_mixes(
-            zoneKey, dt, values, expected_length, logger
+            zoneKey, datetimes[0], values, expected_length, logger
         )
         # If production and storage are None, the datapoint is considered invalid and is skipped
         # in order to not crash the parser.
@@ -579,7 +587,8 @@ def parse_production(
 
         production_breakdowns.append(
             zoneKey=zoneKey,
-            datetime=dt,
+            datetime=datetimes[0],
+            datetime_end=datetimes[1],
             source=SOURCE,
             sourceType=source_type,
             production=production,
@@ -603,10 +612,15 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
         )
 
         # Loop over all the points in the timeseries.
-        for dt, quantity in points:
+        for dt, dt_end, quantity in points:
             # Appends the raw data to a master list so it later can be sorted and grouped by datetime.
             list_of_raw_data.append(
-                {"datetime": dt, "fuel_code": fuel_code, "quantity": quantity}
+                {
+                    "datetime": dt,
+                    "datetime_end": dt_end,
+                    "fuel_code": fuel_code,
+                    "quantity": quantity,
+                }
             )
 
     return list_of_raw_data
@@ -638,7 +652,7 @@ def _create_production_and_storage_mixes(
     production = ProductionMix()
     storage = StorageMix()
     for production_mode in values:
-        _datetime, fuel_code, quantity = production_mode.values()
+        _datetime, _datetime_end, fuel_code, quantity = production_mode.values()
         fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
         if fuel_code in ENTSOE_STORAGE_PARAMETERS:
             storage.add_value(fuel_em_type, -quantity)
@@ -651,7 +665,7 @@ def _create_production_and_storage_mixes(
 
 
 def _get_expected_production_group_length(
-    grouped_data: dict[datetime, list[dict[str, Any]]],
+    grouped_data: dict[tuple[datetime, datetime], list[dict[str, Any]]],
 ) -> int:
     """
     Returns the expected length of the grouped data. This is the maximum length of the grouped data values.
@@ -664,7 +678,7 @@ def _get_expected_production_group_length(
 
 def _group_production_data_by_datetime(
     list_of_raw_data,
-) -> dict[datetime, list[dict[str, Any]]]:
+) -> dict[tuple[datetime, datetime], list[dict[str, Any]]]:
     """
     Sorts and groups raw production objects in the format of `{datetime: datetime.datetime, fuel_code: str, quantity: float}` by the datetime key.
     And returns a dictionary with the datetime as the key and a list of the grouped data as the value.
@@ -673,7 +687,10 @@ def _group_production_data_by_datetime(
     list_of_raw_data.sort(key=itemgetter("datetime"))
     # Group the data by the datetime key. It requires the data to be sorted by the datetime key first.
     grouped_data = {
-        k: list(v) for k, v in groupby(list_of_raw_data, key=itemgetter("datetime"))
+        k: list(v)
+        for k, v in groupby(
+            list_of_raw_data, key=itemgetter("datetime", "datetime_end")
+        )
     }
 
     return grouped_data
@@ -690,6 +707,7 @@ class DateTimePoint(NamedTuple):
     """The final processed point with an absolute datetime."""
 
     dt: datetime
+    dt_end: datetime
     value: float
 
 
@@ -800,10 +818,10 @@ def _get_datetime_value_from_timeseries(
     if ts_object.curve_type == "A01":
         for period in ts_object.periods:
             for point in period.points:
-                dt = datetime_from_position(
+                dt, dt_end = datetime_from_position(
                     period.datetime_start, point.position, period.resolution
                 )
-                yield DateTimePoint(dt, point.value)
+                yield DateTimePoint(dt, dt_end, point.value)
     elif ts_object.curve_type == "A03":
         for period in ts_object.periods:
             yield from _reverse_A3_curve_compression_for_period(period)
@@ -835,13 +853,13 @@ def _reverse_A3_curve_compression_for_period(
 
     for p1, p2 in pairwise(points_list):
         for position in range(p1.position, p2.position):
-            dt = datetime_from_position(start_time, position, resolution)
-            yield DateTimePoint(dt, p1.value)
+            dt, dt_end = datetime_from_position(start_time, position, resolution)
+            yield DateTimePoint(dt, dt_end, p1.value)
 
     last_point = points_list[-1]
     for position in range(last_point.position, expected_points + 1):
-        dt = datetime_from_position(start_time, position, resolution)
-        yield DateTimePoint(dt, last_point.value)
+        dt, dt_end = datetime_from_position(start_time, position, resolution)
+        yield DateTimePoint(dt, dt_end, last_point.value)
 
 
 def parse_exchange(
@@ -852,13 +870,14 @@ def parse_exchange(
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
     points = parse_scalar(xml_text)
-    for dt, quantity in points:
+    for dt, dt_end, quantity in points:
         if is_import:
             quantity *= -1
         # Find out whether or not we should update the net production
         exchange_list.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             netFlow=quantity,
         )
@@ -886,13 +905,14 @@ def parse_exchange_forecast(
 
         points = _get_datetime_value_from_timeseries(timeseries, "quantity")
 
-        for dt, quantity in points:
+        for dt, dt_end, quantity in points:
             if is_import:
                 quantity *= -1
             # Find out whether or not we should update the net production
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
                 datetime=dt,
+                datetime_end=dt_end,
                 source=SOURCE,
                 netFlow=quantity,
                 sourceType=EventSourceType.forecasted,
@@ -913,10 +933,11 @@ def parse_prices(
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
-        for dt, value in points:
+        for dt, dt_end, value in points:
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
+                datetime_end=dt_end,
                 price=value,
                 source="entsoe.eu",
                 currency=currency,
@@ -1271,10 +1292,11 @@ def fetch_generation_forecast(
             message=f"No generation forecast data found for {zone_key}",
             zone_key=zone_key,
         )
-    for dt, value in parsed:
+    for dt, dt_end, value in parsed:
         generation_list.append(
             zoneKey=zone_key,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             value=value,
             sourceType=EventSourceType.forecasted,
@@ -1319,10 +1341,11 @@ def get_raw_consumption_list(
             message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
             zone_key=zone_key,
         )
-    for dt, value in parsed:
+    for dt, dt_end, value in parsed:
         consumption_list.append(
             zoneKey=zone_key,
             datetime=dt,
+            datetime_end=dt_end,
             source=SOURCE,
             consumption=value,
             sourceType=EventSourceType.forecasted

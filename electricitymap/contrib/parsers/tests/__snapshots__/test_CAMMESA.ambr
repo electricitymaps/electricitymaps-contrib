@@ -7,6 +7,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2023, 8, 30, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'netFlow': 200.0,
       'sortedZoneKeys': 'AR->CL-SEN',
       'source': 'cammesaweb.cammesa.com',
@@ -20,6 +21,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 161.85,
         'coal': 224.613,
@@ -40,6 +42,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 157.2,
         'coal': 216.69,
@@ -60,6 +63,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 158.55,
         'coal': 216.18,
@@ -80,6 +84,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 148.3,
         'coal': 204.066,
@@ -100,6 +105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 149.74,
         'coal': 202.74,
@@ -120,6 +126,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 7, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'datetime_end': None,
       'production': dict({
         'biomass': 155.96,
         'coal': 203.736,

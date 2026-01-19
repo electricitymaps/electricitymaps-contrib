@@ -5,6 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.02,
         'coal': 940.42,
@@ -24,6 +25,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.05,
         'coal': 937.01,
@@ -43,6 +45,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.1,
         'coal': 936.61,
@@ -62,6 +65,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.1,
         'coal': 936.55,
@@ -81,6 +85,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 29.72,
         'coal': 932.76,
@@ -100,6 +105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.06,
         'coal': 928.92,
@@ -119,6 +125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 28.46,
         'coal': 930.8,
@@ -138,6 +145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 28.87,
         'coal': 924.34,
@@ -157,6 +165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 27.89,
         'coal': 924.49,
@@ -176,6 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 25.67,
         'coal': 926.15,
@@ -195,6 +205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 27.27,
         'coal': 868.14,
@@ -214,6 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 29.75,
         'coal': 827.64,
@@ -233,6 +245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 29.78,
         'coal': 820.55,
@@ -252,6 +265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 29.91,
         'coal': 825.69,
@@ -271,6 +285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.0,
         'coal': 860.69,
@@ -290,6 +305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 28.99,
         'coal': 923.92,
@@ -309,6 +325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 29.19,
         'coal': 933.95,
@@ -328,6 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Dominica')),
+      'datetime_end': None,
       'production': dict({
         'biomass': 30.09,
         'coal': 932.86,

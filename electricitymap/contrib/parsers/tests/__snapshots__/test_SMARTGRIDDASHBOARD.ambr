@@ -2020,6 +2020,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2027,6 +2028,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2034,6 +2036,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2041,6 +2044,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 369.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2048,6 +2052,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 426.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2055,6 +2060,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2062,6 +2068,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2069,6 +2076,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2076,6 +2084,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2083,6 +2092,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2090,6 +2100,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2097,6 +2108,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2104,6 +2116,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2111,6 +2124,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2118,6 +2132,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2125,6 +2140,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2132,6 +2148,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2139,6 +2156,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 369.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2146,6 +2164,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 344.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2153,6 +2172,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 274.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2160,6 +2180,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 200.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2167,6 +2188,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 127.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2174,6 +2196,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 173.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2181,6 +2204,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 222.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2188,6 +2212,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 148.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2195,6 +2220,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 72.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2202,6 +2228,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -3.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2209,6 +2236,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -78.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2216,6 +2244,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -5.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2223,6 +2252,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 8.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2230,6 +2260,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 84.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2237,6 +2268,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 160.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2244,6 +2276,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 235.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2251,6 +2284,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 309.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2258,6 +2292,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 380.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2265,6 +2300,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 335.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2272,6 +2308,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 409.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2279,6 +2316,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2286,6 +2324,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2293,6 +2332,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2300,6 +2340,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2307,6 +2348,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2314,6 +2356,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2321,6 +2364,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2328,6 +2372,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2335,6 +2380,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2342,6 +2388,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2349,6 +2396,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2356,6 +2404,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2363,6 +2412,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2370,6 +2420,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2377,6 +2428,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2384,6 +2436,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2391,6 +2444,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2398,6 +2452,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2405,6 +2460,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2412,6 +2468,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2419,6 +2476,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2426,6 +2484,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2433,6 +2492,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2440,6 +2500,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2447,6 +2508,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2454,6 +2516,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2461,6 +2524,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2468,6 +2532,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2475,6 +2540,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2482,6 +2548,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2489,6 +2556,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2496,6 +2564,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2503,6 +2572,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2510,6 +2580,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2517,6 +2588,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2524,6 +2596,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2531,6 +2604,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2538,6 +2612,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2545,6 +2620,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 406.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2552,6 +2628,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 333.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2559,6 +2636,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 259.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2566,6 +2644,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 195.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2573,6 +2652,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 269.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2580,6 +2660,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 321.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2587,6 +2668,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 347.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2594,6 +2676,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 362.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2601,6 +2684,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 290.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2608,6 +2692,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 216.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2615,6 +2700,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 143.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2622,6 +2708,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 66.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2629,6 +2716,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -4.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2636,6 +2724,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -4.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2643,6 +2732,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -78.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2650,6 +2740,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -152.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2657,6 +2748,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -80.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2664,6 +2756,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -5.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2671,6 +2764,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -78.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2678,6 +2772,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -152.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2685,6 +2780,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -228.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2692,6 +2788,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -304.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2699,6 +2796,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -381.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2706,6 +2804,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2713,6 +2812,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -381.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2720,6 +2820,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -407.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2727,6 +2828,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2734,6 +2836,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2741,6 +2844,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2748,6 +2852,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2755,6 +2860,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2762,6 +2868,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2769,6 +2876,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2776,6 +2884,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2783,6 +2892,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2790,6 +2900,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -407.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2797,6 +2908,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2804,6 +2916,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2811,6 +2924,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -407.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2818,6 +2932,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -391.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2825,6 +2940,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -318.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2832,6 +2948,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -273.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2839,6 +2956,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -270.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2846,6 +2964,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -265.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2853,6 +2972,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -264.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2860,6 +2980,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -220.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2867,6 +2988,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -151.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2874,6 +2996,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -77.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2881,6 +3004,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -4.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2888,6 +3012,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -4.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2895,6 +3020,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 70.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2902,6 +3028,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 147.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2909,6 +3036,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 222.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2916,6 +3044,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 296.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2923,6 +3052,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 370.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2930,6 +3060,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2937,6 +3068,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2944,6 +3076,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2951,6 +3084,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2958,6 +3092,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2965,6 +3100,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2972,6 +3108,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2979,6 +3116,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2986,6 +3124,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -2993,6 +3132,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3000,6 +3140,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3007,6 +3148,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3014,6 +3156,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3021,6 +3164,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 420.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3028,6 +3172,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 340.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3035,6 +3180,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 226.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3042,6 +3188,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 172.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3049,6 +3196,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 189.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3056,6 +3204,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 113.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3063,6 +3212,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 38.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3070,6 +3220,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 45.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3077,6 +3228,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 120.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3084,6 +3236,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 129.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3091,6 +3244,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 147.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3098,6 +3252,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 222.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3105,6 +3260,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 296.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3112,6 +3268,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 370.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3119,6 +3276,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3126,6 +3284,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3133,6 +3292,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3140,6 +3300,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3147,6 +3308,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3154,6 +3316,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3161,6 +3324,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3168,6 +3332,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3175,6 +3340,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3182,6 +3348,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3189,6 +3356,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3196,6 +3364,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3203,6 +3372,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3210,6 +3380,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3217,6 +3388,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3224,6 +3396,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3231,6 +3404,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3238,6 +3412,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3245,6 +3420,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3252,6 +3428,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3259,6 +3436,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3266,6 +3444,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3273,6 +3452,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3280,6 +3460,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3287,6 +3468,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3294,6 +3476,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3301,6 +3484,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3308,6 +3492,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3315,6 +3500,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 399.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3322,6 +3508,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 326.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3329,6 +3516,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 252.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3336,6 +3524,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 181.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3343,6 +3532,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 107.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3350,6 +3540,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 32.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3357,6 +3548,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -43.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3364,6 +3556,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -118.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3371,6 +3564,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -193.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3378,6 +3572,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -269.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3385,6 +3580,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -345.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3392,6 +3588,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3399,6 +3596,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3406,6 +3604,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3413,6 +3612,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3420,6 +3620,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -331.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3427,6 +3628,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -255.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3434,6 +3636,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -212.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3441,6 +3644,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -157.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3448,6 +3652,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -185.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3455,6 +3660,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -224.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3462,6 +3668,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -147.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3469,6 +3676,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -132.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3476,6 +3684,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -209.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3483,6 +3692,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -285.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3490,6 +3700,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -273.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3497,6 +3708,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -233.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3504,6 +3716,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -310.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3511,6 +3724,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -386.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3518,6 +3732,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3525,6 +3740,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3532,6 +3748,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3539,6 +3756,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3546,6 +3764,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -408.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3553,6 +3772,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -333.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3560,6 +3780,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -257.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3567,6 +3788,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -184.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3574,6 +3796,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -109.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3581,6 +3804,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -34.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3588,6 +3812,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': -3.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3595,6 +3820,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 70.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3602,6 +3828,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 147.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3609,6 +3836,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 222.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3616,6 +3844,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 296.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3623,6 +3852,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 370.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3630,6 +3860,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 441.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3637,6 +3868,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3644,6 +3876,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -3651,6 +3884,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'netFlow': 442.0,
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
@@ -4193,6 +4427,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 649,
@@ -4208,6 +4443,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 654,
@@ -4223,6 +4459,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 638,
@@ -4238,6 +4475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 683,
@@ -4253,6 +4491,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 678,
@@ -4268,6 +4507,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 688,
@@ -4283,6 +4523,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 681,
@@ -4298,6 +4539,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 676,
@@ -4313,6 +4555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 666,
@@ -4328,6 +4571,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 685,
@@ -4343,6 +4587,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 683,
@@ -4358,6 +4603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 675,
@@ -4373,6 +4619,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 679,
@@ -4388,6 +4635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 684,
@@ -4403,6 +4651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 677,
@@ -4418,6 +4667,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 665,
@@ -4433,6 +4683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 686,
@@ -4448,6 +4699,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 695,
@@ -4463,6 +4715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 681,
@@ -4478,6 +4731,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 688,
@@ -4493,6 +4747,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 4,
         'unknown': 690,
@@ -4508,6 +4763,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 6,
         'unknown': 676,
@@ -4523,6 +4779,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 11,
         'unknown': 678,
@@ -4538,6 +4795,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 21,
         'unknown': 666,
@@ -4553,6 +4811,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 35,
         'unknown': 659,
@@ -4568,6 +4827,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 63,
         'unknown': 716,
@@ -4583,6 +4843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 84,
         'unknown': 762,
@@ -4598,6 +4859,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 109,
         'unknown': 852,
@@ -4613,6 +4875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 136,
         'unknown': 985,
@@ -4628,6 +4891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 181,
         'unknown': 1158,
@@ -4643,6 +4907,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 221,
         'unknown': 1242,
@@ -4658,6 +4923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 267,
         'unknown': 1249,
@@ -4673,6 +4939,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 320,
         'unknown': 1190,
@@ -4688,6 +4955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 382,
         'unknown': 1192,
@@ -4703,6 +4971,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 434,
         'unknown': 1038,
@@ -4718,6 +4987,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 511,
         'unknown': 968,
@@ -4733,6 +5003,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 507,
         'unknown': 898,
@@ -4748,6 +5019,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 537,
         'unknown': 864,
@@ -4763,6 +5035,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 526,
         'unknown': 1008,
@@ -4778,6 +5051,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 532,
         'unknown': 1007,
@@ -4793,6 +5067,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 536,
         'unknown': 984,
@@ -4808,6 +5083,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 554,
         'unknown': 969,
@@ -4823,6 +5099,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 539,
         'unknown': 972,
@@ -4838,6 +5115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 607,
         'unknown': 773,
@@ -4853,6 +5131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 578,
         'unknown': 799,
@@ -4868,6 +5147,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 572,
         'unknown': 823,
@@ -4883,6 +5163,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 586,
         'unknown': 841,
@@ -4898,6 +5179,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 586,
         'unknown': 828,
@@ -4913,6 +5195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 565,
         'unknown': 853,
@@ -4928,6 +5211,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 616,
         'unknown': 912,
@@ -4943,6 +5227,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 559,
         'unknown': 1027,
@@ -4958,6 +5243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 582,
         'unknown': 1013,
@@ -4973,6 +5259,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 533,
         'unknown': 1099,
@@ -4988,6 +5275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 574,
         'unknown': 1181,
@@ -5003,6 +5291,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 454,
         'unknown': 1148,
@@ -5018,6 +5307,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 511,
         'unknown': 1036,
@@ -5033,6 +5323,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 521,
         'unknown': 1011,
@@ -5048,6 +5339,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 479,
         'unknown': 1005,
@@ -5063,6 +5355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 475,
         'unknown': 1064,
@@ -5078,6 +5371,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 425,
         'unknown': 1046,
@@ -5093,6 +5387,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 446,
         'unknown': 1042,
@@ -5108,6 +5403,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 457,
         'unknown': 978,
@@ -5123,6 +5419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 428,
         'unknown': 1065,
@@ -5138,6 +5435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 466,
         'unknown': 1080,
@@ -5153,6 +5451,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 467,
         'unknown': 1046,
@@ -5168,6 +5467,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 488,
         'unknown': 924,
@@ -5183,6 +5483,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 436,
         'unknown': 930,
@@ -5198,6 +5499,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 507,
         'unknown': 926,
@@ -5213,6 +5515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 477,
         'unknown': 863,
@@ -5228,6 +5531,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 369,
         'unknown': 981,
@@ -5243,6 +5547,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 308,
         'unknown': 1223,
@@ -5258,6 +5563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 282,
         'unknown': 1388,
@@ -5273,6 +5579,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 239,
         'unknown': 1432,
@@ -5288,6 +5595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 186,
         'unknown': 1404,
@@ -5303,6 +5611,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 191,
         'unknown': 1346,
@@ -5322,6 +5631,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1419,
@@ -5336,6 +5646,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1434,
@@ -5350,6 +5661,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1449,
@@ -5364,6 +5676,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1464,
@@ -5378,6 +5691,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1387,
@@ -5392,6 +5706,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1405,
@@ -5406,6 +5721,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1423,
@@ -5420,6 +5736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1441,
@@ -5434,6 +5751,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1459,
@@ -5448,6 +5766,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1466,
@@ -5462,6 +5781,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1473,
@@ -5476,6 +5796,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1479,
@@ -5490,6 +5811,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1486,
@@ -5504,6 +5826,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1487,
@@ -5518,6 +5841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1488,
@@ -5532,6 +5856,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1489,
@@ -5546,6 +5871,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1490,
@@ -5560,6 +5886,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1476,
@@ -5574,6 +5901,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1463,
@@ -5588,6 +5916,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1449,
@@ -5602,6 +5931,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1435,
@@ -5616,6 +5946,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 5,
         'wind': 1392,
@@ -5630,6 +5961,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 10,
         'wind': 1349,
@@ -5644,6 +5976,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 15,
         'wind': 1306,
@@ -5658,6 +5991,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 20,
         'wind': 1263,
@@ -5672,6 +6006,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 53,
         'wind': 1253,
@@ -5686,6 +6021,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 87,
         'wind': 1244,
@@ -5700,6 +6036,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 120,
         'wind': 1235,
@@ -5714,6 +6051,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 168,
         'wind': 1103,
@@ -5728,6 +6066,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 220,
         'wind': 1134,
@@ -5742,6 +6081,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 272,
         'wind': 1166,
@@ -5756,6 +6096,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 324,
         'wind': 1197,
@@ -5770,6 +6111,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 376,
         'wind': 1229,
@@ -5784,6 +6126,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 417,
         'wind': 1287,
@@ -5798,6 +6141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 458,
         'wind': 1345,
@@ -5812,6 +6156,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 499,
         'wind': 1403,
@@ -5826,6 +6171,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 540,
         'wind': 1462,
@@ -5840,6 +6186,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 568,
         'wind': 1502,
@@ -5854,6 +6201,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 597,
         'wind': 1542,
@@ -5868,6 +6216,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 625,
         'wind': 1582,
@@ -5882,6 +6231,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 654,
         'wind': 1622,
@@ -5896,6 +6246,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 666,
         'wind': 1647,
@@ -5910,6 +6261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 679,
         'wind': 1672,
@@ -5924,6 +6276,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 691,
         'wind': 1696,
@@ -5938,6 +6291,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 704,
         'wind': 1721,
@@ -5952,6 +6306,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 706,
         'wind': 1763,
@@ -5966,6 +6321,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 709,
         'wind': 1805,
@@ -5980,6 +6336,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 711,
         'wind': 1847,
@@ -5994,6 +6351,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 714,
         'wind': 1890,
@@ -6008,6 +6366,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 711,
         'wind': 1914,
@@ -6022,6 +6381,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 708,
         'wind': 1938,
@@ -6036,6 +6396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 705,
         'wind': 1963,
@@ -6050,6 +6411,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 672,
         'wind': 1840,
@@ -6064,6 +6426,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 669,
         'wind': 1856,
@@ -6078,6 +6441,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 665,
         'wind': 1873,
@@ -6092,6 +6456,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 662,
         'wind': 1889,
@@ -6106,6 +6471,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 659,
         'wind': 1906,
@@ -6120,6 +6486,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 639,
         'wind': 1879,
@@ -6134,6 +6501,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 620,
         'wind': 1853,
@@ -6148,6 +6516,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 600,
         'wind': 1827,
@@ -6162,6 +6531,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 581,
         'wind': 1801,
@@ -6176,6 +6546,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 522,
         'wind': 1776,
@@ -6190,6 +6561,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 462,
         'wind': 1752,
@@ -6204,6 +6576,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 403,
         'wind': 1727,
@@ -6218,6 +6591,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 344,
         'wind': 1703,
@@ -6232,6 +6606,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 318,
         'wind': 1673,
@@ -6246,6 +6621,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 293,
         'wind': 1644,
@@ -6260,6 +6636,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 267,
         'wind': 1614,
@@ -6274,6 +6651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 242,
         'wind': 1585,
@@ -6288,6 +6666,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 222,
         'wind': 1540,
@@ -6302,6 +6681,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 202,
         'wind': 1495,
@@ -6316,6 +6696,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 182,
         'wind': 1451,
@@ -6330,6 +6711,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 162,
         'wind': 1406,
@@ -6344,6 +6726,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 141,
         'wind': 1371,
@@ -6358,6 +6741,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 121,
         'wind': 1336,
@@ -6372,6 +6756,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 101,
         'wind': 1301,
@@ -6386,6 +6771,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 80,
         'wind': 1266,
@@ -6400,6 +6786,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 67,
         'wind': 1217,
@@ -6414,6 +6801,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 53,
         'wind': 1168,
@@ -6428,6 +6816,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 40,
         'wind': 1120,
@@ -6442,6 +6831,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 26,
         'wind': 1071,
@@ -6456,6 +6846,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 20,
         'wind': 1054,
@@ -6470,6 +6861,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 13,
         'wind': 1037,
@@ -6484,6 +6876,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 7,
         'wind': 1019,
@@ -6498,6 +6891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1002,
@@ -6512,6 +6906,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1015,
@@ -6526,6 +6921,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1028,
@@ -6540,6 +6936,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1040,
@@ -6554,6 +6951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1053,
@@ -6568,6 +6966,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1067,
@@ -6582,6 +6981,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1081,
@@ -6596,6 +6996,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1095,
@@ -6610,6 +7011,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1109,
@@ -6624,6 +7026,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1097,
@@ -6638,6 +7041,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1085,
@@ -6652,6 +7056,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 6, 4, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
+      'datetime_end': None,
       'production': dict({
         'solar': 0,
         'wind': 1073,
