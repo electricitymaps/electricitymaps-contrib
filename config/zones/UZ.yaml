@@ -9,16 +9,28 @@ capacity:
       source: gov.uz
       comment: The Ministry of Energy of the Republic of Uzbekistan
       value: 2300
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 3930
   wind:
     - datetime: '2024-08-30'
       source: gov.uz
       comment: The Ministry of Energy of the Republic of Uzbekistan
       value: 500
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 1652
   hydro:
     - datetime: '2024-08-29'
       source: stat.uz
       comment: Statistics Agency under the President of the Republic of Uzbekistan
       value: 2381
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 2441
   gas:
     - datetime: '2024-08-29'
       source: stat.uz
