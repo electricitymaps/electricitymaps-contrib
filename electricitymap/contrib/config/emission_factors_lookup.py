@@ -255,7 +255,7 @@ def _get_emission_factor_lifecycle_and_direct(
 def get_emission_factors_with_metadata_all_years(
     start: int | None = None,
     end: int | None = None,
-) -> tuple[list[YearZoneModeEmissionFactor] | list[ValidationError]]:
+) -> tuple[list[YearZoneModeEmissionFactor], list[ValidationError]]:
     start = 2015 if start is None else start
     end = datetime.now(tz=timezone.utc).year if end is None else end
 
