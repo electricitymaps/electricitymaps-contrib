@@ -21,12 +21,34 @@ EXCHANGE_ID_MAP = {
     "ES->MA": "10209",
 }
 
-# Map each exchange to the needed factor to adjust from MWh to MW. Depends on the time granularity of the API for each request
-# E.g ES->MA is 4 because the API returns 15 minutes intervals data (15 min = 1/4 of an hour; P=E/t).
-EXCHANGE_MULTIPLICATION_FACTOR_MAP = {
-    "AD->ES": 1,
-    "ES->MA": 4,
-}
+# Threshold date for ES->MA: from 2022-05-24T10:00:00.000+02:00 onwards, factor is 4 (15 min intervals)
+# Before this date, factor is 1 (hourly intervals)
+# Convert to UTC for comparison: 2022-05-24T10:00:00+02:00 = 2022-05-24T08:00:00+00:00
+ES_MA_FACTOR_THRESHOLD = datetime(2022, 5, 24, 8, 0, 0, tzinfo=ZoneInfo("UTC"))
+
+
+def get_exchange_multiplication_factor(
+    zone_key: ZoneKey, exchange_datetime: datetime
+) -> int:
+    """
+    Get the multiplication factor to adjust from MWh to MW.
+    Depends on the time granularity of the API for each request.
+    E.g ES->MA is 4 because the API returns 15 minutes intervals data (15 min = 1/4 of an hour; P=E/t).
+    """
+    if zone_key == "ES->MA":
+        # From 2022-05-24T10:00:00.000+02:00 onwards, use factor 4 (15 min intervals)
+        # Before this date, use factor 1 (hourly intervals)
+        if exchange_datetime >= ES_MA_FACTOR_THRESHOLD:
+            return 4
+        else:
+            return 1
+    elif zone_key == "AD->ES":
+        return 1
+    else:
+        raise ParserException(
+            "ESIOS.py",
+            f"Unknown exchange {zone_key} for multiplication factor.",
+        )
 
 
 def format_url(target_datetime: datetime, ID: str):
@@ -58,10 +80,7 @@ def fetch_exchange(
     }
 
     zone_key = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    if (
-        zone_key not in EXCHANGE_ID_MAP
-        or zone_key not in EXCHANGE_MULTIPLICATION_FACTOR_MAP
-    ):
+    if zone_key not in EXCHANGE_ID_MAP:
         raise ParserException(
             "ESIOS.py",
             f"This parser cannot parse data between {zone_key1} and {zone_key2}.",
@@ -79,6 +98,10 @@ def fetch_exchange(
     exchanges = ExchangeList(logger)
 
     for value in values:
+        exchange_datetime = datetime.fromisoformat(
+            value["datetime_utc"].replace("Z", "+00:00")
+        )
+
         # Get last value in datasource
         # Datasource negative value is exporting, positive value is importing
         # If Spain is the first zone invert the values to match Electricity Maps schema
@@ -86,11 +109,7 @@ def fetch_exchange(
             -value["value"] if zone_key.partition("->")[0] == "ES" else value["value"]
         )
 
-        net_flow *= EXCHANGE_MULTIPLICATION_FACTOR_MAP[zone_key]
-
-        exchange_datetime = datetime.fromisoformat(
-            value["datetime_utc"].replace("Z", "+00:00")
-        )
+        net_flow *= get_exchange_multiplication_factor(zone_key, exchange_datetime)
 
         exchanges.append(
             zoneKey=zone_key,
