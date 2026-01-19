@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -12,6 +13,11 @@ from electricitymap.contrib.parsers.OPENNEM import (
 )
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/OPENNEM")
+
+
+@pytest.fixture(autouse=True)
+def openelectricity_token_env():
+    os.environ["OPENELECTRICITY_TOKEN"] = "token"
 
 
 @pytest.mark.parametrize(
@@ -29,15 +35,15 @@ def test_production(adapter, session, snapshot, zone):
     )
 
 
-@pytest.mark.parametrize("zone", ["AU-VIC"])
+@pytest.mark.parametrize("zone", ["AU-SA"])
 def test_price(adapter, session, snapshot, zone):
-    mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.json")
+    mock_data = Path(base_path_to_mock, f"OPENNEM_price_{zone}.json")
     adapter.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot == fetch_price(zone, session, datetime.fromisoformat("2025-03-23"))
+    assert snapshot == fetch_price(zone, session, datetime.fromisoformat("2020-01-01"))
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):

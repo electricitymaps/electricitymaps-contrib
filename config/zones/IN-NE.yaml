@@ -42,60 +42,19 @@ capacity:
 contributors:
   - unitrium
 country: IN
+country_name: India
+currency: INR
 delays:
   production: 120
 emissionFactors:
+  direct:
+    unknown:
+      source: assumes 43% solar PV and 57% wind
+      value: 0.0
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 415.56
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 415.56
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 415.56
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 422.38
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 397.32
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 401.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 427.71
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 405.43
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 415.56
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 415.56
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 415.56
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 422.38
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 397.32
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 401.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 427.71
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 405.43
+    unknown:
+      source: assumes 43% solar PV and 57% wind
+      value: 25.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -218,6 +177,8 @@ fallbackZoneMixes:
         solar: 0.031236037656665508
         unknown: 2.5385940511502566e-05
         wind: 0.0001348859595530266
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: IN.fetch_consumption
   production: IN.fetch_production
@@ -225,5 +186,8 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: North Eastern India
-country_name: India
-currency: INR
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

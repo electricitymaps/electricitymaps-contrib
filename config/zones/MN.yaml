@@ -56,6 +56,8 @@ contributors:
   - MuffinCompiler
   - consideRatio
 country: MN
+country_name: Mongolia
+currency: MNT
 emissionFactors:
   direct:
     unknown:
@@ -64,14 +66,6 @@ emissionFactors:
         source: IEA 2020; assumes 92.85% coal, 5.78%% oil, 1.37% hydro in unknown
         value: 729.1
   lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 712.24
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 712.24
     unknown:
       - _url: https://www.iea.org/fuels-and-technologies/electricity
         datetime: '2020-01-01'
@@ -94,6 +88,8 @@ fallbackZoneMixes:
         solar: 0.025727593324883617
         unknown: 0.8876911885022577
         wind: 0.06354042950942215
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     - _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -111,5 +107,8 @@ parsers:
 region: Asia
 timezone: Asia/Ulaanbaatar
 zone_name: Mongolia
-country_name: Mongolia
-currency: MNT
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

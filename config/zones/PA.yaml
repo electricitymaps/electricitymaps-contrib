@@ -108,117 +108,9 @@ contributors:
   - IV1T3
   - r24mille
 country: PA
+country_name: Panama
 delays:
   production: 5
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 257.1317218116027
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 257.13171792686063
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 194.40212541803066
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 127.55008977538328
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 304.4312223711911
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 208.03694488067214
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 179.14901259067096
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 257.1317218116027
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 257.13171792686063
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 194.40212541803066
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 127.55008977538328
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 304.4312223711911
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 208.03694488067214
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 179.14901259067096
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 317.9022714280571
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 317.9022673053375
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 247.1
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 173.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 381.47
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 264.73
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 228.62
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 237.64
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 301.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 166.91
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 317.9022714280571
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 317.9022673053375
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 247.1
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 173.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 381.47
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 264.73
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 228.62
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 237.64
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 301.58
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 166.91
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -371,6 +263,8 @@ fallbackZoneMixes:
         solar: 0.07582387224209039
         unknown: 0.0
         wind: 0.04815485711912523
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: PA.fetch_consumption
   production: PA.fetch_production
@@ -378,4 +272,3 @@ parsers:
 region: Americas
 timezone: America/Panama
 zone_name: Panama
-country_name: Panama

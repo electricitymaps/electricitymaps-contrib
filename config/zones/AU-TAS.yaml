@@ -40,117 +40,23 @@ contributors:
   - corradio
   - alejandranavcas
 country: AU
+country_name: Australia
+currency: AUD
 delays:
   production: 96
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 24.911345119619092
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 24.93317917581306
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 100.44014991218829
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 58.81330851188387
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 80.95101409049424
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 30.104873967039712
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 60.40527046772535
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 24.911345119619092
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 24.93317917581306
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 100.44014991218829
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 58.81330851188387
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 80.95101409049424
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 30.104873967039712
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 60.40527046772535
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 0.38
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 24.911345119619092
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 24.93317917581306
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 29.54
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 29.54
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 29.62
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 25.97
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 22.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 20.33
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 88.01
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 132.52
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 24.911345119619092
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 24.93317917581306
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 29.78
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 29.78
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 29.86
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 25.97
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 22.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 26.82
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 88.01
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 132.52
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 33.38
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -303,13 +209,16 @@ fallbackZoneMixes:
         solar: 0.07151092912874732
         unknown: 0.0
         wind: 0.2039048715577342
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
+sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Australia/Hobart
 zone_name: Tasmania
-country_name: Australia
-currency: AUD

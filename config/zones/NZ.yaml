@@ -95,117 +95,63 @@ contributors:
   - davidcole1340
   - drc38
 country: NZ
+country_name: New Zealand
+currency: NZD
 delays:
   production: 6
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 107.38125
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 107.38125000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 107.38125
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 107.38125
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 107.38546803652967
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.98583333333333
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 108.98583333333332
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 107.38125
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 107.38125000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 107.38125
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 107.38125
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 107.38546803652967
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.98583333333333
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 108.98583333333332
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 113.84
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 81.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 85.21
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 83.63
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 82.49
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 52.93
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 107.38125
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 107.38125000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 102.09
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 102.09
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 102.1
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 102.1
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 102.1
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 138.24
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 107.49
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 111.36
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 107.38125
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 107.38125000000001
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 100.82
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 100.82
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 100.82
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 100.82
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 100.82
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 96.35
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 96.81
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 112.16
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 146.84
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 114.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 118.21
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 116.63
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 115.49
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 85.93
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -358,6 +304,8 @@ fallbackZoneMixes:
         solar: 0.0022427556771429237
         unknown: 0.020886705386506124
         wind: 0.09329579500153248
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production
@@ -365,5 +313,8 @@ parsers:
 region: Oceania
 timezone: Pacific/Auckland
 zone_name: New Zealand
-country_name: New Zealand
-currency: NZD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

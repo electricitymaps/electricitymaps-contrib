@@ -13,8 +13,8 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina

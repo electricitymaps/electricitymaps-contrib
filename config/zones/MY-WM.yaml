@@ -13,87 +13,9 @@ contributors:
   - systemcatch
   - nessie2013
 country: MY
+country_name: Malaysia
 delays:
   production: 5
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 573.3246563015617
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 575.1588821140425
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 608.6637550129207
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 583.6707149512696
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 573.3246563015617
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 575.1588821140425
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 608.6637550129207
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 583.6707149512696
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 641.72
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 655.93
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 655.52
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 680.45
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 655.89
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 644.38
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 649.51
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 644.67
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 641.72
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 655.93
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 655.52
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 680.45
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 655.89
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 644.38
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 649.51
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 644.67
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -216,6 +138,8 @@ fallbackZoneMixes:
         solar: 0.021171527148129823
         unknown: 0.001574858961476563
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GSO.fetch_consumption
   production: GSO.fetch_production
@@ -223,4 +147,3 @@ parsers:
 region: Asia
 timezone: Asia/Kuala_Lumpur
 zone_name: Peninsula
-country_name: Malaysia

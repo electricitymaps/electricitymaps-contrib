@@ -81,118 +81,163 @@ contributors:
   - systemcatch
   - veqtrus
 country: PR
+country_name: Puerto Rico
+currency: USD
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 448.99621840545547
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 698.4810101077925
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 698.4810101077924
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 697.9827697209355
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 697.9827697209355
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 716.3495131110815
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 691.6232949567844
     biomass:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 0.0
+      - datetime: '2020-01-01'
+        source: BEIS 2021
+        value: 0.0
+      - datetime: '2021-01-01'
+        source: BEIS 2021
+        value: 0.0
+      - datetime: '2022-01-01'
+        source: BEIS 2021
+        value: 0.0
+      - datetime: '2023-01-01'
+        source: BEIS 2021
+        value: 0.0
     coal:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 995.61187
+      - datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 995.611869962089
+      - datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 1014.2941036716782
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 1036.401437700579
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 1026.7228249260704
     gas:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 480.1222048
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 448.99621840545547
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 698.4810101077925
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 698.4810101077924
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 697.9827697209355
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 697.9827697209355
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 716.3495131110815
+        source: eGrid 2020
+        value: 480.12220481693174
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 691.6232949567844
+        source: eGrid 2021
+        value: 527.7229942577874
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 546.0634245928852
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 544.6086048281159
+    geothermal:
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 70.87985131255388
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 78.28737905336972
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 29.707905036391203
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 28.739435464835893
     oil:
-      datetime: '2020-01-01'
-      source: eGrid 2020
-      value: 786.0859158
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 609.9695887631431
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 609.9695887631431
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 609.9695887631431
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 609.5049770315596
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 609.5049770315596
       - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 622.06
+        source: eGrid 2020
+        value: 786.0859157554912
       - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 606.54
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 609.9695887631431
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 609.9695887631431
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 609.9695887631431
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 609.5049770315596
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 609.5049770315596
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 622.06
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 606.54
+        source: eGrid 2021
+        value: 769.7242211326042
+      - datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 807.9594211794373
+      - datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 755.5503294336717
     unknown:
       _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
       source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
         October 2019-September 2020
-      value: 31.94
+      value: 0.0
+  lifecycle:
+    biomass:
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020
+        value: 281.38853074481284
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021
+        value: 280.6015234636058
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022
+        value: 274.05045073430733
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023
+        value: 282.7016835752059
+    coal:
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1055.611869962089
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1074.2941036716782
+      - datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 1096.401437700579
+      - datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 1086.7228249260704
+    gas:
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 600.1222048169318
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 647.7229942577874
+      - datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 666.0634245928852
+      - datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 664.6086048281159
+    geothermal:
+      - _comment: Mean of all US zones
+        datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 108.87985131255388
+      - _comment: Mean of all US zones
+        datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 116.28737905336972
+      - _comment: Mean of all US zones
+        datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 67.7079050363912
+      - _comment: Mean of all US zones
+        datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 66.73943546483589
+    oil:
+      - datetime: '2020-01-01'
+        source: eGrid 2020; IPCC 2014
+        value: 1030.0859157554912
+      - datetime: '2021-01-01'
+        source: eGrid 2021; IPCC 2014
+        value: 1013.7242211326042
+      - datetime: '2022-01-01'
+        source: eGrid 2022; IPCC 2014
+        value: 1051.9594211794374
+      - datetime: '2023-01-01'
+        source: eGrid 2023; IPCC 2014
+        value: 999.5503294336717
+    unknown:
+      _comment: 'Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6'
+      source: assumes 12% hydro, 57% solar, 31% wind based on average renewable generation
+        October 2019-September 2020
+      value: 31.939999999999998
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -300,6 +345,8 @@ fallbackZoneMixes:
         solar: 0.012790315399735448
         unknown: 0.0009000191751649909
         wind: 0.008674031627125225
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     value: 1
@@ -310,9 +357,15 @@ parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
+  eGrid 2021:
+    link: ' https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing'
+  eGrid 2022:
+    link: https://www.epa.gov/egrid/historical-egrid-data
+  eGrid 2023:
+    link: https://www.epa.gov/egrid/detailed-data
 timezone: America/Puerto_Rico
 zone_name: Puerto Rico
-country_name: Puerto Rico
-currency: USD

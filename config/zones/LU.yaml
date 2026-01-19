@@ -130,10 +130,6 @@ delays:
   production: 6
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 240.34920223886382
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -154,11 +150,10 @@ emissionFactors:
         value: 412.38
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 410.39
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 240.34920223886382
+        value: 392.33
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 390.45
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -167,37 +162,6 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 925.95
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 282.47
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 261.76
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 429.5
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 446.86
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 382.26
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 334.99
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 333.77
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 358.34
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 272.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 250.04
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -218,42 +182,14 @@ emissionFactors:
         value: 532.38
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 530.39
+        value: 512.33
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 510.45
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 282.47
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 261.76
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 429.5
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 446.86
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 382.26
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 334.99
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 333.77
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 358.34
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 272.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 250.04
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -422,6 +358,8 @@ fallbackZoneMixes:
         solar: 0.14342245350969185
         unknown: 0.01357305789447995
         wind: 0.28538771464591317
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -438,6 +376,8 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  EU-ETS, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   UNECE 2022:

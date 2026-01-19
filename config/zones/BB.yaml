@@ -27,16 +27,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: BB
+country_name: Barbados
+currency: BBD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 649.96
-    hydro discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 640.61
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2024 average
@@ -54,11 +48,16 @@ fallbackZoneMixes:
         solar: 0.014305633100344143
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: BB.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Barbados
 zone_name: Barbados
-country_name: Barbados
-currency: BBD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

@@ -14,37 +14,8 @@ contributors:
   - jarek
   - alixunderplatz
 country: NA
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 13.22109957334399
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 14.38993486068608
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 39.67
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 42.98
+country_name: Namibia
+currency: NAD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -77,8 +48,8 @@ fallbackZoneMixes:
         solar: 0.17650734047230604
         unknown: 0.0
         wind: 0.018079403291716912
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Africa
 timezone: Africa/Windhoek
 zone_name: Namibia
-country_name: Namibia
-currency: NAD

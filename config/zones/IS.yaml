@@ -50,60 +50,17 @@ contributors:
   - SNPerkin
   - nessie2013
 country: IS
+country_name: Iceland
+currency: ISK
 delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 0.1157976962587684
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 0.025075913508499668
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 0.01866069813401729
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
       value: 0.0
-    hydro discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 0.1157976962587684
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 0.025075913508499668
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 0.01866069813401729
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 27.96
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 27.96
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 28.38
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 28.19
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 27.87
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 27.48
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 27.87
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 28.16
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -116,31 +73,6 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 490.0
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 27.96
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 27.96
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 28.38
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 28.19
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 27.87
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 27.48
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 27.87
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 28.16
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
@@ -267,6 +199,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: amper_landsnet.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -276,5 +210,3 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Atlantic/Reykjavik
 zone_name: Iceland
-country_name: Iceland
-currency: ISK

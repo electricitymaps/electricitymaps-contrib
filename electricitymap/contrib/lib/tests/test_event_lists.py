@@ -20,7 +20,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_exchange_list():

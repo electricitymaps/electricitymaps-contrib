@@ -52,37 +52,8 @@ contributors:
   - systemcatch
   - byronwilliams
 country: IQ
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.8163447132109
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 360.451540676338
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.8163447132109
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 360.451540676338
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 530.85
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 505.25
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 530.85
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 505.25
+country_name: Iraq
+currency: IQD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -115,10 +86,10 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Baghdad
 zone_name: Iraq
-country_name: Iraq
-currency: IQD

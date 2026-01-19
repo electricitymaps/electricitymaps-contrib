@@ -65,119 +65,48 @@ contributors:
   - corradio
   - MariusKroon
 country: AU
+country_name: Australia
+currency: AUD
 delays:
   production: 96
-disclaimer: Western Australia's power grid is not connected to the (Australian) National
-  Electricity Market or the Northern Territory grid.
+disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.88328830635527
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.8786750367145
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 497.7064962360909
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 480.25795166959756
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 446.23952795479966
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 413.23528090975884
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 396.4082786080585
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.88328830635527
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.8786750367145
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 497.7064962360909
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 480.25795166959756
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 446.23952795479966
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 413.23528090975884
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 396.4082786080585
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 288.89
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 311.0
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 303.91
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 281.95
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 510.8643739451478
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 510.8590975293004
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 577.76
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 559.88
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 522.56
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 488.12
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 464.45
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 430.88
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 417.37
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 387.03
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 510.8643739451478
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 510.8590975293004
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 577.76
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 559.88
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 522.56
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 488.12
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 464.45
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 430.88
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 428.17
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 394.99
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 321.89
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 344.0
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 336.91
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 314.95
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -330,6 +259,8 @@ fallbackZoneMixes:
         solar: 0.23467167868922628
         unknown: 0.0
         wind: 0.1699992813333499
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
@@ -337,5 +268,8 @@ parsers:
 region: Oceania
 timezone: Australia/Perth
 zone_name: Western Australia
-country_name: Australia
-currency: AUD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

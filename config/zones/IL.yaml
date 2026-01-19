@@ -63,7 +63,7 @@ capacity:
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
-      value: 0.0
+      value: 150
   wind:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
@@ -79,123 +79,20 @@ contributors:
   - jarek
   - yuvalabou
 country: IL
-disclaimer: The data source (Israel Electric Corporation) has been blocking access
-  to real-time production mix data. The data is therefore fully estimated by Electricity
-  Maps.
+country_name: Israel
+currency: ILS
+disclaimer: The data source (Israel Electric Corporation) has been blocking access to real-time production mix data. The data is therefore fully estimated by Electricity Maps.
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 472.78425451543325
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 472.7899563379291
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 472.78400485432303
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.784111747471
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 469.473377622019
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 469.6510531886188
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 473.8472228055359
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 472.78425451543325
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 472.7899563379291
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 472.78400485432303
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.784111747471
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 469.473377622019
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 469.6510531886188
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 473.8472228055359
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 573.2225662880134
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 573.2289528740077
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 540.19
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 540.19
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 533.15
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 544.19
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.86
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 541.78
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 533.04
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 533.05
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 573.2225662880134
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 573.2289528740077
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 540.19
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 540.19
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 533.15
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 544.19
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.86
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 541.78
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 533.04
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 533.05
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
-        wind, 0.3% other
-      value: 558
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
+      value: 459.09
+  lifecycle:
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3% wind, 0.3% other
+      value: 558.188
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -348,6 +245,8 @@ fallbackZoneMixes:
         solar: 0.07300763261212727
         unknown: 0.0028733995131826184
         wind: 9.474408704417814e-05
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     _comment: Sum of renewable sources in IL unknown production
@@ -362,5 +261,8 @@ parsers:
 region: Asia
 timezone: Asia/Jerusalem
 zone_name: Israel
-country_name: Israel
-currency: ILS
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

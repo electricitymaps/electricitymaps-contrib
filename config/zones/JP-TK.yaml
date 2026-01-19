@@ -18,117 +18,23 @@ contributors:
   - lorrieq
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 469.7028107056677
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 469.0674184228592
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 469.9698821228458
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 467.3776955386126
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 461.06582925627777
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 458.92783231439626
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 461.90613306170593
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 469.7028107056677
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 469.0674184228592
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 469.9698821228458
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 467.3776955386126
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 461.06582925627777
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 458.92783231439626
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 461.90613306170593
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 0.0
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 564.1637840501728
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 563.3910376169232
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 576.9
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 569.66
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.77
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 558.18
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 549.03
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 546.82
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 536.06
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 540.52
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 564.1637840501728
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 563.3910376169232
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 575.19
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 561.74
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 554.92
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 558.18
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 549.03
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 546.82
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 536.06
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 540.52
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; IPCC 2014
+        value: 24.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -266,13 +172,16 @@ fallbackZoneMixes:
         solar: 0.09707166612504159
         unknown: 0.0026074670238986205
         wind: 0.005644454624628442
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
+  generationForecast: JP.fetch_generation_forecast
   price: JP.fetch_price
   production: JP.fetch_production
-  generationForecast: JP.fetch_generation_forecast
 region: Asia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Asia/Tokyo
-zone_name: Tōkyō
-country_name: Japan
-currency: JPY
+zone_name: 'Tōkyō'

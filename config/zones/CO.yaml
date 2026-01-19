@@ -125,72 +125,12 @@ contributors:
   - alixunderplatz
   - consideRatio
 country: CO
+country_name: Colombia
+currency: COP
 delays:
   production: 84
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 211.45
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 189.04
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 97.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 120.16
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 157.66
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 195.53
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 126.05
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 112.47
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 148.28
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 152.18
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 211.45
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 189.04
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 97.93
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 120.16
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 157.66
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 195.53
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 126.05
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 112.47
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 148.28
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 152.18
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -343,6 +283,8 @@ fallbackZoneMixes:
         solar: 0.004379411289697945
         unknown: 0.0
         wind: 0.001009305470052309
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: CO.fetch_consumption
   price: CO.fetch_price
@@ -351,5 +293,8 @@ parsers:
 region: Americas
 timezone: America/Bogota
 zone_name: Colombia
-country_name: Colombia
-currency: COP
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

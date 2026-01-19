@@ -1,4 +1,6 @@
 country: LI
+country_name: Liechtenstein
+currency: CHF
 emissionFactors:
   direct:
     biomass:
@@ -22,11 +24,11 @@ emissionFactors:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
       value: 650.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Europe
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Vaduz
 zone_name: Liechtenstein
-country_name: Liechtenstein
-currency: CHF

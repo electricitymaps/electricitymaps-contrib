@@ -20,115 +20,8 @@ contributors:
   - Manu1400
   - gopikrishna1793
 country: IN
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 669.5754035641635
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 670.4479562404304
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 669.7461411708946
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 665.8805937261037
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 668.3261581594461
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 667.2165337355297
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 671.1834790797706
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 669.5754035641635
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 670.4479562404304
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 669.7461411708946
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 665.8805937261037
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 668.3261581594461
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 667.2165337355297
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 671.1834790797706
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 727.2263404228199
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 728.1665774179122
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 727.4229195426472
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 723.2782736559066
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 725.8839591736314
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 701.79
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 706.47
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 694.85
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 705.59
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 704.21
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 727.2263404228199
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 728.1665774179122
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 727.4229195426472
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 723.2782736559066
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 725.8839591736314
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 701.79
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 706.47
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 694.85
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 705.59
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 704.21
+country_name: India
+currency: INR
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -281,10 +174,10 @@ fallbackZoneMixes:
         solar: 0.02944040476303649
         unknown: 0.004691684211499119
         wind: 0.02900752525848245
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IN_MH.fetch_production
 region: Asia
 timezone: Asia/Kolkata
-country_name: India
 zone_name: Unknown
-currency: INR

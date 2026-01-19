@@ -7,8 +7,10 @@ capacity:
 contributors:
   - gopikrishna1793
 country: IN
+country_name: India
+currency: INR
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Andaman and Nicobar Islands
-country_name: India
-currency: INR

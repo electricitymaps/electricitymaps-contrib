@@ -22,60 +22,62 @@ contributors:
   - pierresegonne
   - xomanuel
 country: PH
+country_name: Philippines
 delays:
   production: 25
 emissionFactors:
+  direct:
+    battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 505.25
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 498.23
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 498.23
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 532.37
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 516.89
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 512.14
   lifecycle:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 570.58
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 570.58
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 572.54
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 572.54
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 572.54
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 572.51
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 602.52
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 586.07
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 607.72
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 607.72
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 610.34
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 610.35
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 610.34
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 610.15
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 615.93
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 594.19
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 538.25
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 531.23
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 531.23
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 565.37
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 549.89
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 545.14
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -198,9 +200,15 @@ fallbackZoneMixes:
         solar: 0.04010653633275602
         unknown: 0.1408642231758758
         wind: 0.010172876605430417
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IEMOP.fetch_production
 region: Asia
+sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Asia/Manila
 zone_name: Visayas
-country_name: Philippines

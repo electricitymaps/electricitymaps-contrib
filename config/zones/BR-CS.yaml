@@ -26,119 +26,11 @@ contributors:
   - systemcatch
   - nessie2013
 country: BR
+country_name: Brazil
+currency: BRL
 delays:
   production: 5
-disclaimer: Unknown production is the aggregation of thermal production, mainly gas,
-  coal and oil.
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 80.26525088723729
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 80.26523691903276
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 100.62796239313768
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 83.32173116522299
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 71.14811485701303
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 107.57983733090825
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 124.93167814581467
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 80.26525088723729
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 80.26523691903276
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 100.62796239313768
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 83.32173116522299
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 71.14811485701303
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 107.57983733090825
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 124.93167814581467
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 117.88591515569703
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 117.88590300129731
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 141.78
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 113.95
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 107.07
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 147.68
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 170.18
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 99.93
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 89.55
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 102.1
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 117.88591515569703
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 117.88590300129731
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 141.78
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 113.95
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 107.07
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 147.68
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 170.18
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 99.93
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 89.55
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 102.1
+disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -291,11 +183,11 @@ fallbackZoneMixes:
         solar: 0.10222112507742348
         unknown: 0.11400721976581607
         wind: 0.048779087668148355
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ONS.fetch_production
   productionCapacity: ONS.fetch_production_capacity
 region: Americas
 timezone: America/Sao_Paulo
 zone_name: Central Brazil
-country_name: Brazil
-currency: BRL

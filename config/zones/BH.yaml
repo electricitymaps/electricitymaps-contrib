@@ -35,28 +35,10 @@ contributors:
   - q--
   - nessie2013
 country: BH
+country_name: Bahrain
+currency: BHD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 700.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 700.0
-    hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 700.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 700.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 700.0
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -104,11 +86,16 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 1.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Bahrain
 zone_name: Bahrain
-country_name: Bahrain
-currency: BHD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

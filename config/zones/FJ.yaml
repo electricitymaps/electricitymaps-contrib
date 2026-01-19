@@ -31,10 +31,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10.0
 country: FJ
+country_name: Fiji
+currency: FJD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Fiji
 zone_name: Fiji
-country_name: Fiji
-currency: FJD

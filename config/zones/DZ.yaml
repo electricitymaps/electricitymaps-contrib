@@ -61,22 +61,10 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10.0
 country: DZ
+country_name: Algeria
+currency: DZD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 487.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 487.26
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 487.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 487.26
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average
@@ -109,10 +97,15 @@ fallbackZoneMixes:
         solar: 0.0070754161021284396
         unknown: 0.0
         wind: 0.00016600744389401443
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Algiers
 zone_name: Algeria
-country_name: Algeria
-currency: DZD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

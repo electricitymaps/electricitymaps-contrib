@@ -62,117 +62,10 @@ contributors:
   - ZachEichen
   - ananyasharma20
 country: UY
+country_name: Uruguay
+currency: UYU
 delays:
   production: 7
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 40.33000531074926
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 40.329990498175114
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 32.45120711034153
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 21.713825954613736
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 10.841665193231405
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 35.90284738190929
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 63.70047265429662
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 40.33000531074926
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 40.329990498175114
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 32.45120711034153
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 21.713825954613736
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 10.841665193231405
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 35.90284738190929
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 63.70047265429662
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 44.38
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 65.19
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 46.94
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 51.66
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 45.1
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 91.62
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 145.21
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 99.18
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 97.05
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 52.6
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 44.38
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 65.19
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 46.94
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 51.66
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 45.1
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 91.62
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 145.21
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 99.18
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 97.05
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 52.6
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -325,6 +218,8 @@ fallbackZoneMixes:
         solar: 0.03225785414410065
         unknown: 0.0002458679526720795
         wind: 0.3311423018301735
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: UY.fetch_consumption
   production: UY.fetch_production
@@ -332,5 +227,3 @@ parsers:
 region: Americas
 timezone: America/Montevideo
 zone_name: Uruguay
-country_name: Uruguay
-currency: UYU

@@ -1,5 +1,4 @@
-_comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says
-  available capacity is 2453 MW and wind capacity 567 MW
+_comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW
 bounding_box:
   - - -66.82774817599997
     - 42.92206452000019
@@ -17,61 +16,8 @@ contributors:
   - corradio
   - lav-julien
 country: CA
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 379.2571665840987
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 461.59166288217756
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 431.5915354455722
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 394.3704932143435
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 379.2571665840987
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 461.59166288217756
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 431.5915354455722
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 394.3704932143435
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 426.85
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 518.28
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 479.75
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 443.45
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 426.85
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 518.28
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 479.75
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 443.45
+country_name: Canada
+currency: CAD
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -134,8 +80,8 @@ fallbackZoneMixes:
         solar: 3.1737369723046804e-06
         unknown: 0.03514963872097663
         wind: 0.18301042620050328
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Halifax
 zone_name: Nova Scotia
-country_name: Canada
-currency: CAD

@@ -205,10 +205,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 521750.0
 country: CN
+country_name: China
+currency: CNY
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Shanghai
 zone_name: China
-country_name: China
-currency: CNY

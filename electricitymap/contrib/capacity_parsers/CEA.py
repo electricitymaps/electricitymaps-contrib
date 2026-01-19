@@ -6,7 +6,7 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 logger = getLogger(__name__)
 SOURCE = "cea.nic.in"

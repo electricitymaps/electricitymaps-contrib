@@ -1,8 +1,4 @@
-_comment:
-  'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf
-  . Oil capacity is said to run with blended biodiesel : hense the diesel capacity
-  is equal to the biomass capacity. Parsing for production is done on instantaneous
-  measurements : this is not reliable at all'
+_comment: 'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Oil capacity is said to run with blended biodiesel : hense the diesel capacity is equal to the biomass capacity. Parsing for production is done on instantaneous measurements : this is not reliable at all'
 bounding_box:
   - - 143.33716881600026
     - -40.627373955999886
@@ -23,55 +19,61 @@ capacity:
 contributors:
   - ajoga
 country: AU
+country_name: Australia
+currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 127.11476751073597
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 234.9079158157338
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 127.11476751073597
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 234.9079158157338
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 137.7
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 176.34
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 223.73
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 305.8
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 279.41
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 291.22
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 126.48
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 234.83
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 343.54
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 472.6
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 403.63
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 245.46
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 295.08
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 372.01
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 489.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 445.96
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 170.7
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 209.34
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 256.73
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 338.8
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 312.41
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 324.22
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2020 average
@@ -149,10 +151,15 @@ fallbackZoneMixes:
         solar: 0.1199307309665122
         unknown: 0.0
         wind: 0.2054531930390045
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Hobart
 zone_name: King Island
-country_name: Australia
-currency: AUD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

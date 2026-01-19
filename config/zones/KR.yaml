@@ -187,122 +187,59 @@ contributors:
   - gadakast
   - consideRatio
 country: KR
+country_name: South Korea
+currency: KRW
 delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 424.796504522417
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 424.8015973642796
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 424.79623224172053
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 424.79633219230965
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 424.7158277554034
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 424.45885876480395
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 424.9334004987764
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 424.796504522417
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 424.8015973642796
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 424.79623224172053
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 424.79633219230965
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 424.7158277554034
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 424.45885876480395
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 424.9334004987764
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 395.23
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 388.14
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 373.62
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 351.52
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 353.41
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 490.36144312742397
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 490.36674359237577
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 464.46
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 464.46
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 490.27
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 490.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 489.38
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 455.53
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 443.05
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 423.12
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 490.36144312742397
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 490.36674359237577
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 461.55
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 461.55
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 490.27
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 490.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 456.63
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 448.86
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 421.91
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 395.29
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
+        value: 419.23
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; IPCC 2014
+        value: 412.14
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; IPCC 2014
+        value: 397.62
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; IPCC 2014
+        value: 375.52
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; IPCC 2014
+        value: 377.41
     unknown:
       _comment: 'Source: 2020 annual electricity production by IEA'
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
-        wind, 2.2% biofuels, 1.0% other
+      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind, 2.2% biofuels, 1.0% other
       value: 644
 fallbackZoneMixes:
   powerOriginRatios:
@@ -456,13 +393,16 @@ fallbackZoneMixes:
         solar: 0.019400257201052595
         unknown: 0.055175449564712
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: KPX.fetch_consumption
   price: KPX.fetch_price
   production: KPX.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Asia/Seoul
 zone_name: South Korea
-country_name: South Korea
-currency: KRW

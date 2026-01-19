@@ -20,86 +20,45 @@ contributors:
   - MariusKroon
   - alixunderplatz
 country: UA
+country_name: Ukraine
+currency: UAH
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 318.09882554851464
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 297.52677918830636
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 281.4515250173106
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.922150686734
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 239.8490653738602
     hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 318.09882554851464
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 297.52677918830636
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 281.4515250173106
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.922150686734
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 239.8490653738602
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 324.68
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 307.52
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 292.17
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 281.48
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 244.99
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 240.05
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 317.95
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 297.16
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 281.26
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.66
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 239.45
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 231.03
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 231.08
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 197.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 188.55
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category
-        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
-        mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
-        issue number 1809
-      value: 28
+      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
+      value: 0.0
+  lifecycle:
+    hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 255.08
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
+        value: 221.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; IPCC 2014
+        value: 212.55
+    unknown:
+      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
+      value: 28.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -192,6 +151,8 @@ fallbackZoneMixes:
         solar: 0.0003683239452081555
         unknown: 0.06410479689732768
         wind: 0.001572880539009946
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
@@ -212,7 +173,7 @@ sources:
     link: https://github.com/electricitymaps/electricitymaps-contrib/issues/1809
   Wikipedia page for Renewable energy in Ukraine:
     link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Europe/Kiev
 zone_name: Ukraine
-country_name: Ukraine
-currency: UAH

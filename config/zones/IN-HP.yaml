@@ -16,43 +16,8 @@ contributors:
   - willbeaufoy
   - gopikrishna1793
 country: IN
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 58.41386868435291
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 58.41386868435291
-  lifecycle:
-    battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 92.67
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 87.28
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 77.49
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 73.68
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 92.67
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 87.28
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 77.49
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 73.68
+country_name: India
+currency: INR
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -115,10 +80,10 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.07545779933267016
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: IN_HP.fetch_production
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Unknown
-country_name: India
-currency: INR

@@ -63,7 +63,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -173,7 +173,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -213,7 +213,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -224,7 +224,7 @@ jobs:
         if: steps.cache.outputs.cache-hit == 'true'
         run: pnpm create-generated-files
       - name: Restore ESLint cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules/.cache/eslint/.eslintcache
           key: ${{ runner.os }}-eslint_cache-${{ github.ref_name }}-${{ github.run_id }}
@@ -270,7 +270,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -309,7 +309,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -342,7 +342,7 @@ jobs:
           node-version-file: './web/.node-version'
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ./web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -354,7 +354,7 @@ jobs:
       - name: Build Storybook
         run: pnpm run storybook:build
       - name: Upload Storybook artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: github.ref_name == 'master' || github.event_name == 'pull_request'
         with:
           name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
@@ -396,13 +396,13 @@ jobs:
         working-directory: ./web
       - name: Cache Cypress binary
         id: cache-cypress
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
       - name: Restore node_modules for web
         id: cache-web
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: web/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -424,7 +424,7 @@ jobs:
           # to run component tests we need to use "component: true"
           component: true
       - name: Upload screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: component-screenshots
@@ -448,13 +448,13 @@ jobs:
   #         node-version-file: './web/.node-version'
   #     - name: Cache Cypress binary
   #       id: cache-cypress
-  #       uses: actions/cache@v4
+  #       uses: actions/cache@v5
   #       with:
   #         path: ~/.cache/Cypress
   #         key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
   #     - name: Restore node_modules for web
   #       id: cache-web
-  #       uses: actions/cache@v4
+  #       uses: actions/cache@v5
   #       with:
   #         path: web/node_modules
   #         key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
@@ -477,7 +477,7 @@ jobs:
   #         start: pnpm run preview
   #         config: baseUrl=http://127.0.0.1:4173/
   #     - name: Upload screenshots
-  #       uses: actions/upload-artifact@v5
+  #       uses: actions/upload-artifact@v6
   #       if: failure()
   #       with:
   #         name: e2e-screenshots
@@ -495,34 +495,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install poetry
-        run: |
-          pipx install "poetry==2.*"
-      - name: Get poetry version
-        id: get-poetry-version
-        run: |
-          echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version-file: '.python-version'
-      - name: Restore cache
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
+          enable-cache: true
+          cache-suffix: 'formatting'
+          python-version: '3.10'
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          poetry install -E parsers --sync
+          uv sync --extra parsers
       - name: Check formatting
         run: |
-          poetry run ruff format . --check
+          uv run ruff format . --check
       - name: Check linting
         run: |
-          poetry run ruff check . --output-format=github
+          uv run ruff check . --output-format=github
 
   python_tests:
     name: Python / Tests
@@ -533,38 +520,28 @@ jobs:
       needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install poetry
-        run: |
-          pipx install "poetry==2.*"
-      - name: Get poetry version
-        id: get-poetry-version
-        run: |
-          echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version-file: '.python-version'
-      - name: Restore cache
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
+          enable-cache: true
+          cache-suffix: 'tests'
+          python-version: ${{ matrix.python-version }}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
-      - name: Install Poetry dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install Dependencies
         run: |
-          poetry install -E parsers --sync
+          uv sync --group dev --extra parsers
       - name: Run tests
         run: |
-          poetry run test
+          uv run test
 
   # Config checks
   validate_config_filenames:

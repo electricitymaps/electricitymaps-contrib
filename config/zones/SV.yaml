@@ -82,124 +82,17 @@ contributors:
   - nessie2013
   - consideRatio
 country: SV
+country_name: El Salvador
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 121.67441874774566
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 156.38913369536584
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 110.78413418718283
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 131.82330997925308
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 120.85037671208877
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 143.5802151778235
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 150.0451008177158
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.95694270597696
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 122.47919108267666
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 121.67441874774566
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 156.38913369536584
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 110.78413418718283
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 131.82330997925308
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 120.85037671208877
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 143.5802151778235
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 150.0451008177158
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.95694270597696
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 122.47919108267666
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
-        factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
       value: 387.6470588235294
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 166.94
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 185.84
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 254.1
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 183.1
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 185.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 198.74
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 307.37
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 303.19
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 166.94
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 185.84
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 254.1
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 183.1
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 185.88
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 198.74
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 307.37
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 303.19
     unknown:
-      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission
-        factors
+      _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
       _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
       datetime: '2022-01-01'
       source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
@@ -326,6 +219,8 @@ fallbackZoneMixes:
         solar: 0.06517101483556031
         unknown: 0.36756974032893625
         wind: 0.018960503204449836
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ESTADISTICO_UT.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
@@ -337,4 +232,3 @@ sources:
     link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
 zone_name: El Salvador
-country_name: El Salvador

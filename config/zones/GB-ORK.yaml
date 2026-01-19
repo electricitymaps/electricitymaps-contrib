@@ -10,87 +10,17 @@ contributors:
   - systemcatch
   - maxbellec
 country: GB
+country_name: Great Britain
+currency: GBP
 delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 500.43029243797986
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 461.9632215111321
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 479.9261719393477
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 460.40202785294656
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 500.43029243797986
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 461.9632215111321
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 479.9261719393477
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 460.40202785294656
+    unknown:
+      _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
+      source: assumes 95% wind, 5% solar
+      value: 0.0
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 14.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 25.8
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 84.33
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 47.46
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 86.2
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 65.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 79.98
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 61.72
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 14.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 25.8
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 84.33
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 47.46
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 86.2
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 65.59
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 79.98
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 61.72
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -98,11 +28,10 @@ emissionFactors:
     unknown:
       _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
       source: assumes 95% wind, 5% solar
-      value: 14.169
+      value: 12.7
     wind:
       datetime: '2021-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
-        outlook for 2022-2026" Wind Europe Proceedings (2021)
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
@@ -226,6 +155,8 @@ fallbackZoneMixes:
         solar: 0.018364994384586993
         unknown: 0.7528324740036654
         wind: 0.06733637529731847
+has_day_ahead_price_license: True
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
@@ -238,12 +169,7 @@ region: Europe
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
-  ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
-    for 2022-2026" Wind Europe Proceedings (2021)
-  : link:
-      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
-      https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
+  UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021):
+    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37, https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/London
 zone_name: Orkney Islands
-country_name: Great Britain
-currency: GBP

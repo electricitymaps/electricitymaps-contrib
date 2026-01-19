@@ -115,72 +115,12 @@ contributors:
   - consideRatio
   - VIKTORVAV99
 country: BD
+country_name: Bangladesh
+currency: BDT
 delays:
   production: 10
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 530.26
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 540.83
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 541.09
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 545.33
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 539.89
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 551.62
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 557.64
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 578.05
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 604.15
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 624.13
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 530.26
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 540.83
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 541.09
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 545.33
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 539.89
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 551.62
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 557.64
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 578.05
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 604.15
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 624.13
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -333,6 +273,8 @@ fallbackZoneMixes:
         solar: 0.01021179644515913
         unknown: 0.021465682698105372
         wind: 0.001123168509769495
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ERP_PGCB.fetch_consumption
   production: ERP_PGCB.fetch_production
@@ -340,5 +282,8 @@ parsers:
 region: Asia
 timezone: Asia/Dhaka
 zone_name: Bangladesh
-country_name: Bangladesh
-currency: BDT
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

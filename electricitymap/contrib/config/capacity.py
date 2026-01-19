@@ -3,7 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from electricitymap.contrib.config.reading import read_zones_config
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 

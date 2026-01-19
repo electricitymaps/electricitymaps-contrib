@@ -4,7 +4,7 @@
 This script helps to remove a zone (including the zone config and exchanges).
 
 Example usage:
-  poetry run python scripts/remove_zone.py DK-DK1
+  uv run python scripts/remove_zone.py DK-DK1
 """
 
 import argparse
@@ -21,7 +21,7 @@ from utils import (
 )
 
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 PRETTIER_CONFIG_PATH = ROOT_PATH / "web/.prettierrc.json"
 

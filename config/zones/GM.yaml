@@ -23,10 +23,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: GM
+country_name: Gambia
+currency: GMD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Banjul
 zone_name: Gambia
-country_name: Gambia
-currency: GMD

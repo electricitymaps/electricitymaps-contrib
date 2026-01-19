@@ -16,10 +16,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 0.0
 country: GL
+country_name: Greenland
+currency: DKK
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Nuuk
 zone_name: Greenland
-country_name: Greenland
-currency: DKK

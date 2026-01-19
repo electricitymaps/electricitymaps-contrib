@@ -80,117 +80,10 @@ contributors:
   - q--
   - nessie2013
 country: SG
+country_name: Singapore
+currency: SGD
 delays:
   production: 5
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 371.98987778914284
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 371.9898894350038
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 373.03522180985414
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.0285091901092
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 373.48954361826145
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 372.6487032370918
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 371.78661779372936
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 371.98987778914284
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 371.9898894350038
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 373.03522180985414
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 374.0285091901092
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 373.48954361826145
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 372.6487032370918
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 371.78661779372936
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 491.5793472248108
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 491.5793609192606
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 491.7
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 493.98
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 493.32
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 492.5
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 491.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 491.09
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 487.52
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 484.76
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 491.5793472248108
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 491.5793609192606
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 491.7
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 493.98
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 493.32
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 492.5
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 491.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 491.09
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 487.52
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 484.76
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -343,6 +236,8 @@ fallbackZoneMixes:
         solar: 0.021984125166641562
         unknown: 0.020398877413407873
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 1
@@ -356,5 +251,3 @@ parsers:
 region: Asia
 timezone: Asia/Singapore
 zone_name: Singapore
-country_name: Singapore
-currency: SGD

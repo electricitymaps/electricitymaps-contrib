@@ -108,67 +108,17 @@ contributors:
   - KabelWlan
   - amv213
 country: CH
+country_name: Switzerland
+currency: EUR
 delays:
   production: 7
-disclaimer: Data for the electricity consumption and generation mix is based on estimates
-  stemming from different data sources. As such, it may diverge from aggregated public
-  statistics of the Swiss Federal Office for Energy.
+disclaimer: Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 157.89042611073754
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 147.46538967227832
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 152.3628384775294
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 121.4082088612981
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 84.05475467588339
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 67.76562344289599
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 102.4672899407818
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 189.65554876605046
     biomass:
       datetime: '2021-01-01'
       source: EU-ETS 2021
       value: 0.0
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 157.89042611073754
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 147.46538967227832
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 152.3628384775294
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 121.4082088612981
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 84.05475467588339
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 67.76562344289599
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 102.4672899407818
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 189.65554876605046
     unknown:
       - datetime: '2017-01-01'
         source: SFOE, Electricity Maps
@@ -189,37 +139,6 @@ emissionFactors:
         source: SFOE, Electricity Maps
         value: 87
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 199.24199776578652
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 188.08129054877446
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 200.24
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 178.24
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 130.78
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.24
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 130.82
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 148.39
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 83.8
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 64.14
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -232,37 +151,6 @@ emissionFactors:
       datetime: '2014-01-01'
       source: IPCC 2014
       value: 490.0
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 199.24199776578652
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 188.08129054877446
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 200.24
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 178.24
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 130.78
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 108.24
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 90.65
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 186.18
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 71.78
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 104.94
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
@@ -442,6 +330,8 @@ fallbackZoneMixes:
         solar: 0.07650531319955396
         unknown: 0.05260567945226856
         wind: 0.04436559558550984
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   hydro discharge:
     _comment: Average share of electricity coming from low carbon sources in 2021
@@ -497,7 +387,6 @@ parsers:
   price: ENTSOE.fetch_price
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
-price_displayed: false
 region: Europe
 sources:
   INCER ACV:
@@ -508,5 +397,3 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E
 timezone: Europe/Zurich
 zone_name: Switzerland
-country_name: Switzerland
-currency: EUR

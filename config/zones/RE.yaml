@@ -5,38 +5,38 @@ bounding_box:
     - -20.421464
 capacity:
   biomass:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
-      value: 215.0
-    - datetime: '2025-04-12'
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
+      value: 115.0
+    - datetime: '2024-11-01'
       source: reunion.edf.fr
       value: 377.0
   coal:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
       value: 211.0
-    - datetime: '2025-04-12'
+    - datetime: '2025-05-01'
       source: reunion.edf.fr
       value: 0.0
   gas:
-    - datetime: '2022-10-10'
-      source: reunion.edf.fr
-      value: 80.0
+    - datetime: '2017-01-01'
+      source: oer.energies-reunion.com
+      value: 175
+    - datetime: '2020-01-01'
+      source: oer.energies-reunion.com
+      value: 150
     - datetime: '2025-04-12'
       source: reunion.edf.fr
       value: 121.0
   hydro:
-    - datetime: '2022-10-10'
+    - datetime: '2017-01-01'
       source: reunion.edf.fr
       value: 138.0
-    - datetime: '2025-04-12'
-      source: reunion.edf.fr
-      value: 139.0
   oil:
     - datetime: '2022-10-10'
       source: reunion.edf.fr
       value: 221.0
-    - datetime: '2025-04-12'
+    - datetime: '2025-05-01'
       source: reunion.edf.fr
       value: 0.0
   solar:
@@ -53,86 +53,65 @@ capacity:
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99
+  - PaulRoms
 country: RE
+country_name: 'Réunion'
+currency: EUR
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 357.60611831515007
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 425.62923233408634
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 398.8829700883609
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 424.87
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 410.42
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 333.46
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 316.62
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 70.32
     hydro discharge:
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 357.60611831515007
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 425.62923233408634
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 398.8829700883609
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 0.0
   lifecycle:
     battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 268.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 287.54
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 253.11
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 404.88
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 517.31
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 520.14
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 510.7
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 530.74
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 485.48
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 457.87
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 443.42
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 366.46
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 349.62
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 103.32
     hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 268.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 287.54
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 253.11
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 404.88
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 517.31
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 520.14
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 510.7
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 488.39
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 464.25
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; IPCC 2014
+        value: 24.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -270,11 +249,16 @@ fallbackZoneMixes:
         solar: 0.0663331354651612
         unknown: 0.0
         wind: 0.010511245973335337
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Africa
 timezone: Indian/Reunion
-zone_name: Réunion
-country_name: Réunion
-currency: EUR
+zone_name: 'Réunion'
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

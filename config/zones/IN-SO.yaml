@@ -44,6 +44,8 @@ contributors:
   - gopikrishna1793
   - unitrium
 country: IN
+country_name: India
+currency: INR
 delays:
   production: 120
 emissionFactors:
@@ -53,56 +55,6 @@ emissionFactors:
         source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
         value: 45
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 566.83
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 566.83
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 566.86
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 596.7
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 499.35
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 504.69
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 551.33
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 551.72
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 566.83
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 566.83
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 566.86
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 596.7
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 499.35
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 504.69
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 551.33
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 551.72
     unknown:
       - datetime: '2020-01-01'
         source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
@@ -229,6 +181,8 @@ fallbackZoneMixes:
         solar: 0.11570950697748413
         unknown: 0.004660179852160788
         wind: 0.07570566354166786
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 isLowCarbon:
   unknown:
     value: 0.92
@@ -242,5 +196,8 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Southern India
-country_name: India
-currency: INR
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

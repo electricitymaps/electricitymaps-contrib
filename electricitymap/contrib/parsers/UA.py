@@ -10,7 +10,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 """
 tec - same as `tes` but also working as central heater,

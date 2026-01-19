@@ -12,9 +12,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
     ProductionMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # The 'Termico' category historically only consisted of generation from oil/diesel, but this changed in 2022

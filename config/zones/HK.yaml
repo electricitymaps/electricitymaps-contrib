@@ -10,117 +10,9 @@ capacity:
 contributors:
   - nessie2013
 country: HK
-disclaimer: Real-time consumption and generation mix data is not available and is
-  fully estimated.
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 360.0
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 360.00000000000006
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 360.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 360.0
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 359.99999999999994
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 360.00000000000006
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.99999999999994
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 360.0
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 360.00000000000006
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 360.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 360.0
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 359.99999999999994
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 360.00000000000006
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.99999999999994
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 435.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 435.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 435.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 435.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 435.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 435.36
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 435.36
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 435.36
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 435.36
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 435.36
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 435.36
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 435.36
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 435.36
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 435.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 435.36
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 435.36
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 435.36
+country_name: Hong Kong
+currency: HKD
+disclaimer: Real-time consumption and generation mix data is not available and is fully estimated.
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -273,8 +165,8 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Asia
 timezone: Asia/Hong_Kong
 zone_name: Hong Kong
-country_name: Hong Kong
-currency: HKD

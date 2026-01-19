@@ -2,7 +2,8 @@ from collections.abc import Callable
 from datetime import date, datetime, timezone
 from enum import Enum
 
-from pydantic import (
+# Pydantic v1.10.17+ provides .v1 namespace for forward compatibility with v2
+from pydantic.v1 import (
     BaseModel,
     Field,
     NonNegativeFloat,
@@ -11,7 +12,7 @@ from pydantic import (
     root_validator,
     validator,
 )
-from pydantic.utils import import_string
+from pydantic.v1.utils import import_string
 
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
@@ -21,9 +22,8 @@ from electricitymap.contrib.config import (
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
 )
-from electricitymap.contrib.config.types import Point
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import Point, ZoneKey
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 
@@ -85,7 +85,7 @@ class ParsersBaseModel(StrictBaseModel):
     def get_function(self, data_type: str) -> Callable | None:
         """Lazy load parser functions.
 
-        This requires the consumer to have install all parser dependencies.
+        This requires the consumer to have installed all parser dependencies.
 
         Returns:
             Optional[Callable]: parser function
@@ -135,8 +135,9 @@ class Zone(StrictBaseModelWithAlias):
     delays: Delays | None
     disclaimer: str | None
     parsers: Parsers = Parsers()
-    price_displayed: bool | None
     generation_only: bool | None
+    has_day_ahead_price_license: bool | None
+    hide_day_ahead_price: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
     timezone: str | None
     key: ZoneKey  # This is not part of zones/{zone_key}.yaml, but added here to enable self referencing
@@ -314,8 +315,8 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
         Check that all emission factors given as list are not empty.
         """
         for v in values.values():
-            if isinstance(v, list):
-                assert len(v) > 0, "Emission factors must not be an empty list"
+            if isinstance(v, list) and len(v) == 0:
+                raise ValueError("Emission factors must not be an empty list")
         return values
 
 
@@ -451,7 +452,7 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
     direct_datetime: datetime | None
 
     @validator("dt", "lifecycle_datetime", "direct_datetime", pre=True)
-    def validate_timezone_aware(cls, v: datetime | None) -> datetime | None:
+    def validate_datetime_field(cls, v: datetime | None) -> datetime | None:
         if v is None:
             return v
 
@@ -472,6 +473,16 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
         if v != truncated_to_year:
             raise ValueError("Datetime must be truncated to year.")
         return v
+
+    @root_validator
+    def check_factor_relationship(cls, values):
+        direct_value = values["direct_value"]
+        lifecycle_value = values["lifecycle_value"]
+        if direct_value > lifecycle_value:
+            raise ValueError(
+                f"Direct factor must be <= lifecycle factor. Got {direct_value=}, {lifecycle_value=}"
+            )
+        return values
 
 
 DATA_CENTERS_CONFIG_MODEL = DataCenters(data_centers=DATA_CENTERS_CONFIG)

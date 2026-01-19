@@ -75,80 +75,20 @@ contributors:
   - alixunderplatz
   - VIKTORVAV99
 country: HN
+country_name: Honduras
 delays:
   production: 5
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 548.8046975006457
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0403075285776
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 548.8046975006457
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0403075285776
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 356.64
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.85
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 361.4
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 335.51
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 333.51
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 331.87
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 368.08
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 345.4
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 356.64
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.85
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 361.4
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 335.51
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 333.51
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 331.87
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 368.08
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 345.4
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass,
-        7.8% wind, 2.8% geothermal
-      value: 340
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
+      value: 192.444
+  lifecycle:
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2019; assumes 47.4% oil, 23.1% hydro, 10.6% solar, 8.3% biomass, 7.8% wind, 2.8% geothermal
+      value: 339.42599999999993
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -271,10 +211,16 @@ fallbackZoneMixes:
         solar: 0.08937585918740454
         unknown: 0.0017265823617785528
         wind: 0.06533864088864909
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: HN.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 timezone: America/Tegucigalpa
 zone_name: Honduras
-country_name: Honduras
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

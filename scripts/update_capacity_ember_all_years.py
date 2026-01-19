@@ -8,10 +8,10 @@ years from EMBER in one go, rather than year-by-year.
 
 Usage:
     # Update a single zone with all years:
-    poetry run python scripts/update_capacity_ember_all_years.py FR
+    uv run python scripts/update_capacity_ember_all_years.py FR
 
     # Update all EMBER zones with all years (many API calls!):
-    poetry run python scripts/update_capacity_ember_all_years.py --all
+    uv run python scripts/update_capacity_ember_all_years.py --all
 """
 
 import argparse
@@ -26,7 +26,7 @@ from electricitymap.contrib.capacity_parsers.EMBER import (
     fetch_production_capacity_all_years,
 )
 from electricitymap.contrib.config import CONFIG_DIR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 from scripts.update_capacity_configuration import sort_config_keys
 
 logger = logging.getLogger(__name__)

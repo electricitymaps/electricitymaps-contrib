@@ -9,7 +9,7 @@
         }),
         'battery discharge': dict({
           'source': 'IPCC 2014',
-          'value': 34.26,
+          'value': 50.04,
         }),
         'biomass': dict({
           'source': 'IPCC 2014',
@@ -17,11 +17,11 @@
         }),
         'coal': dict({
           'source': 'IPCC 2014',
-          'value': 983.04,
+          'value': 888.47,
         }),
         'gas': dict({
           'source': 'IPCC 2014',
-          'value': 511.79,
+          'value': 483.32,
         }),
         'geothermal': dict({
           'source': 'IPCC 2014',
@@ -37,7 +37,7 @@
         }),
         'hydro discharge': dict({
           'source': 'IPCC 2014',
-          'value': 26.53,
+          'value': 22.3,
         }),
         'nuclear': dict({
           'source': 'IPCC 2014',
@@ -45,7 +45,7 @@
         }),
         'oil': dict({
           'source': 'IPCC 2014',
-          'value': 901.06,
+          'value': 1093.33,
         }),
         'solar': dict({
           'source': 'IPCC 2014',
@@ -75,7 +75,7 @@
         }),
         'battery discharge': dict({
           'source': 'IPCC 2014',
-          'value': 423.12,
+          'value': 391.33,
         }),
         'biomass': dict({
           'source': 'IPCC 2014',
@@ -103,7 +103,7 @@
         }),
         'hydro discharge': dict({
           'source': 'IPCC 2014',
-          'value': 395.29,
+          'value': 377.41,
         }),
         'nuclear': dict({
           'source': 'IPCC 2014',

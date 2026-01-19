@@ -13,7 +13,7 @@ from requests import Session
 
 from electricitymap.contrib.lib.models.event_lists import TotalConsumptionList
 from electricitymap.contrib.lib.models.events import EventSourceType
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "aemo.com.au"
 

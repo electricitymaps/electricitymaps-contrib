@@ -10,9 +10,8 @@ from requests import Session
 from electricitymap.contrib.config import CONFIG_DIR, ZONE_PARENT
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
 from electricitymap.contrib.config.reading import read_zones_config
-from electricitymap.contrib.lib.data_types import ParserDataType
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
+from electricitymap.contrib.types import ParserDataType, ZoneKey
 from scripts.utils import write_zone_config
 
 logger = logging.getLogger(__name__)

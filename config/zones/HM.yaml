@@ -1,6 +1,8 @@
 country: HM
+country_name: Heard Island and McDonald Islands
+currency: AUD
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Oceania
 timezone: Asia/Karachi
 zone_name: Heard Island and McDonald Islands
-country_name: Heard Island and McDonald Islands
-currency: AUD

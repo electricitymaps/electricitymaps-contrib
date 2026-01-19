@@ -43,40 +43,10 @@ contributors:
   - nessie2013
   - florianscheidl
 country: OM
+country_name: Oman
+currency: OMR
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 586.41
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 471.25
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 45.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 45.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 468.07
-    hydro discharge:
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 586.41
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 471.25
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 45.0
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 45.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 468.07
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -154,6 +124,8 @@ fallbackZoneMixes:
         solar: 0.05847499902621566
         unknown: 0.004048538876343689
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GCCIA.fetch_consumption
 region: Asia
@@ -162,5 +134,3 @@ sources:
     link: https://www.global-climatescope.org/markets/om/
 timezone: Asia/Muscat
 zone_name: Oman
-country_name: Oman
-currency: OMR

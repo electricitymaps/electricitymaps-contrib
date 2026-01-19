@@ -40,10 +40,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 540.0
 country: PG
+country_name: Papua New Guinea
+currency: PGK
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
 timezone: Pacific/Port_Moresby
 zone_name: Papua New Guinea
-country_name: Papua New Guinea
-currency: PGK

@@ -26,7 +26,7 @@ from operator import attrgetter, itemgetter
 from re import fullmatch
 from typing import Any, NamedTuple
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -57,6 +57,11 @@ ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 DEFAULT_LOOKBACK_HOURS_REALTIME = 72
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
 DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+
+# SoupStrainer instances for efficient XML parsing
+# Only parse the elements we care about in each context
+STRAINER_TIMESERIES = SoupStrainer("timeseries")
+STRAINER_TEXT = SoupStrainer("text")
 
 
 # TODO: Switch this to a string enum when we migrate to Python 3.11
@@ -301,7 +306,7 @@ def query_ENTSOE(
     # If we get here, the request failed to fetch valid data
     # and we will check the response for an error message
     exception_message = None
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.text, "html.parser", parse_only=STRAINER_TEXT)
     text = soup.find_all("text")
     if len(text):
         error_text = soup.find_all("text")[0].prettify()
@@ -539,7 +544,7 @@ def parse_scalar(
 ) -> Generator[tuple[datetime, datetime, float], None, None]:
     if not xml_text:
         return None
-    soup = BeautifulSoup(xml_text, "html.parser")
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     # Get all points
     for timeseries in soup.find_all("timeseries"):
         if (
@@ -563,7 +568,7 @@ def parse_production(
     source_type = EventSourceType.forecasted if forecasted else EventSourceType.measured
     if not xml:
         return production_breakdowns
-    soup = BeautifulSoup(xml, "html.parser")
+    soup = BeautifulSoup(xml, "html.parser", parse_only=STRAINER_TIMESERIES)
     list_of_raw_data = _get_raw_production_events(soup)
 
     grouped_data = _group_production_data_by_datetime(list_of_raw_data)
@@ -889,7 +894,7 @@ def parse_exchange_forecast(
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
 
-    soup = BeautifulSoup(xml_text, "html.parser")
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     # Get all points
     for timeseries in soup.find_all("timeseries"):
         marketAgreementType = timeseries.find("contract_marketagreement.type").contents[
@@ -923,7 +928,7 @@ def parse_prices(
 ) -> PriceList:
     if not xml_text:
         return PriceList(logger)
-    soup = BeautifulSoup(xml_text, "html.parser")
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
     prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])

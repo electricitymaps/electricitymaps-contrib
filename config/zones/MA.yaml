@@ -71,22 +71,10 @@ capacity:
 contributors:
   - veqtrus
 country: MA
+country_name: Morocco
+currency: MAD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 627.78
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 619.71
-    hydro discharge:
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 627.78
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 619.71
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2023 average
@@ -119,10 +107,15 @@ fallbackZoneMixes:
         solar: 0.04602936580239592
         unknown: 0.028736370118761283
         wind: 0.13163639894593068
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
 timezone: Africa/Casablanca
 zone_name: Morocco
-country_name: Morocco
-currency: MAD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

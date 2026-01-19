@@ -67,101 +67,14 @@ contributors:
   - kruschk
   - amv213
 country: GT
+country_name: Guatemala
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 97.84508384924474
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 293.6952019257576
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.6187929820843
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 124.29277033293447
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 5.539504998391972
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 340.6398752234597
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.6478450016261
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 97.84508384924474
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 293.6952019257576
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.6187929820843
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 124.29277033293447
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 5.539504998391972
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 340.6398752234597
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 269.6478450016261
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020
       value: 383.240577
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 181.43
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 330.24
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 411.55
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 312.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 172.63
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 303.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 372.95
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 181.43
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 330.24
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 411.55
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 312.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 172.63
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 303.0
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 372.95
     unknown:
       _url: https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352
       source: Guatemala AMM 2021-2022; IEA 2020
@@ -273,6 +186,8 @@ fallbackZoneMixes:
         solar: 0.01427310682024955
         unknown: 0.11712930277035961
         wind: 0.02062521914028993
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: GT.fetch_consumption
   production: GT.fetch_production
@@ -283,4 +198,3 @@ sources:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
 zone_name: Guatemala
-country_name: Guatemala

@@ -52,106 +52,12 @@ delays:
   production: 34
   productionPerModeForecast: 24
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 387.48378871356397
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 582.2965475778122
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.8897208092229
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 549.1338242267566
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 521.2103755110035
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 436.88863664218235
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 387.48378871356397
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 582.2965475778122
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 355.8897208092229
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 549.1338242267566
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 521.2103755110035
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 436.88863664218235
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 518.9
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 593.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 519.58
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 571.35
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 537.29
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 492.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.57
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 512.41
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 484.27
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 518.9
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 593.33
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 519.58
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 571.35
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 537.29
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 492.55
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.57
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 512.41
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 484.27
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -293,6 +199,8 @@ fallbackZoneMixes:
         solar: 0.05043191890490814
         unknown: 0.0005426887479083481
         wind: 0.06473512851109808
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

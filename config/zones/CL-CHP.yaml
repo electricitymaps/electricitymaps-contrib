@@ -9,8 +9,10 @@ capacity:
 contributors:
   - autipial
 country: CL
+country_name: Chile
+currency: CLP
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: Pacific/Easter
 zone_name: Easter Island
-country_name: Chile
-currency: CLP

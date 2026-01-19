@@ -1,6 +1,4 @@
-_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
-  Parsing for production is done on instantaneous measurements : this is not reliable
-  at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
 bounding_box:
   - - 147.25766035200024
     - -40.770603122999844
@@ -22,43 +20,61 @@ contributors:
   - chuqtas
   - ajoga
 country: AU
+country_name: Australia
+currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 222.3430624603678
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 222.3430624603678
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 151.28
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 143.31
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 173.89
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 166.43
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 159.41
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 188.56
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 222.34
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 258.91
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 236.25
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 268.51
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 213.78
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 276.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 259.82
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 261.38
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 184.28
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 176.31
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 206.89
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 199.43
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 192.41
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 221.56
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -121,10 +137,15 @@ fallbackZoneMixes:
         solar: 0.01938750199323187
         unknown: 0.0
         wind: 0.5865180749218949
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Hobart
 zone_name: Flinders Island
-country_name: Australia
-currency: AUD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

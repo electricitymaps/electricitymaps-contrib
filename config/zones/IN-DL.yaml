@@ -16,79 +16,8 @@ contributors:
   - hectorespert
   - gopikrishna1793
 country: IN
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 417.8013242204519
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 308.31833940158805
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 350.4694693854433
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 349.592753006823
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 417.8013242204519
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 308.31833940158805
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 350.4694693854433
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 349.592753006823
-  lifecycle:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 533.5
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 457.62
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 476.28
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.66
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 472.41
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 459.32
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 455.18
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 533.5
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 457.62
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 476.28
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.66
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 472.41
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 459.32
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 455.18
+country_name: India
+currency: INR
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2018 average
@@ -196,11 +125,11 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: IN_DL.fetch_consumption
   production: IN_DL.fetch_production
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Unknown
-country_name: India
-currency: INR

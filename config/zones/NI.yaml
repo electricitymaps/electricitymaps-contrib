@@ -41,117 +41,9 @@ contributors:
   - systemcatch
   - jarek
 country: NI
+country_name: Nicaragua
 delays:
   production: 5
-emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 133.60318251196244
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 133.6033068419958
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 90.03806543908651
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 158.9890022239297
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 192.14510243817938
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 124.93147165387435
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 106.99853443123709
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 133.60318251196244
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 133.6033068419958
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 90.03806543908651
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 158.9890022239297
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 192.14510243817938
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 124.93147165387435
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 106.99853443123709
-  lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 262.20556009458386
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 262.20576269306457
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 167.83
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 284.69
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 322.22
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 208.65
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 202.57
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 248.73
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 331.86
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 311.6
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 262.20556009458386
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 262.20576269306457
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 167.83
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 284.69
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 322.22
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 208.65
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 202.57
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 248.73
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 331.86
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 311.6
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -304,6 +196,8 @@ fallbackZoneMixes:
         solar: 0.011695191572445699
         unknown: 4.012659652412689e-05
         wind: 0.11489319131069319
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   price: NI.fetch_price
   production: NI.fetch_production
@@ -311,4 +205,3 @@ parsers:
 region: Americas
 timezone: America/Managua
 zone_name: Nicaragua
-country_name: Nicaragua

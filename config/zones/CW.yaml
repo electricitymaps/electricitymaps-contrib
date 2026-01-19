@@ -31,8 +31,10 @@ capacity:
 contributors:
   - VIKTORVAV99
 country: CW
+country_name: Curaçao
+currency: ANG
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Americas
 timezone: America/Curacao
 zone_name: Curaçao
-country_name: Curaçao
-currency: ANG

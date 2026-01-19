@@ -1,5 +1,4 @@
-_comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273
-  CHP
+_comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP
 bounding_box:
   - - 23.1994938494
     - 51.3195034857
@@ -90,6 +89,8 @@ capacity:
 contributors:
   - admetny
 country: BY
+country_name: Belarus
+currency: BYN
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
   powerOriginRatios:
@@ -97,6 +98,8 @@ fallbackZoneMixes:
       gas: 0.98
       hydro: 0.01
       unknown: 0.01
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -108,5 +111,3 @@ parsers:
 region: Europe
 timezone: Europe/Minsk
 zone_name: Belarus
-country_name: Belarus
-currency: BYN

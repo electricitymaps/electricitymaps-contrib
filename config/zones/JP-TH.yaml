@@ -22,63 +22,12 @@ contributors:
   - mathilde-daugy
   - alejandranavcas
 country: JP
+country_name: Japan
+currency: JPY
 delays:
   production: 5
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 499.43
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 494.4
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 491.25
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 514.98
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 483.67
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 484.43
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 481.02
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 480.58
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 505.81
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 496.27
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 491.42
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 514.98
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 483.67
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 484.43
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 481.02
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 480.58
-    unknown:
-      source: Enerdata 2022 Japanese National Average
-      value: 462
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -201,16 +150,18 @@ fallbackZoneMixes:
         solar: 0.09302782105896609
         unknown: 0.02001169518819592
         wind: 0.028810073378378175
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
+  generationForecast: JP.fetch_generation_forecast
   price: JP.fetch_price
   production: JP.fetch_production
-  generationForecast: JP.fetch_generation_forecast
 region: Asia
 sources:
-  Enerdata 2022 Japanese National Average:
-    link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Tokyo
-zone_name: Tōhoku
-country_name: Japan
-currency: JPY
+zone_name: 'Tōhoku'

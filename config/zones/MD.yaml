@@ -72,87 +72,13 @@ contributors:
   - Impelon
   - amv213
 country: MD
+country_name: Moldova
+currency: MDL
 delays:
   production: 12
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.90049446668127
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 487.32937650197124
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 506.9966032016196
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 424.6352528711844
-    hydro discharge:
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.90049446668127
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 487.32937650197124
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 506.9966032016196
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 424.6352528711844
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 593.56
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 578.81
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 595.73
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 625.01
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 532.77
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 439.23
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 441.09
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 419.41
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 593.56
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 578.81
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 595.73
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 625.01
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 532.77
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 439.23
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 441.09
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 419.41
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -279,6 +205,8 @@ fallbackZoneMixes:
         solar: 0.012678326413849667
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -292,5 +220,3 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Chisinau
 zone_name: Moldova
-country_name: Moldova
-currency: MDL

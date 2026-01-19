@@ -15,7 +15,9 @@ capacity:
 contributors:
   - madsnedergaard
 country: NZ
+country_name: New Zealand
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 region: Oceania
 timezone: Pacific/Auckland
 zone_name: Stewart Island
-country_name: New Zealand

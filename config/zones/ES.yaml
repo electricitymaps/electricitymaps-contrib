@@ -8,71 +8,218 @@ bounding_box:
     - 43.6758180933
 capacity:
   biomass:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 1009.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 1007.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 1010.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 1210.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 1225.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 1219.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 1226.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 1230.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 1222.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 1231.0
   coal:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 9562.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 9215.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 5144.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 3523.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 3223.0
-    - datetime: '2024-09-01'
+    - datetime: '2024-01-01'
       source: ree.es
       value: 1820.0
   gas:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 30949.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 30788.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 30330.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 30222.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 30202.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 30154.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 30160.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 30140.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 30152.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 30132.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30088.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 30076.0
   hydro:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 17048.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 17056.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 17063.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 17097.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 17092.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 17093.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 17092.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 17096.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 17097.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 17095.0
   hydro storage:
     - datetime: '2022-12-01'
       source: ree.es
       value: 3331.0
   nuclear:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 7573.0
+    - datetime: '2018-01-01'
       source: ree.es
       value: 7117.0
   solar:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 6746.0
+    - datetime: '2018-01-01'
+      source: ree.es
+      value: 6748.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 6887.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 10952.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 13887.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 17758.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 21815.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 22317.0
     - datetime: '2023-12-01'
       source: ree.es
       value: 26866.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 28155.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30070.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 34807.0
   unknown:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 410.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 404.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 394.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 407.0
     - datetime: '2022-12-01'
       source: ree.es
       value: 387.0
   wind:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
-      value: 29556.0
-    - datetime: '2023-12-01'
+      value: 22818.0
+    - datetime: '2018-01-01'
       source: ree.es
-      value: 30100.0
+      value: 22856.0
+    - datetime: '2019-01-01'
+      source: ree.es
+      value: 23050.0
+    - datetime: '2020-01-01'
+      source: ree.es
+      value: 25299.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 27222.0
+    - datetime: '2022-01-01'
+      source: ree.es
+      value: 28147.0
+    - datetime: '2023-01-01'
+      source: ree.es
+      value: 29597.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 30202.0
     - datetime: '2024-09-01'
       source: ree.es
       value: 30848.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 31558.0
 contributors:
   - brandongalbraith
   - corradio
@@ -82,32 +229,17 @@ contributors:
   - gadakast
   - silimotion
 country: ES
+country_name: Spain
+currency: EUR
 delays:
   production: 6
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 229.30897353813688
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 214.83170374364258
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 268.92210819495494
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 208.46210544431017
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 183.25464973718874
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 160.131608744309
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 140.2415453661764
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 105.43
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -121,7 +253,10 @@ emissionFactors:
         value: 1156.28
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 1221.36
+        value: 1323.69
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 1474.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -131,29 +266,35 @@ emissionFactors:
         value: 426.61
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 399.79
+        value: 391.0
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 411.76
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 229.30897353813688
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 214.83170374364258
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 268.92210819495494
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 208.46210544431017
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 183.25464973718874
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 160.131608744309
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 140.2415453661764
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 130.36
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 118.86
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 164.11
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 88.93
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 65.94
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 66.56
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -163,39 +304,16 @@ emissionFactors:
         value: 925.95
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 641.08
+        value: 791.59
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 857.84
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 326.71
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 279.45
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 317.77
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 276.01
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 232.9
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 181.13
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 174.36
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 220.63
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 153.86
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 124.9
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 138.43
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -211,7 +329,10 @@ emissionFactors:
         value: 1235.586989
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1281.36
+        value: 1383.69
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1534.31
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -221,42 +342,39 @@ emissionFactors:
         value: 546.61
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 519.79
+        value: 511.0
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 531.76
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 271.55
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 206.49
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 258.88
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 200.08
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 177.95
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 151.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 133.84
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 183.82
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 106.23
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 84.71
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; UNECE 2022
+        value: 141.06
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; UNECE 2022
+        value: 129.56
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; UNECE 2022
+        value: 174.81
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; UNECE 2022
+        value: 99.63
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; UNECE 2022
+        value: 76.64
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; UNECE 2022
+        value: 77.26
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -270,7 +388,10 @@ emissionFactors:
         value: 1169.95
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 885.08
+        value: 1035.59
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1101.84
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -432,23 +553,28 @@ fallbackZoneMixes:
         solar: 0.17259103779609025
         unknown: 0.0033878554452865988
         wind: 0.231907080406899
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: ENTSOE.fetch_price
-  # priceIntraday: ENTSOE.fetch_price_intraday # DO NOT USE, THIS IS FOR FUTURE USE CASES
   production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
 sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  EU-ETS, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
@@ -462,5 +588,3 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Madrid
 zone_name: Spain
-country_name: Spain
-currency: EUR

@@ -30,10 +30,12 @@ capacity:
       source: Ember, Yearly electricity data
       value: 10.0
 country: BN
+country_name: Brunei
+currency: BND
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Asia
 timezone: Asia/Brunei
 zone_name: Brunei
-country_name: Brunei
-currency: BND

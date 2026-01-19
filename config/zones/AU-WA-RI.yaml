@@ -1,6 +1,4 @@
-_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
-  Parsing for production is done on instantaneous measurements : this is not reliable
-  at all'
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all'
 bounding_box:
   - - 114.94014224400007
     - -32.52536222099991
@@ -21,37 +19,61 @@ capacity:
 contributors:
   - ajoga
 country: AU
+country_name: Australia
+currency: AUD
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 292.8252892705995
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 292.8252892705995
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 311.06
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 310.93
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 310.92
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 304.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 322.11
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 305.26
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.16042054489543
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 494.21
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 519.99
-    hydro discharge:
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 475.16042054489543
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 494.21
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 519.99
+      - _comment: used non-null storage values
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
+        value: 344.06
+      - _comment: used non-null storage values
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 343.93
+      - _comment: used non-null storage values
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 343.92
+      - _comment: used non-null storage values
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 337.5
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 355.11
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 338.26
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2021 average
@@ -99,10 +121,15 @@ fallbackZoneMixes:
         solar: 0.06026681890829423
         unknown: 0.0
         wind: 0.1463649654920588
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   production: ajenti.fetch_production
 region: Oceania
 timezone: Australia/Perth
 zone_name: Rottnest Island
-country_name: Australia
-currency: AUD
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

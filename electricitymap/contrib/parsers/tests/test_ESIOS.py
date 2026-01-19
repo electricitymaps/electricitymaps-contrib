@@ -4,8 +4,8 @@ from importlib import resources
 
 from requests_mock import ANY
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ESIOS
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_fetch_exchange(adapter, session):

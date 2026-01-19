@@ -1,13 +1,9 @@
-_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically
-  viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769
-  says battery will be tendered summer 2018 so below battery storage will need to
-  be updated when built.
+_comment: https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.
 bounding_box:
   - - 25.16325931100002
     - 35.319778545000034
   - - 45.30699282900011
     - 42.598781643000095
-price_displayed: false
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -162,117 +158,13 @@ contributors:
   - nessie2013
   - lgrigoryeva1
 country: TR
+country_name: Turkey
+currency: TRY
 delays:
   production: 8
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 372.0656219377529
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 374.19699135461235
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 384.90056773015544
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 407.52676444949384
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 367.8352525743728
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 365.12428978759016
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 363.1179635399138
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 372.0656219377529
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 374.19699135461235
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 384.90056773015544
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 407.52676444949384
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 367.8352525743728
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 365.12428978759016
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 363.1179635399138
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 441.48
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 452.72
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 468.64
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 476.35
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 425.89
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 427.01
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 448.27
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 430.87
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 437.49
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 425.01
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 441.48
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 452.72
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 468.64
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 476.35
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 425.89
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 427.01
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 448.27
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 430.87
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 437.49
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 425.01
     solar:
       datetime: '2021-01-01'
       source: INCER ACV
@@ -429,6 +321,8 @@ fallbackZoneMixes:
         solar: 0.016206573078968178
         unknown: 0.0023705547277017153
         wind: 0.11272769958002037
+has_day_ahead_price_license: False
+hide_day_ahead_price: False
 parsers:
   consumption: TR.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -437,11 +331,10 @@ parsers:
   production: TR.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+
 region: Asia
 sources:
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
 timezone: Europe/Istanbul
 zone_name: Turkey
-country_name: Turkey
-currency: TRY
