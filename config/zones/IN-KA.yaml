@@ -193,3 +193,13 @@ sources:
     link: http://srldc.org/2018-19srallocation.aspx
 timezone: Asia/Kolkata
 zone_name: Unknown
+isRenewable:
+  unknown:
+    _comment: assumes 20% nuclear (12), 80% coal (820)
+    source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC 2018-2019 derived calculation for Karnataka
+    value: 0
+isLowCarbon:
+  unknown:
+    _comment: assumes 20% nuclear (12), 80% coal (820)
+    source: Souther Regional Load Dispatch Center Allocation Limits 2018-2019; SRLDC 2018-2019 derived calculation for Karnataka
+    value: 0.2
