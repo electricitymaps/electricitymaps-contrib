@@ -64,6 +64,18 @@ pnpm preview-ios
 
 ---
 
+## Updating assets and icons
+
+To update the assets and icons, you can use the following commands:
+
+```bash
+# Update logo.png and logo-dark.png in /assets
+
+npx capacitor-assets generate --ios --android
+```
+
+---
+
 ## Publishing new mobile app versions
 
 We use [fastlane](https://fastlane.tools/) to build and deploy the apps automatically.

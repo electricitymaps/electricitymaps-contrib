@@ -46,7 +46,7 @@ The zone configurations hold information such as the installed capacity, which p
 
 To get started with editing the parsers use the following steps:
 
-1. Run `uv sync --group parsers` to install all needed dependencies.
+1. Run `uv sync --extra parsers` to install all needed dependencies.
 2. Use `uv run test_parser ZONE_KEY` to test any parser changes.
 
 Note: This requires you to have [Python 3.10][python homepage] and [uv][uv homepage] installed, you can see their respective installation guides here:

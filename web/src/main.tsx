@@ -54,10 +54,6 @@ if (isProduction) {
       return scope;
     },
     beforeSend(event) {
-      // Ignore all plausible-related errors
-      if (JSON.stringify(event).toLowerCase().includes('plausible')) {
-        return null;
-      }
       return event;
     },
   });
