@@ -2,11 +2,11 @@
   <a href="https://app.electricitymaps.com">
     <picture>
       <source
-        srcset="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricity-maps-logo-dark.svg"
+        srcset="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/.github/images/electricity-maps-logo-dark.svg"
         media="(prefers-color-scheme: dark)"/>
       <img
         alt="Electricity Maps"
-        src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/web/public/images/electricity-maps-logo.svg"
+        src="https://raw.githubusercontent.com/electricitymaps/electricitymaps-contrib/master/.github/images/electricity-maps-logo.svg"
         width="100"/>
     </picture>
   </a>
@@ -27,8 +27,8 @@ A real time and historical visualisation of the electricity grids around the wor
     <img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib" alt="Electricity Maps is released under the GNU-AGPLv3 license." /></a>
   p>
 
-![image](web/public/images/electricitymap_social_image.png#gh-light-mode-only)
-![image](web/public/images/electricitymap_social_image_dark.png#gh-dark-mode-only)
+![image](.github/images/electricity-maps-banner.png#gh-light-mode-only)
+![image](.github/images/electricity-maps-banner-dark.png#gh-dark-mode-only)
 
 ## Introduction
 
