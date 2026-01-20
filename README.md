@@ -16,7 +16,7 @@
 </h1>
 
 <p align="center">
-A real time and historical visualisation of the electricity grids around the world.<br>
+A real time and historical visualisation of electricity data and prices around the world.<br>
   <strong><a href="https://app.electricitymaps.com">app.electricitymaps.com »</a></strong>
 </p>
 
