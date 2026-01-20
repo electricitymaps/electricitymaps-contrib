@@ -183,11 +183,13 @@ fallbackZoneMixes:
         wind: 0.0041693000739283495
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-isLowCarbon:
-  unknown:
-    value: 0.92
 isRenewable:
   unknown:
+    source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+    value: 0.92
+isLowCarbon:
+  unknown:
+    source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
     value: 0.92
 parsers:
   consumption: IN_WE.fetch_consumption

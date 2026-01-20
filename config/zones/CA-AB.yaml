@@ -34,6 +34,9 @@ emissionFactors:
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
         value: 283.86
+    unknown:
+      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
+      value: 565
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -194,3 +197,11 @@ sources:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: America/Edmonton
 zone_name: Alberta
+isRenewable:
+  unknown:
+    source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
+    value: 0
+isLowCarbon:
+  unknown:
+    source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
+    value: 0

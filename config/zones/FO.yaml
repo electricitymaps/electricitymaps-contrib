@@ -240,3 +240,13 @@ subZoneNames:
   - FO-SI
 timezone: Atlantic/Faroe
 zone_name: Faroe Islands
+isRenewable:
+  unknown:
+    comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
+    source: IPCC 2014
+    value: 1
+isLowCarbon:
+  unknown:
+    comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
+    source: IPCC 2014
+    value: 1
