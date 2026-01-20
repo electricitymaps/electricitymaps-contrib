@@ -83,7 +83,7 @@ CO<sub>2</sub> intensity on the other hand only describes where is the best plac
 **CO<sub>2</sub> emission factors look high — what do they cover exactly?**
 The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions and decommissioning). Read more on the [Emissions Factor Wiki page](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Emission-factors).
 
-**How can I get access to the live API?**
+**How can I get access to the API?**
 All this and more can be found **[here](https://electricitymaps.com/)**.
 You can also visit our **[data portal](https://www.electricitymaps.com/data-portal)** to download historical datasets.
 
