@@ -159,3 +159,9 @@ sources:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: Europe-Ural
+isLowCarbon:
+  unknown:
+    value: 0
+isRenewable:
+  unknown:
+    value: 0

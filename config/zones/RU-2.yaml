@@ -14,7 +14,11 @@ country: RU
 country_name: Russia
 currency: RUB
 emissionFactors:
-  direct: {}
+  direct:
+    unknown:
+      _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 760 g/kWh (coal) + 0.3% * 406 g/kWh (oil) + 9.1% * 370 g/kWh (gas) + 4.7% * 575 g/kWh (other)= 715.5 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone'
+      source: assumes 86% coal, 9% gas, <1% oil, 5% other
+      value: 715.5
   lifecycle:
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1% * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone'
@@ -137,3 +141,9 @@ sources:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: Siberia
+isLowCarbon:
+  unknown:
+    value: 0
+isRenewable:
+  unknown:
+    value: 0
