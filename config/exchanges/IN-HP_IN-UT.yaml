@@ -1,6 +1,0 @@
-lonlat:
-  - 77.963512
-  - 31.082961
-parsers:
-  exchange: IN_UT.fetch_exchange
-rotation: 135
