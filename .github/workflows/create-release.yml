@@ -22,7 +22,7 @@ on:
           - dev
 jobs:
   create-release:
-    runs-on: ubuntu-latest
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     timeout-minutes: 10
     # Add "id-token" with the intended permissions.
     permissions:

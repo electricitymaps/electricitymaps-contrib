@@ -10,7 +10,7 @@ on:
 
 jobs:
   pr_agent_job:
-    runs-on: ubuntu-24.04
+    runs-on: carbonrunner-2vcpu-ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
