@@ -191,3 +191,11 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1
+isLowCarbon:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1

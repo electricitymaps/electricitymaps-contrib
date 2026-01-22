@@ -304,3 +304,9 @@ subZoneNames:
   - RU-KGD
 timezone: Europe/Moscow
 zone_name: Russia
+isLowCarbon:
+  unknown:
+    value: 0
+isRenewable:
+  unknown:
+    value: 0

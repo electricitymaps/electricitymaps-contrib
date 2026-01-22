@@ -249,3 +249,11 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026
+isLowCarbon:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026
