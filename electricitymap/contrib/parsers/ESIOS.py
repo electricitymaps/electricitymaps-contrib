@@ -2,9 +2,11 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from time import sleep
 from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 
+import requests
 from requests import Response, Session
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -94,29 +96,54 @@ def fetch_exchange(
     url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
     if is_new_session:
+        # Configure retry strategy for HTTP status code errors
         retry_strategy = Retry(
-            total=3,  # Total number of retries
-            backoff_factor=2,  # Exponential backoff: 0s, 2s, 4s delays
+            total=3,
+            backoff_factor=2,
             status_forcelist=[
-                429,  # Too Many Requests
-                500,  # Internal Server Error
-                502,  # Bad Gateway
-                503,  # Service Unavailable
-                504,  # Gateway Timeout
+                429,
+                500,
+                502,
+                503,
+                504,
             ],
             allowed_methods=["GET"],
-            # Retry on connection errors (including ConnectTimeoutError)
-            connect=3,
-            read=3,
         )
         adapter = HTTPAdapter(max_retries=retry_strategy)
         ses.mount("https://", adapter)
         ses.mount("http://", adapter)
 
-    # Add timeout to prevent indefinite hangs (30 seconds for connect, 30 seconds for read)
-    response: Response = ses.get(url, headers=headers, timeout=(30, 30))
-    if response.status_code != 200 or not response.text:
-        raise ParserException("ESIOS", f"Response code: {response.status_code}")
+    # Manual retry loop with exponential backoff for connection/timeout errors
+    # This gives us better control over retry behavior for network issue
+    max_retries = 5
+    for attempt in range(max_retries):
+        try:
+            response: Response = ses.get(url, headers=headers, timeout=(30, 30))
+            if response.status_code != 200 or not response.text:
+                raise ParserException("ESIOS", f"Response code: {response.status_code}")
+            break
+        except (
+            requests.exceptions.ConnectTimeout,
+            requests.exceptions.ConnectionError,
+            requests.exceptions.Timeout,
+        ) as e:
+            if attempt < max_retries - 1:
+                wait_time = 2**attempt
+                logger.warning(
+                    f"Connection error fetching ESIOS data (attempt {attempt + 1}/{max_retries}): {e}. "
+                    f"Retrying in {wait_time}s..."
+                )
+                sleep(wait_time)
+            else:
+                logger.error(
+                    f"Failed to fetch ESIOS data after {max_retries} attempts: {e}"
+                )
+                raise ParserException(
+                    "ESIOS",
+                    f"Connection failed after {max_retries} retries: {e}",
+                ) from e
+        except requests.exceptions.RequestException as e:
+            raise ParserException("ESIOS", f"Request failed: {e}") from e
 
     json = response.json()
     values = json["indicator"]["values"]
