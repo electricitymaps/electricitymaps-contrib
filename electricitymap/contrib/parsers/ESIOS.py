@@ -6,6 +6,8 @@ from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 
 from requests import Response, Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from electricitymap.contrib.types import ZoneKey
@@ -69,7 +71,11 @@ def fetch_exchange(
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 
+    # Only create a new session if one wasn't provided
+    # This allows tests to pass in a session with mock adapters
     ses = session or Session()
+    is_new_session = session is None
+
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     # Request headers
@@ -87,7 +93,28 @@ def fetch_exchange(
         )
     url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
-    response: Response = ses.get(url, headers=headers)
+    if is_new_session:
+        retry_strategy = Retry(
+            total=3,  # Total number of retries
+            backoff_factor=2,  # Exponential backoff: 0s, 2s, 4s delays
+            status_forcelist=[
+                429,  # Too Many Requests
+                500,  # Internal Server Error
+                502,  # Bad Gateway
+                503,  # Service Unavailable
+                504,  # Gateway Timeout
+            ],
+            allowed_methods=["GET"],
+            # Retry on connection errors (including ConnectTimeoutError)
+            connect=3,
+            read=3,
+        )
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        ses.mount("https://", adapter)
+        ses.mount("http://", adapter)
+
+    # Add timeout to prevent indefinite hangs (30 seconds for connect, 30 seconds for read)
+    response: Response = ses.get(url, headers=headers, timeout=(30, 30))
     if response.status_code != 200 or not response.text:
         raise ParserException("ESIOS", f"Response code: {response.status_code}")
 
