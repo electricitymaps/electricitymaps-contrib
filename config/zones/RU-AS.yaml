@@ -8,7 +8,11 @@ contributors:
 country: RU
 country_name: Russia
 emissionFactors:
-  direct: {}
+  direct:
+    unknown:
+      _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 59.6% * 760 g/kWh (coal) + 0.3% * 406 g/kWh (oil) + 40.1% * 370 g/kWh (gas) = 602.5 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Extreme East zone'
+      source: assumes 60% coal, 40% gas, <1% oil
+      value: 602.5
   lifecycle:
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021 fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1% * 490 g/kWh (gas) = 687 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Extreme East zone'
@@ -86,3 +90,9 @@ sources:
     link: https://www.iea.org/statistics/statisticssearch/report/?country=Russia&product=electricityandheat
 timezone: Europe/Moscow
 zone_name: East
+isLowCarbon:
+  unknown:
+    value: 0
+isRenewable:
+  unknown:
+    value: 0

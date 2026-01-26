@@ -415,7 +415,7 @@ jobs:
         run: pnpm exec cypress install
         working-directory: ./web
       - name: Cypress run component tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         env:
           TZ: Europe/Copenhagen
         with:
@@ -467,7 +467,7 @@ jobs:
   #       run: pnpm exec cypress install
   #       working-directory: ./web
   #     - name: Cypress run e2e tests
-  #       uses: cypress-io/github-action@v6
+  #       uses: cypress-io/github-action@v7
   #       env:
   #         TZ: Europe/Copenhagen
   #       with:

@@ -252,3 +252,11 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677 (average thermoelectric emission factors)
 timezone: America/Santiago
 zone_name: 'Sistema Eléctrico Nacional'
+isRenewable:
+  unknown:
+    source: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+    value: 0
+isLowCarbon:
+  unknown:
+    source: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+    value: 0

@@ -198,3 +198,11 @@ sources:
     link: https://www.amm.org.gt/portal
 timezone: America/Guatemala
 zone_name: Guatemala
+isRenewable:
+  unknown:
+    source: assumed thermal
+    value: 0
+isLowCarbon:
+  unknown:
+    source: assumed thermal
+    value: 0

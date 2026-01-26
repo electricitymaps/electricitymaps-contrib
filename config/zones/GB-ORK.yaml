@@ -159,9 +159,13 @@ has_day_ahead_price_license: True
 hide_day_ahead_price: False
 isLowCarbon:
   unknown:
+    _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
+    source: assumes 95% wind, 5% solar
     value: 1
 isRenewable:
   unknown:
+    _comment: Source http://www.oref.co.uk/wp-content/uploads/2015/05/Orkney-wide-energy-audit-2014-Energy-Sources-and-Uses.pdf
+    source: assumes 95% wind, 5% solar
     value: 1
 parsers:
   production: GB_ORK.fetch_production
