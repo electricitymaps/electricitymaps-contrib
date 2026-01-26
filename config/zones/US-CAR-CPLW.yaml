@@ -154,7 +154,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 298.58
+        value: 298.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -268,7 +268,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 322.58
+        value: 322.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
@@ -464,6 +464,14 @@ fallbackZoneMixes:
         wind: 0.003138998527429385
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.3559
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.0087
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

@@ -55,7 +55,7 @@ contributors:
   - VIKTORVAV99
   - PaulRoms
 country: RE
-country_name: 'Réunion'
+country_name: "R\xE9union"
 currency: EUR
 emissionFactors:
   direct:
@@ -249,16 +249,24 @@ fallbackZoneMixes:
         solar: 0.0663331354651612
         unknown: 0.0
         wind: 0.010511245973335337
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.1048
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.1048
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Africa
-timezone: Indian/Reunion
-zone_name: 'Réunion'
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Indian/Reunion
+zone_name: "R\xE9union"

@@ -459,18 +459,32 @@ fallbackZoneMixes:
         solar: 0.036972927459937105
         unknown: 0.017414508337906885
         wind: 0.10517083862296002
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4048
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4173
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.1972
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.1971
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

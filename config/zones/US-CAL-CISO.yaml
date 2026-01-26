@@ -1014,7 +1014,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 187.55
+        value: 187.8
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -1091,7 +1091,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 168.68
+        value: 168.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -1130,7 +1130,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 220.55
+        value: 220.8
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -1211,7 +1211,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 192.68
+        value: 192.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
@@ -1403,6 +1403,20 @@ fallbackZoneMixes:
         wind: 0.10376508129748757
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.5582
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.605
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4489
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4731
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast
@@ -1412,12 +1426,12 @@ parsers:
   productionPerModeForecast: US_CA.fetch_wind_solar_forecasts
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

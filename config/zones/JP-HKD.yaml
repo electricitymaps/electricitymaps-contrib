@@ -162,8 +162,16 @@ fallbackZoneMixes:
         solar: 0.10087912421308973
         unknown: 0.000405576948770854
         wind: 0.03530341402815505
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
@@ -176,4 +184,4 @@ sources:
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Tokyo
-zone_name: 'Hokkaidō'
+zone_name: "Hokkaid\u014D"

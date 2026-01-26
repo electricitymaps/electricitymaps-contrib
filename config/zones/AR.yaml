@@ -330,16 +330,24 @@ fallbackZoneMixes:
         solar: 0.02698552858936858
         unknown: 0.5265037188143048
         wind: 0.11199192793014612
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.3527
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2751
 parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
-timezone: America/Argentina/Buenos_Aires
-zone_name: Argentina
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: America/Argentina/Buenos_Aires
+zone_name: Argentina

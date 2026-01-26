@@ -226,7 +226,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 264.14
+        value: 264.15
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -301,7 +301,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 274.84
+        value: 274.85
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
@@ -472,6 +472,14 @@ fallbackZoneMixes:
         wind: 0.12557913883108035
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.6153
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4602
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -39,7 +39,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 545.09
+        value: 545.1
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -90,7 +90,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 578.09
+        value: 578.1
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -258,9 +258,28 @@ fallbackZoneMixes:
         solar: 0.19323819121037497
         unknown: 0.00019039581980082146
         wind: 0.13259950282926702
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2325
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2626
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2325
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2626
 region: Oceania
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 subZoneNames:
   - AU-LH
   - AU-NSW
@@ -276,8 +295,3 @@ subZoneNames:
   - AU-WA-RI
 timezone: Australia/Sydney
 zone_name: Australia
-sources:
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

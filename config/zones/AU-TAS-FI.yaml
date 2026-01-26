@@ -1,4 +1,6 @@
-_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
+_comment: 'Capacity data fetched from the test payload (capacity is sent in all payloads).
+  Parsing for production is done on instantaneous measurements : this is not reliable
+  at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
 bounding_box:
   - - 147.25766035200024
     - -40.770603122999844
@@ -137,15 +139,23 @@ fallbackZoneMixes:
         solar: 0.01938750199323187
         unknown: 0.0
         wind: 0.5865180749218949
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.6274
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.6274
 parsers:
   production: ajenti.fetch_production
 region: Oceania
-timezone: Australia/Hobart
-zone_name: Flinders Island
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Hobart
+zone_name: Flinders Island

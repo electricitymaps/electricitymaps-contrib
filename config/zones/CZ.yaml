@@ -448,6 +448,14 @@ fallbackZoneMixes:
         wind: 0.048488262214254355
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.5331
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.1529
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

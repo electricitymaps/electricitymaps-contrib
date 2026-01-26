@@ -711,6 +711,14 @@ fallbackZoneMixes:
         wind: 0.00017802609034428662
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.6319
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.0274
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -718,12 +726,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

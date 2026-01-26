@@ -64,7 +64,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 264.71
+        value: 264.72
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -148,7 +148,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 275.41
+        value: 275.42
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
@@ -349,10 +349,16 @@ fallbackZoneMixes:
         wind: 0.09017689210992368
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4883
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4217
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -365,6 +371,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

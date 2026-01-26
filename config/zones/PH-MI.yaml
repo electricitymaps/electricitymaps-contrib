@@ -30,7 +30,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 475.45
+        value: 475.44
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -56,7 +56,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 508.45
+        value: 508.44
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -199,15 +199,23 @@ fallbackZoneMixes:
         solar: 0.006548497102706934
         unknown: 0.007487106321175432
         wind: 9.209647219998301e-06
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.3512
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.3512
 parsers:
   production: IEMOP.fetch_production
 region: Asia
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Manila
 zone_name: Mindanao

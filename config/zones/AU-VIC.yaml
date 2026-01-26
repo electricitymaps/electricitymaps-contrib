@@ -86,7 +86,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 595.22
+        value: 595.23
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -112,7 +112,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 628.22
+        value: 628.23
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -285,18 +285,26 @@ fallbackZoneMixes:
         solar: 0.1470457660916572
         unknown: 0.0
         wind: 0.18972740562986398
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2055
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2055
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
-timezone: Australia/Melbourne
-zone_name: Victoria
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Melbourne
+zone_name: Victoria

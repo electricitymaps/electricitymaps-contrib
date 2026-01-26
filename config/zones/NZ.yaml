@@ -304,17 +304,25 @@ fallbackZoneMixes:
         solar: 0.0022427556771429237
         unknown: 0.020886705386506124
         wind: 0.09329579500153248
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.7847
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.7847
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Oceania
-timezone: Pacific/Auckland
-zone_name: New Zealand
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Pacific/Auckland
+zone_name: New Zealand
