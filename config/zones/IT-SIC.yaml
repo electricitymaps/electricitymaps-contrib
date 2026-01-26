@@ -411,10 +411,14 @@ isLowCarbon:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.3866
+    - datetime: '2021-01-01'
+      value: 0.4399
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.3866
+    - datetime: '2021-01-01'
+      value: 0.4398
 parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast

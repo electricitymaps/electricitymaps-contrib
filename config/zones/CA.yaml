@@ -193,11 +193,24 @@ emissionFactors:
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
         value: 125.35
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.7917
+isRenewable:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.6593
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 subZoneNames:
   - CA-AB
   - CA-BC
@@ -214,8 +227,3 @@ subZoneNames:
   - CA-YT
 timezone: America/Toronto
 zone_name: Canada
-sources:
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

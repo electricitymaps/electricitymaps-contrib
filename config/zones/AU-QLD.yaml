@@ -333,13 +333,23 @@ fallbackZoneMixes:
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.2759
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1962
+    - datetime: '2021-01-01'
+      value: 0.2673
 isRenewable:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.2759
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1962
+    - datetime: '2021-01-01'
+      value: 0.2673
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

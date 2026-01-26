@@ -1018,7 +1018,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 179.31
+        value: 179.7
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
@@ -1095,7 +1095,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 133.14
+        value: 133.42
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
@@ -1134,7 +1134,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 212.31
+        value: 212.7
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
@@ -1215,7 +1215,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 157.14
+        value: 157.42
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
@@ -1407,16 +1407,24 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.5582
+    - datetime: '2021-01-01'
+      value: 0.5664
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.605
+    - datetime: '2021-01-01'
+      value: 0.6811
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.4489
+    - datetime: '2021-01-01'
+      value: 0.4561
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4731
+    - datetime: '2021-01-01'
+      value: 0.584
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast

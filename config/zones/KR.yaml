@@ -239,7 +239,8 @@ emissionFactors:
     unknown:
       _comment: 'Source: 2020 annual electricity production by IEA'
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind, 2.2% biofuels, 1.0% other
+      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
+        wind, 2.2% biofuels, 1.0% other
       value: 644
 fallbackZoneMixes:
   powerOriginRatios:
@@ -393,8 +394,28 @@ fallbackZoneMixes:
         solar: 0.019400257201052595
         unknown: 0.055175449564712
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2021-01-01'
+      value: 0.3322
+  unknown:
+    _comment: 'Source: 2020 annual electricity production by IEA'
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind,
+      2.2% biofuels, 1.0% other
+    value: 0.084
+isRenewable:
+  hydro discharge:
+    - datetime: '2021-01-01'
+      value: 0.0015
+  unknown:
+    _comment: 'Source: 2020 annual electricity production by IEA'
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind,
+      2.2% biofuels, 1.0% other
+    value: 0.084
 parsers:
   consumption: KPX.fetch_consumption
   price: KPX.fetch_price
@@ -406,15 +427,3 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
 timezone: Asia/Seoul
 zone_name: South Korea
-isRenewable:
-  unknown:
-    _comment: 'Source: 2020 annual electricity production by IEA'
-    _url: https://www.iea.org/fuels-and-technologies/electricity
-    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind, 2.2% biofuels, 1.0% other
-    value: 0.084
-isLowCarbon:
-  unknown:
-    _comment: 'Source: 2020 annual electricity production by IEA'
-    _url: https://www.iea.org/fuels-and-technologies/electricity
-    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind, 2.2% biofuels, 1.0% other
-    value: 0.084

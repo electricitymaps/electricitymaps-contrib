@@ -465,16 +465,24 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.4048
+    - datetime: '2021-01-01'
+      value: 0.3947
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4173
+    - datetime: '2021-01-01'
+      value: 0.406
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.1972
+    - datetime: '2021-01-01'
+      value: 0.2006
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1971
+    - datetime: '2021-01-01'
+      value: 0.2012
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

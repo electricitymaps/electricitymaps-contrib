@@ -314,12 +314,16 @@ isLowCarbon:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1307
+    - datetime: '2021-01-01'
+      value: 0.1472
   unknown:
     value: 1
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.078
+    - datetime: '2021-01-01'
+      value: 0.0932
   unknown:
     value: 1
 parsers:

@@ -205,10 +205,14 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.3512
+    - datetime: '2021-01-01'
+      value: 0.3392
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.3512
+    - datetime: '2021-01-01'
+      value: 0.3392
 parsers:
   production: IEMOP.fetch_production
 region: Asia

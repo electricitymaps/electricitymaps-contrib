@@ -135,10 +135,14 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.0747
+    - datetime: '2021-01-01'
+      value: 0.0602
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.0747
+    - datetime: '2021-01-01'
+      value: 0.0602
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

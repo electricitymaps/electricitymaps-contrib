@@ -310,10 +310,14 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.7847
+    - datetime: '2021-01-01'
+      value: 0.842
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.7847
+    - datetime: '2021-01-01'
+      value: 0.842
 parsers:
   price: NZ.fetch_price
   production: NZ.fetch_production

@@ -336,10 +336,14 @@ isLowCarbon:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.3527
+    - datetime: '2021-01-01'
+      value: 0.2992
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.2751
+    - datetime: '2021-01-01'
+      value: 0.2268
 parsers:
   production: CAMMESA.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

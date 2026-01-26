@@ -251,16 +251,24 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.1854
+    - datetime: '2021-01-01'
+      value: 0.1818
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1695
+    - datetime: '2021-01-01'
+      value: 0.1654
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.1854
+    - datetime: '2021-01-01'
+      value: 0.1818
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1695
+    - datetime: '2021-01-01'
+      value: 0.1654
 region: Asia
 sources:
   IPCC 2014:
