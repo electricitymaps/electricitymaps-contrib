@@ -1208,12 +1208,16 @@ isLowCarbon:
       value: 0.5393
     - datetime: '2021-01-01'
       value: 0.5179
+    - datetime: '2022-01-01'
+      value: 0.5136
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.2936
     - datetime: '2021-01-01'
       value: 0.2755
+    - datetime: '2022-01-01'
+      value: 0.2718
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_NEISO.fetch_consumption_forecast

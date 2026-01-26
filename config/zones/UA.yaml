@@ -165,6 +165,8 @@ isLowCarbon:
       value: 0.6475
     - datetime: '2021-01-01'
       value: 0.7077
+    - datetime: '2022-01-01'
+      value: 0.7126
   unknown:
     value: 1
 isRenewable:
@@ -173,6 +175,8 @@ isRenewable:
       value: 0.0958
     - datetime: '2021-01-01'
       value: 0.1171
+    - datetime: '2022-01-01'
+      value: 0.1191
   unknown:
     value: 1
 parsers:

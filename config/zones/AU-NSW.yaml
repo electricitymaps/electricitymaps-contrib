@@ -348,20 +348,28 @@ isLowCarbon:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.4608
+    - datetime: '2022-01-01'
+      value: 0.2954
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1798
     - datetime: '2021-01-01'
       value: 0.2579
+    - datetime: '2022-01-01'
+      value: 0.39
 isRenewable:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.4608
+    - datetime: '2022-01-01'
+      value: 0.2954
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1798
     - datetime: '2021-01-01'
       value: 0.2579
+    - datetime: '2022-01-01'
+      value: 0.39
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

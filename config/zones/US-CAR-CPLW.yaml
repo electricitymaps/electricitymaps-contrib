@@ -162,7 +162,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 418.59
+        value: 418.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -276,7 +276,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 442.59
+        value: 442.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
@@ -470,12 +470,16 @@ isLowCarbon:
       value: 0.3559
     - datetime: '2021-01-01'
       value: 0.0952
+    - datetime: '2022-01-01'
+      value: 0.1405
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.0087
     - datetime: '2021-01-01'
       value: 0.0154
+    - datetime: '2022-01-01'
+      value: 0.0135
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

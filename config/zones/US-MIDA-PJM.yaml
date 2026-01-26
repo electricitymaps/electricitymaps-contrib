@@ -1159,7 +1159,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 367.08
+        value: 367.45
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -1254,7 +1254,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 400.08
+        value: 400.45
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -1504,12 +1504,16 @@ isLowCarbon:
       value: 0.3997
     - datetime: '2021-01-01'
       value: 0.3904
+    - datetime: '2022-01-01'
+      value: 0.3909
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.0571
     - datetime: '2021-01-01'
       value: 0.0611
+    - datetime: '2022-01-01'
+      value: 0.0664
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast

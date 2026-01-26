@@ -259,10 +259,14 @@ isLowCarbon:
       value: 0.1354
     - datetime: '2021-01-01'
       value: 0.1302
+    - datetime: '2022-01-01'
+      value: 0.1302
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1124
     - datetime: '2021-01-01'
+      value: 0.1069
+    - datetime: '2022-01-01'
       value: 0.1069
 isRenewable:
   battery discharge:
@@ -270,10 +274,14 @@ isRenewable:
       value: 0.1354
     - datetime: '2021-01-01'
       value: 0.1302
+    - datetime: '2022-01-01'
+      value: 0.1302
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1124
     - datetime: '2021-01-01'
+      value: 0.1069
+    - datetime: '2022-01-01'
       value: 0.1069
 parsers:
   production: IEMOP.fetch_production

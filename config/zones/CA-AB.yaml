@@ -21,7 +21,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 354.9
+        value: 354.84
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -47,7 +47,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 387.9
+        value: 387.84
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -192,6 +192,8 @@ isLowCarbon:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.1578
+    - datetime: '2022-01-01'
+      value: 0.1597
   unknown:
     source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
       plant
@@ -200,6 +202,8 @@ isRenewable:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.1577
+    - datetime: '2022-01-01'
+      value: 0.1596
   unknown:
     source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
       plant

@@ -355,12 +355,16 @@ isLowCarbon:
       value: 0.4883
     - datetime: '2021-01-01'
       value: 0.4654
+    - datetime: '2022-01-01'
+      value: 0.4289
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4217
     - datetime: '2021-01-01'
       value: 0.3944
+    - datetime: '2022-01-01'
+      value: 0.3625
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

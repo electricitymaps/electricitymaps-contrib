@@ -1022,7 +1022,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 163.06
+        value: 163.29
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -1099,7 +1099,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 165.82
+        value: 166.06
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -1138,7 +1138,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 196.06
+        value: 196.29
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -1219,7 +1219,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 189.82
+        value: 190.06
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
@@ -1409,22 +1409,30 @@ isLowCarbon:
       value: 0.5582
     - datetime: '2021-01-01'
       value: 0.5664
+    - datetime: '2022-01-01'
+      value: 0.5964
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.605
     - datetime: '2021-01-01'
       value: 0.6811
+    - datetime: '2022-01-01'
+      value: 0.5875
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.4489
     - datetime: '2021-01-01'
       value: 0.4561
+    - datetime: '2022-01-01'
+      value: 0.482
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4731
     - datetime: '2021-01-01'
       value: 0.584
+    - datetime: '2022-01-01'
+      value: 0.4891
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast

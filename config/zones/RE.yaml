@@ -255,10 +255,14 @@ isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.1048
+    - datetime: '2022-01-01'
+      value: 0.157
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.1048
+    - datetime: '2022-01-01'
+      value: 0.157
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production

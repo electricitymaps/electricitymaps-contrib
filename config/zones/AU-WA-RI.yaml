@@ -131,11 +131,15 @@ isLowCarbon:
       value: 0.2338
     - datetime: '2021-01-01'
       value: 0.2342
+    - datetime: '2022-01-01'
+      value: 0.2342
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.2338
     - datetime: '2021-01-01'
+      value: 0.2342
+    - datetime: '2022-01-01'
       value: 0.2342
 parsers:
   production: ajenti.fetch_production

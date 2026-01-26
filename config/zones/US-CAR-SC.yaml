@@ -466,10 +466,14 @@ isLowCarbon:
   hydro discharge:
     - datetime: '2021-01-01'
       value: 0.1903
+    - datetime: '2022-01-01'
+      value: 0.2805
 isRenewable:
   hydro discharge:
     - datetime: '2021-01-01'
       value: 0.0147
+    - datetime: '2022-01-01'
+      value: 0.086
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
