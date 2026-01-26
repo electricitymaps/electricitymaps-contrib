@@ -289,6 +289,12 @@ isLowCarbon:
       value: 1.0
     - datetime: '2022-01-01'
       value: 0.7471
+    - datetime: '2023-01-01'
+      value: 0.6575
+    - datetime: '2024-01-01'
+      value: 0.7253
+    - datetime: '2025-01-01'
+      value: 0.7034
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
@@ -297,6 +303,12 @@ isRenewable:
       value: 1.0
     - datetime: '2022-01-01'
       value: 0.7471
+    - datetime: '2023-01-01'
+      value: 0.6575
+    - datetime: '2024-01-01'
+      value: 0.7253
+    - datetime: '2025-01-01'
+      value: 0.7034
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

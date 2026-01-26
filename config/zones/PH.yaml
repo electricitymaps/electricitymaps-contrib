@@ -255,6 +255,12 @@ isLowCarbon:
       value: 0.1818
     - datetime: '2022-01-01'
       value: 0.1818
+    - datetime: '2023-01-01'
+      value: 0.1825
+    - datetime: '2024-01-01'
+      value: 0.1896
+    - datetime: '2025-01-01'
+      value: 0.1965
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1695
@@ -262,6 +268,12 @@ isLowCarbon:
       value: 0.1654
     - datetime: '2022-01-01'
       value: 0.1654
+    - datetime: '2023-01-01'
+      value: 0.1765
+    - datetime: '2024-01-01'
+      value: 0.1686
+    - datetime: '2025-01-01'
+      value: 0.1827
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -270,6 +282,12 @@ isRenewable:
       value: 0.1818
     - datetime: '2022-01-01'
       value: 0.1818
+    - datetime: '2023-01-01'
+      value: 0.1825
+    - datetime: '2024-01-01'
+      value: 0.1896
+    - datetime: '2025-01-01'
+      value: 0.1965
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1695
@@ -277,6 +295,12 @@ isRenewable:
       value: 0.1654
     - datetime: '2022-01-01'
       value: 0.1654
+    - datetime: '2023-01-01'
+      value: 0.1765
+    - datetime: '2024-01-01'
+      value: 0.1686
+    - datetime: '2025-01-01'
+      value: 0.1827
 region: Asia
 sources:
   IPCC 2014:

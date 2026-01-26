@@ -262,15 +262,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 92.36
+        value: 90.71
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 52.74
+        value: 52.14
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 66.92
+        value: 66.1
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -325,15 +325,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 103.06
+        value: 101.41
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 63.44
+        value: 62.84
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 77.62
+        value: 76.8
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -516,6 +516,12 @@ isLowCarbon:
       value: 0.6908
     - datetime: '2022-01-01'
       value: 0.6202
+    - datetime: '2023-01-01'
+      value: 0.7675
+    - datetime: '2024-01-01'
+      value: 0.8741
+    - datetime: '2025-01-01'
+      value: 0.8318
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
@@ -524,6 +530,12 @@ isRenewable:
       value: 0.626
     - datetime: '2022-01-01'
       value: 0.5577
+    - datetime: '2023-01-01'
+      value: 0.693
+    - datetime: '2024-01-01'
+      value: 0.8005
+    - datetime: '2025-01-01'
+      value: 0.776
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

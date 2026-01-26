@@ -149,6 +149,12 @@ isLowCarbon:
       value: 0.647
     - datetime: '2022-01-01'
       value: 0.5717
+    - datetime: '2023-01-01'
+      value: 0.5901
+    - datetime: '2024-01-01'
+      value: 0.6074
+    - datetime: '2025-01-01'
+      value: 0.5356
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -157,6 +163,12 @@ isRenewable:
       value: 0.647
     - datetime: '2022-01-01'
       value: 0.5717
+    - datetime: '2023-01-01'
+      value: 0.5901
+    - datetime: '2024-01-01'
+      value: 0.6074
+    - datetime: '2025-01-01'
+      value: 0.5356
 parsers:
   production: ajenti.fetch_production
 region: Oceania

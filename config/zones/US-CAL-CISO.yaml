@@ -1034,7 +1034,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 105.31
+        value: 105.32
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1150,7 +1150,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 138.31
+        value: 138.32
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1411,6 +1411,12 @@ isLowCarbon:
       value: 0.5664
     - datetime: '2022-01-01'
       value: 0.5964
+    - datetime: '2023-01-01'
+      value: 0.5967
+    - datetime: '2024-01-01'
+      value: 0.6857
+    - datetime: '2025-01-01'
+      value: 0.7437
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.605
@@ -1418,6 +1424,12 @@ isLowCarbon:
       value: 0.6811
     - datetime: '2022-01-01'
       value: 0.5875
+    - datetime: '2023-01-01'
+      value: 0.6185
+    - datetime: '2024-01-01'
+      value: 0.825
+    - datetime: '2025-01-01'
+      value: 0.8306
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -1426,6 +1438,12 @@ isRenewable:
       value: 0.4561
     - datetime: '2022-01-01'
       value: 0.482
+    - datetime: '2023-01-01'
+      value: 0.4939
+    - datetime: '2024-01-01'
+      value: 0.5832
+    - datetime: '2025-01-01'
+      value: 0.6461
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4731
@@ -1433,6 +1451,12 @@ isRenewable:
       value: 0.584
     - datetime: '2022-01-01'
       value: 0.4891
+    - datetime: '2023-01-01'
+      value: 0.4885
+    - datetime: '2024-01-01'
+      value: 0.6995
+    - datetime: '2025-01-01'
+      value: 0.7631
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast

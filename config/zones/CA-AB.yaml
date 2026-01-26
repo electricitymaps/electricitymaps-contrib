@@ -25,11 +25,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 335.27
+        value: 334.83
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 313.76
+        value: 313.56
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -51,11 +51,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 368.27
+        value: 367.83
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 346.76
+        value: 346.56
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
@@ -194,6 +194,12 @@ isLowCarbon:
       value: 0.1578
     - datetime: '2022-01-01'
       value: 0.1597
+    - datetime: '2023-01-01'
+      value: 0.1993
+    - datetime: '2024-01-01'
+      value: 0.1862
+    - datetime: '2025-01-01'
+      value: 0.2343
   unknown:
     source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
       plant
@@ -204,6 +210,12 @@ isRenewable:
       value: 0.1577
     - datetime: '2022-01-01'
       value: 0.1596
+    - datetime: '2023-01-01'
+      value: 0.1992
+    - datetime: '2024-01-01'
+      value: 0.1861
+    - datetime: '2025-01-01'
+      value: 0.2343
   unknown:
     source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
       plant

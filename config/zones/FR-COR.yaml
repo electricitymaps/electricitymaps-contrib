@@ -25,15 +25,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 323.13
+        value: 363.43
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 447.32
+        value: 430.23
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 498.49
+        value: 479.73
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -82,15 +82,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 356.13
+        value: 396.43
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 480.32
+        value: 463.23
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 531.49
+        value: 512.73
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -292,13 +292,27 @@ fallbackZoneMixes:
         wind: 0.07513672956538177
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2023-01-01'
+      value: 0.4826
+    - datetime: '2024-01-01'
+      value: 0.4229
+    - datetime: '2025-01-01'
+      value: 0.3939
+isRenewable:
+  battery discharge:
+    - datetime: '2023-01-01'
+      value: 0.4744
+    - datetime: '2024-01-01'
+      value: 0.4199
+    - datetime: '2025-01-01'
+      value: 0.3937
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -311,6 +325,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

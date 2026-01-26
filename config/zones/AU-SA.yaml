@@ -107,7 +107,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 89.97
+        value: 89.23
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -133,7 +133,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 122.97
+        value: 122.23
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -296,6 +296,12 @@ isLowCarbon:
       value: 0.6558
     - datetime: '2022-01-01'
       value: 0.7399
+    - datetime: '2023-01-01'
+      value: 0.7749
+    - datetime: '2024-01-01'
+      value: 0.7499
+    - datetime: '2025-01-01'
+      value: 0.7955
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -304,6 +310,12 @@ isRenewable:
       value: 0.6558
     - datetime: '2022-01-01'
       value: 0.7399
+    - datetime: '2023-01-01'
+      value: 0.7749
+    - datetime: '2024-01-01'
+      value: 0.7499
+    - datetime: '2025-01-01'
+      value: 0.7955
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

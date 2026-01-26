@@ -239,7 +239,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 105.43
+        value: 104.29
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -286,15 +286,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 88.93
+        value: 89.35
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 65.94
+        value: 66.98
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 66.56
+        value: 66.47
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -313,7 +313,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 138.43
+        value: 137.29
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -366,15 +366,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 99.63
+        value: 100.05
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 76.64
+        value: 77.68
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 77.26
+        value: 77.17
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -556,6 +556,9 @@ fallbackZoneMixes:
 has_day_ahead_price_license: true
 hide_day_ahead_price: false
 isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.7534
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.7189
@@ -563,7 +566,16 @@ isLowCarbon:
       value: 0.7475
     - datetime: '2022-01-01'
       value: 0.6783
+    - datetime: '2023-01-01'
+      value: 0.8129
+    - datetime: '2024-01-01'
+      value: 0.8709
+    - datetime: '2025-01-01'
+      value: 0.8536
 isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.5297
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4654
@@ -571,6 +583,12 @@ isRenewable:
       value: 0.5063
     - datetime: '2022-01-01'
       value: 0.4599
+    - datetime: '2023-01-01'
+      value: 0.5891
+    - datetime: '2024-01-01'
+      value: 0.6583
+    - datetime: '2025-01-01'
+      value: 0.6597
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -469,6 +469,12 @@ isLowCarbon:
       value: 0.3947
     - datetime: '2022-01-01'
       value: 0.4081
+    - datetime: '2023-01-01'
+      value: 0.4116
+    - datetime: '2024-01-01'
+      value: 0.4237
+    - datetime: '2025-01-01'
+      value: 0.4392
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4173
@@ -476,6 +482,12 @@ isLowCarbon:
       value: 0.406
     - datetime: '2022-01-01'
       value: 0.4175
+    - datetime: '2023-01-01'
+      value: 0.4077
+    - datetime: '2024-01-01'
+      value: 0.4205
+    - datetime: '2025-01-01'
+      value: 0.4334
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -484,6 +496,12 @@ isRenewable:
       value: 0.2006
     - datetime: '2022-01-01'
       value: 0.2195
+    - datetime: '2023-01-01'
+      value: 0.2213
+    - datetime: '2024-01-01'
+      value: 0.2402
+    - datetime: '2025-01-01'
+      value: 0.2586
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1971
@@ -491,6 +509,12 @@ isRenewable:
       value: 0.2012
     - datetime: '2022-01-01'
       value: 0.2166
+    - datetime: '2023-01-01'
+      value: 0.2088
+    - datetime: '2024-01-01'
+      value: 0.2217
+    - datetime: '2025-01-01'
+      value: 0.2359
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

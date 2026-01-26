@@ -117,7 +117,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 451.2
+        value: 450.42
     hydro discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
@@ -142,7 +142,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 345.48
+        value: 344.54
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -164,7 +164,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 484.2
+        value: 483.42
     hydro discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
@@ -189,7 +189,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 369.48
+        value: 368.54
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -350,6 +350,12 @@ isLowCarbon:
       value: 0.4608
     - datetime: '2022-01-01'
       value: 0.2954
+    - datetime: '2023-01-01'
+      value: 0.3927
+    - datetime: '2024-01-01'
+      value: 0.3744
+    - datetime: '2025-01-01'
+      value: 0.3977
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1798
@@ -357,12 +363,24 @@ isLowCarbon:
       value: 0.2579
     - datetime: '2022-01-01'
       value: 0.39
+    - datetime: '2023-01-01'
+      value: 0.497
+    - datetime: '2024-01-01'
+      value: 0.486
+    - datetime: '2025-01-01'
+      value: 0.5417
 isRenewable:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.4608
     - datetime: '2022-01-01'
       value: 0.2954
+    - datetime: '2023-01-01'
+      value: 0.3927
+    - datetime: '2024-01-01'
+      value: 0.3744
+    - datetime: '2025-01-01'
+      value: 0.3977
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1798
@@ -370,6 +388,12 @@ isRenewable:
       value: 0.2579
     - datetime: '2022-01-01'
       value: 0.39
+    - datetime: '2023-01-01'
+      value: 0.497
+    - datetime: '2024-01-01'
+      value: 0.486
+    - datetime: '2025-01-01'
+      value: 0.5417
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

@@ -192,6 +192,11 @@ delays:
   production: 6
 emissionFactors:
   direct:
+    battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 221.69
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -238,15 +243,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 258.08
+        value: 254.93
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 188.92
+        value: 181.11
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 206.61
+        value: 198.15
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -261,6 +266,11 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2024
         value: 857.84
   lifecycle:
+    battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 254.69
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -313,15 +323,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 268.78
+        value: 265.63
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 199.62
+        value: 191.81
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 217.31
+        value: 208.85
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -473,6 +483,9 @@ fallbackZoneMixes:
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.6645
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.6153
@@ -480,7 +493,16 @@ isLowCarbon:
       value: 0.6112
     - datetime: '2022-01-01'
       value: 0.5606
+    - datetime: '2023-01-01'
+      value: 0.6318
+    - datetime: '2024-01-01'
+      value: 0.713
+    - datetime: '2025-01-01'
+      value: 0.6991
 isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.5304
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4602
@@ -488,6 +510,12 @@ isRenewable:
       value: 0.4909
     - datetime: '2022-01-01'
       value: 0.4224
+    - datetime: '2023-01-01'
+      value: 0.5396
+    - datetime: '2024-01-01'
+      value: 0.5624
+    - datetime: '2025-01-01'
+      value: 0.5447
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

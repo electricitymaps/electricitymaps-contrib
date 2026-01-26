@@ -235,7 +235,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 288.75
+        value: 288.81
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -335,7 +335,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 321.75
+        value: 321.81
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -592,6 +592,8 @@ isLowCarbon:
   battery discharge:
     - datetime: '2022-01-01'
       value: 0.2687
+    - datetime: '2025-01-01'
+      value: 0.4999
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.3464
@@ -599,16 +601,22 @@ isLowCarbon:
       value: 0.4423
     - datetime: '2022-01-01'
       value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
 isRenewable:
   battery discharge:
     - datetime: '2022-01-01'
       value: 0.1886
+    - datetime: '2025-01-01'
+      value: 0.4503
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.325
     - datetime: '2021-01-01'
       value: 0.3961
     - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
       value: 1.0
 parsers:
   consumption: EIA.fetch_consumption

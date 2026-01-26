@@ -261,6 +261,12 @@ isLowCarbon:
       value: 0.1302
     - datetime: '2022-01-01'
       value: 0.1302
+    - datetime: '2023-01-01'
+      value: 0.1322
+    - datetime: '2024-01-01'
+      value: 0.146
+    - datetime: '2025-01-01'
+      value: 0.148
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1124
@@ -268,6 +274,12 @@ isLowCarbon:
       value: 0.1069
     - datetime: '2022-01-01'
       value: 0.1069
+    - datetime: '2023-01-01'
+      value: 0.1211
+    - datetime: '2024-01-01'
+      value: 0.118
+    - datetime: '2025-01-01'
+      value: 0.1273
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -276,6 +288,12 @@ isRenewable:
       value: 0.1302
     - datetime: '2022-01-01'
       value: 0.1302
+    - datetime: '2023-01-01'
+      value: 0.1322
+    - datetime: '2024-01-01'
+      value: 0.146
+    - datetime: '2025-01-01'
+      value: 0.148
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1124
@@ -283,6 +301,12 @@ isRenewable:
       value: 0.1069
     - datetime: '2022-01-01'
       value: 0.1069
+    - datetime: '2023-01-01'
+      value: 0.1211
+    - datetime: '2024-01-01'
+      value: 0.118
+    - datetime: '2025-01-01'
+      value: 0.1273
 parsers:
   production: IEMOP.fetch_production
 region: Asia

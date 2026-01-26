@@ -114,11 +114,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 364.12
+        value: 344.1
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 215.52
+        value: 201.83
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -165,15 +165,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 280.76
+        value: 277.14
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 231.45
+        value: 210.94
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 204.77
+        value: 192.53
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -192,11 +192,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 397.12
+        value: 377.1
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 248.52
+        value: 234.83
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -249,15 +249,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 291.46
+        value: 287.84
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 242.15
+        value: 221.64
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 215.47
+        value: 203.23
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -439,6 +439,11 @@ fallbackZoneMixes:
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
+  battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.2608
+    - datetime: '2025-01-01'
+      value: 0.5539
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4396
@@ -446,7 +451,18 @@ isLowCarbon:
       value: 0.4281
     - datetime: '2022-01-01'
       value: 0.4299
+    - datetime: '2023-01-01'
+      value: 0.5528
+    - datetime: '2024-01-01'
+      value: 0.5645
+    - datetime: '2025-01-01'
+      value: 0.5761
 isRenewable:
+  battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.2515
+    - datetime: '2025-01-01'
+      value: 0.5426
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4367
@@ -454,6 +470,12 @@ isRenewable:
       value: 0.4223
     - datetime: '2022-01-01'
       value: 0.4272
+    - datetime: '2023-01-01'
+      value: 0.5448
+    - datetime: '2024-01-01'
+      value: 0.5492
+    - datetime: '2025-01-01'
+      value: 0.5661
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

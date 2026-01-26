@@ -432,6 +432,12 @@ isLowCarbon:
       value: 0.1911
     - datetime: '2022-01-01'
       value: 0.191
+    - datetime: '2023-01-01'
+      value: 0.2081
+    - datetime: '2024-01-01'
+      value: 0.2154
+    - datetime: '2025-01-01'
+      value: 0.1437
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.1756
@@ -439,6 +445,12 @@ isLowCarbon:
       value: 0.1689
     - datetime: '2022-01-01'
       value: 0.1737
+    - datetime: '2023-01-01'
+      value: 0.1772
+    - datetime: '2024-01-01'
+      value: 0.2283
+    - datetime: '2025-01-01'
+      value: 0.1457
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -447,6 +459,12 @@ isRenewable:
       value: 0.0996
     - datetime: '2022-01-01'
       value: 0.1131
+    - datetime: '2023-01-01'
+      value: 0.127
+    - datetime: '2024-01-01'
+      value: 0.1423
+    - datetime: '2025-01-01'
+      value: 0.1437
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.0352
@@ -454,6 +472,12 @@ isRenewable:
       value: 0.0518
     - datetime: '2022-01-01'
       value: 0.0751
+    - datetime: '2023-01-01'
+      value: 0.1084
+    - datetime: '2024-01-01'
+      value: 0.1523
+    - datetime: '2025-01-01'
+      value: 0.1457
 parsers:
   production: TAIPOWER.fetch_production
   productionCapacity: EMBER.fetch_production_capacity

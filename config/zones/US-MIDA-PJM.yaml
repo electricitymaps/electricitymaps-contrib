@@ -1163,15 +1163,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 329.11
+        value: 331.24
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 337.04
+        value: 339.21
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 387.65
+        value: 389.71
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1258,15 +1258,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 362.11
+        value: 364.24
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 370.04
+        value: 372.21
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 420.65
+        value: 422.71
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1506,6 +1506,12 @@ isLowCarbon:
       value: 0.3904
     - datetime: '2022-01-01'
       value: 0.3909
+    - datetime: '2023-01-01'
+      value: 0.403
+    - datetime: '2024-01-01'
+      value: 0.3869
+    - datetime: '2025-01-01'
+      value: 0.3639
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
@@ -1514,6 +1520,12 @@ isRenewable:
       value: 0.0611
     - datetime: '2022-01-01'
       value: 0.0664
+    - datetime: '2023-01-01'
+      value: 0.0739
+    - datetime: '2024-01-01'
+      value: 0.0837
+    - datetime: '2025-01-01'
+      value: 0.073
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast

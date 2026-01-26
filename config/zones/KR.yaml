@@ -213,7 +213,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 353.41
+        value: 353.42
   lifecycle:
     hydro discharge:
       - _comment: used storage values greater than zero.
@@ -235,7 +235,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 377.41
+        value: 377.42
     unknown:
       _comment: 'Source: 2020 annual electricity production by IEA'
       _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -402,6 +402,12 @@ isLowCarbon:
       value: 0.3322
     - datetime: '2022-01-01'
       value: 0.338
+    - datetime: '2023-01-01'
+      value: 0.36
+    - datetime: '2024-01-01'
+      value: 0.3815
+    - datetime: '2025-01-01'
+      value: 0.3839
   unknown:
     _comment: 'Source: 2020 annual electricity production by IEA'
     _url: https://www.iea.org/fuels-and-technologies/electricity
@@ -414,6 +420,12 @@ isRenewable:
       value: 0.0015
     - datetime: '2022-01-01'
       value: 0.0143
+    - datetime: '2023-01-01'
+      value: 0.0306
+    - datetime: '2024-01-01'
+      value: 0.0389
+    - datetime: '2025-01-01'
+      value: 0.0501
   unknown:
     _comment: 'Source: 2020 annual electricity production by IEA'
     _url: https://www.iea.org/fuels-and-technologies/electricity
