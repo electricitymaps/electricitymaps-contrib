@@ -620,5 +620,7 @@ sources:
     link: https://www.epa.gov/egrid/historical-egrid-data
   eGrid 2023:
     link: https://www.epa.gov/egrid/detailed-data
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: US/Pacific
 zone_name: Nevada Power Company
