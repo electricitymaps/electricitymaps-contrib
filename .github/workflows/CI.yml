@@ -31,11 +31,11 @@ jobs:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
         run: |
-          echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}
-          echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
-          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}
-          echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}
-          echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
+          echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}"
+          echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}"
+          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}"
+          echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}"
+          echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}"
 
   #                        #
   # Repository wide checks #
