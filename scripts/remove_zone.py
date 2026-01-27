@@ -13,9 +13,7 @@ import re
 from glob import glob
 
 from utils import (
-    LOCALE_FILE_PATHS,
     ROOT_PATH,
-    JsonFilePatcher,
     YamlFilePatcher,
     run_shell_command,
 )
@@ -64,7 +62,6 @@ def remove_exchanges(zone_key: ZoneKey):
             print(f"🧹 Removed {exchange.split('/')[-1]}")
         except FileNotFoundError:
             pass
-
 
 
 def move_parser_to_archived(zone_key: ZoneKey):
