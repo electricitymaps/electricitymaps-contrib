@@ -214,13 +214,17 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 425.17
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 430.87
+        value: 425.35
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 464.73
+        value: 464.86
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -280,6 +284,10 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
         value: 0.0
@@ -299,13 +307,17 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 458.17
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 463.87
+        value: 458.35
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 497.73
+        value: 497.86
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -368,6 +380,10 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 66.73943546483589
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
+        value: 24.0
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
@@ -543,6 +559,32 @@ fallbackZoneMixes:
         wind: 2.9803827190777754e-06
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.0391
+    - datetime: '2022-01-01'
+      value: 0.0506
+    - datetime: '2025-01-01'
+      value: 0.0984
+  hydro discharge:
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+isRenewable:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.0135
+    - datetime: '2022-01-01'
+      value: 0.0256
+    - datetime: '2025-01-01'
+      value: 0.0754
+  hydro discharge:
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -550,12 +592,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

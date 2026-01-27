@@ -25,7 +25,8 @@ country_name: Japan
 currency: JPY
 delays:
   production: 5
-disclaimer: The data provided for solar power production is suspected to be too high (source; Chubu Electric Power Co.,Inc.).
+disclaimer: The data provided for solar power production is suspected to be too high
+  (source; Chubu Electric Power Co.,Inc.).
 emissionFactors:
   direct:
     hydro discharge:
@@ -34,11 +35,13 @@ emissionFactors:
         source: Electricity Maps, 2025 zone average
         value: 0.0
     unknown:
-      _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018 Chubu Electric report'
+      _comment: 'Source: Derived from 2016-2019 Chubu area supply statistics and 2017-2018
+        Chubu Electric report'
       _url:
         - https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
         - http://denki-yoho.chuden.jp/denki_yoho_content_data/areabalance_current_term.csv
-      source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas, 9% hydro and wind
+      source: Chubu Electric Power 2022; assumes 26.3% coal, 2.2% oil, 62.5% gas,
+        9% hydro and wind
       value: 440.062
   lifecycle:
     hydro discharge:
@@ -168,8 +171,16 @@ fallbackZoneMixes:
         solar: 0.12244614660850632
         unknown: 0.003769750267899515
         wind: 0.004048155359128435
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2025-01-01'
+      value: 1.0
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
@@ -177,11 +188,11 @@ parsers:
   production: JP.fetch_production
 region: Asia
 sources:
+  Chubu Electric Power 2022:
+    link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
-  Chubu Electric Power 2022:
-    link: https://www.chuden.co.jp/corporate/publicity/datalist/juyo/dat_kousei/index.html
 timezone: Asia/Tokyo
-zone_name: 'Chūbu'
+zone_name: "Ch\u016Bbu"

@@ -471,6 +471,14 @@ fallbackZoneMixes:
         wind: 0.24723499458575396
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.139
+isRenewable:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.139
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

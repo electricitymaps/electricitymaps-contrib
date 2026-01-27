@@ -326,23 +326,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 339.15
+        value: 339.07
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 376.61
+        value: 376.56
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 274.86
+        value: 277.92
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 241.9
+        value: 240.15
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 236.68
+        value: 235.59
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -401,23 +401,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
-        value: 349.85
+        value: 349.77
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 387.31
+        value: 387.26
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 285.56
+        value: 288.62
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 252.6
+        value: 250.85
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 247.38
+        value: 246.29
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -598,6 +598,34 @@ fallbackZoneMixes:
         wind: 0.2921152749986025
 has_day_ahead_price_license: true
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.6353
+    - datetime: '2021-01-01'
+      value: 0.6219
+    - datetime: '2022-01-01'
+      value: 0.6031
+    - datetime: '2023-01-01'
+      value: 0.6686
+    - datetime: '2024-01-01'
+      value: 0.701
+    - datetime: '2025-01-01'
+      value: 0.7002
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.4941
+    - datetime: '2021-01-01'
+      value: 0.4794
+    - datetime: '2022-01-01'
+      value: 0.5295
+    - datetime: '2023-01-01'
+      value: 0.6292
+    - datetime: '2024-01-01'
+      value: 0.6621
+    - datetime: '2025-01-01'
+      value: 0.6685
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

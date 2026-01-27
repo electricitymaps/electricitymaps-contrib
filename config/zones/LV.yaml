@@ -133,7 +133,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 87.74
+        value: 107.46
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -182,7 +182,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 120.74
+        value: 140.46
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -397,6 +397,14 @@ fallbackZoneMixes:
         wind: 0.14035237273662302
 has_day_ahead_price_license: true
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.7664
+isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.6684
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -407,8 +415,6 @@ parsers:
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -421,6 +427,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

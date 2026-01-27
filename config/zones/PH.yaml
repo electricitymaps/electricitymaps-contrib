@@ -26,15 +26,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 544.55
+        value: 544.52
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 548.21
+        value: 544.52
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 548.21
+        value: 544.52
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -42,7 +42,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 542.93
+        value: 542.94
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -51,15 +51,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 556.07
+        value: 556.06
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 559.72
+        value: 556.05
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 559.72
+        value: 556.06
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -77,15 +77,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 577.55
+        value: 577.52
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 581.21
+        value: 577.52
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 581.21
+        value: 577.52
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -93,7 +93,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 575.93
+        value: 575.94
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
@@ -102,15 +102,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 580.07
+        value: 580.06
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 583.72
+        value: 580.05
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 583.72
+        value: 580.06
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
@@ -245,14 +245,68 @@ fallbackZoneMixes:
         solar: 0.021186116587224194
         unknown: 0.05981327473921477
         wind: 0.009391697715065647
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.1856
+    - datetime: '2021-01-01'
+      value: 0.1856
+    - datetime: '2022-01-01'
+      value: 0.1856
+    - datetime: '2023-01-01'
+      value: 0.1825
+    - datetime: '2024-01-01'
+      value: 0.1896
+    - datetime: '2025-01-01'
+      value: 0.1965
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.1697
+    - datetime: '2021-01-01'
+      value: 0.1697
+    - datetime: '2022-01-01'
+      value: 0.1697
+    - datetime: '2023-01-01'
+      value: 0.1765
+    - datetime: '2024-01-01'
+      value: 0.1686
+    - datetime: '2025-01-01'
+      value: 0.1827
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.1856
+    - datetime: '2021-01-01'
+      value: 0.1856
+    - datetime: '2022-01-01'
+      value: 0.1856
+    - datetime: '2023-01-01'
+      value: 0.1825
+    - datetime: '2024-01-01'
+      value: 0.1896
+    - datetime: '2025-01-01'
+      value: 0.1965
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.1697
+    - datetime: '2021-01-01'
+      value: 0.1697
+    - datetime: '2022-01-01'
+      value: 0.1697
+    - datetime: '2023-01-01'
+      value: 0.1765
+    - datetime: '2024-01-01'
+      value: 0.1686
+    - datetime: '2025-01-01'
+      value: 0.1827
 region: Asia
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 subZoneNames:
   - PH-LU
   - PH-MI

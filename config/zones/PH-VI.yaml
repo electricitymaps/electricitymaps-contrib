@@ -31,15 +31,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 505.25
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 498.23
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 498.23
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -57,15 +57,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 538.25
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 531.23
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 531.23
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -200,15 +200,43 @@ fallbackZoneMixes:
         solar: 0.04010653633275602
         unknown: 0.1408642231758758
         wind: 0.010172876605430417
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2859
+    - datetime: '2021-01-01'
+      value: 0.2859
+    - datetime: '2022-01-01'
+      value: 0.2859
+    - datetime: '2023-01-01'
+      value: 0.2533
+    - datetime: '2024-01-01'
+      value: 0.2606
+    - datetime: '2025-01-01'
+      value: 0.2763
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2859
+    - datetime: '2021-01-01'
+      value: 0.2859
+    - datetime: '2022-01-01'
+      value: 0.2859
+    - datetime: '2023-01-01'
+      value: 0.2533
+    - datetime: '2024-01-01'
+      value: 0.2606
+    - datetime: '2025-01-01'
+      value: 0.2763
 parsers:
   production: IEMOP.fetch_production
 region: Asia
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Manila
 zone_name: Visayas

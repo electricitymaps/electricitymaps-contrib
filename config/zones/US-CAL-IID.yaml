@@ -145,9 +145,13 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 206.01
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 99.04
+        value: 98.96
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -212,7 +216,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 86.52
+        value: 62.51
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -233,9 +237,13 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 239.01
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 132.04
+        value: 131.96
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -304,7 +312,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 110.52
+        value: 86.51
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -480,6 +488,28 @@ fallbackZoneMixes:
         wind: 0.0053857770760136646
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2022-01-01'
+      value: 0.6587
+    - datetime: '2025-01-01'
+      value: 0.8282
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.486
+    - datetime: '2025-01-01'
+      value: 0.9568
+isRenewable:
+  battery discharge:
+    - datetime: '2022-01-01'
+      value: 0.6587
+    - datetime: '2025-01-01'
+      value: 0.8255
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.486
+    - datetime: '2025-01-01'
+      value: 0.9452
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -487,12 +517,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

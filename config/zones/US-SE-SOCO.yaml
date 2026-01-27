@@ -469,7 +469,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 387.49
+        value: 385.57
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -530,7 +530,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 388.15
+        value: 387.01
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -549,7 +549,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 420.49
+        value: 418.57
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -614,7 +614,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 412.15
+        value: 411.01
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -771,6 +771,20 @@ fallbackZoneMixes:
         wind: 0.00037636503223176254
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.3413
+  hydro discharge:
+    - datetime: '2025-01-01'
+      value: 0.3422
+isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.0659
+  hydro discharge:
+    - datetime: '2025-01-01'
+      value: 0.0605
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -778,12 +792,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

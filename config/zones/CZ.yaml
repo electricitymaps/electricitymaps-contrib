@@ -204,7 +204,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 467.9
+        value: 434.09
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -273,7 +273,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 478.6
+        value: 444.79
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -448,6 +448,34 @@ fallbackZoneMixes:
         wind: 0.048488262214254355
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.5331
+    - datetime: '2021-01-01'
+      value: 0.4839
+    - datetime: '2022-01-01'
+      value: 0.4938
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.5197
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.1529
+    - datetime: '2021-01-01'
+      value: 0.1677
+    - datetime: '2022-01-01'
+      value: 0.1418
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.1187
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
