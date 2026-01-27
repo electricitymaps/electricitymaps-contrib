@@ -1,11 +1,6 @@
 workflows:
   - '.github/workflows/**/*.yml'
 
-frontend:
-  - 'web/**/*'
-  - '!web/public/locales/*.json'
-  - '!web/**/*.md'
-
 config:
   - 'config/**/*.yaml'
 
