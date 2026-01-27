@@ -190,10 +190,14 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 406.44
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 261.44
+        value: 266.98
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -269,10 +273,14 @@ emissionFactors:
         value: 757.3688858307635
   lifecycle:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 439.44
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 294.44
+        value: 299.98
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -495,12 +503,16 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.2665
     - datetime: '2025-01-01'
-      value: 0.5547
+      value: 0.5676
 isRenewable:
   battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.0196
     - datetime: '2025-01-01'
-      value: 0.2588
+      value: 0.2838
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

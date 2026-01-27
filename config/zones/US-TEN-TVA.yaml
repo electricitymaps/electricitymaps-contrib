@@ -276,11 +276,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 367.24
+        value: 367.12
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 342.92
+        value: 342.89
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -345,23 +345,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 332.71
+        value: 332.72
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 364.52
+        value: 365.32
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 326.29
+        value: 325.6
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 366.24
+        value: 366.13
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 342.28
+        value: 343.06
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -383,11 +383,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 400.24
+        value: 400.12
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 375.92
+        value: 375.89
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -456,23 +456,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 356.71
+        value: 356.72
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 388.52
+        value: 389.32
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 350.29
+        value: 349.6
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 390.24
+        value: 390.13
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 366.28
+        value: 367.06
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -644,19 +644,19 @@ isLowCarbon:
     - datetime: '2021-01-01'
       value: 0.5012
     - datetime: '2022-01-01'
-      value: 0.4541
+      value: 0.4537
     - datetime: '2023-01-01'
-      value: 0.5081
+      value: 0.509
     - datetime: '2024-01-01'
-      value: 0.4013
+      value: 0.4014
     - datetime: '2025-01-01'
-      value: 0.4849
+      value: 0.4834
 isRenewable:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.0536
+      value: 0.0535
     - datetime: '2025-01-01'
-      value: 0.1245
+      value: 0.1246
   hydro discharge:
     - datetime: '2020-01-01'
       value: 1.0
@@ -665,11 +665,11 @@ isRenewable:
     - datetime: '2022-01-01'
       value: 0.0267
     - datetime: '2023-01-01'
-      value: 0.0212
+      value: 0.0211
     - datetime: '2024-01-01'
       value: 0.0503
     - datetime: '2025-01-01'
-      value: 0.1143
+      value: 0.114
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

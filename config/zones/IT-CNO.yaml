@@ -70,14 +70,14 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 256.99
+        value: 351.1
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 165.08
+        value: 153.09
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -128,14 +128,14 @@ emissionFactors:
         value: 905.42
   lifecycle:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 289.99
+        value: 384.1
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 198.08
+        value: 186.09
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -360,18 +360,18 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.4281
+      value: 0.3357
     - datetime: '2025-01-01'
-      value: 0.6289
+      value: 0.6563
   hydro discharge:
     - datetime: '2024-01-01'
       value: 0.4275
 isRenewable:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.3653
+      value: 0.3124
     - datetime: '2025-01-01'
-      value: 0.584
+      value: 0.6168
   hydro discharge:
     - datetime: '2024-01-01'
       value: 0.3613

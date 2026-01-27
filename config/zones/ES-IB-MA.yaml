@@ -18,7 +18,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 378.29
+        value: 378.09
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -54,7 +54,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 411.29
+        value: 411.09
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -231,14 +231,14 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2022-01-01'
-      value: 0.1189
+      value: 0.119
   hydro discharge:
     - datetime: '2022-01-01'
       value: 1.0
 isRenewable:
   battery discharge:
     - datetime: '2022-01-01'
-      value: 0.1026
+      value: 0.1027
   hydro discharge:
     - datetime: '2022-01-01'
       value: 1.0

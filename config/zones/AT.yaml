@@ -263,7 +263,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 151.07
+        value: 151.02
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -283,7 +283,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 108.31
+        value: 110.12
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -332,7 +332,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 161.77
+        value: 161.72
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
@@ -352,7 +352,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 119.01
+        value: 120.82
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -536,7 +536,7 @@ hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
     - datetime: '2020-01-01'
-      value: 0.7783
+      value: 0.7784
     - datetime: '2021-01-01'
       value: 0.7329
     - datetime: '2022-01-01'
@@ -546,11 +546,11 @@ isLowCarbon:
     - datetime: '2024-01-01'
       value: 0.8784
     - datetime: '2025-01-01'
-      value: 0.8312
+      value: 0.8286
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
-      value: 0.707
+      value: 0.7071
     - datetime: '2021-01-01'
       value: 0.6466
     - datetime: '2022-01-01'
@@ -560,7 +560,7 @@ isRenewable:
     - datetime: '2024-01-01'
       value: 0.8394
     - datetime: '2025-01-01'
-      value: 0.7742
+      value: 0.771
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

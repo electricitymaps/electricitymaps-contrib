@@ -58,7 +58,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 211.13
+        value: 211.03
     oil:
       - datetime: '2017-01-01'
         source: EU-ETS, REE
@@ -133,7 +133,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 221.83
+        value: 221.73
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -294,7 +294,7 @@ isLowCarbon:
     - datetime: '2024-01-01'
       value: 0.7253
     - datetime: '2025-01-01'
-      value: 0.7034
+      value: 0.7035
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
@@ -308,7 +308,7 @@ isRenewable:
     - datetime: '2024-01-01'
       value: 0.7253
     - datetime: '2025-01-01'
-      value: 0.7034
+      value: 0.7035
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production

@@ -133,7 +133,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 90.36
+        value: 107.46
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -182,7 +182,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 123.36
+        value: 140.46
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -400,11 +400,11 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.7949
+      value: 0.7664
 isRenewable:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.7019
+      value: 0.6684
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

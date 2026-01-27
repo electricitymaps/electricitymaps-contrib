@@ -31,12 +31,20 @@ disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides 
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 380.86
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
         value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 404.86
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
@@ -182,10 +190,14 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.3375
     - datetime: '2025-01-01'
       value: 1.0
 isRenewable:
   hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2581
     - datetime: '2025-01-01'
       value: 1.0
 parsers:

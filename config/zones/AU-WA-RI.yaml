@@ -29,15 +29,15 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 311.06
+        value: 310.86
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 310.93
+        value: 310.86
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 310.92
+        value: 310.86
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -45,7 +45,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 322.11
+        value: 321.42
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -55,15 +55,15 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 344.06
+        value: 343.86
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 343.93
+        value: 343.86
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 343.92
+        value: 343.86
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -71,7 +71,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 355.11
+        value: 354.42
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
@@ -128,29 +128,29 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.2338
+      value: 0.2343
     - datetime: '2021-01-01'
-      value: 0.2342
+      value: 0.2343
     - datetime: '2022-01-01'
-      value: 0.2342
+      value: 0.2343
     - datetime: '2023-01-01'
       value: 0.25
     - datetime: '2024-01-01'
-      value: 0.2066
+      value: 0.2083
     - datetime: '2025-01-01'
       value: 0.2481
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.2338
+      value: 0.2343
     - datetime: '2021-01-01'
-      value: 0.2342
+      value: 0.2343
     - datetime: '2022-01-01'
-      value: 0.2342
+      value: 0.2343
     - datetime: '2023-01-01'
       value: 0.25
     - datetime: '2024-01-01'
-      value: 0.2066
+      value: 0.2083
     - datetime: '2025-01-01'
       value: 0.2481
 parsers:

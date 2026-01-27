@@ -158,11 +158,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 89.69
+        value: 89.7
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 89.48
+        value: 89.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -170,7 +170,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 92.37
+        value: 93.25
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -180,11 +180,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 122.69
+        value: 122.7
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 122.48
+        value: 122.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
@@ -192,7 +192,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 125.37
+        value: 126.25
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
@@ -206,19 +206,19 @@ isLowCarbon:
     - datetime: '2024-01-01'
       value: 0.7862
     - datetime: '2025-01-01'
-      value: 0.7738
+      value: 0.7715
 isRenewable:
   battery discharge:
     - datetime: '2021-01-01'
       value: 0.6593
     - datetime: '2022-01-01'
-      value: 0.6801
+      value: 0.68
     - datetime: '2023-01-01'
       value: 0.6714
     - datetime: '2024-01-01'
       value: 0.6593
     - datetime: '2025-01-01'
-      value: 0.6488
+      value: 0.6474
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas

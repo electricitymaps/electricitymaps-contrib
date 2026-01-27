@@ -158,23 +158,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 418.72
+        value: 418.55
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 418.78
+        value: 418.81
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 452.17
+        value: 452.14
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 407.45
+        value: 412.87
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 437.82
+        value: 462.03
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -272,23 +272,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 442.72
+        value: 442.55
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 442.78
+        value: 442.81
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 476.17
+        value: 476.14
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 431.45
+        value: 436.87
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 461.82
+        value: 486.03
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -469,15 +469,15 @@ isLowCarbon:
     - datetime: '2020-01-01'
       value: 0.3559
     - datetime: '2021-01-01'
-      value: 0.0952
+      value: 0.0954
     - datetime: '2022-01-01'
-      value: 0.1405
+      value: 0.1404
     - datetime: '2023-01-01'
       value: 0.0067
     - datetime: '2024-01-01'
-      value: 0.1671
+      value: 0.154
     - datetime: '2025-01-01'
-      value: 0.1069
+      value: 0.0973
 isRenewable:
   hydro discharge:
     - datetime: '2020-01-01'
@@ -485,13 +485,13 @@ isRenewable:
     - datetime: '2021-01-01'
       value: 0.0154
     - datetime: '2022-01-01'
-      value: 0.0135
+      value: 0.0136
     - datetime: '2023-01-01'
       value: 0.0009
     - datetime: '2024-01-01'
-      value: 0.0616
+      value: 0.0601
     - datetime: '2025-01-01'
-      value: 0.0161
+      value: 0.0141
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

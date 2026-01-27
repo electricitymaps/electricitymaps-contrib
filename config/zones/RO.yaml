@@ -177,10 +177,10 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 253.92
+        value: 262.12
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -226,10 +226,10 @@ emissionFactors:
         value: 857.84
   lifecycle:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 286.92
+        value: 295.12
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -449,11 +449,11 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.6622
+      value: 0.6649
 isRenewable:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.3978
+      value: 0.4207
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

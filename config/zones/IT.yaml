@@ -22,14 +22,14 @@ currency: EUR
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 269.65
+        value: 324.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 199.17
+        value: 199.31
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -64,27 +64,27 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 264.72
+        value: 264.71
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 279.69
+        value: 280.66
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 317.15
+        value: 318.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 238.35
+        value: 238.0
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 190.17
+        value: 190.11
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 193.79
+        value: 188.4
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -100,14 +100,14 @@ emissionFactors:
         value: 905.42
   lifecycle:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 302.65
+        value: 357.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 232.17
+        value: 232.31
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -148,27 +148,27 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 275.42
+        value: 275.41
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
-        value: 290.39
+        value: 291.36
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 327.85
+        value: 329.48
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 249.05
+        value: 248.7
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 200.87
+        value: 200.81
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 204.49
+        value: 199.1
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -352,41 +352,41 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.3975
+      value: 0.2935
     - datetime: '2025-01-01'
-      value: 0.5568
+      value: 0.5567
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4883
     - datetime: '2021-01-01'
-      value: 0.4654
+      value: 0.4571
     - datetime: '2022-01-01'
-      value: 0.4289
+      value: 0.4167
     - datetime: '2023-01-01'
-      value: 0.5436
+      value: 0.5318
     - datetime: '2024-01-01'
-      value: 0.5931
+      value: 0.5933
     - datetime: '2025-01-01'
-      value: 0.5703
+      value: 0.5825
 isRenewable:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.3282
+      value: 0.2383
     - datetime: '2025-01-01'
-      value: 0.4689
+      value: 0.4691
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4217
     - datetime: '2021-01-01'
-      value: 0.3944
+      value: 0.3924
     - datetime: '2022-01-01'
-      value: 0.3625
+      value: 0.3547
     - datetime: '2023-01-01'
-      value: 0.4639
+      value: 0.4547
     - datetime: '2024-01-01'
-      value: 0.5105
+      value: 0.5108
     - datetime: '2025-01-01'
-      value: 0.4853
+      value: 0.4996
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

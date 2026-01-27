@@ -322,7 +322,7 @@ isRenewable:
     - datetime: '2024-01-01'
       value: 1.0
     - datetime: '2025-01-01'
-      value: 0.9951
+      value: 0.995
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -114,11 +114,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 344.1
+        value: 343.72
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 201.83
+        value: 198.93
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -157,23 +157,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 340.85
+        value: 327.84
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 366.48
+        value: 367.56
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 277.14
+        value: 268.72
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 210.94
+        value: 211.51
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 192.53
+        value: 197.55
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -192,11 +192,11 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 377.1
+        value: 376.72
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 234.83
+        value: 231.93
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -241,23 +241,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
-        value: 351.55
+        value: 338.54
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 377.18
+        value: 378.26
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 287.84
+        value: 279.42
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 221.64
+        value: 222.21
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 203.23
+        value: 208.25
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -441,41 +441,41 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.2608
+      value: 0.2611
     - datetime: '2025-01-01'
-      value: 0.5539
+      value: 0.561
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4396
     - datetime: '2021-01-01'
-      value: 0.4281
+      value: 0.441
     - datetime: '2022-01-01'
-      value: 0.4299
+      value: 0.4288
     - datetime: '2023-01-01'
-      value: 0.5528
+      value: 0.5506
     - datetime: '2024-01-01'
-      value: 0.5645
+      value: 0.5641
     - datetime: '2025-01-01'
-      value: 0.5761
+      value: 0.5641
 isRenewable:
   battery discharge:
     - datetime: '2024-01-01'
-      value: 0.2515
+      value: 0.2519
     - datetime: '2025-01-01'
-      value: 0.5426
+      value: 0.5506
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4367
     - datetime: '2021-01-01'
-      value: 0.4223
+      value: 0.4363
     - datetime: '2022-01-01'
-      value: 0.4272
+      value: 0.4256
     - datetime: '2023-01-01'
-      value: 0.5448
+      value: 0.5426
     - datetime: '2024-01-01'
-      value: 0.5492
+      value: 0.5489
     - datetime: '2025-01-01'
-      value: 0.5661
+      value: 0.5532
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

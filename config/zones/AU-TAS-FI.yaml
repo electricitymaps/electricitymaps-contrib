@@ -30,7 +30,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 151.28
+        value: 150.24
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -56,7 +56,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 184.28
+        value: 183.24
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -144,7 +144,7 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.6274
+      value: 0.6299
     - datetime: '2021-01-01'
       value: 0.647
     - datetime: '2022-01-01'
@@ -158,7 +158,7 @@ isLowCarbon:
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.6274
+      value: 0.6299
     - datetime: '2021-01-01'
       value: 0.647
     - datetime: '2022-01-01'

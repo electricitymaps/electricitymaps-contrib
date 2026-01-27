@@ -1018,23 +1018,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 179.7
+        value: 178.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 163.29
+        value: 163.12
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 164.97
+        value: 164.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 129.51
+        value: 127.78
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 105.32
+        value: 105.29
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1095,15 +1095,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 133.42
+        value: 131.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 166.06
+        value: 166.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 156.65
+        value: 156.71
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -1134,23 +1134,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 212.7
+        value: 211.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 196.29
+        value: 196.12
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 197.97
+        value: 197.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 162.51
+        value: 160.78
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 138.32
+        value: 138.29
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1215,15 +1215,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 157.42
+        value: 155.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 190.06
+        value: 190.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 180.65
+        value: 180.71
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
@@ -1408,24 +1408,24 @@ isLowCarbon:
     - datetime: '2020-01-01'
       value: 0.5582
     - datetime: '2021-01-01'
-      value: 0.5664
+      value: 0.5701
     - datetime: '2022-01-01'
-      value: 0.5964
-    - datetime: '2023-01-01'
       value: 0.5967
+    - datetime: '2023-01-01'
+      value: 0.5977
     - datetime: '2024-01-01'
-      value: 0.6857
+      value: 0.6896
     - datetime: '2025-01-01'
-      value: 0.7437
+      value: 0.7438
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.605
     - datetime: '2021-01-01'
-      value: 0.6811
+      value: 0.6853
     - datetime: '2022-01-01'
-      value: 0.5875
+      value: 0.5872
     - datetime: '2023-01-01'
-      value: 0.6185
+      value: 0.6183
     - datetime: '2024-01-01'
       value: 0.825
     - datetime: '2025-01-01'
@@ -1435,28 +1435,28 @@ isRenewable:
     - datetime: '2020-01-01'
       value: 0.4489
     - datetime: '2021-01-01'
-      value: 0.4561
+      value: 0.4551
     - datetime: '2022-01-01'
-      value: 0.482
+      value: 0.4818
     - datetime: '2023-01-01'
-      value: 0.4939
+      value: 0.494
     - datetime: '2024-01-01'
-      value: 0.5832
+      value: 0.5824
     - datetime: '2025-01-01'
       value: 0.6461
   hydro discharge:
     - datetime: '2020-01-01'
       value: 0.4731
     - datetime: '2021-01-01'
-      value: 0.584
+      value: 0.5826
     - datetime: '2022-01-01'
       value: 0.4891
     - datetime: '2023-01-01'
-      value: 0.4885
+      value: 0.4907
     - datetime: '2024-01-01'
-      value: 0.6995
+      value: 0.6999
     - datetime: '2025-01-01'
-      value: 0.7631
+      value: 0.7632
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast

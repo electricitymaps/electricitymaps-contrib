@@ -105,23 +105,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 113.84
+        value: 113.81
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 81.61
+        value: 81.06
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 85.21
+        value: 84.45
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 83.63
+        value: 65.2
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 82.49
+        value: 80.38
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -131,23 +131,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 146.84
+        value: 146.81
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 114.61
+        value: 114.06
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 118.21
+        value: 117.45
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 116.63
+        value: 98.2
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 115.49
+        value: 113.38
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
@@ -311,13 +311,13 @@ isLowCarbon:
     - datetime: '2020-01-01'
       value: 0.7847
     - datetime: '2021-01-01'
-      value: 0.842
+      value: 0.843
     - datetime: '2022-01-01'
-      value: 0.8265
+      value: 0.8267
     - datetime: '2023-01-01'
-      value: 0.863
+      value: 0.8958
     - datetime: '2024-01-01'
-      value: 0.8383
+      value: 0.8422
     - datetime: '2025-01-01'
       value: 0.8901
 isRenewable:
@@ -325,13 +325,13 @@ isRenewable:
     - datetime: '2020-01-01'
       value: 0.7847
     - datetime: '2021-01-01'
-      value: 0.842
+      value: 0.843
     - datetime: '2022-01-01'
-      value: 0.8265
+      value: 0.8267
     - datetime: '2023-01-01'
-      value: 0.863
+      value: 0.8958
     - datetime: '2024-01-01'
-      value: 0.8383
+      value: 0.8422
     - datetime: '2025-01-01'
       value: 0.8901
 parsers:

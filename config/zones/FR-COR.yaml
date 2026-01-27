@@ -25,15 +25,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 363.43
+        value: 363.08
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 430.23
+        value: 440.34
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 479.73
+        value: 483.7
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -82,15 +82,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 396.43
+        value: 396.08
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 463.23
+        value: 473.34
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 512.73
+        value: 516.7
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -295,19 +295,19 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2023-01-01'
-      value: 0.4826
+      value: 0.4884
     - datetime: '2024-01-01'
-      value: 0.4229
+      value: 0.4103
     - datetime: '2025-01-01'
-      value: 0.3939
+      value: 0.3944
 isRenewable:
   battery discharge:
     - datetime: '2023-01-01'
-      value: 0.4744
+      value: 0.4803
     - datetime: '2024-01-01'
-      value: 0.4199
+      value: 0.4072
     - datetime: '2025-01-01'
-      value: 0.3937
+      value: 0.3942
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production

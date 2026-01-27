@@ -469,7 +469,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 387.49
+        value: 385.57
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -530,7 +530,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 388.14
+        value: 387.01
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020
@@ -549,7 +549,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 420.49
+        value: 418.57
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -614,7 +614,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 412.14
+        value: 411.01
     oil:
       - datetime: '2020-01-01'
         source: eGrid 2020; IPCC 2014
@@ -774,17 +774,17 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.3358
+      value: 0.3413
   hydro discharge:
     - datetime: '2025-01-01'
-      value: 0.3382
+      value: 0.3422
 isRenewable:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.0571
+      value: 0.0659
   hydro discharge:
     - datetime: '2025-01-01'
-      value: 0.0537
+      value: 0.0605
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

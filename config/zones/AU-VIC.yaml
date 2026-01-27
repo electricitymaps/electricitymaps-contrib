@@ -86,11 +86,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 595.23
+        value: 595.22
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 542.33
+        value: 539.83
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
@@ -102,21 +102,21 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 441.94
+        value: 441.97
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 410.06
+        value: 408.53
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 628.23
+        value: 628.22
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 575.33
+        value: 572.83
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
@@ -128,11 +128,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 474.94
+        value: 474.97
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 443.06
+        value: 441.53
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -292,7 +292,7 @@ isLowCarbon:
     - datetime: '2020-01-01'
       value: 0.2055
     - datetime: '2021-01-01'
-      value: 0.2809
+      value: 0.2842
     - datetime: '2022-01-01'
       value: 0.3439
     - datetime: '2023-01-01'
@@ -300,13 +300,13 @@ isLowCarbon:
     - datetime: '2024-01-01'
       value: 0.4085
     - datetime: '2025-01-01'
-      value: 0.4524
+      value: 0.4544
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.2055
     - datetime: '2021-01-01'
-      value: 0.2809
+      value: 0.2842
     - datetime: '2022-01-01'
       value: 0.3439
     - datetime: '2023-01-01'
@@ -314,7 +314,7 @@ isRenewable:
     - datetime: '2024-01-01'
       value: 0.4085
     - datetime: '2025-01-01'
-      value: 0.4524
+      value: 0.4544
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

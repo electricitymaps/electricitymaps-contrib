@@ -91,23 +91,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 127.38
+        value: 125.83
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 96.37
+        value: 96.16
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 105.57
+        value: 105.59
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 115.74
+        value: 114.28
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 89.23
+        value: 92.12
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -117,23 +117,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 160.38
+        value: 158.83
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 129.37
+        value: 129.16
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 138.57
+        value: 138.59
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 148.74
+        value: 147.28
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 122.23
+        value: 125.12
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -293,29 +293,29 @@ isLowCarbon:
     - datetime: '2020-01-01'
       value: 0.5635
     - datetime: '2021-01-01'
-      value: 0.6558
+      value: 0.66
     - datetime: '2022-01-01'
-      value: 0.7399
+      value: 0.7404
     - datetime: '2023-01-01'
       value: 0.7749
     - datetime: '2024-01-01'
-      value: 0.7499
+      value: 0.7532
     - datetime: '2025-01-01'
-      value: 0.7955
+      value: 0.7911
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
       value: 0.5635
     - datetime: '2021-01-01'
-      value: 0.6558
+      value: 0.66
     - datetime: '2022-01-01'
-      value: 0.7399
+      value: 0.7404
     - datetime: '2023-01-01'
       value: 0.7749
     - datetime: '2024-01-01'
-      value: 0.7499
+      value: 0.7532
     - datetime: '2025-01-01'
-      value: 0.7955
+      value: 0.7911
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
