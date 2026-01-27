@@ -21,11 +21,10 @@ A real time and historical visualisation of electricity data and prices around t
 </p>
 
 <p align="center">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/electricitymaps/electricitymaps-contrib">
-  <a href="https://github.com/electricitymaps/electricitymaps-contrib/CONTRIBUTING.md">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/electricitymaps/electricitymaps-contrib"/>
     <a href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md">
     <img src="https://img.shields.io/github/license/electricitymaps/electricitymaps-contrib" alt="Electricity Maps is released under the GNU-AGPLv3 license." /></a>
-  p>
+</p>
 
 ![image](.github/images/electricity-maps-banner.png#gh-light-mode-only)
 ![image](.github/images/electricity-maps-banner-dark.png#gh-dark-mode-only)
