@@ -69,7 +69,8 @@ country_name: Australia
 currency: AUD
 delays:
   production: 96
-disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
+disclaimer: Western Australia's power grid is not connected to the (Australian) National
+  Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct:
     battery discharge:
@@ -80,7 +81,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 311.0
+        value: 301.2
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -88,7 +89,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 281.95
+        value: 281.91
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
@@ -98,7 +99,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 344.0
+        value: 334.2
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
@@ -106,7 +107,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 314.95
+        value: 314.91
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -259,17 +260,37 @@ fallbackZoneMixes:
         solar: 0.23467167868922628
         unknown: 0.0
         wind: 0.1699992813333499
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4461
+    - datetime: '2023-01-01'
+      value: 0.4809
+    - datetime: '2024-01-01'
+      value: 0.4567
+    - datetime: '2025-01-01'
+      value: 0.5084
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4461
+    - datetime: '2023-01-01'
+      value: 0.4809
+    - datetime: '2024-01-01'
+      value: 0.4567
+    - datetime: '2025-01-01'
+      value: 0.5084
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
-timezone: Australia/Perth
-zone_name: Western Australia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Perth
+zone_name: Western Australia

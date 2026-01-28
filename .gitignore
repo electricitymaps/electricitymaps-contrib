@@ -16,7 +16,6 @@ web/config
 /.vs
 /.venv
 Thumbs.db
-mobileapp/*.zip
 dist
 parsers/.venv
 

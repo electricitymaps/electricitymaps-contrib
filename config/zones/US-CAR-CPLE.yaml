@@ -264,7 +264,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 304.58
+        value: 310.96
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -325,7 +325,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 243.81
+        value: 249.77
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -333,15 +333,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 195.85
+        value: 195.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 228.69
+        value: 229.29
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 283.85
+        value: 284.82
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -364,7 +364,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 337.58
+        value: 343.96
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -429,7 +429,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 267.81
+        value: 273.77
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
@@ -437,15 +437,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 219.85
+        value: 219.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 252.69
+        value: 253.29
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 307.85
+        value: 308.82
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -621,6 +621,36 @@ fallbackZoneMixes:
         wind: 0.00029901388079216223
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.5179
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.5802
+    - datetime: '2021-01-01'
+      value: 0.7716
+    - datetime: '2022-01-01'
+      value: 0.6106
+    - datetime: '2023-01-01'
+      value: 0.5894
+    - datetime: '2025-01-01'
+      value: 0.5331
+isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.0729
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.0714
+    - datetime: '2021-01-01'
+      value: 0.2827
+    - datetime: '2022-01-01'
+      value: 0.1393
+    - datetime: '2023-01-01'
+      value: 0.0003
+    - datetime: '2025-01-01'
+      value: 0.1105
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -628,12 +658,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

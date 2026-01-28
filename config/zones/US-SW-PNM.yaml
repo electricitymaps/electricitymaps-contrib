@@ -262,15 +262,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 350.94
+        value: 351.27
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 281.11
+        value: 281.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 185.62
+        value: 185.67
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -336,11 +336,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 356.66
+        value: 356.98
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 161.54
+        value: 161.72
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -363,15 +363,15 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 383.94
+        value: 384.27
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 314.11
+        value: 314.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 218.62
+        value: 218.67
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -441,11 +441,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 380.66
+        value: 380.98
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 185.54
+        value: 185.72
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -606,6 +606,36 @@ fallbackZoneMixes:
         wind: 0.3386034024377126
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2023-01-01'
+      value: 0.4919
+    - datetime: '2024-01-01'
+      value: 0.5511
+    - datetime: '2025-01-01'
+      value: 0.7346
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 0.276
+    - datetime: '2023-01-01'
+      value: 0.4728
+    - datetime: '2024-01-01'
+      value: 0.7807
+isRenewable:
+  battery discharge:
+    - datetime: '2023-01-01'
+      value: 0.4825
+    - datetime: '2024-01-01'
+      value: 0.5288
+    - datetime: '2025-01-01'
+      value: 0.7218
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 0.2628
+    - datetime: '2023-01-01'
+      value: 0.464
+    - datetime: '2024-01-01'
+      value: 0.7806
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -613,12 +643,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

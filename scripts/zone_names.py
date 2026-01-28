@@ -5,7 +5,7 @@ import yaml
 
 
 def add_country_names():
-    json_path = os.path.join(os.path.dirname(__file__), "../web/public/locales/en.json")
+    json_path = os.path.join(os.path.dirname(__file__), "../config/zone_names.json")
     zones_dir = os.path.join(os.path.dirname(__file__), "../config/zones")
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)

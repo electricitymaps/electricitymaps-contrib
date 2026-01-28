@@ -855,7 +855,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 183.0
+        value: 183.01
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -863,19 +863,19 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 202.41
+        value: 202.42
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 204.17
+        value: 204.25
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 214.78
+        value: 214.88
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 223.34
+        value: 223.55
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -950,7 +950,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 216.0
+        value: 216.01
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -958,19 +958,19 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 235.41
+        value: 235.42
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 237.17
+        value: 237.25
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 247.78
+        value: 247.88
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 256.34
+        value: 256.55
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1202,6 +1202,34 @@ fallbackZoneMixes:
         wind: 0.035357632711841926
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.5393
+    - datetime: '2021-01-01'
+      value: 0.5179
+    - datetime: '2022-01-01'
+      value: 0.5136
+    - datetime: '2023-01-01'
+      value: 0.4846
+    - datetime: '2024-01-01'
+      value: 0.4568
+    - datetime: '2025-01-01'
+      value: 0.4474
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.2936
+    - datetime: '2021-01-01'
+      value: 0.2755
+    - datetime: '2022-01-01'
+      value: 0.2718
+    - datetime: '2023-01-01'
+      value: 0.2652
+    - datetime: '2024-01-01'
+      value: 0.2146
+    - datetime: '2025-01-01'
+      value: 0.197
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_NEISO.fetch_consumption_forecast
@@ -1211,12 +1239,12 @@ parsers:
   productionPerModeForecast: US_NEISO.fetch_wind_solar_forecasts
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:
