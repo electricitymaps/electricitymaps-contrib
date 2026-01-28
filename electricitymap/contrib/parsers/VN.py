@@ -182,7 +182,7 @@ def fetch_consumption(
         if len(live_consumption) > 0:
             return live_consumption
         else:
-            if zone_key is ZoneKey("VN"):
+            if zone_key == ZoneKey("VN"):
                 return fetch_historical_consumption(
                     datetime.now() - timedelta(days=1), session, logger
                 )
@@ -192,7 +192,7 @@ def fetch_consumption(
                     "No real time data found",
                     zone_key,
                 )
-    elif target_datetime is not None and zone_key is ZoneKey("VN"):
+    elif target_datetime is not None and zone_key == ZoneKey("VN"):
         return fetch_historical_consumption(target_datetime, session, logger)
     else:
         raise NotImplementedError(
