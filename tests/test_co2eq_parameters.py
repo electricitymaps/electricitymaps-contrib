@@ -12,27 +12,11 @@ from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
 )
-
-MODE_ORDER = [
-  'nuclear',
-  'geothermal',
-  'biomass',
-  'coal',
-  'solar',
-  'wind',
-  'hydro',
-  'hydro charge',
-  'hydro discharge',
-  'battery charge',
-  'battery discharge',
-  'gas',
-  'oil',
-  'unknown',
-]
+from electricitymap.contrib.config.constants import MODE_COLORS
 
 def get_possible_modes() -> set[str]:
-    """Get the set of possible modes."""
-    return set[str](MODE_ORDER)
+    """Get the set of possible modes from the MODE_COLORS dictionary."""
+    return set[str](MODE_COLORS.keys())
 
 
 def parse_json_file(path: str):
