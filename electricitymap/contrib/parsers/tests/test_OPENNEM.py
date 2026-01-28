@@ -47,7 +47,8 @@ def test_price(adapter, session, snapshot, zone):
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
-    mock_data = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
+    # Exchange tests use the old v3 stats endpoint, so use v3 mock data
+    mock_data = Path(base_path_to_mock, "OPENNEM_AU-QLD.json.v3")
     adapter.register_uri(
         ANY,
         ANY,
@@ -60,8 +61,9 @@ def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
 
 
 def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
-    mock_data_qld = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
-    mock_data_nsw = Path(base_path_to_mock, "OPENNEM_AU-NSW.json")
+    # Exchange tests use the old v3 stats endpoint, so use v3 mock data
+    mock_data_qld = Path(base_path_to_mock, "OPENNEM_AU-QLD.json.v3")
+    mock_data_nsw = Path(base_path_to_mock, "OPENNEM_AU-NSW.json.v3")
 
     adapter.register_uri(
         ANY,
