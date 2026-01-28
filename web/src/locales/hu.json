@@ -7,7 +7,7 @@
     "feedbackCta": "Adjon visszajelzést"
   },
   "info": {
-    "title": "Az Electricity Maps-ről",
+    "title": "Az Electricity Mapsről",
     "text": "egy API-platform, amely valós idejű és előrejelzett villamosenergia-jelzéseket biztosít, lehetővé téve bármely eszköz számára a költségek és a kibocsátások csökkentését azáltal, hogy tájékoztatja őket a villamosenergia-fogyasztás legkedvezőbb időpontjairól.",
     "version": "Alkalmazás verzió: {{version}}",
     "share-app": "Ossza meg az alkalmazást:"
@@ -50,7 +50,7 @@
     "about": "Rólunk"
   },
   "app-banner": {
-    "cta": "Szerezze meg az alkalmazást",
+    "cta": "Szerezze be az alkalmazást",
     "description": "Élő villamos energia adatok"
   },
   "share-button": {
