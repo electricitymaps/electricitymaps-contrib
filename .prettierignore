@@ -8,18 +8,12 @@ pnpm-lock.yaml
 **/parsers/tests/mocks
 .pytest_cache/
 
-mobileapp/android
-mobileapp/ios
-# Disable auto-generated README by Fastlane
-mobileapp/fastlane/README.md
 
 web/dist/
 web/config/
 web/public/client-version.json
 
 web/.husky/_
-
-mockserver/public
 
 .github/ISSUE_TEMPLATE/
 
