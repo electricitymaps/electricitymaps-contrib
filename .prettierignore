@@ -8,13 +8,6 @@ pnpm-lock.yaml
 **/parsers/tests/mocks
 .pytest_cache/
 
-
-web/dist/
-web/config/
-web/public/client-version.json
-
-web/.husky/_
-
 .github/ISSUE_TEMPLATE/
 
 LICENSE.md
