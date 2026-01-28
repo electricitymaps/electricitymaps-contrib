@@ -2,41 +2,41 @@
   "experiment": {
     "5min": {
       "title": "Új: 5 perces felbontás",
-      "description": "Jelenleg kísérleti. További költség nélkül elérhető, amíg visszajelzést gyűjtünk és finomítjuk a funkcionialitást."
+      "description": "Jelenleg kísérleti. További költség nélkül elérhető, amíg visszajelzést gyűjtünk és finomítjuk a funkcionalitást."
     },
-    "feedbackCta": "Hagyjon visszajelzést"
+    "feedbackCta": "Adjon visszajelzést"
   },
   "info": {
-    "title": "Az Electricity Map-ről",
+    "title": "Az Electricity Maps-ről",
     "text": "egy API-platform, amely valós idejű és előrejelzett villamosenergia-jelzéseket biztosít, lehetővé téve bármely eszköz számára a költségek és a kibocsátások csökkentését azáltal, hogy tájékoztatja őket a villamosenergia-fogyasztás legkedvezőbb időpontjairól.",
-    "version": "App verzió: {{version}}",
-    "share-app": "Ossza meg az applikációt:"
+    "version": "Alkalmazás verzió: {{version}}",
+    "share-app": "Ossza meg az alkalmazást:"
   },
   "settings-modal": {
     "title": "Beállítások",
     "flows": "Villamosenergia-áramlások",
-    "flow-tracing-link-label": "Áramlás követés",
+    "flow-tracing-link-label": "Áramlás-követés",
     "flow-tracing-link-description": "nyomon követi, hogyan áramlik fizikailag a villamos energia a különböző zónákat összekötő interkonnektorokon keresztül",
     "home-link-description": "olyan API-t kínál, amely valós idejű és előrejelzett villamosenergia-hálózati jelzéseket szolgáltat.",
-    "weather-layers-disallowed": "Időjárási adatok nem elérhetők ebben a felbontásban, váltson valós idejű módra az élő időjárási adatok megtekintéséhez."
+    "weather-layers-disallowed": "Időjárási adatok nem érhetők el ebben a felbontásban, váltson valós idejű módra az élő időjárási adatok megtekintéséhez."
   },
   "ranking-panel": {
-    "title": "Villamos Energia Hálózat Karbonkibocsátások",
-    "subtitle": "Tekintse meg, honnan ered az elektromos áram<br/> és mennyi szén-dioxid volt kibocsátva a megtermeléséhez",
+    "title": "A Villamosenergia-hálózat Karbonkibocsátásai",
+    "subtitle": "Tekintse meg, honnan ered a villamos energia<br/> és mennyi szén-dioxid volt kibocsátva a megtermeléséhez",
     "search": "Területek szerinti keresés",
     "no-results": "Nincs találat. Próbáljon meg másra keresni."
   },
   "button": {
     "bluesky-share": "Valós idejű globális villamosenergia-kibocsátási adatok ellenőrzése: {{baseUrl}}",
     "reddit": "Csatlakozz a r/electricitymaps közösséghez",
-    "reddit-share": "Megosztás Reddit-en",
-    "github": "Contribute on GitHub",
-    "twitter": "Kövess minket az X-n (Twitter)",
+    "reddit-share": "Megosztás Redditen",
+    "github": "Hozzájárulás a GitHubon",
+    "twitter": "Kövess minket az X-en (Twitter)",
     "twitter-share": "Megosztás az X-en (Twitter)",
-    "linkedin": "Kövess minket a LinkedIn-en",
-    "linkedin-share": "Megosztás a LinkedIn-en",
-    "facebook": "Kövess minket a Facebook-on",
-    "facebook-share": "Megosztás a Facebook-on",
+    "linkedin": "Kövess minket a LinkedInen",
+    "linkedin-share": "Megosztás a LinkedInen",
+    "facebook": "Kövess minket a Facebookon",
+    "facebook-share": "Megosztás a Facebookon",
     "feedback": "Visszajelzés megosztása",
     "faq": "GYIK",
     "privacy-policy": "Adatvédelmi Irányelvek",
@@ -50,7 +50,7 @@
     "about": "Rólunk"
   },
   "app-banner": {
-    "cta": "Szerezd meg az appot",
+    "cta": "Szerezze meg az alkalmazást",
     "description": "Élő villamos energia adatok"
   },
   "share-button": {
@@ -68,7 +68,7 @@
     "copy-chart-link": "Diagram linkjének másolása",
     "copy-zone-link": "Zóna linkjének másolása",
     "preliminary-data": "Az előzetes adatok idővel változhatnak.",
-    "summary": "Fedezzen fel valós idejű rálátásokat az Electricity Maps applikációval!"
+    "summary": "Fedezzen fel valós idejű rálátásokat az Electricity Maps alkalmazással!"
   },
   "new-feature-popover": {
     "title": "Új funkció: 72 órás nézet",
@@ -80,11 +80,11 @@
       "text": "Itt világszerte felfedezheti a villamos energia klímahatását. <br/><br/>Engedje meg, hogy néhány egyszerű lépésben végigvezessük a térképen!"
     },
     "view2": {
-      "header": "Tekintse meg valós időben, mennyi szén-dioxid kerül kibocsátásra az Ön által felhasznált villamos energia előállításához",
+      "header": "Tekintse meg valós időben, mennyi szén-dioxid-kibocsátással jár az Ön által felhasznált villamos energia",
       "text": "A világ különböző területeit az elfogyasztott villamos energia szénintenzitása alapján színezzük (minden üvegházhatású gázt figyelembe véve). Minél zöldebb a szín, annál klímabarátabb a villamos energia."
     },
     "view3": {
-      "header": "Tudja meg honnan ered az Ön által használt villamos energia",
+      "header": "Ismerje meg honnan ered az Ön által használt villamos energia",
       "text": "A térképen található nyilak jelzik a különböző területek közötti villamos energia áramlást. Kattintson egy területre, hogy többet tudjon meg a villamos energia eredetéről."
     },
     "view4": {
@@ -93,7 +93,7 @@
     },
     "view5": {
       "header": "Váltson villamos energia és kibocsátások nézetek között",
-      "text": "Kapcsoljon át a diagramok között, amelyek egy zóna villamosenergia-adatait vagy szén-dioxid-kibocsátását jelenítik meg. A megjelenített értékek a kiválasztott időszak összesített adatait mutatják, és az információk összhangban vannak a kiválasztott áramlás-követésen alapuló vagy termelési adatokkal."
+      "text": "Váltson a diagramok között, amelyek egy zóna villamosenergia-adatait vagy szén-dioxid-egyenérték kibocsátását jelenítik meg. A megjelenített értékek a kiválasztott időszak összesített adatait mutatják, és az információk összhangban vannak a kiválasztott áramlás-követésen alapuló vagy termelési adatokkal."
     },
     "view6": {
       "header": "Fedezze fel a múltat",
@@ -115,7 +115,7 @@
     "forecastCta": "Előrejelzési adatokat keres?",
     "source": "Forrás",
     "carbonintensity": "Szénintenzitás",
-    "lowcarbon": "Alacsony szén-dioxid-kibocsátású",
+    "lowcarbon": "Alacsony szén-dioxid-intenzitású",
     "renewable": "Megújuló",
     "electricityconsumption": "Villamos energia",
     "emissions": "Kibocsátások",
@@ -129,8 +129,8 @@
     "dataIsDelayed": "Az adott régió adatai legfeljebb {{hours}} órás késéssel érkezhetnek. Élő adatok nem jeleníthetők meg.",
     "estimated": "becsült",
     "aggregated": "aggregált",
-    "dataIsEstimated": "Az adott régió adatainak egy része becsült. További információ a becslési módszertanunkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>here</a>.",
-    "exchangesAreMissing": "Ez a diagram nem tartalmaz áramlási adatokat. Az áramlások az órás nézetekben láthatók. További információ a történeti aggregációkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>here</a>.",
+    "dataIsEstimated": "Az adott régió adatainak egy része becsült. További információ a becslési módszertanunkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods' target='_blank'>itt</a> érhető el.",
+    "exchangesAreMissing": "Ez a diagram nem tartalmaz áramlási adatokat. Az áramlások az órás nézetekben láthatók. További információ a történeti aggregációkról <a href='https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates' target='_blank'>itt</a> érhető el.",
     "estimatedTooltip": "Az adott zónára vonatkozó valós idejű adatok a forrásadatok és a modell feltételezései alapján becsültek.",
     "aggregatedTooltip": "Az adott zónára vonatkozó adatok történeti órás értékek alapján aggregáltak",
     "helpUs": "Segítsen azonosítani a problémát a <a href='{{link}}' target='_blank'>futásidejű naplók</a> megtekintésével, vagy vegye fel a kapcsolatot az adat szolgáltatójával.",
@@ -156,7 +156,7 @@
       "today": "Ma",
       "tomorrow": "Holnap",
       "price-disclaimer": "Minden ár MWh-ra vonatkozik, adók és hálózati díjak nélkül.",
-      "time-disclaimer": "Minden megjelenített idő",
+      "time-disclaimer": "A megjelentített időpontok időzónája",
       "at": "Ekkor",
       "now": "Most"
     }
@@ -211,7 +211,7 @@
     "ESTIMATED_GENERAL_PURPOSE_ZONE_MODEL": {
       "title": "Az adatok mindig becsültek",
       "pill": "Becsült",
-      "body": "Az adott zónára vonatkozó valós idejű forrásadatok nem érhetők el. Az adatokat élő időjárási adatok és történeti termelési minták kombinációjával modellezzük, hogy pontos, áramlás-követett villamosenergia-mixet állítsunk elő."
+      "body": "Az adott zónára vonatkozó valós idejű forrásadatok nem érhetők el. Ehhez élő időjárási adatokat és korábbi termelési mintákat használunk, hogy megbízható, áramlásalapú villamosenergia-mixet állítsunk elő."
     },
     "threshold_filtered": {
       "title": "Hiányzó adatok",
@@ -324,12 +324,12 @@
       "all_years": "Éves villamosenergia-árak"
     },
     "netExchange": {
-      "24h": "Villamosenergia nettó áramlás",
-      "72h": "Villamosenergia nettó áramlás",
-      "3mo": "Napi villamosenergia nettó áramlás",
-      "12mo": "Havi villamosenergia nettó áramlás",
-      "all_months": "Havi villamosenergia nettó áramlás",
-      "all_years": "Éves villamosenergia nettó áramlás"
+      "24h": "Nettó villamosenergia-áramlás",
+      "72h": "Nettó villamosenergia-áramlás",
+      "3mo": "Napi nettó villamosenergia-áramlás",
+      "12mo": "Havi nettó villamosenergia-áramlás",
+      "all_months": "Havi nettó villamosenergia-áramlás",
+      "all_years": "Éves nettó villamosenergia-áramlás"
     },
     "electricityLoad": {
       "24h": "Villamosenergia-terhelés",
@@ -359,7 +359,7 @@
     "zoneHeader": {
       "lowcarbon": "Tartalmazza az összes megújuló- és a nukleáris energiát",
       "renewable": "Tartalmazza a nap-, szél-, víz-, biomassza- és geotermikus energiát",
-      "carbonIntensity": "A villamosenergia-termelés üvegházhatásúgáz-kibocsátását mérő érték grammban kifejezve kilowattóránként (gCO2eq/kWh)"
+      "carbonIntensity": "Az áramtermeléshez kapcsolódó üvegházhatásúgáz-kibocsátás, grammban kifejezve kilowattóránként (gCO₂e/kWh)"
     },
     "crossborderexport": "Határkeresztező export",
     "carbonintensityexport": "Az export szénintenzitása",
@@ -382,7 +382,7 @@
     "temporarilyUnavailable": "Átmenetileg nem elérhető",
     "production": "termelés",
     "consumption": "fogyasztás",
-    "cpinfo": "<b>Áramlás-követett</b> figyelembe veszi az importot és exportot, a <b>termelési</b> nem",
+    "cpinfo": "<b>Az Áramlás-követett</b> figyelembe veszi az importot és exportot, a <b>termelési</b> adatokat nem",
     "aggregateInfo": "Váltás a részletes zónanézet és az aggregált országnézet között",
     "selectLanguage": "Nyelv kiválasztása",
     "dataIsDelayed": "Az adatok késnek",
@@ -423,21 +423,21 @@
     "dismiss": "Elutasítás"
   },
   "misc": {
-    "maintitle": "A villamosenergia-fogyasztás élő, 24/7 CO₂-kibocsátása",
+    "maintitle": "A villamosenergia-fogyasztás CO₂-kibocsátása valós időben",
     "faq": "Gyakran Ismételt Kérdések",
     "dismiss": "Elutasítás",
     "reload": "Újratöltés",
     "slow-loading-text": "Még töltődik, ha ez folytatódik, próbálja meg újratölteni..."
   },
-  "wind": "szél",
+  "wind": "szélerőmű",
   "windDataError": "A széladatok jelenleg nem érhetők el",
-  "solar": "nap",
+  "solar": "naperőmű",
   "solarDataError": "A napenergia-adatok jelenleg nem érhetők el",
-  "hydro": "vízenergia",
-  "hydro storage": "víztározós energia",
-  "battery storage": "akkumulátoros energiatároló rendszerek",
+  "hydro": "vízerőmű",
+  "hydro storage": "szivattyús tározós erőmű",
+  "battery storage": "akkumulátoros energiatároló rendszer",
   "biomass": "biomassza",
-  "nuclear": "nukleáris",
+  "nuclear": "nukleáris energia",
   "geothermal": "geotermikus",
   "gas": "gáz",
   "coal": "szén",
@@ -469,7 +469,7 @@
   "mapAreas": {
     "groupName": "Területek a térképen",
     "noData-question": "Miért nem érhetők el adatok a területemre?",
-    "noData-answer": " Vagy azért, mert a terület adatforrásai átmenetileg nem érhetők el, vagy mert még nem állnak rendelkezésre adatforrások. Segíthet <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>új adatforrások felkutatásában</a>.",
+    "noData-answer": " Vagy azért, mert a terület adatforrásai átmenetileg nem érhetők el, vagy mert még nem állnak rendelkezésre adatforrások. Ön is hozzájárulhat <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Find-data-sources'>új adatforrások azonosításához</a>.",
     "whySmallAreas-question": "Miért osztják a világot kisebb területekre, miért nem csak országos átlagokat mutatnak?",
     "whySmallAreas-answer": "A területek a legkisebb földrajzi egységek, amelyekre adataink vannak. A nagyobb részletesség pontosabb képet ad a villamos energia eredetéről és annak klímahatásáról.",
     "divideExistingArea-question": "Fel lehet osztani a területemet kisebb részekre?",
@@ -480,7 +480,7 @@
   "methodology": {
     "groupName": "Módszereink",
     "carbonIntensity-question": "Mi az a „szénintenzitás”?",
-    "carbonIntensity-answer": "A szénintenzitás annak a villamos energiának az előállításához kapcsolódó üvegházhatásúgáz-kibocsátás mértéke, amelyet Ön fogyaszt (gCO₂eq/kWh-ban - azaz az elfogyasztott villamos energia kilowattóránként kibocsátott szén-dioxid-egyenérték grammjaiban). <br><br>Az elektromos energia **fogyasztásához** kapcsolódó kibocsátásokat mérjük (nem a termelését), vagyis minden olyan üvegházhatású gáz kibocsátását (a CO₂-t és más gázokat, például a metánt is), amely az adott területen elfogyasztott villamos energia előállításához hozzájárult. Ez magában foglalja a más területekről importált villamos energia szénintenzitását is. Életciklus-elemzésen (LCA) alapuló megközelítést alkalmazunk, ami azt jelenti, hogy figyelembe vesszük az erőművek teljes életciklusából származó kibocsátásokat: a létesítést, az üzemanyag-előállítást, az üzemeltetés során keletkező kibocsátásokat, valamint a leszerelést.",
+    "carbonIntensity-answer": "A szénintenzitás azt mutatja meg, hogy az Ön által felhasznált villamos energia előállítása átlagosan mennyi üvegházhatásúgáz-kibocsátással jár (gCO₂e/kWh). <br><br>Az elektromos energia **fogyasztásához** kapcsolódó kibocsátásokat mérjük (nem a termelését), vagyis minden olyan üvegházhatású gáz kibocsátását (a CO₂-t és más gázokat, például a metánt is), amely az adott területen elfogyasztott villamos energia előállításához hozzájárult. Ez magában foglalja a más területekről importált villamos energia szénintenzitását is. Életciklus-elemzésen (LCA) alapuló megközelítést alkalmazunk, ami azt jelenti, hogy figyelembe vesszük az erőművek teljes életciklusából származó kibocsátásokat: a létesítést, az üzemanyag-előállítást, az üzemeltetés során keletkező kibocsátásokat, valamint a leszerelést.",
     "methodology-question": "Hogyan számolták ki az értékeket?",
     "methodology-answer": "A teljes módszertan elérhető a <a href='https://www.electricitymaps.com/methodology'>electricitymaps.com/methodology</a> oldalon, további dokumentációval a <a href='https://github.com/electricitymaps/electricitymaps-contrib/wiki/Carbon-intensity-calculations'>GitHub Wikiben</a>.",
     "regionalEmissionFactors-question": "Miért változnak a kibocsátási tényezők a különböző területeken?",
