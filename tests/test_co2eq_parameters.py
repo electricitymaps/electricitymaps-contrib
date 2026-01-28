@@ -3,7 +3,6 @@
 import datetime
 import json
 import numbers
-import re
 import unittest
 from typing import Any
 
@@ -13,6 +12,7 @@ from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_LIFECYCLE,
 )
 from electricitymap.contrib.config.constants import MODE_COLORS
+
 
 def get_possible_modes() -> set[str]:
     """Get the set of possible modes from the MODE_COLORS dictionary."""

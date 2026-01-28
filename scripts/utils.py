@@ -3,7 +3,7 @@
 import json
 import pathlib
 import subprocess
-from os import PathLike, listdir, path
+from os import PathLike
 from typing import Any
 
 import yaml
