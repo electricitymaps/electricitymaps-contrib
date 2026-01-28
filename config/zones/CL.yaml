@@ -1,0 +1,16 @@
+country: CL
+region: Americas
+bounding_box:
+  - - -109.95372473899994
+    - -56.4185042229999
+  - - -65.92080644399994
+    - -17.006588197999946
+timezone: Pacific/Easter
+zone_name: Chile
+country_name: Chile
+currency: CLP
+subZoneNames:
+  - CL-CHP
+  - CL-SEA
+  - CL-SEM
+  - CL-SEN
