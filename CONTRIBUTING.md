@@ -90,11 +90,6 @@ Both of these share a common code base that is built upon [react][reactjs].
 As a result we have a frontend folder structure that looks like this:
 
 ```
-mobileapp
-├── android
-├── assets
-├── icons
-└── ios
 web
 ├── config
 ├── cypress

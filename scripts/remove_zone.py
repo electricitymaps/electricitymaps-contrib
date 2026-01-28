@@ -76,8 +76,6 @@ def move_parser_to_archived(zone_key: ZoneKey):
 def find_files_mentioning_zone(text):
     """Search for the zone_key across all files in contrib."""
     IGNORED_PATHS = [
-        "mobileapp/ios",
-        "mobileapp/android",
         "node_modules",
         "dist",
         "archived",
