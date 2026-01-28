@@ -21,7 +21,7 @@ from utils import (
 from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 from electricitymap.contrib.types import ZoneKey
 
-PRETTIER_CONFIG_PATH = ROOT_PATH / "web/.prettierrc.json"
+PRETTIER_CONFIG_PATH = ROOT_PATH / ".prettierrc.js"
 
 
 def remove_config(zone_key: ZoneKey):

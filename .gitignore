@@ -1,8 +1,6 @@
 gha-creds-*.json
 *.pyc
 *.env
-web/public/dist
-web/config
 **/node_modules
 .ipynb_checkpoints/
 *.pyproj

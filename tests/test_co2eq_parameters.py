@@ -13,31 +13,26 @@ from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_LIFECYCLE,
 )
 
+MODE_ORDER = [
+  'nuclear',
+  'geothermal',
+  'biomass',
+  'coal',
+  'solar',
+  'wind',
+  'hydro',
+  'hydro charge',
+  'hydro discharge',
+  'battery charge',
+  'battery discharge',
+  'gas',
+  'oil',
+  'unknown',
+]
 
 def get_possible_modes() -> set[str]:
     """Get the set of possible modes."""
-    modes = set()
-    with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
-        # The call to `eval` is a hack to parse the `modeOrder` array from the
-        # JavaScript source file.
-        search = re.search(
-            r"^export const modeOrder = (\[$.*?^]) as const;$",
-            file_.read(),
-            flags=re.DOTALL | re.MULTILINE,
-        )
-        if search is not None:
-            group = search.group(1)
-            for mode in eval(group):
-                if mode.endswith(" storage"):
-                    modes.update(
-                        (
-                            mode.replace("storage", "charge"),
-                            mode.replace("storage", "discharge"),
-                        )
-                    )
-                else:
-                    modes.add(mode)
-    return modes
+    return set[str](MODE_ORDER)
 
 
 def parse_json_file(path: str):
