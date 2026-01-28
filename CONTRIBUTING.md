@@ -70,55 +70,6 @@ If this jobs fails and you need to manually format the code you can run `uv run 
 
 Check the [wiki page][wiki python code formatting] for more details and tips.
 
-## Front-end guidelines
-
-To get started with editing the frontend use the following steps:
-
-1. Use `cd web` to go into the web directory
-2. Then use `pnpm install` to get all dependencies installed.
-
-Note: This requires you to have [node.js][node homepage] and [pnpm][pnpm homepage] installed, you can see their respective installation guides here:
-
-- [How to install node.js][node installation guide]
-- [pnpm installation][pnpm installation guide]
-
-### Frontend structure
-
-The frontend can be broken down into 2 main parts, the web app built [Vite][vitejs] and the mobile app built with [capacitor][capacitorjs].
-Both of these share a common code base that is built upon [react][reactjs].
-
-As a result we have a frontend folder structure that looks like this:
-
-```
-web
-├── config
-├── cypress
-├── geo
-├── public
-├── scripts
-└── src
-    ├── api
-    ├── components
-    ├── features
-    ├── hooks
-    ├── stories
-    ├── testing
-    ├── translation
-    └── utils
-```
-
-### State management
-
-We use [Jotai][jotai homepage] that saves our state in primitive atoms, these live in [web/src/utils/state/atoms.ts][jotai atoms] and are then imported in the individual frontend files where it's needed. If you have a need to save the state for a new feature you should add a new atom to this file so we keep everything organized.
-
-### Formatting the frontend
-
-The frontend uses [ESLint][eslint homepage] and [Prettier][prettier homepage] as formatters for all code and this is automatically checked in the CI jobs `Prettier / Check` and `ESLint / Check`.
-
-If these jobs fail and you need to format the code you can run `yarn lint --fix` in the `/web` folder to do so.
-
-Check the [wiki page][wiki js code formatting] on formatting for more details and tips.
-
 # Contribution lifecycle
 
 In order for your PR to be accepted and deployed it will need to pass a series of checks, these checks will be defined and explained in the following section of this document.
@@ -172,7 +123,7 @@ In order to do code changes to the Electricity Maps repository you need to fork 
 
 Once this has been done the automatic and manual review process starts, this consists of manual approval of the CI pipeline if you are a first time contributor, if the CI pipeline passes a team member will review your specific code changes. If they pass all automated tests and manual review from a Electricity Maps Employee it will be merged in our contrib PR. This does not mean it will be automatically de deployed or that the changes will be instantly visible.
 
-If it is frontend changes it will be deployed to our staging environment at https://staging.electricitymaps.com and if there is parser changes these go on to more internal tests that includes both automated test suits and manual reviews. Once everything passes and an approval has been granted a new release will be created that updates the production environment for both the frontend and parser changes.
+If there is parser changes these go on to more internal tests that includes both automated test suits and manual reviews. Once everything passes and an approval has been granted a new release will be created that updates the production environment for both the frontend and parser changes.
 
 <!-- Link definitions to keep the text clean -->
 
@@ -184,19 +135,6 @@ If it is frontend changes it will be deployed to our staging environment at http
 [black homepage]: https://github.com/psf/black
 [isort homepage]: https://pycqa.github.io/isort/
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
-[node homepage]: https://nodejs.org/
-[pnpm homepage]: https://pnpm.io/
-[node installation guide]: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs
-[pnpm installation guide]: https://pnpm.io/installation
-[jotai homepage]: https://jotai.org/
-[jotai atoms]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/web/src/utils/state/atoms.ts
-[eslint homepage]: https://eslint.org/
-[prettier homepage]: https://prettier.io/
-[wiki js code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#js-code-formatting
-[wiki translating the app]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Translating-app.electricitymaps.com
-[reactjs]: https://reactjs.org/
-[vitejs]: https://vitejs.dev/
-[capacitorjs]: https://capacitorjs.com/
 [readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/README.md
 [code of conduct]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/CODE_OF_CONDUCT.md
 [license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE.md
