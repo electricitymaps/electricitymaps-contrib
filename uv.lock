@@ -291,7 +291,6 @@ dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "ruamel-yaml" },
-    { name = "ruff" },
     { name = "tzdata" },
 ]
 
@@ -319,6 +318,7 @@ dev = [
     { name = "click" },
     { name = "pytest" },
     { name = "requests-mock" },
+    { name = "ruff" },
     { name = "syrupy" },
     { name = "testfixtures" },
 ]
@@ -346,7 +346,6 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6.0,<7" },
     { name = "requests", marker = "extra == 'parsers'", specifier = "~=2.32.2" },
     { name = "ruamel-yaml", specifier = ">=0.17.24,<0.18" },
-    { name = "ruff", specifier = "==0.11.2" },
     { name = "signalr-client-threads", marker = "extra == 'parsers'", specifier = "~=0.0.12" },
     { name = "tzdata", specifier = ">=2025.2,<2026" },
     { name = "xlrd", marker = "extra == 'parsers'", specifier = ">=2.0.1,<3" },
@@ -358,6 +357,7 @@ dev = [
     { name = "click", specifier = ">=8.0.0,<9" },
     { name = "pytest", specifier = ">=7.4.0,<8" },
     { name = "requests-mock", specifier = "~=1.3.0" },
+    { name = "ruff", specifier = "==0.11.2" },
     { name = "syrupy", specifier = ">=4.8.0,<5" },
     { name = "testfixtures", specifier = ">=7.0.0,<8" },
 ]
