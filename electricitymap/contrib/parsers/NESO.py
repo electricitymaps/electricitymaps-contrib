@@ -68,7 +68,7 @@ def fetch_production(
                 unknown=(float(item["OTHER"])),
             ),
             storage=StorageMix(
-                hydro=float(item["STORAGE"]) * -1
+                hydro=float(item["STORAGE"]) * -1 if float(item["STORAGE"]) != 0 else 0
             ),  # Classify storage as hydro storage since ELEXON uses this mapping and because NESO demand data is also hydro storage
             source="neso.energy",
         )
