@@ -450,7 +450,7 @@ parsers:
   consumptionForecast: ENTSOE.fetch_consumption_forecast
   generationForecast: ENTSOE.fetch_generation_forecast
   price: NORDPOOL.fetch_price
-  production: ELEXON.fetch_production
+  production: NESO.fetch_production
   productionCapacity: GB.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 region: Europe
