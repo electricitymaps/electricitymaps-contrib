@@ -3,6 +3,7 @@ bounding_box:
     - 54.9
   - - 15.2
     - 55.2
+can_have_zero_production: true
 capacity:
   wind: 30
 contributors:

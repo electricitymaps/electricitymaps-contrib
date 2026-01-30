@@ -3,6 +3,7 @@ bounding_box:
     - 45.4507510440001
   - - -61.47695878799993
     - 47.567328192000076
+can_have_zero_production: true
 capacity:
   oil: 179
   wind: 203.6
