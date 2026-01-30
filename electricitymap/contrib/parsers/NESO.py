@@ -27,7 +27,7 @@ NESO_TO_PRODUCTION_MIX_MAPPING = {
 }
 
 NESO_TO_STORAGE_MIX_MAPPING = {
-    "STORAGE": "hydro",
+    "STORAGE": "hydro",  # Classify storage as hydro storage since ELEXON uses this mapping
 }
 
 
