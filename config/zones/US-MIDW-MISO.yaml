@@ -74,6 +74,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 616.9
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 791.9
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -521,6 +524,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 83698.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 83743.0
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1013,6 +1019,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 17475.6
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 19325.0
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1044,6 +1053,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 491.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 495.7
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1213,6 +1225,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 32629.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 32649.4
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch

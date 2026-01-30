@@ -14,10 +14,16 @@ capacity:
     - datetime: '2023-06-01'
       source: EIA.gov
       value: 51.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 126.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 3.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 0.0
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -92,6 +98,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 261.3
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 564.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

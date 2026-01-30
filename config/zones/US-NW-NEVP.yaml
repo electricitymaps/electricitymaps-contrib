@@ -29,6 +29,9 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 1035.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1135.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -248,6 +251,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 4259.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 4375.7
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -612,6 +618,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:
@@ -620,7 +628,5 @@ sources:
     link: https://www.epa.gov/egrid/historical-egrid-data
   eGrid 2023:
     link: https://www.epa.gov/egrid/detailed-data
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: US/Pacific
 zone_name: Nevada Power Company
