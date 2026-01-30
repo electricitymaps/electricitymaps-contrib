@@ -3,6 +3,7 @@ bounding_box:
     - 30.211187
   - - -83.357543
     - 33.075117
+can_have_zero_production: true
 capacity:
   battery storage:
     - datetime: '2017-01-01'

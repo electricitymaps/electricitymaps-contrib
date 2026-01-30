@@ -136,6 +136,7 @@ class Zone(StrictBaseModelWithAlias):
     disclaimer: str | None
     parsers: Parsers = Parsers()
     generation_only: bool | None
+    can_have_zero_production: bool | None
     has_day_ahead_price_license: bool | None
     hide_day_ahead_price: bool | None
     sub_zone_names: list[ZoneKey] | None = Field(None, alias="subZoneNames")
