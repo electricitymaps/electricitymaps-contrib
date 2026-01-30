@@ -262,6 +262,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 3983.3
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 4173.3
 comment: Pacificorp - East
 contributors:
   - systemcatch
