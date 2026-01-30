@@ -17,7 +17,7 @@ NESO_GENERATION_DATASET_ID = "f93d1835-75bc-43e5-84ad-12472b180a98"
 
 def fetch_production(
     zone_key: ZoneKey,
-    session: Session = Session(),
+    session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
