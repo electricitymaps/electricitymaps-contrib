@@ -68,8 +68,8 @@ def fetch_production(
 
     obj = res.json()["result"]["records"]
 
+    production_list = ProductionBreakdownList(logger=logger)
     for row in obj:
-        production_list = ProductionBreakdownList(logger=logger)
         production_mix = ProductionMix()
 
         for neso_key, emaps_key in NESO_TO_PRODUCTION_MIX_MAPPING.items():
