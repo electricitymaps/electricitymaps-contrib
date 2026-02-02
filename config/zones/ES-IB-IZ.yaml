@@ -3,6 +3,7 @@ bounding_box:
     - 38.33180940700015
   - - 2.123057488000086
     - 39.618882554000066
+can_have_zero_production: true
 contributors:
   - hectorespert
   - systemcatch

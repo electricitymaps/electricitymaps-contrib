@@ -3,6 +3,7 @@ bounding_box:
     - 59.40448639500012
   - - 21.59669030000012
     - 60.98078034100014
+can_have_zero_production: true
 capacity:
   coal: 0
   gas: 0

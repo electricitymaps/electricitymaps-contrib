@@ -3,6 +3,7 @@ bounding_box:
     - 41.87755
   - - 20.3398
     - 43.52384
+can_have_zero_production: true
 capacity:
   coal:
     - datetime: '2017-01-01'
