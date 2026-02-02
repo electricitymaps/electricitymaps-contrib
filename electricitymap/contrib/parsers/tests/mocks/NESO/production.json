@@ -1,0 +1,34 @@
+{
+    "help": "Mock NESO generation data",
+    "success": true,
+    "result": {
+      "records": [
+        {
+          "DATETIME": "2024-12-15T10:00:00",
+          "BIOMASS": 5.0,
+          "COAL": 0.0,
+          "GAS": 10.5,
+          "HYDRO": 2.0,
+          "NUCLEAR": 8.0,
+          "SOLAR": 3.5,
+          "WIND": 12.0,
+          "WIND_EMB": 1.5,
+          "OTHER": 0.0,
+          "STORAGE": 0.0
+        },
+        {
+          "DATETIME": "2024-12-15T10:30:00",
+          "BIOMASS": 6.0,
+          "COAL": 1.0,
+          "GAS": 11.0,
+          "HYDRO": 2.5,
+          "NUCLEAR": 8.0,
+          "SOLAR": 4.0,
+          "WIND": 13.0,
+          "WIND_EMB": 2.0,
+          "OTHER": 0.5,
+          "STORAGE": 5.0
+        }
+      ]
+    }
+  }
