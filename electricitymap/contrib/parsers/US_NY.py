@@ -248,7 +248,9 @@ def fetch_exchange(
     new_england_exs = exchange_data.loc[
         exchange_data["Interface Name"].isin(relevant_exchanges)
     ]
-    consolidated_flows = new_england_exs.reset_index().groupby("Timestamp").sum()
+    consolidated_flows = (
+        new_england_exs.reset_index().groupby("Timestamp").sum(numeric_only=True)
+    )
 
     now = datetime.now(tz=TIMEZONE)
 
