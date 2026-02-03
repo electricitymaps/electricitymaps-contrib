@@ -136,7 +136,9 @@ def fetch_production(
         logger=logger,
     )
     data = data.rename(columns=PRODUCTION_MODE_MAPPING)
-    data = data.groupby(data.columns, axis=1).sum()
+    data = data.groupby(data.columns, axis=1).sum(
+        numeric_only=True,
+    )
     production = data[[col for col in data.columns if col in PRODUCTION_MODES]]
 
     for dt, row in production.iterrows():
@@ -221,7 +223,9 @@ def fetch_exchange(
     ]
 
     data = data.rename(columns=EXCHANGES_MAPPING)
-    data = data.groupby(data.columns, axis=1).sum()
+    data = data.groupby(data.columns, axis=1).sum(
+        numeric_only=True,
+    )
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
     exchange = data[[sorted_zone_keys]]
 

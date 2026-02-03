@@ -231,7 +231,9 @@ def fetch_npp_production(
 
         df_zone = df_npp_filtered.loc[df_npp_filtered["region"] == zone_key].copy()
         df_zone["production_mode"] = df_zone["production_mode"].map(NPP_MODE_MAPPING)
-        production_in_zone = df_zone.groupby(["production_mode"])["value"].sum()
+        production_in_zone = df_zone.groupby(["production_mode"])["value"].sum(
+            numeric_only=True,
+        )
         production_dict = {
             mode: round(production_in_zone.get(mode), 3)
             for mode in production_in_zone.index
@@ -773,7 +775,10 @@ def compute_zone_key_share_per_mode_out_of_total(
     )
 
     total_production_zone_share_out_of_country = (
-        zone_production_breakdown.sum() / country_production_breakdown.sum()
+        zone_production_breakdown.sum(
+            numeric_only=True,
+        )
+        / country_production_breakdown.sum()
     )["value"]
 
     zone_key_share_per_mode_out_of_country = (
@@ -856,7 +861,9 @@ def parse_total_production_15min_grid_india_report(
     total_gen_col = "TOTAL GENERATION\n(MW)"
     df[total_gen_col] = pd.to_numeric(df[total_gen_col], errors="coerce")
     df["15min_energy"] = df[total_gen_col] / 4
-    total_generation_from_15_min = df["15min_energy"].sum()
+    total_generation_from_15_min = df["15min_energy"].sum(
+        numeric_only=True,
+    )
     return float(total_generation_from_15_min)
 
 

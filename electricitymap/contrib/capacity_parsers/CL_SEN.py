@@ -52,7 +52,13 @@ def fetch_production_capacity(
     df = df.melt(id_vars=["datetime"], var_name="mode", value_name="value")
     df["mode"] = df["mode"].apply(lambda x: MODE_MAPPING[x.strip()])
 
-    df = df.groupby(["datetime", "mode"])[["value"]].sum().reset_index()
+    df = (
+        df.groupby(["datetime", "mode"])[["value"]]
+        .sum(
+            numeric_only=True,
+        )
+        .reset_index()
+    )
 
     if target_datetime.year in df["datetime"].unique():
         df = df.loc[df["datetime"] == target_datetime.year]

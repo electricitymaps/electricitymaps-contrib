@@ -169,7 +169,9 @@ def transform_ember_data(ember_df: pd.DataFrame) -> pd.DataFrame:
     df_capacity["mode"] = df_capacity.apply(_ember_production_mode_mapper, axis=1)
     df_capacity = (
         df_capacity.groupby(["zone_key", "datetime", "mode"])[["capacity_mw"]]
-        .sum()
+        .sum(
+            numeric_only=True,
+        )
         .reset_index()
         .set_index(["zone_key"])
     )

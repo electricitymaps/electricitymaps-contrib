@@ -141,7 +141,9 @@ def fetch_production(
     df_production_reindexed = df_production_reindexed.rename(columns=MAP_GENERATION)
     df_production_reindexed = df_production_reindexed.groupby(
         df_production_reindexed.columns, axis=1
-    ).sum()
+    ).sum(
+        numeric_only=True,
+    )
 
     production_mixes = ProductionBreakdownList(logger)
     for idx, row in df_production_reindexed.iterrows():

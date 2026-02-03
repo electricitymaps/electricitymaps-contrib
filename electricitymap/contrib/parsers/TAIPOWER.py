@@ -107,7 +107,11 @@ def fetch_production(
         inplace=True,
     )
     # summing because items in returned object are for each power plant and operational units
-    production = pd.DataFrame(objData.groupby("fueltype").sum())
+    production = pd.DataFrame(
+        objData.groupby("fueltype").sum(
+            numeric_only=True,
+        )
+    )
     production.columns = ["capacity", "output"]
 
     # check output values coincide with total capacity by fuel type
@@ -143,7 +147,12 @@ def fetch_production(
             for parser_mode in parser_modes
             if parser_mode in production.index
         ]
-        production_mix.add_value(mode, production.loc[parser_modes_in_df].output.sum())
+        production_mix.add_value(
+            mode,
+            production.loc[parser_modes_in_df].output.sum(
+                numeric_only=True,
+            ),
+        )
     storage_mix = StorageMix()
     for mode, storage_modes in STORAGE_MODE_MAPPING.items():
         storage_modes_in_df = [
@@ -152,7 +161,11 @@ def fetch_production(
             if storage_mode in production.index
         ]
         storage_mix.add_value(
-            mode, -1 * production.loc[storage_modes_in_df].output.sum()
+            mode,
+            -1
+            * production.loc[storage_modes_in_df].output.sum(
+                numeric_only=True,
+            ),
         )
     production_breakdown.append(
         zone_key,
@@ -169,7 +182,9 @@ def fetch_production(
             for parser_mode in parser_modes
             if parser_mode in production.index
         ]
-        capacity[mode] = production.loc[parser_modes_in_df].capacity.sum()
+        capacity[mode] = production.loc[parser_modes_in_df].capacity.sum(
+            numeric_only=True,
+        )
 
     return [{**e, **{"capacity": capacity}} for e in production_breakdown.to_list()]
 

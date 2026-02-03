@@ -90,7 +90,7 @@ def fetch_production(
     df["unknown"] = 0.45 * df["Waste"]  # Report fossil waste as unknown
     df["renwaste"] = 0.55 * df["Waste"]
     # Report biomass, renewable waste and other renewables (biogas etc.) as biomass
-    df["biomass"] = df.filter(["Biomass", "renwaste", "OtherRenewable"]).sum(axis=1)
+    df["biomass"] = df.filter(["Biomass", "renwaste", "OtherRenewable"]).sum(numeric_only=True, axis=1)
 
     fuels = ["biomass", "coal", "oil", "gas", "unknown", "hydro"]
     # Format output as a list of dictionaries

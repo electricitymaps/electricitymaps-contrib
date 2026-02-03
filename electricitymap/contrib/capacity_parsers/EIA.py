@@ -56,7 +56,13 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
     df["nameplate-capacity-mw"] = pd.to_numeric(
         df["nameplate-capacity-mw"], errors="coerce"
     )
-    df_aggregated = df.groupby(["mode"])[["nameplate-capacity-mw"]].sum().reset_index()
+    df_aggregated = (
+        df.groupby(["mode"])[["nameplate-capacity-mw"]]
+        .sum(
+            numeric_only=True,
+        )
+        .reset_index()
+    )
     capacity_dict = {}
     for mode in CAPACITY_MODES:
         mode_dict = {}
@@ -64,7 +70,9 @@ def format_capacity(df: pd.DataFrame, target_datetime: datetime) -> dict[str, An
             float(
                 df_aggregated.loc[df_aggregated["mode"] == mode][
                     "nameplate-capacity-mw"
-                ].sum()
+                ].sum(
+                    numeric_only=True,
+                )
             ),
             1,
         )

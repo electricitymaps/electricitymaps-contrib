@@ -57,7 +57,13 @@ def fetch_production_capacity(
         data["mode"] = data["mode"].apply(lambda x: x.strip())
         data["mode"] = data["mode"].apply(lambda x: MODE_MAPPING[x])
 
-        filtered_data = data.groupby(["mode"])[["value"]].sum().reset_index()
+        filtered_data = (
+            data.groupby(["mode"])[["value"]]
+            .sum(
+                numeric_only=True,
+            )
+            .reset_index()
+        )
 
         capacity_dict = {}
         for _idx, data in filtered_data.iterrows():

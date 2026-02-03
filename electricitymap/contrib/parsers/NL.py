@@ -99,7 +99,9 @@ def fetch_production(
         lambda x: x.replace(tzinfo=UTC)
     )
     # Sum all exchanges to NL imports
-    df_exchanges = df_exchanges.groupby("datetime").sum()
+    df_exchanges = df_exchanges.groupby("datetime").sum(
+        numeric_only=True,
+    )
 
     # Fill missing values by propagating the value forward
     df_consumptions_with_exchanges = df_consumptions.join(df_exchanges).fillna(
