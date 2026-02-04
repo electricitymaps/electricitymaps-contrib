@@ -152,7 +152,10 @@ def _get_mean_hourly_consumption(
         .reset_index()
     )
 
-    return round(df.groupby(["target_datetime"])["Demand"].sum().values[0], 3)
+    return round(
+        df.groupby(["target_datetime"])["Demand"].sum().values[0],
+        3,
+    )
 
 
 @refetch_frequency(timedelta(days=1))

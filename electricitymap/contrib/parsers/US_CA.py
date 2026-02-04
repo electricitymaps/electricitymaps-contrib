@@ -365,7 +365,9 @@ def fetch_wind_solar_forecasts(
 
     # There are 3 trading hubs in CAISO
     COL_DATETIME, COL_DATATYPE = "INTERVALSTARTTIME_GMT", "RENEWABLE_TYPE"
-    df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum()
+    df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum(
+        numeric_only=True,
+    )
     df = df.pivot(index=COL_DATETIME, columns=COL_DATATYPE, values="MW")
 
     all_production_events = (
