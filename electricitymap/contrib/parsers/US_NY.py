@@ -189,6 +189,7 @@ def fetch_production(
     return production_breakdowns.to_list()
 
 
+@refetch_frequency(timedelta(hours=24))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
