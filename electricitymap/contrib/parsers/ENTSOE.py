@@ -1292,50 +1292,6 @@ def fetch_generation_forecast(
 # ------------------- #
 
 
-def get_raw_consumption_list(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-    forecasted: bool = False,
-):
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    query_function = query_consumption_forecast if forecasted else query_consumption
-    consumption_list = TotalConsumptionList(logger)
-    try:
-        raw_data = query_function(domain, session, target_datetime=target_datetime)
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to query {'consumption forecast' if forecasted else 'consumption'} for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_data is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data returned for {zone_key}",
-            zone_key=zone_key,
-        )
-    parsed = parse_scalar(raw_data, only_outBiddingZone_Domain=True)
-    if parsed is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    for dt, value in parsed:
-        consumption_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            source=SOURCE,
-            consumption=value,
-            sourceType=EventSourceType.forecasted
-            if forecasted
-            else EventSourceType.measured,
-        )
-    return consumption_list
-
-
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
 def fetch_consumption(
     zone_key: ZoneKey,
@@ -1364,12 +1320,26 @@ def fetch_consumption(
                 message=f"No consumption data found for {_zone_key}",
                 zone_key=zone_key,
             )
-        # Aggregated data are regrouped under the same zone key.
-        non_aggregated_data.append(
-            get_raw_consumption_list(
-                zone_key, session, target_datetime=target_datetime, logger=logger
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption data found for {_zone_key}",
+                zone_key=zone_key,
             )
-        )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.measured,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
 
     return TotalConsumptionList.merge_consumption_lists(
         non_aggregated_data, logger
@@ -1404,16 +1374,26 @@ def fetch_consumption_forecast(
                 message=f"No consumption forecast data found for {_zone_key}",
                 zone_key=zone_key,
             )
-        # Aggregated data are regrouped under the same zone key.
-        non_aggregated_data.append(
-            get_raw_consumption_list(
-                zone_key,
-                session,
-                target_datetime=target_datetime,
-                logger=logger,
-                forecasted=True,
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption forecast data found for {_zone_key}",
+                zone_key=zone_key,
             )
-        )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.forecasted,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
     return TotalConsumptionList.merge_consumption_lists(
         non_aggregated_data, logger
     ).to_list()
