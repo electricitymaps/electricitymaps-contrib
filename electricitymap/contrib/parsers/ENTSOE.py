@@ -1432,18 +1432,18 @@ def fetch_wind_solar_forecasts(
             )
             return []
 
-        forcast_breakdown_list = ProductionBreakdownList(logger)
+        forecast_breakdown_list = ProductionBreakdownList(logger)
         for raw_forecast in raw_forecasts.values():
             parsed_forecast = parse_production(
                 raw_forecast, logger, zone_key, forecasted=True
             )
-            forcast_breakdown_list = (
+            forecast_breakdown_list = (
                 ProductionBreakdownList.update_production_breakdowns(
-                    forcast_breakdown_list, parsed_forecast, logger
+                    forecast_breakdown_list, parsed_forecast, logger
                 )
             )
 
-        non_aggregated_data.append(forcast_breakdown_list)
+        non_aggregated_data.append(forecast_breakdown_list)
 
     return ProductionBreakdownList.merge_production_breakdowns(
         non_aggregated_data, logger
