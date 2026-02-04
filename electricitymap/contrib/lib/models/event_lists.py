@@ -361,7 +361,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
         return updated_production_breakdowns
 
 
-class TotalProductionList(EventList[TotalProduction]):
+class TotalProductionList(AggregatableEventList[TotalProduction]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -376,8 +376,44 @@ class TotalProductionList(EventList[TotalProduction]):
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_total_production_lists(
+        ungrouped_production_lists: list["TotalProductionList"],
+        logger: Logger,
+    ) -> "TotalProductionList":
+        """
+        Given multiple parser outputs, sum the production of corresponding datetimes
+        to create a unique production list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        production_list = TotalProductionList(logger)
+        if TotalProductionList.is_completely_empty(ungrouped_production_lists, logger):
+            return production_list
 
-class TotalConsumptionList(EventList[TotalConsumption]):
+        # Create a dataframe for each parser output, then flatten the production.
+        production_dfs = [
+            pd.json_normalize(production.to_list()).set_index("datetime")
+            for production in ungrouped_production_lists
+            if len(production.events) > 0
+        ]
+
+        production_df = pd.concat(production_dfs)
+        production_df = production_df.rename(columns={"sortedZoneKeys": "zoneKey"})
+        zone_key, sources, source_type = TotalProductionList.get_zone_source_type(
+            production_df
+        )
+        production_df = production_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in production_df.iterrows():
+            production_list.append(
+                zone_key, dt.to_pydatetime(), sources, row["value"], source_type
+            )  # type: ignore
+
+        return production_list
+
+
+class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -391,6 +427,44 @@ class TotalConsumptionList(EventList[TotalConsumption]):
         )
         if event:
             self.events.append(event)
+
+    @staticmethod
+    def merge_consumption_lists(
+        ungrouped_consumption_lists: list["TotalConsumptionList"],
+        logger: Logger,
+    ) -> "TotalConsumptionList":
+        """
+        Given multiple parser outputs, sum the consumption of corresponding datetimes
+        to create a unique consumption list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        consumption_list = TotalConsumptionList(logger)
+        if TotalConsumptionList.is_completely_empty(
+            ungrouped_consumption_lists, logger
+        ):
+            return consumption_list
+
+        # Create a dataframe for each parser output, then flatten the consumption.
+        consumption_dfs = [
+            pd.json_normalize(consumption.to_list()).set_index("datetime")
+            for consumption in ungrouped_consumption_lists
+            if len(consumption.events) > 0
+        ]
+
+        consumption_df = pd.concat(consumption_dfs)
+        consumption_df = consumption_df.rename(columns={"sortedZoneKeys": "zoneKey"})
+        zone_key, sources, source_type = TotalConsumptionList.get_zone_source_type(
+            consumption_df
+        )
+        consumption_df = consumption_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in consumption_df.iterrows():
+            consumption_list.append(
+                zone_key, dt.to_pydatetime(), sources, row["consumption"], source_type
+            )  # type: ignore
+
+        return consumption_list
 
 
 class PriceList(EventList[Price]):
