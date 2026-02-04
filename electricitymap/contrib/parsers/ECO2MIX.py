@@ -160,7 +160,7 @@ def format_production_df(df, zone_key):
         .groupby(["datetime", "key"])
         # We use `min_count=1` to make sure at least one non-NaN
         # value is present to compute a sum.
-        .sum(min_count=1)
+        .sum(numeric_only=True, min_count=1)
         # We unstack `key` which creates a df where keys are columns
         .unstack("key")["value"]
     )
@@ -283,7 +283,7 @@ def format_exchange_df(df, sorted_zone_keys: ZoneKey, logger: Logger):
         .groupby(["datetime"])
         # We use `min_count=1` to make sure at least one non-NaN
         # value is present to compute a sum.
-        .sum(min_count=1)
+        .sum(numeric_only=True, min_count=1)
     )
     exchange_list = ExchangeList(logger)
     for ts, row in df.iterrows():

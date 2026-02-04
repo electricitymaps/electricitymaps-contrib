@@ -199,7 +199,7 @@ class ExchangeList(AggregatableEventList[Exchange]):
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
         zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True
+            numeric_only=True,
         )
         for dt, row in exchange_df.iterrows():
             exchanges.append(
