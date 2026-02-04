@@ -405,9 +405,7 @@ def format_exchange_data(
     data.zone_key2 = data.zone_key2.map(EXCHANGE_MAPPING)
 
     data_filtered = data.loc[data["zone_key2"] == zone_key2]
-    data_filtered = data_filtered.groupby([data_filtered.index])["exchange"].sum(
-        numeric_only=True,
-    )
+    data_filtered = data_filtered.groupby([data_filtered.index])["exchange"].sum()
 
     exchange_list = ExchangeList(logger)
     for dt in data_filtered.index:

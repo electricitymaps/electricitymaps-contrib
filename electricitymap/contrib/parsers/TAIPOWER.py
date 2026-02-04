@@ -149,9 +149,7 @@ def fetch_production(
         ]
         production_mix.add_value(
             mode,
-            production.loc[parser_modes_in_df].output.sum(
-                numeric_only=True,
-            ),
+            production.loc[parser_modes_in_df].output.sum(),
         )
     storage_mix = StorageMix()
     for mode, storage_modes in STORAGE_MODE_MAPPING.items():
@@ -162,10 +160,7 @@ def fetch_production(
         ]
         storage_mix.add_value(
             mode,
-            -1
-            * production.loc[storage_modes_in_df].output.sum(
-                numeric_only=True,
-            ),
+            -1 * production.loc[storage_modes_in_df].output.sum(),
         )
     production_breakdown.append(
         zone_key,
@@ -182,9 +177,7 @@ def fetch_production(
             for parser_mode in parser_modes
             if parser_mode in production.index
         ]
-        capacity[mode] = production.loc[parser_modes_in_df].capacity.sum(
-            numeric_only=True,
-        )
+        capacity[mode] = production.loc[parser_modes_in_df].capacity.sum()
 
     return [{**e, **{"capacity": capacity}} for e in production_breakdown.to_list()]
 

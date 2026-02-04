@@ -93,13 +93,7 @@ def fetch_production_capacity_for_all_zones(
     df["mode"] = df["mode"].map(MODE_MAPPING)
     df["zone_key"] = df["zone_key"].map(REGION_MAPPING)
 
-    df = (
-        df.groupby(["zone_key", "mode", "datetime"])[["value"]]
-        .sum(
-            numeric_only=True,
-        )
-        .reset_index()
-    )
+    df = df.groupby(["zone_key", "mode", "datetime"])[["value"]].sum().reset_index()
     if not df.empty:
         capacity = {}
         for zone in df["zone_key"].unique():

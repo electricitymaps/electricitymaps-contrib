@@ -153,11 +153,7 @@ def _get_mean_hourly_consumption(
     )
 
     return round(
-        df.groupby(["target_datetime"])["Demand"]
-        .sum(
-            numeric_only=True,
-        )
-        .values[0],
+        df.groupby(["target_datetime"])["Demand"].sum().values[0],
         3,
     )
 

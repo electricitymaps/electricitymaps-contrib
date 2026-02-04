@@ -106,11 +106,7 @@ def fetch_production_capacity_for_all_zones(
     capacity_df["mode"] = capacity_df["mode"].map(FUEL_MAPPING)
 
     capacity_df = (
-        capacity_df.groupby(["zone_key", "mode"])[["value"]]
-        .sum(
-            numeric_only=True,
-        )
-        .reset_index()
+        capacity_df.groupby(["zone_key", "mode"])[["value"]].sum().reset_index()
     )
 
     capacity_df = capacity_df.dropna(subset=["value"])
@@ -157,11 +153,7 @@ def get_solar_capacity_au_nt(target_datetime: datetime) -> float | None:
     capacity_df["mode"] = capacity_df["mode"].map(FUEL_MAPPING)
 
     capacity_df = (
-        capacity_df.groupby(["zone_key", "mode"])[["value"]]
-        .sum(
-            numeric_only=True,
-        )
-        .reset_index()
+        capacity_df.groupby(["zone_key", "mode"])[["value"]].sum().reset_index()
     )
 
     solar_capacity = capacity_df.get("value")
