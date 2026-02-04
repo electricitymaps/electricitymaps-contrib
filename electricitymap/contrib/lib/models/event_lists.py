@@ -398,7 +398,7 @@ class TotalProductionList(AggregatableEventList[TotalProduction]):
         ]
 
         production_df = pd.concat(production_dfs)
-        production_df = production_df.rename(columns={"sortedZoneKeys": "zoneKey"})
+
         zone_key, sources, source_type = TotalProductionList.get_zone_source_type(
             production_df
         )
@@ -452,7 +452,7 @@ class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
         ]
 
         consumption_df = pd.concat(consumption_dfs)
-        consumption_df = consumption_df.rename(columns={"sortedZoneKeys": "zoneKey"})
+
         zone_key, sources, source_type = TotalConsumptionList.get_zone_source_type(
             consumption_df
         )

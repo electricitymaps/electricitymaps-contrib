@@ -1430,7 +1430,11 @@ def fetch_wind_solar_forecasts(
                 f"No wind and solar forecast data found for {_zone_key}",
                 extra={"zone_key": _zone_key},
             )
-            return []
+            raise ParserException(
+                zone_key,
+                "ENTSOE.py",
+                f"No wind and solar forecast data found for {_zone_key}",
+            )
 
         forecast_breakdown_list = ProductionBreakdownList(logger)
         for raw_forecast in raw_forecasts.values():
