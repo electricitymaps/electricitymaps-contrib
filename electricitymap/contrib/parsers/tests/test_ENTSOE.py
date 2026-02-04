@@ -115,7 +115,9 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
             return [(dt, 80.0)]
         return None
 
-    monkeypatch.setattr(ENTSOE, "query_generation_forecast", fake_query_generation_forecast)
+    monkeypatch.setattr(
+        ENTSOE, "query_generation_forecast", fake_query_generation_forecast
+    )
     monkeypatch.setattr(ENTSOE, "parse_scalar", fake_parse_scalar)
 
     result = ENTSOE.fetch_generation_forecast(ZoneKey("IT-SO"), session=None)
