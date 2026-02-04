@@ -107,11 +107,7 @@ def fetch_production(
         inplace=True,
     )
     # summing because items in returned object are for each power plant and operational units
-    production = pd.DataFrame(
-        objData.groupby("fueltype").sum(
-            numeric_only=True,
-        )
-    )
+    production = pd.DataFrame(objData.groupby("fueltype").sum())
     production.columns = ["capacity", "output"]
 
     # check output values coincide with total capacity by fuel type
