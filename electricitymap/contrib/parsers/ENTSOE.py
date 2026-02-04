@@ -1268,7 +1268,7 @@ def fetch_generation_forecast(
         if parsed is None:
             raise ParserException(
                 parser="ENTSOE.py",
-                message=f"No generation forecast data found for {zone_key}",
+                message=f"No generation forecast data found for {_zone_key}",
                 zone_key=zone_key,
             )
         for dt, value in parsed:
@@ -1422,12 +1422,12 @@ def fetch_wind_solar_forecasts(
                 )
             except Exception as e:
                 logger.error(
-                    f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
+                    f"Failed to fetch {data_type.name} wind and solar forecast for {_zone_key}: {e}",
                     extra={"zone_key": _zone_key},
                 )
         if raw_forecasts == {}:
             logger.warning(
-                f"No wind and solar forecast data found for {zone_key}",
+                f"No wind and solar forecast data found for {_zone_key}",
                 extra={"zone_key": _zone_key},
             )
             return []
