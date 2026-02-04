@@ -37,25 +37,25 @@ Snapshot tests are important for:
 #### South America (1 parser)
 - `US_PREPA.py` - Puerto Rico Electric Power Authority
 
-### Asia (9 parsers)
+### Asia (13 parsers)
 
-#### India (4 parsers)
+#### India (5 parsers)
 - `IN_DL.py` - Delhi
 - `IN_MH.py` - Maharashtra
 - `IN_PB.py` - Punjab
 - `IN_UT.py` - Uttarakhand
-- `IN_WE.py` - West (region)
+- `IN_WE.py` - Western India region
 
 #### Japan (1 parser)
 - `JP_KN.py` - Kansai
 
-#### Middle East (3 parsers)
+#### Middle East (4 parsers)
 - `GCCIA.py` - Gulf Cooperation Council Interconnection Authority
 - `GSO.py` - Gulf States Organization
 - `IL.py` - Israel
 - `KW.py` - Kuwait
 
-#### Southeast Asia (2 parsers)
+#### Southeast Asia (3 parsers)
 - `SEAPA.py` - Southeast Asia Power Alliance
 - `TH.py` - Thailand
 - `VN.py` - Vietnam
