@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document tracks parsers that are currently missing snapshot tests. Out of **101 active parsers**, **45 parsers (44.6%)** do not have snapshot tests.
+This document tracks parsers that are currently missing snapshot tests. Out of **104 active parsers**, **39 parsers (37.5%)** do not have snapshot tests.
 
 Snapshot tests are important for:
 - Ensuring parser output format consistency
@@ -12,18 +12,16 @@ Snapshot tests are important for:
 
 ## Summary Statistics
 
-- **Total Active Parsers**: 101
-- **Parsers with Snapshot Tests**: 56 (55.4%)
-- **Parsers Missing Snapshot Tests**: 45 (44.6%)
-  - Without any test file: 44
-  - With test file but missing snapshot: 1
+- **Total Active Parsers**: 104
+- **Parsers with Snapshot Tests**: 65 (62.5%)
+- **Parsers Missing Snapshot Tests**: 39 (37.5%)
 
 ## Parsers Missing Snapshot Tests
 
 ### Africa (1 parser)
 - `NG.py` - Nigeria
 
-### Americas (14 parsers)
+### Americas (8 parsers)
 
 #### Canada (6 parsers)
 - `CA_BC.py` - British Columbia
@@ -36,27 +34,20 @@ Snapshot tests are important for:
 #### Central America & Caribbean (1 parser)
 - `BB.py` - Barbados
 
-#### Mexico (1 parser)
-- `CENACE.py` - Centro Nacional de Control de Energía
-
-#### South America (6 parsers)
-- `PrinceEdwardIsland.py` - Prince Edward Island (Note: This appears to be misnamed/misplaced)
+#### South America (1 parser)
 - `US_PREPA.py` - Puerto Rico Electric Power Authority
 
-### Asia (14 parsers)
+### Asia (9 parsers)
 
-#### India (6 parsers)
+#### India (4 parsers)
 - `IN_DL.py` - Delhi
-- `IN_HP.py` - Himachal Pradesh
-- `IN_KA.py` - Karnataka
 - `IN_MH.py` - Maharashtra
 - `IN_PB.py` - Punjab
 - `IN_UT.py` - Uttarakhand
 - `IN_WE.py` - West (region)
 
-#### Japan (2 parsers)
+#### Japan (1 parser)
 - `JP_KN.py` - Kansai
-- `JP_SK.py` - Shikoku
 
 #### Middle East (3 parsers)
 - `GCCIA.py` - Gulf Cooperation Council Interconnection Authority
@@ -64,41 +55,40 @@ Snapshot tests are important for:
 - `IL.py` - Israel
 - `KW.py` - Kuwait
 
-#### Southeast Asia (3 parsers)
+#### Southeast Asia (2 parsers)
 - `SEAPA.py` - Southeast Asia Power Alliance
-- `SG.py` - Singapore (has test file `test_SG.py` but missing snapshot `.ambr` file)
 - `TH.py` - Thailand
 - `VN.py` - Vietnam
 
-### Europe (14 parsers)
+### Europe (12 parsers)
 
-#### Nordic Countries (2 parsers)
+#### Nordic Countries (3 parsers)
 - `AX.py` - Åland Islands
 - `NO-NO4_SE.py` - Norway-Sweden interconnection
 - `SE.py` - Sweden
 
-#### Western Europe (5 parsers)
-- `CH.py` - Switzerland
+#### Western Europe (3 parsers)
+- `ECO2MIX.py` - French grid data (RTE)
 - `NL.py` - Netherlands
+- `PrinceEdwardIsland.py` - Special case parser
 
-#### Eastern Europe (2 parsers)
+#### Eastern Europe (1 parser)
 - `UA.py` - Ukraine
 
-#### British Isles (2 parsers)
+#### British Isles (3 parsers)
 - `ELEXON.py` - UK electricity market operator
 - `GB_ORK.py` - Orkney Islands
 - `NI.py` - Northern Ireland
 
-#### France (1 parser)
-- `ECO2MIX.py` - French grid data
-- `FR_O.py` - French overseas territories
+#### Other (2 parsers)
+- `BORNHOLM_POWERLAB.py` - Bornholm Island grid
+- `NED.py` - Network operator
 
 ### Oceania (0 parsers)
 All Oceania parsers have snapshot tests.
 
-### Multi-Region/Utility Parsers (2 parsers)
+### Multi-Region/Other (1 parser)
 - `MN.py` - Mongolia
-- `NED.py` - Network operator
 
 ### Special/Utility Parsers (4 parsers)
 - `ajenti.py` - Ajenti data source
@@ -115,26 +105,24 @@ These parsers serve major population centers or important grid operators:
 2. **CA_QC** - Quebec, Canada (major province)
 3. **CA_BC** - British Columbia, Canada (major province)
 4. **NL** - Netherlands (major EU country)
-5. **CH** - Switzerland (major EU country)
-6. **IL** - Israel (significant grid)
-7. **SG** - Singapore (has test but missing snapshot)
-8. **TH** - Thailand (major Southeast Asian country)
-9. **VN** - Vietnam (major Southeast Asian country)
-10. **UA** - Ukraine (European grid)
+5. **IL** - Israel (significant grid)
+6. **TH** - Thailand (major Southeast Asian country)
+7. **VN** - Vietnam (major Southeast Asian country)
+8. **UA** - Ukraine (European grid)
 
 ### Medium Priority (Regional Coverage)
 Important for regional grid coverage:
 
-1. Indian regional parsers (IN_HP, IN_KA, IN_MH, IN_PB, IN_UT, IN_WE)
+1. Indian regional parsers (IN_MH, IN_PB, IN_UT, IN_WE)
 2. Canadian provinces (CA_NB, CA_NS, CA_SK)
-3. Japanese regions (JP_KN, JP_SK)
+3. Japanese region (JP_KN)
 4. UK regions (ELEXON, GB_ORK, NI)
 
 ### Lower Priority (Specialized/Small Coverage)
 Less critical but should still have tests:
 
 1. Utility parsers (ajenti, eSett, email_grid_alerts, occtonet)
-2. Small island grids (AX, BB)
+2. Small island grids (AX, BB, BORNHOLM_POWERLAB)
 3. Special interconnections (NO-NO4_SE, PrinceEdwardIsland)
 4. Regional organizations (GCCIA, GSO, SEAPA)
 
@@ -175,5 +163,5 @@ def test_parser_production(adapter, session, snapshot):
 ---
 
 **Last Updated**: 2026-02-04  
-**Total Parsers Analyzed**: 101  
-**Coverage**: 55.4% (56/101 parsers have snapshot tests)
+**Total Parsers Analyzed**: 104  
+**Coverage**: 62.5% (65/104 parsers have snapshot tests)
