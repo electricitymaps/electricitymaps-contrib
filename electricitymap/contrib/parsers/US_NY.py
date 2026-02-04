@@ -189,6 +189,7 @@ def fetch_production(
     return production_breakdowns.to_list()
 
 
+@refetch_frequency(timedelta(hours=24))
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -237,23 +238,27 @@ def fetch_exchange(
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
     ny_date = target_datetime.strftime("%Y%m%d")
-    exchange_url = f"http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{ny_date}ExternalLimitsFlows.csv"
+    file_name = f"{ny_date}ExternalLimitsFlows.csv"
+    exchange_url = "http://mis.nyiso.com/public/csv/ExternalLimitsFlows"
+    csv_url = f"{exchange_url}/{file_name}"
 
     try:
-        exchange_data = read_csv_data(session, exchange_url)
+        exchange_data = read_csv_data(session, csv_url)
     except HTTPError:
-        # this can happen when target_datetime has no data available
-        return []
+        try:
+            ny_zip_date = target_datetime.strftime("%Y%m01")
+            zip_file_name = f"{ny_zip_date}ExternalLimitsFlows_csv.zip"
+            zip_url = f"{exchange_url}/{zip_file_name}"
+            exchange_data = read_zip_data(session, zip_url, file_name)
+        except HTTPError:
+            # this can happen when target_datetime has no data available
+            return []
 
     new_england_exs = exchange_data.loc[
         exchange_data["Interface Name"].isin(relevant_exchanges)
     ]
     consolidated_flows = (
-        new_england_exs.reset_index()
-        .groupby("Timestamp")
-        .sum(
-            numeric_only=True,
-        )
+        new_england_exs.reset_index().groupby("Timestamp").sum(numeric_only=True)
     )
 
     now = datetime.now(tz=TIMEZONE)
