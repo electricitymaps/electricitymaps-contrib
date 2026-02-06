@@ -68,18 +68,21 @@ EXCHANGE_MAPPING_DICTIONARY = {
     },
 }
 
+# Mapped from https://docs.openelectricity.org.au/guides/fueltechs#fueltechs
 OPENNEM_PRODUCTION_CATEGORIES = {
     "coal": ["COAL_BLACK", "COAL_BROWN"],
-    "gas": ["GAS_CCGT", "GAS_OCGT", "GAS_RECIP", "GAS_STEAM"],
+    "gas": ["GAS_CCGT", "GAS_OCGT", "GAS_RECIP", "GAS_STEAM", "GAS_WCMG"],
     "oil": ["DISTILLATE"],
     "hydro": ["HYDRO"],
-    "wind": ["WIND"],
+    "wind": ["WIND", "WIND_OFFSHORE"],
     "biomass": ["BIOENERGY_BIOGAS", "BIOENERGY_BIOMASS"],
-    "solar": ["SOLAR_UTILITY", "SOLAR_ROOFTOP"],
+    "solar": ["SOLAR_UTILITY", "SOLAR_ROOFTOP", "SOLAR_THERMAL"],
+    "nuclear": ["NUCLEAR"],
+    "aggregators": ["AGGREGATOR_VPP", "AGGREGATOR_DR"],
 }
 OPENNEM_STORAGE_CATEGORIES = {
     # Storage
-    "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING"],
+    "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING", "BATTERY"],
     "hydro": ["PUMPS"],
 }
 
@@ -97,7 +100,8 @@ STORAGE_MAPPING = {
 
 IGNORED_FUEL_TECH_KEYS = {
     "imports",
-    "exports",  # These keys are not relevant for production breakdowns
+    "exports",
+    "interconnector",  # Network flows, not relevant for production breakdowns
 }
 
 SOURCE = "opennem.org.au"
@@ -170,6 +174,9 @@ def process_production_datasets(
             # v4 API fueltech values are like "COAL_BLACK", "GAS_CCGT", "BATTERY_CHARGING", etc.
             fueltech_key = fueltech.lower()
 
+            if fueltech_key in IGNORED_FUEL_TECH_KEYS:
+                continue
+
             # Map fueltech to category using existing PRODUCTION_MAPPING and STORAGE_MAPPING
             if fueltech_key in PRODUCTION_MAPPING:
                 category = PRODUCTION_MAPPING[fueltech_key]
@@ -180,8 +187,11 @@ def process_production_datasets(
                 is_production = False
                 is_storage = True
             else:
-                logger.debug(f"Unknown fueltech {fueltech} in result, skipping.")
-                continue
+                raise ParserException(
+                    parser="OPENNEM",
+                    message=f"Unknown fueltech {fueltech} in result. Map it in OPENNEM_PRODUCTION_CATEGORIES or OPENNEM_STORAGE_CATEGORIES. See https://docs.openelectricity.org.au/guides/fueltechs#fueltechs",
+                    zone_key=zone_key,
+                )
 
             if category in IGNORED_FUEL_TECH_KEYS:
                 continue
