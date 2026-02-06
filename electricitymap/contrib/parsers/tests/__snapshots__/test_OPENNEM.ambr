@@ -26090,7 +26090,7 @@
       'production': dict({
         'biomass': 68.7,
         'coal': 5757.7921,
-        'gas': 361.0446,
+        'gas': 396.2506,
         'hydro': 300.6025,
         'oil': 0.0,
         'solar': 0.6619,
@@ -26111,7 +26111,7 @@
       'production': dict({
         'biomass': 68.3,
         'coal': 5707.2007,
-        'gas': 359.1538,
+        'gas': 394.5688,
         'hydro': 286.3225,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26132,7 +26132,7 @@
       'production': dict({
         'biomass': 66.6,
         'coal': 5643.9034,
-        'gas': 360.4317,
+        'gas': 395.4857,
         'hydro': 287.0375,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26153,7 +26153,7 @@
       'production': dict({
         'biomass': 70.6,
         'coal': 5524.3427,
-        'gas': 361.7643,
+        'gas': 397.3073,
         'hydro': 287.115,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26174,7 +26174,7 @@
       'production': dict({
         'biomass': 71.1,
         'coal': 5399.1972,
-        'gas': 294.5425,
+        'gas': 329.9975,
         'hydro': 286.08,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26195,7 +26195,7 @@
       'production': dict({
         'biomass': 71.2,
         'coal': 5371.4282,
-        'gas': 206.1093,
+        'gas': 241.0553,
         'hydro': 288.2225,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26216,7 +26216,7 @@
       'production': dict({
         'biomass': 69.5,
         'coal': 5303.0824,
-        'gas': 171.9229,
+        'gas': 207.1699,
         'hydro': 286.605,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26237,7 +26237,7 @@
       'production': dict({
         'biomass': 68.9,
         'coal': 5202.8487,
-        'gas': 165.158,
+        'gas': 200.572,
         'hydro': 289.34,
         'oil': 0.0,
         'solar': 0.4619,
@@ -26258,7 +26258,7 @@
       'production': dict({
         'biomass': 68.5,
         'coal': 5174.2196,
-        'gas': 126.7642,
+        'gas': 161.6262,
         'hydro': 287.815,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26279,7 +26279,7 @@
       'production': dict({
         'biomass': 65.4,
         'coal': 5101.3838,
-        'gas': 85.7044,
+        'gas': 121.2984,
         'hydro': 289.31,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26300,7 +26300,7 @@
       'production': dict({
         'biomass': 68.9,
         'coal': 4974.533,
-        'gas': 47.2488,
+        'gas': 82.2348,
         'hydro': 289.8975,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26321,7 +26321,7 @@
       'production': dict({
         'biomass': 65.5,
         'coal': 4963.2578,
-        'gas': 20.2549,
+        'gas': 55.7289,
         'hydro': 292.2275,
         'oil': 0.0,
         'solar': 26.7332,
@@ -26342,7 +26342,7 @@
       'production': dict({
         'biomass': 55.1,
         'coal': 4918.9446,
-        'gas': 0.3786,
+        'gas': 35.6186,
         'hydro': 290.225,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26363,7 +26363,7 @@
       'production': dict({
         'biomass': 53.0,
         'coal': 4968.6982,
-        'gas': 0.3786,
+        'gas': 35.6156,
         'hydro': 289.8,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26384,7 +26384,7 @@
       'production': dict({
         'biomass': 52.6,
         'coal': 4932.8668,
-        'gas': 0.3786,
+        'gas': 35.1936,
         'hydro': 289.015,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26405,7 +26405,7 @@
       'production': dict({
         'biomass': 51.6,
         'coal': 4939.1821,
-        'gas': 0.3786,
+        'gas': 35.8046,
         'hydro': 289.9875,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26426,7 +26426,7 @@
       'production': dict({
         'biomass': 52.9,
         'coal': 4906.9616,
-        'gas': 0.3786,
+        'gas': 35.8216,
         'hydro': 287.2525,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26447,7 +26447,7 @@
       'production': dict({
         'biomass': 49.6,
         'coal': 4925.3666,
-        'gas': 0.3786,
+        'gas': 35.4656,
         'hydro': 122.6775,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26468,7 +26468,7 @@
       'production': dict({
         'biomass': 51.2,
         'coal': 4896.7154,
-        'gas': 0.3786,
+        'gas': 35.7336,
         'hydro': 121.8225,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26489,7 +26489,7 @@
       'production': dict({
         'biomass': 52.4,
         'coal': 4922.3799,
-        'gas': 0.3786,
+        'gas': 35.9756,
         'hydro': 121.7475,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26510,7 +26510,7 @@
       'production': dict({
         'biomass': 52.2,
         'coal': 4878.4882,
-        'gas': 0.3786,
+        'gas': 35.9896,
         'hydro': 121.7175,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26531,7 +26531,7 @@
       'production': dict({
         'biomass': 53.2,
         'coal': 4873.2592,
-        'gas': 0.3786,
+        'gas': 35.8376,
         'hydro': 121.6425,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26552,7 +26552,7 @@
       'production': dict({
         'biomass': 55.2,
         'coal': 4798.2214,
-        'gas': 0.3786,
+        'gas': 36.0906,
         'hydro': 122.2575,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26573,7 +26573,7 @@
       'production': dict({
         'biomass': 51.9,
         'coal': 4961.0846,
-        'gas': 0.3786,
+        'gas': 35.4126,
         'hydro': 105.545,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26594,7 +26594,7 @@
       'production': dict({
         'biomass': 51.9,
         'coal': 5022.5019,
-        'gas': 0.3786,
+        'gas': 35.7636,
         'hydro': 97.605,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26615,7 +26615,7 @@
       'production': dict({
         'biomass': 52.1,
         'coal': 5021.3514,
-        'gas': 0.3786,
+        'gas': 35.9236,
         'hydro': 96.4825,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26636,7 +26636,7 @@
       'production': dict({
         'biomass': 50.9,
         'coal': 4959.6442,
-        'gas': 0.3786,
+        'gas': 35.8406,
         'hydro': 96.8375,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26657,7 +26657,7 @@
       'production': dict({
         'biomass': 49.5,
         'coal': 4966.8304,
-        'gas': 0.3786,
+        'gas': 35.9996,
         'hydro': 97.6225,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26678,7 +26678,7 @@
       'production': dict({
         'biomass': 48.8,
         'coal': 4961.4267,
-        'gas': 0.3786,
+        'gas': 35.5606,
         'hydro': 97.3425,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26699,7 +26699,7 @@
       'production': dict({
         'biomass': 50.5,
         'coal': 4990.9319,
-        'gas': 0.3786,
+        'gas': 35.7796,
         'hydro': 97.0775,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26720,7 +26720,7 @@
       'production': dict({
         'biomass': 52.7,
         'coal': 4968.3275,
-        'gas': 0.3786,
+        'gas': 35.6966,
         'hydro': 96.4925,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26741,7 +26741,7 @@
       'production': dict({
         'biomass': 55.6,
         'coal': 4953.4502,
-        'gas': 0.3786,
+        'gas': 36.0396,
         'hydro': 96.7525,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26762,7 +26762,7 @@
       'production': dict({
         'biomass': 52.3,
         'coal': 4960.9742,
-        'gas': 0.3786,
+        'gas': 35.9636,
         'hydro': 97.415,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26783,7 +26783,7 @@
       'production': dict({
         'biomass': 55.3,
         'coal': 4948.7712,
-        'gas': 0.3786,
+        'gas': 36.1596,
         'hydro': 97.105,
         'oil': 0.0,
         'solar': 0.3259,
@@ -26804,7 +26804,7 @@
       'production': dict({
         'biomass': 47.1,
         'coal': 4922.4573,
-        'gas': 0.3786,
+        'gas': 36.0456,
         'hydro': 96.0,
         'oil': 0.0,
         'solar': 0.4396,
@@ -26825,7 +26825,7 @@
       'production': dict({
         'biomass': 58.2,
         'coal': 4919.7806,
-        'gas': 0.3786,
+        'gas': 35.8436,
         'hydro': 97.4225,
         'oil': 0.0,
         'solar': 24.4396,
@@ -26846,7 +26846,7 @@
       'production': dict({
         'biomass': 53.8,
         'coal': 4843.1292,
-        'gas': 0.3786,
+        'gas': 36.0466,
         'hydro': 95.9925,
         'oil': 0.0,
         'solar': 0.4396,
@@ -26867,7 +26867,7 @@
       'production': dict({
         'biomass': 51.2,
         'coal': 4847.5977,
-        'gas': 0.3786,
+        'gas': 36.0416,
         'hydro': 96.585,
         'oil': 0.0,
         'solar': 0.4396,
@@ -26888,7 +26888,7 @@
       'production': dict({
         'biomass': 49.1,
         'coal': 4827.6749,
-        'gas': 0.3786,
+        'gas': 36.1866,
         'hydro': 96.6975,
         'oil': 0.0,
         'solar': 0.5396,
@@ -26909,7 +26909,7 @@
       'production': dict({
         'biomass': 51.1,
         'coal': 4817.7965,
-        'gas': 0.3786,
+        'gas': 35.9076,
         'hydro': 96.78,
         'oil': 0.0,
         'solar': 0.3332,
@@ -26930,7 +26930,7 @@
       'production': dict({
         'biomass': 54.8,
         'coal': 4748.4216,
-        'gas': 0.3786,
+        'gas': 36.1566,
         'hydro': 96.68,
         'oil': 0.0,
         'solar': 0.3332,
@@ -26951,7 +26951,7 @@
       'production': dict({
         'biomass': 55.4,
         'coal': 4745.0696,
-        'gas': 0.3786,
+        'gas': 35.8296,
         'hydro': 97.1175,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26972,7 +26972,7 @@
       'production': dict({
         'biomass': 58.2,
         'coal': 4735.027,
-        'gas': 0.3786,
+        'gas': 36.2116,
         'hydro': 96.94,
         'oil': 0.0,
         'solar': 0.2332,
@@ -26993,7 +26993,7 @@
       'production': dict({
         'biomass': 58.4,
         'coal': 4732.5994,
-        'gas': 0.3786,
+        'gas': 35.9386,
         'hydro': 96.745,
         'oil': 0.0,
         'solar': 0.2332,
@@ -27014,7 +27014,7 @@
       'production': dict({
         'biomass': 57.4,
         'coal': 4712.8674,
-        'gas': 0.3786,
+        'gas': 36.1376,
         'hydro': 96.385,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27035,7 +27035,7 @@
       'production': dict({
         'biomass': 58.2,
         'coal': 4739.2993,
-        'gas': 0.3786,
+        'gas': 36.2106,
         'hydro': 97.3025,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27056,7 +27056,7 @@
       'production': dict({
         'biomass': 57.3,
         'coal': 4725.691,
-        'gas': 0.3786,
+        'gas': 36.0036,
         'hydro': 96.4525,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27077,7 +27077,7 @@
       'production': dict({
         'biomass': 56.2,
         'coal': 4641.9033,
-        'gas': 0.3786,
+        'gas': 35.9206,
         'hydro': 97.2225,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27098,7 +27098,7 @@
       'production': dict({
         'biomass': 55.6,
         'coal': 4671.6752,
-        'gas': 0.3786,
+        'gas': 36.0006,
         'hydro': 96.9875,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27119,7 +27119,7 @@
       'production': dict({
         'biomass': 55.7,
         'coal': 4696.1408,
-        'gas': 0.3786,
+        'gas': 36.2106,
         'hydro': 96.78,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27140,7 +27140,7 @@
       'production': dict({
         'biomass': 55.7,
         'coal': 4668.994,
-        'gas': 0.3786,
+        'gas': 35.9936,
         'hydro': 96.285,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27161,7 +27161,7 @@
       'production': dict({
         'biomass': 54.9,
         'coal': 4569.284,
-        'gas': 0.3786,
+        'gas': 35.8656,
         'hydro': 96.9225,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27182,7 +27182,7 @@
       'production': dict({
         'biomass': 54.2,
         'coal': 4528.4351,
-        'gas': 0.3786,
+        'gas': 36.3606,
         'hydro': 96.915,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27203,7 +27203,7 @@
       'production': dict({
         'biomass': 52.0,
         'coal': 4602.5467,
-        'gas': 0.3786,
+        'gas': 36.0836,
         'hydro': 96.9975,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27224,7 +27224,7 @@
       'production': dict({
         'biomass': 53.1,
         'coal': 4546.1002,
-        'gas': 0.3786,
+        'gas': 35.9586,
         'hydro': 97.11,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27245,7 +27245,7 @@
       'production': dict({
         'biomass': 57.3,
         'coal': 4531.5554,
-        'gas': 0.3786,
+        'gas': 36.1066,
         'hydro': 97.0225,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27266,7 +27266,7 @@
       'production': dict({
         'biomass': 57.1,
         'coal': 4616.4984,
-        'gas': 0.3786,
+        'gas': 35.7156,
         'hydro': 96.6675,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27287,7 +27287,7 @@
       'production': dict({
         'biomass': 56.9,
         'coal': 4510.465,
-        'gas': 0.3786,
+        'gas': 35.9456,
         'hydro': 96.8375,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27308,7 +27308,7 @@
       'production': dict({
         'biomass': 56.4,
         'coal': 4394.9588,
-        'gas': 0.3786,
+        'gas': 36.0176,
         'hydro': 96.59,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27329,7 +27329,7 @@
       'production': dict({
         'biomass': 55.7,
         'coal': 4395.8958,
-        'gas': 0.3786,
+        'gas': 36.0026,
         'hydro': 96.9225,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27350,7 +27350,7 @@
       'production': dict({
         'biomass': 57.4,
         'coal': 4434.0213,
-        'gas': 0.3786,
+        'gas': 36.3636,
         'hydro': 97.1625,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27371,7 +27371,7 @@
       'production': dict({
         'biomass': 55.6,
         'coal': 4474.4622,
-        'gas': 0.3786,
+        'gas': 35.9976,
         'hydro': 96.88,
         'oil': 0.0,
         'solar': 0.1109,
@@ -27393,7 +27393,7 @@
       'production': dict({
         'biomass': 55.0,
         'coal': 4534.5205,
-        'gas': 0.3786,
+        'gas': 35.7726,
         'hydro': 96.76,
         'oil': 0.0,
         'solar': 0.0,
@@ -27414,7 +27414,7 @@
       'production': dict({
         'biomass': 54.4,
         'coal': 4473.2579,
-        'gas': 0.3786,
+        'gas': 35.9096,
         'hydro': 96.5975,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27435,7 +27435,7 @@
       'production': dict({
         'biomass': 53.5,
         'coal': 4423.6404,
-        'gas': 0.3786,
+        'gas': 33.6276,
         'hydro': 96.7025,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27456,7 +27456,7 @@
       'production': dict({
         'biomass': 55.1,
         'coal': 4408.721,
-        'gas': 0.3786,
+        'gas': 34.4616,
         'hydro': 97.4075,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27477,7 +27477,7 @@
       'production': dict({
         'biomass': 55.7,
         'coal': 4437.6492,
-        'gas': 0.3786,
+        'gas': 33.9506,
         'hydro': 96.5875,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27498,7 +27498,7 @@
       'production': dict({
         'biomass': 54.8,
         'coal': 4490.307,
-        'gas': 0.3786,
+        'gas': 34.3886,
         'hydro': 96.76,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27519,7 +27519,7 @@
       'production': dict({
         'biomass': 57.9,
         'coal': 4439.988,
-        'gas': 0.3786,
+        'gas': 33.8486,
         'hydro': 97.545,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27540,7 +27540,7 @@
       'production': dict({
         'biomass': 54.4,
         'coal': 4417.0035,
-        'gas': 0.3786,
+        'gas': 34.0636,
         'hydro': 96.5675,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27561,7 +27561,7 @@
       'production': dict({
         'biomass': 57.2,
         'coal': 4345.8415,
-        'gas': 0.3786,
+        'gas': 33.8636,
         'hydro': 96.2875,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27582,7 +27582,7 @@
       'production': dict({
         'biomass': 56.2,
         'coal': 4399.5017,
-        'gas': 0.3786,
+        'gas': 33.9326,
         'hydro': 98.0075,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27603,7 +27603,7 @@
       'production': dict({
         'biomass': 58.9,
         'coal': 4465.5466,
-        'gas': 0.3786,
+        'gas': 33.9506,
         'hydro': 97.445,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27624,7 +27624,7 @@
       'production': dict({
         'biomass': 58.9,
         'coal': 4478.731,
-        'gas': 0.3786,
+        'gas': 33.8736,
         'hydro': 96.265,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27645,7 +27645,7 @@
       'production': dict({
         'biomass': 60.3,
         'coal': 4545.7294,
-        'gas': 0.3786,
+        'gas': 34.0736,
         'hydro': 96.4975,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27666,7 +27666,7 @@
       'production': dict({
         'biomass': 60.9,
         'coal': 4503.5935,
-        'gas': 0.3786,
+        'gas': 34.4096,
         'hydro': 97.2925,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27687,7 +27687,7 @@
       'production': dict({
         'biomass': 60.6,
         'coal': 4404.1867,
-        'gas': 0.3786,
+        'gas': 34.2336,
         'hydro': 97.025,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27708,7 +27708,7 @@
       'production': dict({
         'biomass': 58.5,
         'coal': 4370.0534,
-        'gas': 0.3786,
+        'gas': 33.9066,
         'hydro': 97.2825,
         'oil': 0.0,
         'solar': 0.1404,
@@ -27729,7 +27729,7 @@
       'production': dict({
         'biomass': 58.6,
         'coal': 4398.7857,
-        'gas': 0.3786,
+        'gas': 34.0946,
         'hydro': 97.86,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27750,7 +27750,7 @@
       'production': dict({
         'biomass': 62.5,
         'coal': 4450.7555,
-        'gas': 0.3786,
+        'gas': 34.1706,
         'hydro': 96.8075,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27771,7 +27771,7 @@
       'production': dict({
         'biomass': 65.8,
         'coal': 4484.3136,
-        'gas': 0.3786,
+        'gas': 33.8096,
         'hydro': 96.89,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27792,7 +27792,7 @@
       'production': dict({
         'biomass': 65.9,
         'coal': 4443.9754,
-        'gas': 0.3786,
+        'gas': 34.1876,
         'hydro': 96.42,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27813,7 +27813,7 @@
       'production': dict({
         'biomass': 65.0,
         'coal': 4451.7189,
-        'gas': 0.3786,
+        'gas': 34.0446,
         'hydro': 97.09,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27834,7 +27834,7 @@
       'production': dict({
         'biomass': 64.7,
         'coal': 4474.2299,
-        'gas': 0.3786,
+        'gas': 33.9126,
         'hydro': 97.48,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27855,7 +27855,7 @@
       'production': dict({
         'biomass': 68.5,
         'coal': 4465.9932,
-        'gas': 0.3786,
+        'gas': 34.3006,
         'hydro': 96.455,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27876,7 +27876,7 @@
       'production': dict({
         'biomass': 66.8,
         'coal': 4509.5586,
-        'gas': 0.3786,
+        'gas': 33.9206,
         'hydro': 96.7225,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27897,7 +27897,7 @@
       'production': dict({
         'biomass': 65.6,
         'coal': 4485.5773,
-        'gas': 0.3786,
+        'gas': 34.0306,
         'hydro': 95.9,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27918,7 +27918,7 @@
       'production': dict({
         'biomass': 66.3,
         'coal': 4513.8593,
-        'gas': 0.3786,
+        'gas': 34.0546,
         'hydro': 97.01,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27939,7 +27939,7 @@
       'production': dict({
         'biomass': 64.7,
         'coal': 4524.4389,
-        'gas': 0.3786,
+        'gas': 34.1326,
         'hydro': 97.08,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27960,7 +27960,7 @@
       'production': dict({
         'biomass': 65.0,
         'coal': 4542.9326,
-        'gas': 0.3786,
+        'gas': 34.4516,
         'hydro': 96.79,
         'oil': 0.0,
         'solar': 0.0404,
@@ -27981,7 +27981,7 @@
       'production': dict({
         'biomass': 64.0,
         'coal': 4576.675,
-        'gas': 0.3786,
+        'gas': 34.3886,
         'hydro': 96.9375,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28002,7 +28002,7 @@
       'production': dict({
         'biomass': 64.4,
         'coal': 4576.3752,
-        'gas': 0.3786,
+        'gas': 34.3506,
         'hydro': 97.215,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28023,7 +28023,7 @@
       'production': dict({
         'biomass': 64.2,
         'coal': 4613.3367,
-        'gas': 0.3786,
+        'gas': 34.0796,
         'hydro': 96.7625,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28044,7 +28044,7 @@
       'production': dict({
         'biomass': 64.3,
         'coal': 4665.3098,
-        'gas': 0.3786,
+        'gas': 34.1606,
         'hydro': 97.34,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28065,7 +28065,7 @@
       'production': dict({
         'biomass': 60.9,
         'coal': 4690.9388,
-        'gas': 0.3786,
+        'gas': 34.3256,
         'hydro': 97.47,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28086,7 +28086,7 @@
       'production': dict({
         'biomass': 60.3,
         'coal': 4773.6915,
-        'gas': 0.3786,
+        'gas': 34.1966,
         'hydro': 97.76,
         'oil': 0.0,
         'solar': 23.8404,
@@ -28107,7 +28107,7 @@
       'production': dict({
         'biomass': 64.4,
         'coal': 4835.2738,
-        'gas': 0.3786,
+        'gas': 34.2266,
         'hydro': 97.8325,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28128,7 +28128,7 @@
       'production': dict({
         'biomass': 70.0,
         'coal': 4821.6027,
-        'gas': 0.3786,
+        'gas': 30.5256,
         'hydro': 96.3725,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28149,7 +28149,7 @@
       'production': dict({
         'biomass': 69.1,
         'coal': 4875.0976,
-        'gas': 0.3786,
+        'gas': 34.0966,
         'hydro': 96.6025,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28170,7 +28170,7 @@
       'production': dict({
         'biomass': 63.5,
         'coal': 4884.6148,
-        'gas': 0.3786,
+        'gas': 33.5386,
         'hydro': 97.185,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28191,7 +28191,7 @@
       'production': dict({
         'biomass': 64.6,
         'coal': 4919.7749,
-        'gas': 0.3786,
+        'gas': 33.9266,
         'hydro': 97.3325,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28212,7 +28212,7 @@
       'production': dict({
         'biomass': 63.8,
         'coal': 5035.3246,
-        'gas': 0.3786,
+        'gas': 33.6286,
         'hydro': 97.07,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28233,7 +28233,7 @@
       'production': dict({
         'biomass': 66.1,
         'coal': 5074.3033,
-        'gas': 0.3786,
+        'gas': 33.8286,
         'hydro': 108.0425,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28254,7 +28254,7 @@
       'production': dict({
         'biomass': 65.6,
         'coal': 5086.5438,
-        'gas': 0.3786,
+        'gas': 33.6846,
         'hydro': 96.9125,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28275,7 +28275,7 @@
       'production': dict({
         'biomass': 64.0,
         'coal': 5094.1403,
-        'gas': 0.3786,
+        'gas': 33.4936,
         'hydro': 96.935,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28296,7 +28296,7 @@
       'production': dict({
         'biomass': 64.1,
         'coal': 5093.3975,
-        'gas': 0.3786,
+        'gas': 33.6986,
         'hydro': 100.2525,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28317,7 +28317,7 @@
       'production': dict({
         'biomass': 63.5,
         'coal': 5089.2978,
-        'gas': 0.3786,
+        'gas': 34.8506,
         'hydro': 97.04,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28338,7 +28338,7 @@
       'production': dict({
         'biomass': 62.3,
         'coal': 5193.2314,
-        'gas': 0.3786,
+        'gas': 35.1516,
         'hydro': 98.01,
         'oil': 0.0,
         'solar': 0.1404,
@@ -28359,7 +28359,7 @@
       'production': dict({
         'biomass': 63.8,
         'coal': 5269.6236,
-        'gas': 0.3786,
+        'gas': 36.0286,
         'hydro': 110.96,
         'oil': 0.0,
         'solar': 0.1404,
@@ -28380,7 +28380,7 @@
       'production': dict({
         'biomass': 60.9,
         'coal': 5284.786,
-        'gas': 0.3786,
+        'gas': 36.0186,
         'hydro': 122.485,
         'oil': 0.0,
         'solar': 0.1404,
@@ -28401,7 +28401,7 @@
       'production': dict({
         'biomass': 61.8,
         'coal': 5319.2856,
-        'gas': 0.3786,
+        'gas': 35.1446,
         'hydro': 297.0675,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28422,7 +28422,7 @@
       'production': dict({
         'biomass': 61.7,
         'coal': 5376.9892,
-        'gas': 0.3786,
+        'gas': 34.4026,
         'hydro': 301.19,
         'oil': 0.0,
         'solar': 0.0404,
@@ -28443,7 +28443,7 @@
       'production': dict({
         'biomass': 62.4,
         'coal': 5294.4621,
-        'gas': 0.3786,
+        'gas': 34.5456,
         'hydro': 299.165,
         'oil': 0.0,
         'solar': 5.1352,
@@ -28464,7 +28464,7 @@
       'production': dict({
         'biomass': 64.3,
         'coal': 5291.9323,
-        'gas': 0.3786,
+        'gas': 32.7166,
         'hydro': 315.16,
         'oil': 0.0,
         'solar': 10.2301,
@@ -28485,7 +28485,7 @@
       'production': dict({
         'biomass': 59.5,
         'coal': 5407.2018,
-        'gas': 0.3786,
+        'gas': 33.6956,
         'hydro': 308.36,
         'oil': 0.0,
         'solar': 15.5621,
@@ -28506,7 +28506,7 @@
       'production': dict({
         'biomass': 59.9,
         'coal': 5528.1283,
-        'gas': 0.3786,
+        'gas': 32.4356,
         'hydro': 307.2375,
         'oil': 0.0,
         'solar': 22.051,
@@ -28527,7 +28527,7 @@
       'production': dict({
         'biomass': 60.6,
         'coal': 5499.5669,
-        'gas': 0.3786,
+        'gas': 34.0096,
         'hydro': 323.03,
         'oil': 0.0,
         'solar': 31.1207,
@@ -28548,7 +28548,7 @@
       'production': dict({
         'biomass': 62.2,
         'coal': 5561.9554,
-        'gas': 0.3786,
+        'gas': 32.5566,
         'hydro': 306.54,
         'oil': 0.0,
         'solar': 47.0277,
@@ -28569,7 +28569,7 @@
       'production': dict({
         'biomass': 63.9,
         'coal': 5594.8208,
-        'gas': 0.3786,
+        'gas': 33.6136,
         'hydro': 306.4825,
         'oil': 0.0,
         'solar': 108.2066,
@@ -28590,7 +28590,7 @@
       'production': dict({
         'biomass': 65.3,
         'coal': 5543.5602,
-        'gas': 0.3786,
+        'gas': 33.2486,
         'hydro': 311.7375,
         'oil': 0.0,
         'solar': 193.6961,
@@ -28611,7 +28611,7 @@
       'production': dict({
         'biomass': 66.4,
         'coal': 5542.6561,
-        'gas': 0.3786,
+        'gas': 32.7196,
         'hydro': 308.92,
         'oil': 0.0,
         'solar': 304.2506,
@@ -28632,7 +28632,7 @@
       'production': dict({
         'biomass': 67.7,
         'coal': 5551.5784,
-        'gas': 0.3786,
+        'gas': 32.8896,
         'hydro': 319.9575,
         'oil': 0.0,
         'solar': 468.5582,
@@ -28653,7 +28653,7 @@
       'production': dict({
         'biomass': 66.6,
         'coal': 5521.239,
-        'gas': 0.3786,
+        'gas': 33.3526,
         'hydro': 304.585,
         'oil': 0.0,
         'solar': 642.8708,
@@ -28674,7 +28674,7 @@
       'production': dict({
         'biomass': 68.3,
         'coal': 5442.6377,
-        'gas': 0.3786,
+        'gas': 32.9786,
         'hydro': 309.5425,
         'oil': 0.0,
         'solar': 807.2702,
@@ -28695,7 +28695,7 @@
       'production': dict({
         'biomass': 75.0,
         'coal': 5400.3958,
-        'gas': 0.3786,
+        'gas': 33.5606,
         'hydro': 307.9475,
         'oil': 0.0,
         'solar': 1043.6117,
@@ -28716,7 +28716,7 @@
       'production': dict({
         'biomass': 73.1,
         'coal': 5389.1515,
-        'gas': 0.3786,
+        'gas': 33.4036,
         'hydro': 300.1875,
         'oil': 0.0,
         'solar': 1253.1923,
@@ -28737,7 +28737,7 @@
       'production': dict({
         'biomass': 71.2,
         'coal': 5308.5332,
-        'gas': 0.3786,
+        'gas': 33.5336,
         'hydro': 300.6075,
         'oil': 0.0,
         'solar': 1508.4003,
@@ -28758,7 +28758,7 @@
       'production': dict({
         'biomass': 71.3,
         'coal': 5254.9194,
-        'gas': 0.3786,
+        'gas': 31.9406,
         'hydro': 285.6075,
         'oil': 0.0,
         'solar': 1756.5092,
@@ -28779,7 +28779,7 @@
       'production': dict({
         'biomass': 70.9,
         'coal': 5097.6416,
-        'gas': 0.3786,
+        'gas': 33.2726,
         'hydro': 121.6775,
         'oil': 0.0,
         'solar': 2006.2411,
@@ -28800,7 +28800,7 @@
       'production': dict({
         'biomass': 65.9,
         'coal': 5011.2234,
-        'gas': 0.3786,
+        'gas': 32.7596,
         'hydro': 121.335,
         'oil': 0.0,
         'solar': 2241.1236,
@@ -28821,7 +28821,7 @@
       'production': dict({
         'biomass': 55.9,
         'coal': 4866.8758,
-        'gas': 0.3786,
+        'gas': 32.2946,
         'hydro': 122.46,
         'oil': 0.0,
         'solar': 2470.8654,
@@ -28842,7 +28842,7 @@
       'production': dict({
         'biomass': 53.0,
         'coal': 4873.9947,
-        'gas': 0.3786,
+        'gas': 33.2376,
         'hydro': 106.07,
         'oil': 0.0,
         'solar': 2712.9625,
@@ -28863,7 +28863,7 @@
       'production': dict({
         'biomass': 55.9,
         'coal': 4699.4052,
-        'gas': 0.3786,
+        'gas': 33.2836,
         'hydro': 96.8225,
         'oil': 0.0,
         'solar': 2924.3083,
@@ -28884,7 +28884,7 @@
       'production': dict({
         'biomass': 55.2,
         'coal': 4594.1085,
-        'gas': 0.3786,
+        'gas': 33.1446,
         'hydro': 96.3825,
         'oil': 0.0,
         'solar': 3127.8413,
@@ -28905,7 +28905,7 @@
       'production': dict({
         'biomass': 55.2,
         'coal': 4456.3248,
-        'gas': 0.3786,
+        'gas': 32.9986,
         'hydro': 96.8475,
         'oil': 0.0,
         'solar': 3353.1764,
@@ -28926,7 +28926,7 @@
       'production': dict({
         'biomass': 53.2,
         'coal': 4363.8397,
-        'gas': 0.3786,
+        'gas': 32.2316,
         'hydro': 99.49,
         'oil': 0.0,
         'solar': 3278.7696,
@@ -28947,7 +28947,7 @@
       'production': dict({
         'biomass': 46.8,
         'coal': 4232.2395,
-        'gas': 0.3786,
+        'gas': 34.0786,
         'hydro': 96.005,
         'oil': 0.0,
         'solar': 3647.64,
@@ -28968,7 +28968,7 @@
       'production': dict({
         'biomass': 48.4,
         'coal': 4203.5402,
-        'gas': 0.3786,
+        'gas': 32.9926,
         'hydro': 79.5075,
         'oil': 0.0,
         'solar': 3785.2656,
@@ -28989,7 +28989,7 @@
       'production': dict({
         'biomass': 48.9,
         'coal': 4219.0826,
-        'gas': 0.3786,
+        'gas': 31.6776,
         'hydro': 71.7225,
         'oil': 0.0,
         'solar': 3901.8377,
@@ -29010,7 +29010,7 @@
       'production': dict({
         'biomass': 49.7,
         'coal': 4209.9147,
-        'gas': 0.3786,
+        'gas': 32.7036,
         'hydro': 71.825,
         'oil': 0.0,
         'solar': 4044.2321,
@@ -29031,7 +29031,7 @@
       'production': dict({
         'biomass': 35.3,
         'coal': 4066.3275,
-        'gas': 0.3786,
+        'gas': 34.2646,
         'hydro': 71.465,
         'oil': 0.0,
         'solar': 4170.3051,
@@ -29052,7 +29052,7 @@
       'production': dict({
         'biomass': 27.9,
         'coal': 3967.0918,
-        'gas': 0.3786,
+        'gas': 32.5856,
         'hydro': 71.755,
         'oil': 0.0,
         'solar': 4261.6864,
@@ -29073,7 +29073,7 @@
       'production': dict({
         'biomass': 23.9,
         'coal': 3875.3212,
-        'gas': 0.3786,
+        'gas': 30.3756,
         'hydro': 72.0275,
         'oil': 0.0,
         'solar': 4338.1593,
@@ -29094,7 +29094,7 @@
       'production': dict({
         'biomass': 22.9,
         'coal': 3825.0735,
-        'gas': 0.3786,
+        'gas': 30.4426,
         'hydro': 72.1475,
         'oil': 0.0,
         'solar': 4440.4288,
@@ -29115,7 +29115,7 @@
       'production': dict({
         'biomass': 24.4,
         'coal': 3850.365,
-        'gas': 0.3786,
+        'gas': 32.9186,
         'hydro': 84.3625,
         'oil': 0.0,
         'solar': 4577.6381,
@@ -29136,7 +29136,7 @@
       'production': dict({
         'biomass': 26.3,
         'coal': 3901.7673,
-        'gas': 0.3786,
+        'gas': 31.7016,
         'hydro': 71.6,
         'oil': 0.0,
         'solar': 4675.841,
@@ -29157,7 +29157,7 @@
       'production': dict({
         'biomass': 28.1,
         'coal': 3852.8391,
-        'gas': 0.3786,
+        'gas': 33.0246,
         'hydro': 71.8,
         'oil': 0.0,
         'solar': 4795.2726,
@@ -29178,7 +29178,7 @@
       'production': dict({
         'biomass': 30.1,
         'coal': 3767.3691,
-        'gas': 0.3786,
+        'gas': 31.1596,
         'hydro': 71.1975,
         'oil': 0.0,
         'solar': 4892.5432,
@@ -29199,7 +29199,7 @@
       'production': dict({
         'biomass': 31.0,
         'coal': 3768.4083,
-        'gas': 0.3786,
+        'gas': 29.3786,
         'hydro': 71.2025,
         'oil': 0.0,
         'solar': 4820.2622,
@@ -29220,7 +29220,7 @@
       'production': dict({
         'biomass': 30.5,
         'coal': 3776.3835,
-        'gas': 0.3786,
+        'gas': 29.8516,
         'hydro': 71.5775,
         'oil': 0.0,
         'solar': 4797.5014,
@@ -29241,7 +29241,7 @@
       'production': dict({
         'biomass': 30.5,
         'coal': 3782.2236,
-        'gas': 0.3786,
+        'gas': 30.7406,
         'hydro': 71.765,
         'oil': 0.0,
         'solar': 4868.723,
@@ -29262,7 +29262,7 @@
       'production': dict({
         'biomass': 30.5,
         'coal': 3775.0371,
-        'gas': 0.3786,
+        'gas': 34.1126,
         'hydro': 71.5425,
         'oil': 0.0,
         'solar': 4932.3423,
@@ -29283,7 +29283,7 @@
       'production': dict({
         'biomass': 31.1,
         'coal': 3758.332,
-        'gas': 0.3786,
+        'gas': 29.9116,
         'hydro': 70.76,
         'oil': 0.0,
         'solar': 4962.6816,
@@ -29304,7 +29304,7 @@
       'production': dict({
         'biomass': 29.6,
         'coal': 3781.7782,
-        'gas': 0.3786,
+        'gas': 28.3236,
         'hydro': 71.84,
         'oil': 0.0,
         'solar': 5075.0508,
@@ -29325,7 +29325,7 @@
       'production': dict({
         'biomass': 28.8,
         'coal': 3762.3554,
-        'gas': 0.3786,
+        'gas': 28.3056,
         'hydro': 67.5475,
         'oil': 0.0,
         'solar': 5084.248,
@@ -29346,7 +29346,7 @@
       'production': dict({
         'biomass': 27.6,
         'coal': 3783.3462,
-        'gas': 0.3786,
+        'gas': 29.8196,
         'hydro': 71.9375,
         'oil': 0.0,
         'solar': 5107.1315,
@@ -29367,7 +29367,7 @@
       'production': dict({
         'biomass': 27.9,
         'coal': 3779.7363,
-        'gas': 0.3786,
+        'gas': 32.0516,
         'hydro': 71.52,
         'oil': 0.0,
         'solar': 5239.4513,
@@ -29388,7 +29388,7 @@
       'production': dict({
         'biomass': 27.2,
         'coal': 3764.0639,
-        'gas': 0.3786,
+        'gas': 29.1446,
         'hydro': 62.56,
         'oil': 0.0,
         'solar': 5158.6994,
@@ -29409,7 +29409,7 @@
       'production': dict({
         'biomass': 29.0,
         'coal': 3784.1373,
-        'gas': 0.3786,
+        'gas': 27.1066,
         'hydro': 14.5075,
         'oil': 0.0,
         'solar': 5199.6344,
@@ -29430,7 +29430,7 @@
       'production': dict({
         'biomass': 28.5,
         'coal': 3771.8732,
-        'gas': 0.3786,
+        'gas': 27.9846,
         'hydro': 71.98,
         'oil': 0.0,
         'solar': 5284.738,
@@ -29451,7 +29451,7 @@
       'production': dict({
         'biomass': 29.5,
         'coal': 3753.8462,
-        'gas': 0.3786,
+        'gas': 28.7996,
         'hydro': 69.335,
         'oil': 0.0,
         'solar': 5364.9049,
@@ -29472,7 +29472,7 @@
       'production': dict({
         'biomass': 31.1,
         'coal': 3823.4093,
-        'gas': 0.3786,
+        'gas': 29.7516,
         'hydro': 72.07,
         'oil': 0.0,
         'solar': 5320.6176,
@@ -29493,7 +29493,7 @@
       'production': dict({
         'biomass': 34.5,
         'coal': 3799.2815,
-        'gas': 0.3786,
+        'gas': 30.4736,
         'hydro': 71.6125,
         'oil': 0.0,
         'solar': 5344.5522,
@@ -29514,7 +29514,7 @@
       'production': dict({
         'biomass': 34.4,
         'coal': 3835.089,
-        'gas': 0.3786,
+        'gas': 29.8916,
         'hydro': 19.3775,
         'oil': 0.0,
         'solar': 5220.6977,
@@ -29535,7 +29535,7 @@
       'production': dict({
         'biomass': 33.8,
         'coal': 3882.0688,
-        'gas': 0.3786,
+        'gas': 30.2136,
         'hydro': 4.785,
         'oil': 0.0,
         'solar': 5114.0035,
@@ -29556,7 +29556,7 @@
       'production': dict({
         'biomass': 33.2,
         'coal': 3889.1649,
-        'gas': 0.3786,
+        'gas': 31.1186,
         'hydro': 4.845,
         'oil': 0.0,
         'solar': 5065.7971,
@@ -29577,7 +29577,7 @@
       'production': dict({
         'biomass': 32.8,
         'coal': 3889.0747,
-        'gas': 0.3786,
+        'gas': 29.2306,
         'hydro': 4.8175,
         'oil': 0.0,
         'solar': 5118.4561,
@@ -29598,7 +29598,7 @@
       'production': dict({
         'biomass': 29.1,
         'coal': 3935.1347,
-        'gas': 0.3786,
+        'gas': 27.4946,
         'hydro': 4.715,
         'oil': 0.0,
         'solar': 5187.2581,
@@ -29619,7 +29619,7 @@
       'production': dict({
         'biomass': 30.7,
         'coal': 3920.4409,
-        'gas': 0.3786,
+        'gas': 27.3776,
         'hydro': 4.7175,
         'oil': 0.0,
         'solar': 5238.5768,
@@ -29640,7 +29640,7 @@
       'production': dict({
         'biomass': 31.6,
         'coal': 3891.2621,
-        'gas': 0.3786,
+        'gas': 27.3126,
         'hydro': 4.53,
         'oil': 0.0,
         'solar': 5297.6863,
@@ -29661,7 +29661,7 @@
       'production': dict({
         'biomass': 28.2,
         'coal': 3897.3533,
-        'gas': 0.3786,
+        'gas': 27.4176,
         'hydro': 4.6725,
         'oil': 0.0,
         'solar': 5248.2892,
@@ -29682,7 +29682,7 @@
       'production': dict({
         'biomass': 24.0,
         'coal': 3884.8348,
-        'gas': 0.3786,
+        'gas': 29.4246,
         'hydro': 4.2775,
         'oil': 0.0,
         'solar': 5412.9268,
@@ -29703,7 +29703,7 @@
       'production': dict({
         'biomass': 20.9,
         'coal': 3907.8607,
-        'gas': 0.3786,
+        'gas': 27.5836,
         'hydro': 4.4175,
         'oil': 0.0,
         'solar': 5275.9264,
@@ -29724,7 +29724,7 @@
       'production': dict({
         'biomass': 18.2,
         'coal': 3921.7333,
-        'gas': 0.3786,
+        'gas': 28.0646,
         'hydro': 4.3125,
         'oil': 0.0,
         'solar': 5263.5768,
@@ -29745,7 +29745,7 @@
       'production': dict({
         'biomass': 19.4,
         'coal': 3956.5176,
-        'gas': 0.3786,
+        'gas': 29.1936,
         'hydro': 4.445,
         'oil': 0.0,
         'solar': 5330.6149,
@@ -29766,7 +29766,7 @@
       'production': dict({
         'biomass': 19.9,
         'coal': 3990.8481,
-        'gas': 0.3786,
+        'gas': 30.0076,
         'hydro': 4.315,
         'oil': 0.0,
         'solar': 5215.4711,
@@ -29787,7 +29787,7 @@
       'production': dict({
         'biomass': 19.7,
         'coal': 4023.0223,
-        'gas': 0.3786,
+        'gas': 28.9616,
         'hydro': 4.7375,
         'oil': 0.0,
         'solar': 5250.5579,
@@ -29808,7 +29808,7 @@
       'production': dict({
         'biomass': 19.2,
         'coal': 4011.0986,
-        'gas': 0.3786,
+        'gas': 28.5266,
         'hydro': 4.44,
         'oil': 0.0,
         'solar': 5146.4011,
@@ -29829,7 +29829,7 @@
       'production': dict({
         'biomass': 19.7,
         'coal': 4036.8966,
-        'gas': 0.3786,
+        'gas': 27.7276,
         'hydro': 4.3875,
         'oil': 0.0,
         'solar': 5096.1915,
@@ -29850,7 +29850,7 @@
       'production': dict({
         'biomass': 19.8,
         'coal': 4039.444,
-        'gas': 0.3786,
+        'gas': 27.2746,
         'hydro': 4.5775,
         'oil': 0.0,
         'solar': 5093.338,
@@ -29871,7 +29871,7 @@
       'production': dict({
         'biomass': 19.0,
         'coal': 4022.1816,
-        'gas': 6.2086,
+        'gas': 32.8426,
         'hydro': 4.235,
         'oil': 0.0,
         'solar': 5108.0944,
@@ -29892,7 +29892,7 @@
       'production': dict({
         'biomass': 16.4,
         'coal': 4042.9811,
-        'gas': 6.8586,
+        'gas': 33.4166,
         'hydro': 4.33,
         'oil': 0.0,
         'solar': 5125.8399,
@@ -29913,7 +29913,7 @@
       'production': dict({
         'biomass': 18.5,
         'coal': 4023.2358,
-        'gas': 14.3886,
+        'gas': 38.7446,
         'hydro': 4.6,
         'oil': 0.0,
         'solar': 5144.9716,
@@ -29934,7 +29934,7 @@
       'production': dict({
         'biomass': 16.8,
         'coal': 4021.3228,
-        'gas': 14.5386,
+        'gas': 41.4086,
         'hydro': 4.81,
         'oil': 0.0,
         'solar': 5048.4822,
@@ -29955,7 +29955,7 @@
       'production': dict({
         'biomass': 15.4,
         'coal': 3997.6898,
-        'gas': 15.9486,
+        'gas': 42.6606,
         'hydro': 4.6175,
         'oil': 0.0,
         'solar': 4904.3109,
@@ -29976,7 +29976,7 @@
       'production': dict({
         'biomass': 18.1,
         'coal': 4005.3887,
-        'gas': 32.1586,
+        'gas': 58.7586,
         'hydro': 4.425,
         'oil': 0.0,
         'solar': 4671.8715,
@@ -29997,7 +29997,7 @@
       'production': dict({
         'biomass': 16.4,
         'coal': 4004.5745,
-        'gas': 46.2486,
+        'gas': 75.2496,
         'hydro': 4.6975,
         'oil': 0.0,
         'solar': 4626.7659,
@@ -30018,7 +30018,7 @@
       'production': dict({
         'biomass': 16.8,
         'coal': 3983.4617,
-        'gas': 45.8486,
+        'gas': 73.4216,
         'hydro': 4.34,
         'oil': 0.0,
         'solar': 4564.4868,
@@ -30039,7 +30039,7 @@
       'production': dict({
         'biomass': 24.1,
         'coal': 4014.3546,
-        'gas': 15.7486,
+        'gas': 43.3026,
         'hydro': 4.6975,
         'oil': 0.0,
         'solar': 4478.1447,
@@ -30060,7 +30060,7 @@
       'production': dict({
         'biomass': 20.8,
         'coal': 3973.546,
-        'gas': 38.7286,
+        'gas': 66.4006,
         'hydro': 4.365,
         'oil': 0.0,
         'solar': 4390.3782,
@@ -30081,7 +30081,7 @@
       'production': dict({
         'biomass': 19.8,
         'coal': 3998.8777,
-        'gas': 44.7886,
+        'gas': 72.0416,
         'hydro': 4.5725,
         'oil': 0.0,
         'solar': 4322.2924,
@@ -30102,7 +30102,7 @@
       'production': dict({
         'biomass': 20.7,
         'coal': 4004.3529,
-        'gas': 45.8486,
+        'gas': 73.3886,
         'hydro': 4.6125,
         'oil': 0.0,
         'solar': 4247.4278,
@@ -30123,7 +30123,7 @@
       'production': dict({
         'biomass': 20.2,
         'coal': 3963.9136,
-        'gas': 71.1486,
+        'gas': 100.1136,
         'hydro': 4.39,
         'oil': 0.0,
         'solar': 4414.6934,
@@ -30144,7 +30144,7 @@
       'production': dict({
         'biomass': 19.2,
         'coal': 3949.6319,
-        'gas': 71.0486,
+        'gas': 99.8486,
         'hydro': 4.6275,
         'oil': 0.0,
         'solar': 4346.4655,
@@ -30165,7 +30165,7 @@
       'production': dict({
         'biomass': 19.8,
         'coal': 3919.5309,
-        'gas': 70.7486,
+        'gas': 97.7186,
         'hydro': 4.52,
         'oil': 0.0,
         'solar': 4378.8901,
@@ -30186,7 +30186,7 @@
       'production': dict({
         'biomass': 19.5,
         'coal': 3926.7341,
-        'gas': 72.0586,
+        'gas': 99.1666,
         'hydro': 4.545,
         'oil': 0.0,
         'solar': 4357.2833,
@@ -30207,7 +30207,7 @@
       'production': dict({
         'biomass': 17.4,
         'coal': 3895.34,
-        'gas': 70.8986,
+        'gas': 98.8866,
         'hydro': 4.67,
         'oil': 0.0,
         'solar': 4264.4689,
@@ -30228,7 +30228,7 @@
       'production': dict({
         'biomass': 19.5,
         'coal': 3892.4434,
-        'gas': 71.4486,
+        'gas': 99.8236,
         'hydro': 4.6775,
         'oil': 0.0,
         'solar': 4172.5432,
@@ -30249,7 +30249,7 @@
       'production': dict({
         'biomass': 21.0,
         'coal': 3839.7847,
-        'gas': 71.1986,
+        'gas': 97.6346,
         'hydro': 4.075,
         'oil': 0.0,
         'solar': 4286.7844,
@@ -30270,7 +30270,7 @@
       'production': dict({
         'biomass': 20.3,
         'coal': 3863.9309,
-        'gas': 71.0986,
+        'gas': 98.0816,
         'hydro': 4.7475,
         'oil': 0.0,
         'solar': 4304.5003,
@@ -30291,7 +30291,7 @@
       'production': dict({
         'biomass': 19.8,
         'coal': 3865.3757,
-        'gas': 71.5986,
+        'gas': 98.7916,
         'hydro': 4.67,
         'oil': 0.0,
         'solar': 4409.4269,
@@ -30312,7 +30312,7 @@
       'production': dict({
         'biomass': 18.1,
         'coal': 3841.1715,
-        'gas': 71.2986,
+        'gas': 97.9096,
         'hydro': 4.7425,
         'oil': 0.0,
         'solar': 4405.4941,
@@ -30333,7 +30333,7 @@
       'production': dict({
         'biomass': 20.2,
         'coal': 3900.7119,
-        'gas': 70.7486,
+        'gas': 98.6186,
         'hydro': 4.8,
         'oil': 0.0,
         'solar': 4324.6291,
@@ -30354,7 +30354,7 @@
       'production': dict({
         'biomass': 17.2,
         'coal': 3845.3452,
-        'gas': 92.2187,
+        'gas': 122.2907,
         'hydro': 4.53,
         'oil': 0.0,
         'solar': 4395.9161,
@@ -30375,7 +30375,7 @@
       'production': dict({
         'biomass': 18.3,
         'coal': 3800.3521,
-        'gas': 91.9531,
+        'gas': 119.7991,
         'hydro': 4.2775,
         'oil': 0.0,
         'solar': 4588.346,
@@ -30396,7 +30396,7 @@
       'production': dict({
         'biomass': 19.8,
         'coal': 3830.1403,
-        'gas': 92.9437,
+        'gas': 120.6347,
         'hydro': 4.54,
         'oil': 0.0,
         'solar': 4508.2687,
@@ -30417,7 +30417,7 @@
       'production': dict({
         'biomass': 20.7,
         'coal': 3826.3233,
-        'gas': 109.2061,
+        'gas': 135.5921,
         'hydro': 4.92,
         'oil': 0.0,
         'solar': 4469.2361,
@@ -30438,7 +30438,7 @@
       'production': dict({
         'biomass': 23.0,
         'coal': 3809.4209,
-        'gas': 109.6792,
+        'gas': 137.9902,
         'hydro': 4.25,
         'oil': 0.0,
         'solar': 4302.9357,
@@ -30459,7 +30459,7 @@
       'production': dict({
         'biomass': 23.9,
         'coal': 3827.8877,
-        'gas': 110.1917,
+        'gas': 140.0397,
         'hydro': 4.2,
         'oil': 0.0,
         'solar': 4177.6033,
@@ -30480,7 +30480,7 @@
       'production': dict({
         'biomass': 24.6,
         'coal': 3771.8973,
-        'gas': 144.5768,
+        'gas': 172.1318,
         'hydro': 3.92,
         'oil': 0.0,
         'solar': 4056.7892,
@@ -30501,7 +30501,7 @@
       'production': dict({
         'biomass': 24.3,
         'coal': 3846.6664,
-        'gas': 159.648,
+        'gas': 187.028,
         'hydro': 9.8225,
         'oil': 0.0,
         'solar': 4016.8468,
@@ -30522,7 +30522,7 @@
       'production': dict({
         'biomass': 25.5,
         'coal': 3849.0259,
-        'gas': 202.2576,
+        'gas': 231.5756,
         'hydro': 10.45,
         'oil': 0.0,
         'solar': 4125.1631,
@@ -30543,7 +30543,7 @@
       'production': dict({
         'biomass': 26.2,
         'coal': 3828.4294,
-        'gas': 208.8125,
+        'gas': 238.2515,
         'hydro': 9.995,
         'oil': 0.0,
         'solar': 4095.8951,
@@ -30564,7 +30564,7 @@
       'production': dict({
         'biomass': 35.6,
         'coal': 3871.4419,
-        'gas': 213.0572,
+        'gas': 240.9882,
         'hydro': 10.075,
         'oil': 0.0,
         'solar': 4105.1944,
@@ -30585,7 +30585,7 @@
       'production': dict({
         'biomass': 33.1,
         'coal': 3841.8001,
-        'gas': 210.2325,
+        'gas': 237.9435,
         'hydro': 80.4175,
         'oil': 0.0,
         'solar': 4079.3002,
@@ -30606,7 +30606,7 @@
       'production': dict({
         'biomass': 36.4,
         'coal': 3832.5175,
-        'gas': 209.9747,
+        'gas': 240.6257,
         'hydro': 86.965,
         'oil': 0.0,
         'solar': 4107.6752,
@@ -30627,7 +30627,7 @@
       'production': dict({
         'biomass': 37.3,
         'coal': 3815.4547,
-        'gas': 212.3232,
+        'gas': 241.4222,
         'hydro': 92.88,
         'oil': 0.0,
         'solar': 4158.8243,
@@ -30648,7 +30648,7 @@
       'production': dict({
         'biomass': 37.2,
         'coal': 3856.1926,
-        'gas': 211.206,
+        'gas': 237.129,
         'hydro': 97.3425,
         'oil': 0.0,
         'solar': 4191.5864,
@@ -30669,7 +30669,7 @@
       'production': dict({
         'biomass': 39.7,
         'coal': 3822.2173,
-        'gas': 239.3329,
+        'gas': 265.5839,
         'hydro': 96.56,
         'oil': 0.0,
         'solar': 4236.8647,
@@ -30690,7 +30690,7 @@
       'production': dict({
         'biomass': 40.3,
         'coal': 3834.5592,
-        'gas': 292.0981,
+        'gas': 319.6621,
         'hydro': 97.0625,
         'oil': 0.0,
         'solar': 4133.8574,
@@ -30711,7 +30711,7 @@
       'production': dict({
         'biomass': 41.4,
         'coal': 3909.3446,
-        'gas': 290.4262,
+        'gas': 316.9542,
         'hydro': 97.0225,
         'oil': 0.0,
         'solar': 3991.5756,
@@ -30732,7 +30732,7 @@
       'production': dict({
         'biomass': 45.0,
         'coal': 3860.6206,
-        'gas': 290.8706,
+        'gas': 318.8446,
         'hydro': 96.63,
         'oil': 0.0,
         'solar': 3826.3674,
@@ -30753,7 +30753,7 @@
       'production': dict({
         'biomass': 48.3,
         'coal': 3813.9009,
-        'gas': 289.2854,
+        'gas': 316.9774,
         'hydro': 95.6125,
         'oil': 0.0,
         'solar': 3621.3782,
@@ -30774,7 +30774,7 @@
       'production': dict({
         'biomass': 51.5,
         'coal': 3882.7093,
-        'gas': 293.7292,
+        'gas': 322.4332,
         'hydro': 96.9325,
         'oil': 0.0,
         'solar': 3354.9683,
@@ -30795,7 +30795,7 @@
       'production': dict({
         'biomass': 51.1,
         'coal': 4047.3847,
-        'gas': 291.8651,
+        'gas': 321.3461,
         'hydro': 110.665,
         'oil': 0.0,
         'solar': 3239.3785,
@@ -30816,7 +30816,7 @@
       'production': dict({
         'biomass': 48.7,
         'coal': 4164.1789,
-        'gas': 292.4894,
+        'gas': 320.2854,
         'hydro': 111.1875,
         'oil': 0.0,
         'solar': 3025.6699,
@@ -30837,7 +30837,7 @@
       'production': dict({
         'biomass': 46.2,
         'coal': 4361.6361,
-        'gas': 305.3914,
+        'gas': 334.8704,
         'hydro': 111.875,
         'oil': 0.0,
         'solar': 2841.5503,
@@ -30858,7 +30858,7 @@
       'production': dict({
         'biomass': 44.0,
         'coal': 4566.1622,
-        'gas': 359.5843,
+        'gas': 388.6743,
         'hydro': 111.2675,
         'oil': 0.0,
         'solar': 2645.5415,
@@ -30879,7 +30879,7 @@
       'production': dict({
         'biomass': 42.1,
         'coal': 4754.7844,
-        'gas': 407.4581,
+        'gas': 435.0611,
         'hydro': 118.9825,
         'oil': 0.0,
         'solar': 2426.4083,
@@ -30900,7 +30900,7 @@
       'production': dict({
         'biomass': 43.4,
         'coal': 4956.1881,
-        'gas': 429.461,
+        'gas': 457.328,
         'hydro': 136.395,
         'oil': 0.0,
         'solar': 2206.0612,
@@ -30921,7 +30921,7 @@
       'production': dict({
         'biomass': 43.8,
         'coal': 5046.5246,
-        'gas': 446.131,
+        'gas': 472.346,
         'hydro': 136.545,
         'oil': 0.0,
         'solar': 1979.3044,
@@ -30942,7 +30942,7 @@
       'production': dict({
         'biomass': 51.3,
         'coal': 5190.235,
-        'gas': 448.448,
+        'gas': 474.991,
         'hydro': 136.915,
         'oil': 0.0,
         'solar': 1773.3787,
@@ -30963,7 +30963,7 @@
       'production': dict({
         'biomass': 51.0,
         'coal': 5361.5469,
-        'gas': 464.7184,
+        'gas': 490.6994,
         'hydro': 142.405,
         'oil': 0.0,
         'solar': 1550.23,
@@ -30984,7 +30984,7 @@
       'production': dict({
         'biomass': 46.0,
         'coal': 5534.5882,
-        'gas': 467.9508,
+        'gas': 495.0648,
         'hydro': 300.05,
         'oil': 0.0,
         'solar': 1347.8235,
@@ -31005,7 +31005,7 @@
       'production': dict({
         'biomass': 43.6,
         'coal': 5732.7641,
-        'gas': 475.3875,
+        'gas': 504.5355,
         'hydro': 305.895,
         'oil': 0.0,
         'solar': 1129.0387,
@@ -31026,7 +31026,7 @@
       'production': dict({
         'biomass': 49.9,
         'coal': 5791.7374,
-        'gas': 482.7774,
+        'gas': 511.9174,
         'hydro': 392.7975,
         'oil': 0.0,
         'solar': 886.814,
@@ -31047,7 +31047,7 @@
       'production': dict({
         'biomass': 44.8,
         'coal': 5932.8579,
-        'gas': 488.2607,
+        'gas': 518.6897,
         'hydro': 433.4225,
         'oil': 0.0,
         'solar': 705.0359,
@@ -31068,7 +31068,7 @@
       'production': dict({
         'biomass': 46.0,
         'coal': 5939.0004,
-        'gas': 494.2759,
+        'gas': 524.9619,
         'hydro': 564.0875,
         'oil': 0.0,
         'solar': 501.0883,
@@ -31089,7 +31089,7 @@
       'production': dict({
         'biomass': 48.2,
         'coal': 5959.7547,
-        'gas': 506.6414,
+        'gas': 537.4674,
         'hydro': 676.6725,
         'oil': 0.0,
         'solar': 402.1691,
@@ -31110,7 +31110,7 @@
       'production': dict({
         'biomass': 47.6,
         'coal': 6010.8007,
-        'gas': 516.5463,
+        'gas': 548.7323,
         'hydro': 658.6925,
         'oil': 0.0,
         'solar': 318.8372,
@@ -31131,7 +31131,7 @@
       'production': dict({
         'biomass': 47.4,
         'coal': 6033.8861,
-        'gas': 547.9451,
+        'gas': 579.1041,
         'hydro': 622.7575,
         'oil': 0.0,
         'solar': 228.245,
@@ -31152,7 +31152,7 @@
       'production': dict({
         'biomass': 46.5,
         'coal': 6082.1869,
-        'gas': 567.8765,
+        'gas': 599.6515,
         'hydro': 583.9075,
         'oil': 0.0,
         'solar': 163.8513,
@@ -31173,7 +31173,7 @@
       'production': dict({
         'biomass': 47.1,
         'coal': 6115.7052,
-        'gas': 571.6316,
+        'gas': 602.3706,
         'hydro': 632.72,
         'oil': 0.0,
         'solar': 103.799,
@@ -31194,7 +31194,7 @@
       'production': dict({
         'biomass': 45.5,
         'coal': 6125.4069,
-        'gas': 611.592,
+        'gas': 641.702,
         'hydro': 658.2975,
         'oil': 0.0,
         'solar': 52.9568,
@@ -31215,7 +31215,7 @@
       'production': dict({
         'biomass': 49.2,
         'coal': 6099.3607,
-        'gas': 609.3404,
+        'gas': 641.1394,
         'hydro': 652.2475,
         'oil': 0.0,
         'solar': 34.5217,
@@ -31236,7 +31236,7 @@
       'production': dict({
         'biomass': 51.7,
         'coal': 6102.837,
-        'gas': 623.4114,
+        'gas': 653.9854,
         'hydro': 561.1475,
         'oil': 0.0,
         'solar': 25.396,
@@ -31257,7 +31257,7 @@
       'production': dict({
         'biomass': 49.8,
         'coal': 6160.1416,
-        'gas': 639.5418,
+        'gas': 669.8858,
         'hydro': 681.1625,
         'oil': 0.0,
         'solar': 19.0257,
@@ -31278,7 +31278,7 @@
       'production': dict({
         'biomass': 54.4,
         'coal': 6182.836,
-        'gas': 640.5038,
+        'gas': 670.1858,
         'hydro': 667.8825,
         'oil': 0.0,
         'solar': 12.805,
@@ -31299,7 +31299,7 @@
       'production': dict({
         'biomass': 51.9,
         'coal': 6154.1806,
-        'gas': 702.4298,
+        'gas': 733.7478,
         'hydro': 652.8225,
         'oil': 0.0,
         'solar': 6.6762,
@@ -31320,7 +31320,7 @@
       'production': dict({
         'biomass': 53.6,
         'coal': 6180.7074,
-        'gas': 767.9195,
+        'gas': 799.8955,
         'hydro': 666.36,
         'oil': 0.0,
         'solar': 1.8555,
@@ -31341,7 +31341,7 @@
       'production': dict({
         'biomass': 52.3,
         'coal': 6139.4909,
-        'gas': 759.6189,
+        'gas': 790.7969,
         'hydro': 656.13,
         'oil': 0.0,
         'solar': 1.6393,
@@ -31362,7 +31362,7 @@
       'production': dict({
         'biomass': 50.9,
         'coal': 6156.8162,
-        'gas': 764.5529,
+        'gas': 794.6499,
         'hydro': 568.175,
         'oil': 0.0,
         'solar': 1.5409,
@@ -31383,7 +31383,7 @@
       'production': dict({
         'biomass': 52.3,
         'coal': 6145.7619,
-        'gas': 761.9151,
+        'gas': 792.7621,
         'hydro': 592.1275,
         'oil': 0.0,
         'solar': 1.1546,
@@ -31404,7 +31404,7 @@
       'production': dict({
         'biomass': 52.6,
         'coal': 6125.1456,
-        'gas': 766.0743,
+        'gas': 798.0403,
         'hydro': 572.045,
         'oil': 0.0,
         'solar': 0.9384,
@@ -31425,7 +31425,7 @@
       'production': dict({
         'biomass': 54.6,
         'coal': 6109.7811,
-        'gas': 764.0896,
+        'gas': 795.4376,
         'hydro': 564.05,
         'oil': 0.0,
         'solar': 0.7223,
@@ -31446,7 +31446,7 @@
       'production': dict({
         'biomass': 54.1,
         'coal': 6166.9332,
-        'gas': 766.5758,
+        'gas': 797.6538,
         'hydro': 614.695,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31467,7 +31467,7 @@
       'production': dict({
         'biomass': 52.9,
         'coal': 6108.6173,
-        'gas': 764.7151,
+        'gas': 795.2151,
         'hydro': 551.445,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31488,7 +31488,7 @@
       'production': dict({
         'biomass': 53.3,
         'coal': 6113.1288,
-        'gas': 744.5539,
+        'gas': 775.8969,
         'hydro': 477.32,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31509,7 +31509,7 @@
       'production': dict({
         'biomass': 51.4,
         'coal': 6112.2555,
-        'gas': 747.0729,
+        'gas': 779.1979,
         'hydro': 477.7925,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31530,7 +31530,7 @@
       'production': dict({
         'biomass': 52.6,
         'coal': 6116.5083,
-        'gas': 802.4369,
+        'gas': 833.5829,
         'hydro': 470.48,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31551,7 +31551,7 @@
       'production': dict({
         'biomass': 52.3,
         'coal': 6136.4883,
-        'gas': 810.8099,
+        'gas': 841.9849,
         'hydro': 473.8875,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31572,7 +31572,7 @@
       'production': dict({
         'biomass': 55.0,
         'coal': 6108.0372,
-        'gas': 805.4426,
+        'gas': 835.4176,
         'hydro': 486.2075,
         'oil': 0.0,
         'solar': 0.5061,
@@ -31593,7 +31593,7 @@
       'production': dict({
         'biomass': 55.4,
         'coal': 6123.9227,
-        'gas': 775.3131,
+        'gas': 807.4291,
         'hydro': 472.075,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31614,7 +31614,7 @@
       'production': dict({
         'biomass': 54.7,
         'coal': 6114.3209,
-        'gas': 772.9487,
+        'gas': 805.8957,
         'hydro': 471.4625,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31635,7 +31635,7 @@
       'production': dict({
         'biomass': 57.8,
         'coal': 5996.492,
-        'gas': 745.9199,
+        'gas': 776.5549,
         'hydro': 471.915,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31656,7 +31656,7 @@
       'production': dict({
         'biomass': 59.1,
         'coal': 6092.5857,
-        'gas': 764.9736,
+        'gas': 794.7986,
         'hydro': 478.57,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31677,7 +31677,7 @@
       'production': dict({
         'biomass': 59.2,
         'coal': 6099.0559,
-        'gas': 746.5897,
+        'gas': 779.1507,
         'hydro': 471.825,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31698,7 +31698,7 @@
       'production': dict({
         'biomass': 58.4,
         'coal': 6053.8753,
-        'gas': 746.3463,
+        'gas': 778.3203,
         'hydro': 483.3725,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31719,7 +31719,7 @@
       'production': dict({
         'biomass': 59.0,
         'coal': 6015.4211,
-        'gas': 747.1986,
+        'gas': 778.4556,
         'hydro': 480.225,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31740,7 +31740,7 @@
       'production': dict({
         'biomass': 58.1,
         'coal': 6029.018,
-        'gas': 771.1061,
+        'gas': 801.5931,
         'hydro': 479.0625,
         'oil': 0.0,
         'solar': 0.5838,
@@ -31761,7 +31761,7 @@
       'production': dict({
         'biomass': 58.4,
         'coal': 5989.1359,
-        'gas': 750.8428,
+        'gas': 781.1428,
         'hydro': 483.97,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31782,7 +31782,7 @@
       'production': dict({
         'biomass': 59.1,
         'coal': 5944.9191,
-        'gas': 746.681,
+        'gas': 779.314,
         'hydro': 474.5975,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31803,7 +31803,7 @@
       'production': dict({
         'biomass': 56.0,
         'coal': 5939.4696,
-        'gas': 749.8804,
+        'gas': 782.6974,
         'hydro': 476.8275,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31824,7 +31824,7 @@
       'production': dict({
         'biomass': 58.1,
         'coal': 5957.2623,
-        'gas': 745.0385,
+        'gas': 775.3295,
         'hydro': 474.9675,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31845,7 +31845,7 @@
       'production': dict({
         'biomass': 60.9,
         'coal': 5962.7972,
-        'gas': 746.338,
+        'gas': 776.361,
         'hydro': 474.1175,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31866,7 +31866,7 @@
       'production': dict({
         'biomass': 60.6,
         'coal': 5944.3127,
-        'gas': 752.0783,
+        'gas': 784.6043,
         'hydro': 476.175,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31887,7 +31887,7 @@
       'production': dict({
         'biomass': 60.0,
         'coal': 5935.6921,
-        'gas': 748.6799,
+        'gas': 780.2169,
         'hydro': 503.285,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31908,7 +31908,7 @@
       'production': dict({
         'biomass': 60.0,
         'coal': 5894.7111,
-        'gas': 723.2511,
+        'gas': 753.3501,
         'hydro': 481.4775,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31929,7 +31929,7 @@
       'production': dict({
         'biomass': 59.8,
         'coal': 5902.0929,
-        'gas': 746.7553,
+        'gas': 776.9183,
         'hydro': 487.5925,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31950,7 +31950,7 @@
       'production': dict({
         'biomass': 60.1,
         'coal': 5879.4775,
-        'gas': 759.2286,
+        'gas': 791.5596,
         'hydro': 503.74,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31971,7 +31971,7 @@
       'production': dict({
         'biomass': 59.5,
         'coal': 5862.6545,
-        'gas': 685.679,
+        'gas': 717.38,
         'hydro': 479.125,
         'oil': 0.0,
         'solar': 0.3838,
@@ -31992,7 +31992,7 @@
       'production': dict({
         'biomass': 59.1,
         'coal': 5902.5748,
-        'gas': 702.5511,
+        'gas': 732.8841,
         'hydro': 319.44,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32013,7 +32013,7 @@
       'production': dict({
         'biomass': 61.1,
         'coal': 5904.5843,
-        'gas': 743.2074,
+        'gas': 773.4174,
         'hydro': 316.7775,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32034,7 +32034,7 @@
       'production': dict({
         'biomass': 62.9,
         'coal': 5908.6251,
-        'gas': 678.3991,
+        'gas': 711.4701,
         'hydro': 312.68,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32055,7 +32055,7 @@
       'production': dict({
         'biomass': 62.7,
         'coal': 5892.4941,
-        'gas': 662.848,
+        'gas': 693.727,
         'hydro': 306.51,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32076,7 +32076,7 @@
       'production': dict({
         'biomass': 62.2,
         'coal': 5909.0957,
-        'gas': 653.2574,
+        'gas': 683.3124,
         'hydro': 312.1375,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32097,7 +32097,7 @@
       'production': dict({
         'biomass': 62.7,
         'coal': 5919.6075,
-        'gas': 677.9371,
+        'gas': 710.5691,
         'hydro': 309.3,
         'oil': 0.0,
         'solar': 0.3838,
@@ -32118,7 +32118,7 @@
       'production': dict({
         'biomass': 62.6,
         'coal': 5878.3962,
-        'gas': 618.8919,
+        'gas': 651.2619,
         'hydro': 474.13,
         'oil': 0.0,
         'solar': 0.3838,
