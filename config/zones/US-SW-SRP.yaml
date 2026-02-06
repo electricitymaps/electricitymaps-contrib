@@ -49,6 +49,9 @@ capacity:
     - datetime: '2019-11-01'
       source: EIA.gov
       value: 1000
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 821.8
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov

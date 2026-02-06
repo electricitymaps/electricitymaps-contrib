@@ -8,6 +8,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 200.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov

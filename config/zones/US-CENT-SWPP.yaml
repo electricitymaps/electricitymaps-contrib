@@ -69,6 +69,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 323.4
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 317.8
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -230,6 +233,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 36704.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 36861.9
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -355,6 +361,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 2233.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2233.9
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -503,6 +512,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 1157.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1170.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -655,6 +667,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 34426.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 34865.0
 comment: Southwest Power Pool
 contributors:
   - systemcatch

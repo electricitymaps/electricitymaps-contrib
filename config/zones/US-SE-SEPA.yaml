@@ -45,6 +45,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 164.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 82.0
   nuclear:
     - datetime: '2017-01-01'
       source: EIA.gov
