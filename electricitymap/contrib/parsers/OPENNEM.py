@@ -78,7 +78,6 @@ OPENNEM_PRODUCTION_CATEGORIES = {
     "biomass": ["BIOENERGY_BIOGAS", "BIOENERGY_BIOMASS"],
     "solar": ["SOLAR_UTILITY", "SOLAR_ROOFTOP", "SOLAR_THERMAL"],
     "nuclear": ["NUCLEAR"],
-    "aggregators": ["AGGREGATOR_VPP", "AGGREGATOR_DR"],
 }
 OPENNEM_STORAGE_CATEGORIES = {
     # Storage
@@ -101,7 +100,9 @@ STORAGE_MAPPING = {
 IGNORED_FUEL_TECH_KEYS = {
     "imports",
     "exports",
-    "interconnector",  # Network flows, not relevant for production breakdowns
+    "interconnector",
+    "aggregator_vpp",
+    "aggregator_dr",
 }
 
 SOURCE = "opennem.org.au"
