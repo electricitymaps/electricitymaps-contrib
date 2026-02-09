@@ -152,6 +152,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 486.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 491.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

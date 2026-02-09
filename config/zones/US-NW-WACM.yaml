@@ -236,6 +236,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 652.3
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 661.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -280,6 +283,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 1900
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1857.3
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

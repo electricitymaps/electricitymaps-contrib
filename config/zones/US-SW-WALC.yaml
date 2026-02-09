@@ -23,6 +23,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 140.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 190.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -50,6 +53,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 1599.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1689.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -64,6 +70,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3789.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 3770.0
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov

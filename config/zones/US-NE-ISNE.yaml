@@ -188,6 +188,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 580.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 760.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -487,6 +490,9 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 5695.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 6011.7
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -779,6 +785,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 3501.9
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 3552.0
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

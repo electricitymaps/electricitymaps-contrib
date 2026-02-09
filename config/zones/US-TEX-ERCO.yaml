@@ -179,6 +179,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 10205.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 12447.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -392,6 +395,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 67339.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 67359.2
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -641,6 +647,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 26011.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 28723.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -648,6 +657,9 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 229.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 275.7
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -829,6 +841,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 39393.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 39834.8
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch
