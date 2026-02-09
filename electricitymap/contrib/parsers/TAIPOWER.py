@@ -143,7 +143,10 @@ def fetch_production(
             for parser_mode in parser_modes
             if parser_mode in production.index
         ]
-        production_mix.add_value(mode, production.loc[parser_modes_in_df].output.sum())
+        production_mix.add_value(
+            mode,
+            production.loc[parser_modes_in_df].output.sum(),
+        )
     storage_mix = StorageMix()
     for mode, storage_modes in STORAGE_MODE_MAPPING.items():
         storage_modes_in_df = [
@@ -152,7 +155,8 @@ def fetch_production(
             if storage_mode in production.index
         ]
         storage_mix.add_value(
-            mode, -1 * production.loc[storage_modes_in_df].output.sum()
+            mode,
+            -1 * production.loc[storage_modes_in_df].output.sum(),
         )
     production_breakdown.append(
         zone_key,

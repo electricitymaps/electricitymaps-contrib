@@ -238,7 +238,7 @@ def extract_thermal_production(data: list[list[str]], dt: datetime) -> pd.DataFr
     # Convert numeric
     df = df.apply(pd.to_numeric, errors="ignore")
     # Group by sum per mode
-    df = df.groupby("mode").sum(min_count=1)
+    df = df.groupby("mode").sum(numeric_only=True, min_count=1)
     # pivot to have hours as index and mode as columns
     df = df.T
     df.index = [get_datetime_from_hour(dt, hour) for hour in df.index]

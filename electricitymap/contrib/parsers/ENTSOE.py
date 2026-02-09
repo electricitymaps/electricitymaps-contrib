@@ -1240,96 +1240,56 @@ def fetch_generation_forecast(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets generation forecast for specified zone."""
-    if not session:
-        session = Session()
-    generation_list = TotalProductionList(logger)
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab generation forecast
-    try:
-        raw_generation_forecast = query_generation_forecast(
-            domain, session, target_datetime=target_datetime
+    session = session or Session()
+    non_aggregated_data: list[TotalProductionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        generation_list = TotalProductionList(logger)
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_generation_forecast = query_generation_forecast(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch generation forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_generation_forecast is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No generation forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(
+            raw_generation_forecast,
+            only_inBiddingZone_Domain=True,
         )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to query generation forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_generation_forecast is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No generation forecast data returned for {zone_key}",
-            zone_key=zone_key,
-        )
-    parsed = parse_scalar(
-        raw_generation_forecast,
-        only_inBiddingZone_Domain=True,
-    )
-    if parsed is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No generation forecast data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    for dt, value in parsed:
-        generation_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            source=SOURCE,
-            value=value,
-            sourceType=EventSourceType.forecasted,
-        )
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No generation forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        for dt, value in parsed:
+            generation_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                value=value,
+                sourceType=EventSourceType.forecasted,
+            )
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(generation_list)
 
-    return generation_list.to_list()
+    return TotalProductionList.merge_total_production_lists(
+        non_aggregated_data, logger
+    ).to_list()
 
 
 # ------------------- #
 #  Consumption
 # ------------------- #
-
-
-def get_raw_consumption_list(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-    forecasted: bool = False,
-):
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    query_function = query_consumption_forecast if forecasted else query_consumption
-    consumption_list = TotalConsumptionList(logger)
-    try:
-        raw_data = query_function(domain, session, target_datetime=target_datetime)
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to query {'consumption forecast' if forecasted else 'consumption'} for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_data is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data returned for {zone_key}",
-            zone_key=zone_key,
-        )
-    parsed = parse_scalar(raw_data, only_outBiddingZone_Domain=True)
-    if parsed is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    for dt, value in parsed:
-        consumption_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            source=SOURCE,
-            consumption=value,
-            sourceType=EventSourceType.forecasted
-            if forecasted
-            else EventSourceType.measured,
-        )
-    return consumption_list
 
 
 @refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
@@ -1341,8 +1301,48 @@ def fetch_consumption(
 ):
     """Gets consumption for a specified zone."""
     session = session or Session()
-    return get_raw_consumption_list(
-        zone_key, session, target_datetime=target_datetime, logger=logger
+    non_aggregated_data: list[TotalConsumptionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_consumption = query_consumption(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch consumption for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_consumption is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.measured,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
+
+    return TotalConsumptionList.merge_consumption_lists(
+        non_aggregated_data, logger
     ).to_list()
 
 
@@ -1355,12 +1355,47 @@ def fetch_consumption_forecast(
 ) -> list:
     """Gets consumption forecast for specified zone."""
     session = session or Session()
-    return get_raw_consumption_list(
-        zone_key,
-        session,
-        target_datetime=target_datetime,
-        logger=logger,
-        forecasted=True,
+    non_aggregated_data: list[TotalConsumptionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_consumption = query_consumption_forecast(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch consumption forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_consumption is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.forecasted,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
+    return TotalConsumptionList.merge_consumption_lists(
+        non_aggregated_data, logger
     ).to_list()
 
 
@@ -1374,37 +1409,49 @@ def fetch_wind_solar_forecasts(
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     """
-    if not session:
-        session = Session()
-    raw_forecasts = {}
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    for data_type in ORDERED_FORECAST_TYPES:
-        try:
-            raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
-                domain, session, data_type, target_datetime=target_datetime
-            )
-        except Exception as e:
-            logger.error(
-                f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
-                extra={"zone_key": zone_key},
-            )
-    if raw_forecasts == {}:
-        logger.warning(
-            f"No wind and solar forecast data found for {zone_key}",
-            extra={"zone_key": zone_key},
-        )
-        return []
+    session = session or Session()
+    non_aggregated_data: list[ProductionBreakdownList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        raw_forecasts = {}
 
-    forcast_breakdown_list = ProductionBreakdownList(logger)
-    for raw_forecast in raw_forecasts.values():
-        parsed_forecast = parse_production(
-            raw_forecast, logger, zone_key, forecasted=True
-        )
-        forcast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
-            forcast_breakdown_list, parsed_forecast, logger
-        )
+        for data_type in ORDERED_FORECAST_TYPES:
+            try:
+                raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
+                    domain, session, data_type, target_datetime=target_datetime
+                )
+            except Exception as e:
+                logger.error(
+                    f"Failed to fetch {data_type.name} wind and solar forecast for {_zone_key}: {e}",
+                    extra={"zone_key": _zone_key},
+                )
+        if raw_forecasts == {}:
+            logger.warning(
+                f"No wind and solar forecast data found for {_zone_key}",
+                extra={"zone_key": _zone_key},
+            )
+            raise ParserException(
+                zone_key,
+                "ENTSOE.py",
+                f"No wind and solar forecast data found for {_zone_key}",
+            )
 
-    return forcast_breakdown_list.to_list()
+        forecast_breakdown_list = ProductionBreakdownList(logger)
+        for raw_forecast in raw_forecasts.values():
+            parsed_forecast = parse_production(
+                raw_forecast, logger, zone_key, forecasted=True
+            )
+            forecast_breakdown_list = (
+                ProductionBreakdownList.update_production_breakdowns(
+                    forecast_breakdown_list, parsed_forecast, logger
+                )
+            )
+
+        non_aggregated_data.append(forecast_breakdown_list)
+
+    return ProductionBreakdownList.merge_production_breakdowns(
+        non_aggregated_data, logger
+    ).to_list()
 
 
 if __name__ == "__main__":

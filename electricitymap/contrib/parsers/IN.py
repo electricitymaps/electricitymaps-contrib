@@ -704,7 +704,7 @@ def parse_15m_production_grid_india_report(
     return all_data_points.to_list()
 
 
-def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
+def get_production_breakdown(content: bytes, zone_key: str) -> pd.DataFrame:
     """
     Computes the share of the zone key in the total production for each mode.
     Returns a dictionary with the mode as key and the share as value.
