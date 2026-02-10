@@ -67,18 +67,21 @@ EXCHANGE_MAPPING_DICTIONARY = {
         "direction": 1,
     },
 }
+
+# Mapped from https://docs.openelectricity.org.au/guides/fueltechs#fueltechs
 OPENNEM_PRODUCTION_CATEGORIES = {
     "coal": ["COAL_BLACK", "COAL_BROWN"],
-    "gas": ["GAS_CCGT", "GAS_OCGT", "GAS_RECIP", "GAS_STEAM"],
+    "gas": ["GAS_CCGT", "GAS_OCGT", "GAS_RECIP", "GAS_STEAM", "GAS_WCMG"],
     "oil": ["DISTILLATE"],
     "hydro": ["HYDRO"],
-    "wind": ["WIND"],
+    "wind": ["WIND", "WIND_OFFSHORE"],
     "biomass": ["BIOENERGY_BIOGAS", "BIOENERGY_BIOMASS"],
-    "solar": ["SOLAR_UTILITY", "SOLAR_ROOFTOP"],
+    "solar": ["SOLAR_UTILITY", "SOLAR_ROOFTOP", "SOLAR_THERMAL"],
+    "nuclear": ["NUCLEAR"],
 }
 OPENNEM_STORAGE_CATEGORIES = {
     # Storage
-    "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING"],
+    "battery": ["BATTERY_DISCHARGING", "BATTERY_CHARGING", "BATTERY"],
     "hydro": ["PUMPS"],
 }
 
@@ -96,12 +99,16 @@ STORAGE_MAPPING = {
 
 IGNORED_FUEL_TECH_KEYS = {
     "imports",
-    "exports",  # These keys are not relevant for production breakdowns
+    "exports",
+    "interconnector",
+    "aggregator_vpp",
+    "aggregator_dr",
 }
 
 SOURCE = "opennem.org.au"
 
 
+# TODO: after full v4 migration: deprecate this in favor of fetch_network_datasets
 def fetch_datasets(
     zone_key: ZoneKey, session: Session, target_datetime: datetime | None
 ):
@@ -122,6 +129,7 @@ def fetch_datasets(
     return response.json()["data"]
 
 
+# TODO: after full v4 migration: deprecate this in favor of generate_network_url
 def generate_url(zone_key: ZoneKey, target_datetime: datetime | None) -> str:
     # Only 7d or 30d data is available
     duration = (
@@ -145,74 +153,114 @@ def process_production_datasets(
     logger: Logger,
 ) -> ProductionBreakdownList:
     """
-    Process production datasets and return a production breakdown list.
+    Process production datasets from v4 API endpoint and return a production breakdown list.
+    v4 API format: data[].results[] with columns.fueltech and time series data as [timestamp, value] pairs.
     """
     now = datetime.now(tz=timezone.utc)
     unmerged_production_breakdown_lists = []
-    region = ZONE_KEY_TO_REGION.get(zone_key)
+
+    # v4 API format: data[].results[] with columns.fueltech
     for dataset in datasets:
-        if dataset["type"] != "power" or dataset["region"].upper() != region:
+        if dataset.get("metric") != "power":
             continue
-        mode = dataset.get("fuel_tech")
 
-        if mode is None:
-            continue
-        if (
-            mode
-            not in PRODUCTION_MAPPING.keys()
-            | STORAGE_MAPPING.keys()
-            | IGNORED_FUEL_TECH_KEYS
-        ):
-            logger.error(
-                f"Unknown fuel type {mode} in dataset {dataset['id']}, skipping."
-            )
-            continue
-        if mode in IGNORED_FUEL_TECH_KEYS:
-            continue
-        production_breakdown_list = ProductionBreakdownList(logger=logger)
-        history = dataset["history"]
-        start = datetime.fromisoformat(history["start"])
-        interval_min = int(history["interval"][:-1])  # remove 'm' at the end
-        delta = timedelta(minutes=interval_min)
-        data = history["data"]
-        for i, value in enumerate(data):
-            dt = start + i * delta
-            if dt > now:
-                logger.debug(
-                    f"Skipping future datetime {dt} for zone {zone_key} in dataset {dataset['id']}"
-                )
+        for result in dataset.get("results", []):
+            columns = result.get("columns", {})
+            fueltech = columns.get("fueltech")
+
+            if not fueltech:
                 continue
-            if mode in PRODUCTION_MAPPING:
-                production = ProductionMix()
-                category = PRODUCTION_MAPPING[mode]
-                production.add_value(
-                    category,
-                    value,
-                    correct_negative_with_zero=True,
-                )
-                production_breakdown_list.append(
-                    zoneKey=zone_key,
-                    datetime=dt,
-                    production=production,
-                    source=SOURCE,
-                )
-            elif mode in STORAGE_MAPPING:
-                storage = StorageMix()
-                category = STORAGE_MAPPING[mode]
-                multiplier = -1 if "discharging" in mode else 1
-                value = value * multiplier if value is not None else None
-                storage.add_value(
-                    category,
-                    value,
-                )
-                production_breakdown_list.append(
-                    zoneKey=zone_key,
-                    datetime=dt,
-                    storage=storage,
-                    source=SOURCE,
+
+            # Map fueltech to our categories using existing mappings
+            # v4 API fueltech values are like "COAL_BLACK", "GAS_CCGT", "BATTERY_CHARGING", etc.
+            fueltech_key = fueltech.lower()
+
+            if fueltech_key in IGNORED_FUEL_TECH_KEYS:
+                continue
+
+            # Map fueltech to category using existing PRODUCTION_MAPPING and STORAGE_MAPPING
+            if fueltech_key in PRODUCTION_MAPPING:
+                category = PRODUCTION_MAPPING[fueltech_key]
+                is_production = True
+                is_storage = False
+            elif fueltech_key in STORAGE_MAPPING:
+                category = STORAGE_MAPPING[fueltech_key]
+                is_production = False
+                is_storage = True
+            else:
+                raise ParserException(
+                    parser="OPENNEM",
+                    message=f"Unknown fueltech {fueltech} in result. Map it in OPENNEM_PRODUCTION_CATEGORIES or OPENNEM_STORAGE_CATEGORIES. See https://docs.openelectricity.org.au/guides/fueltechs#fueltechs",
+                    zone_key=zone_key,
                 )
 
-        unmerged_production_breakdown_lists.append(production_breakdown_list)
+            if category in IGNORED_FUEL_TECH_KEYS:
+                continue
+
+            production_breakdown_list = ProductionBreakdownList(logger=logger)
+            time_series_data = result.get("data", [])
+
+            for data_point in time_series_data:
+                # v4 format: data is array of [timestamp, value] pairs
+                if not isinstance(data_point, list) or len(data_point) < 2:
+                    continue
+
+                timestamp_str, value = data_point[0], data_point[1]
+
+                # Parse timestamp (handle both with and without timezone)
+                if timestamp_str.endswith("Z"):
+                    dt = datetime.fromisoformat(timestamp_str.replace("Z", "+00:00"))
+                elif "+" in timestamp_str or timestamp_str.count("-") >= 3:
+                    # Has timezone info
+                    dt = datetime.fromisoformat(timestamp_str)
+                else:
+                    # No timezone, assume it's in Australia/Sydney timezone
+                    dt = datetime.fromisoformat(timestamp_str)
+                    if not dt.tzinfo:
+                        dt = dt.replace(tzinfo=ZoneInfo("Australia/Sydney"))
+
+                if dt > now:
+                    logger.debug(f"Skipping future datetime {dt} for zone {zone_key}")
+                    continue
+
+                if value is None:
+                    continue
+
+                if is_production:
+                    production = ProductionMix()
+                    production.add_value(
+                        category,
+                        value,
+                        correct_negative_with_zero=True,
+                    )
+                    production_breakdown_list.append(
+                        zoneKey=zone_key,
+                        datetime=dt,
+                        production=production,
+                        source=SOURCE,
+                    )
+                elif is_storage:
+                    storage = StorageMix()
+                    # For storage, we want to treat discharging as positive and charging as negative, so we flip the sign for discharging fueltechs
+                    # Refrence: https://docs.openelectricity.org.au/guides/batteries
+                    multiplier = (
+                        -1
+                        if ("discharging" in fueltech_key or fueltech_key == "battery")
+                        else 1
+                    )
+                    value = value * multiplier if value is not None else None
+                    storage.add_value(
+                        category,
+                        value,
+                    )
+                    production_breakdown_list.append(
+                        zoneKey=zone_key,
+                        datetime=dt,
+                        storage=storage,
+                        source=SOURCE,
+                    )
+
+            unmerged_production_breakdown_lists.append(production_breakdown_list)
 
     # Merge all production breakdown lists into one
     merged_production = ProductionBreakdownList.merge_production_breakdowns(
@@ -252,10 +300,19 @@ def fetch_production(
 ) -> list[dict[str, Any]]:
     session = session or Session()
 
-    datasets = fetch_datasets(
+    # Get network_region for the zone (will be included if available)
+    network_region = ZONE_KEY_TO_REGION.get(zone_key)
+
+    # For v4 API, we can pass None for target_datetime to get latest data without date params
+    # Only include dates if specifically requested
+    datasets = _fetch_network_datasets(
         zone_key=zone_key,
         session=session,
-        target_datetime=target_datetime,
+        dataset_type="data",
+        target_datetime=target_datetime,  # Pass None to get latest data without date params
+        metrics=["power"],
+        secondary_grouping="fueltech",
+        network_region=network_region,  # Include network_region if available
     )
 
     return process_production_datasets(
@@ -504,23 +561,35 @@ def _build_network_url(
     path: str,
     network_code: str,
     metrics: list[str],
-    target_datetime: datetime,
-    network_region: str,
+    target_datetime: datetime | None,
+    network_region: str | None = None,
+    secondary_grouping: str | None = None,
 ) -> tuple[str, dict[str, Any]]:
     base_url = f"https://api.openelectricity.org.au/v4/{path}/network/{network_code}"
 
-    # API expects naive datetime in network-local time; target_datetime is UTC -> convert and drop tzinfo.
-    def format_datetime(dt: datetime) -> str:
-        local_dt = dt.astimezone(ZoneInfo("Australia/Sydney"))
-        naive_dt = local_dt.replace(tzinfo=None)
-        return naive_dt.isoformat()
-
-    params = {
+    params: dict[str, Any] = {
         "metrics": metrics,
-        "date_start": format_datetime(target_datetime - NETWORK_FETCH_WINDOW),
-        "date_end": format_datetime(target_datetime),
-        "network_region": network_region,
     }
+
+    # Add date range only if target_datetime is explicitly provided
+    # If None, API will return latest available data
+    if target_datetime:
+        # API expects naive datetime in network-local time; target_datetime is UTC -> convert and drop tzinfo.
+        def format_datetime(dt: datetime) -> str:
+            local_dt = dt.astimezone(ZoneInfo("Australia/Sydney"))
+            naive_dt = local_dt.replace(tzinfo=None)
+            return naive_dt.isoformat()
+
+        params["date_start"] = format_datetime(target_datetime - NETWORK_FETCH_WINDOW)
+        params["date_end"] = format_datetime(target_datetime)
+
+    # Add network_region only if provided (not required for production data endpoint)
+    if network_region:
+        params["network_region"] = network_region
+
+    # Add secondary_grouping if provided (for production data with fueltech)
+    if secondary_grouping:
+        params["secondary_grouping"] = secondary_grouping
 
     return base_url, params
 
@@ -529,25 +598,31 @@ def _fetch_network_datasets(
     zone_key: str,
     session: Session,
     dataset_type: str,
-    target_datetime: datetime,
+    target_datetime: datetime | None,
     metrics: list[str],
+    secondary_grouping: str | None = None,
+    network_region: str | None = None,
 ) -> list[dict[str, Any]]:
-    network_region = ZONE_KEY_TO_REGION.get(zone_key)
     network_code = ZONE_KEY_TO_NETWORK.get(zone_key)
 
-    if not network_region or not network_code:
+    if not network_code:
         raise ParserException(
             parser="OPENNEM",
-            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_REGION.keys())}",
+            message=f"Invalid zone_key {zone_key}, valid keys are {list(ZONE_KEY_TO_NETWORK.keys())}",
             zone_key=zone_key,
         )
+
+    # Use provided network_region or get from zone_key mapping
+    if network_region is None:
+        network_region = ZONE_KEY_TO_REGION.get(zone_key)
 
     url, params = _build_network_url(
         path=dataset_type,
         network_code=network_code,
         metrics=metrics,
-        target_datetime=target_datetime,
+        target_datetime=target_datetime or datetime.now(tz=timezone.utc),
         network_region=network_region,
+        secondary_grouping=secondary_grouping,
     )
 
     token = get_token("OPENELECTRICITY_TOKEN")
