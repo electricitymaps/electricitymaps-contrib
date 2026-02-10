@@ -241,7 +241,13 @@ def process_production_datasets(
                     )
                 elif is_storage:
                     storage = StorageMix()
-                    multiplier = -1 if "discharging" in fueltech_key else 1
+                    # For storage, we want to treat discharging as positive and charging as negative, so we flip the sign for discharging fueltechs
+                    # Refrence: https://docs.openelectricity.org.au/guides/batteries
+                    multiplier = (
+                        -1
+                        if ("discharging" in fueltech_key or fueltech_key == "battery")
+                        else 1
+                    )
                     value = value * multiplier if value is not None else None
                     storage.add_value(
                         category,
