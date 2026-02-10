@@ -8,35 +8,6 @@ on:
     - cron: '0 7 * * 1'
 
 jobs:
-  # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
-  setup:
-    name: Setup
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 1
-    outputs:
-      config: ${{ steps.check-changed-files.outputs.config_any_changed }}
-      markdown: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
-      json: ${{ steps.check-changed-files.outputs.json_any_changed }}
-      python: ${{ steps.check-changed-files.outputs.python_any_changed }}
-      workflows: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 2
-      - name: Check which files have changed
-        id: check-changed-files
-        uses: step-security/changed-files@v47
-        with:
-          files_yaml_from_source_file: .github/filter-groups.yml
-      - name: Log outputs
-        run: |
-          echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}"
-          echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}"
-          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}"
-          echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}"
-          echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}"
-
   #                        #
   # Repository wide checks #
   #                        #
@@ -61,20 +32,12 @@ jobs:
 
   validate_local_links:
     name: Validate
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.markdown != 'false' ||
-      needs.setup.outputs.workflows != 'false'
     uses:
       ./.github/workflows/validate_local_links_in_md.yml
 
       # Python checks
   python_formatting:
     name: Python / Formatting
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.python != 'false' ||
-      needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
@@ -98,11 +61,6 @@ jobs:
 
   python_tests:
     name: Python / Tests
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.python != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 10
     strategy:
@@ -131,10 +89,6 @@ jobs:
   # Config checks
   validate_config_filenames:
     name: Validate / Config filenames
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 5
     steps:
@@ -145,6 +99,6 @@ jobs:
 
   # Code quality checks
   codeql:
-    needs: [setup, prettier]
+    needs: [prettier]
     name: CodeQL
     uses: ./.github/workflows/codeql.yml
