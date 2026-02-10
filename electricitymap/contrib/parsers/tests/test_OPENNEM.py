@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY
-from syrupy.extensions.amber import SingleFileAmberSnapshotExtension
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.OPENNEM import (
     fetch_exchange,
