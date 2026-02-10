@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY
+from syrupy.extensions.amber import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.OPENNEM import (
     fetch_exchange,
@@ -30,7 +31,7 @@ def test_production(adapter, session, snapshot, zone):
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot == fetch_production(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_production(
         zone, session, datetime.fromisoformat("2025-03-23")
     )
 
@@ -43,7 +44,7 @@ def test_price(adapter, session, snapshot, zone):
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot == fetch_price(zone, session, datetime.fromisoformat("2020-01-01"))
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(zone, session, datetime.fromisoformat("2020-01-01"))
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
