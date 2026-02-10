@@ -44,9 +44,9 @@ def test_price(adapter, session, snapshot, zone):
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot(
-        extension_class=SingleFileAmberSnapshotExtension
-    ) == fetch_price(zone, session, datetime.fromisoformat("2020-01-01"))
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
+        zone, session, datetime.fromisoformat("2020-01-01")
+    )
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
