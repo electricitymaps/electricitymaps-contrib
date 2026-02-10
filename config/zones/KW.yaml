@@ -53,51 +53,15 @@ country_name: Kuwait
 currency: KWD
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 575.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 575.0
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 575.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 575.0
-  lifecycle:
-    battery discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 550.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 550.0
-    hydro discharge:
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 550.0
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 550.0
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 550.0
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 550.0
     unknown:
       _url: https://www.iea.org/fuels-and-technologies/electricity
       source: IEA 2019; assumes 62.3% gas, 37.7% oil
-      value: 550
+      value: 383.572
+  lifecycle:
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2019; assumes 62.3% gas, 37.7% oil
+      value: 550.3199999999999
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2020 average
@@ -168,3 +132,16 @@ parsers:
 region: Asia
 timezone: Asia/Kuwait
 zone_name: Kuwait
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: IEA 2019; assumes 62.3% gas, 37.7% oil
+    value: 0
+isLowCarbon:
+  unknown:
+    source: IEA 2019; assumes 62.3% gas, 37.7% oil
+    value: 0

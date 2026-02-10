@@ -27,10 +27,10 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.parsers.lib.validation import validate_exchange
+from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "ercot.com"
 TX_TZ = ZoneInfo("US/Central")
@@ -671,7 +671,9 @@ def process_generation_dataframe(df):
     column_mapping = pd.Series(
         {col: GENERATION_MAPPING.get(col, col) for col in df_processed.columns}
     )
-    df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum()
+    df_generation_standardized = df_processed.groupby(column_mapping, axis=1).sum(
+        numeric_only=True,
+    )
 
     return df_generation_standardized[
         [col for col in df_generation_standardized.columns if col != "battery"]
@@ -703,7 +705,9 @@ def transform_historical_production(df):
     column_mapping = pd.Series(
         {col: GENERATION_MAPPING.get(col, col) for col in df_pivot.columns}
     )
-    df_pivot_standardized = df_pivot.groupby(column_mapping, axis=1).sum()
+    df_pivot_standardized = df_pivot.groupby(column_mapping, axis=1).sum(
+        numeric_only=True,
+    )
     # From MWH to MW. The step are 15min steps
     df_result = (
         df_pivot_standardized[

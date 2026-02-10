@@ -3,21 +3,15 @@
 import json
 import pathlib
 import subprocess
-from os import PathLike, listdir, path
+from os import PathLike
 from typing import Any
 
 import yaml
 
 from electricitymap.contrib.config import CONFIG_DIR
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
-LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
-LOCALE_FILE_PATHS = [
-    LOCALES_FOLDER_PATH / f
-    for f in listdir(LOCALES_FOLDER_PATH)
-    if path.isfile(LOCALES_FOLDER_PATH / f) and f.endswith(".json")
-]
 
 
 def run_shell_command(cmd: str, cwd: PathLike | str = "") -> str:
@@ -32,7 +26,7 @@ class JsonFilePatcher:
 
     Example:
 
-    with JsonFilePatcher(ROOT_PATH / "web/geo/world.geojson") as f:
+    with JsonFilePatcher(ROOT_PATH / "geo/world.geojson") as f:
         if zone in f.content:
             del f.content[zone]
     """
@@ -70,7 +64,7 @@ class YamlFilePatcher:
 
     Example:
 
-    with YamlFilePatcher(ROOT_PATH / "web/geo/world.yaml") as f:
+    with YamlFilePatcher(ROOT_PATH / "geo/world.yaml") as f:
         if zone in f.content:
             del f.content[zone]
     """

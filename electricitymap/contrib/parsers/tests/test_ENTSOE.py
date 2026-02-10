@@ -1,19 +1,20 @@
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
 from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
     _get_datetime_value_from_timeseries,
     fetch_production,
     zulu_to_utc,
 )
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/ENTSOE")
 
@@ -45,6 +46,45 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_consumption_forecast(ZoneKey("DK-DK2"), session)
 
 
+def test_fetch_consumption_aggregated_zone(monkeypatch):
+    dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    called_domains: list[str] = []
+
+    def fake_query_consumption(in_domain, session, target_datetime=None):
+        called_domains.append(in_domain)
+        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"]:
+            return "raw-it-ca"
+        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"]:
+            return "raw-it-so"
+        raise AssertionError(f"Unexpected domain {in_domain}")
+
+    def fake_parse_scalar(raw_xml, only_outBiddingZone_Domain=True):
+        if raw_xml == "raw-it-ca":
+            return [(dt, 70.0)]
+        if raw_xml == "raw-it-so":
+            return [(dt, 30.0)]
+        return None
+
+    monkeypatch.setattr(ENTSOE, "query_consumption", fake_query_consumption)
+    monkeypatch.setattr(ENTSOE, "parse_scalar", fake_parse_scalar)
+
+    result = ENTSOE.fetch_consumption(ZoneKey("IT-SO"), session=None)
+
+    assert called_domains == [
+        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
+        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"],
+    ]
+    assert result == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 100.0,
+            "source": ENTSOE.SOURCE,
+            "sourceType": EventSourceType.measured,
+        }
+    ]
+
+
 def test_fetch_generation_forecast(adapter, session, snapshot):
     data = base_path_to_mock / "SE-SE3_generation_forecast.xml"
     adapter.register_uri(
@@ -54,6 +94,47 @@ def test_fetch_generation_forecast(adapter, session, snapshot):
     )
 
     assert snapshot == ENTSOE.fetch_generation_forecast(ZoneKey("SE-SE3"), session)
+
+
+def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
+    dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    called_domains: list[str] = []
+
+    def fake_query_generation_forecast(in_domain, session, target_datetime=None):
+        called_domains.append(in_domain)
+        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"]:
+            return "raw-it-ca"
+        if in_domain == ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"]:
+            return "raw-it-so"
+        raise AssertionError(f"Unexpected domain {in_domain}")
+
+    def fake_parse_scalar(raw_xml, only_inBiddingZone_Domain=True):
+        if raw_xml == "raw-it-ca":
+            return [(dt, 120.0)]
+        if raw_xml == "raw-it-so":
+            return [(dt, 80.0)]
+        return None
+
+    monkeypatch.setattr(
+        ENTSOE, "query_generation_forecast", fake_query_generation_forecast
+    )
+    monkeypatch.setattr(ENTSOE, "parse_scalar", fake_parse_scalar)
+
+    result = ENTSOE.fetch_generation_forecast(ZoneKey("IT-SO"), session=None)
+
+    assert called_domains == [
+        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
+        ENTSOE.ENTSOE_DOMAIN_MAPPINGS["IT-SO"],
+    ]
+    assert result == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 200.0,
+            "source": ENTSOE.SOURCE,
+            "sourceType": EventSourceType.forecasted,
+        }
+    ]
 
 
 def test_fetch_prices_day_ahead(adapter, session, snapshot):

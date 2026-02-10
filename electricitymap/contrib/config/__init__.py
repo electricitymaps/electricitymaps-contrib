@@ -11,14 +11,13 @@ from electricitymap.contrib.config.reading import (
     read_exchanges_config,
     read_zones_config,
 )
-from electricitymap.contrib.config.types import BoundingBox
 from electricitymap.contrib.config.zones import (
     generate_all_neighbours,
     generate_zone_neighbours,
     zone_bounding_boxes,
     zone_parents,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import BoundingBox, ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 

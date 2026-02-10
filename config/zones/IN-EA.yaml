@@ -47,57 +47,14 @@ currency: INR
 delays:
   production: 120
 emissionFactors:
+  direct:
+    unknown:
+      source: assumes 43% solar PV and 57% wind
+      value: 0.0
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 757.27
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 757.27
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 757.25
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 770.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 737.86
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 744.6
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 759.54
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 783.4
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 757.27
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 757.27
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 757.25
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 770.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 737.86
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 744.6
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 759.54
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 783.4
+    unknown:
+      source: assumes 43% solar PV and 57% wind
+      value: 25.62
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -229,3 +186,16 @@ parsers:
 region: Asia
 timezone: Asia/Kolkata
 zone_name: Eastern India
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1
+isLowCarbon:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1

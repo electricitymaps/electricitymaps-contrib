@@ -1,5 +1,7 @@
 from datetime import datetime, timezone
 
+import pandas as pd
+
 from electricitymap.contrib.config import CO2EQ_PARAMETERS_DIRECT
 from electricitymap.contrib.config.emission_factors_lookup import (
     get_emission_factors_with_metadata_all_years,
@@ -7,8 +9,25 @@ from electricitymap.contrib.config.emission_factors_lookup import (
 )
 
 
+def test_all_emission_factor_error(snapshot):
+    _, errors = get_emission_factors_with_metadata_all_years()
+    if errors:
+        df = pd.DataFrame(errors).sort_values(
+            by=[
+                "mode",
+                "zone_key",
+                "dt",
+            ]
+        )
+        serialized = df.to_csv(index=False)
+    else:
+        serialized = []
+    assert snapshot == serialized
+    assert not len(errors)
+
+
 def test_all_emission_factors(snapshot):
-    efs = get_emission_factors_with_metadata_all_years()
+    efs, _ = get_emission_factors_with_metadata_all_years()
     efs = sorted(ef.json(by_alias=True) for ef in efs)
     assert snapshot == efs
 

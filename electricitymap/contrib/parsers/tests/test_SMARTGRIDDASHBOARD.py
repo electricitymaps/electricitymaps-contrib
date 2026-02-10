@@ -3,7 +3,6 @@ from importlib import resources
 
 from requests_mock import GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.SMARTGRIDDASHBOARD import (
     URL,
     fetch_consumption,
@@ -13,6 +12,7 @@ from electricitymap.contrib.parsers.SMARTGRIDDASHBOARD import (
     fetch_total_generation,
     fetch_wind_solar_forecasts,
 )
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_fetch_consumption(adapter, session, snapshot):

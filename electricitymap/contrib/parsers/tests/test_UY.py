@@ -4,12 +4,12 @@ from pathlib import Path
 import pytest
 from requests_mock import GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.UY import (
     fetch_consumption,
     fetch_exchange,
     fetch_production,
 )
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

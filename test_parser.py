@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Usage: poetry run test_parser FR production
+Usage: uv run test_parser FR production
 """
 
 import logging
@@ -12,14 +12,13 @@ from typing import Any
 
 import click
 
-from electricitymap.contrib.lib.data_types import ParserDataType
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.parsers import PARSER_DATA_TYPE_TO_DICT
 from electricitymap.contrib.parsers.lib.quality import (
     ValidationError,
     validate_consumption,
     validate_exchange,
 )
+from electricitymap.contrib.types import ParserDataType, ZoneKey
 
 logger = logging.getLogger(__name__)
 
@@ -38,10 +37,10 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     \n
     Examples
     -------
-    >>> poetry run test_parser FR
-    >>> poetry run test_parser FR production
-    >>> poetry run test_parser "NO-NO3->SE" exchange
-    >>> poetry run test_parser GE production --target_datetime="2022-04-10 15:00"
+    >>> uv run test_parser FR
+    >>> uv run test_parser FR production
+    >>> uv run test_parser "NO-NO3->SE" exchange
+    >>> uv run test_parser GE production --target_datetime="2022-04-10 15:00"
 
     """
     if not data_type:
@@ -53,7 +52,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
 
     if parser_data_type == ParserDataType.PRODUCTION_CAPACITY:
         raise ValueError(
-            "productionCapacity is not supported by this script. Please use `poetry run update_capacity` instead."
+            "productionCapacity is not supported by this script. Please use `uv run update_capacity` instead."
         )
     parsed_target_datetime = None
     if target_datetime is not None:

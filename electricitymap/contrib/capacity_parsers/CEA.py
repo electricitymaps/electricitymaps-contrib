@@ -6,7 +6,7 @@ import pandas as pd
 from requests import Response, Session
 
 from electricitymap.contrib.config.capacity import CAPACITY_PARSER_SOURCE_TO_ZONES
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 logger = getLogger(__name__)
 SOURCE = "cea.nic.in"
@@ -129,7 +129,7 @@ def get_renewable_capacity(path: str, zone_key: ZoneKey | None = None) -> None:
         columns={**{"STATES / Uts": "zoneKey"}, **MNRE_MODE_MAPPING}
     )
     df_filtered["zoneKey"] = df_filtered["zoneKey"].map(IN_STATE_TO_ZONE_MAPPING)
-    df_filtered = df_filtered.groupby(["zoneKey"]).sum()
+    df_filtered = df_filtered.groupby(["zoneKey"]).sum(numeric_only=True)
     all_capacity = {}
     for idx, data in df_filtered.iterrows():
         capacity_dict = {}

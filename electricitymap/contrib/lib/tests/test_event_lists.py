@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
 import numpy as np
@@ -20,7 +20,7 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_exchange_list():
@@ -1009,6 +1009,100 @@ def test_total_production_list():
         source="trust.me",
     )
     assert len(total_production.events) == 1
+
+
+def test_merge_total_production_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalProductionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=100,
+        source="entsoe",
+    )
+
+    second = TotalProductionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=50,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        value=25,
+        source="entsoe",
+    )
+
+    merged = TotalProductionList.merge_total_production_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 150,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 25,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
+
+
+def test_merge_consumption_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalConsumptionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=80,
+        source="entsoe",
+    )
+
+    second = TotalConsumptionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=20,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        consumption=30,
+        source="entsoe",
+    )
+
+    merged = TotalConsumptionList.merge_consumption_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 100,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 30,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
 
 
 def test_df_representation():

@@ -2,6 +2,8 @@ from datetime import datetime, timezone
 from operator import itemgetter
 from typing import Any
 
+from pydantic import ValidationError
+
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
@@ -13,7 +15,7 @@ from electricitymap.contrib.config.model import (
     EmissionFactorVariant,
     YearZoneModeEmissionFactor,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def get_zone_specific_co2eq_parameter(
@@ -92,7 +94,6 @@ def _get_zone_specific_co2eq_parameter_no_metadata(
             )
             if co2eq_dt <= dt:
                 return co2eq  # type: ignore[no-any-return]
-        breakpoint()
         return res[0]  # type: ignore[no-any-return]
 
     else:
@@ -254,18 +255,29 @@ def _get_emission_factor_lifecycle_and_direct(
 def get_emission_factors_with_metadata_all_years(
     start: int | None = None,
     end: int | None = None,
-) -> list[YearZoneModeEmissionFactor]:
+) -> tuple[list[YearZoneModeEmissionFactor], list[ValidationError]]:
     start = 2015 if start is None else start
     end = datetime.now(tz=timezone.utc).year if end is None else end
 
-    acc = []
+    efs = []
+    errors = []
     for zone_key in ZONES_CONFIG:
         for i in range(start, end + 1):
             dt = datetime(year=i, month=1, day=1, tzinfo=timezone.utc)
             for mode in ENERGIES:
-                model_obj = _get_emission_factor_lifecycle_and_direct(
-                    zone_key, dt, mode
-                )
-                acc.append(model_obj)
+                try:
+                    model_obj = _get_emission_factor_lifecycle_and_direct(
+                        zone_key, dt, mode
+                    )
+                    efs.append(model_obj)
+                except ValidationError as e:
+                    errors.append(
+                        {
+                            "mode": mode,
+                            "zone_key": zone_key,
+                            "dt": dt,
+                            "errors": e.errors(),
+                        }
+                    )
 
-    return acc
+    return efs, errors

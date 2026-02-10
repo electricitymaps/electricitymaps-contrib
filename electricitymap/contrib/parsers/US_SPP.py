@@ -23,9 +23,9 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.validation import validate_exchange
+from electricitymap.contrib.types import ZoneKey
 
 SOURCE = "spp.org"
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"

@@ -4,12 +4,12 @@ from importlib import resources
 import pytest
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.ERP_PGCB import (
     fetch_consumption,
     fetch_exchange,
     fetch_production,
 )
+from electricitymap.contrib.types import ZoneKey
 
 historical_dt = datetime.fromisoformat("2025-01-01 00:00:00 +06:00")
 

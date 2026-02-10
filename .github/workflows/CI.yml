@@ -6,10 +6,6 @@ on:
   pull_request:
   schedule:
     - cron: '0 7 * * 1'
-  workflow_run:
-    workflows: ['Deploy preview']
-    branches-ignore:
-      - master
 
 jobs:
   # This job is used to determine what files have changed and is used by later jobs to determine if they should run.
@@ -18,7 +14,6 @@ jobs:
     runs-on: ubuntu-24.04-arm
     timeout-minutes: 1
     outputs:
-      frontend: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
       config: ${{ steps.check-changed-files.outputs.config_any_changed }}
       markdown: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
       json: ${{ steps.check-changed-files.outputs.json_any_changed }}
@@ -31,17 +26,16 @@ jobs:
           fetch-depth: 2
       - name: Check which files have changed
         id: check-changed-files
-        uses: step-security/changed-files@v46
+        uses: step-security/changed-files@v47
         with:
           files_yaml_from_source_file: .github/filter-groups.yml
       - name: Log outputs
         run: |
-          echo "frontend changed: ${{ steps.check-changed-files.outputs.frontend_any_changed }}
-          echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}
-          echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}
-          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}
-          echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}
-          echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}
+          echo "config changed: ${{ steps.check-changed-files.outputs.config_any_changed }}"
+          echo "markdown changed: ${{ steps.check-changed-files.outputs.markdown_any_changed }}"
+          echo "json changed: ${{ steps.check-changed-files.outputs.json_any_changed }}"
+          echo "python changed: ${{ steps.check-changed-files.outputs.python_any_changed }}"
+          echo "workflows changed: ${{ steps.check-changed-files.outputs.workflows_any_changed }}"
 
   #                        #
   # Repository wide checks #
@@ -53,28 +47,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - name: Setup Node
         uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-        working-directory: ./web
       - name: Prettier Check
-        # Uses the prettier binary from the web node_modules so it's always in sync.
         run: |
-          web/node_modules/.bin/prettier --check .
+          npx -y prettier@2 --check .
 
   earthly:
     name: earthly
@@ -88,402 +65,10 @@ jobs:
     if: >-
       needs.setup.outputs.markdown != 'false' ||
       needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate_local_links_in_md.yml
+    uses:
+      ./.github/workflows/validate_local_links_in_md.yml
 
-  jsonlint:
-    name: JSONLint
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.json != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 1
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Install jsonlint-mod
-        run: |
-          npm install -g jsonlint-mod
-      - name: Lint json
-        run: |
-          jsonlint -q web/src/locales/*.json
-
-  validate_translation_files:
-    name: Frontend / Validate Translation Files
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.json != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Run translation out of sync script
-        run: node web/scripts/detectTranslationsOutOfSync.js
-
-  validate_escaped_quotes_in_translation_files:
-    name: Frontend / Validate Escaped Quotes in Translation Files
-    needs: [setup]
-    if: >-
-      needs.setup.outputs.json != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version-file: '.python-version'
-      - name: Run escaped quotes script
-        run: python scripts/remove_escaped_quotes_in_locales.py --detect
-
-  #                 #
-  # Frontend checks #
-  #                 #
-  unit_test:
-    name: Frontend / Unit tests
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 4
-    defaults:
-      run:
-        working-directory: web
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm create-generated-files
-      - name: Run test
-        run: pnpm run test:ci
-
-  eslint:
-    name: Frontend / ESLint
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    permissions:
-      contents: read
-      security-events: write
-    timeout-minutes: 4
-    defaults:
-      run:
-        working-directory: web
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - name: Generate config files
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: pnpm create-generated-files
-      - name: Restore ESLint cache
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules/.cache/eslint/.eslintcache
-          key: ${{ runner.os }}-eslint_cache-${{ github.ref_name }}-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-eslint_cache-${{ github.ref_name }}
-            ${{ runner.os }}-eslint_cache-master
-      - name: ESLint
-        run: node_modules/.bin/eslint .
-          --ignore-path .gitignore
-          --ext .ts,.tsx .
-          --cache
-          --cache-location node_modules/.cache/eslint/.eslintcache
-          --format @microsoft/eslint-formatter-sarif
-          --output-file eslint-results.sarif
-        continue-on-error: true
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: web/eslint-results.sarif
-          wait-for-processing: true
-
-  typecheck:
-    name: Frontend / Typecheck
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 4
-    defaults:
-      run:
-        working-directory: web
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - name: Generate config files
-        run: pnpm create-generated-files
-      - name: Run TypeScript typechecking for app
-        run: pnpm run typecheck
-      - name: Run TypeScript typechecking for scripts
-        run: pnpm run typecheck --project tsconfig.node.json
-
-  validate_generate_files:
-    name: Frontend / Validate generated files
-    needs: [setup, prettier]
-    if: >-
-      needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.config != 'false' ||
-      needs.setup.outputs.workflows != 'false'
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 2
-    defaults:
-      run:
-        working-directory: web
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - name: Generate zone config
-        run: pnpm run generate-zones-config
-      - name: Generate world file
-        run: pnpm run generate-world
-
-  build_storybook:
-    name: Frontend / Build / Storybook
-    needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 5
-    defaults:
-      run:
-        working-directory: web
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: ./web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-      - name: Generate config files
-        run: pnpm create-generated-files
-      - name: Build Storybook
-        run: pnpm run storybook:build
-      - name: Upload Storybook artifacts
-        uses: actions/upload-artifact@v6
-        if: github.ref_name == 'master' || github.event_name == 'pull_request'
-        with:
-          name: storybook-${{ github.ref_name == 'master' && 'latest' || '' }}${{ github.event_name == 'pull_request' && 'PR-' || '' }}${{ github.event_name == 'pull_request' && github.event.number || '' }}
-          path: web/storybook-static
-          overwrite: true
-
-  deploy_preview_branch:
-    name: Deploy preview
-    needs: [eslint, typecheck, setup, validate_generate_files, unit_test]
-    if: >-
-      (needs.setup.outputs.frontend != 'false' ||
-      needs.setup.outputs.workflows != 'false') &&
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      github.ref_name != 'master'
-    uses: ./.github/workflows/deploy_preview_branch.yml
-    secrets: inherit
-
-  cypress_component:
-    name: Frontend / Cypress / Component
-    needs: [eslint, typecheck, validate_generate_files, unit_test]
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: './web/.node-version'
-      - name: Install ts-node
-        run: pnpm add ts-node --save-dev
-        working-directory: ./web
-      - name: Generate config files
-        run: pnpm create-generated-files
-        working-directory: ./web
-      - name: Cache Cypress binary
-        id: cache-cypress
-        uses: actions/cache@v5
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Restore node_modules for web
-        id: cache-web
-        uses: actions/cache@v5
-        with:
-          path: web/node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-      - name: Install web dependencies
-        if: steps.cache-web.outputs.cache-hit != 'true'
-        run: pnpm install --frozen-lockfile
-        working-directory: ./web
-      - name: Install Cypress binary
-        if: steps.cache-cypress.outputs.cache-hit != 'true'
-        run: pnpm exec cypress install
-        working-directory: ./web
-      - name: Cypress run component tests
-        uses: cypress-io/github-action@v6
-        env:
-          TZ: Europe/Copenhagen
-        with:
-          working-directory: ./web
-          install: false
-          # to run component tests we need to use "component: true"
-          component: true
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v6
-        if: failure()
-        with:
-          name: component-screenshots
-          path: web/cypress/screenshots
-
-  # cypress_e2e:
-  #   name: Frontend / Cypress / E2E
-  #   needs: [eslint, typecheck, validate_generate_files, unit_test]
-  #   runs-on: ubuntu-24.04-arm
-  #   timeout-minutes: 10
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v6
-  #     - name: Setup PNPM
-  #       uses: pnpm/action-setup@v4
-  #       with:
-  #         version: 9
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v6
-  #       with:
-  #         node-version-file: './web/.node-version'
-  #     - name: Cache Cypress binary
-  #       id: cache-cypress
-  #       uses: actions/cache@v5
-  #       with:
-  #         path: ~/.cache/Cypress
-  #         key: ${{ runner.os }}-cypress-${{ hashFiles('./web/pnpm-lock.yaml') }}
-  #     - name: Restore node_modules for web
-  #       id: cache-web
-  #       uses: actions/cache@v5
-  #       with:
-  #         path: web/node_modules
-  #         key: ${{ runner.os }}-node_modules-${{ hashFiles('./web/pnpm-lock.yaml') }}
-  #     - name: Install web dependencies
-  #       if: steps.cache-web.outputs.cache-hit != 'true'
-  #       run: pnpm install --frozen-lockfile
-  #       working-directory: ./web
-  #     - name: Install Cypress binary
-  #       if: steps.cache-cypress.outputs.cache-hit != 'true'
-  #       run: pnpm exec cypress install
-  #       working-directory: ./web
-  #     - name: Cypress run e2e tests
-  #       uses: cypress-io/github-action@v6
-  #       env:
-  #         TZ: Europe/Copenhagen
-  #       with:
-  #         working-directory: ./web
-  #         install: false
-  #         build: pnpm run build --mode testing
-  #         start: pnpm run preview
-  #         config: baseUrl=http://127.0.0.1:4173/
-  #     - name: Upload screenshots
-  #       uses: actions/upload-artifact@v6
-  #       if: failure()
-  #       with:
-  #         name: e2e-screenshots
-  #         path: web/cypress/screenshots
-
-  # Python checks
+      # Python checks
   python_formatting:
     name: Python / Formatting
     needs: [setup]
@@ -495,34 +80,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install poetry
-        run: |
-          pipx install "poetry==2.*"
-      - name: Get poetry version
-        id: get-poetry-version
-        run: |
-          echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version-file: '.python-version'
-      - name: Restore cache
-        id: cache
-        uses: actions/cache@v5
-        with:
-          path: .venv
-          key: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
+          enable-cache: true
+          cache-suffix: 'formatting'
+          python-version: '3.10'
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          poetry install -E parsers --sync
+          uv sync --extra parsers
       - name: Check formatting
         run: |
-          poetry run ruff format . --check
+          uv run ruff format . --check
       - name: Check linting
         run: |
-          poetry run ruff check . --output-format=github
+          uv run ruff check . --output-format=github
 
   python_tests:
     name: Python / Tests
@@ -539,35 +111,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install poetry
-        run: |
-          pipx install "poetry==2.*"
-      - name: Get poetry version
-        id: get-poetry-version
-        run: |
-          echo "$(poetry --version | awk '{print "poetry-version="$3}' | tr -d '()')" >> $GITHUB_OUTPUT
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
         with:
+          enable-cache: true
+          cache-suffix: 'tests'
           python-version: ${{ matrix.python-version }}
-      - name: Restore cache
-        id: cache
-        uses: actions/cache@v5
-        with:
-          path: .venv
-          key: ${{ runner.os }}-venv-python_${{ matrix.python-version }}-poetry_${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv-python_${{ matrix.python-version }}-poetry_${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
           sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
-      - name: Install Poetry dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install Dependencies
         run: |
-          poetry install -E parsers --sync
+          uv sync --group dev --extra parsers
       - name: Run tests
         run: |
-          poetry run test
+          uv run test
 
   # Config checks
   validate_config_filenames:

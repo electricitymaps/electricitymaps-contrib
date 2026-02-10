@@ -22,7 +22,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_create_exchange():
@@ -149,6 +149,45 @@ def test_update_exchange():
     assert final_exchange.zoneKey == ZoneKey("AT->DE")
     assert final_exchange.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert final_exchange.source == "trust.me"
+
+
+def test_update_total_production():
+    production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=100,
+        source="entsoe",
+    )
+    new_production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=150,
+        source="entsoe",
+    )
+
+    updated = TotalProduction._update(production, new_production)
+
+    assert updated.value == 150
+    assert updated.zoneKey == ZoneKey("IT-SO")
+    assert updated.sourceType == EventSourceType.measured
+
+
+def test_update_total_consumption_raises_on_mismatched_zone():
+    consumption = TotalConsumption(
+        zoneKey=ZoneKey("DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=100,
+        source="entsoe",
+    )
+    new_consumption = TotalConsumption(
+        zoneKey=ZoneKey("AT"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=120,
+        source="entsoe",
+    )
+
+    with pytest.raises(ValueError):
+        TotalConsumption._update(consumption, new_consumption)
 
 
 def test_create_consumption():

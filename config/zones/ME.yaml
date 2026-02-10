@@ -3,6 +3,7 @@ bounding_box:
     - 41.87755
   - - 20.3398
     - 43.52384
+can_have_zero_production: true
 capacity:
   coal:
     - datetime: '2017-01-01'
@@ -38,118 +39,12 @@ currency: EUR
 delays:
   production: 6
 emissionFactors:
-  direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 552.5634641719585
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 556.0670444313565
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 599.6466769337663
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.0456158107727
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 412.8220848562058
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 421.13673187799304
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.1318453317476
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 552.5634641719585
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 556.0670444313565
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 599.6466769337663
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 472.0456158107727
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 412.8220848562058
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 421.13673187799304
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 359.1318453317476
+  direct: {}
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 605.03
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 608.73
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 643.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 501.88
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 445.69
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 454.04
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 394.76
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 452.58
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 409.07
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 422.54
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 605.03
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 608.73
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 643.17
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 501.88
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 445.69
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 454.04
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 394.76
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 452.58
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 409.07
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 422.54
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022

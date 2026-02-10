@@ -170,28 +170,6 @@ delays:
   production: 9
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 513.9629430346425
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 754.18
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 672.453483256148
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 678.3320966566115
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.010361276745
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 522.9952524824466
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 336.2398737077919
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -205,7 +183,10 @@ emissionFactors:
         value: 1523.65
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 1218.46
+        value: 889.82
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 825.18
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -215,29 +196,35 @@ emissionFactors:
         value: 385.67
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 396.14
+        value: 390.77
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 387.12
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 513.9629430346425
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 754.18
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 672.453483256148
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 678.3320966566115
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.010361276745
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 522.9952524824466
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 336.2398737077919
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 594.91
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 0.0
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 617.15
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 430.14
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 348.65
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 312.4
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -246,51 +233,25 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 925.95
   lifecycle:
-    battery discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 777.14
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 714.57
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 723.42
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 680.82
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 590.62
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 475.98
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 436.53
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 434.85
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 368.75
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 332.09
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1537.25003
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1537.247562
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1278.46
+        value: 949.82
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 885.18
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -300,42 +261,39 @@ emissionFactors:
         value: 505.67
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 516.14
+        value: 510.77
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 507.12
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: Electricity Maps, 2015 average
-        value: 777.14
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 714.57
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 723.42
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 680.82
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 557.94
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 570.01
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 436.53
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 540.23
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 573.9
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 426.43
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; UNECE 2022
+        value: 605.61
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; UNECE 2022
+        value: 627.85
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; UNECE 2022
+        value: 440.84
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; UNECE 2022
+        value: 359.35
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; UNECE 2022
+        value: 323.1
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -353,7 +311,8 @@ emissionFactors:
       value: 26.1
     wind:
       datetime: '2021-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+        outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
@@ -507,8 +466,36 @@ fallbackZoneMixes:
         solar: 0.207991503406568
         unknown: 0.0004729780072988275
         wind: 0.20026030888063462
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2412
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 0.2971
+    - datetime: '2023-01-01'
+      value: 0.3338
+    - datetime: '2024-01-01'
+      value: 0.4134
+    - datetime: '2025-01-01'
+      value: 0.3915
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2131
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 0.2482
+    - datetime: '2023-01-01'
+      value: 0.2686
+    - datetime: '2024-01-01'
+      value: 0.3172
+    - datetime: '2025-01-01'
+      value: 0.2619
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -525,13 +512,18 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  EU-ETS, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
-  UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021):
-    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37, https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
+  ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
+    for 2022-2026" Wind Europe Proceedings (2021)
+  : link:
+      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+      https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Europe/Athens
 zone_name: Greece

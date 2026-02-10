@@ -12,9 +12,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.types import ZoneKey
 
 API_ENDPOINT = "https://opendata.reseaux-energies.fr/api/records/1.0/search/"
 
@@ -35,8 +35,8 @@ MAP_GENERATION = {
 }
 
 STORAGE_MODES = ["hydro_storage", "battery_storage"]
-DATASET_REAL_TIME = "eco2mix-national-tr"
-DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives for datetimes older than 9 months
+DATASET_REAL_TIME = "eco2mix-national-tr"  # API called is Données éCO2mix nationales en temps réel if no consolidated data is available
+DATASET_CONSOLIDATED = "eco2mix-national-cons-def"  # API called is Données éCO2mix nationales consolidées et définitives
 
 
 DELTA_15 = timedelta(minutes=15)
@@ -44,17 +44,21 @@ TZ = ZoneInfo("Europe/Paris")
 SOURCE = "opendata.reseaux-energies.fr"
 
 
-def get_dataset_from_datetime(target_datetime: datetime) -> str:
-    """Returns the dataset to query based on the target_datetime. The real-time API returns no values for target datetimes older than 9 months and we need to query the consolidated dataset."""
-    if target_datetime < datetime(2022, 5, 31, tzinfo=TZ):
-        # API called is Données éCO2mix régionales consolidées et définitives for datetimes before May 2022
-        dataset = DATASET_CONSOLIDATED
+def get_data(session: Session, target_datetime: datetime) -> pd.DataFrame:
+    """Returns data from the consolidated data endpoint if it is available, otherwise returns data from the real-time data endpoint."""
+    df_consolidated = request_data(DATASET_CONSOLIDATED, session, target_datetime)
+    if df_consolidated.empty:
+        df_real_time = request_data(DATASET_REAL_TIME, session, target_datetime)
+        if df_real_time.empty:
+            return pd.DataFrame()
+        else:
+            return df_real_time
     else:
-        dataset = DATASET_REAL_TIME
-    return dataset
+        return df_consolidated
 
 
-def get_data(
+def request_data(
+    dataset: str,
     session: Session | None = None,
     target_datetime: datetime | None = None,
 ) -> pd.DataFrame:
@@ -63,9 +67,6 @@ def get_data(
         target_datetime_localised = target_datetime.replace(tzinfo=TZ)
     else:
         target_datetime_localised = datetime.now(tz=TZ)
-
-    # get dataset to query
-    dataset = get_dataset_from_datetime(target_datetime_localised)
 
     # setup request
     r = session or Session()
@@ -141,7 +142,9 @@ def fetch_production(
     df_production_reindexed = df_production_reindexed.rename(columns=MAP_GENERATION)
     df_production_reindexed = df_production_reindexed.groupby(
         df_production_reindexed.columns, axis=1
-    ).sum()
+    ).sum(
+        numeric_only=True,
+    )
 
     production_mixes = ProductionBreakdownList(logger)
     for idx, row in df_production_reindexed.iterrows():

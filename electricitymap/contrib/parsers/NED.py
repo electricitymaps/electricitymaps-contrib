@@ -12,7 +12,6 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.ENTSOE import ENTSOE_DOMAIN_MAPPINGS
 from electricitymap.contrib.parsers.ENTSOE import (
     parse_production as ENTSOE_parse_production,
@@ -23,6 +22,7 @@ from electricitymap.contrib.parsers.ENTSOE import (
 from electricitymap.contrib.parsers.lib.config import ProductionModes, refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.types import ZoneKey
 
 URL = "https://api.ned.nl/v1/utilizations"
 

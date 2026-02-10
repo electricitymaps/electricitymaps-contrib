@@ -26,8 +26,8 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
+from electricitymap.contrib.types import ZoneKey
 
 US_NEISO_KEY = ZoneKey("US-NE-ISNE")
 SOURCE = "iso-ne.com"
@@ -192,6 +192,7 @@ def fetch_exchange(
         postdata = {
             "_nstmp_zone0": "4012",  # ".I.HQ_P1_P2345 5"
             "_nstmp_zone1": "4013",  # ".I.HQHIGATE120 2"
+            "_nstmp_zone2": "4018",  # ".I.HQMRL_RD345 1"
         }
 
     elif sorted_zone_keys == "US-NE-ISNE->US-NY-NYIS":

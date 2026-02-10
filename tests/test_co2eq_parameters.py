@@ -3,7 +3,6 @@
 import datetime
 import json
 import numbers
-import re
 import unittest
 from typing import Any
 
@@ -12,32 +11,12 @@ from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
 )
+from electricitymap.contrib.config.constants import MODE_COLORS
 
 
 def get_possible_modes() -> set[str]:
-    """Get the set of possible modes."""
-    modes = set()
-    with open("web/src/utils/constants.ts", encoding="utf-8") as file_:
-        # The call to `eval` is a hack to parse the `modeOrder` array from the
-        # JavaScript source file.
-        search = re.search(
-            r"^export const modeOrder = (\[$.*?^]) as const;$",
-            file_.read(),
-            flags=re.DOTALL | re.MULTILINE,
-        )
-        if search is not None:
-            group = search.group(1)
-            for mode in eval(group):
-                if mode.endswith(" storage"):
-                    modes.update(
-                        (
-                            mode.replace("storage", "charge"),
-                            mode.replace("storage", "discharge"),
-                        )
-                    )
-                else:
-                    modes.add(mode)
-    return modes
+    """Get the set of possible modes from the MODE_COLORS dictionary."""
+    return set[str](MODE_COLORS.keys())
 
 
 def parse_json_file(path: str):
@@ -392,9 +371,9 @@ class CO2eqParametersDirect(BaseClasses.CO2eqParametersDirectAndLifecycleBase):
     # Expected min and max values for emission factors, by mode.
     ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: usually above 500 gCO2eq/kWh.
-        "coal": (500, 1600),
+        "coal": (400, 1600),
         "gas": (200, 700),
-        "oil": (300, 1400),
+        "oil": (175, 1700),
         # Low-carbon: direct emissions are usually zero, with some possible exceptions.
         "geothermal": (
             0,
@@ -423,8 +402,8 @@ class CO2eqParametersLifecycle(BaseClasses.CO2eqParametersDirectAndLifecycleBase
     # Expected min and max values for emission factors, by mode.
     ranges_by_mode: dict[str, tuple[int | float, int | float]] = {
         # Fossil fuels: generally above 500 gCO2eq/kWh with some exceptions.
-        "oil": (600, 1600),
-        "coal": (500, 1600),
+        "oil": (400, 1900),
+        "coal": (400, 1600),
         "gas": (400, 900),
         # Low-carbon: generally below 50 gCO2eq/kWh with some exceptions.
         # For lifecycle emissions, this should not be zero.

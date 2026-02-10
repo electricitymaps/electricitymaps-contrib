@@ -25,68 +25,30 @@ country_name: Japan
 currency: JPY
 delays:
   production: 5
-disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+disclaimer: The data provider (Yonden Shikoku Electric Power Co.,Inc.) provides live
+  data only for solar and unknown. We are working on improving the data quality for
+  this zone.
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 351.42
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 341.54
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 370.35
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 324.3
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 387.72
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 413.09
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 417.02
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 404.88
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 369.26
+  direct:
     hydro discharge:
-      - datetime: '2016-01-01'
-        source: Electricity Maps, 2016 average
-        value: 351.42
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 325.24
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 364.01
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 346.01
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 373.42
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 413.09
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 417.02
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 404.88
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 369.26
-    unknown:
-      source: Enerdata 2022 Japanese National Average
-      value: 462
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average
+        value: 380.86
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 0.0
+  lifecycle:
+    hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2020-01-01'
+        source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 404.86
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; IPCC 2014
+        value: 24.0
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2016 average
@@ -224,16 +186,30 @@ fallbackZoneMixes:
         solar: 0.15121531986285167
         unknown: 0.6105501241479387
         wind: 0.0012775695365145267
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.3375
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 0.2581
+    - datetime: '2025-01-01'
+      value: 1.0
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
+  generationForecast: JP.fetch_generation_forecast
   price: JP.fetch_price
   production: JP_SK.fetch_production
-  generationForecast: JP.fetch_generation_forecast
 region: Asia
 sources:
-  Enerdata 2022 Japanese National Average:
-    link: https://www.climate-transparency.org/wp-content/uploads/2022/10/CT2022-Japan-Web.pdf
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Tokyo
 zone_name: Shikoku

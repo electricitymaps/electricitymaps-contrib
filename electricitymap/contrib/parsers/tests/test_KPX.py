@@ -3,13 +3,13 @@ from datetime import datetime, timezone
 import pytest
 from requests_mock import GET, POST
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.KPX import (
     HISTORICAL_PRODUCTION_URL,
     REAL_TIME_URL,
     fetch_consumption,
     fetch_production,
 )
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture()

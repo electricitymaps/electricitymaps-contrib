@@ -6,7 +6,6 @@ import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.MD import (
     fetch_consumption,
     fetch_exchange,
@@ -14,6 +13,7 @@ from electricitymap.contrib.parsers.MD import (
     fetch_price,
     fetch_production,
 )
+from electricitymap.contrib.types import ZoneKey
 
 # the datetime corresponding to our mock live API response
 frozen_live_time = freeze_time("2024-04-11 06:32:00")

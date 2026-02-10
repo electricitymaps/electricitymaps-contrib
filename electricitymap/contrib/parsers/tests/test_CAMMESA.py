@@ -4,13 +4,13 @@ from importlib import resources
 import pytest
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.CAMMESA import (
     CAMMESA_DEMANDA_ENDPOINT,
     CAMMESA_RENEWABLES_ENDPOINT,
     fetch_exchange,
     fetch_production,
 )
+from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)

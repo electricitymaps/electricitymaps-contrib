@@ -2,8 +2,8 @@ from importlib import resources
 
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers import ENERCAL
+from electricitymap.contrib.types import ZoneKey
 
 
 def test_production_with_snapshot(adapter, session, snapshot):

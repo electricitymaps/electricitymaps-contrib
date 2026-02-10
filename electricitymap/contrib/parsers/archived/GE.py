@@ -16,7 +16,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ProductionBreakdownList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 from electricitymap.contrib.parsers.ENTSOE import (
     fetch_exchange as ENTSOE_fetch_exchange,
 )

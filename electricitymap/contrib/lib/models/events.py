@@ -17,8 +17,8 @@ from electricitymap.contrib.config import (
     ZONES_CONFIG,
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
+from electricitymap.contrib.types import ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -540,6 +540,35 @@ class TotalProduction(Event):
                 },
             )
 
+    @staticmethod
+    def _update(
+        event: "TotalProduction", new_event: "TotalProduction"
+    ) -> "TotalProduction":
+        """Update the total production of a zone at a given time."""
+        if event.zoneKey != new_event.zoneKey:
+            raise ValueError(
+                f"Cannot update events from different zones: {event.zoneKey} and {new_event.zoneKey}"
+            )
+        if event.datetime != new_event.datetime:
+            raise ValueError(
+                f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
+            )
+        if event.source != new_event.source:
+            raise ValueError(
+                f"Cannot update events from different sources: {event.source} and {new_event.source}"
+            )
+        if event.sourceType != new_event.sourceType:
+            raise ValueError(
+                f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
+            )
+        return TotalProduction(
+            zoneKey=event.zoneKey,
+            datetime=event.datetime,
+            source=event.source,
+            value=new_event.value,  # Production values can never be none so a new valid value will always be provided.
+            sourceType=event.sourceType,
+        )
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
@@ -760,6 +789,35 @@ class TotalConsumption(Event):
                     "kind": "consumption",
                 },
             )
+
+    @staticmethod
+    def _update(
+        event: "TotalConsumption", new_event: "TotalConsumption"
+    ) -> "TotalConsumption":
+        """Update the total consumption of a zone at a given time."""
+        if event.zoneKey != new_event.zoneKey:
+            raise ValueError(
+                f"Cannot update events from different zones: {event.zoneKey} and {new_event.zoneKey}"
+            )
+        if event.datetime != new_event.datetime:
+            raise ValueError(
+                f"Cannot update events from different datetimes: {event.datetime} and {new_event.datetime}"
+            )
+        if event.source != new_event.source:
+            raise ValueError(
+                f"Cannot update events from different sources: {event.source} and {new_event.source}"
+            )
+        if event.sourceType != new_event.sourceType:
+            raise ValueError(
+                f"Cannot update events from different source types: {event.sourceType} and {new_event.sourceType}"
+            )
+        return TotalConsumption(
+            zoneKey=event.zoneKey,
+            datetime=event.datetime,
+            source=event.source,
+            consumption=new_event.consumption,  # Consumption values can never be none so a new valid value will always be provided.
+            sourceType=event.sourceType,
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return {

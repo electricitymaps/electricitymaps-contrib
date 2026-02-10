@@ -14,90 +14,55 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 514.006628869557
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 474.32094058480646
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 482.2922242593385
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 437.58837392763695
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 483.05444890890203
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 514.006628869557
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 474.32094058480646
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 482.2922242593385
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 437.58837392763695
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 483.05444890890203
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
+        value: 385.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average
+        value: 354.84
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average
+        value: 334.83
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 313.55
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 285.67
+    unknown:
+      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
+        plant
+      value: 565
   lifecycle:
     battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 587.05
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 553.94
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 526.66
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 526.71
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 483.91
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 466.55
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 435.83
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 428.44
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 594.13
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 563.58
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 561.94
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 526.71
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 502.01
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 455.51
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 437.85
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 402.2
+      - _comment: used storage values greater than zero.
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
+        value: 418.61
+      - _comment: used storage values greater than zero.
+        datetime: '2022-01-01'
+        source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
+        value: 387.84
+      - _comment: used storage values greater than zero.
+        datetime: '2023-01-01'
+        source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
+        value: 367.83
+      - _comment: used storage values greater than zero.
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 346.55
+      - _comment: used storage values greater than zero.
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 318.67
     unknown:
-      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power plant
+      source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
+        plant
       value: 655
 fallbackZoneMixes:
   powerOriginRatios:
@@ -221,13 +186,48 @@ fallbackZoneMixes:
         solar: 0.03183536456739056
         unknown: 0.024948048115312323
         wind: 0.14374665671413908
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.1578
+    - datetime: '2022-01-01'
+      value: 0.1597
+    - datetime: '2023-01-01'
+      value: 0.1993
+    - datetime: '2024-01-01'
+      value: 0.1861
+    - datetime: '2025-01-01'
+      value: 0.2306
+  unknown:
+    source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
+      plant
+    value: 0
+isRenewable:
+  battery discharge:
+    - datetime: '2021-01-01'
+      value: 0.1577
+    - datetime: '2022-01-01'
+      value: 0.1596
+    - datetime: '2023-01-01'
+      value: 0.1992
+    - datetime: '2024-01-01'
+      value: 0.186
+    - datetime: '2025-01-01'
+      value: 0.2306
+  unknown:
+    source: assumes 50% coal and 50% natural gas from Battle River dual fuel power
+      plant
+    value: 0
 parsers:
+  gridAlerts: CA_AB.fetch_grid_alerts
   price: CA_AB.fetch_price
   production: CA_AB.fetch_production
   productionPerModeForecast: CA_AB.fetch_wind_solar_forecasts
-  gridAlerts: CA_AB.fetch_grid_alerts
 region: Americas
+sources:
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: America/Edmonton
 zone_name: Alberta

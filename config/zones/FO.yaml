@@ -19,22 +19,6 @@ country_name: Faroe Islands
 currency: DKK
 emissionFactors:
   direct:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 472.2080162959618
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 453.019270473374
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 522.0839264192048
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 544.3573263700255
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 538.8952236011929
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -48,7 +32,10 @@ emissionFactors:
         value: 1045.58
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 1037.31
+        value: 1044.92
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 1004.93
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -58,23 +45,10 @@ emissionFactors:
         value: 449.46
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 410.39
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 472.2080162959618
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 453.019270473374
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 522.0839264192048
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 544.3573263700255
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 538.8952236011929
+        value: 392.33
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 390.45
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -84,51 +58,34 @@ emissionFactors:
         value: 925.95
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023
-        value: 641.08
+        value: 791.59
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024
+        value: 857.84
     unknown:
       comment: Data reflects Ocean (tidal) direct emissions from table A.III.2
       source: IPCC 2014
       value: 0
   lifecycle:
-    battery discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 357.4756190182087
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 343.635256065452
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 393.25064707281933
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 409.3641592249868
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 408.8110193788959
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 565.34
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 448.38
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 398.18
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
       value: 230.0
     coal:
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1168.890109
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1157.207343
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 1097.31
+        value: 1104.92
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1064.93
     gas:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021; IPCC 2014
@@ -138,36 +95,14 @@ emissionFactors:
         value: 569.46
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 530.39
+        value: 512.33
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 510.45
     hydro:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 10.7
-    hydro discharge:
-      - datetime: '2017-01-01'
-        source: Electricity Maps, 2017 average
-        value: 357.4756190182087
-      - datetime: '2018-01-01'
-        source: Electricity Maps, 2018 average
-        value: 343.635256065452
-      - datetime: '2019-01-01'
-        source: Electricity Maps, 2019 average
-        value: 393.25064707281933
-      - datetime: '2020-01-01'
-        source: Electricity Maps, 2020 average
-        value: 409.3641592249868
-      - datetime: '2021-01-01'
-        source: Electricity Maps, 2021 average
-        value: 408.8110193788959
-      - datetime: '2022-01-01'
-        source: Electricity Maps, 2022 average
-        value: 565.34
-      - datetime: '2023-01-01'
-        source: Electricity Maps, 2023 average
-        value: 448.38
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 398.18
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -181,14 +116,18 @@ emissionFactors:
         value: 1169.95
       - datetime: '2023-01-01'
         source: EU-ETS, ENTSO-E 2023; IPCC 2014
-        value: 885.08
+        value: 1035.59
+      - datetime: '2024-01-01'
+        source: EU-ETS, ENTSO-E 2024; IPCC 2014
+        value: 1101.84
     unknown:
       comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
       source: IPCC 2014
       value: 17
     wind:
       datetime: '2014-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+        outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
@@ -267,8 +206,8 @@ fallbackZoneMixes:
         solar: 0.000371762432307948
         unknown: 0.0
         wind: 0.3128075908110926
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
   unknown:
     value: 1
@@ -285,12 +224,17 @@ sources:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2023:
     link: https://colab.research.google.com/drive/1IkDXX4p1xQIuY3WicL94TUkRcZQnS9c7?usp=drive_link
+  EU-ETS, ENTSO-E 2024:
+    link: https://transparency.entsoe.eu/
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
-  UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021):
-    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37, https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
+  ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
+    for 2022-2026" Wind Europe Proceedings (2021)
+  : link:
+      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+      https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 subZoneNames:
   - FO-MI
   - FO-SI

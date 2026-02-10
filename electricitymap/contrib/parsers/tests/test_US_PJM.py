@@ -4,12 +4,12 @@ from pathlib import Path
 
 from requests_mock import GET
 
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.US_PJM import (
     fetch_consumption_forecast,
     fetch_production,
     fetch_wind_solar_forecasts,
 )
+from electricitymap.contrib.types import ZoneKey
 
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/US_PJM")
 

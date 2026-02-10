@@ -8,7 +8,7 @@ from electricitymap.contrib.config import (
     zone_bounding_boxes,
     zone_parents,
 )
-from electricitymap.contrib.lib.types import ZoneKey
+from electricitymap.contrib.types import ZoneKey
 
 CONFIG_DIR = Path(__file__).parent.parent.joinpath("config").resolve()
 

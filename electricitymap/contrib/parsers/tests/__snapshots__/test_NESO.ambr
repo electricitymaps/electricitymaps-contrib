@@ -1,0 +1,47 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 12, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
+      'production': dict({
+        'biomass': 5.0,
+        'coal': 0.0,
+        'gas': 10.5,
+        'hydro': 2.0,
+        'nuclear': 8.0,
+        'solar': 3.5,
+        'unknown': 0.0,
+        'wind': 13.5,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 0,
+      }),
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 12, 15, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
+      'production': dict({
+        'biomass': 6.0,
+        'coal': 1.0,
+        'gas': 11.0,
+        'hydro': 2.5,
+        'nuclear': 8.0,
+        'solar': 4.0,
+        'unknown': 0.5,
+        'wind': 15.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -5.0,
+      }),
+      'zoneKey': 'GB',
+    }),
+  ])
+# ---

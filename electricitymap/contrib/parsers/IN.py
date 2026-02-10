@@ -17,9 +17,9 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
-from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import ZoneKey
 
 # TODO 1 Migrate the IN_WE and IN_EA consumption fetching to this parser, using the grid india data.
 # TODO 2 Migrate the fetch_consumption in this file so that it uses the grid india data instead of meritindia.in.
@@ -704,7 +704,7 @@ def parse_15m_production_grid_india_report(
     return all_data_points.to_list()
 
 
-def get_production_breakdown(content: bytes, zone_key: str) -> dict[str, Any]:
+def get_production_breakdown(content: bytes, zone_key: str) -> pd.DataFrame:
     """
     Computes the share of the zone key in the total production for each mode.
     Returns a dictionary with the mode as key and the share as value.

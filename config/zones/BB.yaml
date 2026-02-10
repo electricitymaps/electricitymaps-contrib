@@ -30,15 +30,7 @@ country: BB
 country_name: Barbados
 currency: BBD
 emissionFactors:
-  lifecycle:
-    battery discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 649.96
-    hydro discharge:
-      - datetime: '2024-01-01'
-        source: Electricity Maps, 2024 average
-        value: 640.61
+  lifecycle: {}
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2024 average
@@ -64,3 +56,8 @@ parsers:
 region: Americas
 timezone: America/Barbados
 zone_name: Barbados
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

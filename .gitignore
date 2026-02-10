@@ -1,7 +1,6 @@
+gha-creds-*.json
 *.pyc
 *.env
-web/public/dist
-web/config
 **/node_modules
 .ipynb_checkpoints/
 *.pyproj
@@ -15,7 +14,6 @@ web/config
 /.vs
 /.venv
 Thumbs.db
-mobileapp/*.zip
 dist
 parsers/.venv
 
