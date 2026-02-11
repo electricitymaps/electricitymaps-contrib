@@ -1,0 +1,149 @@
+# serializer version: 1
+# name: test_snapshot_fetch_exchange[CN-RU-AS-10]
+  list([
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 0, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 1, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 2, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 3, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 4, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 5, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 6, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 7, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 8, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 9, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 10, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 11, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 12, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 13, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 14, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 15, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 16, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 17, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 18, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 19, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 20, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 21, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 22, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+    dict({
+      'datetime': FakeDatetime(2025, 7, 28, 23, 0),
+      'netFlow': 10.538268089294434,
+      'sortedZoneKeys': 'CN->RU-AS',
+      'source': 'so-ups.ru',
+    }),
+  ])
+# ---
