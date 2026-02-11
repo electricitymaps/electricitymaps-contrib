@@ -27,7 +27,6 @@ test = "scripts.tooling:test"
 members = [".", "libs/types"]
 
 [tool.uv]
-required-version = ">=0.9, <0.10"
 # The electricitymaps index is for consumers of the published package.
 # For local development, workspace sources take precedence.
 index = [
