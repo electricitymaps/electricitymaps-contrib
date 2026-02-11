@@ -31,7 +31,9 @@ def test_fetch_production_live(adapter, session, snapshot, zone):
         ],
     )
 
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_production(ZoneKey(zone), session=session)
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(ZoneKey(zone), session=session)
 
 
 @pytest.mark.parametrize("zone", ["FO", "FO-MI", "FO-SI"])

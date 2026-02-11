@@ -33,7 +33,9 @@ def test_production(adapter, session, snapshot, zone_key: ZoneKey):
             REPORTS_LINK,
             content=reports_byte_content.read(),
         )
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
         target_datetime=target_datetime,

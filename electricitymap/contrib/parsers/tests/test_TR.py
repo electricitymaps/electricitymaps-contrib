@@ -51,6 +51,4 @@ def test_fetch_production(adapter, session, snapshot, target_datetime):
 
     assert snapshot(
         extension_class=SingleFileAmberSnapshotExtension
-    ) == TR.fetch_production(
-        ZoneKey("TR"), session, target_datetime=target_datetime
-    )
+    ) == TR.fetch_production(ZoneKey("TR"), session, target_datetime=target_datetime)

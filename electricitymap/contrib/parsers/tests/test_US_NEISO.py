@@ -85,9 +85,7 @@ def test_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2):
     )
 
     # Run function under test
-    assert snapshot(
-        extension_class=SingleFileAmberSnapshotExtension
-    ) == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,

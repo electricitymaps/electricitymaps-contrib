@@ -32,16 +32,22 @@ def _load_mock_response(adapter, target_datetime):
 @pytest.mark.parametrize("target_datetime", [None, historical_dt])
 def test_fetch_consumption(adapter, session, snapshot, target_datetime):
     _load_mock_response(adapter, target_datetime)
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_consumption(session=session)
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_consumption(session=session)
 
 
 @pytest.mark.parametrize("target_datetime", [None, historical_dt])
 def test_exchanges(adapter, session, snapshot, target_datetime):
     _load_mock_response(adapter, target_datetime)
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(ZoneKey("BD"), ZoneKey("IN-NE"), session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
+        ZoneKey("BD"), ZoneKey("IN-NE"), session=session
+    )
 
 
 @pytest.mark.parametrize("target_datetime", [None, historical_dt])
 def test_fetch_production(adapter, session, snapshot, target_datetime):
     _load_mock_response(adapter, target_datetime)
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_production(session=session)
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(session=session)

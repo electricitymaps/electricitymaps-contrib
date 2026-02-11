@@ -36,7 +36,9 @@ def test_snapshot_fetch_production(zone_key, data_file, adapter, session, snapsh
         json=mock_data,
     )
 
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == ONS.fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ONS.fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
     )

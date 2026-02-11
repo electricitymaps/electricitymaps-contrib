@@ -23,7 +23,9 @@ def test_fetch_price_live(adapter, session, snapshot, zone_key):
         .read_text(),
     )
 
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(zone_key=ZoneKey(zone_key), session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
+        zone_key=ZoneKey(zone_key), session=session
+    )
 
 
 def test_fetch_price_historical(adapter, session, snapshot):

@@ -23,4 +23,7 @@ def emission_factor_result(zone_key):
 @pytest.mark.parametrize("zone_key", ["KR", "FR"])
 def test_snapshot_emission_factor(snapshot, zone_key, emission_factor_result):
     """Test emission factors configuration."""
-    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == emission_factor_result
+    assert (
+        snapshot(extension_class=SingleFileAmberSnapshotExtension)
+        == emission_factor_result
+    )

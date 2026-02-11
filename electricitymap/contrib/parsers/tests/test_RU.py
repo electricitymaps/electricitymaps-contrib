@@ -90,9 +90,7 @@ def test_snapshot_fetch_exchange(
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, hour, 0)
 
-    assert snapshot(
-        extension_class=SingleFileAmberSnapshotExtension
-    ) == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,
