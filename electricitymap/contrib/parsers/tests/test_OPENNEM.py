@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.OPENNEM import (
     fetch_exchange,
@@ -24,15 +25,15 @@ def openelectricity_token_env():
     "zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"]
 )
 def test_production(adapter, session, snapshot, zone):
-    mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.json")
+    mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.v4.json")
     adapter.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot == fetch_production(
-        zone, session, datetime.fromisoformat("2025-03-23")
-    )
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(zone, session, datetime.fromisoformat("2025-03-23"))
 
 
 @pytest.mark.parametrize("zone", ["AU-SA"])
@@ -43,10 +44,13 @@ def test_price(adapter, session, snapshot, zone):
         ANY,
         json=json.loads(mock_data.read_text()),
     )
-    assert snapshot == fetch_price(zone, session, datetime.fromisoformat("2020-01-01"))
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
+        zone, session, datetime.fromisoformat("2020-01-01")
+    )
 
 
 def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
+    # Exchange tests use the old v3 stats endpoint, so use v3 mock data
     mock_data = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
     adapter.register_uri(
         ANY,
@@ -60,6 +64,7 @@ def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
 
 
 def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
+    # Exchange tests use the old v3 stats endpoint, so use v3 mock data
     mock_data_qld = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
     mock_data_nsw = Path(base_path_to_mock, "OPENNEM_AU-NSW.json")
 
