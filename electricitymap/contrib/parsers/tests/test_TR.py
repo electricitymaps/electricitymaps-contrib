@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import POST
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import TR
 from electricitymap.contrib.types import ZoneKey
@@ -48,6 +49,8 @@ def test_fetch_production(adapter, session, snapshot, target_datetime):
         ],
     )
 
-    assert snapshot == TR.fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == TR.fetch_production(
         ZoneKey("TR"), session, target_datetime=target_datetime
     )

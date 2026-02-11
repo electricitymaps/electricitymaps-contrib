@@ -5,6 +5,7 @@ from importlib import resources
 import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.FO import fetch_production
 from electricitymap.contrib.types import ZoneKey
@@ -30,7 +31,7 @@ def test_fetch_production_live(adapter, session, snapshot, zone):
         ],
     )
 
-    assert snapshot == fetch_production(ZoneKey(zone), session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_production(ZoneKey(zone), session=session)
 
 
 @pytest.mark.parametrize("zone", ["FO", "FO-MI", "FO-SI"])
@@ -55,6 +56,8 @@ def test_fetch_production_historical(adapter, session, snapshot, zone, utc_offse
         ),
     )
 
-    assert snapshot == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         ZoneKey(zone), target_datetime=target_datetime, session=session
     )
