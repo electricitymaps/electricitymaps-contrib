@@ -1,0 +1,5015 @@
+# serializer version: 1
+# name: test_production[AU-SA]
+  list([
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.7443,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1422.545,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 0.5335,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.0265,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1408.7917,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -64.452,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.0932,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1385.5851,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 6.3273,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.5965,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1412.228,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -1.5092,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.5154,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1397.5955,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -14.5306,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 255.8065,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1321.8516,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -9.3291,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.3843,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1296.5468,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 96.4273,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.3354,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1280.351,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 158.9846,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.3654,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1267.9622,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 56.4318,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.8143,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1247.2572,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 95.8367,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.1354,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1259.1316,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 128.4754,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.4143,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1283.931,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 143.9545,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.6443,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1328.6755,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 159.2159,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.9043,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1345.1468,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 61.6008,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.2565,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1340.1685,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 193.6811,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.2965,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1341.9187,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 46.4055,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.0776,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1354.9598,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 208.6526,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 256.1765,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1361.6111,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 27.1695,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.9854,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1364.6444,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 163.117,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.1565,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1356.1177,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 205.9572,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.8654,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1293.3632,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 232.8856,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.2076,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1253.6981,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 94.0323,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.6287,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1263.2113,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 141.5223,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.2565,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1255.5136,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 17.5831,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.4654,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1249.0813,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 107.4448,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.0565,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1242.1754,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -22.5992,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.1354,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1232.6319,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 29.9294,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.2443,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1213.9908,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 14.8711,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.1143,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1201.0397,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 15.8022,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 255.7354,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1195.4965,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -25.3865,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 254.4854,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1187.5913,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -20.0596,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.8365,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1194.7307,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.548,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.6943,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1223.6882,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 3.6019,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 255.1276,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1236.3532,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -10.4791,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 255.9254,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1230.0039,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -21.0307,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 255.4654,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1203.5723,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 26.2747,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.8143,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1175.4334,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -2.0015,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.9543,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1117.6085,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -3.1194,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.6443,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1137.4112,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -3.2513,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.9565,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1129.9126,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -2.0896,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 256.7565,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1110.6366,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 21.7171,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 273.1354,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1111.7089,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -23.4412,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 273.8565,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1066.5947,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -31.7912,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 304.9751,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1050.3958,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 41.3244,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 280.8686,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1043.4856,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -43.5303,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 272.7443,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1032.6822,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -32.449,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 275.7198,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1020.9544,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -29.8962,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 272.4354,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1032.8567,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -25.944,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 271.3065,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1063.4204,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -31.217,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 273.4554,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1109.2284,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -8.418,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 273.9354,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1057.7247,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.7161,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 279.3053,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1045.7514,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 4.3856,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 305.7928,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1061.9096,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -1.8486,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 304.7673,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1055.466,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -74.2413,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 305.0573,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1047.3211,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -46.9507,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 317.8439,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 1029.4565,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.2452,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 341.9536,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1027.5544,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -21.9023,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 304.4695,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1043.781,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -24.2812,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 308.1306,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1054.6937,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -50.0159,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 376.5106,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1053.2437,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 8.016,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 374.8817,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1022.1096,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -61.1693,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 431.2595,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1038.3272,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -20.3671,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 488.0013,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1048.6876,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -42.8426,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 506.0589,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1050.7601,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -30.1437,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 538.2367,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1030.1606,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -95.1635,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 548.7756,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1019.9056,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -108.0137,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 603.3578,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1018.7423,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -96.6252,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 616.4567,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 1018.6719,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -94.5052,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 659.2178,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 996.6017,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -91.5025,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 699.5253,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 983.8461,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -64.4725,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 680.7289,
+        'oil': 0,
+        'solar': 0.3632,
+        'wind': 971.7712,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -100.7836,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 704.8989,
+        'oil': 0,
+        'solar': 0.7263,
+        'wind': 946.0172,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -189.0043,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 746.3997,
+        'oil': 0.0,
+        'solar': 1.1095,
+        'wind': 927.4729,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -116.7811,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 740.1067,
+        'oil': 0.0,
+        'solar': 1.8607,
+        'wind': 913.2742,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -191.1962,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 740.6878,
+        'oil': 0.0,
+        'solar': 2.9628,
+        'wind': 933.1897,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -156.1074,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 798.1083,
+        'oil': 0.0,
+        'solar': 5.7913,
+        'wind': 935.948,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -31.6813,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 766.7608,
+        'oil': 0.0,
+        'solar': 16.932,
+        'wind': 937.2266,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -43.4744,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 764.8999,
+        'oil': 0.0,
+        'solar': 29.5418,
+        'wind': 963.3272,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -54.4867,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 734.7789,
+        'oil': 0.0,
+        'solar': 45.2356,
+        'wind': 975.6486,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -115.0161,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 769.097,
+        'oil': 0.0,
+        'solar': 67.0083,
+        'wind': 957.8507,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -98.2691,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 783.5772,
+        'oil': 0.0,
+        'solar': 85.6209,
+        'wind': 940.9974,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -30.4591,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 794.3546,
+        'oil': 0.0,
+        'solar': 107.6851,
+        'wind': 915.4033,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -27.833,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 761.5666,
+        'oil': 0.0,
+        'solar': 141.9015,
+        'wind': 895.7161,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -39.1525,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 768.5118,
+        'oil': 0.0,
+        'solar': 179.7343,
+        'wind': 859.1385,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -53.2358,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 757.3435,
+        'oil': 0,
+        'solar': 223.5701,
+        'wind': 861.1356,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -15.9652,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 665.4199,
+        'oil': 0,
+        'solar': 258.1522,
+        'wind': 814.8761,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -77.0911,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 702.776,
+        'oil': 0,
+        'solar': 299.1124,
+        'wind': 789.0156,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -13.8372,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 679.249,
+        'oil': 0,
+        'solar': 335.5162,
+        'wind': 762.7374,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 7.4054,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 623.5952,
+        'oil': 0,
+        'solar': 384.0147,
+        'wind': 740.3857,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -17.1507,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 467.1853,
+        'oil': 0,
+        'solar': 434.9426,
+        'wind': 747.0383,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -140.7583,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 510.8561,
+        'oil': 0,
+        'solar': 482.2437,
+        'wind': 765.7402,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -92.2379,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 440.7894,
+        'oil': 0,
+        'solar': 530.7465,
+        'wind': 787.3982,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -41.5429,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 401.2314,
+        'oil': 0,
+        'solar': 576.0005,
+        'wind': 800.726,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -9.197,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 370.1447,
+        'oil': 0,
+        'solar': 618.2328,
+        'wind': 791.7191,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 6.0123,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 382.4915,
+        'oil': 0,
+        'solar': 666.1473,
+        'wind': 784.0167,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -9.8469,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 351.0536,
+        'oil': 0.0,
+        'solar': 707.5219,
+        'wind': 767.7215,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 7.8166,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 300.6134,
+        'oil': 0.0,
+        'solar': 748.3678,
+        'wind': 757.1031,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 42.8411,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 303.4395,
+        'oil': 0.0,
+        'solar': 784.3734,
+        'wind': 753.6555,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 96.7232,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 298.4806,
+        'oil': 0.0,
+        'solar': 813.2073,
+        'wind': 745.9157,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 81.3406,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 266.7443,
+        'oil': 0,
+        'solar': 844.7665,
+        'wind': 726.5472,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 133.277,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 269.0543,
+        'oil': 0,
+        'solar': 881.3549,
+        'wind': 698.712,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 138.0371,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 257.0265,
+        'oil': 0,
+        'solar': 905.8617,
+        'wind': 693.286,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 33.6703,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.0665,
+        'oil': 0,
+        'solar': 927.1847,
+        'wind': 673.782,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 102.3936,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 250.2043,
+        'oil': 0,
+        'solar': 957.4909,
+        'wind': 660.002,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -13.3159,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.9376,
+        'oil': 0,
+        'solar': 986.7244,
+        'wind': 664.405,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 79.4688,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 270.1252,
+        'oil': 0,
+        'solar': 1018.4002,
+        'wind': 660.1731,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 149.4471,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 253.3554,
+        'oil': 0,
+        'solar': 1045.5213,
+        'wind': 650.9803,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 90.3946,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 251.5443,
+        'oil': 0,
+        'solar': 1066.4945,
+        'wind': 626.6657,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 127.0863,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 249.9432,
+        'oil': 0.0,
+        'solar': 1085.8416,
+        'wind': 618.7237,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 96.5873,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 248.1432,
+        'oil': 0.0,
+        'solar': 1108.8282,
+        'wind': 590.3323,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 160.6177,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 252.3743,
+        'oil': 0,
+        'solar': 1129.6426,
+        'wind': 593.81,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 102.3484,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 249.1554,
+        'oil': 0,
+        'solar': 1150.6596,
+        'wind': 580.0825,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 136.1961,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 248.8243,
+        'oil': 0.0,
+        'solar': 1164.4172,
+        'wind': 596.9642,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 179.7855,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 239.0011,
+        'oil': 0.0,
+        'solar': 1156.5793,
+        'wind': 600.2196,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 40.5306,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.1589,
+        'oil': 0.0,
+        'solar': 1188.5911,
+        'wind': 565.8046,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 92.9979,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.2889,
+        'oil': 0,
+        'solar': 1205.5649,
+        'wind': 532.2413,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 136.4046,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.2034,
+        'oil': 0,
+        'solar': 1227.0964,
+        'wind': 532.1332,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 48.4776,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.0622,
+        'oil': 0,
+        'solar': 1245.9281,
+        'wind': 542.5191,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 146.6267,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 229.1622,
+        'oil': 0,
+        'solar': 1259.5817,
+        'wind': 536.9887,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 153.5131,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 232.9334,
+        'oil': 0,
+        'solar': 1310.0314,
+        'wind': 527.6133,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 178.8237,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.2034,
+        'oil': 0,
+        'solar': 1332.548,
+        'wind': 517.8707,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 196.3994,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.4322,
+        'oil': 0,
+        'solar': 1366.9367,
+        'wind': 486.0173,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 165.5061,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.4122,
+        'oil': 0,
+        'solar': 1380.9328,
+        'wind': 475.5273,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 243.6437,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 229.4822,
+        'oil': 0.0,
+        'solar': 1413.1536,
+        'wind': 468.559,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 272.0725,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 232.0111,
+        'oil': 0,
+        'solar': 1375.6963,
+        'wind': 467.6655,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 191.6357,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 232.7911,
+        'oil': 0,
+        'solar': 1481.4912,
+        'wind': 470.9742,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 208.1591,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 232.9911,
+        'oil': 0,
+        'solar': 1465.0446,
+        'wind': 499.636,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 131.9682,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.4611,
+        'oil': 0,
+        'solar': 1523.5299,
+        'wind': 507.7367,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 104.4994,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.09,
+        'oil': 0.0,
+        'solar': 1519.5159,
+        'wind': 511.3018,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 150.7096,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.8111,
+        'oil': 0.0,
+        'solar': 1502.7788,
+        'wind': 521.3607,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 68.9541,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.69,
+        'oil': 0.0,
+        'solar': 1550.2113,
+        'wind': 508.6278,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 150.8567,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 229.0122,
+        'oil': 0.0,
+        'solar': 1582.1919,
+        'wind': 518.4423,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 264.6143,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 230.5011,
+        'oil': 0.0,
+        'solar': 1574.6264,
+        'wind': 503.0599,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 208.0047,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.5811,
+        'oil': 0,
+        'solar': 1546.752,
+        'wind': 510.8517,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 213.1228,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.3511,
+        'oil': 0,
+        'solar': 1583.1783,
+        'wind': 492.9552,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 200.4983,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.1811,
+        'oil': 0,
+        'solar': 1503.3539,
+        'wind': 495.0107,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 155.4629,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.4811,
+        'oil': 0,
+        'solar': 1556.2999,
+        'wind': 511.2043,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 89.7488,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 235.8522,
+        'oil': 0,
+        'solar': 1574.9432,
+        'wind': 511.0358,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 30.4324,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.0222,
+        'oil': 0,
+        'solar': 1534.8348,
+        'wind': 500.4108,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 62.4899,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.6311,
+        'oil': 0,
+        'solar': 1535.7779,
+        'wind': 511.2536,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 63.8166,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.1022,
+        'oil': 0,
+        'solar': 1593.1502,
+        'wind': 528.9713,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -58.4296,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 230.7011,
+        'oil': 0,
+        'solar': 1487.0862,
+        'wind': 525.1226,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 72.4592,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 230.1322,
+        'oil': 0,
+        'solar': 1448.49,
+        'wind': 506.2034,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 28.6909,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.6511,
+        'oil': 0,
+        'solar': 1447.8069,
+        'wind': 513.4421,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 123.7645,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.8811,
+        'oil': 0,
+        'solar': 1534.7075,
+        'wind': 501.6169,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 126.4536,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.3022,
+        'oil': 0.0,
+        'solar': 1508.3721,
+        'wind': 492.4336,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 99.9429,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.1511,
+        'oil': 0.0,
+        'solar': 1508.0345,
+        'wind': 480.9009,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 189.2178,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.7611,
+        'oil': 0.0,
+        'solar': 1492.0924,
+        'wind': 501.5353,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 136.8774,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.0022,
+        'oil': 0,
+        'solar': 1495.6926,
+        'wind': 491.5383,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 274.5722,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.8222,
+        'oil': 0,
+        'solar': 1414.7423,
+        'wind': 584.2875,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 224.946,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 226.7511,
+        'oil': 0,
+        'solar': 1388.6942,
+        'wind': 589.6536,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 309.3699,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.4522,
+        'oil': 0,
+        'solar': 1468.3239,
+        'wind': 599.1904,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 370.7339,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 231.7222,
+        'oil': 0,
+        'solar': 1375.7314,
+        'wind': 538.4905,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 248.3892,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 232.4922,
+        'oil': 0,
+        'solar': 1463.5664,
+        'wind': 541.1324,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 176.4554,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 228.7722,
+        'oil': 0,
+        'solar': 1452.5837,
+        'wind': 449.298,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 164.327,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.9222,
+        'oil': 0.0,
+        'solar': 1452.1035,
+        'wind': 447.152,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 252.3573,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 229.6734,
+        'oil': 0.0,
+        'solar': 1449.1567,
+        'wind': 442.4993,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 221.676,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.7722,
+        'oil': 0.0,
+        'solar': 1433.4241,
+        'wind': 429.1503,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 193.6706,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 234.8734,
+        'oil': 0.0,
+        'solar': 1389.3642,
+        'wind': 392.9637,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 28.5794,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 233.1022,
+        'oil': 0.0,
+        'solar': 1386.7831,
+        'wind': 377.5758,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -67.6583,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 227.2222,
+        'oil': 0,
+        'solar': 1413.814,
+        'wind': 330.9941,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 23.7464,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 263.8643,
+        'oil': 0,
+        'solar': 1254.5996,
+        'wind': 320.071,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 199.585,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 263.8932,
+        'oil': 0.0,
+        'solar': 1236.8762,
+        'wind': 284.1869,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 171.0362,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 264.2643,
+        'oil': 0.0,
+        'solar': 1244.2747,
+        'wind': 263.6459,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 174.867,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 264.5932,
+        'oil': 0,
+        'solar': 1307.3707,
+        'wind': 252.3013,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 21.6391,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 271.0554,
+        'oil': 0.0,
+        'solar': 1243.3376,
+        'wind': 226.5491,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 35.1632,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 268.7298,
+        'oil': 0.0,
+        'solar': 1204.3085,
+        'wind': 214.045,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -49.2218,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 327.707,
+        'oil': 0.0,
+        'solar': 1181.5059,
+        'wind': 193.2979,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 37.2175,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 395.3342,
+        'oil': 0.0,
+        'solar': 1103.1491,
+        'wind': 185.1318,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 45.9607,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 423.4195,
+        'oil': 0.0,
+        'solar': 1068.2823,
+        'wind': 178.4089,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -142.7687,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 483.1856,
+        'oil': 0,
+        'solar': 1056.3807,
+        'wind': 169.4154,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 25.4564,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 450.5169,
+        'oil': 0.0,
+        'solar': 1023.5245,
+        'wind': 165.484,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 21.0386,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 473.5656,
+        'oil': 0,
+        'solar': 1020.8941,
+        'wind': 152.9421,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 96.8843,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 494.9019,
+        'oil': 0.0,
+        'solar': 958.2664,
+        'wind': 137.5692,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 175.8149,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 534.2551,
+        'oil': 0,
+        'solar': 912.5766,
+        'wind': 135.5716,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 53.3779,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 564.5691,
+        'oil': 0.0,
+        'solar': 876.5784,
+        'wind': 122.4268,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 73.5888,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 581.8457,
+        'oil': 0.0,
+        'solar': 824.088,
+        'wind': 111.0689,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -37.8036,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 663.9017,
+        'oil': 0.0,
+        'solar': 797.0272,
+        'wind': 99.167,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -22.3889,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 702.0162,
+        'oil': 0.0,
+        'solar': 786.6131,
+        'wind': 87.4483,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -18.3803,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 722.1439,
+        'oil': 0.0,
+        'solar': 729.7129,
+        'wind': 96.4346,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -47.6169,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 725.8927,
+        'oil': 0.0,
+        'solar': 680.3159,
+        'wind': 97.2347,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -69.3373,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 780.112,
+        'oil': 0,
+        'solar': 626.07,
+        'wind': 103.7985,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -78.2731,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 816.536,
+        'oil': 0,
+        'solar': 573.9799,
+        'wind': 98.3498,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -73.0056,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 847.7743,
+        'oil': 0.0,
+        'solar': 517.9486,
+        'wind': 95.6237,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -132.3088,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 907.5872,
+        'oil': 0.0,
+        'solar': 463.3985,
+        'wind': 94.5547,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -57.8174,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1037.2399,
+        'oil': 0.0,
+        'solar': 407.1103,
+        'wind': 87.1815,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -43.4034,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1139.0592,
+        'oil': 0.0,
+        'solar': 352.6558,
+        'wind': 84.1237,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -59.9477,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1221.7662,
+        'oil': 0.0,
+        'solar': 305.8096,
+        'wind': 80.7427,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -75.2292,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1261.7824,
+        'oil': 0.0,
+        'solar': 254.0886,
+        'wind': 79.8719,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -56.6178,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1215.2025,
+        'oil': 0.0,
+        'solar': 202.8716,
+        'wind': 80.0816,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -276.7033,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1178.2246,
+        'oil': 0.0,
+        'solar': 166.756,
+        'wind': 81.1151,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -293.1989,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1209.6787,
+        'oil': 0.0,
+        'solar': 133.6843,
+        'wind': 86.5624,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -380.2099,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1267.6404,
+        'oil': 0.0,
+        'solar': 101.9506,
+        'wind': 85.6103,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -313.3151,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1359.1016,
+        'oil': 0.0,
+        'solar': 72.2731,
+        'wind': 84.7364,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -231.3021,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1340.4358,
+        'oil': 0.0,
+        'solar': 45.9053,
+        'wind': 91.5369,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -351.4669,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1396.2326,
+        'oil': 26.1,
+        'solar': 22.3439,
+        'wind': 98.7347,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -232.0898,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1428.3731,
+        'oil': 0.0,
+        'solar': 17.206,
+        'wind': 101.6387,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -195.7456,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1518.1808,
+        'oil': 0.0,
+        'solar': 12.967,
+        'wind': 106.8513,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -181.5444,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1426.8697,
+        'oil': 0.0,
+        'solar': 9.425,
+        'wind': 115.4586,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -299.1797,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1420.526,
+        'oil': 0.0,
+        'solar': 6.286,
+        'wind': 118.0553,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -335.9901,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1519.3408,
+        'oil': 26.2,
+        'solar': 3.147,
+        'wind': 120.5872,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -185.6772,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1461.2753,
+        'oil': 0.0,
+        'solar': 0.008,
+        'wind': 123.9784,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -364.0794,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1444.726,
+        'oil': 0.0,
+        'solar': 0.008,
+        'wind': 133.1902,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -362.611,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1516.3882,
+        'oil': 31.5,
+        'solar': 0.008,
+        'wind': 137.8895,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -236.4765,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1522.6471,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 148.6408,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -241.3965,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1523.012,
+        'oil': 1.6,
+        'solar': 0.0,
+        'wind': 151.9749,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -276.3295,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1517.572,
+        'oil': 96.1,
+        'solar': 0.0,
+        'wind': 153.3556,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -213.7152,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1521.5634,
+        'oil': 96.9,
+        'solar': 0.0,
+        'wind': 148.366,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -194.624,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1580.2578,
+        'oil': 96.9,
+        'solar': 0.0,
+        'wind': 151.4847,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -136.5613,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1585.1338,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 161.1964,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -212.6249,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1578.2263,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 162.3476,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -210.0133,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1583.2969,
+        'oil': 15.7,
+        'solar': 0.0,
+        'wind': 178.3554,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -202.7537,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1578.5105,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 191.2942,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -213.3721,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1583.2552,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 199.7815,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -130.8927,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1587.8264,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 226.927,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -136.749,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1585.1309,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 232.8152,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -135.1229,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1596.6678,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 237.9392,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -247.5941,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1557.6177,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 250.0575,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -222.876,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1583.6033,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 253.4554,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -56.5537,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1584.409,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 257.9566,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -12.4365,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1564.2683,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 272.5315,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -31.5352,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1557.4806,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 277.3439,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -97.1291,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1424.7103,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 279.0696,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -225.2107,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1523.9484,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 282.2844,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -4.4782,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1566.8658,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 281.2272,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -33.5721,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1528.5753,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 284.348,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -140.0014,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1527.5244,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 288.7567,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -90.8068,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1521.3352,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 305.1915,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -113.1496,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1525.062,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 318.1513,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -49.7156,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1416.9173,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 323.4915,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -179.7788,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1511.5926,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 345.0162,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -27.9047,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1485.1954,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 369.2523,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -32.8884,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1477.6775,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 386.7552,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0538,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1412.0679,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 395.3492,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -23.7586,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1407.8218,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 407.1954,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -27.3707,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1416.4884,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 414.1396,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -26.0587,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1443.1999,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 426.0394,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 1.1226,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1439.721,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 415.0754,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -1.3893,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1388.1712,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 402.2803,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 5.8609,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1312.3037,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 423.6773,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 27.7473,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1252.1327,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 448.0552,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 31.1944,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1232.1702,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 456.7258,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 117.3988,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1242.2301,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 455.0087,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 136.1003,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1226.4116,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 436.6421,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 133.2822,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1198.7616,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 429.2926,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 131.2989,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1131.0707,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 441.8513,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 32.8869,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1116.1939,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 446.5226,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 50.3078,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1081.8243,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 462.8036,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 57.3165,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1112.7836,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 486.4052,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 168.683,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1149.785,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 487.3936,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 175.6026,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1176.646,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 485.3445,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 234.3635,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 1075.6125,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 494.612,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 177.603,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 940.0639,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 519.1162,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 44.3127,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 835.0947,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 514.2375,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -29.6987,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 810.5437,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 524.5537,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 27.391,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 797.8599,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 535.3494,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 21.636,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 762.7206,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 519.798,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 29.8435,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 722.9512,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 544.4554,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 4.3943,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 701.2178,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 545.2074,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 16.5749,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 700.2911,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 533.0656,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 1.597,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 698.5977,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 536.8306,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0963,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 766.7545,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 552.3913,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 120.8434,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 797.1922,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 555.2427,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 164.7225,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 672.3683,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 557.3982,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -3.2206,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 624.9955,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 560.3848,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -29.0659,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 651.9903,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 567.0249,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -11.2798,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 23, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 567.9864,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 575.4495,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -93.5897,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 651.2625,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 576.9414,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 3.1035,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 517.4264,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 605.8334,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -71.8466,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 511.5289,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 637.7,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -105.5358,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 545.63,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 647.7322,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 8.683,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 582.7989,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 645.2196,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 86.406,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 488.2378,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 659.7773,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 6.8178,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 534.8889,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 643.7264,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -5.9641,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 511.6989,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 661.5812,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 3.6991,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 425.4478,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 687.8993,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -88.8484,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 459.1295,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 717.1342,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -18.4958,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+        'oil',
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 404.8567,
+        'oil': 0,
+        'solar': 0.0,
+        'wind': 754.5276,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.435,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 374.6789,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 788.4719,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 12.9233,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 355.8611,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 821.4647,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 12.9078,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 309.7783,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 835.6049,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 9.3767,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 312.2572,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 846.6634,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 0.1729,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 308.065,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 824.0975,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 2.2574,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 272.6443,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 833.6492,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -24.862,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 325.8748,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 818.7476,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 88.003,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 281.3986,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 817.4355,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 6.5804,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 339.2302,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 795.2654,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 116.5512,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 24, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
+      'production': dict({
+        'gas': 340.7125,
+        'oil': 0.0,
+        'solar': 0.0,
+        'wind': 773.8168,
+      }),
+      'source': 'opennem.org.au',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 80.3671,
+      }),
+      'zoneKey': 'AU-SA',
+    }),
+  ])
+# ---
