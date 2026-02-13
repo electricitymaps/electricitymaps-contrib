@@ -44,13 +44,11 @@ def read_exchanges_config(config_dir) -> dict[ZoneKey, Any]:
     return exchanges_config
 
 
-def read_data_centers_config(config_dir) -> dict[str, Any]:
-    data_centers_config = {}
-    for data_center_path in config_dir.joinpath("data_centers").glob("*.json"):
-        with open(data_center_path, encoding="utf-8") as file:
-            data_centers_config[data_center_path.stem] = json.load(file)
-    # Flatten
-    all_data_centers = {}
-    for data_centers in data_centers_config.values():
-        all_data_centers.update(data_centers)
-    return all_data_centers
+def read_data_centers_config(config_dir):
+    """Reads the data centers config file."""
+    from electricitymap.contrib.config.data_center_model import DataCenters
+
+    data_centers_path = config_dir.joinpath("data_centers", "data_centers.json")
+    with open(data_centers_path, encoding="utf-8") as file:
+        data_centers_dict = json.load(file)
+    return DataCenters(data_centers=list(data_centers_dict.values()))

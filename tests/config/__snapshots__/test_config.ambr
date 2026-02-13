@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: test_data_centers_config
+  DataCenter(provider='gcp', lonlat=(-80.088472, 33.105486), displayName='Berkeley County', region='us-east1', zoneKey='US-CAR-SCEG', operationalSince=None, operationalUntil=None, status='operational', source='https://cloud.google.com/compute/docs/regions-zones')
+# ---

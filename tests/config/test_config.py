@@ -53,10 +53,9 @@ class ConfigTestcase(unittest.TestCase):
         self.assertGreater(factors["gas"], 0)
 
 
-class DataCentersConfigTestcase(unittest.TestCase):
-    def test_data_centers_config_contains_basic_data_centers(self):
-        self.assertIn("gcp-europe-west1", config.DATA_CENTERS_CONFIG.keys())
 
+def test_data_centers_config(snapshot):
+    assert snapshot == config.DATA_CENTERS_CONFIG.data_centers[1]
 
 if __name__ == "__main__":
     unittest.main(buffer=True)

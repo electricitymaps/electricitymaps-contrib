@@ -17,7 +17,6 @@ from pydantic.v1.utils import import_string
 from electricitymap.contrib.config import (
     CO2EQ_PARAMETERS_DIRECT,
     CO2EQ_PARAMETERS_LIFECYCLE,
-    DATA_CENTERS_CONFIG,
     EXCHANGES_CONFIG,
     ZONE_NEIGHBOURS,
     ZONES_CONFIG,
@@ -359,52 +358,6 @@ CO2EQ_CONFIG_MODEL = CO2eqConfigModel(
 )
 
 
-class DataCenter(StrictBaseModel):
-    displayName: str
-    lonlat: tuple[float, float] | None
-    operationalSince: date | None
-    provider: str
-    region: str
-    source: str
-    status: str
-    zoneKey: ZoneKey
-
-    @property
-    def ID(self) -> str:
-        return f"{self.provider}-{self.region}"
-
-    @validator("status")
-    def status_exists(cls, v):
-        AVAILABLE_STATUSES = ["operational"]
-        if v not in AVAILABLE_STATUSES:
-            raise ValueError(
-                f"Data center status {v} is not one of the allowed statuses: {AVAILABLE_STATUSES}"
-            )
-        return v
-
-    @validator("zoneKey")
-    def zone_key_exists(cls, v):
-        if v not in ZONES_CONFIG:
-            raise ValueError(
-                f"Data center zone key {v} is not one of the allowed zone keys: {ZONES_CONFIG.keys()}"
-            )
-        return v
-
-
-class DataCenters(StrictBaseModel):
-    data_centers: dict[str, DataCenter]
-
-    # check that the ID for each data center is unique and matches the key in the dataCenters dict
-    @validator("data_centers")
-    def ids_match_configs(cls, v):
-        for dict_ID, data_center in v.items():
-            if dict_ID != data_center.ID:
-                raise ValueError(
-                    f"Data center ID {data_center.ID} does not match the key {dict_ID}"
-                )
-        return v
-
-
 class EmissionFactorVariant(Enum):
     """
     Describes where an emission factor (EF) comes from.
@@ -484,10 +437,3 @@ class YearZoneModeEmissionFactor(StrictBaseModelWithAlias):
                 f"Direct factor must be <= lifecycle factor. Got {direct_value=}, {lifecycle_value=}"
             )
         return values
-
-
-DATA_CENTERS_CONFIG_MODEL = DataCenters(data_centers=DATA_CENTERS_CONFIG)
-
-
-if __name__ == "__main__":
-    print(DATA_CENTERS_CONFIG_MODEL)
