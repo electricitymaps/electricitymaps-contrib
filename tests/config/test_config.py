@@ -53,9 +53,9 @@ class ConfigTestcase(unittest.TestCase):
         self.assertGreater(factors["gas"], 0)
 
 
-
 def test_data_centers_config(snapshot):
     assert snapshot == config.DATA_CENTERS_CONFIG.data_centers[1]
+
 
 if __name__ == "__main__":
     unittest.main(buffer=True)

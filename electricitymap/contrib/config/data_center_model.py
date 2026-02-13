@@ -1,4 +1,5 @@
 """Data Center model definitions."""
+
 from pydantic.v1 import BaseModel, validator
 
 from electricitymap.contrib.types import ZoneKey
