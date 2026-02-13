@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 import pytest
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import ONS
 from electricitymap.contrib.types import ZoneKey
@@ -35,7 +36,9 @@ def test_snapshot_fetch_production(zone_key, data_file, adapter, session, snapsh
         json=mock_data,
     )
 
-    assert snapshot == ONS.fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ONS.fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
     )
@@ -69,7 +72,9 @@ def test_snapshot_fetch_exchange(
         json=mock_data,
     )
 
-    assert snapshot == ONS.fetch_exchange(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ONS.fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,

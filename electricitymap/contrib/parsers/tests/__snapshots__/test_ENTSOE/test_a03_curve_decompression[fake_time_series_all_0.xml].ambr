@@ -1,0 +1,289 @@
+# serializer version: 1
+# name: test_a03_curve_decompression[fake_time_series_all_0.xml]
+  list([
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 11, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 12, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 13, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 14, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 15, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 16, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 17, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 0, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 1, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 2, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 3, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 4, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 5, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 6, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 7, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 8, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 9, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 10, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 11, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 12, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 13, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 14, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 15, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 16, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 17, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 18, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 19, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 20, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 21, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 22, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 22, 23, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 0, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 1, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 2, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 3, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 4, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 5, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 6, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 7, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 8, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+    DateTimePoint(
+      dt=datetime.datetime(2025, 10, 23, 9, 0, tzinfo=datetime.timezone.utc),
+      value=0.0,
+    ),
+  ])
+# ---
