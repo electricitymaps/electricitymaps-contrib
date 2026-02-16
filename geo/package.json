@@ -3,6 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "generate": "bun run generate-zone-geo.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -11,7 +14,8 @@
   },
   "dependencies": {
     "@turf/bbox": "^7.3.4",
-    "@turf/center-of-mass": "^7.3.4",
+    "@turf/buffer": "^7.3.4",
+    "@turf/point-on-feature": "^7.3.4",
     "@turf/union": "^7.3.4"
   }
 }

@@ -4,8 +4,8 @@ bounding_box:
   - - 1.582215822158247
     - 38.749618680095026
 center_point:
-  - 1.4674547696638793
-  - 38.6862592567777
+  - 1.4832148321483485
+  - 38.69595307385909
 can_have_zero_production: true
 contributors:
   - hectorespert

@@ -4,8 +4,8 @@ bounding_box:
   - - -80.12420124201236
     - 25.974342230276008
 center_point:
-  - -80.56941149790181
-  - 25.587743277090006
+  - -80.55677370815508
+  - 25.54006585751742
 can_have_zero_production: true
 capacity:
   battery storage:

@@ -1,12 +1,14 @@
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import bbox from '@turf/bbox';
-import centerOfMass from '@turf/center-of-mass';
+import buffer from '@turf/buffer';
+import pointOnFeature from '@turf/point-on-feature';
 import union from '@turf/union';
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 
 const GEO_PATH = join(import.meta.dir, 'world.geojson');
 const ZONES_DIR = join(import.meta.dir, '..', 'config', 'zones');
+const BUFFER_KM = -20;
 
 // Load the geojson
 const geojson: FeatureCollection<Polygon | MultiPolygon> = JSON.parse(
@@ -41,7 +43,14 @@ function computeZoneGeo(features: Feature<Polygon | MultiPolygon>[]): ZoneGeo {
   };
 
   const combined = features.length === 1 ? features[0]! : union(fc)!;
-  const center = centerOfMass(combined);
+
+  // Shrink the polygon inward to keep the center point away from borders.
+  // Fall back to the original geometry if the buffer collapses it.
+  const buffered = buffer(combined, BUFFER_KM, { units: 'kilometers' });
+  const target =
+    buffered && buffered.geometry.coordinates.length > 0 ? buffered : combined;
+
+  const center = pointOnFeature(target);
   const [minLon, minLat, maxLon, maxLat] = bbox(fc);
 
   return {

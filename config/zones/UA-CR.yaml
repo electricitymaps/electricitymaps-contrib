@@ -4,8 +4,8 @@ bounding_box:
   - - 36.58176581765818
     - 46.21843998530454
 center_point:
-  - 34.379780300635744
-  - 45.28839010589993
+  - 34.61197745447237
+  - 45.254466817130535
 country: UA
 country_name: Ukraine
 has_day_ahead_price_license: False
