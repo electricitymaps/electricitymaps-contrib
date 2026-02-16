@@ -40,13 +40,16 @@ def make_data_center(
 
 @pytest.fixture(autouse=True)
 def _mock_zones_config():
-    with patch(
-        "electricitymap.contrib.config.data_center_model.ZONES_CONFIG",
-        MOCK_ZONES_CONFIG,
-        create=True,
-    ), patch(
-        "electricitymap.contrib.config.ZONES_CONFIG",
-        MOCK_ZONES_CONFIG,
+    with (
+        patch(
+            "electricitymap.contrib.config.data_center_model.ZONES_CONFIG",
+            MOCK_ZONES_CONFIG,
+            create=True,
+        ),
+        patch(
+            "electricitymap.contrib.config.ZONES_CONFIG",
+            MOCK_ZONES_CONFIG,
+        ),
     ):
         yield
 
@@ -127,7 +130,9 @@ class TestDataCentersIdsAreUnique:
             DataCenters(
                 data_centers=[
                     make_data_center(provider="AWS", region="eu-west-1"),
-                    make_data_center(provider="AWS", region="eu-west-1", zoneKey=FR_ZONE_KEY),
+                    make_data_center(
+                        provider="AWS", region="eu-west-1", zoneKey=FR_ZONE_KEY
+                    ),
                 ]
             )
 
@@ -136,8 +141,12 @@ class TestDataCentersUniqueProviderRegionZoneKey:
     def test_unique_combinations_accepted(self):
         DataCenters(
             data_centers=[
-                make_data_center(provider="AWS", region="eu-west-1", zoneKey=VALID_ZONE_KEY),
-                make_data_center(provider="GCP", region="us-east-1", zoneKey=FR_ZONE_KEY),
+                make_data_center(
+                    provider="AWS", region="eu-west-1", zoneKey=VALID_ZONE_KEY
+                ),
+                make_data_center(
+                    provider="GCP", region="us-east-1", zoneKey=FR_ZONE_KEY
+                ),
             ]
         )
 
