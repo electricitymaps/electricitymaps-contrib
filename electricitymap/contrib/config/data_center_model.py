@@ -69,3 +69,19 @@ class DataCenters(BaseModel):
                 raise ValueError(f"Duplicate data center ID found: {data_center.ID}")
             ids.add(data_center.ID)
         return v
+
+    @validator("data_centers")
+    def check_unique_combination(cls, v):
+        combinations = set()
+        for data_center in v:
+            combination = (
+                data_center.provider,
+                data_center.region,
+                data_center.zoneKey,
+            )
+            if combination in combinations:
+                raise ValueError(
+                    f"Duplicate provider-region-zoneKey combination found: {combination}"
+                )
+            combinations.add(combination)
+        return v
