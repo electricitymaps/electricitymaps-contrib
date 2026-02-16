@@ -1,3 +1,4 @@
+from datetime import date
 from unittest.mock import patch
 
 import pytest
@@ -20,8 +21,8 @@ def make_data_center(
     displayName: str = "EU West",
     region: str = "eu-west-1",
     zoneKey: ZoneKey = VALID_ZONE_KEY,
-    operationalSince: str | None = None,
-    operationalUntil: str | None = None,
+    operationalSince: date | None = None,
+    operationalUntil: date | None = None,
     status: str | None = None,
     source: str | None = None,
 ) -> DataCenter:
@@ -103,6 +104,46 @@ class TestLonlatValid:
     def test_latitude_too_high(self):
         with pytest.raises(ValidationError, match="Latitude must be between"):
             make_data_center(lonlat=(0.0, 91.0))
+
+
+class TestDateValid:
+    @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
+    def test_none_accepted(self, field: str):
+        dc = make_data_center(**{field: None})  # type: ignore[arg-type]
+        assert getattr(dc, field) is None
+
+    @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
+    @pytest.mark.parametrize(
+        ("value", "expected"),
+        [
+            ("2021", date(2021, 1, 1)),
+            ("2021-06", date(2021, 6, 1)),
+            ("2021-06-15", date(2021, 6, 15)),
+        ],
+    )
+    def test_valid_formats_parsed_to_date(self, field: str, value: str, expected: date):
+        dc = make_data_center(**{field: value})  # type: ignore[arg-type]
+        assert getattr(dc, field) == expected
+
+    @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
+    def test_date_object_accepted(self, field: str):
+        dc = make_data_center(**{field: date(2021, 6, 15)})  # type: ignore[arg-type]
+        assert getattr(dc, field) == date(2021, 6, 15)
+
+    @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
+    @pytest.mark.parametrize(
+        "value",
+        ["not-a-date", "21", "2021/06/15", "2021-6", "2021-06-1", "06-2021"],
+    )
+    def test_invalid_format_rejected(self, field: str, value: str):
+        with pytest.raises(ValidationError, match="must be in YYYY, YYYY-MM, or YYYY-MM-DD format"):
+            make_data_center(**{field: value})  # type: ignore[arg-type]
+
+    @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
+    @pytest.mark.parametrize("value", ["2021-13", "2021-00", "2021-02-30"])
+    def test_invalid_calendar_date_rejected(self, field: str, value: str):
+        with pytest.raises(ValidationError, match="is not a valid calendar date"):
+            make_data_center(**{field: value})  # type: ignore[arg-type]
 
 
 class TestZoneKeyExists:
