@@ -1,21 +1,16 @@
-import { readFileSync, readdirSync, writeFileSync } from "fs";
-import { join } from "path";
-import bbox from "@turf/bbox";
-import centerOfMass from "@turf/center-of-mass";
-import union from "@turf/union";
-import type {
-  Feature,
-  FeatureCollection,
-  MultiPolygon,
-  Polygon,
-} from "geojson";
+import { readFileSync, readdirSync, writeFileSync } from 'fs';
+import { join } from 'path';
+import bbox from '@turf/bbox';
+import centerOfMass from '@turf/center-of-mass';
+import union from '@turf/union';
+import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 
-const GEO_PATH = join(import.meta.dir, "world.geojson");
-const ZONES_DIR = join(import.meta.dir, "..", "config", "zones");
+const GEO_PATH = join(import.meta.dir, 'world.geojson');
+const ZONES_DIR = join(import.meta.dir, '..', 'config', 'zones');
 
 // Load the geojson
 const geojson: FeatureCollection<Polygon | MultiPolygon> = JSON.parse(
-  readFileSync(GEO_PATH, "utf-8")
+  readFileSync(GEO_PATH, 'utf-8')
 );
 
 // Build a map of zoneName -> features
@@ -41,7 +36,7 @@ interface ZoneGeo {
 
 function computeZoneGeo(features: Feature<Polygon | MultiPolygon>[]): ZoneGeo {
   const fc: FeatureCollection<Polygon | MultiPolygon> = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features,
   };
 
@@ -69,14 +64,14 @@ for (const [zoneName, features] of featuresByZone) {
 console.log(`Computed geo data for ${zoneGeos.size} zones from geojson`);
 
 // Second pass: compute for aggregate zones by combining sub-zone geometries
-const zoneFiles = readdirSync(ZONES_DIR).filter((f) => f.endsWith(".yaml"));
+const zoneFiles = readdirSync(ZONES_DIR).filter((f) => f.endsWith('.yaml'));
 
 for (const file of zoneFiles) {
-  const zoneName = file.replace(".yaml", "");
+  const zoneName = file.replace('.yaml', '');
   if (zoneGeos.has(zoneName)) continue;
 
   const filePath = join(ZONES_DIR, file);
-  const content = readFileSync(filePath, "utf-8");
+  const content = readFileSync(filePath, 'utf-8');
   const subZoneNames = getSubZoneNames(content);
   if (subZoneNames.length === 0) continue;
 
@@ -87,9 +82,7 @@ for (const file of zoneFiles) {
   }
 
   if (subFeatures.length === 0) {
-    console.warn(
-      `No sub-zone geometries found for aggregate zone ${zoneName}`
-    );
+    console.warn(`No sub-zone geometries found for aggregate zone ${zoneName}`);
     continue;
   }
 
@@ -104,7 +97,7 @@ let updated = 0;
 let skipped = 0;
 
 for (const file of zoneFiles) {
-  const zoneName = file.replace(".yaml", "");
+  const zoneName = file.replace('.yaml', '');
   const geo = zoneGeos.get(zoneName);
   if (!geo) {
     console.warn(`No geometry found for zone ${zoneName}`);
@@ -113,11 +106,11 @@ for (const file of zoneFiles) {
   }
 
   const filePath = join(ZONES_DIR, file);
-  let content = readFileSync(filePath, "utf-8");
+  let content = readFileSync(filePath, 'utf-8');
 
   // Remove existing bounding_box and center_point
-  content = content.replace(/^bounding_box:\n((?:  .+\n)+)/m, "");
-  content = content.replace(/^center_point:\n((?:  - .+\n)+)/m, "");
+  content = content.replace(/^bounding_box:\n((?:  .+\n)+)/m, '');
+  content = content.replace(/^center_point:\n((?:  - .+\n)+)/m, '');
 
   const [[minLon, minLat], [maxLon, maxLat]] = geo.boundingBox;
   const [lon, lat] = geo.centerPoint;
@@ -131,15 +124,14 @@ for (const file of zoneFiles) {
     `center_point:`,
     `  - ${lon}`,
     `  - ${lat}`,
-    "",
-  ].join("\n");
+    '',
+  ].join('\n');
 
   // Insert at the very beginning (bounding_box is always first, after optional _comment)
   const commentMatch = content.match(/^_comment:.*\n((?:  .+\n)*)/);
   if (commentMatch) {
     const insertPos = commentMatch.index! + commentMatch[0].length;
-    content =
-      content.slice(0, insertPos) + geoYaml + content.slice(insertPos);
+    content = content.slice(0, insertPos) + geoYaml + content.slice(insertPos);
   } else {
     content = geoYaml + content;
   }
