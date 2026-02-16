@@ -1,8 +1,13 @@
 """Data Center model definitions."""
 
+import re
+from datetime import date
+
 from pydantic.v1 import BaseModel, validator
 
 from electricitymap.contrib.types import ZoneKey
+
+DATE_PATTERN = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
 
 
 class StrictBaseModel(BaseModel):
@@ -16,8 +21,8 @@ class DataCenter(BaseModel):
     displayName: str
     region: str
     zoneKey: ZoneKey
-    operationalSince: str | None
-    operationalUntil: str | None
+    operationalSince: date | None
+    operationalUntil: date | None
     status: str | None
     source: str | None
 
@@ -39,6 +44,23 @@ class DataCenter(BaseModel):
         if not (-90 <= lat <= 90):
             raise ValueError("Latitude must be between -90 and 90")
         return v
+
+    @validator("operationalSince", "operationalUntil", pre=True)
+    def parse_date(cls, v):
+        if v is None or isinstance(v, date):
+            return v
+        if not isinstance(v, str) or not DATE_PATTERN.match(v):
+            raise ValueError(
+                f"Date '{v}' must be in YYYY, YYYY-MM, or YYYY-MM-DD format"
+            )
+        parts = [int(p) for p in v.split("-")]
+        year = parts[0]
+        month = parts[1] if len(parts) >= 2 else 1
+        day = parts[2] if len(parts) == 3 else 1
+        try:
+            return date(year, month, day)
+        except ValueError as err:
+            raise ValueError(f"Date '{v}' is not a valid calendar date") from err
 
     @validator("zoneKey")
     def zone_key_exists(cls, v):
