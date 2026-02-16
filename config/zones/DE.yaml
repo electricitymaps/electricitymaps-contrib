@@ -2,10 +2,13 @@ _comment: Hydro capacities from Fraunhofer include capacities in AT, CH, LU whic
   are directly connected to the German grid. Fraunhofer has no values for geothermal
   and unknown - these are from BNetz
 bounding_box:
-  - - 5.8227539063
-    - 47.2643200803
-  - - 15.0732421875
-    - 55.1537662685
+  - - 5.920259202592064
+    - 47.301769689854
+  - - 15.021150211502146
+    - 54.90654386419456
+center_point:
+  - 10.455512514656927
+  - 51.10783070425138
 capacity:
   battery storage:
     - datetime: '2017-01-01'

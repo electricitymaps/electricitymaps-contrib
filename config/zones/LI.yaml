@@ -1,3 +1,11 @@
+bounding_box:
+  - - 9.474840270001467
+    - 47.05662268643502
+  - - 9.622084772297283
+    - 47.266310486741915
+center_point:
+  - 9.549814215379799
+  - 47.13468690654494
 country: LI
 country_name: Liechtenstein
 currency: CHF

@@ -1,9 +1,12 @@
 _comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP
 bounding_box:
-  - - 23.1994938494
-    - 51.3195034857
-  - - 32.6936430193
-    - 56.1691299506
+  - - 23.164431644316466
+    - 51.23581639765645
+  - - 32.71892718927191
+    - 56.16068318571228
+center_point:
+  - 27.945717064596053
+  - 53.45863017052554
 capacity:
   biomass:
     - datetime: '2017-01-01'

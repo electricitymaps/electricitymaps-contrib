@@ -1,3 +1,11 @@
+bounding_box:
+  - - 32.704233654148894
+    - 35.0036150292379
+  - - 34.585475775831256
+    - 35.69471538398224
+center_point:
+  - 33.628787028406755
+  - 35.31029018901605
 country: null
 country_name: Northern Cyprus
 has_day_ahead_price_license: False

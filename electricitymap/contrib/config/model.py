@@ -129,6 +129,7 @@ class Zone(StrictBaseModelWithAlias):
         [], alias="bypassedSubZones"
     )
     capacity: Capacity | None
+    center_point: Point | None
     comment: str | None = Field(None, alias="_comment")
     contributors: list[str] | None
     delays: Delays | None

@@ -2,10 +2,13 @@ _comment: 'Capacity data fetched from the test payload (capacity is sent in all 
   Parsing for production is done on instantaneous measurements : this is not reliable
   at all'
 bounding_box:
-  - - 114.94014224400007
-    - -32.52536222099991
-  - - 116.05219218900004
-    - -31.493806526999947
+  - - 115.44055440554402
+    - -32.02601390669214
+  - - 115.51615516155161
+    - -31.995961167200015
+center_point:
+  - 115.48255482554823
+  - -32.014565244028475
 capacity:
   battery storage: 0
   biomass: 0

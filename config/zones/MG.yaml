@@ -1,3 +1,11 @@
+bounding_box:
+  - - 43.22383223832239
+    - -25.584710075546695
+  - - 50.48510485104853
+    - -11.9436285117879
+center_point:
+  - 46.68747397062378
+  - -19.039540381297183
 country: MG
 country_name: Madagascar
 currency: MGA

@@ -1,9 +1,12 @@
 _comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal
 bounding_box:
-  - - 39.9550085793
-    - 41.0644446885
-  - - 46.6379081561
-    - 43.553104153
+  - - 39.987399873998754
+    - 41.045075544160184
+  - - 46.62946629466296
+    - 43.575229992830515
+center_point:
+  - 43.35953152197631
+  - 42.16970413604849
 capacity:
   biomass:
     - datetime: '2017-01-01'

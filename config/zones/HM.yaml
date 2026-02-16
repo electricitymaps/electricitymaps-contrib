@@ -1,3 +1,11 @@
+bounding_box:
+  - - 73.35253352533525
+    - -53.188866840479925
+  - - 73.73413734137341
+    - -53.017136900524925
+center_point:
+  - 73.53158497152205
+  - -53.096705763052604
 country: HM
 country_name: Heard Island and McDonald Islands
 currency: AUD

@@ -1,0 +1,17 @@
+{
+  "name": "geo",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@turf/bbox": "^7.3.4",
+    "@turf/center-of-mass": "^7.3.4",
+    "@turf/union": "^7.3.4"
+  }
+}

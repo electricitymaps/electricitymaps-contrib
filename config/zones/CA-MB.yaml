@@ -1,9 +1,12 @@
 _comment: Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)
 bounding_box:
-  - - -102.50159786704786
-    - 48.492669576869844
-  - - -88.44699962056833
-    - 60.500059011375754
+  - - -102.0016200162001
+    - 48.99852661272915
+  - - -88.94788947889474
+    - 59.99976766669326
+center_point:
+  - -96.74534163824735
+  - 54.83498922521712
 capacity:
   coal: 0
   gas: 237

@@ -1,9 +1,12 @@
 _comment: Capacity calculations are available at https://docs.google.com/spreadsheets/d/1ownS3qse6zDG4gNnKEZDroIKLNiqZcULqp34LJUxrL0/edit?usp=sharing
 bounding_box:
-  - - 50.250987175000034
-    - 24.059871521000062
-  - - 52.11654707100007
-    - 26.660101630000042
+  - - 50.75150751507516
+    - 24.56758780547797
+  - - 51.59031590315905
+    - 26.160382998560593
+center_point:
+  - 51.18909274718968
+  - 25.3278153982296
 capacity:
   biomass:
     - datetime: '2017-01-01'

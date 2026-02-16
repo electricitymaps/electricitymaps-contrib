@@ -1,3 +1,11 @@
+bounding_box:
+  - - 68.77688776887769
+    - -49.714197722057094
+  - - 70.54810548105482
+    - -48.65805859133385
+center_point:
+  - 69.53887281471907
+  - -49.257736418603365
 country: TF
 country_name: French Southern Territories
 has_day_ahead_price_license: False

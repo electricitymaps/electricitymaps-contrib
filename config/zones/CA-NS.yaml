@@ -1,9 +1,12 @@
 _comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW
 bounding_box:
-  - - -66.82774817599997
-    - 42.92206452000019
-  - - -59.188628709999904
-    - 47.53481679900011
+  - - -66.21006210062096
+    - 43.470760946024555
+  - - -59.809198091980875
+    - 47.03415720009079
+center_point:
+  - -63.05714109699787
+  - 45.30987314266884
 capacity:
   biomass: 60
   coal: 1252

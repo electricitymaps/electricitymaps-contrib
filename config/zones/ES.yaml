@@ -2,10 +2,13 @@ _comment: 'Hydro capacity from IRENA includes pumped storage generation capacity
   Note: ENTSO-E (not used for hydro capacity) lists 5645 MW for pumped storage CONSUMPTION
   capacity.'
 bounding_box:
-  - - -9.3603515625
-    - 35.9957853864
-  - - 3.6474609375
-    - 43.6758180933
+  - - -9.293492934929333
+    - 36.00623288931391
+  - - 3.317433174331768
+    - 43.76270184394805
+center_point:
+  - -3.657340822318967
+  - 40.36606848726487
 capacity:
   biomass:
     - datetime: '2017-01-01'
