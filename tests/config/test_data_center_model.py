@@ -136,7 +136,9 @@ class TestDateValid:
         ["not-a-date", "21", "2021/06/15", "2021-6", "2021-06-1", "06-2021"],
     )
     def test_invalid_format_rejected(self, field: str, value: str):
-        with pytest.raises(ValidationError, match="must be in YYYY, YYYY-MM, or YYYY-MM-DD format"):
+        with pytest.raises(
+            ValidationError, match="must be in YYYY, YYYY-MM, or YYYY-MM-DD format"
+        ):
             make_data_center(**{field: value})  # type: ignore[arg-type]
 
     @pytest.mark.parametrize("field", ["operationalSince", "operationalUntil"])
