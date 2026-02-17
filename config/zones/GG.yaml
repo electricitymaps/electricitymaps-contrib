@@ -1,3 +1,11 @@
+bounding_box:
+  - - -2.677970243354415
+    - 49.4084028034548
+  - - -2.342555536247872
+    - 49.50496240420853
+center_point:
+  - -2.536958119726989
+  - 49.4651328297851
 country: GG
 country_name: Guernsey
 currency: GBP

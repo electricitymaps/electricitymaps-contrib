@@ -1,8 +1,11 @@
 bounding_box:
-  - - 141.5
-    - 43.3
-  - - 179.9
-    - 71.6
+  - - -180
+    - 43.709751779128595
+  - - 180
+    - 71.6001251106535
+center_point:
+  - 163.5623195535538
+  - 69.34548604297066
 country: RU
 country_name: Russia
 emissionFactors:

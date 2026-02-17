@@ -1,3 +1,11 @@
+bounding_box:
+  - - 165.88785887858873
+    - -50.86049507125672
+  - - 166.24426244262438
+    - -50.552812262170676
+center_point:
+  - 166.06606066060655
+  - -50.7066536667137
 country: NZ
 country_name: New Zealand
 has_day_ahead_price_license: False

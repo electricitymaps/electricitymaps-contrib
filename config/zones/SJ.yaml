@@ -1,3 +1,11 @@
+bounding_box:
+  - - 10.485104851048533
+    - 74.34780414993347
+  - - 33.64053640536406
+    - 80.5043224973202
+center_point:
+  - 23.95264625863929
+  - 79.75626655413785
 country: SJ
 country_name: Svalbard and Jan Mayen
 currency: NOK

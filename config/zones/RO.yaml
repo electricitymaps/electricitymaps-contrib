@@ -1,9 +1,12 @@
 _comment: Biomass includes 19.227 MW of biogas and 6.03 MW of waste incineration
 bounding_box:
-  - - 20.2201924985
-    - 43.6884447292
-  - - 29.62654341
-    - 48.2208812526
+  - - 20.241202412024137
+    - 43.65393954864322
+  - - 29.658896588965916
+    - 48.259164105103125
+center_point:
+  - 24.810578337505376
+  - 45.93705795182545
 capacity:
   battery storage:
     - datetime: '2025-01-01'

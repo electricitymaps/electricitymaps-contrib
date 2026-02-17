@@ -2,10 +2,13 @@ _comment: 'Capacity data fetched from the test payload (capacity is sent in all 
   Parsing for production is done on instantaneous measurements : this is not reliable
   at all. Battery storage is composed of 0.5 battery+0.2 of flywheel'
 bounding_box:
-  - - 147.25766035200024
-    - -40.770603122999844
-  - - 148.83375084700015
-    - -39.211683851999794
+  - - 147.7580775807758
+    - -40.27048210736508
+  - - 148.30888308883087
+    - -39.71235980251133
+center_point:
+  - 148.03348033480333
+  - -39.99142095493821
 capacity:
   battery storage: 0.7
   biomass: 0
