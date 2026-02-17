@@ -17,7 +17,6 @@ from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.types import ZoneKey
 
 REFETCH_FREQUENCY = timedelta(days=7)
-NETWORK_FETCH_WINDOW = timedelta(days=2)
 
 
 ZONE_KEY_TO_REGION = {
@@ -322,7 +321,7 @@ def fetch_production(
     ).to_list()
 
 
-@refetch_frequency(NETWORK_FETCH_WINDOW)
+@refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -580,7 +579,7 @@ def _build_network_url(
             naive_dt = local_dt.replace(tzinfo=None)
             return naive_dt.isoformat()
 
-        params["date_start"] = format_datetime(target_datetime - NETWORK_FETCH_WINDOW)
+        params["date_start"] = format_datetime(target_datetime - REFETCH_FREQUENCY)
         params["date_end"] = format_datetime(target_datetime)
 
     # Add network_region only if provided (not required for production data endpoint)
