@@ -8,7 +8,7 @@ import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson'
 
 const GEO_PATH = join(import.meta.dir, 'world.geojson');
 const ZONES_DIR = join(import.meta.dir, '..', 'config', 'zones');
-const BUFFER_KM = -20;
+const BUFFER_KM = -40;
 
 // Load the geojson
 const geojson: FeatureCollection<Polygon | MultiPolygon> = JSON.parse(
