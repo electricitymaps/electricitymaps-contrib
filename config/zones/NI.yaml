@@ -208,3 +208,4 @@ parsers:
 region: Americas
 timezone: America/Managua
 zone_name: Nicaragua
+currency: USD
