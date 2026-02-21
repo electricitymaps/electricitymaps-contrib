@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.UY import (
     fetch_consumption,
@@ -44,7 +45,7 @@ def test_fetch_consumption(session, snapshot):
 
 @pytest.mark.parametrize("zone_key", [ZoneKey("AR"), ZoneKey("BR-S")])
 def test_fetch_exchange(session, snapshot, zone_key):
-    assert snapshot == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         zone_key1=ZoneKey("UY"),
         zone_key2=zone_key,
         session=session,

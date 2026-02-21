@@ -1,0 +1,245 @@
+# serializer version: 1
+# name: test_production[PH-MI]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 0, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1039.0631,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 134.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 5, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1039.8314,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 134.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 10, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1024.039,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 134.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 15, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1030.8,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 125.5,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 20, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1008.601,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 125.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 25, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1002.6,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 125.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 30, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 1001.6925,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 125.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 35, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 986.69,
+        'geothermal': 83.2,
+        'hydro': 645.4,
+        'oil': 116.5,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 40, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 976.8124,
+        'geothermal': 83.2,
+        'hydro': 644.4,
+        'oil': 115.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 45, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 961.936,
+        'geothermal': 83.2,
+        'hydro': 644.4,
+        'oil': 115.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 50, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 942.28,
+        'geothermal': 83.2,
+        'hydro': 644.4,
+        'oil': 115.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 9, 13, 23, 55, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
+      'production': dict({
+        'biomass': 22.5,
+        'coal': 927.1405,
+        'geothermal': 83.2,
+        'hydro': 644.4,
+        'oil': 115.0,
+        'solar': 0.0,
+        'unknown': 0.0,
+      }),
+      'source': 'iemop.ph',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -0.0,
+      }),
+      'zoneKey': 'PH-MI',
+    }),
+  ])
+# ---

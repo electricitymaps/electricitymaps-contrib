@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 import pytest
 from requests_mock import GET, POST
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.IEMOP import REPORTS_ADMIN_URL, fetch_production
 from electricitymap.contrib.types import ZoneKey
@@ -32,7 +33,9 @@ def test_production(adapter, session, snapshot, zone_key: ZoneKey):
             REPORTS_LINK,
             content=reports_byte_content.read(),
         )
-    assert snapshot == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
         target_datetime=target_datetime,
