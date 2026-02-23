@@ -1,3 +1,5 @@
+import json
+import re
 from datetime import datetime, timezone
 from importlib import resources
 
@@ -5,7 +7,11 @@ import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
 
-from electricitymap.contrib.parsers.GB import fetch_price
+from electricitymap.contrib.parsers.GB import (
+    ELEXON_BMU_UNITS,
+    fetch_price,
+    fetch_production,
+)
 from electricitymap.contrib.types import ZoneKey
 
 
@@ -36,3 +42,30 @@ def test_fetch_price_historical(adapter, session, snapshot):
 
     historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
     assert snapshot == fetch_price(target_datetime=historical_datetime, session=session)
+
+
+@freeze_time("2024-12-16 12:00:00")
+def test_fetch_production(adapter, session, snapshot):
+    neso_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+    gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
+
+    adapter.register_uri(
+        GET,
+        re.compile(r"https://api\.neso\.energy/api/3/action/datastore_search_sql"),
+        json=json.loads(neso_mock.joinpath("production.json").read_text()),
+    )
+    adapter.register_uri(
+        GET,
+        ELEXON_BMU_UNITS,
+        json=json.loads(gb_mock.joinpath("bmunits.json").read_text()),
+    )
+    adapter.register_uri(
+        GET,
+        re.compile(r"https://data\.elexon\.co\.uk/bmrs/api/v1/balancing/physical/all"),
+        json=json.loads(gb_mock.joinpath("bmvalues.json").read_text()),
+    )
+
+    assert snapshot == fetch_production(
+        zone_key=ZoneKey("GB"),
+        session=session,
+    )
