@@ -152,13 +152,13 @@ def fetch_production(
 
     elif target_datetime > datetime(year=2009, month=1, day=1):
         target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
-        start_datetime = target_datetime - timedelta(hours=24)
-        end_datetime = target_datetime + timedelta(hours=24)
+        start_datetime = target_datetime - timedelta(hours=2)
+        end_datetime = target_datetime + timedelta(hours=2)
 
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' AND "DATETIME" <= '{end_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
     else:
         raise ParserException(
-            "NESO.py",
+            "GB.py",
             "This parser is not yet able to parse dates before 2009-01-01",
             zone_key,
         )
@@ -168,12 +168,14 @@ def fetch_production(
     res: Response = session.get(NESO_API, params=params)
     if not res.status_code == 200:
         raise ParserException(
-            "NESO.py",
+            "GB.py",
             f"Exception when fetching production error code: {res.status_code}: {res.text}",
             zone_key,
         )
 
     obj = res.json()["result"]["records"]
+
+    hydro_units = get_hydro_storage_units(session, zone_key)
 
     production_list = ProductionBreakdownList(logger=logger)
     for row in obj:
@@ -186,64 +188,63 @@ def fetch_production(
             tzinfo=ZoneInfo("UTC")
         )
 
-        storage_mix = fetch_storage(zone_key, session, timestamp)
+        storage_mix = fetch_storage(zone_key, session, timestamp, hydro_units)
 
         production_list.append(
             zoneKey=zone_key,
             datetime=timestamp,
             production=production_mix,
             storage=storage_mix,
-            source="neso.energy",
+            source="neso.energy, elexon",
         )
 
     return production_list.to_list()
 
 
+def fetch_storage_for_units(units, timestamp: datetime, session: Session):
+    storage = 0
+    settlement_period = 1 + (timestamp.hour * 2) + (timestamp.minute // 30)
+    params = {
+        "dataset": "PN",
+        "settlementDate": timestamp.strftime("%Y-%m-%d"),
+        "settlementPeriod": settlement_period,
+        "bmUnit": units,
+    }
+
+    res = session.get(ELEXON_BMU_VALUES, params=params)
+    if not res.status_code == 200:
+        raise ParserException(
+            "GB.py",
+            f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
+            zone_key,
+        )
+
+    for r in res.json()["data"]:
+        timefrom = datetime.strptime(r["timeFrom"], "%Y-%m-%dT%H:%M:%SZ")
+        timeto = datetime.strptime(r["timeTo"], "%Y-%m-%dT%H:%M:%SZ")
+        minutes = (timeto - timefrom).total_seconds() / 60
+
+        produced = (
+            float(r["levelFrom"]) * minutes / 30
+        )  # average power over the half hour
+        storage += produced
+
+    return storage
+
+
 def fetch_storage(
     zone_key: ZoneKey,
     session: Session,
-    target_datetime: datetime,
+    timestamp: datetime,
+    hydro_units: list[str],
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
-    def fetch_storage_for_units(units):
-        storage = 0
-        settlement_period = 1
-        +(target_datetime.hour * 2)
-        +(target_datetime.minute // 30)
-        params = {
-            "dataset": "PN",
-            "settlementDate": target_datetime.strftime("%Y-%m-%d"),
-            "settlementPeriod": settlement_period,
-            "bmUnit": units,
-        }
-
-        res = session.get(ELEXON_BMU_VALUES, params=params)
-        if not res.status_code == 200:
-            raise ParserException(
-                "NESO.py",
-                f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
-                zone_key,
-            )
-
-        for r in res.json()["data"]:
-            timefrom = datetime.strptime(r["timeFrom"], "%Y-%m-%dT%H:%M:%SZ")
-            timeto = datetime.strptime(r["timeTo"], "%Y-%m-%dT%H:%M:%SZ")
-            minutes = (timeto - timefrom).total_seconds() / 60
-
-            produced = (
-                float(r["levelFrom"]) * minutes / 30
-            )  # average power over the half hour
-            storage += produced
-
-        return storage
-
     storage_mix = StorageMix()
     # Hydro storage
-    hydro_units = get_hydro_storage_units(session, zone_key)
-    hydro_storage = fetch_storage_for_units(hydro_units)
+    hydro_storage = fetch_storage_for_units(hydro_units, timestamp, session)
     storage_mix.add_value("hydro", -hydro_storage)
     # Battery storage
-    battery_storage = fetch_storage_for_units(BATTERY_UNITS)
+    battery_storage = fetch_storage_for_units(BATTERY_UNITS, timestamp, session)
     storage_mix.add_value("battery", -battery_storage)
     return storage_mix
 
@@ -252,7 +253,7 @@ def get_hydro_storage_units(session: Session, zone_key: ZoneKey) -> list[str]:
     res = session.get(ELEXON_BMU_UNITS)
     if not res.status_code == 200:
         raise ParserException(
-            "NESO.py",
+            "GB.py",
             f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
             zone_key,
         )
