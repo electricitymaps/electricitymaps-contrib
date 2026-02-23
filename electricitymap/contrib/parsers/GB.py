@@ -5,10 +5,18 @@ from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-from requests import Session
+from requests import Response, Session
 
-from electricitymap.contrib.lib.models.event_lists import PriceList
-from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.event_lists import (
+    PriceList,
+    ProductionBreakdownList,
+)
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
+from electricitymap.contrib.parsers.GB_battery_units import BATTERY_UNITS
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -16,6 +24,25 @@ from electricitymap.contrib.types import ZoneKey
 PARSER = "GB.py"
 TIMEZONE = ZoneInfo("Europe/London")
 ZONE_KEY = ZoneKey("GB")
+
+NESO_API = "https://api.neso.energy/api/3/action/datastore_search_sql"
+NESO_GENERATION_DATASET_ID = "f93d1835-75bc-43e5-84ad-12472b180a98"
+
+ELEXON_BMU_UNITS = "https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all"
+ELEXON_BMU_VALUES = "https://data.elexon.co.uk/bmrs/api/v1/balancing/physical/all"
+
+
+NESO_TO_PRODUCTION_MIX_MAPPING = {
+    "BIOMASS": "biomass",
+    "COAL": "coal",
+    "GAS": "gas",
+    "HYDRO": "hydro",
+    "NUCLEAR": "nuclear",
+    "SOLAR": "solar",
+    "WIND": "wind",
+    "WIND_EMB": "wind",
+    "OTHER": "unknown",
+}
 
 
 @refetch_frequency(timedelta(days=2))
@@ -109,6 +136,133 @@ def fetch_price(
                 )
 
     return price_list.to_list()
+
+
+def fetch_production(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict] | dict:
+    session = session or Session()
+
+    if target_datetime is None:
+        start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=24)
+        sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
+
+    elif target_datetime > datetime(year=2009, month=1, day=1):
+        target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
+        start_datetime = target_datetime - timedelta(hours=24)
+        end_datetime = target_datetime + timedelta(hours=24)
+
+        sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' AND "DATETIME" <= '{end_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
+    else:
+        raise ParserException(
+            "NESO.py",
+            "This parser is not yet able to parse dates before 2009-01-01",
+            zone_key,
+        )
+
+    params = {"sql": sql_query}
+
+    res: Response = session.get(NESO_API, params=params)
+    if not res.status_code == 200:
+        raise ParserException(
+            "NESO.py",
+            f"Exception when fetching production error code: {res.status_code}: {res.text}",
+            zone_key,
+        )
+
+    obj = res.json()["result"]["records"]
+
+    production_list = ProductionBreakdownList(logger=logger)
+    for row in obj:
+        production_mix = ProductionMix()
+
+        for neso_key, emaps_key in NESO_TO_PRODUCTION_MIX_MAPPING.items():
+            production_mix.add_value(emaps_key, float(row[neso_key]))
+
+        timestamp = datetime.fromisoformat(row["DATETIME"]).replace(
+            tzinfo=ZoneInfo("UTC")
+        )
+
+        storage_mix = fetch_storage(zone_key, session, timestamp)
+
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=timestamp,
+            production=production_mix,
+            storage=storage_mix,
+            source="neso.energy",
+        )
+
+    return production_list.to_list()
+
+
+def fetch_storage(
+    zone_key: ZoneKey,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger = getLogger(__name__),
+) -> list[dict] | dict:
+    def fetch_storage_for_units(units):
+        storage = 0
+        settlement_period = 1
+        +(target_datetime.hour * 2)
+        +(target_datetime.minute // 30)
+        params = {
+            "dataset": "PN",
+            "settlementDate": target_datetime.strftime("%Y-%m-%d"),
+            "settlementPeriod": settlement_period,
+            "bmUnit": units,
+        }
+
+        res = session.get(ELEXON_BMU_VALUES, params=params)
+        if not res.status_code == 200:
+            raise ParserException(
+                "NESO.py",
+                f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
+                zone_key,
+            )
+
+        for r in res.json()["data"]:
+            timefrom = datetime.strptime(r["timeFrom"], "%Y-%m-%dT%H:%M:%SZ")
+            timeto = datetime.strptime(r["timeTo"], "%Y-%m-%dT%H:%M:%SZ")
+            minutes = (timeto - timefrom).total_seconds() / 60
+
+            produced = (
+                float(r["levelFrom"]) * minutes / 30
+            )  # average power over the half hour
+            storage += produced
+
+        return storage
+
+    storage_mix = StorageMix()
+    # Hydro storage
+    hydro_units = get_hydro_storage_units(session, zone_key)
+    hydro_storage = fetch_storage_for_units(hydro_units)
+    storage_mix.add_value("hydro", -hydro_storage)
+    # Battery storage
+    battery_storage = fetch_storage_for_units(BATTERY_UNITS)
+    storage_mix.add_value("battery", -battery_storage)
+    return storage_mix
+
+
+def get_hydro_storage_units(session: Session, zone_key: ZoneKey) -> list[str]:
+    res = session.get(ELEXON_BMU_UNITS)
+    if not res.status_code == 200:
+        raise ParserException(
+            "NESO.py",
+            f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
+            zone_key,
+        )
+
+    hydro_storage_units = []
+    for r in res.json():
+        if r["fuelType"] == "PS":  # PS = pumped storage
+            hydro_storage_units.append(r["elexonBmUnit"])
+
+    return hydro_storage_units
 
 
 if __name__ == "__main__":
