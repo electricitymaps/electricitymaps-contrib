@@ -2,9 +2,11 @@
 
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
+from io import BytesIO
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
+from openpyxl import load_workbook
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -16,7 +18,6 @@ from electricitymap.contrib.lib.models.events import (
     ProductionMix,
     StorageMix,
 )
-from electricitymap.contrib.parsers.GB_battery_units import BATTERY_UNITS
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
@@ -30,6 +31,9 @@ NESO_GENERATION_DATASET_ID = "f93d1835-75bc-43e5-84ad-12472b180a98"
 
 ELEXON_BMU_UNITS = "https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all"
 ELEXON_BMU_VALUES = "https://data.elexon.co.uk/bmrs/api/v1/balancing/physical/all"
+ELEXON_BMU_FUEL_TYPE_URL = (
+    "https://www.elexon.co.uk/documents/data/operational-data/bmu-fuel-type/"
+)
 
 
 NESO_TO_PRODUCTION_MIX_MAPPING = {
@@ -147,13 +151,13 @@ def fetch_production(
     session = session or Session()
 
     if target_datetime is None:
-        start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=24)
+        start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=12)
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
     elif target_datetime > datetime(year=2009, month=1, day=1):
         target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
-        start_datetime = target_datetime - timedelta(hours=2)
-        end_datetime = target_datetime + timedelta(hours=2)
+        start_datetime = target_datetime - timedelta(hours=6)
+        end_datetime = target_datetime + timedelta(hours=6)
 
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' AND "DATETIME" <= '{end_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
     else:
@@ -176,6 +180,7 @@ def fetch_production(
     obj = res.json()["result"]["records"]
 
     hydro_units = get_hydro_storage_units(session, zone_key)
+    battery_units = get_battery_units(session, zone_key)
 
     production_list = ProductionBreakdownList(logger=logger)
     for row in obj:
@@ -188,7 +193,7 @@ def fetch_production(
             tzinfo=ZoneInfo("UTC")
         )
 
-        storage_mix = fetch_storage(zone_key, session, timestamp, hydro_units)
+        storage_mix = fetch_storage(session, timestamp, hydro_units, battery_units)
 
         production_list.append(
             zoneKey=zone_key,
@@ -233,10 +238,10 @@ def fetch_storage_for_units(units, timestamp: datetime, session: Session):
 
 
 def fetch_storage(
-    zone_key: ZoneKey,
     session: Session,
     timestamp: datetime,
     hydro_units: list[str],
+    battery_units: list[str],
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
     storage_mix = StorageMix()
@@ -244,7 +249,7 @@ def fetch_storage(
     hydro_storage = fetch_storage_for_units(hydro_units, timestamp, session)
     storage_mix.add_value("hydro", -hydro_storage)
     # Battery storage
-    battery_storage = fetch_storage_for_units(BATTERY_UNITS, timestamp, session)
+    battery_storage = fetch_storage_for_units(battery_units, timestamp, session)
     storage_mix.add_value("battery", -battery_storage)
     return storage_mix
 
@@ -264,6 +269,37 @@ def get_hydro_storage_units(session: Session, zone_key: ZoneKey) -> list[str]:
             hydro_storage_units.append(r["elexonBmUnit"])
 
     return hydro_storage_units
+
+
+def get_battery_units(session: Session, zone_key: ZoneKey) -> list[str]:
+    """Fetch battery BMU IDs from the Elexon BMU Fuel Type spreadsheet.
+
+    Filters for units where BMRS FUEL TYPE = "OTHER" and REG FUEL TYPE = "BATTERY".
+    """
+    res = session.get(
+        ELEXON_BMU_FUEL_TYPE_URL,
+        headers={"User-Agent": "electricitymaps.com"},
+    )
+    if not res.ok:
+        raise ParserException(
+            "GB.py",
+            f"Failed to download BMU fuel type spreadsheet: {res.status_code}",
+            zone_key,
+        )
+
+    wb = load_workbook(BytesIO(res.content), read_only=True, data_only=True)
+    ws = wb.active
+
+    battery_units = []
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        neso_bmu_id = row[0]
+        bmrs_fuel_type = row[3]
+        reg_fuel_type = row[4]
+        if bmrs_fuel_type == "OTHER" and reg_fuel_type == "BATTERY":
+            battery_units.append(neso_bmu_id)
+
+    wb.close()
+    return battery_units
 
 
 if __name__ == "__main__":
