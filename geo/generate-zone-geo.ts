@@ -2,7 +2,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import bbox from '@turf/bbox';
 import buffer from '@turf/buffer';
-import { centroid } from "@turf/centroid"
+import { centroid } from '@turf/centroid';
 import pointOnFeature from '@turf/point-on-feature';
 import union from '@turf/union';
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
