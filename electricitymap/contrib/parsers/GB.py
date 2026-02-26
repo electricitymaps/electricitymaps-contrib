@@ -31,6 +31,7 @@ NESO_GENERATION_DATASET_ID = "f93d1835-75bc-43e5-84ad-12472b180a98"
 
 ELEXON_BMU_UNITS = "https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all"
 ELEXON_BMU_VALUES = "https://data.elexon.co.uk/bmrs/api/v1/balancing/physical/all"
+ELEXON_BOALF_STREAM = "https://data.elexon.co.uk/bmrs/api/v1/datasets/BOALF/stream"
 ELEXON_BMU_FUEL_TYPE_URL = (
     "https://www.elexon.co.uk/documents/data/operational-data/bmu-fuel-type/"
 )
@@ -206,33 +207,128 @@ def fetch_production(
     return production_list.to_list()
 
 
+def _extract_data_rows(payload: dict | list) -> list[dict]:
+    if isinstance(payload, dict):
+        data = payload.get("data")
+        return data if isinstance(data, list) else []
+    return payload if isinstance(payload, list) else []
+
+
+def _to_float(value: float | int | str | None) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, float | int):
+        return float(value)
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped == "":
+            return None
+        return float(stripped)
+
+
+def _extract_dataset_value(record: dict) -> tuple[bool, float | None]:
+    value_keys = ["levelFrom", "quantity", "value", "boalf"]
+    for key in value_keys:
+        if key in record:
+            return True, _to_float(record.get(key))
+    return False, None
+
+
+def _extract_storage_key(record: dict) -> tuple[str, str, str] | None:
+    unit = record.get("bmUnit") or record.get("elexonBmUnit") or "__all_units__"
+    time_from = record.get("timeFrom") or record.get("startTime") or ""
+    time_to = record.get("timeTo") or record.get("endTime") or ""
+    return str(unit), str(time_from), str(time_to)
+
+
+def _interval_minutes(interval_key: tuple[str, str, str]) -> float:
+    _, time_from, time_to = interval_key
+    if time_from and time_to:
+        start = datetime.strptime(time_from, "%Y-%m-%dT%H:%M:%SZ")
+        end = datetime.strptime(time_to, "%Y-%m-%dT%H:%M:%SZ")
+        return (end - start).total_seconds() / 60
+    return 30
+
+
+def _fetch_storage_dataset(
+    session: Session,
+    dataset: str,
+    params: dict,
+    endpoint: str = ELEXON_BMU_VALUES,
+    include_dataset_param: bool = True,
+) -> list[dict]:
+    request_params = params | {"dataset": dataset} if include_dataset_param else params
+    res = session.get(endpoint, params=request_params)
+    if not res.ok:
+        raise ParserException(
+            "GB.py",
+            f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
+            ZONE_KEY,
+        )
+    return _extract_data_rows(res.json())
+
+
+def _to_interval_map(
+    rows: list[dict],
+) -> dict[tuple[str, str, str], tuple[bool, float | None]]:
+    mapped: dict[tuple[str, str, str], tuple[bool, float | None]] = {}
+    for record in rows:
+        key = _extract_storage_key(record)
+        if key is None:
+            continue
+        has_value, value = _extract_dataset_value(record)
+        if has_value:
+            mapped[key] = (True, value)
+    return mapped
+
+
 def fetch_storage_for_units(units, timestamp: datetime, session: Session):
-    storage = 0
+    storage = 0.0
     settlement_period = 1 + (timestamp.hour * 2) + (timestamp.minute // 30)
     params = {
-        "dataset": "PN",
         "settlementDate": timestamp.strftime("%Y-%m-%d"),
         "settlementPeriod": settlement_period,
         "bmUnit": units,
     }
+    boalf_params = {
+        "from": timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "to": (timestamp + timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "bmUnit": units,
+    }
 
-    res = session.get(ELEXON_BMU_VALUES, params=params)
-    if not res.status_code == 200:
-        raise ParserException(
-            "GB.py",
-            f"Exception when fetching storage units error code: {res.status_code}: {res.text}",
-            zone_key,
-        )
+    pn_rows = _fetch_storage_dataset(session, "PN", params)
+    mel_rows = _fetch_storage_dataset(session, "MELS", params)
+    boalf_rows = _fetch_storage_dataset(
+        session,
+        "BOALF",
+        boalf_params,
+        endpoint=ELEXON_BOALF_STREAM,
+        include_dataset_param=False,
+    )
 
-    for r in res.json()["data"]:
-        timefrom = datetime.strptime(r["timeFrom"], "%Y-%m-%dT%H:%M:%SZ")
-        timeto = datetime.strptime(r["timeTo"], "%Y-%m-%dT%H:%M:%SZ")
-        minutes = (timeto - timefrom).total_seconds() / 60
+    pn_map = _to_interval_map(pn_rows)
+    mel_map = _to_interval_map(mel_rows)
+    boalf_map = _to_interval_map(boalf_rows)
 
-        produced = (
-            float(r["levelFrom"]) * minutes / 30
-        )  # average power over the half hour
-        storage += produced
+    interval_keys = set(pn_map) | set(mel_map) | set(boalf_map)
+    for key in interval_keys:
+        has_boalf, boalf_val = boalf_map.get(key, (False, None))
+        has_pn, pn_val = pn_map.get(key, (False, None))
+        has_mel, mel_val = mel_map.get(key, (False, None))
+
+        # order of precedence: BOALF > min(PN, MEL) > PN > 0.
+        # MEL is the maximum export limit
+        if has_boalf and boalf_val is not None:
+            output_act = boalf_val
+        elif has_pn and has_mel and pn_val is not None and mel_val is not None:
+            output_act = min(pn_val, mel_val)
+        elif has_pn and pn_val is not None:
+            output_act = pn_val
+        else:
+            output_act = 0
+
+        minutes = _interval_minutes(key)
+        storage += output_act * minutes / 30
 
     return storage
 

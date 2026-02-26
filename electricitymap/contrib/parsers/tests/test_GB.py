@@ -8,6 +8,7 @@ from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.parsers.GB import (
+    ELEXON_BOALF_STREAM,
     ELEXON_BMU_FUEL_TYPE_URL,
     ELEXON_BMU_UNITS,
     fetch_price,
@@ -64,6 +65,11 @@ def test_fetch_production(adapter, session, snapshot):
         GET,
         re.compile(r"https://data\.elexon\.co\.uk/bmrs/api/v1/balancing/physical/all"),
         json=json.loads(gb_mock.joinpath("bmvalues.json").read_text()),
+    )
+    adapter.register_uri(
+        GET,
+        ELEXON_BOALF_STREAM,
+        json=json.loads(gb_mock.joinpath("boalf.json").read_text()),
     )
     adapter.register_uri(
         GET,
