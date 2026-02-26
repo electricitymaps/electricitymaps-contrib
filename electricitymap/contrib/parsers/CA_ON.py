@@ -279,7 +279,10 @@ def fetch_exchange(
                 # - CA-MB->CA-ON: positive = MB exporting to ON = flow MB->ON
                 #   = same as arrow direction (MB is zone1), so no flip needed,
                 #   but the current sign is already handled by the else branch.
-                if not sorted_zone_keys.startswith("CA-ON->") or sorted_zone_keys == "CA-ON->CA-QC":
+                if (
+                    not sorted_zone_keys.startswith("CA-ON->")
+                    or sorted_zone_keys == "CA-ON->CA-QC"
+                ):
                     flow *= -1
                 flows[time(hour=hour, minute=minute)] += flow
 
