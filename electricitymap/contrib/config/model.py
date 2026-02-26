@@ -130,6 +130,7 @@ class Zone(StrictBaseModelWithAlias):
     )
     capacity: Capacity | None
     center_point: Point | None
+    centroid: Point | None
     comment: str | None = Field(None, alias="_comment")
     contributors: list[str] | None
     delays: Delays | None
