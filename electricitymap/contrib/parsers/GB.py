@@ -224,6 +224,7 @@ def _to_float(value: float | int | str | None) -> float | None:
         if stripped == "":
             return None
         return float(stripped)
+    return None
 
 
 def _extract_dataset_value(record: dict) -> tuple[bool, float | None]:
