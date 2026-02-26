@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 133.50005390545402
   - -18.846486859209598
+centroid:
+  - 133.39210622875467
+  - -12.992381053427186
 capacity:
   biomass: 1.1
   gas: 471.4

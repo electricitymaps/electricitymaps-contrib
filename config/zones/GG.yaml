@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -2.536958119726989
   - 49.4651328297851
+centroid:
+  - -2.450818105076321
+  - 49.43914509312574
 country: GG
 country_name: Guernsey
 currency: GBP

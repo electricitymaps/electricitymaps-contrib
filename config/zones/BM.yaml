@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -64.76504745755302
   - 32.309606494363315
+centroid:
+  - -64.8078812642318
+  - 32.2979873622962
 contributors:
   - VIKTORVAV99
 country: BM

@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -94.04245254083447
   - 71.2165976625509
+centroid:
+  - -86.71580380929173
+  - 72.22242724036938
 country: CA
 country_name: Canada
 currency: CAD

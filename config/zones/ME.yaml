@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 19.15218054929269
   - 42.79053342375187
+centroid:
+  - 19.201408042781598
+  - 42.800464800493536
 can_have_zero_production: true
 capacity:
   coal:

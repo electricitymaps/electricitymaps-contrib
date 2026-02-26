@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 144.80424804248042
   - 13.443065403476396
+centroid:
+  - 144.79344793447933
+  - 13.478126932883875
 capacity:
   solar:
     - datetime: '2017-01-01'

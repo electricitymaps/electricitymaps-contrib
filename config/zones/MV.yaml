@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 73.48630139921762
   - 1.822984655278469
+centroid:
+  - 73.37222347111515
+  - 1.4019136306608828
 capacity:
   gas:
     - datetime: '2017-01-01'

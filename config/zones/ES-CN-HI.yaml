@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -18.029214452629738
   - 27.735777133468208
+centroid:
+  - -18.01293623635249
+  - 27.73108287875151
 capacity:
   hydro storage: 11.32
   oil: 11.78
