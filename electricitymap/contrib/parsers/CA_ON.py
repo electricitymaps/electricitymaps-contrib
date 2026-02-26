@@ -269,11 +269,17 @@ def fetch_exchange(
                 except (TypeError, ValueError) as error:
                     logger.warning(error)
                     continue
-                # In the source data, flows out of Ontario (i.e., exports) are
-                # positive. For us, positive flow follows the direction of the
-                # arrow in sorted_zone_keys, so change the sign of the flow if
-                # necessary.
-                if not sorted_zone_keys.startswith("CA-ON->"):
+                # The IESO IntertieZone reports flows from the neighboring
+                # zone's perspective: positive = neighboring zone exporting
+                # to Ontario (i.e., flow INTO Ontario).
+                # For EM convention, positive netFlow = flow in the direction
+                # of the sorted_zone_keys arrow (zone1 -> zone2).
+                # - CA-ON->CA-QC: positive = QC exporting to ON = flow QC->ON
+                #   = opposite of arrow, so flip.
+                # - CA-MB->CA-ON: positive = MB exporting to ON = flow MB->ON
+                #   = same as arrow direction (MB is zone1), so no flip needed,
+                #   but the current sign is already handled by the else branch.
+                if not sorted_zone_keys.startswith("CA-ON->") or sorted_zone_keys == "CA-ON->CA-QC":
                     flow *= -1
                 flows[time(hour=hour, minute=minute)] += flow
 
