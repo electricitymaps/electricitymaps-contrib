@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -132.35527020065993
   - 56.423603690102524
+centroid:
+  - -132.25451087665854
+  - 56.11769324858722
 contributors:
   - wrma6
 country: US

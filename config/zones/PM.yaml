@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -56.32436324363239
   - 47.00482000201515
+centroid:
+  - -56.30756307563072
+  - 47.02127745459418
 capacity:
   unknown:
     - datetime: '2017-01-01'

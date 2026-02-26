@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 33.644854714990075
   - 35.34916520661007
+centroid:
+  - 33.508806431331756
+  - 35.20741965776527
 country: null
 country_name: Northern Cyprus
 has_day_ahead_price_license: False

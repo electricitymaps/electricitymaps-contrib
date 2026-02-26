@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -1.209612096120935
   - 60.36397824768116
+centroid:
+  - -1.1902619026189978
+  - 60.38526560482142
 contributors:
   - systemcatch
   - maxbellec

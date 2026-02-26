@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 45.12105121051212
   - -12.792260631732187
+centroid:
+  - 45.12465124651248
+  - -12.769363306404854
 capacity:
   oil:
     - datetime: '2017-01-01'

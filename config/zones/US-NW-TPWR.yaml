@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -121.98710180807089
   - 47.126620583694155
+centroid:
+  - -122.3587856604095
+  - 47.242332938203425
 capacity:
   battery storage:
     - datetime: '2017-01-01'

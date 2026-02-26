@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -114.97039368201439
   - 54.51046629280081
+centroid:
+  - -116.51992774107003
+  - 51.87658371093803
 contributors:
   - mlucchini
   - alejandranavcas
