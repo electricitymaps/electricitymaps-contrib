@@ -66,7 +66,7 @@ STRAINER_TEXT = SoupStrainer("text")
 
 
 # TODO: Switch this to a string enum when we migrate to Python 3.11
-class EntsoeProcessTypeEnum(str, Enum):
+class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
     WEEK_AHEAD = "A02"
     MONTH_AHEAD = "A03"
@@ -86,10 +86,10 @@ class EntsoeDocumentTypeEnum(str, Enum):
 
 # The order of the forecast types is important for the parser to use the most recent data
 # This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORECAST_TYPES: list[EntsoeProcessTypeEnum] = [
-    EntsoeProcessTypeEnum.DAY_AHEAD,
-    EntsoeProcessTypeEnum.INTRADAY,
-    EntsoeProcessTypeEnum.CURRENT,
+ORDERED_FORECAST_TYPES: list[EntsoeTypeEnum] = [
+    EntsoeTypeEnum.DAY_AHEAD,
+    EntsoeTypeEnum.INTRADAY,
+    EntsoeTypeEnum.CURRENT,
 ]
 
 ENTSOE_PARAMETER_DESC = {
@@ -433,7 +433,7 @@ def query_exchange_capacity_forecast(
         # exchange capacity for a period. NTC (A61) uses Contract_MarketAgreement.Type
         # instead of processType to specify the forecast horizon.
         "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
-        "Contract_MarketAgreement.Type": EntsoeProcessTypeEnum.MONTH_AHEAD,
+        "Contract_MarketAgreement.Type": EntsoeTypeEnum.MONTH_AHEAD,
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
@@ -449,7 +449,7 @@ def query_price(
     domain: str,
     session: Session,
     target_datetime: datetime | None = None,
-    marketType: EntsoeProcessTypeEnum = EntsoeProcessTypeEnum.DAY_AHEAD,
+    marketType: EntsoeTypeEnum = EntsoeTypeEnum.DAY_AHEAD,
 ) -> str | None:
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
@@ -519,15 +519,15 @@ def query_consumption_forecast(
 def query_wind_solar_production_forecast(
     in_domain: str,
     session: Session,
-    process_type: EntsoeProcessTypeEnum,
+    process_type: EntsoeTypeEnum,
     target_datetime: datetime | None = None,
 ) -> str | None:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     allowed_types = {
-        EntsoeProcessTypeEnum.DAY_AHEAD,
-        EntsoeProcessTypeEnum.INTRADAY,
-        EntsoeProcessTypeEnum.CURRENT,
+        EntsoeTypeEnum.DAY_AHEAD,
+        EntsoeTypeEnum.INTRADAY,
+        EntsoeTypeEnum.CURRENT,
     }
     if process_type not in allowed_types:
         raise ValueError(
@@ -538,7 +538,7 @@ def query_wind_solar_production_forecast(
         # Wind and solar forecast - A document providing the forecast of wind
         # and solar generation.
         "documentType": "A69",
-        "processType": EntsoeProcessTypeEnum(process_type),
+        "processType": EntsoeTypeEnum(process_type),
         "in_Domain": in_domain,
     }
     return query_ENTSOE(
@@ -911,7 +911,7 @@ def parse_exchange_forecast(
     is_import: bool,
     sorted_zone_keys: ZoneKey,
     logger: Logger,
-    market_type: EntsoeProcessTypeEnum,
+    market_type: EntsoeTypeEnum,
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
 
@@ -1122,7 +1122,7 @@ def get_raw_exchange(
                     is_import=True,
                     sorted_zone_keys=sorted_zone_keys,
                     logger=logger,
-                    market_type=EntsoeProcessTypeEnum.DAY_AHEAD,
+                    market_type=EntsoeTypeEnum.DAY_AHEAD,
                 )
             )
             raw_exchange_lists_forecast_total.append(
@@ -1131,7 +1131,7 @@ def get_raw_exchange(
                     is_import=True,
                     sorted_zone_keys=sorted_zone_keys,
                     logger=logger,
-                    market_type=EntsoeProcessTypeEnum.TOTAL,
+                    market_type=EntsoeTypeEnum.TOTAL,
                 )
             )
 
@@ -1160,7 +1160,7 @@ def get_raw_exchange(
                     is_import=False,
                     sorted_zone_keys=sorted_zone_keys,
                     logger=logger,
-                    market_type=EntsoeProcessTypeEnum.DAY_AHEAD,
+                    market_type=EntsoeTypeEnum.DAY_AHEAD,
                 )
             )
             raw_exchange_lists_forecast_total.append(
@@ -1169,7 +1169,7 @@ def get_raw_exchange(
                     is_import=False,
                     sorted_zone_keys=sorted_zone_keys,
                     logger=logger,
-                    market_type=EntsoeProcessTypeEnum.TOTAL,
+                    market_type=EntsoeTypeEnum.TOTAL,
                 )
             )
     if not forecast:
@@ -1278,7 +1278,7 @@ def fetch_price_intraday(
             domain,
             session,
             target_datetime=target_datetime,
-            marketType=EntsoeProcessTypeEnum.INTRADAY_PRICE,
+            marketType=EntsoeTypeEnum.INTRADAY_PRICE,
         )
     except Exception as e:
         raise ParserException(
