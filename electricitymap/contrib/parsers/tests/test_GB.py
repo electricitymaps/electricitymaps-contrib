@@ -8,9 +8,9 @@ from freezegun import freeze_time
 from requests_mock import ANY, GET
 
 from electricitymap.contrib.parsers.GB import (
-    ELEXON_BOALF_STREAM,
     ELEXON_BMU_FUEL_TYPE_URL,
     ELEXON_BMU_UNITS,
+    ELEXON_BOALF_STREAM,
     fetch_price,
     fetch_production,
 )
