@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -6.934363091121309
   - 62.0705714151069
+centroid:
+  - -6.87261917103823
+  - 62.14598822338982
 capacity:
   biomass: 1.3
   hydro: 37.3

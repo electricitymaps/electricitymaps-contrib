@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 159.0770827681741
   - -31.543277807327584
+centroid:
+  - 159.07032762334973
+  - -31.545415281659476
 capacity:
   battery storage: 1
   gas: 0.84

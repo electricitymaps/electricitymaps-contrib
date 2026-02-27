@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 134.05877478419495
   - 33.918963657891666
+centroid:
+  - 133.49624463986575
+  - 33.682846828024886
 capacity:
   biomass: 406
   coal: 950

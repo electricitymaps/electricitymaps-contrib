@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 56.65602626579258
   - 57.08926254837107
+centroid:
+  - 54.97928733931799
+  - 60.76254150004456
 capacity:
   hydro: 19500
   nuclear: 27914

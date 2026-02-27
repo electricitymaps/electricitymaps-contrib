@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 124.76318645902569
   - 7.602095842199491
+centroid:
+  - 124.33077130771296
+  - 7.610529898643097
 capacity:
   battery storage: 49
   biomass: 79

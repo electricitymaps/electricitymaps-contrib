@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -27.02007020070198
   - 38.69380644960965
+centroid:
+  - -27.140928552142633
+  - 38.39184797185544
 country: PT
 country_name: Portugal
 emissionFactors:

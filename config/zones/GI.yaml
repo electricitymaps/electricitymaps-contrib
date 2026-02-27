@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -5.350566191308243
   - 36.13241271041097
+centroid:
+  - -5.348983439419028
+  - 36.13243391621028
 country: GI
 country_name: Gibraltar
 currency: GIP
