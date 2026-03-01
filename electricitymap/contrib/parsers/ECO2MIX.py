@@ -256,9 +256,11 @@ def parse_exchange_to_df(text):
     # We here flip the sign if the alphabetical order requires it
     # (e.g. if zone_key is not the second key)
     df["net_flow"] = df.apply(
-        lambda row: row["value"]
-        if row["sorted_zone_keys"].split("->")[1] == row["zone_key"]
-        else row["value"] * -1,
+        lambda row: (
+            row["value"]
+            if row["sorted_zone_keys"].split("->")[1] == row["zone_key"]
+            else row["value"] * -1
+        ),
         axis=1,
     )
     return df
