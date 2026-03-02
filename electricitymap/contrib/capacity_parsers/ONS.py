@@ -84,9 +84,11 @@ def fetch_production_capacity_for_all_zones(
         lambda x: pd.to_datetime(x, utc=False).replace(day=1, month=1)
     )
     df["end"] = df["end"].apply(
-        lambda x: pd.to_datetime(x, utc=False).replace(day=31, month=12)
-        if x is not None
-        else x
+        lambda x: (
+            pd.to_datetime(x, utc=False).replace(day=31, month=12)
+            if x is not None
+            else x
+        )
     )
     df = filter_data_by_date(df, target_datetime)
     df["datetime"] = target_datetime

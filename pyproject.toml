@@ -1,6 +1,6 @@
 [project]
 name = "electricitymap-contrib"
-version = "1.5.5"
+version = "1.6.5"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.10, < 3.14"
@@ -27,7 +27,7 @@ test = "scripts.tooling:test"
 members = [".", "libs/types"]
 
 [tool.uv]
-required-version = ">=0.9, <0.10"
+required-version = ">=0.4.0"
 # The electricitymaps index is for consumers of the published package.
 # For local development, workspace sources take precedence.
 index = [
@@ -61,7 +61,7 @@ parsers = [
 
 [dependency-groups]
 dev = [
-    "ruff==0.11.2",
+    "ruff==0.15.4",
     "pytest>=7.4.0,<8",
     "syrupy>=4.8.0,<5",
     "requests-mock~=1.3.0",
