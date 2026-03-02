@@ -152,7 +152,7 @@ def fetch_production(
     session = session or Session()
 
     if target_datetime is None:
-        start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=12)
+        start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=4)
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
     elif target_datetime > datetime(year=2009, month=1, day=1):
@@ -185,14 +185,17 @@ def fetch_production(
 
     production_list = ProductionBreakdownList(logger=logger)
     for row in obj:
+        timestamp = datetime.fromisoformat(row["DATETIME"]).replace(
+            tzinfo=ZoneInfo("UTC")
+        )
+
+        if timestamp < start_datetime:
+            continue
+
         production_mix = ProductionMix()
 
         for neso_key, emaps_key in NESO_TO_PRODUCTION_MIX_MAPPING.items():
             production_mix.add_value(emaps_key, float(row[neso_key]))
-
-        timestamp = datetime.fromisoformat(row["DATETIME"]).replace(
-            tzinfo=ZoneInfo("UTC")
-        )
 
         storage_mix = fetch_storage(session, timestamp, hydro_units, battery_units)
 
@@ -205,6 +208,122 @@ def fetch_production(
         )
 
     return production_list.to_list()
+
+
+def fetch_storage(
+    session: Session,
+    timestamp: datetime,
+    hydro_units: list[str],
+    battery_units: list[str],
+    logger: Logger = getLogger(__name__),
+) -> list[dict] | dict:
+    storage_mix = StorageMix()
+    # Hydro storage
+    hydro_storage = fetch_storage_for_units(hydro_units, timestamp, session)
+    storage_mix.add_value("hydro", -hydro_storage)
+    # Battery storage
+    battery_storage = fetch_storage_for_units(battery_units, timestamp, session)
+    storage_mix.add_value("battery", -battery_storage)
+    return storage_mix
+
+
+def fetch_storage_for_units(
+    units: list[str], timestamp: datetime, session: Session
+) -> float:
+    """Compute the aggregate storage MW for a list of BMU units over one settlement period.
+
+    Args:
+        units: List of BMU unit identifiers (e.g. ["T_CRUA-1", "T_CRUA-2"]).
+        timestamp: The UTC start of the 30-minute settlement period.
+        session: HTTP session for Elexon API calls.
+
+    Returns:
+        The sum of average MW across all units for this period. Positive
+        values mean the units are generating (exporting); negative values
+        mean they are consuming (importing/charging).
+
+    Data sources fetched from Elexon:
+        - PN  (Physical Notification): the unit's declared schedule.
+        - MELS (Maximum Export Limit): upper MW bound per unit.
+        - MILS (Minimum Import Limit): lower MW bound per unit (negative).
+        - BOALF (Bid-Offer Acceptance Level): System Operator instructions
+          that override PN when present.
+
+    Cross-period coverage:
+        The Elexon API filters in ways that can miss records spanning across
+        settlement period boundaries:
+
+        - The /balancing/physical/all endpoint (PN, MELS, MILS) returns data
+          for a single settlement period. A record whose timeFrom falls in
+          the previous period but whose timeTo extends into ours would only
+          be returned when querying the previous period. We therefore fetch
+          both the current AND previous settlement periods and merge them.
+
+        - The /datasets/BOALF/stream endpoint filters by TimeFrom — it only
+          returns records whose timeFrom falls within the [from, to) query
+          window. A long-running BOALF acceptance (e.g. timeFrom=20:00,
+          timeTo=23:00) would be missed if we only query from 22:30. We
+          use a 4-hour lookback to catch these long-running acceptances.
+          The per-minute resolution logic then correctly picks only records
+          that actually cover each minute in our 30-minute window.
+    """
+    settlement_date = timestamp.strftime("%Y-%m-%d")
+    settlement_period = 1 + (timestamp.hour * 2) + (timestamp.minute // 30)
+    prev_date, prev_period = _previous_settlement_period(
+        settlement_date, settlement_period
+    )
+
+    current_physical_params = {
+        "settlementDate": settlement_date,
+        "settlementPeriod": settlement_period,
+        "bmUnit": units,
+    }
+    prev_physical_params = {
+        "settlementDate": prev_date,
+        "settlementPeriod": prev_period,
+        "bmUnit": units,
+    }
+
+    boalf_params = {
+        "from": (timestamp - timedelta(hours=4)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "to": (timestamp + timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "bmUnit": units,
+    }
+
+    pn_rows = _fetch_storage_dataset(
+        session, "PN", current_physical_params
+    ) + _fetch_storage_dataset(session, "PN", prev_physical_params)
+    mels_rows = _fetch_storage_dataset(
+        session, "MELS", current_physical_params
+    ) + _fetch_storage_dataset(session, "MELS", prev_physical_params)
+    mils_rows = _fetch_storage_dataset(
+        session, "MILS", current_physical_params
+    ) + _fetch_storage_dataset(session, "MILS", prev_physical_params)
+    boalf_rows = _fetch_storage_dataset(
+        session,
+        "BOALF",
+        boalf_params,
+        endpoint=ELEXON_BOALF_STREAM,
+        include_dataset_param=False,
+    )
+
+    boalf_by_unit = _group_by_unit(boalf_rows)
+    pn_by_unit = _group_by_unit(pn_rows)
+    mels_by_unit = _group_by_unit(mels_rows)
+    mils_by_unit = _group_by_unit(mils_rows)
+
+    total_storage = 0.0
+    for unit in units:
+        unit_mw = _compute_unit_storage_mw(
+            boalf_records=boalf_by_unit.get(unit, []),
+            pn_records=pn_by_unit.get(unit, []),
+            mels_records=mels_by_unit.get(unit, []),
+            mils_records=mils_by_unit.get(unit, []),
+            period_start=timestamp,
+        )
+        total_storage += unit_mw
+
+    return total_storage
 
 
 def _extract_data_rows(payload: dict | list) -> list[dict]:
@@ -227,28 +346,158 @@ def _to_float(value: float | int | str | None) -> float | None:
     return None
 
 
-def _extract_dataset_value(record: dict) -> tuple[bool, float | None]:
-    value_keys = ["levelFrom", "quantity", "value", "boalf"]
-    for key in value_keys:
-        if key in record:
-            return True, _to_float(record.get(key))
-    return False, None
+def _parse_iso_datetime(dt_str: str) -> datetime:
+    """Parse an ISO 8601 datetime string (ending in 'Z') to a UTC-aware datetime."""
+    return datetime.strptime(dt_str, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
 
-def _extract_storage_key(record: dict) -> tuple[str, str, str] | None:
-    unit = record.get("bmUnit") or record.get("elexonBmUnit") or "__all_units__"
-    time_from = record.get("timeFrom") or record.get("startTime") or ""
-    time_to = record.get("timeTo") or record.get("endTime") or ""
-    return str(unit), str(time_from), str(time_to)
+def _group_by_unit(rows: list[dict]) -> dict[str, list[dict]]:
+    """Group API response rows by BMU unit identifier.
+
+    The Elexon API accepts queries using NESO, NGC, or Elexon BMU IDs, but
+    responses always return multiple ID formats:
+      - 'bmUnit': Elexon/settlement format, e.g. "T_ABRBO-1" or "E_TESTB-1"
+      - 'nationalGridBmUnit': NGC format, e.g. "ABRBO-1"
+      - 'elexonBmUnit': used by the BMU reference endpoint
+
+    Since the caller's unit list may use any of these formats, we index each
+    record under ALL of its available ID keys. This ensures lookups work
+    regardless of which format the unit list uses.
+    """
+    grouped: dict[str, list[dict]] = {}
+    for record in rows:
+        ids_found = (
+            {str(record["nationalGridBmUnit"])}
+            if record.get("nationalGridBmUnit")
+            else set()
+        )
+        for unit_id in ids_found:
+            grouped.setdefault(unit_id, []).append(record)
+    return grouped
 
 
-def _interval_minutes(interval_key: tuple[str, str, str]) -> float:
-    _, time_from, time_to = interval_key
-    if time_from and time_to:
-        start = datetime.strptime(time_from, "%Y-%m-%dT%H:%M:%SZ")
-        end = datetime.strptime(time_to, "%Y-%m-%dT%H:%M:%SZ")
-        return (end - start).total_seconds() / 60
-    return 30
+def _get_boalf_value_at_minute(
+    records: list[dict], minute_dt: datetime
+) -> float | None:
+    """Determine the BOALF MW level for a single unit at a specific minute.
+
+    BOALF (Bid-Offer Acceptance Level Flagged) records represent instructions
+    from the System Operator to a generation/storage unit. Multiple BOALF
+    records can cover the same minute — each identified by an acceptanceNumber.
+    A higher acceptanceNumber represents a more recent instruction that
+    supersedes earlier ones.
+
+    Algorithm:
+      1. Find all BOALF records whose [timeFrom, timeTo) interval covers
+         the minute.
+      2. Among those, pick the record with the highest acceptanceNumber.
+      3. Return its levelFrom (the MW level at the start of the interval).
+
+    We use levelFrom rather than interpolating between levelFrom and levelTo.
+    In practice, "body" records (spanning many minutes) have
+    levelFrom == levelTo, and "ramp" records are only 1 minute long, so
+    the error from not interpolating is negligible.
+
+    Returns None if no BOALF record covers this minute, signalling the
+    caller to fall back to PN data.
+    """
+    best_acceptance = -1
+    best_value: float | None = None
+
+    for rec in records:
+        time_from = _parse_iso_datetime(rec["timeFrom"])
+        time_to = _parse_iso_datetime(rec["timeTo"])
+
+        if time_from <= minute_dt < time_to:
+            acceptance = rec.get("acceptanceNumber", 0)
+            if acceptance > best_acceptance:
+                best_acceptance = acceptance
+                level = _to_float(rec.get("levelFrom"))
+                if level is not None:
+                    best_value = level
+
+    return best_value
+
+
+def _get_level_at_minute(records: list[dict], minute_dt: datetime) -> float | None:
+    """Determine the MW level from a PN/MELS/MILS dataset at a specific minute.
+
+    Physical Notification (PN), Maximum Export Limit (MELS), and Minimum
+    Import Limit (MILS) datasets share the same record structure with
+    timeFrom/timeTo and levelFrom/levelTo fields. Their intervals typically
+    align to settlement period boundaries but are not guaranteed to.
+
+    For a given minute, finds the record whose [timeFrom, timeTo) interval
+    covers it and returns its levelFrom.
+
+    Returns None if no record covers this minute.
+    """
+    for rec in records:
+        time_from_str = rec.get("timeFrom") or rec.get("startTime") or ""
+        time_to_str = rec.get("timeTo") or rec.get("endTime") or ""
+        if not time_from_str or not time_to_str:
+            continue
+
+        time_from = _parse_iso_datetime(time_from_str)
+        time_to = _parse_iso_datetime(time_to_str)
+
+        if time_from <= minute_dt < time_to:
+            return _to_float(rec.get("levelFrom"))
+
+    return None
+
+
+def _compute_unit_storage_mw(
+    boalf_records: list[dict],
+    pn_records: list[dict],
+    mels_records: list[dict],
+    mils_records: list[dict],
+    period_start: datetime,
+    period_minutes: int = 30,
+) -> float:
+    """Compute the average MW output for one storage unit over a 30-minute period.
+
+    Resolves the effective MW value at each minute in [period_start,
+    period_start + period_minutes) using the following precedence:
+
+        BOALF > clamp(PN, MILS, MELS) > PN > 0
+
+    Precedence rules in detail:
+      1. BOALF available  → use it directly. If multiple BOALF records
+         cover a minute, the highest acceptanceNumber wins.
+      2. PN available, and MELS and/or MILS available → clamp PN to
+         the [MILS, MELS] range. MELS is the Maximum Export Limit
+         (upper bound), MILS is the Minimum Import Limit (lower bound,
+         typically negative for storage importing/charging).
+      3. PN available, no limits → use PN as-is.
+      4. No data at all → assume 0 MW.
+
+    Returns the average MW over the period (sum of per-minute values
+    divided by period_minutes).
+    """
+    total = 0.0
+
+    for m in range(period_minutes):
+        minute_dt = period_start + timedelta(minutes=m)
+
+        boalf_value = _get_boalf_value_at_minute(boalf_records, minute_dt)
+        if boalf_value is not None:
+            total += boalf_value
+            continue
+
+        pn_value = _get_level_at_minute(pn_records, minute_dt)
+        if pn_value is not None:
+            clamped = pn_value
+            mels_value = _get_level_at_minute(mels_records, minute_dt)
+            mils_value = _get_level_at_minute(mils_records, minute_dt)
+            if mels_value is not None:
+                clamped = min(clamped, mels_value)
+            if mils_value is not None:
+                clamped = max(clamped, mils_value)
+            total += clamped
+            continue
+
+    return total / period_minutes
 
 
 def _fetch_storage_dataset(
@@ -269,86 +518,20 @@ def _fetch_storage_dataset(
     return _extract_data_rows(res.json())
 
 
-def _to_interval_map(
-    rows: list[dict],
-) -> dict[tuple[str, str, str], tuple[bool, float | None]]:
-    mapped: dict[tuple[str, str, str], tuple[bool, float | None]] = {}
-    for record in rows:
-        key = _extract_storage_key(record)
-        if key is None:
-            continue
-        has_value, value = _extract_dataset_value(record)
-        if has_value:
-            mapped[key] = (True, value)
-    return mapped
+def _previous_settlement_period(
+    settlement_date: str, settlement_period: int
+) -> tuple[str, int]:
+    """Return (date, period) for the settlement period immediately before the given one.
 
-
-def fetch_storage_for_units(units, timestamp: datetime, session: Session):
-    storage = 0.0
-    settlement_period = 1 + (timestamp.hour * 2) + (timestamp.minute // 30)
-    params = {
-        "settlementDate": timestamp.strftime("%Y-%m-%d"),
-        "settlementPeriod": settlement_period,
-        "bmUnit": units,
-    }
-    boalf_params = {
-        "from": timestamp.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "to": (timestamp + timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "bmUnit": units,
-    }
-
-    pn_rows = _fetch_storage_dataset(session, "PN", params)
-    mel_rows = _fetch_storage_dataset(session, "MELS", params)
-    boalf_rows = _fetch_storage_dataset(
-        session,
-        "BOALF",
-        boalf_params,
-        endpoint=ELEXON_BOALF_STREAM,
-        include_dataset_param=False,
-    )
-
-    pn_map = _to_interval_map(pn_rows)
-    mel_map = _to_interval_map(mel_rows)
-    boalf_map = _to_interval_map(boalf_rows)
-
-    interval_keys = set(pn_map) | set(mel_map) | set(boalf_map)
-    for key in interval_keys:
-        has_boalf, boalf_val = boalf_map.get(key, (False, None))
-        has_pn, pn_val = pn_map.get(key, (False, None))
-        has_mel, mel_val = mel_map.get(key, (False, None))
-
-        # order of precedence: BOALF > min(PN, MEL) > PN > 0.
-        # MEL is the maximum export limit
-        if has_boalf and boalf_val is not None:
-            output_act = boalf_val
-        elif has_pn and has_mel and pn_val is not None and mel_val is not None:
-            output_act = min(pn_val, mel_val)
-        elif has_pn and pn_val is not None:
-            output_act = pn_val
-        else:
-            output_act = 0
-
-        minutes = _interval_minutes(key)
-        storage += output_act * minutes / 30
-
-    return storage
-
-
-def fetch_storage(
-    session: Session,
-    timestamp: datetime,
-    hydro_units: list[str],
-    battery_units: list[str],
-    logger: Logger = getLogger(__name__),
-) -> list[dict] | dict:
-    storage_mix = StorageMix()
-    # Hydro storage
-    hydro_storage = fetch_storage_for_units(hydro_units, timestamp, session)
-    storage_mix.add_value("hydro", -hydro_storage)
-    # Battery storage
-    battery_storage = fetch_storage_for_units(battery_units, timestamp, session)
-    storage_mix.add_value("battery", -battery_storage)
-    return storage_mix
+    Settlement periods are numbered 1–48 within a day (each 30 minutes).
+    Period 1 on day D is preceded by period 48 on day D-1.
+    """
+    if settlement_period > 1:
+        return settlement_date, settlement_period - 1
+    prev_date = (
+        datetime.strptime(settlement_date, "%Y-%m-%d") - timedelta(days=1)
+    ).strftime("%Y-%m-%d")
+    return prev_date, 48
 
 
 def get_hydro_storage_units(session: Session, zone_key: ZoneKey) -> list[str]:
@@ -363,7 +546,7 @@ def get_hydro_storage_units(session: Session, zone_key: ZoneKey) -> list[str]:
     hydro_storage_units = []
     for r in res.json():
         if r["fuelType"] == "PS":  # PS = pumped storage
-            hydro_storage_units.append(r["elexonBmUnit"])
+            hydro_storage_units.append(r["nationalGridBmUnit"])
 
     return hydro_storage_units
 
