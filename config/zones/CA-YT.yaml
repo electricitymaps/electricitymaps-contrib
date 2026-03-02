@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -133.4063637454847
   - 64.82479931598489
+centroid:
+  - -132.4688653983901
+  - 64.31861763666498
 capacity:
   hydro: 116
 contributors:

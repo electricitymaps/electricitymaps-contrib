@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 1.4832148321483485
   - 38.69595307385909
+centroid:
+  - 1.4778147781478097
+  - 38.68414664048718
 can_have_zero_production: true
 contributors:
   - hectorespert

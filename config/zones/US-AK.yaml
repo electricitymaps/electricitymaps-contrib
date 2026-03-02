@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -154.0273461239334
   - 63.44731706974936
+centroid:
+  - -145.59951380519547
+  - 59.357287708720236
 country: US
 country_name: USA
 currency: USD

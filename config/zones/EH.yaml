@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -12.824445339781253
   - 24.502323564027694
+centroid:
+  - -14.289802950951172
+  - 24.108608948434593
 country: EH
 country_name: Western Sahara
 currency: MAD

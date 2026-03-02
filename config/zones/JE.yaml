@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -2.1404892503977013
   - 49.21377490075747
+centroid:
+  - -2.1492769624498447
+  - 49.204571809876356
 country: JE
 country_name: Jersey
 currency: GBP

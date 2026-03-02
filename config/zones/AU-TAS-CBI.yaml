@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 148.20088200882006
   - -40.40643497649612
+centroid:
+  - 148.27198271982715
+  - -40.40035287445605
 country: AU
 country_name: Australia
 currency: AUD

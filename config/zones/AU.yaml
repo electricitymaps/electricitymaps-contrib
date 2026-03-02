@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 133.50111357697187
   - -27.321631528353937
+centroid:
+  - 136.08029929292996
+  - -25.012631598216576
 bypassedSubZones:
   - AU-LH
   - AU-TAS-CBI

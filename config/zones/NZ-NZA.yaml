@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 166.06606066060655
   - -50.7066536667137
+centroid:
+  - 166.11826118261177
+  - -50.70236041821482
 country: NZ
 country_name: New Zealand
 has_day_ahead_price_license: False

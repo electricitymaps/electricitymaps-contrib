@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -17.21642549747638
   - 28.116673231214634
+centroid:
+  - -17.227404126168764
+  - 28.1194594372202
 capacity:
   oil: 22.8
 contributors:

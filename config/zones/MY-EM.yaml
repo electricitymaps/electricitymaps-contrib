@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 114.95590070053368
   - 3.825095089397509
+centroid:
+  - 114.85419187376294
+  - 3.8377512078982656
 contributors:
   - FelixDQ
 country: MY

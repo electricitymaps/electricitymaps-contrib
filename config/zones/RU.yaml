@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 21.687780666148868
   - 54.69528449606483
+centroid:
+  - 84.39350790706435
+  - 65.2797034536478
 bypassedSubZones:
   - RU-1
   - RU-2

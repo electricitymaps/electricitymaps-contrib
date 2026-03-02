@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 1.5768157681577009
   - 42.51909086210726
+centroid:
+  - 1.593015930159325
+  - 42.53411723185333
 contributors:
   - Manu1400
   - autipial

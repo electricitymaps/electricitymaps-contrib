@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 45.21936963272702
   - 24.524262432832636
+centroid:
+  - 43.41838500024943
+  - 23.38588736990934
 contributors:
   - q--
 country: SA

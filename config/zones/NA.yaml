@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 16.36232295834883
   - -22.92689159227441
+centroid:
+  - 17.33432452315824
+  - -22.13859552069178
 capacity:
   coal: 120
   hydro: 347

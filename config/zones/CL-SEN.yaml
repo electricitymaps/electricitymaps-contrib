@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -70.73505081816626
   - -30.813972238241195
+centroid:
+  - -71.16228261519247
+  - -33.246601933796626
 capacity:
   geothermal:
     - datetime: '2023-12-01'

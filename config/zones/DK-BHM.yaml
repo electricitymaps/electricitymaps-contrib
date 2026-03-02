@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 14.916749167491702
   - 55.14982794579748
+centroid:
+  - 14.916749167491702
+  - 55.13337049321846
 can_have_zero_production: true
 capacity:
   wind: 30
