@@ -1,5 +1,14 @@
-"""Parser that uses the RTE-FRANCE API"""
+"""
+Price parser that uses the RTE-FRANCE API
+Production parser that uses the NESO and Elexon APIs
+The storage values are computed using the Elexon API, aggregating the data per unit. To debug this use you can use:
 
+PRINT_DETAILS=hydro_storage uv run test_parser GB     -> which prints the hydro storage details, also including the minute details
+PRINT_DETAILS=battery_storage uv run test_parser GB   -> which prints the battery storage details, excluding the minute details, since there are too many battery units to print the minute details for each one
+
+"""
+
+import os
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from io import BytesIO
@@ -217,25 +226,41 @@ def fetch_storage(
     battery_units: list[str],
     logger: Logger = getLogger(__name__),
 ) -> list[dict] | dict:
+    debug = os.environ.get("PRINT_DETAILS", "").lower()
     storage_mix = StorageMix()
     # Hydro storage
-    hydro_storage = fetch_storage_for_units(hydro_units, timestamp, session)
+    hydro_storage = fetch_storage_for_units(
+        hydro_units,
+        timestamp,
+        session,
+        print_details=debug == "hydro_storage",
+        print_minute_details=debug == "hydro_storage",
+    )
     storage_mix.add_value("hydro", -hydro_storage)
     # Battery storage
-    battery_storage = fetch_storage_for_units(battery_units, timestamp, session)
+    battery_storage = fetch_storage_for_units(
+        battery_units,
+        timestamp,
+        session,
+        print_details=debug == "battery_storage",
+        print_minute_details=False,
+    )
     storage_mix.add_value("battery", -battery_storage)
     return storage_mix
 
 
 def fetch_storage_for_units(
-    units: list[str], timestamp: datetime, session: Session
+    units: list[str],
+    timestamp: datetime,
+    session: Session,
+    print_details: bool = False,
+    print_minute_details: bool = False,
 ) -> float:
     """Compute the aggregate storage MW for a list of BMU units over one settlement period.
 
     Args:
         units: List of BMU unit identifiers (e.g. ["T_CRUA-1", "T_CRUA-2"]).
         timestamp: The UTC start of the 30-minute settlement period.
-        session: HTTP session for Elexon API calls.
 
     Returns:
         The sum of average MW across all units for this period. Positive
@@ -312,17 +337,32 @@ def fetch_storage_for_units(
     mels_by_unit = _group_by_unit(mels_rows)
     mils_by_unit = _group_by_unit(mils_rows)
 
+    if print_details:
+        print(
+            f"\n  [{timestamp.strftime('%Y-%m-%d %H:%M')}] {len(units)} units, "
+            f"API returned: {len(boalf_rows)} BOALF, {len(pn_rows)} PN, "
+            f"{len(mels_rows)} MELS, {len(mils_rows)} MILS rows"
+        )
+
     total_storage = 0.0
     for unit in units:
+        if print_details:
+            n_boalf = len(boalf_by_unit.get(unit, []))
+            n_pn = len(pn_by_unit.get(unit, []))
+            print(f"  {unit}: {n_boalf} BOALF recs, {n_pn} PN recs", end="")
         unit_mw = _compute_unit_storage_mw(
             boalf_records=boalf_by_unit.get(unit, []),
             pn_records=pn_by_unit.get(unit, []),
             mels_records=mels_by_unit.get(unit, []),
             mils_records=mils_by_unit.get(unit, []),
             period_start=timestamp,
+            print_details=print_details,
+            print_minute_details=print_minute_details,
         )
         total_storage += unit_mw
 
+    if print_details:
+        print(f"  TOTAL: {total_storage:.1f} MW")
     return total_storage
 
 
@@ -352,18 +392,7 @@ def _parse_iso_datetime(dt_str: str) -> datetime:
 
 
 def _group_by_unit(rows: list[dict]) -> dict[str, list[dict]]:
-    """Group API response rows by BMU unit identifier.
-
-    The Elexon API accepts queries using NESO, NGC, or Elexon BMU IDs, but
-    responses always return multiple ID formats:
-      - 'bmUnit': Elexon/settlement format, e.g. "T_ABRBO-1" or "E_TESTB-1"
-      - 'nationalGridBmUnit': NGC format, e.g. "ABRBO-1"
-      - 'elexonBmUnit': used by the BMU reference endpoint
-
-    Since the caller's unit list may use any of these formats, we index each
-    record under ALL of its available ID keys. This ensures lookups work
-    regardless of which format the unit list uses.
-    """
+    """Group API response rows by BMU unit identifier."""
     grouped: dict[str, list[dict]] = {}
     for record in rows:
         ids_found = (
@@ -454,15 +483,14 @@ def _compute_unit_storage_mw(
     mils_records: list[dict],
     period_start: datetime,
     period_minutes: int = 30,
+    print_details: bool = False,
+    print_minute_details: bool = False,
 ) -> float:
     """Compute the average MW output for one storage unit over a 30-minute period.
 
     Resolves the effective MW value at each minute in [period_start,
     period_start + period_minutes) using the following precedence:
 
-        BOALF > clamp(PN, MILS, MELS) > PN > 0
-
-    Precedence rules in detail:
       1. BOALF available  → use it directly. If multiple BOALF records
          cover a minute, the highest acceptanceNumber wins.
       2. PN available, and MELS and/or MILS available → clamp PN to
@@ -476,28 +504,56 @@ def _compute_unit_storage_mw(
     divided by period_minutes).
     """
     total = 0.0
+    boalf_minutes = 0
+    pn_minutes = 0
+    zero_minutes = 0
+    minute_details: list[str] = []
 
     for m in range(period_minutes):
         minute_dt = period_start + timedelta(minutes=m)
+        ts = minute_dt.strftime("%H:%M")
 
         boalf_value = _get_boalf_value_at_minute(boalf_records, minute_dt)
+        pn_value = _get_level_at_minute(pn_records, minute_dt)
+        mels_value = _get_level_at_minute(mels_records, minute_dt)
+        mils_value = _get_level_at_minute(mils_records, minute_dt)
+
         if boalf_value is not None:
             total += boalf_value
+            boalf_minutes += 1
+            if boalf_value != 0 or (pn_value is not None and pn_value != 0):
+                pn_str = f"|PN:{pn_value:.0f}" if pn_value is not None else ""
+                minute_details.append(f"{ts}=BOALF:{boalf_value:.0f}{pn_str}")
             continue
 
-        pn_value = _get_level_at_minute(pn_records, minute_dt)
         if pn_value is not None:
             clamped = pn_value
-            mels_value = _get_level_at_minute(mels_records, minute_dt)
-            mils_value = _get_level_at_minute(mils_records, minute_dt)
             if mels_value is not None:
                 clamped = min(clamped, mels_value)
             if mils_value is not None:
                 clamped = max(clamped, mils_value)
             total += clamped
+            pn_minutes += 1
+            if clamped != 0:
+                extra = ""
+                if clamped != pn_value:
+                    extra = f"(raw:{pn_value:.0f})"
+                minute_details.append(f"{ts}=PN:{clamped:.0f}{extra}")
             continue
 
-    return total / period_minutes
+        zero_minutes += 1
+
+    avg_mw = total / period_minutes
+    if print_details:
+        summary = (
+            f"    {boalf_minutes}xBOALF {pn_minutes}xPN {zero_minutes}xNODATA"
+            f" → avg={avg_mw:.1f} MW"
+        )
+        print(summary)
+        if print_minute_details and minute_details:
+            for m in minute_details:
+                print(f"      {m}")
+    return avg_mw
 
 
 def _fetch_storage_dataset(
