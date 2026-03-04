@@ -3,12 +3,6 @@ bounding_box:
     - 33.93116278152432
   - - -117.60417604176035
     - 37.28132769347978
-center_point:
-  - -118.07218072180714
-  - 36.132168178614236
-centroid:
-  - -118.22272435424313
-  - 35.83902890080555
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -101,6 +95,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 5012.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 5559.4
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -218,6 +215,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 1517.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1517.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -226,6 +226,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 440.5
+center_point:
+  - -118.07218072180714
+  - 36.132168178614236
+centroid:
+  - -118.22272435424313
+  - 35.83902890080555
 comment: Los Angeles Department Of Water And Power
 contributors:
   - systemcatch

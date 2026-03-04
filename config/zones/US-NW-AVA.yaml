@@ -3,12 +3,6 @@ bounding_box:
     - 45.07929805026971
   - - -114.20214202142014
     - 48.999551747062824
-center_point:
-  - -116.69400141761005
-  - 47.049674829537196
-centroid:
-  - -116.3158833189545
-  - 46.901122204162334
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -52,6 +46,9 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 1170.4
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1170.6
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -85,6 +82,12 @@ capacity:
     - datetime: '2024-09-01'
       source: EIA.gov
       value: 349.3
+center_point:
+  - -116.69400141761005
+  - 47.049674829537196
+centroid:
+  - -116.3158833189545
+  - 46.901122204162334
 comment: Avista Corporation
 contributors:
   - systemcatch

@@ -3,12 +3,6 @@ bounding_box:
     - 31.332316356872
   - - -102.03175407765414
     - 37.80081076184365
-center_point:
-  - -106.21269318854388
-  - 34.38777036219062
-centroid:
-  - -106.53541157041239
-  - 34.919446822264426
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -44,6 +38,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 887.5
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 900.4
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -224,6 +221,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2069.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2199.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -256,6 +256,12 @@ capacity:
     - datetime: '2022-02-01'
       source: EIA.gov
       value: 2569.0
+center_point:
+  - -106.21269318854388
+  - 34.38777036219062
+centroid:
+  - -106.53541157041239
+  - 34.919446822264426
 comment: Public Service Company Of New Mexico
 contributors:
   - systemcatch

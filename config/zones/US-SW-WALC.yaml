@@ -3,12 +3,6 @@ bounding_box:
     - 31.332316356872
   - - -105.62685626856262
     - 38.510627846990985
-center_point:
-  - -110.02697591635858
-  - 33.21112655362538
-centroid:
-  - -111.57498726391051
-  - 34.22847276486294
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -128,6 +122,9 @@ capacity:
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 340.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 579.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -139,6 +136,12 @@ capacity:
     - datetime: '2020-12-01'
       source: EIA.gov
       value: 350.0
+center_point:
+  - -110.02697591635858
+  - 33.21112655362538
+centroid:
+  - -111.57498726391051
+  - 34.22847276486294
 comment: Western Area Power Administration - Desert Southwest Region
 contributors:
   - systemcatch

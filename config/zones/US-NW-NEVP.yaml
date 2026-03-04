@@ -3,12 +3,6 @@ bounding_box:
     - 35.1203926157127
   - - -111.71451714517138
     - 41.9933830361321
-center_point:
-  - -115.85771214718278
-  - 38.79209090856581
-centroid:
-  - -114.98185638409322
-  - 38.83583418075562
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -55,6 +49,9 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 531.8
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -62,6 +59,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 8339.0
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -268,6 +268,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 150.0
+center_point:
+  - -115.85771214718278
+  - 38.79209090856581
+centroid:
+  - -114.98185638409322
+  - 38.83583418075562
 comment: Nevada Power Company
 contributors:
   - systemcatch

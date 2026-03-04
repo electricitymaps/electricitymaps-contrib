@@ -3,12 +3,6 @@ bounding_box:
     - 30.877232015991254
   - - -92.48672486724861
     - 48.99978910378593
-center_point:
-  - -99.25192402528673
-  - 40.10576311189023
-centroid:
-  - -98.17885953810394
-  - 39.49536636803802
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -44,6 +38,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 198.5
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 450.5
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -242,6 +239,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 36861.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 36869.6
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -370,6 +370,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2233.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2223.5
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -521,6 +524,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 1170.2
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1428.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -676,6 +682,15 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 34865.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 35463.4
+center_point:
+  - -99.25192402528673
+  - 40.10576311189023
+centroid:
+  - -98.17885953810394
+  - 39.49536636803802
 comment: Southwest Power Pool
 contributors:
   - systemcatch
