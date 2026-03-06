@@ -162,6 +162,7 @@ def fetch_production(
 
     if target_datetime is None:
         start_datetime = datetime.now(tz=ZoneInfo("UTC")) - timedelta(hours=4)
+        end_datetime = None
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
     elif target_datetime > datetime(year=2009, month=1, day=1):
@@ -200,6 +201,8 @@ def fetch_production(
 
         if timestamp < start_datetime:
             continue
+        if end_datetime is not None and timestamp > end_datetime:
+            break
 
         production_mix = ProductionMix()
 
