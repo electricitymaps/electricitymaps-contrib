@@ -3,12 +3,6 @@ bounding_box:
     - 32.56447867604912
   - - -78.54289396063669
     - 34.841331463285826
-center_point:
-  - -79.7836270483866
-  - 33.9804037610069
-centroid:
-  - -80.31007833777494
-  - 34.03152822270473
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -103,6 +97,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -79.7836270483866
+  - 33.9804037610069
+centroid:
+  - -80.31007833777494
+  - 34.03152822270473
 comment: South Carolina Public Service Authority
 contributors:
   - systemcatch

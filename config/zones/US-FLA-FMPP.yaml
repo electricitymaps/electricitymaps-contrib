@@ -3,12 +3,6 @@ bounding_box:
     - 26.327819690016725
   - - -80.04500045000445
     - 30.18601900767237
-center_point:
-  - -81.27621276212757
-  - 28.256919348844548
-centroid:
-  - -81.52605526055255
-  - 28.532223908834915
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -97,6 +91,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -81.27621276212757
+  - 28.256919348844548
+centroid:
+  - -81.52605526055255
+  - 28.532223908834915
 comment: Florida Municipal Power Pool
 contributors:
   - systemcatch

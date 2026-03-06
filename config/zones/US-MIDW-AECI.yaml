@@ -3,12 +3,6 @@ bounding_box:
     - 34.66817044049786
   - - -89.08829088290878
     - 41.279773128765356
-center_point:
-  - -92.78449868725454
-  - 37.92824198196455
-centroid:
-  - -93.37016403708525
-  - 37.63684336204722
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -91,6 +85,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 959.4
+center_point:
+  - -92.78449868725454
+  - 37.92824198196455
+centroid:
+  - -93.37016403708525
+  - 37.63684336204722
 comment: Associated Electric Cooperative, Inc.
 contributors:
   - systemcatch

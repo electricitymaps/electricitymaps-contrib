@@ -3,12 +3,6 @@ bounding_box:
     - 46.73649197083546
   - - -120.2826028260282
     - 48.991878515577795
-center_point:
-  - -121.72261722617219
-  - 47.96436104151371
-centroid:
-  - -122.04414089782469
-  - 47.736102970250556
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -88,6 +82,12 @@ capacity:
     - datetime: '2022-11-01'
       source: EIA.gov
       value: 868.4
+center_point:
+  - -121.72261722617219
+  - 47.96436104151371
+centroid:
+  - -122.04414089782469
+  - 47.736102970250556
 comment: Puget Sound Energy
 contributors:
   - systemcatch

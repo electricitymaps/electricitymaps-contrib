@@ -3,12 +3,6 @@ bounding_box:
     - 32.085065927008074
   - - -79.42939429394289
     - 34.7354313336469
-center_point:
-  - -81.12491647633112
-  - 33.41858838624407
-centroid:
-  - -81.04805138700345
-  - 33.48424702846477
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -71,6 +65,9 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 3466.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 3597.1
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -115,6 +112,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 56.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 17.5
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -196,6 +196,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -81.12491647633112
+  - 33.41858838624407
+centroid:
+  - -81.04805138700345
+  - 33.48424702846477
 comment: South Carolina Electric & Gas Company
 contributors:
   - systemcatch

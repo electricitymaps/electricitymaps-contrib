@@ -3,12 +3,6 @@ bounding_box:
     - 44.78020173818142
   - - -121.66861668616679
     - 45.90646392771963
-center_point:
-  - -122.6946269462694
-  - 45.34333283295052
-centroid:
-  - -122.79128791287906
-  - 45.341830195975916
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -187,6 +181,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.5
+center_point:
+  - -122.6946269462694
+  - 45.34333283295052
+centroid:
+  - -122.79128791287906
+  - 45.341830195975916
 comment: Portland General Electric Company
 contributors:
   - systemcatch

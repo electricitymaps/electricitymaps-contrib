@@ -3,12 +3,6 @@ bounding_box:
     - 47.26026828769821
   - - -119.91539915399147
     - 48.57543341118692
-center_point:
-  - -120.53640536405358
-  - 47.917850849442566
-centroid:
-  - -120.63348633486329
-  - 47.90978908281691
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -79,6 +73,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -120.53640536405358
+  - 47.917850849442566
+centroid:
+  - -120.63348633486329
+  - 47.90978908281691
 comment: Public Utility District No. 1 Of Chelan County
 contributors:
   - systemcatch
