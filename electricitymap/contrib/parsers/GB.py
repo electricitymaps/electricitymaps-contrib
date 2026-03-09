@@ -617,7 +617,7 @@ def get_battery_units(session: Session, zone_key: ZoneKey) -> list[str]:
     """
     res = session.get(
         ELEXON_BMU_FUEL_TYPE_URL,
-        headers={"User-Agent": "electricitymaps.com"},
+        headers={"User-Agent": "Mozilla/5.0"},
     )
     if not res.ok:
         raise ParserException(
