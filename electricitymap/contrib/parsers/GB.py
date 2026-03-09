@@ -443,9 +443,9 @@ def _get_boalf_value_at_minute(
         if time_from <= minute_dt < time_to:
             acceptance = rec.get("acceptanceNumber", 0)
             if acceptance > best_acceptance:
-                best_acceptance = acceptance
                 level = _to_float(rec.get("levelFrom"))
                 if level is not None:
+                    best_acceptance = acceptance
                     best_value = level
 
     return best_value
