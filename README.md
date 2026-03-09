@@ -51,7 +51,7 @@ Use these channels to be part of the community, ask for help while using Electri
 
 - [GitHub Issues](https://github.com/electricitymaps/electricitymaps-contrib/issues): Raise any issues you encounter with the data or bugs you find while using the app.
 - [GitHub Discussions](https://github.com/electricitymaps/electricitymaps-contrib/discussions): Join discussions and share new ideas for features.
-- [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): For guides for how to set up development environment, etc.
+- [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): Guides on setting up the development environment, etc.
 - [Our Commercial Website](https://electricitymaps.com/): Learn more about how you or your company can use the data too.
 - [Our Blog](https://electricitymaps.com/blog/): Read about the green transition and how Electricity Maps is helping to accelerate it.
 - [Twitter](https://twitter.com/electricitymaps): Follow for latest news
