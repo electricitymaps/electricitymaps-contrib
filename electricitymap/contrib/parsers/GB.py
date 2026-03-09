@@ -216,7 +216,7 @@ def fetch_production(
             datetime=timestamp,
             production=production_mix,
             storage=storage_mix,
-            source="neso.energy, elexon",
+            source="neso.energy, elexon.co.uk",
         )
 
     return production_list.to_list()
