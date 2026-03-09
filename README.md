@@ -51,7 +51,7 @@ Use these channels to be part of the community, ask for help while using Electri
 
 - [GitHub Issues](https://github.com/electricitymaps/electricitymaps-contrib/issues): Raise any issues you encounter with the data or bugs you find while using the app.
 - [GitHub Discussions](https://github.com/electricitymaps/electricitymaps-contrib/discussions): Join discussions and share new ideas for features.
-- [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): Learn more about methodology, guides for how to set up development environment, etc.
+- [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): For guides for how to set up development environment, etc.
 - [Our Commercial Website](https://electricitymaps.com/): Learn more about how you or your company can use the data too.
 - [Our Blog](https://electricitymaps.com/blog/): Read about the green transition and how Electricity Maps is helping to accelerate it.
 - [Twitter](https://twitter.com/electricitymaps): Follow for latest news
@@ -80,7 +80,7 @@ The CO<sub>2</sub>/capita metric, by involving the size of the population, and b
 CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
 **CO<sub>2</sub> emission factors look high — what do they cover exactly?**
-The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions and decommissioning). Read more on the [Emissions Factor Wiki page](https://github.com/electricitymaps/electricitymaps-contrib/wiki/Emission-factors).
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions and decommissioning). Read more on the [Emissions Factor methodology section](https://www.electricitymaps.com/data/methodology#vi-precision-in-emissions-factors).
 
 **How can I get access to the API?**
 All this and more can be found **[here](https://electricitymaps.com/)**.
