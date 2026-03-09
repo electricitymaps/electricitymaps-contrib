@@ -1,0 +1,92 @@
+# serializer version: 1
+# name: test_fetch_production
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 320.0,
+        'gas': 700.0,
+        'hydro': 46.0,
+        'nuclear': 3950.0,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 560.0,
+        'wind': 4230.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': 30.0,
+        'hydro': 200.0,
+      }),
+      'zoneKey': 'BE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 321.0,
+        'gas': 550.0,
+        'hydro': 46.7,
+        'nuclear': 3948.0,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 607.0,
+        'wind': 4217.0,
+      }),
+      'source': 'entsoe.eu, opendata.elia.be',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -40.0,
+        'hydro': 0,
+      }),
+      'zoneKey': 'BE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 1, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 325.84,
+        'gas': 560.96,
+        'hydro': 46.67,
+        'nuclear': 3947.66,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 600.66,
+        'wind': 4251.79,
+      }),
+      'source': 'opendata.elia.be',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -45.0,
+        'hydro': 0,
+      }),
+      'zoneKey': 'BE',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 1, 1, 1, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 320.65,
+        'hydro': 46.86,
+        'nuclear': 3947.71,
+        'oil': 0.0,
+        'solar': 0.0,
+        'unknown': 591.49,
+        'wind': 4266.5,
+      }),
+      'source': 'opendata.elia.be',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'battery': -50.0,
+        'hydro': 0,
+      }),
+      'zoneKey': 'BE',
+    }),
+  ])
+# ---

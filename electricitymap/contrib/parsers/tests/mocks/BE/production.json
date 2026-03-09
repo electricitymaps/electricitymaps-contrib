@@ -1,0 +1,257 @@
+{
+  "total_count": 24,
+  "results": [
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Nuclear",
+      "fueltypepublication": "Nuclear",
+      "generatedpower": 3947.71
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Oil",
+      "fueltypepublication": "Other Fossil Fuels",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Pumped Storage",
+      "fueltypepublication": "Water",
+      "generatedpower": null
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Waste",
+      "fueltypepublication": "Other",
+      "generatedpower": 248.56
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Offshore",
+      "fueltypepublication": "Wind Offshore",
+      "generatedpower": 2098.98
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Onshore",
+      "fueltypepublication": "Wind Onshore",
+      "generatedpower": 2167.52
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Gas",
+      "fueltypepublication": "Natural Gas",
+      "generatedpower": null
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Biomass",
+      "fueltypepublication": "Biofuels",
+      "generatedpower": 72.09
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Solar",
+      "fueltypepublication": "Solar",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Run-of-river and poundage",
+      "fueltypepublication": "Water",
+      "generatedpower": 46.86
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Other",
+      "fueltypepublication": "Other",
+      "generatedpower": 591.49
+    },
+    {
+      "datetime": "2024-01-01T01:45:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Energy Storage",
+      "fueltypepublication": "Energy Storage",
+      "generatedpower": -50.0
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Nuclear",
+      "fueltypepublication": "Nuclear",
+      "generatedpower": 3947.66
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Oil",
+      "fueltypepublication": "Other Fossil Fuels",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Pumped Storage",
+      "fueltypepublication": "Water",
+      "generatedpower": null
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Waste",
+      "fueltypepublication": "Other",
+      "generatedpower": 251.24
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Offshore",
+      "fueltypepublication": "Wind Offshore",
+      "generatedpower": 2097.65
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Onshore",
+      "fueltypepublication": "Wind Onshore",
+      "generatedpower": 2154.14
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Gas",
+      "fueltypepublication": "Natural Gas",
+      "generatedpower": 560.96
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Biomass",
+      "fueltypepublication": "Biofuels",
+      "generatedpower": 74.6
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Solar",
+      "fueltypepublication": "Solar",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Run-of-river and poundage",
+      "fueltypepublication": "Water",
+      "generatedpower": 46.67
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Other",
+      "fueltypepublication": "Other",
+      "generatedpower": 600.66
+    },
+    {
+      "datetime": "2024-01-01T01:30:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Energy Storage",
+      "fueltypepublication": "Energy Storage",
+      "generatedpower": -45.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Nuclear",
+      "fueltypepublication": "Nuclear",
+      "generatedpower": 3948.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Oil",
+      "fueltypepublication": "Other Fossil Fuels",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Pumped Storage",
+      "fueltypepublication": "Water",
+      "generatedpower": null
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Waste",
+      "fueltypepublication": "Other",
+      "generatedpower": 250.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Offshore",
+      "fueltypepublication": "Wind Offshore",
+      "generatedpower": 2101.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Wind Onshore",
+      "fueltypepublication": "Wind Onshore",
+      "generatedpower": 2116.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Fossil Gas",
+      "fueltypepublication": "Natural Gas",
+      "generatedpower": null
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Biomass",
+      "fueltypepublication": "Biofuels",
+      "generatedpower": 71.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Solar",
+      "fueltypepublication": "Solar",
+      "generatedpower": 0.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Hydro Run-of-river and poundage",
+      "fueltypepublication": "Water",
+      "generatedpower": 46.7
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Other",
+      "fueltypepublication": "Other",
+      "generatedpower": 607.0
+    },
+    {
+      "datetime": "2024-01-01T01:00:00+00:00",
+      "resolutioncode": "PT15M",
+      "fueltypeentsoe": "Energy Storage",
+      "fueltypepublication": "Energy Storage",
+      "generatedpower": -40.0
+    }
+  ]
+}
