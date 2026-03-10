@@ -169,7 +169,7 @@ def fetch_production(
         end_datetime = datetime.now(tz=ZoneInfo("UTC"))
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
-    elif target_datetime > datetime(year=2009, month=1, day=1):
+    elif target_datetime > datetime(year=2009, month=1, day=1, tzinfo=timezone.utc):
         target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
         start_datetime = target_datetime - timedelta(hours=48)
         end_datetime = target_datetime + timedelta(hours=24)

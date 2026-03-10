@@ -5627,7 +5627,7 @@
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
         'battery': -0.0,
-        'hydro': -0.0,
+        'hydro': -120.0,
       }),
       'zoneKey': 'GB',
     }),
