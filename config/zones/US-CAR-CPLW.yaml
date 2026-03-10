@@ -3,12 +3,6 @@ bounding_box:
     - 35.004474906243075
   - - -81.69381693816933
     - 36.25094805374978
-center_point:
-  - -82.43853257314427
-  - 35.70823719184149
-centroid:
-  - -82.57668976689762
-  - 35.59894671505396
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -79,6 +73,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -82.43853257314427
+  - 35.70823719184149
+centroid:
+  - -82.57668976689762
+  - 35.59894671505396
 comment: Duke Energy Progress West
 contributors:
   - systemcatch

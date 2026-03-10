@@ -3,12 +3,6 @@ bounding_box:
     - 35.96473148715812
   - - -90.29070290702902
     - 36.26812104774528
-center_point:
-  - -90.55710557105566
-  - 36.1164262674517
-centroid:
-  - -90.55530555305548
-  - 36.095198538762816
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -106,6 +100,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 499.0
+center_point:
+  - -90.55710557105566
+  - 36.1164262674517
+centroid:
+  - -90.55530555305548
+  - 36.095198538762816
 comment: Southwestern Power Administration
 contributors:
   - systemcatch

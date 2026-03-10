@@ -3,17 +3,14 @@ bounding_box:
     - 34.52219999153611
   - - -104.65484654846543
     - 45.00068037022231
-center_point:
-  - -109.51721481248637
-  - 39.57918484411764
-centroid:
-  - -110.63403009487944
-  - 39.59953986324012
 capacity:
   battery storage:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 200.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -145,6 +142,9 @@ capacity:
     - datetime: '2021-03-01'
       source: EIA.gov
       value: 271.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 271.3
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -224,6 +224,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 2497.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2522.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -271,6 +274,15 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 4173.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 4573.3
+center_point:
+  - -109.51721481248637
+  - 39.57918484411764
+centroid:
+  - -110.63403009487944
+  - 39.59953986324012
 comment: Pacificorp - East
 contributors:
   - systemcatch

@@ -3,12 +3,6 @@ bounding_box:
     - 39.1660637844859
   - - -117.60417604176035
     - 47.082814016411376
-center_point:
-  - -121.15138084484636
-  - 43.369207468708666
-centroid:
-  - -121.36958197432962
-  - 44.139979983322945
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -161,6 +155,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 491.1
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 495.5
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -190,6 +187,12 @@ capacity:
     - datetime: '2022-11-01'
       source: EIA.gov
       value: 489.9
+center_point:
+  - -121.15138084484636
+  - 43.369207468708666
+centroid:
+  - -121.36958197432962
+  - 44.139979983322945
 comment: Pacificorp - West
 contributors:
   - systemcatch
