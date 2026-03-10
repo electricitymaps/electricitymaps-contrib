@@ -4,7 +4,7 @@
     "result": {
       "records": [
         {
-          "DATETIME": "2024-12-15T10:00:00",
+          "DATETIME": "2024-12-16T10:00:00",
           "BIOMASS": 5.0,
           "COAL": 0.0,
           "GAS": 10.5,
@@ -17,7 +17,7 @@
           "STORAGE": 0.0
         },
         {
-          "DATETIME": "2024-12-15T10:30:00",
+          "DATETIME": "2024-12-16T10:30:00",
           "BIOMASS": 6.0,
           "COAL": 1.0,
           "GAS": 11.0,
