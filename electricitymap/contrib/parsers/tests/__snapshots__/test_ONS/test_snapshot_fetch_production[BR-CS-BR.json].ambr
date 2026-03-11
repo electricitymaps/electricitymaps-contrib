@@ -1,0 +1,22 @@
+# serializer version: 1
+# name: test_snapshot_fetch_production[BR-CS-BR.json]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'production': dict({
+        'hydro': 35888.05363,
+        'nuclear': 1829.29529,
+        'solar': 2.85705,
+        'unknown': 2507.78833,
+        'wind': 4.2,
+      }),
+      'source': 'ons.org.br',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'BR-CS',
+    }),
+  ])
+# ---

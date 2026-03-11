@@ -5,6 +5,7 @@ from importlib import resources
 import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.MD import (
     fetch_consumption,
@@ -66,7 +67,9 @@ def test_fetch_exchange_live(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange(ZoneKey("MD"), ZoneKey(neighbor), session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
+        ZoneKey("MD"), ZoneKey(neighbor), session=session
+    )
 
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
@@ -81,7 +84,7 @@ def test_fetch_exchange_historical(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         ZoneKey("MD"),
         ZoneKey(neighbor),
         target_datetime=historical_datetime,
@@ -102,9 +105,9 @@ def test_fetch_exchange_forecast_live(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange_forecast(
-        ZoneKey("MD"), ZoneKey(neighbor), session=session
-    )
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_exchange_forecast(ZoneKey("MD"), ZoneKey(neighbor), session=session)
 
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
@@ -119,7 +122,9 @@ def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbor
         ),
     )
 
-    assert snapshot == fetch_exchange_forecast(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_exchange_forecast(
         ZoneKey("MD"),
         ZoneKey(neighbor),
         target_datetime=historical_datetime,
@@ -149,7 +154,9 @@ def test_fetch_price_live(snapshot):
     ],
 )
 def test_fetch_price_historical(snapshot, historical_datetime):
-    assert snapshot == fetch_price(target_datetime=historical_datetime)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
+        target_datetime=historical_datetime
+    )
 
 
 @frozen_live_time

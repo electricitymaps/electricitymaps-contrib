@@ -1,0 +1,549 @@
+# serializer version: 1
+# name: test_fetch_production_live[FO-SI]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.73,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.97,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.95,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.76,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.65,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0,
+        'wind': 2.74,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0.01,
+        'wind': 3.07,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0.01,
+        'wind': 3.41,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0,
+        'solar': 0.02,
+        'wind': 3.45,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 0.72,
+        'solar': 0.04,
+        'wind': 2.53,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.47,
+        'solar': 0.08,
+        'wind': 1.51,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.77,
+        'solar': 0.08,
+        'wind': 0.58,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.24,
+        'solar': 0.1,
+        'wind': 0.05,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.35,
+        'solar': 0.16,
+        'wind': 0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.4,
+        'solar': 0.06,
+        'wind': 0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.29,
+        'solar': 0.06,
+        'wind': 0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.16,
+        'solar': 0.06,
+        'wind': 0.17,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.99,
+        'solar': 0.06,
+        'wind': 0.17,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.18,
+        'solar': 0.04,
+        'wind': 0.9,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.73,
+        'solar': 0.01,
+        'wind': 1.27,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.68,
+        'solar': 0,
+        'wind': 1.2,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.69,
+        'solar': 0,
+        'wind': 0.98,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.82,
+        'solar': 0,
+        'wind': 1.12,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.95,
+        'solar': 0,
+        'wind': 0.73,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.95,
+        'solar': 0,
+        'wind': 0.46,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.95,
+        'solar': 0,
+        'wind': 0.33,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.15,
+        'solar': 0,
+        'wind': 0.36,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.32,
+        'solar': 0,
+        'wind': 0.32,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.84,
+        'solar': 0,
+        'wind': 0.39,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 1.84,
+        'solar': 0.01,
+        'wind': 0.33,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.8,
+        'solar': 0.02,
+        'wind': 0.12,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 2.91,
+        'solar': 0.07,
+        'wind': 0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0,
+        'oil': 3.18,
+        'solar': 0.1,
+        'wind': 0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 5, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'hydro': 0.0,
+        'oil': 3.77,
+        'solar': 0.07,
+        'wind': 0.59,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO-SI',
+    }),
+  ])
+# ---

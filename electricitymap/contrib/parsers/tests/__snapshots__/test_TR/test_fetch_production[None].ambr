@@ -1,0 +1,194 @@
+# serializer version: 1
+# name: test_fetch_production[None]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 891.87,
+        'coal': 15107.56,
+        'gas': 16407.06,
+        'geothermal': 1078.11,
+        'hydro': 11479.21,
+        'oil': 93.95,
+        'solar': 0.01,
+        'unknown': 97.4,
+        'wind': 689.05,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 885.66,
+        'coal': 15035.1,
+        'gas': 16380.9,
+        'geothermal': 1094.75,
+        'hydro': 9585.67,
+        'oil': 93.75,
+        'solar': 0.01,
+        'unknown': 98.15,
+        'wind': 616.6,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 878.79,
+        'coal': 15062.47,
+        'gas': 16634.73,
+        'geothermal': 1114.73,
+        'hydro': 7445.58,
+        'oil': 90.75,
+        'solar': 0.01,
+        'unknown': 97.33,
+        'wind': 629.53,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 885.39,
+        'coal': 15111.17,
+        'gas': 16612.92,
+        'geothermal': 1124.57,
+        'hydro': 6217.93,
+        'oil': 88.75,
+        'solar': 0.01,
+        'unknown': 98.78,
+        'wind': 580.13,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 887.61,
+        'coal': 15177.42,
+        'gas': 16509.65,
+        'geothermal': 1148.29,
+        'hydro': 5312.72,
+        'oil': 89.05,
+        'solar': 0.01,
+        'unknown': 101.66,
+        'wind': 606.15,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 885.41,
+        'coal': 15202.28,
+        'gas': 16147.88,
+        'geothermal': 1161.82,
+        'hydro': 4378.96,
+        'oil': 92.05,
+        'solar': 2.51,
+        'unknown': 96.54,
+        'wind': 531.5,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 874.08,
+        'coal': 15240.35,
+        'gas': 15747.7,
+        'geothermal': 1162.27,
+        'hydro': 3393.91,
+        'oil': 94.46,
+        'solar': 242.4,
+        'unknown': 98.79,
+        'wind': 544.84,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 782.14,
+        'coal': 13667.03,
+        'gas': 15137.64,
+        'geothermal': 994.27,
+        'hydro': 3419.48,
+        'oil': 91.75,
+        'solar': 1119.42,
+        'unknown': 97.46,
+        'wind': 662.94,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2025, 7, 28, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=10800))),
+      'production': dict({
+        'biomass': 676.7,
+        'coal': 12974.64,
+        'gas': 15493.45,
+        'geothermal': 896.28,
+        'hydro': 6467.39,
+        'oil': 42.94,
+        'solar': 1704.16,
+        'unknown': 94.44,
+        'wind': 610.03,
+      }),
+      'source': 'epias.com.tr',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'TR',
+    }),
+  ])
+# ---

@@ -1,0 +1,757 @@
+# serializer version: 1
+# name: test_production_with_snapshot[NO-NO5]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1065.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 969.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1011.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 16.0,
+        'gas': 0.0,
+        'hydro': 1177.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1317.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 1547.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 1950.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 2009.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 2053.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 2011.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2042.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1932.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 16.0,
+        'gas': 0.0,
+        'hydro': 1879.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -62.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1629.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1520.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1491.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1467.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -60.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 1513.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 1552.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -61.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 1957.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -78.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2341.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -157.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2344.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -161.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2214.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -118.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2062.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -60.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 16.0,
+        'gas': 0.0,
+        'hydro': 2198.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -60.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 15.0,
+        'gas': 0.0,
+        'hydro': 2191.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -35.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 14.0,
+        'gas': 0.0,
+        'hydro': 2200.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 12.0,
+        'gas': 0.0,
+        'hydro': 2157.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2279.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2583.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2733.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2637.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2725.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2880.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -33.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2756.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -33.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 2632.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -33.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2603.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -34.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2546.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -70.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 10, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2390.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -70.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2393.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -71.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2394.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -71.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2449.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -71.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 2700.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -73.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 11.0,
+        'gas': 1.0,
+        'hydro': 3155.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -74.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 11.0,
+        'gas': 0.0,
+        'hydro': 3440.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -74.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 10.0,
+        'gas': 0.0,
+        'hydro': 3819.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -190.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 5, 11, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 9.0,
+        'gas': 0.0,
+        'hydro': 3677.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -114.0,
+      }),
+      'zoneKey': 'NO-NO5',
+    }),
+  ])
+# ---
