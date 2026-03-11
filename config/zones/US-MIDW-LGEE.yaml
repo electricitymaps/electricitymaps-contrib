@@ -3,12 +3,6 @@ bounding_box:
     - 36.58295927099611
   - - -82.85302853028524
     - 38.55212924914677
-center_point:
-  - -86.03546035460349
-  - 37.601890248062446
-centroid:
-  - -85.61785617856174
-  - 37.59044158539877
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -103,6 +97,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -86.03546035460349
+  - 37.601890248062446
+centroid:
+  - -85.61785617856174
+  - 37.59044158539877
 comment: Louisville Gas And Electric Company And Kentucky Utilities
 contributors:
   - systemcatch

@@ -3,12 +3,6 @@ bounding_box:
     - 36.99299649965343
   - - -96.45036450364498
     - 47.57510651094904
-center_point:
-  - -103.06439832839291
-  - 41.46969264806815
-centroid:
-  - -104.25116534030634
-  - 40.497833722528355
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -128,6 +122,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 1752.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1716.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -245,6 +242,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 661.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 775.5
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -292,6 +292,12 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 1857.3
+center_point:
+  - -103.06439832839291
+  - 41.46969264806815
+centroid:
+  - -104.25116534030634
+  - 40.497833722528355
 comment: Western Area Power Administration - Rocky Mountain Region
 contributors:
   - systemcatch

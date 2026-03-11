@@ -3,12 +3,6 @@ bounding_box:
     - 25.087070873841853
   - - -80.12420124201236
     - 25.974342230276008
-center_point:
-  - -80.50400504005034
-  - 25.53070655205893
-centroid:
-  - -80.53880538805383
-  - 25.501846381594266
 can_have_zero_production: true
 capacity:
   battery storage:
@@ -71,6 +65,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -80.50400504005034
+  - 25.53070655205893
+centroid:
+  - -80.53880538805383
+  - 25.501846381594266
 comment: City Of Homestead
 contributors:
   - systemcatch

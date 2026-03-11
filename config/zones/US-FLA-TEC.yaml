@@ -3,12 +3,6 @@ bounding_box:
     - 27.518480607038043
   - - -81.6326163261632
     - 28.347077567320923
-center_point:
-  - -82.14562145621451
-  - 27.932779087179483
-centroid:
-  - -82.16767167671671
-  - 27.94181279756254
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -86,6 +80,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 6220.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 6258.5
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -164,6 +161,9 @@ capacity:
     - datetime: '2024-12-01'
       source: EIA.gov
       value: 1356.4
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1430.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -181,6 +181,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -82.14562145621451
+  - 27.932779087179483
+centroid:
+  - -82.16767167671671
+  - 27.94181279756254
 comment: Tampa Electric Company
 contributors:
   - brandongalbraith
