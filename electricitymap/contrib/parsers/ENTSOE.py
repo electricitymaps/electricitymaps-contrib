@@ -54,9 +54,10 @@ SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
-DEFAULT_LOOKBACK_HOURS_REALTIME = 72
-DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
-DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+DEFAULT_LOOKBACK_HOURS_REALTIME = timedelta(hours=72)
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=0))
+DEFAULT_TARGET_HOURS_FORECAST = (-timedelta(hours=24), timedelta(hours=48))
+EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST = (-timedelta(days=30), timedelta(days=60))
 
 # SoupStrainer instances for efficient XML parsing
 # Only parse the elements we care about in each context
@@ -67,6 +68,9 @@ STRAINER_TEXT = SoupStrainer("text")
 # TODO: Switch this to a string enum when we migrate to Python 3.11
 class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
+    WEEK_AHEAD = "A02"
+    MONTH_AHEAD = "A03"
+    YEAR_AHEAD = "A04"
     INTRADAY_PRICE = "A07"
     TOTAL = "A05"
     INTRADAY = "A40"
@@ -74,6 +78,10 @@ class EntsoeTypeEnum(str, Enum):
 
     def __str__(self) -> str:
         return self.value
+
+
+class EntsoeDocumentTypeEnum(str, Enum):
+    ESTIMATED_NET_TRANSFER_CAPACITY = "A61"
 
 
 # The order of the forecast types is important for the parser to use the most recent data
@@ -272,7 +280,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
-    span: tuple,
+    span: tuple[timedelta, timedelta],
     target_datetime: datetime | None = None,
 ) -> str:
     """
@@ -290,10 +298,10 @@ def query_ENTSOE(
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
-    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+    params["periodStart"] = (target_datetime + span[0]).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
-    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+    params["periodEnd"] = (target_datetime + span[1]).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
 
@@ -312,9 +320,11 @@ def query_ENTSOE(
         error_text = soup.find_all("text")[0].prettify()
         if "No matching data found" in error_text:
             exception_message = "No matching data found"
+        else:
+            exception_message = f"Status code: [{response.status_code}]. ENTSOE error: {error_text.strip()}. URL: {response.request.url}"
     if exception_message is None:
         exception_message = (
-            f"Status code: [{response.status_code}]. Reason: {response.reason}"
+            f"Status code: [{response.status_code}]. Reason: {response.reason}. URL: {response.request.url}"
         )
 
     raise ParserException(
@@ -410,6 +420,31 @@ def query_exchange_forecast(
     )
 
 
+def query_exchange_capacity_forecast(
+    in_domain: str,
+    out_domain: str,
+    session: Session,
+    target_datetime: datetime | None = None,
+) -> str | None:
+    """Queries exchange capacity forecast for a given pair of domains."""
+
+    params = {
+        # Exchange capacity forecast - A document providing the forecast of
+        # exchange capacity for a period. NTC (A61) uses Contract_MarketAgreement.Type
+        # instead of processType to specify the forecast horizon.
+        "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
+        "Contract_MarketAgreement.Type": EntsoeTypeEnum.MONTH_AHEAD,
+        "in_Domain": in_domain,
+        "out_Domain": out_domain,
+    }
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
+    )
+
+
 def query_price(
     domain: str,
     session: Session,
@@ -433,7 +468,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=24)),
     )
 
 
@@ -733,14 +768,19 @@ def _iter_points(
 @cache
 def _resolution_to_timedelta(resolution: str) -> timedelta:
     """
-    Converts an ENTSOE resolution string (e.g., 'PT15M') to a timedelta object.
+    Converts an ENTSOE resolution string (e.g., 'PT15M', 'P1D') to a timedelta object.
     """
-    m = fullmatch(r"PT(\d+)([M])", resolution)
+    m = fullmatch(r"PT(\d+)([MH])", resolution)
     if m is not None:
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == "M":
             return timedelta(minutes=digits)
+        if scale == "H":
+            return timedelta(hours=digits)
+    m = fullmatch(r"P(\d+)D", resolution)
+    if m is not None:
+        return timedelta(days=int(m.group(1)))
     raise NotImplementedError(f"Could not recognise resolution {resolution}")
 
 
@@ -901,6 +941,34 @@ def parse_exchange_forecast(
     return exchange_list
 
 
+def parse_exchange_capacity_forecast(
+    xml_text: str,
+    sorted_zone_keys: ZoneKey,
+    logger: Logger,
+) -> list[dict]:
+    """
+    Parses NTC (A61) exchange capacity forecast XML.
+    Unlike exchange flow forecasts (A11), NTC timeseries do not contain a
+    contract_marketagreement.type element — the market agreement type is
+    specified at the request level via Contract_MarketAgreement.Type.
+    Returns a list of dicts with 'datetime' and 'capacity_MW' keys.
+    TODO: Replace with a proper ExchangeCapacityList once the data type exists.
+    """
+    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+    results = []
+    for timeseries in soup.find_all("timeseries"):
+        for dt, quantity in _get_datetime_value_from_timeseries(timeseries, "quantity"):
+            results.append(
+                {
+                    "zoneKey": sorted_zone_keys,
+                    "datetime": dt,
+                    "capacity_MW": quantity,
+                    "source": SOURCE,
+                }
+            )
+    return results
+
+
 def parse_prices(
     xml_text: str,
     zoneKey: ZoneKey,
@@ -925,7 +993,7 @@ def parse_prices(
     return prices
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1117,7 +1185,7 @@ def get_raw_exchange(
     )
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1160,7 +1228,7 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1190,7 +1258,7 @@ def fetch_price(
 
 
 # DO NOT USE, THIS IS FOR FUTURE USE CASES
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_price_intraday(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1292,7 +1360,7 @@ def fetch_generation_forecast(
 # ------------------- #
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1454,5 +1522,35 @@ def fetch_wind_solar_forecasts(
     ).to_list()
 
 
+def fetch_daily_exchange_capacity_forecasts(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """
+    Gets exchange capacity forecast between two specified zones.
+    """
+    session = session or Session()
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+    domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+    raw_exchange_capacity_forecast = query_exchange_capacity_forecast(
+        domain_1, domain_2, session, target_datetime=target_datetime
+    )
+    if raw_exchange_capacity_forecast is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No exchange capacity forecast data found for {sorted_zone_keys}",
+            zone_key=sorted_zone_keys,
+        )
+    return parse_exchange_capacity_forecast(
+        raw_exchange_capacity_forecast,
+        sorted_zone_keys=sorted_zone_keys,
+        logger=logger,
+    )
+
+
 if __name__ == "__main__":
-    fetch_price(ZoneKey("FR"))
+    print(fetch_daily_exchange_capacity_forecasts("PL", "SE-SE4"))
