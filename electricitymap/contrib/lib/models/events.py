@@ -1115,8 +1115,8 @@ class ExchangeCapacityForecast(Event):
         source: str,
         capacityForwardDir: float | None,
         capacityReverseDir: float | None,
-        marketTypeForwardDir: ForecastHorizon,
-        marketTypeReverseDir: ForecastHorizon,
+        marketTypeForwardDir: ForecastHorizon | None,
+        marketTypeReverseDir: ForecastHorizon | None,
         sourceType: EventSourceType = EventSourceType.forecasted,
     ) -> "ExchangeCapacityForecast | None":
         try:
@@ -1147,8 +1147,8 @@ class ExchangeCapacityForecast(Event):
             "sortedZoneKeys": self.zoneKey,
             "capacityForwardDir": self.capacityForwardDir,
             "capacityReverseDir": self.capacityReverseDir,
-            "marketTypeForwardDir": str(self.marketTypeForwardDir),
-            "marketTypeReverseDir": str(self.marketTypeReverseDir),
+            "marketTypeForwardDir": str(self.marketTypeForwardDir) if self.marketTypeForwardDir is not None else None,
+            "marketTypeReverseDir": str(self.marketTypeReverseDir) if self.marketTypeReverseDir is not None else None,
             "source": self.source,
             "sourceType": self.sourceType,
         }

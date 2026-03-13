@@ -245,8 +245,8 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
         source: str,
         capacityForwardDir: float | None,
         capacityReverseDir: float | None,
-        marketTypeForwardDir: ForecastHorizon,
-        marketTypeReverseDir: ForecastHorizon,
+        marketTypeForwardDir: ForecastHorizon | None,
+        marketTypeReverseDir: ForecastHorizon | None,
         sourceType: EventSourceType = EventSourceType.forecasted,
     ):
         event = ExchangeCapacityForecast.create(

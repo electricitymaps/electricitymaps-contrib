@@ -443,39 +443,47 @@ def query_exchange_capacity_forecast(
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
-    day_ahead = query_ENTSOE(
-        session,
-        params,
-        target_datetime=target_datetime,
-        span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
-    )
-
-    # If the day-ahead forecast is available and contains data, we return it
-    if day_ahead and "<TimeSeries>" in day_ahead:
-        return EntsoeTypeEnum.DAY_AHEAD, day_ahead
+    try:
+        day_ahead = query_ENTSOE(
+            session,
+            params,
+            target_datetime=target_datetime,
+            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
+        )
+        # If the day-ahead forecast is available and contains data, we return it
+        if day_ahead and "<TimeSeries>" in day_ahead:
+            return EntsoeTypeEnum.DAY_AHEAD, day_ahead
+    except ParserException:
+        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.WEEK_AHEAD
-
-    week_ahead = query_ENTSOE(
-        session,
-        params,
-        target_datetime=target_datetime,
-        span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
-    )
-
-    # If the week-ahead forecast is available and contains data, we return it
-    if week_ahead and "<TimeSeries>" in week_ahead:
-        return EntsoeTypeEnum.WEEK_AHEAD, week_ahead
+    try:
+        week_ahead = query_ENTSOE(
+            session,
+            params,
+            target_datetime=target_datetime,
+            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
+        )
+        # If the week-ahead forecast is available and contains data, we return it
+        if week_ahead and "<TimeSeries>" in week_ahead:
+            return EntsoeTypeEnum.WEEK_AHEAD, week_ahead
+    except ParserException:
+        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.MONTH_AHEAD
-    month_ahead = query_ENTSOE(
-        session,
-        params,
-        target_datetime=target_datetime,
-        span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
-    )
+    try:
+        month_ahead = query_ENTSOE(
+            session,
+            params,
+            target_datetime=target_datetime,
+            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
+        )
+    except ParserException:
+        month_ahead = None
 
-    # By default, we return month-ahead data if day-ahead and week-ahead data are not available, even if it does not contain data, in order to have a consistent return type for the parser.
+    # By default, we return month-ahead data if day-ahead and week-ahead data
+    # are not available, even if it does not contain data, in order to have a
+    # consistent return type for the parser.
     return (
         EntsoeTypeEnum.MONTH_AHEAD,
         month_ahead if month_ahead and "<TimeSeries>" in month_ahead else None,
@@ -1011,8 +1019,8 @@ def _merge_exchange_capacity_forecasts(
             source=source,
             capacityForwardDir=forward_cap,
             capacityReverseDir=reverse_cap,
-            marketTypeForwardDir=forward_event.marketTypeForwardDir,
-            marketTypeReverseDir=reverse_event.marketTypeReverseDir,
+            marketTypeForwardDir=forward_event.marketTypeForwardDir if forward_event else None,
+            marketTypeReverseDir=reverse_event.marketTypeReverseDir if reverse_event else None,
         )
 
     return merged
@@ -1618,6 +1626,7 @@ def fetch_wind_solar_forecasts(
     ).to_list()
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_capacity_forecasts(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1652,9 +1661,10 @@ def fetch_exchange_capacity_forecasts(
             zone_key=sorted_zone_keys,
         )
 
-    market_type = _ENTSOE_TYPE_TO_FORECAST_HORIZON[
-        entsoe_market_type_fwd or entsoe_market_type_rev
-    ]
+    # Map each direction's ENTSOE type independently to ForecastHorizon,
+    # since forward and reverse may have fallen back to different tiers.
+    market_type_fwd = _ENTSOE_TYPE_TO_FORECAST_HORIZON[entsoe_market_type_fwd]
+    market_type_rev = _ENTSOE_TYPE_TO_FORECAST_HORIZON[entsoe_market_type_rev]
 
     forward_list = ExchangeCapacityForecastList(logger)
     reverse_list = ExchangeCapacityForecastList(logger)
@@ -1663,7 +1673,7 @@ def fetch_exchange_capacity_forecasts(
         forward_list = parse_exchange_capacity_forecast(
             raw_forward,
             sorted_zone_keys=sorted_zone_keys,
-            market_type=market_type,
+            market_type=market_type_fwd,
             logger=logger,
             direction="forward",
         )
@@ -1672,7 +1682,7 @@ def fetch_exchange_capacity_forecasts(
         reverse_list = parse_exchange_capacity_forecast(
             raw_reverse,
             sorted_zone_keys=sorted_zone_keys,
-            market_type=market_type,
+            market_type=market_type_rev,
             logger=logger,
             direction="reverse",
         )
