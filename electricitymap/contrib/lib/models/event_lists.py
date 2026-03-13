@@ -11,6 +11,8 @@ from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
+    ExchangeCapacityForecast,
+    ForecastHorizon,
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
@@ -233,6 +235,33 @@ class ExchangeList(AggregatableEventList[Exchange]):
                 )
 
         return exchanges
+
+
+class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityForwardDir: float | None,
+        capacityReverseDir: float | None,
+        marketTypeForwardDir: ForecastHorizon | None,
+        marketTypeReverseDir: ForecastHorizon | None,
+        sourceType: EventSourceType = EventSourceType.forecasted,
+    ):
+        event = ExchangeCapacityForecast.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            source,
+            capacityForwardDir,
+            capacityReverseDir,
+            marketTypeForwardDir,
+            marketTypeReverseDir,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
 
 
 class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):

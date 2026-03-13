@@ -38,6 +38,7 @@ class ParserDataType(Enum):
     PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
     REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
     # TODO: Double check if we should keep them here?
+    EXCHANGE_CAPACITY_FORECAST = "exchangeCapacityForecast"
     PRODUCTION_CAPACITY = "productionCapacity"
     GRID_ALERTS = "gridAlerts"
 
