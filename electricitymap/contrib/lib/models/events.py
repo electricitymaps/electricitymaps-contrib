@@ -1147,8 +1147,12 @@ class ExchangeCapacityForecast(Event):
             "sortedZoneKeys": self.zoneKey,
             "capacityForwardDir": self.capacityForwardDir,
             "capacityReverseDir": self.capacityReverseDir,
-            "marketTypeForwardDir": str(self.marketTypeForwardDir) if self.marketTypeForwardDir is not None else None,
-            "marketTypeReverseDir": str(self.marketTypeReverseDir) if self.marketTypeReverseDir is not None else None,
+            "marketTypeForwardDir": str(self.marketTypeForwardDir)
+            if self.marketTypeForwardDir is not None
+            else None,
+            "marketTypeReverseDir": str(self.marketTypeReverseDir)
+            if self.marketTypeReverseDir is not None
+            else None,
             "source": self.source,
             "sourceType": self.sourceType,
         }

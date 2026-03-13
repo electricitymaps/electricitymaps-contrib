@@ -1019,8 +1019,12 @@ def _merge_exchange_capacity_forecasts(
             source=source,
             capacityForwardDir=forward_cap,
             capacityReverseDir=reverse_cap,
-            marketTypeForwardDir=forward_event.marketTypeForwardDir if forward_event else None,
-            marketTypeReverseDir=reverse_event.marketTypeReverseDir if reverse_event else None,
+            marketTypeForwardDir=forward_event.marketTypeForwardDir
+            if forward_event
+            else None,
+            marketTypeReverseDir=reverse_event.marketTypeReverseDir
+            if reverse_event
+            else None,
         )
 
     return merged
