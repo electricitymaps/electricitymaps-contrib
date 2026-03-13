@@ -30,6 +30,8 @@ from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
+
+logger: Logger = getLogger(__name__)
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeCapacityForecastList,
     ExchangeList,
@@ -454,7 +456,10 @@ def query_exchange_capacity_forecast(
         if day_ahead and "<TimeSeries>" in day_ahead:
             return EntsoeTypeEnum.DAY_AHEAD, day_ahead
     except ParserException:
-        pass
+        logger.debug(
+            "ENTSOE exchange capacity day-ahead query failed; falling back to week-/month-ahead.",
+            exc_info=True,
+        )
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.WEEK_AHEAD
     try:
@@ -468,7 +473,10 @@ def query_exchange_capacity_forecast(
         if week_ahead and "<TimeSeries>" in week_ahead:
             return EntsoeTypeEnum.WEEK_AHEAD, week_ahead
     except ParserException:
-        pass
+        logger.debug(
+            "ENTSOE exchange capacity week-ahead query failed; falling back to month-ahead.",
+            exc_info=True,
+        )
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.MONTH_AHEAD
     try:
