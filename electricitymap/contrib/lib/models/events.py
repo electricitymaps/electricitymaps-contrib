@@ -289,6 +289,15 @@ class EventSourceType(str, Enum):
     estimated = "estimated"
 
 
+class ForecastHorizon(str, Enum):
+    day_ahead = "day_ahead"
+    week_ahead = "week_ahead"
+    month_ahead = "month_ahead"
+
+    def __str__(self) -> str:
+        return self.value
+
+
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
@@ -1055,4 +1064,91 @@ class GridAlert(Event):
             "endTime": self.endTime,
             "source": self.source,
             "datetime": self.datetime,
+        }
+
+
+class ExchangeCapacityForecast(Event):
+    """
+    An event representing the forecasted net transfer capacity (NTC) between
+    two zones for a given market horizon, in both directions.
+
+    capacityForwardDir: Capacity for zone1→zone2 direction (may be None).
+    capacityReverseDir: Capacity for zone2→zone1 direction (may be None).
+    marketTypeForwardDir: The forecast horizon for the forward direction (day_ahead, week_ahead, month_ahead).
+    marketTypeReverseDir: The forecast horizon for the reverse direction (day_ahead, week_ahead, month_ahead).
+    """
+
+    capacityForwardDir: float | None
+    capacityReverseDir: float | None
+    marketTypeForwardDir: ForecastHorizon | None
+    marketTypeReverseDir: ForecastHorizon | None
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        forward_cap = values.get("capacityForwardDir")
+        reverse_cap = values.get("capacityReverseDir")
+
+        # Check for NaN
+        if forward_cap is not None and math.isnan(forward_cap):
+            raise ValueError(f"Forward capacity cannot be NaN: {forward_cap}")
+        if reverse_cap is not None and math.isnan(reverse_cap):
+            raise ValueError(f"Reverse capacity cannot be NaN: {reverse_cap}")
+
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityForwardDir: float | None,
+        capacityReverseDir: float | None,
+        marketTypeForwardDir: ForecastHorizon,
+        marketTypeReverseDir: ForecastHorizon,
+        sourceType: EventSourceType = EventSourceType.forecasted,
+    ) -> "ExchangeCapacityForecast | None":
+        try:
+            return ExchangeCapacityForecast(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                capacityForwardDir=_none_safe_round(capacityForwardDir),
+                capacityReverseDir=_none_safe_round(capacityReverseDir),
+                marketTypeForwardDir=marketTypeForwardDir,
+                marketTypeReverseDir=marketTypeReverseDir,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ExchangeCapacityForecast Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange capacity forecast",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityForwardDir": self.capacityForwardDir,
+            "capacityReverseDir": self.capacityReverseDir,
+            "marketTypeForwardDir": str(self.marketTypeForwardDir),
+            "marketTypeReverseDir": str(self.marketTypeReverseDir),
+            "source": self.source,
+            "sourceType": self.sourceType,
         }
