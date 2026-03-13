@@ -30,8 +30,6 @@ from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
-
-logger: Logger = getLogger(__name__)
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeCapacityForecastList,
     ExchangeList,
@@ -433,6 +431,7 @@ def query_exchange_capacity_forecast(
     out_domain: str,
     session: Session,
     target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
 ) -> tuple[EntsoeTypeEnum, str | None]:
     """Queries exchange capacity forecast for a given pair of domains."""
 
@@ -460,6 +459,7 @@ def query_exchange_capacity_forecast(
             "ENTSOE exchange capacity day-ahead query failed; falling back to week-/month-ahead.",
             exc_info=True,
         )
+        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.WEEK_AHEAD
     try:
@@ -477,6 +477,7 @@ def query_exchange_capacity_forecast(
             "ENTSOE exchange capacity week-ahead query failed; falling back to month-ahead.",
             exc_info=True,
         )
+        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.MONTH_AHEAD
     try:
@@ -1658,12 +1659,12 @@ def fetch_exchange_capacity_forecasts(
     domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
     domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
     entsoe_market_type_fwd, raw_forward = query_exchange_capacity_forecast(
-        domain_1, domain_2, session, target_datetime=target_datetime
+        domain_1, domain_2, session, target_datetime=target_datetime, logger=logger
     )
 
     # Fetch reverse direction (zone_key2 → zone_key1)
     entsoe_market_type_rev, raw_reverse = query_exchange_capacity_forecast(
-        domain_2, domain_1, session, target_datetime=target_datetime
+        domain_2, domain_1, session, target_datetime=target_datetime, logger=logger
     )
 
     if raw_forward is None and raw_reverse is None:
