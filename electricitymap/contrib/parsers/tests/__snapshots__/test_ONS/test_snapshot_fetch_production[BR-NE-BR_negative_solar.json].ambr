@@ -1,0 +1,23 @@
+# serializer version: 1
+# name: test_snapshot_fetch_production[BR-NE-BR_negative_solar.json]
+  list([
+    dict({
+      'correctedModes': list([
+        'solar',
+      ]),
+      'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
+      'production': dict({
+        'hydro': 1921.36816,
+        'nuclear': 0.0,
+        'solar': 0,
+        'unknown': 2700.472,
+        'wind': 2837.92188,
+      }),
+      'source': 'ons.org.br',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'BR-NE',
+    }),
+  ])
+# ---

@@ -3,9 +3,6 @@ bounding_box:
     - 29.74524549512121
   - - -80.77940779407788
     - 34.987301912247574
-center_point:
-  - -85.48180948658279
-  - 32.559201385486254
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -179,6 +176,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 36251.2
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 36233.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -437,6 +437,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 5744.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 5824.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -454,6 +457,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -85.48180948658279
+  - 32.559201385486254
+centroid:
+  - -85.28725940904894
+  - 32.164450602652266
 comment: Southern Company Services, Inc. - Trans
 contributors:
   - systemcatch

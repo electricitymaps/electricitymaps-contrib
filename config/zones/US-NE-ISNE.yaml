@@ -3,9 +3,6 @@ bounding_box:
     - 40.99355656217368
   - - -66.980469804698
     - 47.43486039331913
-center_point:
-  - -70.39016096719396
-  - 44.260793161078574
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -194,6 +191,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 760.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 763.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -409,6 +409,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 1897.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1891.8
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -791,6 +794,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 3552.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 3585.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -850,6 +856,12 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 1723.0
+center_point:
+  - -70.39016096719396
+  - 44.260793161078574
+centroid:
+  - -70.21819801989935
+  - 43.963232577319204
 comment: Iso New England Inc.
 contributors:
   - systemcatch

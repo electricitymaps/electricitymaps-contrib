@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 from freezegun import freeze_time
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.RU import fetch_exchange, fetch_production
 
@@ -40,7 +41,9 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, 12, 0)
 
-    assert snapshot == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
@@ -87,7 +90,7 @@ def test_snapshot_fetch_exchange(
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, hour, 0)
 
-    assert snapshot == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,

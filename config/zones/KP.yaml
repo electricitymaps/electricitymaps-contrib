@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 127.14091694367448
   - 40.004097703647005
+centroid:
+  - 127.36051684841172
+  - 40.123284149120195
 capacity:
   coal:
     - datetime: '2017-01-01'

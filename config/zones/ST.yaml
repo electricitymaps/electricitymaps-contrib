@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 6.6006660066600915
   - 0.219860026941429
+centroid:
+  - 6.5997659976600005
+  - 0.22021779764966876
 capacity:
   hydro:
     - datetime: '2017-01-01'

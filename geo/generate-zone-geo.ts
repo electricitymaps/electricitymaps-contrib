@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import bbox from '@turf/bbox';
 import buffer from '@turf/buffer';
+import { centroid } from '@turf/centroid';
 import pointOnFeature from '@turf/point-on-feature';
 import union from '@turf/union';
 import type { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
@@ -28,11 +29,12 @@ for (const feature of geojson.features) {
 function getSubZoneNames(content: string): string[] {
   const match = content.match(/subZoneNames:\n((?:  - .+\n)+)/);
   if (!match) return [];
-  return [...match[1].matchAll(/  - (.+)/g)].map((m) => m[1]!);
+  return [...match[1]!.matchAll(/  - (.+)/g)].map((m) => m[1]!);
 }
 
 interface ZoneGeo {
   centerPoint: [number, number];
+  centroid: [number, number];
   boundingBox: [[number, number], [number, number]];
 }
 
@@ -43,6 +45,7 @@ function computeZoneGeo(features: Feature<Polygon | MultiPolygon>[]): ZoneGeo {
   };
 
   const combined = features.length === 1 ? features[0]! : union(fc)!;
+  const computedCentroid = centroid(combined);
 
   // Shrink the polygon inward to keep the center point away from borders.
   // Fall back to the original geometry if the buffer collapses it.
@@ -59,6 +62,7 @@ function computeZoneGeo(features: Feature<Polygon | MultiPolygon>[]): ZoneGeo {
       [minLon, minLat],
       [maxLon, maxLat],
     ],
+    centroid: computedCentroid.geometry.coordinates as [number, number],
   };
 }
 
@@ -117,12 +121,14 @@ for (const file of zoneFiles) {
   const filePath = join(ZONES_DIR, file);
   let content = readFileSync(filePath, 'utf-8');
 
-  // Remove existing bounding_box and center_point
+  // Remove existing bounding_box, center_point, and centroid
   content = content.replace(/^bounding_box:\n((?:  .+\n)+)/m, '');
   content = content.replace(/^center_point:\n((?:  - .+\n)+)/m, '');
+  content = content.replace(/^centroid:\n((?:  - .+\n)+)/m, '');
 
   const [[minLon, minLat], [maxLon, maxLat]] = geo.boundingBox;
   const [lon, lat] = geo.centerPoint;
+  const [cLon, cLat] = geo.centroid;
 
   const geoYaml = [
     `bounding_box:`,
@@ -133,6 +139,9 @@ for (const file of zoneFiles) {
     `center_point:`,
     `  - ${lon}`,
     `  - ${lat}`,
+    `centroid:`,
+    `  - ${cLon}`,
+    `  - ${cLat}`,
     '',
   ].join('\n');
 

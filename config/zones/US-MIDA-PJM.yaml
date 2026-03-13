@@ -3,9 +3,6 @@ bounding_box:
     - 35.309295549663204
   - - -73.95373953739532
     - 42.507642199443595
-center_point:
-  - -82.09830495576169
-  - 39.25470269209093
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -98,6 +95,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 413.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 397.9
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -225,6 +225,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 2011.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2002.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -548,6 +551,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 104352.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 104359.3
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1043,6 +1049,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 16662.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 17565.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1150,6 +1159,15 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 11514.5
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 11718.5
+center_point:
+  - -82.09830495576169
+  - 39.25470269209093
+centroid:
+  - -81.88014706507636
+  - 39.11895636126822
 comment: Pjm Interconnection, Llc
 contributors:
   - systemcatch

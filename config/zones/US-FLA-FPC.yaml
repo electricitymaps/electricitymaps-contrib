@@ -3,9 +3,6 @@ bounding_box:
     - 27.442633216891252
   - - -80.86220862208617
     - 30.463649077266297
-center_point:
-  - -82.69102691026904
-  - 28.929528280334964
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -203,6 +200,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2236.1
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2311.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -214,6 +214,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -82.69102691026904
+  - 28.929528280334964
+centroid:
+  - -82.856306175002
+  - 28.95372853182364
 comment: Duke Energy Florida Inc
 contributors:
   - systemcatch

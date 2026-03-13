@@ -1,0 +1,821 @@
+# serializer version: 1
+# name: test_fetch_production_historical[DST-FO]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.28,
+        'hydro': 0,
+        'oil': 33.84,
+        'solar': 0,
+        'wind': 5.82,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.24,
+        'hydro': 0,
+        'oil': 30.12,
+        'solar': 0,
+        'wind': 9.0,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 27.04,
+        'solar': 0,
+        'wind': 10.26,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.22,
+        'hydro': 0,
+        'oil': 26.62,
+        'solar': 0,
+        'wind': 10.7,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.27,
+        'hydro': 0,
+        'oil': 23.66,
+        'solar': 0,
+        'wind': 13.89,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 21.03,
+        'solar': 0.01,
+        'wind': 15.82,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.16,
+        'hydro': 0,
+        'oil': 21.11,
+        'solar': 0.01,
+        'wind': 16.97,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.37,
+        'hydro': 0,
+        'oil': 19.91,
+        'solar': 0.01,
+        'wind': 20.24,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 20.68,
+        'solar': 0.01,
+        'wind': 22.39,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.38,
+        'hydro': 0,
+        'oil': 20.55,
+        'solar': 0.01,
+        'wind': 25.61,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.13,
+        'hydro': 0.13,
+        'oil': 19.76,
+        'solar': 0.01,
+        'wind': 28.64,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 1.15,
+        'oil': 17.81,
+        'solar': 0.02,
+        'wind': 29.82,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.27,
+        'hydro': 0.93,
+        'oil': 18.73,
+        'solar': 0.04,
+        'wind': 29.99,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.21,
+        'hydro': 0.91,
+        'oil': 18.68,
+        'solar': 0.03,
+        'wind': 29.97,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0.94,
+        'oil': 18.86,
+        'solar': 0.02,
+        'wind': 29.54,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.44,
+        'hydro': 0.99,
+        'oil': 19.14,
+        'solar': 0.01,
+        'wind': 30.21,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.23,
+        'hydro': 1,
+        'oil': 19.26,
+        'solar': 0.01,
+        'wind': 30.65,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0.95,
+        'oil': 18.98,
+        'solar': 0,
+        'wind': 30.82,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.2,
+        'hydro': 1.2,
+        'oil': 19.23,
+        'solar': 0,
+        'wind': 29.5,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.31,
+        'hydro': 1.66,
+        'oil': 19.68,
+        'solar': 0,
+        'wind': 26.86,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 1.62,
+        'oil': 18.94,
+        'solar': 0,
+        'wind': 26.57,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.08,
+        'hydro': 1.2,
+        'oil': 19.91,
+        'solar': 0,
+        'wind': 26.22,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.37,
+        'hydro': 0.69,
+        'oil': 19.41,
+        'solar': 0,
+        'wind': 26.58,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0.53,
+        'oil': 18.72,
+        'solar': 0,
+        'wind': 25.73,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.52,
+        'hydro': 0.37,
+        'oil': 17.77,
+        'solar': 0,
+        'wind': 25.47,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0,
+        'hydro': 0.03,
+        'oil': 17.75,
+        'solar': 0,
+        'wind': 25.06,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 18.12,
+        'solar': 0,
+        'wind': 23.66,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.41,
+        'hydro': 0,
+        'oil': 19.1,
+        'solar': 0,
+        'wind': 22.32,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.08,
+        'hydro': 0,
+        'oil': 18.98,
+        'solar': 0,
+        'wind': 21.74,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 18.74,
+        'solar': 0.01,
+        'wind': 21.72,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.3,
+        'hydro': 0,
+        'oil': 20.26,
+        'solar': 0.02,
+        'wind': 21.63,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.34,
+        'hydro': 0,
+        'oil': 21.26,
+        'solar': 0.02,
+        'wind': 22.29,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 22.08,
+        'solar': 0.04,
+        'wind': 23.5,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.34,
+        'hydro': 0,
+        'oil': 24.46,
+        'solar': 0.03,
+        'wind': 23.78,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.15,
+        'hydro': 0,
+        'oil': 23.6,
+        'solar': 0.04,
+        'wind': 26.79,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 22.4,
+        'solar': 0.06,
+        'wind': 28.11,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.25,
+        'hydro': 0,
+        'oil': 22.89,
+        'solar': 0.05,
+        'wind': 28.3,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.19,
+        'hydro': 0,
+        'oil': 21.26,
+        'solar': 0.04,
+        'wind': 29.46,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 0,
+        'oil': 20.36,
+        'solar': 0.03,
+        'wind': 29.28,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.42,
+        'hydro': 0.09,
+        'oil': 21.28,
+        'solar': 0.03,
+        'wind': 28.42,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.26,
+        'hydro': 3.66,
+        'oil': 23.74,
+        'solar': 0.03,
+        'wind': 21.37,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 8.67,
+        'oil': 26.35,
+        'solar': 0.04,
+        'wind': 14.17,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.22,
+        'hydro': 9.81,
+        'oil': 30.1,
+        'solar': 0.02,
+        'wind': 9.21,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.28,
+        'hydro': 8.37,
+        'oil': 30.15,
+        'solar': 0.01,
+        'wind': 10.46,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 6.86,
+        'oil': 28.98,
+        'solar': 0.01,
+        'wind': 11.65,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.12,
+        'hydro': 4.54,
+        'oil': 25.63,
+        'solar': 0,
+        'wind': 17.33,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.32,
+        'hydro': 3.26,
+        'oil': 24.58,
+        'solar': 0,
+        'wind': 18.44,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.75,
+        'hydro': 7.4,
+        'oil': 23.72,
+        'solar': 0,
+        'wind': 12.77,
+      }),
+      'source': 'sev.fo',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FO',
+    }),
+  ])
+# ---

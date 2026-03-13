@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 111.76221582194006
   - 2.4672195703878406
+centroid:
+  - 110.20276541887564
+  - 4.045986750545374
 capacity:
   biomass:
     - datetime: '2017-01-01'

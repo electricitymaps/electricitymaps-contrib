@@ -3,9 +3,6 @@ bounding_box:
     - 44.99800807928961
   - - -102.57402574025734
     - 48.63410780733821
-center_point:
-  - -107.7338772905498
-  - 46.92392322871979
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -79,6 +76,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 71.4
+center_point:
+  - -107.7338772905498
+  - 46.92392322871979
+centroid:
+  - -107.17404954367677
+  - 46.82277719237385
 comment: Western Area Power Administration Ugp West
 contributors:
   - systemcatch

@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 131.09043016414662
   - 32.70705256390908
+centroid:
+  - 130.34556254653455
+  - 32.33259447019511
 capacity:
   geothermal: 553
   hydro: 1247

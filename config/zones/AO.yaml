@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 17.907600443601794
   - -11.939312306534951
+centroid:
+  - 16.848673894821456
+  - -11.02809286786516
 country: AO
 country_name: Angola
 currency: AOA

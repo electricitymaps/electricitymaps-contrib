@@ -3,9 +3,6 @@ bounding_box:
     - 37.3013628531412
   - - -120.58860588605879
     - 37.740705282859395
-center_point:
-  - -121.02061020610199
-  - 37.5210340680003
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -61,6 +58,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -121.02061020610199
+  - 37.5210340680003
+centroid:
+  - -121.06525065250646
+  - 37.50672323967071
 comment: Turlock Irrigation District
 contributors:
   - systemcatch

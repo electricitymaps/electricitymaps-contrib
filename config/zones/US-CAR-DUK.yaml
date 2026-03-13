@@ -3,9 +3,6 @@ bounding_box:
     - 34.04421832532803
   - - -78.27738277382768
     - 36.59193756016861
-center_point:
-  - -80.83579689728052
-  - 35.33117133429408
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -341,6 +338,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2329.6
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2529.6
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -349,6 +349,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -80.83579689728052
+  - 35.33117133429408
+centroid:
+  - -81.87193289087408
+  - 35.220733493557034
 comment: Duke Energy Carolinas
 contributors:
   - systemcatch

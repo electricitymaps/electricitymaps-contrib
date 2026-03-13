@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 163.5623195535538
   - 69.34548604297066
+centroid:
+  - 99.73379349674866
+  - 60.634325034061945
 country: RU
 country_name: Russia
 emissionFactors:

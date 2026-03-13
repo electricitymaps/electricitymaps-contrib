@@ -15,6 +15,7 @@
   "dependencies": {
     "@turf/bbox": "^7.3.4",
     "@turf/buffer": "^7.3.4",
+    "@turf/centroid": "^7.3.4",
     "@turf/point-on-feature": "^7.3.4",
     "@turf/union": "^7.3.4"
   }

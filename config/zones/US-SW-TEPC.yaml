@@ -3,9 +3,6 @@ bounding_box:
     - 31.731588467267372
   - - -110.5697056970569
     - 36.210877734426944
-center_point:
-  - -113.25893258932582
-  - 34.347607885915195
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -124,6 +121,12 @@ capacity:
     - datetime: '2021-12-01'
       source: EIA.gov
       value: 379.8
+center_point:
+  - -113.25893258932582
+  - 34.347607885915195
+centroid:
+  - -113.2174065926705
+  - 34.46299309944698
 comment: Tucson Electric Power Company
 contributors:
   - systemcatch

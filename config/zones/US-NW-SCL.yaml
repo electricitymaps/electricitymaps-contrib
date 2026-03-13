@@ -3,9 +3,6 @@ bounding_box:
     - 47.46082968401358
   - - -122.23721179834855
     - 47.778030463903605
-center_point:
-  - -122.33558884747318
-  - 47.6194300739586
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -29,6 +26,9 @@ capacity:
     - datetime: '2023-11-01'
       source: EIA.gov
       value: 3.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 0.0
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -73,6 +73,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -122.33558884747318
+  - 47.6194300739586
+centroid:
+  - -122.34031285770172
+  - 47.614746192254984
 comment: Seattle City Light
 contributors:
   - systemcatch

@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -117.09340068022681
   - 45.024183836233846
+centroid:
+  - -124.71143136720069
+  - 49.97276787769272
 bypassedSubZones:
   - US-FLA-HST
   - US-SE-SEPA

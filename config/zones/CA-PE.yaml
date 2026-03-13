@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -63.33363333633332
   - 46.498932220564384
+centroid:
+  - -63.39876126033983
+  - 46.44090831660987
 can_have_zero_production: true
 capacity:
   oil: 179

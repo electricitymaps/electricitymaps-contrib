@@ -3,9 +3,6 @@ bounding_box:
     - 32.50580427989783
   - - -110.94050940509399
     - 34.347607885915195
-center_point:
-  - -112.34764947928672
-  - 33.531684403250075
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -157,6 +154,12 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 226.0
+center_point:
+  - -112.34764947928672
+  - 33.531684403250075
+centroid:
+  - -112.4015701695478
+  - 33.47728935688684
 comment: Salt River Project
 contributors:
   - systemcatch

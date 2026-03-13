@@ -3,9 +3,6 @@ bounding_box:
     - 32.61885982370154
   - - -114.52614526145256
     - 34.03563182833028
-center_point:
-  - -115.42496059751203
-  - 33.168988812011186
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -14,6 +11,9 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 180.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 215.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -125,6 +125,9 @@ capacity:
     - datetime: '2024-10-01'
       source: EIA.gov
       value: 543.2
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 585.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -133,6 +136,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -115.42496059751203
+  - 33.168988812011186
+centroid:
+  - -115.57580797947463
+  - 33.30947172276724
 comment: Imperial Irrigation District
 contributors:
   - systemcatch

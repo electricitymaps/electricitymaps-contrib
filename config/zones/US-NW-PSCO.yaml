@@ -3,9 +3,6 @@ bounding_box:
     - 36.21803314859174
   - - -103.16443164431638
     - 41.225391981112935
-center_point:
-  - -106.50923943567419
-  - 39.42986049036256
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -44,6 +41,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 352.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 364.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -127,6 +127,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 28.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 20.0
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -269,6 +272,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2447.4
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2788.6
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -304,6 +310,12 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 4662.6
+center_point:
+  - -106.50923943567419
+  - 39.42986049036256
+centroid:
+  - -105.7788616855921
+  - 38.91579644601377
 comment: Public Service Company Of Colorado
 contributors:
   - systemcatch

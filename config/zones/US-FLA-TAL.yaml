@@ -3,9 +3,6 @@ bounding_box:
     - 30.38637060428654
   - - -84.13104131041305
     - 30.526616721916454
-center_point:
-  - -84.2354423544235
-  - 30.456493663101497
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -79,6 +76,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -84.2354423544235
+  - 30.456493663101497
+centroid:
+  - -84.24384243842432
+  - 30.454108525046568
 comment: City Of Tallahassee
 contributors:
   - systemcatch

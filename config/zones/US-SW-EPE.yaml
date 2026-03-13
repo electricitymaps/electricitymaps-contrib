@@ -3,9 +3,6 @@ bounding_box:
     - 30.630950309039566
   - - -104.84760623311561
     - 33.47985722277469
-center_point:
-  - -106.55067756368078
-  - 32.22951090470256
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -44,6 +41,9 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 2143.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2093.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -104,6 +104,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 564.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 579.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -112,6 +115,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 50.4
+center_point:
+  - -106.55067756368078
+  - 32.22951090470256
+centroid:
+  - -106.45210081678198
+  - 32.33387441098371
 comment: El Paso Electric Company
 contributors:
   - systemcatch

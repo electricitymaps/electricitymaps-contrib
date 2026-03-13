@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - -15.597155971559687
   - 27.950667622591467
+centroid:
+  - -15.613356133561306
+  - 27.955914926312314
 contributors:
   - hectorespert
   - systemcatch

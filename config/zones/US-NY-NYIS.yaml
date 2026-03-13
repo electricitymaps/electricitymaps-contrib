@@ -3,9 +3,6 @@ bounding_box:
     - 40.58999120327944
   - - -72.06482694841942
     - 45.01060607428772
-center_point:
-  - -76.24218291697775
-  - 43.02465560796782
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -271,6 +268,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 4081.2
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 4113.4
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -617,6 +617,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 2813.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2894.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -673,6 +676,12 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 2869.0
+center_point:
+  - -76.24218291697775
+  - 43.02465560796782
+centroid:
+  - -75.48417383731932
+  - 42.62337021879663
 comment: New York Independent System Operator
 contributors:
   - systemcatch

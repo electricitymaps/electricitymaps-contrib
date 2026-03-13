@@ -3,9 +3,6 @@ bounding_box:
     - 41.991031589410795
   - - -111.58851588515878
     - 45.700387999773625
-center_point:
-  - -115.94702834758624
-  - 43.739931985757934
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -193,6 +190,12 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 714.7
+center_point:
+  - -115.94702834758624
+  - 43.739931985757934
+centroid:
+  - -115.16451002876639
+  - 44.16341541464588
 comment: Idaho Power Company
 contributors:
   - systemcatch

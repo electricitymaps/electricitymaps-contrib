@@ -3,9 +3,6 @@ bounding_box:
     - 32.324056760112114
   - - -81.67458504103661
     - 37.586148336899896
-center_point:
-  - -86.671418402335
-  - 35.04187120335755
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -254,6 +251,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 1799.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 1816.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -271,6 +271,12 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 1.8
+center_point:
+  - -86.671418402335
+  - 35.04187120335755
+centroid:
+  - -86.75331430505567
+  - 35.161774339957056
 comment: Tennessee Valley Authority
 contributors:
   - systemcatch

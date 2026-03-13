@@ -1,0 +1,61 @@
+# serializer version: 1
+# name: test_fetch_exchange[HN-SV]
+  list([
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 58.5,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 51.5,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 33.9,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 23.8,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 36.3,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 45.0,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 28.7,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
+      'netFlow': 20.1,
+      'sortedZoneKeys': 'HN->SV',
+      'source': 'ods.org.hn',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---

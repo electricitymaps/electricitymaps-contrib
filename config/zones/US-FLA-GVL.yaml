@@ -3,9 +3,6 @@ bounding_box:
     - 29.370301792886124
   - - -81.96021960219596
     - 29.928424097739878
-center_point:
-  - -82.34002340023395
-  - 29.649362945313
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -79,6 +76,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -82.34002340023395
+  - 29.649362945313
+centroid:
+  - -82.35910359103585
+  - 29.631760626467617
 comment: Gainesville Regional Utilities
 contributors:
   - systemcatch

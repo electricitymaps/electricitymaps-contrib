@@ -3,9 +3,6 @@ bounding_box:
     - 29.935579511904663
   - - -81.3446134461344
     - 31.000305139625667
-center_point:
-  - -84.55224552245517
-  - 30.047203972875423
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -88,6 +85,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -84.55224552245517
+  - 30.047203972875423
+centroid:
+  - -83.7343827983734
+  - 30.427221514245534
 contributors:
   - systemcatch
   - robertahunt

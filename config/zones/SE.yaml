@@ -6,6 +6,9 @@ bounding_box:
 center_point:
   - 16.693385557382808
   - 62.189575383409604
+centroid:
+  - 16.568196956339914
+  - 61.64254207304956
 contributors:
   - augustekman
   - RRyyas

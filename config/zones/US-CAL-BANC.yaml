@@ -3,9 +3,6 @@ bounding_box:
     - 38.26018835122328
   - - -121.07101071010703
     - 41.3570516017451
-center_point:
-  - -123.00423004230035
-  - 39.977487750773264
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -55,6 +52,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 2553.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2557.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -133,6 +133,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -123.00423004230035
+  - 39.977487750773264
+centroid:
+  - -122.47793906510489
+  - 40.02089726337301
 comment: Balancing Authority Of Northern California
 contributors:
   - systemcatch
