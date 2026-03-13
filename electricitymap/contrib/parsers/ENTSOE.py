@@ -459,7 +459,6 @@ def query_exchange_capacity_forecast(
             "ENTSOE exchange capacity day-ahead query failed; falling back to week-/month-ahead.",
             exc_info=True,
         )
-        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.WEEK_AHEAD
     try:
@@ -477,7 +476,6 @@ def query_exchange_capacity_forecast(
             "ENTSOE exchange capacity week-ahead query failed; falling back to month-ahead.",
             exc_info=True,
         )
-        pass
 
     params["Contract_MarketAgreement.Type"] = EntsoeTypeEnum.MONTH_AHEAD
     try:
