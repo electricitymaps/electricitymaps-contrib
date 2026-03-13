@@ -486,6 +486,10 @@ def query_exchange_capacity_forecast(
             span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
         )
     except ParserException:
+        logger.debug(
+            "ENTSOE exchange capacity month-ahead query failed; setting month-ahead data to None.",
+            exc_info=True,
+        )
         month_ahead = None
 
     # By default, we return month-ahead data if day-ahead and week-ahead data
