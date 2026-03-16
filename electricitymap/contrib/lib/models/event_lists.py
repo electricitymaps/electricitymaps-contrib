@@ -12,7 +12,6 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
     ExchangeCapacityForecast,
-    ForecastHorizon,
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
@@ -245,8 +244,6 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
         source: str,
         capacityForwardDir: float | None,
         capacityReverseDir: float | None,
-        marketTypeForwardDir: ForecastHorizon | None,
-        marketTypeReverseDir: ForecastHorizon | None,
         sourceType: EventSourceType = EventSourceType.forecasted,
     ):
         event = ExchangeCapacityForecast.create(
@@ -256,8 +253,6 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
             source,
             capacityForwardDir,
             capacityReverseDir,
-            marketTypeForwardDir,
-            marketTypeReverseDir,
             sourceType,
         )
         if event:
