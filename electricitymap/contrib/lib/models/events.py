@@ -1084,8 +1084,13 @@ class ExchangeCapacityForecast(Event):
 
     @root_validator(pre=False)
     def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
-        if values.get("capacityForwardDir") is None and values.get("capacityReverseDir") is None:
-            raise ValueError("At least one of capacityForwardDir or capacityReverseDir must be set")
+        if (
+            values.get("capacityForwardDir") is None
+            and values.get("capacityReverseDir") is None
+        ):
+            raise ValueError(
+                "At least one of capacityForwardDir or capacityReverseDir must be set"
+            )
         return values
 
     @staticmethod

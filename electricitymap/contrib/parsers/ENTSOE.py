@@ -1592,10 +1592,20 @@ def _fetch_exchange_capacity_forecasts(
     domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
 
     raw_forward = query_exchange_capacity_forecast(
-        domain_1, domain_2, session, forecast_type, target_datetime=target_datetime, logger=logger
+        domain_1,
+        domain_2,
+        session,
+        forecast_type,
+        target_datetime=target_datetime,
+        logger=logger,
     )
     raw_reverse = query_exchange_capacity_forecast(
-        domain_2, domain_1, session, forecast_type, target_datetime=target_datetime, logger=logger
+        domain_2,
+        domain_1,
+        session,
+        forecast_type,
+        target_datetime=target_datetime,
+        logger=logger,
     )
 
     if raw_forward is None and raw_reverse is None:
