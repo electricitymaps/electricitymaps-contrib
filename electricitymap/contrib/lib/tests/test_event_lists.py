@@ -17,7 +17,6 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
-    ForecastHorizon,
     GridAlertType,
     ProductionMix,
     StorageMix,

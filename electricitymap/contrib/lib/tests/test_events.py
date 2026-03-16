@@ -13,7 +13,6 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
     ExchangeCapacityForecast,
-    ForecastHorizon,
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
