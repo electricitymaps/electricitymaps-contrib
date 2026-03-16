@@ -1002,27 +1002,36 @@ def parse_exchange_capacity_forecast(
     Returns:
         ExchangeCapacityForecastList with capacity populated for the specified direction
     """
-    soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-    forecasts = ExchangeCapacityForecastList(logger)
-    for timeseries in soup.find_all("timeseries"):
-        for dt, quantity in _get_datetime_value_from_timeseries(timeseries, "quantity"):
-            if direction == "forward":
-                forecasts.append(
-                    zoneKey=sorted_zone_keys,
-                    datetime=dt,
-                    source=SOURCE,
-                    capacityForwardDir=quantity,
-                    capacityReverseDir=None,
-                )
-            else:
-                forecasts.append(
-                    zoneKey=sorted_zone_keys,
-                    datetime=dt,
-                    source=SOURCE,
-                    capacityForwardDir=None,
-                    capacityReverseDir=quantity,
-                )
-    return forecasts
+    try:
+        soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+        forecasts = ExchangeCapacityForecastList(logger)
+        for timeseries in soup.find_all("timeseries"):
+            for dt, quantity in _get_datetime_value_from_timeseries(
+                timeseries, "quantity"
+            ):
+                if direction == "forward":
+                    forecasts.append(
+                        zoneKey=sorted_zone_keys,
+                        datetime=dt,
+                        source=SOURCE,
+                        capacityForwardDir=quantity,
+                        capacityReverseDir=None,
+                    )
+                else:
+                    forecasts.append(
+                        zoneKey=sorted_zone_keys,
+                        datetime=dt,
+                        source=SOURCE,
+                        capacityForwardDir=None,
+                        capacityReverseDir=quantity,
+                    )
+        return forecasts
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to parse exchange capacity forecast XML for {sorted_zone_keys} ({direction} direction): {e}",
+            zone_key=sorted_zone_keys,
+        ) from e
 
 
 def parse_prices(
