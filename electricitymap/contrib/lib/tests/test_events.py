@@ -1111,7 +1111,7 @@ def test_create_exchange_capacity_forecast():
     assert forecast.source == "trust.me"
     assert forecast.capacityForwardDir == 1000.0
     assert forecast.capacityReverseDir == 900.0
-    assert forecast.sourceType == EventSourceType.measured
+    assert forecast.sourceType == EventSourceType.forecasted
 
 
 def test_exchange_capacity_forecast_create_defaults_to_forecasted():
@@ -1128,16 +1128,27 @@ def test_exchange_capacity_forecast_create_defaults_to_forecasted():
     assert forecast.sourceType == EventSourceType.forecasted
 
 
-def test_exchange_capacity_forecast_allows_none_capacity():
-    forecast = ExchangeCapacityForecast(
+def test_exchange_capacity_forecast_allows_one_none_capacity():
+    # One direction may be None as long as the other is set
+    forward_only = ExchangeCapacityForecast(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityForwardDir=1000.0,
+        capacityReverseDir=None,
+    )
+    assert forward_only.capacityForwardDir == 1000.0
+    assert forward_only.capacityReverseDir is None
+
+    reverse_only = ExchangeCapacityForecast(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
         capacityForwardDir=None,
-        capacityReverseDir=None,
+        capacityReverseDir=900.0,
     )
-    assert forecast.capacityForwardDir is None
-    assert forecast.capacityReverseDir is None
+    assert reverse_only.capacityForwardDir is None
+    assert reverse_only.capacityReverseDir == 900.0
 
 
 def test_raises_if_invalid_exchange_capacity_forecast():
@@ -1171,24 +1182,14 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             capacityReverseDir=900.0,
         )
 
-    # NaN forward capacity
+    # Both capacities None
     with pytest.raises(ValueError):
         ExchangeCapacityForecast(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=math.nan,
-            capacityReverseDir=900.0,
-        )
-
-    # NaN reverse capacity
-    with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
-            zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=math.nan,
+            capacityForwardDir=None,
+            capacityReverseDir=None,
         )
 
     # Unknown zone key not in EXCHANGES_CONFIG
@@ -1245,4 +1246,4 @@ def test_exchange_capacity_forecast_to_dict():
     assert d["capacityForwardDir"] == 1000.0
     assert d["capacityReverseDir"] == 900.0
     assert d["source"] == "trust.me"
-    assert d["sourceType"] == EventSourceType.measured
+    assert d["sourceType"] == EventSourceType.forecasted
