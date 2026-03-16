@@ -289,15 +289,6 @@ class EventSourceType(str, Enum):
     estimated = "estimated"
 
 
-class ForecastHorizon(str, Enum):
-    day_ahead = "day_ahead"
-    week_ahead = "week_ahead"
-    month_ahead = "month_ahead"
-
-    def __str__(self) -> str:
-        return self.value
-
-
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
@@ -1076,6 +1067,7 @@ class ExchangeCapacityForecast(Event):
     capacityReverseDir: Capacity for zone2→zone1 direction (may be None).
     """
 
+    sourceType: EventSourceType = EventSourceType.forecasted
     capacityForwardDir: float | None
     capacityReverseDir: float | None
 
@@ -1092,15 +1084,8 @@ class ExchangeCapacityForecast(Event):
 
     @root_validator(pre=False)
     def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
-        forward_cap = values.get("capacityForwardDir")
-        reverse_cap = values.get("capacityReverseDir")
-
-        # Check for NaN
-        if forward_cap is not None and math.isnan(forward_cap):
-            raise ValueError(f"Forward capacity cannot be NaN: {forward_cap}")
-        if reverse_cap is not None and math.isnan(reverse_cap):
-            raise ValueError(f"Reverse capacity cannot be NaN: {reverse_cap}")
-
+        if values.get("capacityForwardDir") is None and values.get("capacityReverseDir") is None:
+            raise ValueError("At least one of capacityForwardDir or capacityReverseDir must be set")
         return values
 
     @staticmethod
