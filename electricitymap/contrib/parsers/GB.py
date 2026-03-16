@@ -216,16 +216,17 @@ def fetch_production(
     )
 
     production_list = ProductionBreakdownList(logger=logger)
-    for timestamp, row in rows_to_process:
+    for period_start, row in rows_to_process:
         production_mix = ProductionMix()
         for neso_key, emaps_key in NESO_TO_PRODUCTION_MIX_MAPPING.items():
             production_mix.add_value(emaps_key, float(row[neso_key]))
 
-        pn_by_unit, mels_by_unit, mils_by_unit, boalf_by_unit = storage_lookup[
-            timestamp
-        ]
+        pn_by_unit, mels_by_unit, mils_by_unit, boalf_by_unit, period_end = (
+            storage_lookup[period_start]
+        )
         storage_mix = _compute_storage_mix(
-            timestamp,
+            period_start,
+            period_end,
             hydro_units,
             battery_units,
             pn_by_unit,
@@ -236,7 +237,7 @@ def fetch_production(
 
         production_list.append(
             zoneKey=zone_key,
-            datetime=timestamp,
+            datetime=period_start,
             production=production_mix,
             storage=storage_mix,
             source="neso.energy, elexon.co.uk",
@@ -322,7 +323,7 @@ def _rows_to_df(rows: list[dict]) -> pd.DataFrame:
 _UnitRecords = dict[str, list[dict]]
 _StorageLookup = dict[
     datetime,
-    tuple[_UnitRecords, _UnitRecords, _UnitRecords, _UnitRecords],
+    tuple[_UnitRecords, _UnitRecords, _UnitRecords, _UnitRecords, datetime],
 ]
 
 
@@ -333,7 +334,7 @@ def _build_storage_lookup(
     boalf_df: pd.DataFrame,
     rows_to_process: list[tuple[datetime, datetime]],
 ) -> _StorageLookup:
-    """Pre-filter and group storage data for each timestamp's 30-minute window.
+    """Pre-filter and group storage data for each timestamp's window.
 
     For each timestamp performs a vectorised boolean filter on the DataFrames
     (datetimes already parsed), then groups the matching rows by unit.
@@ -343,14 +344,26 @@ def _build_storage_lookup(
     lookup: _StorageLookup = {}
 
     timestamps = [ts for ts, _ in rows_to_process]
+    period_duration = (
+        timestamps[1] - timestamps[0] if len(timestamps) >= 2 else None
+    )
 
-    for ts in timestamps:
-        period_end = ts + timedelta(minutes=30)
-        ts_pd = pd.Timestamp(ts)
+    for i, period_start in enumerate(timestamps):
+        if i + 1 < len(timestamps):
+            period_end = timestamps[i + 1]
+        elif period_duration is not None:
+            period_end = period_start + period_duration
+        else:
+            raise ParserException(
+                PARSER,
+                "Cannot determine settlement period duration: only one NESO timestamp returned.",
+                ZONE_KEY,
+            )
+        ps_pd = pd.Timestamp(period_start)
         pe_pd = pd.Timestamp(period_end)
 
         def filter_and_group(
-            df: pd.DataFrame, _ts: pd.Timestamp = ts_pd, _pe: pd.Timestamp = pe_pd
+            df: pd.DataFrame, _ts: pd.Timestamp, _pe: pd.Timestamp
         ) -> _UnitRecords:
             window = df[(df["time_from"] < _pe) & (df["time_to"] > _ts)]
             grouped: _UnitRecords = {}
@@ -370,18 +383,20 @@ def _build_storage_lookup(
                 )
             return grouped
 
-        lookup[ts] = (
-            filter_and_group(pn_df),
-            filter_and_group(mels_df),
-            filter_and_group(mils_df),
-            filter_and_group(boalf_df),
+        lookup[period_start] = (
+            filter_and_group(pn_df, ps_pd, pe_pd),
+            filter_and_group(mels_df, ps_pd, pe_pd),
+            filter_and_group(mils_df, ps_pd, pe_pd),
+            filter_and_group(boalf_df, ps_pd, pe_pd),
+            period_end,
         )
 
     return lookup
 
 
 def _compute_storage_mix(
-    timestamp: datetime,
+    period_start: datetime,
+    period_end: datetime,
     hydro_units: list[str],
     battery_units: list[str],
     pn_by_unit: _UnitRecords,
@@ -392,14 +407,16 @@ def _compute_storage_mix(
     """Compute hydro and battery storage mixes for a given timestamp from pre-fetched data."""
     debug = os.environ.get("PRINT_DETAILS", "").lower()
     storage_mix = StorageMix()
+    period_minutes = int((period_end - period_start).total_seconds() / 60)
 
     hydro_storage = _compute_storage_for_units(
         hydro_units,
-        timestamp,
+        period_start,
         pn_by_unit,
         mels_by_unit,
         mils_by_unit,
         boalf_by_unit,
+        period_minutes,
         print_details=debug == "hydro_storage",
         print_minute_details=debug == "hydro_storage",
     )
@@ -407,11 +424,12 @@ def _compute_storage_mix(
 
     battery_storage = _compute_storage_for_units(
         battery_units,
-        timestamp,
+        period_start,
         pn_by_unit,
         mels_by_unit,
         mils_by_unit,
         boalf_by_unit,
+        period_minutes,
         print_details=debug == "battery_storage",
         print_minute_details=False,
     )
@@ -421,11 +439,12 @@ def _compute_storage_mix(
 
 def _compute_storage_for_units(
     units: list[str],
-    timestamp: datetime,
+    period_start: datetime,
     pn_by_unit: _UnitRecords,
     mels_by_unit: _UnitRecords,
     mils_by_unit: _UnitRecords,
     boalf_by_unit: _UnitRecords,
+    period_minutes: int,
     print_details: bool = False,
     print_minute_details: bool = False,
 ) -> float:
@@ -437,7 +456,7 @@ def _compute_storage_for_units(
         total_boalf = sum(len(boalf_by_unit.get(u, [])) for u in units)
         total_pn = sum(len(pn_by_unit.get(u, [])) for u in units)
         print(
-            f"\n  [{timestamp.strftime('%Y-%m-%d %H:%M')}] {len(units)} units, "
+            f"\n  [{period_start.strftime('%Y-%m-%d %H:%M')}] {len(units)} units, "
             f"pre-fetched: {total_boalf} BOALF, {total_pn} PN rows"
         )
 
@@ -452,7 +471,8 @@ def _compute_storage_for_units(
             pn_records=pn_by_unit.get(unit, []),
             mels_records=mels_by_unit.get(unit, []),
             mils_records=mils_by_unit.get(unit, []),
-            period_start=timestamp,
+            period_start=period_start,
+            period_minutes=period_minutes,
             print_details=print_details,
             print_minute_details=print_minute_details,
         )
@@ -535,11 +555,11 @@ def _compute_unit_storage_mw(
     mels_records: list[dict],
     mils_records: list[dict],
     period_start: datetime,
-    period_minutes: int = 30,
+    period_minutes: int,
     print_details: bool = False,
     print_minute_details: bool = False,
 ) -> float:
-    """Compute the average MW output for one storage unit over a 30-minute period.
+    """Compute the average MW output for one storage unit over a period.
 
     Resolves the effective MW value at each minute in [period_start,
     period_start + period_minutes) using the following precedence:
