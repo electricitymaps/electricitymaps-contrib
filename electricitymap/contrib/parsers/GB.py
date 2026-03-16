@@ -538,15 +538,18 @@ def _get_level_at_minute(records: list[dict], minute_dt: datetime) -> float | No
     timeFrom/timeTo and levelFrom/levelTo fields. Their intervals typically
     align to settlement period boundaries but are not guaranteed to.
 
-    For a given minute, finds the record whose [timeFrom, timeTo) interval
-    covers it and returns its levelFrom.
+    For a given minute, finds all records whose [timeFrom, timeTo) interval
+    covers it and returns the levelFrom of the one with the latest timeFrom,
+    making the result deterministic when overlapping records exist.
 
     Returns None if no record covers this minute.
     """
+    best_rec = None
     for rec in records:
         if rec["time_from"] <= minute_dt < rec["time_to"]:
-            return rec["level_from"]
-    return None
+            if best_rec is None or rec["time_from"] > best_rec["time_from"]:
+                best_rec = rec
+    return best_rec["level_from"] if best_rec is not None else None
 
 
 def _compute_unit_storage_mw(
