@@ -15,7 +15,7 @@ Link to the API documentation:
 https://documenter.getpostman.com/view/7009892/2s93JtP3F6
 """
 
-from collections.abc import Callable, Generator, Iterable
+from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -24,7 +24,7 @@ from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
 from operator import attrgetter, itemgetter
 from re import fullmatch
-from typing import Any, NamedTuple
+from typing import Any, Literal, NamedTuple
 
 from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
@@ -420,91 +420,31 @@ def query_exchange_forecast(
     )
 
 
-def query_exchange_capacity_forecast_day_ahead(
+def query_exchange_capacity_forecast(
     in_domain: str,
     out_domain: str,
     session: Session,
+    forecast_type: EntsoeTypeEnum,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> str | None:
-    """Queries day-ahead exchange capacity forecast for a given pair of domains."""
+    """Queries exchange capacity forecast for a given pair of domains and forecast type."""
     params = {
         "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
-        "Contract_MarketAgreement.Type": EntsoeTypeEnum.DAY_AHEAD,
+        "Contract_MarketAgreement.Type": forecast_type,
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
     try:
-        result = query_ENTSOE(
+        return query_ENTSOE(
             session,
             params,
             target_datetime=target_datetime,
             span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
         )
-        return result if result and "<TimeSeries>" in result else None
-    except ParserException:
-        logger.debug(
-            "ENTSOE exchange capacity day-ahead query failed.",
-            exc_info=True,
-        )
-        return None
-
-
-def query_exchange_capacity_forecast_week_ahead(
-    in_domain: str,
-    out_domain: str,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> str | None:
-    """Queries week-ahead exchange capacity forecast for a given pair of domains."""
-    params = {
-        "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
-        "Contract_MarketAgreement.Type": EntsoeTypeEnum.WEEK_AHEAD,
-        "in_Domain": in_domain,
-        "out_Domain": out_domain,
-    }
-    try:
-        result = query_ENTSOE(
-            session,
-            params,
-            target_datetime=target_datetime,
-            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
-        )
-        return result if result and "<TimeSeries>" in result else None
-    except ParserException:
-        logger.debug(
-            "ENTSOE exchange capacity week-ahead query failed.",
-            exc_info=True,
-        )
-        return None
-
-
-def query_exchange_capacity_forecast_month_ahead(
-    in_domain: str,
-    out_domain: str,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> str | None:
-    """Queries month-ahead exchange capacity forecast for a given pair of domains."""
-    params = {
-        "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
-        "Contract_MarketAgreement.Type": EntsoeTypeEnum.MONTH_AHEAD,
-        "in_Domain": in_domain,
-        "out_Domain": out_domain,
-    }
-    try:
-        result = query_ENTSOE(
-            session,
-            params,
-            target_datetime=target_datetime,
-            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
-        )
-        return result if result and "<TimeSeries>" in result else None
-    except ParserException:
-        logger.debug(
-            "ENTSOE exchange capacity month-ahead query failed.",
+    except ParserException as e:
+        logger.warning(
+            f"ENTSOE exchange capacity {forecast_type} query failed: {e}",
             exc_info=True,
         )
         return None
@@ -1048,7 +988,7 @@ def parse_exchange_capacity_forecast(
     xml_text: str,
     sorted_zone_keys: ZoneKey,
     logger: Logger,
-    direction: str = "forward",  # "forward" or "reverse"
+    direction: Literal["forward", "reverse"] = "forward",
 ) -> ExchangeCapacityForecastList:
     """
     Parses NTC (A61) exchange capacity forecast XML for a given direction.
@@ -1074,7 +1014,7 @@ def parse_exchange_capacity_forecast(
                     capacityForwardDir=quantity,
                     capacityReverseDir=None,
                 )
-            elif direction == "reverse":
+            else:
                 forecasts.append(
                     zoneKey=sorted_zone_keys,
                     datetime=dt,
@@ -1641,7 +1581,7 @@ def fetch_wind_solar_forecasts(
 def _fetch_exchange_capacity_forecasts(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    query_fn: Callable,
+    forecast_type: EntsoeTypeEnum,
     session: Session,
     target_datetime: datetime | None,
     logger: Logger,
@@ -1651,11 +1591,11 @@ def _fetch_exchange_capacity_forecasts(
     domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
     domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
 
-    raw_forward = query_fn(
-        domain_1, domain_2, session, target_datetime=target_datetime, logger=logger
+    raw_forward = query_exchange_capacity_forecast(
+        domain_1, domain_2, session, forecast_type, target_datetime=target_datetime, logger=logger
     )
-    raw_reverse = query_fn(
-        domain_2, domain_1, session, target_datetime=target_datetime, logger=logger
+    raw_reverse = query_exchange_capacity_forecast(
+        domain_2, domain_1, session, forecast_type, target_datetime=target_datetime, logger=logger
     )
 
     if raw_forward is None and raw_reverse is None:
@@ -1663,6 +1603,14 @@ def _fetch_exchange_capacity_forecasts(
             parser="ENTSOE.py",
             message=f"No exchange capacity forecast data found for {sorted_zone_keys}",
             zone_key=sorted_zone_keys,
+        )
+    if raw_forward is None:
+        logger.warning(
+            f"No forward exchange capacity data for {sorted_zone_keys}. Proceeding with reverse direction only."
+        )
+    if raw_reverse is None:
+        logger.warning(
+            f"No reverse exchange capacity data for {sorted_zone_keys}. Proceeding with forward direction only."
         )
 
     forward_list = ExchangeCapacityForecastList(logger)
@@ -1701,7 +1649,7 @@ def fetch_exchange_capacity_forecasts_day_ahead(
     return _fetch_exchange_capacity_forecasts(
         zone_key1,
         zone_key2,
-        query_exchange_capacity_forecast_day_ahead,
+        EntsoeTypeEnum.DAY_AHEAD,
         session or Session(),
         target_datetime,
         logger,
@@ -1720,7 +1668,7 @@ def fetch_exchange_capacity_forecasts_week_ahead(
     return _fetch_exchange_capacity_forecasts(
         zone_key1,
         zone_key2,
-        query_exchange_capacity_forecast_week_ahead,
+        EntsoeTypeEnum.WEEK_AHEAD,
         session or Session(),
         target_datetime,
         logger,
@@ -1739,7 +1687,7 @@ def fetch_exchange_capacity_forecasts_month_ahead(
     return _fetch_exchange_capacity_forecasts(
         zone_key1,
         zone_key2,
-        query_exchange_capacity_forecast_month_ahead,
+        EntsoeTypeEnum.MONTH_AHEAD,
         session or Session(),
         target_datetime,
         logger,
