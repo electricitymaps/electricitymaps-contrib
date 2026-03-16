@@ -169,7 +169,9 @@ def fetch_production(
         end_datetime = datetime.now(tz=ZoneInfo("UTC"))
         sql_query = f"""SELECT * FROM "{NESO_GENERATION_DATASET_ID}" WHERE "DATETIME" >= '{start_datetime.strftime("%Y-%m-%d")}' ORDER BY "DATETIME" ASC"""
 
-    elif target_datetime.astimezone(timezone.utc) > datetime(year=2009, month=1, day=1, tzinfo=timezone.utc):
+    elif target_datetime.astimezone(timezone.utc) > datetime(
+        year=2009, month=1, day=1, tzinfo=timezone.utc
+    ):
         target_datetime = target_datetime.astimezone(ZoneInfo("Europe/London"))
         start_datetime = target_datetime - timedelta(hours=48)
         end_datetime = target_datetime + timedelta(hours=24)
@@ -209,7 +211,6 @@ def fetch_production(
     pn_df, mels_df, mils_df, boalf_df = _fetch_all_storage_data(
         session, hydro_units + battery_units, start_datetime, end_datetime
     )
-
 
     storage_lookup = _build_storage_lookup(
         pn_df, mels_df, mils_df, boalf_df, rows_to_process
@@ -303,7 +304,7 @@ def _rows_to_df(rows: list[dict]) -> pd.DataFrame:
         )
     df = pd.DataFrame(rows)
     df["time_from"] = pd.to_datetime(df["timeFrom"]).dt.tz_convert("UTC")
-    df["time_to"]   = pd.to_datetime(df["timeTo"]).dt.tz_convert("UTC")
+    df["time_to"] = pd.to_datetime(df["timeTo"]).dt.tz_convert("UTC")
     df["unit"] = (
         df["nationalGridBmUnit"] if "nationalGridBmUnit" in df.columns else pd.NA
     )
@@ -344,9 +345,7 @@ def _build_storage_lookup(
     lookup: _StorageLookup = {}
 
     timestamps = [ts for ts, _ in rows_to_process]
-    period_duration = (
-        timestamps[1] - timestamps[0] if len(timestamps) >= 2 else None
-    )
+    period_duration = timestamps[1] - timestamps[0] if len(timestamps) >= 2 else None
 
     for i, period_start in enumerate(timestamps):
         if i + 1 < len(timestamps):
@@ -546,9 +545,10 @@ def _get_level_at_minute(records: list[dict], minute_dt: datetime) -> float | No
     """
     best_rec = None
     for rec in records:
-        if rec["time_from"] <= minute_dt < rec["time_to"]:
-            if best_rec is None or rec["time_from"] > best_rec["time_from"]:
-                best_rec = rec
+        if rec["time_from"] <= minute_dt < rec["time_to"] and (
+            best_rec is None or rec["time_from"] > best_rec["time_from"]
+        ):
+            best_rec = rec
     return best_rec["level_from"] if best_rec is not None else None
 
 
