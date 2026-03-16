@@ -210,9 +210,9 @@ def fetch_production(
         session, hydro_units + battery_units, start_datetime, end_datetime
     )
 
-    timestamps = [ts for ts, _ in rows_to_process]
+
     storage_lookup = _build_storage_lookup(
-        pn_df, mels_df, mils_df, boalf_df, timestamps
+        pn_df, mels_df, mils_df, boalf_df, rows_to_process
     )
 
     production_list = ProductionBreakdownList(logger=logger)
@@ -331,7 +331,7 @@ def _build_storage_lookup(
     mels_df: pd.DataFrame,
     mils_df: pd.DataFrame,
     boalf_df: pd.DataFrame,
-    timestamps: list[datetime],
+    rows_to_process: list[tuple[datetime, datetime]],
 ) -> _StorageLookup:
     """Pre-filter and group storage data for each timestamp's 30-minute window.
 
@@ -341,6 +341,8 @@ def _build_storage_lookup(
     require only simple comparisons.
     """
     lookup: _StorageLookup = {}
+
+    timestamps = [ts for ts, _ in rows_to_process]
 
     for ts in timestamps:
         period_end = ts + timedelta(minutes=30)
