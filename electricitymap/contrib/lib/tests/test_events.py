@@ -1106,16 +1106,12 @@ def test_create_exchange_capacity_forecast():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     assert forecast.zoneKey == ZoneKey("AT->DE")
     assert forecast.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert forecast.source == "trust.me"
     assert forecast.capacityForwardDir == 1000.0
     assert forecast.capacityReverseDir == 900.0
-    assert forecast.marketTypeForwardDir == ForecastHorizon.day_ahead
-    assert forecast.marketTypeReverseDir == ForecastHorizon.day_ahead
     assert forecast.sourceType == EventSourceType.measured
 
 
@@ -1128,8 +1124,6 @@ def test_exchange_capacity_forecast_create_defaults_to_forecasted():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     assert forecast is not None
     assert forecast.sourceType == EventSourceType.forecasted
@@ -1142,26 +1136,9 @@ def test_exchange_capacity_forecast_allows_none_capacity():
         source="trust.me",
         capacityForwardDir=None,
         capacityReverseDir=None,
-        marketTypeForwardDir=ForecastHorizon.week_ahead,
-        marketTypeReverseDir=ForecastHorizon.week_ahead,
     )
     assert forecast.capacityForwardDir is None
     assert forecast.capacityReverseDir is None
-
-
-def test_exchange_capacity_forecast_all_forecast_horizons():
-    for horizon in ForecastHorizon:
-        forecast = ExchangeCapacityForecast(
-            zoneKey=ZoneKey("AT->DE"),
-            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            source="trust.me",
-            capacityForwardDir=500.0,
-            capacityReverseDir=500.0,
-            marketTypeForwardDir=horizon,
-            marketTypeReverseDir=horizon,
-        )
-        assert forecast.marketTypeForwardDir == horizon
-        assert forecast.marketTypeReverseDir == horizon
 
 
 def test_raises_if_invalid_exchange_capacity_forecast():
@@ -1173,8 +1150,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
     # Unsorted zone key
@@ -1185,8 +1160,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
     # Not an exchange key (no "->")
@@ -1197,8 +1170,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
     # NaN forward capacity
@@ -1209,8 +1180,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=math.nan,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
     # NaN reverse capacity
@@ -1221,8 +1190,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=math.nan,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
     # Unknown zone key not in EXCHANGES_CONFIG
@@ -1233,8 +1200,6 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
 
 
@@ -1248,8 +1213,6 @@ def test_exchange_capacity_forecast_static_create_logs_error():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
         mock_error.assert_called_once()
 
@@ -1263,8 +1226,6 @@ def test_exchange_capacity_forecast_allows_future_datetime():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
         sourceType=EventSourceType.forecasted,
     )
     assert forecast.datetime == datetime(2023, 3, 1, tzinfo=timezone.utc)
@@ -1278,15 +1239,11 @@ def test_exchange_capacity_forecast_to_dict():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.week_ahead,
     )
     d = forecast.to_dict()
     assert d["datetime"] == dt
     assert d["sortedZoneKeys"] == ZoneKey("AT->DE")
     assert d["capacityForwardDir"] == 1000.0
     assert d["capacityReverseDir"] == 900.0
-    assert d["marketTypeForwardDir"] == "day_ahead"
-    assert d["marketTypeReverseDir"] == "week_ahead"
     assert d["source"] == "trust.me"
     assert d["sourceType"] == EventSourceType.measured

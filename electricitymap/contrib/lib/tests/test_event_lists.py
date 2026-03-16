@@ -1136,8 +1136,6 @@ def test_exchange_capacity_forecast_list():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     forecast_list.append(
         zoneKey=ZoneKey("AT->DE"),
@@ -1145,8 +1143,6 @@ def test_exchange_capacity_forecast_list():
         source="trust.me",
         capacityForwardDir=1100.0,
         capacityReverseDir=950.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     assert len(forecast_list.events) == 2
 
@@ -1161,8 +1157,6 @@ def test_append_to_exchange_capacity_forecast_list_logs_error():
             source="trust.me",
             capacityForwardDir=1000.0,
             capacityReverseDir=900.0,
-            marketTypeForwardDir=ForecastHorizon.day_ahead,
-            marketTypeReverseDir=ForecastHorizon.day_ahead,
         )
         mock_error.assert_called_once()
     assert len(forecast_list.events) == 0
@@ -1178,8 +1172,6 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
         source="trust.me",
         capacityForwardDir=1100.0,
         capacityReverseDir=950.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     forecast_list.append(
         zoneKey=ZoneKey("AT->DE"),
@@ -1187,8 +1179,6 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
         source="trust.me",
         capacityForwardDir=1000.0,
         capacityReverseDir=900.0,
-        marketTypeForwardDir=ForecastHorizon.day_ahead,
-        marketTypeReverseDir=ForecastHorizon.day_ahead,
     )
     result = forecast_list.to_list()
     assert len(result) == 2
@@ -1196,8 +1186,6 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
     assert result[1]["datetime"] == dt2
     assert result[0]["capacityForwardDir"] == 1000.0
     assert result[0]["capacityReverseDir"] == 900.0
-    assert result[0]["marketTypeForwardDir"] == "day_ahead"
-    assert result[0]["marketTypeReverseDir"] == "day_ahead"
     assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
     assert result[0]["source"] == "trust.me"
     assert result[0]["sourceType"] == EventSourceType.forecasted
