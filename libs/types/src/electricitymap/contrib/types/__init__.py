@@ -37,10 +37,10 @@ class ParserDataType(Enum):
     PRODUCTION = "production"
     PRODUCTION_PER_MODE_FORECAST = "productionPerModeForecast"
     REALTIME_LOCATIONAL_MARGINAL_PRICE = "realtimeLocationalMarginalPrice"
-    # TODO: Double check if we should keep them here?
     EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD = "exchangeCapacityForecastDayAhead"
     EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD = "exchangeCapacityForecastWeekAhead"
     EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD = "exchangeCapacityForecastMonthAhead"
+    # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
     GRID_ALERTS = "gridAlerts"
 
@@ -50,6 +50,11 @@ class ParserDataType(Enum):
 
 ALL_DATA_TYPES = [dt.value for dt in ParserDataType]
 EXCHANGE_DATA_TYPES = [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
+EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
+    ParserDataType.EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD,
+]
 LMP_DATA_TYPES = [
     ParserDataType.REALTIME_LOCATIONAL_MARGINAL_PRICE,
     ParserDataType.DAYAHEAD_LOCATIONAL_MARGINAL_PRICE,
@@ -61,6 +66,7 @@ __all__: list[str] = [
     "BoundingBox",
     "ParserDataType",
     "ALL_DATA_TYPES",
+    "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
     "EXCHANGE_DATA_TYPES",
     "LMP_DATA_TYPES",
 ]
