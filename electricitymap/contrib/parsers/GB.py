@@ -302,8 +302,8 @@ def _rows_to_df(rows: list[dict]) -> pd.DataFrame:
             columns=["unit", "time_from", "time_to", "level_from", "acceptance_number"]
         )
     df = pd.DataFrame(rows)
-df["time_from"] = pd.to_datetime(df["timeFrom"]).dt.tz_convert("UTC")
-  df["time_to"]   = pd.to_datetime(df["timeTo"]).dt.tz_convert("UTC")
+    df["time_from"] = pd.to_datetime(df["timeFrom"]).dt.tz_convert("UTC")
+    df["time_to"]   = pd.to_datetime(df["timeTo"]).dt.tz_convert("UTC")
     df["unit"] = (
         df["nationalGridBmUnit"] if "nationalGridBmUnit" in df.columns else pd.NA
     )

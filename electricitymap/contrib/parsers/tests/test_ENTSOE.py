@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
@@ -190,7 +191,9 @@ def test_production_with_snapshot(adapter, session, snapshot, zone):
         ANY,
         content=raw_data.read_bytes(),
     )
-    assert snapshot == ENTSOE.fetch_production(ZoneKey(zone), session)
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ENTSOE.fetch_production(ZoneKey(zone), session)
 
 
 def test_fetch_exchange(adapter, session, snapshot):
@@ -538,4 +541,4 @@ def test_a03_curve_decompression(fixture, snapshot):
         _get_datetime_value_from_timeseries(ts, "quantity", production_parsing=True)
     )
 
-    assert snapshot == results
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == results

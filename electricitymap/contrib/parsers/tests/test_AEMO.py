@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.AEMO import fetch_consumption_forecast
 
@@ -50,7 +51,9 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
     )
 
     # Run function under test
-    assert snapshot == fetch_consumption_forecast(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_consumption_forecast(
         zone_key=zone_key,
         session=session,
         target_datetime=datetime(2025, 4, 1, 18, 0),  # Mock file has this datetime
