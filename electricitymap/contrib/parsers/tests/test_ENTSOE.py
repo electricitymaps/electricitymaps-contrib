@@ -549,58 +549,84 @@ def test_a03_curve_decompression(fixture, snapshot):
 
 # ─── parse_exchange_capacity_forecast ────────────────────────────────────────
 
-_CAPACITY_XML_TEMPLATE = """
-<root>
-  <TimeSeries>
-    <curveType>A01</curveType>
-    <Period>
-      <start>{start}</start>
-      <end>{end}</end>
-      <resolution>PT60M</resolution>
-      <Point><position>1</position><quantity>{q1}</quantity></Point>
-      <Point><position>2</position><quantity>{q2}</quantity></Point>
-    </Period>
-  </TimeSeries>
-</root>
-"""
 
-
-def _capacity_xml(start: str, end: str, q1: float, q2: float) -> str:
-    return _CAPACITY_XML_TEMPLATE.format(start=start, end=end, q1=q1, q2=q2)
-
-
-def test_parse_exchange_capacity_forecast_forward_direction():
-    """Forward direction populates capacityExport, leaves capacityImport None."""
-    xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 600, 500)
+def test_parse_exchange_capacity_forecast_week_ahead_export_direction():
+    """export direction populates capacityExport, leaves capacityImport None."""
+    xml = (
+        base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
+    ).read_text()
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="export"
+        xml, ZoneKey("DK-DK1->DK-DK2"), logger, direction="export"
     )
     events = result.events
-    assert len(events) == 2
-    dt0 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+    assert len(events) == 40
+    dt0 = datetime(2026, 2, 16, 23, 0, tzinfo=timezone.utc)
     assert events[0].datetime == dt0
     assert events[0].capacityExport == 600.0
     assert events[0].capacityImport is None
-    assert events[1].datetime == dt0 + timedelta(hours=1)
-    assert events[1].capacityExport == 500.0
+    assert events[1].datetime == dt0 + timedelta(days=1)
+    assert events[1].capacityExport == 600.0
     assert events[1].capacityImport is None
     assert events[0].sourceType == EventSourceType.forecasted
 
 
-def test_parse_exchange_capacity_forecast_reverse_direction():
-    """Reverse direction populates capacityImport, leaves capacityExport None."""
-    xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 400, 300)
+def test_parse_exchange_capacity_forecast_week_ahead_import_direction():
+    """Import direction populates capacityImport, leaves capacityExport None."""
+    xml = (
+        base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
+    ).read_text()
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="import"
+        xml, ZoneKey("DK-DK1->DK-DK2"), logger, direction="import"
     )
     events = result.events
-    assert len(events) == 2
-    assert events[0].capacityImport == 400.0
+    assert len(events) == 40
+    assert events[0].capacityImport == 450.0
     assert events[0].capacityExport is None
-    assert events[1].capacityImport == 300.0
+    assert events[1].capacityImport == 450.0
     assert events[1].capacityExport is None
+
+
+def test_parse_exchange_capacity_forecast_day_ahead_export_direction():
+    """export direction populates capacityExport, leaves capacityImport None."""
+    xml = (base_path_to_mock / "ES_FR_capacity_day_ahead_export.xml").read_text()
+    logger = logging.getLogger("test")
+    result = parse_exchange_capacity_forecast(
+        xml, ZoneKey("ES->FR"), logger, direction="export"
+    )
+    events = result.events
+    assert len(events) == 41
+    dt0 = datetime(2026, 3, 19, 6, 0, tzinfo=timezone.utc)
+    assert events[0].datetime == dt0
+    assert events[0].capacityExport == 3006.0
+    assert events[0].capacityImport is None
+    assert events[1].datetime == dt0 + timedelta(hours=1)
+    assert events[1].capacityExport == 3006.0
+    assert events[1].capacityImport is None
+    assert events[4].capacityExport == 2914.0
+    assert events[-1].capacityExport == 3607.0
+    assert events[0].sourceType == EventSourceType.forecasted
+
+
+def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
+    """import direction populates capacityImport, leaves capacityExport None."""
+    xml = (base_path_to_mock / "ES_FR_capacity_month_ahead_import.xml").read_text()
+    logger = logging.getLogger("test")
+    result = parse_exchange_capacity_forecast(
+        xml, ZoneKey("ES->FR"), logger, direction="import"
+    )
+    events = result.events
+    assert len(events) == 62
+    dt0 = datetime(2026, 3, 16, 23, 0, tzinfo=timezone.utc)
+    assert events[0].datetime == dt0
+    assert events[0].capacityExport is None
+    assert events[0].capacityImport == 2150.0
+    assert events[1].datetime == dt0 + timedelta(days=1)
+    assert events[1].capacityExport is None
+    assert events[1].capacityImport == 2150.0
+    assert events[2].capacityImport == 2400.0
+    assert events[0].sourceType == EventSourceType.forecasted
 
 
 def test_parse_exchange_capacity_forecast_empty_xml():
@@ -617,7 +643,7 @@ def test_parse_exchange_capacity_forecast_multiple_timeseries():
     xml = """
     <root>
       <TimeSeries>
-        <curveType>A01</curveType>
+        <curveType>A03</curveType>
         <Period>
           <start>2023-01-01T00:00Z</start>
           <end>2023-01-01T01:00Z</end>
@@ -626,7 +652,7 @@ def test_parse_exchange_capacity_forecast_multiple_timeseries():
         </Period>
       </TimeSeries>
       <TimeSeries>
-        <curveType>A01</curveType>
+        <curveType>A03</curveType>
         <Period>
           <start>2023-01-01T01:00Z</start>
           <end>2023-01-01T02:00Z</end>
