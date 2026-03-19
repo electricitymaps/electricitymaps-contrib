@@ -574,7 +574,7 @@ def test_parse_exchange_capacity_forecast_forward_direction():
     xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 600, 500)
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="forward"
+        xml, ZoneKey("AT->DE"), logger, direction="export"
     )
     events = result.events
     assert len(events) == 2
@@ -593,7 +593,7 @@ def test_parse_exchange_capacity_forecast_reverse_direction():
     xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 400, 300)
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="reverse"
+        xml, ZoneKey("AT->DE"), logger, direction="import"
     )
     events = result.events
     assert len(events) == 2
@@ -607,7 +607,7 @@ def test_parse_exchange_capacity_forecast_empty_xml():
     """Empty XML (no TimeSeries) returns an empty list."""
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        "<root></root>", ZoneKey("AT->DE"), logger, direction="forward"
+        "<root></root>", ZoneKey("AT->DE"), logger, direction="export"
     )
     assert result.events == []
 
@@ -638,7 +638,7 @@ def test_parse_exchange_capacity_forecast_multiple_timeseries():
     """
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
-        xml, ZoneKey("AT->DE"), logger, direction="forward"
+        xml, ZoneKey("AT->DE"), logger, direction="export"
     )
     assert len(result.events) == 2
     assert result.events[0].capacityExport == 100.0

@@ -988,7 +988,7 @@ def parse_exchange_capacity_forecast(
     xml_text: str,
     sorted_zone_keys: ZoneKey,
     logger: Logger,
-    direction: Literal["forward", "reverse"] = "forward",
+    direction: Literal["export", "import"] = "export",
 ) -> ExchangeCapacityForecastList:
     """
     Parses NTC (A61) exchange capacity forecast XML for a given direction.
@@ -997,7 +997,7 @@ def parse_exchange_capacity_forecast(
         xml_text: The XML response from ENTSOE
         sorted_zone_keys: The exchange pair (sorted, format "A->B")
         logger: Logger instance
-        direction: "forward" for A→B, "reverse" for B→A
+        direction: "export" for A→B, "import" for B→A
 
     Returns:
         ExchangeCapacityForecastList with capacity populated for the specified direction
@@ -1009,7 +1009,7 @@ def parse_exchange_capacity_forecast(
             for dt, quantity in _get_datetime_value_from_timeseries(
                 timeseries, "quantity"
             ):
-                if direction == "forward":
+                if direction == "export":
                     forecasts.append(
                         zoneKey=sorted_zone_keys,
                         datetime=dt,
@@ -1640,7 +1640,7 @@ def _fetch_exchange_capacity_forecasts(
             raw_forward,
             sorted_zone_keys=sorted_zone_keys,
             logger=logger,
-            direction="forward",
+            direction="export",
         )
 
     if raw_reverse:
@@ -1648,7 +1648,7 @@ def _fetch_exchange_capacity_forecasts(
             raw_reverse,
             sorted_zone_keys=sorted_zone_keys,
             logger=logger,
-            direction="reverse",
+            direction="import",
         )
 
     return _merge_exchange_capacity_forecasts(
