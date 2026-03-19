@@ -1665,7 +1665,7 @@ def _fetch_exchange_capacity_forecasts(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=1))
+@refetch_frequency(timedelta(days=2))
 def fetch_exchange_capacity_forecasts_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
