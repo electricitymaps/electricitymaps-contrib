@@ -58,7 +58,14 @@ ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 DEFAULT_LOOKBACK_HOURS_REALTIME = timedelta(hours=72)
 DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=0))
 DEFAULT_TARGET_HOURS_FORECAST = (-timedelta(hours=24), timedelta(hours=48))
-EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST = (-timedelta(days=30), timedelta(days=60))
+EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_DAY_AHEAD = (
+    -timedelta(days=2),
+    timedelta(days=7),
+)
+EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_WEEK_AND_MONTH_AHEAD = (
+    -timedelta(days=7),
+    timedelta(days=30),
+)
 
 # SoupStrainer instances for efficient XML parsing
 # Only parse the elements we care about in each context
@@ -440,7 +447,9 @@ def query_exchange_capacity_forecast(
             session,
             params,
             target_datetime=target_datetime,
-            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST,
+            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_DAY_AHEAD
+            if forecast_type == EntsoeTypeEnum.DAY_AHEAD
+            else EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_WEEK_AND_MONTH_AHEAD,
         )
     except ParserException as e:
         logger.warning(
@@ -1656,7 +1665,7 @@ def _fetch_exchange_capacity_forecasts(
     ).to_list()
 
 
-@refetch_frequency(timedelta(days=30))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange_capacity_forecasts_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1675,7 +1684,7 @@ def fetch_exchange_capacity_forecasts_day_ahead(
     )
 
 
-@refetch_frequency(timedelta(days=30))
+@refetch_frequency(timedelta(days=7))
 def fetch_exchange_capacity_forecasts_week_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1694,7 +1703,7 @@ def fetch_exchange_capacity_forecasts_week_ahead(
     )
 
 
-@refetch_frequency(timedelta(days=30))
+@refetch_frequency(timedelta(days=7))
 def fetch_exchange_capacity_forecasts_month_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
