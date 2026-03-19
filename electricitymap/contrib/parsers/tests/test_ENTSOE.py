@@ -570,7 +570,7 @@ def _capacity_xml(start: str, end: str, q1: float, q2: float) -> str:
 
 
 def test_parse_exchange_capacity_forecast_forward_direction():
-    """Forward direction populates capacityForwardDir, leaves capacityReverseDir None."""
+    """Forward direction populates capacityExport, leaves capacityImport None."""
     xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 600, 500)
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
@@ -580,16 +580,16 @@ def test_parse_exchange_capacity_forecast_forward_direction():
     assert len(events) == 2
     dt0 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     assert events[0].datetime == dt0
-    assert events[0].capacityForwardDir == 600.0
-    assert events[0].capacityReverseDir is None
+    assert events[0].capacityExport == 600.0
+    assert events[0].capacityImport is None
     assert events[1].datetime == dt0 + timedelta(hours=1)
-    assert events[1].capacityForwardDir == 500.0
-    assert events[1].capacityReverseDir is None
+    assert events[1].capacityExport == 500.0
+    assert events[1].capacityImport is None
     assert events[0].sourceType == EventSourceType.forecasted
 
 
 def test_parse_exchange_capacity_forecast_reverse_direction():
-    """Reverse direction populates capacityReverseDir, leaves capacityForwardDir None."""
+    """Reverse direction populates capacityImport, leaves capacityExport None."""
     xml = _capacity_xml("2023-01-01T00:00Z", "2023-01-01T02:00Z", 400, 300)
     logger = logging.getLogger("test")
     result = parse_exchange_capacity_forecast(
@@ -597,10 +597,10 @@ def test_parse_exchange_capacity_forecast_reverse_direction():
     )
     events = result.events
     assert len(events) == 2
-    assert events[0].capacityReverseDir == 400.0
-    assert events[0].capacityForwardDir is None
-    assert events[1].capacityReverseDir == 300.0
-    assert events[1].capacityForwardDir is None
+    assert events[0].capacityImport == 400.0
+    assert events[0].capacityExport is None
+    assert events[1].capacityImport == 300.0
+    assert events[1].capacityExport is None
 
 
 def test_parse_exchange_capacity_forecast_empty_xml():
@@ -641,8 +641,8 @@ def test_parse_exchange_capacity_forecast_multiple_timeseries():
         xml, ZoneKey("AT->DE"), logger, direction="forward"
     )
     assert len(result.events) == 2
-    assert result.events[0].capacityForwardDir == 100.0
-    assert result.events[1].capacityForwardDir == 200.0
+    assert result.events[0].capacityExport == 100.0
+    assert result.events[1].capacityExport == 200.0
 
 
 # ─── _merge_exchange_capacity_forecasts ──────────────────────────────────────
@@ -661,8 +661,8 @@ def _make_capacity_list(
             zoneKey=zone_key,
             datetime=dt,
             source="entsoe.eu",
-            capacityForwardDir=fwd,
-            capacityReverseDir=rev,
+            capacityExport=fwd,
+            capacityImport=rev,
         )
     return lst
 
@@ -682,15 +682,15 @@ def test_merge_exchange_capacity_forecasts_both_directions():
 
     assert len(events) == 2
     assert events[0].datetime == dt1
-    assert events[0].capacityForwardDir == 600.0
-    assert events[0].capacityReverseDir == 400.0
+    assert events[0].capacityExport == 600.0
+    assert events[0].capacityImport == 400.0
     assert events[1].datetime == dt2
-    assert events[1].capacityForwardDir == 500.0
-    assert events[1].capacityReverseDir == 350.0
+    assert events[1].capacityExport == 500.0
+    assert events[1].capacityImport == 350.0
 
 
 def test_merge_exchange_capacity_forecasts_only_forward():
-    """Only forward data → merged events have capacityReverseDir=None."""
+    """Only forward data → merged events have capacityImport=None."""
     logger = logging.getLogger("test")
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
@@ -702,12 +702,12 @@ def test_merge_exchange_capacity_forecasts_only_forward():
     events = merged.events
 
     assert len(events) == 1
-    assert events[0].capacityForwardDir == 600.0
-    assert events[0].capacityReverseDir is None
+    assert events[0].capacityExport == 600.0
+    assert events[0].capacityImport is None
 
 
 def test_merge_exchange_capacity_forecasts_only_reverse():
-    """Only reverse data → merged events have capacityForwardDir=None."""
+    """Only reverse data → merged events have capacityExport=None."""
     logger = logging.getLogger("test")
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
@@ -719,8 +719,8 @@ def test_merge_exchange_capacity_forecasts_only_reverse():
     events = merged.events
 
     assert len(events) == 1
-    assert events[0].capacityForwardDir is None
-    assert events[0].capacityReverseDir == 400.0
+    assert events[0].capacityExport is None
+    assert events[0].capacityImport == 400.0
 
 
 def test_merge_exchange_capacity_forecasts_non_overlapping_datetimes():
@@ -738,11 +738,11 @@ def test_merge_exchange_capacity_forecasts_non_overlapping_datetimes():
 
     assert len(events) == 2
     assert events[0].datetime == dt1
-    assert events[0].capacityForwardDir == 600.0
-    assert events[0].capacityReverseDir is None
+    assert events[0].capacityExport == 600.0
+    assert events[0].capacityImport is None
     assert events[1].datetime == dt2
-    assert events[1].capacityForwardDir is None
-    assert events[1].capacityReverseDir == 400.0
+    assert events[1].capacityExport is None
+    assert events[1].capacityImport == 400.0
 
 
 def test_merge_exchange_capacity_forecasts_prefers_forward_zone_key():

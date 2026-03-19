@@ -1063,13 +1063,13 @@ class ExchangeCapacityForecast(Event):
     An event representing the forecasted net transfer capacity (NTC) between
     two zones in both directions.
 
-    capacityForwardDir: Capacity for zone1→zone2 direction (may be None).
-    capacityReverseDir: Capacity for zone2→zone1 direction (may be None).
+    capacityExport: Capacity for zone1→zone2 direction (may be None).
+    capacityImport: Capacity for zone2→zone1 direction (may be None).
     """
 
     sourceType: EventSourceType = EventSourceType.forecasted
-    capacityForwardDir: float | None
-    capacityReverseDir: float | None
+    capacityExport: float | None
+    capacityImport: float | None
 
     @validator("zoneKey")
     def _validate_zone_key(cls, v: str):
@@ -1085,11 +1085,11 @@ class ExchangeCapacityForecast(Event):
     @root_validator(pre=False)
     def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
         if (
-            values.get("capacityForwardDir") is None
-            and values.get("capacityReverseDir") is None
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
         ):
             raise ValueError(
-                "At least one of capacityForwardDir or capacityReverseDir must be set"
+                "At least one of capacityExport or capacityImport must be set"
             )
         return values
 
@@ -1099,8 +1099,8 @@ class ExchangeCapacityForecast(Event):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        capacityForwardDir: float | None,
-        capacityReverseDir: float | None,
+        capacityExport: float | None,
+        capacityImport: float | None,
         sourceType: EventSourceType = EventSourceType.forecasted,
     ) -> "ExchangeCapacityForecast | None":
         try:
@@ -1108,8 +1108,8 @@ class ExchangeCapacityForecast(Event):
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
-                capacityForwardDir=_none_safe_round(capacityForwardDir),
-                capacityReverseDir=_none_safe_round(capacityReverseDir),
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
                 sourceType=sourceType,
             )
         except ValidationError as e:
@@ -1127,8 +1127,8 @@ class ExchangeCapacityForecast(Event):
         return {
             "datetime": self.datetime,
             "sortedZoneKeys": self.zoneKey,
-            "capacityForwardDir": self.capacityForwardDir,
-            "capacityReverseDir": self.capacityReverseDir,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
             "source": self.source,
             "sourceType": self.sourceType,
         }

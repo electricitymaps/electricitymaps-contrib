@@ -1103,14 +1103,14 @@ def test_create_exchange_capacity_forecast():
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
-        capacityForwardDir=1000.0,
-        capacityReverseDir=900.0,
+        capacityExport=1000.0,
+        capacityImport=900.0,
     )
     assert forecast.zoneKey == ZoneKey("AT->DE")
     assert forecast.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
     assert forecast.source == "trust.me"
-    assert forecast.capacityForwardDir == 1000.0
-    assert forecast.capacityReverseDir == 900.0
+    assert forecast.capacityExport == 1000.0
+    assert forecast.capacityImport == 900.0
     assert forecast.sourceType == EventSourceType.forecasted
 
 
@@ -1121,8 +1121,8 @@ def test_exchange_capacity_forecast_create_defaults_to_forecasted():
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
-        capacityForwardDir=1000.0,
-        capacityReverseDir=900.0,
+        capacityExport=1000.0,
+        capacityImport=900.0,
     )
     assert forecast is not None
     assert forecast.sourceType == EventSourceType.forecasted
@@ -1134,21 +1134,21 @@ def test_exchange_capacity_forecast_allows_one_none_capacity():
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
-        capacityForwardDir=1000.0,
-        capacityReverseDir=None,
+        capacityExport=1000.0,
+        capacityImport=None,
     )
-    assert forward_only.capacityForwardDir == 1000.0
-    assert forward_only.capacityReverseDir is None
+    assert forward_only.capacityExport == 1000.0
+    assert forward_only.capacityImport is None
 
     reverse_only = ExchangeCapacityForecast(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
-        capacityForwardDir=None,
-        capacityReverseDir=900.0,
+        capacityExport=None,
+        capacityImport=900.0,
     )
-    assert reverse_only.capacityForwardDir is None
-    assert reverse_only.capacityReverseDir == 900.0
+    assert reverse_only.capacityExport is None
+    assert reverse_only.capacityImport == 900.0
 
 
 def test_raises_if_invalid_exchange_capacity_forecast():
@@ -1158,8 +1158,8 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1),
             source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=900.0,
+            capacityExport=1000.0,
+            capacityImport=900.0,
         )
 
     # Unsorted zone key
@@ -1168,8 +1168,8 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             zoneKey=ZoneKey("DE->AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=900.0,
+            capacityExport=1000.0,
+            capacityImport=900.0,
         )
 
     # Not an exchange key (no "->")
@@ -1178,8 +1178,8 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=900.0,
+            capacityExport=1000.0,
+            capacityImport=900.0,
         )
 
     # Both capacities None
@@ -1188,8 +1188,8 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=None,
-            capacityReverseDir=None,
+            capacityExport=None,
+            capacityImport=None,
         )
 
     # Unknown zone key not in EXCHANGES_CONFIG
@@ -1198,8 +1198,8 @@ def test_raises_if_invalid_exchange_capacity_forecast():
             zoneKey=ZoneKey("UNKNOWN->ZONE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=900.0,
+            capacityExport=1000.0,
+            capacityImport=900.0,
         )
 
 
@@ -1211,8 +1211,8 @@ def test_exchange_capacity_forecast_static_create_logs_error():
             zoneKey=ZoneKey("DE->AT"),  # unsorted
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
-            capacityForwardDir=1000.0,
-            capacityReverseDir=900.0,
+            capacityExport=1000.0,
+            capacityImport=900.0,
         )
         mock_error.assert_called_once()
 
@@ -1224,8 +1224,8 @@ def test_exchange_capacity_forecast_allows_future_datetime():
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
         source="trust.me",
-        capacityForwardDir=1000.0,
-        capacityReverseDir=900.0,
+        capacityExport=1000.0,
+        capacityImport=900.0,
         sourceType=EventSourceType.forecasted,
     )
     assert forecast.datetime == datetime(2023, 3, 1, tzinfo=timezone.utc)
@@ -1237,13 +1237,13 @@ def test_exchange_capacity_forecast_to_dict():
         zoneKey=ZoneKey("AT->DE"),
         datetime=dt,
         source="trust.me",
-        capacityForwardDir=1000.0,
-        capacityReverseDir=900.0,
+        capacityExport=1000.0,
+        capacityImport=900.0,
     )
     d = forecast.to_dict()
     assert d["datetime"] == dt
     assert d["sortedZoneKeys"] == ZoneKey("AT->DE")
-    assert d["capacityForwardDir"] == 1000.0
-    assert d["capacityReverseDir"] == 900.0
+    assert d["capacityExport"] == 1000.0
+    assert d["capacityImport"] == 900.0
     assert d["source"] == "trust.me"
     assert d["sourceType"] == EventSourceType.forecasted

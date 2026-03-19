@@ -970,15 +970,15 @@ def _merge_exchange_capacity_forecasts(
         zoneKey = forward_event.zoneKey if forward_event else reverse_event.zoneKey
         source = forward_event.source if forward_event else reverse_event.source
 
-        forward_cap = forward_event.capacityForwardDir if forward_event else None
-        reverse_cap = reverse_event.capacityReverseDir if reverse_event else None
+        forward_cap = forward_event.capacityExport if forward_event else None
+        reverse_cap = reverse_event.capacityImport if reverse_event else None
 
         merged.append(
             zoneKey=zoneKey,
             datetime=dt,
             source=source,
-            capacityForwardDir=forward_cap,
-            capacityReverseDir=reverse_cap,
+            capacityExport=forward_cap,
+            capacityImport=reverse_cap,
         )
 
     return merged
@@ -1014,16 +1014,16 @@ def parse_exchange_capacity_forecast(
                         zoneKey=sorted_zone_keys,
                         datetime=dt,
                         source=SOURCE,
-                        capacityForwardDir=quantity,
-                        capacityReverseDir=None,
+                        capacityExport=quantity,
+                        capacityImport=None,
                     )
                 else:
                     forecasts.append(
                         zoneKey=sorted_zone_keys,
                         datetime=dt,
                         source=SOURCE,
-                        capacityForwardDir=None,
-                        capacityReverseDir=quantity,
+                        capacityExport=None,
+                        capacityImport=quantity,
                     )
         return forecasts
     except Exception as e:

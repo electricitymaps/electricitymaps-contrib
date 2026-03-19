@@ -242,8 +242,8 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        capacityForwardDir: float | None,
-        capacityReverseDir: float | None,
+        capacityExport: float | None,
+        capacityImport: float | None,
         sourceType: EventSourceType = EventSourceType.forecasted,
     ):
         event = ExchangeCapacityForecast.create(
@@ -251,8 +251,8 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
             zoneKey,
             datetime,
             source,
-            capacityForwardDir,
-            capacityReverseDir,
+            capacityExport,
+            capacityImport,
             sourceType,
         )
         if event:
