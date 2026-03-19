@@ -947,38 +947,38 @@ def parse_exchange_forecast(
 
 
 def _merge_exchange_capacity_forecasts(
-    forward_list: ExchangeCapacityForecastList,
-    reverse_list: ExchangeCapacityForecastList,
+    export_list: ExchangeCapacityForecastList,
+    import_list: ExchangeCapacityForecastList,
     logger: Logger,
 ) -> ExchangeCapacityForecastList:
     """
-    Merges forward and reverse direction capacity forecasts into a single list.
+    Merges export and import direction capacity forecasts into a single list.
     For each datetime, combines capacities from both directions into one event.
     """
     merged = ExchangeCapacityForecastList(logger)
 
-    # Create a dict of forward capacities by datetime
-    forward_by_dt = {event.datetime: event for event in forward_list.events}
-    reverse_by_dt = {event.datetime: event for event in reverse_list.events}
+    # Create a dict of export capacities by datetime
+    export_by_dt = {event.datetime: event for event in export_list.events}
+    import_by_dt = {event.datetime: event for event in import_list.events}
 
     # Merge events by datetime
-    for dt in sorted(set(forward_by_dt.keys()) | set(reverse_by_dt.keys())):
-        forward_event = forward_by_dt.get(dt)
-        reverse_event = reverse_by_dt.get(dt)
+    for dt in sorted(set(export_by_dt.keys()) | set(import_by_dt.keys())):
+        export_event = export_by_dt.get(dt)
+        import_event = import_by_dt.get(dt)
 
-        # Use values from whichever event exists (prefer forward if both exist)
-        zoneKey = forward_event.zoneKey if forward_event else reverse_event.zoneKey
-        source = forward_event.source if forward_event else reverse_event.source
+        # Use values from whichever event exists (prefer export if both exist)
+        zoneKey = export_event.zoneKey if export_event else import_event.zoneKey
+        source = export_event.source if export_event else import_event.source
 
-        forward_cap = forward_event.capacityExport if forward_event else None
-        reverse_cap = reverse_event.capacityImport if reverse_event else None
+        export_cap = export_event.capacityExport if export_event else None
+        import_cap = import_event.capacityImport if import_event else None
 
         merged.append(
             zoneKey=zoneKey,
             datetime=dt,
             source=source,
-            capacityExport=forward_cap,
-            capacityImport=reverse_cap,
+            capacityExport=export_cap,
+            capacityImport=import_cap,
         )
 
     return merged
@@ -1600,7 +1600,7 @@ def _fetch_exchange_capacity_forecasts(
     domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
     domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
 
-    raw_forward = query_exchange_capacity_forecast(
+    raw_export = query_exchange_capacity_forecast(
         domain_1,
         domain_2,
         session,
@@ -1608,7 +1608,7 @@ def _fetch_exchange_capacity_forecasts(
         target_datetime=target_datetime,
         logger=logger,
     )
-    raw_reverse = query_exchange_capacity_forecast(
+    raw_import = query_exchange_capacity_forecast(
         domain_2,
         domain_1,
         session,
@@ -1617,42 +1617,42 @@ def _fetch_exchange_capacity_forecasts(
         logger=logger,
     )
 
-    if raw_forward is None and raw_reverse is None:
+    if raw_export is None and raw_import is None:
         raise ParserException(
             parser="ENTSOE.py",
             message=f"No exchange capacity forecast data found for {sorted_zone_keys}",
             zone_key=sorted_zone_keys,
         )
-    if raw_forward is None:
+    if raw_export is None:
         logger.warning(
-            f"No forward exchange capacity data for {sorted_zone_keys}. Proceeding with reverse direction only."
+            f"No export exchange capacity data for {sorted_zone_keys}. Proceeding with import direction only."
         )
-    if raw_reverse is None:
+    if raw_import is None:
         logger.warning(
-            f"No reverse exchange capacity data for {sorted_zone_keys}. Proceeding with forward direction only."
+            f"No import exchange capacity data for {sorted_zone_keys}. Proceeding with export direction only."
         )
 
-    forward_list = ExchangeCapacityForecastList(logger)
-    reverse_list = ExchangeCapacityForecastList(logger)
+    export_list = ExchangeCapacityForecastList(logger)
+    import_list = ExchangeCapacityForecastList(logger)
 
-    if raw_forward:
-        forward_list = parse_exchange_capacity_forecast(
-            raw_forward,
+    if raw_export:
+        export_list = parse_exchange_capacity_forecast(
+            raw_export,
             sorted_zone_keys=sorted_zone_keys,
             logger=logger,
             direction="export",
         )
 
-    if raw_reverse:
-        reverse_list = parse_exchange_capacity_forecast(
-            raw_reverse,
+    if raw_import:
+        import_list = parse_exchange_capacity_forecast(
+            raw_import,
             sorted_zone_keys=sorted_zone_keys,
             logger=logger,
             direction="import",
         )
 
     return _merge_exchange_capacity_forecasts(
-        forward_list, reverse_list, logger
+        export_list, import_list, logger
     ).to_list()
 
 
