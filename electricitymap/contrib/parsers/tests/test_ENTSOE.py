@@ -783,3 +783,69 @@ def test_merge_exchange_capacity_forecasts_prefers_forward_zone_key():
     merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
     assert merged.events[0].zoneKey == zone_key
     assert merged.events[0].source == "entsoe.eu"
+
+
+def test_fetch_exchange_capacity_forecasts_day_ahead(adapter, session, snapshot):
+    export_data = base_path_to_mock / "ES_FR_capacity_day_ahead_export.xml"
+    import_data = base_path_to_mock / "ES_FR_capacity_day_ahead_import.xml"
+
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A01&in_Domain=10YES-REE------0&out_Domain=10YFR-RTE------C",
+        content=export_data.read_bytes(),
+    )
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A01&in_Domain=10YFR-RTE------C&out_Domain=10YES-REE------0",
+        content=import_data.read_bytes(),
+    )
+
+    assert snapshot == ENTSOE.fetch_exchange_capacity_forecasts_day_ahead(
+        zone_key1=ZoneKey("ES"),
+        zone_key2=ZoneKey("FR"),
+        session=session,
+    )
+
+
+def test_fetch_exchange_capacity_forecasts_week_ahead(adapter, session, snapshot):
+    export_data = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
+    import_data = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
+
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A02&in_Domain=10YDK-1--------W&out_Domain=10YDK-2--------M",
+        content=export_data.read_bytes(),
+    )
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A02&in_Domain=10YDK-2--------M&out_Domain=10YDK-1--------W",
+        content=import_data.read_bytes(),
+    )
+
+    assert snapshot == ENTSOE.fetch_exchange_capacity_forecasts_week_ahead(
+        zone_key1=ZoneKey("DK-DK1"),
+        zone_key2=ZoneKey("DK-DK2"),
+        session=session,
+    )
+
+
+def test_fetch_exchange_capacity_forecasts_month_ahead(adapter, session, snapshot):
+    export_data = base_path_to_mock / "ES_FR_capacity_month_ahead_export.xml"
+    import_data = base_path_to_mock / "ES_FR_capacity_month_ahead_import.xml"
+
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A03&in_Domain=10YES-REE------0&out_Domain=10YFR-RTE------C",
+        content=export_data.read_bytes(),
+    )
+    adapter.register_uri(
+        GET,
+        "?documentType=A61&Contract_MarketAgreement.Type=A03&in_Domain=10YFR-RTE------C&out_Domain=10YES-REE------0",
+        content=import_data.read_bytes(),
+    )
+
+    assert snapshot == ENTSOE.fetch_exchange_capacity_forecasts_month_ahead(
+        zone_key1=ZoneKey("ES"),
+        zone_key2=ZoneKey("FR"),
+        session=session,
+    )
