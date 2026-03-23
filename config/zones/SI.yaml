@@ -165,8 +165,6 @@ contributors:
 country: SI
 country_name: Slovenia
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

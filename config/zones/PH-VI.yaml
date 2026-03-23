@@ -29,8 +29,6 @@ contributors:
   - xomanuel
 country: PH
 country_name: Philippines
-delays:
-  production: 25
 emissionFactors:
   direct:
     battery discharge:

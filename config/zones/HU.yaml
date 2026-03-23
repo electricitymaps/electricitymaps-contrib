@@ -193,8 +193,6 @@ contributors:
 country: HU
 country_name: Hungary
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

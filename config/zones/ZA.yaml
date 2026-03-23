@@ -107,8 +107,6 @@ contributors:
 country: ZA
 country_name: South Africa
 currency: ZAR
-delays:
-  production: 96
 emissionFactors:
   direct:
     hydro discharge:

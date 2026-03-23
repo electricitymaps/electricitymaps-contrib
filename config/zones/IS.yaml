@@ -58,8 +58,6 @@ contributors:
 country: IS
 country_name: Iceland
 currency: ISK
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

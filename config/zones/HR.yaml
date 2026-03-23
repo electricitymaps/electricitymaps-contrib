@@ -194,8 +194,6 @@ contributors:
 country: HR
 country_name: Croatia
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:

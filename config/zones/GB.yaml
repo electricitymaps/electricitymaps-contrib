@@ -197,8 +197,6 @@ contributors:
 country: GB
 country_name: Great Britain
 currency: GBP
-delays:
-  production: 5
 emissionFactors:
   direct:
     hydro discharge:

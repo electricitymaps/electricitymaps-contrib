@@ -155,8 +155,6 @@ contributors:
 country: BG
 country_name: Bulgaria
 currency: EUR
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

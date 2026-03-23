@@ -195,8 +195,6 @@ contributors:
 country: KR
 country_name: South Korea
 currency: KRW
-delays:
-  production: 5
 emissionFactors:
   direct:
     hydro discharge:

@@ -692,8 +692,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

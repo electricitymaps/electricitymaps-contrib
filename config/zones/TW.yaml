@@ -171,8 +171,6 @@ contributors:
 country: TW
 country_name: Taiwan
 currency: TWD
-delays:
-  production: 5
 emissionFactors:
   direct:
     battery discharge:

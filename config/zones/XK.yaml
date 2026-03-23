@@ -30,8 +30,6 @@ contributors:
 country: XK
 country_name: Kosovo
 currency: EUR
-delays:
-  production: 8
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average

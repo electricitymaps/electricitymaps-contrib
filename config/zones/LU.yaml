@@ -132,8 +132,6 @@ contributors:
 country: LU
 country_name: Luxembourg
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

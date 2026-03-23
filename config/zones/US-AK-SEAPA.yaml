@@ -13,8 +13,6 @@ contributors:
   - wrma6
 country: US
 country_name: USA
-delays:
-  production: 2
 emissionFactors:
   direct:
     biomass:

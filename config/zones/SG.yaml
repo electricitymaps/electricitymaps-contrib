@@ -88,8 +88,6 @@ contributors:
 country: SG
 country_name: Singapore
 currency: SGD
-delays:
-  production: 5
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average

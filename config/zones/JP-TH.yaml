@@ -30,8 +30,6 @@ contributors:
 country: JP
 country_name: Japan
 currency: JPY
-delays:
-  production: 5
 emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:

@@ -194,8 +194,6 @@ contributors:
 country: NL
 country_name: Netherlands
 currency: EUR
-delays:
-  production: 6
 disclaimer: Solar production is collected from NED.nl and can contain their own estimations.
 emissionFactors:
   direct:

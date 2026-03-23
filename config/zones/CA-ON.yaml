@@ -57,8 +57,6 @@ contributors:
 country: CA
 country_name: Canada
 currency: CAD
-delays:
-  production: 6
 emissionFactors:
   direct: {}
   lifecycle:

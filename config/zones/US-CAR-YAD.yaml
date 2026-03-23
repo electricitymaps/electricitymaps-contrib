@@ -60,8 +60,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  production: 48
 emissionFactors:
   direct:
     biomass:

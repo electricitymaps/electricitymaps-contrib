@@ -178,8 +178,6 @@ contributors:
 country: LT
 country_name: Lithuania
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:

@@ -237,8 +237,6 @@ contributors:
 country: AT
 country_name: Austria
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

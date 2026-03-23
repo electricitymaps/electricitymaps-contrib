@@ -133,8 +133,6 @@ contributors:
 country: CO
 country_name: Colombia
 currency: COP
-delays:
-  production: 84
 emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:

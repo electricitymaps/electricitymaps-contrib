@@ -131,8 +131,6 @@ contributors:
 country: PE
 country_name: Peru
 currency: PEN
-delays:
-  production: 22
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average

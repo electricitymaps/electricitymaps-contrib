@@ -136,8 +136,6 @@ contributors:
 country: MX
 country_name: Mexico
 currency: MXN
-delays:
-  production: 1080
 emissionFactors:
   direct:
     unknown:

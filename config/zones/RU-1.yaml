@@ -20,8 +20,6 @@ contributors:
 country: RU
 country_name: Russia
 currency: RUB
-delays:
-  production: 6
 emissionFactors:
   direct:
     unknown:

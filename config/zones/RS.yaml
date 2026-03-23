@@ -159,8 +159,6 @@ contributors:
 country: RS
 country_name: Serbia
 currency: EUR
-delays:
-  production: 9
 emissionFactors:
   direct:
     hydro discharge:

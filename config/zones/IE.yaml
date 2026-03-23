@@ -105,8 +105,6 @@ contributors:
 country: IE
 country_name: Ireland
 currency: EUR
-delays:
-  production: 5
 disclaimer: The complete generation mix is unavailable. It is therefore estimated
   by Electricity Maps.
 emissionFactors:

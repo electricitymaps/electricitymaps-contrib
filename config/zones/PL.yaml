@@ -232,8 +232,6 @@ contributors:
 country: PL
 country_name: Poland
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

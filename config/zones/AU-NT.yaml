@@ -20,10 +20,6 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-delays:
-  consumption: 30
-  price: 30
-  production: 96
 disclaimer: The Northern Territory power grid is not connected to the (Australian) National Electricity Market or Western Australia's grid.
 emissionFactors:
   lifecycle: {}

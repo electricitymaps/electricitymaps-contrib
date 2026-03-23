@@ -290,8 +290,6 @@ contributors:
 country: DE
 country_name: Germany
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

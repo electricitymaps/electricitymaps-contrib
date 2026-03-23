@@ -213,8 +213,6 @@ contributors:
 country: EE
 country_name: Estonia
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

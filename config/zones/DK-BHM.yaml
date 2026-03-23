@@ -17,8 +17,6 @@ contributors:
 country: DK
 country_name: Denmark
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

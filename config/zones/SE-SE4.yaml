@@ -62,8 +62,6 @@ capacity:
 country: SE
 country_name: Sweden
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

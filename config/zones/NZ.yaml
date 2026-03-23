@@ -103,8 +103,6 @@ contributors:
 country: NZ
 country_name: New Zealand
 currency: NZD
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:

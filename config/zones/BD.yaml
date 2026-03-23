@@ -123,8 +123,6 @@ contributors:
 country: BD
 country_name: Bangladesh
 currency: BDT
-delays:
-  production: 10
 emissionFactors:
   lifecycle: {}
 fallbackZoneMixes:
