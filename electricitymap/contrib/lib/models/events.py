@@ -714,7 +714,7 @@ class ProductionBreakdown(AggregatableEvent):
         production_mix = ProductionMix._update(event.production, new_event.production)
         storage_mix = StorageMix._update(event.storage, new_event.storage)
         source = ", ".join(
-            set(event.source.split(", ")) | set(new_event.source.split(", "))
+            sorted(set(event.source.split(", ")) | set(new_event.source.split(", ")))
         )
         return ProductionBreakdown(
             zoneKey=event.zoneKey,
