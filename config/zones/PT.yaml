@@ -224,8 +224,6 @@ contributors:
 country: PT
 country_name: Portugal
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

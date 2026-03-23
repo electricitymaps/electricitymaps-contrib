@@ -108,8 +108,6 @@ contributors:
 country: CR
 country_name: Costa Rica
 currency: CRC
-delays:
-  production: 7
 emissionFactors:
   direct:
     unknown:

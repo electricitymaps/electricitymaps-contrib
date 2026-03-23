@@ -76,8 +76,6 @@ capacity:
 country: 'NO'
 country_name: Norway
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

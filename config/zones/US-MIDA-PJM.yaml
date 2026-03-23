@@ -1179,8 +1179,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  production: 7
 emissionFactors:
   direct:
     battery discharge:

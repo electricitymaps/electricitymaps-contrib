@@ -167,10 +167,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer: This zone includes all electricity production from the generation-only
   balancing authorities Arlington Valley, LLC - AVBA and New Harquahala Generating
   Company, LLC - HGBA. Read more on the wiki page.

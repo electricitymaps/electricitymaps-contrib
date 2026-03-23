@@ -55,8 +55,6 @@ contributors:
 country: CY
 country_name: Cyprus
 currency: EUR
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

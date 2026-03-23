@@ -50,13 +50,6 @@ capacity:
 country: MK
 country_name: North Macedonia
 currency: EUR
-delays:
-  consumption: 24
-  consumptionForecast: 24
-  generationForecast: 24
-  price: 24
-  production: 34
-  productionPerModeForecast: 24
 emissionFactors:
   direct: {}
   lifecycle:

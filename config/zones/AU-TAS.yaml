@@ -48,8 +48,6 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-delays:
-  production: 96
 emissionFactors:
   direct:
     battery discharge:

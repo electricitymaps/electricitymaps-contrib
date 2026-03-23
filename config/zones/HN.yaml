@@ -82,8 +82,6 @@ contributors:
   - VIKTORVAV99
 country: HN
 country_name: Honduras
-delays:
-  production: 5
 emissionFactors:
   direct:
     unknown:

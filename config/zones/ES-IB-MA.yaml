@@ -16,8 +16,6 @@ contributors:
 country: ES
 country_name: Spain
 currency: EUR
-delays:
-  production: 5
 emissionFactors:
   direct:
     battery discharge:

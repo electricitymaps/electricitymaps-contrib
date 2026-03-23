@@ -66,8 +66,6 @@ contributors:
 country: BA
 country_name: Bosnia and Herzegovina
 currency: BAM
-delays:
-  production: 72
 emissionFactors:
   direct:
     hydro discharge:

@@ -172,8 +172,6 @@ contributors:
 country: GR
 country_name: Greece
 currency: EUR
-delays:
-  production: 9
 emissionFactors:
   direct:
     biomass:

@@ -166,8 +166,6 @@ contributors:
 country: TR
 country_name: Turkey
 currency: TRY
-delays:
-  production: 8
 emissionFactors:
   direct: {}
   lifecycle:

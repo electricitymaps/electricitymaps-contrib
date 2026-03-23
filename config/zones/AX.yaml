@@ -24,8 +24,6 @@ contributors:
 country: AX
 country_name: "\xC5land Islands"
 currency: EUR
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

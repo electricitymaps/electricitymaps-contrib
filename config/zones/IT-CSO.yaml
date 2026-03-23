@@ -112,8 +112,6 @@ contributors:
 country: IT
 country_name: Italy
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     battery discharge:

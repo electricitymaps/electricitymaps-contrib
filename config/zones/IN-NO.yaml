@@ -56,8 +56,6 @@ contributors:
 country: IN
 country_name: India
 currency: INR
-delays:
-  production: 120
 emissionFactors:
   direct:
     unknown:

@@ -152,8 +152,6 @@ contributors:
 country: CZ
 country_name: Czechia
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:

@@ -80,8 +80,6 @@ contributors:
 country: MD
 country_name: Moldova
 currency: MDL
-delays:
-  production: 12
 emissionFactors:
   direct: {}
   lifecycle:

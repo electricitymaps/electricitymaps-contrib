@@ -149,10 +149,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer: This zone includes all electricity production from the generation-only
   balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
   page.

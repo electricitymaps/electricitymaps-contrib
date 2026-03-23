@@ -128,8 +128,6 @@ contributors:
 country: SK
 country_name: Slovakia
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:

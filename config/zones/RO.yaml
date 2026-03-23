@@ -178,8 +178,6 @@ contributors:
 country: RO
 country_name: Romania
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:

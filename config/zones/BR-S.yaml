@@ -34,8 +34,6 @@ contributors:
 country: BR
 country_name: Brazil
 currency: BRL
-delays:
-  production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 fallbackZoneMixes:
   powerOriginRatios:

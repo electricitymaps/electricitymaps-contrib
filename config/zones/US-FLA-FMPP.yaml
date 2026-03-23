@@ -105,10 +105,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:

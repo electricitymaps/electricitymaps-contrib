@@ -166,8 +166,6 @@ contributors:
 country: AR
 country_name: Argentina
 currency: ARS
-delays:
-  production: 5
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas.
 emissionFactors:
   direct:

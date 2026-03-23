@@ -24,8 +24,6 @@ contributors:
 country: CA
 country_name: Canada
 currency: CAD
-delays:
-  production: 5
 emissionFactors:
   direct:
     unknown:

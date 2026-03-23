@@ -42,8 +42,6 @@ contributors:
 country: ME
 country_name: Montenegro
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct: {}
   lifecycle:
