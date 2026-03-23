@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeCapacityForecastList,
     ExchangeList,
     GridAlertList,
     LocationalMarginalPriceList,
@@ -1124,3 +1125,66 @@ def test_df_representation():
         storage=StorageMix(hydro=1),
         source="trust.me",
     )
+
+
+def test_exchange_capacity_forecast_list():
+    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    assert len(forecast_list.events) == 2
+
+
+def test_append_to_exchange_capacity_forecast_list_logs_error():
+    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    with patch.object(forecast_list.logger, "error") as mock_error:
+        # Unsorted zone key should log error and not append
+        forecast_list.append(
+            zoneKey=ZoneKey("DE->AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+        mock_error.assert_called_once()
+    assert len(forecast_list.events) == 0
+
+
+def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
+    dt1 = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt2 = datetime(2023, 1, 2, tzinfo=timezone.utc)
+    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt2,
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt1,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    result = forecast_list.to_list()
+    assert len(result) == 2
+    assert result[0]["datetime"] == dt1
+    assert result[1]["datetime"] == dt2
+    assert result[0]["capacityExport"] == 1000.0
+    assert result[0]["capacityImport"] == 900.0
+    assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
+    assert result[0]["source"] == "trust.me"
+    assert result[0]["sourceType"] == EventSourceType.forecasted

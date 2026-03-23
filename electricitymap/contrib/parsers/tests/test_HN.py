@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import HN
 from electricitymap.contrib.types import ZoneKey
@@ -65,4 +66,4 @@ def test_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2):
     )
 
     result = HN.fetch_exchange(zone_key1, zone_key2, session)
-    assert snapshot == result
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result

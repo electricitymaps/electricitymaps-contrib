@@ -1056,3 +1056,79 @@ class GridAlert(Event):
             "source": self.source,
             "datetime": self.datetime,
         }
+
+
+class ExchangeCapacityForecast(Event):
+    """
+    An event representing the forecasted net transfer capacity (NTC) between
+    two zones in both directions.
+
+    capacityExport: Capacity for zone1→zone2 direction (may be None).
+    capacityImport: Capacity for zone2→zone1 direction (may be None).
+    """
+
+    sourceType: EventSourceType = EventSourceType.forecasted
+    capacityExport: float | None
+    capacityImport: float | None
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        if (
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
+        ):
+            raise ValueError(
+                "At least one of capacityExport or capacityImport must be set"
+            )
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        sourceType: EventSourceType = EventSourceType.forecasted,
+    ) -> "ExchangeCapacityForecast | None":
+        try:
+            return ExchangeCapacityForecast(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ExchangeCapacityForecast Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange capacity forecast",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }

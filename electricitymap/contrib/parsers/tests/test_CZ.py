@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import POST
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import CZ
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -61,7 +62,7 @@ def test_fetch_exchange(session, snapshot, mock_good_response, zone_key2):
         target_datetime=TARGET_DATETIME,
     )
 
-    assert snapshot == result
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
 def test_fetch_exchange_forecast_pl(session, snapshot, mock_good_response):

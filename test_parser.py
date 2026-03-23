@@ -66,7 +66,13 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     args = (
         zone.split("->")
         if parser_data_type
-        in [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
+        in [
+            ParserDataType.EXCHANGE,
+            ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
+            ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
+            ParserDataType.EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD,
+            ParserDataType.EXCHANGE_FORECAST,
+        ]
         else [zone]
     )
 

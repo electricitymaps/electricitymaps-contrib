@@ -163,6 +163,9 @@ class Zone(StrictBaseModelWithAlias):
 
 class ExchangeParsers(ParsersBaseModel):
     exchange: str | None
+    exchangeCapacityForecastDayAhead: str | None
+    exchangeCapacityForecastWeekAhead: str | None
+    exchangeCapacityForecastMonthAhead: str | None
     exchangeForecast: str | None
 
 
