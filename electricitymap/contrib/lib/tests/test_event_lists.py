@@ -898,7 +898,9 @@ def test_update_production_with_different_source():
     assert updated_list.events[0].production is not None
     assert updated_list.events[0].production.wind == 20
     assert updated_list.events[0].production.coal == 20
-    assert updated_list.events[0].source == ", ".join({"trust.me", "trust.me.too"})
+    assert updated_list.events[0].source == ", ".join(
+        sorted({"trust.me", "trust.me.too"})
+    )
 
 
 def test_update_production_with_different_sourceType():
