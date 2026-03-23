@@ -102,7 +102,7 @@ def fetch_elia(
     return production_breakdown_list
 
 
-ENTSOE_SPAN = (-48, 0)  # 48 hours = 24 Elia API calls
+ENTSOE_SPAN = (timedelta(hours=-48), timedelta(hours=0))
 
 
 def fetch_entsoe(
