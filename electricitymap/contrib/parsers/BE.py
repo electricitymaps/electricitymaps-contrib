@@ -2,6 +2,7 @@ import json
 from datetime import datetime, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
+from time import sleep
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -57,10 +58,12 @@ def fetch_elia(
         url = f"{BASE_URL_ELIA}&timezone=UTC3&where=datetime >= date'{start_datetime.replace(tzinfo=None).isoformat()}' AND datetime < date'{end_datetime.replace(tzinfo=None).isoformat()}'"
     else:
         url = BASE_URL_ELIA
-
+    
     response = session.get(url)
     results = json.loads(response.text).get("results", [])
     production_breakdown_list = ProductionBreakdownList(logger)
+
+
 
     sorted_results = sorted(results, key=lambda x: x.get("datetime", ""))
 
@@ -73,12 +76,6 @@ def fetch_elia(
                 event.get("fueltypeentsoe"), "unknown"
             )
             power = event.get("generatedpower")
-            # Elia reports None for Hydro Pumped Storage when there is no generation. Default to 0 so we don't fall back to ENTSOE.
-            if power is None:
-                if fuel_type == "storage_hydro":
-                    power = 0
-                else:
-                    continue
 
             if "storage" in fuel_type:
                 storage_mix.add_value(
@@ -158,6 +155,7 @@ def fetch_production(
                 elia_data, chunk, logger
             )
             chunk_start = chunk_end
+            sleep(1)
 
     # Prefer Elia data where available; fall back to ENTSOE for other datetimes.
     return ProductionBreakdownList.update_production_breakdowns(
