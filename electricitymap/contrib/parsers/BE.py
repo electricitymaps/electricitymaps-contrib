@@ -2,7 +2,6 @@ import json
 from datetime import datetime, timedelta
 from itertools import groupby
 from logging import Logger, getLogger
-from time import sleep
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -55,15 +54,13 @@ def fetch_elia(
     session = session or Session()
 
     if start_datetime is not None and end_datetime is not None:
-        url = f"{BASE_URL_ELIA}&timezone=UTC3&where=datetime >= date'{start_datetime.replace(tzinfo=None).isoformat()}' AND datetime < date'{end_datetime.replace(tzinfo=None).isoformat()}'"
+        url = f"{BASE_URL_ELIA}&timezone=Europe/Brussels&where=datetime >= date'{start_datetime.replace(tzinfo=None).isoformat()}' AND datetime < date'{end_datetime.replace(tzinfo=None).isoformat()}'"
     else:
         url = BASE_URL_ELIA
-    
+
     response = session.get(url)
     results = json.loads(response.text).get("results", [])
     production_breakdown_list = ProductionBreakdownList(logger)
-
-
 
     sorted_results = sorted(results, key=lambda x: x.get("datetime", ""))
 
@@ -155,7 +152,6 @@ def fetch_production(
                 elia_data, chunk, logger
             )
             chunk_start = chunk_end
-            sleep(1)
 
     # Prefer Elia data where available; fall back to ENTSOE for other datetimes.
     return ProductionBreakdownList.update_production_breakdowns(
