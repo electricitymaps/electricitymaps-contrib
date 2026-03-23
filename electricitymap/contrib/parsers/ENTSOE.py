@@ -1609,56 +1609,64 @@ def _fetch_exchange_capacity_forecasts(
     domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
     domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
 
-    raw_export = query_exchange_capacity_forecast(
-        domain_1,
-        domain_2,
-        session,
-        forecast_type,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-    raw_import = query_exchange_capacity_forecast(
-        domain_2,
-        domain_1,
-        session,
-        forecast_type,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
+    raw_export: str | None = None
+    raw_import: str | None = None
+    max_retries = 5
 
-    if raw_export is None and raw_import is None:
+    for attempt in range(1, max_retries + 1):
+        if raw_export is None:
+            raw_export = query_exchange_capacity_forecast(
+                domain_1,
+                domain_2,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+                logger=logger,
+            )
+        if raw_import is None:
+            raw_import = query_exchange_capacity_forecast(
+                domain_2,
+                domain_1,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+                logger=logger,
+            )
+
+        if raw_export is not None and raw_import is not None:
+            break
+
+        if attempt < max_retries:
+            logger.info(
+                f"Attempt {attempt}/{max_retries} for {sorted_zone_keys} "
+                f"{forecast_type}: export={'OK' if raw_export else 'MISSING'}, "
+                f"import={'OK' if raw_import else 'MISSING'}. Retrying..."
+            )
+
+    if raw_export is None or raw_import is None:
         raise ParserException(
             parser="ENTSOE.py",
-            message=f"No exchange capacity forecast data found for {sorted_zone_keys}",
+            message=(
+                f"Failed to get both export and import exchange capacity forecast "
+                f"data for {sorted_zone_keys} after {max_retries} attempts. "
+                f"export={'OK' if raw_export else 'MISSING'}, "
+                f"import={'OK' if raw_import else 'MISSING'}"
+            ),
             zone_key=sorted_zone_keys,
         )
-    if raw_export is None:
-        logger.warning(
-            f"No export exchange capacity data for {sorted_zone_keys}. Proceeding with import direction only."
-        )
-    if raw_import is None:
-        logger.warning(
-            f"No import exchange capacity data for {sorted_zone_keys}. Proceeding with export direction only."
-        )
 
-    export_list = ExchangeCapacityForecastList(logger)
-    import_list = ExchangeCapacityForecastList(logger)
-
-    if raw_export:
-        export_list = parse_exchange_capacity_forecast(
-            raw_export,
-            sorted_zone_keys=sorted_zone_keys,
-            logger=logger,
-            direction="export",
-        )
-
-    if raw_import:
-        import_list = parse_exchange_capacity_forecast(
-            raw_import,
-            sorted_zone_keys=sorted_zone_keys,
-            logger=logger,
-            direction="import",
-        )
+    export_list = parse_exchange_capacity_forecast(
+        raw_export,
+        sorted_zone_keys=sorted_zone_keys,
+        logger=logger,
+        direction="export",
+    )
+    import_list = parse_exchange_capacity_forecast(
+        raw_import,
+        sorted_zone_keys=sorted_zone_keys,
+        logger=logger,
+        direction="import",
+    )
 
     return _merge_exchange_capacity_forecasts(
         export_list, import_list, logger
