@@ -48,7 +48,7 @@ parsers = [
     "lxml>=4.9.1,<5",
     "pandas>=1.5, <3",
     "pytesseract==0.2.0",
-    "requests~=2.32.2",
+    "requests~=2.33.0",
     "opencv-python==4.8.1.78",
     "xlrd>=2.0.1,<3",
     "freezegun>=0.3.15,<0.4",
