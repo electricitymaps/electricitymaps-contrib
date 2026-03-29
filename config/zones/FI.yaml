@@ -71,6 +71,9 @@ capacity:
     - datetime: '2025-10-15'
       source: fingrid.fi
       value: 1512
+    - datetime: '2026-03-13'
+      source: fingrid.fi
+      value: 1575
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -103,6 +106,9 @@ capacity:
     - datetime: '2025-10-15'
       source: fingrid.fi
       value: 9237
+    - datetime: '2026-03-13'
+      source: fingrid.fi
+      value: 9413
 contributors:
   - corradio
   - nessie2013
