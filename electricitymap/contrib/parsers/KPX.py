@@ -63,12 +63,23 @@ def parse_consumption_data(
 ) -> TotalConsumptionList:
     consumption_list = TotalConsumptionList(logger)
 
+    # The realtime page embeds consumption data inside a drawChart() function as JS arrays:
     # x = total demand (총수요) including behind-the-meter generation,
     # v = market demand (전력시장수요) excluding self-consumption.
     # We use x as it represents total system consumption per Electricity Maps definition.
-    # Both are JS arrays embedded in the page, updated every 5 minutes.
-    values_match = re.search(r"var x\s*=\s*\[([\d.,\s]+)\]", raw_data)
-    times_match = re.search(r"var t_time\s*=\s*\[([\d,\s]+)\]", raw_data)
+    # Anchoring to drawChart() avoids false matches on other var x declarations in the page.
+    draw_chart_match = re.search(
+        r"function drawChart[^{]*\{(.*?)(?=function\s|\Z)", raw_data, re.DOTALL
+    )
+    if not draw_chart_match:
+        raise ParserException(
+            "KPX.py",
+            "Could not find drawChart function in response",
+            zone_key,
+        )
+    draw_chart_body = draw_chart_match.group(1)
+    values_match = re.search(r"var x\s*=\s*\[([\d.,\s]+)\]", draw_chart_body)
+    times_match = re.search(r"var t_time\s*=\s*\[([\d,\s]+)\]", draw_chart_body)
 
     if not values_match or not times_match:
         raise ParserException(
