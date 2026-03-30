@@ -63,9 +63,11 @@ def parse_consumption_data(
 ) -> TotalConsumptionList:
     consumption_list = TotalConsumptionList(logger)
 
-    # x = total demand (총수요) time series, t_time = corresponding timestamps
-    # Both are JS arrays embedded in the page, updated every 5 minutes
-    values_match = re.search(r"var x\s*=\s*\[([\d,\s]+)\]", raw_data)
+    # x = total demand (총수요) including behind-the-meter generation,
+    # v = market demand (전력시장수요) excluding self-consumption.
+    # We use x as it represents total system consumption per Electricity Maps definition.
+    # Both are JS arrays embedded in the page, updated every 5 minutes.
+    values_match = re.search(r"var x\s*=\s*\[([\d.,\s]+)\]", raw_data)
     times_match = re.search(r"var t_time\s*=\s*\[([\d,\s]+)\]", raw_data)
 
     if not values_match or not times_match:
