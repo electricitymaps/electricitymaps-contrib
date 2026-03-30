@@ -57,6 +57,7 @@ IGNORE_LIST = [
 ]
 
 
+@refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="KR")
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
