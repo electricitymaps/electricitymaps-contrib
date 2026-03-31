@@ -16,7 +16,7 @@
 </h1>
 
 <p align="center">
-A real time and historical visualisation of electricity data and prices around the world.<br>
+A collection of parsers to collect and standardize electricity data such as production, exchanges and price from across the globe.<br>
   <strong><a href="https://app.electricitymaps.com">app.electricitymaps.com »</a></strong>
 </p>
 
@@ -31,15 +31,15 @@ A real time and historical visualisation of electricity data and prices around t
 
 ## Introduction
 
-This project aims to provide a free, open-source, and transparent visualisation of the electricity data around the world.
+This project aims to provide a free, open-source, and transparent way to collect electricity data.
 
-We fetch the raw production data from public, free, and official sources. They include official government and transmission system operators' data. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing), estimation models, forecast engine and much more to calculate the most accurate view of how electricity consumption changes over time for each country.
+We fetch the raw data from public, free, and official sources. They include official government and transmission system operators' data. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing), estimation models, forecast engine and much more to calculate the most accurate view of how electricity consumption changes over time for each country.
 
-_Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)._
+_View it online [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or the [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)._
 
 ## Contributing
 
-The Electricity Maps app is a community project and we welcome contributions from anyone!
+Electricity Maps collection of parsers is a community project and we welcome contributions from anyone!
 
 We are always looking for help to build parsers for new countries, fix broken parsers, improve accuracy of data sources, discuss new potential data sources, update region capacities, and much more.
 
@@ -53,7 +53,6 @@ Use these channels to be part of the community, ask for help while using Electri
 - [GitHub Discussions](https://github.com/electricitymaps/electricitymaps-contrib/discussions): Join discussions and share new ideas for features.
 - [GitHub Wiki](https://github.com/electricitymaps/electricitymaps-contrib/wiki): Guides on setting up the development environment, etc.
 - [Our Commercial Website](https://electricitymaps.com/): Learn more about how you or your company can use the data too.
-- [Our Blog](https://electricitymaps.com/blog/): Read about the green transition and how Electricity Maps is helping to accelerate it.
 - [Twitter](https://twitter.com/electricitymaps): Follow for latest news
 - [LinkedIn](https://www.linkedin.com/company/electricitymaps): Follow for latest news
 
@@ -64,7 +63,7 @@ This repository is licensed under GNU-AGPLv3 since v1.5.0, find our license [her
 ## Frequently asked questions
 
 **Where does the data come from?**
-The data comes from many different sources. You can check them out [here](https://github.com/electricityMaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md)
+The data comes from many different sources. But we strive to only use official sources from goverments, TSOs, producers and online OpenData platforms when avaiable.
 
 **Why do you calculate the carbon intensity of _consumption_?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
