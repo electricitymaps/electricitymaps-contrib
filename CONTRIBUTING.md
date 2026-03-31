@@ -31,7 +31,6 @@ There are several ways to help out without coding, these are primarily:
 - Opening issues when capacity data sources have been updated or changed.
 - Finding new data sources, wiki page: [Find data sources][wiki find data sources]
 - Verify existing data sources, wiki page: [Verify data sources][wiki verify data sources]
-- Adding new or updating our existing translations, wiki page: [Translating app.electricitymaps.com][wiki translating the app]
 - And more!
 
 > **Note**
@@ -64,7 +63,7 @@ For an example of how a parser can look we have an example here: </br> [electric
 
 ### Formatting the parsers
 
-We use [black][black homepage] and [isort][isort homepage] as code formatters for python which is automatically checked in the CI job `Python / Formatting`.
+We use [ruff][ruff homepage] as a code formatter for python which is automatically checked in the CI job `Python / Formatting`.
 
 If this jobs fails and you need to manually format the code you can run `uv run format` in the top level of the repository.
 
@@ -131,9 +130,8 @@ If there is parser changes these go on to more internal tests that includes both
 [python homepage]: https://www.python.org/
 [python install guide]: https://wiki.python.org/moin/BeginnersGuide/Download
 [uv install guide]: https://docs.astral.sh/uv/getting-started/installation/
+[ruff homepage]: https://docs.astral.sh/ruff/
 [example parser]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/example_parser.py
-[black homepage]: https://github.com/psf/black
-[isort homepage]: https://pycqa.github.io/isort/
 [wiki python code formatting]: https://github.com/electricitymaps/electricitymaps-contrib/wiki/Format-your-code-contribution#python-code-formatting
 [readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/README.md
 [code of conduct]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/CODE_OF_CONDUCT.md
