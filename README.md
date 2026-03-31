@@ -33,7 +33,7 @@ A collection of parsers to collect and standardize electricity data such as prod
 
 This project aims to provide a free, open-source, and transparent way to collect electricity data.
 
-We fetch the raw data from public, free, and official sources. They include official government and transmission system operators' data. We then run [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing), estimation models, forecast engine and much more to calculate the most accurate view of how electricity consumption changes over time for each country.
+We fetch the raw data from public, free, and official sources. They include official government and transmission system operators' data. This data powers the [Electricity Maps platform](https://electricitymaps.com), which includes [our flow-tracing algorithm](https://www.electricitymaps.com/blog/flow-tracing), estimation models, forecast engine and much more.
 
 _View it online [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or the [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github)._
 
