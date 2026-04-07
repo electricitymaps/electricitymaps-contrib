@@ -144,8 +144,6 @@ def fetch_exchange(
         zone = "DK1"
     elif "DK2" in sorted_keys:
         zone = "DK2"
-    elif "DK-BHM" in sorted_keys:
-        zone = "DK2"
     else:
         raise NotImplementedError(
             "Only able to fetch exchanges for Danish bidding zones"
@@ -160,9 +158,8 @@ def fetch_exchange(
         "DK-DK1->SE": '"ExchangeSweden"',
         "DK-DK1->SE-SE3": '"ExchangeSweden"',
         "DK-DK1->NL": '"ExchangeNetherlands"',
-        "DK-DK2->SE": '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        "DK-DK2->SE-SE4": '("ExchangeSweden" - "BornholmSE4")',  # but Bornholm island is reported separately from DK-DK2 in eMap
-        "DK-BHM->SE-SE4": '"BornholmSE4"',
+        "DK-DK2->SE": '"ExchangeSweden"',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
+        "DK-DK2->SE-SE4": '"ExchangeSweden"',  # but Bornholm island is reported separately from DK-DK2 in eMap
     }
     if sorted_keys not in exch_map:
         raise NotImplementedError(f"Exchange {sorted_keys} not implemented")

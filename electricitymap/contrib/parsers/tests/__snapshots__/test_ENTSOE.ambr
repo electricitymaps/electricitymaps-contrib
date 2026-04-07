@@ -8961,7 +8961,7 @@
       'price': 106.78,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -8969,7 +8969,7 @@
       'price': 95.02,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -8977,7 +8977,7 @@
       'price': 90.0,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -8985,7 +8985,7 @@
       'price': 84.3,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -8993,7 +8993,7 @@
       'price': 83.71,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9001,7 +9001,7 @@
       'price': 84.86,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9009,7 +9009,7 @@
       'price': 85.08,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9017,7 +9017,7 @@
       'price': 82.48,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9025,7 +9025,7 @@
       'price': 77.51,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9033,7 +9033,7 @@
       'price': 76.25,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9041,7 +9041,7 @@
       'price': 63.48,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9049,7 +9049,7 @@
       'price': 55.13,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9057,7 +9057,7 @@
       'price': 60.48,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9065,7 +9065,7 @@
       'price': 47.25,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9073,7 +9073,7 @@
       'price': 27.4,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9081,7 +9081,7 @@
       'price': 24.09,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9089,7 +9089,7 @@
       'price': 57.6,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9097,7 +9097,7 @@
       'price': 77.75,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9105,7 +9105,7 @@
       'price': 95.63,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9113,7 +9113,7 @@
       'price': 101.3,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9121,7 +9121,7 @@
       'price': 107.43,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9129,7 +9129,7 @@
       'price': 109.2,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9137,7 +9137,7 @@
       'price': 106.23,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9145,7 +9145,7 @@
       'price': 97.99,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9153,7 +9153,7 @@
       'price': 98.24,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9161,7 +9161,7 @@
       'price': 88.58,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9169,7 +9169,7 @@
       'price': 87.23,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9177,7 +9177,7 @@
       'price': 84.01,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9185,7 +9185,7 @@
       'price': 84.16,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9193,7 +9193,7 @@
       'price': 90.91,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9201,7 +9201,7 @@
       'price': 93.96,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9209,7 +9209,7 @@
       'price': 99.74,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9217,7 +9217,7 @@
       'price': 110.97,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9225,7 +9225,7 @@
       'price': 100.01,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9233,7 +9233,7 @@
       'price': 92.04,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9241,7 +9241,7 @@
       'price': 83.49,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9249,7 +9249,7 @@
       'price': 83.0,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9257,7 +9257,7 @@
       'price': 83.71,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9265,7 +9265,7 @@
       'price': 77.99,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9273,7 +9273,7 @@
       'price': 78.0,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9281,7 +9281,7 @@
       'price': 84.01,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9289,7 +9289,7 @@
       'price': 97.05,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9297,7 +9297,7 @@
       'price': 106.5,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9305,7 +9305,7 @@
       'price': 112.82,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9313,7 +9313,7 @@
       'price': 122.76,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9321,7 +9321,7 @@
       'price': 121.99,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9329,7 +9329,7 @@
       'price': 114.71,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
     dict({
       'currency': 'EUR',
@@ -9337,7 +9337,7 @@
       'price': 104.04,
       'source': 'entsoe.eu',
       'sourceType': <EventSourceType.measured: 'measured'>,
-      'zoneKey': 'DK-BHM',
+      'zoneKey': 'FR',
     }),
   ])
 # ---

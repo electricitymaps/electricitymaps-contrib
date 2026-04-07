@@ -170,7 +170,7 @@ def test_fetch_prices_integrated_zone(adapter, session, snapshot):
         ANY,
         content=data.read_bytes(),
     )
-    assert snapshot == ENTSOE.fetch_price(ZoneKey("DK-BHM"), session)
+    assert snapshot == ENTSOE.fetch_price(ZoneKey("FR"), session)
 
 
 def test_fetch_with_negative_values(adapter, session, snapshot):

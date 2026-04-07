@@ -22,7 +22,6 @@ EXCHANGE_MAPPING = {
     "DK-DK1->NO-NO2": {"id": "ExchangeNorway", "direction": -1, "priceArea": "DK1"},
     "DK-DK1->SE-SE3": {"id": "ExchangeSweden", "direction": -1, "priceArea": "DK1"},
     "DK-DK2->SE-SE4": {"id": "ExchangeSweden", "direction": -1, "priceArea": "DK2"},
-    "DK-BHM->SE-SE4": {"id": "BornholmSE4", "direction": -1, "priceArea": "DK2"},
 }
 
 FORCAST_PARSE_MAPPING = {
@@ -102,25 +101,13 @@ def flow(sorted_keys: ZoneKey, datapoint: dict) -> int | float | None:
     """
     Helper function to extract the net flow from a datapoint.
     """
-    if sorted_keys == "DK-DK2->SE-SE4":
-        # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        # but Bornholm island is reported separately from DK-DK2 in Electricity Maps
-        return (
-            datapoint[EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["id"]]
-            * EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["direction"]
-            - datapoint[EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["id"]]
-            * EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["direction"]
-            if datapoint[EXCHANGE_MAPPING["DK-BHM->SE-SE4"]["id"]] is not None
-            and datapoint[EXCHANGE_MAPPING["DK-DK2->SE-SE4"]["id"]] is not None
-            else None
-        )
-    else:
-        return (
-            datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
-            * EXCHANGE_MAPPING[sorted_keys]["direction"]
-            if datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]] is not None
-            else None
-        )
+
+    return (
+        datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]]
+        * EXCHANGE_MAPPING[sorted_keys]["direction"]
+        if datapoint[EXCHANGE_MAPPING[sorted_keys]["id"]] is not None
+        else None
+    )
 
 
 @refetch_frequency(timedelta(days=1))
@@ -139,7 +126,7 @@ def fetch_exchange(
         raise ParserException(
             "DK.py",
             sorted_keys,
-            "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2, DK-BHM)",
+            "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2)",
         )
     else:
         for datapoint in data["records"]:
