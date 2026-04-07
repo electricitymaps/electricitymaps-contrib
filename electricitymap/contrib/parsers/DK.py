@@ -129,7 +129,10 @@ def fetch_exchange(
             "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2)",
         )
     else:
+        price_area = EXCHANGE_MAPPING[sorted_keys]["priceArea"]
         for datapoint in data["records"]:
+            if datapoint["PriceArea"] != price_area:
+                continue
             all_exchange_data.append(
                 zoneKey=sorted_keys,
                 datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
