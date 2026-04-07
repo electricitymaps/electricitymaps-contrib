@@ -158,8 +158,8 @@ def fetch_exchange(
         "DK-DK1->SE": '"ExchangeSweden"',
         "DK-DK1->SE-SE3": '"ExchangeSweden"',
         "DK-DK1->NL": '"ExchangeNetherlands"',
-        "DK-DK2->SE": '"ExchangeSweden"',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
-        "DK-DK2->SE-SE4": '"ExchangeSweden"',  # but Bornholm island is reported separately from DK-DK2 in eMap
+        "DK-DK2->SE": '"ExchangeSweden"',
+        "DK-DK2->SE-SE4": '"ExchangeSweden"',
     }
     if sorted_keys not in exch_map:
         raise NotImplementedError(f"Exchange {sorted_keys} not implemented")

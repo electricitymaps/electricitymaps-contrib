@@ -37,7 +37,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
 - Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Denmark: [TSO](https://www.energidataservice.dk/groups/production-and-consumption)
-- Denmark (Bornholm): [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - Ecuador: [CENACE](https://www.cenace.gob.ec/info-operativa/InformacionOperativa.htm)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
@@ -51,7 +50,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/electr
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [Georgian State Electrosystem (GSE)](http://www.gse.com.ge/home)
 - Great Britain: [Elexon BMRS](https://bscdocs.elexon.co.uk/guidance-notes/bmrs-api-and-data-push-user-guide)
-- Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Guatemala: [AMM](http://www.amm.org.gt)
 - Honduras: [ENTE](https://www.enteoperador.org/flujos-regionales-en-tiempo-real/)
@@ -231,8 +229,6 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Denmark (DK1 and DK2):
   - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - [energidataservice.dk](https://energidataservice.dk/tso-electricity/capacitypermunicipality)
-- Denmark (Bornholm)
-  - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic:
   - 2020 Data: [OC](https://www.dropbox.com/sh/8dec0z1ftf2nqr0/AAAbDG-6lSttxBprxhPRNkjaa/2020?dl=0&preview=OC-2020-000190-GG-SIE-INFORME+ANUAL+2019+V1.pdf&subfolder_nav_tracking=1)
   - Other: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
@@ -501,7 +497,6 @@ Cross-border transmission capacities between the zones are centralized in the [c
 - Great Britain ⇄ Ireland: ["Greenlink Interconnector": 500 MW](https://en.wikipedia.org/wiki/Greenlink)
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/HVDC_Cross-Channel), ["ElecLink": 1000 MW](https://www.getlinkgroup.com/en/our-group/eleclink/) & ["IFA2": 1000 MW](https://en.wikipedia.org/wiki/IFA-2)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
-- Great Britain ⇄ Orkney: ["33kV SHEPD cables": 40 MW](https://www.ofgem.gov.uk/sites/default/files/docs/2018/12/orkney_final_needs_case_consultation.pdf)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
 - Greece ⇄ Turkey: [1900 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
