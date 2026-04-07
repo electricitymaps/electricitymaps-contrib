@@ -287,10 +287,6 @@
       "countryName": "Denmark",
       "zoneName": "East Denmark"
     },
-    "DK-BHM": {
-      "countryName": "Denmark",
-      "zoneName": "Bornholm"
-    },
     "DM": {
       "zoneName": "Dominica"
     },
@@ -415,10 +411,6 @@
     },
     "GB-NIR": {
       "zoneName": "Northern Ireland"
-    },
-    "GB-ORK": {
-      "countryName": "Great Britain",
-      "zoneName": "Orkney Islands"
     },
     "GB-ZET": {
       "countryName": "Great Britain",

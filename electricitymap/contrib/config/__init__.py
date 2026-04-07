@@ -35,7 +35,6 @@ EU_ZONES = [
     "DE",
     "DK-DK1",
     "DK-DK2",
-    "DK-BHM",
     "EE",
     "ES",
     "ES-IB-ME",
