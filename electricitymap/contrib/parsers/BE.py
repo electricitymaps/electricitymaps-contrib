@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from itertools import groupby
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
@@ -54,7 +54,9 @@ def fetch_elia(
     session = session or Session()
 
     if start_datetime is not None and end_datetime is not None:
-        url = f"{BASE_URL_ELIA}&timezone=Europe/Brussels&where=datetime >= date'{start_datetime.replace(tzinfo=None).isoformat()}' AND datetime < date'{end_datetime.replace(tzinfo=None).isoformat()}'"
+        start_brussels = start_datetime.astimezone(TIMEZONE).replace(tzinfo=None)
+        end_brussels = end_datetime.astimezone(TIMEZONE).replace(tzinfo=None)
+        url = f"{BASE_URL_ELIA}&timezone=Europe/Brussels&where=datetime >= date'{start_brussels.isoformat()}' AND datetime < date'{end_brussels.isoformat()}'"
     else:
         url = BASE_URL_ELIA
 
@@ -87,7 +89,7 @@ def fetch_elia(
 
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(dt_key),
+            datetime=datetime.fromisoformat(dt_key).astimezone(timezone.utc),
             production=production_mix,
             storage=storage_mix,
             source=SOURCE_ELIA,
