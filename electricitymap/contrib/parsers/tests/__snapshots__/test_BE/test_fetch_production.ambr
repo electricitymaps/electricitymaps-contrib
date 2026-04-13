@@ -40,7 +40,7 @@
       'source': 'entsoe.eu, opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': -40.0,
+        'battery': 40.0,
         'hydro': 180.0,
       }),
       'zoneKey': 'BE',
@@ -62,7 +62,7 @@
       'source': 'opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': -45.0,
+        'battery': 45.0,
         'hydro': None,
       }),
       'zoneKey': 'BE',
@@ -84,7 +84,7 @@
       'source': 'opendata.elia.be',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
-        'battery': -50.0,
+        'battery': 50.0,
         'hydro': None,
       }),
       'zoneKey': 'BE',
