@@ -79,7 +79,7 @@ def fetch_elia(
             if "storage" in fuel_type:
                 storage_mix.add_value(
                     fuel_type.removeprefix("storage_"),
-                    power,
+                    -power if power is not None else None,
                 )
             else:
                 production_mix.add_value(
