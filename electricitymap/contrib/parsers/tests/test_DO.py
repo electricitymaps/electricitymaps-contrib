@@ -1,9 +1,9 @@
 from importlib import resources
+from math import nan
 
 import freezegun
 import pandas as pd
 import pytest
-from numpy import nan
 from requests_mock import ANY
 
 from electricitymap.contrib.parsers.DO import correct_solar_production, fetch_production

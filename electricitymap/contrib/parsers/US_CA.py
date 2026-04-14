@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import io
+import math
 import zipfile
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -8,7 +9,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from requests import Session
 
@@ -170,7 +170,7 @@ def fetch_consumption(
         row_datetime = target_datetime.replace(
             hour=int(row.Time[:2]), minute=int(row.Time[-2:]), tzinfo=TIMEZONE
         )
-        if not np.isnan(consumption):
+        if not math.isnan(consumption):
             all_data_points.append(
                 zoneKey=zone_key,
                 consumption=consumption,
