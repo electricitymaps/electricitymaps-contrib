@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from logging import getLogger
 from typing import Any
 
-import numpy as np
 import pandas as pd
 from requests import Session
 
@@ -51,7 +50,7 @@ def fetch_production_capacity(
         )
         df["mode"] = df["psrType"].str.strip().map(MODE_MAPPING)
         df["source"] = SOURCE
-        df["value"] = pd.to_numeric(np.round(df["quantity"], 0), downcast="integer")
+        df["value"] = pd.to_numeric(df["quantity"].round(0), downcast="integer")
         df_result = (
             df[["datetime", "value", "mode", "source"]]
             .groupby(["datetime", "mode", "source"])
