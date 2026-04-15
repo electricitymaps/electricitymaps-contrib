@@ -5,6 +5,7 @@ from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 import freezegun
+import numpy as np
 import pytest
 
 from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MODES
@@ -70,7 +71,7 @@ def test_raises_if_invalid_exchange():
         Exchange(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            netFlow=math.nan,
+            netFlow=np.nan,
             source="trust.me",
         )
 
@@ -638,7 +639,7 @@ def test_static_create_logs_with_nan_using_numpy():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            production=ProductionMix(wind=math.nan),
+            production=ProductionMix(wind=np.nan),
             source="trust.me",
         )
         mock_error.assert_called_once()
@@ -722,7 +723,7 @@ def test_raises_if_invalid_generation():
         TotalProduction(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            value=math.nan,
+            value=np.nan,
             source="trust.me",
         )
 
