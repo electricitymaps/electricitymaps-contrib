@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import unicodedata
+from collections.abc import Callable
+from dataclasses import dataclass
 from datetime import datetime, timedelta
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
@@ -11,25 +14,30 @@ from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from electricitymap.contrib.lib.models.event_lists import (
+    ProductionBreakdownList,
     TotalConsumptionList,
     TotalProductionList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ProductionMix,
+    StorageMix,
+)
 from electricitymap.contrib.parsers import occtonet
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.types import ZoneKey
 
-# Abbreviations
-# JP-HKD : Hokkaido
-# JP-TH  : Tohoku
-# JP-TK  : Tokyo area
-# JP-CB  : Chubu
-# JP-HR  : Hokuriku
-# JP-KN  : Kansai
-# JP-SK  : Shikoku
-# JP-KY  : Kyushu
-# JP-ON  : Okinawa
-# JP-CG  : Chūgoku
+# Zone key → OCCTO zone number → TSO name
+# JP-HKD : 01 : Hokkaido Electric (HEPCO)
+# JP-TH  : 02 : Tohoku Electric
+# JP-TK  : 03 : Tokyo Electric (TEPCO)
+# JP-CB  : 04 : Chubu Electric (ChuDEN)
+# JP-HR  : 05 : Hokuriku Electric (Rikuden)
+# JP-KN  : 06 : Kansai Transmission & Distribution
+# JP-CG  : 07 : Chugoku Electric (Energia)
+# JP-SK  : 08 : Shikoku Electric (Yonden)
+# JP-KY  : 09 : Kyushu Electric (Kyuden)
+# JP-ON  : 10 : Okinawa Electric (OEPC)
 
 sources = {
     "JP-HKD": "denkiyoho.hepco.co.jp",
@@ -45,6 +53,245 @@ sources = {
 }
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 ZONE_INFO = ZoneInfo("Asia/Tokyo")
+
+# ─── Area CSV: per-zone date cutoff ──────────────────────────────────────────
+# For dates on or after the cutoff, use the new area-CSV parser.
+# For dates before (or zones not listed), use the legacy consumption-based parser.
+# Adjust per zone as data coverage depth is verified.
+_AREA_CSV_START_DATES: dict[str, datetime] = {
+    # Uncomment zones as they are validated:
+    # "JP-HKD": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-TH": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-TK": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-HR": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-KN": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-CG": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-SK": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-KY": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+    # "JP-ON": datetime(2024, 4, 1, tzinfo=ZONE_INFO),
+}
+
+
+@dataclass(frozen=True)
+class _AreaCsvConfig:
+    url_builder: Callable[[datetime], str]
+    source: str
+    fallback_url_builder: Callable[[datetime], str] | None = None
+
+
+def _monthly(base: str, suffix: str) -> Callable[[datetime], str]:
+    """Standard monthly URL pattern: base + YYYYMM + suffix."""
+    return lambda dt: f"{base}{dt.strftime('%Y%m')}{suffix}"
+
+
+_AREA_CSV_CONFIGS: dict[str, _AreaCsvConfig] = {
+    "JP-HKD": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.hepco.co.jp/network/con_service/public_document/"
+            "supply_demand_results/csv/eria_jukyu_",
+            "_01.csv",
+        ),
+        source="hepco.co.jp",
+    ),
+    "JP-TH": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://nw.tohoku-epco.co.jp/common/demand/eria_jukyu_", "_02.csv"
+        ),
+        source="nw.tohoku-epco.co.jp",
+    ),
+    "JP-TK": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.tepco.co.jp/forecast/html/images/eria_jukyu_", "_03.csv"
+        ),
+        source="tepco.co.jp",
+    ),
+    # JP-CB: URL to be discovered during implementation
+    "JP-HR": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.rikuden.co.jp/nw/denki-yoho/csv/eria_jukyu_", "_05.csv"
+        ),
+        source="rikuden.co.jp",
+    ),
+    "JP-KN": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.kansai-td.co.jp/interchange/denkiyoho/"
+            "area-performance/eria_jukyu_",
+            "_06.csv",
+        ),
+        source="kansai-td.co.jp",
+    ),
+    "JP-CG": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.energia.co.jp/nw/jukyuu/sys/eria_jukyu_", "_07.csv"
+        ),
+        source="energia.co.jp",
+    ),
+    "JP-SK": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.yonden.co.jp/nw/supply_demand/csv/eria_jukyu_", "_08.csv"
+        ),
+        source="yonden.co.jp",
+    ),
+    "JP-KY": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.kyuden.co.jp/td_area_jukyu/csv/eria_jukyu_", "_09.csv"
+        ),
+        source="kyuden.co.jp",
+    ),
+    "JP-ON": _AreaCsvConfig(
+        url_builder=_monthly(
+            "https://www.okiden.co.jp/business-support/service/"
+            "supply-and-demand/csv/eria_jukyu_",
+            "_10.csv",
+        ),
+        source="okiden.co.jp",
+    ),
+}
+
+# Column mapping: normalized Japanese column name → (mode_name, category).
+# "production" fields go into ProductionMix, "storage" fields into StorageMix (negated).
+# Columns not listed here are silently skipped (curtailment, 連系線, 合計, etc.).
+_AREA_COLUMN_MAP: dict[str, tuple[str, str]] = {
+    "原子力": ("nuclear", "production"),
+    "火力(LNG)": ("gas", "production"),
+    "火力(石炭)": ("coal", "production"),
+    "火力(石油)": ("oil", "production"),
+    "火力(その他)": ("unknown", "production"),
+    "水力": ("hydro", "production"),
+    "地熱": ("geothermal", "production"),
+    "バイオマス": ("biomass", "production"),
+    "太陽光発電実績": ("solar", "production"),
+    "風力発電実績": ("wind", "production"),
+    "その他": ("unknown", "production"),
+    "揚水": ("hydro", "storage"),
+    "蓄電池": ("battery", "storage"),
+}
+
+
+# ─── Area CSV helper functions ───────────────────────────────────────────────
+
+
+def _read_area_csv(content: bytes) -> pd.DataFrame:
+    """Read an area supply-demand CSV, handling encoding and format quirks.
+
+    Handles: UTF-8 (JP-TK) vs Shift-JIS (others), full-width parens/alphabet
+    (JP-KN, JP-KY), quoted values (JP-KY), and 20-col vs 22-col variants.
+    """
+    try:
+        text = content.decode("utf-8")
+    except UnicodeDecodeError:
+        text = content.decode("shift_jis")
+
+    df = pd.read_csv(StringIO(text), header=1)
+    # Normalize full-width chars: 火力（ＬＮＧ） → 火力(LNG)
+    df.columns = [unicodedata.normalize("NFKC", str(col)).strip() for col in df.columns]
+    return df
+
+
+def _parse_area_datetime(date_val: Any, time_val: Any) -> datetime:
+    """Parse DATE + TIME from area CSV into a tz-aware datetime.
+
+    Handles: YYYY/MM/DD, YYYY/M/D, YYYYMMDD date formats;
+    HH:MM and H:MM time formats; the 24:00 edge case.
+    """
+    date_str = str(date_val).strip().strip('"')
+    time_str = str(time_val).strip().strip('"')
+
+    extra_day = False
+    if "24:00" in time_str:
+        time_str = "00:00"
+        extra_day = True
+
+    combined = f"{date_str} {time_str}"
+    for fmt in ("%Y/%m/%d %H:%M", "%Y%m%d %H:%M"):
+        try:
+            dt = datetime.strptime(combined, fmt)
+            if extra_day:
+                dt += timedelta(days=1)
+            return dt.replace(tzinfo=ZONE_INFO)
+        except ValueError:
+            continue
+    raise ValueError(f"Cannot parse area CSV datetime: {combined!r}")
+
+
+def _df_to_production_breakdown_list(
+    df: pd.DataFrame,
+    zone_key: str,
+    source: str,
+    target_date: datetime,
+    logger: Logger,
+) -> list:
+    """Convert area CSV DataFrame rows for target_date into production events."""
+    production_list = ProductionBreakdownList(logger)
+
+    df = df.copy()
+    df["_datetime"] = df.apply(
+        lambda r: _parse_area_datetime(r["DATE"], r["TIME"]), axis=1
+    )
+
+    # Filter to target date only
+    target_day = target_date.date()
+    df = df[df["_datetime"].apply(lambda dt: dt.date() == target_day)]
+
+    if df.empty:
+        return production_list.to_list()
+
+    # Build per-row lookup: which CSV columns map to which mode
+    col_targets: list[tuple[str, str, str]] = []  # (csv_col, field, category)
+    for col in df.columns:
+        if col in _AREA_COLUMN_MAP:
+            field, category = _AREA_COLUMN_MAP[col]
+            col_targets.append((col, field, category))
+
+    for _, row in df.iterrows():
+        prod_values: dict[str, float] = {}
+        storage_values: dict[str, float] = {}
+
+        for csv_col, field, category in col_targets:
+            val = row[csv_col]
+            if pd.isna(val):
+                continue
+            val = float(val)
+
+            if category == "production":
+                # Accumulate (火力(その他) and その他 both map to "unknown")
+                prod_values[field] = prod_values.get(field, 0.0) + val
+            elif category == "storage":
+                # CSV: positive = generating, negative = pumping
+                # EM:  positive = charging,   negative = discharging
+                storage_values[field] = -val
+
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=row["_datetime"],
+            source=source,
+            production=ProductionMix(**prod_values),
+            storage=StorageMix(**storage_values) if storage_values else None,
+        )
+
+    return production_list.to_list()
+
+
+def _fetch_production_area_csv(
+    zone_key: str,
+    target_datetime: datetime,
+    session: Session | None,
+    logger: Logger,
+) -> list:
+    """Fetch and parse the area supply-demand CSV for a zone."""
+    config = _AREA_CSV_CONFIGS[zone_key]
+    session = session or Session()
+    response = session.get(config.url_builder(target_datetime))
+    if response.status_code == 404 and config.fallback_url_builder:
+        response = session.get(config.fallback_url_builder(target_datetime))
+    response.raise_for_status()
+    df = _read_area_csv(response.content)
+    return _df_to_production_breakdown_list(
+        df, zone_key, config.source, target_datetime, logger
+    )
+
+
+# ─── Legacy helpers (unchanged) ──────────────────────────────────────────────
 
 
 def get_wind_capacity(datetime: datetime, zone_key, logger: Logger):
@@ -71,9 +318,38 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    """Routes between the new area-CSV parser and the legacy consumption-based parser.
+
+    The routing is controlled by _AREA_CSV_START_DATES: for dates on or after
+    the per-zone cutoff the area CSV is used (full mode breakdown); for earlier
+    dates the legacy all-unknown path is used.
     """
-    Calculates production from consumption and imports for a given area
-    All production is mapped to unknown
+    if target_datetime is not None:
+        dt = target_datetime.astimezone(ZONE_INFO)
+    else:
+        dt = datetime.now(ZONE_INFO)
+
+    start_date = _AREA_CSV_START_DATES.get(zone_key)
+    if (
+        start_date is not None
+        and dt >= start_date
+        and zone_key in _AREA_CSV_CONFIGS
+    ):
+        return _fetch_production_area_csv(zone_key, dt, session, logger)
+    return _fetch_production_consumption_based(
+        zone_key, session, target_datetime, logger
+    )
+
+
+def _fetch_production_consumption_based(
+    zone_key: str = "JP-TK",
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Legacy path: calculates production from consumption minus imports.
+
+    All production is mapped to unknown (plus solar where available).
     """
     df = fetch_production_df(zone_key, session, target_datetime)
     # add a row to production for each entry in the dictionary:
