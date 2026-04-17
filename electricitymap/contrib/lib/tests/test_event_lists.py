@@ -1,8 +1,8 @@
 import logging
+import math
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
-import numpy as np
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
@@ -89,7 +89,7 @@ def test_merge_exchanges_with_none():
     exchange_list_2.append(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        netFlow=np.nan,
+        netFlow=math.nan,
         source="trust.me",
     )
     exchanges = ExchangeList.merge_exchanges(

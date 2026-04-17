@@ -375,6 +375,34 @@ def test_wind_and_solar_forecasts(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_wind_solar_forecasts(ZoneKey("FI"), session)
 
 
+@pytest.mark.parametrize(
+    ("fetcher", "mock_filename"),
+    [
+        (
+            ENTSOE.fetch_wind_solar_forecasts_day_ahead,
+            "wind_solar_forecast_FI_DAY_AHEAD.xml",
+        ),
+        (
+            ENTSOE.fetch_wind_solar_forecasts_intraday,
+            "wind_solar_forecast_FI_INTRADAY.xml",
+        ),
+        (
+            ENTSOE.fetch_wind_solar_forecasts_current,
+            "wind_solar_forecast_FI_CURRENT.xml",
+        ),
+    ],
+    ids=["day_ahead", "intraday", "current"],
+)
+def test_wind_and_solar_forecasts_by_type(
+    adapter, session, snapshot, fetcher, mock_filename
+):
+    data = base_path_to_mock / mock_filename
+    adapter.register_uri(GET, ANY, content=data.read_bytes())
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetcher(
+        ZoneKey("FI"), session
+    )
+
+
 def test_fetch_uses_normal_url(adapter, session):
     os.environ["ENTSOE_TOKEN"] = "proxy"
     with open(
