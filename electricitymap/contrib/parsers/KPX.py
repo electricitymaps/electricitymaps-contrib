@@ -5,7 +5,6 @@ from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-from bs4 import BeautifulSoup
 from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
@@ -57,6 +56,54 @@ IGNORE_LIST = [
 ]
 
 
+def parse_consumption_data(
+    raw_data: str,
+    zone_key: ZoneKey = ZoneKey("KR"),
+    logger: Logger = getLogger(__name__),
+) -> TotalConsumptionList:
+    consumption_list = TotalConsumptionList(logger)
+
+    # The realtime page embeds consumption data inside a drawChart() function as JS arrays:
+    # x = total demand (총수요) including behind-the-meter generation,
+    # v = market demand (전력시장수요) excluding self-consumption.
+    # We use x as it represents total system consumption per Electricity Maps definition.
+    # Anchoring to drawChart() avoids false matches on other var x declarations in the page.
+    draw_chart_match = re.search(
+        r"function drawChart[^{]*\{(.*?)(?=function\s|\Z)", raw_data, re.DOTALL
+    )
+    if not draw_chart_match:
+        raise ParserException(
+            "KPX.py",
+            "Could not find drawChart function in response",
+            zone_key,
+        )
+    draw_chart_body = draw_chart_match.group(1)
+    values_match = re.search(r"var x\s*=\s*\[([\d.,\s]+)\]", draw_chart_body)
+    times_match = re.search(r"var t_time\s*=\s*\[([\d,\s]+)\]", draw_chart_body)
+
+    if not values_match or not times_match:
+        raise ParserException(
+            "KPX.py",
+            "Could not find consumption time series in response",
+            zone_key,
+        )
+
+    values = [float(v.strip()) for v in values_match.group(1).split(",") if v.strip()]
+    timestamps = [t.strip() for t in times_match.group(1).split(",") if t.strip()]
+
+    for ts, val in zip(timestamps, values, strict=True):
+        dt = datetime.strptime(ts, "%Y%m%d%H%M%S").replace(tzinfo=TIMEZONE)
+        consumption_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            source=KR_SOURCE,
+            consumption=val,
+        )
+
+    return consumption_list
+
+
+@refetch_frequency(timedelta(days=1))
 @use_proxy(country_code="KR")
 def fetch_consumption(
     zone_key: ZoneKey = ZoneKey("KR"),
@@ -76,27 +123,7 @@ def fetch_consumption(
     response = session.get(REAL_TIME_URL, verify=False)
     assert response.ok
 
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # value_text looks like: 64,918 MW
-    value_text = soup.find("td", {"id": "load"}).text
-    value = float(value_text.split()[0].replace(",", ""))
-
-    # dt_text looks like: 2025.01.05(일) 23:10 새로고침
-    dt_text = soup.find("p", {"class": "info_top"}).text
-    dt_parts = dt_text.split(" ")[:2]
-    dt_string = dt_parts[0].split("(")[0] + " " + dt_parts[1]
-    dt = datetime.strptime(dt_string, "%Y.%m.%d %H:%M").replace(tzinfo=TIMEZONE)
-
-    consumption_list = TotalConsumptionList(logger)
-    consumption_list.append(
-        zoneKey=zone_key,
-        datetime=dt,
-        source=KR_SOURCE,
-        consumption=value,
-    )
-
-    return consumption_list.to_list()
+    return parse_consumption_data(response.text, zone_key, logger).to_list()
 
 
 @refetch_frequency(timedelta(hours=167))
