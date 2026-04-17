@@ -1,0 +1,4037 @@
+# serializer version: 1
+# name: test_wind_and_solar_forecasts_by_type[day_ahead]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2224.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 7, 23, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2223.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 7, 23, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2221.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 7, 23, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2218.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2210.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 0, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2206.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 0, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2205.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 0, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2205.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2206.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 1, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2209.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 1, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2213.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 1, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2219.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2227.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 2, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2236.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 2, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2244.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 2, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2254.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2266.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 3, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2277.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 3, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2287.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 3, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2297.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2306.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 4, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2316.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 4, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2328.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 4, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2343.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2361.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 5, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2375.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 5, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 2385.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 5, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2399.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2421.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 6, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2427.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 6, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 2425.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 6, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 12.0,
+        'wind': 2406.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 30.0,
+        'wind': 2359.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 7, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 45.0,
+        'wind': 2341.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 7, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 59.0,
+        'wind': 2349.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 7, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 75.0,
+        'wind': 2338.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 94.0,
+        'wind': 2290.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 8, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 110.0,
+        'wind': 2324.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 8, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 123.0,
+        'wind': 2397.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 8, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 137.0,
+        'wind': 2559.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 151.0,
+        'wind': 2876.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 9, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 161.0,
+        'wind': 3033.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 9, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 170.0,
+        'wind': 3092.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 9, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 177.0,
+        'wind': 3124.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 184.0,
+        'wind': 3105.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 10, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 187.0,
+        'wind': 3062.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 10, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 188.0,
+        'wind': 2994.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 10, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 187.0,
+        'wind': 2874.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 183.0,
+        'wind': 2684.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 11, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 178.0,
+        'wind': 2517.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 11, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 171.0,
+        'wind': 2363.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 11, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 163.0,
+        'wind': 2167.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 153.0,
+        'wind': 1907.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 12, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 141.0,
+        'wind': 1721.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 12, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 128.0,
+        'wind': 1587.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 12, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 112.0,
+        'wind': 1456.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 92.0,
+        'wind': 1327.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 13, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 75.0,
+        'wind': 1255.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 13, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 60.0,
+        'wind': 1222.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 13, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 42.0,
+        'wind': 1246.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 18.0,
+        'wind': 1351.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 14, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 4.0,
+        'wind': 1417.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 14, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 2.0,
+        'wind': 1464.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 14, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 1531.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 1615.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 15, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 1687.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 15, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1749.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 15, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1818.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1896.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 16, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1955.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 16, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1999.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 16, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2034.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2058.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 17, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2077.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 17, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2091.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 17, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2097.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2093.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 18, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2086.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 18, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2076.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 18, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2057.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2029.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 19, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 2002.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 19, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1975.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 19, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1943.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1906.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 20, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1870.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 20, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1834.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 20, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1795.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1749.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 21, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1710.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 21, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1677.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 21, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1640.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1597.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 22, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1571.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 22, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1557.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 22, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1549.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1727.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 23, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1722.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 23, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1712.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 8, 23, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1698.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1678.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 0, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1654.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 0, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1626.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 0, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1589.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1540.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 1, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1498.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 1, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1460.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 1, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1416.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1361.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 2, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1322.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 2, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1294.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 2, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1274.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1265.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 3, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1254.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 3, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1241.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 3, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1238.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1249.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 4, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1244.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 4, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1228.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 4, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1210.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1187.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 5, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1160.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 5, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 1131.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 5, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1092.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1039.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 6, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1000.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 6, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 971.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 6, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 14.0,
+        'wind': 935.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 35.0,
+        'wind': 887.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 7, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 52.0,
+        'wind': 867.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 7, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 67.0,
+        'wind': 867.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 7, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 84.0,
+        'wind': 885.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 104.0,
+        'wind': 932.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 8, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 122.0,
+        'wind': 966.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 8, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 137.0,
+        'wind': 993.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 8, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 152.0,
+        'wind': 1033.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 169.0,
+        'wind': 1092.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 9, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 181.0,
+        'wind': 1127.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 9, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 190.0,
+        'wind': 1146.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 9, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 198.0,
+        'wind': 1158.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 204.0,
+        'wind': 1157.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 10, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 207.0,
+        'wind': 1156.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 10, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 208.0,
+        'wind': 1148.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 10, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 208.0,
+        'wind': 1141.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 205.0,
+        'wind': 1141.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 11, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 200.0,
+        'wind': 1114.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 11, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 193.0,
+        'wind': 1070.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 11, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 183.0,
+        'wind': 1003.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 170.0,
+        'wind': 897.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 12, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 157.0,
+        'wind': 817.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 12, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 143.0,
+        'wind': 754.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 12, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 126.0,
+        'wind': 677.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 106.0,
+        'wind': 579.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 13, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 87.0,
+        'wind': 521.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 13, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 71.0,
+        'wind': 488.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 13, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 50.0,
+        'wind': 479.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 22.0,
+        'wind': 505.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 14, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 6.0,
+        'wind': 517.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 14, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3.0,
+        'wind': 522.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 14, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 542.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 582.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 15, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 601.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 15, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 609.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 15, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 611.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 603.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 16, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 598.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 16, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 595.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 16, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 588.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 577.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 17, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 569.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 17, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 563.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 17, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 557.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 554.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 18, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 548.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 18, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 542.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 18, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 535.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 527.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 19, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 520.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 19, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 515.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 19, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 508.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 501.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 20, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 497.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 20, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 494.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 20, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 493.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 496.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 21, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 497.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 21, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 496.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 21, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 495.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 493.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 22, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 492.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 22, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 492.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 22, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 492.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 542.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 23, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 540.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 23, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 537.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 9, 23, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 531.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 521.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 0, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 513.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 0, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 507.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 0, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 497.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 482.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 1, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 476.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 1, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 476.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 1, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 479.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 486.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 2, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 495.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 2, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 508.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 2, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 523.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 538.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 3, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 561.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 3, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 589.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 3, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 625.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 671.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 4, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 713.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 4, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 752.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 4, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 797.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 850.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 5, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 894.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 5, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 930.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 5, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 967.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1007.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 6, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1035.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 6, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 1052.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 6, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 13.0,
+        'wind': 1066.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 33.0,
+        'wind': 1077.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 7, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 48.0,
+        'wind': 1075.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 7, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 61.0,
+        'wind': 1066.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 7, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 76.0,
+        'wind': 1036.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 94.0,
+        'wind': 971.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 8, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 108.0,
+        'wind': 941.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 8, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 120.0,
+        'wind': 929.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 8, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 132.0,
+        'wind': 930.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 145.0,
+        'wind': 957.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 9, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 154.0,
+        'wind': 963.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 9, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 161.0,
+        'wind': 955.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 9, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 165.0,
+        'wind': 953.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 166.0,
+        'wind': 958.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 10, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 167.0,
+        'wind': 941.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 10, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 167.0,
+        'wind': 911.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 10, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 166.0,
+        'wind': 864.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 164.0,
+        'wind': 790.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 11, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 160.0,
+        'wind': 733.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 11, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 155.0,
+        'wind': 687.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 11, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 148.0,
+        'wind': 630.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 140.0,
+        'wind': 557.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 12, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 130.0,
+        'wind': 512.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 12, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 119.0,
+        'wind': 487.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 12, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 107.0,
+        'wind': 469.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 92.0,
+        'wind': 458.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 13, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 77.0,
+        'wind': 465.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 13, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 63.0,
+        'wind': 486.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 13, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 46.0,
+        'wind': 526.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 20.0,
+        'wind': 591.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 14, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 6.0,
+        'wind': 651.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 14, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 3.0,
+        'wind': 710.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 14, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 788.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 891.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 15, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 1.0,
+        'wind': 969.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 15, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1031.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 15, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1090.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1142.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 16, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1188.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 16, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1229.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 16, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1264.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1293.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 17, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1316.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 17, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1334.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 17, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1343.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1339.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 18, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1340.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 18, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1343.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 18, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1340.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1329.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 19, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1327.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 19, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1329.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 19, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1333.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1341.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 20, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1348.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 20, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1355.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 20, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1367.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1389.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 21, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1398.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 21, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1400.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 21, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1394.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1375.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 22, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1366.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 22, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1364.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2024, 2, 10, 22, 45, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'solar': 0.0,
+        'wind': 1362.0,
+      }),
+      'source': 'entsoe.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'FI',
+    }),
+  ])
+# ---

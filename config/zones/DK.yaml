@@ -289,6 +289,5 @@ sources:
 subZoneNames:
   - DK-DK1
   - DK-DK2
-  - DK-BHM
 timezone: Europe/Copenhagen
 zone_name: Denmark

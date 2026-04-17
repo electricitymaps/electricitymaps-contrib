@@ -92,15 +92,6 @@ class EntsoeDocumentTypeEnum(str, Enum):
     ESTIMATED_NET_TRANSFER_CAPACITY = "A61"
 
 
-# The order of the forecast types is important for the parser to use the most recent data
-# This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORECAST_TYPES: list[EntsoeTypeEnum] = [
-    EntsoeTypeEnum.DAY_AHEAD,
-    EntsoeTypeEnum.INTRADAY,
-    EntsoeTypeEnum.CURRENT,
-]
-
-
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -277,7 +268,6 @@ EXCHANGE_AGGREGATES: dict[str, list[list]] = {
 ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
-    "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
@@ -1541,6 +1531,45 @@ def fetch_consumption_forecast(
     ).to_list()
 
 
+def _fetch_wind_solar_forecasts(
+    zone_key: ZoneKey,
+    forecast_type: EntsoeTypeEnum,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    """Shared logic for the 3 type-specific wind/solar forecast fetchers."""
+    label = forecast_type.name.lower().replace("_", "-")
+    non_aggregated_data: list[ProductionBreakdownList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_forecast = query_wind_solar_production_forecast(
+                domain,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch {label} wind and solar forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_forecast is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No {label} wind and solar forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_production(raw_forecast, logger, zone_key, forecasted=True)
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(parsed)
+    return ProductionBreakdownList.merge_production_breakdowns(
+        non_aggregated_data, logger
+    )
+
+
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: ZoneKey,
@@ -1552,47 +1581,84 @@ def fetch_wind_solar_forecasts(
     Gets values and corresponding datetimes for all production types in the specified zone.
     """
     session = session or Session()
-    non_aggregated_data: list[ProductionBreakdownList] = []
-    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
-        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
-        raw_forecasts = {}
-
-        for data_type in ORDERED_FORECAST_TYPES:
-            try:
-                raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
-                    domain, session, data_type, target_datetime=target_datetime
-                )
-            except Exception as e:
-                logger.error(
-                    f"Failed to fetch {data_type.name} wind and solar forecast for {_zone_key}: {e}",
-                    extra={"zone_key": _zone_key},
-                )
-        if raw_forecasts == {}:
-            logger.warning(
-                f"No wind and solar forecast data found for {_zone_key}",
-                extra={"zone_key": _zone_key},
+    forecast_breakdown_list = ProductionBreakdownList(logger)
+    # Order matters: later types override earlier ones at matching datetimes
+    # (intraday overrides day-ahead, current overrides intraday).
+    for forecast_type in [
+        EntsoeTypeEnum.DAY_AHEAD,
+        EntsoeTypeEnum.INTRADAY,
+        EntsoeTypeEnum.CURRENT,
+    ]:
+        try:
+            per_type = _fetch_wind_solar_forecasts(
+                zone_key, forecast_type, session, target_datetime, logger
             )
-            raise ParserException(
-                zone_key,
-                "ENTSOE.py",
-                f"No wind and solar forecast data found for {_zone_key}",
+        except ParserException as e:
+            logger.error(
+                f"Failed to fetch {forecast_type.name} wind and solar forecast for {zone_key}: {e}",
+                extra={"zone_key": zone_key},
             )
+            continue
 
-        forecast_breakdown_list = ProductionBreakdownList(logger)
-        for raw_forecast in raw_forecasts.values():
-            parsed_forecast = parse_production(
-                raw_forecast, logger, zone_key, forecasted=True
-            )
-            forecast_breakdown_list = (
-                ProductionBreakdownList.update_production_breakdowns(
-                    forecast_breakdown_list, parsed_forecast, logger
-                )
-            )
+        forecast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
+            forecast_breakdown_list,
+            per_type,
+            logger,
+        )
+    if len(forecast_breakdown_list) == 0:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No wind and solar forecast data found for {zone_key}",
+            zone_key=zone_key,
+        )
+    return forecast_breakdown_list.to_list()
 
-        non_aggregated_data.append(forecast_breakdown_list)
 
-    return ProductionBreakdownList.merge_production_breakdowns(
-        non_aggregated_data, logger
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.DAY_AHEAD,
+        session or Session(),
+        target_datetime,
+        logger,
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_intraday(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.INTRADAY,
+        session or Session(),
+        target_datetime,
+        logger,
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_current(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.CURRENT,
+        session or Session(),
+        target_datetime,
+        logger,
     ).to_list()
 
 

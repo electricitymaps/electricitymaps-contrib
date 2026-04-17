@@ -1,10 +1,10 @@
 import csv
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from math import nan
 from pprint import PrettyPrinter
 from zoneinfo import ZoneInfo
 
-from numpy import nan
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ProductionBreakdownList

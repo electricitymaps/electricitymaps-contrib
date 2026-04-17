@@ -228,7 +228,7 @@ def test_raises_if_invalid_consumption():
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            consumption=np.nan,
+            consumption=math.nan,
             source="trust.me",
         )
 
@@ -309,7 +309,7 @@ def test_invalid_price_raises():
         Price(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            price=np.nan,
+            price=math.nan,
             source="trust.me",
             currency="EUR",
         )
@@ -919,7 +919,7 @@ def test_production_with_nan_using_numpy():
     mix = ProductionMix()
     mix.add_value("wind", 10)
     assert mix.wind == 10
-    mix.add_value("wind", np.nan)
+    mix.add_value("wind", math.nan)
     assert mix.wind == 10
     assert mix.corrected_negative_modes == set()
 
@@ -930,7 +930,7 @@ def test_production_with_nan_init():
 
 
 def test_production_with_nan_using_numpy_init():
-    mix = ProductionMix(wind=np.nan)
+    mix = ProductionMix(wind=math.nan)
     assert mix.wind is None
 
 
@@ -972,11 +972,11 @@ def test_storage_with_nan():
 
 def test_storage_with_nan_using_numpy():
     mix = StorageMix()
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro is None
     mix.add_value("hydro", -5)
     assert mix.hydro == -5
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro == -5
 
 
@@ -986,7 +986,7 @@ def test_storage_with_nan_init():
 
 
 def test_storage_with_nan_using_numpy_init():
-    mix = StorageMix(hydro=np.nan)
+    mix = StorageMix(hydro=math.nan)
     assert mix.hydro is None
 
 

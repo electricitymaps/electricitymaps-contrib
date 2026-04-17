@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -142,7 +142,7 @@ def parse_production_to_df(text):
     # Compute zone_key
     df["zone_key"] = df["perimetre"].apply(lambda k: MAP_ZONES[k])
     # Compute values
-    df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
+    df.value = df.value.replace("ND", math.nan).replace("-", math.nan).astype("float")
     # Storage works the other way around (RTE treats storage as production)
     df.loc[df.key.str.startswith("storage."), "value"] *= -1
     return df
@@ -229,7 +229,7 @@ def parse_exchange_to_df(text):
     # Remove invalid granularities
     df = df[df.granularite == "Global"].drop("granularite", axis=1)
     # Compute values
-    df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
+    df.value = df.value.replace("ND", math.nan).replace("-", math.nan).astype("float")
     df["zone_key_other"] = df.v.apply(lambda x: MAP_ZONES[x.split("_")[1]])
     df["zone_key"] = df.perimetre.apply(lambda k: MAP_ZONES[k])
     df["sorted_zone_keys"] = df.apply(
