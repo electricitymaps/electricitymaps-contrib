@@ -101,6 +101,9 @@ class Parsers(ParsersBaseModel):
     consumptionForecast: str | None
     generationForecast: str | None
     productionPerModeForecast: str | None
+    productionPerModeForecastDayAhead: str | None
+    productionPerModeForecastIntraday: str | None
+    productionPerModeForecastLatest: str | None
     dayaheadLocationalMarginalPrice: str | None
     realtimeLocationalMarginalPrice: str | None
     price: str | None
