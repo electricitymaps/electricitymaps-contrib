@@ -20,6 +20,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 151.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 201.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -127,6 +130,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 4871.8
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 4887.8
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -250,10 +256,13 @@ capacity:
       value: 1790.2
     - datetime: '2025-11-01'
       source: EIA.gov
-      value: 1799.8
+      value: 1805.1
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 1816.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2016.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov

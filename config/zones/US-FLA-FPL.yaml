@@ -105,6 +105,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 3797.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3914.4
   oil:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -194,6 +197,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 8086.3
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 8682.3
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
