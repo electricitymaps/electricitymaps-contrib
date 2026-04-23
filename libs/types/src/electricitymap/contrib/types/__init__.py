@@ -63,6 +63,18 @@ EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
     ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
     ParserDataType.EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD,
 ]
+# TSO-published ex-ante values on a cross-border exchange (sourceType=published):
+# capacities, cleared market-coupling schedules, physical flow limits. All carry
+# the two-zone-key call convention, so the feeder dispatches them on the
+# exchange side together with EXCHANGE_DATA_TYPES and
+# EXCHANGE_CAPACITY_FORECAST_DATA_TYPES.
+EXCHANGE_PUBLICATION_DATA_TYPES = [
+    ParserDataType.SHADOW_AUCTION_ATC_DAY_AHEAD,
+    ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
+    ParserDataType.MAX_EXCHANGES_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.MAX_BORDER_FLOW_DAY_AHEAD,
+]
 LMP_DATA_TYPES = [
     ParserDataType.REALTIME_LOCATIONAL_MARGINAL_PRICE,
     ParserDataType.DAYAHEAD_LOCATIONAL_MARGINAL_PRICE,
@@ -76,5 +88,6 @@ __all__: list[str] = [
     "ALL_DATA_TYPES",
     "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
     "EXCHANGE_DATA_TYPES",
+    "EXCHANGE_PUBLICATION_DATA_TYPES",
     "LMP_DATA_TYPES",
 ]
