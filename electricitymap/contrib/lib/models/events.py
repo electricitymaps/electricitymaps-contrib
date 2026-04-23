@@ -327,9 +327,9 @@ class Event(BaseModel, ABC):
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
         source_type = values.get("sourceType", EventSourceType.measured)
         future_ok = {EventSourceType.forecasted, EventSourceType.published}
-        if source_type not in future_ok and v.astimezone(
+        if source_type not in future_ok and v.astimezone(timezone.utc) > datetime.now(
             timezone.utc
-        ) > datetime.now(timezone.utc) + timedelta(days=1):
+        ) + timedelta(days=1):
             raise ValueError(
                 f"Date is in the future and this is not a forecasted or published point: {v}"
             )

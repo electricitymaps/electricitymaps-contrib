@@ -50,6 +50,7 @@ REQUEST_TIMEOUT_SECONDS = 30
 # JAO Publication Tool API caps all datasets to a 2-day range per call.
 JAO_MAX_FETCH_DAYS = 2
 
+
 class JaoRegion(str, Enum):
     """JAO Publication Tool region — each has its own base URL and dataset catalog."""
 
@@ -69,11 +70,11 @@ class JaoDataset(str, Enum):
 
     # Per-border, bidirectional (`border_XX_YY` fields).
     # Slugs are identical between Core and Nordic where both publish the dataset.
-    SHADOW_AUCTION_ATC = "shadowAuctionATC"      # Core only
-    CORE_EXTERNAL_ATC = "atc"                    # Core only
-    MAX_EXCHANGES = "maxExchanges"               # Core + Nordic
-    SCHEDULED_EXCHANGES = "scheduledExchanges"   # Core only
-    MAX_BORDER_FLOW = "maxBorderFlow"            # Nordic only
+    SHADOW_AUCTION_ATC = "shadowAuctionATC"  # Core only
+    CORE_EXTERNAL_ATC = "atc"  # Core only
+    MAX_EXCHANGES = "maxExchanges"  # Core + Nordic
+    SCHEDULED_EXCHANGES = "scheduledExchanges"  # Core only
+    MAX_BORDER_FLOW = "maxBorderFlow"  # Nordic only
 
     def __str__(self) -> str:
         return self.value
@@ -106,6 +107,7 @@ EM_TO_JAO_ZONE: dict[str, str] = {
     "SE-SE4": "SE4",
 }
 
+
 def _em_to_jao_zone(em_zone: str) -> str:
     """Translate an EM zone key to the zone code JAO uses in its border field names."""
     return EM_TO_JAO_ZONE.get(em_zone, em_zone)
@@ -119,7 +121,6 @@ def _format_utc(dt: datetime) -> str:
 def _parse_utc(value: str) -> datetime:
     """Parse JAO's `dateTimeUtc` field into a tz-aware datetime."""
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
-
 
 
 def _target_window(
@@ -146,6 +147,7 @@ BASE_URL_BY_REGION: dict[JaoRegion, str] = {
     JaoRegion.CORE: "https://publicationtool.jao.eu/core/api",
     JaoRegion.NORDIC: "https://publicationtool.jao.eu/nordic/api",
 }
+
 
 def _query_jao(
     session: Session,
@@ -283,12 +285,8 @@ def _fetch_per_border_dataset(
     a one-line wrapper that pins its region + dataset."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     from_utc, to_utc = _target_window(target_datetime)
-    rows = _query_jao(
-        session or Session(), region, dataset, from_utc, to_utc, logger
-    )
-    return _extract_border_capacity(
-        rows, sorted_zone_keys, SOURCE, logger
-    ).to_list()
+    rows = _query_jao(session or Session(), region, dataset, from_utc, to_utc, logger)
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -306,9 +304,13 @@ def fetch_shadow_auction_atc_day_ahead(
     for the requested pair may be empty. Hourly granularity.
     """
     return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.CORE, JaoDataset.SHADOW_AUCTION_ATC,
-        session, target_datetime, logger,
+        zone_key1,
+        zone_key2,
+        JaoRegion.CORE,
+        JaoDataset.SHADOW_AUCTION_ATC,
+        session,
+        target_datetime,
+        logger,
     )
 
 
@@ -324,9 +326,13 @@ def fetch_core_external_atc_day_ahead(
     neighbors: IT, DK1, ES, BG, ...). 15-minute granularity.
     """
     return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.CORE, JaoDataset.CORE_EXTERNAL_ATC,
-        session, target_datetime, logger,
+        zone_key1,
+        zone_key2,
+        JaoRegion.CORE,
+        JaoDataset.CORE_EXTERNAL_ATC,
+        session,
+        target_datetime,
+        logger,
     )
 
 
@@ -344,9 +350,13 @@ def fetch_core_max_exchanges_day_ahead(
     commercially exchanged per direction given grid constraints.
     """
     return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.CORE, JaoDataset.MAX_EXCHANGES,
-        session, target_datetime, logger,
+        zone_key1,
+        zone_key2,
+        JaoRegion.CORE,
+        JaoDataset.MAX_EXCHANGES,
+        session,
+        target_datetime,
+        logger,
     )
 
 
@@ -364,9 +374,13 @@ def fetch_nordic_max_exchanges_day_ahead(
     DK1/DK2, FI) — `EM_TO_JAO_ZONE` handles the EM→JAO translation.
     """
     return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.NORDIC, JaoDataset.MAX_EXCHANGES,
-        session, target_datetime, logger,
+        zone_key1,
+        zone_key2,
+        JaoRegion.NORDIC,
+        JaoDataset.MAX_EXCHANGES,
+        session,
+        target_datetime,
+        logger,
     )
 
 
@@ -395,9 +409,7 @@ def fetch_core_scheduled_exchanges_day_ahead(
         to_utc,
         logger,
     )
-    return _extract_border_net_flow(
-        rows, sorted_zone_keys, SOURCE, logger
-    ).to_list()
+    return _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -415,9 +427,13 @@ def fetch_nordic_max_border_flow_day_ahead(
     was offered to the market after security constraints.
     """
     return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.NORDIC, JaoDataset.MAX_BORDER_FLOW,
-        session, target_datetime, logger,
+        zone_key1,
+        zone_key2,
+        JaoRegion.NORDIC,
+        JaoDataset.MAX_BORDER_FLOW,
+        session,
+        target_datetime,
+        logger,
     )
 
 

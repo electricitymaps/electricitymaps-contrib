@@ -196,9 +196,7 @@ def test_fetch_nordic_max_exchanges_day_ahead_no1_se3(adapter, session, snapshot
 
 def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(adapter, session, snapshot):
     """Core scheduledExchanges happy path (cleared commercial flow, 15-min)."""
-    payload = json.loads(
-        (BASE_MOCK_PATH / "core_scheduled_exchanges.json").read_text()
-    )
+    payload = json.loads((BASE_MOCK_PATH / "core_scheduled_exchanges.json").read_text())
     adapter.register_uri(GET, CORE_SCHEDULED_EXCHANGES_URL_REGEX, json=payload)
 
     result = fetch_core_scheduled_exchanges_day_ahead(
@@ -213,9 +211,7 @@ def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(adapter, session, snapsh
 
 def test_fetch_nordic_max_border_flow_day_ahead_no1_se3(adapter, session, snapshot):
     """Nordic maxBorderFlow happy path (physical capability ceiling, 15-min)."""
-    payload = json.loads(
-        (BASE_MOCK_PATH / "nordic_max_border_flow.json").read_text()
-    )
+    payload = json.loads((BASE_MOCK_PATH / "nordic_max_border_flow.json").read_text())
     adapter.register_uri(GET, NORDIC_MAX_BORDER_FLOW_URL_REGEX, json=payload)
 
     result = fetch_nordic_max_border_flow_day_ahead(
