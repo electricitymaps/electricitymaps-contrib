@@ -70,6 +70,7 @@ class JaoDataset(str, Enum):
 
     # Core CCR — per-border, bidirectional (`border_XX_YY` fields)
     SHADOW_AUCTION_ATC = "shadowAuctionATC"
+    CORE_EXTERNAL_ATC = "atc"
     MAX_EXCHANGES = "maxExchanges"
     # Core CCR — per-zone
     MAX_NET_POS = "maxNetPos"
@@ -132,10 +133,18 @@ def _parse_utc(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
-def _target_day_window(
+# JAO Publication Tool API caps all datasets to a 2-day range per call.
+JAO_MAX_FETCH_DAYS = 2
+
+
+def _target_window(
     target_datetime: datetime | None,
+    days: int = JAO_MAX_FETCH_DAYS,
 ) -> tuple[datetime, datetime]:
-    """Return the [00:00, 24:00) UTC window containing `target_datetime`."""
+    """Return a [day_start, day_start + `days`) UTC window starting at the
+    UTC day containing `target_datetime`. Matches the `@refetch_frequency`
+    the public fetcher is decorated with so refetches are gapless.
+    """
     if target_datetime is None:
         target_datetime = datetime.now(tz=timezone.utc)
     elif target_datetime.tzinfo is None:
@@ -145,7 +154,7 @@ def _target_day_window(
         time.min,
         tzinfo=timezone.utc,
     )
-    return day_start, day_start + timedelta(days=1)
+    return day_start, day_start + timedelta(days=days)
 
 
 def _query_jao(
@@ -230,7 +239,7 @@ def _extract_border_capacity(
     return capacities
 
 
-@refetch_frequency(timedelta(days=2))
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
 def fetch_shadow_auction_atc_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -238,14 +247,14 @@ def fetch_shadow_auction_atc_day_ahead(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict]:
-    """Day-ahead shadow-auction ATC capacity for a Core border.
+    """Day-ahead shadow-auction ATC capacity for a Core internal border.
 
     JAO publishes this as a fallback when Core day-ahead market coupling
     can't produce a result; on days where coupling succeeded, the response
-    for the requested pair may simply be empty.
+    for the requested pair may be empty. Hourly granularity.
     """
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    from_utc, to_utc = _target_day_window(target_datetime)
+    from_utc, to_utc = _target_window(target_datetime)
     rows = _query_jao(
         session or Session(),
         JaoRegion.CORE,
@@ -259,7 +268,34 @@ def fetch_shadow_auction_atc_day_ahead(
     ).to_list()
 
 
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
+def fetch_core_external_atc_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead ATC capacity on Core's external borders (non-flow-based
+    neighbors: IT, DK1, ES, BG, ...). 15-minute granularity.
+    """
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    from_utc, to_utc = _target_window(target_datetime)
+    rows = _query_jao(
+        session or Session(),
+        JaoRegion.CORE,
+        JaoDataset.CORE_EXTERNAL_ATC,
+        from_utc,
+        to_utc,
+        logger,
+    )
+    return _extract_border_capacity(
+        rows, sorted_zone_keys, SOURCE, logger
+    ).to_list()
+
+
 if __name__ == "__main__":
     from pprint import pprint
 
     pprint(fetch_shadow_auction_atc_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_core_external_atc_day_ahead(ZoneKey("DE"), ZoneKey("DK-DK1")))

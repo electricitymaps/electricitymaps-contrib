@@ -7,13 +7,20 @@ from requests_mock import GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.config import ZoneKey
-from electricitymap.contrib.parsers.JAO import fetch_shadow_auction_atc_day_ahead
+from electricitymap.contrib.parsers.JAO import (
+    fetch_core_external_atc_day_ahead,
+    fetch_shadow_auction_atc_day_ahead,
+)
 
 BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO")
 SHADOW_AUCTION_ATC_URL_REGEX = re.compile(
     r"https://publicationtool\.jao\.eu/core/api/data/shadowAuctionATC"
 )
+CORE_EXTERNAL_ATC_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/core/api/data/atc"
+)
 TARGET_DATETIME = datetime.fromisoformat("2025-10-01T00:00:00+00:00")
+CORE_EXTERNAL_TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
 
 
 def _register_shadow_auction_atc(adapter) -> None:
@@ -105,3 +112,35 @@ def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
     assert result[0]["capacityExport"] == 3620
     assert result[0]["capacityImport"] is None
     assert result[0]["sortedZoneKeys"] == "AT->DE"
+
+
+def test_fetch_core_external_atc_day_ahead_de_dk_dk1(adapter, session, snapshot):
+    """Happy path for a Core-external border that also exercises the
+    DK-DK1 → DK1 zone remap. Fixture is a real 2-day, 15-min response."""
+    payload = json.loads((BASE_MOCK_PATH / "core_external_atc.json").read_text())
+    adapter.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
+
+    result = fetch_core_external_atc_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("DK-DK1"),
+        session=session,
+        target_datetime=CORE_EXTERNAL_TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+def test_fetch_core_external_atc_day_ahead_border_not_in_dataset(adapter, session):
+    """Core-external endpoint only lists a handful of neighbors; a pair
+    that isn't in the response should return [] without raising."""
+    payload = json.loads((BASE_MOCK_PATH / "core_external_atc.json").read_text())
+    adapter.register_uri(GET, CORE_EXTERNAL_ATC_URL_REGEX, json=payload)
+
+    result = fetch_core_external_atc_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("FR"),
+        session=session,
+        target_datetime=CORE_EXTERNAL_TARGET_DATETIME,
+    )
+
+    assert result == []

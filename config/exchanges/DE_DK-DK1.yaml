@@ -6,5 +6,6 @@ lonlat:
   - 54.9
 parsers:
   exchange: DK.fetch_exchange
+  exchangeCoreExternalAtcDayAhead: JAO.fetch_core_external_atc_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 0

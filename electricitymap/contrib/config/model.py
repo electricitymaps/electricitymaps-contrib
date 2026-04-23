@@ -170,6 +170,7 @@ class ExchangeParsers(ParsersBaseModel):
     exchangeCapacityForecastWeekAhead: str | None
     exchangeCapacityForecastMonthAhead: str | None
     exchangeShadowAuctionAtcDayAhead: str | None
+    exchangeCoreExternalAtcDayAhead: str | None
     exchangeForecast: str | None
 
 
