@@ -57,7 +57,6 @@ class ParserDataType(Enum):
 
 
 ALL_DATA_TYPES = [dt.value for dt in ParserDataType]
-EXCHANGE_DATA_TYPES = [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
 # TODO rename and move this one in the EXCHANGE_PUBLICATION_DATA_TYPES
 EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
     ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
@@ -66,15 +65,24 @@ EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
 ]
 # TSO-published ex-ante values on a cross-border exchange (sourceType=published):
 # capacities, cleared market-coupling schedules, physical flow limits. All carry
-# the two-zone-key call convention, so the feeder dispatches them on the
-# exchange side together with EXCHANGE_DATA_TYPES and
-# EXCHANGE_CAPACITY_FORECAST_DATA_TYPES.
+# the two-zone-key call convention.
 EXCHANGE_PUBLICATION_DATA_TYPES = [
     ParserDataType.SHADOW_AUCTION_ATC_DAY_AHEAD,
     ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
     ParserDataType.MAX_EXCHANGES_DAY_AHEAD,
     ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
     ParserDataType.MAX_BORDER_FLOW_DAY_AHEAD,
+]
+# Every ParserDataType registered on the exchange side (two-zone-key call
+# convention). Consumers asking "is this an exchange-side data type?" should
+# use this list directly — no need to recombine the sub-groupings. The
+# sub-groupings above are kept for consumers that want a specific semantic
+# family (e.g. only NTC forecasts, or only TSO-published values).
+EXCHANGE_DATA_TYPES = [
+    ParserDataType.EXCHANGE,
+    ParserDataType.EXCHANGE_FORECAST,
+    *EXCHANGE_CAPACITY_FORECAST_DATA_TYPES,
+    *EXCHANGE_PUBLICATION_DATA_TYPES,
 ]
 LMP_DATA_TYPES = [
     ParserDataType.REALTIME_LOCATIONAL_MARGINAL_PRICE,
