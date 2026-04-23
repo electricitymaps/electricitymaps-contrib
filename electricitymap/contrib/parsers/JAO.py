@@ -4,11 +4,14 @@
 Parser for the JAO (Joint Allocation Office) Publication Tool.
 
 Docs: https://www.jao.eu/page-api/market-data
-API:  https://publicationtool.jao.eu/core/api
+Regions:
+    - Core CCR:   https://publicationtool.jao.eu/core/api
+    - Nordic CCR: https://publicationtool.jao.eu/nordic/api
 
-Every JAO Core dataset is served from the same base URL with the same query
-params (FromUtc, ToUtc) and the same envelope ({data, rejected, messages}),
-so the HTTP layer is reusable. Datasets differ only in row shape:
+Every JAO dataset (Core or Nordic) is served from the same URL template per
+region — `/data/<datasetName>` with `FromUtc`/`ToUtc` query params and a
+`{data, rejected, messages}` envelope — so the HTTP layer is reusable. Datasets
+differ only in row shape:
 
 - Per-border (bidirectional): fields named `border_XX_YY`, one row per hour.
     e.g. shadowAuctionATC, maxExchanges
@@ -18,10 +21,11 @@ so the HTTP layer is reusable. Datasets differ only in row shape:
     e.g. shadowPrices, validationReductions
 
 Currently wired:
-- fetch_shadow_auction_atc_day_ahead  → shadowAuctionATC (per-border)
+- fetch_shadow_auction_atc_day_ahead  → Core shadowAuctionATC (per-border)
 
-To add another per-border dataset, add an entry to `JaoDataset` and a thin
-public fetcher that calls `_query_jao` + `_extract_border_capacity`.
+Nordic datasets (e.g. preliminaryDomain) are listed in `JaoDataset` but no
+fetchers are wired yet. A future iteration can add a per-exchange region
+mapping so the right base URL is selected automatically for each zone pair.
 """
 
 from datetime import datetime, time, timedelta, timezone
@@ -38,22 +42,44 @@ from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
 SOURCE = "jao.eu"
-BASE_URL = "https://publicationtool.jao.eu/core/api"
 REQUEST_TIMEOUT_SECONDS = 30
 
 
-class JaoDataset(str, Enum):
-    """Canonical JAO Core Publication Tool dataset slugs."""
+class JaoRegion(str, Enum):
+    """JAO Publication Tool region — each has its own base URL and dataset catalog."""
 
-    # Per-border, bidirectional (`border_XX_YY` fields)
+    CORE = "core"
+    NORDIC = "nordic"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+BASE_URL_BY_REGION: dict[JaoRegion, str] = {
+    JaoRegion.CORE: "https://publicationtool.jao.eu/core/api",
+    JaoRegion.NORDIC: "https://publicationtool.jao.eu/nordic/api",
+}
+
+
+class JaoDataset(str, Enum):
+    """Canonical JAO Publication Tool dataset slugs.
+
+    Each dataset is published by exactly one region's Publication Tool. The
+    caller of `_query_jao` must pass the matching `JaoRegion`.
+    """
+
+    # Core CCR — per-border, bidirectional (`border_XX_YY` fields)
     SHADOW_AUCTION_ATC = "shadowAuctionATC"
     MAX_EXCHANGES = "maxExchanges"
-    # Per-zone
+    # Core CCR — per-zone
     MAX_NET_POS = "maxNetPos"
     REFERENCE_NET_POSITION = "referenceNetPosition"
-    # Per-CNEC (multiple rows per MTU)
+    # Core CCR — per-CNEC (multiple rows per MTU)
     SHADOW_PRICES = "shadowPrices"
     VALIDATION_REDUCTIONS = "validationReductions"
+
+    # Nordic CCR — not yet wired to a public fetcher
+    PRELIMINARY_DOMAIN = "preliminaryDomain"
 
     def __str__(self) -> str:
         return self.value
@@ -88,28 +114,35 @@ def _target_day_window(
 
 def _query_jao(
     session: Session,
+    region: JaoRegion,
     dataset: JaoDataset,
     from_utc: datetime,
     to_utc: datetime,
     logger: Logger,
 ) -> list[dict]:
-    """Call a JAO Core Publication Tool dataset endpoint.
+    """Call a JAO Publication Tool dataset endpoint in the given region.
 
-    Shared by every JAO dataset — formats params, unwraps the envelope,
-    raises on HTTP error or `rejected=True`.
+    Shared by every JAO dataset (Core and Nordic alike) — formats params,
+    unwraps the envelope, raises on HTTP error or `rejected=True`.
     """
-    url = f"{BASE_URL}/data/{dataset.value}"
+    base_url = BASE_URL_BY_REGION[region]
+    url = f"{base_url}/data/{dataset.value}"
     params = {"FromUtc": _format_utc(from_utc), "ToUtc": _format_utc(to_utc)}
     logger.debug(
         "Querying JAO",
-        extra={"dataset": dataset.value, "from_utc": params["FromUtc"], "to_utc": params["ToUtc"]},
+        extra={
+            "region": region.value,
+            "dataset": dataset.value,
+            "from_utc": params["FromUtc"],
+            "to_utc": params["ToUtc"],
+        },
     )
     response = session.get(url, params=params, timeout=REQUEST_TIMEOUT_SECONDS)
     if not response.ok:
         raise ParserException(
             parser="JAO.py",
             message=(
-                f"{dataset.value}: HTTP {response.status_code} "
+                f"{region.value}/{dataset.value}: HTTP {response.status_code} "
                 f"for {params['FromUtc']}..{params['ToUtc']}"
             ),
         )
@@ -118,7 +151,7 @@ def _query_jao(
         raise ParserException(
             parser="JAO.py",
             message=(
-                f"{dataset.value}: request rejected by JAO "
+                f"{region.value}/{dataset.value}: request rejected by JAO "
                 f"(messages={payload.get('messages')!r})"
             ),
         )
@@ -177,6 +210,7 @@ def fetch_shadow_auction_atc_day_ahead(
     from_utc, to_utc = _target_day_window(target_datetime)
     rows = _query_jao(
         session or Session(),
+        JaoRegion.CORE,
         JaoDataset.SHADOW_AUCTION_ATC,
         from_utc,
         to_utc,
