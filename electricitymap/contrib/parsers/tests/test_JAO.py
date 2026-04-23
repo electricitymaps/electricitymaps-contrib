@@ -10,7 +10,7 @@ from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.parsers.JAO import (
     fetch_core_external_atc_day_ahead,
     fetch_core_max_exchanges_day_ahead,
-    fetch_core_scheduled_commercial_day_ahead,
+    fetch_core_scheduled_exchanges_day_ahead,
     fetch_nordic_max_border_flow_day_ahead,
     fetch_nordic_max_exchanges_day_ahead,
     fetch_shadow_auction_atc_day_ahead,
@@ -194,14 +194,14 @@ def test_fetch_nordic_max_exchanges_day_ahead_no1_se3(adapter, session, snapshot
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
-def test_fetch_core_scheduled_commercial_day_ahead_de_fr(adapter, session, snapshot):
+def test_fetch_core_scheduled_exchanges_day_ahead_de_fr(adapter, session, snapshot):
     """Core scheduledExchanges happy path (cleared commercial flow, 15-min)."""
     payload = json.loads(
         (BASE_MOCK_PATH / "core_scheduled_exchanges.json").read_text()
     )
     adapter.register_uri(GET, CORE_SCHEDULED_EXCHANGES_URL_REGEX, json=payload)
 
-    result = fetch_core_scheduled_commercial_day_ahead(
+    result = fetch_core_scheduled_exchanges_day_ahead(
         ZoneKey("DE"),
         ZoneKey("FR"),
         session=session,

@@ -5,6 +5,6 @@ parsers:
   exchange: CZ.fetch_exchange
   exchangeShadowAuctionAtcDayAhead: JAO.fetch_shadow_auction_atc_day_ahead
   exchangeMaxExchangesDayAhead: JAO.fetch_core_max_exchanges_day_ahead
-  exchangeScheduledCommercialDayAhead: JAO.fetch_core_scheduled_commercial_day_ahead
+  exchangeScheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 135

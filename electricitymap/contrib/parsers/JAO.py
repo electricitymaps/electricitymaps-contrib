@@ -25,7 +25,7 @@ Currently wired:
 - fetch_core_external_atc_day_ahead        → Core atc (per-border, 15-min)
 - fetch_core_max_exchanges_day_ahead       → Core maxExchanges (per-border, hourly)
 - fetch_nordic_max_exchanges_day_ahead     → Nordic maxExchanges (per-border, 15-min)
-- fetch_core_scheduled_commercial_day_ahead → Core scheduledExchanges (per-border, 15-min)
+- fetch_core_scheduled_exchanges_day_ahead → Core scheduledExchanges (per-border, 15-min)
 - fetch_nordic_max_border_flow_day_ahead   → Nordic maxBorderFlow (per-border, 15-min)
 """
 
@@ -371,7 +371,7 @@ def fetch_nordic_max_exchanges_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_scheduled_commercial_day_ahead(
+def fetch_core_scheduled_exchanges_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -428,5 +428,5 @@ if __name__ == "__main__":
     pprint(fetch_core_external_atc_day_ahead(ZoneKey("DE"), ZoneKey("DK-DK1")))
     pprint(fetch_core_max_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
     pprint(fetch_nordic_max_exchanges_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
-    pprint(fetch_core_scheduled_commercial_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_core_scheduled_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
     pprint(fetch_nordic_max_border_flow_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))

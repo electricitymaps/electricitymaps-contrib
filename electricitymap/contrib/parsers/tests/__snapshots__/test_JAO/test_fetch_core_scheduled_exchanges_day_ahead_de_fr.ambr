@@ -1,5 +1,5 @@
 # serializer version: 1
-# name: test_fetch_core_scheduled_commercial_day_ahead_de_fr
+# name: test_fetch_core_scheduled_exchanges_day_ahead_de_fr
   list([
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 0, 0, tzinfo=datetime.timezone.utc),

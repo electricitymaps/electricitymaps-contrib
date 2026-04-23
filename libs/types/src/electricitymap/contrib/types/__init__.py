@@ -46,7 +46,7 @@ class ParserDataType(Enum):
     EXCHANGE_SHADOW_AUCTION_ATC_DAY_AHEAD = "exchangeShadowAuctionAtcDayAhead"
     EXCHANGE_CORE_EXTERNAL_ATC_DAY_AHEAD = "exchangeCoreExternalAtcDayAhead"
     EXCHANGE_MAX_EXCHANGES_DAY_AHEAD = "exchangeMaxExchangesDayAhead"
-    EXCHANGE_SCHEDULED_COMMERCIAL_DAY_AHEAD = "exchangeScheduledCommercialDayAhead"
+    EXCHANGE_SCHEDULED_EXCHANGES_DAY_AHEAD = "exchangeScheduledExchangesDayAhead"
     EXCHANGE_MAX_BORDER_FLOW_DAY_AHEAD = "exchangeMaxBorderFlowDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
