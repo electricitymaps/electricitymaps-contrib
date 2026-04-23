@@ -6,7 +6,23 @@ from electricitymap.contrib.config.model import (
     ExchangeParsers,
     Parsers,
 )
-from electricitymap.contrib.types import ParserDataType
+from electricitymap.contrib.types import (
+    EXCHANGE_CAPACITY_FORECAST_DATA_TYPES,
+    EXCHANGE_DATA_TYPES,
+    EXCHANGE_PUBLICATION_DATA_TYPES,
+    ParserDataType,
+)
+
+# Source of truth for which ParserDataType values belong on the exchange side
+# (two-zone-key call convention, registered under ExchangeParsers). Substring
+# matching on "exchange" used to be reliable when every exchange-side value
+# started with `exchange…`, but the JAO types dropped that prefix — so now we
+# dispatch by membership in the dedicated grouping lists.
+_EXCHANGE_PARSER_DATA_TYPES = {
+    *EXCHANGE_DATA_TYPES,
+    *EXCHANGE_CAPACITY_FORECAST_DATA_TYPES,
+    *EXCHANGE_PUBLICATION_DATA_TYPES,
+}
 
 
 class ConfigModelTestcase(unittest.TestCase):
@@ -61,7 +77,9 @@ class ConfigModelTestcase(unittest.TestCase):
         dummy_parser_model = Parsers()
         # Check 1:1 match between ParserDataType enum and Parsers model, except for exchange parsers, as they're defined in a different model
         all_parser_data_types = {
-            dt.value for dt in ParserDataType if "exchange" not in dt.value
+            dt.value
+            for dt in ParserDataType
+            if dt not in _EXCHANGE_PARSER_DATA_TYPES
         }
         all_parser_model_fields = set(dummy_parser_model.__fields__.keys())
         self.assertEqual(all_parser_data_types, all_parser_model_fields)
@@ -69,9 +87,7 @@ class ConfigModelTestcase(unittest.TestCase):
     def test_exchange_parsers_model_contains_all_parser_data_types(self):
         dummy_exchange_parsers_model = ExchangeParsers()
         # Check 1:1 match between ParserDataType enum and ExchangeParsers model
-        all_parser_data_types = {
-            dt.value for dt in ParserDataType if "exchange" in dt.value
-        }
+        all_parser_data_types = {dt.value for dt in _EXCHANGE_PARSER_DATA_TYPES}
         all_parser_model_fields = set(dummy_exchange_parsers_model.__fields__.keys())
         self.assertEqual(all_parser_data_types, all_parser_model_fields)
 
