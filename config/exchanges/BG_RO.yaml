@@ -6,6 +6,6 @@ parsers:
   exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
   exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
   exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
-  coreExternalAtcDayAhead: JAO.fetch_core_external_atc_day_ahead
+  coreExternalAtc: JAO.fetch_core_external_atc
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 0

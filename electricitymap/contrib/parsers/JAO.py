@@ -21,12 +21,12 @@ differ only in row shape:
     e.g. shadowPrices, validationReductions
 
 Currently wired:
-- fetch_shadow_auction_atc_day_ahead       → Core shadowAuctionATC (per-border)
-- fetch_core_external_atc_day_ahead        → Core atc (per-border, 15-min)
-- fetch_core_max_exchanges_day_ahead       → Core maxExchanges (per-border, hourly)
-- fetch_nordic_max_exchanges_day_ahead     → Nordic maxExchanges (per-border, 15-min)
-- fetch_core_scheduled_exchanges_day_ahead → Core scheduledExchanges (per-border, 15-min)
-- fetch_nordic_max_border_flow_day_ahead   → Nordic maxBorderFlow (per-border, 15-min)
+- fetch_shadow_auction_atc       → Core shadowAuctionATC (per-border)
+- fetch_core_external_atc        → Core atc (per-border, 15-min)
+- fetch_core_max_exchanges       → Core maxExchanges (per-border, hourly)
+- fetch_nordic_max_exchanges     → Nordic maxExchanges (per-border, 15-min)
+- fetch_core_scheduled_exchanges → Core scheduledExchanges (per-border, 15-min)
+- fetch_nordic_max_border_flow   → Nordic maxBorderFlow (per-border, 15-min)
 """
 
 from datetime import datetime, time, timedelta, timezone
@@ -290,7 +290,7 @@ def _fetch_per_border_dataset(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_shadow_auction_atc_day_ahead(
+def fetch_shadow_auction_atc(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -315,7 +315,7 @@ def fetch_shadow_auction_atc_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_external_atc_day_ahead(
+def fetch_core_external_atc(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -337,7 +337,7 @@ def fetch_core_external_atc_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_max_exchanges_day_ahead(
+def fetch_core_max_exchanges(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -361,7 +361,7 @@ def fetch_core_max_exchanges_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_nordic_max_exchanges_day_ahead(
+def fetch_nordic_max_exchanges(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -385,7 +385,7 @@ def fetch_nordic_max_exchanges_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_scheduled_exchanges_day_ahead(
+def fetch_core_scheduled_exchanges(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -413,7 +413,7 @@ def fetch_core_scheduled_exchanges_day_ahead(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_nordic_max_border_flow_day_ahead(
+def fetch_nordic_max_border_flow(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -440,9 +440,9 @@ def fetch_nordic_max_border_flow_day_ahead(
 if __name__ == "__main__":
     from pprint import pprint
 
-    pprint(fetch_shadow_auction_atc_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_core_external_atc_day_ahead(ZoneKey("DE"), ZoneKey("DK-DK1")))
-    pprint(fetch_core_max_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_nordic_max_exchanges_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
-    pprint(fetch_core_scheduled_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_nordic_max_border_flow_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
+    pprint(fetch_shadow_auction_atc(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_core_external_atc(ZoneKey("DE"), ZoneKey("DK-DK1")))
+    pprint(fetch_core_max_exchanges(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_exchanges(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
+    pprint(fetch_core_scheduled_exchanges(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_border_flow(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))

@@ -1,5 +1,5 @@
 # serializer version: 1
-# name: test_fetch_core_external_atc_day_ahead_de_dk_dk1
+# name: test_fetch_core_external_atc_de_dk_dk1
   list([
     dict({
       'capacityExport': 3500.0,

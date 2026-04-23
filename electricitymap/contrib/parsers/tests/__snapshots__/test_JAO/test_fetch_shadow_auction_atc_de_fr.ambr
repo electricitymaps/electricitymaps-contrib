@@ -1,5 +1,5 @@
 # serializer version: 1
-# name: test_fetch_shadow_auction_atc_day_ahead_de_fr
+# name: test_fetch_shadow_auction_atc_de_fr
   list([
     dict({
       'capacityExport': 595.0,

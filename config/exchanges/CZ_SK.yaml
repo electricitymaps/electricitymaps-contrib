@@ -3,8 +3,8 @@ lonlat:
   - 49.089498
 parsers:
   exchange: CZ.fetch_exchange
-  shadowAuctionAtcDayAhead: JAO.fetch_shadow_auction_atc_day_ahead
-  maxExchangesDayAhead: JAO.fetch_core_max_exchanges_day_ahead
-  scheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead
+  shadowAuctionAtc: JAO.fetch_shadow_auction_atc
+  maxExchanges: JAO.fetch_core_max_exchanges
+  scheduledExchanges: JAO.fetch_core_scheduled_exchanges
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 135
