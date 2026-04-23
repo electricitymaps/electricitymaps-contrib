@@ -37,8 +37,10 @@ from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeCapacityForecastList,
+    ExchangeCapacityList,
+    ExchangeList,
 )
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
@@ -197,8 +199,8 @@ def _extract_border_capacity(
     source: str,
     logger: Logger,
     field_prefix: str = "border",
-) -> ExchangeCapacityForecastList:
-    """Turn per-border rows into an ExchangeCapacityForecastList.
+) -> ExchangeCapacityList:
+    """Turn per-border rows into an ExchangeCapacityList.
 
     For a sorted zone key `"A->B"`, reads `f'{prefix}_A_B'` as capacityExport
     (A→B) and `f'{prefix}_B_A'` as capacityImport (B→A). Works for any JAO
@@ -211,7 +213,7 @@ def _extract_border_capacity(
     export_field = f"{field_prefix}_{jao_a}_{jao_b}"
     import_field = f"{field_prefix}_{jao_b}_{jao_a}"
 
-    capacities = ExchangeCapacityForecastList(logger)
+    capacities = ExchangeCapacityList(logger)
     for row in rows:
         export_value = row.get(export_field)
         import_value = row.get(import_field)
@@ -227,6 +229,46 @@ def _extract_border_capacity(
     return capacities
 
 
+def _extract_border_net_flow(
+    rows: list[dict],
+    sorted_zone_keys: ZoneKey,
+    source: str,
+    logger: Logger,
+    field_prefix: str = "border",
+) -> ExchangeList:
+    """Turn per-border rows into an ExchangeList of scheduled netFlow events.
+
+    For a sorted zone key `"A->B"`, netFlow = `{prefix}_A_B` − `{prefix}_B_A`
+    (positive when A exports to B). JAO publishes both directional fields; day-
+    ahead market coupling clears a netted schedule so typically only one side
+    is non-zero per MTU, but subtracting handles both cases uniformly.
+
+    Emitted with sourceType=published since the values are TSO-published
+    ex-ante schedules, not statistical forecasts.
+    """
+    zone_a, zone_b = sorted_zone_keys.split("->")
+    jao_a = _em_to_jao_zone(zone_a)
+    jao_b = _em_to_jao_zone(zone_b)
+    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
+    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+
+    flows = ExchangeList(logger)
+    for row in rows:
+        export_value = row.get(export_field)
+        import_value = row.get(import_field)
+        if export_value is None and import_value is None:
+            continue
+        net_flow = (export_value or 0) - (import_value or 0)
+        flows.append(
+            zoneKey=sorted_zone_keys,
+            datetime=_parse_utc(row["dateTimeUtc"]),
+            source=source,
+            netFlow=net_flow,
+            sourceType=EventSourceType.published,
+        )
+    return flows
+
+
 def _fetch_per_border_dataset(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -236,9 +278,9 @@ def _fetch_per_border_dataset(
     target_datetime: datetime | None,
     logger: Logger,
 ) -> list[dict]:
-    """Shared body for every per-border JAO fetcher: sort zone keys, build the
-    window, query, extract, return. Each public fetcher is then a one-line
-    wrapper that pins its region + dataset."""
+    """Shared body for per-border JAO capacity fetchers: sort zone keys, build
+    the window, query, extract capacities, return. Each public fetcher is then
+    a one-line wrapper that pins its region + dataset."""
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     from_utc, to_utc = _target_window(target_datetime)
     rows = _query_jao(
@@ -340,13 +382,22 @@ def fetch_core_scheduled_commercial_day_ahead(
 
     The cleared net commercial flow from Core day-ahead market coupling, per
     MTU (15 min). Covers Core internal borders and Core-external ones (e.g.
-    FR↔ES, DK1↔DE).
+    FR↔ES, DK1↔DE). Emitted as signed netFlow events (Exchange shape), not
+    capacity pairs, since market coupling publishes a netted schedule.
     """
-    return _fetch_per_border_dataset(
-        zone_key1, zone_key2,
-        JaoRegion.CORE, JaoDataset.SCHEDULED_EXCHANGES,
-        session, target_datetime, logger,
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    from_utc, to_utc = _target_window(target_datetime)
+    rows = _query_jao(
+        session or Session(),
+        JaoRegion.CORE,
+        JaoDataset.SCHEDULED_EXCHANGES,
+        from_utc,
+        to_utc,
+        logger,
     )
+    return _extract_border_net_flow(
+        rows, sorted_zone_keys, SOURCE, logger
+    ).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))

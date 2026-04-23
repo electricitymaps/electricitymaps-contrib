@@ -1063,7 +1063,7 @@ class GridAlert(Event):
         }
 
 
-class ExchangeCapacityForecast(Event):
+class ExchangeCapacity(Event):
     """
     An event representing the forecasted net transfer capacity (NTC) between
     two zones in both directions.
@@ -1107,9 +1107,9 @@ class ExchangeCapacityForecast(Event):
         capacityExport: float | None,
         capacityImport: float | None,
         sourceType: EventSourceType = EventSourceType.published,
-    ) -> "ExchangeCapacityForecast | None":
+    ) -> "ExchangeCapacity | None":
         try:
-            return ExchangeCapacityForecast(
+            return ExchangeCapacity(
                 zoneKey=zoneKey,
                 datetime=datetime,
                 source=source,
@@ -1119,7 +1119,7 @@ class ExchangeCapacityForecast(Event):
             )
         except ValidationError as e:
             logger.error(
-                f"Error(s) creating ExchangeCapacityForecast Event {datetime}: {e}",
+                f"Error(s) creating ExchangeCapacity Event {datetime}: {e}",
                 extra={
                     "zoneKey": zoneKey,
                     "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),

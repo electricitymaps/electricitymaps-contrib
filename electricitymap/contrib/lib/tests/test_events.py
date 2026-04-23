@@ -12,7 +12,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
-    ExchangeCapacityForecast,
+    ExchangeCapacity,
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
@@ -1099,7 +1099,7 @@ def test_update_storage_with_empty_and_new_empty():
 
 
 def test_create_exchange_capacity_forecast():
-    forecast = ExchangeCapacityForecast(
+    forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
@@ -1116,7 +1116,7 @@ def test_create_exchange_capacity_forecast():
 
 def test_exchange_capacity_forecast_create_defaults_to_published():
     logger = logging.Logger("test")
-    forecast = ExchangeCapacityForecast.create(
+    forecast = ExchangeCapacity.create(
         logger=logger,
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
@@ -1130,7 +1130,7 @@ def test_exchange_capacity_forecast_create_defaults_to_published():
 
 def test_exchange_capacity_forecast_allows_one_none_capacity():
     # One direction may be None as long as the other is set
-    forward_only = ExchangeCapacityForecast(
+    forward_only = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
@@ -1140,7 +1140,7 @@ def test_exchange_capacity_forecast_allows_one_none_capacity():
     assert forward_only.capacityExport == 1000.0
     assert forward_only.capacityImport is None
 
-    reverse_only = ExchangeCapacityForecast(
+    reverse_only = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
         source="trust.me",
@@ -1154,7 +1154,7 @@ def test_exchange_capacity_forecast_allows_one_none_capacity():
 def test_raises_if_invalid_exchange_capacity_forecast():
     # Missing timezone
     with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
+        ExchangeCapacity(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1),
             source="trust.me",
@@ -1164,7 +1164,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
 
     # Unsorted zone key
     with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
+        ExchangeCapacity(
             zoneKey=ZoneKey("DE->AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
@@ -1174,7 +1174,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
 
     # Not an exchange key (no "->")
     with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
+        ExchangeCapacity(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
@@ -1184,7 +1184,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
 
     # Both capacities None
     with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
+        ExchangeCapacity(
             zoneKey=ZoneKey("AT->DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
@@ -1194,7 +1194,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
 
     # Unknown zone key not in EXCHANGES_CONFIG
     with pytest.raises(ValueError):
-        ExchangeCapacityForecast(
+        ExchangeCapacity(
             zoneKey=ZoneKey("UNKNOWN->ZONE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
             source="trust.me",
@@ -1206,7 +1206,7 @@ def test_raises_if_invalid_exchange_capacity_forecast():
 def test_exchange_capacity_forecast_static_create_logs_error():
     logger = logging.Logger("test")
     with patch.object(logger, "error") as mock_error:
-        ExchangeCapacityForecast.create(
+        ExchangeCapacity.create(
             logger=logger,
             zoneKey=ZoneKey("DE->AT"),  # unsorted
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
@@ -1220,7 +1220,7 @@ def test_exchange_capacity_forecast_static_create_logs_error():
 @freezegun.freeze_time("2023-01-01")
 def test_exchange_capacity_forecast_allows_future_datetime():
     # Forecasted events can be in the future
-    forecast = ExchangeCapacityForecast(
+    forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
         source="trust.me",
@@ -1233,7 +1233,7 @@ def test_exchange_capacity_forecast_allows_future_datetime():
 
 def test_exchange_capacity_forecast_to_dict():
     dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
-    forecast = ExchangeCapacityForecast(
+    forecast = ExchangeCapacity(
         zoneKey=ZoneKey("AT->DE"),
         datetime=dt,
         source="trust.me",

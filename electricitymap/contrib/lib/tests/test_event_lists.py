@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeCapacityForecastList,
+    ExchangeCapacityList,
     ExchangeList,
     GridAlertList,
     LocationalMarginalPriceList,
@@ -1130,7 +1130,7 @@ def test_df_representation():
 
 
 def test_exchange_capacity_forecast_list():
-    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
     forecast_list.append(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
@@ -1149,7 +1149,7 @@ def test_exchange_capacity_forecast_list():
 
 
 def test_append_to_exchange_capacity_forecast_list_logs_error():
-    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
     with patch.object(forecast_list.logger, "error") as mock_error:
         # Unsorted zone key should log error and not append
         forecast_list.append(
@@ -1166,7 +1166,7 @@ def test_append_to_exchange_capacity_forecast_list_logs_error():
 def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
     dt1 = datetime(2023, 1, 1, tzinfo=timezone.utc)
     dt2 = datetime(2023, 1, 2, tzinfo=timezone.utc)
-    forecast_list = ExchangeCapacityForecastList(logging.Logger("test"))
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
     forecast_list.append(
         zoneKey=ZoneKey("AT->DE"),
         datetime=dt2,

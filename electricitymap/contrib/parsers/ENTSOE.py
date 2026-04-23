@@ -31,7 +31,7 @@ from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
-    ExchangeCapacityForecastList,
+    ExchangeCapacityList,
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
@@ -946,15 +946,15 @@ def parse_exchange_forecast(
 
 
 def _merge_exchange_capacity_forecasts(
-    export_list: ExchangeCapacityForecastList,
-    import_list: ExchangeCapacityForecastList,
+    export_list: ExchangeCapacityList,
+    import_list: ExchangeCapacityList,
     logger: Logger,
-) -> ExchangeCapacityForecastList:
+) -> ExchangeCapacityList:
     """
     Merges export and import direction capacity forecasts into a single list.
     For each datetime, combines capacities from both directions into one event.
     """
-    merged = ExchangeCapacityForecastList(logger)
+    merged = ExchangeCapacityList(logger)
 
     # Create a dict of export capacities by datetime
     export_by_dt = {event.datetime: event for event in export_list.events}
@@ -988,7 +988,7 @@ def parse_exchange_capacity_forecast(
     sorted_zone_keys: ZoneKey,
     logger: Logger,
     direction: Literal["export", "import"] = "export",
-) -> ExchangeCapacityForecastList:
+) -> ExchangeCapacityList:
     """
     Parses NTC (A61) exchange capacity forecast XML for a given direction.
 
@@ -999,11 +999,11 @@ def parse_exchange_capacity_forecast(
         direction: "export" for A→B, "import" for B→A
 
     Returns:
-        ExchangeCapacityForecastList with capacity populated for the specified direction
+        ExchangeCapacityList with capacity populated for the specified direction
     """
     try:
         soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-        forecasts = ExchangeCapacityForecastList(logger)
+        forecasts = ExchangeCapacityList(logger)
         for timeseries in soup.find_all("timeseries"):
             for dt, quantity in _get_datetime_value_from_timeseries(
                 timeseries, "quantity"

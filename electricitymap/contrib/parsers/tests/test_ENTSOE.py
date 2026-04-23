@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityForecastList
+from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityList
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
@@ -707,9 +707,9 @@ def _make_capacity_list(
     datetimes: list[datetime],
     forward: list[float | None],
     reverse: list[float | None],
-) -> ExchangeCapacityForecastList:
+) -> ExchangeCapacityList:
     logger = logging.getLogger("test")
-    lst = ExchangeCapacityForecastList(logger)
+    lst = ExchangeCapacityList(logger)
     for dt, fwd, rev in zip(datetimes, forward, reverse, strict=True):
         lst.append(
             zoneKey=zone_key,
@@ -750,7 +750,7 @@ def test_merge_exchange_capacity_forecasts_only_forward():
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])
-    reverse = ExchangeCapacityForecastList(logger)
+    reverse = ExchangeCapacityList(logger)
 
     merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
     events = merged.events
@@ -766,7 +766,7 @@ def test_merge_exchange_capacity_forecasts_only_reverse():
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
 
-    forward = ExchangeCapacityForecastList(logger)
+    forward = ExchangeCapacityList(logger)
     reverse = _make_capacity_list(zone_key, [dt], [None], [400.0])
 
     merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
