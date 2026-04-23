@@ -8,5 +8,8 @@ lonlat:
 parsers:
   exchange: DK.fetch_exchange
   exchangeCoreExternalAtcDayAhead: JAO.fetch_core_external_atc_day_ahead
+  exchangeMaxExchangesDayAhead: JAO.fetch_nordic_max_exchanges_day_ahead
+  exchangeScheduledCommercialDayAhead: JAO.fetch_core_scheduled_commercial_day_ahead
+  exchangeMaxBorderFlowDayAhead: JAO.fetch_nordic_max_border_flow_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: -150

@@ -9,5 +9,7 @@ parsers:
   exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
   exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
   exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
+  exchangeMaxExchangesDayAhead: JAO.fetch_nordic_max_exchanges_day_ahead
+  exchangeMaxBorderFlowDayAhead: JAO.fetch_nordic_max_border_flow_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 205

@@ -3,7 +3,7 @@
 """
 Parser for the JAO (Joint Allocation Office) Publication Tool.
 
-Docs: https://www.jao.eu/page-api/market-data
+Docs: https://publicationtool.jao.eu/PublicationHandbook/Core_PublicationTool_Handbook_v2.2.pdf
 Regions:
     - Core CCR:   https://publicationtool.jao.eu/core/api
     - Nordic CCR: https://publicationtool.jao.eu/nordic/api
@@ -21,11 +21,12 @@ differ only in row shape:
     e.g. shadowPrices, validationReductions
 
 Currently wired:
-- fetch_shadow_auction_atc_day_ahead  → Core shadowAuctionATC (per-border)
-
-Nordic datasets (e.g. preliminaryDomain) are listed in `JaoDataset` but no
-fetchers are wired yet. A future iteration can add a per-exchange region
-mapping so the right base URL is selected automatically for each zone pair.
+- fetch_shadow_auction_atc_day_ahead       → Core shadowAuctionATC (per-border)
+- fetch_core_external_atc_day_ahead        → Core atc (per-border, 15-min)
+- fetch_core_max_exchanges_day_ahead       → Core maxExchanges (per-border, hourly)
+- fetch_nordic_max_exchanges_day_ahead     → Nordic maxExchanges (per-border, 15-min)
+- fetch_core_scheduled_commercial_day_ahead → Core scheduledExchanges (per-border, 15-min)
+- fetch_nordic_max_border_flow_day_ahead   → Nordic maxBorderFlow (per-border, 15-min)
 """
 
 from datetime import datetime, time, timedelta, timezone
@@ -44,6 +45,8 @@ from electricitymap.contrib.parsers.lib.exceptions import ParserException
 SOURCE = "jao.eu"
 REQUEST_TIMEOUT_SECONDS = 30
 
+# JAO Publication Tool API caps all datasets to a 2-day range per call.
+JAO_MAX_FETCH_DAYS = 2
 
 class JaoRegion(str, Enum):
     """JAO Publication Tool region — each has its own base URL and dataset catalog."""
@@ -55,12 +58,6 @@ class JaoRegion(str, Enum):
         return self.value
 
 
-BASE_URL_BY_REGION: dict[JaoRegion, str] = {
-    JaoRegion.CORE: "https://publicationtool.jao.eu/core/api",
-    JaoRegion.NORDIC: "https://publicationtool.jao.eu/nordic/api",
-}
-
-
 class JaoDataset(str, Enum):
     """Canonical JAO Publication Tool dataset slugs.
 
@@ -68,19 +65,13 @@ class JaoDataset(str, Enum):
     caller of `_query_jao` must pass the matching `JaoRegion`.
     """
 
-    # Core CCR — per-border, bidirectional (`border_XX_YY` fields)
-    SHADOW_AUCTION_ATC = "shadowAuctionATC"
-    CORE_EXTERNAL_ATC = "atc"
-    MAX_EXCHANGES = "maxExchanges"
-    # Core CCR — per-zone
-    MAX_NET_POS = "maxNetPos"
-    REFERENCE_NET_POSITION = "referenceNetPosition"
-    # Core CCR — per-CNEC (multiple rows per MTU)
-    SHADOW_PRICES = "shadowPrices"
-    VALIDATION_REDUCTIONS = "validationReductions"
-
-    # Nordic CCR — not yet wired to a public fetcher
-    PRELIMINARY_DOMAIN = "preliminaryDomain"
+    # Per-border, bidirectional (`border_XX_YY` fields).
+    # Slugs are identical between Core and Nordic where both publish the dataset.
+    SHADOW_AUCTION_ATC = "shadowAuctionATC"      # Core only
+    CORE_EXTERNAL_ATC = "atc"                    # Core only
+    MAX_EXCHANGES = "maxExchanges"               # Core + Nordic
+    SCHEDULED_EXCHANGES = "scheduledExchanges"   # Core only
+    MAX_BORDER_FLOW = "maxBorderFlow"            # Nordic only
 
     def __str__(self) -> str:
         return self.value
@@ -100,22 +91,18 @@ EM_TO_JAO_ZONE: dict[str, str] = {
     # Italy: JAO publishes a single "IT" code for Core-external borders,
     # which physically corresponds to the Italy North bidding zone.
     "IT-NO": "IT",
-    # Denmark: Nordic CCR uses bare bidding-zone codes.
     "DK-DK1": "DK1",
     "DK-DK2": "DK2",
-    # Norway
     "NO-NO1": "NO1",
     "NO-NO2": "NO2",
     "NO-NO3": "NO3",
     "NO-NO4": "NO4",
     "NO-NO5": "NO5",
-    # Sweden
     "SE-SE1": "SE1",
     "SE-SE2": "SE2",
     "SE-SE3": "SE3",
     "SE-SE4": "SE4",
 }
-
 
 def _em_to_jao_zone(em_zone: str) -> str:
     """Translate an EM zone key to the zone code JAO uses in its border field names."""
@@ -129,12 +116,8 @@ def _format_utc(dt: datetime) -> str:
 
 def _parse_utc(value: str) -> datetime:
     """Parse JAO's `dateTimeUtc` field into a tz-aware datetime."""
-    # Python 3.10's fromisoformat doesn't accept a trailing `Z`.
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
-
-# JAO Publication Tool API caps all datasets to a 2-day range per call.
-JAO_MAX_FETCH_DAYS = 2
 
 
 def _target_window(
@@ -156,6 +139,11 @@ def _target_window(
     )
     return day_start, day_start + timedelta(days=days)
 
+
+BASE_URL_BY_REGION: dict[JaoRegion, str] = {
+    JaoRegion.CORE: "https://publicationtool.jao.eu/core/api",
+    JaoRegion.NORDIC: "https://publicationtool.jao.eu/nordic/api",
+}
 
 def _query_jao(
     session: Session,
@@ -294,8 +282,116 @@ def fetch_core_external_atc_day_ahead(
     ).to_list()
 
 
+def _fetch_per_border_dataset(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    region: JaoRegion,
+    dataset: JaoDataset,
+    session: Session | None,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list[dict]:
+    """Shared body for every per-border JAO fetcher: sort zone keys, build the
+    window, query, extract, return. Each public fetcher is then a one-line
+    wrapper that pins its region + dataset."""
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    from_utc, to_utc = _target_window(target_datetime)
+    rows = _query_jao(
+        session or Session(), region, dataset, from_utc, to_utc, logger
+    )
+    return _extract_border_capacity(
+        rows, sorted_zone_keys, SOURCE, logger
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
+def fetch_core_max_exchanges_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead max bilateral exchange capacity (MaxBex) for a Core border.
+
+    Published hourly; computed by Core TSOs as the max NTC that could be
+    commercially exchanged per direction given grid constraints.
+    """
+    return _fetch_per_border_dataset(
+        zone_key1, zone_key2,
+        JaoRegion.CORE, JaoDataset.MAX_EXCHANGES,
+        session, target_datetime, logger,
+    )
+
+
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
+def fetch_nordic_max_exchanges_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead max bilateral exchange capacity (MaxBex) for a Nordic border.
+
+    15-minute granularity. Uses Nordic bidding-zone codes (NO1..NO5, SE1..SE4,
+    DK1/DK2, FI) — `EM_TO_JAO_ZONE` handles the EM→JAO translation.
+    """
+    return _fetch_per_border_dataset(
+        zone_key1, zone_key2,
+        JaoRegion.NORDIC, JaoDataset.MAX_EXCHANGES,
+        session, target_datetime, logger,
+    )
+
+
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
+def fetch_core_scheduled_commercial_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead scheduled commercial exchanges for a Core border.
+
+    The cleared net commercial flow from Core day-ahead market coupling, per
+    MTU (15 min). Covers Core internal borders and Core-external ones (e.g.
+    FR↔ES, DK1↔DE).
+    """
+    return _fetch_per_border_dataset(
+        zone_key1, zone_key2,
+        JaoRegion.CORE, JaoDataset.SCHEDULED_EXCHANGES,
+        session, target_datetime, logger,
+    )
+
+
+@refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
+def fetch_nordic_max_border_flow_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Day-ahead max border flow (MaxBflow) for a Nordic border.
+
+    15-minute granularity. Complementary to maxExchanges — maxBorderFlow is
+    the raw physical capability ceiling on the border; maxExchanges is what
+    was offered to the market after security constraints.
+    """
+    return _fetch_per_border_dataset(
+        zone_key1, zone_key2,
+        JaoRegion.NORDIC, JaoDataset.MAX_BORDER_FLOW,
+        session, target_datetime, logger,
+    )
+
+
 if __name__ == "__main__":
     from pprint import pprint
 
     pprint(fetch_shadow_auction_atc_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
     pprint(fetch_core_external_atc_day_ahead(ZoneKey("DE"), ZoneKey("DK-DK1")))
+    pprint(fetch_core_max_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_exchanges_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
+    pprint(fetch_core_scheduled_commercial_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_border_flow_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))

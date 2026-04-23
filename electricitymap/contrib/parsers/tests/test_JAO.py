@@ -9,6 +9,10 @@ from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.parsers.JAO import (
     fetch_core_external_atc_day_ahead,
+    fetch_core_max_exchanges_day_ahead,
+    fetch_core_scheduled_commercial_day_ahead,
+    fetch_nordic_max_border_flow_day_ahead,
+    fetch_nordic_max_exchanges_day_ahead,
     fetch_shadow_auction_atc_day_ahead,
 )
 
@@ -19,8 +23,21 @@ SHADOW_AUCTION_ATC_URL_REGEX = re.compile(
 CORE_EXTERNAL_ATC_URL_REGEX = re.compile(
     r"https://publicationtool\.jao\.eu/core/api/data/atc"
 )
+CORE_MAX_EXCHANGES_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/core/api/data/maxExchanges"
+)
+NORDIC_MAX_EXCHANGES_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/nordic/api/data/maxExchanges"
+)
+CORE_SCHEDULED_EXCHANGES_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/core/api/data/scheduledExchanges"
+)
+NORDIC_MAX_BORDER_FLOW_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/nordic/api/data/maxBorderFlow"
+)
 TARGET_DATETIME = datetime.fromisoformat("2025-10-01T00:00:00+00:00")
 CORE_EXTERNAL_TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
+APRIL_2026_TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
 
 
 def _register_shadow_auction_atc(adapter) -> None:
@@ -144,3 +161,68 @@ def test_fetch_core_external_atc_day_ahead_border_not_in_dataset(adapter, sessio
     )
 
     assert result == []
+
+
+def test_fetch_core_max_exchanges_day_ahead_de_fr(adapter, session, snapshot):
+    """Core maxExchanges happy path (hourly, 48 rows over 2 days)."""
+    payload = json.loads((BASE_MOCK_PATH / "core_max_exchanges.json").read_text())
+    adapter.register_uri(GET, CORE_MAX_EXCHANGES_URL_REGEX, json=payload)
+
+    result = fetch_core_max_exchanges_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("FR"),
+        session=session,
+        target_datetime=APRIL_2026_TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+def test_fetch_nordic_max_exchanges_day_ahead_no1_se3(adapter, session, snapshot):
+    """Nordic maxExchanges happy path — exercises the NO-NO2 → NO2,
+    SE-SE3 → SE3 zone remap on a real 15-min fixture."""
+    payload = json.loads((BASE_MOCK_PATH / "nordic_max_exchanges.json").read_text())
+    adapter.register_uri(GET, NORDIC_MAX_EXCHANGES_URL_REGEX, json=payload)
+
+    result = fetch_nordic_max_exchanges_day_ahead(
+        ZoneKey("NO-NO1"),
+        ZoneKey("SE-SE3"),
+        session=session,
+        target_datetime=APRIL_2026_TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+def test_fetch_core_scheduled_commercial_day_ahead_de_fr(adapter, session, snapshot):
+    """Core scheduledExchanges happy path (cleared commercial flow, 15-min)."""
+    payload = json.loads(
+        (BASE_MOCK_PATH / "core_scheduled_exchanges.json").read_text()
+    )
+    adapter.register_uri(GET, CORE_SCHEDULED_EXCHANGES_URL_REGEX, json=payload)
+
+    result = fetch_core_scheduled_commercial_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("FR"),
+        session=session,
+        target_datetime=APRIL_2026_TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+def test_fetch_nordic_max_border_flow_day_ahead_no1_se3(adapter, session, snapshot):
+    """Nordic maxBorderFlow happy path (physical capability ceiling, 15-min)."""
+    payload = json.loads(
+        (BASE_MOCK_PATH / "nordic_max_border_flow.json").read_text()
+    )
+    adapter.register_uri(GET, NORDIC_MAX_BORDER_FLOW_URL_REGEX, json=payload)
+
+    result = fetch_nordic_max_border_flow_day_ahead(
+        ZoneKey("NO-NO1"),
+        ZoneKey("SE-SE3"),
+        session=session,
+        target_datetime=APRIL_2026_TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
