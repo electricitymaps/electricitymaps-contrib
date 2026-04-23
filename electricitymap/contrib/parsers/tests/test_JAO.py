@@ -13,7 +13,7 @@ BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO")
 SHADOW_AUCTION_ATC_URL_REGEX = re.compile(
     r"https://publicationtool\.jao\.eu/core/api/data/shadowAuctionATC"
 )
-TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
+TARGET_DATETIME = datetime.fromisoformat("2025-10-01T00:00:00+00:00")
 
 
 def _register_shadow_auction_atc(adapter) -> None:
@@ -55,7 +55,7 @@ def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
         "data": [
             {
                 "id": 1,
-                "dateTimeUtc": "2026-04-20T00:00:00Z",
+                "dateTimeUtc": "2025-10-01T00:00:00Z",
                 "border_AT_DE": 3620,
             }
         ],
