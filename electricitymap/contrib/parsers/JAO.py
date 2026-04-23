@@ -85,6 +85,42 @@ class JaoDataset(str, Enum):
         return self.value
 
 
+# Mapping from EM zone keys to the zone codes JAO uses in `border_XX_YY`
+# fields. Only zones where the two differ need an entry; everything else
+# passes through as-is (AT, BE, CZ, DE, FR, etc. all match 1:1).
+#
+# Notes on the DE-LU joint bidding zone: JAO treats DE-LU as a single zone
+# under the code "DE" (no "LU" zone is ever published). Core-external ATC on
+# borders involving LU is therefore fully accounted for under the DE-side
+# exchange (e.g. BE-LU capacity is rolled into `border_BE_DE`). EM exchanges
+# where LU is a party (BE_LU, DE_LU, FR_LU) should NOT be wired to this
+# parser to avoid double-counting.
+EM_TO_JAO_ZONE: dict[str, str] = {
+    # Italy: JAO publishes a single "IT" code for Core-external borders,
+    # which physically corresponds to the Italy North bidding zone.
+    "IT-NO": "IT",
+    # Denmark: Nordic CCR uses bare bidding-zone codes.
+    "DK-DK1": "DK1",
+    "DK-DK2": "DK2",
+    # Norway
+    "NO-NO1": "NO1",
+    "NO-NO2": "NO2",
+    "NO-NO3": "NO3",
+    "NO-NO4": "NO4",
+    "NO-NO5": "NO5",
+    # Sweden
+    "SE-SE1": "SE1",
+    "SE-SE2": "SE2",
+    "SE-SE3": "SE3",
+    "SE-SE4": "SE4",
+}
+
+
+def _em_to_jao_zone(em_zone: str) -> str:
+    """Translate an EM zone key to the zone code JAO uses in its border field names."""
+    return EM_TO_JAO_ZONE.get(em_zone, em_zone)
+
+
 def _format_utc(dt: datetime) -> str:
     """Format a tz-aware datetime as the ISO-8601 string JAO expects."""
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
@@ -173,8 +209,10 @@ def _extract_border_capacity(
     maxExchanges).
     """
     zone_a, zone_b = sorted_zone_keys.split("->")
-    export_field = f"{field_prefix}_{zone_a}_{zone_b}"
-    import_field = f"{field_prefix}_{zone_b}_{zone_a}"
+    jao_a = _em_to_jao_zone(zone_a)
+    jao_b = _em_to_jao_zone(zone_b)
+    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
+    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
 
     capacities = ExchangeCapacityForecastList(logger)
     for row in rows:

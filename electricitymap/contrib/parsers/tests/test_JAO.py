@@ -48,6 +48,36 @@ def test_fetch_shadow_auction_atc_day_ahead_pair_not_in_core(adapter, session):
     assert result == []
 
 
+def test_fetch_shadow_auction_atc_day_ahead_em_to_jao_zone_remap(adapter, session):
+    """EM zone keys that don't match JAO's codes (e.g. IT-NO -> IT, DK-DK1 -> DK1)
+    should be translated before looking up `border_XX_YY` fields."""
+    remapped = {
+        "data": [
+            {
+                "id": 1,
+                "dateTimeUtc": "2025-10-01T00:00:00Z",
+                "border_FR_IT": 2500,
+                "border_IT_FR": 2200,
+            }
+        ],
+        "rejected": False,
+        "messages": None,
+    }
+    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=remapped)
+
+    result = fetch_shadow_auction_atc_day_ahead(
+        ZoneKey("FR"),
+        ZoneKey("IT-NO"),
+        session=session,
+        target_datetime=TARGET_DATETIME,
+    )
+
+    assert len(result) == 1
+    assert result[0]["sortedZoneKeys"] == "FR->IT-NO"
+    assert result[0]["capacityExport"] == 2500
+    assert result[0]["capacityImport"] == 2200
+
+
 def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
     """When only one direction is present in the JAO row, the event should
     still be emitted with a single populated capacity direction."""
