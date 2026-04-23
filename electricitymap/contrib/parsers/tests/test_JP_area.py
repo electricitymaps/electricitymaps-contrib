@@ -32,18 +32,24 @@ TIMEZONE = ZoneInfo("Asia/Tokyo")
 MOCKS_DIR = Path(__file__).parent / "mocks" / "JP_area"
 LOGGER = getLogger(__name__)
 
-# Zone number → (zone_key, fixture_file, target_date, schema_cols)
+# Zone number → (zone_key, fixture_file, target_date, schema_cols, fixture_rows, target_day_rows)
+# fixture_rows: total data rows in the fixture CSV (most are 102-line files = 100 data rows;
+#   JP-TH is a daily-rolling realtime file capped at 48 rows for the day).
+# target_day_rows: how many rows of the target date the fixture contains after parsing
+#   (all are 48 at 30-min × 24h, except JP-KY which starts at 0:30 and uses 24:00 for the
+#   last slot — that 24:00 rolls over into the next day via the datetime parser, so only 47
+#   rows remain on the target day).
 ZONE_FIXTURES = {
-    "01": ("JP-HKD", "eria_jukyu_202604_01.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22),
-    "02": ("JP-TH", "realtime_jukyu_20260415_02.csv", datetime(2026, 4, 15, tzinfo=TIMEZONE), 22),
-    "03": ("JP-TK", "eria_jukyu_202604_03.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20),
-    "04": ("JP-CB", "eria_jukyu_202603_04.csv", datetime(2026, 3, 1, tzinfo=TIMEZONE), 20),
-    "05": ("JP-HR", "eria_jukyu_202604_05.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22),
-    "06": ("JP-KN", "eria_jukyu_202604_06.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20),
-    "07": ("JP-CG", "eria_jukyu_202604_07.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22),
-    "08": ("JP-SK", "eria_jukyu_202604_08.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20),
-    "09": ("JP-KY", "eria_jukyu_202604_09.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20),
-    "10": ("JP-ON", "eria_jukyu_202604_10.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22),
+    "01": ("JP-HKD", "eria_jukyu_202604_01.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22, 100, 48),
+    "02": ("JP-TH", "realtime_jukyu_20260415_02.csv", datetime(2026, 4, 15, tzinfo=TIMEZONE), 22, 48, 43),  # last 5 rows empty (download captured mid-day)
+    "03": ("JP-TK", "eria_jukyu_202604_03.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20, 100, 48),
+    "04": ("JP-CB", "eria_jukyu_202603_04.csv", datetime(2026, 3, 1, tzinfo=TIMEZONE), 20, 100, 48),
+    "05": ("JP-HR", "eria_jukyu_202604_05.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22, 100, 48),
+    "06": ("JP-KN", "eria_jukyu_202604_06.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20, 100, 48),
+    "07": ("JP-CG", "eria_jukyu_202604_07.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22, 100, 48),
+    "08": ("JP-SK", "eria_jukyu_202604_08.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20, 100, 48),
+    "09": ("JP-KY", "eria_jukyu_202604_09.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 20, 100, 47),
+    "10": ("JP-ON", "eria_jukyu_202604_10.csv", datetime(2026, 4, 1, tzinfo=TIMEZONE), 22, 100, 48),
 }
 
 # First-row expected values per zone (from real data):
@@ -67,7 +73,7 @@ EXPECTED_FIRST_ROW = {
 
 def _read_fixture(zone_num: str) -> tuple:
     """Read fixture for a zone number, return (zone_key, df, target_date)."""
-    zone_key, filename, target, _ = ZONE_FIXTURES[zone_num]
+    zone_key, filename, target, _, _, _ = ZONE_FIXTURES[zone_num]
     content = (MOCKS_DIR / filename).read_bytes()
     df = _read_area_csv(content)
     return zone_key, df, target
@@ -78,15 +84,16 @@ def test_read_area_csv_zone_01_hkd():
     _, df, _ = _read_fixture("01")
     assert "DATE" in df.columns
     assert "火力出力制御量" in df.columns  # 22-col specific
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["01"][4]  # 100 data rows
 
 
 def test_read_area_csv_zone_02_th():
-    """JP-TH (02): Shift-JIS, 22 columns, realtime filename."""
+    """JP-TH (02): Shift-JIS, 22 columns, realtime filename (daily-rolling file)."""
     _, df, _ = _read_fixture("02")
     assert "DATE" in df.columns
     assert "火力出力制御量" in df.columns
-    assert len(df) == 2
+    # Realtime files are single-day only (48 rows at 30-min intervals)
+    assert len(df) == ZONE_FIXTURES["02"][4]  # 48
 
 
 def test_read_area_csv_zone_03_tk():
@@ -94,14 +101,14 @@ def test_read_area_csv_zone_03_tk():
     _, df, _ = _read_fixture("03")
     assert "DATE" in df.columns
     assert "火力出力制御量" not in df.columns  # 20-col
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["03"][4]
 
 
 def test_read_area_csv_zone_04_cb():
     """JP-CB (04): Shift-JIS, 20 columns, March 2026 data."""
     _, df, _ = _read_fixture("04")
     assert "DATE" in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["04"][4]
 
 
 def test_read_area_csv_zone_05_hr():
@@ -109,7 +116,7 @@ def test_read_area_csv_zone_05_hr():
     _, df, _ = _read_fixture("05")
     assert "DATE" in df.columns
     assert "火力出力制御量" in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["05"][4]
 
 
 def test_read_area_csv_zone_06_kn():
@@ -117,7 +124,7 @@ def test_read_area_csv_zone_06_kn():
     _, df, _ = _read_fixture("06")
     assert "火力(LNG)" in df.columns  # normalised from 火力（LNG）
     assert "火力（LNG）" not in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["06"][4]
 
 
 def test_read_area_csv_zone_07_cg():
@@ -125,21 +132,21 @@ def test_read_area_csv_zone_07_cg():
     _, df, _ = _read_fixture("07")
     assert "DATE" in df.columns
     assert "火力出力制御量" in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["07"][4]
 
 
 def test_read_area_csv_zone_08_sk():
     """JP-SK (08): Shift-JIS, 20 columns, has NaN cells (地熱, 蓄電池)."""
     _, df, _ = _read_fixture("08")
     assert "DATE" in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["08"][4]
 
 
 def test_read_area_csv_zone_09_ky():
     """JP-KY (09): Shift-JIS, 20 columns, quoted values, full-width ＬＮＧ → LNG."""
     _, df, _ = _read_fixture("09")
     assert "火力(LNG)" in df.columns  # normalised from 火力（ＬＮＧ）
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["09"][4]
 
 
 def test_read_area_csv_zone_10_on():
@@ -147,7 +154,7 @@ def test_read_area_csv_zone_10_on():
     _, df, _ = _read_fixture("10")
     assert "DATE" in df.columns
     assert "火力出力制御量" in df.columns
-    assert len(df) == 2
+    assert len(df) == ZONE_FIXTURES["10"][4]
 
 
 # ─── _parse_area_datetime tests ──────────────────────────────────────────────
@@ -186,7 +193,18 @@ def _assert_production(zone_num: str):
     source = f"test-{zone_key}"
     result = _df_to_production_breakdown_list(df, zone_key, source, target, LOGGER)
 
-    assert len(result) == 2, f"Expected 2 rows for zone {zone_num} ({zone_key})"
+    expected_rows = ZONE_FIXTURES[zone_num][5]  # target_day_rows
+    assert len(result) == expected_rows, (
+        f"Expected {expected_rows} rows for zone {zone_num} ({zone_key}) "
+        f"on {target.date()}, got {len(result)}"
+    )
+    # All returned events are for the target date (filtering works)
+    target_day = target.date()
+    for event in result:
+        assert event["datetime"].date() == target_day, (
+            f"{zone_key} event on wrong date: {event['datetime']}"
+        )
+
     first = result[0]
     assert first["zoneKey"] == zone_key
     assert first["source"] == source
@@ -278,11 +296,13 @@ def test_production_zone_08_sk():
     """JP-SK (08): NaN cells for geothermal and battery (empty in CSV)."""
     zone_key, df, target = _read_fixture("08")
     result = _df_to_production_breakdown_list(df, zone_key, "test", target, LOGGER)
-    assert len(result) == 2
+    assert len(result) == ZONE_FIXTURES["08"][5]  # 48 rows for April 1
     first = result[0]
     # Nuclear is active in Shikoku (Ikata)
     assert first["production"]["nuclear"] == 880
     assert first["production"]["coal"] == 1403
+    # NaN cells (地熱, 蓄電池) should produce None or be omitted from the mix
+    assert first["production"].get("geothermal") is None
 
 
 def test_production_zone_09_ky():
