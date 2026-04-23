@@ -6,9 +6,9 @@ lonlat:
   - 54.9
 parsers:
   exchange: DK.fetch_exchange
-  exchangeCoreExternalAtcDayAhead: JAO.fetch_core_external_atc_day_ahead
-  exchangeMaxExchangesDayAhead: JAO.fetch_nordic_max_exchanges_day_ahead
-  exchangeScheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead
-  exchangeMaxBorderFlowDayAhead: JAO.fetch_nordic_max_border_flow_day_ahead
+  coreExternalAtcDayAhead: JAO.fetch_core_external_atc_day_ahead
+  maxExchangesDayAhead: JAO.fetch_nordic_max_exchanges_day_ahead
+  scheduledExchangesDayAhead: JAO.fetch_core_scheduled_exchanges_day_ahead
+  maxBorderFlowDayAhead: JAO.fetch_nordic_max_border_flow_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 0
