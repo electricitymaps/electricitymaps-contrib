@@ -1189,4 +1189,4 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
     assert result[0]["capacityImport"] == 900.0
     assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
     assert result[0]["source"] == "trust.me"
-    assert result[0]["sourceType"] == EventSourceType.forecasted
+    assert result[0]["sourceType"] == EventSourceType.published

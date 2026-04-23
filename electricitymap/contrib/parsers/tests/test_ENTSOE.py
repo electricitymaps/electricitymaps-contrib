@@ -596,7 +596,7 @@ def test_parse_exchange_capacity_forecast_week_ahead_export_direction():
     assert events[1].datetime == dt0 + timedelta(days=1)
     assert events[1].capacityExport == 600.0
     assert events[1].capacityImport is None
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_week_ahead_import_direction():
@@ -634,7 +634,7 @@ def test_parse_exchange_capacity_forecast_day_ahead_export_direction():
     assert events[1].capacityImport is None
     assert events[4].capacityExport == 2914.0
     assert events[-1].capacityExport == 3607.0
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
@@ -654,7 +654,7 @@ def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
     assert events[1].capacityExport is None
     assert events[1].capacityImport == 2150.0
     assert events[2].capacityImport == 2400.0
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_empty_xml():

@@ -287,6 +287,10 @@ class EventSourceType(str, Enum):
     measured = "measured"
     forecasted = "forecasted"
     estimated = "estimated"
+    # TSO-published ex-ante value for a future MTU — e.g. day-ahead transfer
+    # capacity, cleared market-coupling schedules, allocated ATC. Not a
+    # statistical prediction, but still legitimately dated in the future.
+    published = "published"
 
 
 class Event(BaseModel, ABC):
@@ -295,6 +299,7 @@ class Event(BaseModel, ABC):
     sourceType: How was the event observed.
     Should be set to forecasted if the point is a forecast provided by a datasource.
     Should be set to estimated if the point is an estimate or data that has not been consolidated yet by the datasource.
+    Should be set to published if the point is a TSO-published ex-ante value for a future MTU (e.g. day-ahead capacity, cleared schedules).
     zoneKey: The zone key of the zone the event is happening in.
     datetime: The datetime of the event.
     source: The source of the event.
@@ -320,13 +325,13 @@ class Event(BaseModel, ABC):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        if values.get(
-            "sourceType", EventSourceType.measured
-        ) != EventSourceType.forecasted and v.astimezone(timezone.utc) > datetime.now(
+        source_type = values.get("sourceType", EventSourceType.measured)
+        future_ok = {EventSourceType.forecasted, EventSourceType.published}
+        if source_type not in future_ok and v.astimezone(
             timezone.utc
-        ) + timedelta(days=1):
+        ) > datetime.now(timezone.utc) + timedelta(days=1):
             raise ValueError(
-                f"Date is in the future and this is not a forecasted point: {v}"
+                f"Date is in the future and this is not a forecasted or published point: {v}"
             )
         return v.replace(second=0, microsecond=0)
 
@@ -1067,7 +1072,7 @@ class ExchangeCapacityForecast(Event):
     capacityImport: Capacity for zone2→zone1 direction (may be None).
     """
 
-    sourceType: EventSourceType = EventSourceType.forecasted
+    sourceType: EventSourceType = EventSourceType.published
     capacityExport: float | None
     capacityImport: float | None
 
@@ -1101,7 +1106,7 @@ class ExchangeCapacityForecast(Event):
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
-        sourceType: EventSourceType = EventSourceType.forecasted,
+        sourceType: EventSourceType = EventSourceType.published,
     ) -> "ExchangeCapacityForecast | None":
         try:
             return ExchangeCapacityForecast(

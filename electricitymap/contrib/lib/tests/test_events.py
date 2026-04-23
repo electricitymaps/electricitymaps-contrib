@@ -1111,10 +1111,10 @@ def test_create_exchange_capacity_forecast():
     assert forecast.source == "trust.me"
     assert forecast.capacityExport == 1000.0
     assert forecast.capacityImport == 900.0
-    assert forecast.sourceType == EventSourceType.forecasted
+    assert forecast.sourceType == EventSourceType.published
 
 
-def test_exchange_capacity_forecast_create_defaults_to_forecasted():
+def test_exchange_capacity_forecast_create_defaults_to_published():
     logger = logging.Logger("test")
     forecast = ExchangeCapacityForecast.create(
         logger=logger,
@@ -1125,7 +1125,7 @@ def test_exchange_capacity_forecast_create_defaults_to_forecasted():
         capacityImport=900.0,
     )
     assert forecast is not None
-    assert forecast.sourceType == EventSourceType.forecasted
+    assert forecast.sourceType == EventSourceType.published
 
 
 def test_exchange_capacity_forecast_allows_one_none_capacity():
@@ -1246,4 +1246,4 @@ def test_exchange_capacity_forecast_to_dict():
     assert d["capacityExport"] == 1000.0
     assert d["capacityImport"] == 900.0
     assert d["source"] == "trust.me"
-    assert d["sourceType"] == EventSourceType.forecasted
+    assert d["sourceType"] == EventSourceType.published

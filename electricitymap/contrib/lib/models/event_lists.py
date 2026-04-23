@@ -244,7 +244,7 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
-        sourceType: EventSourceType = EventSourceType.forecasted,
+        sourceType: EventSourceType = EventSourceType.published,
     ):
         event = ExchangeCapacityForecast.create(
             self.logger,
