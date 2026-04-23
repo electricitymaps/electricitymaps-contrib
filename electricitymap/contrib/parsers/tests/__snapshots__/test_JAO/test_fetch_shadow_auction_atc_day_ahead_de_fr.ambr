@@ -1,0 +1,21 @@
+# serializer version: 1
+# name: test_fetch_shadow_auction_atc_day_ahead_de_fr
+  list([
+    dict({
+      'capacityExport': 3620.0,
+      'capacityImport': 3450.0,
+      'datetime': datetime.datetime(2026, 4, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'sortedZoneKeys': 'DE->FR',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+    }),
+    dict({
+      'capacityExport': 3700.0,
+      'capacityImport': 3500.0,
+      'datetime': datetime.datetime(2026, 4, 20, 1, 0, tzinfo=datetime.timezone.utc),
+      'sortedZoneKeys': 'DE->FR',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+    }),
+  ])
+# ---

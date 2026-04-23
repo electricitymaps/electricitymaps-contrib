@@ -1,0 +1,77 @@
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+
+from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
+
+from electricitymap.contrib.config import ZoneKey
+from electricitymap.contrib.parsers.JAO import fetch_shadow_auction_atc_day_ahead
+
+BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO")
+SHADOW_AUCTION_ATC_URL_REGEX = re.compile(
+    r"https://publicationtool\.jao\.eu/core/api/data/shadowAuctionATC"
+)
+TARGET_DATETIME = datetime.fromisoformat("2026-04-20T00:00:00+00:00")
+
+
+def _register_shadow_auction_atc(adapter) -> None:
+    payload = json.loads((BASE_MOCK_PATH / "shadow_auction_atc.json").read_text())
+    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=payload)
+
+
+def test_fetch_shadow_auction_atc_day_ahead_de_fr(adapter, session, snapshot):
+    _register_shadow_auction_atc(adapter)
+
+    result = fetch_shadow_auction_atc_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("FR"),
+        session=session,
+        target_datetime=TARGET_DATETIME,
+    )
+
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+def test_fetch_shadow_auction_atc_day_ahead_pair_not_in_core(adapter, session):
+    """Pairs without JAO border fields should return [] without raising."""
+    _register_shadow_auction_atc(adapter)
+
+    result = fetch_shadow_auction_atc_day_ahead(
+        ZoneKey("DE"),
+        ZoneKey("DK"),
+        session=session,
+        target_datetime=TARGET_DATETIME,
+    )
+
+    assert result == []
+
+
+def test_fetch_shadow_auction_atc_day_ahead_one_sided(adapter, session):
+    """When only one direction is present in the JAO row, the event should
+    still be emitted with a single populated capacity direction."""
+    one_sided = {
+        "data": [
+            {
+                "id": 1,
+                "dateTimeUtc": "2026-04-20T00:00:00Z",
+                "border_AT_DE": 3620,
+            }
+        ],
+        "rejected": False,
+        "messages": None,
+    }
+    adapter.register_uri(GET, SHADOW_AUCTION_ATC_URL_REGEX, json=one_sided)
+
+    result = fetch_shadow_auction_atc_day_ahead(
+        ZoneKey("AT"),
+        ZoneKey("DE"),
+        session=session,
+        target_datetime=TARGET_DATETIME,
+    )
+
+    assert len(result) == 1
+    assert result[0]["capacityExport"] == 3620
+    assert result[0]["capacityImport"] is None
+    assert result[0]["sortedZoneKeys"] == "AT->DE"

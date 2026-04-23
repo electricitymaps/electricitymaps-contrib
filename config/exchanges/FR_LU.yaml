@@ -3,4 +3,5 @@ lonlat:
   - 49.45306
 parsers:
   exchange: ECO2MIX.fetch_exchange
+  exchangeShadowAuctionAtcDayAhead: JAO.fetch_shadow_auction_atc_day_ahead
 rotation: 0

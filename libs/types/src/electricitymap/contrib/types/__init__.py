@@ -43,6 +43,7 @@ class ParserDataType(Enum):
     EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD = "exchangeCapacityForecastDayAhead"
     EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD = "exchangeCapacityForecastWeekAhead"
     EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD = "exchangeCapacityForecastMonthAhead"
+    EXCHANGE_SHADOW_AUCTION_ATC_DAY_AHEAD = "exchangeShadowAuctionAtcDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
     GRID_ALERTS = "gridAlerts"

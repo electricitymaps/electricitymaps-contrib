@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": 44275,
+      "dateTimeUtc": "2026-04-20T00:00:00Z",
+      "border_AT_CZ": 350,
+      "border_CZ_AT": 350,
+      "border_AT_DE": 3620,
+      "border_BE_NL": 1400,
+      "border_NL_BE": 1300,
+      "border_DE_FR": 3620,
+      "border_FR_DE": 3450
+    },
+    {
+      "id": 44276,
+      "dateTimeUtc": "2026-04-20T01:00:00Z",
+      "border_AT_CZ": 400,
+      "border_CZ_AT": 400,
+      "border_AT_DE": 3700,
+      "border_BE_NL": 1450,
+      "border_NL_BE": 1350,
+      "border_DE_FR": 3700,
+      "border_FR_DE": 3500
+    }
+  ],
+  "rejected": false,
+  "messages": null,
+  "totalRows": 2,
+  "totalRowsWithFilter": 2
+}
