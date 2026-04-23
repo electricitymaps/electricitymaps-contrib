@@ -58,6 +58,7 @@ class ParserDataType(Enum):
 
 ALL_DATA_TYPES = [dt.value for dt in ParserDataType]
 EXCHANGE_DATA_TYPES = [ParserDataType.EXCHANGE, ParserDataType.EXCHANGE_FORECAST]
+# TODO rename and move this one in the EXCHANGE_PUBLICATION_DATA_TYPES
 EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
     ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
     ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
