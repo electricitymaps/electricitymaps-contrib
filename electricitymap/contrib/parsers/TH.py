@@ -51,8 +51,6 @@ def _fetch_data(
 ) -> list[dict]:
     """Fetch actual or planning generation data from the EGAT API endpoint."""
     url = f"{EGAT_GENERATION_URL}/{data_type}"
-    if target_datetime is None:
-        target_datetime = _as_localtime(datetime.now())
 
     if data_type == "actual":
         params = {"name": "SYSTEM_GEN(MW)", "day": target_datetime.strftime("%d-%m-%Y")}
@@ -101,8 +99,8 @@ def fetch_production(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list[dict[str, Any]]:
-    session = session or Session()
     """Request the last known production mix (in MW) of a given country."""
+    session = session or Session()
     data = _fetch_data(session, _as_localtime(target_datetime), "actual")
 
     production_breakdowns = ProductionBreakdownList(logger)
