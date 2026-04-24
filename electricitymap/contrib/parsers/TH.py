@@ -28,14 +28,17 @@ MEA_URL = "www.mea.or.th"
 TZ = ZoneInfo("Asia/Bangkok")
 
 
-def _as_localtime(dt: datetime) -> datetime:
-    """
-    If there is no datetime given, returns the current datetime with timezone.
-    Otherwise, it interprets the datetime as the representation of local time
-    since the API server supposes the local timezone instead of UTC.
+def _as_localtime(dt: datetime | None) -> datetime:
+    """Return a tz-aware datetime in Bangkok local time.
+
+    Rejects naive datetimes explicitly — `astimezone` would otherwise silently
+    interpret them as host local time, making the result depend on where the
+    parser runs.
     """
     if dt is None:
         return datetime.now(tz=TZ)
+    if dt.tzinfo is None:
+        raise ValueError("target_datetime must be timezone-aware")
     return dt.astimezone(TZ)
 
 
