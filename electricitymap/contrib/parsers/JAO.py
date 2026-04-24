@@ -20,13 +20,13 @@ differ only in row shape:
 - Per-CNEC: many rows per hour, one per critical network element.
     e.g. shadowPrices, validationReductions
 
-Currently wired:
-- fetch_shadow_auction_atc       → Core shadowAuctionATC (per-border)
-- fetch_core_external_atc        → Core atc (per-border, 15-min)
-- fetch_core_max_exchanges       → Core maxExchanges (per-border, hourly)
-- fetch_nordic_max_exchanges     → Nordic maxExchanges (per-border, 15-min)
-- fetch_core_scheduled_exchanges → Core scheduledExchanges (per-border, 15-min)
-- fetch_nordic_max_border_flow   → Nordic maxBorderFlow (per-border, 15-min)
+Currently wired (all day-ahead horizon):
+- fetch_shadow_auction_atc_day_ahead        → Core shadowAuctionATC (per-border)
+- fetch_core_external_atc_day_ahead         → Core atc (per-border, 15-min)
+- fetch_core_max_bex_day_ahead              → Core maxExchanges (per-border, hourly)
+- fetch_nordic_max_bex_day_ahead            → Nordic maxExchanges (per-border, 15-min)
+- fetch_core_scheduled_exchanges_day_ahead  → Core scheduledExchanges (per-border, 15-min)
+- fetch_nordic_max_bflow_day_ahead          → Nordic maxBorderFlow (per-border, 15-min)
 """
 
 from datetime import datetime, time, timedelta, timezone
@@ -69,12 +69,13 @@ class JaoDataset(str, Enum):
     """
 
     # Per-border, bidirectional (`border_XX_YY` fields).
-    # Slugs are identical between Core and Nordic where both publish the dataset.
+    # Enum keys use JAO's human-readable terminology (MaxBex, MaxBflow);
+    # enum values are the exact URL slugs JAO serves the dataset under.
     SHADOW_AUCTION_ATC = "shadowAuctionATC"  # Core only
     CORE_EXTERNAL_ATC = "atc"  # Core only
-    MAX_EXCHANGES = "maxExchanges"  # Core + Nordic
+    MAX_BEX = "maxExchanges"  # Core + Nordic
     SCHEDULED_EXCHANGES = "scheduledExchanges"  # Core only
-    MAX_BORDER_FLOW = "maxBorderFlow"  # Nordic only
+    MAX_BFLOW = "maxBorderFlow"  # Nordic only
 
     def __str__(self) -> str:
         return self.value
@@ -290,7 +291,7 @@ def _fetch_per_border_dataset(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_shadow_auction_atc(
+def fetch_shadow_auction_atc_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -315,7 +316,7 @@ def fetch_shadow_auction_atc(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_external_atc(
+def fetch_core_external_atc_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -337,7 +338,7 @@ def fetch_core_external_atc(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_max_exchanges(
+def fetch_core_max_bex_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -353,7 +354,7 @@ def fetch_core_max_exchanges(
         zone_key1,
         zone_key2,
         JaoRegion.CORE,
-        JaoDataset.MAX_EXCHANGES,
+        JaoDataset.MAX_BEX,
         session,
         target_datetime,
         logger,
@@ -361,7 +362,7 @@ def fetch_core_max_exchanges(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_nordic_max_exchanges(
+def fetch_nordic_max_bex_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -377,7 +378,7 @@ def fetch_nordic_max_exchanges(
         zone_key1,
         zone_key2,
         JaoRegion.NORDIC,
-        JaoDataset.MAX_EXCHANGES,
+        JaoDataset.MAX_BEX,
         session,
         target_datetime,
         logger,
@@ -385,7 +386,7 @@ def fetch_nordic_max_exchanges(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_core_scheduled_exchanges(
+def fetch_core_scheduled_exchanges_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -413,7 +414,7 @@ def fetch_core_scheduled_exchanges(
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
-def fetch_nordic_max_border_flow(
+def fetch_nordic_max_bflow_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -430,7 +431,7 @@ def fetch_nordic_max_border_flow(
         zone_key1,
         zone_key2,
         JaoRegion.NORDIC,
-        JaoDataset.MAX_BORDER_FLOW,
+        JaoDataset.MAX_BFLOW,
         session,
         target_datetime,
         logger,
@@ -440,9 +441,9 @@ def fetch_nordic_max_border_flow(
 if __name__ == "__main__":
     from pprint import pprint
 
-    pprint(fetch_shadow_auction_atc(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_core_external_atc(ZoneKey("DE"), ZoneKey("DK-DK1")))
-    pprint(fetch_core_max_exchanges(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_nordic_max_exchanges(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
-    pprint(fetch_core_scheduled_exchanges(ZoneKey("DE"), ZoneKey("FR")))
-    pprint(fetch_nordic_max_border_flow(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
+    pprint(fetch_shadow_auction_atc_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_core_external_atc_day_ahead(ZoneKey("DE"), ZoneKey("DK-DK1")))
+    pprint(fetch_core_max_bex_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_bex_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))
+    pprint(fetch_core_scheduled_exchanges_day_ahead(ZoneKey("DE"), ZoneKey("FR")))
+    pprint(fetch_nordic_max_bflow_day_ahead(ZoneKey("NO-NO2"), ZoneKey("SE-SE3")))

@@ -43,11 +43,11 @@ class ParserDataType(Enum):
     EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD = "exchangeCapacityForecastDayAhead"
     EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD = "exchangeCapacityForecastWeekAhead"
     EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD = "exchangeCapacityForecastMonthAhead"
-    SHADOW_AUCTION_ATC = "shadowAuctionAtc"
-    CORE_EXTERNAL_ATC = "coreExternalAtc"
-    MAX_EXCHANGES = "maxExchanges"
-    SCHEDULED_EXCHANGES = "scheduledExchanges"
-    MAX_BORDER_FLOW = "maxBorderFlow"
+    SHADOW_AUCTION_ATC_DAY_AHEAD = "shadowAuctionAtcDayAhead"
+    CORE_EXTERNAL_ATC_DAY_AHEAD = "coreExternalAtcDayAhead"
+    MAX_BEX_DAY_AHEAD = "maxBexDayAhead"
+    SCHEDULED_EXCHANGES_DAY_AHEAD = "scheduledExchangesDayAhead"
+    MAX_BFLOW_DAY_AHEAD = "maxBflowDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
     GRID_ALERTS = "gridAlerts"
@@ -67,11 +67,11 @@ EXCHANGE_CAPACITY_FORECAST_DATA_TYPES = [
 # capacities, cleared market-coupling schedules, physical flow limits. All carry
 # the two-zone-key call convention.
 EXCHANGE_PUBLICATION_DATA_TYPES = [
-    ParserDataType.SHADOW_AUCTION_ATC,
-    ParserDataType.CORE_EXTERNAL_ATC,
-    ParserDataType.MAX_EXCHANGES,
-    ParserDataType.SCHEDULED_EXCHANGES,
-    ParserDataType.MAX_BORDER_FLOW,
+    ParserDataType.SHADOW_AUCTION_ATC_DAY_AHEAD,
+    ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
+    ParserDataType.MAX_BEX_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.MAX_BFLOW_DAY_AHEAD,
 ]
 # Every ParserDataType registered on the exchange side (two-zone-key call
 # convention). Consumers asking "is this an exchange-side data type?" should
