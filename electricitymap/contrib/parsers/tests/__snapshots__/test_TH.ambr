@@ -1,0 +1,13 @@
+# serializer version: 1
+# name: test_snapshot_fetch_price
+  list([
+    dict({
+      'currency': 'THB',
+      'datetime': FakeDatetime(2024, 4, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Bangkok')),
+      'price': 4818.900000000001,
+      'source': 'www.mea.or.th',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'TH',
+    }),
+  ])
+# ---
