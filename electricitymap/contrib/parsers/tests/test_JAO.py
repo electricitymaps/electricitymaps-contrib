@@ -11,8 +11,8 @@ from electricitymap.contrib.parsers.JAO import (
     fetch_core_external_atc_day_ahead,
     fetch_core_max_bex_day_ahead,
     fetch_core_scheduled_exchanges_day_ahead,
-    fetch_nordic_max_bflow_day_ahead,
     fetch_nordic_max_bex_day_ahead,
+    fetch_nordic_max_bflow_day_ahead,
     fetch_shadow_auction_atc_day_ahead,
 )
 
