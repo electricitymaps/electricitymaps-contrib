@@ -3,7 +3,7 @@
   list([
     dict({
       'currency': 'THB',
-      'datetime': FakeDatetime(2024, 4, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Bangkok')),
+      'datetime': FakeDatetime(2024, 4, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Bangkok')),
       'price': 4818.900000000001,
       'source': 'www.mea.or.th',
       'sourceType': <EventSourceType.measured: 'measured'>,

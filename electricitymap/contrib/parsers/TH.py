@@ -220,7 +220,8 @@ def fetch_price(
         )
 
     ft_rate_table = soup_ft.find_all("table")[0]
-    curr_ft_month = _as_localtime(datetime.now()).month
+    now_local = datetime.now(tz=TZ)
+    curr_ft_month = now_local.month
     price_ft = ft_rate_table.find_all("td")[curr_ft_month].text
 
     if price_ft == "\xa0":
@@ -231,13 +232,7 @@ def fetch_price(
     prices.append(
         zoneKey=zone_key,
         currency="THB",
-        datetime=_as_localtime(
-            datetime.now().replace(
-                minute=0,
-                second=0,
-                microsecond=0,
-            )
-        ),
+        datetime=now_local.replace(minute=0, second=0, microsecond=0),
         price=float(price_base) * 1000 + float(price_ft) * 10,
         source=MEA_URL,
     )
