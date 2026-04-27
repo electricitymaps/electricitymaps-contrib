@@ -3,12 +3,6 @@ bounding_box:
     - 58.01771794304598
   - - 10.481504815048169
     - 60.23017200279955
-center_point:
-  - 7.826481495335166
-  - 59.12044289080393
-centroid:
-  - 6.884960944083798
-  - 59.23982941226397
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -88,6 +82,12 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1452.4
+center_point:
+  - 7.826481495335166
+  - 59.12044289080393
+centroid:
+  - 6.884960944083798
+  - 59.23982941226397
 country: 'NO'
 country_name: Norway
 currency: EUR

@@ -20,6 +20,10 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 842.46
+      - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
         value: 378.09
@@ -43,6 +47,10 @@ emissionFactors:
         value: 426.61
     hydro discharge:
       - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
         value: 0.0
@@ -55,6 +63,10 @@ emissionFactors:
         value: 925.95
   lifecycle:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 875.46
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
@@ -84,6 +96,10 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 10.7
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
@@ -234,16 +250,24 @@ has_day_ahead_price_license: true
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0437
     - datetime: '2022-01-01'
       value: 0.119
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
     - datetime: '2022-01-01'
       value: 1.0
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0437
     - datetime: '2022-01-01'
       value: 0.1027
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
     - datetime: '2022-01-01'
       value: 1.0
 parsers:

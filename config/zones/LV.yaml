@@ -3,12 +3,6 @@ bounding_box:
     - 55.666448848495435
   - - 28.164881648816504
     - 58.074961256364304
-center_point:
-  - 24.740841980259933
-  - 56.78915450258365
-centroid:
-  - 24.680533731112973
-  - 56.77200053236797
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -126,6 +120,12 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 136.0
+center_point:
+  - 24.740841980259933
+  - 56.78915450258365
+centroid:
+  - 24.680533731112973
+  - 56.77200053236797
 contributors:
   - corradio
 country: LV
@@ -137,7 +137,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 107.46
+        value: 109.5
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -186,7 +186,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 140.46
+        value: 142.5
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -404,11 +404,11 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.7664
+      value: 0.7647
 isRenewable:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.6684
+      value: 0.6653
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

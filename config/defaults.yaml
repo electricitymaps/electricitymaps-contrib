@@ -1,7 +1,365 @@
+emissionFactors:
+  direct:
+    battery charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    battery discharge:
+      - _comment: As a default fallback, we use the annual production-weighted mean
+          carbon intensity of all Electricity Maps zones; charge-hour filtering was
+          skipped due to insufficient battery charging-hour data for 2015
+        datetime: '2015-01-01'
+        source: 2015 annual production-weighted mean carbon intensity across Electricity
+          Maps zones (insufficient battery charging-hour data)
+        value: 305.74
+      - _comment: As a default fallback, we use the annual production-weighted mean
+          carbon intensity of all Electricity Maps zones; charge-hour filtering was
+          skipped due to insufficient battery charging-hour data for 2016
+        datetime: '2016-01-01'
+        source: 2016 annual production-weighted mean carbon intensity across Electricity
+          Maps zones (insufficient battery charging-hour data)
+        value: 298.92
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2017-01-01'
+        source: 2017 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 384.85
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2018-01-01'
+        source: 2018 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 446.44
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2019-01-01'
+        source: 2019 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 387.05
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2020-01-01'
+        source: 2020 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 383.06
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2021-01-01'
+        source: 2021 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 390.55
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2022-01-01'
+        source: 2022 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 379.29
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2023-01-01'
+        source: 2023 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 324.76
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2024-01-01'
+        source: 2024 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 318.16
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2025-01-01'
+        source: 2025 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 295.52
+    biomass:
+      source: BEIS 2021
+      value: 0
+    coal:
+      source: IPCC 2014
+      value: 760
+    gas:
+      source: IPCC 2014
+      value: 370
+    geothermal:
+      source: IPCC 2014
+      value: 0
+    hydro:
+      source: IPCC 2014
+      value: 0
+    hydro charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    hydro discharge:
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2015-01-01'
+        source: 2015 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 268.24
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2016-01-01'
+        source: 2016 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 254.99
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2017-01-01'
+        source: 2017 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 383.72
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2018-01-01'
+        source: 2018 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 404.72
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2019-01-01'
+        source: 2019 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 347.76
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2020-01-01'
+        source: 2020 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 313.13
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2021-01-01'
+        source: 2021 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 332.13
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2022-01-01'
+        source: 2022 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 334.8
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2023-01-01'
+        source: 2023 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 305.32
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2024-01-01'
+        source: 2024 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 290.85
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2025-01-01'
+        source: 2025 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 302.14
+    nuclear:
+      source: IPCC 2014
+      value: 0
+    oil:
+      _comment: A blended average of US and UK direct emission factor figures
+      source: EIA 2020/BEIS 2021
+      value: 406
+    solar:
+      source: IPCC 2014
+      value: 0
+    unknown:
+      _comment: assume conventional
+      source: assumes thermal (coal, gas, or oil)
+      value: 575
+    wind:
+      source: IPCC 2014
+      value: 0
+  lifecycle:
+    battery charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    battery discharge:
+      - _comment: As a default fallback, we use the annual production-weighted mean
+          carbon intensity of all Electricity Maps zones; charge-hour filtering was
+          skipped due to insufficient battery charging-hour data for 2015
+        datetime: '2015-01-01'
+        source: 2015 annual production-weighted mean carbon intensity across Electricity
+          Maps zones (insufficient battery charging-hour data)
+        value: 360.55
+      - _comment: As a default fallback, we use the annual production-weighted mean
+          carbon intensity of all Electricity Maps zones; charge-hour filtering was
+          skipped due to insufficient battery charging-hour data for 2016
+        datetime: '2016-01-01'
+        source: 2016 annual production-weighted mean carbon intensity across Electricity
+          Maps zones (insufficient battery charging-hour data)
+        value: 356.54
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2017-01-01'
+        source: 2017 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 451.4
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2018-01-01'
+        source: 2018 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 514.8
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2019-01-01'
+        source: 2019 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 452.78
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2020-01-01'
+        source: 2020 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 450.55
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2021-01-01'
+        source: 2021 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 456.76
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2022-01-01'
+        source: 2022 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 444.88
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2023-01-01'
+        source: 2023 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 388.23
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2024-01-01'
+        source: 2024 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 383.33
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during battery charging hours
+        datetime: '2025-01-01'
+        source: 2025 production-weighted mean carbon intensity across Electricity Maps
+          zones during battery charging hours
+        value: 356.05
+    biomass:
+      source: IPCC 2014
+      value: 230
+    coal:
+      source: IPCC 2014
+      value: 820
+    gas:
+      source: IPCC 2014
+      value: 490
+    geothermal:
+      source: IPCC 2014
+      value: 38
+    hydro:
+      source: IPCC 2014
+      value: 24
+    hydro charge:
+      _comment: Emissions are counted at discharge
+      source: Electricity Maps
+      value: 0
+    hydro discharge:
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2015-01-01'
+        source: 2015 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 317.14
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2016-01-01'
+        source: 2016 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 305.25
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2017-01-01'
+        source: 2017 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 449.16
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2018-01-01'
+        source: 2018 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 469.15
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2019-01-01'
+        source: 2019 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 412.4
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2020-01-01'
+        source: 2020 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 375.27
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2021-01-01'
+        source: 2021 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 394.38
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2022-01-01'
+        source: 2022 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 398.03
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2023-01-01'
+        source: 2023 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 367.33
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2024-01-01'
+        source: 2024 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 349.96
+      - _comment: As a default fallback, we use the production-weighted mean carbon
+          intensity of all Electricity Maps zones during hydro charging hours
+        datetime: '2025-01-01'
+        source: 2025 production-weighted mean carbon intensity across Electricity Maps
+          zones during hydro charging hours
+        value: 361.77
+    nuclear:
+      source: IPCC 2014
+      value: 12
+    oil:
+      _comment: UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint
+        of electricity generation'
+      source: UK POST 2014
+      value: 650
+    solar:
+      source: IPCC 2014
+      value: 45
+    unknown:
+      _comment: assume conventional
+      source: assumes thermal (coal, gas, oil or biomass)
+      value: 700
+    wind:
+      source: IPCC 2014
+      value: 11
 fallbackZoneMixes:
   powerOriginRatios:
-    _comment: https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf
-    _source: BP Statistical Review of World Energy 2019, values from 2018, and Electricity Maps Avg for average carbon intensity, and IRENA report for Biomass and geothermal
+    _comment: https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html,
+      https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf
+    _source: BP Statistical Review of World Energy 2019, values from 2018, and Electricity
+      Maps Avg for average carbon intensity, and IRENA report for Biomass and geothermal
     value:
       battery charge: 0
       battery discharge: 0
@@ -23,7 +381,8 @@ isLowCarbon:
     source: Electricity Maps
     value: 1
   battery discharge:
-    _comment: Battery discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
+    _comment: Battery discharge is assumed to be powered by low-carbon. Ideally this
+      should be overriden per zone.
     source: Electricity Maps
     value: 1
   biomass:
@@ -51,7 +410,8 @@ isLowCarbon:
     source: Electricity Maps
     value: 1
   hydro discharge:
-    _comment: Hydro discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.
+    _comment: Hydro discharge is assumed to be powered by low-carbon. Ideally this
+      should be overriden per zone.
     source: Electricity Maps
     value: 1
   nuclear:
@@ -81,7 +441,8 @@ isRenewable:
     source: Electricity Maps
     value: 1
   battery discharge:
-    _comment: Battery discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
+    _comment: Battery discharge is assumed to be powered by renewables. Ideally this
+      should be overriden per zone.
     source: Electricity Maps
     value: 1
   biomass:
@@ -109,7 +470,8 @@ isRenewable:
     source: Electricity Maps
     value: 1
   hydro discharge:
-    _comment: Hydro discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.
+    _comment: Hydro discharge is assumed to be powered by renewables. Ideally this
+      should be overriden per zone.
     source: Electricity Maps
     value: 1
   nuclear:
@@ -132,202 +494,3 @@ isRenewable:
     _comment: wind is considered renewable.
     source: Electricity Maps
     value: 1
-emissionFactors:
-  direct:
-    battery charge:
-      _comment: Emissions are counted at discharge
-      source: Electricity Maps
-      value: 0
-    battery discharge:
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2015-01-01'
-        source: 2015 annual mean carbon intensity by Electricity Maps
-        value: 307.04
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2016-01-01'
-        source: 2016 annual mean carbon intensity by Electricity Maps
-        value: 295.25
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2017-01-01'
-        source: 2017 annual mean carbon intensity by Electricity Maps
-        value: 311.04
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2018-01-01'
-        source: 2018 annual mean carbon intensity by Electricity Maps
-        value: 331.14
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2019-01-01'
-        source: 2019 annual mean carbon intensity by Electricity Maps
-        value: 326.32
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2020-01-01'
-        source: 2020 annual mean carbon intensity by Electricity Maps
-        value: 310.58
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2021-01-01'
-        source: 2021 annual mean carbon intensity by Electricity Maps
-        value: 324.69
-    biomass:
-      source: BEIS 2021
-      value: 0
-    coal:
-      source: IPCC 2014
-      value: 760
-    gas:
-      source: IPCC 2014
-      value: 370
-    geothermal:
-      source: IPCC 2014
-      value: 0
-    hydro:
-      source: IPCC 2014
-      value: 0
-    hydro charge:
-      _comment: Emissions are counted at discharge
-      source: Electricity Maps
-      value: 0
-    hydro discharge:
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2015-01-01'
-        source: 2015 annual mean carbon intensity by Electricity Maps
-        value: 307.04
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2016-01-01'
-        source: 2016 annual mean carbon intensity by Electricity Maps
-        value: 295.25
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2017-01-01'
-        source: 2017 annual mean carbon intensity by Electricity Maps
-        value: 311.04
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2018-01-01'
-        source: 2018 annual mean carbon intensity by Electricity Maps
-        value: 331.14
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2019-01-01'
-        source: 2019 annual mean carbon intensity by Electricity Maps
-        value: 326.32
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2020-01-01'
-        source: 2020 annual mean carbon intensity by Electricity Maps
-        value: 310.58
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2021-01-01'
-        source: 2021 annual mean carbon intensity by Electricity Maps
-        value: 324.69
-    nuclear:
-      source: IPCC 2014
-      value: 0
-    oil:
-      _comment: A blended average of US and UK direct emission factor figures
-      source: EIA 2020/BEIS 2021
-      value: 406
-    solar:
-      source: IPCC 2014
-      value: 0
-    unknown:
-      _comment: assume conventional
-      source: assumes thermal (coal, gas, or oil)
-      value: 575
-    wind:
-      source: IPCC 2014
-      value: 0
-  lifecycle:
-    battery charge:
-      _comment: Emissions are counted at discharge
-      source: Electricity Maps
-      value: 0
-    battery discharge:
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2015-01-01'
-        source: 2015 annual mean carbon intensity by Electricity Maps
-        value: 363.85
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2016-01-01'
-        source: 2016 annual mean carbon intensity by Electricity Maps
-        value: 354.12
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2017-01-01'
-        source: 2017 annual mean carbon intensity by Electricity Maps
-        value: 370.7
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2018-01-01'
-        source: 2018 annual mean carbon intensity by Electricity Maps
-        value: 407.34
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2019-01-01'
-        source: 2019 annual mean carbon intensity by Electricity Maps
-        value: 391.46
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2020-01-01'
-        source: 2020 annual mean carbon intensity by Electricity Maps
-        value: 375.63
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2021-01-01'
-        source: 2021 annual mean carbon intensity by Electricity Maps
-        value: 391.33
-    biomass:
-      source: IPCC 2014
-      value: 230
-    coal:
-      source: IPCC 2014
-      value: 820
-    gas:
-      source: IPCC 2014
-      value: 490
-    geothermal:
-      source: IPCC 2014
-      value: 38
-    hydro:
-      source: IPCC 2014
-      value: 24
-    hydro charge:
-      _comment: Emissions are counted at discharge
-      source: Electricity Maps
-      value: 0
-    hydro discharge:
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2015-01-01'
-        source: 2015 annual mean carbon intensity by Electricity Maps
-        value: 363.85
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2016-01-01'
-        source: 2016 annual mean carbon intensity by Electricity Maps
-        value: 354.12
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2017-01-01'
-        source: 2017 annual mean carbon intensity by Electricity Maps
-        value: 370.7
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2018-01-01'
-        source: 2018 annual mean carbon intensity by Electricity Maps
-        value: 407.34
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2019-01-01'
-        source: 2019 annual mean carbon intensity by Electricity Maps
-        value: 391.46
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2020-01-01'
-        source: 2020 annual mean carbon intensity by Electricity Maps
-        value: 375.63
-      - _comment: As a default fallback, we use the annual mean carbon intensity of all Electricity Maps zones
-        datetime: '2021-01-01'
-        source: 2021 annual mean carbon intensity by Electricity Maps
-        value: 391.33
-    nuclear:
-      source: IPCC 2014
-      value: 12
-    oil:
-      _comment: UK Parliamentary Office of Science and Technology (2006) 'Carbon footprint of electricity generation'
-      source: UK POST 2014
-      value: 650
-    solar:
-      source: IPCC 2014
-      value: 45
-    unknown:
-      _comment: assume conventional
-      source: assumes thermal (coal, gas, oil or biomass)
-      value: 700
-    wind:
-      source: IPCC 2014
-      value: 11
