@@ -9,7 +9,7 @@
         }),
         'battery discharge': dict({
           'source': 'IPCC 2014',
-          'value': 356.05,
+          'value': 358.44,
         }),
         'biomass': dict({
           'source': 'IPCC 2014',
