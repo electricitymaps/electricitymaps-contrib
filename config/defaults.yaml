@@ -5,20 +5,20 @@ emissionFactors:
       source: Electricity Maps
       value: 0
     battery discharge:
-      - _comment: As a default fallback, we use the annual production-weighted mean
+      - _comment: As a default fallback, we use the annual consumption-weighted mean
           carbon intensity of all Electricity Maps zones; charge-hour filtering was
           skipped due to insufficient battery charging-hour data for 2015
         datetime: '2015-01-01'
-        source: 2015 annual production-weighted mean carbon intensity across Electricity
+        source: 2015 annual consumption-weighted mean carbon intensity across Electricity
           Maps zones (insufficient battery charging-hour data)
-        value: 305.74
-      - _comment: As a default fallback, we use the annual production-weighted mean
+        value: 314.71
+      - _comment: As a default fallback, we use the annual consumption-weighted mean
           carbon intensity of all Electricity Maps zones; charge-hour filtering was
           skipped due to insufficient battery charging-hour data for 2016
         datetime: '2016-01-01'
-        source: 2016 annual production-weighted mean carbon intensity across Electricity
+        source: 2016 annual consumption-weighted mean carbon intensity across Electricity
           Maps zones (insufficient battery charging-hour data)
-        value: 298.92
+        value: 309.85
       - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during battery charging hours
         datetime: '2017-01-01'
@@ -93,18 +93,18 @@ emissionFactors:
       source: Electricity Maps
       value: 0
     hydro discharge:
-      - _comment: As a default fallback, we use the production-weighted mean carbon
+      - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2015-01-01'
-        source: 2015 production-weighted mean carbon intensity across Electricity Maps
+        source: 2015 consumption-weighted mean carbon intensity across Electricity Maps
           zones during hydro charging hours
-        value: 268.24
-      - _comment: As a default fallback, we use the production-weighted mean carbon
+        value: 269.26
+      - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2016-01-01'
-        source: 2016 production-weighted mean carbon intensity across Electricity Maps
+        source: 2016 consumption-weighted mean carbon intensity across Electricity Maps
           zones during hydro charging hours
-        value: 254.99
+        value: 255.18
       - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2017-01-01'
@@ -182,20 +182,20 @@ emissionFactors:
       source: Electricity Maps
       value: 0
     battery discharge:
-      - _comment: As a default fallback, we use the annual production-weighted mean
+      - _comment: As a default fallback, we use the annual consumption-weighted mean
           carbon intensity of all Electricity Maps zones; charge-hour filtering was
           skipped due to insufficient battery charging-hour data for 2015
         datetime: '2015-01-01'
-        source: 2015 annual production-weighted mean carbon intensity across Electricity
+        source: 2015 annual consumption-weighted mean carbon intensity across Electricity
           Maps zones (insufficient battery charging-hour data)
-        value: 360.55
-      - _comment: As a default fallback, we use the annual production-weighted mean
+        value: 370.25
+      - _comment: As a default fallback, we use the annual consumption-weighted mean
           carbon intensity of all Electricity Maps zones; charge-hour filtering was
           skipped due to insufficient battery charging-hour data for 2016
         datetime: '2016-01-01'
-        source: 2016 annual production-weighted mean carbon intensity across Electricity
+        source: 2016 annual consumption-weighted mean carbon intensity across Electricity
           Maps zones (insufficient battery charging-hour data)
-        value: 356.54
+        value: 368.45
       - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during battery charging hours
         datetime: '2017-01-01'
@@ -270,18 +270,18 @@ emissionFactors:
       source: Electricity Maps
       value: 0
     hydro discharge:
-      - _comment: As a default fallback, we use the production-weighted mean carbon
+      - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2015-01-01'
-        source: 2015 production-weighted mean carbon intensity across Electricity Maps
+        source: 2015 consumption-weighted mean carbon intensity across Electricity Maps
           zones during hydro charging hours
-        value: 317.14
-      - _comment: As a default fallback, we use the production-weighted mean carbon
+        value: 318.68
+      - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2016-01-01'
-        source: 2016 production-weighted mean carbon intensity across Electricity Maps
+        source: 2016 consumption-weighted mean carbon intensity across Electricity Maps
           zones during hydro charging hours
-        value: 305.25
+        value: 305.6
       - _comment: As a default fallback, we use the consumption-weighted mean carbon
           intensity of all Electricity Maps zones during hydro charging hours
         datetime: '2017-01-01'
