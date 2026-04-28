@@ -153,13 +153,21 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 261.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 311.23
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
         value: 206.01
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 98.96
+        value: 98.95
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -245,13 +253,21 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 294.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 344.23
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
         value: 239.01
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 131.96
+        value: 131.95
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -498,6 +514,10 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.5611
+    - datetime: '2018-01-01'
+      value: 0.4787
     - datetime: '2022-01-01'
       value: 0.6587
     - datetime: '2025-01-01'
@@ -509,6 +529,10 @@ isLowCarbon:
       value: 0.9568
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.5611
+    - datetime: '2018-01-01'
+      value: 0.4787
     - datetime: '2022-01-01'
       value: 0.6587
     - datetime: '2025-01-01'

@@ -3,12 +3,6 @@ bounding_box:
     - 5.07480853775256
   - - 126.58266582665826
     - 10.457111072508837
-center_point:
-  - 124.76318645902569
-  - 7.602095842199491
-centroid:
-  - 124.33077130771296
-  - 7.610529898643097
 capacity:
   battery storage: 49
   biomass: 79
@@ -18,6 +12,12 @@ capacity:
   nuclear: 0
   oil: 833
   solar: 84
+center_point:
+  - 124.76318645902569
+  - 7.602095842199491
+centroid:
+  - 124.33077130771296
+  - 7.610529898643097
 contributors:
   - VIKTORVAV99
   - jarek
@@ -32,9 +32,21 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 475.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 475.13
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 475.13
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 475.14
+        value: 475.13
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -42,7 +54,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 475.14
+        value: 475.13
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -54,13 +66,25 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 463.64
+        value: 463.56
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 508.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 508.13
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 508.13
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 508.14
+        value: 508.13
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -68,7 +92,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 508.14
+        value: 508.13
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -80,7 +104,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 496.64
+        value: 496.56
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -207,6 +231,12 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3516
+    - datetime: '2018-01-01'
+      value: 0.3516
+    - datetime: '2019-01-01'
+      value: 0.3516
     - datetime: '2020-01-01'
       value: 0.3516
     - datetime: '2021-01-01'
@@ -214,13 +244,19 @@ isLowCarbon:
     - datetime: '2022-01-01'
       value: 0.3516
     - datetime: '2023-01-01'
-      value: 0.3713
+      value: 0.3712
     - datetime: '2024-01-01'
       value: 0.3317
     - datetime: '2025-01-01'
-      value: 0.367
+      value: 0.3671
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3516
+    - datetime: '2018-01-01'
+      value: 0.3516
+    - datetime: '2019-01-01'
+      value: 0.3516
     - datetime: '2020-01-01'
       value: 0.3516
     - datetime: '2021-01-01'
@@ -228,11 +264,11 @@ isRenewable:
     - datetime: '2022-01-01'
       value: 0.3516
     - datetime: '2023-01-01'
-      value: 0.3713
+      value: 0.3712
     - datetime: '2024-01-01'
       value: 0.3317
     - datetime: '2025-01-01'
-      value: 0.367
+      value: 0.3671
 parsers:
   production: IEMOP.fetch_production
 region: Asia

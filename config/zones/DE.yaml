@@ -6,12 +6,6 @@ bounding_box:
     - 47.301769689854
   - - 15.021150211502146
     - 54.90654386419456
-center_point:
-  - 10.407266584569143
-  - 51.055795801568294
-centroid:
-  - 10.469326508295726
-  - 51.40418959202085
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -280,6 +274,12 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 72979.0
+center_point:
+  - 10.407266584569143
+  - 51.055795801568294
+centroid:
+  - 10.469326508295726
+  - 51.40418959202085
 contributors:
   - corradio
   - bohne13
@@ -324,9 +324,29 @@ emissionFactors:
         value: 374.16
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average
+        value: 467.41
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 459.43
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 417.4
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 413.85
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 332.28
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 307.31
+        value: 307.32
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -342,11 +362,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 240.15
+        value: 240.13
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 235.59
+        value: 235.37
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -399,9 +419,29 @@ emissionFactors:
       value: 10.7
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average; UNECE 2022
+        value: 478.11
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 470.13
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 428.1
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 424.55
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 342.98
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 318.01
+        value: 318.02
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
@@ -417,11 +457,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 250.85
+        value: 250.83
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 246.29
+        value: 246.07
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -604,6 +644,16 @@ has_day_ahead_price_license: true
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.5128
+    - datetime: '2016-01-01'
+      value: 0.5134
+    - datetime: '2017-01-01'
+      value: 0.5745
+    - datetime: '2018-01-01'
+      value: 0.567
+    - datetime: '2019-01-01'
+      value: 0.6291
     - datetime: '2020-01-01'
       value: 0.6353
     - datetime: '2021-01-01'
@@ -613,13 +663,23 @@ isLowCarbon:
     - datetime: '2023-01-01'
       value: 0.6686
     - datetime: '2024-01-01'
-      value: 0.701
+      value: 0.7011
     - datetime: '2025-01-01'
-      value: 0.7002
+      value: 0.7005
 isRenewable:
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.3285
+    - datetime: '2016-01-01'
+      value: 0.3388
+    - datetime: '2017-01-01'
+      value: 0.4196
+    - datetime: '2018-01-01'
+      value: 0.4169
+    - datetime: '2019-01-01'
+      value: 0.4699
     - datetime: '2020-01-01'
-      value: 0.4941
+      value: 0.494
     - datetime: '2021-01-01'
       value: 0.4794
     - datetime: '2022-01-01'
@@ -627,9 +687,9 @@ isRenewable:
     - datetime: '2023-01-01'
       value: 0.6292
     - datetime: '2024-01-01'
-      value: 0.6621
+      value: 0.6625
     - datetime: '2025-01-01'
-      value: 0.6685
+      value: 0.6688
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

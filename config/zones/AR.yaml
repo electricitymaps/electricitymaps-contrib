@@ -3,12 +3,6 @@ bounding_box:
     - -55.05070560615871
   - - -53.66033660336599
     - -21.792340568207123
-center_point:
-  - -63.53842463864095
-  - -38.43381621684122
-centroid:
-  - -65.46265703746403
-  - -38.10807621875977
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -159,6 +153,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 4320.0
+center_point:
+  - -63.53842463864095
+  - -38.43381621684122
+centroid:
+  - -65.46265703746403
+  - -38.10807621875977
 contributors:
   - systemcatch
   - corradio
@@ -170,6 +170,18 @@ disclaimer: Unknown production is the aggregation of thermal production, mainly 
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 245.86
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -192,6 +204,18 @@ emissionFactors:
         value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 269.86
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -338,6 +362,12 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 0.3616
     - datetime: '2020-01-01'
       value: 0.3529
     - datetime: '2021-01-01'
@@ -350,6 +380,12 @@ isLowCarbon:
       value: 1.0
 isRenewable:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 0.2939
     - datetime: '2020-01-01'
       value: 0.2752
     - datetime: '2021-01-01'

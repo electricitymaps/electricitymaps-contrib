@@ -3,16 +3,16 @@ bounding_box:
     - 27.64298481350542
   - - -17.898047301443473
     - 27.828569453430994
+capacity:
+  hydro storage: 11.32
+  oil: 11.78
+  wind: 11.5
 center_point:
   - -18.029214452629738
   - 27.735777133468208
 centroid:
   - -18.01293623635249
   - 27.73108287875151
-capacity:
-  hydro storage: 11.32
-  oil: 11.78
-  wind: 11.5
 contributors:
   - hectorespert
   - systemcatch
@@ -41,6 +41,18 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2022
         value: 426.61
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -116,6 +128,18 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 10.7
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
@@ -289,6 +313,12 @@ has_day_ahead_price_license: true
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
@@ -303,6 +333,12 @@ isLowCarbon:
       value: 0.7035
 isRenewable:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
