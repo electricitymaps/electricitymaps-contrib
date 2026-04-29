@@ -9,7 +9,7 @@
         }),
         'battery discharge': dict({
           'source': 'IPCC 2014',
-          'value': 48.13,
+          'value': 48.09,
         }),
         'biomass': dict({
           'source': 'IPCC 2014',
@@ -37,7 +37,7 @@
         }),
         'hydro discharge': dict({
           'source': 'IPCC 2014',
-          'value': 21.06,
+          'value': 21.09,
         }),
         'nuclear': dict({
           'source': 'IPCC 2014',

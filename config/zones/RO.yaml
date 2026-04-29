@@ -4,12 +4,6 @@ bounding_box:
     - 43.65393954864322
   - - 29.658896588965916
     - 48.259164105103125
-center_point:
-  - 24.810578337505376
-  - 45.93705795182545
-centroid:
-  - 24.914428091649352
-  - 45.74171993159395
 capacity:
   battery storage:
     - datetime: '2025-01-01'
@@ -172,6 +166,12 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 3027.0
+center_point:
+  - 24.810578337505376
+  - 45.93705795182545
+centroid:
+  - 24.914428091649352
+  - 45.74171993159395
 contributors:
   - corradio
   - mzaharie
@@ -184,7 +184,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 262.12
+        value: 262.1
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -233,7 +233,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 295.12
+        value: 295.1
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014

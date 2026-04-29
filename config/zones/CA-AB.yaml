@@ -19,6 +19,18 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 498.32
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 452.94
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 430.38
+      - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
         value: 385.61
@@ -44,6 +56,18 @@ emissionFactors:
       value: 565
   lifecycle:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 531.32
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 485.94
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 463.38
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -194,6 +218,12 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1208
+    - datetime: '2018-01-01'
+      value: 0.1338
+    - datetime: '2019-01-01'
+      value: 0.1484
     - datetime: '2021-01-01'
       value: 0.1578
     - datetime: '2022-01-01'
@@ -210,6 +240,12 @@ isLowCarbon:
     value: 0
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1208
+    - datetime: '2018-01-01'
+      value: 0.1337
+    - datetime: '2019-01-01'
+      value: 0.1484
     - datetime: '2021-01-01'
       value: 0.1577
     - datetime: '2022-01-01'

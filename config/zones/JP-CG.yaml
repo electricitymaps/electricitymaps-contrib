@@ -3,12 +3,6 @@ bounding_box:
     - 33.82955590038428
   - - 134.5063450634506
     - 35.6012364475867
-center_point:
-  - 133.16002378532153
-  - 34.92074130104224
-centroid:
-  - 132.66264662646626
-  - 34.644271357187456
 capacity:
   biomass: 500
   coal: 3850
@@ -20,6 +14,12 @@ capacity:
   oil: 850
   solar: 5690
   wind: 365
+center_point:
+  - 133.16002378532153
+  - 34.92074130104224
+centroid:
+  - 132.66264662646626
+  - 34.644271357187456
 contributors:
   - tmslaine
   - lorrieq
@@ -31,6 +31,18 @@ currency: JPY
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 461.2
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 437.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 430.75
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -41,6 +53,18 @@ emissionFactors:
         value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 485.2
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 461.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 454.75
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -175,12 +199,24 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1387
+    - datetime: '2018-01-01'
+      value: 0.1863
+    - datetime: '2019-01-01'
+      value: 0.2056
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
       value: 1.0
 isRenewable:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1387
+    - datetime: '2018-01-01'
+      value: 0.1462
+    - datetime: '2019-01-01'
+      value: 0.1385
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'

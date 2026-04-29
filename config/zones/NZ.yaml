@@ -3,12 +3,6 @@ bounding_box:
     - -46.681733199018396
   - - 178.5635856358563
     - -34.39731816090409
-center_point:
-  - 172.56697446725485
-  - -41.12631541536777
-centroid:
-  - 173.21921104048826
-  - -40.32658932655313
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -95,6 +89,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 1260.0
+center_point:
+  - 172.56697446725485
+  - -41.12631541536777
+centroid:
+  - 173.21921104048826
+  - -40.32658932655313
 contributors:
   - BobGrun
   - corradio
@@ -107,6 +107,18 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 87.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 75.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 84.81
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 113.81
@@ -117,7 +129,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 84.45
+        value: 84.51
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -133,6 +145,18 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 120.72
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 108.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 117.81
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
         value: 146.81
@@ -143,7 +167,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 117.45
+        value: 117.51
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -312,12 +336,18 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.8077
+    - datetime: '2018-01-01'
+      value: 0.8375
+    - datetime: '2019-01-01'
+      value: 0.8164
     - datetime: '2020-01-01'
       value: 0.7847
     - datetime: '2021-01-01'
       value: 0.843
     - datetime: '2022-01-01'
-      value: 0.8267
+      value: 0.8266
     - datetime: '2023-01-01'
       value: 0.8958
     - datetime: '2024-01-01'
@@ -326,12 +356,18 @@ isLowCarbon:
       value: 0.8901
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.8077
+    - datetime: '2018-01-01'
+      value: 0.8375
+    - datetime: '2019-01-01'
+      value: 0.8164
     - datetime: '2020-01-01'
       value: 0.7847
     - datetime: '2021-01-01'
       value: 0.843
     - datetime: '2022-01-01'
-      value: 0.8267
+      value: 0.8266
     - datetime: '2023-01-01'
       value: 0.8958
     - datetime: '2024-01-01'

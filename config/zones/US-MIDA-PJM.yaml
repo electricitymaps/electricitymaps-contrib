@@ -1182,6 +1182,18 @@ currency: USD
 emissionFactors:
   direct:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 394.37
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 412.24
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 387.4
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -1205,7 +1217,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 363.05
+        value: 362.93
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1277,6 +1289,18 @@ emissionFactors:
         value: 860.2336465682306
   lifecycle:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 427.37
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 445.24
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 420.4
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
@@ -1300,7 +1324,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 396.05
+        value: 395.93
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1534,6 +1558,12 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.4255
+    - datetime: '2018-01-01'
+      value: 0.3913
+    - datetime: '2019-01-01'
+      value: 0.3861
     - datetime: '2020-01-01'
       value: 0.3997
     - datetime: '2021-01-01'
@@ -1545,9 +1575,15 @@ isLowCarbon:
     - datetime: '2024-01-01'
       value: 0.3869
     - datetime: '2025-01-01'
-      value: 0.3994
+      value: 0.3995
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0502
+    - datetime: '2018-01-01'
+      value: 0.0533
+    - datetime: '2019-01-01'
+      value: 0.0576
     - datetime: '2020-01-01'
       value: 0.0571
     - datetime: '2021-01-01'
@@ -1559,7 +1595,7 @@ isRenewable:
     - datetime: '2024-01-01'
       value: 0.0837
     - datetime: '2025-01-01'
-      value: 0.0871
+      value: 0.0874
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
