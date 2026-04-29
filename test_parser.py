@@ -18,7 +18,7 @@ from electricitymap.contrib.parsers.lib.quality import (
     validate_consumption,
     validate_exchange,
 )
-from electricitymap.contrib.types import ParserDataType, ZoneKey
+from electricitymap.contrib.types import ParserDataType, ZoneKey, EXCHANGE_DATA_TYPES
 
 logger = logging.getLogger(__name__)
 
@@ -66,13 +66,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
     args = (
         zone.split("->")
         if parser_data_type
-        in [
-            ParserDataType.EXCHANGE,
-            ParserDataType.EXCHANGE_CAPACITY_FORECAST_DAY_AHEAD,
-            ParserDataType.EXCHANGE_CAPACITY_FORECAST_WEEK_AHEAD,
-            ParserDataType.EXCHANGE_CAPACITY_FORECAST_MONTH_AHEAD,
-            ParserDataType.EXCHANGE_FORECAST,
-        ]
+        in EXCHANGE_DATA_TYPES
         else [zone]
     )
 

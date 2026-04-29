@@ -16641,7 +16641,7 @@
     }),
   ])
 # ---
-# name: test_get_scheduled_exchanges_day_ahead
+# name: test_fetch_scheduled_exchanges_day_ahead
   list([
     dict({
       'datetime': datetime.datetime(2023, 12, 20, 23, 0, tzinfo=datetime.timezone.utc),

@@ -273,7 +273,7 @@ def test_fetch_exchange_forecast(adapter, session, snapshot):
     )
 
 
-def test_get_scheduled_exchanges_day_ahead(adapter, session, snapshot):
+def test_fetch_scheduled_exchanges_day_ahead(adapter, session, snapshot):
     """A09 / contract A01 — cleared day-ahead schedule. Events must be
     tagged sourceType=published per the EXCHANGE_PUBLICATION_DATA_TYPES
     contract."""
@@ -295,7 +295,7 @@ def test_get_scheduled_exchanges_day_ahead(adapter, session, snapshot):
         zone_key2=ZoneKey("SE-SE4"),
         session=session,
     )
-    assert result, "get_scheduled_exchanges_day_ahead returned no events"
+    assert result, "fetch_scheduled_exchanges_day_ahead returned no events"
     assert all(event["sourceType"] == EventSourceType.published for event in result), (
         "every event must be sourceType=published"
     )
