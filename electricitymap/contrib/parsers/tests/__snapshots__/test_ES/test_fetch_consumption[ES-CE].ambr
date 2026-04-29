@@ -1,0 +1,26 @@
+# serializer version: 1
+# name: test_fetch_consumption[ES-CE]
+  list([
+    dict({
+      'consumption': 23.88,
+      'datetime': datetime.datetime(2026, 4, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES-CE',
+    }),
+    dict({
+      'consumption': 24.7,
+      'datetime': datetime.datetime(2026, 4, 20, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES-CE',
+    }),
+    dict({
+      'consumption': 25.08,
+      'datetime': datetime.datetime(2026, 4, 20, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'ES-CE',
+    }),
+  ])
+# ---
