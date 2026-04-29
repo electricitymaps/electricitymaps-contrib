@@ -9,5 +9,6 @@ parsers:
   exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
   exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
   exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
+  scheduledExchangesDayAhead: ENTSOE.fetch_scheduled_exchanges_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: 50

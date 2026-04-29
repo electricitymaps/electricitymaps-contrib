@@ -273,6 +273,64 @@ def test_fetch_exchange_forecast(adapter, session, snapshot):
     )
 
 
+def test_fetch_scheduled_exchanges_day_ahead(adapter, session, snapshot):
+    """A09 / contract A01 — cleared day-ahead schedule. Events must be
+    tagged sourceType=published per the EXCHANGE_PUBLICATION_DATA_TYPES
+    contract."""
+    imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
+    exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
+
+    adapter.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+        content=imports.read_bytes(),
+    )
+    adapter.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+        content=exports.read_bytes(),
+    )
+    result = ENTSOE.fetch_scheduled_exchanges_day_ahead(
+        zone_key1=ZoneKey("DK-DK2"),
+        zone_key2=ZoneKey("SE-SE4"),
+        session=session,
+    )
+    assert result, "fetch_scheduled_exchanges_day_ahead returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
+    )
+    assert snapshot == result
+
+
+def test_get_scheduled_exchanges_total(adapter, session, snapshot):
+    """A09 / contract A05 — finalised aggregate schedule (includes intraday
+    adjustments). Distinct view from day-ahead; events still tagged
+    sourceType=published."""
+    imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
+    exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
+
+    adapter.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+        content=imports.read_bytes(),
+    )
+    adapter.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+        content=exports.read_bytes(),
+    )
+    result = ENTSOE.fetch_scheduled_exchanges_total(
+        zone_key1=ZoneKey("DK-DK2"),
+        zone_key2=ZoneKey("SE-SE4"),
+        session=session,
+    )
+    assert result, "get_scheduled_exchanges_total returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
+    )
+    assert snapshot == result
+
+
 def test_fetch_exchange_forecast_15_min(adapter, session, snapshot):
     imports = base_path_to_mock / "BE_NL_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "BE_NL_exchange_forecast_exports.xml"

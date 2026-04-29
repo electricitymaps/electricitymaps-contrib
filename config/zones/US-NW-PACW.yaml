@@ -265,6 +265,18 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 584.43
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 373.54
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 475.29
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 187.89
@@ -355,6 +367,18 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 66.73943546483589
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 608.43
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 397.54
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 499.29
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -525,12 +549,24 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3066
+    - datetime: '2018-01-01'
+      value: 0.5612
+    - datetime: '2019-01-01'
+      value: 0.4619
     - datetime: '2020-01-01'
       value: 0.7924
     - datetime: '2021-01-01'
       value: 0.5026
 isRenewable:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3066
+    - datetime: '2018-01-01'
+      value: 0.5222
+    - datetime: '2019-01-01'
+      value: 0.4392
     - datetime: '2020-01-01'
       value: 0.762
     - datetime: '2021-01-01'
