@@ -1211,7 +1211,7 @@ def get_physical_flows(
                     logger=logger,
                 )
             )
-    return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
+    return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
 
 def get_raw_exchange_forecast(
@@ -1260,9 +1260,9 @@ def get_raw_exchange_forecast(
                 market_type=EntsoeTypeEnum.TOTAL,
             )
         )
-    merged_day_ahead = ExchangeList(logger).merge_exchanges(day_ahead_lists, logger)
-    merged_total = ExchangeList(logger).merge_exchanges(total_lists, logger)
-    return ExchangeList(logger).update_exchanges(merged_day_ahead, merged_total, logger)
+    merged_day_ahead = ExchangeList.merge_exchanges(day_ahead_lists, logger)
+    merged_total = ExchangeList.merge_exchanges(total_lists, logger)
+    return ExchangeList.update_exchanges(merged_day_ahead, merged_total, logger)
 
 
 @refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
@@ -1343,7 +1343,7 @@ def _get_scheduled_exchanges(
         )
         for is_import, xml in xml_pairs
     ]
-    merged = ExchangeList(logger).merge_exchanges(parsed_lists, logger)
+    merged = ExchangeList.merge_exchanges(parsed_lists, logger)
     return merged.to_list()
 
 
