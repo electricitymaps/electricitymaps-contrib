@@ -63,12 +63,7 @@ def test_parser(zone: ZoneKey, data_type: str, target_datetime: str | None):
         PARSER_DATA_TYPE_TO_DICT[ParserDataType(parser_data_type)][zone]
     )
 
-    args = (
-        zone.split("->")
-        if parser_data_type
-        in EXCHANGE_DATA_TYPES
-        else [zone]
-    )
+    args = zone.split("->") if parser_data_type in EXCHANGE_DATA_TYPES else [zone]
 
     res = parser(*args, target_datetime=parsed_target_datetime, logger=logger)
 
