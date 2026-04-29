@@ -12,7 +12,6 @@ from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityList
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
-    EntsoeTypeEnum,
     _get_datetime_value_from_timeseries,
     _merge_exchange_capacity_forecasts,
     fetch_production,
@@ -274,10 +273,10 @@ def test_fetch_exchange_forecast(adapter, session, snapshot):
     )
 
 
-def test_fetch_scheduled_exchanges_day_ahead(adapter, session, snapshot):
-    """Same A09 mock as fetch_exchange_forecast, but events must come back
-    tagged with sourceType=published (not forecasted) — that is the only
-    semantic difference between the two fetchers."""
+def test_get_scheduled_exchanges_day_ahead(adapter, session, snapshot):
+    """A09 / contract A01 — cleared day-ahead schedule. Events must be
+    tagged sourceType=published per the EXCHANGE_PUBLICATION_DATA_TYPES
+    contract."""
     imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
 
@@ -291,22 +290,22 @@ def test_fetch_scheduled_exchanges_day_ahead(adapter, session, snapshot):
         "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
         content=exports.read_bytes(),
     )
-    result = ENTSOE.fetch_scheduled_exchanges_day_ahead(
+    result = ENTSOE.get_scheduled_exchanges_day_ahead(
         zone_key1=ZoneKey("DK-DK2"),
         zone_key2=ZoneKey("SE-SE4"),
         session=session,
     )
-    assert result, "fetch_scheduled_exchanges_day_ahead returned no events"
-    assert all(
-        event["sourceType"] == EventSourceType.published for event in result
-    ), "every event must be sourceType=published"
+    assert result, "get_scheduled_exchanges_day_ahead returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
+    )
     assert snapshot == result
 
 
-def test_fetch_scheduled_exchanges_day_ahead_total(adapter, session, snapshot):
-    """Same A09 mock, but with `market_type=TOTAL` — surfaces the A05
-    finalised aggregate timeseries instead of the A01 day-ahead clearings.
-    Both views must still be tagged sourceType=published."""
+def test_get_scheduled_exchanges_total(adapter, session, snapshot):
+    """A09 / contract A05 — finalised aggregate schedule (includes intraday
+    adjustments). Distinct view from day-ahead; events still tagged
+    sourceType=published."""
     imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
 
@@ -320,18 +319,15 @@ def test_fetch_scheduled_exchanges_day_ahead_total(adapter, session, snapshot):
         "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
         content=exports.read_bytes(),
     )
-    result = ENTSOE.fetch_scheduled_exchanges_day_ahead(
+    result = ENTSOE.get_scheduled_exchanges_total(
         zone_key1=ZoneKey("DK-DK2"),
         zone_key2=ZoneKey("SE-SE4"),
         session=session,
-        market_type=EntsoeTypeEnum.TOTAL,
     )
-    assert result, (
-        "fetch_scheduled_exchanges_day_ahead(market_type=TOTAL) returned no events"
+    assert result, "get_scheduled_exchanges_total returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
     )
-    assert all(
-        event["sourceType"] == EventSourceType.published for event in result
-    ), "every event must be sourceType=published regardless of market_type"
     assert snapshot == result
 
 

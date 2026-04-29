@@ -394,14 +394,19 @@ def query_exchange(
     )
 
 
-def query_exchange_forecast(
+def query_scheduled_exchanges(
     in_domain: str,
     out_domain: str,
     session: Session,
     target_datetime: datetime | None = None,
 ) -> str | None:
-    """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
+    """Query A09 ("Finalised Schedule") for one direction of a border.
 
+    Returns the cleared commercial schedule (DAY_AHEAD + TOTAL contract
+    types) over the standard forecast window — 24 h prior + 48 h ahead of
+    `target_datetime`. The caller is responsible for filtering the
+    resulting timeseries by `contract_marketagreement.type`.
+    """
     params = {
         # Finalised schedule - A compilation of a set of schedules that have
         # been finalized after a given cutoff.
@@ -1132,7 +1137,7 @@ def _fetch_a09_xml_for_pairs(
         for is_import in (True, False):
             domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
             try:
-                xml = query_exchange_forecast(
+                xml = query_scheduled_exchanges(
                     domain1, domain2, session, target_datetime
                 )
             except Exception as e:
@@ -1255,13 +1260,9 @@ def get_raw_exchange_forecast(
                 market_type=EntsoeTypeEnum.TOTAL,
             )
         )
-    merged_day_ahead = ExchangeList(logger).merge_exchanges(
-        day_ahead_lists, logger
-    )
+    merged_day_ahead = ExchangeList(logger).merge_exchanges(day_ahead_lists, logger)
     merged_total = ExchangeList(logger).merge_exchanges(total_lists, logger)
-    return ExchangeList(logger).update_exchanges(
-        merged_day_ahead, merged_total, logger
-    )
+    return ExchangeList(logger).update_exchanges(merged_day_ahead, merged_total, logger)
 
 
 @refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
@@ -1306,34 +1307,23 @@ def fetch_exchange_forecast(
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(days=1))
-def fetch_scheduled_exchanges_day_ahead(
+def _get_scheduled_exchanges(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-    market_type: EntsoeTypeEnum = EntsoeTypeEnum.DAY_AHEAD,
+    market_type: EntsoeTypeEnum,
+    session: Session | None,
+    target_datetime: datetime | None,
+    logger: Logger,
 ) -> list:
-    """Day-ahead scheduled commercial exchanges between two zones.
+    """Shared body for the two pinned `get_scheduled_exchanges_*` fetchers.
 
-    Pulls A09 ("Finalised Schedule") documents from ENTSO-E and emits events
-    tagged with `sourceType=published`, satisfying the
-    `EXCHANGE_PUBLICATION_DATA_TYPES` contract for the
-    `scheduledExchangesDayAhead` slot.
+    Pulls A09 ("Finalised Schedule") documents from ENTSO-E, filters
+    timeseries by `market_type` (A01 cleared day-ahead vs A05 finalised
+    total), and emits events tagged `sourceType=published` per the
+    `EXCHANGE_PUBLICATION_DATA_TYPES` contract.
 
-    `market_type` selects which contract type within the A09 document to
-    surface:
-      - `EntsoeTypeEnum.DAY_AHEAD` (A01, default) — cleared day-ahead
-        commercial schedule. The semantically-correct view for the
-        `scheduledExchangesDayAhead` model field.
-      - `EntsoeTypeEnum.TOTAL` (A05) — finalised aggregate schedule (may
-        include intraday adjustments). Useful for ad-hoc / debug retrieval
-        but not what `scheduledExchangesDayAhead` callers should request.
-
-    Per-direction lists are concatenated with `merge_exchanges`, not
-    `update_exchanges`, so values from one filter never silently override
-    the other.
+    Per-direction lists are concatenated with `merge_exchanges` — the two
+    contract types are never silently merged across each other.
     """
     if not session:
         session = Session()
@@ -1355,6 +1345,55 @@ def fetch_scheduled_exchanges_day_ahead(
     ]
     merged = ExchangeList(logger).merge_exchanges(parsed_lists, logger)
     return merged.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def get_scheduled_exchanges_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Cleared day-ahead scheduled commercial exchanges (A09 / contract A01).
+
+    Wired to the `scheduledExchangesDayAhead` model field. Returns events
+    tagged `sourceType=published`.
+    """
+    return _get_scheduled_exchanges(
+        zone_key1,
+        zone_key2,
+        market_type=EntsoeTypeEnum.DAY_AHEAD,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+
+
+@refetch_frequency(timedelta(days=1))
+def get_scheduled_exchanges_total(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Finalised aggregate scheduled commercial exchanges (A09 / contract A05).
+
+    The TOTAL contract type covers the cleared schedule including any
+    post-day-ahead intraday adjustments. Wire this to a `scheduledExchangesTotal`
+    model field if/when one is introduced; do *not* wire it to
+    `scheduledExchangesDayAhead` (semantically inconsistent). Returns events
+    tagged `sourceType=published`.
+    """
+    return _get_scheduled_exchanges(
+        zone_key1,
+        zone_key2,
+        market_type=EntsoeTypeEnum.TOTAL,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
 
 
 @refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
