@@ -1348,7 +1348,7 @@ def _get_scheduled_exchanges(
 
 
 @refetch_frequency(timedelta(days=1))
-def get_scheduled_exchanges_day_ahead(
+def fetch_scheduled_exchanges_day_ahead(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
@@ -1371,7 +1371,7 @@ def get_scheduled_exchanges_day_ahead(
 
 
 @refetch_frequency(timedelta(days=1))
-def get_scheduled_exchanges_total(
+def fetch_scheduled_exchanges_total(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,

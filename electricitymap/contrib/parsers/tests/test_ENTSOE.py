@@ -290,7 +290,7 @@ def test_get_scheduled_exchanges_day_ahead(adapter, session, snapshot):
         "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
         content=exports.read_bytes(),
     )
-    result = ENTSOE.get_scheduled_exchanges_day_ahead(
+    result = ENTSOE.fetch_scheduled_exchanges_day_ahead(
         zone_key1=ZoneKey("DK-DK2"),
         zone_key2=ZoneKey("SE-SE4"),
         session=session,
@@ -319,7 +319,7 @@ def test_get_scheduled_exchanges_total(adapter, session, snapshot):
         "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
         content=exports.read_bytes(),
     )
-    result = ENTSOE.get_scheduled_exchanges_total(
+    result = ENTSOE.fetch_scheduled_exchanges_total(
         zone_key1=ZoneKey("DK-DK2"),
         zone_key2=ZoneKey("SE-SE4"),
         session=session,
