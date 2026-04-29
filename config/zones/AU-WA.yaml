@@ -3,12 +3,6 @@ bounding_box:
     - -35.13718798554355
   - - 129.00189001890018
     - -13.723895555988058
-center_point:
-  - 121.21840125979017
-  - -24.502907008372944
-centroid:
-  - 120.36907193716478
-  - -23.046206513286926
 capacity:
   battery storage:
     - datetime: '2024-01-01'
@@ -66,6 +60,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 1105.87
+center_point:
+  - 121.21840125979017
+  - -24.502907008372944
+centroid:
+  - 120.36907193716478
+  - -23.046206513286926
 contributors:
   - jarek
   - corradio
@@ -81,37 +81,37 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 288.89
+        value: 288.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 301.2
+        value: 290.63
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 303.91
+        value: 317.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 281.91
+        value: 277.98
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 321.89
+        value: 321.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 334.2
+        value: 323.63
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 336.91
+        value: 350.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 314.91
+        value: 310.98
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -269,23 +269,23 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.4461
+      value: 0.4463
     - datetime: '2023-01-01'
-      value: 0.4809
+      value: 0.4929
     - datetime: '2024-01-01'
-      value: 0.4567
+      value: 0.4339
     - datetime: '2025-01-01'
-      value: 0.5084
+      value: 0.5174
 isRenewable:
   battery discharge:
     - datetime: '2020-01-01'
-      value: 0.4461
+      value: 0.4463
     - datetime: '2023-01-01'
-      value: 0.4809
+      value: 0.4929
     - datetime: '2024-01-01'
-      value: 0.4567
+      value: 0.4339
     - datetime: '2025-01-01'
-      value: 0.5084
+      value: 0.5174
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production

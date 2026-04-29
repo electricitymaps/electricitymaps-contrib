@@ -3,12 +3,6 @@ bounding_box:
     - -43.63925109614899
   - - 148.33408334083336
     - -40.72699753107879
-center_point:
-  - 146.52655501092056
-  - -42.17462783409918
-centroid:
-  - 146.9092772560378
-  - -42.31763149702592
 capacity:
   biomass:
     - datetime: '2020-01-01'
@@ -40,6 +34,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 566.0
+center_point:
+  - 146.52655501092056
+  - -42.17462783409918
+centroid:
+  - 146.9092772560378
+  - -42.31763149702592
 contributors:
   - brandongalbraith
   - jarek
@@ -52,15 +52,23 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 72.91
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 0.38
+        value: 5.59
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 105.91
+      - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 33.38
+        value: 38.59
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -217,12 +225,16 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.8029
     - datetime: '2022-01-01'
-      value: 0.999
+      value: 0.9849
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.8029
     - datetime: '2022-01-01'
-      value: 0.999
+      value: 0.9849
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

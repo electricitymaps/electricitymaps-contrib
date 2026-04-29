@@ -6,12 +6,6 @@ bounding_box:
     - 36.00623288931391
   - - 3.317433174331768
     - 43.76270184394805
-center_point:
-  - -2.930449175092898
-  - 39.92267065800313
-centroid:
-  - -4.034615295817258
-  - 40.571071296247744
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -226,6 +220,12 @@ capacity:
     - datetime: '2025-01-01'
       source: ree.es
       value: 31558.0
+center_point:
+  - -2.930449175092898
+  - 39.92267065800313
+centroid:
+  - -4.034615295817258
+  - 40.571071296247744
 contributors:
   - brandongalbraith
   - corradio
@@ -243,7 +243,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 94.75
+        value: 102.69
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -276,6 +276,26 @@ emissionFactors:
         value: 411.76
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average
+        value: 265.86
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 207.02
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 241.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 213.17
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 174.91
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 127.8
@@ -286,7 +306,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 161.38
+        value: 161.37
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -294,7 +314,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 66.98
+        value: 66.96
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -317,7 +337,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 127.75
+        value: 135.69
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -356,6 +376,26 @@ emissionFactors:
       value: 10.7
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average; UNECE 2022
+        value: 276.56
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 217.72
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 251.97
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 223.87
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 185.61
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
         value: 138.5
@@ -366,7 +406,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 172.08
+        value: 172.07
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
@@ -374,7 +414,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 77.68
+        value: 77.66
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
@@ -562,8 +602,18 @@ hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.7723
+      value: 0.7533
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.6249
+    - datetime: '2016-01-01'
+      value: 0.6861
+    - datetime: '2017-01-01'
+      value: 0.6332
+    - datetime: '2018-01-01'
+      value: 0.6643
+    - datetime: '2019-01-01'
+      value: 0.64
     - datetime: '2020-01-01'
       value: 0.7211
     - datetime: '2021-01-01'
@@ -573,14 +623,24 @@ isLowCarbon:
     - datetime: '2023-01-01'
       value: 0.8129
     - datetime: '2024-01-01'
-      value: 0.8709
+      value: 0.871
     - datetime: '2025-01-01'
       value: 0.8533
 isRenewable:
   battery discharge:
     - datetime: '2025-01-01'
-      value: 0.5509
+      value: 0.5055
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.3799
+    - datetime: '2016-01-01'
+      value: 0.4364
+    - datetime: '2017-01-01'
+      value: 0.3619
+    - datetime: '2018-01-01'
+      value: 0.4198
+    - datetime: '2019-01-01'
+      value: 0.3869
     - datetime: '2020-01-01'
       value: 0.4667
     - datetime: '2021-01-01'
@@ -590,7 +650,7 @@ isRenewable:
     - datetime: '2023-01-01'
       value: 0.5891
     - datetime: '2024-01-01'
-      value: 0.6584
+      value: 0.6587
     - datetime: '2025-01-01'
       value: 0.6595
 parsers:
