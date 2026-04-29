@@ -18,7 +18,7 @@ from electricitymap.contrib.parsers.lib.quality import (
     validate_consumption,
     validate_exchange,
 )
-from electricitymap.contrib.types import ParserDataType, ZoneKey, EXCHANGE_DATA_TYPES
+from electricitymap.contrib.types import EXCHANGE_DATA_TYPES, ParserDataType, ZoneKey
 
 logger = logging.getLogger(__name__)
 
