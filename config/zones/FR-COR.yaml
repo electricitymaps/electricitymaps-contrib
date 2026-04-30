@@ -3,12 +3,6 @@ bounding_box:
     - 41.372793512907634
   - - 9.55269552695529
     - 42.99134819698351
-center_point:
-  - 9.055890558905617
-  - 42.18207085494557
-centroid:
-  - 9.053250532505347
-  - 42.16771232385489
 capacity:
   biomass: 2.295
   gas: 250
@@ -17,6 +11,12 @@ capacity:
   oil: 224
   solar: 145.123
   wind: 18
+center_point:
+  - 9.055890558905617
+  - 42.18207085494557
+centroid:
+  - 9.053250532505347
+  - 42.16771232385489
 contributors:
   - PETILLON-Sebastien
   - VIKTORVAV99

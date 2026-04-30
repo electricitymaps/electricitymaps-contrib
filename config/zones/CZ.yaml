@@ -3,12 +3,6 @@ bounding_box:
     - 48.55826041719142
   - - 18.833588335883377
     - 51.036895883875246
-center_point:
-  - 15.463725623630856
-  - 49.74484366663795
-centroid:
-  - 15.5263756027391
-  - 49.77451103571735
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -146,6 +140,12 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 366.0
+center_point:
+  - 15.463725623630856
+  - 49.74484366663795
+centroid:
+  - 15.5263756027391
+  - 49.77451103571735
 contributors:
   - corradio
   - Frantisek12
@@ -185,6 +185,26 @@ emissionFactors:
         source: EU-ETS, ENTSO-E 2024
         value: 370.68
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average
+        value: 577.24
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 601.12
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 612.48
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 544.97
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 454.2
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -254,6 +274,26 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average; UNECE 2022
+        value: 587.94
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 611.82
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 623.18
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 555.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 464.9
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
@@ -454,6 +494,16 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.4097
+    - datetime: '2016-01-01'
+      value: 0.3781
+    - datetime: '2017-01-01'
+      value: 0.3658
+    - datetime: '2018-01-01'
+      value: 0.433
+    - datetime: '2019-01-01'
+      value: 0.5102
     - datetime: '2020-01-01'
       value: 0.5331
     - datetime: '2021-01-01'
@@ -468,6 +518,16 @@ isLowCarbon:
       value: 0.5197
 isRenewable:
   hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.0976
+    - datetime: '2016-01-01'
+      value: 0.0911
+    - datetime: '2017-01-01'
+      value: 0.1179
+    - datetime: '2018-01-01'
+      value: 0.1158
+    - datetime: '2019-01-01'
+      value: 0.1639
     - datetime: '2020-01-01'
       value: 0.1529
     - datetime: '2021-01-01'
@@ -488,6 +548,9 @@ parsers:
   production: CZ.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

@@ -481,9 +481,17 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 377.02
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 433.82
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 385.57
+        value: 385.56
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -542,6 +550,18 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 376.4
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 431.51
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
         value: 387.01
@@ -561,9 +581,17 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 410.02
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 466.82
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 418.57
+        value: 418.56
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -625,6 +653,18 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 66.73943546483589
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 400.4
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 455.51
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 24.0
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
@@ -787,16 +827,36 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2941
+    - datetime: '2018-01-01'
+      value: 0.2552
     - datetime: '2025-01-01'
       value: 0.3413
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.2946
+    - datetime: '2018-01-01'
+      value: 0.258
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2025-01-01'
       value: 0.3422
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0512
+    - datetime: '2018-01-01'
+      value: 0.0388
     - datetime: '2025-01-01'
       value: 0.0659
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0621
+    - datetime: '2018-01-01'
+      value: 0.0381
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2025-01-01'
       value: 0.0605
 parsers:

@@ -157,6 +157,14 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 413.7
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 472.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 298.9
@@ -175,7 +183,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 412.87
+        value: 421.22
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
@@ -271,6 +279,14 @@ emissionFactors:
         value: 66.73943546483589
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 437.7
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 496.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
         value: 322.9
@@ -289,7 +305,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 436.87
+        value: 445.22
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
@@ -471,6 +487,10 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.2742
+    - datetime: '2018-01-01'
+      value: 0.3165
     - datetime: '2020-01-01'
       value: 0.3559
     - datetime: '2021-01-01'
@@ -480,11 +500,15 @@ isLowCarbon:
     - datetime: '2023-01-01'
       value: 0.0067
     - datetime: '2024-01-01'
-      value: 0.154
+      value: 0.1502
     - datetime: '2025-01-01'
       value: 0.0973
 isRenewable:
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0818
+    - datetime: '2018-01-01'
+      value: 0.1089
     - datetime: '2020-01-01'
       value: 0.0087
     - datetime: '2021-01-01'
@@ -494,7 +518,7 @@ isRenewable:
     - datetime: '2023-01-01'
       value: 0.0009
     - datetime: '2024-01-01'
-      value: 0.0601
+      value: 0.0606
     - datetime: '2025-01-01'
       value: 0.0141
 parsers:

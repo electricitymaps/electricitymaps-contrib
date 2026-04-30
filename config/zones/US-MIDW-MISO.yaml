@@ -1286,6 +1286,14 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 483.42
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 602.75
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
         value: 428.67
@@ -1360,6 +1368,14 @@ emissionFactors:
         value: 419.98313946829467
   lifecycle:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 516.42
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 635.75
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
@@ -1597,10 +1613,18 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3261
+    - datetime: '2018-01-01'
+      value: 0.2485
     - datetime: '2025-01-01'
       value: 0.3682
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1771
+    - datetime: '2018-01-01'
+      value: 0.0968
     - datetime: '2025-01-01'
       value: 0.2165
 parsers:

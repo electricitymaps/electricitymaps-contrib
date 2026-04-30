@@ -213,9 +213,21 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 107.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 208.02
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 420.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 248.2
+        value: 248.21
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -292,9 +304,21 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 140.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 241.02
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 453.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 281.2
+        value: 281.21
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -532,10 +556,22 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.7625
+    - datetime: '2018-01-01'
+      value: 0.6623
+    - datetime: '2019-01-01'
+      value: 0.4521
     - datetime: '2025-01-01'
       value: 0.6298
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.7625
+    - datetime: '2018-01-01'
+      value: 0.6574
+    - datetime: '2019-01-01'
+      value: 0.4488
     - datetime: '2025-01-01'
       value: 0.6283
 parsers:
