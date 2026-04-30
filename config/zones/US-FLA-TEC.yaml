@@ -43,6 +43,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 486.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 0.0
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -83,6 +86,9 @@ capacity:
     - datetime: '2025-12-01'
       source: EIA.gov
       value: 6258.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 6746.6
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
