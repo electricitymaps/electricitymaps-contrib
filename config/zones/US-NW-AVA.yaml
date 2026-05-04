@@ -46,9 +46,12 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 1170.4
-    - datetime: '2025-12-01'
+    - datetime: '2025-11-01'
       source: EIA.gov
       value: 1170.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1168.4
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov

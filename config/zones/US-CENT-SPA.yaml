@@ -68,6 +68,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 161.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 134.5
   nuclear:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -100,6 +103,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 499.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 646.5
 center_point:
   - -90.55710557105566
   - 36.1164262674517
