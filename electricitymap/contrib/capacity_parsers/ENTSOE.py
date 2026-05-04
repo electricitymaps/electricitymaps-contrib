@@ -70,13 +70,14 @@ def fetch_production_capacity(
         )
         point = timeseries.find_all("point")
         value = float(point[0].find_all("quantity")[0].contents[0])
-        if ENTSOE_CODE_TO_EM_MAPPING[fuel_code] not in capacity_dict:
-            capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]] = {
+        em_mode = str(ENTSOE_CODE_TO_EM_MAPPING[fuel_code])
+        if em_mode not in capacity_dict:
+            capacity_dict[em_mode] = {
                 "value": 0,
                 "datetime": f"{target_datetime.year}-01-01",
                 "source": SOURCE,
             }
-        capacity_dict[ENTSOE_CODE_TO_EM_MAPPING[fuel_code]]["value"] += value
+        capacity_dict[em_mode]["value"] += value
     if capacity_dict:
         logger.info(
             f"Capacity data for {zone_key} on {target_datetime.date()}: \n{capacity_dict}"

@@ -62,9 +62,8 @@ capacity:
     - datetime: '2026-01-01'
       source: entsoe.eu
       value: 61.2
-  ? !!python/object/apply:electricitymap.contrib.parsers.lib.config.ProductionModes
-    - solar
-  : - datetime: '2026-01-01'
+  solar:
+    - datetime: '2026-01-01'
       source: entsoe.eu
       value: 1.6
   unknown:
