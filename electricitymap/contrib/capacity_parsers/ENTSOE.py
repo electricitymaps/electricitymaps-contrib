@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import getLogger
 from typing import Any
 
@@ -53,8 +53,7 @@ def query_capacity(
         session,
         params,
         target_datetime=target_datetime,
-        span=(0, 72),  # DO NOT USE A NEGATIVE LOOKBACK
-        function_name=query_capacity.__name__,
+        span=(timedelta(0), timedelta(hours=72)),  # DO NOT USE A NEGATIVE LOOKBACK
     )
 
 

@@ -46,6 +46,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4921.5
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4949.7
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -56,6 +59,14 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 60.2
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 61.2
+  ? !!python/object/apply:electricitymap.contrib.parsers.lib.config.ProductionModes
+    - solar
+  : - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1.6
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -88,6 +99,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2120.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2121.1
 center_point:
   - 8.682747834267172
   - 62.25785497399018

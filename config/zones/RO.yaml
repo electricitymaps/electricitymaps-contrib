@@ -9,6 +9,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 137.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 493.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -56,6 +59,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2162.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1647.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -84,6 +90,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2179.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2275.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -112,6 +121,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 6132.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 6184.0
   nuclear:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -144,6 +156,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1588.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2788.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -166,6 +181,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 3027.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 3068.0
 center_point:
   - 24.810578337505376
   - 45.93705795182545
