@@ -131,24 +131,6 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 426.48
-    - datetime: '2019-01-01'
-      source: entsoe.eu
-      value: 22.63
-    - datetime: '2020-01-01'
-      source: entsoe.eu
-      value: 25.03
-    - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 24.66
-    - datetime: '2022-01-01'
-      source: entsoe.eu
-      value: 34.64
-    - datetime: '2025-01-01'
-      source: entsoe.eu
-      value: 32.89
-    - datetime: '2026-01-01'
-      source: entsoe.eu
-      value: 32.891
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu

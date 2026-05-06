@@ -7,9 +7,6 @@ capacity:
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 234.0
-    - datetime: '2018-01-01'
-      source: entsoe.eu
       value: 1173.0
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -121,9 +118,6 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 992.0
-    - datetime: '2025-01-01'
-      source: entsoe.eu
-      value: 734.42
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -165,9 +159,6 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 1793.0
-    - datetime: '2025-01-01'
-      source: entsoe.eu
-      value: 1404.15
 center_point:
   - 12.689554961621594
   - 55.591969176610924
