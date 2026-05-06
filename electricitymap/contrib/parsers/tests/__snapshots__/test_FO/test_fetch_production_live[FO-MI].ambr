@@ -543,6 +543,7 @@
       'source': 'sev.fo',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'storage': dict({
+        'hydro': -19.73,
       }),
       'zoneKey': 'FO-MI',
     }),
