@@ -47,6 +47,7 @@ class ParserDataType(Enum):
     CORE_EXTERNAL_ATC_DAY_AHEAD = "coreExternalAtcDayAhead"
     MAX_BEX_DAY_AHEAD = "maxBexDayAhead"
     SCHEDULED_EXCHANGES_DAY_AHEAD = "scheduledExchangesDayAhead"
+    SCHEDULED_EXCHANGES_TOTAL = "scheduledExchangesTotal"
     MAX_BFLOW_DAY_AHEAD = "maxBflowDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
@@ -71,6 +72,7 @@ EXCHANGE_PUBLICATION_DATA_TYPES = [
     ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
     ParserDataType.MAX_BEX_DAY_AHEAD,
     ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_TOTAL,
     ParserDataType.MAX_BFLOW_DAY_AHEAD,
 ]
 # Every ParserDataType registered on the exchange side (two-zone-key call
