@@ -4,6 +4,10 @@ bounding_box:
   - - 17.148771487714896
     - 49.00762042674033
 capacity:
+  battery storage:
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1100.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -29,6 +33,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 677.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 701.0
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -64,16 +71,28 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 4225.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4276.0
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.9
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 0.0
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 1.0
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 0.0
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 0.25
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 0.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -102,6 +121,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 8427.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 8484.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -124,6 +146,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 3512.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4022.0
   nuclear:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -172,6 +197,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 8254.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 9766.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -197,6 +225,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 855.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 851.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -225,6 +256,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4035.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4140.0
 center_point:
   - 14.586486182061494
   - 47.681668614089304

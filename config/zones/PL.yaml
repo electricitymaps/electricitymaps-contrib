@@ -31,7 +31,10 @@ capacity:
       value: 662.3
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 636.39
+      value: 636.389
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 698.294
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -59,7 +62,10 @@ capacity:
       value: 26387.51
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 25482.87
+      value: 25494.873
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 25493.593
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -87,7 +93,10 @@ capacity:
       value: 5435.99
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 5724.58
+      value: 5810.916
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 5929.906
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -115,7 +124,10 @@ capacity:
       value: 788.49
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 789.9200000000001
+      value: 789.922
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 790.65
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -134,7 +146,7 @@ capacity:
       value: 1588.81
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 1524.77
+      value: 1524.774
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -148,6 +160,12 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 392.54
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 392.535
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 405.035
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -175,7 +193,10 @@ capacity:
       value: 14608.7
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 17705.36
+      value: 17815.728
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 20734.092
   unknown:
     - datetime: '2022-01-01'
       source: entsoe.eu
@@ -188,7 +209,10 @@ capacity:
       value: 1642.76
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 1803.73
+      value: 1737.99
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1979.566
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -216,7 +240,10 @@ capacity:
       value: 9582.93
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 10292.56
+      value: 10299.316
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 10699.706
 center_point:
   - 19.17087591202222
   - 52.06702570012759
