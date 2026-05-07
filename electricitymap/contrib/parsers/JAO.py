@@ -44,9 +44,9 @@ from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ScheduledExchange,
 )
-from electricitymap.contrib.types import MarketAgreementType
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.types import MarketAgreementType
 
 SOURCE = "jao.eu"
 REQUEST_TIMEOUT_SECONDS = 30

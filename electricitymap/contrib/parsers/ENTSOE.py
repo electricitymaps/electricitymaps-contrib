@@ -44,7 +44,6 @@ from electricitymap.contrib.lib.models.events import (
     ScheduledExchange,
     StorageMix,
 )
-from electricitymap.contrib.types import MarketAgreementType
 from electricitymap.contrib.parsers.lib.config import (
     ProductionModes,
     StorageModes,
@@ -52,6 +51,7 @@ from electricitymap.contrib.parsers.lib.config import (
 )
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.types import MarketAgreementType
 
 SOURCE = "entsoe.eu"
 
