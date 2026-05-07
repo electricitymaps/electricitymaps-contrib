@@ -40,7 +40,11 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeCapacityList,
     ExchangeList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType, ScheduledExchange
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    MarketAgreementType,
+    ScheduledExchange,
+)
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
@@ -418,7 +422,7 @@ def fetch_core_scheduled_exchanges_day_ahead(
             source=evt.source,
             netFlow=evt.netFlow,
             sourceType=evt.sourceType,
-            marketAgreementType="DAY_AHEAD",
+            marketAgreementType=MarketAgreementType.DAY_AHEAD,
         ).to_dict()
         for evt in exchange_list.events
     ]

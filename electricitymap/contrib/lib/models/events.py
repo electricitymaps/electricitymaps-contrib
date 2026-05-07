@@ -293,6 +293,18 @@ class EventSourceType(str, Enum):
     published = "published"
 
 
+class MarketAgreementType(str, Enum):
+    """Subset of ENTSOE's Contract_MarketAgreement.Type codelist.
+
+    The full codelist also includes A02 (week-ahead), A03 (month-ahead),
+    A04 (year-ahead), A07 (intraday), and others — extend this enum by
+    adding the matching value as new storage requirements emerge.
+    """
+
+    DAY_AHEAD = "DAY_AHEAD"  # A01: cleared day-ahead schedule.
+    TOTAL = "TOTAL"  # A05: finalised total schedule (DA + ID + balancing).
+
+
 class Event(BaseModel, ABC):
     """
     An abstract class representing all types of electricity events that can occur in a zone.
@@ -513,13 +525,7 @@ class ScheduledExchange(Exchange):
     """
 
     sourceType: EventSourceType = EventSourceType.published
-    marketAgreementType: str
-
-    @validator("marketAgreementType")
-    def _validate_market_agreement_type(cls, v: str):
-        if v not in ("DAY_AHEAD", "TOTAL"):
-            raise ValueError(f"Unknown marketAgreementType: {v}")
-        return v
+    marketAgreementType: MarketAgreementType
 
     def to_dict(self) -> dict[str, Any]:
         return {
