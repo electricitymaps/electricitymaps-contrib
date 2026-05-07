@@ -59,6 +59,9 @@ capacity:
     - datetime: '2024-01-01'
       source: energimyndigheten.se
       value: 7075.25
+    - datetime: '2025-01-01'
+      source: energimyndigheten.se
+      value: 7765.05
 country: SE
 country_name: Sweden
 currency: EUR
