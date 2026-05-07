@@ -40,7 +40,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeCapacityList,
     ExchangeList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.events import EventSourceType, ScheduledExchange
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 
@@ -410,7 +410,18 @@ def fetch_core_scheduled_exchanges_day_ahead(
         to_utc,
         logger,
     )
-    return _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger).to_list()
+    exchange_list = _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger)
+    return [
+        ScheduledExchange(
+            zoneKey=evt.zoneKey,
+            datetime=evt.datetime,
+            source=evt.source,
+            netFlow=evt.netFlow,
+            sourceType=evt.sourceType,
+            marketAgreementType="DAY_AHEAD",
+        ).to_dict()
+        for evt in exchange_list.events
+    ]
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))

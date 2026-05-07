@@ -41,6 +41,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
+    ScheduledExchange,
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import (
@@ -1344,7 +1345,20 @@ def _get_scheduled_exchanges(
         for is_import, xml in xml_pairs
     ]
     merged = ExchangeList.merge_exchanges(parsed_lists, logger)
-    return merged.to_list()
+    market_agreement_type = (
+        "DAY_AHEAD" if market_type == EntsoeTypeEnum.DAY_AHEAD else "TOTAL"
+    )
+    return [
+        ScheduledExchange(
+            zoneKey=evt.zoneKey,
+            datetime=evt.datetime,
+            source=evt.source,
+            netFlow=evt.netFlow,
+            sourceType=evt.sourceType,
+            marketAgreementType=market_agreement_type,
+        ).to_dict()
+        for evt in merged.events
+    ]
 
 
 @refetch_frequency(timedelta(days=1))

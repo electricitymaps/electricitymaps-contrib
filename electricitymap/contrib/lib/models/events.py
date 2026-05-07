@@ -500,6 +500,34 @@ class Exchange(Event):
         }
 
 
+class ScheduledExchange(Exchange):
+    """Exchange event tagged with a market_agreement_type discriminator
+    distinguishing day-ahead-cleared (A01) and total-cleared (A05) schedules.
+
+    Both share Exchange's net-flow shape; the discriminator — mirroring
+    ENTSOE's Contract_MarketAgreement.Type vocabulary — is what keeps
+    them apart in the unified bronze table downstream. Subclassing
+    Exchange (rather than adding an optional field) keeps every other
+    Exchange parser untouched and gives the discriminator a typed,
+    Pydantic-validated home next to where the parser produces it.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    marketAgreementType: str
+
+    @validator("marketAgreementType")
+    def _validate_market_agreement_type(cls, v: str):
+        if v not in ("DAY_AHEAD", "TOTAL"):
+            raise ValueError(f"Unknown marketAgreementType: {v}")
+        return v
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            **super().to_dict(),
+            "marketAgreementType": self.marketAgreementType,
+        }
+
+
 class TotalProduction(Event):
     """Represents the total production of a zone at a given time. The value is in MW."""
 
