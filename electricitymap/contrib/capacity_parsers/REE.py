@@ -30,8 +30,12 @@ MODE_MAPPING = {
     "Turbina de vapor": "gas",
 }
 
-GENERATION_URL = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion"
-STORAGE_URL = "https://apidatos.ree.es/es/datos/almacenamiento/potencia-instalada-almacenamiento"
+GENERATION_URL = (
+    "https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion"
+)
+STORAGE_URL = (
+    "https://apidatos.ree.es/es/datos/almacenamiento/potencia-instalada-almacenamiento"
+)
 
 GEO_LIMIT_TO_GEO_IDS = {
     "peninsular": 8741,
