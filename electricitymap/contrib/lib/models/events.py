@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -291,18 +291,6 @@ class EventSourceType(str, Enum):
     # capacity, cleared market-coupling schedules, allocated ATC. Not a
     # statistical prediction, but still legitimately dated in the future.
     published = "published"
-
-
-class MarketAgreementType(str, Enum):
-    """Subset of ENTSOE's Contract_MarketAgreement.Type codelist.
-
-    The full codelist also includes A02 (week-ahead), A03 (month-ahead),
-    A04 (year-ahead), A07 (intraday), and others — extend this enum by
-    adding the matching value as new storage requirements emerge.
-    """
-
-    DAY_AHEAD = "DAY_AHEAD"  # A01: cleared day-ahead schedule.
-    TOTAL = "TOTAL"  # A05: finalised total schedule (DA + ID + balancing).
 
 
 class Event(BaseModel, ABC):

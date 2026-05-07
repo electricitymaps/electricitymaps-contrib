@@ -3,6 +3,8 @@
 from enum import Enum
 from typing import NewType
 
+from electricitymap.contrib.types.market_agreement_type import MarketAgreementType
+
 ZoneKey = NewType("ZoneKey", str)
 """
 ZoneKey is used throughout the code to identify zones.
@@ -96,6 +98,7 @@ __all__: list[str] = [
     "Point",
     "BoundingBox",
     "ParserDataType",
+    "MarketAgreementType",
     "ALL_DATA_TYPES",
     "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
     "EXCHANGE_DATA_TYPES",

@@ -40,11 +40,11 @@ from electricitymap.contrib.lib.models.event_lists import (
 )
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
-    MarketAgreementType,
     ProductionMix,
     ScheduledExchange,
     StorageMix,
 )
+from electricitymap.contrib.types import MarketAgreementType
 from electricitymap.contrib.parsers.lib.config import (
     ProductionModes,
     StorageModes,
