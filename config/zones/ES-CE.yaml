@@ -5,11 +5,11 @@ bounding_box:
     - 35.92262502599443
 capacity:
   gas:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 13.0
   oil:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 78.0
 center_point:
