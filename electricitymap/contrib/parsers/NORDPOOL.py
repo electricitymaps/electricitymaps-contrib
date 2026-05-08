@@ -73,6 +73,7 @@ ZONE_MAPPING = {
     "NO-NO4": "NO4",
     "NO-NO5": "NO5",
     "PL": "PL",
+    "SK": "SK",
     "SE-SE1": "SE1",
     "SE-SE2": "SE2",
     "SE-SE3": "SE3",
