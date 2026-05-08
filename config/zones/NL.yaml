@@ -3,12 +3,6 @@ bounding_box:
     - 50.74924823445062
   - - 7.194671946719495
     - 53.46115020290665
-center_point:
-  - 5.942345089242051
-  - 52.31811804349822
-centroid:
-  - 5.1619093032813215
-  - 51.90639365146702
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -31,10 +25,10 @@ capacity:
       value: 1335.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 1201.0
-    - datetime: '2025-01-01'
-      source: entsoe.eu
       value: 1088.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 1195.0
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -51,7 +45,7 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 4006.0
-    - datetime: '2025-01-01'
+    - datetime: '2023-01-01'
       source: entsoe.eu
       value: 4012.0
   gas:
@@ -75,10 +69,13 @@ capacity:
       value: 18530.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 18351.0
+      value: 18661.0
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 18476.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 18718.0
+      value: 18412.0
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -94,12 +91,6 @@ capacity:
       source: entsoe.eu
       value: 37.0
     - datetime: '2021-01-01'
-      source: entsoe.eu
-      value: 38.0
-    - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 37.0
-    - datetime: '2024-01-01'
       source: entsoe.eu
       value: 38.0
   hydro storage:
@@ -141,13 +132,13 @@ capacity:
       value: 14911.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 22590.0
+      value: 24302.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 24261.0
+      value: 27980.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 27259.0
+      value: 29282.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -179,13 +170,19 @@ capacity:
       value: 7770.0
     - datetime: '2023-01-01'
       source: entsoe.eu
-      value: 9410.0
+      value: 11496.0
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 10790.0
+      value: 11694.0
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 11706.0
+      value: 11917.0
+center_point:
+  - 5.942345089242051
+  - 52.31811804349822
+centroid:
+  - 5.1619093032813215
+  - 51.90639365146702
 contributors:
   - corradio
   - PaulCornelissen
