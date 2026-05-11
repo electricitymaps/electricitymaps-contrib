@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
 from datetime import date as _date
 from datetime import datetime, timedelta, timezone
