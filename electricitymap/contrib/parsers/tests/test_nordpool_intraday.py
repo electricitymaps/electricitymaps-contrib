@@ -11,10 +11,6 @@ import electricitymap.contrib.parsers.NORDPOOL as nordpool_mod
 from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
     ContractStatisticsResponse,
 )
-from electricitymap.contrib.parsers.NORDPOOL import (
-    IntradayContractStatisticsResult,
-    fetch_intraday_contract_statistics,
-)
 
 FIXTURE = Path(__file__).parent / "fixtures" / "stats_ger_2026-05-09.json"
 
@@ -58,13 +54,13 @@ def test_fetch_intraday_contract_statistics_happy_path(real_payload) -> None:
     payload = copy.deepcopy(real_payload)
     session = _stub_session(payload)
 
-    result = fetch_intraday_contract_statistics(
+    result = nordpool_mod.fetch_intraday_contract_statistics(
         area="GER",
         delivery_date=date(2026, 5, 9),
         session=session,
     )
 
-    assert isinstance(result, IntradayContractStatisticsResult)
+    assert isinstance(result, nordpool_mod.IntradayContractStatisticsResult)
     assert result.raw == payload
     assert result.parsed is not None
     # pydantic v1 uses __root__, not .root
@@ -82,7 +78,7 @@ def test_fetch_intraday_contract_statistics_drift(real_payload) -> None:
     drifted_payload[0]["contracts"][0]["_drift_field_"] = "boom"
     session = _stub_session(drifted_payload)
 
-    result = fetch_intraday_contract_statistics(
+    result = nordpool_mod.fetch_intraday_contract_statistics(
         area="GER",
         delivery_date=date(2026, 5, 9),
         session=session,
