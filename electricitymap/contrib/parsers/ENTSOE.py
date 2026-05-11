@@ -41,6 +41,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
+    ScheduledExchange,
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import (
@@ -50,6 +51,7 @@ from electricitymap.contrib.parsers.lib.config import (
 )
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.types import MarketAgreementType
 
 SOURCE = "entsoe.eu"
 
@@ -1344,7 +1346,23 @@ def _get_scheduled_exchanges(
         for is_import, xml in xml_pairs
     ]
     merged = ExchangeList.merge_exchanges(parsed_lists, logger)
-    return merged.to_list()
+    # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A05) used in URL
+    # params; `MarketAgreementType` values are the DB-friendly discriminator
+    # names. Convert by matching enum names (DAY_AHEAD ↔ DAY_AHEAD,
+    # TOTAL ↔ TOTAL). Raises KeyError loudly if an unsupported market_type
+    # ever reaches this path.
+    market_agreement_type = MarketAgreementType[market_type.name]
+    return [
+        ScheduledExchange(
+            zoneKey=evt.zoneKey,
+            datetime=evt.datetime,
+            source=evt.source,
+            netFlow=evt.netFlow,
+            sourceType=evt.sourceType,
+            marketAgreementType=market_agreement_type,
+        ).to_dict()
+        for evt in merged.events
+    ]
 
 
 @refetch_frequency(timedelta(days=1))
