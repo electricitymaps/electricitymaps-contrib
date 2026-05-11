@@ -11,7 +11,6 @@ Empirical drift catalog informing this schema:
 from __future__ import annotations
 
 from datetime import datetime
-from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -27,25 +26,25 @@ class ContractStatistic(_StrictModel):
     isLocalContract: bool
     contractId: str
     contractName: str
-    contractOpenTime: Optional[datetime] = None
-    contractCloseTime: Optional[datetime] = None
-    highPrice: Optional[float] = None
-    lowPrice: Optional[float] = None
-    openPrice: Optional[float] = None
-    openTradeTime: Optional[datetime] = None
-    closePrice: Optional[float] = None
-    closeTradeTime: Optional[datetime] = None
-    averagePrice: Optional[float] = None
-    averagePriceLast1H: Optional[float] = None
-    averagePriceLast3H: Optional[float] = None
-    volume: Optional[float] = None
-    buyVolume: Optional[float] = None
-    sellVolume: Optional[float] = None
+    contractOpenTime: datetime | None = None
+    contractCloseTime: datetime | None = None
+    highPrice: float | None = None
+    lowPrice: float | None = None
+    openPrice: float | None = None
+    openTradeTime: datetime | None = None
+    closePrice: float | None = None
+    closeTradeTime: datetime | None = None
+    averagePrice: float | None = None
+    averagePriceLast1H: float | None = None
+    averagePriceLast3H: float | None = None
+    volume: float | None = None
+    buyVolume: float | None = None
+    sellVolume: float | None = None
 
 
 class ContractStatisticsAreaResult(_StrictModel):
     priceUnit: str
-    contracts: List[ContractStatistic]
+    contracts: list[ContractStatistic]
     deliveryArea: str
     deliveryDateCET: str
     status: str
@@ -54,7 +53,7 @@ class ContractStatisticsAreaResult(_StrictModel):
 
 
 class ContractStatisticsResponse(BaseModel):
-    __root__: List[ContractStatisticsAreaResult]
+    __root__: list[ContractStatisticsAreaResult]
 
 
-STATS_AREAS: tuple = ("GER", "50Hz", "AMP", "TTG", "TBW")
+STATS_AREAS: tuple[str, ...] = ("GER", "50Hz", "AMP", "TTG", "TBW")

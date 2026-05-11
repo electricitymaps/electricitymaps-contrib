@@ -1,14 +1,19 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from datetime import date as _date
 from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import ValidationError
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
+from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
+    ContractStatisticsResponse,
+)
 from electricitymap.contrib.types import ZoneKey
 
 from .lib.config import refetch_frequency
@@ -273,29 +278,11 @@ def fetch_exchange(
     return (exchange_data + exchange_data_day_before).to_list()
 
 
-# ---------------------------------------------------------------------------
-# Intraday — ContractStatistics endpoint (added 2026-05).
-#
-# Designed for a bronze+silver ingestion (see EM monorepo feeder-electricity).
-# Unlike fetch_price/fetch_exchange (which validate-or-raise), this function
-# returns BOTH the raw payload AND the parsed model — never raises on schema
-# drift. Drift surfaces via the `errors` field so the caller can land the raw
-# payload in bronze regardless and fire a Sentry alert.
-# ---------------------------------------------------------------------------
-
-
 @dataclass(frozen=True)
 class IntradayContractStatisticsResult:
-    """Triple returned by fetch_intraday_contract_statistics.
-
-    - raw: the JSON payload as decoded by requests. Always populated on HTTP 200.
-    - parsed: the strict pydantic model on success; None on drift.
-    - errors: pydantic .errors() output on drift; None on success.
-    """
-
     raw: Any
-    parsed: Optional["ContractStatisticsResponse"]
-    errors: Optional[list]
+    parsed: ContractStatisticsResponse | None
+    errors: list[dict[str, Any]] | None
 
 
 def fetch_intraday_contract_statistics(
@@ -305,15 +292,13 @@ def fetch_intraday_contract_statistics(
     session: Session | None = None,
     logger: Logger = getLogger(__name__),
 ) -> IntradayContractStatisticsResult:
-    """GET /Intraday/ContractStatistics/ByAreas?areas={area}&date={YYYY-MM-DD}.
+    """Fetch one day of ContractStatistics for a single intraday area.
 
-    Reuses the module-level NordpoolToken cache. ONE HTTP call. Returns raw
-    payload plus optional parsed model. Does not raise on schema drift.
+    Returns the raw JSON, the parsed strict model, and a `errors` field.
+    Schema drift is reported via `errors` rather than raised, so the caller
+    can land the raw payload in a bronze layer regardless and fire an alert.
+    HTTP / auth / decode failures still propagate.
     """
-    from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
-        ContractStatisticsResponse,
-    )
-
     session = session or Session()
     params = {"areas": area, "date": delivery_date.isoformat()}
     response = _query_nordpool(
@@ -321,7 +306,6 @@ def fetch_intraday_contract_statistics(
     )
     raw_payload = response.json()
     try:
-        # pydantic v1: parse_obj (not model_validate)
         parsed = ContractStatisticsResponse.parse_obj(raw_payload)
         return IntradayContractStatisticsResult(
             raw=raw_payload, parsed=parsed, errors=None
