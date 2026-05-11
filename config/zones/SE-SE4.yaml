@@ -23,31 +23,31 @@ capacity:
     - datetime: '2017-01-01'
       value: 0
   hydro:
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2017/170626-kraftbalansen---rapport.pdf"
+    - _comment: "Used: https://web.archive.org/web/20190919194143/https://www.svk.se/siteassets/om-oss/rapporter/2017/170626-kraftbalansen---rapport.pdf"
       datetime: '2017-01-01'
       source: 'svk.se'
       value: 347
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf"
+    - _comment: "Used: https://web.archive.org/web/20180716130302/https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf"
       datetime: '2018-01-01'
       source: 'svk.se'
       value: 349
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf"
+    - _comment: "Used: https://web.archive.org/web/20190717215205/https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf"
       datetime: '2019-01-01'
       source: 'svk.se'
       value: 349
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
+    - _comment: "Used: https://web.archive.org/web/20200716175536/https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
       datetime: '2020-01-01'
       source: 'svk.se'
       value: 345
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
+    - _comment: "Used: https://web.archive.org/web/20210531131054/https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
       datetime: '2021-01-01'
       source: 'svk.se'
       value: 345
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
+    - _comment: "Used: https://web.archive.org/web/20220601091449/https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
       datetime: '2022-01-01'
       source: 'svk.se'
       value: 345
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
+    - _comment: "Used: https://web.archive.org/web/20230607205701/https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
       datetime: '2023-01-01'
       source: 'svk.se'
       value: 345
@@ -62,27 +62,27 @@ capacity:
     - datetime: '2017-01-01'
       value: 662
   solar:
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf"
+    - _comment: "Used: https://web.archive.org/web/20180716130302/https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf"
       datetime: '2018-01-01'
       source: 'svk.se'
       value: 80
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf"
+    - _comment: "Used: https://web.archive.org/web/20190717215205/https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf"
       datetime: '2019-01-01'
       source: 'svk.se'
       value: 131
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
+    - _comment: "Used: https://web.archive.org/web/20200716175536/https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
       datetime: '2020-01-01'
       source: 'svk.se'
       value: 210
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
+    - _comment: "Used: https://web.archive.org/web/20210531131054/https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
       datetime: '2021-01-01'
       source: 'svk.se'
       value: 240
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
+    - _comment: "Used: https://web.archive.org/web/20220601091449/https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
       datetime: '2022-01-01'
       source: 'svk.se'
       value: 372
-    - _comment: "Used: https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
+    - _comment: "Used: https://web.archive.org/web/20230607205701/https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
       datetime: '2023-01-01'
       source: 'svk.se'
       value: 1091
