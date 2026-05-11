@@ -38,7 +38,6 @@ def _stub_session(payload):
     from unittest.mock import MagicMock
 
     import electricitymap.contrib.parsers.NORDPOOL as nordpool_mod
-    from electricitymap.contrib.parsers.NORDPOOL import NordpoolToken
 
     session = MagicMock()
     response = MagicMock()
@@ -46,7 +45,7 @@ def _stub_session(payload):
     response.json.return_value = payload
     session.get.return_value = response
 
-    nordpool_mod.CURRENT_TOKEN = NordpoolToken(
+    nordpool_mod.CURRENT_TOKEN = nordpool_mod.NordpoolToken(
         token="fake",
         expiration=datetime(2099, 1, 1, tzinfo=timezone.utc),
     )
