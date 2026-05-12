@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import MarketAgreementType, ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -497,6 +497,28 @@ class Exchange(Event):
             "netFlow": self.netFlow,
             "source": self.source,
             "sourceType": self.sourceType,
+        }
+
+
+class ScheduledExchange(Exchange):
+    """Exchange event tagged with a market_agreement_type discriminator
+    distinguishing day-ahead-cleared (A01) and total-cleared (A05) schedules.
+
+    Both share Exchange's net-flow shape; the discriminator — mirroring
+    ENTSOE's Contract_MarketAgreement.Type vocabulary — is what keeps
+    them apart in the unified bronze table downstream. Subclassing
+    Exchange (rather than adding an optional field) keeps every other
+    Exchange parser untouched and gives the discriminator a typed,
+    Pydantic-validated home next to where the parser produces it.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    marketAgreementType: MarketAgreementType
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            **super().to_dict(),
+            "marketAgreementType": self.marketAgreementType,
         }
 
 

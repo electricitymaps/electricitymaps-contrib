@@ -3,12 +3,6 @@ bounding_box:
     - 41.87367250444305
   - - 21.764017640176434
     - 43.25752960391377
-center_point:
-  - 20.820077774509578
-  - 42.59485102103011
-centroid:
-  - 20.795007950079523
-  - 42.56909925665897
 capacity:
   coal:
     - datetime: '2021-01-01'
@@ -25,6 +19,12 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 136.0
+center_point:
+  - 20.820077774509578
+  - 42.59485102103011
+centroid:
+  - 20.795007950079523
+  - 42.56909925665897
 contributors:
   - veqtrus
 country: XK
@@ -152,8 +152,8 @@ fallbackZoneMixes:
         solar: 0.01435756790059774
         unknown: 0.002092146765935501
         wind: 0.0196257037300602
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

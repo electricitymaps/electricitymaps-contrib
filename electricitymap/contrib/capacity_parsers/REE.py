@@ -13,6 +13,7 @@ logger = getLogger(__name__)
 MODE_MAPPING = {
     "Hidráulica": "hydro",
     "Turbinación bombeo": "hydro storage",
+    "Batería": "battery storage",
     "Nuclear": "nuclear",
     "Carbón": "coal",
     "Fuel + Gas": "gas",
@@ -28,6 +29,13 @@ MODE_MAPPING = {
     "Turbina de gas": "gas",
     "Turbina de vapor": "gas",
 }
+
+GENERATION_URL = (
+    "https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion"
+)
+STORAGE_URL = (
+    "https://apidatos.ree.es/es/datos/almacenamiento/potencia-instalada-almacenamiento"
+)
 
 GEO_LIMIT_TO_GEO_IDS = {
     "peninsular": 8741,
@@ -59,7 +67,6 @@ def fetch_production_capacity(
 ) -> dict[str, Any] | None:
     geo_limit = ZONE_KEY_TO_GEO_LIMIT[zone_key]
     geo_ids = GEO_LIMIT_TO_GEO_IDS[geo_limit]
-    url = "https://apidatos.ree.es/es/datos/generacion/potencia-instalada"
     params = {
         "start_date": target_datetime.strftime("%Y-%m-01T00:00"),
         "end_date": target_datetime.strftime(
@@ -72,31 +79,36 @@ def fetch_production_capacity(
         "tecno_select": "all",
     }
 
-    r: Response = session.get(url, params=params)
-    if r.status_code == 200:
-        data = r.json()["included"]
-        capacity = {}
-        for item in data:
+    capacity: dict[str, dict[str, Any]] = {}
+    # Storage modes (pumped + battery) live on a separate REE endpoint since
+    # the generation widget was renamed; query both and merge.
+    for url in (GENERATION_URL, STORAGE_URL):
+        r: Response = session.get(url, params=params)
+        if r.status_code != 200:
+            logger.warning(
+                f"{zone_key}: No capacity data from {url} for {target_datetime.year}"
+            )
+            continue
+        for item in r.json().get("included", []):
+            if item["type"] not in MODE_MAPPING:
+                continue
             value: float = round(item["attributes"]["values"][0]["value"], 0)
-            if item["type"] in MODE_MAPPING:
-                mode = MODE_MAPPING[item["type"]]
-                if mode in capacity:
-                    capacity[mode]["value"] += value
-                else:
-                    mode_capacity = {
-                        "datetime": target_datetime.strftime("%Y-%m-%d"),
-                        "value": value,
-                        "source": "ree.es",
-                    }
-                    capacity[mode] = mode_capacity
-        logger.info(
-            f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
-        )
-        return capacity
-    else:
-        logger.warning(
-            f"{zone_key}: No capacity data available for year {target_datetime.year}"
-        )
+            mode = MODE_MAPPING[item["type"]]
+            if mode in capacity:
+                capacity[mode]["value"] += value
+            else:
+                capacity[mode] = {
+                    "datetime": target_datetime.strftime("%Y-%m-%d"),
+                    "value": value,
+                    "source": "ree.es",
+                }
+
+    if not capacity:
+        return None
+    logger.info(
+        f"Fetched capacity for {zone_key} on {target_datetime.date()}: \n{capacity}"
+    )
+    return capacity
 
 
 def fetch_production_capacity_for_all_zones(

@@ -3,6 +3,8 @@
 from enum import Enum
 from typing import NewType
 
+from electricitymap.contrib.types.market_agreement_type import MarketAgreementType
+
 ZoneKey = NewType("ZoneKey", str)
 """
 ZoneKey is used throughout the code to identify zones.
@@ -47,6 +49,7 @@ class ParserDataType(Enum):
     CORE_EXTERNAL_ATC_DAY_AHEAD = "coreExternalAtcDayAhead"
     MAX_BEX_DAY_AHEAD = "maxBexDayAhead"
     SCHEDULED_EXCHANGES_DAY_AHEAD = "scheduledExchangesDayAhead"
+    SCHEDULED_EXCHANGES_TOTAL = "scheduledExchangesTotal"
     MAX_BFLOW_DAY_AHEAD = "maxBflowDayAhead"
     # TODO: Double check if we should keep them here?
     PRODUCTION_CAPACITY = "productionCapacity"
@@ -71,6 +74,7 @@ EXCHANGE_PUBLICATION_DATA_TYPES = [
     ParserDataType.CORE_EXTERNAL_ATC_DAY_AHEAD,
     ParserDataType.MAX_BEX_DAY_AHEAD,
     ParserDataType.SCHEDULED_EXCHANGES_DAY_AHEAD,
+    ParserDataType.SCHEDULED_EXCHANGES_TOTAL,
     ParserDataType.MAX_BFLOW_DAY_AHEAD,
 ]
 # Every ParserDataType registered on the exchange side (two-zone-key call
@@ -94,6 +98,7 @@ __all__: list[str] = [
     "Point",
     "BoundingBox",
     "ParserDataType",
+    "MarketAgreementType",
     "ALL_DATA_TYPES",
     "EXCHANGE_CAPACITY_FORECAST_DATA_TYPES",
     "EXCHANGE_DATA_TYPES",
