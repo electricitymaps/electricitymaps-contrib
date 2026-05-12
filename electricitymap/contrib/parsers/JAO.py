@@ -408,9 +408,7 @@ def fetch_core_max_bex_day_ahead(
         target_datetime,
         logger,
     )
-    return _extract_border_capacity(
-        rows, sorted_zone_keys, SOURCE, logger
-    ).to_list()
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -435,9 +433,7 @@ def fetch_nordic_max_bex_day_ahead(
         target_datetime,
         logger,
     )
-    return _extract_border_capacity(
-        rows, sorted_zone_keys, SOURCE, logger
-    ).to_list()
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -501,9 +497,7 @@ def fetch_nordic_max_bflow_day_ahead(
         target_datetime,
         logger,
     )
-    return _extract_border_capacity(
-        rows, sorted_zone_keys, SOURCE, logger
-    ).to_list()
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 if __name__ == "__main__":
