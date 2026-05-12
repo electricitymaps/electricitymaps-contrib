@@ -312,3 +312,12 @@ def fetch_intraday_contract_statistics(
         return IntradayContractStatisticsResult(
             raw=raw_payload, parsed=None, errors=e.errors()
         )
+
+
+# For debugging purposes
+if __name__ == "__main__":
+    from datetime import date
+
+    print(
+        fetch_intraday_contract_statistics(area="AMP", delivery_date=date(2026, 5, 12))
+    )
