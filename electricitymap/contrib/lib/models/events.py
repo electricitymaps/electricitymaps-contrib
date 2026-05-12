@@ -1085,6 +1085,172 @@ class GridAlert(Event):
         }
 
 
+class IntradayContractStatistics(Event):
+    """An event representing Nord Pool intraday contract statistics for one (area, contract) pair.
+
+    The `datetime` field (inherited from Event) is set to `deliveryStart` and is used
+    only for internal indexing and sorting. It is NOT included in `to_dict()`.
+    """
+
+    area: str
+    apiUpdatedAt: datetime
+    currency: str
+    priceUnitRaw: str
+    deliveryStart: datetime
+    deliveryEnd: datetime
+    contractId: str
+    contractName: str
+    contractOpenTime: datetime | None = None
+    contractCloseTime: datetime | None = None
+    isLocalContract: bool
+    vwap: float | None = None
+    vwap1hBeforeClose: float | None = None
+    vwap3hBeforeClose: float | None = None
+    openPrice: float | None = None
+    closePrice: float | None = None
+    highPrice: float | None = None
+    lowPrice: float | None = None
+    openTradeTime: datetime | None = None
+    closeTradeTime: datetime | None = None
+    volume: float | None = None
+    buyVolume: float | None = None
+    sellVolume: float | None = None
+
+    @validator("datetime")
+    def _validate_datetime(cls, v: dt.datetime) -> dt.datetime:  # type: ignore[override]
+        """Override to preserve full precision and allow future delivery windows."""
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str) -> str:
+        # IntradayContractStatistics is zone-specific but not required to be in ZONES_CONFIG
+        # (DE is the initial zone, validated by the standard zone validator on the parent).
+        return v
+
+    @validator("currency")
+    def _validate_currency(cls, v: str) -> str:
+        if len(v) != 3:
+            raise ValueError(f"Currency must be a 3-character ISO code, got: {v!r}")
+        return v
+
+    @validator("apiUpdatedAt", "deliveryStart", "deliveryEnd")
+    def _validate_aware(cls, v: datetime) -> datetime:
+        if _is_naive(v):
+            raise ValueError(f"Datetime must be timezone-aware: {v}")
+        return v
+
+    @validator("contractOpenTime", "contractCloseTime", "openTradeTime", "closeTradeTime")
+    def _validate_aware_optional(cls, v: datetime | None) -> datetime | None:
+        if v is not None and _is_naive(v):
+            raise ValueError(f"Datetime must be timezone-aware: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "IntradayContractStatistics | None":
+        try:
+            return IntradayContractStatistics(
+                zoneKey=zoneKey,
+                datetime=deliveryStart,
+                area=area,
+                apiUpdatedAt=apiUpdatedAt,
+                currency=currency,
+                priceUnitRaw=priceUnitRaw,
+                deliveryStart=deliveryStart,
+                deliveryEnd=deliveryEnd,
+                contractId=contractId,
+                contractName=contractName,
+                contractOpenTime=contractOpenTime,
+                contractCloseTime=contractCloseTime,
+                isLocalContract=isLocalContract,
+                vwap=vwap,
+                vwap1hBeforeClose=vwap1hBeforeClose,
+                vwap3hBeforeClose=vwap3hBeforeClose,
+                openPrice=openPrice,
+                closePrice=closePrice,
+                highPrice=highPrice,
+                lowPrice=lowPrice,
+                openTradeTime=openTradeTime,
+                closeTradeTime=closeTradeTime,
+                volume=volume,
+                buyVolume=buyVolume,
+                sellVolume=sellVolume,
+                source=source,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating IntradayContractStatistics event {deliveryStart}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "area": area,
+                    "contractId": contractId,
+                    "kind": "intraday contract statistics",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "zoneKey": self.zoneKey,
+            "area": self.area,
+            "apiUpdatedAt": self.apiUpdatedAt,
+            "currency": self.currency,
+            "priceUnitRaw": self.priceUnitRaw,
+            "deliveryStart": self.deliveryStart,
+            "deliveryEnd": self.deliveryEnd,
+            "contractId": self.contractId,
+            "contractName": self.contractName,
+            "contractOpenTime": self.contractOpenTime,
+            "contractCloseTime": self.contractCloseTime,
+            "isLocalContract": self.isLocalContract,
+            "vwap": self.vwap,
+            "vwap1hBeforeClose": self.vwap1hBeforeClose,
+            "vwap3hBeforeClose": self.vwap3hBeforeClose,
+            "openPrice": self.openPrice,
+            "closePrice": self.closePrice,
+            "highPrice": self.highPrice,
+            "lowPrice": self.lowPrice,
+            "openTradeTime": self.openTradeTime,
+            "closeTradeTime": self.closeTradeTime,
+            "volume": self.volume,
+            "buyVolume": self.buyVolume,
+            "sellVolume": self.sellVolume,
+            "source": self.source,
+        }
+
+
 class ExchangeCapacity(Event):
     """
     An event representing the forecasted net transfer capacity (NTC) between
