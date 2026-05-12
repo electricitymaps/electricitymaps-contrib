@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -1087,8 +1087,9 @@ class GridAlert(Event):
 
 class ExchangeCapacity(Event):
     """
-    An event representing the forecasted net transfer capacity (NTC) between
-    two zones in both directions.
+    An event representing a bilateral exchange capacity between two zones in
+    both directions. Used for NTC forecasts (ENTSOE A61), MaxBeX, MaxBflow.
+    ATC values use the dedicated `ExchangeAtc` class instead.
 
     capacityExport: Capacity for zone1→zone2 direction (may be None).
     capacityImport: Capacity for zone2→zone1 direction (may be None).
@@ -1156,6 +1157,90 @@ class ExchangeCapacity(Event):
             "sortedZoneKeys": self.zoneKey,
             "capacityExport": self.capacityExport,
             "capacityImport": self.capacityImport,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
+
+
+class ExchangeAtc(Event):
+    """
+    An event representing a day-ahead Available Transfer Capacity (ATC) value
+    between two zones in both directions. ATC = NTC − long-term allocations −
+    transmission reliability margin. Distinct from NTC (see `ExchangeCapacity`)
+    and from cleared schedules (see `ScheduledExchange`).
+
+    capacityExport: ATC for zone1→zone2 direction (may be None).
+    capacityImport: ATC for zone2→zone1 direction (may be None).
+    atcType: CACM capacity-calculation methodology that produced this row —
+        either shadow auction (FBMC fallback, CACM Art. 51) or Coordinated NTC.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    capacityExport: float | None
+    capacityImport: float | None
+    atcType: AtcType
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        if (
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
+        ):
+            raise ValueError(
+                "At least one of capacityExport or capacityImport must be set"
+            )
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        atcType: AtcType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ExchangeAtc | None":
+        try:
+            return ExchangeAtc(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
+                sourceType=sourceType,
+                atcType=atcType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ExchangeAtc Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange atc",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
+            "atcType": self.atcType,
             "source": self.source,
             "sourceType": self.sourceType,
         }
