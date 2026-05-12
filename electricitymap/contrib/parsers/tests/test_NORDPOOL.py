@@ -75,3 +75,38 @@ def test_exchange_parser_fi_se1(adapter, session, snapshot):
         session=session,
         target_datetime=datetime.fromisoformat("2024-12-01"),
     )
+
+
+def test_atc_parser_de_no_no2(adapter, session, snapshot):
+    """DE↔NO-NO2 is the NordLink cable. The parser queries from zone1's side
+    (DE → Nordpool code `GER`) and filters byConnection on the counterpart
+    (`NO2_NK`). From GER's perspective `exportsByConnection` is GER→NO2 =
+    capacityExport (DE→NO-NO2) and `importsByConnection` is NO2→GER =
+    capacityImport (NO-NO2→DE) — no direction flip needed.
+    """
+    mock_token = Path(base_path_to_mock, "token.json")
+    mock_target_day = Path(base_path_to_mock, "ger_target_day_capacity.json")
+    mock_next_day = Path(base_path_to_mock, "ger_next_day_capacity.json")
+
+    adapter.register_uri(
+        POST,
+        "https://sts.nordpoolgroup.com/connect/token",
+        json=loads(mock_token.read_text()),
+    )
+    adapter.register_uri(
+        GET,
+        "https://data-api.nordpoolgroup.com/api/v2/Auction/Capacities/ByAreas?areas=GER&market=DayAhead&date=2025-05-10",
+        json=loads(mock_target_day.read_text()),
+    )
+    adapter.register_uri(
+        GET,
+        "https://data-api.nordpoolgroup.com/api/v2/Auction/Capacities/ByAreas?areas=GER&market=DayAhead&date=2025-05-11",
+        json=loads(mock_next_day.read_text()),
+    )
+
+    assert snapshot == NORDPOOL.fetch_exchange_available_transfer_capacity(
+        zone_key1=ZoneKey("DE"),
+        zone_key2=ZoneKey("NO-NO2"),
+        session=session,
+        target_datetime=datetime.fromisoformat("2025-05-10"),
+    )
