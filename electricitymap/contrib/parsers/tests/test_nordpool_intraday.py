@@ -14,9 +14,7 @@ from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
 )
 from electricitymap.contrib.types import ZoneKey
 
-FIXTURE = (
-    Path(__file__).parent / "mocks" / "NORDPOOL" / "stats_ger_2026-05-09.json"
-)
+FIXTURE = Path(__file__).parent / "mocks" / "NORDPOOL" / "stats_ger_2026-05-09.json"
 
 _EXPECTED_KEYS = {
     "datetime",
