@@ -9,11 +9,14 @@ from pydantic import ValidationError
 
 import electricitymap.contrib.parsers.NORDPOOL as nordpool_mod
 from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
+    STATS_AREAS,
     ContractStatisticsResponse,
 )
 from electricitymap.contrib.types import ZoneKey
 
-FIXTURE = Path(__file__).parent / "fixtures" / "stats_ger_2026-05-09.json"
+FIXTURE = (
+    Path(__file__).parent / "mocks" / "NORDPOOL" / "stats_ger_2026-05-09.json"
+)
 
 _EXPECTED_KEYS = {
     "datetime",
@@ -123,7 +126,7 @@ def test_fetch_intraday_contract_statistics_happy_path(real_payload) -> None:
     assert set(first.keys()) == _EXPECTED_KEYS
 
     # Spot-check known good values from the GER fixture.
-    assert first["area"] in nordpool_mod._DE_AREAS
+    assert first["area"] in STATS_AREAS
     assert first["source"] == "nordpool"
     assert first["zoneKey"] == "DE"
     assert isinstance(first["deliveryStart"], datetime)

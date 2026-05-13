@@ -12,6 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     PriceList,
 )
 from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
+    STATS_AREAS,
     ContractStatisticsResponse,
 )
 from electricitymap.contrib.types import ZoneKey
@@ -280,8 +281,6 @@ def fetch_exchange(
 
 _INTER_AREA_SLEEP_S = 0.5
 
-_DE_AREAS = ("GER", "50Hz", "AMP", "TTG", "TBW")
-
 
 @refetch_frequency(timedelta(days=1))
 def fetch_intraday_contract_statistics(
@@ -312,7 +311,7 @@ def fetch_intraday_contract_statistics(
 
     intraday_list = IntradayContractStatisticsList(logger)
 
-    for i, area in enumerate(_DE_AREAS):
+    for i, area in enumerate(STATS_AREAS):
         if i > 0:
             time.sleep(_INTER_AREA_SLEEP_S)
 
