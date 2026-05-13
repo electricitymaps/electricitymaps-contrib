@@ -1223,6 +1223,12 @@ class IntradayContractStatistics(Event):
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            # `datetime` mirrors `deliveryStart` to satisfy the feeder's
+            # validate_data() invariant (every event must carry a top-level
+            # tz-aware datetime). The V251 upsert reads deliveryStart, not
+            # this field — keeping it makes the validator happy without
+            # changing the bronze write path.
+            "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "area": self.area,
             "apiUpdatedAt": self.apiUpdatedAt,
