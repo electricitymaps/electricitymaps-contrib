@@ -1,12 +1,4 @@
-"""Pydantic v1 contract models for Nord Pool intraday ContractStatistics.
-
-Strict mode (`extra='forbid'`): unknown fields raise ValidationError. The caller
-(feeder-electricity in the EM monorepo) wires this into a Sentry alert.
-
-Empirical drift catalog informing this schema:
-  see notes/2026-05-11-nordpool-intraday-discovery/findings.md §2-§3 in the
-  electricitymaps monorepo.
-"""
+"""Pydantic v1 strict models for Nord Pool intraday ContractStatistics. Unknown fields raise ValidationError."""
 
 from __future__ import annotations
 
