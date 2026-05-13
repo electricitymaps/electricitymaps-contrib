@@ -1,3 +1,4 @@
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -5,7 +6,15 @@ from logging import Logger, getLogger
 
 from requests import Response, Session
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeList, PriceList
+from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeList,
+    IntradayContractStatisticsList,
+    PriceList,
+)
+from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
+    STATS_AREAS,
+    ContractStatisticsResponse,
+)
 from electricitymap.contrib.types import ZoneKey
 
 from .lib.config import refetch_frequency
@@ -37,6 +46,7 @@ SOURCE = "nordpool.com"
 class NORDPOOL_API_ENDPOINT(Enum):
     PRICE = "Auction/Prices/ByAreas"
     EXCHANGE = "PowerSystem/Exchanges/ByAreas"
+    INTRADAY_CONTRACT_STATISTICS = "Intraday/ContractStatistics/ByAreas"
 
 
 class MARKET_TYPE(Enum):
@@ -267,3 +277,93 @@ def fetch_exchange(
     )
     # Combines both ExchangeLists and return them as a native list.
     return (exchange_data + exchange_data_day_before).to_list()
+
+
+_INTER_AREA_SLEEP_S = 0.5
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_intraday_contract_statistics(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Fetch Nord Pool intraday ContractStatistics for the given zone and date.
+
+    For DE: fetches all 5 TSO areas (GER, 50Hz, AMP, TTG, TBW) for the target
+    CET date and emits one IntradayContractStatistics event per (area, contract).
+    Raises ValidationError if the API payload drifts.
+    """
+    if zone_key != ZoneKey("DE"):
+        raise NotImplementedError(
+            f"fetch_intraday_contract_statistics is not yet implemented for zone: {zone_key}"
+        )
+
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+
+    # Convert to CET date for the API call.
+    from zoneinfo import ZoneInfo
+
+    cet = ZoneInfo("Europe/Berlin")
+    delivery_date = target_datetime.astimezone(cet).date()
+
+    intraday_list = IntradayContractStatisticsList(logger)
+
+    for i, area in enumerate(STATS_AREAS):
+        if i > 0:
+            time.sleep(_INTER_AREA_SLEEP_S)
+
+        params = {"areas": area, "date": delivery_date.isoformat()}
+        response = _query_nordpool(
+            NORDPOOL_API_ENDPOINT.INTRADAY_CONTRACT_STATISTICS, params, logger, session
+        )
+        # Raises ValidationError on schema drift — caller (feeder) catches and skips area.
+        area_result = ContractStatisticsResponse.parse_obj(response.json())
+
+        for area_data in area_result.__root__:
+            price_unit = area_data.priceUnit  # e.g. "EUR/MWh"
+            currency = price_unit.split("/")[0] if "/" in price_unit else price_unit
+            api_updated_at = area_data.updatedAt
+
+            for contract in area_data.contracts:
+                intraday_list.append(
+                    zoneKey=zone_key,
+                    area=area,
+                    apiUpdatedAt=api_updated_at,
+                    currency=currency,
+                    priceUnitRaw=price_unit,
+                    deliveryStart=contract.deliveryStart,
+                    deliveryEnd=contract.deliveryEnd,
+                    contractId=contract.contractId,
+                    contractName=contract.contractName,
+                    contractOpenTime=contract.contractOpenTime,
+                    contractCloseTime=contract.contractCloseTime,
+                    isLocalContract=contract.isLocalContract,
+                    vwap=contract.averagePrice,
+                    vwap1hBeforeClose=contract.averagePriceLast1H,
+                    vwap3hBeforeClose=contract.averagePriceLast3H,
+                    openPrice=contract.openPrice,
+                    closePrice=contract.closePrice,
+                    highPrice=contract.highPrice,
+                    lowPrice=contract.lowPrice,
+                    openTradeTime=contract.openTradeTime,
+                    closeTradeTime=contract.closeTradeTime,
+                    volume=contract.volume,
+                    buyVolume=contract.buyVolume,
+                    sellVolume=contract.sellVolume,
+                    source="nordpool",
+                )
+
+    return intraday_list.to_list()
+
+
+# For debugging purposes
+if __name__ == "__main__":
+    print(
+        fetch_intraday_contract_statistics(
+            zone_key=ZoneKey("DE"),
+            target_datetime=datetime.now(tz=timezone.utc),
+        )
+    )
