@@ -4,7 +4,6 @@ from datetime import datetime, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
 
-from pydantic import ValidationError
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import (

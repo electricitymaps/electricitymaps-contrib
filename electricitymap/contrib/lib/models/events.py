@@ -1143,7 +1143,9 @@ class IntradayContractStatistics(Event):
             raise ValueError(f"Datetime must be timezone-aware: {v}")
         return v
 
-    @validator("contractOpenTime", "contractCloseTime", "openTradeTime", "closeTradeTime")
+    @validator(
+        "contractOpenTime", "contractCloseTime", "openTradeTime", "closeTradeTime"
+    )
     def _validate_aware_optional(cls, v: datetime | None) -> datetime | None:
         if v is not None and _is_naive(v):
             raise ValueError(f"Datetime must be timezone-aware: {v}")

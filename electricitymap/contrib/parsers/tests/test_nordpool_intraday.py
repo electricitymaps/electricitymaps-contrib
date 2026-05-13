@@ -16,6 +16,7 @@ from electricitymap.contrib.types import ZoneKey
 FIXTURE = Path(__file__).parent / "fixtures" / "stats_ger_2026-05-09.json"
 
 _EXPECTED_KEYS = {
+    "datetime",
     "zoneKey",
     "area",
     "apiUpdatedAt",
