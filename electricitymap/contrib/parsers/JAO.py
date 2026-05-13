@@ -415,17 +415,19 @@ def fetch_core_scheduled_exchanges_day_ahead(
         logger,
     )
     exchange_list = _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger)
-    return [
-        ScheduledExchange(
+    scheduled = [
+        ScheduledExchange.create(
+            logger=logger,
             zoneKey=evt.zoneKey,
             datetime=evt.datetime,
             source=evt.source,
             netFlow=evt.netFlow,
             sourceType=evt.sourceType,
             marketAgreementType=MarketAgreementType.DAY_AHEAD,
-        ).to_dict()
+        )
         for evt in exchange_list.events
     ]
+    return [s.to_dict() for s in scheduled if s is not None]
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))

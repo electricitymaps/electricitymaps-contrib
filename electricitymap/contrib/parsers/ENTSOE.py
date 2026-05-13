@@ -1352,17 +1352,19 @@ def _get_scheduled_exchanges(
     # TOTAL ↔ TOTAL). Raises KeyError loudly if an unsupported market_type
     # ever reaches this path.
     market_agreement_type = MarketAgreementType[market_type.name]
-    return [
-        ScheduledExchange(
+    scheduled = [
+        ScheduledExchange.create(
+            logger=logger,
             zoneKey=evt.zoneKey,
             datetime=evt.datetime,
             source=evt.source,
             netFlow=evt.netFlow,
             sourceType=evt.sourceType,
             marketAgreementType=market_agreement_type,
-        ).to_dict()
+        )
         for evt in merged.events
     ]
+    return [s.to_dict() for s in scheduled if s is not None]
 
 
 @refetch_frequency(timedelta(days=1))

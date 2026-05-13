@@ -501,19 +501,41 @@ class Exchange(Event):
 
 
 class ScheduledExchange(Exchange):
-    """Exchange event tagged with a market_agreement_type discriminator
-    distinguishing day-ahead-cleared (A01) and total-cleared (A05) schedules.
-
-    Both share Exchange's net-flow shape; the discriminator — mirroring
-    ENTSOE's Contract_MarketAgreement.Type vocabulary — is what keeps
-    them apart in the unified bronze table downstream. Subclassing
-    Exchange (rather than adding an optional field) keeps every other
-    Exchange parser untouched and gives the discriminator a typed,
-    Pydantic-validated home next to where the parser produces it.
-    """
+    """Exchange variant tagged with a MarketAgreementType discriminator (e.g. day-ahead vs. total cleared schedule)."""
 
     sourceType: EventSourceType = EventSourceType.published
     marketAgreementType: MarketAgreementType
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        netFlow: float | None,
+        marketAgreementType: MarketAgreementType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ScheduledExchange | None":
+        try:
+            return ScheduledExchange(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                source=source,
+                netFlow=_none_safe_round(netFlow),
+                marketAgreementType=marketAgreementType,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating scheduled exchange Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "scheduled exchange",
+                    "marketAgreementType": marketAgreementType,
+                },
+            )
+            return None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -1088,8 +1110,7 @@ class GridAlert(Event):
 class IntradayContractStatistics(Event):
     """An event representing Nord Pool intraday contract statistics for one (area, contract) pair.
 
-    The `datetime` field (inherited from Event) is set to `deliveryStart` and is used
-    only for internal indexing and sorting. It is NOT included in `to_dict()`.
+    The `datetime` field (inherited from Event) mirrors `deliveryStart`.
     """
 
     area: str
@@ -1123,12 +1144,6 @@ class IntradayContractStatistics(Event):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        return v
-
-    @validator("zoneKey")
-    def _validate_zone_key(cls, v: str) -> str:
-        # IntradayContractStatistics is zone-specific but not required to be in ZONES_CONFIG
-        # (DE is the initial zone, validated by the standard zone validator on the parent).
         return v
 
     @validator("currency")
@@ -1225,11 +1240,6 @@ class IntradayContractStatistics(Event):
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            # `datetime` mirrors `deliveryStart` to satisfy the feeder's
-            # validate_data() invariant (every event must carry a top-level
-            # tz-aware datetime). The V251 upsert reads deliveryStart, not
-            # this field — keeping it makes the validator happy without
-            # changing the bronze write path.
             "datetime": self.datetime,
             "zoneKey": self.zoneKey,
             "area": self.area,
