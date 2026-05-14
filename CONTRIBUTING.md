@@ -144,5 +144,5 @@ If there is parser changes these go on to more internal tests that includes both
 [old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
 [config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
 [config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
-[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers/README.md
+[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/README.md
 [parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/
