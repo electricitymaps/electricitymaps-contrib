@@ -111,6 +111,7 @@ class Parsers(ParsersBaseModel):
     production: str | None
     productionCapacity: str | None
     gridAlerts: str | None
+    intradayContractStatistics: str | None
 
 
 class Source(StrictBaseModel):

@@ -35,6 +35,7 @@ class ParserDataType(Enum):
     EXCHANGE_FORECAST = "exchangeForecast"
     EXCHANGE = "exchange"
     GENERATION_FORECAST = "generationForecast"
+    INTRADAY_CONTRACT_STATISTICS = "intradayContractStatistics"
     PRICE = "price"
     PRICE_INTRADAY = "priceIntraday"
     PRODUCTION = "production"

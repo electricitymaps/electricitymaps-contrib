@@ -15,6 +15,7 @@ from electricitymap.contrib.lib.models.events import (
     ExchangeCapacity,
     GridAlert,
     GridAlertType,
+    IntradayContractStatistics,
     LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
@@ -577,3 +578,73 @@ class GridAlertList(EventList[GridAlert]):
         )
         if event:
             self.events.append(event)
+
+
+class IntradayContractStatisticsList(EventList[IntradayContractStatistics]):
+    def append(  # type: ignore[override]
+        self,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = IntradayContractStatistics.create(
+            logger=self.logger,
+            zoneKey=zoneKey,
+            area=area,
+            apiUpdatedAt=apiUpdatedAt,
+            currency=currency,
+            priceUnitRaw=priceUnitRaw,
+            deliveryStart=deliveryStart,
+            deliveryEnd=deliveryEnd,
+            contractId=contractId,
+            contractName=contractName,
+            contractOpenTime=contractOpenTime,
+            contractCloseTime=contractCloseTime,
+            isLocalContract=isLocalContract,
+            vwap=vwap,
+            vwap1hBeforeClose=vwap1hBeforeClose,
+            vwap3hBeforeClose=vwap3hBeforeClose,
+            openPrice=openPrice,
+            closePrice=closePrice,
+            highPrice=highPrice,
+            lowPrice=lowPrice,
+            openTradeTime=openTradeTime,
+            closeTradeTime=closeTradeTime,
+            volume=volume,
+            buyVolume=buyVolume,
+            sellVolume=sellVolume,
+            source=source,
+            sourceType=sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        """Sort by (deliveryStart, area, contractId) instead of 'datetime' key."""
+        return sorted(
+            [event.to_dict() for event in self.events],
+            key=lambda d: (d["deliveryStart"], d["area"], d["contractId"]),
+        )
