@@ -138,6 +138,9 @@ capacity:
     - datetime: '2024-01-01'
       source: bmreports.com
       value: 15896
+    - datetime: '2025-01-01'
+      source: api.solar.sheffield.ac.uk/pvlive/capacity
+      value: 22126
   unknown:
     - datetime: '2017-01-01'
       source: Ember, Yearly electricity data
