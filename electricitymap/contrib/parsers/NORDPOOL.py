@@ -5,6 +5,8 @@ from enum import Enum
 from logging import Logger, getLogger
 
 from requests import Response, Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeAtcList,
@@ -42,6 +44,31 @@ class NordpoolToken:
 CURRENT_TOKEN: NordpoolToken | None = None
 
 SOURCE = "nordpool.com"
+
+# Retry on rate-limit (429, often Cloudflare-fronted) and transient 5xx —
+# urllib3 honours Retry-After when present, otherwise sleeps
+# `backoff_factor * 2^(n-1)` s between attempts (0, 2, 4 s here). Bounded so
+# a sustained throttle still fails the task within Cloud Run's budget and
+# lets the queue retry.
+_NORDPOOL_RETRY = Retry(
+    total=3,
+    backoff_factor=2,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET", "POST"],  # token endpoint is POST
+)
+
+
+def _new_retry_session() -> Session:
+    """Build a fresh Session with the Nordpool retry adapter mounted.
+
+    Only used when a public fetcher receives no caller-provided session —
+    tests pass a mocked Session and we must not shadow their mock adapter.
+    """
+    session = Session()
+    adapter = HTTPAdapter(max_retries=_NORDPOOL_RETRY)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
 
 class NORDPOOL_API_ENDPOINT(Enum):
@@ -217,7 +244,7 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    session = session or Session()
+    session = session or _new_retry_session()
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key]}",
@@ -278,7 +305,7 @@ def fetch_exchange(
     Gets exchange status between two specified zones.
     Only supports Nordpool zones.
     """
-    session = session or Session()
+    session = session or _new_retry_session()
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key1]}",
@@ -327,7 +354,7 @@ def fetch_intraday_contract_statistics(
             f"fetch_intraday_contract_statistics is not yet implemented for zone: {zone_key}"
         )
 
-    session = session or Session()
+    session = session or _new_retry_session()
     target_datetime = target_datetime or datetime.now(tz=timezone.utc)
 
     # Convert to CET date for the API call.
@@ -467,7 +494,7 @@ def fetch_exchange_available_transfer_capacity(
         )
     query_area, counterpart = border
 
-    session = session or Session()
+    session = session or _new_retry_session()
     target_datetime = target_datetime or datetime.now()
 
     params = {
