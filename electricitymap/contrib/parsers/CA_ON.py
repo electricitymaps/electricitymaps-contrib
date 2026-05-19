@@ -73,10 +73,13 @@ MODES = {
     "SOLAR": "solar",
     "WIND": "wind",
 }
+# Older reports (production, exchange) were built under the legacy Independent
+# Market Operator (IMO) era and still use the original IMO schema. Newer reports
+# (forecasts, DA price) were introduced after IESO took over full market
+# operations and use the updated ieso.ca schema.
 NAMESPACE = "{http://www.theIMO.com/schema}"
-PRICE_URL = (
-    "http://reports.ieso.ca/public/DispUnconsHOEP/PUB_DispUnconsHOEP_{YYYYMMDD}.xml"
-)
+IESO_NAMESPACE = "{http://www.ieso.ca/schema}"
+PRICE_URL = "https://reports-public.ieso.ca/public/DAHourlyOntarioZonalPrice/PUB_DAHourlyOntarioZonalPrice_{YYYYMMDD}.xml"
 PRODUCTION_URL = "http://reports.ieso.ca/public/GenOutputCapability/PUB_GenOutputCapability_{YYYYMMDD}.xml"
 SOURCE = "ieso.ca"
 # IESO says "Eastern Standard Time is used year round." This means daylight
@@ -202,16 +205,18 @@ def fetch_price(
         if xml is None:
             continue
 
-        # "HOEP" stands for "Hourly Ontario Energy Price". There also exists a
-        # 5-minute price, but its archives only go back roughly 4 days (see "5
-        # Minute Market Clearing Price" at http://www.ieso.ca/power-data ).
-        for hoep in xml.iter(NAMESPACE + "HOEP"):
+        # "ZonalPrice" is the Day-Ahead Hourly Ontario Zonal Energy Price,
+        # which replaced the discontinued HOEP report in August 2025 when IESO
+        # launched their new two-settlement market structure.
+        for hourly_price in xml.iter(IESO_NAMESPACE + "HourlyPriceComponents"):
             try:
-                hour = _parse_hour(hoep)
+                # Decrement the reported hour to convert from the hour-ending ([1, 24])
+                # convention used by the source to our hour-starting ([0, 23]) convention.
+                hour = int(hourly_price.findtext(IESO_NAMESPACE + "PricingHour")) - 1
             except (TypeError, ValueError) as error:
                 logger.warning(error)
                 continue
-            price = hoep.findtext(NAMESPACE + "Price")
+            price = hourly_price.findtext(IESO_NAMESPACE + "ZonalPrice")
             prices.append(
                 currency="CAD",
                 datetime=datetime.combine(date_, time(hour=hour), tzinfo=TIMEZONE),
