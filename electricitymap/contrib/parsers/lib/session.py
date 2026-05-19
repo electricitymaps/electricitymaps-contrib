@@ -4,16 +4,13 @@ from requests import Session
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-# Default retry policy: 3 retries, exponential backoff `2 * 2^(n-1)` s
-# between attempts (0, 2, 4 s), on rate-limit (429) and transient 5xx.
-# urllib3 honours `Retry-After` automatically when the server sends it.
-# Bounded so a sustained throttle still fails the task within Cloud Run's
-# budget and lets the queue retry.
+# 3 retries on 429 + transient 5xx, 0/2/4 s exponential backoff. urllib3
+# honours `Retry-After` for free. Pass a custom `Retry` to `mount_retry`
+# to widen `allowed_methods` (e.g. POST for OAuth token endpoints).
 #
-# `allowed_methods=["GET"]` matches the urllib3 default for safe-by-default
-# behaviour; parsers that need POST retried (e.g. OAuth token endpoints
-# where a replayed request just acquires a fresh token) should build their
-# own `Retry` with a widened allow-list and pass it to `mount_retry`.
+# Does NOT reliably cover `ConnectTimeoutError` — #8616 tried `connect=N`,
+# #8617 reverted it. Parsers needing that add an app-level loop on top
+# (see ESIOS.fetch_exchange).
 DEFAULT_RETRY = Retry(
     total=3,
     backoff_factor=2,
