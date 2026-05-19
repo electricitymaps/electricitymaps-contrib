@@ -1,22 +1,36 @@
-import ssl
+"""Shared transport-layer helpers for parser HTTP sessions."""
 
-import urllib3
-from requests import Session, adapters
+from requests import Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# Default retry policy: 3 retries, exponential backoff `2 * 2^(n-1)` s
+# between attempts (0, 2, 4 s), on rate-limit (429) and transient 5xx.
+# urllib3 honours `Retry-After` automatically when the server sends it.
+# Bounded so a sustained throttle still fails the task within Cloud Run's
+# budget and lets the queue retry.
+#
+# `allowed_methods=["GET"]` matches the urllib3 default for safe-by-default
+# behaviour; parsers that need POST retried (e.g. OAuth token endpoints
+# where a replayed request just acquires a fresh token) should build their
+# own `Retry` with a widened allow-list and pass it to `mount_retry`.
+DEFAULT_RETRY = Retry(
+    total=3,
+    backoff_factor=2,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET"],
+)
 
 
-class LegacyHttpAdapter(adapters.HTTPAdapter):
-    def init_poolmanager(self, connections, maxsize, block=False):
-        ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
-        ctx.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
-        self.poolmanager = urllib3.poolmanager.PoolManager(
-            num_pools=connections, maxsize=maxsize, block=block, ssl_context=ctx
-        )
+def mount_retry(session: Session, retry: Retry = DEFAULT_RETRY) -> Session:
+    """Mount a retrying HTTPAdapter on `session` for http(s)://.
 
-
-# Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error
-# Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
-def get_session_with_legacy_adapter():
-    session = Session()
-    session.mount("https://", LegacyHttpAdapter())
-    session.mount("http://", LegacyHttpAdapter())
+    Idempotent — re-mounting overrides the previous adapter with one
+    carrying the same Retry config, so calling this multiple times is
+    safe (each public fetcher can call it without coordinating).
+    Returns `session` so the call composes with `session or Session()`.
+    """
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
     return session
