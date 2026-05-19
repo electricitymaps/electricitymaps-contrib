@@ -30,7 +30,7 @@ from electricitymap.contrib.parsers.JP import (
     ],
 )
 @freeze_time("2025-04-16")  # because the mocks are all around this date
-def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key):
+def test_snapshot_fetch_generation_forecast(requests_mock, session, snapshot, zone_key):
     datestamp_today = datetime.now().strftime("%Y%m%d")
     BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/" + zone_key)
 
@@ -60,7 +60,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
             today_url = "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_today.csv"
             data_path = Path(BASE_PATH_TO_MOCK, "yosoku_today.csv")
 
-        adapter.register_uri(GET, today_url, body=data_path.open("rb"))
+        requests_mock.register_uri(GET, today_url, body=data_path.open("rb"))
 
         # Register tomorrow's URL (except for JP-CB which raises an exception)
         if zone_key != "JP-CB":
@@ -77,11 +77,11 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
                 tomorrow_url = "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_tomorrow.csv"
                 data_path = Path(BASE_PATH_TO_MOCK, "yosoku_tomorrow.csv")
 
-            adapter.register_uri(GET, tomorrow_url, body=data_path.open("rb"))
+            requests_mock.register_uri(GET, tomorrow_url, body=data_path.open("rb"))
 
     if zone_key == "JP-HKD":
         data_path = Path(BASE_PATH_TO_MOCK, "20250415_hokkaido_yosoku.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -89,7 +89,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
 
     elif zone_key == "JP-HR":
         data_path = Path(BASE_PATH_TO_MOCK, "yosoku_05_20250415.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -97,7 +97,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
 
     elif zone_key == "JP-KN":
         data_path = Path(BASE_PATH_TO_MOCK, "20250416_yosoku.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -107,7 +107,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
         data_zip_file = Path(BASE_PATH_TO_MOCK, "202504_jyukyu2_chugoku.zip")
         with open(data_zip_file, "rb") as zip_file:
             zip_content = zip_file.read()
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             content=zip_content,
@@ -115,7 +115,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
 
     elif zone_key == "JP-KY":
         data_path = Path(BASE_PATH_TO_MOCK, "21110_TSO9_0_20250407.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -123,7 +123,7 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
 
     elif zone_key == "JP-ON":
         data_path = Path(BASE_PATH_TO_MOCK, "jukyu_yosoku_20250415.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -155,7 +155,9 @@ def test_snapshot_fetch_generation_forecast(adapter, session, snapshot, zone_key
     ],
 )
 @freeze_time("2025-04-16")  # because the mocks are all around this date
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_key):
+def test_snapshot_fetch_consumption_forecast(
+    requests_mock, session, snapshot, zone_key
+):
     datestamp_today = datetime.now().strftime("%Y%m%d")
     BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/" + zone_key)
 
@@ -185,7 +187,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
             today_url = "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_today.csv"
             data_path = Path(BASE_PATH_TO_MOCK, "yosoku_today.csv")
 
-        adapter.register_uri(GET, today_url, body=data_path.open("rb"))
+        requests_mock.register_uri(GET, today_url, body=data_path.open("rb"))
 
         # Register tomorrow's URL (except for JP-CB which raises an exception)
         if zone_key != "JP-CB":
@@ -202,11 +204,11 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
                 tomorrow_url = "https://www.yonden.co.jp/nw/denkiyoho/supply_demand/csv/yosoku_tomorrow.csv"
                 data_path = Path(BASE_PATH_TO_MOCK, "yosoku_tomorrow.csv")
 
-            adapter.register_uri(GET, tomorrow_url, body=data_path.open("rb"))
+            requests_mock.register_uri(GET, tomorrow_url, body=data_path.open("rb"))
 
     if zone_key == "JP-HKD":
         data_path = Path(BASE_PATH_TO_MOCK, "20250415_hokkaido_yosoku.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -214,7 +216,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
 
     elif zone_key == "JP-HR":
         data_path = Path(BASE_PATH_TO_MOCK, "yosoku_05_20250415.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -222,7 +224,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
 
     elif zone_key == "JP-KN":
         data_path = Path(BASE_PATH_TO_MOCK, "20250416_yosoku.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -232,7 +234,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
         data_zip_file = Path(BASE_PATH_TO_MOCK, "202504_jyukyu2_chugoku.zip")
         with open(data_zip_file, "rb") as zip_file:
             zip_content = zip_file.read()
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             content=zip_content,
@@ -240,7 +242,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
 
     elif zone_key == "JP-KY":
         data_path = Path(BASE_PATH_TO_MOCK, "21110_TSO9_0_20250407.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),
@@ -248,7 +250,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot, zone_ke
 
     elif zone_key == "JP-ON":
         data_path = Path(BASE_PATH_TO_MOCK, "jukyu_yosoku_20250415.csv")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             re.compile(forecast_url[zone_key]),
             body=data_path.open("rb"),

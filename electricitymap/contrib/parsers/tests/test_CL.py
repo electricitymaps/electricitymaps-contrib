@@ -10,9 +10,9 @@ from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
+def mock_response(requests_mock):
     url = f"{API_BASE_URL}fecha__gte=2024-02-23&fecha__lte=2024-02-24"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         url,
         json=loads(
