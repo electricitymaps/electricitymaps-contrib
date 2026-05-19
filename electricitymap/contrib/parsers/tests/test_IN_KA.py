@@ -5,8 +5,8 @@ from requests_mock import GET
 from electricitymap.contrib.parsers import IN_KA
 
 
-def test_fetch_consumption(adapter, session):
-    adapter.register_uri(
+def test_fetch_consumption(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         "https://kptclsldc.in/Default.aspx",
         text=resources.files("electricitymap.contrib.parsers.tests.mocks")
@@ -23,15 +23,15 @@ def test_fetch_consumption(adapter, session):
     assert data["consumption"] == 7430.0
 
 
-def test_fetch_production(adapter, session):
-    adapter.register_uri(
+def test_fetch_production(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         "https://kptclsldc.in/StateGen.aspx",
         text=resources.files("electricitymap.contrib.parsers.tests.mocks")
         .joinpath("IN_KA_StateGen.html")
         .read_text(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://kptclsldc.in/StateNCEP.aspx",
         text=resources.files("electricitymap.contrib.parsers.tests.mocks")

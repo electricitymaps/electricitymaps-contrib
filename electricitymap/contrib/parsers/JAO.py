@@ -47,6 +47,7 @@ from electricitymap.contrib.lib.models.events import (
 )
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.session import mount_retry
 from electricitymap.contrib.types import AtcType, MarketAgreementType
 
 SOURCE = "jao.eu"
@@ -180,6 +181,7 @@ def _query_jao(
             "to_utc": params["ToUtc"],
         },
     )
+    mount_retry(session)
     response = session.get(url, params=params, timeout=REQUEST_TIMEOUT_SECONDS)
     if not response.ok:
         raise ParserException(

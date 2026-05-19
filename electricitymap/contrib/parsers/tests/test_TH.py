@@ -17,15 +17,15 @@ from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture
-def mock_mea_pages(adapter):
-    adapter.register_uri(
+def mock_mea_pages(requests_mock):
+    requests_mock.register_uri(
         GET,
         MEA_BASEPRICE_URL,
         content=resources.files("electricitymap.contrib.parsers.tests.mocks.TH")
         .joinpath("mea_baseprice.html")
         .read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         MEA_FT_URL,
         content=resources.files("electricitymap.contrib.parsers.tests.mocks.TH")

@@ -11,7 +11,7 @@ from electricitymap.contrib.types import ZoneKey
 MOCK_DATA_DIR = Path(__file__).parent / "mocks" / "PE"
 
 
-def test_fetch_production_with_target_datetime(adapter, session, snapshot):
+def test_fetch_production_with_target_datetime(requests_mock, session, snapshot):
     """Test production data parsing for specific target datetime 2025-09-10."""
 
     def mock_response(request, context):
@@ -40,8 +40,8 @@ def test_fetch_production_with_target_datetime(adapter, session, snapshot):
         with open(mock_file, encoding="utf-8") as f:
             return json.load(f)
 
-    # Register the mock adapter
-    adapter.register_uri(
+    # Register the mock requests_mock
+    requests_mock.register_uri(
         POST,
         API_ENDPOINT,
         json=mock_response,
@@ -59,7 +59,7 @@ def test_fetch_production_with_target_datetime(adapter, session, snapshot):
     assert snapshot == result
 
 
-def test_fetch_production_data_structure(adapter, session):
+def test_fetch_production_data_structure(requests_mock, session):
     """Test that the production data has the expected structure and values."""
 
     def mock_response(request, context):
@@ -68,7 +68,7 @@ def test_fetch_production_data_structure(adapter, session):
         with open(mock_file, encoding="utf-8") as f:
             return json.load(f)
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         API_ENDPOINT,
         json=mock_response,

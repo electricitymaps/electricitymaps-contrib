@@ -5,6 +5,7 @@ from enum import Enum
 from logging import Logger, getLogger
 
 from requests import Response, Session
+from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeAtcList,
@@ -19,6 +20,7 @@ from electricitymap.contrib.parsers.lib.nordpool_intraday_schemas import (
 from electricitymap.contrib.types import AtcType, ZoneKey
 
 from .lib.config import refetch_frequency
+from .lib.session import mount_retry
 from .lib.utils import get_token
 
 """
@@ -42,6 +44,17 @@ class NordpoolToken:
 CURRENT_TOKEN: NordpoolToken | None = None
 
 SOURCE = "nordpool.com"
+
+# Nordpool needs the OAuth token endpoint (POST) retried too — replaying
+# the token POST just acquires a fresh token, no side effects — so we
+# extend the shared default's allow-list. Everything else matches
+# `lib.session.DEFAULT_RETRY` (3 retries, 0/2/4 s backoff, 429 + 5xx).
+_NORDPOOL_RETRY = Retry(
+    total=3,
+    backoff_factor=2,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET", "POST"],
+)
 
 
 class NORDPOOL_API_ENDPOINT(Enum):
@@ -217,7 +230,7 @@ def fetch_price(
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    session = session or Session()
+    session = mount_retry(session or Session(), retry=_NORDPOOL_RETRY)
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key]}",
@@ -278,7 +291,7 @@ def fetch_exchange(
     Gets exchange status between two specified zones.
     Only supports Nordpool zones.
     """
-    session = session or Session()
+    session = mount_retry(session or Session(), retry=_NORDPOOL_RETRY)
     target_datetime = target_datetime or datetime.now()
     params = {
         "areas": f"{ZONE_MAPPING[zone_key1]}",
@@ -327,7 +340,7 @@ def fetch_intraday_contract_statistics(
             f"fetch_intraday_contract_statistics is not yet implemented for zone: {zone_key}"
         )
 
-    session = session or Session()
+    session = mount_retry(session or Session(), retry=_NORDPOOL_RETRY)
     target_datetime = target_datetime or datetime.now(tz=timezone.utc)
 
     # Convert to CET date for the API call.
@@ -467,7 +480,7 @@ def fetch_exchange_available_transfer_capacity(
         )
     query_area, counterpart = border
 
-    session = session or Session()
+    session = mount_retry(session or Session(), retry=_NORDPOOL_RETRY)
     target_datetime = target_datetime or datetime.now()
 
     params = {

@@ -9,7 +9,7 @@ from electricitymap.contrib.parsers.IL import IEC_PRODUCTION, fetch_all
 def test_snapshot_fetch_all(snapshot):
     """Snapshot the full fetch_all output. Exercises BeautifulSoup(lxml)
     parsing of the IEC dashboard. `fetch_all` calls module-level `requests.get`
-    twice, so we patch the global adapter via `requests_mock.Mocker`.
+    twice, so we patch the global requests_mock via `requests_mock.Mocker`.
     """
     html = (
         resources.files("electricitymap.contrib.parsers.tests.mocks.IL")
