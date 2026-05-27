@@ -1,0 +1,62 @@
+# serializer version: 1
+# name: test_fetch_production[RE]
+  list([
+    dict({
+      'correctedModes': list([
+        'gas',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 25, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 279.3918,
+        'gas': 0,
+        'hydro': 1.506,
+        'solar': 59.852,
+        'wind': 1.624,
+      }),
+      'source': 'opendata-reunion.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0.1026,
+      }),
+      'zoneKey': 'RE',
+    }),
+    dict({
+      'correctedModes': list([
+        'gas',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 40, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 282.9156,
+        'gas': 0,
+        'hydro': 2.324,
+        'solar': 57.2,
+        'wind': 2.056,
+      }),
+      'source': 'opendata-reunion.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0.0074,
+      }),
+      'zoneKey': 'RE',
+    }),
+    dict({
+      'correctedModes': list([
+        'gas',
+      ]),
+      'datetime': datetime.datetime(2026, 5, 26, 9, 50, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 282.3438,
+        'gas': 0,
+        'hydro': 2.3438,
+        'solar': 52.78,
+        'wind': 2.1598,
+      }),
+      'source': 'opendata-reunion.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0.0154,
+      }),
+      'zoneKey': 'RE',
+    }),
+  ])
+# ---

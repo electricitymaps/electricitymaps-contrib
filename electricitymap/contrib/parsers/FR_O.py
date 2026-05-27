@@ -74,6 +74,7 @@ API_PARAMETER_GROUPS = {
             "eolien": "wind",
             "hydraulique": "hydro",
             "moteurs_diesels": "oil",
+            "photovoltaique": "solar",
             "turbines_combustion": "gas",
         },
         "FR-COR": {
@@ -106,7 +107,49 @@ PRICE_MAPPING = {
     for API_TYPE in groups
 }
 
-IGNORED_VALUES = ["jour", "total", "statut", "date", "heure", "liaisons", "tac"]
+IGNORED_VALUES = [
+    "jour",
+    "total",
+    "statut",
+    "date",
+    "date_jour",
+    "heure",
+    "liaisons",
+    "tac",
+]
+
+# The API exposes aggregate sub-totals (``filiere_*``) and percentage shares
+# (``part_*``) alongside the per-mode generation values. These must be ignored
+# to avoid double counting.
+IGNORED_PREFIXES = ("part_", "filiere_")
+
+# Historical data is served by a different, national dataset
+# (``courbe-de-charge-de-la-production-delectricite-par-filiere``) which uses a
+# more aggregated schema (``*_mw`` suffixes) than the per-territory live feeds.
+# Thermal generation (oil/gas) and bagasse/coal are each reported as a single
+# lumped value that cannot be split into individual modes, so both are reported
+# as ``unknown``.
+HISTORICAL_GENERATION_MAPPING = {
+    "photovoltaique_mw": "solar",
+    "eolien_mw": "wind",
+    "hydraulique_mw": "hydro",
+    "micro_hydraulique_mw": "hydro",
+    "bioenergies_mw": "biomass",
+    "geothermie_mw": "geothermal",
+    "thermique_mw": "unknown",
+    "bagasse_charbon_mw": "unknown",
+}
+
+HISTORICAL_STORAGE_MAPPING = {"stockage_mw": "battery"}
+
+HISTORICAL_IGNORED_VALUES = [
+    "date_heure",
+    "territoire",
+    "statut",
+    "production_totale_mw",
+    "importations_mw",
+    "cout_moyen_de_production_eur_mwh",
+]
 
 
 def generate_url(zone_key, target_datetime):
@@ -195,22 +238,34 @@ def fetch_production(
         zone_key, session, target_datetime
     )
 
+    # Historical and live data come from different datasets with different
+    # schemas, so the mappings used to interpret each field differ accordingly.
+    is_historical = target_datetime is not None
+    generation_mapping = (
+        HISTORICAL_GENERATION_MAPPING
+        if is_historical
+        else API_PARAMETER_GROUPS["production"][zone_key]
+    )
+    storage_mapping = HISTORICAL_STORAGE_MAPPING if is_historical else STORAGE_MAPPING
+    ignored_values = HISTORICAL_IGNORED_VALUES if is_historical else IGNORED_VALUES
+    ignored_prefixes = () if is_historical else IGNORED_PREFIXES
+
     production_breakdown_list = ProductionBreakdownList(logger=logger)
     for production_object in production_objects:
         production = ProductionMix()
         storage = StorageMix()
         for mode_key in production_object:
-            if mode_key in API_PARAMETER_GROUPS["production"][zone_key]:
+            if mode_key in generation_mapping:
                 production.add_value(
-                    API_PARAMETER_GROUPS["production"][zone_key][mode_key],
+                    generation_mapping[mode_key],
                     production_object[mode_key],
                     correct_negative_with_zero=True,
                 )
-            elif mode_key in STORAGE_MAPPING:
-                storage.add_value(
-                    STORAGE_MAPPING[mode_key], -production_object[mode_key]
-                )
-            elif mode_key in IGNORED_VALUES:
+            elif mode_key in storage_mapping:
+                value = production_object[mode_key]
+                if value is not None:
+                    storage.add_value(storage_mapping[mode_key], -value)
+            elif mode_key in ignored_values or mode_key.startswith(ignored_prefixes):
                 pass
             else:
                 logger.warning(
