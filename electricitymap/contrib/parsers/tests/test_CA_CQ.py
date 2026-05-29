@@ -6,8 +6,8 @@ from requests_mock import ANY, GET
 from electricitymap.contrib.parsers.CA_QC import fetch_consumption, fetch_production
 
 
-def test_production(adapter, session, snapshot):
-    adapter.register_uri(
+def test_production(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -20,8 +20,8 @@ def test_production(adapter, session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_consumption(adapter, session, snapshot):
-    adapter.register_uri(
+def test_consumption(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(

@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 import pytest
 import requests
-from requests_mock import ANY, GET, Adapter
+from requests_mock import ANY, GET
 
 from electricitymap.contrib.parsers.NTESMO import (
     fetch_consumption,
@@ -18,10 +18,7 @@ australia = ZoneInfo("Australia/Darwin")
 
 
 @pytest.fixture()
-def fixture_session_mock(adapter, session) -> tuple[requests.Session, Adapter]:
-    # do not mount mock adapter on generic https:// prefix or the parser's @retry_policy decorator will overwrite it
-    session.mount("https://ntesmo.com.au/", adapter)
-
+def fixture_session_mock(requests_mock, session) -> tuple[requests.Session, object]:
     index_page = """<div class="smp-tiles-article__item">
             <a href="https://ntesmo.com.au/__data/assets/excel_doc/0013/116113/Market-Information_System-Control-daily-trading-day_220401.xlsx">
                 <div class="smp-tiles-article__title">01 December 2022</div>
@@ -44,7 +41,7 @@ def fixture_session_mock(adapter, session) -> tuple[requests.Session, Adapter]:
     with open(
         "electricitymap/contrib/parsers/tests/mocks/AU/NTESMO.xlsx", "rb"
     ) as data:
-        adapter.register_uri(
+        requests_mock.register_uri(
             ANY,
             ANY,
             response_list=[
@@ -55,11 +52,11 @@ def fixture_session_mock(adapter, session) -> tuple[requests.Session, Adapter]:
             ],
         )
 
-    return session, adapter
+    return session, requests_mock
 
 
 def test_fetch_production(fixture_session_mock):
-    session, adapter = fixture_session_mock
+    session, requests_mock = fixture_session_mock
 
     historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
     data_list = fetch_production(session=session, target_datetime=historical_datetime)
@@ -86,7 +83,7 @@ def test_fetch_production(fixture_session_mock):
 
 
 def test_fetch_price(fixture_session_mock):
-    session, adapter = fixture_session_mock
+    session, requests_mock = fixture_session_mock
 
     historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
     data_list = fetch_price(session=session, target_datetime=historical_datetime)
@@ -117,7 +114,7 @@ def test_fetch_price(fixture_session_mock):
 
 
 def test_fetch_consumption(fixture_session_mock):
-    session, adapter = fixture_session_mock
+    session, requests_mock = fixture_session_mock
 
     historical_datetime = datetime(year=2022, month=12, day=1, tzinfo=timezone.utc)
     data_list = fetch_consumption(session=session, target_datetime=historical_datetime)
@@ -148,7 +145,7 @@ def test_fetch_consumption(fixture_session_mock):
 BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/NTESMO")
 
 
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
+def test_snapshot_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Define mock URLs
     base_url = (
         "https://ntesmo.com.au/data/data-dashboard/2024-enhancements/demand-forecast"
@@ -166,7 +163,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
         mock_data = Path(BASE_PATH_TO_MOCK, mock_file_name)
 
         # Mock request
-        adapter.register_uri(GET, endpoint, json=loads(mock_data.read_text()))
+        requests_mock.register_uri(GET, endpoint, json=loads(mock_data.read_text()))
 
     # Call the function under test
     result = fetch_consumption_forecast(zone_key="AU-NT", session=session)

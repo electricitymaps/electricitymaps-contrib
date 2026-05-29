@@ -18,16 +18,16 @@ def entsoe_token_env():
     os.environ["ENTSOE_TOKEN"] = "token"
 
 
-def test_fetch_production(adapter, session, snapshot):
+def test_fetch_production(requests_mock, session, snapshot):
     entsoe_data = base_path_to_mock / "entsoe_production.xml"
     elia_data = base_path_to_mock / "production.json"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(r"https://entsoe-proxy"),
         content=entsoe_data.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(r"https://opendata\.elia\.be"),
         json=json.loads(elia_data.read_text()),

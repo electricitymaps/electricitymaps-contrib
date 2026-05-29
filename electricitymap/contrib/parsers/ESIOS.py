@@ -8,13 +8,12 @@ from zoneinfo import ZoneInfo
 
 import requests
 from requests import Response, Session
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 from electricitymap.contrib.lib.models.event_lists import ExchangeList
 from electricitymap.contrib.types import ZoneKey
 
 from .lib.exceptions import ParserException
+from .lib.session import mount_retry
 from .lib.utils import get_token
 
 TIMEZONE = ZoneInfo("Europe/Madrid")
@@ -73,10 +72,7 @@ def fetch_exchange(
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 
-    # Only create a new session if one wasn't provided
-    # This allows tests to pass in a session with mock adapters
-    ses = session or Session()
-    is_new_session = session is None
+    ses = mount_retry(session or Session())
 
     if target_datetime is None:
         target_datetime = datetime.now(tz=TIMEZONE)
@@ -95,26 +91,9 @@ def fetch_exchange(
         )
     url = format_url(target_datetime, EXCHANGE_ID_MAP[zone_key])
 
-    if is_new_session:
-        # Configure retry strategy for HTTP status code errors
-        retry_strategy = Retry(
-            total=3,
-            backoff_factor=2,
-            status_forcelist=[
-                429,
-                500,
-                502,
-                503,
-                504,
-            ],
-            allowed_methods=["GET"],
-        )
-        adapter = HTTPAdapter(max_retries=retry_strategy)
-        ses.mount("https://", adapter)
-        ses.mount("http://", adapter)
-
-    # Manual retry loop with exponential backoff for connection/timeout errors
-    # This gives us better control over retry behavior for network issue
+    # Manual retry loop covers connection/timeout errors that urllib3.Retry
+    # in the mounted adapter doesn't catch (urllib3 raises them as
+    # ConnectionError before the retry counter kicks in).
     max_retries = 5
     for attempt in range(max_retries):
         try:

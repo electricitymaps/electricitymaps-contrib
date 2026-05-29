@@ -2,6 +2,7 @@
 # name: test_fetch_core_external_atc_day_ahead_de_dk_dk1
   list([
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 0, 0, tzinfo=datetime.timezone.utc),
@@ -10,6 +11,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 0, 15, tzinfo=datetime.timezone.utc),
@@ -18,6 +20,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 0, 30, tzinfo=datetime.timezone.utc),
@@ -26,6 +29,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 0, 45, tzinfo=datetime.timezone.utc),
@@ -34,6 +38,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 1, 0, tzinfo=datetime.timezone.utc),
@@ -42,6 +47,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 1, 15, tzinfo=datetime.timezone.utc),
@@ -50,6 +56,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 1, 30, tzinfo=datetime.timezone.utc),
@@ -58,6 +65,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 1, 45, tzinfo=datetime.timezone.utc),
@@ -66,6 +74,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 2, 0, tzinfo=datetime.timezone.utc),
@@ -74,6 +83,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 2, 15, tzinfo=datetime.timezone.utc),
@@ -82,6 +92,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 2, 30, tzinfo=datetime.timezone.utc),
@@ -90,6 +101,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 2, 45, tzinfo=datetime.timezone.utc),
@@ -98,6 +110,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 3, 0, tzinfo=datetime.timezone.utc),
@@ -106,6 +119,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 3, 15, tzinfo=datetime.timezone.utc),
@@ -114,6 +128,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 3, 30, tzinfo=datetime.timezone.utc),
@@ -122,6 +137,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 3, 45, tzinfo=datetime.timezone.utc),
@@ -130,6 +146,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 4, 0, tzinfo=datetime.timezone.utc),
@@ -138,6 +155,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 4, 15, tzinfo=datetime.timezone.utc),
@@ -146,6 +164,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 4, 30, tzinfo=datetime.timezone.utc),
@@ -154,6 +173,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 4, 45, tzinfo=datetime.timezone.utc),
@@ -162,6 +182,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2260.0,
       'datetime': datetime.datetime(2026, 4, 20, 5, 0, tzinfo=datetime.timezone.utc),
@@ -170,6 +191,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2260.0,
       'datetime': datetime.datetime(2026, 4, 20, 5, 15, tzinfo=datetime.timezone.utc),
@@ -178,6 +200,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2260.0,
       'datetime': datetime.datetime(2026, 4, 20, 5, 30, tzinfo=datetime.timezone.utc),
@@ -186,6 +209,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2260.0,
       'datetime': datetime.datetime(2026, 4, 20, 5, 45, tzinfo=datetime.timezone.utc),
@@ -194,6 +218,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2298.0,
       'datetime': datetime.datetime(2026, 4, 20, 6, 0, tzinfo=datetime.timezone.utc),
@@ -202,6 +227,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2298.0,
       'datetime': datetime.datetime(2026, 4, 20, 6, 15, tzinfo=datetime.timezone.utc),
@@ -210,6 +236,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2298.0,
       'datetime': datetime.datetime(2026, 4, 20, 6, 30, tzinfo=datetime.timezone.utc),
@@ -218,6 +245,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2298.0,
       'datetime': datetime.datetime(2026, 4, 20, 6, 45, tzinfo=datetime.timezone.utc),
@@ -226,6 +254,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2339.0,
       'datetime': datetime.datetime(2026, 4, 20, 7, 0, tzinfo=datetime.timezone.utc),
@@ -234,6 +263,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2339.0,
       'datetime': datetime.datetime(2026, 4, 20, 7, 15, tzinfo=datetime.timezone.utc),
@@ -242,6 +272,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2339.0,
       'datetime': datetime.datetime(2026, 4, 20, 7, 30, tzinfo=datetime.timezone.utc),
@@ -250,6 +281,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2339.0,
       'datetime': datetime.datetime(2026, 4, 20, 7, 45, tzinfo=datetime.timezone.utc),
@@ -258,6 +290,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2376.0,
       'datetime': datetime.datetime(2026, 4, 20, 8, 0, tzinfo=datetime.timezone.utc),
@@ -266,6 +299,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2376.0,
       'datetime': datetime.datetime(2026, 4, 20, 8, 15, tzinfo=datetime.timezone.utc),
@@ -274,6 +308,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2376.0,
       'datetime': datetime.datetime(2026, 4, 20, 8, 30, tzinfo=datetime.timezone.utc),
@@ -282,6 +317,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2376.0,
       'datetime': datetime.datetime(2026, 4, 20, 8, 45, tzinfo=datetime.timezone.utc),
@@ -290,6 +326,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2419.0,
       'datetime': datetime.datetime(2026, 4, 20, 9, 0, tzinfo=datetime.timezone.utc),
@@ -298,6 +335,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2419.0,
       'datetime': datetime.datetime(2026, 4, 20, 9, 15, tzinfo=datetime.timezone.utc),
@@ -306,6 +344,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2419.0,
       'datetime': datetime.datetime(2026, 4, 20, 9, 30, tzinfo=datetime.timezone.utc),
@@ -314,6 +353,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2419.0,
       'datetime': datetime.datetime(2026, 4, 20, 9, 45, tzinfo=datetime.timezone.utc),
@@ -322,6 +362,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2455.0,
       'datetime': datetime.datetime(2026, 4, 20, 10, 0, tzinfo=datetime.timezone.utc),
@@ -330,6 +371,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2455.0,
       'datetime': datetime.datetime(2026, 4, 20, 10, 15, tzinfo=datetime.timezone.utc),
@@ -338,6 +380,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2455.0,
       'datetime': datetime.datetime(2026, 4, 20, 10, 30, tzinfo=datetime.timezone.utc),
@@ -346,6 +389,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2455.0,
       'datetime': datetime.datetime(2026, 4, 20, 10, 45, tzinfo=datetime.timezone.utc),
@@ -354,6 +398,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2473.0,
       'datetime': datetime.datetime(2026, 4, 20, 11, 0, tzinfo=datetime.timezone.utc),
@@ -362,6 +407,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2473.0,
       'datetime': datetime.datetime(2026, 4, 20, 11, 15, tzinfo=datetime.timezone.utc),
@@ -370,6 +416,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2473.0,
       'datetime': datetime.datetime(2026, 4, 20, 11, 30, tzinfo=datetime.timezone.utc),
@@ -378,6 +425,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2473.0,
       'datetime': datetime.datetime(2026, 4, 20, 11, 45, tzinfo=datetime.timezone.utc),
@@ -386,6 +434,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2502.0,
       'datetime': datetime.datetime(2026, 4, 20, 12, 0, tzinfo=datetime.timezone.utc),
@@ -394,6 +443,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2502.0,
       'datetime': datetime.datetime(2026, 4, 20, 12, 15, tzinfo=datetime.timezone.utc),
@@ -402,6 +452,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2502.0,
       'datetime': datetime.datetime(2026, 4, 20, 12, 30, tzinfo=datetime.timezone.utc),
@@ -410,6 +461,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2502.0,
       'datetime': datetime.datetime(2026, 4, 20, 12, 45, tzinfo=datetime.timezone.utc),
@@ -418,6 +470,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2523.0,
       'datetime': datetime.datetime(2026, 4, 20, 13, 0, tzinfo=datetime.timezone.utc),
@@ -426,6 +479,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2523.0,
       'datetime': datetime.datetime(2026, 4, 20, 13, 15, tzinfo=datetime.timezone.utc),
@@ -434,6 +488,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2523.0,
       'datetime': datetime.datetime(2026, 4, 20, 13, 30, tzinfo=datetime.timezone.utc),
@@ -442,6 +497,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2523.0,
       'datetime': datetime.datetime(2026, 4, 20, 13, 45, tzinfo=datetime.timezone.utc),
@@ -450,6 +506,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2511.0,
       'datetime': datetime.datetime(2026, 4, 20, 14, 0, tzinfo=datetime.timezone.utc),
@@ -458,6 +515,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2511.0,
       'datetime': datetime.datetime(2026, 4, 20, 14, 15, tzinfo=datetime.timezone.utc),
@@ -466,6 +524,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2511.0,
       'datetime': datetime.datetime(2026, 4, 20, 14, 30, tzinfo=datetime.timezone.utc),
@@ -474,6 +533,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2511.0,
       'datetime': datetime.datetime(2026, 4, 20, 14, 45, tzinfo=datetime.timezone.utc),
@@ -482,6 +542,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 15, 0, tzinfo=datetime.timezone.utc),
@@ -490,6 +551,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 15, 15, tzinfo=datetime.timezone.utc),
@@ -498,6 +560,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 15, 30, tzinfo=datetime.timezone.utc),
@@ -506,6 +569,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 15, 45, tzinfo=datetime.timezone.utc),
@@ -514,6 +578,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 16, 0, tzinfo=datetime.timezone.utc),
@@ -522,6 +587,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 16, 15, tzinfo=datetime.timezone.utc),
@@ -530,6 +596,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 16, 30, tzinfo=datetime.timezone.utc),
@@ -538,6 +605,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 16, 45, tzinfo=datetime.timezone.utc),
@@ -546,6 +614,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 17, 0, tzinfo=datetime.timezone.utc),
@@ -554,6 +623,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 17, 15, tzinfo=datetime.timezone.utc),
@@ -562,6 +632,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 17, 30, tzinfo=datetime.timezone.utc),
@@ -570,6 +641,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 17, 45, tzinfo=datetime.timezone.utc),
@@ -578,6 +650,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 18, 0, tzinfo=datetime.timezone.utc),
@@ -586,6 +659,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 18, 15, tzinfo=datetime.timezone.utc),
@@ -594,6 +668,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 18, 30, tzinfo=datetime.timezone.utc),
@@ -602,6 +677,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 18, 45, tzinfo=datetime.timezone.utc),
@@ -610,6 +686,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 19, 0, tzinfo=datetime.timezone.utc),
@@ -618,6 +695,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 19, 15, tzinfo=datetime.timezone.utc),
@@ -626,6 +704,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 19, 30, tzinfo=datetime.timezone.utc),
@@ -634,6 +713,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 19, 45, tzinfo=datetime.timezone.utc),
@@ -642,6 +722,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 20, 0, tzinfo=datetime.timezone.utc),
@@ -650,6 +731,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 20, 15, tzinfo=datetime.timezone.utc),
@@ -658,6 +740,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 20, 30, tzinfo=datetime.timezone.utc),
@@ -666,6 +749,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 20, 45, tzinfo=datetime.timezone.utc),
@@ -674,6 +758,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 21, 0, tzinfo=datetime.timezone.utc),
@@ -682,6 +767,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 21, 15, tzinfo=datetime.timezone.utc),
@@ -690,6 +776,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 21, 30, tzinfo=datetime.timezone.utc),
@@ -698,6 +785,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 21, 45, tzinfo=datetime.timezone.utc),
@@ -706,6 +794,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 22, 0, tzinfo=datetime.timezone.utc),
@@ -714,6 +803,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 22, 15, tzinfo=datetime.timezone.utc),
@@ -722,6 +812,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 22, 30, tzinfo=datetime.timezone.utc),
@@ -730,6 +821,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 22, 45, tzinfo=datetime.timezone.utc),
@@ -738,6 +830,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 23, 0, tzinfo=datetime.timezone.utc),
@@ -746,6 +839,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 23, 15, tzinfo=datetime.timezone.utc),
@@ -754,6 +848,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 23, 30, tzinfo=datetime.timezone.utc),
@@ -762,6 +857,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 20, 23, 45, tzinfo=datetime.timezone.utc),
@@ -770,6 +866,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 0, 0, tzinfo=datetime.timezone.utc),
@@ -778,6 +875,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 0, 15, tzinfo=datetime.timezone.utc),
@@ -786,6 +884,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 0, 30, tzinfo=datetime.timezone.utc),
@@ -794,6 +893,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 0, 45, tzinfo=datetime.timezone.utc),
@@ -802,6 +902,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 1, 0, tzinfo=datetime.timezone.utc),
@@ -810,6 +911,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 1, 15, tzinfo=datetime.timezone.utc),
@@ -818,6 +920,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 1, 30, tzinfo=datetime.timezone.utc),
@@ -826,6 +929,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 1, 45, tzinfo=datetime.timezone.utc),
@@ -834,6 +938,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 2, 0, tzinfo=datetime.timezone.utc),
@@ -842,6 +947,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 2, 15, tzinfo=datetime.timezone.utc),
@@ -850,6 +956,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 2, 30, tzinfo=datetime.timezone.utc),
@@ -858,6 +965,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 2, 45, tzinfo=datetime.timezone.utc),
@@ -866,6 +974,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 3, 0, tzinfo=datetime.timezone.utc),
@@ -874,6 +983,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 3, 15, tzinfo=datetime.timezone.utc),
@@ -882,6 +992,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 3, 30, tzinfo=datetime.timezone.utc),
@@ -890,6 +1001,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 3, 45, tzinfo=datetime.timezone.utc),
@@ -898,6 +1010,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 4, 0, tzinfo=datetime.timezone.utc),
@@ -906,6 +1019,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 4, 15, tzinfo=datetime.timezone.utc),
@@ -914,6 +1028,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 4, 30, tzinfo=datetime.timezone.utc),
@@ -922,6 +1037,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 4, 45, tzinfo=datetime.timezone.utc),
@@ -930,6 +1046,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2289.0,
       'datetime': datetime.datetime(2026, 4, 21, 5, 0, tzinfo=datetime.timezone.utc),
@@ -938,6 +1055,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2289.0,
       'datetime': datetime.datetime(2026, 4, 21, 5, 15, tzinfo=datetime.timezone.utc),
@@ -946,6 +1064,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2289.0,
       'datetime': datetime.datetime(2026, 4, 21, 5, 30, tzinfo=datetime.timezone.utc),
@@ -954,6 +1073,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2289.0,
       'datetime': datetime.datetime(2026, 4, 21, 5, 45, tzinfo=datetime.timezone.utc),
@@ -962,6 +1082,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2429.0,
       'datetime': datetime.datetime(2026, 4, 21, 6, 0, tzinfo=datetime.timezone.utc),
@@ -970,6 +1091,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2429.0,
       'datetime': datetime.datetime(2026, 4, 21, 6, 15, tzinfo=datetime.timezone.utc),
@@ -978,6 +1100,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2429.0,
       'datetime': datetime.datetime(2026, 4, 21, 6, 30, tzinfo=datetime.timezone.utc),
@@ -986,6 +1109,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2429.0,
       'datetime': datetime.datetime(2026, 4, 21, 6, 45, tzinfo=datetime.timezone.utc),
@@ -994,6 +1118,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2518.0,
       'datetime': datetime.datetime(2026, 4, 21, 7, 0, tzinfo=datetime.timezone.utc),
@@ -1002,6 +1127,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2518.0,
       'datetime': datetime.datetime(2026, 4, 21, 7, 15, tzinfo=datetime.timezone.utc),
@@ -1010,6 +1136,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2518.0,
       'datetime': datetime.datetime(2026, 4, 21, 7, 30, tzinfo=datetime.timezone.utc),
@@ -1018,6 +1145,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2518.0,
       'datetime': datetime.datetime(2026, 4, 21, 7, 45, tzinfo=datetime.timezone.utc),
@@ -1026,6 +1154,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2340.0,
       'datetime': datetime.datetime(2026, 4, 21, 8, 0, tzinfo=datetime.timezone.utc),
@@ -1034,6 +1163,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2340.0,
       'datetime': datetime.datetime(2026, 4, 21, 8, 15, tzinfo=datetime.timezone.utc),
@@ -1042,6 +1172,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2340.0,
       'datetime': datetime.datetime(2026, 4, 21, 8, 30, tzinfo=datetime.timezone.utc),
@@ -1050,6 +1181,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2340.0,
       'datetime': datetime.datetime(2026, 4, 21, 8, 45, tzinfo=datetime.timezone.utc),
@@ -1058,6 +1190,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2349.0,
       'datetime': datetime.datetime(2026, 4, 21, 9, 0, tzinfo=datetime.timezone.utc),
@@ -1066,6 +1199,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2349.0,
       'datetime': datetime.datetime(2026, 4, 21, 9, 15, tzinfo=datetime.timezone.utc),
@@ -1074,6 +1208,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2349.0,
       'datetime': datetime.datetime(2026, 4, 21, 9, 30, tzinfo=datetime.timezone.utc),
@@ -1082,6 +1217,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2349.0,
       'datetime': datetime.datetime(2026, 4, 21, 9, 45, tzinfo=datetime.timezone.utc),
@@ -1090,6 +1226,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2332.0,
       'datetime': datetime.datetime(2026, 4, 21, 10, 0, tzinfo=datetime.timezone.utc),
@@ -1098,6 +1235,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2332.0,
       'datetime': datetime.datetime(2026, 4, 21, 10, 15, tzinfo=datetime.timezone.utc),
@@ -1106,6 +1244,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2332.0,
       'datetime': datetime.datetime(2026, 4, 21, 10, 30, tzinfo=datetime.timezone.utc),
@@ -1114,6 +1253,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2332.0,
       'datetime': datetime.datetime(2026, 4, 21, 10, 45, tzinfo=datetime.timezone.utc),
@@ -1122,6 +1262,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2325.0,
       'datetime': datetime.datetime(2026, 4, 21, 11, 0, tzinfo=datetime.timezone.utc),
@@ -1130,6 +1271,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2325.0,
       'datetime': datetime.datetime(2026, 4, 21, 11, 15, tzinfo=datetime.timezone.utc),
@@ -1138,6 +1280,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2325.0,
       'datetime': datetime.datetime(2026, 4, 21, 11, 30, tzinfo=datetime.timezone.utc),
@@ -1146,6 +1289,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2325.0,
       'datetime': datetime.datetime(2026, 4, 21, 11, 45, tzinfo=datetime.timezone.utc),
@@ -1154,6 +1298,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2315.0,
       'datetime': datetime.datetime(2026, 4, 21, 12, 0, tzinfo=datetime.timezone.utc),
@@ -1162,6 +1307,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2315.0,
       'datetime': datetime.datetime(2026, 4, 21, 12, 15, tzinfo=datetime.timezone.utc),
@@ -1170,6 +1316,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2315.0,
       'datetime': datetime.datetime(2026, 4, 21, 12, 30, tzinfo=datetime.timezone.utc),
@@ -1178,6 +1325,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2315.0,
       'datetime': datetime.datetime(2026, 4, 21, 12, 45, tzinfo=datetime.timezone.utc),
@@ -1186,6 +1334,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2294.0,
       'datetime': datetime.datetime(2026, 4, 21, 13, 0, tzinfo=datetime.timezone.utc),
@@ -1194,6 +1343,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2294.0,
       'datetime': datetime.datetime(2026, 4, 21, 13, 15, tzinfo=datetime.timezone.utc),
@@ -1202,6 +1352,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2294.0,
       'datetime': datetime.datetime(2026, 4, 21, 13, 30, tzinfo=datetime.timezone.utc),
@@ -1210,6 +1361,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2294.0,
       'datetime': datetime.datetime(2026, 4, 21, 13, 45, tzinfo=datetime.timezone.utc),
@@ -1218,6 +1370,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2399.0,
       'datetime': datetime.datetime(2026, 4, 21, 14, 0, tzinfo=datetime.timezone.utc),
@@ -1226,6 +1379,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2399.0,
       'datetime': datetime.datetime(2026, 4, 21, 14, 15, tzinfo=datetime.timezone.utc),
@@ -1234,6 +1388,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2399.0,
       'datetime': datetime.datetime(2026, 4, 21, 14, 30, tzinfo=datetime.timezone.utc),
@@ -1242,6 +1397,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 2399.0,
       'datetime': datetime.datetime(2026, 4, 21, 14, 45, tzinfo=datetime.timezone.utc),
@@ -1250,6 +1406,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 15, 0, tzinfo=datetime.timezone.utc),
@@ -1258,6 +1415,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 15, 15, tzinfo=datetime.timezone.utc),
@@ -1266,6 +1424,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 15, 30, tzinfo=datetime.timezone.utc),
@@ -1274,6 +1433,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 15, 45, tzinfo=datetime.timezone.utc),
@@ -1282,6 +1442,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 16, 0, tzinfo=datetime.timezone.utc),
@@ -1290,6 +1451,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 16, 15, tzinfo=datetime.timezone.utc),
@@ -1298,6 +1460,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 16, 30, tzinfo=datetime.timezone.utc),
@@ -1306,6 +1469,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 16, 45, tzinfo=datetime.timezone.utc),
@@ -1314,6 +1478,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 17, 0, tzinfo=datetime.timezone.utc),
@@ -1322,6 +1487,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 17, 15, tzinfo=datetime.timezone.utc),
@@ -1330,6 +1496,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 17, 30, tzinfo=datetime.timezone.utc),
@@ -1338,6 +1505,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 17, 45, tzinfo=datetime.timezone.utc),
@@ -1346,6 +1514,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 18, 0, tzinfo=datetime.timezone.utc),
@@ -1354,6 +1523,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 18, 15, tzinfo=datetime.timezone.utc),
@@ -1362,6 +1532,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 18, 30, tzinfo=datetime.timezone.utc),
@@ -1370,6 +1541,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 18, 45, tzinfo=datetime.timezone.utc),
@@ -1378,6 +1550,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 19, 0, tzinfo=datetime.timezone.utc),
@@ -1386,6 +1559,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 19, 15, tzinfo=datetime.timezone.utc),
@@ -1394,6 +1568,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 19, 30, tzinfo=datetime.timezone.utc),
@@ -1402,6 +1577,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 19, 45, tzinfo=datetime.timezone.utc),
@@ -1410,6 +1586,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 20, 0, tzinfo=datetime.timezone.utc),
@@ -1418,6 +1595,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 20, 15, tzinfo=datetime.timezone.utc),
@@ -1426,6 +1604,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 20, 30, tzinfo=datetime.timezone.utc),
@@ -1434,6 +1613,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 20, 45, tzinfo=datetime.timezone.utc),
@@ -1442,6 +1622,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 21, 0, tzinfo=datetime.timezone.utc),
@@ -1450,6 +1631,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 21, 15, tzinfo=datetime.timezone.utc),
@@ -1458,6 +1640,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 21, 30, tzinfo=datetime.timezone.utc),
@@ -1466,6 +1649,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 21, 45, tzinfo=datetime.timezone.utc),
@@ -1474,6 +1658,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 22, 0, tzinfo=datetime.timezone.utc),
@@ -1482,6 +1667,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 22, 15, tzinfo=datetime.timezone.utc),
@@ -1490,6 +1676,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 22, 30, tzinfo=datetime.timezone.utc),
@@ -1498,6 +1685,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 22, 45, tzinfo=datetime.timezone.utc),
@@ -1506,6 +1694,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 23, 0, tzinfo=datetime.timezone.utc),
@@ -1514,6 +1703,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 23, 15, tzinfo=datetime.timezone.utc),
@@ -1522,6 +1712,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 23, 30, tzinfo=datetime.timezone.utc),
@@ -1530,6 +1721,7 @@
       'sourceType': <EventSourceType.published: 'published'>,
     }),
     dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
       'capacityExport': 3500.0,
       'capacityImport': 3500.0,
       'datetime': datetime.datetime(2026, 4, 21, 23, 45, tzinfo=datetime.timezone.utc),

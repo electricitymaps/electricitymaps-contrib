@@ -1,4 +1,35 @@
 # serializer version: 1
+# name: test_atc_parser_de_no_no2
+  list([
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1100.0,
+      'capacityImport': 1444.0,
+      'datetime': datetime.datetime(2025, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'sortedZoneKeys': 'DE->NO-NO2',
+      'source': 'nordpool.com',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1200.0,
+      'capacityImport': 1444.0,
+      'datetime': datetime.datetime(2025, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'sortedZoneKeys': 'DE->NO-NO2',
+      'source': 'nordpool.com',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1200.0,
+      'capacityImport': 1444.0,
+      'datetime': datetime.datetime(2025, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'sortedZoneKeys': 'DE->NO-NO2',
+      'source': 'nordpool.com',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+  ])
+# ---
 # name: test_exchange_parser_fi_se1
   list([
     dict({

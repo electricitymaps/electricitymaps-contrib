@@ -15,12 +15,12 @@ from electricitymap.contrib.types import ZoneKey
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/CA_ON")
 
 
-def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
+def test_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     # Mock VG Forecast Summary report request
     var_gen_forecast_summary_report = Path(
         base_path_to_mock, "var_gen_forecast_summary_report_20250228.xml"
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://reports-public\.ieso\.ca/public/VGForecastSummary/PUB_VGForecastSummary_\d{8}\.xml"
@@ -30,7 +30,7 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Mock Adequacy report request
     adequacy_report = Path(base_path_to_mock, "adequacy_report_20250228.xml")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://reports-public\.ieso\.ca/public/Adequacy2/PUB_Adequacy2_\d{8}\.xml"
@@ -45,10 +45,10 @@ def test_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
 
-def test_fetch_consumption_forecast(adapter, session, snapshot):
+def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Mock Adequacy report request
     adequacy_report = Path(base_path_to_mock, "adequacy_report_20250228.xml")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://reports-public\.ieso\.ca/public/Adequacy2/PUB_Adequacy2_\d{8}\.xml"
@@ -63,14 +63,14 @@ def test_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
 
-def test_fetch_price(adapter, session, snapshot):
+def test_fetch_price(requests_mock, session, snapshot):
     # Mock the Day-Ahead Hourly Ontario Zonal Price report request. This report
     # replaced the discontinued DispUnconsHOEP (HOEP) report when IESO launched
     # its two-settlement Market Renewal market structure on 2025-05-01.
     da_hourly_ontario_zonal_price_report = Path(
         base_path_to_mock, "da_hourly_ontario_zonal_price_report_20260528.xml"
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             r"https://reports-public\.ieso\.ca/public/DAHourlyOntarioZonalPrice/PUB_DAHourlyOntarioZonalPrice_\d{8}\.xml"
