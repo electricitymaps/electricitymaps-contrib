@@ -206,8 +206,8 @@ def fetch_price(
             continue
 
         # "ZonalPrice" is the Day-Ahead Hourly Ontario Zonal Energy Price,
-        # which replaced the discontinued HOEP report in August 2025 when IESO
-        # launched their new two-settlement market structure.
+        # which replaced the discontinued HOEP report on 2025-05-01 when IESO's
+        # Market Renewal Program launched its two-settlement market structure.
         for hourly_price in xml.iter(IESO_NAMESPACE + "HourlyPriceComponents"):
             try:
                 # Decrement the reported hour to convert from the hour-ending ([1, 24])
