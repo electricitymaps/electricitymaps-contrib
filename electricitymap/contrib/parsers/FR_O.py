@@ -140,14 +140,13 @@ HISTORICAL_GENERATION_MAPPING = {
     "bagasse_charbon_mw": "unknown",
 }
 
-HISTORICAL_STORAGE_MAPPING = {"stockage_mw": "battery"}
-
 HISTORICAL_IGNORED_VALUES = [
     "date_heure",
     "territoire",
     "statut",
     "production_totale_mw",
     "importations_mw",
+    "stockage_mw",
     "cout_moyen_de_production_eur_mwh",
 ]
 
@@ -246,7 +245,6 @@ def fetch_production(
         if is_historical
         else API_PARAMETER_GROUPS["production"][zone_key]
     )
-    storage_mapping = HISTORICAL_STORAGE_MAPPING if is_historical else STORAGE_MAPPING
     ignored_values = HISTORICAL_IGNORED_VALUES if is_historical else IGNORED_VALUES
     ignored_prefixes = () if is_historical else IGNORED_PREFIXES
 
@@ -261,10 +259,10 @@ def fetch_production(
                     production_object[mode_key],
                     correct_negative_with_zero=True,
                 )
-            elif mode_key in storage_mapping:
-                value = production_object[mode_key]
-                if value is not None:
-                    storage.add_value(storage_mapping[mode_key], -value)
+            elif mode_key in STORAGE_MAPPING:
+                storage.add_value(
+                    STORAGE_MAPPING[mode_key], -production_object[mode_key]
+                )
             elif mode_key in ignored_values or mode_key.startswith(ignored_prefixes):
                 pass
             else:
