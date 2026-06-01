@@ -5,9 +5,18 @@ bounding_box:
     - 48.56970907985509
 capacity:
   battery storage:
-    - datetime: '2024-09-01'
+    - datetime: '2023-01-01'
+      source: mavir.hu
+      value: 21.8
+    - datetime: '2024-01-01'
       source: mavir.hu
       value: 35.3
+    - datetime: '2025-01-01'
+      source: mavir.hu
+      value: 146.0
+    - datetime: '2026-05-01'
+      source: mavir.hu
+      value: 501.5
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
