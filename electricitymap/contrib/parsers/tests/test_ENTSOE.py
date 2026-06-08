@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from requests_mock import ANY, GET
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
-from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityForecastList
+from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityList
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
@@ -28,9 +28,9 @@ def entsoe_token_env():
     os.environ["ENTSOE_TOKEN"] = "token"
 
 
-def test_fetch_consumption(adapter, session, snapshot):
+def test_fetch_consumption(requests_mock, session, snapshot):
     data = base_path_to_mock / "DK-DK1_consumption.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -39,9 +39,9 @@ def test_fetch_consumption(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_consumption(ZoneKey("DK-DK1"), session)
 
 
-def test_fetch_consumption_forecast(adapter, session, snapshot):
+def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     data = base_path_to_mock / "DK-DK2_consumption_forecast.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -89,9 +89,9 @@ def test_fetch_consumption_aggregated_zone(monkeypatch):
     ]
 
 
-def test_fetch_generation_forecast(adapter, session, snapshot):
+def test_fetch_generation_forecast(requests_mock, session, snapshot):
     data = base_path_to_mock / "SE-SE3_generation_forecast.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -141,9 +141,9 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
     ]
 
 
-def test_fetch_prices_day_ahead(adapter, session, snapshot):
+def test_fetch_prices_day_ahead(requests_mock, session, snapshot):
     data = base_path_to_mock / "ES_day_ahead_price.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -152,9 +152,9 @@ def test_fetch_prices_day_ahead(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_price(ZoneKey("ES"), session)
 
 
-def test_fetch_prices_intraday(adapter, session, snapshot):
+def test_fetch_prices_intraday(requests_mock, session, snapshot):
     data = base_path_to_mock / "ES_intraday_price.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -163,9 +163,9 @@ def test_fetch_prices_intraday(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_price_intraday(ZoneKey("ES"), session)
 
 
-def test_fetch_prices_integrated_zone(adapter, session, snapshot):
+def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
     data = base_path_to_mock / "FR_prices.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -173,9 +173,9 @@ def test_fetch_prices_integrated_zone(adapter, session, snapshot):
     assert snapshot == ENTSOE.fetch_price(ZoneKey("AX"), session)
 
 
-def test_fetch_with_negative_values(adapter, session, snapshot):
+def test_fetch_with_negative_values(requests_mock, session, snapshot):
     data = base_path_to_mock / "NO-NO5_production-negatives.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=data.read_bytes(),
@@ -187,9 +187,9 @@ def test_fetch_with_negative_values(adapter, session, snapshot):
 
 
 @pytest.mark.parametrize("zone", ["FI", "LU", "NO-NO5", "SE-SE4"])
-def test_production_with_snapshot(adapter, session, snapshot, zone):
+def test_production_with_snapshot(requests_mock, session, snapshot, zone):
     raw_data = base_path_to_mock / f"{zone}_production.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         content=raw_data.read_bytes(),
@@ -199,16 +199,16 @@ def test_production_with_snapshot(adapter, session, snapshot, zone):
     ) == ENTSOE.fetch_production(ZoneKey(zone), session)
 
 
-def test_fetch_exchange(adapter, session, snapshot):
+def test_fetch_exchange(requests_mock, session, snapshot):
     imports = base_path_to_mock / "DK-DK1_GB_exchange_imports.xml"
     exports = base_path_to_mock / "DK-DK1_GB_exchange_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10YDK-1--------W&out_Domain=10YGB----------A",
         content=imports.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10YGB----------A&out_Domain=10YDK-1--------W",
         content=exports.read_bytes(),
@@ -218,28 +218,28 @@ def test_fetch_exchange(adapter, session, snapshot):
     )
 
 
-def test_fetch_exchange_with_aggregated_exchanges(adapter, session, snapshot):
+def test_fetch_exchange_with_aggregated_exchanges(requests_mock, session, snapshot):
     imports_AC = base_path_to_mock / "FR-COR_IT-SAR_AC_exchange_imports.xml"
     exports_AC = base_path_to_mock / "FR-COR_IT-SAR_AC_exchange_exports.xml"
     imports_DC = base_path_to_mock / "FR-COR_IT-SAR_DC_exchange_imports.xml"
     exports_DC = base_path_to_mock / "FR-COR_IT-SAR_DC_exchange_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
         content=imports_AC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
         content=exports_AC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
         content=imports_DC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A11&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
         content=exports_DC.read_bytes(),
@@ -252,16 +252,16 @@ def test_fetch_exchange_with_aggregated_exchanges(adapter, session, snapshot):
     )
 
 
-def test_fetch_exchange_forecast(adapter, session, snapshot):
+def test_fetch_exchange_forecast(requests_mock, session, snapshot):
     imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
         content=imports.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
         content=exports.read_bytes(),
@@ -273,17 +273,75 @@ def test_fetch_exchange_forecast(adapter, session, snapshot):
     )
 
 
-def test_fetch_exchange_forecast_15_min(adapter, session, snapshot):
+def test_fetch_scheduled_exchanges_day_ahead(requests_mock, session, snapshot):
+    """A09 / contract A01 — cleared day-ahead schedule. Events must be
+    tagged sourceType=published per the EXCHANGE_PUBLICATION_DATA_TYPES
+    contract."""
+    imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
+    exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
+
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+        content=imports.read_bytes(),
+    )
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+        content=exports.read_bytes(),
+    )
+    result = ENTSOE.fetch_scheduled_exchanges_day_ahead(
+        zone_key1=ZoneKey("DK-DK2"),
+        zone_key2=ZoneKey("SE-SE4"),
+        session=session,
+    )
+    assert result, "fetch_scheduled_exchanges_day_ahead returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
+    )
+    assert snapshot == result
+
+
+def test_get_scheduled_exchanges_total(requests_mock, session, snapshot):
+    """A09 / contract A05 — finalised aggregate schedule (includes intraday
+    adjustments). Distinct view from day-ahead; events still tagged
+    sourceType=published."""
+    imports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_imports.xml"
+    exports = base_path_to_mock / "DK-DK2_SE-SE4_exchange_forecast_exports.xml"
+
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10YDK-2--------M&out_Domain=10Y1001A1001A47J",
+        content=imports.read_bytes(),
+    )
+    requests_mock.register_uri(
+        GET,
+        "?documentType=A09&in_Domain=10Y1001A1001A47J&out_Domain=10YDK-2--------M",
+        content=exports.read_bytes(),
+    )
+    result = ENTSOE.fetch_scheduled_exchanges_total(
+        zone_key1=ZoneKey("DK-DK2"),
+        zone_key2=ZoneKey("SE-SE4"),
+        session=session,
+    )
+    assert result, "get_scheduled_exchanges_total returned no events"
+    assert all(event["sourceType"] == EventSourceType.published for event in result), (
+        "every event must be sourceType=published"
+    )
+    assert snapshot == result
+
+
+def test_fetch_exchange_forecast_15_min(requests_mock, session, snapshot):
     imports = base_path_to_mock / "BE_NL_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "BE_NL_exchange_forecast_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10YBE----------2&out_Domain=10YNL----------L",
         content=imports.read_bytes(),
     )
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10YNL----------L&out_Domain=10YBE----------2",
         content=exports.read_bytes(),
@@ -295,18 +353,18 @@ def test_fetch_exchange_forecast_15_min(adapter, session, snapshot):
 
 
 def test_fetch_exchange_forecast_with_longer_day_ahead_than_total(
-    adapter, session, snapshot
+    requests_mock, session, snapshot
 ):
     imports = base_path_to_mock / "EE_FI_exchange_forecast_imports.xml"
     exports = base_path_to_mock / "EE_FI_exchange_forecast_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A39I&out_Domain=10YFI-1--------U",
         content=imports.read_bytes(),
     )
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10YFI-1--------U&out_Domain=10Y1001A1001A39I",
         content=exports.read_bytes(),
@@ -317,28 +375,30 @@ def test_fetch_exchange_forecast_with_longer_day_ahead_than_total(
     )
 
 
-def test_fetch_exchange_forecast_with_aggregated_exchanges(adapter, session, snapshot):
+def test_fetch_exchange_forecast_with_aggregated_exchanges(
+    requests_mock, session, snapshot
+):
     imports_AC = base_path_to_mock / "FR-COR_IT-SAR_AC_exchange_forecast_imports.xml"
     exports_AC = base_path_to_mock / "FR-COR_IT-SAR_AC_exchange_forecast_exports.xml"
     imports_DC = base_path_to_mock / "FR-COR_IT-SAR_DC_exchange_forecast_imports.xml"
     exports_DC = base_path_to_mock / "FR-COR_IT-SAR_DC_exchange_forecast_exports.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A885&out_Domain=10Y1001A1001A74G",
         content=imports_AC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A885",
         content=exports_AC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A893&out_Domain=10Y1001A1001A74G",
         content=imports_DC.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A09&in_Domain=10Y1001A1001A74G&out_Domain=10Y1001A1001A893",
         content=exports_DC.read_bytes(),
@@ -351,22 +411,22 @@ def test_fetch_exchange_forecast_with_aggregated_exchanges(adapter, session, sna
     )
 
 
-def test_wind_and_solar_forecasts(adapter, session, snapshot):
+def test_wind_and_solar_forecasts(requests_mock, session, snapshot):
     day_ahead = base_path_to_mock / "wind_solar_forecast_FI_DAY_AHEAD.xml"
     intraday = base_path_to_mock / "wind_solar_forecast_FI_INTRADAY.xml"
     current = base_path_to_mock / "wind_solar_forecast_FI_CURRENT.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A69&processType=A01",
         content=day_ahead.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A69&processType=A40",
         content=intraday.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A69&processType=A18",
         content=current.read_bytes(),
@@ -394,21 +454,21 @@ def test_wind_and_solar_forecasts(adapter, session, snapshot):
     ids=["day_ahead", "intraday", "current"],
 )
 def test_wind_and_solar_forecasts_by_type(
-    adapter, session, snapshot, fetcher, mock_filename
+    requests_mock, session, snapshot, fetcher, mock_filename
 ):
     data = base_path_to_mock / mock_filename
-    adapter.register_uri(GET, ANY, content=data.read_bytes())
+    requests_mock.register_uri(GET, ANY, content=data.read_bytes())
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetcher(
         ZoneKey("FI"), session
     )
 
 
-def test_fetch_uses_normal_url(adapter, session):
+def test_fetch_uses_normal_url(requests_mock, session):
     os.environ["ENTSOE_TOKEN"] = "proxy"
     with open(
         "electricitymap/contrib/parsers/tests/mocks/ENTSOE/FR_prices.xml", "rb"
     ) as price_fr_data:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             ENTSOE.ENTSOE_URL,
             content=price_fr_data.read(),
@@ -596,7 +656,7 @@ def test_parse_exchange_capacity_forecast_week_ahead_export_direction():
     assert events[1].datetime == dt0 + timedelta(days=1)
     assert events[1].capacityExport == 600.0
     assert events[1].capacityImport is None
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_week_ahead_import_direction():
@@ -634,7 +694,7 @@ def test_parse_exchange_capacity_forecast_day_ahead_export_direction():
     assert events[1].capacityImport is None
     assert events[4].capacityExport == 2914.0
     assert events[-1].capacityExport == 3607.0
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
@@ -654,7 +714,7 @@ def test_parse_exchange_capacity_forecast_month_ahead_import_direction():
     assert events[1].capacityExport is None
     assert events[1].capacityImport == 2150.0
     assert events[2].capacityImport == 2400.0
-    assert events[0].sourceType == EventSourceType.forecasted
+    assert events[0].sourceType == EventSourceType.published
 
 
 def test_parse_exchange_capacity_forecast_empty_xml():
@@ -707,9 +767,9 @@ def _make_capacity_list(
     datetimes: list[datetime],
     forward: list[float | None],
     reverse: list[float | None],
-) -> ExchangeCapacityForecastList:
+) -> ExchangeCapacityList:
     logger = logging.getLogger("test")
-    lst = ExchangeCapacityForecastList(logger)
+    lst = ExchangeCapacityList(logger)
     for dt, fwd, rev in zip(datetimes, forward, reverse, strict=True):
         lst.append(
             zoneKey=zone_key,
@@ -750,7 +810,7 @@ def test_merge_exchange_capacity_forecasts_only_forward():
     zone_key = ZoneKey("AT->DE")
 
     forward = _make_capacity_list(zone_key, [dt], [600.0], [None])
-    reverse = ExchangeCapacityForecastList(logger)
+    reverse = ExchangeCapacityList(logger)
 
     merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
     events = merged.events
@@ -766,7 +826,7 @@ def test_merge_exchange_capacity_forecasts_only_reverse():
     dt = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
     zone_key = ZoneKey("AT->DE")
 
-    forward = ExchangeCapacityForecastList(logger)
+    forward = ExchangeCapacityList(logger)
     reverse = _make_capacity_list(zone_key, [dt], [None], [400.0])
 
     merged = _merge_exchange_capacity_forecasts(forward, reverse, logger)
@@ -813,16 +873,16 @@ def test_merge_exchange_capacity_forecasts_prefers_forward_zone_key():
     assert merged.events[0].source == "entsoe.eu"
 
 
-def test_fetch_exchange_capacity_forecasts_day_ahead(adapter, session, snapshot):
+def test_fetch_exchange_capacity_forecasts_day_ahead(requests_mock, session, snapshot):
     export_data = base_path_to_mock / "ES_FR_capacity_day_ahead_export.xml"
     import_data = base_path_to_mock / "ES_FR_capacity_day_ahead_import.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A01&in_Domain=10YES-REE------0&out_Domain=10YFR-RTE------C",
         content=export_data.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A01&in_Domain=10YFR-RTE------C&out_Domain=10YES-REE------0",
         content=import_data.read_bytes(),
@@ -835,16 +895,16 @@ def test_fetch_exchange_capacity_forecasts_day_ahead(adapter, session, snapshot)
     )
 
 
-def test_fetch_exchange_capacity_forecasts_week_ahead(adapter, session, snapshot):
+def test_fetch_exchange_capacity_forecasts_week_ahead(requests_mock, session, snapshot):
     export_data = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_export.xml"
     import_data = base_path_to_mock / "DK-DK1_DK-DK2_capacity_week_ahead_import.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A02&in_Domain=10YDK-1--------W&out_Domain=10YDK-2--------M",
         content=export_data.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A02&in_Domain=10YDK-2--------M&out_Domain=10YDK-1--------W",
         content=import_data.read_bytes(),
@@ -857,16 +917,18 @@ def test_fetch_exchange_capacity_forecasts_week_ahead(adapter, session, snapshot
     )
 
 
-def test_fetch_exchange_capacity_forecasts_month_ahead(adapter, session, snapshot):
+def test_fetch_exchange_capacity_forecasts_month_ahead(
+    requests_mock, session, snapshot
+):
     export_data = base_path_to_mock / "ES_FR_capacity_month_ahead_export.xml"
     import_data = base_path_to_mock / "ES_FR_capacity_month_ahead_import.xml"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A03&in_Domain=10YES-REE------0&out_Domain=10YFR-RTE------C",
         content=export_data.read_bytes(),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "?documentType=A61&Contract_MarketAgreement.Type=A03&in_Domain=10YFR-RTE------C&out_Domain=10YES-REE------0",
         content=import_data.read_bytes(),

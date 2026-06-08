@@ -3,12 +3,6 @@ bounding_box:
     - 54.72973148656037
   - - 11.143911439114419
     - 57.75153653611572
-center_point:
-  - 9.326898339873598
-  - 56.05430887934948
-centroid:
-  - 9.555966462810545
-  - 56.14060988360049
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -32,6 +26,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 902.8
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 977.38
   coal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -42,6 +39,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 1943.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 1162.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -64,6 +64,12 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 991.2
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 1174.04
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1173.34
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -77,6 +83,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 5.3
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4.2
   oil:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -96,6 +105,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 195.4
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 161.35
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -165,6 +177,18 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 5713.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 4233.54
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4234.780000000001
+center_point:
+  - 9.326898339873598
+  - 56.05430887934948
+centroid:
+  - 9.555966462810545
+  - 56.14060988360049
 contributors:
   - corradio
   - tmslaine
@@ -441,6 +465,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: DK.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

@@ -60,6 +60,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 281.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 273.7
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -81,6 +84,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 18.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 16.0
   hydro:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -106,9 +112,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 18988.6
-    - datetime: '2025-12-01'
+    - datetime: '2025-11-01'
       source: EIA.gov
       value: 18988.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 18453.7
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov

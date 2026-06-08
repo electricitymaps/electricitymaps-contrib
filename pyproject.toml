@@ -1,6 +1,6 @@
 [project]
 name = "electricitymap-contrib"
-version = "1.7.2"
+version = "1.12.2"
 description = ""
 authors = [{ name = "Electricity Maps", email = "app@electricitymaps.com" }]
 requires-python = ">= 3.10, < 3.14"
@@ -10,7 +10,7 @@ dependencies = [
     "pydantic>=1.10.17,<2",
     "PyYAML>=6.0,<7",
     "ruamel-yaml>=0.17.24,<0.18",
-    "tzdata>=2025.2,<2026",
+    "tzdata>=2025.2",
     "numpy>=2.0.0,<3",
 ]
 
@@ -45,7 +45,7 @@ parsers = [
     "beautifulsoup4~=4.6.0",
     "demjson3>=3.0.5,<4",
     "imageio>=2.18.0,<3",
-    "lxml>=4.9.1,<5",
+    "lxml>=6.1.0,<7",
     "pandas>=1.5, <3",
     "pytesseract==0.2.0",
     "requests~=2.33.0",
@@ -62,9 +62,9 @@ parsers = [
 [dependency-groups]
 dev = [
     "ruff==0.15.4",
-    "pytest>=7.4.0,<8",
-    "syrupy>=4.8.0,<5",
-    "requests-mock~=1.3.0",
+    "pytest>=9,<10",
+    "syrupy>=5,<6",
+    "requests-mock>=1.12,<2",
     "testfixtures>=7.0.0,<8",
     "click>=8.0.0,<9",
 ]

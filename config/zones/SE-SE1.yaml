@@ -23,8 +23,42 @@ capacity:
     - datetime: '2017-01-01'
       value: 0
   hydro:
-    - datetime: '2017-01-01'
+    - _comment: 'Used: https://web.archive.org/web/20220120121242if_/https://www.svk.se/siteassets/om-oss/rapporter/2017/170626-kraftbalansen---rapport.pdf'
+      datetime: '2017-01-01'
+      source: 'svk.se'
+      value: 5207
+    - _comment: 'Used: https://web.archive.org/web/20201101183559if_/https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf'
+      datetime: '2018-01-01'
+      source: 'svk.se'
+      value: 5315
+    - _comment: 'Used: https://web.archive.org/web/20210723052703if_/https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf'
+      datetime: '2019-01-01'
+      source: 'svk.se'
+      value: 5325
+    - _comment: 'Used: https://web.archive.org/web/20211227083829if_/https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf'
+      datetime: '2020-01-01'
+      source: 'svk.se'
+      value: 5325
+    - _comment: 'Used: https://web.archive.org/web/20210531131054if_/https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf'
+      datetime: '2021-01-01'
+      source: 'svk.se'
+      value: 5320
+    - _comment: 'Used: https://web.archive.org/web/20240404235119if_/https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf'
+      datetime: '2022-01-01'
+      source: 'svk.se'
       value: 5271
+    - _comment: 'Used: https://web.archive.org/web/20241122230510if_/https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf'
+      datetime: '2023-01-01'
+      source: 'svk.se'
+      value: 5271
+    - _comment: 'Used: https://www.svk.se/siteassets/om-oss/rapporter/2024/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2024.pdf'
+      datetime: '2024-01-01'
+      source: 'svk.se'
+      value: 5346
+    - _comment: 'Used: https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2025/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2025.pdf'
+      datetime: '2025-01-01'
+      source: 'svk.se'
+      value: 5198
   nuclear:
     - datetime: '2017-01-01'
       value: 0
@@ -32,8 +66,38 @@ capacity:
     - datetime: '2017-01-01'
       value: 0
   solar:
-    - datetime: '2017-01-01'
+    - _comment: 'Used: https://web.archive.org/web/20201101183559if_/https://www.svk.se/siteassets/om-oss/rapporter/2018/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2018.pdf'
+      datetime: '2018-01-01'
+      source: 'svk.se'
+      value: 4
+    - _comment: 'Used: https://web.archive.org/web/20210723052703if_/https://www.svk.se/siteassets/om-oss/rapporter/2019/kraftbalansrapport2019.pdf'
+      datetime: '2019-01-01'
+      source: 'svk.se'
+      value: 8
+    - _comment: 'Used: https://web.archive.org/web/20211227083829if_/https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf'
+      datetime: '2020-01-01'
+      source: 'svk.se'
+      value: 13
+    - _comment: 'Used: https://web.archive.org/web/20210531131054if_/https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf'
+      datetime: '2021-01-01'
+      source: 'svk.se'
+      value: 9
+    - _comment: 'Used: https://web.archive.org/web/20240404235119if_/https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf'
+      datetime: '2022-01-01'
+      source: 'svk.se'
       value: 19
+    - _comment: 'Used: https://web.archive.org/web/20241122230510if_/https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf'
+      datetime: '2023-01-01'
+      source: 'svk.se'
+      value: 19
+    - _comment: 'Used: https://www.svk.se/siteassets/om-oss/rapporter/2024/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2024.pdf'
+      datetime: '2024-01-01'
+      source: 'svk.se'
+      value: 29
+    - _comment: 'Used: https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2025/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2025.pdf'
+      datetime: '2025-01-01'
+      source: 'svk.se'
+      value: 41
   wind:
     - datetime: '2017-01-01'
       source: energimyndigheten.se
@@ -59,6 +123,9 @@ capacity:
     - datetime: '2024-01-01'
       source: energimyndigheten.se
       value: 3066.87
+    - datetime: '2025-01-01'
+      source: energimyndigheten.se
+      value: 3290.87
 country: SE
 country_name: Sweden
 currency: EUR
@@ -315,6 +382,9 @@ parsers:
   price: NORDPOOL.fetch_price
   production: SE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

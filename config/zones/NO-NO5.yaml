@@ -3,12 +3,6 @@ bounding_box:
     - 60.111501203936854
   - - 9.60309603096033
     - 61.83870910704472
-center_point:
-  - 7.598459867208756
-  - 60.81134941964953
-centroid:
-  - 6.1910150943177955
-  - 60.5846601611768
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -55,6 +49,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 7996.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 8053.099999999999
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -73,6 +70,12 @@ capacity:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
+center_point:
+  - 7.598459867208756
+  - 60.81134941964953
+centroid:
+  - 6.1910150943177955
+  - 60.5846601611768
 country: 'NO'
 country_name: Norway
 currency: EUR
@@ -335,6 +338,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

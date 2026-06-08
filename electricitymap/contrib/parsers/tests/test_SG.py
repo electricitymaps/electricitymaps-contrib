@@ -10,8 +10,8 @@ from electricitymap.contrib.parsers import SG
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
-    adapter.register_uri(
+def mock_response(requests_mock):
+    requests_mock.register_uri(
         GET,
         SG.SOLAR_URL,
         content=resources.files("electricitymap.contrib.parsers.tests.mocks")
@@ -21,8 +21,8 @@ def mock_response(adapter):
 
 
 @freeze_time("2021-12-23 03:21:00")
-def test_works_when_nonzero(adapter, session):
-    adapter.register_uri(
+def test_works_when_nonzero(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         SG.SOLAR_URL,
         content=resources.files("electricitymap.contrib.parsers.tests.mocks")

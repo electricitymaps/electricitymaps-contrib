@@ -24,9 +24,9 @@ def openelectricity_token_env():
 @pytest.mark.parametrize(
     "zone", ["AU-NSW", "AU-QLD", "AU-SA", "AU-TAS", "AU-VIC", "AU-WA"]
 )
-def test_production(adapter, session, snapshot, zone):
+def test_production(requests_mock, session, snapshot, zone):
     mock_data = Path(base_path_to_mock, f"OPENNEM_{zone}.v4.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data.read_text()),
@@ -37,9 +37,9 @@ def test_production(adapter, session, snapshot, zone):
 
 
 @pytest.mark.parametrize("zone", ["AU-SA"])
-def test_price(adapter, session, snapshot, zone):
+def test_price(requests_mock, session, snapshot, zone):
     mock_data = Path(base_path_to_mock, f"OPENNEM_price_{zone}.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data.read_text()),
@@ -49,10 +49,10 @@ def test_price(adapter, session, snapshot, zone):
     )
 
 
-def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
+def test_au_nsw_au_qld_exchange(requests_mock, session, snapshot):
     # Exchange tests use the old v3 stats endpoint, so use v3 mock data
     mock_data = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data.read_text()),
@@ -63,18 +63,18 @@ def test_au_nsw_au_qld_exchange(adapter, session, snapshot):
     )
 
 
-def test_au_nsw_au_vic_exchange(adapter, session, snapshot):
+def test_au_nsw_au_vic_exchange(requests_mock, session, snapshot):
     # Exchange tests use the old v3 stats endpoint, so use v3 mock data
     mock_data_qld = Path(base_path_to_mock, "OPENNEM_AU-QLD.json")
     mock_data_nsw = Path(base_path_to_mock, "OPENNEM_AU-NSW.json")
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data_qld.read_text()),
     )
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         ANY,
         ANY,
         json=json.loads(mock_data_nsw.read_text()),

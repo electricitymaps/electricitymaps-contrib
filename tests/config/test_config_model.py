@@ -6,7 +6,10 @@ from electricitymap.contrib.config.model import (
     ExchangeParsers,
     Parsers,
 )
-from electricitymap.contrib.types import ParserDataType
+from electricitymap.contrib.types import (
+    EXCHANGE_DATA_TYPES,
+    ParserDataType,
+)
 
 
 class ConfigModelTestcase(unittest.TestCase):
@@ -61,7 +64,7 @@ class ConfigModelTestcase(unittest.TestCase):
         dummy_parser_model = Parsers()
         # Check 1:1 match between ParserDataType enum and Parsers model, except for exchange parsers, as they're defined in a different model
         all_parser_data_types = {
-            dt.value for dt in ParserDataType if "exchange" not in dt.value
+            dt.value for dt in ParserDataType if dt not in EXCHANGE_DATA_TYPES
         }
         all_parser_model_fields = set(dummy_parser_model.__fields__.keys())
         self.assertEqual(all_parser_data_types, all_parser_model_fields)
@@ -69,9 +72,7 @@ class ConfigModelTestcase(unittest.TestCase):
     def test_exchange_parsers_model_contains_all_parser_data_types(self):
         dummy_exchange_parsers_model = ExchangeParsers()
         # Check 1:1 match between ParserDataType enum and ExchangeParsers model
-        all_parser_data_types = {
-            dt.value for dt in ParserDataType if "exchange" in dt.value
-        }
+        all_parser_data_types = {dt.value for dt in EXCHANGE_DATA_TYPES}
         all_parser_model_fields = set(dummy_exchange_parsers_model.__fields__.keys())
         self.assertEqual(all_parser_data_types, all_parser_model_fields)
 

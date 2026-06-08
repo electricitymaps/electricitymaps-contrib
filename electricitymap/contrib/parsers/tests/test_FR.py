@@ -6,12 +6,12 @@ from electricitymap.contrib.parsers.FR import API_ENDPOINT, fetch_production
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_production(adapter, session, snapshot):
+def test_production(requests_mock, session, snapshot):
     os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
     with open(
         "electricitymap/contrib/parsers/tests/mocks/FR/response.json", "rb"
     ) as mock_file:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             API_ENDPOINT,
             content=mock_file.read(),

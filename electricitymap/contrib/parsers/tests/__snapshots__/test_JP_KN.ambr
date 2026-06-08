@@ -1,0 +1,60 @@
+# serializer version: 1
+# name: test_snapshot_get_image_text_on_real_kepco_gifs
+  dict({
+    'unten10.gif': '106%',
+    'unten2.gif': '106%',
+    'unten5.gif': '103%',
+    'unten6.gif': '0%',
+    'unten7.gif': '106%',
+    'unten8.gif': '0%',
+    'unten9.gif': '0%',
+  })
+# ---
+# name: test_snapshot_reactor_rows_capacity_and_operation_percentage
+  list([
+    dict({
+      'capacity_kw': 340000.0,
+      'operation_percentage': None,
+    }),
+    dict({
+      'capacity_kw': 500000.0,
+      'operation_percentage': None,
+    }),
+    dict({
+      'capacity_kw': 826000.0,
+      'operation_percentage': 1.06,
+    }),
+    dict({
+      'capacity_kw': 826000.0,
+      'operation_percentage': None,
+    }),
+    dict({
+      'capacity_kw': 826000.0,
+      'operation_percentage': 0.0,
+    }),
+    dict({
+      'capacity_kw': 870000.0,
+      'operation_percentage': 0.0,
+    }),
+    dict({
+      'capacity_kw': 870000.0,
+      'operation_percentage': 1.06,
+    }),
+    dict({
+      'capacity_kw': 1175000.0,
+      'operation_percentage': None,
+    }),
+    dict({
+      'capacity_kw': 1175000.0,
+      'operation_percentage': None,
+    }),
+    dict({
+      'capacity_kw': 1180000.0,
+      'operation_percentage': 1.03,
+    }),
+    dict({
+      'capacity_kw': 1180000.0,
+      'operation_percentage': 0.0,
+    }),
+  ])
+# ---

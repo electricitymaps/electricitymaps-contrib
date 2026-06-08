@@ -111,6 +111,7 @@ class Parsers(ParsersBaseModel):
     production: str | None
     productionCapacity: str | None
     gridAlerts: str | None
+    intradayContractStatistics: str | None
 
 
 class Source(StrictBaseModel):
@@ -169,6 +170,11 @@ class ExchangeParsers(ParsersBaseModel):
     exchangeCapacityForecastDayAhead: str | None
     exchangeCapacityForecastWeekAhead: str | None
     exchangeCapacityForecastMonthAhead: str | None
+    atcDayAhead: str | None
+    maxBexDayAhead: str | None
+    scheduledExchangesDayAhead: str | None
+    scheduledExchangesTotal: str | None
+    maxBflowDayAhead: str | None
     exchangeForecast: str | None
 
 

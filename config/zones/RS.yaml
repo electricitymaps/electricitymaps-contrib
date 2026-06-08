@@ -3,12 +3,6 @@ bounding_box:
     - 42.24575404101222
   - - 22.980829808298097
     - 46.164058837652135
-center_point:
-  - 20.877631204867136
-  - 44.38562057509567
-centroid:
-  - 20.800230409857956
-  - 44.25770501704859
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -45,6 +39,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 6120.5
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 6010.5
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -67,6 +64,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 608.71
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 611.205
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -95,6 +95,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2539.44
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2542.4379999999996
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -118,16 +121,16 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 72.87
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 185.35
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 230
-    - datetime: '2022-01-01'
+      value: 427.64
+    - datetime: '2018-01-01'
       source: entsoe.eu
-      value: 150
-    - datetime: '2023-01-01'
-      source: entsoe.eu
-      value: 100
+      value: 426.48
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -153,6 +156,15 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 740.22
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1106.22
+center_point:
+  - 20.877631204867136
+  - 44.38562057509567
+centroid:
+  - 20.800230409857956
+  - 44.25770501704859
 contributors:
   - corradio
   - nessie2013
@@ -162,6 +174,22 @@ currency: EUR
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 0.0
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 455.47
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 430.44
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 420.85
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -192,6 +220,22 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 466.17
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 441.14
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 431.55
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
@@ -350,6 +394,14 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   hydro discharge:
+    - datetime: '2016-01-01'
+      value: 1.0
+    - datetime: '2017-01-01'
+      value: 0.3968
+    - datetime: '2018-01-01'
+      value: 0.4241
+    - datetime: '2019-01-01'
+      value: 0.443
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
@@ -364,6 +416,14 @@ isLowCarbon:
       value: 0.2583
 isRenewable:
   hydro discharge:
+    - datetime: '2016-01-01'
+      value: 1.0
+    - datetime: '2017-01-01'
+      value: 0.3778
+    - datetime: '2018-01-01'
+      value: 0.4038
+    - datetime: '2019-01-01'
+      value: 0.4337
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
@@ -384,6 +444,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   INCER ACV:

@@ -3,21 +3,21 @@ bounding_box:
     - 35.87135845199824
   - - -5.278463534102098
     - 35.92262502599443
+capacity:
+  gas:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 13.0
+  oil:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 78.0
 center_point:
   - -5.333376028605113
   - 35.894970004238736
 centroid:
   - -5.330090241389734
   - 35.891950896456414
-capacity:
-  gas:
-    - datetime: '2022-12-01'
-      source: ree.es
-      value: 13.0
-  oil:
-    - datetime: '2022-12-01'
-      source: ree.es
-      value: 78.0
 contributors:
   - VIKTORVAV99
 country: ES
@@ -26,6 +26,18 @@ currency: EUR
 emissionFactors:
   direct:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 405.89
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 405.89
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 405.89
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -52,6 +64,18 @@ emissionFactors:
         value: 405.86
     hydro discharge:
       - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 0.0
@@ -65,6 +89,18 @@ emissionFactors:
         value: 0.0
   lifecycle:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 438.89
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 438.89
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 438.89
       - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
@@ -90,6 +126,18 @@ emissionFactors:
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
         value: 438.86
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 24.0
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -153,6 +201,12 @@ has_day_ahead_price_license: true
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0
+    - datetime: '2018-01-01'
+      value: 0.0
+    - datetime: '2019-01-01'
+      value: 0.0
     - datetime: '2020-01-01'
       value: 0.0
     - datetime: '2021-01-01'
@@ -166,6 +220,12 @@ isLowCarbon:
     - datetime: '2025-01-01'
       value: 0.0
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'
@@ -174,6 +234,12 @@ isLowCarbon:
       value: 1.0
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0
+    - datetime: '2018-01-01'
+      value: 0.0
+    - datetime: '2019-01-01'
+      value: 0.0
     - datetime: '2020-01-01'
       value: 0.0
     - datetime: '2021-01-01'
@@ -187,6 +253,12 @@ isRenewable:
     - datetime: '2025-01-01'
       value: 0.0
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
     - datetime: '2020-01-01'
       value: 1.0
     - datetime: '2021-01-01'

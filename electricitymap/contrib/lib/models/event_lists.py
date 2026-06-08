@@ -11,9 +11,11 @@ from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
-    ExchangeCapacityForecast,
+    ExchangeAtc,
+    ExchangeCapacity,
     GridAlert,
     GridAlertType,
+    IntradayContractStatistics,
     LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
@@ -22,7 +24,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import AtcType, ZoneKey
 
 EventType = TypeVar("EventType", bound="Event")
 
@@ -236,7 +238,7 @@ class ExchangeList(AggregatableEventList[Exchange]):
         return exchanges
 
 
-class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
+class ExchangeCapacityList(EventList[ExchangeCapacity]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -244,15 +246,40 @@ class ExchangeCapacityForecastList(EventList[ExchangeCapacityForecast]):
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
-        sourceType: EventSourceType = EventSourceType.forecasted,
+        sourceType: EventSourceType = EventSourceType.published,
     ):
-        event = ExchangeCapacityForecast.create(
+        event = ExchangeCapacity.create(
             self.logger,
             zoneKey,
             datetime,
             source,
             capacityExport,
             capacityImport,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ExchangeAtcList(EventList[ExchangeAtc]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        atcType: AtcType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ExchangeAtc.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            atcType,
             sourceType,
         )
         if event:
@@ -551,3 +578,73 @@ class GridAlertList(EventList[GridAlert]):
         )
         if event:
             self.events.append(event)
+
+
+class IntradayContractStatisticsList(EventList[IntradayContractStatistics]):
+    def append(  # type: ignore[override]
+        self,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = IntradayContractStatistics.create(
+            logger=self.logger,
+            zoneKey=zoneKey,
+            area=area,
+            apiUpdatedAt=apiUpdatedAt,
+            currency=currency,
+            priceUnitRaw=priceUnitRaw,
+            deliveryStart=deliveryStart,
+            deliveryEnd=deliveryEnd,
+            contractId=contractId,
+            contractName=contractName,
+            contractOpenTime=contractOpenTime,
+            contractCloseTime=contractCloseTime,
+            isLocalContract=isLocalContract,
+            vwap=vwap,
+            vwap1hBeforeClose=vwap1hBeforeClose,
+            vwap3hBeforeClose=vwap3hBeforeClose,
+            openPrice=openPrice,
+            closePrice=closePrice,
+            highPrice=highPrice,
+            lowPrice=lowPrice,
+            openTradeTime=openTradeTime,
+            closeTradeTime=closeTradeTime,
+            volume=volume,
+            buyVolume=buyVolume,
+            sellVolume=sellVolume,
+            source=source,
+            sourceType=sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        """Sort by (deliveryStart, area, contractId) instead of 'datetime' key."""
+        return sorted(
+            [event.to_dict() for event in self.events],
+            key=lambda d: (d["deliveryStart"], d["area"], d["contractId"]),
+        )

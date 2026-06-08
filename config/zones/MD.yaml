@@ -210,7 +210,7 @@ fallbackZoneMixes:
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
 has_day_ahead_price_license: False
-hide_day_ahead_price: False
+hide_day_ahead_price: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -218,6 +218,9 @@ parsers:
   price: MD.fetch_price
   production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   INCER ACV:

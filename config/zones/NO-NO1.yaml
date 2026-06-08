@@ -3,12 +3,6 @@ bounding_box:
     - 58.896402802482385
   - - 12.872743374997839
     - 62.628666830837716
-center_point:
-  - 10.436945085082657
-  - 61.02281488314449
-centroid:
-  - 11.128606398302905
-  - 60.2622039006174
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -17,6 +11,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 33.7
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 34.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -49,6 +46,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4000.8999999999996
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 3999.2
   solar:
     - datetime: '2024-01-01'
       source: entsoe.eu
@@ -56,6 +56,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 16.7
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 41.2
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -79,6 +82,12 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 405.7
+center_point:
+  - 10.436945085082657
+  - 61.02281488314449
+centroid:
+  - 11.128606398302905
+  - 60.2622039006174
 country: 'NO'
 country_name: Norway
 currency: EUR
@@ -253,8 +262,8 @@ fallbackZoneMixes:
         solar: 0.0033313057652980278
         unknown: 0.004530321106530987
         wind: 0.08058754580014128
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -263,6 +272,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

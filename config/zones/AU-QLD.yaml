@@ -3,12 +3,6 @@ bounding_box:
     - -29.165279323608438
   - - 153.50733507335073
     - -10.714328358276688
-center_point:
-  - 145.71528376012895
-  - -20.077823352905725
-centroid:
-  - 146.9203489991776
-  - -20.06567744566823
 capacity:
   battery storage:
     - datetime: '2024-01-01'
@@ -79,6 +73,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 2648.2
+center_point:
+  - 145.71528376012895
+  - -20.077823352905725
+centroid:
+  - 146.9203489991776
+  - -20.06567744566823
 contributors:
   - brandongalbraith
   - jarek
@@ -91,97 +91,129 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 617.51
+      - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 509.87
+        value: 520.39
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 559.06
+        value: 527.42
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 486.99
+        value: 487.46
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 493.14
+        value: 474.3
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 484.79
+        value: 443.58
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 703.18
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 672.52
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 561.03
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 589.24
+        value: 491.23
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 532.82
+        value: 474.59
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 507.06
+        value: 455.73
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 382.64
+        value: 383.22
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 369.82
+        value: 370.95
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 392.55
+        value: 344.43
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 650.51
+      - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 542.87
+        value: 553.39
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 592.06
+        value: 560.42
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 519.99
+        value: 520.46
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 526.14
+        value: 507.3
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 517.79
+        value: 476.58
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 727.18
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 696.52
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 585.03
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 613.24
+        value: 515.23
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 556.82
+        value: 498.59
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 531.06
+        value: 479.73
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 406.64
+        value: 407.22
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 393.82
+        value: 394.95
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 416.55
+        value: 368.43
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -338,54 +370,70 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1268
     - datetime: '2021-01-01'
-      value: 0.2964
+      value: 0.2784
     - datetime: '2022-01-01'
-      value: 0.2272
+      value: 0.2711
     - datetime: '2023-01-01'
-      value: 0.3377
+      value: 0.3333
     - datetime: '2024-01-01'
-      value: 0.3306
+      value: 0.3523
     - datetime: '2025-01-01'
-      value: 0.3453
+      value: 0.3991
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0239
+    - datetime: '2018-01-01'
+      value: 0.0832
+    - datetime: '2019-01-01'
+      value: 0.2342
     - datetime: '2020-01-01'
-      value: 0.1962
+      value: 0.3252
     - datetime: '2021-01-01'
-      value: 0.2773
+      value: 0.3524
     - datetime: '2022-01-01'
-      value: 0.3084
+      value: 0.3764
     - datetime: '2023-01-01'
-      value: 0.484
+      value: 0.4803
     - datetime: '2024-01-01'
-      value: 0.501
+      value: 0.4965
     - datetime: '2025-01-01'
-      value: 0.4713
+      value: 0.535
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1268
     - datetime: '2021-01-01'
-      value: 0.2964
+      value: 0.2784
     - datetime: '2022-01-01'
-      value: 0.2272
+      value: 0.2711
     - datetime: '2023-01-01'
-      value: 0.3377
+      value: 0.3333
     - datetime: '2024-01-01'
-      value: 0.3306
+      value: 0.3523
     - datetime: '2025-01-01'
-      value: 0.3453
+      value: 0.3991
   hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0239
+    - datetime: '2018-01-01'
+      value: 0.0832
+    - datetime: '2019-01-01'
+      value: 0.2342
     - datetime: '2020-01-01'
-      value: 0.1962
+      value: 0.3252
     - datetime: '2021-01-01'
-      value: 0.2773
+      value: 0.3524
     - datetime: '2022-01-01'
-      value: 0.3084
+      value: 0.3764
     - datetime: '2023-01-01'
-      value: 0.484
+      value: 0.4803
     - datetime: '2024-01-01'
-      value: 0.501
+      value: 0.4965
     - datetime: '2025-01-01'
-      value: 0.4713
+      value: 0.535
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price

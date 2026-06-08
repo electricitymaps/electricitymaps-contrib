@@ -1,6 +1,6 @@
 capacity:
-  - -1016
-  - 1016
+  - -1000
+  - 1000
 lonlat:
   - 25.690143
   - 59.923241
@@ -9,5 +9,10 @@ parsers:
   exchangeCapacityForecastDayAhead: ENTSOE.fetch_exchange_capacity_forecasts_day_ahead
   exchangeCapacityForecastWeekAhead: ENTSOE.fetch_exchange_capacity_forecasts_week_ahead
   exchangeCapacityForecastMonthAhead: ENTSOE.fetch_exchange_capacity_forecasts_month_ahead
+  atcDayAhead: NORDPOOL.fetch_exchange_available_transfer_capacity
+  maxBexDayAhead: JAO.fetch_nordic_max_bex_day_ahead
+  scheduledExchangesDayAhead: ENTSOE.fetch_scheduled_exchanges_day_ahead
+  scheduledExchangesTotal: ENTSOE.fetch_scheduled_exchanges_total
+  maxBflowDayAhead: JAO.fetch_nordic_max_bflow_day_ahead
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: -35

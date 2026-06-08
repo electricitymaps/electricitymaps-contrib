@@ -33,6 +33,9 @@ capacity:
     - datetime: '2025-11-01'
       source: EIA.gov
       value: 14.7
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -67,6 +70,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 624.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 643.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -197,6 +203,18 @@ country_name: USA
 emissionFactors:
   direct:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 342.98
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 155.77
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 192.8
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -204,7 +222,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 214.57
+        value: 214.58
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -283,6 +301,18 @@ emissionFactors:
         value: 757.3688858307635
   lifecycle:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 375.98
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 188.77
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 225.8
       - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
@@ -290,7 +320,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 247.57
+        value: 247.58
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -516,12 +546,24 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 isLowCarbon:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2652
+    - datetime: '2018-01-01'
+      value: 0.7016
+    - datetime: '2019-01-01'
+      value: 0.6885
     - datetime: '2024-01-01'
       value: 0.7585
     - datetime: '2025-01-01'
       value: 0.5843
 isRenewable:
   battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2652
+    - datetime: '2018-01-01'
+      value: 0.6329
+    - datetime: '2019-01-01'
+      value: 0.6197
     - datetime: '2024-01-01'
       value: 0.7585
     - datetime: '2025-01-01'
