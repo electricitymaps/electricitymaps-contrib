@@ -1,8 +1,8 @@
 bounding_box:
-  - - -115.31829
-    - 30.8336654
-  - - -108.777145881
-    - 36.784585904
+  - - -114.8177481774817
+    - 31.33374743970495
+  - - -109.27729277292767
+    - 36.14218575844494
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -41,6 +41,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 2236.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2349.8
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -175,6 +178,12 @@ capacity:
     - datetime: '2024-04-01'
       source: EIA.gov
       value: 628.5
+center_point:
+  - -112.12828211789612
+  - 34.39885067236607
+centroid:
+  - -111.98417237712306
+  - 33.36208835383213
 comment: Arizona Public Service Company
 contributors:
   - systemcatch
@@ -183,17 +192,25 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 571.54
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 513.99
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 406.44
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 261.44
+        value: 266.98
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -269,10 +286,22 @@ emissionFactors:
         value: 757.3688858307635
   lifecycle:
     battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 604.54
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 546.99
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 439.44
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 294.44
+        value: 299.98
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -493,6 +522,26 @@ fallbackZoneMixes:
         wind: 0.05223583306779387
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1529
+    - datetime: '2018-01-01'
+      value: 0.2345
+    - datetime: '2024-01-01'
+      value: 0.2665
+    - datetime: '2025-01-01'
+      value: 0.5676
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1529
+    - datetime: '2018-01-01'
+      value: 0.1438
+    - datetime: '2024-01-01'
+      value: 0.0196
+    - datetime: '2025-01-01'
+      value: 0.2838
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -500,12 +549,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

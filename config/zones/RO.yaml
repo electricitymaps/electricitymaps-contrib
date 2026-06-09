@@ -1,14 +1,17 @@
 _comment: Biomass includes 19.227 MW of biogas and 6.03 MW of waste incineration
 bounding_box:
-  - - 20.2201924985
-    - 43.6884447292
-  - - 29.62654341
-    - 48.2208812526
+  - - 20.241202412024137
+    - 43.65393954864322
+  - - 29.658896588965916
+    - 48.259164105103125
 capacity:
   battery storage:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 137.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 493.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -56,6 +59,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2162.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1647.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -84,6 +90,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2179.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2275.0
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -112,6 +121,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 6132.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 6184.0
   nuclear:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -144,6 +156,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1588.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2788.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -166,21 +181,28 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 3027.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 3068.0
+center_point:
+  - 24.810578337505376
+  - 45.93705795182545
+centroid:
+  - 24.914428091649352
+  - 45.74171993159395
 contributors:
   - corradio
   - mzaharie
 country: RO
 country_name: Romania
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 276.54
+        value: 262.1
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -226,10 +248,10 @@ emissionFactors:
         value: 857.84
   lifecycle:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 309.54
+        value: 295.1
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -446,6 +468,14 @@ fallbackZoneMixes:
         wind: 0.10556203829169036
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.6649
+isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.4207
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -454,10 +484,11 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -470,6 +501,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

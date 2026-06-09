@@ -1,0 +1,13 @@
+# serializer version: 1
+# name: test_fetch_price_historical[historical_datetime7]
+  list([
+    dict({
+      'currency': 'MDL',
+      'datetime': datetime.datetime(2012, 5, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'price': 80.2,
+      'source': 'moldelectrica.md',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'zoneKey': 'MD',
+    }),
+  ])
+# ---

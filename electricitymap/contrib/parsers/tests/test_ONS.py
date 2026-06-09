@@ -4,6 +4,7 @@ from unittest.mock import patch
 
 import pytest
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import ONS
 from electricitymap.contrib.types import ZoneKey
@@ -24,18 +25,22 @@ def mock_response():
     "data_file", ["BR.json", "BR_negative_solar.json", "data.json"]
 )
 @pytest.mark.parametrize("zone_key", ["BR-NE", "BR-N", "BR-CS", "BR-S"])
-def test_snapshot_fetch_production(zone_key, data_file, adapter, session, snapshot):
+def test_snapshot_fetch_production(
+    zone_key, data_file, requests_mock, session, snapshot
+):
     """Test fetch_production with snapshot using different data files for all Brazilian subzones."""
     mock_data_path = MOCK_DATA_DIR / data_file
     mock_data = json.loads(mock_data_path.read_text())
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "http://tr.ons.org.br/Content/GetBalancoEnergetico/null",
         json=mock_data,
     )
 
-    assert snapshot == ONS.fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ONS.fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
     )
@@ -57,19 +62,21 @@ def test_snapshot_fetch_production(zone_key, data_file, adapter, session, snapsh
     ],
 )
 def test_snapshot_fetch_exchange(
-    zone_key1, zone_key2, data_file, adapter, session, snapshot
+    zone_key1, zone_key2, data_file, requests_mock, session, snapshot
 ):
     """Test fetch_exchange with snapshot using different data files for all exchanges."""
     mock_data_path = MOCK_DATA_DIR / data_file
     mock_data = json.loads(mock_data_path.read_text())
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "http://tr.ons.org.br/Content/GetBalancoEnergetico/null",
         json=mock_data,
     )
 
-    assert snapshot == ONS.fetch_exchange(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == ONS.fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,

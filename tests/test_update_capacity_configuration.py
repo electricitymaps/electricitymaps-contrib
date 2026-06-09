@@ -347,23 +347,18 @@ class updateCapacityConfigurationTestCase(unittest.TestCase):
                 {"datetime": "2022-01-01", "source": "abc", "value": 9},
                 {"datetime": "2023-01-01", "source": "abc", "value": 2},
             ],
-            [
-                {"datetime": "2022-01-01", "source": "abc", "value": 4},
-                {"datetime": "2022-10-01", "source": "abc", "value": 5},
-                {"datetime": "2023-01-01", "source": "abc", "value": 6},
-            ],
         ]
 
         expected = [
             {
                 "datetime": "2022-01-01",
                 "source": "abc",
-                "value": 16,
+                "value": 12,
             },
             {
                 "datetime": "2023-01-01",
                 "source": "abc",
-                "value": 12,
+                "value": 6,
             },
         ]
         updated_capacity = generate_aggregated_capacity_config_list(

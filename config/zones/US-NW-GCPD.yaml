@@ -1,8 +1,8 @@
 bounding_box:
-  - - -120.542866
-    - 46.125243
-  - - -118.473872746
-    - 48.462236509
+  - - -120.08460084600839
+    - 46.624867509864714
+  - - -118.92538925389248
+    - 47.961498875847795
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -40,6 +40,9 @@ capacity:
     - datetime: '2020-09-01'
       source: EIA.gov
       value: 1236.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1220.0
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -64,6 +67,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -119.50499504995042
+  - 47.293183192856254
+centroid:
+  - -119.4498868065603
+  - 47.21843663565789
 comment: Public Utility District No. 2 Of Grant County, Washington
 contributors:
   - systemcatch
@@ -71,10 +80,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:

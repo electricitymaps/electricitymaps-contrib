@@ -5,6 +5,7 @@ from importlib import resources
 import pytest
 from freezegun import freeze_time
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.MD import (
     fetch_consumption,
@@ -23,8 +24,8 @@ historical_datetime = datetime(2021, 7, 25, 12, tzinfo=timezone.utc)
 
 
 @frozen_live_time
-def test_fetch_consumption_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -37,8 +38,8 @@ def test_fetch_consumption_live(adapter, session, snapshot):
     assert snapshot == fetch_consumption(session=session)
 
 
-def test_fetch_consumption_historical(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_historical(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -55,8 +56,8 @@ def test_fetch_consumption_historical(adapter, session, snapshot):
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
 @frozen_live_time
-def test_fetch_exchange_live(adapter, session, snapshot, neighbor):
-    adapter.register_uri(
+def test_fetch_exchange_live(requests_mock, session, snapshot, neighbor):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -66,12 +67,14 @@ def test_fetch_exchange_live(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange(ZoneKey("MD"), ZoneKey(neighbor), session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
+        ZoneKey("MD"), ZoneKey(neighbor), session=session
+    )
 
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
-def test_fetch_exchange_historical(adapter, session, snapshot, neighbor):
-    adapter.register_uri(
+def test_fetch_exchange_historical(requests_mock, session, snapshot, neighbor):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -81,7 +84,7 @@ def test_fetch_exchange_historical(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         ZoneKey("MD"),
         ZoneKey(neighbor),
         target_datetime=historical_datetime,
@@ -91,8 +94,8 @@ def test_fetch_exchange_historical(adapter, session, snapshot, neighbor):
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
 @frozen_live_time
-def test_fetch_exchange_forecast_live(adapter, session, snapshot, neighbor):
-    adapter.register_uri(
+def test_fetch_exchange_forecast_live(requests_mock, session, snapshot, neighbor):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -102,14 +105,14 @@ def test_fetch_exchange_forecast_live(adapter, session, snapshot, neighbor):
         ),
     )
 
-    assert snapshot == fetch_exchange_forecast(
-        ZoneKey("MD"), ZoneKey(neighbor), session=session
-    )
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_exchange_forecast(ZoneKey("MD"), ZoneKey(neighbor), session=session)
 
 
 @pytest.mark.parametrize("neighbor", ["RO", "UA"])
-def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbor):
-    adapter.register_uri(
+def test_fetch_exchange_forecast_historical(requests_mock, session, snapshot, neighbor):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -119,7 +122,9 @@ def test_fetch_exchange_forecast_historical(adapter, session, snapshot, neighbor
         ),
     )
 
-    assert snapshot == fetch_exchange_forecast(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_exchange_forecast(
         ZoneKey("MD"),
         ZoneKey(neighbor),
         target_datetime=historical_datetime,
@@ -149,12 +154,14 @@ def test_fetch_price_live(snapshot):
     ],
 )
 def test_fetch_price_historical(snapshot, historical_datetime):
-    assert snapshot == fetch_price(target_datetime=historical_datetime)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
+        target_datetime=historical_datetime
+    )
 
 
 @frozen_live_time
-def test_fetch_production_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -167,8 +174,8 @@ def test_fetch_production_live(adapter, session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_historical(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(

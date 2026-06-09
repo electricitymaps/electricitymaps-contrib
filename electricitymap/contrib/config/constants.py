@@ -1,5 +1,3 @@
-# Note: web/src/helpers.js contains some of the same information.
-
 EXCHANGE_FILENAME_ZONE_SEPARATOR = "_"
 
 

@@ -1,22 +1,33 @@
-import ssl
+"""Shared transport-layer helpers for parser HTTP sessions."""
 
-import urllib3
-from requests import Session, adapters
+from requests import Session
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+# 3 retries on 429 + transient 5xx, 0/2/4 s exponential backoff. urllib3
+# honours `Retry-After` for free. Pass a custom `Retry` to `mount_retry`
+# to widen `allowed_methods` (e.g. POST for OAuth token endpoints).
+#
+# Does NOT reliably cover `ConnectTimeoutError` — #8616 tried `connect=N`,
+# #8617 reverted it. Parsers needing that add an app-level loop on top
+# (see ESIOS.fetch_exchange).
+DEFAULT_RETRY = Retry(
+    total=3,
+    backoff_factor=2,
+    status_forcelist=[429, 500, 502, 503, 504],
+    allowed_methods=["GET"],
+)
 
 
-class LegacyHttpAdapter(adapters.HTTPAdapter):
-    def init_poolmanager(self, connections, maxsize, block=False):
-        ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
-        ctx.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
-        self.poolmanager = urllib3.poolmanager.PoolManager(
-            num_pools=connections, maxsize=maxsize, block=block, ssl_context=ctx
-        )
+def mount_retry(session: Session, retry: Retry = DEFAULT_RETRY) -> Session:
+    """Mount a retrying HTTPAdapter on `session` for http(s)://.
 
-
-# Use a LegacyHttpAdapter to avoid "unsafe legacy renegotiation disabled" error
-# Original code source: https://stackoverflow.com/questions/71603314/ssl-error-unsafe-legacy-renegotiation-disabled
-def get_session_with_legacy_adapter():
-    session = Session()
-    session.mount("https://", LegacyHttpAdapter())
-    session.mount("http://", LegacyHttpAdapter())
+    Idempotent — re-mounting overrides the previous adapter with one
+    carrying the same Retry config, so calling this multiple times is
+    safe (each public fetcher can call it without coordinating).
+    Returns `session` so the call composes with `session or Session()`.
+    """
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
     return session

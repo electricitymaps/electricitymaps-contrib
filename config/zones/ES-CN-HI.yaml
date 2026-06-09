@@ -1,12 +1,18 @@
 bounding_box:
-  - - -18.66722571499986
-    - 27.14223867400007
-  - - -17.379261847999913
-    - 28.352036851000108
+  - - -18.160381603816006
+    - 27.64298481350542
+  - - -17.898047301443473
+    - 27.828569453430994
 capacity:
   hydro storage: 11.32
   oil: 11.78
   wind: 11.5
+center_point:
+  - -18.029214452629738
+  - 27.735777133468208
+centroid:
+  - -18.01293623635249
+  - 27.73108287875151
 contributors:
   - hectorespert
   - systemcatch
@@ -36,6 +42,18 @@ emissionFactors:
         value: 426.61
     hydro discharge:
       - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 0.0
@@ -58,7 +76,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 211.13
+        value: 211.03
     oil:
       - datetime: '2017-01-01'
         source: EU-ETS, REE
@@ -91,10 +109,12 @@ emissionFactors:
       value: 230.0
     coal:
       - datetime: '2021-01-01'
-        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2021; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1050.5643503
       - datetime: '2022-01-01'
-        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission hotspots of coal power generation."
+        source: EU-ETS, ENTSO-E 2022; Oberschelp, Christopher, et al. "Global emission
+          hotspots of coal power generation."
         value: 1235.586989
     gas:
       - datetime: '2021-01-01'
@@ -108,6 +128,18 @@ emissionFactors:
       source: UNECE 2022
       value: 10.7
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 10.7
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 10.7
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
@@ -131,7 +163,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 221.83
+        value: 221.73
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -167,7 +199,8 @@ emissionFactors:
       value: 25.6
     wind:
       datetime: '2021-01-01'
-      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021)
+      source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
+        outlook for 2022-2026" Wind Europe Proceedings (2021)
       value: 12.62
 fallbackZoneMixes:
   powerOriginRatios:
@@ -276,8 +309,48 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.4601475232281346
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 0.7471
+    - datetime: '2023-01-01'
+      value: 0.6575
+    - datetime: '2024-01-01'
+      value: 0.7253
+    - datetime: '2025-01-01'
+      value: 0.7035
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 0.7471
+    - datetime: '2023-01-01'
+      value: 0.6575
+    - datetime: '2024-01-01'
+      value: 0.7253
+    - datetime: '2025-01-01'
+      value: 0.7035
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
@@ -295,7 +368,10 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
-  UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook for 2022-2026" Wind Europe Proceedings (2021):
-    link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37, https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
+  ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook
+    for 2022-2026" Wind Europe Proceedings (2021)
+  : link:
+      https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf#page=37,
+      https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Canary
 zone_name: El Hierro

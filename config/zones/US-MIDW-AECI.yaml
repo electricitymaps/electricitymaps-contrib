@@ -1,8 +1,8 @@
 bounding_box:
-  - - -98.45079
-    - 34.168033532
-  - - -88.5987499999999
-    - 41.779649115
+  - - -97.64197641976413
+    - 34.66817044049786
+  - - -89.08829088290878
+    - 41.279773128765356
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -85,6 +85,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 959.4
+center_point:
+  - -92.78449868725454
+  - 37.92824198196455
+centroid:
+  - -93.37016403708525
+  - 37.63684336204722
 comment: Associated Electric Cooperative, Inc.
 contributors:
   - systemcatch
@@ -92,10 +98,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:

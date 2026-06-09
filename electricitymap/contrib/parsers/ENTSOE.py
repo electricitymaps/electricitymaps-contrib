@@ -24,13 +24,14 @@ from itertools import chain, groupby, pairwise
 from logging import Logger, getLogger
 from operator import attrgetter, itemgetter
 from re import fullmatch
-from typing import Any, NamedTuple
+from typing import Any, Literal, NamedTuple
 
 from bs4 import BeautifulSoup, SoupStrainer
 from requests import Response, Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeCapacityList,
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
@@ -40,6 +41,7 @@ from electricitymap.contrib.lib.models.event_lists import (
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     ProductionMix,
+    ScheduledExchange,
     StorageMix,
 )
 from electricitymap.contrib.parsers.lib.config import (
@@ -49,14 +51,23 @@ from electricitymap.contrib.parsers.lib.config import (
 )
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.utils import get_token
+from electricitymap.contrib.types import MarketAgreementType
 
 SOURCE = "entsoe.eu"
 
 ENTSOE_URL = "https://entsoe-proxy-jfnx5klx2a-ew.a.run.app"
 
-DEFAULT_LOOKBACK_HOURS_REALTIME = 72
-DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, 0)
-DEFAULT_TARGET_HOURS_FORECAST = (-24, 48)
+DEFAULT_LOOKBACK_HOURS_REALTIME = timedelta(hours=72)
+DEFAULT_TARGET_HOURS_REALTIME = (-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=0))
+DEFAULT_TARGET_HOURS_FORECAST = (-timedelta(hours=24), timedelta(hours=48))
+EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_DAY_AHEAD = (
+    -timedelta(days=2),
+    timedelta(days=7),
+)
+EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_WEEK_AND_MONTH_AHEAD = (
+    -timedelta(days=7),
+    timedelta(days=30),
+)
 
 # SoupStrainer instances for efficient XML parsing
 # Only parse the elements we care about in each context
@@ -67,6 +78,9 @@ STRAINER_TEXT = SoupStrainer("text")
 # TODO: Switch this to a string enum when we migrate to Python 3.11
 class EntsoeTypeEnum(str, Enum):
     DAY_AHEAD = "A01"
+    WEEK_AHEAD = "A02"
+    MONTH_AHEAD = "A03"
+    YEAR_AHEAD = "A04"
     INTRADAY_PRICE = "A07"
     TOTAL = "A05"
     INTRADAY = "A40"
@@ -76,13 +90,9 @@ class EntsoeTypeEnum(str, Enum):
         return self.value
 
 
-# The order of the forecast types is important for the parser to use the most recent data
-# This ensures that the order is consistent across all runs even if the enum is changed
-ORDERED_FORECAST_TYPES: list[EntsoeTypeEnum] = [
-    EntsoeTypeEnum.DAY_AHEAD,
-    EntsoeTypeEnum.INTRADAY,
-    EntsoeTypeEnum.CURRENT,
-]
+class EntsoeDocumentTypeEnum(str, Enum):
+    ESTIMATED_NET_TRANSFER_CAPACITY = "A61"
+
 
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
@@ -166,6 +176,7 @@ ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "HU": "10YHU-MAVIR----U",
     "IE": "10YIE-1001A00010",
     "IE(SEM)": "10Y1001A1001A59C",
+    "IS": "10Y1001A1001A958",
     "IT": "10YIT-GRTN-----B",
     "IT-BR": "10Y1001A1001A699",
     "IT-CA": "10Y1001C--00096J",
@@ -260,7 +271,6 @@ EXCHANGE_AGGREGATES: dict[str, list[list]] = {
 ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
-    "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
@@ -272,7 +282,7 @@ ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
 def query_ENTSOE(
     session: Session,
     params: dict[str, str],
-    span: tuple,
+    span: tuple[timedelta, timedelta],
     target_datetime: datetime | None = None,
 ) -> str:
     """
@@ -290,10 +300,10 @@ def query_ENTSOE(
             message="target_datetime has to be a datetime in query_entsoe",
         )
 
-    params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+    params["periodStart"] = (target_datetime + span[0]).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
-    params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+    params["periodEnd"] = (target_datetime + span[1]).strftime(
         "%Y%m%d%H00"  # YYYYMMDDHH00
     )
 
@@ -312,10 +322,10 @@ def query_ENTSOE(
         error_text = soup.find_all("text")[0].prettify()
         if "No matching data found" in error_text:
             exception_message = "No matching data found"
+        else:
+            exception_message = f"Status code: [{response.status_code}]. ENTSOE error: {error_text.strip()}. URL: {response.request.url}"
     if exception_message is None:
-        exception_message = (
-            f"Status code: [{response.status_code}]. Reason: {response.reason}"
-        )
+        exception_message = f"Status code: [{response.status_code}]. Reason: {response.reason}. URL: {response.request.url}"
 
     raise ParserException(
         parser="ENTSOE.py",
@@ -387,14 +397,19 @@ def query_exchange(
     )
 
 
-def query_exchange_forecast(
+def query_scheduled_exchanges(
     in_domain: str,
     out_domain: str,
     session: Session,
     target_datetime: datetime | None = None,
 ) -> str | None:
-    """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
+    """Query A09 ("Finalised Schedule") for one direction of a border.
 
+    Returns the cleared commercial schedule (DAY_AHEAD + TOTAL contract
+    types) over the standard forecast window — 24 h prior + 48 h ahead of
+    `target_datetime`. The caller is responsible for filtering the
+    resulting timeseries by `contract_marketagreement.type`.
+    """
     params = {
         # Finalised schedule - A compilation of a set of schedules that have
         # been finalized after a given cutoff.
@@ -408,6 +423,38 @@ def query_exchange_forecast(
         target_datetime=target_datetime,
         span=DEFAULT_TARGET_HOURS_FORECAST,
     )
+
+
+def query_exchange_capacity_forecast(
+    in_domain: str,
+    out_domain: str,
+    session: Session,
+    forecast_type: EntsoeTypeEnum,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> str | None:
+    """Queries exchange capacity forecast for a given pair of domains and forecast type."""
+    params = {
+        "documentType": EntsoeDocumentTypeEnum.ESTIMATED_NET_TRANSFER_CAPACITY,
+        "Contract_MarketAgreement.Type": forecast_type,
+        "in_Domain": in_domain,
+        "out_Domain": out_domain,
+    }
+    try:
+        return query_ENTSOE(
+            session,
+            params,
+            target_datetime=target_datetime,
+            span=EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_DAY_AHEAD
+            if forecast_type == EntsoeTypeEnum.DAY_AHEAD
+            else EXCHANGE_CAPACITY_TARGET_DAYS_FORECAST_WEEK_AND_MONTH_AHEAD,
+        )
+    except ParserException as e:
+        logger.warning(
+            f"ENTSOE exchange capacity {forecast_type} query failed: {e}",
+            exc_info=True,
+        )
+        return None
 
 
 def query_price(
@@ -433,7 +480,7 @@ def query_price(
         session,
         params,
         target_datetime=target_datetime,
-        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, 24),
+        span=(-DEFAULT_LOOKBACK_HOURS_REALTIME, timedelta(hours=24)),
     )
 
 
@@ -751,14 +798,19 @@ def _iter_points(
 @cache
 def _resolution_to_timedelta(resolution: str) -> timedelta:
     """
-    Converts an ENTSOE resolution string (e.g., 'PT15M') to a timedelta object.
+    Converts an ENTSOE resolution string (e.g., 'PT15M', 'P1D') to a timedelta object.
     """
-    m = fullmatch(r"PT(\d+)([M])", resolution)
+    m = fullmatch(r"PT(\d+)([MH])", resolution)
     if m is not None:
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == "M":
             return timedelta(minutes=digits)
+        if scale == "H":
+            return timedelta(hours=digits)
+    m = fullmatch(r"P(\d+)D", resolution)
+    if m is not None:
+        return timedelta(days=int(m.group(1)))
     raise NotImplementedError(f"Could not recognise resolution {resolution}")
 
 
@@ -891,6 +943,7 @@ def parse_exchange_forecast(
     sorted_zone_keys: ZoneKey,
     logger: Logger,
     market_type: EntsoeTypeEnum,
+    source_type: EventSourceType = EventSourceType.forecasted,
 ) -> ExchangeList:
     exchange_list = ExchangeList(logger)
 
@@ -915,10 +968,98 @@ def parse_exchange_forecast(
                 datetime_end=dt_end,
                 source=SOURCE,
                 netFlow=quantity,
-                sourceType=EventSourceType.forecasted,
+                sourceType=source_type,
             )
 
     return exchange_list
+
+
+def _merge_exchange_capacity_forecasts(
+    export_list: ExchangeCapacityList,
+    import_list: ExchangeCapacityList,
+    logger: Logger,
+) -> ExchangeCapacityList:
+    """
+    Merges export and import direction capacity forecasts into a single list.
+    For each datetime, combines capacities from both directions into one event.
+    """
+    merged = ExchangeCapacityList(logger)
+
+    # Create a dict of export capacities by datetime
+    export_by_dt = {event.datetime: event for event in export_list.events}
+    import_by_dt = {event.datetime: event for event in import_list.events}
+
+    # Merge events by datetime
+    for dt in sorted(set(export_by_dt.keys()) | set(import_by_dt.keys())):
+        export_event = export_by_dt.get(dt)
+        import_event = import_by_dt.get(dt)
+
+        # Use values from whichever event exists (prefer export if both exist)
+        zoneKey = export_event.zoneKey if export_event else import_event.zoneKey
+        source = export_event.source if export_event else import_event.source
+
+        export_cap = export_event.capacityExport if export_event else None
+        import_cap = import_event.capacityImport if import_event else None
+
+        merged.append(
+            zoneKey=zoneKey,
+            datetime=dt,
+            source=source,
+            capacityExport=export_cap,
+            capacityImport=import_cap,
+        )
+
+    return merged
+
+
+def parse_exchange_capacity_forecast(
+    xml_text: str,
+    sorted_zone_keys: ZoneKey,
+    logger: Logger,
+    direction: Literal["export", "import"] = "export",
+) -> ExchangeCapacityList:
+    """
+    Parses NTC (A61) exchange capacity forecast XML for a given direction.
+
+    Args:
+        xml_text: The XML response from ENTSOE
+        sorted_zone_keys: The exchange pair (sorted, format "A->B")
+        logger: Logger instance
+        direction: "export" for A→B, "import" for B→A
+
+    Returns:
+        ExchangeCapacityList with capacity populated for the specified direction
+    """
+    try:
+        soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
+        forecasts = ExchangeCapacityList(logger)
+        for timeseries in soup.find_all("timeseries"):
+            for dt, quantity in _get_datetime_value_from_timeseries(
+                timeseries, "quantity"
+            ):
+                if direction == "export":
+                    forecasts.append(
+                        zoneKey=sorted_zone_keys,
+                        datetime=dt,
+                        source=SOURCE,
+                        capacityExport=quantity,
+                        capacityImport=None,
+                    )
+                else:
+                    forecasts.append(
+                        zoneKey=sorted_zone_keys,
+                        datetime=dt,
+                        source=SOURCE,
+                        capacityExport=None,
+                        capacityImport=quantity,
+                    )
+        return forecasts
+    except Exception as e:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"Failed to parse exchange capacity forecast XML for {sorted_zone_keys} ({direction} direction): {e}",
+            zone_key=sorted_zone_keys,
+        ) from e
 
 
 def parse_prices(
@@ -946,7 +1087,7 @@ def parse_prices(
     return prices
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_production(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -986,159 +1127,169 @@ def fetch_production(
     ).to_list()
 
 
-def get_raw_exchange(
+def _resolve_exchange_domain_pairs(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+) -> list[list[str]]:
+    """Resolve an EM zone pair to ENTSO-E EIC domain pairs.
+
+    Walks the lookup chain `EXCHANGE_AGGREGATES` →
+    `ENTSOE_EXCHANGE_DOMAIN_OVERRIDE` → `ENTSOE_DOMAIN_MAPPINGS`. Returns a
+    list because aggregated borders (e.g. FR-COR↔IT-SAR via AC + DC) fan out
+    to multiple domain pairs that must be queried independently.
+    """
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    if sorted_zone_keys in EXCHANGE_AGGREGATES:
+        return list(EXCHANGE_AGGREGATES[sorted_zone_keys])
+    if sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
+        return [ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[sorted_zone_keys]]
+    return [[ENTSOE_DOMAIN_MAPPINGS[zone_key1], ENTSOE_DOMAIN_MAPPINGS[zone_key2]]]
+
+
+def _fetch_a09_xml_for_pairs(
+    domain_pairs: list[list[str]],
+    sorted_zone_keys: ZoneKey,
+    session: Session,
+    target_datetime: datetime | None,
+) -> list[tuple[bool, str]]:
+    """Query A09 ('Finalised Schedule') for both directions of each domain
+    pair. Returns a list of `(is_import, xml_text)` tuples for callers to
+    parse however they need (filter by market_type, etc.).
+    """
+    results: list[tuple[bool, str]] = []
+    for domain_pair in domain_pairs:
+        for is_import in (True, False):
+            domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
+            try:
+                xml = query_scheduled_exchanges(
+                    domain1, domain2, session, target_datetime
+                )
+            except Exception as e:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=(
+                        f"Failed to query "
+                        f"{'import' if is_import else 'export'} "
+                        f"for {domain1} -> {domain2}"
+                    ),
+                    zone_key=sorted_zone_keys,
+                ) from e
+            if xml is None:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=f"No exchange data found for {domain1} -> {domain2}",
+                    zone_key=sorted_zone_keys,
+                )
+            results.append((is_import, xml))
+    return results
+
+
+def get_physical_flows(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     session: Session | None = None,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-    forecast: bool = False,
 ) -> ExchangeList:
-    """
-    Gets exchange status between two specified zones.
-    Removes any datapoints that are in the future.
+    """Realised cross-border physical flows (ENTSO-E A11 document type).
+
+    Queries `Aggregated energy data report` for both directions of each
+    domain pair and concatenates the per-direction `ExchangeList`s.
+    Events are tagged `sourceType=measured`. Future-dated points are
+    removed by the underlying parser.
     """
     if not session:
         session = Session()
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    domain_pairs = _resolve_exchange_domain_pairs(zone_key1, zone_key2)
 
-    # This will be filled with a list of raw exchanges to merge
     raw_exchange_lists: list[ExchangeList] = []
+    for domain_pair in domain_pairs:
+        for is_import in (True, False):
+            domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
+            try:
+                raw_exchange = query_exchange(
+                    domain1, domain2, session, target_datetime
+                )
+            except Exception as e:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=(
+                        f"Failed to query "
+                        f"{'import' if is_import else 'export'} "
+                        f"for {domain1} -> {domain2}"
+                    ),
+                    zone_key=sorted_zone_keys,
+                ) from e
+            if raw_exchange is None:
+                raise ParserException(
+                    parser="ENTSOE.py",
+                    message=f"No exchange data found for {domain1} -> {domain2}",
+                    zone_key=sorted_zone_keys,
+                )
+            raw_exchange_lists.append(
+                parse_exchange(
+                    raw_exchange,
+                    is_import=is_import,
+                    sorted_zone_keys=sorted_zone_keys,
+                    logger=logger,
+                )
+            )
+    return ExchangeList.merge_exchanges(raw_exchange_lists, logger)
 
-    # Create lists for forecast exchanges so we can merge them later without fetching the same data twice
-    raw_exchange_lists_forecast_day_ahead: list[ExchangeList] = []
-    raw_exchange_lists_forecast_total: list[ExchangeList] = []
 
-    query_function = query_exchange_forecast if forecast else query_exchange
+def get_raw_exchange_forecast(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> ExchangeList:
+    """Cross-border commercial schedules (ENTSO-E A09 "Finalised Schedule").
 
-    # This will be filled with a list of domain pairs to fetch
-    exchanges_to_fetch: list[list[str]] = []
+    Fetches each direction's A09 document once, parses it twice
+    (`market_type=DAY_AHEAD` and `market_type=TOTAL`), then combines the
+    two via `update_exchanges` so TOTAL replaces DAY_AHEAD on collisions.
+    Best-effort forward visibility for the `exchangeForecast` slot;
+    callers wanting the strict day-ahead clearings should use
+    `fetch_scheduled_exchanges_day_ahead` instead.
 
-    if sorted_zone_keys in EXCHANGE_AGGREGATES:
-        for domain_pair in EXCHANGE_AGGREGATES[sorted_zone_keys]:
-            exchanges_to_fetch.append(domain_pair)
-    elif sorted_zone_keys in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
-        exchanges_to_fetch.append(ENTSOE_EXCHANGE_DOMAIN_OVERRIDE[sorted_zone_keys])
-    else:
-        exchanges_to_fetch.append(
-            [ENTSOE_DOMAIN_MAPPINGS[zone_key1], ENTSOE_DOMAIN_MAPPINGS[zone_key2]]
+    Events are tagged `sourceType=forecasted`.
+    """
+    if not session:
+        session = Session()
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    domain_pairs = _resolve_exchange_domain_pairs(zone_key1, zone_key2)
+    xml_pairs = _fetch_a09_xml_for_pairs(
+        domain_pairs, sorted_zone_keys, session, target_datetime
+    )
+    day_ahead_lists: list[ExchangeList] = []
+    total_lists: list[ExchangeList] = []
+    for is_import, xml in xml_pairs:
+        day_ahead_lists.append(
+            parse_exchange_forecast(
+                xml,
+                is_import=is_import,
+                sorted_zone_keys=sorted_zone_keys,
+                logger=logger,
+                market_type=EntsoeTypeEnum.DAY_AHEAD,
+            )
         )
-
-    def _fetch_exchange(
-        domain_pair: list[str],
-        is_import: bool,
-    ) -> str | None:
-        """
-        Internal function to fetch and parse exchange data
-        only used to avoid code duplication in the parent function.
-        """
-        domain1, domain2 = domain_pair if is_import else domain_pair[::-1]
-        try:
-            raw_exchange = query_function(domain1, domain2, session, target_datetime)
-        except Exception as e:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"Failed to query {'import' if is_import else 'export'} for {domain1} -> {domain2}",
-                zone_key=sorted_zone_keys,
-            ) from e
-        if raw_exchange is None:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"No exchange data found for {domain1} -> {domain2}",
-                zone_key=sorted_zone_keys,
+        total_lists.append(
+            parse_exchange_forecast(
+                xml,
+                is_import=is_import,
+                sorted_zone_keys=sorted_zone_keys,
+                logger=logger,
+                market_type=EntsoeTypeEnum.TOTAL,
             )
-        return raw_exchange
-
-    # Grab all exchanges
-    for domain_pair in exchanges_to_fetch:
-        # First we try to get the import data
-        raw_exchange = _fetch_exchange(domain_pair, is_import=True)
-        if raw_exchange is None:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"No exchange data found for {domain_pair[0]} -> {domain_pair[1]}",
-                zone_key=sorted_zone_keys,
-            )
-        if not forecast:
-            raw_exchange_lists.append(
-                parse_exchange(
-                    raw_exchange,
-                    is_import=True,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                )
-            )
-        else:
-            raw_exchange_lists_forecast_day_ahead.append(
-                parse_exchange_forecast(
-                    raw_exchange,
-                    is_import=True,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                    market_type=EntsoeTypeEnum.DAY_AHEAD,
-                )
-            )
-            raw_exchange_lists_forecast_total.append(
-                parse_exchange_forecast(
-                    raw_exchange,
-                    is_import=True,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                    market_type=EntsoeTypeEnum.TOTAL,
-                )
-            )
-
-        # Then we try to get the export data
-        raw_exchange = _fetch_exchange(domain_pair, is_import=False)
-
-        if raw_exchange is None:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"No exchange data found for {domain_pair[1]} -> {domain_pair[0]}",
-                zone_key=sorted_zone_keys,
-            )
-        if not forecast:
-            raw_exchange_lists.append(
-                parse_exchange(
-                    raw_exchange,
-                    is_import=False,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                )
-            )
-        else:
-            raw_exchange_lists_forecast_day_ahead.append(
-                parse_exchange_forecast(
-                    raw_exchange,
-                    is_import=False,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                    market_type=EntsoeTypeEnum.DAY_AHEAD,
-                )
-            )
-            raw_exchange_lists_forecast_total.append(
-                parse_exchange_forecast(
-                    raw_exchange,
-                    is_import=False,
-                    sorted_zone_keys=sorted_zone_keys,
-                    logger=logger,
-                    market_type=EntsoeTypeEnum.TOTAL,
-                )
-            )
-    if not forecast:
-        return ExchangeList(logger).merge_exchanges(raw_exchange_lists, logger)
-    merged_forecast_day_ahead = ExchangeList(logger).merge_exchanges(
-        raw_exchange_lists_forecast_day_ahead, logger
-    )
-    merged_forecast_total = ExchangeList(logger).merge_exchanges(
-        raw_exchange_lists_forecast_total, logger
-    )
-    return ExchangeList(logger).update_exchanges(
-        merged_forecast_day_ahead, merged_forecast_total, logger
-    )
+        )
+    merged_day_ahead = ExchangeList.merge_exchanges(day_ahead_lists, logger)
+    merged_total = ExchangeList.merge_exchanges(total_lists, logger)
+    return ExchangeList.update_exchanges(merged_day_ahead, merged_total, logger)
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -1149,7 +1300,7 @@ def fetch_exchange(
     """
     Gets exchange status between two specified zones.
     """
-    exchanges = get_raw_exchange(
+    exchanges = get_physical_flows(
         zone_key1,
         zone_key2,
         session=session,
@@ -1170,18 +1321,122 @@ def fetch_exchange_forecast(
     """
     Gets exchange forecast between two specified zones.
     """
-    exchanges = get_raw_exchange(
+    exchanges = get_raw_exchange_forecast(
         zone_key1,
         zone_key2,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
-        forecast=True,
     )
     return exchanges.to_list()
 
 
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+def _get_scheduled_exchanges(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    market_type: EntsoeTypeEnum,
+    session: Session | None,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list:
+    """Shared body for the two pinned `get_scheduled_exchanges_*` fetchers.
+
+    Pulls A09 ("Finalised Schedule") documents from ENTSO-E, filters
+    timeseries by `market_type` (A01 cleared day-ahead vs A05 finalised
+    total), and emits events tagged `sourceType=published` per the
+    `EXCHANGE_PUBLICATION_DATA_TYPES` contract.
+
+    Per-direction lists are concatenated with `merge_exchanges` — the two
+    contract types are never silently merged across each other.
+    """
+    if not session:
+        session = Session()
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    domain_pairs = _resolve_exchange_domain_pairs(zone_key1, zone_key2)
+    xml_pairs = _fetch_a09_xml_for_pairs(
+        domain_pairs, sorted_zone_keys, session, target_datetime
+    )
+    parsed_lists = [
+        parse_exchange_forecast(
+            xml,
+            is_import=is_import,
+            sorted_zone_keys=sorted_zone_keys,
+            logger=logger,
+            market_type=market_type,
+            source_type=EventSourceType.published,
+        )
+        for is_import, xml in xml_pairs
+    ]
+    merged = ExchangeList.merge_exchanges(parsed_lists, logger)
+    # `EntsoeTypeEnum` values are ENTSOE wire codes (A01, A05) used in URL
+    # params; `MarketAgreementType` values are the DB-friendly discriminator
+    # names. Convert by matching enum names (DAY_AHEAD ↔ DAY_AHEAD,
+    # TOTAL ↔ TOTAL). Raises KeyError loudly if an unsupported market_type
+    # ever reaches this path.
+    market_agreement_type = MarketAgreementType[market_type.name]
+    return [
+        ScheduledExchange(
+            zoneKey=evt.zoneKey,
+            datetime=evt.datetime,
+            source=evt.source,
+            netFlow=evt.netFlow,
+            sourceType=evt.sourceType,
+            marketAgreementType=market_agreement_type,
+        ).to_dict()
+        for evt in merged.events
+    ]
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_scheduled_exchanges_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Cleared day-ahead scheduled commercial exchanges (A09 / contract A01).
+
+    Wired to the `scheduledExchangesDayAhead` model field. Returns events
+    tagged `sourceType=published`.
+    """
+    return _get_scheduled_exchanges(
+        zone_key1,
+        zone_key2,
+        market_type=EntsoeTypeEnum.DAY_AHEAD,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_scheduled_exchanges_total(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Finalised aggregate scheduled commercial exchanges (A09 / contract A05).
+
+    The TOTAL contract type covers the cleared schedule including any
+    post-day-ahead intraday adjustments. Wire this to a `scheduledExchangesTotal`
+    model field if/when one is introduced; do *not* wire it to
+    `scheduledExchangesDayAhead` (semantically inconsistent). Returns events
+    tagged `sourceType=published`.
+    """
+    return _get_scheduled_exchanges(
+        zone_key1,
+        zone_key2,
+        market_type=EntsoeTypeEnum.TOTAL,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+
+
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_price(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1211,7 +1466,7 @@ def fetch_price(
 
 
 # DO NOT USE, THIS IS FOR FUTURE USE CASES
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_price_intraday(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1261,48 +1516,52 @@ def fetch_generation_forecast(
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets generation forecast for specified zone."""
-    if not session:
-        session = Session()
-    generation_list = TotalProductionList(logger)
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab generation forecast
-    try:
-        raw_generation_forecast = query_generation_forecast(
-            domain, session, target_datetime=target_datetime
+    session = session or Session()
+    non_aggregated_data: list[TotalProductionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        generation_list = TotalProductionList(logger)
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_generation_forecast = query_generation_forecast(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch generation forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_generation_forecast is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No generation forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(
+            raw_generation_forecast,
+            only_inBiddingZone_Domain=True,
         )
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to query generation forecast for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_generation_forecast is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No generation forecast data returned for {zone_key}",
-            zone_key=zone_key,
-        )
-    parsed = parse_scalar(
-        raw_generation_forecast,
-        only_inBiddingZone_Domain=True,
-    )
-    if parsed is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No generation forecast data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    for dt, dt_end, value in parsed:
-        generation_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            datetime_end=dt_end,
-            source=SOURCE,
-            value=value,
-            sourceType=EventSourceType.forecasted,
-        )
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No generation forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        for dt, dt_end, value in parsed:
+            generation_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                datetime_end=dt_end,
+                source=SOURCE,
+                value=value,
+                sourceType=EventSourceType.forecasted,
+            )
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(generation_list)
 
-    return generation_list.to_list()
+    return TotalProductionList.merge_total_production_lists(
+        non_aggregated_data, logger
+    ).to_list()
 
 
 # ------------------- #
@@ -1310,52 +1569,7 @@ def fetch_generation_forecast(
 # ------------------- #
 
 
-def get_raw_consumption_list(
-    zone_key: ZoneKey,
-    session: Session,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-    forecasted: bool = False,
-):
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    query_function = query_consumption_forecast if forecasted else query_consumption
-    consumption_list = TotalConsumptionList(logger)
-    try:
-        raw_data = query_function(domain, session, target_datetime=target_datetime)
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to query {'consumption forecast' if forecasted else 'consumption'} for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_data is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data returned for {zone_key}",
-            zone_key=zone_key,
-        )
-    parsed = parse_scalar(raw_data, only_outBiddingZone_Domain=True)
-    if parsed is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No {'consumption forecast' if forecasted else 'consumption'} data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    for dt, dt_end, value in parsed:
-        consumption_list.append(
-            zoneKey=zone_key,
-            datetime=dt,
-            datetime_end=dt_end,
-            source=SOURCE,
-            consumption=value,
-            sourceType=EventSourceType.forecasted
-            if forecasted
-            else EventSourceType.measured,
-        )
-    return consumption_list
-
-
-@refetch_frequency(timedelta(hours=DEFAULT_LOOKBACK_HOURS_REALTIME))
+@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
 def fetch_consumption(
     zone_key: ZoneKey,
     session: Session | None = None,
@@ -1364,8 +1578,49 @@ def fetch_consumption(
 ):
     """Gets consumption for a specified zone."""
     session = session or Session()
-    return get_raw_consumption_list(
-        zone_key, session, target_datetime=target_datetime, logger=logger
+    non_aggregated_data: list[TotalConsumptionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_consumption = query_consumption(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch consumption for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_consumption is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, dt_end, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                datetime_end=dt_end,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.measured,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
+
+    return TotalConsumptionList.merge_consumption_lists(
+        non_aggregated_data, logger
     ).to_list()
 
 
@@ -1378,13 +1633,87 @@ def fetch_consumption_forecast(
 ) -> list:
     """Gets consumption forecast for specified zone."""
     session = session or Session()
-    return get_raw_consumption_list(
-        zone_key,
-        session,
-        target_datetime=target_datetime,
-        logger=logger,
-        forecasted=True,
+    non_aggregated_data: list[TotalConsumptionList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_consumption = query_consumption_forecast(
+                domain, session, target_datetime=target_datetime
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch consumption forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_consumption is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_scalar(raw_consumption, only_outBiddingZone_Domain=True)
+        if parsed is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No consumption forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+
+        consumption_list = TotalConsumptionList(logger)
+        for dt, value in parsed:
+            consumption_list.append(
+                zoneKey=zone_key,
+                datetime=dt,
+                source=SOURCE,
+                consumption=value,
+                sourceType=EventSourceType.forecasted,
+            )
+
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(consumption_list)
+    return TotalConsumptionList.merge_consumption_lists(
+        non_aggregated_data, logger
     ).to_list()
+
+
+def _fetch_wind_solar_forecasts(
+    zone_key: ZoneKey,
+    forecast_type: EntsoeTypeEnum,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> ProductionBreakdownList:
+    """Shared logic for the 3 type-specific wind/solar forecast fetchers."""
+    label = forecast_type.name.lower().replace("_", "-")
+    non_aggregated_data: list[ProductionBreakdownList] = []
+    for _zone_key in ZONE_KEY_AGGREGATES.get(zone_key, [zone_key]):
+        domain = ENTSOE_DOMAIN_MAPPINGS[_zone_key]
+        try:
+            raw_forecast = query_wind_solar_production_forecast(
+                domain,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+            )
+        except Exception as e:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch {label} wind and solar forecast for {_zone_key}",
+                zone_key=zone_key,
+            ) from e
+        if raw_forecast is None:
+            raise ParserException(
+                parser="ENTSOE.py",
+                message=f"No {label} wind and solar forecast data found for {_zone_key}",
+                zone_key=zone_key,
+            )
+        parsed = parse_production(raw_forecast, logger, zone_key, forecasted=True)
+        # Aggregated data are regrouped under the same zone key.
+        non_aggregated_data.append(parsed)
+    return ProductionBreakdownList.merge_production_breakdowns(
+        non_aggregated_data, logger
+    )
 
 
 @refetch_frequency(timedelta(days=1))
@@ -1397,38 +1726,221 @@ def fetch_wind_solar_forecasts(
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     """
-    if not session:
-        session = Session()
-    raw_forecasts = {}
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    for data_type in ORDERED_FORECAST_TYPES:
+    session = session or Session()
+    forecast_breakdown_list = ProductionBreakdownList(logger)
+    # Order matters: later types override earlier ones at matching datetimes
+    # (intraday overrides day-ahead, current overrides intraday).
+    for forecast_type in [
+        EntsoeTypeEnum.DAY_AHEAD,
+        EntsoeTypeEnum.INTRADAY,
+        EntsoeTypeEnum.CURRENT,
+    ]:
         try:
-            raw_forecasts[data_type.name] = query_wind_solar_production_forecast(
-                domain, session, data_type, target_datetime=target_datetime
+            per_type = _fetch_wind_solar_forecasts(
+                zone_key, forecast_type, session, target_datetime, logger
             )
-        except Exception as e:
+        except ParserException as e:
             logger.error(
-                f"Failed to fetch {data_type.name} wind and solar forecast for {zone_key}: {e}",
+                f"Failed to fetch {forecast_type.name} wind and solar forecast for {zone_key}: {e}",
                 extra={"zone_key": zone_key},
             )
-    if raw_forecasts == {}:
-        logger.warning(
-            f"No wind and solar forecast data found for {zone_key}",
-            extra={"zone_key": zone_key},
-        )
-        return []
+            continue
 
-    forcast_breakdown_list = ProductionBreakdownList(logger)
-    for raw_forecast in raw_forecasts.values():
-        parsed_forecast = parse_production(
-            raw_forecast, logger, zone_key, forecasted=True
+        forecast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
+            forecast_breakdown_list,
+            per_type,
+            logger,
         )
-        forcast_breakdown_list = ProductionBreakdownList.update_production_breakdowns(
-            forcast_breakdown_list, parsed_forecast, logger
+    if len(forecast_breakdown_list) == 0:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No wind and solar forecast data found for {zone_key}",
+            zone_key=zone_key,
+        )
+    return forecast_breakdown_list.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_day_ahead(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.DAY_AHEAD,
+        session or Session(),
+        target_datetime,
+        logger,
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_intraday(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.INTRADAY,
+        session or Session(),
+        target_datetime,
+        logger,
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_current(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    return _fetch_wind_solar_forecasts(
+        zone_key,
+        EntsoeTypeEnum.CURRENT,
+        session or Session(),
+        target_datetime,
+        logger,
+    ).to_list()
+
+
+def _fetch_exchange_capacity_forecasts(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    forecast_type: EntsoeTypeEnum,
+    session: Session,
+    target_datetime: datetime | None,
+    logger: Logger,
+) -> list[dict]:
+    """Shared logic for all 3 type-specific fetch functions."""
+    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
+    domain_1 = ENTSOE_DOMAIN_MAPPINGS[zone_key1]
+    domain_2 = ENTSOE_DOMAIN_MAPPINGS[zone_key2]
+
+    raw_export: str | None = None
+    raw_import: str | None = None
+    max_retries = 5
+
+    for attempt in range(1, max_retries + 1):
+        if raw_export is None:
+            raw_export = query_exchange_capacity_forecast(
+                domain_2,
+                domain_1,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+                logger=logger,
+            )
+        if raw_import is None:
+            raw_import = query_exchange_capacity_forecast(
+                domain_1,
+                domain_2,
+                session,
+                forecast_type,
+                target_datetime=target_datetime,
+                logger=logger,
+            )
+
+        if raw_export is not None and raw_import is not None:
+            break
+
+        if attempt < max_retries:
+            logger.info(
+                f"Attempt {attempt}/{max_retries} for {sorted_zone_keys} "
+                f"{forecast_type}: export={'OK' if raw_export else 'MISSING'}, "
+                f"import={'OK' if raw_import else 'MISSING'}. Retrying..."
+            )
+
+    if raw_export is None or raw_import is None:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=(
+                f"Failed to get both export and import exchange capacity forecast "
+                f"data for {sorted_zone_keys} after {max_retries} attempts. "
+                f"export={'OK' if raw_export else 'MISSING'}, "
+                f"import={'OK' if raw_import else 'MISSING'}"
+            ),
+            zone_key=sorted_zone_keys,
         )
 
-    return forcast_breakdown_list.to_list()
+    export_list = parse_exchange_capacity_forecast(
+        raw_export,
+        sorted_zone_keys=sorted_zone_keys,
+        logger=logger,
+        direction="export",
+    )
+    import_list = parse_exchange_capacity_forecast(
+        raw_import,
+        sorted_zone_keys=sorted_zone_keys,
+        logger=logger,
+        direction="import",
+    )
+
+    return _merge_exchange_capacity_forecasts(
+        export_list, import_list, logger
+    ).to_list()
+
+
+@refetch_frequency(timedelta(days=2))
+def fetch_exchange_capacity_forecasts_day_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets day-ahead exchange capacity forecast between two zones for both directions."""
+    return _fetch_exchange_capacity_forecasts(
+        zone_key1,
+        zone_key2,
+        EntsoeTypeEnum.DAY_AHEAD,
+        session or Session(),
+        target_datetime,
+        logger,
+    )
+
+
+@refetch_frequency(timedelta(days=7))
+def fetch_exchange_capacity_forecasts_week_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets week-ahead exchange capacity forecast between two zones for both directions."""
+    return _fetch_exchange_capacity_forecasts(
+        zone_key1,
+        zone_key2,
+        EntsoeTypeEnum.WEEK_AHEAD,
+        session or Session(),
+        target_datetime,
+        logger,
+    )
+
+
+@refetch_frequency(timedelta(days=7))
+def fetch_exchange_capacity_forecasts_month_ahead(
+    zone_key1: ZoneKey,
+    zone_key2: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets month-ahead exchange capacity forecast between two zones for both directions."""
+    return _fetch_exchange_capacity_forecasts(
+        zone_key1,
+        zone_key2,
+        EntsoeTypeEnum.MONTH_AHEAD,
+        session or Session(),
+        target_datetime,
+        logger,
+    )
 
 
 if __name__ == "__main__":
-    fetch_price(ZoneKey("FR"))
+    print(fetch_exchange_capacity_forecasts_day_ahead(ZoneKey("PL"), ZoneKey("SE-SE4")))

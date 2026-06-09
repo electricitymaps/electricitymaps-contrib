@@ -1,8 +1,8 @@
 bounding_box:
-  - - 4.570648634000037
-    - 57.49315013200005
-  - - 11.014170769000089
-    - 60.73048157269916
+  - - 5.167851678516797
+    - 58.01771794304598
+  - - 10.481504815048169
+    - 60.23017200279955
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -24,6 +24,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 23.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 33.9
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -49,6 +52,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 11386.5
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 11423.5
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -56,6 +62,9 @@ capacity:
     - datetime: '2018-01-01'
       source: entsoe.eu
       value: 522.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 532.4
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -82,11 +91,18 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1452.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1452.3000000000002
+center_point:
+  - 7.826481495335166
+  - 59.12044289080393
+centroid:
+  - 6.884960944083798
+  - 59.23982941226397
 country: 'NO'
 country_name: Norway
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:
@@ -109,7 +125,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 51.77
+        value: 48.32
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -117,7 +133,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 5.58
+        value: 5.75
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -143,7 +159,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 75.77
+        value: 72.32
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
@@ -151,7 +167,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 29.58
+        value: 29.75
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
@@ -308,8 +324,36 @@ fallbackZoneMixes:
         solar: 0.014173657554839382
         unknown: 0.0009148912252796965
         wind: 0.11531147882892007
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 0.9094
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.9887
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 0.8814
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.9726
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -318,6 +362,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

@@ -1,8 +1,14 @@
 bounding_box:
-  - - -117.12776
-    - 14.5388286402
-  - - -86.811982388
-    - 32.72083
+  - - -118.35658356583559
+    - 14.545714726270788
+  - - -86.74106741067405
+    - 32.713311290676785
+center_point:
+  - -101.83870131906288
+  - 23.864718112008
+centroid:
+  - -103.84005941098609
+  - 24.40342302509869
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -130,8 +136,6 @@ contributors:
 country: MX
 country_name: Mexico
 currency: MXN
-delays:
-  production: 1080
 emissionFactors:
   direct:
     unknown:
@@ -156,3 +160,13 @@ sources:
     link: https://www.iea.org/data-and-statistics/charts/electricity-generation-mix-in-mexico-1-jan-30-sep-2019-and-2020
 timezone: America/Mexico_City
 zone_name: Mexico
+isRenewable:
+  unknown:
+    comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014 values.
+    source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris
+    value: 0.205
+isLowCarbon:
+  unknown:
+    comment: Assumes a mix of 3.6% nuclear, 8.8% hydro, 8.4% oil, 63.4% gas, 4.2% coal, 4.3% solar, 5.9% wind, 1.5% other renewables with default IPCC 2014 values.
+    source: IEA, Electricity generation mix in Mexico, 1 Jan - 30 Sep, 2019 and 2020, IEA, Paris
+    value: 0.241

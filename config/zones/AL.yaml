@@ -1,8 +1,8 @@
 bounding_box:
-  - - 19.3044861183
-    - 39.624997667
-  - - 21.0200403175
-    - 42.6882473822
+  - - 19.28178498470286
+    - 39.64823065325469
+  - - 21.036810368103687
+    - 42.65504373123831
 capacity:
   biomass:
     - datetime: '2018-01-01'
@@ -27,6 +27,9 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 2203.0
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 2315.0
   hydro storage:
     - datetime: '2021-01-01'
       source: entsoe.eu
@@ -57,6 +60,12 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 0.0
+center_point:
+  - 19.97935269445456
+  - 41.16342904996394
+centroid:
+  - 19.985354537034763
+  - 41.13124064433871
 contributors:
   - corradio
   - nessie2013
@@ -74,8 +83,8 @@ emissionFactors:
       datetime: '2020-01-01'
       source: UNECE 2022
       value: 5.13
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -83,6 +92,9 @@ parsers:
   price: ENTSOE.fetch_price
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   UNECE 2022:

@@ -2021,7 +2021,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2029,7 +2029,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2037,7 +2037,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2045,7 +2045,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 369.0,
+      'netFlow': np.float64(369.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2053,7 +2053,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 426.0,
+      'netFlow': np.float64(426.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2061,7 +2061,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2069,7 +2069,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2077,7 +2077,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2085,7 +2085,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2093,7 +2093,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2101,7 +2101,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2109,7 +2109,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2117,7 +2117,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2125,7 +2125,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2133,7 +2133,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2141,7 +2141,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2149,7 +2149,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2157,7 +2157,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 369.0,
+      'netFlow': np.float64(369.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2165,7 +2165,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 344.0,
+      'netFlow': np.float64(344.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2173,7 +2173,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 274.0,
+      'netFlow': np.float64(274.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2181,7 +2181,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 200.0,
+      'netFlow': np.float64(200.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2189,7 +2189,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 127.0,
+      'netFlow': np.float64(127.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2197,7 +2197,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 173.0,
+      'netFlow': np.float64(173.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2205,7 +2205,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 222.0,
+      'netFlow': np.float64(222.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2213,7 +2213,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 148.0,
+      'netFlow': np.float64(148.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2221,7 +2221,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 72.0,
+      'netFlow': np.float64(72.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2229,7 +2229,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -3.0,
+      'netFlow': np.float64(-3.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2237,7 +2237,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -78.0,
+      'netFlow': np.float64(-78.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2245,7 +2245,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -5.0,
+      'netFlow': np.float64(-5.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2253,7 +2253,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 8.0,
+      'netFlow': np.float64(8.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2261,7 +2261,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 84.0,
+      'netFlow': np.float64(84.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2269,7 +2269,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 160.0,
+      'netFlow': np.float64(160.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2277,7 +2277,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 235.0,
+      'netFlow': np.float64(235.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2285,7 +2285,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 309.0,
+      'netFlow': np.float64(309.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2293,7 +2293,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 380.0,
+      'netFlow': np.float64(380.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2301,7 +2301,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 335.0,
+      'netFlow': np.float64(335.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2309,7 +2309,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 409.0,
+      'netFlow': np.float64(409.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2317,7 +2317,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2325,7 +2325,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2333,7 +2333,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2341,7 +2341,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2349,7 +2349,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2357,7 +2357,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2365,7 +2365,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2373,7 +2373,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2381,7 +2381,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2389,7 +2389,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2397,7 +2397,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2405,7 +2405,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2413,7 +2413,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2421,7 +2421,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2429,7 +2429,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2437,7 +2437,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2445,7 +2445,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2453,7 +2453,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2461,7 +2461,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2469,7 +2469,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2477,7 +2477,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2485,7 +2485,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2493,7 +2493,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2501,7 +2501,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2509,7 +2509,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2517,7 +2517,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2525,7 +2525,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2533,7 +2533,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2541,7 +2541,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2549,7 +2549,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2557,7 +2557,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2565,7 +2565,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2573,7 +2573,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2581,7 +2581,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2589,7 +2589,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2597,7 +2597,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2605,7 +2605,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2613,7 +2613,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2621,7 +2621,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 406.0,
+      'netFlow': np.float64(406.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2629,7 +2629,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 333.0,
+      'netFlow': np.float64(333.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2637,7 +2637,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 259.0,
+      'netFlow': np.float64(259.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2645,7 +2645,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 195.0,
+      'netFlow': np.float64(195.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2653,7 +2653,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 269.0,
+      'netFlow': np.float64(269.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2661,7 +2661,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 321.0,
+      'netFlow': np.float64(321.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2669,7 +2669,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 347.0,
+      'netFlow': np.float64(347.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2677,7 +2677,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 362.0,
+      'netFlow': np.float64(362.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2685,7 +2685,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 290.0,
+      'netFlow': np.float64(290.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2693,7 +2693,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 216.0,
+      'netFlow': np.float64(216.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2701,7 +2701,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 143.0,
+      'netFlow': np.float64(143.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2709,7 +2709,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 66.0,
+      'netFlow': np.float64(66.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2717,7 +2717,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -4.0,
+      'netFlow': np.float64(-4.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2725,7 +2725,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -4.0,
+      'netFlow': np.float64(-4.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2733,7 +2733,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -78.0,
+      'netFlow': np.float64(-78.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2741,7 +2741,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -152.0,
+      'netFlow': np.float64(-152.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2749,7 +2749,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -80.0,
+      'netFlow': np.float64(-80.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2757,7 +2757,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -5.0,
+      'netFlow': np.float64(-5.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2765,7 +2765,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -78.0,
+      'netFlow': np.float64(-78.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2773,7 +2773,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -152.0,
+      'netFlow': np.float64(-152.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2781,7 +2781,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 7, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -228.0,
+      'netFlow': np.float64(-228.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2789,7 +2789,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -304.0,
+      'netFlow': np.float64(-304.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2797,7 +2797,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -381.0,
+      'netFlow': np.float64(-381.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2805,7 +2805,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2813,7 +2813,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -381.0,
+      'netFlow': np.float64(-381.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2821,7 +2821,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -407.0,
+      'netFlow': np.float64(-407.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2829,7 +2829,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2837,7 +2837,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2845,7 +2845,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2853,7 +2853,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2861,7 +2861,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2869,7 +2869,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2877,7 +2877,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2885,7 +2885,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2893,7 +2893,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2901,7 +2901,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -407.0,
+      'netFlow': np.float64(-407.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2909,7 +2909,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2917,7 +2917,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2925,7 +2925,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -407.0,
+      'netFlow': np.float64(-407.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2933,7 +2933,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -391.0,
+      'netFlow': np.float64(-391.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2941,7 +2941,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -318.0,
+      'netFlow': np.float64(-318.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2949,7 +2949,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -273.0,
+      'netFlow': np.float64(-273.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2957,7 +2957,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -270.0,
+      'netFlow': np.float64(-270.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2965,7 +2965,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -265.0,
+      'netFlow': np.float64(-265.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2973,7 +2973,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -264.0,
+      'netFlow': np.float64(-264.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2981,7 +2981,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -220.0,
+      'netFlow': np.float64(-220.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2989,7 +2989,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -151.0,
+      'netFlow': np.float64(-151.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -2997,7 +2997,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -77.0,
+      'netFlow': np.float64(-77.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3005,7 +3005,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -4.0,
+      'netFlow': np.float64(-4.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3013,7 +3013,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -4.0,
+      'netFlow': np.float64(-4.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3021,7 +3021,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 70.0,
+      'netFlow': np.float64(70.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3029,7 +3029,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 147.0,
+      'netFlow': np.float64(147.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3037,7 +3037,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 222.0,
+      'netFlow': np.float64(222.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3045,7 +3045,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 296.0,
+      'netFlow': np.float64(296.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3053,7 +3053,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 370.0,
+      'netFlow': np.float64(370.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3061,7 +3061,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3069,7 +3069,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3077,7 +3077,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3085,7 +3085,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3093,7 +3093,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3101,7 +3101,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3109,7 +3109,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3117,7 +3117,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3125,7 +3125,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3133,7 +3133,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3141,7 +3141,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3149,7 +3149,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3157,7 +3157,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3165,7 +3165,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 420.0,
+      'netFlow': np.float64(420.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3173,7 +3173,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 340.0,
+      'netFlow': np.float64(340.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3181,7 +3181,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 226.0,
+      'netFlow': np.float64(226.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3189,7 +3189,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 172.0,
+      'netFlow': np.float64(172.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3197,7 +3197,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 189.0,
+      'netFlow': np.float64(189.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3205,7 +3205,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 113.0,
+      'netFlow': np.float64(113.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3213,7 +3213,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 38.0,
+      'netFlow': np.float64(38.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3221,7 +3221,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 45.0,
+      'netFlow': np.float64(45.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3229,7 +3229,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 120.0,
+      'netFlow': np.float64(120.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3237,7 +3237,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 129.0,
+      'netFlow': np.float64(129.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3245,7 +3245,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 147.0,
+      'netFlow': np.float64(147.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3253,7 +3253,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 222.0,
+      'netFlow': np.float64(222.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3261,7 +3261,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 296.0,
+      'netFlow': np.float64(296.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3269,7 +3269,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 370.0,
+      'netFlow': np.float64(370.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3277,7 +3277,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3285,7 +3285,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3293,7 +3293,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3301,7 +3301,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3309,7 +3309,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3317,7 +3317,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3325,7 +3325,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3333,7 +3333,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3341,7 +3341,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3349,7 +3349,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3357,7 +3357,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3365,7 +3365,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3373,7 +3373,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3381,7 +3381,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3389,7 +3389,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3397,7 +3397,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3405,7 +3405,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3413,7 +3413,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3421,7 +3421,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3429,7 +3429,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3437,7 +3437,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3445,7 +3445,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3453,7 +3453,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3461,7 +3461,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3469,7 +3469,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3477,7 +3477,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3485,7 +3485,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3493,7 +3493,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3501,7 +3501,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 399.0,
+      'netFlow': np.float64(399.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3509,7 +3509,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 326.0,
+      'netFlow': np.float64(326.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3517,7 +3517,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 252.0,
+      'netFlow': np.float64(252.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3525,7 +3525,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 181.0,
+      'netFlow': np.float64(181.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3533,7 +3533,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 107.0,
+      'netFlow': np.float64(107.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3541,7 +3541,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 32.0,
+      'netFlow': np.float64(32.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3549,7 +3549,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 8, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -43.0,
+      'netFlow': np.float64(-43.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3557,7 +3557,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -118.0,
+      'netFlow': np.float64(-118.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3565,7 +3565,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -193.0,
+      'netFlow': np.float64(-193.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3573,7 +3573,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -269.0,
+      'netFlow': np.float64(-269.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3581,7 +3581,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -345.0,
+      'netFlow': np.float64(-345.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3589,7 +3589,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3597,7 +3597,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3605,7 +3605,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3613,7 +3613,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3621,7 +3621,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -331.0,
+      'netFlow': np.float64(-331.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3629,7 +3629,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -255.0,
+      'netFlow': np.float64(-255.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3637,7 +3637,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -212.0,
+      'netFlow': np.float64(-212.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3645,7 +3645,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -157.0,
+      'netFlow': np.float64(-157.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3653,7 +3653,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -185.0,
+      'netFlow': np.float64(-185.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3661,7 +3661,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -224.0,
+      'netFlow': np.float64(-224.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3669,7 +3669,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -147.0,
+      'netFlow': np.float64(-147.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3677,7 +3677,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -132.0,
+      'netFlow': np.float64(-132.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3685,7 +3685,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -209.0,
+      'netFlow': np.float64(-209.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3693,7 +3693,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -285.0,
+      'netFlow': np.float64(-285.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3701,7 +3701,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -273.0,
+      'netFlow': np.float64(-273.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3709,7 +3709,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -233.0,
+      'netFlow': np.float64(-233.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3717,7 +3717,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -310.0,
+      'netFlow': np.float64(-310.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3725,7 +3725,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -386.0,
+      'netFlow': np.float64(-386.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3733,7 +3733,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3741,7 +3741,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3749,7 +3749,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3757,7 +3757,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3765,7 +3765,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -408.0,
+      'netFlow': np.float64(-408.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3773,7 +3773,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -333.0,
+      'netFlow': np.float64(-333.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3781,7 +3781,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -257.0,
+      'netFlow': np.float64(-257.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3789,7 +3789,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -184.0,
+      'netFlow': np.float64(-184.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3797,7 +3797,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -109.0,
+      'netFlow': np.float64(-109.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3805,7 +3805,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -34.0,
+      'netFlow': np.float64(-34.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3813,7 +3813,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': -3.0,
+      'netFlow': np.float64(-3.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3821,7 +3821,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 70.0,
+      'netFlow': np.float64(70.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3829,7 +3829,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 147.0,
+      'netFlow': np.float64(147.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3837,7 +3837,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 222.0,
+      'netFlow': np.float64(222.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3845,7 +3845,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 296.0,
+      'netFlow': np.float64(296.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3853,7 +3853,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 370.0,
+      'netFlow': np.float64(370.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3861,7 +3861,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 441.0,
+      'netFlow': np.float64(441.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3869,7 +3869,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3877,7 +3877,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -3885,7 +3885,7 @@
     dict({
       'datetime': datetime.datetime(2023, 11, 9, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Dublin')),
       'datetime_end': None,
-      'netFlow': 442.0,
+      'netFlow': np.float64(442.0),
       'sortedZoneKeys': 'GB->GB-NIR',
       'source': 'eirgridgroup.com',
       'sourceType': <EventSourceType.measured: 'measured'>,

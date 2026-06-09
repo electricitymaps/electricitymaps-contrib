@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 import pytest
 from requests_mock import GET, POST
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.IEMOP import REPORTS_ADMIN_URL, fetch_production
 from electricitymap.contrib.types import ZoneKey
@@ -10,7 +11,7 @@ zone_keys = [ZoneKey("PH-LU"), ZoneKey("PH-MI"), ZoneKey("PH-VI")]
 
 
 @pytest.mark.parametrize("zone_key", zone_keys)
-def test_production(adapter, session, snapshot, zone_key: ZoneKey):
+def test_production(requests_mock, session, snapshot, zone_key: ZoneKey):
     """
     Reports have been reduced to 14 September 2023 00:00 to 13 September 2023 22:00 for ease
     """
@@ -18,7 +19,7 @@ def test_production(adapter, session, snapshot, zone_key: ZoneKey):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/IEMOP/list_reports_items.json", "rb"
     ) as list_reports_items:
-        adapter.register_uri(
+        requests_mock.register_uri(
             POST,
             REPORTS_ADMIN_URL,
             content=list_reports_items.read(),
@@ -27,12 +28,14 @@ def test_production(adapter, session, snapshot, zone_key: ZoneKey):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/IEMOP/reports_content", "rb"
     ) as reports_byte_content:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             REPORTS_LINK,
             content=reports_byte_content.read(),
         )
-    assert snapshot == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         zone_key=ZoneKey(zone_key),
         session=session,
         target_datetime=target_datetime,

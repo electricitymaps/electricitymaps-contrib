@@ -1,8 +1,8 @@
 bounding_box:
-  - - -116.5492
-    - 43.3016500000001
-  - - -103.53947
-    - 49.5011000000001
+  - - -115.69255692556919
+    - 43.82423840576526
+  - - -104.04644046440458
+    - 48.999089700338764
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -82,6 +82,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 704.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 699.1
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -148,6 +151,12 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 1011.6
+center_point:
+  - -110.68984647487405
+  - 46.30215557229568
+centroid:
+  - -109.85464945606991
+  - 46.3798337690431
 comment: Northwestern Energy (Nwmt)
 contributors:
   - systemcatch
@@ -155,10 +164,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer: This zone includes all electricity production from the generation-only
   balancing authorities NaturEner Power Watch, LLC and NaturEner Wind Watch, LLC.
   Read more on the wiki page.
@@ -471,6 +476,14 @@ fallbackZoneMixes:
         wind: 0.24723499458575396
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.139
+isRenewable:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.139
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

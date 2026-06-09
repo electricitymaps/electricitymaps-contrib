@@ -1,8 +1,8 @@
 bounding_box:
-  - - -125.23688
-    - 39.61659
-  - - -105.50971
-    - 49.50244
+  - - -124.72144721447208
+    - 41.93091581776139
+  - - -106.00948525039483
+    - 48.999551747062824
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -60,6 +60,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 281.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 273.7
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -81,6 +84,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 18.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 16.0
   hydro:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -106,6 +112,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 18988.6
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 18988.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 18453.7
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -178,6 +190,12 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 3817.1
+center_point:
+  - -115.54847110735697
+  - 48.63996347693276
+centroid:
+  - -119.85519147704848
+  - 46.33846108511829
 comment: Bonneville Power Administration
 contributors:
   - systemcatch
@@ -185,10 +203,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer:
   This zone includes all wind related electricity production from the generation-only
   balancing authority Avangrid Renewables, LLC. Read more on the zone definition wiki

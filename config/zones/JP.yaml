@@ -1,8 +1,8 @@
 bounding_box:
-  - - 138.5
-    - 34.52
-  - - 141.16
-    - 37.17
+  - - 123.68463684636848
+    - 24.258473913558973
+  - - 145.76725767257673
+    - 45.51005398299017
 capacity:
   battery storage: null
   biomass: 2847.6
@@ -16,6 +16,12 @@ capacity:
   solar: 28577.9
   unknown: 9976.9
   wind: 3978.8
+center_point:
+  - 139.19854103544216
+  - 37.570742015371266
+centroid:
+  - 136.01390870678517
+  - 36.04844898300186
 contributors:
   - kongkille
   - lorrieq
@@ -30,10 +36,22 @@ currency: JPY
 emissionFactors:
   direct:
     hydro discharge:
-      - _comment: used default IPCC 2014 value of 0.0
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 445.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 427.38
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 422.09
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 0.0
+        value: 366.26
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -48,10 +66,22 @@ emissionFactors:
         value: 0.0
   lifecycle:
     hydro discharge:
-      - _comment: used default IPCC 2014 value of 24.0
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 469.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 451.38
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 446.09
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 24.0
+        value: 390.26
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
@@ -186,9 +216,46 @@ fallbackZoneMixes:
         solar: 0.10342626615078988
         unknown: 0.029215896952754124
         wind: 0.008046150827843417
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1815
+    - datetime: '2018-01-01'
+      value: 0.2148
+    - datetime: '2019-01-01'
+      value: 0.2261
+    - datetime: '2020-01-01'
+      value: 0.3262
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1535
+    - datetime: '2018-01-01'
+      value: 0.1623
+    - datetime: '2019-01-01'
+      value: 0.1543
+    - datetime: '2020-01-01'
+      value: 0.2538
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
 region: Asia
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 subZoneNames:
   - JP-CB
   - JP-CG
@@ -202,8 +269,3 @@ subZoneNames:
   - JP-TK
 timezone: Asia/Tokyo
 zone_name: Japan
-sources:
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

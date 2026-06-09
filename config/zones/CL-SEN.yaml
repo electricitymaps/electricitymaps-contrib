@@ -1,8 +1,14 @@
 bounding_box:
-  - - -74.90721594999991
-    - -44.54499811646991
-  - - -66.51396683799987
-    - -17.006588197999946
+  - - -74.33894338943384
+    - -44.045678620709154
+  - - -67.01287012870124
+    - -17.506247483496928
+center_point:
+  - -70.73505081816626
+  - -30.813972238241195
+centroid:
+  - -71.16228261519247
+  - -33.246601933796626
 capacity:
   geothermal:
     - datetime: '2023-12-01'
@@ -45,8 +51,6 @@ contributors:
 country: CL
 country_name: Chile
 currency: CLP
-delays:
-  production: 22
 disclaimer: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
 emissionFactors:
   direct:
@@ -252,3 +256,11 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=163148677 (average thermoelectric emission factors)
 timezone: America/Santiago
 zone_name: 'Sistema Eléctrico Nacional'
+isRenewable:
+  unknown:
+    source: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+    value: 0
+isLowCarbon:
+  unknown:
+    source: Unknown production is the aggregation of thermal production, mainly gas, coal and oil.
+    value: 0

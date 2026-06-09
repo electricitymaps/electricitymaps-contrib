@@ -1,8 +1,8 @@
 bounding_box:
-  - - 135.8
-    - 35.39
-  - - 137.75
-    - 37.9
+  - - 135.95715957159572
+    - 35.50106064927961
+  - - 137.73197731977316
+    - 37.53176718924749
 capacity:
   biomass: 700
   coal: 2900
@@ -12,6 +12,12 @@ capacity:
   nuclear: 1746
   oil: 1750
   wind: 229.6
+center_point:
+  - 136.84456844568444
+  - 36.51641391926355
+centroid:
+  - 136.80818236753797
+  - 36.46346385444409
 contributors:
   - tmslaine
   - lorrieq
@@ -22,15 +28,31 @@ contributors:
 country: JP
 country_name: Japan
 currency: JPY
-delays:
-  production: 5
-disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data only for solar and unknown. We are working on improving the data quality for this zone.
+disclaimer: The data provider (Hokuriku Electric Power Co.,Inc.) provides live data
+  only for solar and unknown. We are working on improving the data quality for this
+  zone.
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 376.49
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 373.22
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 366.44
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average
         value: 0.0
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2025-01-01'
@@ -38,9 +60,25 @@ emissionFactors:
         value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 400.49
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 397.22
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 390.44
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2021-01-01'
+        source: Electricity Maps, 2021 zone average; IPCC 2014
         value: 24.0
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2025-01-01'
@@ -153,8 +191,36 @@ fallbackZoneMixes:
         solar: 0.05969048291522835
         unknown: 0.02047979428559259
         wind: 0.005666854920707754
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3072
+    - datetime: '2018-01-01'
+      value: 0.3132
+    - datetime: '2019-01-01'
+      value: 0.3257
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3072
+    - datetime: '2018-01-01'
+      value: 0.3123
+    - datetime: '2019-01-01'
+      value: 0.3173
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast

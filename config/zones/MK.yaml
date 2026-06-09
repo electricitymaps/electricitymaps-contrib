@@ -1,8 +1,8 @@
 bounding_box:
-  - - 20.46315
-    - 40.8427269557
-  - - 22.9523771502
-    - 42.3202595078
+  - - 20.442804428044298
+    - 40.8490171960449
+  - - 23.00963009630098
+    - 42.36882716464663
 capacity:
   biomass:
     - datetime: '2022-01-01'
@@ -41,16 +41,15 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 37.0
+center_point:
+  - 21.724323687808077
+  - 41.593212096876016
+centroid:
+  - 21.761443639720518
+  - 41.480223992543856
 country: MK
 country_name: North Macedonia
 currency: EUR
-delays:
-  consumption: 24
-  consumptionForecast: 24
-  generationForecast: 24
-  price: 24
-  production: 34
-  productionPerModeForecast: 24
 emissionFactors:
   direct: {}
   lifecycle:
@@ -199,8 +198,8 @@ fallbackZoneMixes:
         solar: 0.05043191890490814
         unknown: 0.0005426887479083481
         wind: 0.06473512851109808
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -209,6 +208,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   UNECE 2022:

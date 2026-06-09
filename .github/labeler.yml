@@ -5,27 +5,7 @@ infrastructure:
 
 dependencies:
   - changed-files:
-      - any-glob-to-any-file:
-          [
-            'uv.lock',
-            'pyproject.toml',
-            'mobileapp/package.json',
-            'mobileapp/pnpm-lock.yaml',
-            'mockserver/package.json',
-            'mockserver/pnpm-lock.yaml',
-            'web/package.json',
-            'web/pnpm-lock.yaml',
-          ]
-
-frontend 🎨:
-  - all:
-      - changed-files:
-          - any-glob-to-any-file: 'web/**/*'
-          - all-globs-to-all-files: '!web/public/locales/**/*'
-
-translations 🗣:
-  - changed-files:
-      - any-glob-to-any-file: 'web/public/locales/**/*'
+      - any-glob-to-any-file: ['uv.lock', 'pyproject.toml']
 
 tests:
   - changed-files:
@@ -52,10 +32,6 @@ archived parser:
 capacity parser:
   - changed-files:
       - any-glob-to-any-file: 'electricitymap/contrib/capacity_parsers/**/*'
-
-mobile app 📱:
-  - changed-files:
-      - any-glob-to-any-file: 'mobileapp/**/*'
 
 exchange config:
   - changed-files:

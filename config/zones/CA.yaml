@@ -1,3 +1,8 @@
+bounding_box:
+  - - -141.00441004410038
+    - 41.91374282376589
+  - - -52.62712627126267
+    - 83.11604866746916
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -145,6 +150,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 18380.0
+center_point:
+  - -97.1821186078896
+  - 62.57918935741333
+centroid:
+  - -89.99438123746916
+  - 66.59224818736742
 country: CA
 country_name: Canada
 currency: CAD
@@ -152,17 +163,29 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 112.06
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 103.98
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 101.73
+      - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
         value: 99.03
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 89.69
+        value: 89.7
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 89.48
+        value: 89.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -170,9 +193,21 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 92.35
+        value: 93.26
   lifecycle:
     battery discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 145.06
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 136.98
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 134.73
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
@@ -180,11 +215,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 122.69
+        value: 122.7
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 122.48
+        value: 122.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
@@ -192,12 +227,53 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 125.35
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+        value: 126.26
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.7913
+    - datetime: '2018-01-01'
+      value: 0.8029
+    - datetime: '2019-01-01'
+      value: 0.8027
+    - datetime: '2021-01-01'
+      value: 0.7917
+    - datetime: '2022-01-01'
+      value: 0.7982
+    - datetime: '2023-01-01'
+      value: 0.7958
+    - datetime: '2024-01-01'
+      value: 0.7862
+    - datetime: '2025-01-01'
+      value: 0.7715
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.652
+    - datetime: '2018-01-01'
+      value: 0.6546
+    - datetime: '2019-01-01'
+      value: 0.6607
+    - datetime: '2021-01-01'
+      value: 0.6593
+    - datetime: '2022-01-01'
+      value: 0.68
+    - datetime: '2023-01-01'
+      value: 0.6714
+    - datetime: '2024-01-01'
+      value: 0.6593
+    - datetime: '2025-01-01'
+      value: 0.6473
 parsers:
   productionCapacity: EMBER.fetch_production_capacity
 region: Americas
+sources:
+  IPCC 2014:
+    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 subZoneNames:
   - CA-AB
   - CA-BC
@@ -214,8 +290,3 @@ subZoneNames:
   - CA-YT
 timezone: America/Toronto
 zone_name: Canada
-sources:
-  IPCC 2014:
-    link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf

@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 from freezegun import freeze_time
 from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.RU import fetch_exchange, fetch_production
 
@@ -16,7 +17,7 @@ BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/RU")
 
 @pytest.mark.parametrize("zone_key", ["RU-1", "RU-2", "RU-AS"])
 @freeze_time("2025-07-28 12:00:00")
-def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
+def test_snapshot_fetch_production(requests_mock, session, snapshot, zone_key):
     """Test fetch_production for different Russian zones using mock data."""
     # Determine which zones need to be mocked based on the test zone
     zones_to_mock = ["RU-1", "RU-2", "RU-AS"] if zone_key == "RU" else [zone_key]
@@ -31,7 +32,7 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
         else:  # RU-AS
             url_pattern = re.compile(r".*CommonInfo/GenEquipOptions_Z2.*")
 
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             url_pattern,
             json=json.loads(mock_file.read_text()),
@@ -40,7 +41,9 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, 12, 0)
 
-    assert snapshot == fetch_production(
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_production(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
@@ -70,7 +73,7 @@ def test_snapshot_fetch_production(adapter, session, snapshot, zone_key):
 )
 @freeze_time("2025-07-28 12:00:00")
 def test_snapshot_fetch_exchange(
-    adapter, session, snapshot, zone_key1, zone_key2, hour
+    requests_mock, session, snapshot, zone_key1, zone_key2, hour
 ):
     """Test fetch_exchange for different exchange pairs using mock data."""
     # Load the appropriate mock file based on hour
@@ -78,7 +81,7 @@ def test_snapshot_fetch_exchange(
 
     # Mock the exchange API endpoint with specific pattern
     url_pattern = re.compile(r".*flowDiagramm/GetData.*")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         url_pattern,
         json=json.loads(mock_file.read_text()),
@@ -87,7 +90,7 @@ def test_snapshot_fetch_exchange(
     # Test target datetime corresponding to the mock data
     target_datetime = datetime(2025, 7, 28, hour, 0)
 
-    assert snapshot == fetch_exchange(
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_exchange(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
         session=session,
@@ -96,13 +99,13 @@ def test_snapshot_fetch_exchange(
 
 
 @freeze_time("2025-07-28 12:00:00")
-def test_snapshot_fetch_exchange_live(adapter, session, snapshot):
+def test_snapshot_fetch_exchange_live(requests_mock, session, snapshot):
     """Test fetch_exchange without target_datetime (live mode) using mock data."""
     # Mock both hours 10 and 11 for live mode (last 2 hours)
     for hour in [10, 11]:
         mock_file = BASE_PATH_TO_MOCK / f"exchange_2025-07-28_{hour}.json"
         url_pattern = re.compile(r".*flowDiagramm/GetData.*")
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             url_pattern,
             json=json.loads(mock_file.read_text()),
@@ -117,7 +120,7 @@ def test_snapshot_fetch_exchange_live(adapter, session, snapshot):
 
 
 @freeze_time("2025-07-28 12:00:00")
-def test_snapshot_fetch_production_live(adapter, session, snapshot):
+def test_snapshot_fetch_production_live(requests_mock, session, snapshot):
     """Test fetch_production without target_datetime (live mode) using mock data."""
     # Mock all zone endpoints for live mode with specific URL patterns
     for zone in ["RU-1", "RU-2", "RU-AS"]:
@@ -130,7 +133,7 @@ def test_snapshot_fetch_production_live(adapter, session, snapshot):
         else:  # RU-AS
             url_pattern = re.compile(r".*CommonInfo/GenEquipOptions_Z2.*")
 
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET,
             url_pattern,
             json=json.loads(mock_file.read_text()),

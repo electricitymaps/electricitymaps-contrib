@@ -1,8 +1,8 @@
 bounding_box:
-  - - -83.86385
-    - 34.5009
-  - - -81.19208
-    - 36.7872800000001
+  - - -83.36063360633601
+    - 35.004474906243075
+  - - -81.69381693816933
+    - 36.25094805374978
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -65,6 +65,9 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 26.9
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 28.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -73,6 +76,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -82.43853257314427
+  - 35.70823719184149
+centroid:
+  - -82.57668976689762
+  - 35.59894671505396
 comment: Duke Energy Progress West
 contributors:
   - systemcatch
@@ -80,10 +89,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:
@@ -152,29 +157,37 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 413.7
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 472.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 298.58
+        value: 298.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 418.32
+        value: 418.55
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 418.59
+        value: 418.81
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 449.0
+        value: 452.14
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 404.87
+        value: 421.22
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 435.05
+        value: 462.03
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -266,29 +279,37 @@ emissionFactors:
         value: 66.73943546483589
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 437.7
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 496.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 322.58
+        value: 322.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 442.32
+        value: 442.55
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 442.59
+        value: 442.81
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 473.0
+        value: 476.14
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 428.87
+        value: 445.22
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 459.05
+        value: 486.03
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -464,6 +485,42 @@ fallbackZoneMixes:
         wind: 0.003138998527429385
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.2742
+    - datetime: '2018-01-01'
+      value: 0.3165
+    - datetime: '2020-01-01'
+      value: 0.3559
+    - datetime: '2021-01-01'
+      value: 0.0954
+    - datetime: '2022-01-01'
+      value: 0.1404
+    - datetime: '2023-01-01'
+      value: 0.0067
+    - datetime: '2024-01-01'
+      value: 0.1502
+    - datetime: '2025-01-01'
+      value: 0.0973
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0818
+    - datetime: '2018-01-01'
+      value: 0.1089
+    - datetime: '2020-01-01'
+      value: 0.0087
+    - datetime: '2021-01-01'
+      value: 0.0154
+    - datetime: '2022-01-01'
+      value: 0.0136
+    - datetime: '2023-01-01'
+      value: 0.0009
+    - datetime: '2024-01-01'
+      value: 0.0606
+    - datetime: '2025-01-01'
+      value: 0.0141
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

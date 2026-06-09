@@ -1,8 +1,8 @@
 bounding_box:
-  - - 128.29
-    - 27.03
-  - - 131.89
-    - 35.11
+  - - 128.64188641886417
+    - 28.12382864537942
+  - - 132.0259202592026
+    - 34.64813528083644
 capacity:
   geothermal: 553
   hydro: 1247
@@ -10,6 +10,12 @@ capacity:
   nuclear: 5258
   solar: 10910
   wind: 630
+center_point:
+  - 131.09043016414662
+  - 32.70705256390908
+centroid:
+  - 130.34556254653455
+  - 32.33259447019511
 contributors:
   - tmslaine
   - lorrieq
@@ -18,11 +24,21 @@ contributors:
 country: JP
 country_name: Japan
 currency: JPY
-delays:
-  production: 5
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 380.53
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 348.87
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 299.66
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -33,6 +49,18 @@ emissionFactors:
         value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 404.53
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 372.87
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 323.66
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
@@ -163,8 +191,32 @@ fallbackZoneMixes:
         solar: 0.1382906879744919
         unknown: 1.0724997702627927e-06
         wind: 0.006801352931139955
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.2979
+    - datetime: '2018-01-01'
+      value: 0.3564
+    - datetime: '2019-01-01'
+      value: 0.4472
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1573
+    - datetime: '2018-01-01'
+      value: 0.1483
+    - datetime: '2019-01-01'
+      value: 0.124
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 1.0
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   generationForecast: JP.fetch_generation_forecast
@@ -177,4 +229,4 @@ sources:
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Tokyo
-zone_name: 'Kyūshū'
+zone_name: "Ky\u016Bsh\u016B"

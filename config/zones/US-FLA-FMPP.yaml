@@ -1,8 +1,8 @@
 bounding_box:
-  - - -83.03593
-    - 24.044093
-  - - -79.53074
-    - 30.69435
+  - - -82.50742507425069
+    - 26.327819690016725
+  - - -80.04500045000445
+    - 30.18601900767237
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -91,6 +91,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -81.27621276212757
+  - 28.256919348844548
+centroid:
+  - -81.52605526055255
+  - 28.532223908834915
 comment: Florida Municipal Power Pool
 contributors:
   - systemcatch
@@ -99,10 +105,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:

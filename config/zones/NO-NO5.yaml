@@ -1,8 +1,8 @@
 bounding_box:
-  - - 4.27686608200014
-    - 59.59392557929161
-  - - 10.10473435728148
-    - 62.338893003403086
+  - - 4.926649266492689
+    - 60.111501203936854
+  - - 9.60309603096033
+    - 61.83870910704472
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -49,6 +49,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 7996.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 8053.099999999999
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -67,11 +70,15 @@ capacity:
     - datetime: '2017-01-01'
       source: entsoe.eu
       value: 0.0
+center_point:
+  - 7.598459867208756
+  - 60.81134941964953
+centroid:
+  - 6.1910150943177955
+  - 60.5846601611768
 country: 'NO'
 country_name: Norway
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:
@@ -293,8 +300,36 @@ fallbackZoneMixes:
         solar: 0.0007275091951828923
         unknown: 0.00041495388875751785
         wind: 0.014746060245185884
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.9975
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.995
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -303,6 +338,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

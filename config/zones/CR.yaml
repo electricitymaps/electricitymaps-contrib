@@ -1,8 +1,14 @@
 bounding_box:
-  - - -85.94172543
-    - 8.22502798099
-  - - -82.5461962552
-    - 11.2171192489
+  - - -85.90945909459089
+    - 8.034287836310384
+  - - -82.57222572225717
+    - 11.209860642644927
+center_point:
+  - -84.27575410391903
+  - 9.949824880295713
+centroid:
+  - -84.05730980386721
+  - 9.674501408646611
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -102,8 +108,6 @@ contributors:
 country: CR
 country_name: Costa Rica
 currency: CRC
-delays:
-  production: 7
 emissionFactors:
   direct:
     unknown:
@@ -280,3 +284,13 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
+    source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
+    value: 0.42
+isLowCarbon:
+  unknown:
+    _comment: Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp
+    source: assumes 58% thermal (coal, gas, or oil), 42% solar and biomass
+    value: 0.42

@@ -1,8 +1,8 @@
 bounding_box:
-  - - 126.11
-    - 34.39
-  - - 129.46
-    - 38.61
+  - - 126.10386103861035
+    - 33.199879453882616
+  - - 129.55629556295563
+    - 38.623683390794696
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -180,6 +180,12 @@ capacity:
     - datetime: '2024-01-01'
       source: Ember, Yearly electricity data
       value: 2300.0
+center_point:
+  - 127.94887712074126
+  - 36.47203857915312
+centroid:
+  - 127.27504275042747
+  - 35.731930087306615
 contributors:
   - systemcatch
   - alixunderplatz
@@ -189,11 +195,21 @@ contributors:
 country: KR
 country_name: South Korea
 currency: KRW
-delays:
-  production: 5
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 387.2
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 387.2
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 0.0
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
@@ -205,17 +221,29 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 373.62
+        value: 373.65
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 351.52
+        value: 351.53
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 353.41
+        value: 353.44
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 411.2
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 411.2
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 24.0
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
@@ -227,19 +255,20 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 397.62
+        value: 397.65
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 375.52
+        value: 375.53
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 377.41
+        value: 377.44
     unknown:
       _comment: 'Source: 2020 annual electricity production by IEA'
       _url: https://www.iea.org/fuels-and-technologies/electricity
-      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind, 2.2% biofuels, 1.0% other
+      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
+        wind, 2.2% biofuels, 1.0% other
       value: 644
 fallbackZoneMixes:
   powerOriginRatios:
@@ -393,8 +422,56 @@ fallbackZoneMixes:
         solar: 0.019400257201052595
         unknown: 0.055175449564712
         wind: 0.0
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.348
+    - datetime: '2018-01-01'
+      value: 0.348
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 0.3374
+    - datetime: '2022-01-01'
+      value: 0.3431
+    - datetime: '2023-01-01'
+      value: 0.3647
+    - datetime: '2024-01-01'
+      value: 0.386
+    - datetime: '2025-01-01'
+      value: 0.3879
+  unknown:
+    _comment: 'Source: 2020 annual electricity production by IEA'
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind,
+      2.2% biofuels, 1.0% other
+    value: 0.084
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0512
+    - datetime: '2018-01-01'
+      value: 0.0512
+    - datetime: '2019-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 0.0067
+    - datetime: '2022-01-01'
+      value: 0.0194
+    - datetime: '2023-01-01'
+      value: 0.0353
+    - datetime: '2024-01-01'
+      value: 0.0434
+    - datetime: '2025-01-01'
+      value: 0.0541
+  unknown:
+    _comment: 'Source: 2020 annual electricity production by IEA'
+    _url: https://www.iea.org/fuels-and-technologies/electricity
+    source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8% wind,
+      2.2% biofuels, 1.0% other
+    value: 0.084
 parsers:
   consumption: KPX.fetch_consumption
   price: KPX.fetch_price

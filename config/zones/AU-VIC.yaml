@@ -1,8 +1,8 @@
 bounding_box:
-  - - 140.46708580936263
-    - -39.64495208099984
-  - - 150.47207507627593
-    - -33.486452325214685
+  - - 140.96421396698537
+    - -39.13706450366208
+  - - 149.9720997209972
+    - -33.98181386823853
 capacity:
   battery storage:
     - datetime: '2020-01-01'
@@ -71,6 +71,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 5487.17
+center_point:
+  - 145.10552901241175
+  - -36.45834748983445
+centroid:
+  - 144.78153006632593
+  - -37.08382639593836
 contributors:
   - jarek
   - corradio
@@ -78,61 +84,75 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-delays:
-  production: 96
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 574.88
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 577.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 595.22
+        value: 557.82
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 542.33
+        value: 506.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 486.12
+        value: 458.83
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 420.58
+        value: 422.59
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 441.94
+        value: 419.01
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 411.08
+        value: 379.71
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 607.88
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 610.03
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 628.22
+        value: 590.82
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 575.33
+        value: 539.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 519.12
+        value: 491.83
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 453.58
+        value: 455.59
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 474.94
+        value: 452.01
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 444.08
+        value: 412.71
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -285,18 +305,54 @@ fallbackZoneMixes:
         solar: 0.1470457660916572
         unknown: 0.0
         wind: 0.18972740562986398
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2018-01-01'
+      value: 0.2183
+    - datetime: '2019-01-01'
+      value: 0.2179
+    - datetime: '2020-01-01'
+      value: 0.2554
+    - datetime: '2021-01-01'
+      value: 0.3289
+    - datetime: '2022-01-01'
+      value: 0.3865
+    - datetime: '2023-01-01'
+      value: 0.4408
+    - datetime: '2024-01-01'
+      value: 0.4402
+    - datetime: '2025-01-01'
+      value: 0.494
+isRenewable:
+  battery discharge:
+    - datetime: '2018-01-01'
+      value: 0.2183
+    - datetime: '2019-01-01'
+      value: 0.2179
+    - datetime: '2020-01-01'
+      value: 0.2554
+    - datetime: '2021-01-01'
+      value: 0.3289
+    - datetime: '2022-01-01'
+      value: 0.3865
+    - datetime: '2023-01-01'
+      value: 0.4408
+    - datetime: '2024-01-01'
+      value: 0.4402
+    - datetime: '2025-01-01'
+      value: 0.494
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
-timezone: Australia/Melbourne
-zone_name: Victoria
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Melbourne
+zone_name: Victoria

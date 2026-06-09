@@ -1,8 +1,8 @@
 bounding_box:
-  - - -83.14555
-    - 31.584470000000103
-  - - -78.92575821
-    - 35.2360579840001
+  - - -82.59382593825933
+    - 32.085065927008074
+  - - -79.42939429394289
+    - 34.7354313336469
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -65,6 +65,12 @@ capacity:
     - datetime: '2024-11-01'
       source: EIA.gov
       value: 3466.3
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 3597.1
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3583.5
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -109,6 +115,12 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 56.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 17.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3.5
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -190,6 +202,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -81.12491647633112
+  - 33.41858838624407
+centroid:
+  - -81.04805138700345
+  - 33.48424702846477
 comment: South Carolina Electric & Gas Company
 contributors:
   - systemcatch
@@ -197,10 +215,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer: A third of the nuclear-related electricity production is attributed to
   the balancing authority South Carolina Public Service Authority (US-CAR-SC) due
   to an agreement between the two balancing authorities. Read more on the zone definition
@@ -524,6 +538,14 @@ fallbackZoneMixes:
         wind: 0.00011411094674027499
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 1.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

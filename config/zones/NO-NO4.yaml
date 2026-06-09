@@ -1,8 +1,8 @@
 bounding_box:
-  - - 11.018809441000087
-    - 63.879640651798496
-  - - 31.576996290000153
-    - 71.6652692730001
+  - - 11.561515615156168
+    - 64.00790244344049
+  - - 31.07731077310774
+    - 71.16078268093528
 capacity:
   gas:
     - datetime: '2017-01-01'
@@ -14,6 +14,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 256.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 298.4
   hydro:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -39,6 +42,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 5636.5
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 5603.8
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -68,11 +74,18 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1160.1
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1159.9
+center_point:
+  - 19.203395969873394
+  - 68.8673186911011
+centroid:
+  - 20.002831855688445
+  - 68.81589156318717
 country: 'NO'
 country_name: Norway
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:
@@ -244,8 +257,8 @@ fallbackZoneMixes:
         solar: 0.00021407875406779077
         unknown: 0.010058740193573302
         wind: 0.17044500247243927
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -254,6 +267,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

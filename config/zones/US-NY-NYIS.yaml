@@ -1,8 +1,8 @@
 bounding_box:
-  - - -80.26197
-    - 39.99603
-  - - -71.35625
-    - 45.51097
+  - - -79.78587755694078
+    - 40.58999120327944
+  - - -72.06482694841942
+    - 45.01060607428772
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -104,6 +104,9 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 262.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 268.1
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -129,6 +132,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 446.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 447.8
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -227,6 +233,12 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 25781.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 25778.1
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 25681.1
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -262,6 +274,12 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 4081.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 4113.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 4096.1
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -322,6 +340,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 3486.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 3488.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3188.5
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -602,6 +626,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 2651.4
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2841.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2894.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2898.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -658,6 +691,12 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 2869.0
+center_point:
+  - -76.24218291697775
+  - 43.02465560796782
+centroid:
+  - -75.48417383731932
+  - 42.62337021879663
 comment: New York Independent System Operator
 contributors:
   - systemcatch
@@ -668,8 +707,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:

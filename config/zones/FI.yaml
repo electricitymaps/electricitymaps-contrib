@@ -1,8 +1,14 @@
 bounding_box:
-  - - 20.6455928891
-    - 59.846373196
-  - - 31.5160921567
-    - 70.1641930203
+  - - 20.549205472874075
+    - 59.81086473274276
+  - - 31.570515705157078
+    - 70.07029756222104
+center_point:
+  - 26.323970083708076
+  - 64.96030393692205
+centroid:
+  - 25.28410780108274
+  - 65.08244089552896
 capacity:
   biomass:
     - datetime: '2023-01-01'
@@ -65,6 +71,12 @@ capacity:
     - datetime: '2025-10-15'
       source: fingrid.fi
       value: 1512
+    - datetime: '2026-03-13'
+      source: fingrid.fi
+      value: 1575
+    - datetime: '2026-05-08'
+      source: fingrid.fi
+      value: 1741
   unknown:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -97,6 +109,12 @@ capacity:
     - datetime: '2025-10-15'
       source: fingrid.fi
       value: 9237
+    - datetime: '2026-03-13'
+      source: fingrid.fi
+      value: 9413
+    - datetime: '2026-04-03'
+      source: fingrid.fi
+      value: 9426
 contributors:
   - corradio
   - nessie2013
@@ -105,8 +123,6 @@ contributors:
 country: FI
 country_name: Finland
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:
@@ -373,6 +389,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: FI.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

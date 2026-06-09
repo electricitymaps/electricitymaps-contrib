@@ -1,8 +1,8 @@
 bounding_box:
-  - - 15.969981316000087
-    - -47.46575286299992
-  - - 38.47779381600009
-    - -21.626451924999927
+  - - 16.486364863648646
+    - -46.95507002011344
+  - - 37.89577895778959
+    - -22.131507199618248
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -96,16 +96,32 @@ capacity:
     - datetime: '2023-01-01'
       source: Ember, Yearly electricity data
       value: 3440.0
+center_point:
+  - 24.738611853654092
+  - -28.466860005694404
+centroid:
+  - 24.86591619045054
+  - -29.15101718443006
 contributors:
   - IV1T3
 country: ZA
 country_name: South Africa
 currency: ZAR
-delays:
-  production: 96
 emissionFactors:
   direct:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 645.54
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 678.14
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 660.55
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -113,25 +129,37 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 641.08
+        value: 641.14
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 637.55
+        value: 637.6
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 631.99
+        value: 636.0
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 658.28
+        value: 658.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 644.62
+        value: 644.48
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 669.54
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 702.14
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 684.55
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -139,23 +167,23 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 665.08
+        value: 665.14
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 661.55
+        value: 661.6
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 655.99
+        value: 660.0
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 682.28
+        value: 682.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 668.62
+        value: 668.48
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -308,22 +336,60 @@ fallbackZoneMixes:
         solar: 0.031763672924306964
         unknown: 0.0
         wind: 0.05303024755245981
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.1427
+    - datetime: '2018-01-01'
+      value: 0.1048
+    - datetime: '2019-01-01'
+      value: 0.1247
+    - datetime: '2020-01-01'
+      value: 0.1307
+    - datetime: '2021-01-01'
+      value: 0.1472
+    - datetime: '2022-01-01'
+      value: 0.1504
+    - datetime: '2023-01-01'
+      value: 0.1503
+    - datetime: '2024-01-01'
+      value: 0.1281
+    - datetime: '2025-01-01'
+      value: 0.1463
   unknown:
     value: 1
 isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0952
+    - datetime: '2018-01-01'
+      value: 0.0621
+    - datetime: '2019-01-01'
+      value: 0.0658
+    - datetime: '2020-01-01'
+      value: 0.078
+    - datetime: '2021-01-01'
+      value: 0.0932
+    - datetime: '2022-01-01'
+      value: 0.1039
+    - datetime: '2023-01-01'
+      value: 0.1091
+    - datetime: '2024-01-01'
+      value: 0.0878
+    - datetime: '2025-01-01'
+      value: 0.0921
   unknown:
     value: 1
 parsers:
   production: ESKOM.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
 region: Africa
-timezone: Africa/Johannesburg
-zone_name: South Africa
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Africa/Johannesburg
+zone_name: South Africa

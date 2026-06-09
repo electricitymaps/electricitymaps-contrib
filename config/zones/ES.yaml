@@ -1,178 +1,733 @@
-_comment: 'Hydro capacity from IRENA includes pumped storage generation capacity.
-  Note: ENTSO-E (not used for hydro capacity) lists 5645 MW for pumped storage CONSUMPTION
-  capacity.'
+_comment: "Hydro capacity from IRENA includes pumped storage generation capacity.
+  Pumped storage and battery capacity come from REE's almacenamiento/potencia-instalada-almacenamiento
+  endpoint. ENTSO-E B06 (Fossil Oil) for the ES bidding zone aggregates island/exclave
+  oil capacity that does not belong to this peninsular zone, so it is intentionally
+  not used here."
 bounding_box:
-  - - -9.3603515625
-    - 35.9957853864
-  - - 3.6474609375
-    - 43.6758180933
+  - - -9.293492934929333
+    - 36.00623288931391
+  - - 3.317433174331768
+    - 43.76270184394805
 capacity:
+  battery storage:
+    - datetime: '2021-09-01'
+      source: ree.es
+      value: 3
+    - datetime: '2022-04-01'
+      source: ree.es
+      value: 8
+    - datetime: '2022-05-01'
+      source: ree.es
+      value: 15.0
+    - datetime: '2023-05-01'
+      source: ree.es
+      value: 20.0
+    - datetime: '2023-07-01'
+      source: ree.es
+      value: 22.0
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 23.0
+    - datetime: '2024-12-01'
+      source: ree.es
+      value: 24.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 27.0
+    - datetime: '2025-06-01'
+      source: ree.es
+      value: 32.0
+    - datetime: '2025-10-01'
+      source: ree.es
+      value: 89.0
+    - datetime: '2025-11-01'
+      source: ree.es
+      value: 147
+    - datetime: '2026-01-01'
+      source: ree.es
+      value: 176.0
+    - datetime: '2026-02-01'
+      source: ree.es
+      value: 187.0
   biomass:
     - datetime: '2017-01-01'
       source: ree.es
       value: 1009.0
+    - datetime: '2017-06-01'
+      source: ree.es
+      value: 1007.0
+    - datetime: '2017-07-01'
+      source: ree.es
+      value: 1000.0
+    - datetime: '2017-09-01'
+      source: ree.es
+      value: 1004.0
+    - datetime: '2017-11-01'
+      source: ree.es
+      value: 1005.0
     - datetime: '2018-01-01'
       source: ree.es
       value: 1007.0
-    - datetime: '2019-01-01'
+    - datetime: '2018-09-01'
       source: ree.es
       value: 1010.0
+    - datetime: '2019-02-01'
+      source: ree.es
+      value: 1011.0
+    - datetime: '2019-04-01'
+      source: ree.es
+      value: 1013.0
+    - datetime: '2019-05-01'
+      source: ree.es
+      value: 1060.0
+    - datetime: '2019-07-01'
+      source: ree.es
+      value: 1061.0
+    - datetime: '2019-10-01'
+      source: ree.es
+      value: 1111.0
+    - datetime: '2019-11-01'
+      source: ree.es
+      value: 1161.0
     - datetime: '2020-01-01'
       source: ree.es
       value: 1210.0
-    - datetime: '2022-01-01'
+    - datetime: '2020-10-01'
+      source: ree.es
+      value: 1209.0
+    - datetime: '2020-12-01'
+      source: ree.es
+      value: 1210.0
+    - datetime: '2021-02-01'
+      source: ree.es
+      value: 1224.0
+    - datetime: '2021-03-01'
       source: ree.es
       value: 1225.0
-    - datetime: '2022-12-01'
+    - datetime: '2021-05-01'
       source: ree.es
-      value: 1219.0
-    - datetime: '2023-01-01'
+      value: 1227.0
+    - datetime: '2021-07-01'
+      source: ree.es
+      value: 1225.0
+    - datetime: '2022-02-01'
       source: ree.es
       value: 1226.0
-    - datetime: '2024-01-01'
+    - datetime: '2023-03-01'
       source: ree.es
-      value: 1230.0
-    - datetime: '2024-09-01'
+      value: 1227.0
+    - datetime: '2023-05-01'
       source: ree.es
-      value: 1222.0
-    - datetime: '2025-01-01'
+      value: 1229.0
+    - datetime: '2023-11-01'
       source: ree.es
       value: 1231.0
+    - datetime: '2024-01-01'
+      source: ree.es
+      value: 1232.0
+    - datetime: '2024-04-01'
+      source: ree.es
+      value: 1233.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 1232.0
+    - datetime: '2025-03-01'
+      source: ree.es
+      value: 1227.0
+    - datetime: '2025-04-01'
+      source: ree.es
+      value: 1228.0
+    - datetime: '2025-06-01'
+      source: ree.es
+      value: 1278.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 1265.0
+    - datetime: '2025-10-01'
+      source: ree.es
+      value: 1263.0
+    - datetime: '2026-01-01'
+      source: ree.es
+      value: 1259.0
+    - datetime: '2026-05-01'
+      source: ree.es
+      value: 1258.0
   coal:
     - datetime: '2017-01-01'
       source: ree.es
       value: 9562.0
-    - datetime: '2020-01-01'
+    - datetime: '2019-03-01'
       source: ree.es
       value: 9215.0
+    - datetime: '2020-08-01'
+      source: ree.es
+      value: 8159.0
+    - datetime: '2020-10-01'
+      source: ree.es
+      value: 6597.0
+    - datetime: '2020-11-01'
+      source: ree.es
+      value: 5978.0
+    - datetime: '2020-12-01'
+      source: ree.es
+      value: 5492.0
     - datetime: '2021-01-01'
       source: ree.es
       value: 5144.0
-    - datetime: '2022-01-01'
+    - datetime: '2021-02-01'
+      source: ree.es
+      value: 4643.0
+    - datetime: '2021-12-01'
       source: ree.es
       value: 3523.0
-    - datetime: '2022-12-01'
+    - datetime: '2022-08-01'
       source: ree.es
       value: 3223.0
     - datetime: '2024-01-01'
       source: ree.es
       value: 1820.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 1258.0
   gas:
     - datetime: '2017-01-01'
       source: ree.es
-      value: 30949.0
+      value: 30941.0
+    - datetime: '2017-02-01'
+      source: ree.es
+      value: 30919.0
+    - datetime: '2017-05-01'
+      source: ree.es
+      value: 30913.0
+    - datetime: '2017-06-01'
+      source: ree.es
+      value: 30866.0
+    - datetime: '2017-07-01'
+      source: ree.es
+      value: 30842.0
+    - datetime: '2017-08-01'
+      source: ree.es
+      value: 30816.0
+    - datetime: '2017-10-01'
+      source: ree.es
+      value: 30803.0
+    - datetime: '2017-11-01'
+      source: ree.es
+      value: 30789.0
     - datetime: '2018-01-01'
       source: ree.es
-      value: 30788.0
+      value: 30780.0
+    - datetime: '2018-05-01'
+      source: ree.es
+      value: 30774.0
+    - datetime: '2018-06-01'
+      source: ree.es
+      value: 30775.0
+    - datetime: '2018-08-01'
+      source: ree.es
+      value: 30390.0
     - datetime: '2019-01-01'
       source: ree.es
-      value: 30330.0
-    - datetime: '2020-01-01'
+      value: 30321.0
+    - datetime: '2019-02-01'
       source: ree.es
-      value: 30222.0
-    - datetime: '2021-01-01'
+      value: 30314.0
+    - datetime: '2019-03-01'
+      source: ree.es
+      value: 30300.0
+    - datetime: '2019-04-01'
+      source: ree.es
+      value: 30296.0
+    - datetime: '2019-05-01'
+      source: ree.es
+      value: 30291.0
+    - datetime: '2019-06-01'
+      source: ree.es
+      value: 30285.0
+    - datetime: '2019-07-01'
+      source: ree.es
+      value: 30273.0
+    - datetime: '2019-08-01'
+      source: ree.es
+      value: 30223.0
+    - datetime: '2019-09-01'
+      source: ree.es
+      value: 30219.0
+    - datetime: '2019-11-01'
+      source: ree.es
+      value: 30213.0
+    - datetime: '2020-03-01'
+      source: ree.es
+      value: 30209.0
+    - datetime: '2020-04-01'
+      source: ree.es
+      value: 30208.0
+    - datetime: '2020-07-01'
+      source: ree.es
+      value: 30207.0
+    - datetime: '2020-10-01'
       source: ree.es
       value: 30202.0
+    - datetime: '2020-12-01'
+      source: ree.es
+      value: 30198.0
+    - datetime: '2021-01-01'
+      source: ree.es
+      value: 30194.0
+    - datetime: '2021-04-01'
+      source: ree.es
+      value: 30182.0
+    - datetime: '2021-06-01'
+      source: ree.es
+      value: 30171.0
+    - datetime: '2021-07-01'
+      source: ree.es
+      value: 30156.0
+    - datetime: '2021-08-01'
+      source: ree.es
+      value: 30157.0
+    - datetime: '2021-09-01'
+      source: ree.es
+      value: 30150.0
+    - datetime: '2021-12-01'
+      source: ree.es
+      value: 30147.0
     - datetime: '2022-01-01'
       source: ree.es
-      value: 30154.0
-    - datetime: '2022-12-01'
+      value: 30146.0
+    - datetime: '2022-02-01'
       source: ree.es
-      value: 30160.0
-    - datetime: '2023-01-01'
+      value: 30150.0
+    - datetime: '2022-05-01'
       source: ree.es
       value: 30140.0
-    - datetime: '2023-12-01'
+    - datetime: '2022-06-01'
       source: ree.es
-      value: 30152.0
-    - datetime: '2024-01-01'
+      value: 30137.0
+    - datetime: '2022-07-01'
       source: ree.es
-      value: 30132.0
-    - datetime: '2024-09-01'
+      value: 30139.0
+    - datetime: '2022-08-01'
       source: ree.es
-      value: 30088.0
+      value: 30146.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 30141.0
+    - datetime: '2023-10-01'
+      source: ree.es
+      value: 30133.0
+    - datetime: '2024-02-01'
+      source: ree.es
+      value: 30127.0
+    - datetime: '2024-05-01'
+      source: ree.es
+      value: 30126.0
+    - datetime: '2024-06-01'
+      source: ree.es
+      value: 30122.0
+    - datetime: '2024-08-01'
+      source: ree.es
+      value: 30105.0
+    - datetime: '2024-11-01'
+      source: ree.es
+      value: 30090.0
     - datetime: '2025-01-01'
       source: ree.es
-      value: 30076.0
+      value: 30088.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 30045.0
+    - datetime: '2025-03-01'
+      source: ree.es
+      value: 29993.0
+    - datetime: '2025-04-01'
+      source: ree.es
+      value: 29988.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 30368.0
+    - datetime: '2025-08-01'
+      source: ree.es
+      value: 30363.0
+    - datetime: '2025-10-01'
+      source: ree.es
+      value: 30351.0
+    - datetime: '2025-11-01'
+      source: ree.es
+      value: 30345.0
+    - datetime: '2025-12-01'
+      source: ree.es
+      value: 30339.0
+    - datetime: '2026-02-01'
+      source: ree.es
+      value: 30364.0
+    - datetime: '2026-04-01'
+      source: ree.es
+      value: 30363.0
+    - datetime: '2026-05-01'
+      source: ree.es
+      value: 30340.0
   hydro:
     - datetime: '2017-01-01'
       source: ree.es
       value: 17048.0
+    - datetime: '2017-03-01'
+      source: ree.es
+      value: 17049.0
+    - datetime: '2017-06-01'
+      source: ree.es
+      value: 17052.0
     - datetime: '2018-01-01'
       source: ree.es
       value: 17056.0
-    - datetime: '2019-01-01'
+    - datetime: '2018-02-01'
+      source: ree.es
+      value: 17062.0
+    - datetime: '2018-07-01'
       source: ree.es
       value: 17063.0
-    - datetime: '2020-01-01'
+    - datetime: '2019-03-01'
       source: ree.es
       value: 17097.0
-    - datetime: '2022-01-01'
+    - datetime: '2021-02-01'
       source: ree.es
       value: 17092.0
-    - datetime: '2022-12-01'
-      source: ree.es
-      value: 17093.0
-    - datetime: '2023-01-01'
-      source: ree.es
-      value: 17092.0
-    - datetime: '2023-12-01'
-      source: ree.es
-      value: 17096.0
-    - datetime: '2024-09-01'
-      source: ree.es
-      value: 17097.0
-    - datetime: '2025-01-01'
+    - datetime: '2023-03-01'
       source: ree.es
       value: 17095.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 17093.0
+    - datetime: '2025-03-01'
+      source: ree.es
+      value: 17089.0
+    - datetime: '2025-05-01'
+      source: ree.es
+      value: 17090.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 17076.0
+    - datetime: '2026-05-01'
+      source: ree.es
+      value: 17075.0
   hydro storage:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 3331.0
   nuclear:
     - datetime: '2017-01-01'
       source: ree.es
       value: 7573.0
-    - datetime: '2018-01-01'
+    - datetime: '2017-11-01'
       source: ree.es
       value: 7117.0
   solar:
     - datetime: '2017-01-01'
       source: ree.es
-      value: 6746.0
-    - datetime: '2018-01-01'
+      value: 6747.0
+    - datetime: '2017-06-01'
       source: ree.es
       value: 6748.0
+    - datetime: '2017-07-01'
+      source: ree.es
+      value: 6747.0
+    - datetime: '2017-09-01'
+      source: ree.es
+      value: 6748.0
+    - datetime: '2017-12-01'
+      source: ree.es
+      value: 6749.0
+    - datetime: '2018-02-01'
+      source: ree.es
+      value: 6764.0
+    - datetime: '2018-04-01'
+      source: ree.es
+      value: 6766.0
+    - datetime: '2018-05-01'
+      source: ree.es
+      value: 6770.0
+    - datetime: '2018-06-01'
+      source: ree.es
+      value: 6771.0
+    - datetime: '2018-08-01'
+      source: ree.es
+      value: 6776.0
+    - datetime: '2018-09-01'
+      source: ree.es
+      value: 6777.0
+    - datetime: '2018-11-01'
+      source: ree.es
+      value: 6780.0
+    - datetime: '2018-12-01'
+      source: ree.es
+      value: 6831.0
     - datetime: '2019-01-01'
       source: ree.es
-      value: 6887.0
+      value: 6891.0
+    - datetime: '2019-02-01'
+      source: ree.es
+      value: 7070.0
+    - datetime: '2019-03-01'
+      source: ree.es
+      value: 7076.0
+    - datetime: '2019-04-01'
+      source: ree.es
+      value: 7570.0
+    - datetime: '2019-05-01'
+      source: ree.es
+      value: 7626.0
+    - datetime: '2019-06-01'
+      source: ree.es
+      value: 7810.0
+    - datetime: '2019-07-01'
+      source: ree.es
+      value: 8064.0
+    - datetime: '2019-08-01'
+      source: ree.es
+      value: 8382.0
+    - datetime: '2019-09-01'
+      source: ree.es
+      value: 8630.0
+    - datetime: '2019-10-01'
+      source: ree.es
+      value: 9499.0
+    - datetime: '2019-11-01'
+      source: ree.es
+      value: 10658.0
+    - datetime: '2019-12-01'
+      source: ree.es
+      value: 10838.0
     - datetime: '2020-01-01'
       source: ree.es
-      value: 10952.0
+      value: 10961.0
+    - datetime: '2020-02-01'
+      source: ree.es
+      value: 11003.0
+    - datetime: '2020-03-01'
+      source: ree.es
+      value: 11887.0
+    - datetime: '2020-04-01'
+      source: ree.es
+      value: 11976.0
+    - datetime: '2020-05-01'
+      source: ree.es
+      value: 12196.0
+    - datetime: '2020-06-01'
+      source: ree.es
+      value: 12359.0
+    - datetime: '2020-07-01'
+      source: ree.es
+      value: 12649.0
+    - datetime: '2020-08-01'
+      source: ree.es
+      value: 12687.0
+    - datetime: '2020-09-01'
+      source: ree.es
+      value: 13203.0
+    - datetime: '2020-10-01'
+      source: ree.es
+      value: 13613.0
+    - datetime: '2020-11-01'
+      source: ree.es
+      value: 13921.0
+    - datetime: '2020-12-01'
+      source: ree.es
+      value: 14193.0
     - datetime: '2021-01-01'
       source: ree.es
-      value: 13887.0
+      value: 14339.0
+    - datetime: '2021-02-01'
+      source: ree.es
+      value: 14669.0
+    - datetime: '2021-03-01'
+      source: ree.es
+      value: 14987.0
+    - datetime: '2021-04-01'
+      source: ree.es
+      value: 15160.0
+    - datetime: '2021-05-01'
+      source: ree.es
+      value: 15463.0
+    - datetime: '2021-06-01'
+      source: ree.es
+      value: 15824.0
+    - datetime: '2021-07-01'
+      source: ree.es
+      value: 16167.0
+    - datetime: '2021-08-01'
+      source: ree.es
+      value: 16334.0
+    - datetime: '2021-09-01'
+      source: ree.es
+      value: 16499.0
+    - datetime: '2021-10-01'
+      source: ree.es
+      value: 16780.0
+    - datetime: '2021-11-01'
+      source: ree.es
+      value: 17321.0
+    - datetime: '2021-12-01'
+      source: ree.es
+      value: 18078.0
     - datetime: '2022-01-01'
       source: ree.es
-      value: 17758.0
+      value: 18521.0
+    - datetime: '2022-02-01'
+      source: ree.es
+      value: 18796.0
+    - datetime: '2022-03-01'
+      source: ree.es
+      value: 19097.0
+    - datetime: '2022-04-01'
+      source: ree.es
+      value: 19293.0
+    - datetime: '2022-05-01'
+      source: ree.es
+      value: 19856.0
+    - datetime: '2022-06-01'
+      source: ree.es
+      value: 20130.0
+    - datetime: '2022-07-01'
+      source: ree.es
+      value: 21180.0
+    - datetime: '2022-08-01'
+      source: ree.es
+      value: 21515.0
+    - datetime: '2022-09-01'
+      source: ree.es
+      value: 21842.0
+    - datetime: '2022-10-01'
+      source: ree.es
+      value: 22175.0
+    - datetime: '2022-11-01'
+      source: ree.es
+      value: 23174.0
     - datetime: '2022-12-01'
       source: ree.es
-      value: 21815.0
+      value: 23613.0
     - datetime: '2023-01-01'
       source: ree.es
-      value: 22317.0
+      value: 24153.0
+    - datetime: '2023-02-01'
+      source: ree.es
+      value: 24705.0
+    - datetime: '2023-03-01'
+      source: ree.es
+      value: 25398.0
+    - datetime: '2023-04-01'
+      source: ree.es
+      value: 26015.0
+    - datetime: '2023-05-01'
+      source: ree.es
+      value: 26481.0
+    - datetime: '2023-06-01'
+      source: ree.es
+      value: 27493.0
+    - datetime: '2023-07-01'
+      source: ree.es
+      value: 27832.0
+    - datetime: '2023-08-01'
+      source: ree.es
+      value: 28660.0
+    - datetime: '2023-09-01'
+      source: ree.es
+      value: 29149.0
+    - datetime: '2023-10-01'
+      source: ree.es
+      value: 29908.0
+    - datetime: '2023-11-01'
+      source: ree.es
+      value: 30966.0
     - datetime: '2023-12-01'
       source: ree.es
-      value: 26866.0
+      value: 31517.0
     - datetime: '2024-01-01'
       source: ree.es
-      value: 28155.0
+      value: 31998.0
+    - datetime: '2024-02-01'
+      source: ree.es
+      value: 32520.0
+    - datetime: '2024-03-01'
+      source: ree.es
+      value: 33117.0
+    - datetime: '2024-04-01'
+      source: ree.es
+      value: 33853.0
+    - datetime: '2024-05-01'
+      source: ree.es
+      value: 34278.0
+    - datetime: '2024-06-01'
+      source: ree.es
+      value: 34967.0
+    - datetime: '2024-07-01'
+      source: ree.es
+      value: 36324.0
+    - datetime: '2024-08-01'
+      source: ree.es
+      value: 36946.0
     - datetime: '2024-09-01'
       source: ree.es
-      value: 30070.0
+      value: 37851.0
+    - datetime: '2024-10-01'
+      source: ree.es
+      value: 38895.0
+    - datetime: '2024-11-01'
+      source: ree.es
+      value: 39727.0
+    - datetime: '2024-12-01'
+      source: ree.es
+      value: 40764.0
     - datetime: '2025-01-01'
       source: ree.es
-      value: 34807.0
+      value: 41372.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 42157.0
+    - datetime: '2025-03-01'
+      source: ree.es
+      value: 43273.0
+    - datetime: '2025-04-01'
+      source: ree.es
+      value: 43848.0
+    - datetime: '2025-05-01'
+      source: ree.es
+      value: 44729.0
+    - datetime: '2025-06-01'
+      source: ree.es
+      value: 45743.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 47248.0
+    - datetime: '2025-08-01'
+      source: ree.es
+      value: 47834.0
+    - datetime: '2025-09-01'
+      source: ree.es
+      value: 48579.0
+    - datetime: '2025-10-01'
+      source: ree.es
+      value: 49677.0
+    - datetime: '2025-11-01'
+      source: ree.es
+      value: 50655.0
+    - datetime: '2025-12-01'
+      source: ree.es
+      value: 51450.0
+    - datetime: '2026-01-01'
+      source: ree.es
+      value: 52407.0
+    - datetime: '2026-02-01'
+      source: ree.es
+      value: 53168.0
+    - datetime: '2026-03-01'
+      source: ree.es
+      value: 53516.0
+    - datetime: '2026-04-01'
+      source: ree.es
+      value: 53535.0
+    - datetime: '2026-05-01'
+      source: ree.es
+      value: 53689.0
   unknown:
     - datetime: '2017-01-01'
       source: ree.es
@@ -180,46 +735,307 @@ capacity:
     - datetime: '2019-01-01'
       source: ree.es
       value: 404.0
-    - datetime: '2021-01-01'
+    - datetime: '2020-10-01'
       source: ree.es
       value: 394.0
-    - datetime: '2022-01-01'
+    - datetime: '2021-02-01'
       source: ree.es
       value: 407.0
-    - datetime: '2022-12-01'
+    - datetime: '2022-06-01'
       source: ree.es
       value: 387.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 378.0
   wind:
     - datetime: '2017-01-01'
       source: ree.es
+      value: 22817.0
+    - datetime: '2017-05-01'
+      source: ree.es
       value: 22818.0
-    - datetime: '2018-01-01'
+    - datetime: '2017-12-01'
       source: ree.es
       value: 22856.0
+    - datetime: '2018-02-01'
+      source: ree.es
+      value: 22858.0
+    - datetime: '2018-04-01'
+      source: ree.es
+      value: 22868.0
+    - datetime: '2018-05-01'
+      source: ree.es
+      value: 22871.0
+    - datetime: '2018-08-01'
+      source: ree.es
+      value: 22939.0
+    - datetime: '2018-10-01'
+      source: ree.es
+      value: 22957.0
+    - datetime: '2018-11-01'
+      source: ree.es
+      value: 22960.0
+    - datetime: '2018-12-01'
+      source: ree.es
+      value: 23010.0
     - datetime: '2019-01-01'
       source: ree.es
-      value: 23050.0
+      value: 23049.0
+    - datetime: '2019-02-01'
+      source: ree.es
+      value: 23092.0
+    - datetime: '2019-04-01'
+      source: ree.es
+      value: 23142.0
+    - datetime: '2019-05-01'
+      source: ree.es
+      value: 23194.0
+    - datetime: '2019-06-01'
+      source: ree.es
+      value: 23233.0
+    - datetime: '2019-07-01'
+      source: ree.es
+      value: 23288.0
+    - datetime: '2019-08-01'
+      source: ree.es
+      value: 23638.0
+    - datetime: '2019-09-01'
+      source: ree.es
+      value: 23988.0
+    - datetime: '2019-10-01'
+      source: ree.es
+      value: 24626.0
+    - datetime: '2019-11-01'
+      source: ree.es
+      value: 24883.0
+    - datetime: '2019-12-01'
+      source: ree.es
+      value: 25248.0
     - datetime: '2020-01-01'
       source: ree.es
-      value: 25299.0
+      value: 25283.0
+    - datetime: '2020-02-01'
+      source: ree.es
+      value: 25290.0
+    - datetime: '2020-03-01'
+      source: ree.es
+      value: 25663.0
+    - datetime: '2020-04-01'
+      source: ree.es
+      value: 25681.0
+    - datetime: '2020-05-01'
+      source: ree.es
+      value: 25875.0
+    - datetime: '2020-06-01'
+      source: ree.es
+      value: 25997.0
+    - datetime: '2020-07-01'
+      source: ree.es
+      value: 26088.0
+    - datetime: '2020-08-01'
+      source: ree.es
+      value: 26284.0
+    - datetime: '2020-09-01'
+      source: ree.es
+      value: 26562.0
+    - datetime: '2020-10-01'
+      source: ree.es
+      value: 26777.0
+    - datetime: '2020-11-01'
+      source: ree.es
+      value: 27109.0
+    - datetime: '2020-12-01'
+      source: ree.es
+      value: 27205.0
     - datetime: '2021-01-01'
       source: ree.es
-      value: 27222.0
+      value: 27206.0
+    - datetime: '2021-02-01'
+      source: ree.es
+      value: 27296.0
+    - datetime: '2021-03-01'
+      source: ree.es
+      value: 27317.0
+    - datetime: '2021-04-01'
+      source: ree.es
+      value: 27357.0
+    - datetime: '2021-05-01'
+      source: ree.es
+      value: 27483.0
+    - datetime: '2021-06-01'
+      source: ree.es
+      value: 27604.0
+    - datetime: '2021-07-01'
+      source: ree.es
+      value: 27650.0
+    - datetime: '2021-09-01'
+      source: ree.es
+      value: 27655.0
+    - datetime: '2021-10-01'
+      source: ree.es
+      value: 27850.0
+    - datetime: '2021-11-01'
+      source: ree.es
+      value: 27852.0
+    - datetime: '2021-12-01'
+      source: ree.es
+      value: 28108.0
     - datetime: '2022-01-01'
       source: ree.es
-      value: 28147.0
+      value: 28131.0
+    - datetime: '2022-02-01'
+      source: ree.es
+      value: 28339.0
+    - datetime: '2022-03-01'
+      source: ree.es
+      value: 28492.0
+    - datetime: '2022-04-01'
+      source: ree.es
+      value: 28538.0
+    - datetime: '2022-05-01'
+      source: ree.es
+      value: 29005.0
+    - datetime: '2022-06-01'
+      source: ree.es
+      value: 29055.0
+    - datetime: '2022-08-01'
+      source: ree.es
+      value: 29117.0
+    - datetime: '2022-09-01'
+      source: ree.es
+      value: 29198.0
+    - datetime: '2022-10-01'
+      source: ree.es
+      value: 29258.0
+    - datetime: '2022-11-01'
+      source: ree.es
+      value: 29435.0
+    - datetime: '2022-12-01'
+      source: ree.es
+      value: 29541.0
     - datetime: '2023-01-01'
       source: ree.es
-      value: 29597.0
+      value: 29581.0
+    - datetime: '2023-02-01'
+      source: ree.es
+      value: 29655.0
+    - datetime: '2023-03-01'
+      source: ree.es
+      value: 29705.0
+    - datetime: '2023-04-01'
+      source: ree.es
+      value: 29710.0
+    - datetime: '2023-05-01'
+      source: ree.es
+      value: 29753.0
+    - datetime: '2023-06-01'
+      source: ree.es
+      value: 29818.0
+    - datetime: '2023-07-01'
+      source: ree.es
+      value: 29839.0
+    - datetime: '2023-08-01'
+      source: ree.es
+      value: 29888.0
+    - datetime: '2023-09-01'
+      source: ree.es
+      value: 29926.0
+    - datetime: '2023-10-01'
+      source: ree.es
+      value: 30000.0
+    - datetime: '2023-11-01'
+      source: ree.es
+      value: 30155.0
+    - datetime: '2023-12-01'
+      source: ree.es
+      value: 30160.0
     - datetime: '2024-01-01'
       source: ree.es
-      value: 30202.0
+      value: 30179.0
+    - datetime: '2024-02-01'
+      source: ree.es
+      value: 30319.0
+    - datetime: '2024-03-01'
+      source: ree.es
+      value: 30361.0
+    - datetime: '2024-04-01'
+      source: ree.es
+      value: 30552.0
+    - datetime: '2024-05-01'
+      source: ree.es
+      value: 30682.0
+    - datetime: '2024-06-01'
+      source: ree.es
+      value: 30781.0
+    - datetime: '2024-07-01'
+      source: ree.es
+      value: 30870.0
+    - datetime: '2024-08-01'
+      source: ree.es
+      value: 30908.0
     - datetime: '2024-09-01'
       source: ree.es
-      value: 30848.0
+      value: 30952.0
+    - datetime: '2024-10-01'
+      source: ree.es
+      value: 30968.0
+    - datetime: '2024-11-01'
+      source: ree.es
+      value: 31096.0
+    - datetime: '2024-12-01'
+      source: ree.es
+      value: 31464.0
     - datetime: '2025-01-01'
       source: ree.es
-      value: 31558.0
+      value: 31534.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 31573.0
+    - datetime: '2025-03-01'
+      source: ree.es
+      value: 31804.0
+    - datetime: '2025-04-01'
+      source: ree.es
+      value: 31868.0
+    - datetime: '2025-05-01'
+      source: ree.es
+      value: 31912.0
+    - datetime: '2025-06-01'
+      source: ree.es
+      value: 32098.0
+    - datetime: '2025-07-01'
+      source: ree.es
+      value: 32259.0
+    - datetime: '2025-08-01'
+      source: ree.es
+      value: 32477.0
+    - datetime: '2025-09-01'
+      source: ree.es
+      value: 32434.0
+    - datetime: '2025-10-01'
+      source: ree.es
+      value: 32436.0
+    - datetime: '2025-11-01'
+      source: ree.es
+      value: 32471.0
+    - datetime: '2025-12-01'
+      source: ree.es
+      value: 32596.0
+    - datetime: '2026-01-01'
+      source: ree.es
+      value: 32630.0
+    - datetime: '2026-02-01'
+      source: ree.es
+      value: 32670.0
+    - datetime: '2026-03-01'
+      source: ree.es
+      value: 32762.0
+center_point:
+  - -2.930449175092898
+  - 39.92267065800313
+centroid:
+  - -4.034615295817258
+  - 40.571071296247744
 contributors:
   - brandongalbraith
   - corradio
@@ -231,15 +1047,13 @@ contributors:
 country: ES
 country_name: Spain
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used non-null storage values
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 105.43
+        value: 102.69
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -272,29 +1086,49 @@ emissionFactors:
         value: 411.76
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average
+        value: 265.86
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 207.02
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 241.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 213.17
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 174.91
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 130.36
+        value: 127.8
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 118.86
+        value: 114.03
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 164.11
+        value: 161.37
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 88.93
+        value: 89.35
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 65.94
+        value: 66.96
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 66.56
+        value: 66.6
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -310,10 +1144,10 @@ emissionFactors:
         value: 857.84
   lifecycle:
     battery discharge:
-      - _comment: used non-null storage values
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 138.43
+        value: 135.69
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -352,29 +1186,49 @@ emissionFactors:
       value: 10.7
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average; UNECE 2022
+        value: 276.56
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 217.72
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 251.97
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 223.87
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 185.61
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
-        value: 141.06
+        value: 138.5
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
-        value: 129.56
+        value: 124.73
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 174.81
+        value: 172.07
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 99.63
+        value: 100.05
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 76.64
+        value: 77.66
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 77.26
+        value: 77.3
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -555,6 +1409,60 @@ fallbackZoneMixes:
         wind: 0.231907080406899
 has_day_ahead_price_license: true
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.7533
+  hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.6249
+    - datetime: '2016-01-01'
+      value: 0.6861
+    - datetime: '2017-01-01'
+      value: 0.6332
+    - datetime: '2018-01-01'
+      value: 0.6643
+    - datetime: '2019-01-01'
+      value: 0.64
+    - datetime: '2020-01-01'
+      value: 0.7211
+    - datetime: '2021-01-01'
+      value: 0.7519
+    - datetime: '2022-01-01'
+      value: 0.6802
+    - datetime: '2023-01-01'
+      value: 0.8129
+    - datetime: '2024-01-01'
+      value: 0.871
+    - datetime: '2025-01-01'
+      value: 0.8533
+isRenewable:
+  battery discharge:
+    - datetime: '2025-01-01'
+      value: 0.5055
+  hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.3799
+    - datetime: '2016-01-01'
+      value: 0.4364
+    - datetime: '2017-01-01'
+      value: 0.3619
+    - datetime: '2018-01-01'
+      value: 0.4198
+    - datetime: '2019-01-01'
+      value: 0.3869
+    - datetime: '2020-01-01'
+      value: 0.4667
+    - datetime: '2021-01-01'
+      value: 0.5088
+    - datetime: '2022-01-01'
+      value: 0.461
+    - datetime: '2023-01-01'
+      value: 0.5891
+    - datetime: '2024-01-01'
+      value: 0.6587
+    - datetime: '2025-01-01'
+      value: 0.6595
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -563,10 +1471,11 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: REE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -579,6 +1488,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

@@ -35,8 +35,8 @@ def test_parse_hourly_interval():
         assert result == expected
 
 
-def test_fetch_production_mix(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_mix(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -50,8 +50,8 @@ def test_fetch_production_mix(adapter, session, snapshot):
     assert data_list == snapshot
 
 
-def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
-    adapter.register_uri(
+def test_US_NW_AVRN_rerouting(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -60,7 +60,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("AVRN", "WND"),
         json=json.loads(
@@ -69,7 +69,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("PACW", "NG"),
         json=json.loads(
@@ -78,7 +78,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("PACW", "WAT"),
         json=json.loads(
@@ -87,7 +87,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("PACW", "SUN"),
         json=json.loads(
@@ -96,7 +96,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("PACW", "WND"),
         json=json.loads(
@@ -105,7 +105,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("BPAT", "WND"),
         json=json.loads(
@@ -114,7 +114,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("BPAT", "NG"),
         json=json.loads(
@@ -123,7 +123,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("BPAT", "WAT"),
         json=json.loads(
@@ -132,7 +132,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("BPAT", "NUC"),
         json=json.loads(
@@ -141,7 +141,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("BPAT", "SUN"),
         json=json.loads(
@@ -150,7 +150,7 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("AVRN", "NG"),
         json=json.loads(
@@ -166,8 +166,8 @@ def test_US_NW_AVRN_rerouting(adapter, session, snapshot):
     assert data_list == snapshot
 
 
-def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
-    adapter.register_uri(
+def test_US_CAR_SC_nuclear_split(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -176,7 +176,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "COL"),
         json=json.loads(
@@ -185,7 +185,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "NG"),
         json=json.loads(
@@ -194,7 +194,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "WAT"),
         json=json.loads(
@@ -203,7 +203,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "OIL"),
         json=json.loads(
@@ -212,7 +212,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "SUN"),
         json=json.loads(
@@ -221,7 +221,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SC", "NUC"),
         json=json.loads(
@@ -230,7 +230,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "NUC"),
         json=json.loads(
@@ -239,7 +239,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "COL"),
         json=json.loads(
@@ -248,7 +248,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "NG"),
         json=json.loads(
@@ -257,7 +257,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "WAT"),
         json=json.loads(
@@ -266,7 +266,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "OIL"),
         json=json.loads(
@@ -275,7 +275,7 @@ def test_US_CAR_SC_nuclear_split(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SCEG", "SUN"),
         json=json.loads(
@@ -306,13 +306,13 @@ def test_check_transfer_mixes():
                     )
 
 
-def test_hydro_transfer_mix(adapter, session, snapshot):
+def test_hydro_transfer_mix(requests_mock, session, snapshot):
     """
     Make sure that with zones that integrate production only zones
     the hydro production events are properly handled and the storage
     is accounted for on a zone by zone basis.
     """
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -321,7 +321,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "COL"),
         json=json.loads(
@@ -330,7 +330,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "NG"),
         json=json.loads(
@@ -339,7 +339,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "NUC"),
         json=json.loads(
@@ -348,7 +348,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "SUN"),
         json=json.loads(
@@ -357,7 +357,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "WND"),
         json=json.loads(
@@ -366,7 +366,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("DEAA", "WAT"),
         json=json.loads(
@@ -375,7 +375,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("HGMA", "WAT"),
         json=json.loads(
@@ -384,7 +384,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
             .read_text()
         ),
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         EIA.PRODUCTION_MIX.format("SRP", "WAT"),
         json=json.loads(
@@ -398,7 +398,7 @@ def test_hydro_transfer_mix(adapter, session, snapshot):
     assert data == snapshot
 
 
-def test_exchange_transfer(adapter, session):
+def test_exchange_transfer(requests_mock, session):
     exchange_key = "US-FLA-FPC->US-FLA-FPL"
     remapped_exchange_key = "US-FLA-FPC->US-FLA-NSB"
     # target_datetime = (
@@ -410,7 +410,7 @@ def test_exchange_transfer(adapter, session):
         .joinpath("US-FLA-FPC_US-FLA-FPL_exchange.json")
         .read_text()
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         # For example:
         # https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=FPL&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24
@@ -422,7 +422,7 @@ def test_exchange_transfer(adapter, session):
         .joinpath("US-FLA-FPC_US-FLA-NSB_exchange.json")
         .read_text()
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         # For example:
         # https://api.eia.gov/v2/electricity/rto/interchange-data/data/?data[]=value&facets[fromba][]=FPC&facets[toba][]=NSB&frequency=hourly&api_key=token&sort[0][column]=period&sort[0][direction]=desc&length=24
@@ -446,8 +446,8 @@ def test_exchange_transfer(adapter, session):
         assert fpl["value"] + nsb["value"] == parser["netFlow"]
 
 
-def test_fetch_production_mix_discards_null(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_mix_discards_null(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -466,8 +466,8 @@ def test_fetch_production_mix_discards_null(adapter, session, snapshot):
     )
 
 
-def test_fetch_exchange(adapter, session):
-    adapter.register_uri(
+def test_fetch_exchange(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -507,8 +507,8 @@ def test_fetch_exchange(adapter, session):
         assert data["netFlow"] == expected[i]["netFlow"]
 
 
-def test_fetch_consumption(adapter, session):
-    adapter.register_uri(
+def test_fetch_consumption(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -537,8 +537,8 @@ def test_fetch_consumption(adapter, session):
         assert data["consumption"] == expected[i]["consumption"]
 
 
-def test_fetch_forecasted_consumption(adapter, session):
-    adapter.register_uri(
+def test_fetch_forecasted_consumption(requests_mock, session):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(
@@ -568,8 +568,8 @@ def test_fetch_forecasted_consumption(adapter, session):
         assert data["sourceType"] == EventSourceType.forecasted
 
 
-def test_fetch_returns_storage(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_returns_storage(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         json=json.loads(

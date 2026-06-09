@@ -1,8 +1,8 @@
 bounding_box:
-  - - 4.143809441000116
-    - 60.43027545054864
-  - - 14.661440063000043
-    - 65.490423895
+  - - 4.915849158491596
+    - 60.961455330441254
+  - - 12.925676145774485
+    - 64.95274535156204
 capacity:
   biomass:
     - datetime: '2021-01-01'
@@ -46,6 +46,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 4921.5
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 4949.7
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -56,6 +59,13 @@ capacity:
     - datetime: '2021-01-01'
       source: entsoe.eu
       value: 60.2
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 61.2
+  solar:
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1.6
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -88,11 +98,18 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 2120.4
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 2121.1
+center_point:
+  - 8.682747834267172
+  - 62.25785497399018
+centroid:
+  - 8.687952888048368
+  - 63.11307283188927
 country: 'NO'
 country_name: Norway
 currency: EUR
-delays:
-  production: 7
 emissionFactors:
   direct:
     biomass:
@@ -123,7 +140,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 7.54
+        value: 7.68
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -157,7 +174,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; IPCC 2014
-        value: 31.54
+        value: 31.68
     oil:
       datetime: '2014-01-01'
       source: EIA 2020/BEIS 2021; IPCC 2014
@@ -314,8 +331,36 @@ fallbackZoneMixes:
         solar: 0.0003611325736471347
         unknown: 0.00822168167101805
         wind: 0.23964172535285017
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.9841
+isRenewable:
+  hydro discharge:
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2023-01-01'
+      value: 1.0
+    - datetime: '2024-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.9834
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -324,6 +369,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   IPCC 2014:

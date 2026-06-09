@@ -1,8 +1,8 @@
 bounding_box:
-  - - -105.47656406478228
-    - 25.368442100637097
-  - - -93.3295382953829
-    - 36.5577518713004
+  - - -104.97656406478228
+    - 25.868442100637097
+  - - -93.8295382953829
+    - 36.0577518713004
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -179,6 +179,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 10205.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 12680.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 13779.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 13984.2
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -226,6 +235,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 14329.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 13321.7
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -392,6 +404,12 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 67339.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 67359.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 67319.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -415,6 +433,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 550.4
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 549.1
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -641,6 +662,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 26011.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 28979.1
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 29771.7
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 30341.7
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -648,6 +678,12 @@ capacity:
     - datetime: '2019-01-01'
       source: EIA.gov
       value: 229.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 275.7
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 229.8
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -829,6 +865,18 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 39393.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 39834.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 39984.8
+center_point:
+  - -99.6234521418142
+  - 31.05836020574414
+centroid:
+  - -98.77455484112068
+  - 30.508820822816638
 comment: Electric Reliability Council Of Texas, Inc.
 contributors:
   - systemcatch
@@ -843,9 +891,13 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 517.1
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 268.59
+        value: 268.74
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -918,9 +970,13 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 550.1
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 301.59
+        value: 301.74
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1137,6 +1193,18 @@ fallbackZoneMixes:
         wind: 0.24233286045039404
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3016
+    - datetime: '2025-01-01'
+      value: 0.5241
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.171
+    - datetime: '2025-01-01'
+      value: 0.4362
 parsers:
   consumption: US_ERCOT.fetch_consumption
   consumptionForecast: US_ERCOT.fetch_consumption_forecast
@@ -1148,12 +1216,12 @@ parsers:
   realtimeLocationalMarginalPrice: US_ERCOT.fetch_realtime_locational_marginal_price
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

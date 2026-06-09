@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.21924
-    - 30.83201
-  - - -105.02991
-    - 44.1167400000001
+  - - -121.08901089010884
+    - 31.332316356872
+  - - -105.62685626856262
+    - 38.510627846990985
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -23,6 +23,12 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 140.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 190.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 425.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -50,6 +56,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 1599.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1689.8
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -64,6 +73,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 3789.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 3770.0
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -113,6 +125,9 @@ capacity:
     - datetime: '2023-09-01'
       source: EIA.gov
       value: 340.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 579.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -124,6 +139,12 @@ capacity:
     - datetime: '2020-12-01'
       source: EIA.gov
       value: 350.0
+center_point:
+  - -110.02697591635858
+  - 33.21112655362538
+centroid:
+  - -111.57498726391051
+  - 34.22847276486294
 comment: Western Area Power Administration - Desert Southwest Region
 contributors:
   - systemcatch
@@ -131,10 +152,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 disclaimer: This zone includes all electricity production from the generation-only
   balancing authority Griffith Energy, LLC. Read more on the zone definition wiki
   page.
@@ -450,6 +467,18 @@ fallbackZoneMixes:
         wind: 0.06749767730316335
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.4499
+    - datetime: '2025-01-01'
+      value: 0.1686
+isRenewable:
+  hydro discharge:
+    - datetime: '2024-01-01'
+      value: 0.322
+    - datetime: '2025-01-01'
+      value: 0.126
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

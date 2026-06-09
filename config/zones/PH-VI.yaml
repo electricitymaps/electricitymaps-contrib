@@ -1,8 +1,8 @@
 bounding_box:
-  - - 121.35221852218521
-    - 8.534614736548264
-  - - 126.21145711457112
-    - 13.07797583095308
+  - - 121.85221852218521
+    - 9.034614736548264
+  - - 125.71145711457112
+    - 12.57797583095308
 capacity:
   battery storage: 35
   biomass: 326
@@ -13,6 +13,12 @@ capacity:
   oil: 644
   solar: 487
   wind: 90
+center_point:
+  - 122.49356734133593
+  - 11.176332268351882
+centroid:
+  - 123.84336786481727
+  - 10.749264155358476
 contributors:
   - VIKTORVAV99
   - jarek
@@ -23,27 +29,37 @@ contributors:
   - xomanuel
 country: PH
 country_name: Philippines
-delays:
-  production: 25
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 505.67
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 505.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 505.67
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 505.25
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 498.23
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 498.23
+        value: 505.67
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 532.37
+        value: 532.36
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -51,25 +67,37 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 512.14
+        value: 512.37
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 538.67
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 538.67
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 538.67
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 538.25
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 531.23
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 531.23
+        value: 538.67
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 565.37
+        value: 565.36
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
@@ -77,7 +105,7 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 545.14
+        value: 545.37
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -200,15 +228,55 @@ fallbackZoneMixes:
         solar: 0.04010653633275602
         unknown: 0.1408642231758758
         wind: 0.010172876605430417
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2859
+    - datetime: '2018-01-01'
+      value: 0.2859
+    - datetime: '2019-01-01'
+      value: 0.2859
+    - datetime: '2020-01-01'
+      value: 0.2859
+    - datetime: '2021-01-01'
+      value: 0.2859
+    - datetime: '2022-01-01'
+      value: 0.2859
+    - datetime: '2023-01-01'
+      value: 0.2533
+    - datetime: '2024-01-01'
+      value: 0.2606
+    - datetime: '2025-01-01'
+      value: 0.276
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2859
+    - datetime: '2018-01-01'
+      value: 0.2859
+    - datetime: '2019-01-01'
+      value: 0.2859
+    - datetime: '2020-01-01'
+      value: 0.2859
+    - datetime: '2021-01-01'
+      value: 0.2859
+    - datetime: '2022-01-01'
+      value: 0.2859
+    - datetime: '2023-01-01'
+      value: 0.2533
+    - datetime: '2024-01-01'
+      value: 0.2606
+    - datetime: '2025-01-01'
+      value: 0.276
 parsers:
   production: IEMOP.fetch_production
 region: Asia
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
 timezone: Asia/Manila
 zone_name: Visayas

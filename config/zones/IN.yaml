@@ -1,8 +1,14 @@
 bounding_box:
-  - - 67.6828818288183
-    - 6.244882203814939
-  - - 97.83237332373321
-    - 35.995336317947775
+  - - 68.1828818288183
+    - 8.075789238466186
+  - - 97.33237332373321
+    - 35.495336317947775
+center_point:
+  - 82.8526621756506
+  - 21.732832622653902
+centroid:
+  - 82.604486354839
+  - 24.270677750601468
 capacity:
   biomass: 10682.36
   coal: 210699.5
@@ -153,3 +159,11 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1
+isLowCarbon:
+  unknown:
+    source: assumes 43% solar PV and 57% wind
+    value: 1

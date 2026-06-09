@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import POST
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import CZ
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
@@ -15,13 +16,13 @@ TARGET_DATETIME = datetime(2025, 10, 31, 18, 0, 0)
 
 
 @pytest.fixture
-def mock_good_response(adapter):
+def mock_good_response(requests_mock):
     """
     Mocks the CEPS API with a "good" response containing expected data.
     """
 
     data = base_path_to_mock / "CrossborderPowerFlows.xml"
-    adapter.register_uri(
+    requests_mock.register_uri(
         POST,
         CZ.url,
         content=data.read_bytes(),
@@ -29,7 +30,7 @@ def mock_good_response(adapter):
 
 
 @pytest.fixture
-def mock_no_data_response(adapter):
+def mock_no_data_response(requests_mock):
     """
     Mocks the CEPS API with a "bad" response that is missing the <data> tag.
     (This fixture is requested by the exception test)
@@ -42,7 +43,7 @@ def mock_no_data_response(adapter):
         "</root>"
     )
 
-    adapter.register_uri(POST, CZ.url, text=mock_xml_content)
+    requests_mock.register_uri(POST, CZ.url, text=mock_xml_content)
 
 
 @pytest.mark.parametrize(
@@ -61,7 +62,7 @@ def test_fetch_exchange(session, snapshot, mock_good_response, zone_key2):
         target_datetime=TARGET_DATETIME,
     )
 
-    assert snapshot == result
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
 
 
 def test_fetch_exchange_forecast_pl(session, snapshot, mock_good_response):

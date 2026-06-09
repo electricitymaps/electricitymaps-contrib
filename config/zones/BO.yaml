@@ -1,8 +1,14 @@
 bounding_box:
-  - - -70.1664922699999
-    - -23.397257587999945
-  - - -56.965660766999946
-    - -9.179821471999972
+  - - -69.66609666096656
+    - -22.89284326675208
+  - - -57.551975519755146
+    - -9.681086552880778
+center_point:
+  - -63.57658074636778
+  - -16.31882317007259
+centroid:
+  - -65.04744965211675
+  - -16.514933194829595
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -249,3 +255,11 @@ sources:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+isRenewable:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026
+isLowCarbon:
+  unknown:
+    source: IEA 2020; assumes 1.3% oil, 96.0% gas, 2.6% biomass
+    value: 0.026

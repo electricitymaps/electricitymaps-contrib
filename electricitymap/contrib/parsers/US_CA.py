@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import io
+import math
 import zipfile
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -8,7 +9,6 @@ from logging import Logger, getLogger
 from typing import Any
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 from requests import Session
 
@@ -170,7 +170,7 @@ def fetch_consumption(
         row_datetime = target_datetime.replace(
             hour=int(row.Time[:2]), minute=int(row.Time[-2:]), tzinfo=TIMEZONE
         )
-        if not np.isnan(consumption):
+        if not math.isnan(consumption):
             all_data_points.append(
                 zoneKey=zone_key,
                 consumption=consumption,
@@ -365,7 +365,9 @@ def fetch_wind_solar_forecasts(
 
     # There are 3 trading hubs in CAISO
     COL_DATETIME, COL_DATATYPE = "INTERVALSTARTTIME_GMT", "RENEWABLE_TYPE"
-    df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum()
+    df = df.groupby([COL_DATETIME, COL_DATATYPE], as_index=False).sum(
+        numeric_only=True,
+    )
     df = df.pivot(index=COL_DATETIME, columns=COL_DATATYPE, values="MW")
 
     all_production_events = (

@@ -129,7 +129,7 @@ def get_renewable_capacity(path: str, zone_key: ZoneKey | None = None) -> None:
         columns={**{"STATES / Uts": "zoneKey"}, **MNRE_MODE_MAPPING}
     )
     df_filtered["zoneKey"] = df_filtered["zoneKey"].map(IN_STATE_TO_ZONE_MAPPING)
-    df_filtered = df_filtered.groupby(["zoneKey"]).sum()
+    df_filtered = df_filtered.groupby(["zoneKey"]).sum(numeric_only=True)
     all_capacity = {}
     for idx, data in df_filtered.iterrows():
         capacity_dict = {}

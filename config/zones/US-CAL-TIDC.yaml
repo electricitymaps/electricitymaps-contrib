@@ -1,8 +1,8 @@
 bounding_box:
-  - - -121.95216521
-    - 36.780338348
-  - - -119.868765123
-    - 38.209221358
+  - - -121.4526145261452
+    - 37.3013628531412
+  - - -120.58860588605879
+    - 37.740705282859395
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -58,6 +58,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -121.02061020610199
+  - 37.5210340680003
+centroid:
+  - -121.06525065250646
+  - 37.50672323967071
 comment: Turlock Irrigation District
 contributors:
   - systemcatch
@@ -65,10 +71,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:
@@ -132,6 +134,14 @@ emissionFactors:
         source: eGrid 2023
         value: 28.739435464835893
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
@@ -219,6 +229,14 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 66.73943546483589
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 24.0
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
@@ -394,6 +412,22 @@ fallbackZoneMixes:
         wind: 0.025510983164008797
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

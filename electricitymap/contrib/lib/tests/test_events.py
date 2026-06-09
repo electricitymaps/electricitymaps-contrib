@@ -12,6 +12,7 @@ from electricitymap.contrib.config.constants import PRODUCTION_MODES, STORAGE_MO
 from electricitymap.contrib.lib.models.events import (
     EventSourceType,
     Exchange,
+    ExchangeCapacity,
     GridAlert,
     GridAlertType,
     LocationalMarginalPrice,
@@ -152,6 +153,45 @@ def test_update_exchange():
     assert final_exchange.source == "trust.me"
 
 
+def test_update_total_production():
+    production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=100,
+        source="entsoe",
+    )
+    new_production = TotalProduction(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        value=150,
+        source="entsoe",
+    )
+
+    updated = TotalProduction._update(production, new_production)
+
+    assert updated.value == 150
+    assert updated.zoneKey == ZoneKey("IT-SO")
+    assert updated.sourceType == EventSourceType.measured
+
+
+def test_update_total_consumption_raises_on_mismatched_zone():
+    consumption = TotalConsumption(
+        zoneKey=ZoneKey("DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=100,
+        source="entsoe",
+    )
+    new_consumption = TotalConsumption(
+        zoneKey=ZoneKey("AT"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        consumption=120,
+        source="entsoe",
+    )
+
+    with pytest.raises(ValueError):
+        TotalConsumption._update(consumption, new_consumption)
+
+
 def test_create_consumption():
     consumption = TotalConsumption(
         zoneKey=ZoneKey("DE"),
@@ -189,7 +229,7 @@ def test_raises_if_invalid_consumption():
         TotalConsumption(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            consumption=np.nan,
+            consumption=math.nan,
             source="trust.me",
         )
 
@@ -271,7 +311,7 @@ def test_invalid_price_raises():
         Price(
             zoneKey=ZoneKey("AT"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            price=np.nan,
+            price=math.nan,
             source="trust.me",
             currency="EUR",
         )
@@ -887,7 +927,7 @@ def test_production_with_nan_using_numpy():
     mix = ProductionMix()
     mix.add_value("wind", 10)
     assert mix.wind == 10
-    mix.add_value("wind", np.nan)
+    mix.add_value("wind", math.nan)
     assert mix.wind == 10
     assert mix.corrected_negative_modes == set()
 
@@ -898,7 +938,7 @@ def test_production_with_nan_init():
 
 
 def test_production_with_nan_using_numpy_init():
-    mix = ProductionMix(wind=np.nan)
+    mix = ProductionMix(wind=math.nan)
     assert mix.wind is None
 
 
@@ -940,11 +980,11 @@ def test_storage_with_nan():
 
 def test_storage_with_nan_using_numpy():
     mix = StorageMix()
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro is None
     mix.add_value("hydro", -5)
     assert mix.hydro == -5
-    mix.add_value("hydro", np.nan)
+    mix.add_value("hydro", math.nan)
     assert mix.hydro == -5
 
 
@@ -954,7 +994,7 @@ def test_storage_with_nan_init():
 
 
 def test_storage_with_nan_using_numpy_init():
-    mix = StorageMix(hydro=np.nan)
+    mix = StorageMix(hydro=math.nan)
     assert mix.hydro is None
 
 
@@ -1064,3 +1104,154 @@ def test_update_storage_with_empty_and_new_empty():
     assert final_mix is not None
     assert final_mix.hydro is None
     assert final_mix.battery is None
+
+
+def test_create_exchange_capacity_forecast():
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    assert forecast.zoneKey == ZoneKey("AT->DE")
+    assert forecast.datetime == datetime(2023, 1, 1, tzinfo=timezone.utc)
+    assert forecast.source == "trust.me"
+    assert forecast.capacityExport == 1000.0
+    assert forecast.capacityImport == 900.0
+    assert forecast.sourceType == EventSourceType.published
+
+
+def test_exchange_capacity_forecast_create_defaults_to_published():
+    logger = logging.Logger("test")
+    forecast = ExchangeCapacity.create(
+        logger=logger,
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    assert forecast is not None
+    assert forecast.sourceType == EventSourceType.published
+
+
+def test_exchange_capacity_forecast_allows_one_none_capacity():
+    # One direction may be None as long as the other is set
+    forward_only = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=None,
+    )
+    assert forward_only.capacityExport == 1000.0
+    assert forward_only.capacityImport is None
+
+    reverse_only = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=None,
+        capacityImport=900.0,
+    )
+    assert reverse_only.capacityExport is None
+    assert reverse_only.capacityImport == 900.0
+
+
+def test_raises_if_invalid_exchange_capacity_forecast():
+    # Missing timezone
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Unsorted zone key
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("DE->AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Not an exchange key (no "->")
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+    # Both capacities None
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("AT->DE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=None,
+            capacityImport=None,
+        )
+
+    # Unknown zone key not in EXCHANGES_CONFIG
+    with pytest.raises(ValueError):
+        ExchangeCapacity(
+            zoneKey=ZoneKey("UNKNOWN->ZONE"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+
+
+def test_exchange_capacity_forecast_static_create_logs_error():
+    logger = logging.Logger("test")
+    with patch.object(logger, "error") as mock_error:
+        ExchangeCapacity.create(
+            logger=logger,
+            zoneKey=ZoneKey("DE->AT"),  # unsorted
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+        mock_error.assert_called_once()
+
+
+@freezegun.freeze_time("2023-01-01")
+def test_exchange_capacity_forecast_allows_future_datetime():
+    # Forecasted events can be in the future
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 3, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+        sourceType=EventSourceType.forecasted,
+    )
+    assert forecast.datetime == datetime(2023, 3, 1, tzinfo=timezone.utc)
+
+
+def test_exchange_capacity_forecast_to_dict():
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    forecast = ExchangeCapacity(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    d = forecast.to_dict()
+    assert d["datetime"] == dt
+    assert d["sortedZoneKeys"] == ZoneKey("AT->DE")
+    assert d["capacityExport"] == 1000.0
+    assert d["capacityImport"] == 900.0
+    assert d["source"] == "trust.me"
+    assert d["sourceType"] == EventSourceType.published

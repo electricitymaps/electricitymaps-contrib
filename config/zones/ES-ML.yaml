@@ -1,29 +1,47 @@
 bounding_box:
-  - - -3.470256683510813
-    - 34.76572463778479
-  - - -2.426766941365234
-    - 35.8209422034335
+  - - -2.970256683510813
+    - 35.26572463778479
+  - - -2.926766941365234
+    - 35.3209422034335
 capacity:
   biomass:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 1.0
   gas:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 12.0
   oil:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 64.0
   solar:
-    - datetime: '2022-12-01'
+    - datetime: '2017-01-01'
       source: ree.es
       value: 0.0
-  unknown:
-    - datetime: '2022-12-01'
+    - datetime: '2024-03-01'
       source: ree.es
       value: 1.0
+    - datetime: '2024-11-01'
+      source: ree.es
+      value: 2.0
+    - datetime: '2025-01-01'
+      source: ree.es
+      value: 3.0
+    - datetime: '2025-02-01'
+      source: ree.es
+      value: 4.0
+  unknown:
+    - datetime: '2017-01-01'
+      source: ree.es
+      value: 1.0
+center_point:
+  - -2.9485118124380234
+  - 35.293333420609144
+centroid:
+  - -2.9483281088581914
+  - 35.2899607062312
 contributors:
   - VIKTORVAV99
 country: ES
@@ -33,17 +51,29 @@ emissionFactors:
   direct:
     battery discharge:
       - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 375.83
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 375.83
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 375.83
+      - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 375.65
+        value: 375.83
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 372.63
+        value: 375.83
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 375.17
+        value: 375.01
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
@@ -55,21 +85,33 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 374.15
+        value: 374.12
   lifecycle:
     battery discharge:
       - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 408.83
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 408.83
+      - _comment: used non-null storage values
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 408.83
+      - _comment: used non-null storage values
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 408.65
+        value: 408.83
       - _comment: used non-null storage values
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 405.63
+        value: 408.83
       - _comment: used non-null storage values
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 408.17
+        value: 408.01
       - _comment: used non-null storage values
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
@@ -81,7 +123,7 @@ emissionFactors:
       - _comment: used non-null storage values
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 407.15
+        value: 407.12
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2022 average
@@ -129,17 +171,57 @@ fallbackZoneMixes:
         solar: 0.0
         unknown: 0.0
         wind: 0.0
-has_day_ahead_price_license: True
-hide_day_ahead_price: False
+has_day_ahead_price_license: true
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0743
+    - datetime: '2018-01-01'
+      value: 0.0743
+    - datetime: '2019-01-01'
+      value: 0.0743
+    - datetime: '2020-01-01'
+      value: 0.0743
+    - datetime: '2021-01-01'
+      value: 0.0743
+    - datetime: '2022-01-01'
+      value: 0.0763
+    - datetime: '2023-01-01'
+      value: 0.0709
+    - datetime: '2024-01-01'
+      value: 0.0735
+    - datetime: '2025-01-01'
+      value: 0.0785
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.0743
+    - datetime: '2018-01-01'
+      value: 0.0743
+    - datetime: '2019-01-01'
+      value: 0.0743
+    - datetime: '2020-01-01'
+      value: 0.0743
+    - datetime: '2021-01-01'
+      value: 0.0743
+    - datetime: '2022-01-01'
+      value: 0.0763
+    - datetime: '2023-01-01'
+      value: 0.0709
+    - datetime: '2024-01-01'
+      value: 0.0735
+    - datetime: '2025-01-01'
+      value: 0.0785
 parsers:
   consumption: ES.fetch_consumption
   production: ES.fetch_production
   productionCapacity: REE.fetch_production_capacity
 region: Europe
-timezone: Europe/Madrid
-zone_name: Melilla
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Europe/Madrid
+zone_name: Melilla

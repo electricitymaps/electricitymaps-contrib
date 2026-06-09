@@ -1,8 +1,14 @@
 bounding_box:
-  - - 32.2566671079
-    - 34.5718694118
-  - - 34.0048808123
-    - 35.1731247015
+  - - 32.27053022035746
+    - 34.5630798273339
+  - - 34.09197768705732
+    - 35.201370959568614
+center_point:
+  - 33.18125395370739
+  - 34.88222539345126
+centroid:
+  - 33.244805194765405
+  - 34.98821550367324
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -49,8 +55,6 @@ contributors:
 country: CY
 country_name: Cyprus
 currency: EUR
-delays:
-  production: 5
 emissionFactors:
   direct:
     biomass:
@@ -306,6 +310,9 @@ parsers:
   production: CY.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Asia
 sources:
   EU-ETS, CERA 2018 Report:

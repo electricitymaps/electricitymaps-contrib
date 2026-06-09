@@ -1,8 +1,8 @@
 bounding_box:
-  - - -89.682531784
-    - 36.073739711
-  - - -82.355720806
-    - 39.4703334770001
+  - - -89.10989109891094
+    - 36.58295927099611
+  - - -82.85302853028524
+    - 38.55212924914677
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -86,6 +86,9 @@ capacity:
     - datetime: '2023-02-01'
       source: EIA.gov
       value: 18.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 118.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -94,6 +97,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -86.03546035460349
+  - 37.601890248062446
+centroid:
+  - -85.61785617856174
+  - 37.59044158539877
 comment: Louisville Gas And Electric Company And Kentucky Utilities
 contributors:
   - systemcatch
@@ -101,10 +110,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:
@@ -164,6 +169,14 @@ emissionFactors:
         source: eGrid 2023
         value: 28.739435464835893
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 793.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 791.64
       - _comment: used default IPCC 2014 value of 0.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
@@ -259,6 +272,14 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 66.73943546483589
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 817.14
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 815.64
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -446,6 +467,34 @@ fallbackZoneMixes:
         wind: 0.013273336745387228
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0482
+    - datetime: '2018-01-01'
+      value: 0.069
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.0775
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0191
+    - datetime: '2018-01-01'
+      value: 0.0206
+    - datetime: '2020-01-01'
+      value: 1.0
+    - datetime: '2021-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+    - datetime: '2025-01-01'
+      value: 0.0563
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

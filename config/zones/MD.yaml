@@ -1,8 +1,14 @@
 bounding_box:
-  - - 26.6193367856
-    - 45.4882831895
-  - - 30.0246586443
-    - 48.4671194525
+  - - 26.616866168661716
+    - 45.461397166669585
+  - - 30.08010080100803
+    - 48.47239544721391
+center_point:
+  - 28.38562455797984
+  - 47.37689507165253
+centroid:
+  - 28.585295609053674
+  - 47.05489044893901
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -74,8 +80,6 @@ contributors:
 country: MD
 country_name: Moldova
 currency: MDL
-delays:
-  production: 12
 emissionFactors:
   direct: {}
   lifecycle:
@@ -206,7 +210,7 @@ fallbackZoneMixes:
         unknown: 0.0027065851482313144
         wind: 0.03416068856152983
 has_day_ahead_price_license: False
-hide_day_ahead_price: False
+hide_day_ahead_price: True
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -214,6 +218,9 @@ parsers:
   price: MD.fetch_price
   production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   INCER ACV:

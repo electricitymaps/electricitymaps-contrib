@@ -1,8 +1,14 @@
 bounding_box:
-  - - 5.9559111595
-    - 45.8179931641
-  - - 10.4920501709
-    - 47.808380127
+  - - 5.959859598596012
+    - 45.82632328907397
+  - - 10.475965739913786
+    - 47.79406218439166
+center_point:
+  - 8.037048335634369
+  - 46.80812081210978
+centroid:
+  - 8.414250452210126
+  - 46.6900871230039
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -110,8 +116,6 @@ contributors:
 country: CH
 country_name: Switzerland
 currency: EUR
-delays:
-  production: 7
 disclaimer: Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.
 emissionFactors:
   direct:
@@ -387,6 +391,9 @@ parsers:
   price: ENTSOE.fetch_price
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   INCER ACV:

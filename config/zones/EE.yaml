@@ -1,9 +1,13 @@
 bounding_box:
-  - - 23.3397953631
-    - 57.4745283067
-  - - 28.1316992531
-    - 59.6110903998
+  - - 21.86841868418685
+    - 57.5154078686776
+  - - 28.18648186481866
+    - 59.666325366613975
 capacity:
+  battery storage:
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 218.0
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -48,6 +52,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 1330.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1215.0
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -151,6 +158,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 1174.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 1231.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -201,14 +211,21 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 682.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 694.0
+center_point:
+  - 25.56793173167626
+  - 58.607463432264865
+centroid:
+  - 24.408274591220515
+  - 58.578411345870805
 contributors:
   - corradio
   - nessie2013
 country: EE
 country_name: Estonia
 currency: EUR
-delays:
-  production: 6
 emissionFactors:
   direct:
     biomass:
@@ -471,6 +488,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:

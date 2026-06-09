@@ -1,8 +1,8 @@
 bounding_box:
-  - - -98.122757
-    - 34.320635
-  - - -89.033722
-    - 40.781817
+  - - -90.8235082350823
+    - 35.96473148715812
+  - - -90.29070290702902
+    - 36.26812104774528
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -68,6 +68,9 @@ capacity:
     - datetime: '2021-01-01'
       source: EIA.gov
       value: 161.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 134.5
   nuclear:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -100,6 +103,15 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 499.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 646.5
+center_point:
+  - -90.55710557105566
+  - 36.1164262674517
+centroid:
+  - -90.55530555305548
+  - 36.095198538762816
 comment: Southwestern Power Administration
 contributors:
   - systemcatch
@@ -107,10 +119,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:

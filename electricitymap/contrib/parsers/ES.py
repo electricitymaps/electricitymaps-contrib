@@ -46,6 +46,7 @@ PRODUCTION_PARSE_MAPPING = {
     "eol": "wind",  # Wind
     "cc": "gas",  # Combined cycle
     "vap": "oil",  # Vapor turbine
+    "turbVap": "oil",  # Steam turbine (Ceuta/Melilla; replaces "vap" in those systems)
     "fot": "solar",  # Solar PV
     "sol": "solar",  # Solar
     "car": "coal",  # Coal

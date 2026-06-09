@@ -1,8 +1,14 @@
 bounding_box:
-  - - -90.0955545723
-    - 13.1490168319
-  - - -87.7235029772
-    - 14.4241327987
+  - - -90.09990099900993
+    - 13.158995461134168
+  - - -87.70227702277018
+    - 14.415486188471576
+center_point:
+  - -88.84019856374907
+  - 13.716598382243662
+centroid:
+  - -88.79891656059411
+  - 13.802846442362274
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -232,3 +238,17 @@ sources:
     link: https://ourworldindata.org/grapher/electricity-prod-source-stacked?country=~SLV
 timezone: America/El_Salvador
 zone_name: El Salvador
+isLowCarbon:
+  unknown:
+    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 0
+isRenewable:
+  unknown:
+    - _comment: Based on on 2022 generation from Our World in Data and IPCC 2014 emission factors
+      _url: https://github.com/electricitymaps/electricitymaps-contrib/pull/6412#issuecomment-1915621810
+      datetime: '2022-01-01'
+      source: Our World in Data 2022; IPCC 2014; assumes 51% gas, 49% oil
+      value: 0

@@ -1,8 +1,8 @@
 bounding_box:
-  - - 128.50011600215169
-    - -38.57057057099979
-  - - 141.50010704970066
-    - -25.499911390797962
+  - - 129.00189001890018
+    - -38.07090779310813
+  - - 141.00081000810005
+    - -25.99972409710461
 capacity:
   battery storage:
     - datetime: '2020-01-01'
@@ -71,6 +71,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 2763.2
+center_point:
+  - 135.00166388214717
+  - -31.868789451997117
+centroid:
+  - 136.81441193916982
+  - -34.164091273479706
 contributors:
   - brandongalbraith
   - jarek
@@ -79,61 +85,83 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-delays:
-  production: 96
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 211.8
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 160.72
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 170.02
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 161.54
+        value: 140.72
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 127.38
+        value: 105.65
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 96.37
+        value: 84.61
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 105.57
+        value: 105.39
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 115.74
+        value: 105.9
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 89.97
+        value: 79.17
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 244.8
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 193.72
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 203.02
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 194.54
+        value: 173.72
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 160.38
+        value: 138.65
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 129.37
+        value: 117.61
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 138.57
+        value: 138.39
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 148.74
+        value: 138.9
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 122.97
+        value: 112.17
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -286,18 +314,58 @@ fallbackZoneMixes:
         solar: 0.2668651967564851
         unknown: 0.0
         wind: 0.42456316091004337
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.4276
+    - datetime: '2018-01-01'
+      value: 0.5657
+    - datetime: '2019-01-01'
+      value: 0.5405
+    - datetime: '2020-01-01'
+      value: 0.6197
+    - datetime: '2021-01-01'
+      value: 0.7145
+    - datetime: '2022-01-01'
+      value: 0.7716
+    - datetime: '2023-01-01'
+      value: 0.7744
+    - datetime: '2024-01-01'
+      value: 0.774
+    - datetime: '2025-01-01'
+      value: 0.8271
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.4276
+    - datetime: '2018-01-01'
+      value: 0.5657
+    - datetime: '2019-01-01'
+      value: 0.5405
+    - datetime: '2020-01-01'
+      value: 0.6197
+    - datetime: '2021-01-01'
+      value: 0.7145
+    - datetime: '2022-01-01'
+      value: 0.7716
+    - datetime: '2023-01-01'
+      value: 0.7744
+    - datetime: '2024-01-01'
+      value: 0.774
+    - datetime: '2025-01-01'
+      value: 0.8271
 parsers:
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
-timezone: Australia/Adelaide
-zone_name: South Australia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Adelaide
+zone_name: South Australia

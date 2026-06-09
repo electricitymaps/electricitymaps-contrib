@@ -11,8 +11,11 @@ from electricitymap.contrib.lib.models.events import (
     Event,
     EventSourceType,
     Exchange,
+    ExchangeAtc,
+    ExchangeCapacity,
     GridAlert,
     GridAlertType,
+    IntradayContractStatistics,
     LocationalMarginalPrice,
     Price,
     ProductionBreakdown,
@@ -21,7 +24,7 @@ from electricitymap.contrib.lib.models.events import (
     TotalConsumption,
     TotalProduction,
 )
-from electricitymap.contrib.types import ZoneKey
+from electricitymap.contrib.types import AtcType, ZoneKey
 
 EventType = TypeVar("EventType", bound="Event")
 
@@ -207,7 +210,7 @@ class ExchangeList(AggregatableEventList[Exchange]):
             ].first()
 
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
-            numeric_only=True
+            numeric_only=True,
         )
         for dt, row in exchange_df.iterrows():
             datetime_end = None
@@ -253,6 +256,54 @@ class ExchangeList(AggregatableEventList[Exchange]):
                 )
 
         return exchanges
+
+
+class ExchangeCapacityList(EventList[ExchangeCapacity]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ExchangeCapacity.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+
+class ExchangeAtcList(EventList[ExchangeAtc]):
+    def append(
+        self,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        atcType: AtcType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = ExchangeAtc.create(
+            self.logger,
+            zoneKey,
+            datetime,
+            source,
+            capacityExport,
+            capacityImport,
+            atcType,
+            sourceType,
+        )
+        if event:
+            self.events.append(event)
 
 
 class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
@@ -392,7 +443,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
         return updated_production_breakdowns
 
 
-class TotalProductionList(EventList[TotalProduction]):
+class TotalProductionList(AggregatableEventList[TotalProduction]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -408,8 +459,44 @@ class TotalProductionList(EventList[TotalProduction]):
         if event:
             self.events.append(event)
 
+    @staticmethod
+    def merge_total_production_lists(
+        ungrouped_production_lists: list["TotalProductionList"],
+        logger: Logger,
+    ) -> "TotalProductionList":
+        """
+        Given multiple parser outputs, sum the production of corresponding datetimes
+        to create a unique production list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        production_list = TotalProductionList(logger)
+        if TotalProductionList.is_completely_empty(ungrouped_production_lists, logger):
+            return production_list
 
-class TotalConsumptionList(EventList[TotalConsumption]):
+        # Create a dataframe for each parser output, then flatten the production.
+        production_dfs = [
+            pd.json_normalize(production.to_list()).set_index("datetime")
+            for production in ungrouped_production_lists
+            if len(production.events) > 0
+        ]
+
+        production_df = pd.concat(production_dfs)
+
+        zone_key, sources, source_type = TotalProductionList.get_zone_source_type(
+            production_df
+        )
+        production_df = production_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in production_df.iterrows():
+            production_list.append(
+                zone_key, dt.to_pydatetime(), sources, row["value"], source_type
+            )  # type: ignore
+
+        return production_list
+
+
+class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -430,6 +517,44 @@ class TotalConsumptionList(EventList[TotalConsumption]):
         )
         if event:
             self.events.append(event)
+
+    @staticmethod
+    def merge_consumption_lists(
+        ungrouped_consumption_lists: list["TotalConsumptionList"],
+        logger: Logger,
+    ) -> "TotalConsumptionList":
+        """
+        Given multiple parser outputs, sum the consumption of corresponding datetimes
+        to create a unique consumption list. Sources will be aggregated in a
+        comma-separated string. Ex: "entsoe, eia".
+        """
+        consumption_list = TotalConsumptionList(logger)
+        if TotalConsumptionList.is_completely_empty(
+            ungrouped_consumption_lists, logger
+        ):
+            return consumption_list
+
+        # Create a dataframe for each parser output, then flatten the consumption.
+        consumption_dfs = [
+            pd.json_normalize(consumption.to_list()).set_index("datetime")
+            for consumption in ungrouped_consumption_lists
+            if len(consumption.events) > 0
+        ]
+
+        consumption_df = pd.concat(consumption_dfs)
+
+        zone_key, sources, source_type = TotalConsumptionList.get_zone_source_type(
+            consumption_df
+        )
+        consumption_df = consumption_df.groupby(level="datetime", dropna=False).sum(
+            numeric_only=True
+        )
+        for dt, row in consumption_df.iterrows():
+            consumption_list.append(
+                zone_key, dt.to_pydatetime(), sources, row["consumption"], source_type
+            )  # type: ignore
+
+        return consumption_list
 
 
 class PriceList(EventList[Price]):
@@ -509,3 +634,73 @@ class GridAlertList(EventList[GridAlert]):
         )
         if event:
             self.events.append(event)
+
+
+class IntradayContractStatisticsList(EventList[IntradayContractStatistics]):
+    def append(  # type: ignore[override]
+        self,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ):
+        event = IntradayContractStatistics.create(
+            logger=self.logger,
+            zoneKey=zoneKey,
+            area=area,
+            apiUpdatedAt=apiUpdatedAt,
+            currency=currency,
+            priceUnitRaw=priceUnitRaw,
+            deliveryStart=deliveryStart,
+            deliveryEnd=deliveryEnd,
+            contractId=contractId,
+            contractName=contractName,
+            contractOpenTime=contractOpenTime,
+            contractCloseTime=contractCloseTime,
+            isLocalContract=isLocalContract,
+            vwap=vwap,
+            vwap1hBeforeClose=vwap1hBeforeClose,
+            vwap3hBeforeClose=vwap3hBeforeClose,
+            openPrice=openPrice,
+            closePrice=closePrice,
+            highPrice=highPrice,
+            lowPrice=lowPrice,
+            openTradeTime=openTradeTime,
+            closeTradeTime=closeTradeTime,
+            volume=volume,
+            buyVolume=buyVolume,
+            sellVolume=sellVolume,
+            source=source,
+            sourceType=sourceType,
+        )
+        if event:
+            self.events.append(event)
+
+    def to_list(self) -> list[dict[str, Any]]:
+        """Sort by (deliveryStart, area, contractId) instead of 'datetime' key."""
+        return sorted(
+            [event.to_dict() for event in self.events],
+            key=lambda d: (d["deliveryStart"], d["area"], d["contractId"]),
+        )

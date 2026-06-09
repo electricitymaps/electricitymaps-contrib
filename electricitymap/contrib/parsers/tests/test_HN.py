@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from requests_mock import ANY, GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers import HN
 from electricitymap.contrib.types import ZoneKey
@@ -9,7 +10,7 @@ from electricitymap.contrib.types import ZoneKey
 base_path_to_mock = Path("electricitymap/contrib/parsers/tests/mocks/HN")
 
 
-def test_fetch_production(adapter, session, snapshot):
+def test_fetch_production(requests_mock, session, snapshot):
     """Test production data parsing with snapshot testing."""
     # Mock all production CSV files
     production_files = [
@@ -35,7 +36,7 @@ def test_fetch_production(adapter, session, snapshot):
 
         return ""
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         text=mock_response,
@@ -54,15 +55,15 @@ def test_fetch_production(adapter, session, snapshot):
         ("HN", "US"),  # Test case with no matching zone
     ],
 )
-def test_fetch_exchange(adapter, session, snapshot, zone_key1, zone_key2):
+def test_fetch_exchange(requests_mock, session, snapshot, zone_key1, zone_key2):
     """Test exchange data parsing with snapshot testing."""
     exchange_file = base_path_to_mock / "exchange_index_7.csv"
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         ANY,
         text=exchange_file.read_text(encoding="utf-8"),
     )
 
     result = HN.fetch_exchange(zone_key1, zone_key2, session)
-    assert snapshot == result
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result

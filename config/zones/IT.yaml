@@ -1,8 +1,8 @@
 bounding_box:
-  - - 6.7499552751
-    - 36.619987291
-  - - 18.4802470232
-    - 47.1153931748
+  - - 6.604266042660441
+    - 36.69887698046574
+  - - 18.516785167851708
+    - 47.09019132836457
 capacity:
   biomass: 4106.2
   coal: 5598
@@ -14,6 +14,12 @@ capacity:
   oil: 1269
   solar: 22594.2
   wind: 11289.8
+center_point:
+  - 12.463097958480168
+  - 42.17713495481865
+centroid:
+  - 12.258237064167265
+  - 42.27277579786555
 contributors:
   - corradio
 country: IT
@@ -22,14 +28,14 @@ currency: EUR
 emissionFactors:
   direct:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 288.15
+        value: 324.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 212.11
+        value: 199.1
     biomass:
       datetime: '2021-01-01'
       source: BEIS 2021
@@ -62,29 +68,49 @@ emissionFactors:
         value: 397.71
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average
+        value: 321.76
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average
+        value: 338.08
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 335.22
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 307.79
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 283.47
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 264.71
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 279.69
+        value: 280.66
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 317.15
+        value: 318.79
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 242.48
+        value: 238.0
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 193.69
+        value: 190.04
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 206.41
+        value: 188.21
     oil:
       - datetime: '2021-01-01'
         source: EU-ETS, ENTSO-E 2021
@@ -100,14 +126,14 @@ emissionFactors:
         value: 905.42
   lifecycle:
     battery discharge:
-      - _comment: used storage values greater than zero.
+      - _comment: used non-null storage values
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 321.15
+        value: 357.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 245.11
+        value: 232.1
     biomass:
       datetime: '2014-01-01'
       source: BEIS 2021; IPCC 2014
@@ -146,29 +172,49 @@ emissionFactors:
       value: 10.7
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2015-01-01'
+        source: Electricity Maps, 2015 zone average; UNECE 2022
+        value: 332.46
+      - _comment: used storage values greater than zero.
+        datetime: '2016-01-01'
+        source: Electricity Maps, 2016 zone average; UNECE 2022
+        value: 348.78
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; UNECE 2022
+        value: 345.92
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; UNECE 2022
+        value: 318.49
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; UNECE 2022
+        value: 294.17
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; UNECE 2022
         value: 275.41
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; UNECE 2022
-        value: 290.39
+        value: 291.36
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; UNECE 2022
-        value: 327.85
+        value: 329.49
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; UNECE 2022
-        value: 253.18
+        value: 248.7
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; UNECE 2022
-        value: 204.39
+        value: 200.74
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; UNECE 2022
-        value: 217.11
+        value: 198.91
     nuclear:
       datetime: '2020-01-01'
       source: UNECE 2022
@@ -349,10 +395,66 @@ fallbackZoneMixes:
         wind: 0.09017689210992368
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.2935
+    - datetime: '2025-01-01'
+      value: 0.5572
+  hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.4473
+    - datetime: '2016-01-01'
+      value: 0.4017
+    - datetime: '2017-01-01'
+      value: 0.4296
+    - datetime: '2018-01-01'
+      value: 0.4865
+    - datetime: '2019-01-01'
+      value: 0.4661
+    - datetime: '2020-01-01'
+      value: 0.4883
+    - datetime: '2021-01-01'
+      value: 0.4571
+    - datetime: '2022-01-01'
+      value: 0.4166
+    - datetime: '2023-01-01'
+      value: 0.5318
+    - datetime: '2024-01-01'
+      value: 0.5934
+    - datetime: '2025-01-01'
+      value: 0.583
+isRenewable:
+  battery discharge:
+    - datetime: '2024-01-01'
+      value: 0.2383
+    - datetime: '2025-01-01'
+      value: 0.4698
+  hydro discharge:
+    - datetime: '2015-01-01'
+      value: 0.371
+    - datetime: '2016-01-01'
+      value: 0.3664
+    - datetime: '2017-01-01'
+      value: 0.3636
+    - datetime: '2018-01-01'
+      value: 0.4096
+    - datetime: '2019-01-01'
+      value: 0.3891
+    - datetime: '2020-01-01'
+      value: 0.4217
+    - datetime: '2021-01-01'
+      value: 0.3924
+    - datetime: '2022-01-01'
+      value: 0.3547
+    - datetime: '2023-01-01'
+      value: 0.4547
+    - datetime: '2024-01-01'
+      value: 0.5118
+    - datetime: '2025-01-01'
+      value: 0.5003
 region: Europe
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   EU-ETS, ENTSO-E 2021:
     link: https://drive.google.com/file/d/15UeUHyhcjVw8fGLc0Zx_HELSx20cw_-e/view?usp=share_link
   EU-ETS, ENTSO-E 2022:
@@ -365,6 +467,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   UNECE 2022:
     link: https://unece.org/sites/default/files/2022-04/LCA_3_FINAL%20March%202022.pdf
   ? UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the outlook

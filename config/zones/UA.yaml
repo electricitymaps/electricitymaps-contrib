@@ -1,8 +1,8 @@
 bounding_box:
-  - - 21.63283980300011
-    - 44.713568427000055
-  - - 40.65954309100019
-    - 52.86894928000005
+  - - 22.131221312213142
+    - 45.21525091940076
+  - - 40.14220142201424
+    - 52.369234001359445
 capacity:
   biomass: 230
   coal: 17242
@@ -13,6 +13,12 @@ capacity:
   oil: 756.6
   solar: 6226
   wind: 1529
+center_point:
+  - 31.07915362623503
+  - 49.18913246482947
+centroid:
+  - 31.01351219697766
+  - 48.775475185744476
 contributors:
   - amkozlov
   - denplis
@@ -26,23 +32,50 @@ emissionFactors:
   direct:
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 283.39
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 261.14
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 243.73
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
         value: 231.08
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 197.61
+        value: 197.62
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 188.55
+        value: 188.58
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category
+        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
+        mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
+        issue number 1809
       value: 0.0
   lifecycle:
     hydro discharge:
+      - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 307.39
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 285.14
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 267.73
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
@@ -50,14 +83,17 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 221.61
+        value: 221.62
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 212.55
+        value: 212.58
     unknown:
-      _comment: estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable mix
-      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib issue number 1809
+      _comment: estimated yearly share of solar & wind in this mixed renewable category
+        based on installed capacity in Y2018; assumes 50% solar, 50% wind renewable
+        mix
+      source: Wikipedia page for Renewable energy in Ukraine; Electricity Maps contrib
+        issue number 1809
       value: 28.0
 fallbackZoneMixes:
   powerOriginRatios:
@@ -151,12 +187,38 @@ fallbackZoneMixes:
         solar: 0.0003683239452081555
         unknown: 0.06410479689732768
         wind: 0.001572880539009946
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
 isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.609
+    - datetime: '2018-01-01'
+      value: 0.6296
+    - datetime: '2019-01-01'
+      value: 0.6376
+    - datetime: '2020-01-01'
+      value: 0.6475
+    - datetime: '2021-01-01'
+      value: 0.7077
+    - datetime: '2022-01-01'
+      value: 0.7125
   unknown:
     value: 1
 isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.0434
+    - datetime: '2018-01-01'
+      value: 0.0554
+    - datetime: '2019-01-01'
+      value: 0.0435
+    - datetime: '2020-01-01'
+      value: 0.0958
+    - datetime: '2021-01-01'
+      value: 0.1171
+    - datetime: '2022-01-01'
+      value: 0.119
   unknown:
     value: 1
 parsers:
@@ -167,13 +229,16 @@ parsers:
   production: UA.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Europe
 sources:
   Electricity Maps contrib issue number 1809:
     link: https://github.com/electricitymaps/electricitymaps-contrib/issues/1809
-  Wikipedia page for Renewable energy in Ukraine:
-    link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  Wikipedia page for Renewable energy in Ukraine:
+    link: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
 timezone: Europe/Kiev
 zone_name: Ukraine

@@ -1,8 +1,8 @@
 bounding_box:
-  - - -111.30730807308066
-    - 30.832316356872
-  - - -101.53402034020334
-    - 38.30081076184365
+  - - -110.80730807308066
+    - 31.332316356872
+  - - -102.03175407765414
+    - 37.80081076184365
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -35,6 +35,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 738.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 887.5
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 900.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1000.4
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -212,6 +221,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 2064.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2074.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2199.8
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2204.8
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -244,6 +262,12 @@ capacity:
     - datetime: '2022-02-01'
       source: EIA.gov
       value: 2569.0
+center_point:
+  - -106.21269318854388
+  - 34.38777036219062
+centroid:
+  - -106.53541157041239
+  - 34.919446822264426
 comment: Public Service Company Of New Mexico
 contributors:
   - systemcatch
@@ -252,25 +276,29 @@ contributors:
   - brandongalbraith
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 408.57
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 671.71
+      - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 350.94
+        value: 351.27
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 281.11
+        value: 281.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 185.62
+        value: 185.66
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -336,11 +364,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 356.66
+        value: 356.98
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 161.54
+        value: 161.72
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -361,17 +389,25 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 441.57
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 704.71
+      - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 383.94
+        value: 384.27
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 314.11
+        value: 314.32
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 218.62
+        value: 218.66
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -441,11 +477,11 @@ emissionFactors:
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 380.66
+        value: 380.98
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
-        value: 185.54
+        value: 185.72
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -606,6 +642,44 @@ fallbackZoneMixes:
         wind: 0.3386034024377126
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.5157
+    - datetime: '2018-01-01'
+      value: 0.2266
+    - datetime: '2023-01-01'
+      value: 0.4919
+    - datetime: '2024-01-01'
+      value: 0.5511
+    - datetime: '2025-01-01'
+      value: 0.7346
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 0.276
+    - datetime: '2023-01-01'
+      value: 0.4728
+    - datetime: '2024-01-01'
+      value: 0.7807
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.5156
+    - datetime: '2018-01-01'
+      value: 0.2173
+    - datetime: '2023-01-01'
+      value: 0.4825
+    - datetime: '2024-01-01'
+      value: 0.5288
+    - datetime: '2025-01-01'
+      value: 0.7218
+  hydro discharge:
+    - datetime: '2022-01-01'
+      value: 0.2628
+    - datetime: '2023-01-01'
+      value: 0.464
+    - datetime: '2024-01-01'
+      value: 0.7806
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -613,12 +687,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

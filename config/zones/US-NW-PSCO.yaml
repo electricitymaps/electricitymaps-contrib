@@ -1,8 +1,8 @@
 bounding_box:
-  - - -109.559308887
-    - 35.7175500000001
-  - - -102.094762152
-    - 41.7250704890001
+  - - -109.06129061290606
+    - 36.21803314859174
+  - - -103.16443164431638
+    - 41.225391981112935
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -38,6 +38,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 252.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 352.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 364.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -55,6 +61,9 @@ capacity:
     - datetime: '2020-01-01'
       source: EIA.gov
       value: 1311.3
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 759.0
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -77,6 +86,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 6784.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 7335.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -121,6 +133,9 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 28.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 20.0
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -260,6 +275,15 @@ capacity:
     - datetime: '2025-03-01'
       source: EIA.gov
       value: 2142.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2447.4
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 2788.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2796.4
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -295,6 +319,12 @@ capacity:
     - datetime: '2023-12-01'
       source: EIA.gov
       value: 4662.6
+center_point:
+  - -106.50923943567419
+  - 39.42986049036256
+centroid:
+  - -105.7788616855921
+  - 38.91579644601377
 comment: Public Service Company Of Colorado
 contributors:
   - systemcatch
@@ -302,17 +332,21 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 512.53
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 738.26
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 324.14
+        value: 323.95
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -389,9 +423,17 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 545.53
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 771.26
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 357.14
+        value: 356.95
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -612,6 +654,22 @@ fallbackZoneMixes:
         wind: 0.3064469544491784
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3668
+    - datetime: '2018-01-01'
+      value: 0.2374
+    - datetime: '2025-01-01'
+      value: 0.5081
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3666
+    - datetime: '2018-01-01'
+      value: 0.2372
+    - datetime: '2025-01-01'
+      value: 0.5064
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -619,12 +677,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

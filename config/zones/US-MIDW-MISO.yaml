@@ -1,8 +1,8 @@
 bounding_box:
-  - - -107.862115248933
-    - 28.4286900252724
-  - - -81.9130970652477
-    - 49.884274119856
+  - - -104.60804608046074
+    - 29.07836089496263
+  - - -82.41984203397388
+    - 49.38133293345275
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -74,6 +74,12 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 616.9
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 791.9
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1041.9
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -189,6 +195,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 2150.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2172.3
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -313,6 +322,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 46306.2
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 46291.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 46964.8
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -521,6 +536,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 83698.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 83795.9
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 84548.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 82565.6
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -577,6 +601,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2449.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2447.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -706,6 +733,12 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 3652.4
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 3648.3
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 3679.1
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1013,6 +1046,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 17475.6
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 19331.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 20251.8
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 21090.1
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1044,6 +1086,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 491.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 495.7
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -1213,6 +1258,21 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 32629.5
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 32649.4
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 33233.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 33477.7
+center_point:
+  - -90.25369586198931
+  - 39.13738646949346
+centroid:
+  - -90.41123549138727
+  - 40.21390243479164
 comment: Midcontinent Independent Transmission System Operator, Inc..
 contributors:
   - systemcatch
@@ -1222,17 +1282,21 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 483.42
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 602.75
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 419.95
+        value: 428.67
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1305,9 +1369,17 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 516.42
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 635.75
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 452.95
+        value: 461.67
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1539,6 +1611,22 @@ fallbackZoneMixes:
         wind: 0.14722782107459684
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.3261
+    - datetime: '2018-01-01'
+      value: 0.2485
+    - datetime: '2025-01-01'
+      value: 0.3682
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.1771
+    - datetime: '2018-01-01'
+      value: 0.0968
+    - datetime: '2025-01-01'
+      value: 0.2165
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_MISO.fetch_consumption_forecast
@@ -1548,12 +1636,12 @@ parsers:
   productionPerModeForecast: US_MISO.fetch_wind_solar_forecasts
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

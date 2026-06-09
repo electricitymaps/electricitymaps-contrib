@@ -1,11 +1,12 @@
 import logging
-from datetime import datetime, timezone
+import math
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
-import numpy as np
 import pytest
 
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeCapacityList,
     ExchangeList,
     GridAlertList,
     LocationalMarginalPriceList,
@@ -88,7 +89,7 @@ def test_merge_exchanges_with_none():
     exchange_list_2.append(
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-        netFlow=np.nan,
+        netFlow=math.nan,
         source="trust.me",
     )
     exchanges = ExchangeList.merge_exchanges(
@@ -897,7 +898,9 @@ def test_update_production_with_different_source():
     assert updated_list.events[0].production is not None
     assert updated_list.events[0].production.wind == 20
     assert updated_list.events[0].production.coal == 20
-    assert updated_list.events[0].source == ", ".join({"trust.me", "trust.me.too"})
+    assert updated_list.events[0].source == ", ".join(
+        sorted({"trust.me", "trust.me.too"})
+    )
 
 
 def test_update_production_with_different_sourceType():
@@ -1011,6 +1014,100 @@ def test_total_production_list():
     assert len(total_production.events) == 1
 
 
+def test_merge_total_production_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalProductionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=100,
+        source="entsoe",
+    )
+
+    second = TotalProductionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        value=50,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        value=25,
+        source="entsoe",
+    )
+
+    merged = TotalProductionList.merge_total_production_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 150,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "zoneKey": ZoneKey("IT-SO"),
+            "value": 25,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
+
+
+def test_merge_consumption_lists():
+    logger = logging.Logger("test")
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt_later = dt + timedelta(hours=1)
+
+    first = TotalConsumptionList(logger)
+    first.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=80,
+        source="entsoe",
+    )
+
+    second = TotalConsumptionList(logger)
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt,
+        consumption=20,
+        source="entsoe",
+    )
+    second.append(
+        zoneKey=ZoneKey("IT-SO"),
+        datetime=dt_later,
+        consumption=30,
+        source="entsoe",
+    )
+
+    merged = TotalConsumptionList.merge_consumption_lists([first, second], logger)
+
+    assert merged.to_list() == [
+        {
+            "datetime": dt,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 100,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt_later,
+            "zoneKey": ZoneKey("IT-SO"),
+            "consumption": 30,
+            "source": "entsoe",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
+
+
 def test_df_representation():
     production_list_1 = ProductionBreakdownList(logging.Logger("test"))
     production_mix_1 = ProductionMix(wind=-10, coal=10)
@@ -1030,3 +1127,66 @@ def test_df_representation():
         storage=StorageMix(hydro=1),
         source="trust.me",
     )
+
+
+def test_exchange_capacity_forecast_list():
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=datetime(2023, 1, 2, tzinfo=timezone.utc),
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    assert len(forecast_list.events) == 2
+
+
+def test_append_to_exchange_capacity_forecast_list_logs_error():
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    with patch.object(forecast_list.logger, "error") as mock_error:
+        # Unsorted zone key should log error and not append
+        forecast_list.append(
+            zoneKey=ZoneKey("DE->AT"),
+            datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            source="trust.me",
+            capacityExport=1000.0,
+            capacityImport=900.0,
+        )
+        mock_error.assert_called_once()
+    assert len(forecast_list.events) == 0
+
+
+def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
+    dt1 = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    dt2 = datetime(2023, 1, 2, tzinfo=timezone.utc)
+    forecast_list = ExchangeCapacityList(logging.Logger("test"))
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt2,
+        source="trust.me",
+        capacityExport=1100.0,
+        capacityImport=950.0,
+    )
+    forecast_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt1,
+        source="trust.me",
+        capacityExport=1000.0,
+        capacityImport=900.0,
+    )
+    result = forecast_list.to_list()
+    assert len(result) == 2
+    assert result[0]["datetime"] == dt1
+    assert result[1]["datetime"] == dt2
+    assert result[0]["capacityExport"] == 1000.0
+    assert result[0]["capacityImport"] == 900.0
+    assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
+    assert result[0]["source"] == "trust.me"
+    assert result[0]["sourceType"] == EventSourceType.published

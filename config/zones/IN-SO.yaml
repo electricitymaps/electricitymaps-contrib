@@ -1,8 +1,14 @@
 bounding_box:
-  - - 62.775879
-    - 6.031311
-  - - 95.668945
-    - 22.755921
+  - - 74.09054090540906
+    - 8.075789238466186
+  - - 84.7790477904779
+    - 19.890809107370146
+center_point:
+  - 79.14854032908883
+  - 13.923305994389636
+centroid:
+  - 78.66001517158028
+  - 15.356275499738286
 capacity:
   biomass:
     - datetime: '2023-12-01'
@@ -46,8 +52,6 @@ contributors:
 country: IN
 country_name: India
 currency: INR
-delays:
-  production: 120
 emissionFactors:
   direct:
     unknown:
@@ -183,11 +187,13 @@ fallbackZoneMixes:
         wind: 0.07570566354166786
 has_day_ahead_price_license: False
 hide_day_ahead_price: False
-isLowCarbon:
-  unknown:
-    value: 0.92
 isRenewable:
   unknown:
+    source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
+    value: 0.92
+isLowCarbon:
+  unknown:
+    source: CEA 2022; assumes 56% biomass, 36% hydro, 8% unknown
     value: 0.92
 parsers:
   consumption: IN.fetch_consumption

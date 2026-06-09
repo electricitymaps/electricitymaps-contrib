@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.225142777
-    - 44.2721814650001
-  - - -121.156917718
-    - 46.4057731890001
+  - - -123.720637206372
+    - 44.78020173818142
+  - - -121.66861668616679
+    - 45.90646392771963
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -14,6 +14,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 492.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 493.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -27,6 +30,12 @@ capacity:
     - datetime: '2025-01-01'
       source: EIA.gov
       value: 15.9
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 14.7
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1.6
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -61,6 +70,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 624.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 643.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -164,6 +176,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 196.8
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 197.9
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -172,6 +187,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 716.5
+center_point:
+  - -122.6946269462694
+  - 45.34333283295052
+centroid:
+  - -122.79128791287906
+  - 45.341830195975916
 comment: Portland General Electric Company
 contributors:
   - systemcatch
@@ -179,17 +200,29 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 342.98
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 155.77
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 192.8
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 127.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 213.12
+        value: 214.58
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -269,9 +302,25 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 375.98
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 188.77
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 225.8
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 160.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 246.12
+        value: 247.58
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -495,6 +544,30 @@ fallbackZoneMixes:
         wind: 0.07587504128718962
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2652
+    - datetime: '2018-01-01'
+      value: 0.7016
+    - datetime: '2019-01-01'
+      value: 0.6885
+    - datetime: '2024-01-01'
+      value: 0.7585
+    - datetime: '2025-01-01'
+      value: 0.5843
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2652
+    - datetime: '2018-01-01'
+      value: 0.6329
+    - datetime: '2019-01-01'
+      value: 0.6197
+    - datetime: '2024-01-01'
+      value: 0.7585
+    - datetime: '2025-01-01'
+      value: 0.5458
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -502,12 +575,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

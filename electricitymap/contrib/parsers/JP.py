@@ -256,10 +256,10 @@ def fetch_price(
     df = df[(df["Date"] >= start.date()) & (df["Date"] <= target_datetime.date())]
 
     df["datetime"] = df.apply(
-        lambda row: datetime.combine(row["Date"], datetime.min.time()).replace(
-            tzinfo=ZONE_INFO
-        )
-        + timedelta(minutes=30 * (row["Period"] - 1)),
+        lambda row: (
+            datetime.combine(row["Date"], datetime.min.time()).replace(tzinfo=ZONE_INFO)
+            + timedelta(minutes=30 * (row["Period"] - 1))
+        ),
         axis=1,
     )
 

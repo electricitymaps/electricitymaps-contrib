@@ -10,11 +10,11 @@ from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
+def mock_response(requests_mock):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/CENACE/DemandaRegional.html", "rb"
     ) as data:
-        adapter.register_uri(ANY, ANY, content=data.read())
+        requests_mock.register_uri(ANY, ANY, content=data.read())
 
 
 @freezegun.freeze_time("2021-01-01 00:00:00")

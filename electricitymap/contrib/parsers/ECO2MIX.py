@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
+import math
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from zoneinfo import ZoneInfo
 
-import numpy as np
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -142,7 +142,7 @@ def parse_production_to_df(text):
     # Compute zone_key
     df["zone_key"] = df["perimetre"].apply(lambda k: MAP_ZONES[k])
     # Compute values
-    df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
+    df.value = df.value.replace("ND", math.nan).replace("-", math.nan).astype("float")
     # Storage works the other way around (RTE treats storage as production)
     df.loc[df.key.str.startswith("storage."), "value"] *= -1
     return df
@@ -160,7 +160,7 @@ def format_production_df(df, zone_key):
         .groupby(["datetime", "key"])
         # We use `min_count=1` to make sure at least one non-NaN
         # value is present to compute a sum.
-        .sum(min_count=1)
+        .sum(numeric_only=True, min_count=1)
         # We unstack `key` which creates a df where keys are columns
         .unstack("key")["value"]
     )
@@ -229,7 +229,7 @@ def parse_exchange_to_df(text):
     # Remove invalid granularities
     df = df[df.granularite == "Global"].drop("granularite", axis=1)
     # Compute values
-    df.value = df.value.replace("ND", np.nan).replace("-", np.nan).astype("float")
+    df.value = df.value.replace("ND", math.nan).replace("-", math.nan).astype("float")
     df["zone_key_other"] = df.v.apply(lambda x: MAP_ZONES[x.split("_")[1]])
     df["zone_key"] = df.perimetre.apply(lambda k: MAP_ZONES[k])
     df["sorted_zone_keys"] = df.apply(
@@ -256,9 +256,11 @@ def parse_exchange_to_df(text):
     # We here flip the sign if the alphabetical order requires it
     # (e.g. if zone_key is not the second key)
     df["net_flow"] = df.apply(
-        lambda row: row["value"]
-        if row["sorted_zone_keys"].split("->")[1] == row["zone_key"]
-        else row["value"] * -1,
+        lambda row: (
+            row["value"]
+            if row["sorted_zone_keys"].split("->")[1] == row["zone_key"]
+            else row["value"] * -1
+        ),
         axis=1,
     )
     return df
@@ -283,7 +285,7 @@ def format_exchange_df(df, sorted_zone_keys: ZoneKey, logger: Logger):
         .groupby(["datetime"])
         # We use `min_count=1` to make sure at least one non-NaN
         # value is present to compute a sum.
-        .sum(min_count=1)
+        .sum(numeric_only=True, min_count=1)
     )
     exchange_list = ExchangeList(logger)
     for ts, row in df.iterrows():

@@ -197,7 +197,9 @@ def fetch_production(
 
     # sum all values for given combination of date and power production type,
     # and make a multi index of those combinations
-    df_prod = df_prod.groupby(["Date", "Values_EnerSource"]).sum()
+    df_prod = df_prod.groupby(["Date", "Values_EnerSource"]).sum(
+        numeric_only=True,
+    )
 
     # loop over each date in the multi index
     production_list = ProductionBreakdownList(logger)

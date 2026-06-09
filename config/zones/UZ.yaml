@@ -1,24 +1,42 @@
 bounding_box:
-  - - 55.497790533287294
-    - 36.68830730933749
-  - - 73.61853118531187
-    - 46.06232808111943
+  - - 55.997790533287294
+    - 37.18830730933749
+  - - 73.11853118531187
+    - 45.56232808111943
+center_point:
+  - 64.18417880216785
+  - 41.39517100143724
+centroid:
+  - 66.14360204736195
+  - 40.8635212297955
 capacity:
   solar:
     - datetime: '2024-08-30'
       source: gov.uz
       comment: The Ministry of Energy of the Republic of Uzbekistan
       value: 2300
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 3930
   wind:
     - datetime: '2024-08-30'
       source: gov.uz
       comment: The Ministry of Energy of the Republic of Uzbekistan
       value: 500
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 1652
   hydro:
     - datetime: '2024-08-29'
       source: stat.uz
       comment: Statistics Agency under the President of the Republic of Uzbekistan
       value: 2381
+    - datetime: '2026-01-01'
+      source: gov.uz
+      comment: The Ministry of Energy of the Republic of Uzbekistan
+      value: 2441
   gas:
     - datetime: '2024-08-29'
       source: stat.uz

@@ -1,8 +1,8 @@
 bounding_box:
-  - - -120.44398
-    - 41.48796
-  - - -111.08807
-    - 47.1707900000001
+  - - -119.9439947612488
+    - 41.991031589410795
+  - - -111.58851588515878
+    - 45.700387999773625
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -74,6 +74,9 @@ capacity:
     - datetime: '2023-01-01'
       source: EIA.gov
       value: 779.1
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 735.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -121,6 +124,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 2023.1
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 1961.5
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -190,6 +196,12 @@ capacity:
     - datetime: '2022-01-01'
       source: EIA.gov
       value: 714.7
+center_point:
+  - -115.94702834758624
+  - 43.739931985757934
+centroid:
+  - -115.16451002876639
+  - 44.16341541464588
 comment: Idaho Power Company
 contributors:
   - systemcatch
@@ -197,17 +209,25 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 107.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 208.02
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 420.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 246.68
+        value: 248.21
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -284,9 +304,21 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 140.27
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 241.02
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 453.37
+      - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 279.68
+        value: 281.21
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -522,6 +554,26 @@ fallbackZoneMixes:
         wind: 0.13662238355509054
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.7625
+    - datetime: '2018-01-01'
+      value: 0.6623
+    - datetime: '2019-01-01'
+      value: 0.4521
+    - datetime: '2025-01-01'
+      value: 0.6298
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.7625
+    - datetime: '2018-01-01'
+      value: 0.6574
+    - datetime: '2019-01-01'
+      value: 0.4488
+    - datetime: '2025-01-01'
+      value: 0.6283
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -529,12 +581,12 @@ parsers:
   productionCapacity: EIA.fetch_production_capacity
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

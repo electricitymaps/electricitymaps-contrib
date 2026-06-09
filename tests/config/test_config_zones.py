@@ -139,17 +139,15 @@ class TestConfigZones(unittest.TestCase):
         # GB and GB-NIR are neighbours
         exchanges = {
             "GB->GB-NIR": {"parsers": {"exchange": "source"}},
-            "GB->GB-ORK": {"parsers": {"exchange": "source"}},
         }
         zones: dict[ZoneKey, Any] = {
             ZoneKey("GB"): {},
             ZoneKey("GB-NIR"): {},
-            ZoneKey("GB-ORK"): {},
         }
         zone_neighbours = generate_zone_neighbours(zones, exchanges)
         self.assertDictEqual(
             zone_neighbours,
-            {"GB": ["GB-NIR", "GB-ORK"], "GB-NIR": ["GB"], "GB-ORK": ["GB"]},
+            {"GB": ["GB-NIR"], "GB-NIR": ["GB"]},
         )
 
     def test_generate_zone_neighbours_no_exchange_parser(self):

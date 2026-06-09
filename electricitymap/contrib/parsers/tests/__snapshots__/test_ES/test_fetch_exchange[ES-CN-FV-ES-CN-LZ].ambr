@@ -1,0 +1,45 @@
+# serializer version: 1
+# name: test_fetch_exchange[ES-CN-FV-ES-CN-LZ]
+  list([
+    dict({
+      'datetime': datetime.datetime(2026, 4, 27, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'datetime_end': None,
+      'netFlow': 4.6,
+      'sortedZoneKeys': 'ES-CN-FV->ES-CN-LZ',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2026, 4, 27, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'datetime_end': None,
+      'netFlow': 3.8,
+      'sortedZoneKeys': 'ES-CN-FV->ES-CN-LZ',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2026, 4, 27, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'datetime_end': None,
+      'netFlow': 3.3,
+      'sortedZoneKeys': 'ES-CN-FV->ES-CN-LZ',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2026, 4, 27, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'datetime_end': None,
+      'netFlow': 2.9,
+      'sortedZoneKeys': 'ES-CN-FV->ES-CN-LZ',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+    dict({
+      'datetime': datetime.datetime(2026, 4, 27, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
+      'datetime_end': None,
+      'netFlow': -1.7,
+      'sortedZoneKeys': 'ES-CN-FV->ES-CN-LZ',
+      'source': 'demanda.ree.es',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+    }),
+  ])
+# ---

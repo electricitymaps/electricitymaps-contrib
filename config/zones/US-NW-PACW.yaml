@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.98038
-    - 38.66544
-  - - -115.96327
-    - 47.5893300000001
+  - - -124.48024480244796
+    - 39.1660637844859
+  - - -117.60417604176035
+    - 47.082814016411376
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -152,6 +152,12 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 486.1
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 491.1
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 495.5
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -181,6 +187,12 @@ capacity:
     - datetime: '2022-11-01'
       source: EIA.gov
       value: 489.9
+center_point:
+  - -121.15138084484636
+  - 43.369207468708666
+centroid:
+  - -121.36958197432962
+  - 44.139979983322945
 comment: Pacificorp - West
 contributors:
   - systemcatch
@@ -189,10 +201,6 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:
@@ -257,13 +265,25 @@ emissionFactors:
         value: 28.739435464835893
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 584.43
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 373.54
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 475.29
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 187.81
+        value: 187.89
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 395.79
+        value: 395.8
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -348,13 +368,25 @@ emissionFactors:
         value: 66.73943546483589
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 608.43
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 397.54
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 499.29
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 211.81
+        value: 211.89
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 419.79
+        value: 419.8
     oil:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -515,6 +547,30 @@ fallbackZoneMixes:
         wind: 0.14522387099354464
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3066
+    - datetime: '2018-01-01'
+      value: 0.5612
+    - datetime: '2019-01-01'
+      value: 0.4619
+    - datetime: '2020-01-01'
+      value: 0.7924
+    - datetime: '2021-01-01'
+      value: 0.5026
+isRenewable:
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.3066
+    - datetime: '2018-01-01'
+      value: 0.5222
+    - datetime: '2019-01-01'
+      value: 0.4392
+    - datetime: '2020-01-01'
+      value: 0.762
+    - datetime: '2021-01-01'
+      value: 0.4888
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast

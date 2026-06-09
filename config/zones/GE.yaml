@@ -1,9 +1,15 @@
 _comment: source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal
 bounding_box:
-  - - 39.9550085793
-    - 41.0644446885
-  - - 46.6379081561
-    - 43.553104153
+  - - 39.987399873998754
+    - 41.045075544160184
+  - - 46.62946629466296
+    - 43.575229992830515
+center_point:
+  - 43.77730700229085
+  - 42.16081597950481
+centroid:
+  - 43.59067269225706
+  - 42.238123079285806
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -69,8 +75,6 @@ contributors:
 country: GE
 country_name: Georgia
 currency: GEL
-delays:
-  production: 5
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2017 average
@@ -202,6 +206,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionCapacity: EMBER.fetch_production_capacity
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+  productionPerModeForecastIntraday: ENTSOE.fetch_wind_solar_forecasts_intraday
+  productionPerModeForecastLatest: ENTSOE.fetch_wind_solar_forecasts_current
 region: Asia
 timezone: Asia/Tbilisi
 zone_name: Georgia

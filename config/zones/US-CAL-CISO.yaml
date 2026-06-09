@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.909721
-    - 32.0341570000001
-  - - -113.631212
-    - 41.965851
+  - - -124.38664386643859
+    - 32.53156377089108
+  - - -114.15534155341547
+    - 41.464382814216975
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -233,6 +233,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 14467.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 15436.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 15534.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 14958.1
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -336,6 +345,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 835.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 830.4
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -491,6 +503,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 31884.9
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 31884.7
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -550,6 +565,12 @@ capacity:
     - datetime: '2025-04-01'
       source: EIA.gov
       value: 6196.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 6218.3
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 6362.5
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -575,6 +596,9 @@ capacity:
     - datetime: '2025-02-01'
       source: EIA.gov
       value: 1024.6
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 2077.6
   nuclear:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -875,6 +899,15 @@ capacity:
     - datetime: '2025-08-01'
       source: EIA.gov
       value: 24163.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 24350.7
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 24853.2
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 24914.2
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -894,6 +927,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 43.4
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 51.4
   wind:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -997,6 +1033,18 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 6377.2
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 6380.8
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 6343.6
+center_point:
+  - -119.07034654209747
+  - 36.502920520723094
+centroid:
+  - -120.31387899110109
+  - 36.98846669879115
 comment: California Independent System Operator
 contributors:
   - systemcatch
@@ -1006,35 +1054,45 @@ contributors:
 country: US
 country_name: USA
 currency: USD
-delays:
-  production: 5
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 162.74
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 193.33
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 185.32
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 187.55
+        value: 187.8
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 179.31
+        value: 178.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 163.06
+        value: 163.12
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 164.97
+        value: 164.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 129.51
+        value: 127.78
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 105.31
+        value: 105.27
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -1089,21 +1147,33 @@ emissionFactors:
         value: 38.89697026267566
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 190.97
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 208.94
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average
+        value: 117.15
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 168.68
+        value: 168.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average
-        value: 133.14
+        value: 131.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
-        value: 165.82
+        value: 166.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 156.65
+        value: 156.71
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
@@ -1128,29 +1198,41 @@ emissionFactors:
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 195.74
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 226.33
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; National Laboratory of the Rockies
+        value: 218.32
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 220.55
+        value: 220.8
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; National Laboratory of the Rockies
-        value: 212.31
+        value: 211.09
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; National Laboratory of the Rockies
-        value: 196.06
+        value: 196.12
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 197.97
+        value: 197.49
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 162.51
+        value: 160.78
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 138.31
+        value: 138.27
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -1209,21 +1291,33 @@ emissionFactors:
         value: 76.89697026267567
     hydro discharge:
       - _comment: used storage values greater than zero.
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 214.97
+      - _comment: used storage values greater than zero.
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 232.94
+      - _comment: used storage values greater than zero.
+        datetime: '2019-01-01'
+        source: Electricity Maps, 2019 zone average; IPCC 2014
+        value: 141.15
+      - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; IPCC 2014
-        value: 192.68
+        value: 192.9
       - _comment: used storage values greater than zero.
         datetime: '2021-01-01'
         source: Electricity Maps, 2021 zone average; IPCC 2014
-        value: 157.14
+        value: 155.67
       - _comment: used storage values greater than zero.
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
-        value: 189.82
+        value: 190.22
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; IPCC 2014
-        value: 180.65
+        value: 180.71
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; IPCC 2014
@@ -1403,6 +1497,84 @@ fallbackZoneMixes:
         wind: 0.10376508129748757
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.6232
+    - datetime: '2018-01-01'
+      value: 0.554
+    - datetime: '2019-01-01'
+      value: 0.5703
+    - datetime: '2020-01-01'
+      value: 0.5582
+    - datetime: '2021-01-01'
+      value: 0.5701
+    - datetime: '2022-01-01'
+      value: 0.5967
+    - datetime: '2023-01-01'
+      value: 0.5977
+    - datetime: '2024-01-01'
+      value: 0.6896
+    - datetime: '2025-01-01'
+      value: 0.7438
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.5553
+    - datetime: '2018-01-01'
+      value: 0.5245
+    - datetime: '2019-01-01'
+      value: 0.7267
+    - datetime: '2020-01-01'
+      value: 0.605
+    - datetime: '2021-01-01'
+      value: 0.6853
+    - datetime: '2022-01-01'
+      value: 0.5872
+    - datetime: '2023-01-01'
+      value: 0.6183
+    - datetime: '2024-01-01'
+      value: 0.825
+    - datetime: '2025-01-01'
+      value: 0.8306
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.5282
+    - datetime: '2018-01-01'
+      value: 0.4332
+    - datetime: '2019-01-01'
+      value: 0.4618
+    - datetime: '2020-01-01'
+      value: 0.4489
+    - datetime: '2021-01-01'
+      value: 0.4551
+    - datetime: '2022-01-01'
+      value: 0.4818
+    - datetime: '2023-01-01'
+      value: 0.494
+    - datetime: '2024-01-01'
+      value: 0.5824
+    - datetime: '2025-01-01'
+      value: 0.6461
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 0.456
+    - datetime: '2018-01-01'
+      value: 0.4192
+    - datetime: '2019-01-01'
+      value: 0.6384
+    - datetime: '2020-01-01'
+      value: 0.4731
+    - datetime: '2021-01-01'
+      value: 0.5826
+    - datetime: '2022-01-01'
+      value: 0.4891
+    - datetime: '2023-01-01'
+      value: 0.4907
+    - datetime: '2024-01-01'
+      value: 0.6999
+    - datetime: '2025-01-01'
+      value: 0.7632
 parsers:
   consumption: US_CA.fetch_consumption
   consumptionForecast: US_CA.fetch_consumption_forecast
@@ -1412,12 +1584,12 @@ parsers:
   productionPerModeForecast: US_CA.fetch_wind_solar_forecasts
 region: Americas
 sources:
-  National Laboratory of the Rockies:
-    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   INCER ACV:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

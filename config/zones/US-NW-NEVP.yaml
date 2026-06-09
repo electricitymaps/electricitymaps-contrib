@@ -1,8 +1,8 @@
 bounding_box:
-  - - -121.98446
-    - 34.50232
-  - - -111.0849
-    - 42.5017700000001
+  - - -120.00540005400048
+    - 35.1203926157127
+  - - -111.71451714517138
+    - 41.9933830361321
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -29,6 +29,9 @@ capacity:
     - datetime: '2024-05-01'
       source: EIA.gov
       value: 1035.0
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 1135.0
   biomass:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -46,6 +49,9 @@ capacity:
     - datetime: '2017-03-01'
       source: EIA.gov
       value: 809.0
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 531.8
   gas:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -53,6 +59,9 @@ capacity:
     - datetime: '2024-07-01'
       source: EIA.gov
       value: 8061.8
+    - datetime: '2025-12-01'
+      source: EIA.gov
+      value: 8339.0
   geothermal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -248,6 +257,9 @@ capacity:
     - datetime: '2025-06-01'
       source: EIA.gov
       value: 4259.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 4375.7
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -256,6 +268,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 150.0
+center_point:
+  - -115.85771214718278
+  - 38.79209090856581
+centroid:
+  - -114.98185638409322
+  - 38.83583418075562
 comment: Nevada Power Company
 contributors:
   - systemcatch
@@ -263,12 +281,25 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
+    battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 414.56
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 481.41
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average
+        value: 368.88
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average
+        value: 411.83
     biomass:
       - datetime: '2020-01-01'
         source: BEIS 2021
@@ -323,6 +354,14 @@ emissionFactors:
         value: 1.183420260702788
     hydro discharge:
       - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average
+        value: 0.0
+      - _comment: used default IPCC 2014 value of 0.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average
         value: 0.0
@@ -344,6 +383,23 @@ emissionFactors:
         source: eGrid 2023
         value: 757.3688858307635
   lifecycle:
+    battery discharge:
+      - _comment: used non-null storage values
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; National Laboratory of the Rockies
+        value: 447.56
+      - _comment: used non-null storage values
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; National Laboratory of the Rockies
+        value: 514.41
+      - _comment: used non-null storage values
+        datetime: '2024-01-01'
+        source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
+        value: 401.88
+      - _comment: used non-null storage values
+        datetime: '2025-01-01'
+        source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
+        value: 444.83
     biomass:
       - _comment: Mean of all US zones
         datetime: '2020-01-01'
@@ -401,6 +457,14 @@ emissionFactors:
         source: eGrid 2023; IPCC 2014
         value: 39.18342026070279
     hydro discharge:
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2017-01-01'
+        source: Electricity Maps, 2017 zone average; IPCC 2014
+        value: 24.0
+      - _comment: used default IPCC 2014 value of 24.0
+        datetime: '2018-01-01'
+        source: Electricity Maps, 2018 zone average; IPCC 2014
+        value: 24.0
       - _comment: used default IPCC 2014 value of 24.0
         datetime: '2022-01-01'
         source: Electricity Maps, 2022 zone average; IPCC 2014
@@ -565,6 +629,40 @@ fallbackZoneMixes:
         wind: 0.030996482747352047
 has_day_ahead_price_license: false
 hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2215
+    - datetime: '2018-01-01'
+      value: 0.1313
+    - datetime: '2024-01-01'
+      value: 0.3196
+    - datetime: '2025-01-01'
+      value: 0.2046
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
+isRenewable:
+  battery discharge:
+    - datetime: '2017-01-01'
+      value: 0.2174
+    - datetime: '2018-01-01'
+      value: 0.1261
+    - datetime: '2024-01-01'
+      value: 0.2996
+    - datetime: '2025-01-01'
+      value: 0.1923
+  hydro discharge:
+    - datetime: '2017-01-01'
+      value: 1.0
+    - datetime: '2018-01-01'
+      value: 1.0
+    - datetime: '2022-01-01'
+      value: 1.0
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: EIA.fetch_consumption_forecast
@@ -576,6 +674,8 @@ sources:
     link: https://docs.google.com/spreadsheets/d/1w5DJ7sPen6axIHU8TCVcuzNCjlct4I6JAbhUlw-ZXu8/edit?usp=sharing
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
+  National Laboratory of the Rockies:
+    link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
   eGrid 2020:
     link: https://drive.google.com/file/d/1_FAAuTtIdMuORZKsqHnd9vMNHlQgYarh/view?usp=sharing
   eGrid 2021:

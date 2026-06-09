@@ -1,8 +1,8 @@
 bounding_box:
-  - - 112.41944420700008
-    - -35.637872002999956
-  - - 129.50011656788791
-    - -13.223565362999949
+  - - 112.92052920529207
+    - -35.13718798554355
+  - - 129.00189001890018
+    - -13.723895555988058
 capacity:
   battery storage:
     - datetime: '2024-01-01'
@@ -60,6 +60,12 @@ capacity:
     - datetime: '2025-01-01'
       source: https://openelectricity.org.au/
       value: 1105.87
+center_point:
+  - 121.21840125979017
+  - -24.502907008372944
+centroid:
+  - 120.36907193716478
+  - -23.046206513286926
 contributors:
   - jarek
   - corradio
@@ -67,46 +73,45 @@ contributors:
 country: AU
 country_name: Australia
 currency: AUD
-delays:
-  production: 96
-disclaimer: Western Australia's power grid is not connected to the (Australian) National Electricity Market or the Northern Territory grid.
+disclaimer: Western Australia's power grid is not connected to the (Australian) National
+  Electricity Market or the Northern Territory grid.
 emissionFactors:
   direct:
     battery discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average
-        value: 288.89
+        value: 288.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average
-        value: 311.0
+        value: 290.63
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average
-        value: 303.91
+        value: 317.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average
-        value: 281.95
+        value: 277.98
   lifecycle:
     battery discharge:
       - _comment: used storage values greater than zero.
         datetime: '2020-01-01'
         source: Electricity Maps, 2020 zone average; National Laboratory of the Rockies
-        value: 321.89
+        value: 321.78
       - _comment: used storage values greater than zero.
         datetime: '2023-01-01'
         source: Electricity Maps, 2023 zone average; National Laboratory of the Rockies
-        value: 344.0
+        value: 323.63
       - _comment: used storage values greater than zero.
         datetime: '2024-01-01'
         source: Electricity Maps, 2024 zone average; National Laboratory of the Rockies
-        value: 336.91
+        value: 350.62
       - _comment: used storage values greater than zero.
         datetime: '2025-01-01'
         source: Electricity Maps, 2025 zone average; National Laboratory of the Rockies
-        value: 314.95
+        value: 310.98
 fallbackZoneMixes:
   powerOriginRatios:
     - _source: Electricity Maps, 2015 average
@@ -259,17 +264,37 @@ fallbackZoneMixes:
         solar: 0.23467167868922628
         unknown: 0.0
         wind: 0.1699992813333499
-has_day_ahead_price_license: False
-hide_day_ahead_price: False
+has_day_ahead_price_license: false
+hide_day_ahead_price: false
+isLowCarbon:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4463
+    - datetime: '2023-01-01'
+      value: 0.4929
+    - datetime: '2024-01-01'
+      value: 0.4339
+    - datetime: '2025-01-01'
+      value: 0.5174
+isRenewable:
+  battery discharge:
+    - datetime: '2020-01-01'
+      value: 0.4463
+    - datetime: '2023-01-01'
+      value: 0.4929
+    - datetime: '2024-01-01'
+      value: 0.4339
+    - datetime: '2025-01-01'
+      value: 0.5174
 parsers:
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
   productionCapacity: OPENELECTRICITY.fetch_production_capacity
 region: Oceania
-timezone: Australia/Perth
-zone_name: Western Australia
 sources:
   IPCC 2014:
     link: https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf#page=7
   National Laboratory of the Rockies:
     link: https://docs.nrel.gov/docs/fy21osti/80580.pdf
+timezone: Australia/Perth
+zone_name: Western Australia

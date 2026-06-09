@@ -1,9 +1,9 @@
 from importlib import resources
+from math import nan
 
 import freezegun
 import pandas as pd
 import pytest
-from numpy import nan
 from requests_mock import ANY
 
 from electricitymap.contrib.parsers.DO import correct_solar_production, fetch_production
@@ -172,8 +172,8 @@ def test_correct_solar_production_prod_then_nan_then_prod(production_df):
 
 
 @freezegun.freeze_time("2025-01-15")
-def test_fetch_production(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         ANY,
         ANY,
         content=resources.files("electricitymap.contrib.parsers.tests.mocks.DO")

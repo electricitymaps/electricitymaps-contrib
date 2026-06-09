@@ -1,8 +1,14 @@
 bounding_box:
-  - - -7.488389900229108
-    - 60.89207339559458
-  - - -6.168657472558352
-    - 62.1530567252827
+  - - -6.988389900229108
+    - 61.39207339559458
+  - - -6.668657472558352
+    - 61.6530567252827
+center_point:
+  - -6.82852368639373
+  - 61.52256506043864
+centroid:
+  - -6.8038229048162115
+  - 61.530854520581684
 capacity:
   hydro: 3.3
   oil: 13.6
@@ -61,6 +67,10 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: EU-ETS, ENTSO-E 2024
         value: 857.84
+    unknown:
+      comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
+      source: IPCC 2014
+      value: 0
   lifecycle:
     biomass:
       datetime: '2014-01-01'
@@ -114,6 +124,10 @@ emissionFactors:
       - datetime: '2024-01-01'
         source: EU-ETS, ENTSO-E 2024; IPCC 2014
         value: 1101.84
+    unknown:
+      comment: Data reflects median Ocean (tidal) lifecycle emissions from table A.III.2
+      source: IPCC 2014
+      value: 17
     wind:
       datetime: '2014-01-01'
       source: UNECE 2022, WindEurope "Wind energy in Europe, 2021 Statistics and the
@@ -191,3 +205,9 @@ sources:
       https://proceedings.windeurope.org/biplatform/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhORFJ0ZDJJMWVUbG9OMll6TVRaaGEza3lkamgxZG1aM056WnZZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpQVk1cGJteHBibVU3SUdacGJHVnVZVzFsUFNKWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtSWpzZ1ptbHNaVzVoYldVcVBWVlVSaTA0SnlkWGFXNWtaWFZ5YjNCbExWZHBibVF0Wlc1bGNtZDVMV2x1TFVWMWNtOXdaUzB5TURJeExYTjBZWFJwYzNScFkzTXVjR1JtQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJVVlYQndiR2xqWVhScGIyNHZjR1JtQmpzR1ZBPT0iLCJleHAiOiIyMDIyLTExLTAyVDE1OjU0OjAzLjEyNFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--c25280a7345257bd91bfaf6d64ddb75c55eef799/Windeurope-Wind-energy-in-Europe-2021-statistics.pdf?content_type=application%2Fpdf&disposition=inline%3B+filename%3D%22Windeurope-Wind-energy-in-Europe-2021-statistics.pdf%22%3B+filename%2A%3DUTF-8%27%27Windeurope-Wind-energy-in-Europe-2021-statistics.pdf
 timezone: Atlantic/Faroe
 zone_name: South Island
+isRenewable:
+  unknown:
+    value: 1
+isLowCarbon:
+  unknown:
+    value: 1

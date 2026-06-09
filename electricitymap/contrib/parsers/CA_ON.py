@@ -273,6 +273,8 @@ def fetch_exchange(
                 # positive. For us, positive flow follows the direction of the
                 # arrow in sorted_zone_keys, so change the sign of the flow if
                 # necessary.
+                # Note that this flow is inverted to the rest in the source data.
+                # Check linear GMM-1534 for more info.
                 if not sorted_zone_keys.startswith("CA-ON->"):
                     flow *= -1
                 flows[time(hour=hour, minute=minute)] += flow

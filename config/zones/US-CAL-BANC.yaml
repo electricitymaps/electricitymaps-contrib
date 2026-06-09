@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.123781
-    - 37.076039301
-  - - -120.084803325
-    - 41.868139
+  - - -123.59823598235975
+    - 38.26018835122328
+  - - -121.07101071010703
+    - 41.3570516017451
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -12,6 +12,9 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 9.0
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 15.2
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -52,6 +55,9 @@ capacity:
     - datetime: '2024-01-01'
       source: EIA.gov
       value: 2553.7
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 2557.2
   hydro storage:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -119,6 +125,9 @@ capacity:
     - datetime: '2025-07-01'
       source: EIA.gov
       value: 388.6
+    - datetime: '2025-11-01'
+      source: EIA.gov
+      value: 389.6
   unknown:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -127,6 +136,12 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
+center_point:
+  - -123.00423004230035
+  - 39.977487750773264
+centroid:
+  - -122.47793906510489
+  - 40.02089726337301
 comment: Balancing Authority Of Northern California
 contributors:
   - systemcatch
@@ -134,10 +149,6 @@ contributors:
   - KabelWlan
 country: US
 country_name: USA
-delays:
-  consumption: 30
-  consumptionForecast: 30
-  production: 48
 emissionFactors:
   direct:
     biomass:
