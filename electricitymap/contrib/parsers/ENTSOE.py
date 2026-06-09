@@ -1077,19 +1077,36 @@ def parse_prices(
     if not xml_text:
         return PriceList(logger)
     soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-    prices = PriceList(logger)
+
+    # Keep a single price per MTU. ENTSO-E intraday publishes one timeseries per
+    # auction session (IDA1/IDA2/IDA3), tagged with an ascending
+    # classificationSequence position. The latest session (highest position) is
+    # the most up-to-date price, so for each interval we keep the point from the
+    # highest auction position. Day-ahead has a single session (no position tag,
+    # treated as position 0), so this is a no-op there.
+    best_by_datetime: dict[datetime, tuple[int, datetime, float, str]] = {}
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
+        position_tag = timeseries.find(
+            "classificationsequence_attributeinstancecomponent.position"
+        )
+        position = int(position_tag.contents[0]) if position_tag else 0
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
-            prices.append(
-                zoneKey=zoneKey,
-                datetime=dt,
-                end_datetime=dt_end,
-                price=value,
-                source="entsoe.eu",
-                currency=currency,
-            )
+            current = best_by_datetime.get(dt)
+            if current is None or position >= current[0]:
+                best_by_datetime[dt] = (position, dt_end, value, currency)
+
+    prices = PriceList(logger)
+    for dt, (_position, dt_end, value, currency) in best_by_datetime.items():
+        prices.append(
+            zoneKey=zoneKey,
+            datetime=dt,
+            end_datetime=dt_end,
+            price=value,
+            source="entsoe.eu",
+            currency=currency,
+        )
 
     return prices
 

@@ -336,6 +336,26 @@ class Event(BaseModel, ABC):
             )
         return v.replace(second=0, microsecond=0)
 
+    @validator("end_datetime")
+    def _validate_end_datetime(
+        cls, v: dt.datetime | None, values: dict[str, Any]
+    ) -> dt.datetime | None:
+        # end_datetime is the (exclusive) end of the interval the event covers.
+        # It is optional, but when set it must be timezone-aware and strictly
+        # after `datetime`. It is truncated to whole minutes to match `datetime`.
+        if v is None:
+            return v
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        v = v.replace(second=0, microsecond=0)
+        # `datetime` is validated before `end_datetime` (attribute order), so it
+        # is already present and truncated in `values` — unless it failed
+        # validation, in which case it is absent and we skip the comparison.
+        start = values.get("datetime")
+        if start is not None and v <= start:
+            raise ValueError(f"end_datetime ({v}) must be after datetime ({start})")
+        return v
+
     @staticmethod
     @abstractmethod
     def create(*args, **kwargs) -> "Event":

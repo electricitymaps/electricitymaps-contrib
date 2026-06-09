@@ -1194,3 +1194,75 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
     assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
     assert result[0]["source"] == "trust.me"
     assert result[0]["sourceType"] == EventSourceType.published
+
+
+def test_non_overlapping_list_rejects_overlapping_intervals():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=3),
+        netFlow=2,
+        source="trust.me",
+    )
+    with pytest.raises(ValueError, match="Overlapping events"):
+        exchange_list.to_list()
+
+
+def test_non_overlapping_list_rejects_duplicate_datetimes():
+    production_list = ProductionBreakdownList(logging.Logger("test"))
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for _ in range(2):
+        production_list.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            production=ProductionMix(wind=10),
+            source="trust.me",
+        )
+    with pytest.raises(ValueError, match="Overlapping events"):
+        production_list.to_list()
+
+
+def test_non_overlapping_list_allows_adjacent_intervals():
+    exchange_list = ExchangeList(logging.Logger("test"))
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=1),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=2,
+        source="trust.me",
+    )
+    assert len(exchange_list.to_list()) == 2
+
+
+def test_price_list_rejects_duplicate_datetimes():
+    # PriceList enforces non-overlap: a single price per MTU. The ENTSO-E intraday
+    # parser collapses the multiple auction sessions to one price upstream.
+    price_list = PriceList(logging.Logger("test"))
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for price in (75.0, 77.77):
+        price_list.append(
+            zoneKey=ZoneKey("ES"),
+            datetime=dt,
+            price=price,
+            currency="EUR",
+            source="trust.me",
+        )
+    with pytest.raises(ValueError, match="Overlapping events"):
+        price_list.to_list()

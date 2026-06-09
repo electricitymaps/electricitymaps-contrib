@@ -163,7 +163,50 @@ class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
         return source_types[0]
 
 
-class ExchangeList(AggregatableEventList[Exchange]):
+class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
+    """An EventList representing a single time series, where at most one event
+    covers any given instant.
+
+    Mixed into list types whose events must not overlap (exchanges, production,
+    consumption, prices, exchange capacity). `to_list()` rejects events whose
+    `[datetime, end_datetime)` intervals intersect. Lists that legitimately hold
+    several events per datetime — e.g. locational marginal prices keyed by node,
+    or grid alerts — do NOT use this mixin.
+    """
+
+    def to_list(self) -> list[dict[str, Any]]:
+        self._raise_if_overlapping()
+        return super().to_list()
+
+    def _raise_if_overlapping(self) -> None:
+        """Ensure no two events cover overlapping time intervals.
+
+        Events are sorted by start (`datetime`); a pair overlaps when the
+        earlier event's `end_datetime` is strictly after the later event's
+        `datetime`. Events without an `end_datetime` are treated as
+        instantaneous points at `datetime`, so for those only an identical
+        start counts as an overlap. Because the events are start-sorted,
+        checking consecutive pairs is enough to surface any overlap.
+        """
+        events = sorted(self.events, key=lambda event: event.datetime)
+        for previous, current in zip(events, events[1:], strict=False):
+            if previous.datetime == current.datetime:
+                raise ValueError(
+                    f"Overlapping events in {type(self).__name__}: two events "
+                    f"share datetime {current.datetime}"
+                )
+            if (
+                previous.end_datetime is not None
+                and previous.end_datetime > current.datetime
+            ):
+                raise ValueError(
+                    f"Overlapping events in {type(self).__name__}: interval "
+                    f"ending {previous.end_datetime} overlaps the event starting "
+                    f"{current.datetime}"
+                )
+
+
+class ExchangeList(AggregatableEventList[Exchange], NonOverlappingEventList[Exchange]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -258,7 +301,7 @@ class ExchangeList(AggregatableEventList[Exchange]):
         return exchanges
 
 
-class ExchangeCapacityList(EventList[ExchangeCapacity]):
+class ExchangeCapacityList(NonOverlappingEventList[ExchangeCapacity]):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -310,7 +353,10 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
             self.events.append(event)
 
 
-class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
+class ProductionBreakdownList(
+    AggregatableEventList[ProductionBreakdown],
+    NonOverlappingEventList[ProductionBreakdown],
+):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -447,7 +493,9 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
         return updated_production_breakdowns
 
 
-class TotalProductionList(AggregatableEventList[TotalProduction]):
+class TotalProductionList(
+    AggregatableEventList[TotalProduction], NonOverlappingEventList[TotalProduction]
+):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -518,7 +566,9 @@ class TotalProductionList(AggregatableEventList[TotalProduction]):
         return production_list
 
 
-class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
+class TotalConsumptionList(
+    AggregatableEventList[TotalConsumption], NonOverlappingEventList[TotalConsumption]
+):
     def append(
         self,
         zoneKey: ZoneKey,
@@ -597,7 +647,7 @@ class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
         return consumption_list
 
 
-class PriceList(EventList[Price]):
+class PriceList(NonOverlappingEventList[Price]):
     def append(
         self,
         zoneKey: ZoneKey,
