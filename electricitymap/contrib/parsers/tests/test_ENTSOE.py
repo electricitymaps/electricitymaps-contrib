@@ -53,6 +53,7 @@ def test_fetch_consumption_forecast(requests_mock, session, snapshot):
 
 def test_fetch_consumption_aggregated_zone(monkeypatch):
     dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    dt_end = dt + timedelta(hours=1)
     called_domains: list[str] = []
 
     def fake_query_consumption(in_domain, session, target_datetime=None):
@@ -65,9 +66,9 @@ def test_fetch_consumption_aggregated_zone(monkeypatch):
 
     def fake_parse_scalar(raw_xml, only_outBiddingZone_Domain=True):
         if raw_xml == "raw-it-ca":
-            return [(dt, 70.0)]
+            return [(dt, dt_end, 70.0)]
         if raw_xml == "raw-it-so":
-            return [(dt, 30.0)]
+            return [(dt, dt_end, 30.0)]
         return None
 
     monkeypatch.setattr(ENTSOE, "query_consumption", fake_query_consumption)
@@ -82,6 +83,7 @@ def test_fetch_consumption_aggregated_zone(monkeypatch):
     assert result == [
         {
             "datetime": dt,
+            "end_datetime": dt_end,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 100.0,
             "source": ENTSOE.SOURCE,
@@ -103,6 +105,7 @@ def test_fetch_generation_forecast(requests_mock, session, snapshot):
 
 def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
     dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    dt_end = dt + timedelta(hours=1)
     called_domains: list[str] = []
 
     def fake_query_generation_forecast(in_domain, session, target_datetime=None):
@@ -115,9 +118,9 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
 
     def fake_parse_scalar(raw_xml, only_inBiddingZone_Domain=True):
         if raw_xml == "raw-it-ca":
-            return [(dt, 120.0)]
+            return [(dt, dt_end, 120.0)]
         if raw_xml == "raw-it-so":
-            return [(dt, 80.0)]
+            return [(dt, dt_end, 80.0)]
         return None
 
     monkeypatch.setattr(
@@ -134,6 +137,7 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
     assert result == [
         {
             "datetime": dt,
+            "end_datetime": dt_end,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 200.0,
             "source": ENTSOE.SOURCE,

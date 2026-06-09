@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 320.0,
         'gas': 700.0,
@@ -28,7 +28,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': datetime.datetime(2024, 1, 1, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 321.0,
         'gas': 550.0,
@@ -51,7 +51,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 325.84,
         'gas': 560.96,
@@ -74,7 +74,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 1, 1, 1, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 320.65,
         'gas': None,

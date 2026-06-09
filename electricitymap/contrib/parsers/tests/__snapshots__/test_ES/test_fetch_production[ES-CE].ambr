@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 20, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
         'gas': 0.07,
@@ -22,7 +22,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 20, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
         'gas': 0.07,
@@ -39,7 +39,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 20, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Africa/Ceuta')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 0.0,
         'gas': 0.07,

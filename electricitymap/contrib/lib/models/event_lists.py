@@ -170,11 +170,11 @@ class ExchangeList(AggregatableEventList[Exchange]):
         datetime: datetime,
         source: str,
         netFlow: float | None,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Exchange.create(
-            self.logger, zoneKey, datetime, datetime_end, source, netFlow, sourceType
+            self.logger, zoneKey, datetime, end_datetime, source, netFlow, sourceType
         )
         if event:
             self.events.append(event)
@@ -203,28 +203,28 @@ class ExchangeList(AggregatableEventList[Exchange]):
         exchange_df = exchange_df.rename(columns={"sortedZoneKeys": "zoneKey"})
         zone_key, sources, source_type = ExchangeList.get_zone_source_type(exchange_df)
 
-        datetime_ends = None
-        if "datetime_end" in exchange_df.columns:
-            datetime_ends = exchange_df.groupby(level="datetime")[
-                "datetime_end"
+        end_datetimes = None
+        if "end_datetime" in exchange_df.columns:
+            end_datetimes = exchange_df.groupby(level="datetime")[
+                "end_datetime"
             ].first()
 
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True,
         )
         for dt, row in exchange_df.iterrows():
-            datetime_end = None
-            if datetime_ends is not None:
-                val = datetime_ends.get(dt)
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
                 if not pd.isna(val):
-                    datetime_end = val.to_pydatetime()
+                    end_datetime = val.to_pydatetime()
 
             exchanges.append(
                 zoneKey=zone_key,
                 datetime=dt.to_pydatetime(),
                 source=sources,
                 netFlow=row["netFlow"],
-                datetime_end=datetime_end,
+                end_datetime=end_datetime,
                 sourceType=source_type,
             )
 
@@ -251,7 +251,7 @@ class ExchangeList(AggregatableEventList[Exchange]):
                     new_event.datetime,
                     new_event.source,
                     new_event.netFlow,
-                    new_event.datetime_end,
+                    new_event.end_datetime,
                     new_event.sourceType,
                 )
 
@@ -266,12 +266,14 @@ class ExchangeCapacityList(EventList[ExchangeCapacity]):
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
         event = ExchangeCapacity.create(
             self.logger,
             zoneKey,
             datetime,
+            end_datetime,
             source,
             capacityExport,
             capacityImport,
@@ -290,12 +292,14 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
         capacityExport: float | None,
         capacityImport: float | None,
         atcType: AtcType,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
         event = ExchangeAtc.create(
             self.logger,
             zoneKey,
             datetime,
+            end_datetime,
             source,
             capacityExport,
             capacityImport,
@@ -312,7 +316,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -321,7 +325,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
             self.logger,
             zoneKey,
             datetime,
-            datetime_end,
+            end_datetime,
             source,
             production,
             storage,
@@ -411,7 +415,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
                     updated_event.zoneKey,
                     updated_event.datetime,
                     updated_event.source,
-                    updated_event.datetime_end,
+                    updated_event.end_datetime,
                     updated_event.production,
                     updated_event.storage,
                     updated_event.sourceType,
@@ -421,7 +425,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
                     new_event.zoneKey,
                     new_event.datetime,
                     new_event.source,
-                    new_event.datetime_end,
+                    new_event.end_datetime,
                     new_event.production,
                     new_event.storage,
                     new_event.sourceType,
@@ -434,7 +438,7 @@ class ProductionBreakdownList(AggregatableEventList[ProductionBreakdown]):
                         existing_event.zoneKey,
                         existing_event.datetime,
                         existing_event.source,
-                        existing_event.datetime_end,
+                        existing_event.end_datetime,
                         existing_event.production,
                         existing_event.storage,
                         existing_event.sourceType,
@@ -450,11 +454,11 @@ class TotalProductionList(AggregatableEventList[TotalProduction]):
         datetime: datetime,
         source: str,
         value: float | None,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalProduction.create(
-            self.logger, zoneKey, datetime, datetime_end, source, value, sourceType
+            self.logger, zoneKey, datetime, end_datetime, source, value, sourceType
         )
         if event:
             self.events.append(event)
@@ -485,13 +489,31 @@ class TotalProductionList(AggregatableEventList[TotalProduction]):
         zone_key, sources, source_type = TotalProductionList.get_zone_source_type(
             production_df
         )
+
+        end_datetimes = None
+        if "end_datetime" in production_df.columns:
+            end_datetimes = production_df.groupby(level="datetime")[
+                "end_datetime"
+            ].first()
+
         production_df = production_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
         for dt, row in production_df.iterrows():
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
+                if not pd.isna(val):
+                    end_datetime = val.to_pydatetime()
+
             production_list.append(
-                zone_key, dt.to_pydatetime(), sources, row["value"], source_type
-            )  # type: ignore
+                zoneKey=zone_key,
+                datetime=dt.to_pydatetime(),
+                source=sources,
+                value=row["value"],
+                end_datetime=end_datetime,
+                sourceType=source_type,
+            )
 
         return production_list
 
@@ -503,14 +525,14 @@ class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
         datetime: datetime,
         source: str,
         consumption: float | None,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = TotalConsumption.create(
             self.logger,
             zoneKey,
             datetime,
-            datetime_end,
+            end_datetime,
             source,
             consumption,
             sourceType,
@@ -546,13 +568,31 @@ class TotalConsumptionList(AggregatableEventList[TotalConsumption]):
         zone_key, sources, source_type = TotalConsumptionList.get_zone_source_type(
             consumption_df
         )
+
+        end_datetimes = None
+        if "end_datetime" in consumption_df.columns:
+            end_datetimes = consumption_df.groupby(level="datetime")[
+                "end_datetime"
+            ].first()
+
         consumption_df = consumption_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
         )
         for dt, row in consumption_df.iterrows():
+            end_datetime = None
+            if end_datetimes is not None:
+                val = end_datetimes.get(dt)
+                if not pd.isna(val):
+                    end_datetime = val.to_pydatetime()
+
             consumption_list.append(
-                zone_key, dt.to_pydatetime(), sources, row["consumption"], source_type
-            )  # type: ignore
+                zoneKey=zone_key,
+                datetime=dt.to_pydatetime(),
+                source=sources,
+                consumption=row["consumption"],
+                end_datetime=end_datetime,
+                sourceType=source_type,
+            )
 
         return consumption_list
 
@@ -565,14 +605,14 @@ class PriceList(EventList[Price]):
         source: str,
         price: float | None,
         currency: str,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = Price.create(
             self.logger,
             zoneKey,
             datetime,
-            datetime_end,
+            end_datetime,
             source,
             price,
             currency,
@@ -591,14 +631,14 @@ class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
         price: float | None,
         currency: str,
         node: str,
-        datetime_end: datetime | None = None,
+        end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
         event = LocationalMarginalPrice.create(
             self.logger,
             zoneKey,
             datetime,
-            datetime_end,
+            end_datetime,
             source,
             price,
             currency,

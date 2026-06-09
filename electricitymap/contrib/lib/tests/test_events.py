@@ -125,7 +125,7 @@ def test_exchange_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DER->FR"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             netFlow=-1,
             source="trust.me",
         )
@@ -263,7 +263,7 @@ def test_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             consumption=-1,
             source="trust.me",
         )
@@ -516,7 +516,7 @@ def test_negative_production_gets_corrected():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -543,7 +543,7 @@ def test_self_report_negative_value():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -617,7 +617,7 @@ def test_static_create_logs_error_with_none():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             production=ProductionMix(wind=None),
             source="trust.me",
         )
@@ -631,7 +631,7 @@ def test_static_create_logs_with_nan():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             production=ProductionMix(wind=math.nan),
             source="trust.me",
         )
@@ -645,7 +645,7 @@ def test_static_create_logs_with_nan_using_numpy():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             production=ProductionMix(wind=np.nan),
             source="trust.me",
         )
@@ -700,7 +700,7 @@ def test_total_production_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
-            datetime_end=None,
+            end_datetime=None,
             value=-1,
             source="trust.me",
         )
@@ -1128,6 +1128,7 @@ def test_exchange_capacity_forecast_create_defaults_to_published():
         logger=logger,
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
         source="trust.me",
         capacityExport=1000.0,
         capacityImport=900.0,
@@ -1218,6 +1219,7 @@ def test_exchange_capacity_forecast_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE->AT"),  # unsorted
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             source="trust.me",
             capacityExport=1000.0,
             capacityImport=900.0,

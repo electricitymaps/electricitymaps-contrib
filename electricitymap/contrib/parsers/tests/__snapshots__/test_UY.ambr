@@ -4,6 +4,7 @@
     dict({
       'consumption': np.float64(1731.86),
       'datetime': datetime.datetime(2025, 2, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -11,6 +12,7 @@
     dict({
       'consumption': np.float64(1732.458),
       'datetime': datetime.datetime(2025, 2, 5, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -18,6 +20,7 @@
     dict({
       'consumption': np.float64(1715.165),
       'datetime': datetime.datetime(2025, 2, 5, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -25,6 +28,7 @@
     dict({
       'consumption': np.float64(1693.582),
       'datetime': datetime.datetime(2025, 2, 5, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -32,6 +36,7 @@
     dict({
       'consumption': np.float64(1677.182),
       'datetime': datetime.datetime(2025, 2, 5, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -39,6 +44,7 @@
     dict({
       'consumption': np.float64(1652.852),
       'datetime': datetime.datetime(2025, 2, 5, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -46,6 +52,7 @@
     dict({
       'consumption': np.float64(1629.982),
       'datetime': datetime.datetime(2025, 2, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -53,6 +60,7 @@
     dict({
       'consumption': np.float64(1596.87),
       'datetime': datetime.datetime(2025, 2, 5, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -60,6 +68,7 @@
     dict({
       'consumption': np.float64(1578.282),
       'datetime': datetime.datetime(2025, 2, 5, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -67,6 +76,7 @@
     dict({
       'consumption': np.float64(1557.033),
       'datetime': datetime.datetime(2025, 2, 5, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -74,6 +84,7 @@
     dict({
       'consumption': np.float64(1534.061),
       'datetime': datetime.datetime(2025, 2, 5, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -81,6 +92,7 @@
     dict({
       'consumption': np.float64(1514.345),
       'datetime': datetime.datetime(2025, 2, 5, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -88,6 +100,7 @@
     dict({
       'consumption': np.float64(1498.047),
       'datetime': datetime.datetime(2025, 2, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -95,6 +108,7 @@
     dict({
       'consumption': np.float64(1482.896),
       'datetime': datetime.datetime(2025, 2, 5, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -102,6 +116,7 @@
     dict({
       'consumption': np.float64(1465.763),
       'datetime': datetime.datetime(2025, 2, 5, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -109,6 +124,7 @@
     dict({
       'consumption': np.float64(1451.229),
       'datetime': datetime.datetime(2025, 2, 5, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -116,6 +132,7 @@
     dict({
       'consumption': np.float64(1439.428),
       'datetime': datetime.datetime(2025, 2, 5, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -123,6 +140,7 @@
     dict({
       'consumption': np.float64(1440.445),
       'datetime': datetime.datetime(2025, 2, 5, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -130,6 +148,7 @@
     dict({
       'consumption': np.float64(1422.723),
       'datetime': datetime.datetime(2025, 2, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -137,6 +156,7 @@
     dict({
       'consumption': np.float64(1417.507),
       'datetime': datetime.datetime(2025, 2, 5, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -144,6 +164,7 @@
     dict({
       'consumption': np.float64(1402.141),
       'datetime': datetime.datetime(2025, 2, 5, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -151,6 +172,7 @@
     dict({
       'consumption': np.float64(1405.939),
       'datetime': datetime.datetime(2025, 2, 5, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -158,6 +180,7 @@
     dict({
       'consumption': np.float64(1395.53),
       'datetime': datetime.datetime(2025, 2, 5, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -165,6 +188,7 @@
     dict({
       'consumption': np.float64(1391.632),
       'datetime': datetime.datetime(2025, 2, 5, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -172,6 +196,7 @@
     dict({
       'consumption': np.float64(1383.089),
       'datetime': datetime.datetime(2025, 2, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -179,6 +204,7 @@
     dict({
       'consumption': np.float64(1376.833),
       'datetime': datetime.datetime(2025, 2, 5, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -186,6 +212,7 @@
     dict({
       'consumption': np.float64(1374.049),
       'datetime': datetime.datetime(2025, 2, 5, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -193,6 +220,7 @@
     dict({
       'consumption': np.float64(1367.204),
       'datetime': datetime.datetime(2025, 2, 5, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -200,6 +228,7 @@
     dict({
       'consumption': np.float64(1371.433),
       'datetime': datetime.datetime(2025, 2, 5, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -207,6 +236,7 @@
     dict({
       'consumption': np.float64(1359.559),
       'datetime': datetime.datetime(2025, 2, 5, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -214,6 +244,7 @@
     dict({
       'consumption': np.float64(1364.302),
       'datetime': datetime.datetime(2025, 2, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -221,6 +252,7 @@
     dict({
       'consumption': np.float64(1371.365),
       'datetime': datetime.datetime(2025, 2, 5, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -228,6 +260,7 @@
     dict({
       'consumption': np.float64(1370.068),
       'datetime': datetime.datetime(2025, 2, 5, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -235,6 +268,7 @@
     dict({
       'consumption': np.float64(1370.062),
       'datetime': datetime.datetime(2025, 2, 5, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -242,6 +276,7 @@
     dict({
       'consumption': np.float64(1396.507),
       'datetime': datetime.datetime(2025, 2, 5, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -249,6 +284,7 @@
     dict({
       'consumption': np.float64(1396.392),
       'datetime': datetime.datetime(2025, 2, 5, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -256,6 +292,7 @@
     dict({
       'consumption': np.float64(1375.166),
       'datetime': datetime.datetime(2025, 2, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -263,6 +300,7 @@
     dict({
       'consumption': np.float64(1393.172),
       'datetime': datetime.datetime(2025, 2, 5, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -270,6 +308,7 @@
     dict({
       'consumption': np.float64(1403.321),
       'datetime': datetime.datetime(2025, 2, 5, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -277,6 +316,7 @@
     dict({
       'consumption': np.float64(1400.663),
       'datetime': datetime.datetime(2025, 2, 5, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -284,6 +324,7 @@
     dict({
       'consumption': np.float64(1398.53),
       'datetime': datetime.datetime(2025, 2, 5, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -291,6 +332,7 @@
     dict({
       'consumption': np.float64(1398.705),
       'datetime': datetime.datetime(2025, 2, 5, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -298,6 +340,7 @@
     dict({
       'consumption': np.float64(1418.518),
       'datetime': datetime.datetime(2025, 2, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -305,6 +348,7 @@
     dict({
       'consumption': np.float64(1435.745),
       'datetime': datetime.datetime(2025, 2, 5, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -312,6 +356,7 @@
     dict({
       'consumption': np.float64(1465.539),
       'datetime': datetime.datetime(2025, 2, 5, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -319,6 +364,7 @@
     dict({
       'consumption': np.float64(1480.5),
       'datetime': datetime.datetime(2025, 2, 5, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -326,6 +372,7 @@
     dict({
       'consumption': np.float64(1494.548),
       'datetime': datetime.datetime(2025, 2, 5, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -333,6 +380,7 @@
     dict({
       'consumption': np.float64(1520.417),
       'datetime': datetime.datetime(2025, 2, 5, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -340,6 +388,7 @@
     dict({
       'consumption': np.float64(1544.338),
       'datetime': datetime.datetime(2025, 2, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -347,6 +396,7 @@
     dict({
       'consumption': np.float64(1565.434),
       'datetime': datetime.datetime(2025, 2, 5, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -354,6 +404,7 @@
     dict({
       'consumption': np.float64(1581.274),
       'datetime': datetime.datetime(2025, 2, 5, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -361,6 +412,7 @@
     dict({
       'consumption': np.float64(1584.206),
       'datetime': datetime.datetime(2025, 2, 5, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -368,6 +420,7 @@
     dict({
       'consumption': np.float64(1621.782),
       'datetime': datetime.datetime(2025, 2, 5, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -375,6 +428,7 @@
     dict({
       'consumption': np.float64(1617.905),
       'datetime': datetime.datetime(2025, 2, 5, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -382,6 +436,7 @@
     dict({
       'consumption': np.float64(1637.64),
       'datetime': datetime.datetime(2025, 2, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -389,6 +444,7 @@
     dict({
       'consumption': np.float64(1650.671),
       'datetime': datetime.datetime(2025, 2, 5, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -396,6 +452,7 @@
     dict({
       'consumption': np.float64(1666.065),
       'datetime': datetime.datetime(2025, 2, 5, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -403,6 +460,7 @@
     dict({
       'consumption': np.float64(1658.289),
       'datetime': datetime.datetime(2025, 2, 5, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -410,6 +468,7 @@
     dict({
       'consumption': np.float64(1693.934),
       'datetime': datetime.datetime(2025, 2, 5, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -417,6 +476,7 @@
     dict({
       'consumption': np.float64(1673.718),
       'datetime': datetime.datetime(2025, 2, 5, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -424,6 +484,7 @@
     dict({
       'consumption': np.float64(1695.598),
       'datetime': datetime.datetime(2025, 2, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -431,6 +492,7 @@
     dict({
       'consumption': np.float64(1704.433),
       'datetime': datetime.datetime(2025, 2, 5, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -438,6 +500,7 @@
     dict({
       'consumption': np.float64(1712.769),
       'datetime': datetime.datetime(2025, 2, 5, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -445,6 +508,7 @@
     dict({
       'consumption': np.float64(1726.845),
       'datetime': datetime.datetime(2025, 2, 5, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -452,6 +516,7 @@
     dict({
       'consumption': np.float64(1742.346),
       'datetime': datetime.datetime(2025, 2, 5, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -459,6 +524,7 @@
     dict({
       'consumption': np.float64(1748.761),
       'datetime': datetime.datetime(2025, 2, 5, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
+      'end_datetime': None,
       'source': 'pronos.adme.com.uy',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'UY',
@@ -471,7 +537,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 154.684,
         'hydro': 395.119,
@@ -489,7 +555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 152.916,
         'hydro': 438.238,
@@ -507,7 +573,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 156.361,
         'hydro': 496.103,
@@ -525,7 +591,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 158.724,
         'hydro': 511.101,
@@ -543,7 +609,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 157.661,
         'hydro': 495.455,
@@ -561,7 +627,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 153.527,
         'hydro': 480.027,
@@ -579,7 +645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 157.146,
         'hydro': 468.138,
@@ -597,7 +663,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 156.906,
         'hydro': 443.227,
@@ -615,7 +681,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 154.275,
         'hydro': 432.853,
@@ -633,7 +699,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 160.653,
         'hydro': 348.463,
@@ -651,7 +717,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 157.933,
         'hydro': 366.232,
@@ -669,7 +735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 157.929,
         'hydro': 331.258,
@@ -687,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 160.459,
         'hydro': 402.771,
@@ -705,7 +771,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 160.341,
         'hydro': 377.978,
@@ -723,7 +789,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 166.759,
         'hydro': 362.938,
@@ -741,7 +807,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 158.675,
         'hydro': 368.605,
@@ -759,7 +825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 166.314,
         'hydro': 345.635,
@@ -777,7 +843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 167.451,
         'hydro': 366.527,
@@ -795,7 +861,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 169.128,
         'hydro': 325.201,
@@ -813,7 +879,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 166.34,
         'hydro': 320.64,
@@ -831,7 +897,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 165.49,
         'hydro': 323.343,
@@ -849,7 +915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 162.273,
         'hydro': 342.884,
@@ -867,7 +933,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 169.642,
         'hydro': 344.291,
@@ -885,7 +951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 177.356,
         'hydro': 345.244,
@@ -903,7 +969,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 173.013,
         'hydro': 363.81,
@@ -921,7 +987,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 188.317,
         'hydro': 363.843,
@@ -939,7 +1005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 184.619,
         'hydro': 312.217,
@@ -957,7 +1023,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 192.464,
         'hydro': 345.923,
@@ -975,7 +1041,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 195.199,
         'hydro': 337.275,
@@ -993,7 +1059,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 196.735,
         'hydro': 382.406,
@@ -1011,7 +1077,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 196.365,
         'hydro': 371.214,
@@ -1029,7 +1095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 196.728,
         'hydro': 370.187,
@@ -1047,7 +1113,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 185.736,
         'hydro': 364.725,
@@ -1065,7 +1131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 181.378,
         'hydro': 373.291,
@@ -1083,7 +1149,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 188.1,
         'hydro': 423.539,
@@ -1101,7 +1167,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 173.091,
         'hydro': 369.194,
@@ -1119,7 +1185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 181.917,
         'hydro': 363.078,
@@ -1137,7 +1203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 179.753,
         'hydro': 309.621,
@@ -1155,7 +1221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 187.779,
         'hydro': 294.993,
@@ -1173,7 +1239,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 184.904,
         'hydro': 318.939,
@@ -1191,7 +1257,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 184.518,
         'hydro': 290.988,
@@ -1209,7 +1275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 186.724,
         'hydro': 318.403,
@@ -1227,7 +1293,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 187.42,
         'hydro': 305.701,
@@ -1245,7 +1311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 182.009,
         'hydro': 299.406,
@@ -1263,7 +1329,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 183.697,
         'hydro': 338.881,
@@ -1281,7 +1347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 176.903,
         'hydro': 390.792,
@@ -1299,7 +1365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 185.75,
         'hydro': 406.541,
@@ -1317,7 +1383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 180.187,
         'hydro': 319.997,
@@ -1335,7 +1401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 175.953,
         'hydro': 336.359,
@@ -1353,7 +1419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 179.788,
         'hydro': 346.256,
@@ -1371,7 +1437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 182.498,
         'hydro': 363.599,
@@ -1389,7 +1455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 185.117,
         'hydro': 357.809,
@@ -1407,7 +1473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 177.75,
         'hydro': 391.059,
@@ -1425,7 +1491,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 169.57,
         'hydro': 371.426,
@@ -1443,7 +1509,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 163.92,
         'hydro': 353.35,
@@ -1461,7 +1527,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 181.627,
         'hydro': 333.571,
@@ -1479,7 +1545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 178.753,
         'hydro': 330.896,
@@ -1497,7 +1563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 179.924,
         'hydro': 306.28,
@@ -1515,7 +1581,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 178.07,
         'hydro': 359.407,
@@ -1533,7 +1599,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 180.622,
         'hydro': 328.264,
@@ -1551,7 +1617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 179.054,
         'hydro': 328.335,
@@ -1569,7 +1635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 170.226,
         'hydro': 335.477,
@@ -1587,7 +1653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 180.702,
         'hydro': 329.583,
@@ -1605,7 +1671,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 172.105,
         'hydro': 352.078,
@@ -1623,7 +1689,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 171.755,
         'hydro': 374.389,
@@ -1641,7 +1707,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 5, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='America/Montevideo')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 159.842,
         'hydro': 347.767,

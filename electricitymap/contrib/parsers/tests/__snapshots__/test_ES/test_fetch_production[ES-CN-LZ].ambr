@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 27, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 82.3,
@@ -23,7 +23,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 27, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 81.2,
@@ -41,7 +41,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 27, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 81.8,
@@ -59,7 +59,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 27, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 80.7,
@@ -77,7 +77,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 27, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Atlantic/Canary')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.0,
         'oil': 89.2,

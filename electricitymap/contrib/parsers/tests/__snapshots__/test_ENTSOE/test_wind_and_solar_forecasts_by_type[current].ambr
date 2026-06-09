@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 22, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1860.0,
@@ -20,7 +20,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 22, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 22, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1866.0,
@@ -35,7 +35,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 22, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 22, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1876.0,
@@ -50,7 +50,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 22, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1897.0,
@@ -65,7 +65,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 23, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1802.0,
@@ -80,7 +80,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 23, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 23, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1811.0,
@@ -95,7 +95,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 23, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 7, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 7, 23, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1825.0,
@@ -110,7 +110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 7, 23, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1860.0,
@@ -125,7 +125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 0, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1791.0,
@@ -140,7 +140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 0, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 0, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1800.0,
@@ -155,7 +155,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 0, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 0, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1815.0,
@@ -170,7 +170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 0, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1849.0,
@@ -185,7 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 1, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1795.0,
@@ -200,7 +200,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 1, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 1, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1803.0,
@@ -215,7 +215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 1, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 1, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1816.0,
@@ -230,7 +230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 1, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1841.0,
@@ -245,7 +245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 2, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1711.0,
@@ -260,7 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 2, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 2, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1722.0,
@@ -275,7 +275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 2, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 2, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1742.0,
@@ -290,7 +290,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 2, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1781.0,
@@ -305,7 +305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 3, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1813.0,
@@ -320,7 +320,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 3, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 3, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1825.0,
@@ -335,7 +335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 3, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 3, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1845.0,
@@ -350,7 +350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 3, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1884.0,
@@ -365,7 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 4, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2008.0,
@@ -380,7 +380,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 4, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 4, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2019.0,
@@ -395,7 +395,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 4, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 4, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2039.0,
@@ -410,7 +410,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 4, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2081.0,
@@ -425,7 +425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 5, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2230.0,
@@ -440,7 +440,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 5, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 5, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2239.0,
@@ -455,7 +455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 5, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 5, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 2253.0,
@@ -470,7 +470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 5, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2291.0,
@@ -485,7 +485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 6, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2431.0,
@@ -500,7 +500,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 6, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 6, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2431.0,
@@ -515,7 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 6, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 6, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 2431.0,
@@ -530,7 +530,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 6, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 10.0,
         'wind': 2431.0,
@@ -545,7 +545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 7, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 30.0,
         'wind': 2513.0,
@@ -560,7 +560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 7, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 7, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 33.0,
         'wind': 2516.0,
@@ -575,7 +575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 7, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 7, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 40.0,
         'wind': 2511.0,
@@ -590,7 +590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 7, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 55.0,
         'wind': 2540.0,
@@ -605,7 +605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 8, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 94.0,
         'wind': 2651.0,
@@ -620,7 +620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 8, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 8, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 97.0,
         'wind': 2619.0,
@@ -635,7 +635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 8, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 8, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 101.0,
         'wind': 2561.0,
@@ -650,7 +650,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 8, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 111.0,
         'wind': 2452.0,
@@ -665,7 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 9, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 148.0,
         'wind': 1963.0,
@@ -680,7 +680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 9, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 9, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 149.0,
         'wind': 1941.0,
@@ -695,7 +695,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 9, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 9, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 150.0,
         'wind': 1904.0,
@@ -710,7 +710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 9, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 153.0,
         'wind': 1826.0,
@@ -725,7 +725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 10, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 1927.0,
@@ -740,7 +740,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 10, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 10, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 1907.0,
@@ -755,7 +755,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 10, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 10, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 1876.0,
@@ -770,7 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 10, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 166.0,
         'wind': 1799.0,
@@ -785,7 +785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 11, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 172.0,
         'wind': 1850.0,
@@ -800,7 +800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 11, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 11, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 170.0,
         'wind': 1844.0,
@@ -815,7 +815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 11, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 11, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 1836.0,
@@ -830,7 +830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 11, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 157.0,
         'wind': 1808.0,
@@ -845,7 +845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 12, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 127.0,
         'wind': 1718.0,
@@ -860,7 +860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 12, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 12, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 124.0,
         'wind': 1729.0,
@@ -875,7 +875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 12, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 12, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 117.0,
         'wind': 1750.0,
@@ -890,7 +890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 12, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 104.0,
         'wind': 1789.0,
@@ -905,7 +905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 13, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 65.0,
         'wind': 1797.0,
@@ -920,7 +920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 13, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 13, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 62.0,
         'wind': 1812.0,
@@ -935,7 +935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 13, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 13, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 57.0,
         'wind': 1840.0,
@@ -950,7 +950,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 13, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 43.0,
         'wind': 1895.0,
@@ -965,7 +965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 14, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1946.0,
@@ -980,7 +980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 14, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 14, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1961.0,
@@ -995,7 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 14, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 14, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1986.0,
@@ -1010,7 +1010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 14, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 2042.0,
@@ -1025,7 +1025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 15, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2112.0,
@@ -1040,7 +1040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 15, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 15, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2119.0,
@@ -1055,7 +1055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 15, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 15, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2131.0,
@@ -1070,7 +1070,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 15, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2161.0,
@@ -1085,7 +1085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 16, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2199.0,
@@ -1100,7 +1100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 16, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 16, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2200.0,
@@ -1115,7 +1115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 16, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 16, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2201.0,
@@ -1130,7 +1130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 16, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2208.0,
@@ -1145,7 +1145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 17, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2327.0,
@@ -1160,7 +1160,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 17, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 17, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2323.0,
@@ -1175,7 +1175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 17, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 17, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2315.0,
@@ -1190,7 +1190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 17, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2298.0,
@@ -1205,7 +1205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 18, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2431.0,
@@ -1220,7 +1220,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 18, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 18, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2424.0,
@@ -1235,7 +1235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 18, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 18, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2411.0,
@@ -1250,7 +1250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 18, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2388.0,
@@ -1265,7 +1265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 19, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2487.0,
@@ -1280,7 +1280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 19, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 19, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2476.0,
@@ -1295,7 +1295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 19, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 19, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2457.0,
@@ -1310,7 +1310,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 19, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2419.0,
@@ -1325,7 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 20, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2456.0,
@@ -1340,7 +1340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 20, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 20, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2442.0,
@@ -1355,7 +1355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 20, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 20, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2418.0,
@@ -1370,7 +1370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 20, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2368.0,
@@ -1385,7 +1385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 21, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2487.0,
@@ -1400,7 +1400,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 21, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 21, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2472.0,
@@ -1415,7 +1415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 21, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 21, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2447.0,
@@ -1430,7 +1430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 21, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2391.0,
@@ -1445,7 +1445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 22, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2220.0,
@@ -1460,7 +1460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 22, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 22, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2208.0,
@@ -1475,7 +1475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 22, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 22, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2187.0,
@@ -1490,7 +1490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 22, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2145.0,
@@ -1505,7 +1505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 23, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2088.0,
@@ -1520,7 +1520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 23, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 23, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2077.0,
@@ -1535,7 +1535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 23, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 8, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 8, 23, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2059.0,
@@ -1550,7 +1550,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 8, 23, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 2020.0,
@@ -1565,7 +1565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 0, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1966.0,
@@ -1580,7 +1580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 0, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 0, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1957.0,
@@ -1595,7 +1595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 0, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 0, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1941.0,
@@ -1610,7 +1610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 0, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1906.0,
@@ -1625,7 +1625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 1, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1762.0,
@@ -1640,7 +1640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 1, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 1, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1755.0,
@@ -1655,7 +1655,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 1, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 1, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1742.0,
@@ -1670,7 +1670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 1, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1722.0,
@@ -1685,7 +1685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 2, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1574.0,
@@ -1700,7 +1700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 2, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 2, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1566.0,
@@ -1715,7 +1715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 2, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 2, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1552.0,
@@ -1730,7 +1730,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 2, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1522.0,
@@ -1745,7 +1745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 3, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1372.0,
@@ -1760,7 +1760,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 3, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 3, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1368.0,
@@ -1775,7 +1775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 3, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 3, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1361.0,
@@ -1790,7 +1790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 3, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1345.0,
@@ -1805,7 +1805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 4, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1272.0,
@@ -1820,7 +1820,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 4, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 4, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1272.0,
@@ -1835,7 +1835,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 4, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 4, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1271.0,
@@ -1850,7 +1850,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 4, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1271.0,
@@ -1865,7 +1865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 5, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1351.0,
@@ -1880,7 +1880,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 5, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 5, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1349.0,
@@ -1895,7 +1895,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 5, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 5, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1345.0,
@@ -1910,7 +1910,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 5, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1342.0,
@@ -1925,7 +1925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 6, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1368.0,
@@ -1940,7 +1940,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 6, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 6, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1361.0,
@@ -1955,7 +1955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 6, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 6, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1348.0,
@@ -1970,7 +1970,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 6, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 13.0,
         'wind': 1327.0,
@@ -1985,7 +1985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 7, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 45.0,
         'wind': 1351.0,
@@ -2000,7 +2000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 7, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 7, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 49.0,
         'wind': 1341.0,
@@ -2015,7 +2015,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 7, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 7, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 57.0,
         'wind': 1326.0,
@@ -2030,7 +2030,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 7, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 73.0,
         'wind': 1285.0,
@@ -2045,7 +2045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 8, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 124.0,
         'wind': 1151.0,
@@ -2060,7 +2060,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 8, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 8, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 128.0,
         'wind': 1153.0,
@@ -2075,7 +2075,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 8, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 8, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 133.0,
         'wind': 1157.0,
@@ -2090,7 +2090,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 8, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 146.0,
         'wind': 1161.0,
@@ -2105,7 +2105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 9, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 181.0,
         'wind': 1028.0,
@@ -2120,7 +2120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 9, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 9, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 182.0,
         'wind': 1024.0,
@@ -2135,7 +2135,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 9, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 9, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 184.0,
         'wind': 1019.0,
@@ -2150,7 +2150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 9, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 190.0,
         'wind': 1007.0,
@@ -2165,7 +2165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 10, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 209.0,
         'wind': 834.0,
@@ -2180,7 +2180,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 10, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 10, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 208.0,
         'wind': 826.0,
@@ -2195,7 +2195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 10, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 10, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 206.0,
         'wind': 813.0,
@@ -2210,7 +2210,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 10, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 202.0,
         'wind': 785.0,
@@ -2225,7 +2225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 11, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 195.0,
         'wind': 646.0,
@@ -2240,7 +2240,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 11, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 11, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 192.0,
         'wind': 642.0,
@@ -2255,7 +2255,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 11, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 11, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 187.0,
         'wind': 635.0,
@@ -2270,7 +2270,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 11, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 178.0,
         'wind': 619.0,
@@ -2285,7 +2285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 12, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 154.0,
         'wind': 529.0,
@@ -2300,7 +2300,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 12, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 12, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 150.0,
         'wind': 529.0,
@@ -2315,7 +2315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 12, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 12, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 142.0,
         'wind': 530.0,
@@ -2330,7 +2330,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 12, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 127.0,
         'wind': 528.0,
@@ -2345,7 +2345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 13, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 88.0,
         'wind': 442.0,
@@ -2360,7 +2360,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 13, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 13, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 83.0,
         'wind': 447.0,
@@ -2375,7 +2375,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 13, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 13, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 76.0,
         'wind': 456.0,
@@ -2390,7 +2390,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 13, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 57.0,
         'wind': 475.0,
@@ -2405,7 +2405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 14, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 2.0,
         'wind': 486.0,
@@ -2420,7 +2420,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 14, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 14, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 2.0,
         'wind': 491.0,
@@ -2435,7 +2435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 14, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 14, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 2.0,
         'wind': 499.0,
@@ -2450,7 +2450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 14, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 514.0,
@@ -2465,7 +2465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 15, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 552.0,
@@ -2480,7 +2480,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 15, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 15, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 557.0,
@@ -2495,7 +2495,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 15, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 15, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 565.0,
@@ -2510,7 +2510,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 15, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 580.0,
@@ -2525,7 +2525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 16, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 619.0,
@@ -2540,7 +2540,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 16, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 16, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 624.0,
@@ -2555,7 +2555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 16, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 16, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 631.0,
@@ -2570,7 +2570,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 16, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 651.0,
@@ -2585,7 +2585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 17, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 759.0,
@@ -2600,7 +2600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 17, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 17, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 757.0,
@@ -2615,7 +2615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 17, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 17, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 753.0,
@@ -2630,7 +2630,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 17, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 746.0,
@@ -2645,7 +2645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 18, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 730.0,
@@ -2660,7 +2660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 18, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 18, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 725.0,
@@ -2675,7 +2675,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 18, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 18, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 717.0,
@@ -2690,7 +2690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 18, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 697.0,
@@ -2705,7 +2705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 19, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 658.0,
@@ -2720,7 +2720,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 19, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 19, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 637.0,
@@ -2735,7 +2735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 19, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 19, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 627.0,
@@ -2750,7 +2750,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 19, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 621.0,
@@ -2765,7 +2765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 20, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 627.0,
@@ -2780,7 +2780,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 20, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 20, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 625.0,
@@ -2795,7 +2795,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 20, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 20, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 620.0,
@@ -2810,7 +2810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 20, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 615.0,
@@ -2825,7 +2825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 21, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 611.0,
@@ -2840,7 +2840,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 21, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 21, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 605.0,
@@ -2855,7 +2855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 21, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 21, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 599.0,
@@ -2870,7 +2870,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 21, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 592.0,
@@ -2885,7 +2885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 22, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 584.0,
@@ -2900,7 +2900,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 22, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 22, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 576.0,
@@ -2915,7 +2915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 22, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 22, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 568.0,
@@ -2930,7 +2930,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 22, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 558.0,
@@ -2945,7 +2945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 23, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 548.0,
@@ -2960,7 +2960,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 23, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 23, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 539.0,
@@ -2975,7 +2975,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 23, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 9, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 9, 23, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 530.0,
@@ -2990,7 +2990,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 9, 23, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 521.0,
@@ -3005,7 +3005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 0, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 511.0,
@@ -3020,7 +3020,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 0, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 0, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 503.0,
@@ -3035,7 +3035,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 0, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 0, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 497.0,
@@ -3050,7 +3050,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 0, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 489.0,
@@ -3065,7 +3065,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 1, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 478.0,
@@ -3080,7 +3080,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 1, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 1, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 474.0,
@@ -3095,7 +3095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 1, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 1, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 475.0,
@@ -3110,7 +3110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 1, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 479.0,
@@ -3125,7 +3125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 2, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 485.0,
@@ -3140,7 +3140,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 2, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 2, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 496.0,
@@ -3155,7 +3155,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 2, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 2, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 511.0,
@@ -3170,7 +3170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 2, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 530.0,
@@ -3185,7 +3185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 3, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 553.0,
@@ -3200,7 +3200,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 3, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 3, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 579.0,
@@ -3215,7 +3215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 3, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 3, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 607.0,
@@ -3230,7 +3230,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 3, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 640.0,
@@ -3245,7 +3245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 4, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 677.0,
@@ -3260,7 +3260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 4, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 4, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 715.0,
@@ -3275,7 +3275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 4, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 4, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 752.0,
@@ -3290,7 +3290,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 4, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 796.0,
@@ -3305,7 +3305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 5, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 848.0,
@@ -3320,7 +3320,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 5, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 5, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 891.0,
@@ -3335,7 +3335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 5, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 5, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 927.0,
@@ -3350,7 +3350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 5, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 965.0,
@@ -3365,7 +3365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 6, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1008.0,
@@ -3380,7 +3380,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 6, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 6, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1036.0,
@@ -3395,7 +3395,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 6, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 6, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 1053.0,
@@ -3410,7 +3410,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 6, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 13.0,
         'wind': 1066.0,
@@ -3425,7 +3425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 7, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 34.0,
         'wind': 1075.0,
@@ -3440,7 +3440,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 7, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 7, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 49.0,
         'wind': 1072.0,
@@ -3455,7 +3455,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 7, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 7, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 62.0,
         'wind': 1063.0,
@@ -3470,7 +3470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 7, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 78.0,
         'wind': 1032.0,
@@ -3485,7 +3485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 8, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 95.0,
         'wind': 965.0,
@@ -3500,7 +3500,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 8, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 8, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 109.0,
         'wind': 934.0,
@@ -3515,7 +3515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 8, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 8, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 121.0,
         'wind': 922.0,
@@ -3530,7 +3530,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 8, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 133.0,
         'wind': 924.0,
@@ -3545,7 +3545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 9, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 144.0,
         'wind': 953.0,
@@ -3560,7 +3560,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 9, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 9, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 153.0,
         'wind': 960.0,
@@ -3575,7 +3575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 9, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 9, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 160.0,
         'wind': 953.0,
@@ -3590,7 +3590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 9, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 164.0,
         'wind': 952.0,
@@ -3605,7 +3605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 10, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 959.0,
@@ -3620,7 +3620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 10, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 10, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 166.0,
         'wind': 943.0,
@@ -3635,7 +3635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 10, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 10, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 166.0,
         'wind': 914.0,
@@ -3650,7 +3650,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 10, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 165.0,
         'wind': 866.0,
@@ -3665,7 +3665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 11, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 164.0,
         'wind': 791.0,
@@ -3680,7 +3680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 11, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 11, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 160.0,
         'wind': 734.0,
@@ -3695,7 +3695,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 11, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 11, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 154.0,
         'wind': 687.0,
@@ -3710,7 +3710,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 11, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 147.0,
         'wind': 630.0,
@@ -3725,7 +3725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 12, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 137.0,
         'wind': 557.0,
@@ -3740,7 +3740,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 12, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 12, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 127.0,
         'wind': 512.0,
@@ -3755,7 +3755,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 12, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 12, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 116.0,
         'wind': 487.0,
@@ -3770,7 +3770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 12, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 103.0,
         'wind': 468.0,
@@ -3785,7 +3785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 13, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 88.0,
         'wind': 457.0,
@@ -3800,7 +3800,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 13, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 13, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 74.0,
         'wind': 464.0,
@@ -3815,7 +3815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 13, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 13, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 61.0,
         'wind': 485.0,
@@ -3830,7 +3830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 13, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 44.0,
         'wind': 524.0,
@@ -3845,7 +3845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 14, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 20.0,
         'wind': 589.0,
@@ -3860,7 +3860,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 14, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 14, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 6.0,
         'wind': 649.0,
@@ -3875,7 +3875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 14, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 14, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 3.0,
         'wind': 707.0,
@@ -3890,7 +3890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 14, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 2.0,
         'wind': 784.0,
@@ -3905,7 +3905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 15, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 886.0,
@@ -3920,7 +3920,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 15, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 15, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 1.0,
         'wind': 963.0,
@@ -3935,7 +3935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 15, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 15, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1024.0,
@@ -3950,7 +3950,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 15, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1084.0,
@@ -3965,7 +3965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 16, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1137.0,
@@ -3980,7 +3980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 16, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 16, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1184.0,
@@ -3995,7 +3995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 16, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 16, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1225.0,
@@ -4010,7 +4010,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 16, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1260.0,
@@ -4025,7 +4025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 17, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1288.0,
@@ -4040,7 +4040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 17, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 17, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1310.0,
@@ -4055,7 +4055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 17, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 17, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1328.0,
@@ -4070,7 +4070,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 17, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1337.0,
@@ -4085,7 +4085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 18, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1334.0,
@@ -4100,7 +4100,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 18, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 18, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1336.0,
@@ -4115,7 +4115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 18, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 18, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1339.0,
@@ -4130,7 +4130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 18, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1337.0,
@@ -4145,7 +4145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 19, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1327.0,
@@ -4160,7 +4160,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 19, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 19, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1325.0,
@@ -4175,7 +4175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 19, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 19, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1327.0,
@@ -4190,7 +4190,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 19, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1331.0,
@@ -4205,7 +4205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 20, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1339.0,
@@ -4220,7 +4220,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 20, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 20, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1346.0,
@@ -4235,7 +4235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 20, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 20, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1352.0,
@@ -4250,7 +4250,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 20, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1364.0,
@@ -4265,7 +4265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 21, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1384.0,
@@ -4280,7 +4280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 21, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 21, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1392.0,
@@ -4295,7 +4295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 21, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 21, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1394.0,
@@ -4310,7 +4310,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 21, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1390.0,
@@ -4325,7 +4325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 22, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1380.0,
@@ -4340,7 +4340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 22, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 22, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1371.0,
@@ -4355,7 +4355,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 22, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 22, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1364.0,
@@ -4370,7 +4370,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 22, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1347.0,
@@ -4385,7 +4385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 23, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1315.0,
@@ -4400,7 +4400,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 23, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 23, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1304.0,
@@ -4415,7 +4415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 23, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 10, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 10, 23, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1304.0,
@@ -4430,7 +4430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 10, 23, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1313.0,
@@ -4445,7 +4445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 0, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1335.0,
@@ -4460,7 +4460,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 0, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 0, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1353.0,
@@ -4475,7 +4475,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 0, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 0, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1369.0,
@@ -4490,7 +4490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 0, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1391.0,
@@ -4505,7 +4505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 1, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1419.0,
@@ -4520,7 +4520,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 1, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 1, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1443.0,
@@ -4535,7 +4535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 1, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 1, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1464.0,
@@ -4550,7 +4550,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 1, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1486.0,
@@ -4565,7 +4565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 2, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1509.0,
@@ -4580,7 +4580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 2, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 2, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1529.0,
@@ -4595,7 +4595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 2, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 2, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1548.0,
@@ -4610,7 +4610,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 2, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1564.0,
@@ -4625,7 +4625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 3, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1578.0,
@@ -4640,7 +4640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 3, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 3, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1592.0,
@@ -4655,7 +4655,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 3, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 3, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1608.0,
@@ -4670,7 +4670,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 3, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1621.0,
@@ -4685,7 +4685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 4, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1631.0,
@@ -4700,7 +4700,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 4, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 4, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1645.0,
@@ -4715,7 +4715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 4, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 4, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1661.0,
@@ -4730,7 +4730,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 4, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1684.0,
@@ -4745,7 +4745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 5, 15, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1718.0,
@@ -4760,7 +4760,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 5, 15, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 5, 30, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1737.0,
@@ -4775,7 +4775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 5, 30, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 5, 45, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1746.0,
@@ -4790,7 +4790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 2, 11, 5, 45, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2024, 2, 11, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2024, 2, 11, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'solar': 0.0,
         'wind': 1751.0,

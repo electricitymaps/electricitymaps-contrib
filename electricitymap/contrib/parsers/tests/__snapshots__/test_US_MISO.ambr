@@ -4,6 +4,7 @@
     dict({
       'consumption': 64272.0,
       'datetime': datetime.datetime(2025, 3, 9, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 62613.0,
       'datetime': datetime.datetime(2025, 3, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 61929.0,
       'datetime': datetime.datetime(2025, 3, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 61620.0,
       'datetime': datetime.datetime(2025, 3, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 61912.0,
       'datetime': datetime.datetime(2025, 3, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 63010.0,
       'datetime': datetime.datetime(2025, 3, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 64831.0,
       'datetime': datetime.datetime(2025, 3, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 66154.0,
       'datetime': datetime.datetime(2025, 3, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 66220.0,
       'datetime': datetime.datetime(2025, 3, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 65552.0,
       'datetime': datetime.datetime(2025, 3, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 64728.0,
       'datetime': datetime.datetime(2025, 3, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 64043.0,
       'datetime': datetime.datetime(2025, 3, 9, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 63762.0,
       'datetime': datetime.datetime(2025, 3, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 63108.0,
       'datetime': datetime.datetime(2025, 3, 9, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 62592.0,
       'datetime': datetime.datetime(2025, 3, 9, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 62577.0,
       'datetime': datetime.datetime(2025, 3, 9, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 63135.0,
       'datetime': datetime.datetime(2025, 3, 9, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 64699.0,
       'datetime': datetime.datetime(2025, 3, 9, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 66874.0,
       'datetime': datetime.datetime(2025, 3, 9, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 69481.0,
       'datetime': datetime.datetime(2025, 3, 9, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 69638.0,
       'datetime': datetime.datetime(2025, 3, 9, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 68126.0,
       'datetime': datetime.datetime(2025, 3, 9, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 65827.0,
       'datetime': datetime.datetime(2025, 3, 9, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 63928.0,
       'datetime': datetime.datetime(2025, 3, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 63085.0,
       'datetime': datetime.datetime(2025, 3, 10, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -179,6 +204,7 @@
     dict({
       'consumption': 63228.0,
       'datetime': datetime.datetime(2025, 3, 10, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -186,6 +212,7 @@
     dict({
       'consumption': 62411.0,
       'datetime': datetime.datetime(2025, 3, 10, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -193,6 +220,7 @@
     dict({
       'consumption': 64302.0,
       'datetime': datetime.datetime(2025, 3, 10, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -200,6 +228,7 @@
     dict({
       'consumption': 66292.0,
       'datetime': datetime.datetime(2025, 3, 10, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -207,6 +236,7 @@
     dict({
       'consumption': 69791.0,
       'datetime': datetime.datetime(2025, 3, 10, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -214,6 +244,7 @@
     dict({
       'consumption': 75314.0,
       'datetime': datetime.datetime(2025, 3, 10, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -221,6 +252,7 @@
     dict({
       'consumption': 77348.0,
       'datetime': datetime.datetime(2025, 3, 10, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -228,6 +260,7 @@
     dict({
       'consumption': 76328.0,
       'datetime': datetime.datetime(2025, 3, 10, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -235,6 +268,7 @@
     dict({
       'consumption': 74188.0,
       'datetime': datetime.datetime(2025, 3, 10, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -242,6 +276,7 @@
     dict({
       'consumption': 72120.0,
       'datetime': datetime.datetime(2025, 3, 10, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -249,6 +284,7 @@
     dict({
       'consumption': 70396.0,
       'datetime': datetime.datetime(2025, 3, 10, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -256,6 +292,7 @@
     dict({
       'consumption': 69144.0,
       'datetime': datetime.datetime(2025, 3, 10, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -263,6 +300,7 @@
     dict({
       'consumption': 68060.0,
       'datetime': datetime.datetime(2025, 3, 10, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -270,6 +308,7 @@
     dict({
       'consumption': 67107.0,
       'datetime': datetime.datetime(2025, 3, 10, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -277,6 +316,7 @@
     dict({
       'consumption': 66641.0,
       'datetime': datetime.datetime(2025, 3, 10, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -284,6 +324,7 @@
     dict({
       'consumption': 67001.0,
       'datetime': datetime.datetime(2025, 3, 10, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -291,6 +332,7 @@
     dict({
       'consumption': 68150.0,
       'datetime': datetime.datetime(2025, 3, 10, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -298,6 +340,7 @@
     dict({
       'consumption': 69893.0,
       'datetime': datetime.datetime(2025, 3, 10, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -305,6 +348,7 @@
     dict({
       'consumption': 71889.0,
       'datetime': datetime.datetime(2025, 3, 10, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -312,6 +356,7 @@
     dict({
       'consumption': 71349.0,
       'datetime': datetime.datetime(2025, 3, 10, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -319,6 +364,7 @@
     dict({
       'consumption': 69195.0,
       'datetime': datetime.datetime(2025, 3, 10, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -326,6 +372,7 @@
     dict({
       'consumption': 66302.0,
       'datetime': datetime.datetime(2025, 3, 10, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -333,6 +380,7 @@
     dict({
       'consumption': 63708.0,
       'datetime': datetime.datetime(2025, 3, 10, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -340,6 +388,7 @@
     dict({
       'consumption': 62112.0,
       'datetime': datetime.datetime(2025, 3, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -347,6 +396,7 @@
     dict({
       'consumption': 61964.0,
       'datetime': datetime.datetime(2025, 3, 11, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -354,6 +404,7 @@
     dict({
       'consumption': 62620.0,
       'datetime': datetime.datetime(2025, 3, 11, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -361,6 +412,7 @@
     dict({
       'consumption': 63250.0,
       'datetime': datetime.datetime(2025, 3, 11, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -368,6 +420,7 @@
     dict({
       'consumption': 65320.0,
       'datetime': datetime.datetime(2025, 3, 11, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -375,6 +428,7 @@
     dict({
       'consumption': 68188.0,
       'datetime': datetime.datetime(2025, 3, 11, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -382,6 +436,7 @@
     dict({
       'consumption': 73356.0,
       'datetime': datetime.datetime(2025, 3, 11, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -389,6 +444,7 @@
     dict({
       'consumption': 75196.0,
       'datetime': datetime.datetime(2025, 3, 11, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -396,6 +452,7 @@
     dict({
       'consumption': 74523.0,
       'datetime': datetime.datetime(2025, 3, 11, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -403,6 +460,7 @@
     dict({
       'consumption': 72890.0,
       'datetime': datetime.datetime(2025, 3, 11, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -410,6 +468,7 @@
     dict({
       'consumption': 71276.0,
       'datetime': datetime.datetime(2025, 3, 11, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -417,6 +476,7 @@
     dict({
       'consumption': 69909.0,
       'datetime': datetime.datetime(2025, 3, 11, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -424,6 +484,7 @@
     dict({
       'consumption': 68947.0,
       'datetime': datetime.datetime(2025, 3, 11, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -431,6 +492,7 @@
     dict({
       'consumption': 68165.0,
       'datetime': datetime.datetime(2025, 3, 11, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -438,6 +500,7 @@
     dict({
       'consumption': 67484.0,
       'datetime': datetime.datetime(2025, 3, 11, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -445,6 +508,7 @@
     dict({
       'consumption': 67091.0,
       'datetime': datetime.datetime(2025, 3, 11, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -452,6 +516,7 @@
     dict({
       'consumption': 67424.0,
       'datetime': datetime.datetime(2025, 3, 11, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -459,6 +524,7 @@
     dict({
       'consumption': 68470.0,
       'datetime': datetime.datetime(2025, 3, 11, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -466,6 +532,7 @@
     dict({
       'consumption': 69961.0,
       'datetime': datetime.datetime(2025, 3, 11, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -473,6 +540,7 @@
     dict({
       'consumption': 71833.0,
       'datetime': datetime.datetime(2025, 3, 11, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -480,6 +548,7 @@
     dict({
       'consumption': 71471.0,
       'datetime': datetime.datetime(2025, 3, 11, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -487,6 +556,7 @@
     dict({
       'consumption': 69293.0,
       'datetime': datetime.datetime(2025, 3, 11, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -494,6 +564,7 @@
     dict({
       'consumption': 66483.0,
       'datetime': datetime.datetime(2025, 3, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -501,6 +572,7 @@
     dict({
       'consumption': 63794.0,
       'datetime': datetime.datetime(2025, 3, 11, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -508,6 +580,7 @@
     dict({
       'consumption': 62462.0,
       'datetime': datetime.datetime(2025, 3, 12, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -515,6 +588,7 @@
     dict({
       'consumption': 62550.0,
       'datetime': datetime.datetime(2025, 3, 12, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -522,6 +596,7 @@
     dict({
       'consumption': 62285.0,
       'datetime': datetime.datetime(2025, 3, 12, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -529,6 +604,7 @@
     dict({
       'consumption': 62754.0,
       'datetime': datetime.datetime(2025, 3, 12, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -536,6 +612,7 @@
     dict({
       'consumption': 64673.0,
       'datetime': datetime.datetime(2025, 3, 12, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -543,6 +620,7 @@
     dict({
       'consumption': 68600.0,
       'datetime': datetime.datetime(2025, 3, 12, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -550,6 +628,7 @@
     dict({
       'consumption': 72028.0,
       'datetime': datetime.datetime(2025, 3, 12, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -557,6 +636,7 @@
     dict({
       'consumption': 73871.0,
       'datetime': datetime.datetime(2025, 3, 12, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -564,6 +644,7 @@
     dict({
       'consumption': 73249.0,
       'datetime': datetime.datetime(2025, 3, 12, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -571,6 +652,7 @@
     dict({
       'consumption': 71826.0,
       'datetime': datetime.datetime(2025, 3, 12, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -578,6 +660,7 @@
     dict({
       'consumption': 70572.0,
       'datetime': datetime.datetime(2025, 3, 12, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -585,6 +668,7 @@
     dict({
       'consumption': 69496.0,
       'datetime': datetime.datetime(2025, 3, 12, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -592,6 +676,7 @@
     dict({
       'consumption': 68808.0,
       'datetime': datetime.datetime(2025, 3, 12, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -599,6 +684,7 @@
     dict({
       'consumption': 68324.0,
       'datetime': datetime.datetime(2025, 3, 12, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -606,6 +692,7 @@
     dict({
       'consumption': 67863.0,
       'datetime': datetime.datetime(2025, 3, 12, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -613,6 +700,7 @@
     dict({
       'consumption': 67587.0,
       'datetime': datetime.datetime(2025, 3, 12, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -620,6 +708,7 @@
     dict({
       'consumption': 67892.0,
       'datetime': datetime.datetime(2025, 3, 12, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -627,6 +716,7 @@
     dict({
       'consumption': 68577.0,
       'datetime': datetime.datetime(2025, 3, 12, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -634,6 +724,7 @@
     dict({
       'consumption': 69522.0,
       'datetime': datetime.datetime(2025, 3, 12, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -641,6 +732,7 @@
     dict({
       'consumption': 70913.0,
       'datetime': datetime.datetime(2025, 3, 12, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -648,6 +740,7 @@
     dict({
       'consumption': 70531.0,
       'datetime': datetime.datetime(2025, 3, 12, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -655,6 +748,7 @@
     dict({
       'consumption': 68285.0,
       'datetime': datetime.datetime(2025, 3, 12, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -662,6 +756,7 @@
     dict({
       'consumption': 65238.0,
       'datetime': datetime.datetime(2025, 3, 12, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -669,6 +764,7 @@
     dict({
       'consumption': 63464.0,
       'datetime': datetime.datetime(2025, 3, 12, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -676,6 +772,7 @@
     dict({
       'consumption': 61658.0,
       'datetime': datetime.datetime(2025, 3, 13, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -683,6 +780,7 @@
     dict({
       'consumption': 60639.0,
       'datetime': datetime.datetime(2025, 3, 13, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -690,6 +788,7 @@
     dict({
       'consumption': 60272.0,
       'datetime': datetime.datetime(2025, 3, 13, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -697,6 +796,7 @@
     dict({
       'consumption': 60667.0,
       'datetime': datetime.datetime(2025, 3, 13, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -704,6 +804,7 @@
     dict({
       'consumption': 62398.0,
       'datetime': datetime.datetime(2025, 3, 13, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -711,6 +812,7 @@
     dict({
       'consumption': 65101.0,
       'datetime': datetime.datetime(2025, 3, 13, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -718,6 +820,7 @@
     dict({
       'consumption': 69677.0,
       'datetime': datetime.datetime(2025, 3, 13, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -725,6 +828,7 @@
     dict({
       'consumption': 71725.0,
       'datetime': datetime.datetime(2025, 3, 13, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -732,6 +836,7 @@
     dict({
       'consumption': 71567.0,
       'datetime': datetime.datetime(2025, 3, 13, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -739,6 +844,7 @@
     dict({
       'consumption': 70681.0,
       'datetime': datetime.datetime(2025, 3, 13, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -746,6 +852,7 @@
     dict({
       'consumption': 69846.0,
       'datetime': datetime.datetime(2025, 3, 13, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -753,6 +860,7 @@
     dict({
       'consumption': 69236.0,
       'datetime': datetime.datetime(2025, 3, 13, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -760,6 +868,7 @@
     dict({
       'consumption': 68865.0,
       'datetime': datetime.datetime(2025, 3, 13, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -767,6 +876,7 @@
     dict({
       'consumption': 68524.0,
       'datetime': datetime.datetime(2025, 3, 13, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -774,6 +884,7 @@
     dict({
       'consumption': 68184.0,
       'datetime': datetime.datetime(2025, 3, 13, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -781,6 +892,7 @@
     dict({
       'consumption': 68021.0,
       'datetime': datetime.datetime(2025, 3, 13, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -788,6 +900,7 @@
     dict({
       'consumption': 68362.0,
       'datetime': datetime.datetime(2025, 3, 13, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -795,6 +908,7 @@
     dict({
       'consumption': 68943.0,
       'datetime': datetime.datetime(2025, 3, 13, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -802,6 +916,7 @@
     dict({
       'consumption': 69678.0,
       'datetime': datetime.datetime(2025, 3, 13, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -809,6 +924,7 @@
     dict({
       'consumption': 71036.0,
       'datetime': datetime.datetime(2025, 3, 13, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -816,6 +932,7 @@
     dict({
       'consumption': 70285.0,
       'datetime': datetime.datetime(2025, 3, 13, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -823,6 +940,7 @@
     dict({
       'consumption': 67981.0,
       'datetime': datetime.datetime(2025, 3, 13, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -830,6 +948,7 @@
     dict({
       'consumption': 64976.0,
       'datetime': datetime.datetime(2025, 3, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -837,6 +956,7 @@
     dict({
       'consumption': 62255.0,
       'datetime': datetime.datetime(2025, 3, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -844,6 +964,7 @@
     dict({
       'consumption': 60411.0,
       'datetime': datetime.datetime(2025, 3, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -851,6 +972,7 @@
     dict({
       'consumption': 59330.0,
       'datetime': datetime.datetime(2025, 3, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -858,6 +980,7 @@
     dict({
       'consumption': 59878.0,
       'datetime': datetime.datetime(2025, 3, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -865,6 +988,7 @@
     dict({
       'consumption': 60238.0,
       'datetime': datetime.datetime(2025, 3, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -872,6 +996,7 @@
     dict({
       'consumption': 61854.0,
       'datetime': datetime.datetime(2025, 3, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -879,6 +1004,7 @@
     dict({
       'consumption': 64362.0,
       'datetime': datetime.datetime(2025, 3, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -886,6 +1012,7 @@
     dict({
       'consumption': 68759.0,
       'datetime': datetime.datetime(2025, 3, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -893,6 +1020,7 @@
     dict({
       'consumption': 70931.0,
       'datetime': datetime.datetime(2025, 3, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -900,6 +1028,7 @@
     dict({
       'consumption': 71161.0,
       'datetime': datetime.datetime(2025, 3, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -907,6 +1036,7 @@
     dict({
       'consumption': 70896.0,
       'datetime': datetime.datetime(2025, 3, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -914,6 +1044,7 @@
     dict({
       'consumption': 70689.0,
       'datetime': datetime.datetime(2025, 3, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -921,6 +1052,7 @@
     dict({
       'consumption': 70410.0,
       'datetime': datetime.datetime(2025, 3, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -928,6 +1060,7 @@
     dict({
       'consumption': 70138.0,
       'datetime': datetime.datetime(2025, 3, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -935,6 +1068,7 @@
     dict({
       'consumption': 69881.0,
       'datetime': datetime.datetime(2025, 3, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -942,6 +1076,7 @@
     dict({
       'consumption': 69531.0,
       'datetime': datetime.datetime(2025, 3, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -949,6 +1084,7 @@
     dict({
       'consumption': 69282.0,
       'datetime': datetime.datetime(2025, 3, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -956,6 +1092,7 @@
     dict({
       'consumption': 69465.0,
       'datetime': datetime.datetime(2025, 3, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -963,6 +1100,7 @@
     dict({
       'consumption': 69595.0,
       'datetime': datetime.datetime(2025, 3, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -970,6 +1108,7 @@
     dict({
       'consumption': 69658.0,
       'datetime': datetime.datetime(2025, 3, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -977,6 +1116,7 @@
     dict({
       'consumption': 70347.0,
       'datetime': datetime.datetime(2025, 3, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -984,6 +1124,7 @@
     dict({
       'consumption': 69770.0,
       'datetime': datetime.datetime(2025, 3, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -991,6 +1132,7 @@
     dict({
       'consumption': 67723.0,
       'datetime': datetime.datetime(2025, 3, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -998,6 +1140,7 @@
     dict({
       'consumption': 64907.0,
       'datetime': datetime.datetime(2025, 3, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1005,6 +1148,7 @@
     dict({
       'consumption': 62579.0,
       'datetime': datetime.datetime(2025, 3, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1012,6 +1156,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1019,6 +1164,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1026,6 +1172,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1033,6 +1180,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1040,6 +1188,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1047,6 +1196,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1054,6 +1204,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1061,6 +1212,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1068,6 +1220,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1075,6 +1228,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1082,6 +1236,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1089,6 +1244,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1096,6 +1252,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1103,6 +1260,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1110,6 +1268,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1117,6 +1276,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1124,6 +1284,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1131,6 +1292,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1138,6 +1300,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1145,6 +1308,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1152,6 +1316,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1159,6 +1324,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1166,6 +1332,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1173,6 +1340,7 @@
     dict({
       'consumption': 67758.0,
       'datetime': datetime.datetime(2025, 3, 15, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'misoenergy.org',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-MIDW-MISO',
@@ -1185,7 +1353,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 17716.0,
@@ -1200,7 +1368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 17168.0,
@@ -1215,7 +1383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 16628.0,
@@ -1230,7 +1398,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 16249.0,
@@ -1245,7 +1413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 16089.0,
@@ -1260,7 +1428,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 16192.0,
@@ -1275,7 +1443,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 3.0,
         'wind': 16583.0,
@@ -1290,7 +1458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 1042.0,
         'wind': 17076.0,
@@ -1305,7 +1473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 6022.0,
         'wind': 17386.0,
@@ -1320,7 +1488,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 10313.0,
         'wind': 17154.0,
@@ -1335,7 +1503,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11437.0,
         'wind': 16391.0,
@@ -1350,7 +1518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11466.0,
         'wind': 16389.0,
@@ -1365,7 +1533,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11301.0,
         'wind': 17767.0,
@@ -1380,7 +1548,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11206.0,
         'wind': 19703.0,
@@ -1395,7 +1563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11297.0,
         'wind': 21282.0,
@@ -1410,7 +1578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11398.0,
         'wind': 22330.0,
@@ -1425,7 +1593,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 10642.0,
         'wind': 22727.0,
@@ -1440,7 +1608,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 6959.0,
         'wind': 22525.0,
@@ -1455,7 +1623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 1583.0,
         'wind': 22427.0,
@@ -1470,7 +1638,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 8.0,
         'wind': 23044.0,
@@ -1485,7 +1653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23647.0,
@@ -1500,7 +1668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23981.0,
@@ -1515,7 +1683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 24047.0,
@@ -1530,7 +1698,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 10, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23881.0,
@@ -1545,7 +1713,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23596.0,
@@ -1560,7 +1728,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23196.0,
@@ -1575,7 +1743,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23034.0,
@@ -1590,7 +1758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 23022.0,
@@ -1605,7 +1773,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 22831.0,
@@ -1620,7 +1788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 22327.0,
@@ -1635,7 +1803,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 3.0,
         'wind': 21393.0,
@@ -1650,7 +1818,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 1123.0,
         'wind': 19830.0,
@@ -1665,7 +1833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 6119.0,
         'wind': 17808.0,
@@ -1680,7 +1848,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 10198.0,
         'wind': 15679.0,
@@ -1695,7 +1863,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11213.0,
         'wind': 13413.0,
@@ -1710,7 +1878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11234.0,
         'wind': 11073.0,
@@ -1725,7 +1893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11105.0,
         'wind': 9176.0,
@@ -1740,7 +1908,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11038.0,
         'wind': 8033.0,
@@ -1755,7 +1923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11119.0,
         'wind': 7338.0,
@@ -1770,7 +1938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 11229.0,
         'wind': 6885.0,
@@ -1785,7 +1953,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 10441.0,
         'wind': 6934.0,
@@ -1800,7 +1968,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 6848.0,
         'wind': 7577.0,
@@ -1815,7 +1983,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 1586.0,
         'wind': 8756.0,
@@ -1830,7 +1998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 9.0,
         'wind': 11393.0,
@@ -1845,7 +2013,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 13542.0,
@@ -1860,7 +2028,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 14719.0,
@@ -1875,7 +2043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 15219.0,
@@ -1890,7 +2058,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 11, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 15321.0,

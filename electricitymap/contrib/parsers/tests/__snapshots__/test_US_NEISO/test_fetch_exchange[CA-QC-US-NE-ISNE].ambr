@@ -3,7 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -11,7 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -19,7 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -27,7 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.284),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -35,7 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -43,7 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -51,7 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -59,7 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -67,7 +67,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.278),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -75,7 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.28),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -83,7 +83,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -91,7 +91,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.279),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -99,7 +99,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -107,7 +107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.303),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -115,7 +115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.282),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -123,7 +123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -131,7 +131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.298),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -139,7 +139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -147,7 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -155,7 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -163,7 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -171,7 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -179,7 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -187,7 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 1, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -195,7 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -203,7 +203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.284),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -211,7 +211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -219,7 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.278),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -227,7 +227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -235,7 +235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -243,7 +243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -251,7 +251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -259,7 +259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -267,7 +267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -275,7 +275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -283,7 +283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.3),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -291,7 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -299,7 +299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -307,7 +307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -315,7 +315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.28),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -323,7 +323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -331,7 +331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -339,7 +339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -347,7 +347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -355,7 +355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.299),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -363,7 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -371,7 +371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -379,7 +379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -387,7 +387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -395,7 +395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -403,7 +403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -411,7 +411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -419,7 +419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -427,7 +427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -435,7 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.305),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -443,7 +443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -451,7 +451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.284),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -459,7 +459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -467,7 +467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -475,7 +475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -483,7 +483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -491,7 +491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -499,7 +499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -507,7 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -515,7 +515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -523,7 +523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -531,7 +531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -539,7 +539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.282),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -547,7 +547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -555,7 +555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -563,7 +563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -571,7 +571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -579,7 +579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -587,7 +587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -595,7 +595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -603,7 +603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -611,7 +611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -619,7 +619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -627,7 +627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -635,7 +635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -643,7 +643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -651,7 +651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -659,7 +659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -667,7 +667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(2.66),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -675,7 +675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(42.947),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -683,7 +683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.147),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -691,7 +691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.17),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -699,7 +699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.17),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -707,7 +707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.198),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -715,7 +715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.215),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -723,7 +723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.189),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -731,7 +731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.206),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -739,7 +739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.212),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -747,7 +747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.162),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -755,7 +755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(47.161),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -763,7 +763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(46.991),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -771,7 +771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(11.928),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -779,7 +779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -787,7 +787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -795,7 +795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -803,7 +803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.303),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -811,7 +811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.298),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -819,7 +819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -827,7 +827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -835,7 +835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -843,7 +843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.307),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -851,7 +851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.304),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -859,7 +859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -867,7 +867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -875,7 +875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -883,7 +883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -891,7 +891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -899,7 +899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.284),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -907,7 +907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -915,7 +915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -923,7 +923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -931,7 +931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -939,7 +939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -947,7 +947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -955,7 +955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.301),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -963,7 +963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -971,7 +971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -979,7 +979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -987,7 +987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -995,7 +995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1003,7 +1003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1011,7 +1011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1019,7 +1019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.303),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1027,7 +1027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1035,7 +1035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1043,7 +1043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1051,7 +1051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1059,7 +1059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1067,7 +1067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1075,7 +1075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1083,7 +1083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1091,7 +1091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1099,7 +1099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1107,7 +1107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1115,7 +1115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1123,7 +1123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1131,7 +1131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1139,7 +1139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1147,7 +1147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1155,7 +1155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.3),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1163,7 +1163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1171,7 +1171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1179,7 +1179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1187,7 +1187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1195,7 +1195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1203,7 +1203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1211,7 +1211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1219,7 +1219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1227,7 +1227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1235,7 +1235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1243,7 +1243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1251,7 +1251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1259,7 +1259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1267,7 +1267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1275,7 +1275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.303),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1283,7 +1283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1291,7 +1291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1299,7 +1299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.302),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1307,7 +1307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.294),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1315,7 +1315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.298),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1323,7 +1323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.302),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1331,7 +1331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1339,7 +1339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1347,7 +1347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.3),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1355,7 +1355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1363,7 +1363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1371,7 +1371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1379,7 +1379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1387,7 +1387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1395,7 +1395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1403,7 +1403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1411,7 +1411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.296),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1419,7 +1419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1427,7 +1427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.299),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1435,7 +1435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1443,7 +1443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1451,7 +1451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1459,7 +1459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.281),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1467,7 +1467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.298),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1475,7 +1475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1483,7 +1483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1491,7 +1491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.272),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1499,7 +1499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.301),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1507,7 +1507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.293),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1515,7 +1515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1523,7 +1523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.283),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1531,7 +1531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1539,7 +1539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1547,7 +1547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.285),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1555,7 +1555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.299),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1563,7 +1563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.288),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1571,7 +1571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.295),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1579,7 +1579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1587,7 +1587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1595,7 +1595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.297),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1603,7 +1603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.279),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1611,7 +1611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.286),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1619,7 +1619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1627,7 +1627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.289),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1635,7 +1635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1643,7 +1643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.284),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1651,7 +1651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.292),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1659,7 +1659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.291),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1667,7 +1667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.3),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1675,7 +1675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.287),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',
@@ -1683,7 +1683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2025, 3, 26, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=72000))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': np.float64(0.29),
       'sortedZoneKeys': 'CA-QC->US-NE-ISNE',
       'source': 'iso-ne.com',

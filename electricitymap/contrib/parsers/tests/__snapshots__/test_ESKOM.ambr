@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.535,
         'coal': 14487.159,
@@ -27,7 +27,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.602,
         'coal': 14231.943,
@@ -49,7 +49,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.668,
         'coal': 14354.055,
@@ -71,7 +71,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.899,
         'coal': 14436.056,
@@ -93,7 +93,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.961,
         'coal': 15399.591,
@@ -115,7 +115,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.023,
         'coal': 17525.653,
@@ -137,7 +137,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.767,
         'coal': 17923.763,
@@ -159,7 +159,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.724,
         'coal': 18112.266,
@@ -181,7 +181,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.886,
         'coal': 18188.291,
@@ -203,7 +203,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.93,
         'coal': 18128.402,
@@ -225,7 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.332,
         'coal': 17748.255,
@@ -247,7 +247,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.788,
         'coal': 17492.406,
@@ -269,7 +269,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.796,
         'coal': 17337.569,
@@ -291,7 +291,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.86,
         'coal': 17367.756,
@@ -313,7 +313,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.69,
         'coal': 16786.084,
@@ -335,7 +335,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.657,
         'coal': 16304.325,
@@ -357,7 +357,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.954,
         'coal': 16336.383,
@@ -379,7 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.902,
         'coal': 16499.066,
@@ -401,7 +401,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.481,
         'coal': 16904.072,
@@ -423,7 +423,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.681,
         'coal': 16994.121,
@@ -445,7 +445,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.712,
         'coal': 17140.437,
@@ -467,7 +467,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.682,
         'coal': 16475.758,
@@ -489,7 +489,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.712,
         'coal': 15568.751,
@@ -511,7 +511,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 11, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.906,
         'coal': 15110.876,
@@ -533,7 +533,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.204,
         'coal': 14860.657,
@@ -555,7 +555,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.249,
         'coal': 14673.783,
@@ -577,7 +577,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.084,
         'coal': 15097.239,
@@ -599,7 +599,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.869,
         'coal': 15131.653,
@@ -621,7 +621,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.912,
         'coal': 16554.638,
@@ -643,7 +643,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.145,
         'coal': 17710.869,
@@ -665,7 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.815,
         'coal': 17687.172,
@@ -687,7 +687,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.857,
         'coal': 17811.809,
@@ -709,7 +709,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.038,
         'coal': 17838.704,
@@ -731,7 +731,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.411,
         'coal': 17864.873,
@@ -753,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.796,
         'coal': 17882.139,
@@ -775,7 +775,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.559,
         'coal': 17675.814,
@@ -797,7 +797,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.813,
         'coal': 17565.959,
@@ -819,7 +819,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.707,
         'coal': 17459.714,
@@ -841,7 +841,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.723,
         'coal': 17616.844,
@@ -863,7 +863,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.705,
         'coal': 17668.651,
@@ -885,7 +885,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.983,
         'coal': 17737.191,
@@ -907,7 +907,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.917,
         'coal': 18014.672,
@@ -929,7 +929,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.275,
         'coal': 18249.954,
@@ -951,7 +951,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.339,
         'coal': 18301.757,
@@ -973,7 +973,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.319,
         'coal': 17914.454,
@@ -995,7 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.326,
         'coal': 16085.443,
@@ -1017,7 +1017,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.363,
         'coal': 15555.347,
@@ -1039,7 +1039,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 12, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.383,
         'coal': 15172.027,
@@ -1061,7 +1061,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.372,
         'coal': 15176.669,
@@ -1083,7 +1083,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.193,
         'coal': 15309.956,
@@ -1105,7 +1105,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.303,
         'coal': 15437.735,
@@ -1127,7 +1127,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.262,
         'coal': 15875.269,
@@ -1149,7 +1149,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.957,
         'coal': 17470.17,
@@ -1171,7 +1171,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.18,
         'coal': 18460.216,
@@ -1193,7 +1193,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.207,
         'coal': 18340.358,
@@ -1215,7 +1215,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.185,
         'coal': 18178.856,
@@ -1237,7 +1237,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.196,
         'coal': 18348.253,
@@ -1259,7 +1259,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.986,
         'coal': 18101.21,
@@ -1281,7 +1281,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.627,
         'coal': 17775.894,
@@ -1303,7 +1303,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.178,
         'coal': 16760.894,
@@ -1325,7 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.004,
         'coal': 16888.327,
@@ -1347,7 +1347,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.981,
         'coal': 16397.378,
@@ -1369,7 +1369,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.962,
         'coal': 16487.899,
@@ -1391,7 +1391,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.532,
         'coal': 17244.343,
@@ -1413,7 +1413,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.83,
         'coal': 17855.056,
@@ -1435,7 +1435,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.046,
         'coal': 17838.575,
@@ -1457,7 +1457,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.089,
         'coal': 17982.06,
@@ -1479,7 +1479,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.953,
         'coal': 18134.697,
@@ -1501,7 +1501,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.962,
         'coal': 18002.872,
@@ -1523,7 +1523,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.703,
         'coal': 17601.118,
@@ -1545,7 +1545,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.191,
         'coal': 16850.659,
@@ -1567,7 +1567,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.323,
         'coal': 15743.68,
@@ -1589,7 +1589,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.31,
         'coal': 15305.423,
@@ -1611,7 +1611,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.248,
         'coal': 14799.503,
@@ -1633,7 +1633,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.327,
         'coal': 14717.302,
@@ -1655,7 +1655,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 32.283,
         'coal': 15175.184,
@@ -1677,7 +1677,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 38.009,
         'coal': 16455.666,
@@ -1699,7 +1699,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.011,
         'coal': 18363.392,
@@ -1721,7 +1721,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.05,
         'coal': 18541.7,
@@ -1743,7 +1743,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.081,
         'coal': 18524.118,
@@ -1765,7 +1765,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 37.789,
         'coal': 18601.263,
@@ -1787,7 +1787,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 37.648,
         'coal': 18589.592,
@@ -1809,7 +1809,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 28.669,
         'coal': 17969.672,
@@ -1831,7 +1831,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.742,
         'coal': 17167.775,
@@ -1853,7 +1853,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.725,
         'coal': 17174.739,
@@ -1875,7 +1875,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.34,
         'coal': 16933.638,
@@ -1897,7 +1897,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.801,
         'coal': 17033.444,
@@ -1919,7 +1919,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.8,
         'coal': 17707.67,
@@ -1941,7 +1941,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.59,
         'coal': 18335.622,
@@ -1963,7 +1963,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.638,
         'coal': 18505.351,
@@ -1985,7 +1985,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.537,
         'coal': 18506.525,
@@ -2007,7 +2007,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.581,
         'coal': 18482.875,
@@ -2029,7 +2029,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.27,
         'coal': 18418.464,
@@ -2051,7 +2051,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 14.723,
         'coal': 18089.856,
@@ -2073,7 +2073,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.95,
         'coal': 17487.196,
@@ -2095,7 +2095,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 13.463,
         'coal': 16436.021,
@@ -2117,7 +2117,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.892,
         'coal': 16161.578,
@@ -2139,7 +2139,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.196,
         'coal': 15331.948,
@@ -2161,7 +2161,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 16.004,
         'coal': 15202.563,
@@ -2183,7 +2183,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 33.821,
         'coal': 15449.089,
@@ -2205,7 +2205,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.886,
         'coal': 16558.105,
@@ -2227,7 +2227,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.573,
         'coal': 18493.692,
@@ -2249,7 +2249,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.489,
         'coal': 19208.302,
@@ -2271,7 +2271,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.589,
         'coal': 18859.361,
@@ -2293,7 +2293,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.941,
         'coal': 19189.161,
@@ -2315,7 +2315,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.827,
         'coal': 18092.421,
@@ -2337,7 +2337,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 29.999,
         'coal': 17567.777,
@@ -2359,7 +2359,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.362,
         'coal': 17200.022,
@@ -2381,7 +2381,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.606,
         'coal': 17266.279,
@@ -2403,7 +2403,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.666,
         'coal': 16634.255,
@@ -2425,7 +2425,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.502,
         'coal': 17157.189,
@@ -2447,7 +2447,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.441,
         'coal': 17042.097,
@@ -2469,7 +2469,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.592,
         'coal': 18037.438,
@@ -2491,7 +2491,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.588,
         'coal': 18476.201,
@@ -2513,7 +2513,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.638,
         'coal': 18699.786,
@@ -2535,7 +2535,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.676,
         'coal': 18745.702,
@@ -2557,7 +2557,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.66,
         'coal': 18941.121,
@@ -2579,7 +2579,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.636,
         'coal': 18704.597,
@@ -2601,7 +2601,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.586,
         'coal': 18024.109,
@@ -2623,7 +2623,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 15, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.543,
         'coal': 16735.131,
@@ -2645,7 +2645,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.536,
         'coal': 16126.908,
@@ -2667,7 +2667,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.552,
         'coal': 15676.344,
@@ -2689,7 +2689,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.76,
         'coal': 15965.595,
@@ -2711,7 +2711,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 33.734,
         'coal': 15841.17,
@@ -2733,7 +2733,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.477,
         'coal': 16519.489,
@@ -2755,7 +2755,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.186,
         'coal': 16883.615,
@@ -2777,7 +2777,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.456,
         'coal': 18174.918,
@@ -2799,7 +2799,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 40.502,
         'coal': 18929.041,
@@ -2821,7 +2821,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.706,
         'coal': 19332.959,
@@ -2843,7 +2843,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.575,
         'coal': 18468.08,
@@ -2865,7 +2865,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 30.107,
         'coal': 18338.591,
@@ -2887,7 +2887,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.608,
         'coal': 18134.099,
@@ -2909,7 +2909,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.662,
         'coal': 17961.997,
@@ -2931,7 +2931,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.68,
         'coal': 17694.423,
@@ -2953,7 +2953,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.601,
         'coal': 17442.099,
@@ -2975,7 +2975,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.824,
         'coal': 17387.199,
@@ -2997,7 +2997,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.778,
         'coal': 17826.078,
@@ -3019,7 +3019,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.74,
         'coal': 18734.611,
@@ -3041,7 +3041,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.608,
         'coal': 19057.29,
@@ -3063,7 +3063,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.621,
         'coal': 18894.618,
@@ -3085,7 +3085,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.652,
         'coal': 18819.52,
@@ -3107,7 +3107,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.695,
         'coal': 18535.428,
@@ -3129,7 +3129,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.857,
         'coal': 18150.259,
@@ -3151,7 +3151,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2023, 9, 16, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Africa/Johannesburg')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 15.567,
         'coal': 17406.885,

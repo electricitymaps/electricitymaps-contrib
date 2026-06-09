@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -22,7 +22,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 11, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -39,7 +39,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 12, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -56,7 +56,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 13, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 16.0,
         'gas': 0.0,
@@ -73,7 +73,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 14, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -90,7 +90,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 15, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -107,7 +107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 16, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -124,7 +124,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 17, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -141,7 +141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -158,7 +158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 19, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -175,7 +175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 20, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -192,7 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 21, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -209,7 +209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 16.0,
         'gas': 0.0,
@@ -226,7 +226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -243,7 +243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 9, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -260,7 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -277,7 +277,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -294,7 +294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -311,7 +311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -328,7 +328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -345,7 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -362,7 +362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -379,7 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 8, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -396,7 +396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 9, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -413,7 +413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 10, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 16.0,
         'gas': 0.0,
@@ -430,7 +430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 11, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 15.0,
         'gas': 0.0,
@@ -447,7 +447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 12, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 14.0,
         'gas': 0.0,
@@ -464,7 +464,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 13, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 12.0,
         'gas': 0.0,
@@ -481,7 +481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 14, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -498,7 +498,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 15, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -515,7 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 16, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -532,7 +532,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 17, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -549,7 +549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 18, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -566,7 +566,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 19, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -583,7 +583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 20, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -600,7 +600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 21, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,
@@ -617,7 +617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 22, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -634,7 +634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 10, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 10, 23, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -651,7 +651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 10, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 0, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -668,7 +668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 1, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -685,7 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 2, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -702,7 +702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 3, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -719,7 +719,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 4, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -736,7 +736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 5, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 11.0,
         'gas': 1.0,
@@ -753,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 6, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 11.0,
         'gas': 0.0,
@@ -770,7 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 7, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 10.0,
         'gas': 0.0,
@@ -787,7 +787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 5, 11, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': datetime.datetime(2023, 5, 11, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': datetime.datetime(2023, 5, 11, 8, 0, tzinfo=datetime.timezone.utc),
       'production': dict({
         'biomass': 9.0,
         'gas': 0.0,

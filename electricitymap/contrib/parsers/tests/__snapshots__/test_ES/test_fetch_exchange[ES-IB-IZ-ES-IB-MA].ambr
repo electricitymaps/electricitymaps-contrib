@@ -3,7 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -100.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -11,7 +11,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -98.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -19,7 +19,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -100.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -27,7 +27,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -98.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -35,7 +35,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -98.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -43,7 +43,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -97.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -51,7 +51,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -96.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -59,7 +59,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -96.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -67,7 +67,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -95.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -75,7 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -93.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -83,7 +83,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -93.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -91,7 +91,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -90.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -99,7 +99,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -88.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -107,7 +107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -87.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -115,7 +115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -87.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -123,7 +123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -86.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -131,7 +131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -84.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -139,7 +139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -84.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -147,7 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -83.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -155,7 +155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -82.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -163,7 +163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -171,7 +171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -80.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -179,7 +179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -187,7 +187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -195,7 +195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -203,7 +203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -211,7 +211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -219,7 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -74.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -227,7 +227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -235,7 +235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -74.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -243,7 +243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -72.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -251,7 +251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -259,7 +259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -267,7 +267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -70.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -275,7 +275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -69.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -283,7 +283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 25, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -69.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -291,7 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -299,7 +299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -307,7 +307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -315,7 +315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -323,7 +323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -331,7 +331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -339,7 +339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -347,7 +347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -355,7 +355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -363,7 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -371,7 +371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -379,7 +379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -387,7 +387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -395,7 +395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -403,7 +403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -411,7 +411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -419,7 +419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -427,7 +427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -435,7 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -443,7 +443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -451,7 +451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -459,7 +459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -467,7 +467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -475,7 +475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -483,7 +483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -491,7 +491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -499,7 +499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -507,7 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -515,7 +515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -523,7 +523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -531,7 +531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -539,7 +539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -547,7 +547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -555,7 +555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -563,7 +563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -571,7 +571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -579,7 +579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -587,7 +587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -595,7 +595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -603,7 +603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -611,7 +611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -619,7 +619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -627,7 +627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -635,7 +635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -643,7 +643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -651,7 +651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -659,7 +659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -667,7 +667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -675,7 +675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -683,7 +683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -691,7 +691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -699,7 +699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -707,7 +707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -715,7 +715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -723,7 +723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -731,7 +731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -739,7 +739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -747,7 +747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -49.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -755,7 +755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -763,7 +763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -771,7 +771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -779,7 +779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -787,7 +787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -795,7 +795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -803,7 +803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -811,7 +811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -819,7 +819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -827,7 +827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -835,7 +835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -843,7 +843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -851,7 +851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -859,7 +859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -867,7 +867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -875,7 +875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -883,7 +883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -891,7 +891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -899,7 +899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -907,7 +907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -915,7 +915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -923,7 +923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -931,7 +931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -939,7 +939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -947,7 +947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -955,7 +955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -963,7 +963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -971,7 +971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -979,7 +979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -987,7 +987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -995,7 +995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1003,7 +1003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1011,7 +1011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1019,7 +1019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1027,7 +1027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1035,7 +1035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1043,7 +1043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1051,7 +1051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1059,7 +1059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1067,7 +1067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1075,7 +1075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1083,7 +1083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1091,7 +1091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1099,7 +1099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1107,7 +1107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1115,7 +1115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1123,7 +1123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1131,7 +1131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1139,7 +1139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1147,7 +1147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1155,7 +1155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1163,7 +1163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1171,7 +1171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1179,7 +1179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1187,7 +1187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1195,7 +1195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1203,7 +1203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1211,7 +1211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1219,7 +1219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1227,7 +1227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -69.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1235,7 +1235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1243,7 +1243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1251,7 +1251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1259,7 +1259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1267,7 +1267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1275,7 +1275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1283,7 +1283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1291,7 +1291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1299,7 +1299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1307,7 +1307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1315,7 +1315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1323,7 +1323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -79.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1331,7 +1331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -79.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1339,7 +1339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -80.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1347,7 +1347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1355,7 +1355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -69.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1363,7 +1363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1371,7 +1371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1379,7 +1379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1387,7 +1387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1395,7 +1395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1403,7 +1403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1411,7 +1411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1419,7 +1419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1427,7 +1427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1435,7 +1435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1443,7 +1443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1451,7 +1451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1459,7 +1459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1467,7 +1467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1475,7 +1475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1483,7 +1483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1491,7 +1491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1499,7 +1499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1507,7 +1507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1515,7 +1515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1523,7 +1523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1531,7 +1531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1539,7 +1539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -72.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1547,7 +1547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1555,7 +1555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1563,7 +1563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -74.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1571,7 +1571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1579,7 +1579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -72.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1587,7 +1587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -71.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1595,7 +1595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1603,7 +1603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1611,7 +1611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1619,7 +1619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1627,7 +1627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1635,7 +1635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1643,7 +1643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1651,7 +1651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1659,7 +1659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1667,7 +1667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1675,7 +1675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1683,7 +1683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1691,7 +1691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1699,7 +1699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1707,7 +1707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1715,7 +1715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1723,7 +1723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1731,7 +1731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1739,7 +1739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1747,7 +1747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1755,7 +1755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1763,7 +1763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1771,7 +1771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1779,7 +1779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1787,7 +1787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1795,7 +1795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1803,7 +1803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1811,7 +1811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1819,7 +1819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1827,7 +1827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1835,7 +1835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -50.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1843,7 +1843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1851,7 +1851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1859,7 +1859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1867,7 +1867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1875,7 +1875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -52.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1883,7 +1883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1891,7 +1891,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1899,7 +1899,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1907,7 +1907,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1915,7 +1915,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1923,7 +1923,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1931,7 +1931,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1939,7 +1939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1947,7 +1947,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1955,7 +1955,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1963,7 +1963,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1971,7 +1971,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1979,7 +1979,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1987,7 +1987,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -1995,7 +1995,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2003,7 +2003,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2011,7 +2011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2019,7 +2019,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2027,7 +2027,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2035,7 +2035,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2043,7 +2043,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2051,7 +2051,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2059,7 +2059,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2067,7 +2067,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2075,7 +2075,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2083,7 +2083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2091,7 +2091,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2099,7 +2099,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2107,7 +2107,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2115,7 +2115,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2123,7 +2123,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -56.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2131,7 +2131,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -53.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2139,7 +2139,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2147,7 +2147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -51.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2155,7 +2155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2163,7 +2163,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2171,7 +2171,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2179,7 +2179,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2187,7 +2187,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2195,7 +2195,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2203,7 +2203,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2211,7 +2211,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2219,7 +2219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2227,7 +2227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2235,7 +2235,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2243,7 +2243,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2251,7 +2251,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2259,7 +2259,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2267,7 +2267,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -68.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2275,7 +2275,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2283,7 +2283,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2291,7 +2291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -67.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2299,7 +2299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2307,7 +2307,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2315,7 +2315,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2323,7 +2323,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2331,7 +2331,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2339,7 +2339,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2347,7 +2347,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2355,7 +2355,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2363,7 +2363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2371,7 +2371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -62.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2379,7 +2379,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2387,7 +2387,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2395,7 +2395,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -66.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2403,7 +2403,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -64.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2411,7 +2411,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -65.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2419,7 +2419,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -63.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2427,7 +2427,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2435,7 +2435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2443,7 +2443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -58.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2451,7 +2451,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -60.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2459,7 +2459,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -59.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2467,7 +2467,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2475,7 +2475,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2483,7 +2483,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2491,7 +2491,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -55.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2499,7 +2499,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -54.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2507,7 +2507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -57.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2515,7 +2515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -61.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2523,7 +2523,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -73.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2531,7 +2531,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -74.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2539,7 +2539,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2547,7 +2547,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2555,7 +2555,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2563,7 +2563,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2571,7 +2571,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -85.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2579,7 +2579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -87.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2587,7 +2587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 26, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -91.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2595,7 +2595,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -91.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2603,7 +2603,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -90.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2611,7 +2611,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -89.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2619,7 +2619,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -88.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2627,7 +2627,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -88.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2635,7 +2635,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -87.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2643,7 +2643,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -87.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2651,7 +2651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -86.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2659,7 +2659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -85.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2667,7 +2667,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -85.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2675,7 +2675,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -84.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2683,7 +2683,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -83.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2691,7 +2691,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -83.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2699,7 +2699,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -83.4,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2707,7 +2707,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -82.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2715,7 +2715,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -82.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2723,7 +2723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2731,7 +2731,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2739,7 +2739,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -80.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2747,7 +2747,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -81.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2755,7 +2755,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -80.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2763,7 +2763,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -80.1,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2771,7 +2771,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -79.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2779,7 +2779,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -79.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2787,7 +2787,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -79.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2795,7 +2795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.8,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2803,7 +2803,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -78.6,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2811,7 +2811,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2819,7 +2819,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.5,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2827,7 +2827,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2835,7 +2835,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2843,7 +2843,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.7,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2851,7 +2851,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -77.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2859,7 +2859,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.9,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2867,7 +2867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.3,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2875,7 +2875,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.2,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',
@@ -2883,7 +2883,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
-      'datetime_end': None,
+      'end_datetime': None,
       'netFlow': -76.0,
       'sortedZoneKeys': 'ES-IB-IZ->ES-IB-MA',
       'source': 'demanda.ree.es',

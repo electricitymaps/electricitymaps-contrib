@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.5),
         'coal': np.float64(7.0),
@@ -28,7 +28,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.5),
         'coal': np.float64(7.0),
@@ -51,7 +51,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(677.0),
         'coal': np.float64(7.0),
@@ -74,7 +74,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.5),
         'coal': np.float64(7.0),
@@ -97,7 +97,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(677.0),
         'coal': np.float64(7.0),
@@ -120,7 +120,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.0),
         'coal': np.float64(7.0),
@@ -143,7 +143,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.5),
         'coal': np.float64(7.0),
@@ -166,7 +166,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(676.5),
         'coal': np.float64(7.0),
@@ -189,7 +189,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(674.0),
         'coal': np.float64(7.0),
@@ -212,7 +212,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(675.5),
         'coal': np.float64(7.0),
@@ -235,7 +235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(674.5),
         'coal': np.float64(7.0),
@@ -258,7 +258,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(674.5),
         'coal': np.float64(7.0),
@@ -281,7 +281,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(673.5),
         'coal': np.float64(9.0),
@@ -304,7 +304,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(675.0),
         'coal': np.float64(11.0),
@@ -327,7 +327,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(669.5),
         'coal': np.float64(11.0),
@@ -350,7 +350,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(668.0),
         'coal': np.float64(11.0),
@@ -373,7 +373,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(670.5),
         'coal': np.float64(11.0),
@@ -396,7 +396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(670.5),
         'coal': np.float64(11.0),
@@ -419,7 +419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(670.5),
         'coal': np.float64(11.0),
@@ -442,7 +442,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(669.5),
         'coal': np.float64(11.0),
@@ -465,7 +465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(668.0),
         'coal': np.float64(11.0),
@@ -488,7 +488,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(668.0),
         'coal': np.float64(11.0),
@@ -511,7 +511,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(665.5),
         'coal': np.float64(11.0),
@@ -534,7 +534,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(665.0),
         'coal': np.float64(11.0),
@@ -557,7 +557,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(670.0),
         'coal': np.float64(11.0),
@@ -580,7 +580,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(667.0),
         'coal': np.float64(11.0),
@@ -603,7 +603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(664.0),
         'coal': np.float64(11.0),
@@ -626,7 +626,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(655.0),
         'coal': np.float64(11.0),
@@ -649,7 +649,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(635.5),
         'coal': np.float64(11.0),
@@ -672,7 +672,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(639.0),
         'coal': np.float64(11.0),
@@ -695,7 +695,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(645.5),
         'coal': np.float64(11.0),
@@ -718,7 +718,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(651.5),
         'coal': np.float64(11.0),
@@ -741,7 +741,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(651.0),
         'coal': np.float64(11.0),
@@ -764,7 +764,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(650.0),
         'coal': np.float64(11.0),
@@ -787,7 +787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(653.0),
         'coal': np.float64(11.0),
@@ -810,7 +810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(657.0),
         'coal': np.float64(11.0),
@@ -833,7 +833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(657.0),
         'coal': np.float64(11.0),
@@ -856,7 +856,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(655.5),
         'coal': np.float64(11.0),
@@ -879,7 +879,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(655.5),
         'coal': np.float64(11.0),
@@ -902,7 +902,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(653.0),
         'coal': np.float64(11.0),
@@ -925,7 +925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(658.5),
         'coal': np.float64(11.0),
@@ -948,7 +948,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(655.0),
         'coal': np.float64(11.0),
@@ -971,7 +971,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(652.0),
         'coal': np.float64(11.0),
@@ -994,7 +994,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 21, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(653.5),
         'coal': np.float64(9.0),
@@ -1017,7 +1017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 22, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(655.0),
         'coal': np.float64(7.0),
@@ -1040,7 +1040,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 22, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(654.0),
         'coal': np.float64(7.0),
@@ -1063,7 +1063,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 22, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(654.0),
         'coal': np.float64(7.0),
@@ -1086,7 +1086,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 22, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(649.5),
         'coal': np.float64(7.0),
@@ -1109,7 +1109,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(651.0),
         'coal': np.float64(7.0),

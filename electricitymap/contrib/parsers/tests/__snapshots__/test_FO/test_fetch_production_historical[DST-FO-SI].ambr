@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.8,
@@ -22,7 +22,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 1.25,
@@ -39,7 +39,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.63,
@@ -56,7 +56,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.78,
@@ -73,7 +73,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0.2,
@@ -90,7 +90,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -107,7 +107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -124,7 +124,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -141,7 +141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -158,7 +158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -175,7 +175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -192,7 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -209,7 +209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -226,7 +226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -243,7 +243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -260,7 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -277,7 +277,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -294,7 +294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -311,7 +311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -328,7 +328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -345,7 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -362,7 +362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -379,7 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -396,7 +396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -413,7 +413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -430,7 +430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -447,7 +447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -464,7 +464,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -481,7 +481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -498,7 +498,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -515,7 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -532,7 +532,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -549,7 +549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -566,7 +566,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -583,7 +583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -600,7 +600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -617,7 +617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -634,7 +634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -651,7 +651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -668,7 +668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0,
         'oil': 0,
@@ -685,7 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 0.42,
         'oil': 0,
@@ -702,7 +702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 2.91,
         'oil': 0,
@@ -719,7 +719,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 3.02,
         'oil': 0,
@@ -736,7 +736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 3.01,
         'oil': 0,
@@ -753,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 2.71,
         'oil': 0,
@@ -770,7 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 2.12,
         'oil': 0,
@@ -787,7 +787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 1.63,
         'oil': 0,
@@ -804,7 +804,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 1.75,
         'oil': 0,

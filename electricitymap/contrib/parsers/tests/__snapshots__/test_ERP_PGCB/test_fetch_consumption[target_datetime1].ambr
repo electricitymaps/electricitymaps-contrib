@@ -4,6 +4,7 @@
     dict({
       'consumption': 8104.0,
       'datetime': datetime.datetime(2025, 1, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 7669.0,
       'datetime': datetime.datetime(2025, 1, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 7351.0,
       'datetime': datetime.datetime(2025, 1, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 7082.0,
       'datetime': datetime.datetime(2025, 1, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 6952.0,
       'datetime': datetime.datetime(2025, 1, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 7382.0,
       'datetime': datetime.datetime(2025, 1, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 8038.0,
       'datetime': datetime.datetime(2025, 1, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 8896.0,
       'datetime': datetime.datetime(2025, 1, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 9335.0,
       'datetime': datetime.datetime(2025, 1, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 9048.0,
       'datetime': datetime.datetime(2025, 1, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 9272.0,
       'datetime': datetime.datetime(2025, 1, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 9764.0,
       'datetime': datetime.datetime(2025, 1, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 10087.0,
       'datetime': datetime.datetime(2025, 1, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 9531.0,
       'datetime': datetime.datetime(2025, 1, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 9201.0,
       'datetime': datetime.datetime(2025, 1, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 8829.0,
       'datetime': datetime.datetime(2025, 1, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 9175.0,
       'datetime': datetime.datetime(2025, 1, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 10336.0,
       'datetime': datetime.datetime(2025, 1, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 10118.0,
       'datetime': datetime.datetime(2025, 1, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 10107.0,
       'datetime': datetime.datetime(2025, 1, 1, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 9970.0,
       'datetime': datetime.datetime(2025, 1, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 9829.0,
       'datetime': datetime.datetime(2025, 1, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 9430.0,
       'datetime': datetime.datetime(2025, 1, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 8898.0,
       'datetime': datetime.datetime(2025, 1, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 8514.0,
       'datetime': datetime.datetime(2025, 1, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
+      'end_datetime': None,
       'source': 'erp.pgcb.gov.bd',
       'sourceType': <EventSourceType.measured: 'measured'>,
       'zoneKey': 'BD',

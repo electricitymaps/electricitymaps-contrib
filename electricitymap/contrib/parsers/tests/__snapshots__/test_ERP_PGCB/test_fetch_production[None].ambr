@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 13, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3483.0,
         'gas': 3932.0,
@@ -25,7 +25,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 13, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3368.0,
         'gas': 3831.0,
@@ -45,7 +45,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2993.0,
         'gas': 3821.0,
@@ -65,7 +65,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2863.0,
         'gas': 3821.0,
@@ -85,7 +85,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2586.0,
         'gas': 3851.0,
@@ -105,7 +105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2489.0,
         'gas': 3885.0,
@@ -125,7 +125,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2488.0,
         'gas': 3833.0,
@@ -145,7 +145,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2582.0,
         'gas': 4007.0,
@@ -165,7 +165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2891.0,
         'gas': 4066.0,
@@ -185,7 +185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3353.0,
         'gas': 4007.0,
@@ -205,7 +205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3430.0,
         'gas': 3963.0,
@@ -225,7 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3136.0,
         'gas': 3912.0,
@@ -245,7 +245,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3123.0,
         'gas': 3848.0,
@@ -265,7 +265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3280.0,
         'gas': 4142.0,
@@ -285,7 +285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3300.0,
         'gas': 4407.0,
@@ -305,7 +305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3183.0,
         'gas': 4435.0,
@@ -325,7 +325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2988.0,
         'gas': 4293.0,
@@ -345,7 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2974.0,
         'gas': 4287.0,
@@ -365,7 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3083.0,
         'gas': 4455.0,
@@ -385,7 +385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3328.0,
         'gas': 4684.0,
@@ -405,7 +405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3591.0,
         'gas': 4823.0,
@@ -425,7 +425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3496.0,
         'gas': 4887.0,
@@ -445,7 +445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3473.0,
         'gas': 4885.0,
@@ -465,7 +465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3349.0,
         'gas': 4866.0,
@@ -485,7 +485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3319.0,
         'gas': 4839.0,
@@ -505,7 +505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2939.0,
         'gas': 4845.0,
@@ -525,7 +525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 14, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2692.0,
         'gas': 4692.0,
@@ -545,7 +545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2294.0,
         'gas': 4640.0,
@@ -565,7 +565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2063.0,
         'gas': 4629.0,
@@ -585,7 +585,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 1979.0,
         'gas': 4458.0,
@@ -605,7 +605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 1976.0,
         'gas': 4292.0,
@@ -625,7 +625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 1973.0,
         'gas': 4236.0,
@@ -645,7 +645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 1948.0,
         'gas': 4702.0,
@@ -665,7 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2302.0,
         'gas': 4603.0,
@@ -685,7 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3037.0,
         'gas': 4374.0,
@@ -705,7 +705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3007.0,
         'gas': 4404.0,
@@ -725,7 +725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2859.0,
         'gas': 4247.0,
@@ -745,7 +745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2860.0,
         'gas': 4257.0,
@@ -765,7 +765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3102.0,
         'gas': 4606.0,
@@ -785,7 +785,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3349.0,
         'gas': 4567.0,
@@ -805,7 +805,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3382.0,
         'gas': 4196.0,
@@ -825,7 +825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3239.0,
         'gas': 4246.0,
@@ -845,7 +845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 2883.0,
         'gas': 4349.0,
@@ -865,7 +865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3000.0,
         'gas': 4394.0,
@@ -885,7 +885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3349.0,
         'gas': 4697.0,
@@ -905,7 +905,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3520.0,
         'gas': 4962.0,
@@ -925,7 +925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3557.0,
         'gas': 5245.0,
@@ -945,7 +945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3559.0,
         'gas': 5093.0,
@@ -965,7 +965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3491.0,
         'gas': 4903.0,
@@ -985,7 +985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3226.0,
         'gas': 4858.0,
@@ -1005,7 +1005,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 1, 15, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Dhaka')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 3193.0,
         'gas': 4822.0,

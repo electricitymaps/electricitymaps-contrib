@@ -7,7 +7,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.5,
         'coal': 106.4,
@@ -29,7 +29,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 43.4,
         'coal': 105.8,
@@ -51,7 +51,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.3,
         'coal': 105.6,
@@ -73,7 +73,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.8,
         'coal': 106.1,
@@ -95,7 +95,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 35.4,
         'coal': 106.3,
@@ -117,7 +117,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 39.7,
         'coal': 106.0,
@@ -138,7 +138,7 @@
         'oil',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 42.3,
         'coal': 106.0,
@@ -159,7 +159,7 @@
         'oil',
       ]),
       'datetime': datetime.datetime(2025, 7, 25, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/Tegucigalpa')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 47.4,
         'coal': 106.1,

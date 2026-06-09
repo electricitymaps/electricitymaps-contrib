@@ -4,6 +4,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 370.99,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -12,6 +13,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 335.11,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -20,6 +22,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 299.45,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -28,6 +31,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 280.51,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -36,6 +40,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 242.15,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -44,6 +49,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 242.62,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -52,6 +58,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 262.98,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -60,6 +67,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 336.87,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -68,6 +76,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 381.58,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -76,6 +85,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 367.58,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -84,6 +94,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 329.34,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -92,6 +103,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 305.93,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -100,6 +112,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 288.28,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -108,6 +121,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 270.63,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -116,6 +130,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 246.27,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -124,6 +139,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 237.68,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -132,6 +148,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 243.56,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -140,6 +157,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 301.34,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -148,6 +166,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 331.81,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -156,6 +175,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 377.7,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -164,6 +184,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 405.7,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -172,6 +193,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 410.29,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -180,6 +202,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 394.29,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -188,6 +211,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 366.11,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -196,6 +220,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 277.69,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -204,6 +229,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 247.09,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -212,6 +238,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 245.92,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -220,6 +247,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 242.62,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -228,6 +256,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 241.92,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -236,6 +265,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 237.68,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -244,6 +274,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 233.21,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -252,6 +283,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 231.8,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -260,6 +292,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 237.68,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -268,6 +301,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 249.45,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -276,6 +310,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 248.33,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -284,6 +319,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 243.21,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -292,6 +328,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 235.33,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -300,6 +337,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 217.44,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -308,6 +346,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 194.15,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -316,6 +355,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 185.91,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -324,6 +364,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 188.26,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -332,6 +373,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 204.15,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -340,6 +382,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 247.09,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -348,6 +391,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 301.57,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -356,6 +400,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 335.58,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -364,6 +409,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 348.52,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -372,6 +418,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 343.34,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -380,6 +427,7 @@
     dict({
       'currency': 'EUR',
       'datetime': datetime.datetime(2022, 7, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'price': 324.4,
       'source': 'rte-france.com',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -393,7 +441,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 12, 16, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 5.0,
         'coal': 0.0,
@@ -416,7 +464,7 @@
       'correctedModes': list([
       ]),
       'datetime': FakeDatetime(2024, 12, 16, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='UTC')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': 6.0,
         'coal': 1.0,

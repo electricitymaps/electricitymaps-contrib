@@ -625,7 +625,7 @@ def parse_production(
     # Loop over the grouped data and create production and storage mixes for each datetime.
     for datetimes, values in grouped_data.items():
         production, storage = _create_production_and_storage_mixes(
-            zoneKey, datetimes[0], values, expected_length, logger
+            zoneKey, datetimes.start, values, expected_length, logger
         )
         # If production and storage are None, the datapoint is considered invalid and is skipped
         # in order to not crash the parser.
@@ -634,8 +634,8 @@ def parse_production(
 
         production_breakdowns.append(
             zoneKey=zoneKey,
-            datetime=datetimes[0],
-            datetime_end=datetimes[1],
+            datetime=datetimes.start,
+            end_datetime=datetimes.end,
             source=SOURCE,
             sourceType=source_type,
             production=production,
@@ -664,7 +664,7 @@ def _get_raw_production_events(soup: BeautifulSoup) -> list[dict[str, Any]]:
             list_of_raw_data.append(
                 {
                     "datetime": dt,
-                    "datetime_end": dt_end,
+                    "end_datetime": dt_end,
                     "fuel_code": fuel_code,
                     "quantity": quantity,
                 }
@@ -699,7 +699,7 @@ def _create_production_and_storage_mixes(
     production = ProductionMix()
     storage = StorageMix()
     for production_mode in values:
-        _datetime, _datetime_end, fuel_code, quantity = production_mode.values()
+        _datetime, _end_datetime, fuel_code, quantity = production_mode.values()
         fuel_em_type = ENTSOE_PARAMETER_BY_GROUP[fuel_code]
         if fuel_code in ENTSOE_STORAGE_PARAMETERS:
             storage.add_value(fuel_em_type, -quantity)
@@ -712,7 +712,7 @@ def _create_production_and_storage_mixes(
 
 
 def _get_expected_production_group_length(
-    grouped_data: dict[tuple[datetime, datetime], list[dict[str, Any]]],
+    grouped_data: dict[StartEndDatetime, list[dict[str, Any]]],
 ) -> int:
     """
     Returns the expected length of the grouped data. This is the maximum length of the grouped data values.
@@ -725,18 +725,19 @@ def _get_expected_production_group_length(
 
 def _group_production_data_by_datetime(
     list_of_raw_data,
-) -> dict[tuple[datetime, datetime], list[dict[str, Any]]]:
+) -> dict[StartEndDatetime, list[dict[str, Any]]]:
     """
     Sorts and groups raw production objects in the format of `{datetime: datetime.datetime, fuel_code: str, quantity: float}` by the datetime key.
-    And returns a dictionary with the datetime as the key and a list of the grouped data as the value.
+    And returns a dictionary keyed by the (start, end) datetime interval with a list of the grouped data as the value.
     """
     # Sort the data in place by the datetime key so we can group it by datetime.
     list_of_raw_data.sort(key=itemgetter("datetime"))
-    # Group the data by the datetime key. It requires the data to be sorted by the datetime key first.
+    # Group the data by the (start, end) datetime interval. It requires the data
+    # to be sorted by the datetime key first.
     grouped_data = {
-        k: list(v)
+        StartEndDatetime(*k): list(v)
         for k, v in groupby(
-            list_of_raw_data, key=itemgetter("datetime", "datetime_end")
+            list_of_raw_data, key=itemgetter("datetime", "end_datetime")
         )
     }
 
@@ -763,7 +764,7 @@ class Period:
     """Represents one <Period> block from the XML."""
 
     datetime_start: datetime
-    datetime_end: datetime
+    end_datetime: datetime
     resolution: timedelta
     points: Iterable[IntPoint]
 
@@ -827,7 +828,7 @@ def _iter_periods(
         datetime_start = datetime.fromisoformat(
             zulu_to_utc(period.find("start").contents[0])
         )
-        datetime_end = datetime.fromisoformat(
+        end_datetime = datetime.fromisoformat(
             zulu_to_utc(period.find("end").contents[0])
         )
         resolution = _resolution_to_timedelta(
@@ -838,7 +839,7 @@ def _iter_periods(
 
         yield Period(
             datetime_start=datetime_start,
-            datetime_end=datetime_end,
+            end_datetime=end_datetime,
             resolution=resolution,
             points=points_generator,
         )
@@ -895,7 +896,7 @@ def _reverse_A3_curve_compression_for_period(
         return
 
     start_time = period.datetime_start
-    end_time = period.datetime_end
+    end_time = period.end_datetime
     resolution = period.resolution
 
     point_duration_sec = resolution.total_seconds()
@@ -929,7 +930,7 @@ def parse_exchange(
         exchange_list.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
-            datetime_end=dt_end,
+            end_datetime=dt_end,
             source=SOURCE,
             netFlow=quantity,
         )
@@ -965,7 +966,7 @@ def parse_exchange_forecast(
             exchange_list.append(
                 zoneKey=sorted_zone_keys,
                 datetime=dt,
-                datetime_end=dt_end,
+                end_datetime=dt_end,
                 source=SOURCE,
                 netFlow=quantity,
                 sourceType=source_type,
@@ -997,6 +998,9 @@ def _merge_exchange_capacity_forecasts(
         # Use values from whichever event exists (prefer export if both exist)
         zoneKey = export_event.zoneKey if export_event else import_event.zoneKey
         source = export_event.source if export_event else import_event.source
+        end_datetime = (
+            export_event.end_datetime if export_event else import_event.end_datetime
+        )
 
         export_cap = export_event.capacityExport if export_event else None
         import_cap = import_event.capacityImport if import_event else None
@@ -1004,6 +1008,7 @@ def _merge_exchange_capacity_forecasts(
         merged.append(
             zoneKey=zoneKey,
             datetime=dt,
+            end_datetime=end_datetime,
             source=source,
             capacityExport=export_cap,
             capacityImport=import_cap,
@@ -1034,13 +1039,14 @@ def parse_exchange_capacity_forecast(
         soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
         forecasts = ExchangeCapacityList(logger)
         for timeseries in soup.find_all("timeseries"):
-            for dt, quantity in _get_datetime_value_from_timeseries(
+            for dt, dt_end, quantity in _get_datetime_value_from_timeseries(
                 timeseries, "quantity"
             ):
                 if direction == "export":
                     forecasts.append(
                         zoneKey=sorted_zone_keys,
                         datetime=dt,
+                        end_datetime=dt_end,
                         source=SOURCE,
                         capacityExport=quantity,
                         capacityImport=None,
@@ -1049,6 +1055,7 @@ def parse_exchange_capacity_forecast(
                     forecasts.append(
                         zoneKey=sorted_zone_keys,
                         datetime=dt,
+                        end_datetime=dt_end,
                         source=SOURCE,
                         capacityExport=None,
                         capacityImport=quantity,
@@ -1078,7 +1085,7 @@ def parse_prices(
             prices.append(
                 zoneKey=zoneKey,
                 datetime=dt,
-                datetime_end=dt_end,
+                end_datetime=dt_end,
                 price=value,
                 source="entsoe.eu",
                 currency=currency,
@@ -1378,6 +1385,7 @@ def _get_scheduled_exchanges(
         ScheduledExchange(
             zoneKey=evt.zoneKey,
             datetime=evt.datetime,
+            end_datetime=evt.end_datetime,
             source=evt.source,
             netFlow=evt.netFlow,
             sourceType=evt.sourceType,
@@ -1551,7 +1559,7 @@ def fetch_generation_forecast(
             generation_list.append(
                 zoneKey=zone_key,
                 datetime=dt,
-                datetime_end=dt_end,
+                end_datetime=dt_end,
                 source=SOURCE,
                 value=value,
                 sourceType=EventSourceType.forecasted,
@@ -1610,7 +1618,7 @@ def fetch_consumption(
             consumption_list.append(
                 zoneKey=zone_key,
                 datetime=dt,
-                datetime_end=dt_end,
+                end_datetime=dt_end,
                 source=SOURCE,
                 consumption=value,
                 sourceType=EventSourceType.measured,
@@ -1661,10 +1669,11 @@ def fetch_consumption_forecast(
             )
 
         consumption_list = TotalConsumptionList(logger)
-        for dt, value in parsed:
+        for dt, dt_end, value in parsed:
             consumption_list.append(
                 zoneKey=zone_key,
                 datetime=dt,
+                end_datetime=dt_end,
                 source=SOURCE,
                 consumption=value,
                 sourceType=EventSourceType.forecasted,

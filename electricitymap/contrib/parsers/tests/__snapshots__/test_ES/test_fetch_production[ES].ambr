@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 448,
         'gas': 6424,
@@ -27,7 +27,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 436,
         'gas': 6322,
@@ -49,7 +49,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 6124,
@@ -71,7 +71,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5911,
@@ -93,7 +93,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5955,
@@ -115,7 +115,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5975,
@@ -137,7 +137,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5899,
@@ -159,7 +159,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5841,
@@ -181,7 +181,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5764,
@@ -203,7 +203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 427,
         'gas': 5606,
@@ -225,7 +225,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 5458,
@@ -247,7 +247,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 5266,
@@ -269,7 +269,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 5257,
@@ -291,7 +291,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 5548,
@@ -313,7 +313,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5789,
@@ -335,7 +335,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5807,
@@ -357,7 +357,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5508,
@@ -379,7 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5371,
@@ -401,7 +401,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5249,
@@ -423,7 +423,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5196,
@@ -445,7 +445,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5152,
@@ -467,7 +467,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5142,
@@ -489,7 +489,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5109,
@@ -511,7 +511,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5063,
@@ -533,7 +533,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 5048,
@@ -555,7 +555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 5076,
@@ -577,7 +577,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 432,
         'gas': 5071,
@@ -599,7 +599,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 5083,
@@ -621,7 +621,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 431,
         'gas': 4874,
@@ -643,7 +643,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 435,
         'gas': 4680,
@@ -665,7 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 4547,
@@ -687,7 +687,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 428,
         'gas': 4327,
@@ -709,7 +709,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 4163,
@@ -731,7 +731,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 4099,
@@ -753,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 4021,
@@ -775,7 +775,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 25, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 3966,
@@ -797,7 +797,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 3902,
@@ -819,7 +819,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 3405,
@@ -841,7 +841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 3221,
@@ -863,7 +863,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 2933,
@@ -885,7 +885,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 2865,
@@ -907,7 +907,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 2832,
@@ -929,7 +929,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 2762,
@@ -951,7 +951,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 432,
         'gas': 2786,
@@ -973,7 +973,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 429,
         'gas': 2801,
@@ -995,7 +995,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 2784,
@@ -1017,7 +1017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 2726,
@@ -1039,7 +1039,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 430,
         'gas': 2701,
@@ -1061,7 +1061,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 427,
         'gas': 2641,
@@ -1083,7 +1083,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2775,
@@ -1105,7 +1105,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2893,
@@ -1127,7 +1127,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2984,
@@ -1149,7 +1149,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3082,
@@ -1171,7 +1171,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3146,
@@ -1193,7 +1193,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3164,
@@ -1215,7 +1215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3157,
@@ -1237,7 +1237,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3145,
@@ -1259,7 +1259,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3093,
@@ -1281,7 +1281,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3073,
@@ -1303,7 +1303,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3011,
@@ -1325,7 +1325,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3005,
@@ -1347,7 +1347,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3092,
@@ -1369,7 +1369,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3103,
@@ -1391,7 +1391,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3091,
@@ -1413,7 +1413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3016,
@@ -1435,7 +1435,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2967,
@@ -1457,7 +1457,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2966,
@@ -1479,7 +1479,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3038,
@@ -1501,7 +1501,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3005,
@@ -1523,7 +1523,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3034,
@@ -1545,7 +1545,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2804,
@@ -1567,7 +1567,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 2, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2773,
@@ -1589,7 +1589,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2813,
@@ -1611,7 +1611,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3038,
@@ -1633,7 +1633,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2975,
@@ -1655,7 +1655,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2943,
@@ -1677,7 +1677,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2859,
@@ -1699,7 +1699,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2856,
@@ -1721,7 +1721,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2891,
@@ -1743,7 +1743,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2903,
@@ -1765,7 +1765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 2799,
@@ -1787,7 +1787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 2780,
@@ -1809,7 +1809,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2727,
@@ -1831,7 +1831,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 3, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2766,
@@ -1853,7 +1853,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2746,
@@ -1875,7 +1875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2679,
@@ -1897,7 +1897,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2614,
@@ -1919,7 +1919,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2668,
@@ -1941,7 +1941,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2654,
@@ -1963,7 +1963,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2661,
@@ -1985,7 +1985,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2658,
@@ -2007,7 +2007,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2648,
@@ -2029,7 +2029,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 2640,
@@ -2051,7 +2051,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2635,
@@ -2073,7 +2073,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 246,
         'gas': 2654,
@@ -2095,7 +2095,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 4, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2649,
@@ -2117,7 +2117,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2648,
@@ -2139,7 +2139,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2701,
@@ -2161,7 +2161,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2672,
@@ -2183,7 +2183,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2649,
@@ -2205,7 +2205,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2486,
@@ -2227,7 +2227,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2521,
@@ -2249,7 +2249,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2493,
@@ -2271,7 +2271,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2414,
@@ -2293,7 +2293,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2446,
@@ -2315,7 +2315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2415,
@@ -2337,7 +2337,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2418,
@@ -2359,7 +2359,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 5, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2442,
@@ -2381,7 +2381,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 2421,
@@ -2403,7 +2403,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2506,
@@ -2425,7 +2425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2568,
@@ -2447,7 +2447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2577,
@@ -2469,7 +2469,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2602,
@@ -2491,7 +2491,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2661,
@@ -2513,7 +2513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2747,
@@ -2535,7 +2535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2760,
@@ -2557,7 +2557,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2851,
@@ -2579,7 +2579,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2871,
@@ -2601,7 +2601,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2941,
@@ -2623,7 +2623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 6, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2944,
@@ -2645,7 +2645,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2871,
@@ -2667,7 +2667,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2827,
@@ -2689,7 +2689,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2814,
@@ -2711,7 +2711,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2759,
@@ -2733,7 +2733,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2848,
@@ -2755,7 +2755,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2917,
@@ -2777,7 +2777,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2933,
@@ -2799,7 +2799,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2983,
@@ -2821,7 +2821,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2989,
@@ -2843,7 +2843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3000,
@@ -2865,7 +2865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3110,
@@ -2887,7 +2887,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 7, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3118,
@@ -2909,7 +2909,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3162,
@@ -2931,7 +2931,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2993,
@@ -2953,7 +2953,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3129,
@@ -2975,7 +2975,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3229,
@@ -2997,7 +2997,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3322,
@@ -3019,7 +3019,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3185,
@@ -3041,7 +3041,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3085,
@@ -3063,7 +3063,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 245,
         'gas': 3119,
@@ -3085,7 +3085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 3127,
@@ -3107,7 +3107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3152,
@@ -3129,7 +3129,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 3222,
@@ -3151,7 +3151,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 8, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3261,
@@ -3173,7 +3173,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3453,
@@ -3195,7 +3195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3958,
@@ -3217,7 +3217,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3799,
@@ -3239,7 +3239,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3548,
@@ -3261,7 +3261,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3366,
@@ -3283,7 +3283,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3119,
@@ -3305,7 +3305,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3068,
@@ -3327,7 +3327,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2986,
@@ -3349,7 +3349,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2818,
@@ -3371,7 +3371,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2707,
@@ -3393,7 +3393,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2693,
@@ -3415,7 +3415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 9, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2671,
@@ -3437,7 +3437,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2698,
@@ -3459,7 +3459,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2963,
@@ -3481,7 +3481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2990,
@@ -3503,7 +3503,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2937,
@@ -3525,7 +3525,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2708,
@@ -3547,7 +3547,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2619,
@@ -3569,7 +3569,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2642,
@@ -3591,7 +3591,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2508,
@@ -3613,7 +3613,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2436,
@@ -3635,7 +3635,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2423,
@@ -3657,7 +3657,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2446,
@@ -3679,7 +3679,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 10, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2487,
@@ -3701,7 +3701,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2493,
@@ -3723,7 +3723,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2257,
@@ -3745,7 +3745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2153,
@@ -3767,7 +3767,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2089,
@@ -3789,7 +3789,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2058,
@@ -3811,7 +3811,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2040,
@@ -3833,7 +3833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1847,
@@ -3855,7 +3855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1836,
@@ -3877,7 +3877,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1776,
@@ -3899,7 +3899,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1683,
@@ -3921,7 +3921,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1682,
@@ -3943,7 +3943,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 11, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1659,
@@ -3965,7 +3965,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1578,
@@ -3987,7 +3987,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1322,
@@ -4009,7 +4009,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1156,
@@ -4031,7 +4031,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1090,
@@ -4053,7 +4053,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1162,
@@ -4075,7 +4075,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1205,
@@ -4097,7 +4097,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1230,
@@ -4119,7 +4119,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1279,
@@ -4141,7 +4141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1309,
@@ -4163,7 +4163,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1317,
@@ -4185,7 +4185,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1325,
@@ -4207,7 +4207,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 12, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1328,
@@ -4229,7 +4229,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1347,
@@ -4251,7 +4251,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1383,
@@ -4273,7 +4273,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1407,
@@ -4295,7 +4295,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1395,
@@ -4317,7 +4317,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1406,
@@ -4339,7 +4339,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1441,
@@ -4361,7 +4361,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1432,
@@ -4383,7 +4383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1461,
@@ -4405,7 +4405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1478,
@@ -4427,7 +4427,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1515,
@@ -4449,7 +4449,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1509,
@@ -4471,7 +4471,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 13, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1479,
@@ -4493,7 +4493,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1479,
@@ -4515,7 +4515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1505,
@@ -4537,7 +4537,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1513,
@@ -4559,7 +4559,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1529,
@@ -4581,7 +4581,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1566,
@@ -4603,7 +4603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1590,
@@ -4625,7 +4625,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1583,
@@ -4647,7 +4647,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1650,
@@ -4669,7 +4669,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1654,
@@ -4691,7 +4691,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1660,
@@ -4713,7 +4713,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1685,
@@ -4735,7 +4735,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 14, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1719,
@@ -4757,7 +4757,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1785,
@@ -4779,7 +4779,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1887,
@@ -4801,7 +4801,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2041,
@@ -4823,7 +4823,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2034,
@@ -4845,7 +4845,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1980,
@@ -4867,7 +4867,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1965,
@@ -4889,7 +4889,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1957,
@@ -4911,7 +4911,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1977,
@@ -4933,7 +4933,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1916,
@@ -4955,7 +4955,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 1926,
@@ -4977,7 +4977,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 1941,
@@ -4999,7 +4999,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 15, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2005,
@@ -5021,7 +5021,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2074,
@@ -5043,7 +5043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2027,
@@ -5065,7 +5065,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2045,
@@ -5087,7 +5087,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2094,
@@ -5109,7 +5109,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2148,
@@ -5131,7 +5131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2214,
@@ -5153,7 +5153,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2370,
@@ -5175,7 +5175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2515,
@@ -5197,7 +5197,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2570,
@@ -5219,7 +5219,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2563,
@@ -5241,7 +5241,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2655,
@@ -5263,7 +5263,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 16, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2746,
@@ -5285,7 +5285,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 2774,
@@ -5307,7 +5307,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 2866,
@@ -5329,7 +5329,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 2981,
@@ -5351,7 +5351,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 3111,
@@ -5373,7 +5373,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3219,
@@ -5395,7 +5395,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3515,
@@ -5417,7 +5417,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3747,
@@ -5439,7 +5439,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3933,
@@ -5461,7 +5461,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3965,
@@ -5483,7 +5483,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4229,
@@ -5505,7 +5505,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4499,
@@ -5527,7 +5527,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 17, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4676,
@@ -5549,7 +5549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4786,
@@ -5571,7 +5571,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4487,
@@ -5593,7 +5593,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4388,
@@ -5615,7 +5615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4292,
@@ -5637,7 +5637,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4447,
@@ -5659,7 +5659,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4597,
@@ -5681,7 +5681,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4736,
@@ -5703,7 +5703,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 4948,
@@ -5725,7 +5725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 5116,
@@ -5747,7 +5747,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 5359,
@@ -5769,7 +5769,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 5409,
@@ -5791,7 +5791,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 18, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 5371,
@@ -5813,7 +5813,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 5251,
@@ -5835,7 +5835,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4980,
@@ -5857,7 +5857,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4656,
@@ -5879,7 +5879,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4673,
@@ -5901,7 +5901,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4702,
@@ -5923,7 +5923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4667,
@@ -5945,7 +5945,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4648,
@@ -5967,7 +5967,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4928,
@@ -5989,7 +5989,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 5066,
@@ -6011,7 +6011,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 5158,
@@ -6033,7 +6033,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 5224,
@@ -6055,7 +6055,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 19, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 5292,
@@ -6077,7 +6077,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 5243,
@@ -6099,7 +6099,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 4984,
@@ -6121,7 +6121,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4783,
@@ -6143,7 +6143,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4600,
@@ -6165,7 +6165,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 4752,
@@ -6187,7 +6187,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4691,
@@ -6209,7 +6209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 4627,
@@ -6231,7 +6231,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 4805,
@@ -6253,7 +6253,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4843,
@@ -6275,7 +6275,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4825,
@@ -6297,7 +6297,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4907,
@@ -6319,7 +6319,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 20, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4924,
@@ -6341,7 +6341,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4782,
@@ -6363,7 +6363,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 4661,
@@ -6385,7 +6385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 4592,
@@ -6407,7 +6407,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 4490,
@@ -6429,7 +6429,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 251,
         'gas': 4592,
@@ -6451,7 +6451,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4517,
@@ -6473,7 +6473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4464,
@@ -6495,7 +6495,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4384,
@@ -6517,7 +6517,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4258,
@@ -6539,7 +6539,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4125,
@@ -6561,7 +6561,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4134,
@@ -6583,7 +6583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 21, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4215,
@@ -6605,7 +6605,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4315,
@@ -6627,7 +6627,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4510,
@@ -6649,7 +6649,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4553,
@@ -6671,7 +6671,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4425,
@@ -6693,7 +6693,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 4228,
@@ -6715,7 +6715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4159,
@@ -6737,7 +6737,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4110,
@@ -6759,7 +6759,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3913,
@@ -6781,7 +6781,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3813,
@@ -6803,7 +6803,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3752,
@@ -6825,7 +6825,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3739,
@@ -6847,7 +6847,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 22, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3737,
@@ -6869,7 +6869,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3783,
@@ -6891,7 +6891,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3971,
@@ -6913,7 +6913,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4234,
@@ -6935,7 +6935,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4241,
@@ -6957,7 +6957,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4084,
@@ -6979,7 +6979,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4056,
@@ -7001,7 +7001,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 4019,
@@ -7023,7 +7023,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3970,
@@ -7045,7 +7045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3906,
@@ -7067,7 +7067,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3852,
@@ -7089,7 +7089,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3775,
@@ -7111,7 +7111,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 26, 23, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3716,
@@ -7133,7 +7133,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3632,
@@ -7155,7 +7155,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3757,
@@ -7177,7 +7177,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3694,
@@ -7199,7 +7199,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3506,
@@ -7221,7 +7221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3469,
@@ -7243,7 +7243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3425,
@@ -7265,7 +7265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3360,
@@ -7287,7 +7287,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3499,
@@ -7309,7 +7309,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3475,
@@ -7331,7 +7331,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3379,
@@ -7353,7 +7353,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3493,
@@ -7375,7 +7375,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 0, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3561,
@@ -7397,7 +7397,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 3613,
@@ -7419,7 +7419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 5, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3732,
@@ -7441,7 +7441,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 10, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3775,
@@ -7463,7 +7463,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3732,
@@ -7485,7 +7485,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 20, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3714,
@@ -7507,7 +7507,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 25, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3696,
@@ -7529,7 +7529,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3661,
@@ -7551,7 +7551,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 35, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3606,
@@ -7573,7 +7573,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 40, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 250,
         'gas': 3485,
@@ -7595,7 +7595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3476,
@@ -7617,7 +7617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 50, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3467,
@@ -7639,7 +7639,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 1, 55, tzinfo=zoneinfo.ZoneInfo(key='Europe/Madrid')),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 246,
         'gas': 3488,
@@ -7661,7 +7661,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 3348,
@@ -7683,7 +7683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3334,
@@ -7705,7 +7705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 3320,
@@ -7727,7 +7727,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3312,
@@ -7749,7 +7749,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3306,
@@ -7771,7 +7771,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3289,
@@ -7793,7 +7793,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 3199,
@@ -7815,7 +7815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3204,
@@ -7837,7 +7837,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 247,
         'gas': 3262,
@@ -7859,7 +7859,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 249,
         'gas': 3244,
@@ -7881,7 +7881,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3192,
@@ -7903,7 +7903,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=7200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 248,
         'gas': 3021,
@@ -7925,7 +7925,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2024, 10, 27, 2, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'coal': 252,
         'gas': 3025,

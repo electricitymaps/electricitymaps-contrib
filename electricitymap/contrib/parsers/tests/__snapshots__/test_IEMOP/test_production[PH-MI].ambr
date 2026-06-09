@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 0, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1039.0631),
@@ -26,7 +26,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 5, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1039.8314),
@@ -47,7 +47,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 10, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1024.039),
@@ -68,7 +68,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 15, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1030.8),
@@ -89,7 +89,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 20, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1008.601),
@@ -110,7 +110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 25, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1002.6),
@@ -131,7 +131,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 30, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(1001.6925),
@@ -152,7 +152,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 35, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(986.69),
@@ -173,7 +173,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 40, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(976.8124),
@@ -194,7 +194,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 45, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(961.936),
@@ -215,7 +215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 50, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(942.28),
@@ -236,7 +236,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2023, 9, 13, 23, 55, tzinfo=<DstTzInfo 'Asia/Manila' PST+8:00:00 STD>),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'biomass': np.float64(22.5),
         'coal': np.float64(927.1405),

@@ -6,7 +6,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2018, 1, 27, 20, 19, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=79200))),
-      'datetime_end': None,
+      'end_datetime': None,
       'production': dict({
         'hydro': 35888.05363,
         'nuclear': 1829.29529,
