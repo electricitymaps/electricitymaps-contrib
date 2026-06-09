@@ -1046,6 +1046,7 @@ def test_merge_total_production_lists():
     assert merged.to_list() == [
         {
             "datetime": dt,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 150,
             "source": "entsoe",
@@ -1053,6 +1054,7 @@ def test_merge_total_production_lists():
         },
         {
             "datetime": dt_later,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 25,
             "source": "entsoe",
@@ -1093,6 +1095,7 @@ def test_merge_consumption_lists():
     assert merged.to_list() == [
         {
             "datetime": dt,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 100,
             "source": "entsoe",
@@ -1100,6 +1103,7 @@ def test_merge_consumption_lists():
         },
         {
             "datetime": dt_later,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 30,
             "source": "entsoe",
