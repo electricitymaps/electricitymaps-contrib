@@ -511,6 +511,7 @@ def _df_to_production_breakdown_list(
     target_date: datetime,
     logger: Logger,
     datetime_offset: timedelta = timedelta(),
+    latest_available: bool = False,
 ) -> list:
     """Convert area CSV DataFrame rows for target_date into production events."""
     production_list = ProductionBreakdownList(logger)
@@ -528,17 +529,28 @@ def _df_to_production_breakdown_list(
     df["_datetime"] = df.apply(_safe_datetime, axis=1)
     df = df[df["_datetime"].notna()]
 
-    # Filter to target date only
-    target_day = target_date.date()
-    df = df[df["_datetime"].apply(lambda dt: dt.date() == target_day)]
-
-    if df.empty:
-        return production_list.to_list()
-
     # Which CSV columns map to which (mode, category)
     col_targets = [
         (col, _AREA_COLUMN_MAP[col]) for col in df.columns if col in _AREA_COLUMN_MAP
     ]
+
+    # Filter to the target date. On live fetches, some TSOs publish with a lag
+    # (HEPCO ~3 days), and the current day is either absent or padded with
+    # valueless rows — serve the most recent day that actually has values
+    # instead of returning nothing.
+    target_day = target_date.date()
+    days = df["_datetime"].apply(lambda dt: dt.date())
+    if latest_available and not df.empty:
+        value_cols = [col for col, _ in col_targets]
+        has_values = df[value_cols].notna().any(axis=1)
+        if not (has_values & (days == target_day)).any():
+            if not has_values.any():
+                return production_list.to_list()
+            target_day = days[has_values].max()
+    df = df[days == target_day]
+
+    if df.empty:
+        return production_list.to_list()
 
     for _, row in df.iterrows():
         # pandas coerces the _datetime column to datetime64 when no rows were
@@ -594,6 +606,7 @@ def _fetch_production_area_csv(
     target_datetime: datetime,
     session: Session | None,
     logger: Logger,
+    live: bool = False,
 ) -> list:
     """Fetch and parse the area supply-demand CSV for a zone."""
     config = _AREA_CSV_CONFIGS[zone_key]
@@ -607,6 +620,7 @@ def _fetch_production_area_csv(
         target_datetime,
         logger,
         datetime_offset=config.datetime_offset,
+        latest_available=live,
     )
 
 
@@ -755,6 +769,7 @@ def _fetch_production_legacy_area_csv(
     target_datetime: datetime,
     session: Session | None,
     logger: Logger,
+    live: bool = False,  # unused: live fetches always route to the area CSV
 ) -> list:
     """Fetch and parse a pre-new-format legacy area archive (hourly, ~2016+)."""
     config = _LEGACY_AREA_CONFIGS[zone_key]
@@ -845,6 +860,7 @@ def _fetch_production_isep(
     target_datetime: datetime,
     session: Session | None,
     logger: Logger,
+    live: bool = False,  # unused: live fetches always route to the area CSV
 ) -> list:
     """Fetch one day of hourly production from ISEP energychart."""
     config = _ISEP_CONFIGS[zone_key]
@@ -901,6 +917,7 @@ def fetch_production(
         ISEP republishes the same hourly TSO data),
       * earlier than everything (pre-FY2016) → raise.
     """
+    live = target_datetime is None
     dt = (
         target_datetime.astimezone(ZONE_INFO)
         if target_datetime is not None
@@ -915,7 +932,7 @@ def fetch_production(
     for configs, fetcher in sources:
         config = configs.get(zone_key)
         if config is not None and dt >= config.start:
-            return fetcher(zone_key, dt, session, logger)
+            return fetcher(zone_key, dt, session, logger, live=live)
 
     raise NotImplementedError(
         f"No area supply-demand data available for {zone_key} at {dt.date()}"

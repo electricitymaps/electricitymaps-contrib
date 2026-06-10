@@ -499,6 +499,46 @@ def test_event_datetimes_are_native_datetime():
         assert type(event["datetime"]) is datetime
 
 
+def test_live_fetch_falls_back_to_latest_available_day():
+    """On live fetches, a TSO that publishes with a lag (HEPCO ~3 days) has no
+    rows for 'today' — serve the most recent day with values instead of []."""
+    _, df, _ = _read_fixture("01")  # fixture covers early April 2026
+    after_fixture = datetime(2026, 4, 20, tzinfo=TIMEZONE)
+    # Without the flag (historical backfill): an absent day returns nothing.
+    assert (
+        _df_to_production_breakdown_list(df, "JP-HKD", "test", after_fixture, LOGGER)
+        == []
+    )
+    result = _df_to_production_breakdown_list(
+        df, "JP-HKD", "test", after_fixture, LOGGER, latest_available=True
+    )
+    assert result
+    latest_day = max(e["datetime"] for e in result).date()
+    assert all(e["datetime"].date() == latest_day for e in result)
+    assert latest_day < after_fixture.date()
+
+
+def test_live_fetch_skips_valueless_padded_target_day():
+    """HEPCO pads the current month with full timestamps but empty values; the
+    live fallback must skip past those rows, not just absent days."""
+    padded = (
+        "単位[MW平均],,,供給力\n"
+        "DATE,TIME,エリア需要,原子力,火力(LNG),火力(石炭),火力(石油),火力(その他),水力,地熱,"
+        "バイオマス,太陽光発電実績,太陽光出力制御量,風力発電実績,風力出力制御量,揚水,蓄電池,連系線,その他,合計\n"
+        "2026/6/7,0:00,1000,100,200,300,0,50,80,0,40,0,0,30,0,0,0,200,0,1000\n"
+        "2026/6/7,0:30,1000,100,210,300,0,50,80,0,40,0,0,30,0,0,0,200,0,1000\n"
+        "2026/6/10,0:00,,,,,,,,,,,,,,,,,,\n"  # today: timestamp but no values
+        "2026/6/10,0:30,,,,,,,,,,,,,,,,,,\n"
+    )
+    df = _read_area_csv(padded.encode("shift_jis"))
+    live_today = datetime(2026, 6, 10, tzinfo=TIMEZONE)
+    result = _df_to_production_breakdown_list(
+        df, "JP-HKD", "test", live_today, LOGGER, latest_available=True
+    )
+    assert len(result) == 2
+    assert all(e["datetime"].date() == datetime(2026, 6, 7).date() for e in result)
+
+
 def test_production_filters_to_target_date():
     """Only rows matching the target date should be returned."""
     _, df, _ = _read_fixture("01")
