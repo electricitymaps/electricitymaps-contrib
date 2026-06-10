@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import csv
 import re
 import unicodedata
 from collections.abc import Callable
@@ -39,6 +40,9 @@ from electricitymap.contrib.types import ZoneKey
 # JP-ON  : 10 : Okinawa Electric (OEPC)
 
 ZONE_INFO = ZoneInfo("Asia/Tokyo")
+
+# Some TSO sites filter the default python-requests User-Agent.
+_REQUEST_HEADERS = {"User-Agent": "Mozilla/5.0"}
 
 # ─── Area CSV: per-zone data availability floor ──────────────────────────────
 # Each date is the first month the new 30-min eria_jukyu format is published AND
@@ -93,6 +97,13 @@ class _AreaCsvConfig:
     # this ZIP and read the member named by zip_member_builder.
     zip_url_builder: Callable[[datetime], str] | None = None
     zip_member_builder: Callable[[datetime], str] | None = None
+    # Some TSOs (JP-TH) publish the monthly CSV with a multi-week lag and keep
+    # recent days in per-day "realtime" files instead. When the monthly URL
+    # 404s, fetch the target date's daily file (same format).
+    daily_url_builder: Callable[[datetime], str] | None = None
+    # JP-KY labels each 30-min interval by its END (0:30 … 24:00) where every
+    # other TSO labels the START (0:00 … 23:30). Shift to align.
+    datetime_offset: timedelta = timedelta()
 
 
 def _monthly(base: str, suffix: str) -> Callable[[datetime], str]:
@@ -125,6 +136,12 @@ _AREA_CSV_CONFIGS: dict[str, _AreaCsvConfig] = {
             "_02.csv",
         ),
         source="setsuden.nw.tohoku-epco.co.jp",
+        # Tohoku only publishes the monthly file weeks after month end; recent
+        # days (current + previous month) live in per-day realtime files.
+        daily_url_builder=lambda dt: (
+            "https://setsuden.nw.tohoku-epco.co.jp/common/demand/realtime_jukyu/"
+            f"realtime_jukyu_{dt.strftime('%Y%m%d')}_02.csv"
+        ),
     ),
     "JP-TK": _AreaCsvConfig(
         url_builder=_monthly(
@@ -177,6 +194,10 @@ _AREA_CSV_CONFIGS: dict[str, _AreaCsvConfig] = {
             "https://www.kyuden.co.jp/td_area_jukyu/csv/eria_jukyu_", "_09.csv"
         ),
         source="kyuden.co.jp",
+        # Kyushu's rows are end-of-interval labelled (0:30 … 24:00); shift back
+        # 30 min to start-of-interval like the other zones. (Kyushu's LEGACY
+        # archive is start-labelled — verified — so no offset there.)
+        datetime_offset=timedelta(minutes=-30),
     ),
     "JP-ON": _AreaCsvConfig(
         url_builder=_monthly(
@@ -416,14 +437,22 @@ def _df_to_production_breakdown_list(
     source: str,
     target_date: datetime,
     logger: Logger,
+    datetime_offset: timedelta = timedelta(),
 ) -> list:
     """Convert area CSV DataFrame rows for target_date into production events."""
     production_list = ProductionBreakdownList(logger)
 
+    def _safe_datetime(row) -> datetime | None:
+        # The current month's file pads future slots with blank DATE/TIME
+        # (JP-HKD); skip those instead of failing the whole day.
+        try:
+            return _parse_area_datetime(row["DATE"], row["TIME"]) + datetime_offset
+        except ValueError:
+            return None
+
     df = df.copy()
-    df["_datetime"] = df.apply(
-        lambda r: _parse_area_datetime(r["DATE"], r["TIME"]), axis=1
-    )
+    df["_datetime"] = df.apply(_safe_datetime, axis=1)
+    df = df[df["_datetime"].notna()]
 
     # Filter to target date only
     target_day = target_date.date()
@@ -447,7 +476,10 @@ def _df_to_production_breakdown_list(
             val = row[csv_col]
             if pd.isna(val):
                 continue
-            val = float(val)
+            try:
+                val = float(val)
+            except (TypeError, ValueError):
+                continue  # stray placeholder text in a numeric column
 
             if category == "production":
                 # Accumulate (火力(その他) and その他 both map to "unknown")
@@ -456,6 +488,11 @@ def _df_to_production_breakdown_list(
                 # CSV: positive = generating, negative = pumping
                 # EM:  positive = charging,   negative = discharging
                 storage_values[field] = -val
+
+        # Future slots in the current month's file have a timestamp but no
+        # values; appending them would only log a validation error.
+        if not prod_values and not storage_values:
+            continue
 
         production_list.append(
             zoneKey=ZoneKey(zone_key),
@@ -473,19 +510,27 @@ def _fetch_area_csv_content(
 ) -> bytes:
     """Return the raw CSV bytes for target_datetime's month.
 
-    Tries the monthly URL, then (for zones that archive older months, e.g.
-    JP-CB) falls back to the fiscal-year ZIP.
+    Tries the monthly URL, then falls back to the fiscal-year ZIP (zones that
+    archive older months, e.g. JP-CB) or the per-day realtime file (zones that
+    publish the monthly file late, e.g. JP-TH).
     """
-    response = session.get(config.url_builder(target_datetime))
-    if (
-        response.status_code == 404
-        and config.zip_url_builder is not None
-        and config.zip_member_builder is not None
-    ):
-        zip_response = session.get(config.zip_url_builder(target_datetime))
-        zip_response.raise_for_status()
-        with ZipFile(BytesIO(zip_response.content)) as archive:
-            return archive.read(config.zip_member_builder(target_datetime))
+    response = session.get(
+        config.url_builder(target_datetime), headers=_REQUEST_HEADERS
+    )
+    if response.status_code == 404:
+        if config.zip_url_builder is not None and config.zip_member_builder is not None:
+            zip_response = session.get(
+                config.zip_url_builder(target_datetime), headers=_REQUEST_HEADERS
+            )
+            zip_response.raise_for_status()
+            with ZipFile(BytesIO(zip_response.content)) as archive:
+                return archive.read(config.zip_member_builder(target_datetime))
+        if config.daily_url_builder is not None:
+            daily_response = session.get(
+                config.daily_url_builder(target_datetime), headers=_REQUEST_HEADERS
+            )
+            daily_response.raise_for_status()
+            return daily_response.content
     response.raise_for_status()
     return response.content
 
@@ -502,7 +547,12 @@ def _fetch_production_area_csv(
     content = _fetch_area_csv_content(config, target_datetime, session)
     df = _read_area_csv(content)
     return _df_to_production_breakdown_list(
-        df, zone_key, config.source, target_datetime, logger
+        df,
+        zone_key,
+        config.source,
+        target_datetime,
+        logger,
+        datetime_offset=config.datetime_offset,
     )
 
 
@@ -524,6 +574,14 @@ def _read_legacy_area_csv(content: bytes) -> pd.DataFrame:
         text = content.decode("utf-8")
     except UnicodeDecodeError:
         text = content.decode("shift_jis")
+    # With names=range(N), pandas would silently demote leftmost extra columns
+    # to the index on wider rows, shifting every positional mapping — fail loud.
+    widest = max(len(fields) for fields in csv.reader(StringIO(text)))
+    if widest > _LEGACY_MAX_COLS:
+        raise ValueError(
+            f"Legacy area CSV has {widest} columns (> {_LEGACY_MAX_COLS}); "
+            "positional column_map would be misaligned"
+        )
     return pd.read_csv(
         StringIO(text),
         header=None,
@@ -535,10 +593,15 @@ def _read_legacy_area_csv(content: bytes) -> pd.DataFrame:
 
 
 def _legacy_value_to_float(value: Any) -> float | None:
-    """Parse a legacy cell; treat blanks and lone dashes as missing."""
+    """Parse a legacy cell; treat blanks and lone dashes as missing.
+
+    Normalizes full-width digits/signs (NFKC) and the Unicode minus (U+2212,
+    untouched by NFKC) so signed pumped-storage values aren't silently dropped.
+    """
     text = str(value).strip().strip('"')
     if text in _LEGACY_MISSING:
         return None
+    text = unicodedata.normalize("NFKC", text).replace("−", "-")
     try:
         return float(text.replace(",", ""))
     except ValueError:
@@ -626,6 +689,13 @@ def _legacy_df_to_breakdown(
     return production_list.to_list()
 
 
+# Legacy archives are immutable historical files that cover a quarter or a
+# whole fiscal year, but the parser is invoked one day at a time — without a
+# cache a year of backfill would re-download the same annual file ~365 times.
+_LEGACY_CSV_CACHE: dict[str, bytes] = {}
+_LEGACY_CSV_CACHE_MAX = 4
+
+
 def _fetch_production_legacy_area_csv(
     zone_key: str,
     target_datetime: datetime,
@@ -635,12 +705,19 @@ def _fetch_production_legacy_area_csv(
     """Fetch and parse a pre-new-format legacy area archive (hourly, ~2016+)."""
     config = _LEGACY_AREA_CONFIGS[zone_key]
     session = session or Session()
-    headers = {"User-Agent": "Mozilla/5.0"}
-    if config.referer:
-        headers["Referer"] = config.referer
-    response = session.get(config.url_builder(target_datetime), headers=headers)
-    response.raise_for_status()
-    df = _read_legacy_area_csv(response.content)
+    url = config.url_builder(target_datetime)
+    content = _LEGACY_CSV_CACHE.get(url)
+    if content is None:
+        headers = dict(_REQUEST_HEADERS)
+        if config.referer:
+            headers["Referer"] = config.referer
+        response = session.get(url, headers=headers)
+        response.raise_for_status()
+        content = response.content
+        while len(_LEGACY_CSV_CACHE) >= _LEGACY_CSV_CACHE_MAX:
+            _LEGACY_CSV_CACHE.pop(next(iter(_LEGACY_CSV_CACHE)))
+        _LEGACY_CSV_CACHE[url] = content
+    df = _read_legacy_area_csv(content)
     return _legacy_df_to_breakdown(df, config, zone_key, target_datetime, logger)
 
 

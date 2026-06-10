@@ -29,6 +29,7 @@ from electricitymap.contrib.parsers.JP import (
     _AREA_CSV_START_DATES,
     _LEGACY_AREA_CONFIGS,
     _LEGACY_AREA_START_DATES,
+    _LEGACY_CSV_CACHE,
     _build_legacy_datetime,
     _df_to_production_breakdown_list,
     _fetch_area_csv_content,
@@ -48,13 +49,20 @@ TIMEZONE = ZoneInfo("Asia/Tokyo")
 MOCKS_DIR = Path(__file__).parent / "mocks" / "JP_area"
 LOGGER = getLogger(__name__)
 
+
+@pytest.fixture(autouse=True)
+def _clear_legacy_cache():
+    """Keep the module-level legacy archive cache from leaking between tests."""
+    _LEGACY_CSV_CACHE.clear()
+    yield
+
+
 # Zone number → (zone_key, fixture_file, target_date, schema_cols, fixture_rows, target_day_rows)
 # fixture_rows: total data rows in the fixture CSV (most are 102-line files = 100 data rows;
 #   JP-TH is a daily-rolling realtime file capped at 48 rows for the day).
 # target_day_rows: how many rows of the target date the fixture contains after parsing
-#   (all are 48 at 30-min × 24h, except JP-KY which starts at 0:30 and uses 24:00 for the
-#   last slot — that 24:00 rolls over into the next day via the datetime parser, so only 47
-#   rows remain on the target day).
+#   (all are 48 at 30-min × 24h; JP-KY's end-of-interval labels (0:30 … 24:00) are
+#   shifted back 30 min by its datetime_offset, aligning it to 48 rows too).
 ZONE_FIXTURES = {
     "01": (
         "JP-HKD",
@@ -126,7 +134,7 @@ ZONE_FIXTURES = {
         datetime(2026, 4, 1, tzinfo=TIMEZONE),
         20,
         100,
-        47,
+        48,
     ),
     "10": (
         "JP-ON",
@@ -305,7 +313,14 @@ def _assert_production(zone_num: str):
     """Generic assertion: parse fixture for a zone and verify first-row values."""
     zone_key, df, target = _read_fixture(zone_num)
     source = f"test-{zone_key}"
-    result = _df_to_production_breakdown_list(df, zone_key, source, target, LOGGER)
+    result = _df_to_production_breakdown_list(
+        df,
+        zone_key,
+        source,
+        target,
+        LOGGER,
+        datetime_offset=_AREA_CSV_CONFIGS[zone_key].datetime_offset,
+    )
 
     expected_rows = ZONE_FIXTURES[zone_num][5]  # target_day_rows
     assert len(result) == expected_rows, (
@@ -433,11 +448,15 @@ def test_production_zone_08_sk():
 
 
 def test_production_zone_09_ky():
-    """JP-KY (09): quoted CSV, compact date, full-width LNG."""
+    """JP-KY (09): quoted CSV, compact date, full-width LNG, end-labelled rows."""
     result = _assert_production("09")
     first = result[0]
     assert first["production"]["nuclear"] == 3662
     assert first["production"]["gas"] == 734  # normalised from ＬＮＧ
+    # End-of-interval labels (0:30 … 24:00) are shifted back 30 min so KY
+    # aligns with the other zones' start-of-interval slots.
+    assert first["datetime"] == datetime(2026, 4, 1, 0, 0, tzinfo=TIMEZONE)
+    assert result[-1]["datetime"] == datetime(2026, 4, 1, 23, 30, tzinfo=TIMEZONE)
 
 
 def test_production_zone_10_on():
@@ -586,7 +605,7 @@ class _FakeSession:
         self._route = route
         self.urls: list[str] = []
 
-    def get(self, url: str):
+    def get(self, url: str, headers: dict | None = None):
         self.urls.append(url)
         return self._route(url)
 
@@ -627,6 +646,52 @@ def test_fetch_area_csv_content_falls_back_to_zip():
     # Requested the standalone CSV first, then the FY2024 ZIP.
     assert session.urls[0].endswith("eria_jukyu_202404_04.csv")
     assert session.urls[-1].endswith("eria_jukyu_2024.zip")
+
+
+def test_fetch_area_csv_content_falls_back_to_daily_realtime():
+    """JP-TH: a 404 on the (late-published) monthly CSV falls back to the
+    target date's per-day realtime file."""
+    config = _AREA_CSV_CONFIGS["JP-TH"]
+    dt = datetime(2026, 6, 10, tzinfo=TIMEZONE)
+
+    def route(url: str):
+        if "realtime_jukyu" in url:
+            return _FakeResponse(200, b"daily-bytes")
+        return _FakeResponse(404)
+
+    session = _FakeSession(route)
+    content = _fetch_area_csv_content(config, dt, session)
+
+    assert content == b"daily-bytes"
+    assert session.urls[0].endswith("eria_jukyu_202606_02.csv")
+    assert session.urls[-1].endswith("realtime_jukyu/realtime_jukyu_20260610_02.csv")
+
+
+# Current-month files pad future slots: timestamped-but-empty rows, then rows
+# with blank DATE/TIME (JP-HKD live). Also includes a stray non-numeric cell.
+_AREA_WITH_PADDING = (
+    "単位[MW平均],,,供給力\n"
+    "DATE,TIME,エリア需要,原子力,火力(LNG),火力(石炭),火力(石油),火力(その他),水力,地熱,"
+    "バイオマス,太陽光発電実績,太陽光出力制御量,風力発電実績,風力出力制御量,揚水,蓄電池,連系線,その他,合計\n"
+    "2026/4/1,0:00,1000,100,200,300,0,50,80,0,40,0,0,30,0,0,0,200,0,1000\n"
+    "2026/4/1,0:30,1000,100,※,300,0,50,80,0,40,0,0,30,0,0,0,200,0,1000\n"
+    "2026/4/1,1:00,,,,,,,,,,,,,,,,,,\n"
+    ",,,,,,,,,,,,,,,,,,\n"
+)
+
+
+def test_production_skips_padding_and_junk_rows():
+    """Blank DATE/TIME rows and all-empty rows are skipped (not a crash, not a
+    validation error); a single non-numeric cell only drops that mode."""
+    df = _read_area_csv(_AREA_WITH_PADDING.encode("shift_jis"))
+    result = _df_to_production_breakdown_list(
+        df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
+    )
+    assert len(result) == 2  # the two populated rows only
+    assert result[0]["production"]["gas"] == 200
+    # 0:30 row: the junk ＬＮＧ cell is dropped, the rest of the row survives.
+    assert result[1]["production"].get("gas") is None
+    assert result[1]["production"]["coal"] == 300
 
 
 # ─── Legacy archive parsing ──────────────────────────────────────────────────
@@ -830,6 +895,20 @@ def test_legacy_value_to_float():
     assert _legacy_value_to_float("123.4") == 123.4
     assert _legacy_value_to_float("-305") == -305.0  # pumped-storage charging
     assert _legacy_value_to_float('"42"') == 42.0
+    # Signed values with non-ASCII minus signs and full-width digits must not
+    # be silently dropped.
+    assert _legacy_value_to_float("−305") == -305.0  # U+2212 minus sign
+    assert _legacy_value_to_float("－305") == -305.0  # U+FF0D full-width hyphen
+    assert _legacy_value_to_float("１２３") == 123.0  # full-width digits
+
+
+def test_read_legacy_area_csv_rejects_wider_files():
+    """A file wider than the positional map supports must fail loud — pandas
+    would otherwise demote leftmost columns to the index and shift every
+    positional mapping silently."""
+    wide = ",".join(str(i) for i in range(25)) + "\n"
+    with pytest.raises(ValueError, match="positional column_map"):
+        _read_legacy_area_csv(wide.encode("shift_jis"))
 
 
 # Combined-datetime fixture with NEGATIVE 揚水 (pumping) to exercise the
@@ -870,8 +949,10 @@ class _HeaderRecordingSession:
         self._content = content
         self.url: str | None = None
         self.headers: dict | None = None
+        self.calls = 0
 
     def get(self, url: str, headers: dict | None = None):
+        self.calls += 1
         self.url = url
         self.headers = headers or {}
         return _FakeResponse(200, self._content)
@@ -900,3 +981,18 @@ def test_legacy_fetch_omits_referer_when_not_configured():
     assert session.url.endswith("sup_dem_results_2016_1q.csv")
     assert "Referer" not in session.headers
     assert "User-Agent" in session.headers
+
+
+def test_legacy_fetch_caches_archive_across_days():
+    """Consecutive days in the same quarterly/annual archive reuse the cached
+    download instead of re-fetching the file once per day of backfill."""
+    session = _HeaderRecordingSession(_LEGACY_HKD.encode("shift_jis"))
+    day_one = _fetch_production_legacy_area_csv(
+        "JP-HKD", datetime(2016, 4, 1, tzinfo=TIMEZONE), session, LOGGER
+    )
+    day_two = _fetch_production_legacy_area_csv(
+        "JP-HKD", datetime(2016, 4, 2, tzinfo=TIMEZONE), session, LOGGER
+    )
+    assert session.calls == 1  # same FY2016 Q1 file, fetched once
+    assert len(day_one) == 2
+    assert len(day_two) == 1
