@@ -33,6 +33,7 @@ from electricitymap.contrib.parsers.JP import (
     _build_legacy_datetime,
     _df_to_production_breakdown_list,
     _fetch_area_csv_content,
+    _fetch_production_isep,
     _fetch_production_legacy_area_csv,
     _fiscal_quarter,
     _fiscal_year,
@@ -564,6 +565,31 @@ def test_routing_raises_before_legacy_floor():
         legacy.assert_not_called()
 
 
+def test_routing_jp_ky_isep_before_fy2019():
+    """JP-KY pre-FY2019 routes to ISEP (Kyuden removed its own archive);
+    FY2019+ keeps using the Kyuden legacy archive (real tables)."""
+    with (
+        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv") as area,
+        patch(
+            "electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"
+        ) as legacy,
+        patch("electricitymap.contrib.parsers.JP._fetch_production_isep") as isep,
+    ):
+        fetch_production("JP-KY", target_datetime=datetime(2018, 6, 1, tzinfo=TIMEZONE))
+        isep.assert_called_once()
+        legacy.assert_not_called()
+        area.assert_not_called()
+
+        fetch_production("JP-KY", target_datetime=datetime(2020, 6, 1, tzinfo=TIMEZONE))
+        legacy.assert_called_once()
+        isep.assert_called_once()  # unchanged
+
+        with pytest.raises(NotImplementedError):
+            fetch_production(
+                "JP-KY", target_datetime=datetime(2016, 3, 1, tzinfo=TIMEZONE)
+            )
+
+
 def test_routing_jp_sk_uses_xlsx_legacy_archive():
     """JP-SK pre-2024-03 routes to the legacy path (Yonden's jukyu{fy}.xlsx);
     only pre-FY2016 dates raise (real tables)."""
@@ -1080,6 +1106,122 @@ def test_legacy_sk_xlsx_roundtrip():
     assert first["storage"]["hydro"] == 50
     # second row: 揚水 = +3 (generating) → storage.hydro = -30 (discharging)
     assert result[1]["storage"]["hydro"] == -30
+
+
+# ─── ISEP energychart fallback (JP-KY pre-FY2019) ────────────────────────────
+
+_ISEP_RECORDS = [
+    {  # night hour: pumping (negative) → charging (positive storage)
+        "region": "kyushu",
+        "date_time": "2018-08-01 02:00:00",
+        "disable_flg": "0",
+        "demand": "8000",
+        "nuclear": "3171",
+        "thermal": "3500",
+        "hydro": "300",
+        "geothermal": "150",
+        "biomass": "100",
+        "solar_performance": "0",
+        "solar_suppression": "0",
+        "wind_performance": "20",
+        "wind_suppression": "0",
+        "pumped": "-271",
+        "interconnection": "500",
+        "total": "8000",
+    },
+    {  # evening hour: generating (positive) → discharging (negative storage)
+        "region": "kyushu",
+        "date_time": "2018-08-01 19:00:00",
+        "disable_flg": "0",
+        "demand": "14000",
+        "nuclear": 3164,
+        "thermal": 8000,
+        "hydro": 400,
+        "geothermal": 150,
+        "biomass": 120,
+        "solar_performance": 7,
+        "solar_suppression": 0,
+        "wind_performance": 15,
+        "wind_suppression": 0,
+        "pumped": 424,
+        "interconnection": 800,
+        "total": 14000,
+    },
+    {  # flagged row must be skipped
+        "region": "kyushu",
+        "date_time": "2018-08-01 20:00:00",
+        "disable_flg": "1",
+        "nuclear": "9999",
+        "pumped": "0",
+    },
+    {  # previous day leaking into the page must be filtered out
+        "region": "kyushu",
+        "date_time": "2018-07-31 23:00:00",
+        "disable_flg": "0",
+        "nuclear": "3171",
+        "pumped": "0",
+    },
+]
+
+
+def _isep_html(records) -> str:
+    import json as _json
+
+    return f"<html><script>var jsonval = JSON.parse('{_json.dumps(records)}')\n</script></html>"
+
+
+def test_isep_parsing_values_signs_and_filters():
+    class _Resp:
+        status_code = 200
+        text = _isep_html(_ISEP_RECORDS)
+
+        def raise_for_status(self):
+            pass
+
+    class _Session:
+        def get(self, url, headers=None):
+            self.url = url
+            return _Resp()
+
+    s = _Session()
+    result = _fetch_production_isep(
+        "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), s, LOGGER
+    )
+    assert "region=kyushu" in s.url and "period_year=2018" in s.url
+    # flagged row and previous-day row are dropped
+    assert len(result) == 2
+    night, evening = result
+    assert night["datetime"] == datetime(2018, 8, 1, 2, 0, tzinfo=TIMEZONE)
+    assert type(night["datetime"]) is datetime
+    assert night["source"] == "isep-energychart.com"
+    p = night["production"]
+    assert p["nuclear"] == 3171
+    assert p["unknown"] == 3500  # thermal → unknown
+    assert p["geothermal"] == 150
+    assert p["wind"] == 20
+    # pumped -271 (pumping) → +271 (charging)
+    assert night["storage"]["hydro"] == 271
+    # pumped +424 (generating) → -424 (discharging)
+    assert evening["storage"]["hydro"] == -424
+    assert evening["production"]["solar"] == 7
+
+
+def test_isep_raises_when_page_format_changes():
+    class _Resp:
+        status_code = 200
+        text = "<html>no embedded data here</html>"
+
+        def raise_for_status(self):
+            pass
+
+    class _Session:
+        def get(self, url, headers=None):
+            return _Resp()
+
+    with pytest.raises(ValueError, match="no embedded data"):
+        _fetch_production_isep(
+            "JP-KY", datetime(2018, 8, 1, tzinfo=TIMEZONE), _Session(), LOGGER
+        )
 
 
 def test_legacy_breakdown_returns_empty_when_no_data_rows():

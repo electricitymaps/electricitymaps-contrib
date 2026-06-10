@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import csv
+import json
 import re
 import unicodedata
 from collections.abc import Callable
@@ -377,6 +378,89 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         },
     ),
 }
+
+# ─── ISEP energychart fallback (JP-KY before FY2019) ─────────────────────────
+# Kyuden's own archive starts at FY2019 Q1 and nothing older is recoverable
+# (404 on their site, never crawled by the Wayback Machine). ISEP (Institute
+# for Sustainable Energy Policies) republishes the TSOs' hourly area data and
+# still serves 2016-04 onwards, embedded as JSON in a per-day HTML page. Used
+# ONLY where the TSO removed its own history; values are MW, `pumped` follows
+# the TSO sign convention (positive = generating, negative = pumping).
+_ISEP_URL = (
+    "https://isep-energychart.com/en/graphics/electricityproduction/"
+    "?region={region}&period_year={year}&period_month={month}&period_day={day}"
+    "&period_length=1day&display_format=residual_demand"
+)
+_ISEP_REGIONS: dict[str, str] = {"JP-KY": "kyushu"}
+_ISEP_START_DATES: dict[str, datetime] = {
+    "JP-KY": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
+}
+_ISEP_JSONVAL_RE = re.compile(r"var jsonval = JSON\.parse\('(.*?)'\)", re.S)
+# JSON key → (mode, category); suppression/interconnection/demand are skipped.
+_ISEP_COLUMN_MAP: dict[str, tuple[str, str]] = {
+    "nuclear": ("nuclear", "production"),
+    "thermal": ("unknown", "production"),  # combined thermal, like the legacy CSVs
+    "hydro": ("hydro", "production"),
+    "geothermal": ("geothermal", "production"),
+    "biomass": ("biomass", "production"),
+    "solar_performance": ("solar", "production"),
+    "wind_performance": ("wind", "production"),
+    "pumped": ("hydro", "storage"),
+}
+
+
+def _fetch_production_isep(
+    zone_key: str,
+    target_datetime: datetime,
+    session: Session | None,
+    logger: Logger,
+) -> list:
+    """Fetch one day of hourly production from ISEP energychart."""
+    session = session or Session()
+    url = _ISEP_URL.format(
+        region=_ISEP_REGIONS[zone_key],
+        year=target_datetime.year,
+        month=target_datetime.month,
+        day=target_datetime.day,
+    )
+    response = session.get(url, headers=_REQUEST_HEADERS)
+    response.raise_for_status()
+    matches = _ISEP_JSONVAL_RE.findall(response.text)
+    if not matches:
+        raise ValueError(f"ISEP energychart page has no embedded data: {url}")
+
+    production_list = ProductionBreakdownList(logger)
+    target_day = target_datetime.date()
+    for record in json.loads(matches[0]):
+        if str(record.get("disable_flg", "")).strip() in ("1", "true", "True"):
+            continue
+        dt = datetime.strptime(record["date_time"], "%Y-%m-%d %H:%M:%S").replace(
+            tzinfo=ZONE_INFO
+        )
+        if dt.date() != target_day:
+            continue
+        prod: dict[str, float] = {}
+        storage: dict[str, float] = {}
+        for key, (mode, category) in _ISEP_COLUMN_MAP.items():
+            value = _legacy_value_to_float(record.get(key))
+            if value is None:
+                continue
+            if category == "production":
+                prod[mode] = prod.get(mode, 0.0) + value
+            else:
+                # ISEP positive = generating → EM negative = discharging
+                storage[mode] = -value
+        if not prod and not storage:
+            continue
+        production_list.append(
+            zoneKey=ZoneKey(zone_key),
+            datetime=dt,
+            source="isep-energychart.com",
+            production=ProductionMix(**prod),
+            storage=StorageMix(**storage) if storage else None,
+        )
+    return production_list.to_list()
+
 
 # Column mapping: normalized Japanese column name → (mode_name, category).
 # "production" fields go into ProductionMix, "storage" fields into StorageMix (negated).
@@ -786,7 +870,10 @@ def fetch_production(
       * on/after _AREA_CSV_START_DATES → new 30-min format (full breakdown).
       * earlier, on/after _LEGACY_AREA_START_DATES → legacy hourly archive
         (combined thermal as "unknown", no battery).
-      * earlier still (pre-FY2016; JP-KY pre-FY2019) → raise.
+      * earlier, on/after _ISEP_START_DATES → ISEP energychart (JP-KY only:
+        Kyuden removed its pre-FY2019 archive; ISEP republishes the same
+        hourly TSO data).
+      * earlier still (pre-FY2016) → raise.
     """
     dt = (
         target_datetime.astimezone(ZONE_INFO)
@@ -805,6 +892,10 @@ def fetch_production(
         and zone_key in _LEGACY_AREA_CONFIGS
     ):
         return _fetch_production_legacy_area_csv(zone_key, dt, session, logger)
+
+    isep_start = _ISEP_START_DATES.get(zone_key)
+    if isep_start is not None and dt >= isep_start and zone_key in _ISEP_REGIONS:
+        return _fetch_production_isep(zone_key, dt, session, logger)
 
     raise NotImplementedError(
         f"No area supply-demand data available for {zone_key} at {dt.date()}"
