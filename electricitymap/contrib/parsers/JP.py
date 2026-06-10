@@ -4,7 +4,7 @@ import re
 import unicodedata
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from io import BytesIO, StringIO
 from logging import Logger, getLogger
 from typing import Any
@@ -66,15 +66,12 @@ _AREA_CSV_START_DATES: dict[str, datetime] = {
 
 # ─── Legacy area archive: earlier (pre-new-format) per-fuel data ──────────────
 # Before the new 30-min eria_jukyu format, each TSO published an older hourly
-# "area supply-demand" archive going back to ~FY2016 (JP-KY only to FY2019).
+# "area supply-demand" archive going back to ~FY2016 (JP-KY only to FY2019:
+# Kyuden's archive page lists nothing before area_jyukyu_jisseki_2019_1Q).
 # These are COARSER: hourly (not 30-min), thermal is a single combined column
 # (mapped to "unknown" — no LNG/coal/oil split), and there is no battery.
+# JP-SK's archive is per-fiscal-year Excel (jukyu{fy}.xlsx) instead of CSV.
 # Used only for dates before _AREA_CSV_START_DATES and on/after the floor below.
-#
-# NOTE — JP-SK (Shikoku) is intentionally absent: Yonden publishes NO per-fuel
-# history before the new format (2024-03). Only demand-only (to 2016) and
-# area-totals-only (to 2022) archives exist, neither with a generation mix, so
-# JP-SK simply has no production data before 2024-03.
 _LEGACY_AREA_START_DATES: dict[str, datetime] = {
     "JP-HKD": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
     "JP-TH": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
@@ -83,6 +80,7 @@ _LEGACY_AREA_START_DATES: dict[str, datetime] = {
     "JP-HR": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
     "JP-KN": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
     "JP-CG": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
+    "JP-SK": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
     "JP-KY": datetime(2019, 4, 1, tzinfo=ZONE_INFO),
     "JP-ON": datetime(2016, 4, 1, tzinfo=ZONE_INFO),
 }
@@ -227,6 +225,7 @@ class _LegacyAreaConfig:
     kanji_time: bool = False  # True: TIME column is "N時" (JP-HKD)
     unit_multiplier: float = 1.0  # JP-TK is in 万kWh (×10 → MWh ≈ MW at 1h)
     referer: str | None = None  # JP-KN requires a Referer header
+    xlsx: bool = False  # JP-SK's archive is Excel, not CSV
 
 
 def _hr_legacy_url(dt: datetime) -> str:
@@ -330,6 +329,17 @@ _LEGACY_AREA_CONFIGS: dict[str, _LegacyAreaConfig] = {
         ),
         source="energia.co.jp",
         column_map=_LEGACY_MAP_SPLIT_STANDARD,
+    ),
+    "JP-SK": _LegacyAreaConfig(
+        url_builder=lambda dt: (
+            f"https://www.yonden.co.jp/nw/supply_demand/jukyu{_fiscal_year(dt)}.xlsx"
+        ),
+        source="yonden.co.jp",
+        # Standard split layout, but as a fiscal-year Excel workbook with
+        # native datetime/time cells and 万kW units.
+        column_map=_LEGACY_MAP_SPLIT_STANDARD,
+        unit_multiplier=10.0,  # 万kW → MW
+        xlsx=True,
     ),
     "JP-KY": _LegacyAreaConfig(
         url_builder=lambda dt: (
@@ -609,6 +619,27 @@ def _read_legacy_area_csv(content: bytes) -> pd.DataFrame:
     )
 
 
+def _read_legacy_area_xlsx(content: bytes) -> pd.DataFrame:
+    """Read a legacy Excel archive (JP-SK) into the same string grid as the
+    CSV reader: positional columns, dates as YYYY/MM/DD, times as H:MM."""
+    df = pd.read_excel(BytesIO(content), header=None, dtype=object)
+    if df.shape[1] > _LEGACY_MAX_COLS:
+        raise ValueError(
+            f"Legacy area XLSX has {df.shape[1]} columns (> {_LEGACY_MAX_COLS}); "
+            "positional column_map would be misaligned"
+        )
+
+    def _normalize(value: Any) -> Any:
+        if isinstance(value, datetime):
+            return value.strftime("%Y/%m/%d")
+        if isinstance(value, time):
+            return f"{value.hour}:{value.minute:02d}"
+        return value
+
+    df = df.map(_normalize)
+    return df.reindex(columns=range(_LEGACY_MAX_COLS))
+
+
 def _legacy_value_to_float(value: Any) -> float | None:
     """Parse a legacy cell; treat blanks and lone dashes as missing.
 
@@ -734,7 +765,11 @@ def _fetch_production_legacy_area_csv(
         while len(_LEGACY_CSV_CACHE) >= _LEGACY_CSV_CACHE_MAX:
             _LEGACY_CSV_CACHE.pop(next(iter(_LEGACY_CSV_CACHE)))
         _LEGACY_CSV_CACHE[url] = content
-    df = _read_legacy_area_csv(content)
+    df = (
+        _read_legacy_area_xlsx(content)
+        if config.xlsx
+        else _read_legacy_area_csv(content)
+    )
     return _legacy_df_to_breakdown(df, config, zone_key, target_datetime, logger)
 
 
@@ -751,7 +786,7 @@ def fetch_production(
       * on/after _AREA_CSV_START_DATES → new 30-min format (full breakdown).
       * earlier, on/after _LEGACY_AREA_START_DATES → legacy hourly archive
         (combined thermal as "unknown", no battery).
-      * earlier still (or unsupported zone, e.g. JP-SK pre-2024-03) → raise.
+      * earlier still (pre-FY2016; JP-KY pre-FY2019) → raise.
     """
     dt = (
         target_datetime.astimezone(ZONE_INFO)

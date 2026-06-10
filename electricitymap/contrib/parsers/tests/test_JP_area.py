@@ -13,7 +13,7 @@ Covers all 10 zones with real fixture data:
   10 JP-ON  (Okinawa)   — 22-col, Shift-JIS
 """
 
-from datetime import datetime
+from datetime import datetime, time
 from io import BytesIO
 from logging import getLogger
 from pathlib import Path
@@ -42,6 +42,7 @@ from electricitymap.contrib.parsers.JP import (
     _parse_area_datetime,
     _read_area_csv,
     _read_legacy_area_csv,
+    _read_legacy_area_xlsx,
     fetch_production,
 )
 
@@ -563,17 +564,23 @@ def test_routing_raises_before_legacy_floor():
         legacy.assert_not_called()
 
 
-def test_routing_jp_sk_has_no_legacy_fallback():
-    """JP-SK has no legacy archive: pre-new-format dates raise (real tables)."""
+def test_routing_jp_sk_uses_xlsx_legacy_archive():
+    """JP-SK pre-2024-03 routes to the legacy path (Yonden's jukyu{fy}.xlsx);
+    only pre-FY2016 dates raise (real tables)."""
     with (
-        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv"),
+        patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv") as area,
         patch(
             "electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"
         ) as legacy,
-        pytest.raises(NotImplementedError),
     ):
+        legacy.return_value = [{"test": "legacy"}]
         fetch_production("JP-SK", target_datetime=datetime(2022, 1, 1, tzinfo=TIMEZONE))
-    legacy.assert_not_called()
+        legacy.assert_called_once()
+        area.assert_not_called()
+        with pytest.raises(NotImplementedError):
+            fetch_production(
+                "JP-SK", target_datetime=datetime(2015, 1, 1, tzinfo=TIMEZONE)
+            )
 
 
 # ─── Completeness checks ─────────────────────────────────────────────────────
@@ -882,10 +889,18 @@ def test_legacy_configs_and_start_dates_aligned():
     assert set(_LEGACY_AREA_CONFIGS) == set(_LEGACY_AREA_START_DATES)
 
 
-def test_legacy_jp_sk_has_no_archive():
-    """JP-SK publishes no per-fuel history before the new format."""
-    assert "JP-SK" not in _LEGACY_AREA_CONFIGS
-    assert "JP-SK" not in _LEGACY_AREA_START_DATES
+def test_legacy_jp_sk_uses_xlsx():
+    """JP-SK's legacy archive is Yonden's per-fiscal-year Excel workbook."""
+    config = _LEGACY_AREA_CONFIGS["JP-SK"]
+    assert config.xlsx
+    assert config.unit_multiplier == 10.0  # 万kW → MW
+    assert config.url_builder(datetime(2019, 6, 1, tzinfo=TIMEZONE)).endswith(
+        "jukyu2019.xlsx"
+    )
+    # Jan–Mar belong to the previous fiscal year's workbook.
+    assert config.url_builder(datetime(2020, 2, 1, tzinfo=TIMEZONE)).endswith(
+        "jukyu2019.xlsx"
+    )
 
 
 def test_legacy_floor_precedes_new_format_start():
@@ -973,6 +988,98 @@ def test_legacy_storage_charging_sign():
     assert len(result) == 1
     # 揚水 = -305 (pumping/charging) → storage.hydro = +305.
     assert result[0]["storage"]["hydro"] == 305
+
+
+def test_legacy_sk_xlsx_roundtrip():
+    """JP-SK xlsx: native datetime/time cells, 万kW units (×10), '－' markers."""
+    from openpyxl import Workbook
+
+    wb = Workbook()
+    ws = wb.active
+    ws.append(["・注釈行", None, None, None, None, None, None, None])
+    ws.append(["DATE", "TIME", "エリア需要", "供給力"])
+    ws.append(
+        [
+            None,
+            None,
+            None,
+            "原子力",
+            "火力",
+            "水力",
+            "地熱",
+            "バイオマス",
+            "太陽光",
+            None,
+            "風力",
+            None,
+            "揚水",
+            "連系線",
+            "合計",
+        ]
+    )
+    ws.append(
+        [
+            datetime(2019, 6, 1),
+            time(0, 0),
+            243,
+            88,
+            160,
+            12,
+            "－",
+            1,
+            0,
+            0,
+            1,
+            0,
+            -5,
+            -13,
+            243,
+        ]
+    )
+    ws.append(
+        [
+            datetime(2019, 6, 1),
+            time(1, 0),
+            253,
+            88,
+            165,
+            12,
+            "－",
+            1,
+            0,
+            0,
+            1,
+            0,
+            3,
+            -14,
+            253,
+        ]
+    )
+    buffer = BytesIO()
+    wb.save(buffer)
+
+    df = _read_legacy_area_xlsx(buffer.getvalue())
+    result = _legacy_df_to_breakdown(
+        df,
+        _LEGACY_AREA_CONFIGS["JP-SK"],
+        "JP-SK",
+        datetime(2019, 6, 1, tzinfo=TIMEZONE),
+        LOGGER,
+    )
+    assert len(result) == 2
+    first = result[0]
+    assert first["datetime"] == datetime(2019, 6, 1, 0, 0, tzinfo=TIMEZONE)
+    assert type(first["datetime"]) is datetime
+    p = first["production"]
+    assert p["nuclear"] == 880  # 88 万kW × 10
+    assert p["unknown"] == 1600  # 火力 combined
+    assert p["hydro"] == 120
+    assert p.get("geothermal") is None  # '－' marker → missing
+    assert p["wind"] == 10
+    # 揚水 = -5 万kW (pumping) → storage.hydro = +50 MW (charging)
+    assert first["storage"]["hydro"] == 50
+    # second row: 揚水 = +3 (generating) → storage.hydro = -30 (discharging)
+    assert result[1]["storage"]["hydro"] == -30
 
 
 def test_legacy_breakdown_returns_empty_when_no_data_rows():
