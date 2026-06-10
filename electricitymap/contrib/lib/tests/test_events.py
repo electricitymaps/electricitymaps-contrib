@@ -1,6 +1,6 @@
 import logging
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
@@ -663,6 +663,33 @@ def test_end_datetime_must_be_after_datetime():
             netFlow=1,
             source="trust.me",
         )
+
+
+def test_aggregate_takes_earliest_known_end_datetime():
+    # Sub-zones can report at different resolutions or without an end_datetime;
+    # aggregation keeps the earliest known end instead of failing.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+
+    def breakdown(source: str, end_datetime: datetime | None) -> ProductionBreakdown:
+        return ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            end_datetime=end_datetime,
+            production=ProductionMix(wind=10),
+            source=source,
+        )
+
+    quarter_hourly = breakdown("a", dt + timedelta(minutes=15))
+    hourly = breakdown("b", dt + timedelta(hours=1))
+    unknown = breakdown("c", None)
+
+    assert ProductionBreakdown.aggregate(
+        [quarter_hourly, hourly]
+    ).end_datetime == dt + timedelta(minutes=15)
+    assert ProductionBreakdown.aggregate(
+        [hourly, unknown]
+    ).end_datetime == dt + timedelta(hours=1)
+    assert ProductionBreakdown.aggregate([unknown, unknown]).end_datetime is None
 
 
 def test_static_create_logs_error_with_none():

@@ -343,6 +343,8 @@ class Event(BaseModel, ABC):
         # end_datetime is the (exclusive) end of the interval the event covers.
         # It is optional, but when set it must be timezone-aware and strictly
         # after `datetime`. It is truncated to whole minutes to match `datetime`.
+        # Unlike `datetime`, no future bound is applied: a measured event's last
+        # interval may legitimately end in the near future while in progress.
         if v is None:
             return v
         if _is_naive(v):
@@ -408,16 +410,19 @@ class AggregatableEvent(Event):
         return target_datetime[0].to_pydatetime()
 
     @staticmethod
-    def _unique_end_datetime(df_view: pd.DataFrame) -> datetime | None:
-        target_end_datetime = df_view["end_datetime"].unique()
-        if len(target_end_datetime) > 1:
-            raise ValueError(
-                f"Cannot merge events from different end_datetimes: {target_end_datetime}"
-            )
-        end_datetime = target_end_datetime[0]
-        if pd.isna(end_datetime):
+    def _aggregated_end_datetime(df_view: pd.DataFrame) -> datetime | None:
+        """Picks the end_datetime for an aggregate of same-start events.
+
+        Sub-zones can report at different resolutions (e.g. during the 60->15
+        minute MTU migration) or omit end_datetime entirely. Rather than failing
+        the aggregation, keep the earliest known end — the finest resolution —
+        which cannot overlap the next aggregated point. Returns None when no
+        event knows its end.
+        """
+        end_datetimes = df_view["end_datetime"].dropna().unique()
+        if len(end_datetimes) == 0:
             return None
-        return end_datetime.to_pydatetime()
+        return pd.Timestamp(min(end_datetimes)).to_pydatetime()
 
     @staticmethod
     def _aggregated_fields(
@@ -428,7 +433,7 @@ class AggregatableEvent(Event):
             AggregatableEvent._sources(df_view),
             AggregatableEvent._unique_source_type(df_view),
             AggregatableEvent._unique_datetime(df_view),
-            AggregatableEvent._unique_end_datetime(df_view),
+            AggregatableEvent._aggregated_end_datetime(df_view),
         )
 
     @staticmethod
@@ -926,7 +931,9 @@ class Price(Event):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        return v
+        # Truncate to whole minutes like the base validator, so `datetime` and
+        # `end_datetime` (truncated by its own validator) stay comparable.
+        return v.replace(second=0, microsecond=0)
 
     @validator("price")
     def _validate_price(cls, v: float | None) -> float:

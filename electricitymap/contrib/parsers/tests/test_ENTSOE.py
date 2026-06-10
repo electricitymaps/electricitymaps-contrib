@@ -17,6 +17,7 @@ from electricitymap.contrib.parsers.ENTSOE import (
     _merge_exchange_capacity_forecasts,
     fetch_production,
     parse_exchange_capacity_forecast,
+    parse_prices,
     zulu_to_utc,
 )
 from electricitymap.contrib.types import ZoneKey
@@ -632,6 +633,73 @@ def test_a03_curve_compression_expands_1_datapoint_correctly():
     assert results[2] == DateTimePoint(
         dt0 + timedelta(hours=2), dt0 + timedelta(hours=3), 10.0
     )
+
+
+def test_parse_prices_keeps_latest_intraday_auction_session():
+    """Intraday documents contain one timeseries per auction session (IDA1/2/3),
+    tagged with an ascending classificationSequence position. For each interval
+    the price from the highest session wins; intervals missing from later
+    sessions keep the price from the earlier one."""
+    xml = """
+    <publication_marketdocument>
+      <timeseries>
+        <currency_unit.name>EUR</currency_unit.name>
+        <classificationsequence_attributeinstancecomponent.position>1</classificationsequence_attributeinstancecomponent.position>
+        <curvetype>A01</curvetype>
+        <period>
+          <start>2024-01-01T00:00:00Z</start>
+          <end>2024-01-01T02:00:00Z</end>
+          <resolution>PT60M</resolution>
+          <point>
+            <position>1</position>
+            <price.amount>50</price.amount>
+          </point>
+          <point>
+            <position>2</position>
+            <price.amount>55</price.amount>
+          </point>
+        </period>
+      </timeseries>
+      <timeseries>
+        <currency_unit.name>EUR</currency_unit.name>
+        <classificationsequence_attributeinstancecomponent.position>2</classificationsequence_attributeinstancecomponent.position>
+        <curvetype>A01</curvetype>
+        <period>
+          <start>2024-01-01T00:00:00Z</start>
+          <end>2024-01-01T01:00:00Z</end>
+          <resolution>PT60M</resolution>
+          <point>
+            <position>1</position>
+            <price.amount>60</price.amount>
+          </point>
+        </period>
+      </timeseries>
+    </publication_marketdocument>
+    """
+
+    result = parse_prices(xml, ZoneKey("DE"), logging.Logger("test")).to_list()
+
+    dt0 = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    assert result == [
+        {
+            "datetime": dt0,
+            "end_datetime": dt0 + timedelta(hours=1),
+            "zoneKey": ZoneKey("DE"),
+            "currency": "EUR",
+            "price": 60.0,
+            "source": "entsoe.eu",
+            "sourceType": EventSourceType.measured,
+        },
+        {
+            "datetime": dt0 + timedelta(hours=1),
+            "end_datetime": dt0 + timedelta(hours=2),
+            "zoneKey": ZoneKey("DE"),
+            "currency": "EUR",
+            "price": 55.0,
+            "source": "entsoe.eu",
+            "sourceType": EventSourceType.measured,
+        },
+    ]
 
 
 @pytest.mark.parametrize(

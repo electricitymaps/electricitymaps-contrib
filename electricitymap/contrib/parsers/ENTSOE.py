@@ -1094,6 +1094,9 @@ def parse_prices(
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
             current = best_by_datetime.get(dt)
+            # `>=` (not `>`) so that on equal positions the timeseries appearing
+            # later in the document wins, matching ENTSO-E's publication order
+            # where re-published data comes last.
             if current is None or position >= current[0]:
                 best_by_datetime[dt] = (position, dt_end, value, currency)
 

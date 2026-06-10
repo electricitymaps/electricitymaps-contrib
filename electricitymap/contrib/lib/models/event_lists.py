@@ -165,54 +165,59 @@ class AggregatableEventList(EventList[EventType], ABC, Generic[EventType]):
 
 class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
     """An EventList representing a single time series, where at most one event
-    covers any given instant.
+    should cover any given instant.
 
     Mixed into list types whose events must not overlap (exchanges, production,
-    consumption, prices, exchange capacity). `to_list()` rejects events whose
-    `[datetime, end_datetime)` intervals intersect. Lists that legitimately hold
-    several events per datetime — e.g. locational marginal prices keyed by node,
-    or grid alerts — do NOT use this mixin.
+    consumption, prices, exchange capacity). `to_list()` resolves events whose
+    `[datetime, end_datetime)` intervals intersect by clamping the earlier
+    event's end to the later event's start. Events sharing the exact same
+    `datetime` cannot be clamped, so they are kept as-is; both cases log a
+    warning — a data imperfection should degrade the output, not crash the
+    whole fetch. Lists that legitimately hold several events per datetime —
+    e.g. locational marginal prices keyed by node, or grid alerts — do NOT use
+    this mixin.
     """
 
     def to_list(self) -> list[dict[str, Any]]:
-        self._raise_if_overlapping()
-        return super().to_list()
+        return self._resolve_overlaps(super().to_list())
 
-    def _raise_if_overlapping(self) -> None:
-        """Ensure no two events cover overlapping time intervals.
+    def _resolve_overlaps(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Clamps overlapping `[datetime, end_datetime)` intervals in place.
 
-        Events are sorted by start (`datetime`); a pair overlaps when the
+        `events` is sorted by start (`datetime`); a pair overlaps when the
         earlier event's `end_datetime` is strictly after the later event's
         `datetime`. Events without an `end_datetime` are treated as
-        instantaneous points at `datetime`, so for those only an identical
-        start counts as an overlap. Because the events are start-sorted,
-        checking consecutive pairs is enough to surface any overlap.
+        instantaneous points at `datetime`. Because the events are
+        start-sorted, checking consecutive pairs is enough to catch any
+        overlap. Clamping always leaves a positive duration, as the earlier
+        event starts strictly before the later one.
         """
-        events = sorted(self.events, key=lambda event: event.datetime)
         for previous, current in zip(events, events[1:], strict=False):
-            if previous.datetime == current.datetime:
-                raise ValueError(
-                    f"Overlapping events in {type(self).__name__}: two events "
-                    f"share datetime {current.datetime}"
+            if previous["datetime"] == current["datetime"]:
+                self.logger.warning(
+                    f"{type(self).__name__} has two events sharing datetime "
+                    f"{current['datetime']}; keeping both."
                 )
-            if (
-                previous.end_datetime is not None
-                and previous.end_datetime > current.datetime
-            ):
-                raise ValueError(
-                    f"Overlapping events in {type(self).__name__}: interval "
-                    f"ending {previous.end_datetime} overlaps the event starting "
-                    f"{current.datetime}"
+                continue
+            previous_end = previous["end_datetime"]
+            if previous_end is not None and previous_end > current["datetime"]:
+                self.logger.warning(
+                    f"{type(self).__name__} interval ending {previous_end} "
+                    f"overlaps the event starting {current['datetime']}; "
+                    f"clamping its end to {current['datetime']}."
                 )
+                previous["end_datetime"] = current["datetime"]
+        return events
 
 
-class ExchangeList(AggregatableEventList[Exchange], NonOverlappingEventList[Exchange]):
+class ExchangeList(NonOverlappingEventList[Exchange], AggregatableEventList[Exchange]):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
         netFlow: float | None,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
@@ -248,9 +253,10 @@ class ExchangeList(AggregatableEventList[Exchange], NonOverlappingEventList[Exch
 
         end_datetimes = None
         if "end_datetime" in exchange_df.columns:
-            end_datetimes = exchange_df.groupby(level="datetime")[
-                "end_datetime"
-            ].first()
+            # When sources disagree (e.g. one reports 15-minute and another
+            # hourly intervals), keep the earliest end: it is deterministic and
+            # the finest resolution cannot overlap the next merged point.
+            end_datetimes = exchange_df.groupby(level="datetime")["end_datetime"].min()
 
         exchange_df = exchange_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True,
@@ -294,8 +300,8 @@ class ExchangeList(AggregatableEventList[Exchange], NonOverlappingEventList[Exch
                     new_event.datetime,
                     new_event.source,
                     new_event.netFlow,
-                    new_event.end_datetime,
-                    new_event.sourceType,
+                    end_datetime=new_event.end_datetime,
+                    sourceType=new_event.sourceType,
                 )
 
         return exchanges
@@ -309,6 +315,7 @@ class ExchangeCapacityList(NonOverlappingEventList[ExchangeCapacity]):
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
@@ -335,6 +342,7 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
         capacityExport: float | None,
         capacityImport: float | None,
         atcType: AtcType,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.published,
     ):
@@ -354,14 +362,15 @@ class ExchangeAtcList(EventList[ExchangeAtc]):
 
 
 class ProductionBreakdownList(
-    AggregatableEventList[ProductionBreakdown],
     NonOverlappingEventList[ProductionBreakdown],
+    AggregatableEventList[ProductionBreakdown],
 ):
     def append(
         self,
         zoneKey: ZoneKey,
         datetime: datetime,
         source: str,
+        *,
         end_datetime: datetime | None = None,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
@@ -461,20 +470,20 @@ class ProductionBreakdownList(
                     updated_event.zoneKey,
                     updated_event.datetime,
                     updated_event.source,
-                    updated_event.end_datetime,
-                    updated_event.production,
-                    updated_event.storage,
-                    updated_event.sourceType,
+                    end_datetime=updated_event.end_datetime,
+                    production=updated_event.production,
+                    storage=updated_event.storage,
+                    sourceType=updated_event.sourceType,
                 )
             elif matching_timestamps_only is False:
                 updated_production_breakdowns.append(
                     new_event.zoneKey,
                     new_event.datetime,
                     new_event.source,
-                    new_event.end_datetime,
-                    new_event.production,
-                    new_event.storage,
-                    new_event.sourceType,
+                    end_datetime=new_event.end_datetime,
+                    production=new_event.production,
+                    storage=new_event.storage,
+                    sourceType=new_event.sourceType,
                 )
 
         if matching_timestamps_only is False:
@@ -484,17 +493,17 @@ class ProductionBreakdownList(
                         existing_event.zoneKey,
                         existing_event.datetime,
                         existing_event.source,
-                        existing_event.end_datetime,
-                        existing_event.production,
-                        existing_event.storage,
-                        existing_event.sourceType,
+                        end_datetime=existing_event.end_datetime,
+                        production=existing_event.production,
+                        storage=existing_event.storage,
+                        sourceType=existing_event.sourceType,
                     )
 
         return updated_production_breakdowns
 
 
 class TotalProductionList(
-    AggregatableEventList[TotalProduction], NonOverlappingEventList[TotalProduction]
+    NonOverlappingEventList[TotalProduction], AggregatableEventList[TotalProduction]
 ):
     def append(
         self,
@@ -502,6 +511,7 @@ class TotalProductionList(
         datetime: datetime,
         source: str,
         value: float | None,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
@@ -540,9 +550,10 @@ class TotalProductionList(
 
         end_datetimes = None
         if "end_datetime" in production_df.columns:
+            # When sources disagree, keep the earliest end (see merge_exchanges).
             end_datetimes = production_df.groupby(level="datetime")[
                 "end_datetime"
-            ].first()
+            ].min()
 
         production_df = production_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
@@ -567,7 +578,7 @@ class TotalProductionList(
 
 
 class TotalConsumptionList(
-    AggregatableEventList[TotalConsumption], NonOverlappingEventList[TotalConsumption]
+    NonOverlappingEventList[TotalConsumption], AggregatableEventList[TotalConsumption]
 ):
     def append(
         self,
@@ -575,6 +586,7 @@ class TotalConsumptionList(
         datetime: datetime,
         source: str,
         consumption: float | None,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
@@ -621,9 +633,10 @@ class TotalConsumptionList(
 
         end_datetimes = None
         if "end_datetime" in consumption_df.columns:
+            # When sources disagree, keep the earliest end (see merge_exchanges).
             end_datetimes = consumption_df.groupby(level="datetime")[
                 "end_datetime"
-            ].first()
+            ].min()
 
         consumption_df = consumption_df.groupby(level="datetime", dropna=False).sum(
             numeric_only=True
@@ -655,6 +668,7 @@ class PriceList(NonOverlappingEventList[Price]):
         source: str,
         price: float | None,
         currency: str,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
@@ -681,6 +695,7 @@ class LocationalMarginalPriceList(EventList[LocationalMarginalPrice]):
         price: float | None,
         currency: str,
         node: str,
+        *,
         end_datetime: datetime | None = None,
         sourceType: EventSourceType = EventSourceType.measured,
     ):
