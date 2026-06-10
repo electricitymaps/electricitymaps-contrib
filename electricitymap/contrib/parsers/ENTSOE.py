@@ -81,7 +81,6 @@ class EntsoeTypeEnum(str, Enum):
     WEEK_AHEAD = "A02"
     MONTH_AHEAD = "A03"
     YEAR_AHEAD = "A04"
-    INTRADAY_PRICE = "A07"
     TOTAL = "A05"
     INTRADAY = "A40"
     CURRENT = "A18"
@@ -461,7 +460,6 @@ def query_price(
     domain: str,
     session: Session,
     target_datetime: datetime | None = None,
-    marketType: EntsoeTypeEnum = EntsoeTypeEnum.DAY_AHEAD,
 ) -> str | None:
     """Gets day-ahead price for 24 hours ahead and previous 72 hours."""
 
@@ -471,10 +469,7 @@ def query_price(
         "documentType": "A44",
         "in_Domain": domain,
         "out_Domain": domain,
-        "contract_MarketAgreement.type": marketType,
-        # TODO: There are multiple series available, we should parse all of them but we need to model this properly first
-        # This only affects INTRADAY prices as far as we know
-        # classificationSequence_AttributeInstanceComponent.position: "1", # OR "2" OR "3"
+        "contract_MarketAgreement.type": EntsoeTypeEnum.DAY_AHEAD,
     }
     return query_ENTSOE(
         session,
@@ -1077,39 +1072,19 @@ def parse_prices(
     if not xml_text:
         return PriceList(logger)
     soup = BeautifulSoup(xml_text, "html.parser", parse_only=STRAINER_TIMESERIES)
-
-    # Keep a single price per MTU. ENTSO-E intraday publishes one timeseries per
-    # auction session (IDA1/IDA2/IDA3), tagged with an ascending
-    # classificationSequence position. The latest session (highest position) is
-    # the most up-to-date price, so for each interval we keep the point from the
-    # highest auction position. Day-ahead has a single session (no position tag,
-    # treated as position 0), so this is a no-op there.
-    best_by_datetime: dict[datetime, tuple[int, datetime, float, str]] = {}
+    prices = PriceList(logger)
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find("currency_unit.name").contents[0])
-        position_tag = timeseries.find(
-            "classificationsequence_attributeinstancecomponent.position"
-        )
-        position = int(position_tag.contents[0]) if position_tag else 0
         points = _get_datetime_value_from_timeseries(timeseries, "price.amount")
         for dt, dt_end, value in points:
-            current = best_by_datetime.get(dt)
-            # `>=` (not `>`) so that on equal positions the timeseries appearing
-            # later in the document wins, matching ENTSO-E's publication order
-            # where re-published data comes last.
-            if current is None or position >= current[0]:
-                best_by_datetime[dt] = (position, dt_end, value, currency)
-
-    prices = PriceList(logger)
-    for dt, (_position, dt_end, value, currency) in best_by_datetime.items():
-        prices.append(
-            zoneKey=zoneKey,
-            datetime=dt,
-            end_datetime=dt_end,
-            price=value,
-            source="entsoe.eu",
-            currency=currency,
-        )
+            prices.append(
+                zoneKey=zoneKey,
+                datetime=dt,
+                end_datetime=dt_end,
+                price=value,
+                source="entsoe.eu",
+                currency=currency,
+            )
 
     return prices
 
@@ -1478,44 +1453,6 @@ def fetch_price(
     domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
     try:
         raw_price_data = query_price(domain, session, target_datetime=target_datetime)
-    except Exception as e:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"Failed to fetch price for {zone_key}",
-            zone_key=zone_key,
-        ) from e
-    if raw_price_data is None:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message=f"No price data found for {zone_key}",
-            zone_key=zone_key,
-        )
-    return parse_prices(raw_price_data, zone_key, logger).to_list()
-
-
-# DO NOT USE, THIS IS FOR FUTURE USE CASES
-@refetch_frequency(DEFAULT_LOOKBACK_HOURS_REALTIME)
-def fetch_price_intraday(
-    zone_key: ZoneKey,
-    session: Session | None = None,
-    target_datetime: datetime | None = None,
-    logger: Logger = getLogger(__name__),
-) -> list:
-    """
-    DO NOT USE, THIS IS FOR FUTURE USE CASES.
-    Gets intraday price for specified zone.
-    """
-    if not session:
-        session = Session()
-
-    domain = ENTSOE_PRICE_DOMAIN_MAPPINGS[zone_key]
-    try:
-        raw_price_data = query_price(
-            domain,
-            session,
-            target_datetime=target_datetime,
-            marketType=EntsoeTypeEnum.INTRADAY_PRICE,
-        )
     except Exception as e:
         raise ParserException(
             parser="ENTSOE.py",
