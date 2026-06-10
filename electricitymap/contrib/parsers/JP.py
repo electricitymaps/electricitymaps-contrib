@@ -233,6 +233,9 @@ def _hr_legacy_url(dt: datetime) -> str:
     """Hokuriku: monthly from 2018-10, calendar-quarter-grouped before that."""
     base = "https://www.rikuden.co.jp/nw_jyukyudata/attach/area_jisseki_rikuden"
     if dt >= datetime(2018, 10, 1, tzinfo=ZONE_INFO):
+        if dt.strftime("%Y%m") == "201910":
+            # One-off revised filename on Rikuden's archive page.
+            return f"{base}201910_01.csv"
         return f"{base}{dt.strftime('%Y%m')}.csv"
     q_start = ((dt.month - 1) // 3) * 3 + 1
     return f"{base}{dt.year}{q_start:02d}_{q_start + 2:02d}.csv"
@@ -408,8 +411,9 @@ def _read_area_csv(content: bytes) -> pd.DataFrame:
 def _parse_area_datetime(date_val: Any, time_val: Any) -> datetime:
     """Parse DATE + TIME from area CSV into a tz-aware datetime.
 
-    Handles: YYYY/MM/DD, YYYY/M/D, YYYYMMDD date formats;
-    HH:MM and H:MM time formats; the 24:00 edge case.
+    Handles: YYYY/MM/DD, YYYY/M/D, YYYYMMDD date formats; HH:MM and H:MM time
+    formats with optional seconds (JP-ON files before ~2025-01-29 use
+    H:MM:SS); the 24:00 edge case.
     """
     date_str = str(date_val).strip().strip('"')
     time_str = str(time_val).strip().strip('"')
@@ -420,7 +424,12 @@ def _parse_area_datetime(date_val: Any, time_val: Any) -> datetime:
         extra_day = True
 
     combined = f"{date_str} {time_str}"
-    for fmt in ("%Y/%m/%d %H:%M", "%Y%m%d %H:%M"):
+    for fmt in (
+        "%Y/%m/%d %H:%M",
+        "%Y%m%d %H:%M",
+        "%Y/%m/%d %H:%M:%S",
+        "%Y%m%d %H:%M:%S",
+    ):
         try:
             dt = datetime.strptime(combined, fmt)
             if extra_day:
@@ -444,11 +453,12 @@ def _df_to_production_breakdown_list(
 
     def _safe_datetime(row) -> datetime | None:
         # The current month's file pads future slots with blank DATE/TIME
-        # (JP-HKD); skip those instead of failing the whole day.
-        try:
-            return _parse_area_datetime(row["DATE"], row["TIME"]) + datetime_offset
-        except ValueError:
+        # (JP-HKD); skip those. A NON-blank value that fails to parse means
+        # the TSO changed format (JP-ON added/dropped seconds) — fail loud
+        # rather than silently returning an empty day.
+        if pd.isna(row["DATE"]) or pd.isna(row["TIME"]):
             return None
+        return _parse_area_datetime(row["DATE"], row["TIME"]) + datetime_offset
 
     df = df.copy()
     df["_datetime"] = df.apply(_safe_datetime, axis=1)

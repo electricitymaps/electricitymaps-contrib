@@ -306,6 +306,14 @@ def test_parse_datetime_24_00():
     assert dt == datetime(2026, 4, 2, 0, 0, tzinfo=TIMEZONE)
 
 
+def test_parse_datetime_with_seconds():
+    """JP-ON files before ~2025-01-29 use H:MM:SS times (incl. 24:00:00)."""
+    dt = _parse_area_datetime("2025/3/1", "0:30:00")
+    assert dt == datetime(2025, 3, 1, 0, 30, tzinfo=TIMEZONE)
+    dt = _parse_area_datetime("2025/3/1", "24:00:00")
+    assert dt == datetime(2025, 3, 2, 0, 0, tzinfo=TIMEZONE)
+
+
 # ─── Production breakdown tests (all 10 zones) ──────────────────────────────
 
 
@@ -694,6 +702,17 @@ def test_production_skips_padding_and_junk_rows():
     assert result[1]["production"]["coal"] == 300
 
 
+def test_production_raises_on_malformed_time():
+    """A NON-blank timestamp that fails to parse (format change) fails loud
+    instead of silently producing an empty day (the JP-ON seconds regression)."""
+    bad = _AREA_WITH_PADDING.replace("2026/4/1,0:30,", "2026/4/1,0時30分,")
+    df = _read_area_csv(bad.encode("shift_jis"))
+    with pytest.raises(ValueError, match="Cannot parse area CSV datetime"):
+        _df_to_production_breakdown_list(
+            df, "JP-TK", "test", datetime(2026, 4, 1, tzinfo=TIMEZONE), LOGGER
+        )
+
+
 # ─── Legacy archive parsing ──────────────────────────────────────────────────
 
 
@@ -862,6 +881,13 @@ def test_legacy_configs_have_source():
 
 
 # ─── Legacy URL building, value parsing, and fetch edge cases ─────────────────
+
+
+def test_hr_legacy_url_october_2019_one_off():
+    """Rikuden's Oct 2019 file has a one-off revised name (…201910_01.csv)."""
+    assert _hr_legacy_url(datetime(2019, 10, 15, tzinfo=TIMEZONE)).endswith(
+        "area_jisseki_rikuden201910_01.csv"
+    )
 
 
 def test_hr_legacy_url_quarterly_then_monthly():
