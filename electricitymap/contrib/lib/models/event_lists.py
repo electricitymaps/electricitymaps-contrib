@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
+from itertools import pairwise
 from logging import Logger
 from operator import itemgetter
 from typing import Any, Generic, TypeVar
@@ -192,7 +193,7 @@ class NonOverlappingEventList(EventList[EventType], ABC, Generic[EventType]):
         overlap. Clamping always leaves a positive duration, as the earlier
         event starts strictly before the later one.
         """
-        for previous, current in zip(events, events[1:], strict=False):
+        for previous, current in pairwise(events):
             if previous["datetime"] == current["datetime"]:
                 self.logger.warning(
                     f"{type(self).__name__} has two events sharing datetime "
