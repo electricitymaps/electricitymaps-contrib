@@ -479,6 +479,26 @@ def test_production_zone_10_on():
         assert storage.get("battery") == 0 or storage.get("battery") == -0.0
 
 
+def test_event_datetimes_are_native_datetime():
+    """Events must carry native datetime objects, not pandas.Timestamp.
+
+    Uses the JP-KY fixture: with no skipped rows pandas coerces the _datetime
+    column to datetime64, and row access then yields Timestamps unless the
+    parser converts back (test_parser's strict type check rejects them)."""
+    zone_key, df, target = _read_fixture("09")
+    result = _df_to_production_breakdown_list(
+        df,
+        zone_key,
+        "test",
+        target,
+        LOGGER,
+        datetime_offset=_AREA_CSV_CONFIGS[zone_key].datetime_offset,
+    )
+    assert result
+    for event in result:
+        assert type(event["datetime"]) is datetime
+
+
 def test_production_filters_to_target_date():
     """Only rows matching the target date should be returned."""
     _, df, _ = _read_fixture("01")

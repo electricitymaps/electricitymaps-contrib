@@ -504,9 +504,16 @@ def _df_to_production_breakdown_list(
         if not prod_values and not storage_values:
             continue
 
+        # pandas coerces the _datetime column to datetime64 when no rows were
+        # skipped, and row access then yields pandas.Timestamp — events must
+        # carry native datetime objects.
+        event_datetime = row["_datetime"]
+        if hasattr(event_datetime, "to_pydatetime"):
+            event_datetime = event_datetime.to_pydatetime()
+
         production_list.append(
             zoneKey=ZoneKey(zone_key),
-            datetime=row["_datetime"],
+            datetime=event_datetime,
             source=source,
             production=ProductionMix(**prod_values),
             storage=StorageMix(**storage_values) if storage_values else None,
