@@ -24,12 +24,10 @@ from zoneinfo import ZoneInfo
 import pytest
 
 from electricitymap.contrib.parsers.JP import (
+    _ARCHIVE_CACHE,
     _AREA_COLUMN_MAP,
     _AREA_CSV_CONFIGS,
-    _AREA_CSV_START_DATES,
     _LEGACY_AREA_CONFIGS,
-    _LEGACY_AREA_START_DATES,
-    _LEGACY_CSV_CACHE,
     _build_legacy_datetime,
     _df_to_production_breakdown_list,
     _fetch_area_csv_content,
@@ -39,8 +37,8 @@ from electricitymap.contrib.parsers.JP import (
     _fiscal_year,
     _hr_legacy_url,
     _legacy_df_to_breakdown,
-    _legacy_value_to_float,
     _parse_area_datetime,
+    _parse_value,
     _read_area_csv,
     _read_legacy_area_csv,
     _read_legacy_area_xlsx,
@@ -53,9 +51,9 @@ LOGGER = getLogger(__name__)
 
 
 @pytest.fixture(autouse=True)
-def _clear_legacy_cache():
-    """Keep the module-level legacy archive cache from leaking between tests."""
-    _LEGACY_CSV_CACHE.clear()
+def _clear_archive_cache():
+    """Keep the module-level archive cache from leaking between tests."""
+    _ARCHIVE_CACHE.clear()
     yield
 
 
@@ -513,26 +511,18 @@ def test_production_filters_to_target_date():
 # ─── Routing tests ───────────────────────────────────────────────────────────
 
 
-_ROUTE_NEW = {"JP-HKD": datetime(2024, 4, 1, tzinfo=TIMEZONE)}
-_ROUTE_LEGACY = {"JP-HKD": datetime(2016, 4, 1, tzinfo=TIMEZONE)}
-
-
-def _patch_routing():
-    """Patch both date tables and both fetchers; yields (mock_new, mock_legacy)."""
+def _patch_fetchers():
+    """Patch the per-source fetchers; routing runs against the real configs."""
     return (
-        patch("electricitymap.contrib.parsers.JP._AREA_CSV_START_DATES", _ROUTE_NEW),
-        patch(
-            "electricitymap.contrib.parsers.JP._LEGACY_AREA_START_DATES", _ROUTE_LEGACY
-        ),
         patch("electricitymap.contrib.parsers.JP._fetch_production_area_csv"),
         patch("electricitymap.contrib.parsers.JP._fetch_production_legacy_area_csv"),
     )
 
 
 def test_routing_new_format_on_or_after_start():
-    """On/after the new-format start, uses the new 30-min path."""
-    p_new, p_leg, p_area, p_legacy = _patch_routing()
-    with p_new, p_leg, p_area as area, p_legacy as legacy:
+    """On/after the new-format start (JP-HKD: 2024-04), uses the 30-min path."""
+    p_area, p_legacy = _patch_fetchers()
+    with p_area as area, p_legacy as legacy:
         area.return_value = [{"test": "new"}]
         fetch_production(
             "JP-HKD", target_datetime=datetime(2025, 1, 1, tzinfo=TIMEZONE)
@@ -543,8 +533,8 @@ def test_routing_new_format_on_or_after_start():
 
 def test_routing_legacy_between_floor_and_new_start():
     """Between the legacy floor and the new-format start, uses the legacy path."""
-    p_new, p_leg, p_area, p_legacy = _patch_routing()
-    with p_new, p_leg, p_area as area, p_legacy as legacy:
+    p_area, p_legacy = _patch_fetchers()
+    with p_area as area, p_legacy as legacy:
         legacy.return_value = [{"test": "legacy"}]
         fetch_production(
             "JP-HKD", target_datetime=datetime(2020, 1, 1, tzinfo=TIMEZONE)
@@ -554,9 +544,9 @@ def test_routing_legacy_between_floor_and_new_start():
 
 
 def test_routing_raises_before_legacy_floor():
-    """Before the legacy floor there is no data: raise instead of fetching."""
-    p_new, p_leg, p_area, p_legacy = _patch_routing()
-    with p_new, p_leg, p_area as area, p_legacy as legacy:
+    """Before the legacy floor (JP-HKD: 2016-04) there is no data: raise."""
+    p_area, p_legacy = _patch_fetchers()
+    with p_area as area, p_legacy as legacy:
         with pytest.raises(NotImplementedError):
             fetch_production(
                 "JP-HKD", target_datetime=datetime(2015, 1, 1, tzinfo=TIMEZONE)
@@ -911,10 +901,6 @@ def test_fiscal_quarter():
 # ─── Legacy config completeness ──────────────────────────────────────────────
 
 
-def test_legacy_configs_and_start_dates_aligned():
-    assert set(_LEGACY_AREA_CONFIGS) == set(_LEGACY_AREA_START_DATES)
-
-
 def test_legacy_jp_sk_uses_xlsx():
     """JP-SK's legacy archive is Yonden's per-fiscal-year Excel workbook."""
     config = _LEGACY_AREA_CONFIGS["JP-SK"]
@@ -931,9 +917,9 @@ def test_legacy_jp_sk_uses_xlsx():
 
 def test_legacy_floor_precedes_new_format_start():
     """Every legacy zone is also a new-format zone, and its floor is earlier."""
-    for zone_key, floor in _LEGACY_AREA_START_DATES.items():
-        assert zone_key in _AREA_CSV_START_DATES
-        assert floor < _AREA_CSV_START_DATES[zone_key]
+    for zone_key, config in _LEGACY_AREA_CONFIGS.items():
+        assert zone_key in _AREA_CSV_CONFIGS
+        assert config.start < _AREA_CSV_CONFIGS[zone_key].start
 
 
 def test_legacy_configs_have_source():
@@ -972,21 +958,21 @@ def test_hr_legacy_url_quarterly_then_monthly():
     )
 
 
-def test_legacy_value_to_float():
+def test_parse_value():
     # Missing markers (blanks, ASCII/full-width dashes used as "no data").
     for missing in ("", "-", "−", "―", "—", "nan"):
-        assert _legacy_value_to_float(missing) is None
-    assert _legacy_value_to_float(float("nan")) is None
+        assert _parse_value(missing) is None
+    assert _parse_value(float("nan")) is None
     # Numbers, including thousands separators, decimals, negatives, and quotes.
-    assert _legacy_value_to_float("1,234") == 1234.0
-    assert _legacy_value_to_float("123.4") == 123.4
-    assert _legacy_value_to_float("-305") == -305.0  # pumped-storage charging
-    assert _legacy_value_to_float('"42"') == 42.0
+    assert _parse_value("1,234") == 1234.0
+    assert _parse_value("123.4") == 123.4
+    assert _parse_value("-305") == -305.0  # pumped-storage charging
+    assert _parse_value('"42"') == 42.0
     # Signed values with non-ASCII minus signs and full-width digits must not
     # be silently dropped.
-    assert _legacy_value_to_float("−305") == -305.0  # U+2212 minus sign
-    assert _legacy_value_to_float("－305") == -305.0  # U+FF0D full-width hyphen
-    assert _legacy_value_to_float("１２３") == 123.0  # full-width digits
+    assert _parse_value("−305") == -305.0  # U+2212 minus sign
+    assert _parse_value("－305") == -305.0  # U+FF0D full-width hyphen
+    assert _parse_value("１２３") == 123.0  # full-width digits
 
 
 def test_read_legacy_area_csv_rejects_wider_files():
@@ -1204,6 +1190,19 @@ def test_isep_parsing_values_signs_and_filters():
     # pumped +424 (generating) → -424 (discharging)
     assert evening["storage"]["hydro"] == -424
     assert evening["production"]["solar"] == 7
+
+
+def test_legacy_404_falls_back_to_isep():
+    """A missing archive file (e.g. HEPCO never published FY2018 Q2, the
+    Hokkaido-blackout quarter) falls back to ISEP instead of raising."""
+    session = _FakeSession(lambda url: _FakeResponse(404))
+    with patch("electricitymap.contrib.parsers.JP._fetch_production_isep") as isep:
+        isep.return_value = [{"test": "isep"}]
+        result = _fetch_production_legacy_area_csv(
+            "JP-HKD", datetime(2018, 7, 15, tzinfo=TIMEZONE), session, LOGGER
+        )
+    isep.assert_called_once()
+    assert result == [{"test": "isep"}]
 
 
 def test_isep_raises_when_page_format_changes():
