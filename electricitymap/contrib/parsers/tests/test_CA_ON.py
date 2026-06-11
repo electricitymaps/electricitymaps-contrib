@@ -5,6 +5,7 @@ from pathlib import Path
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.CA_ON import (
+    TIMEZONE,
     fetch_consumption_forecast,
     fetch_wind_solar_forecasts,
 )
@@ -68,8 +69,11 @@ def test_fetch_consumption_forecast(requests_mock, session, snapshot):
         text=adequacy_response,
     )
 
-    # Run function under test
+    # Run function under test. Anchor the 8-day walk to a fixed date so the
+    # snapshot is deterministic — without target_datetime the parser starts at
+    # datetime.now() and the snapshot only matches on the day it was recorded.
     assert snapshot == fetch_consumption_forecast(
         zone_key=ZoneKey("CA-ON"),
         session=session,
+        target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
     )
