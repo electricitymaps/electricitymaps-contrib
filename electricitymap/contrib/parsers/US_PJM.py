@@ -17,6 +17,7 @@ from requests import Response, Session
 from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     GridAlertList,
+    LocationalMarginalPriceList,
     ProductionBreakdownList,
     TotalConsumptionList,
 )
@@ -91,6 +92,8 @@ def _fetch_api_data(
         "gen_by_fuel",
         "hourly_solar_power_forecast",
         "hourly_wind_power_forecast",
+        "da_hrl_lmps",
+        "rt_unverified_fivemin_lmps",
     ],
     params: dict,
     session: Session,
@@ -275,6 +278,139 @@ def fetch_wind_solar_forecasts(
         )
 
     return production_list.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_dayahead_locational_marginal_price(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetches hourly day-ahead LMPs for the target EPT day from PJM Data Miner 2."""
+    session = session or Session()
+
+    target_datetime = (
+        datetime.now(timezone.utc) if target_datetime is None else target_datetime
+    )
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+    target_day = target_datetime.astimezone(TIMEZONE).strftime("%Y-%m-%d")
+
+    params = {
+        "startRow": 1,
+        # 23 ZONE pnodes x 25 hours (DST fall-back day) = 575; headroom for
+        # any ZONE pnodes PJM adds in the future, since type=ZONE is an open
+        # server-side filter rather than an explicit pnode list.
+        "rowCount": 1000,
+        "type": "ZONE",
+        "fields": "datetime_beginning_utc,pnode_id,pnode_name,type,total_lmp_da",
+        "datetime_beginning_ept": f"{target_day}T00:00to{target_day}T23:59",
+    }
+    data = _fetch_api_data(kind="da_hrl_lmps", params=params, session=session)
+    items = data.get("items", [])
+    total_rows = data.get("totalRows", 0)
+    if total_rows > len(items):
+        raise ParserException(
+            PARSER,
+            f"da_hrl_lmps response incomplete: got {len(items)} of {total_rows} rows",
+            zone_key,
+        )
+    if not items:
+        logger.warning(f"No day-ahead LMP data for {target_day}")
+        return []
+
+    prices = LocationalMarginalPriceList(logger)
+    for item in items:
+        dt = datetime.fromisoformat(item["datetime_beginning_utc"]).replace(
+            tzinfo=timezone.utc
+        )
+        prices.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            end_datetime=dt + timedelta(hours=1),
+            price=item["total_lmp_da"],
+            currency="USD",
+            node=item["pnode_name"],
+            source=SOURCE,
+        )
+    return prices.to_list()
+
+
+@refetch_frequency(timedelta(minutes=30))
+def fetch_realtime_locational_marginal_price(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetches 5-minute real-time LMPs for the 35 minutes up to target_datetime
+    from PJM Data Miner 2.
+
+    Uses the unverified feed because it is the only one posted in near real
+    time (~5 minute latency); the verified LMP feeds are only posted the next
+    business day. Unverified values may later be revised in the verified
+    feeds. The feed retains 15 days of data.
+    """
+    session = session or Session()
+
+    target_datetime = (
+        datetime.now(timezone.utc) if target_datetime is None else target_datetime
+    )
+    if target_datetime.tzinfo is None:
+        target_datetime = target_datetime.replace(tzinfo=timezone.utc)
+    # Filter on the UTC column: an EPT wall-clock window would be ambiguous
+    # or nonexistent around the DST transitions.
+    window_end = target_datetime.astimezone(timezone.utc)
+    window_start = window_end - timedelta(minutes=35)
+    utc_format = "%Y-%m-%dT%H:%M"
+    # ZONE-type aggregate pnodes: PJM-RTO, MID-ATL/APS, and transmission zones.
+    # The feed also carries bus-level pnodes, so this keeps the response focused
+    # on aggregate locations.
+    zone_pnode_ids = (
+        "1;3;51291;51292;51293;51295;51296;51297;51298;51299;51300;51301;"
+        "7633629;8394954;8445784;33092371;34508503;34964545;37737283;"
+        "116013753;124076095;970242670;1709725933"
+    )
+
+    params = {
+        "startRow": 1,
+        # 23 ZONE pnodes x 8 intervals = 184; headroom on top of that.
+        "rowCount": 500,
+        "pnode_id": zone_pnode_ids,
+        "fields": "datetime_beginning_utc,pnode_id,pnode_name,total_lmp_rt",
+        "datetime_beginning_utc": f"{window_start.strftime(utc_format)}to{window_end.strftime(utc_format)}",
+    }
+    data = _fetch_api_data(
+        kind="rt_unverified_fivemin_lmps", params=params, session=session
+    )
+    items = data.get("items", [])
+    total_rows = data.get("totalRows", 0)
+    if total_rows > len(items):
+        raise ParserException(
+            PARSER,
+            f"rt_unverified_fivemin_lmps response incomplete: got {len(items)} of {total_rows} rows",
+            zone_key,
+        )
+    if not items:
+        logger.warning(f"No real-time LMP data between {window_start} and {window_end}")
+        return []
+
+    prices = LocationalMarginalPriceList(logger)
+    for item in items:
+        dt = datetime.fromisoformat(item["datetime_beginning_utc"]).replace(
+            tzinfo=timezone.utc
+        )
+        prices.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            end_datetime=dt + timedelta(minutes=5),
+            price=item["total_lmp_rt"],
+            currency="USD",
+            node=item["pnode_name"],
+            source=SOURCE,
+        )
+    return prices.to_list()
 
 
 def _get_interface_data(

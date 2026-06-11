@@ -1188,6 +1188,7 @@ contributors:
   - amv213
   - VIKTORVAV99
   - alejandranavcas
+  - CannonWest
 country: US
 country_name: USA
 currency: USD
@@ -1611,10 +1612,12 @@ isRenewable:
 parsers:
   consumption: EIA.fetch_consumption
   consumptionForecast: US_PJM.fetch_consumption_forecast
+  dayaheadLocationalMarginalPrice: US_PJM.fetch_dayahead_locational_marginal_price
   gridAlerts: US_PJM.fetch_grid_alerts
   production: US_PJM.fetch_production
   productionCapacity: EIA.fetch_production_capacity
   productionPerModeForecast: US_PJM.fetch_wind_solar_forecasts
+  realtimeLocationalMarginalPrice: US_PJM.fetch_realtime_locational_marginal_price
 region: Americas
 sources:
   INCER ACV:
