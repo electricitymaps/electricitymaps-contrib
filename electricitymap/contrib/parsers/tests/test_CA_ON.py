@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from freezegun import freeze_time
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.CA_ON import (
@@ -44,6 +45,7 @@ def test_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     )
 
 
+@freeze_time("2025-02-28 12:00:00")
 def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Mock Adequacy report request. fetch_consumption_forecast walks 8 days and
     # fetches one report per date; the real IESO endpoint returns a distinct
