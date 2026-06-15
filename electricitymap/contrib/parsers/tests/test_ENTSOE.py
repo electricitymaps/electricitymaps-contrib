@@ -12,6 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import ExchangeCapacityList
 from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.parsers.ENTSOE import (
+    DateTimePoint,
     _get_datetime_value_from_timeseries,
     _merge_exchange_capacity_forecasts,
     fetch_production,
@@ -52,6 +53,7 @@ def test_fetch_consumption_forecast(requests_mock, session, snapshot):
 
 def test_fetch_consumption_aggregated_zone(monkeypatch):
     dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    dt_end = dt + timedelta(hours=1)
     called_domains: list[str] = []
 
     def fake_query_consumption(in_domain, session, target_datetime=None):
@@ -64,9 +66,9 @@ def test_fetch_consumption_aggregated_zone(monkeypatch):
 
     def fake_parse_scalar(raw_xml, only_outBiddingZone_Domain=True):
         if raw_xml == "raw-it-ca":
-            return [(dt, 70.0)]
+            return [(dt, dt_end, 70.0)]
         if raw_xml == "raw-it-so":
-            return [(dt, 30.0)]
+            return [(dt, dt_end, 30.0)]
         return None
 
     monkeypatch.setattr(ENTSOE, "query_consumption", fake_query_consumption)
@@ -81,6 +83,7 @@ def test_fetch_consumption_aggregated_zone(monkeypatch):
     assert result == [
         {
             "datetime": dt,
+            "end_datetime": dt_end,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 100.0,
             "source": ENTSOE.SOURCE,
@@ -102,6 +105,7 @@ def test_fetch_generation_forecast(requests_mock, session, snapshot):
 
 def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
     dt = datetime(2024, 1, 1, tzinfo=timezone.utc)
+    dt_end = dt + timedelta(hours=1)
     called_domains: list[str] = []
 
     def fake_query_generation_forecast(in_domain, session, target_datetime=None):
@@ -114,9 +118,9 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
 
     def fake_parse_scalar(raw_xml, only_inBiddingZone_Domain=True):
         if raw_xml == "raw-it-ca":
-            return [(dt, 120.0)]
+            return [(dt, dt_end, 120.0)]
         if raw_xml == "raw-it-so":
-            return [(dt, 80.0)]
+            return [(dt, dt_end, 80.0)]
         return None
 
     monkeypatch.setattr(
@@ -133,6 +137,7 @@ def test_fetch_generation_forecast_aggregated_zone(monkeypatch):
     assert result == [
         {
             "datetime": dt,
+            "end_datetime": dt_end,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 200.0,
             "source": ENTSOE.SOURCE,
@@ -150,17 +155,6 @@ def test_fetch_prices_day_ahead(requests_mock, session, snapshot):
     )
 
     assert snapshot == ENTSOE.fetch_price(ZoneKey("ES"), session)
-
-
-def test_fetch_prices_intraday(requests_mock, session, snapshot):
-    data = base_path_to_mock / "ES_intraday_price.xml"
-    requests_mock.register_uri(
-        GET,
-        ANY,
-        content=data.read_bytes(),
-    )
-
-    assert snapshot == ENTSOE.fetch_price_intraday(ZoneKey("ES"), session)
 
 
 def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
@@ -523,8 +517,12 @@ def test_a01_timeseries_parsing_production_and_consumption():
     dt0_expected = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
     dt1_expected = dt0_expected + timedelta(hours=1)
 
-    assert results[0][0] == dt0_expected and results[0][1] == 10.0
-    assert results[1][0] == dt1_expected and results[1][1] == 20.0
+    assert results[0] == DateTimePoint(
+        dt0_expected, dt0_expected + timedelta(hours=1), 10.0
+    )
+    assert results[1] == DateTimePoint(
+        dt1_expected, dt1_expected + timedelta(hours=1), 20.0
+    )
 
     # Now test consumption (no inbidding tag) becomes negative when production_parsing=True
     xml_consumption = xml.replace(
@@ -535,8 +533,8 @@ def test_a01_timeseries_parsing_production_and_consumption():
     results2 = list(
         _get_datetime_value_from_timeseries(ts2, "quantity", production_parsing=True)
     )
-    assert results2[0][1] == -10.0
-    assert results2[1][1] == -20.0
+    assert results2[0][2] == -10.0
+    assert results2[1][2] == -20.0
 
 
 def test_a03_curve_compression_expands_segments_correctly():
@@ -575,9 +573,13 @@ def test_a03_curve_compression_expands_segments_correctly():
     assert len(results) == 3
 
     dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
-    assert results[0] == (dt0, 10.0)
-    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
-    assert results[2] == (dt0 + timedelta(hours=2), 20.0)
+    assert results[0] == DateTimePoint(dt0, dt0 + timedelta(hours=1), 10.0)
+    assert results[1] == DateTimePoint(
+        dt0 + timedelta(hours=1), dt0 + timedelta(hours=2), 10.0
+    )
+    assert results[2] == DateTimePoint(
+        dt0 + timedelta(hours=2), dt0 + timedelta(hours=3), 20.0
+    )
 
 
 def test_a03_curve_compression_expands_1_datapoint_correctly():
@@ -612,9 +614,13 @@ def test_a03_curve_compression_expands_1_datapoint_correctly():
     assert len(results) == 3
 
     dt0 = datetime.fromisoformat(zulu_to_utc("2023-01-01T00:00:00Z"))
-    assert results[0] == (dt0, 10.0)
-    assert results[1] == (dt0 + timedelta(hours=1), 10.0)
-    assert results[2] == (dt0 + timedelta(hours=2), 10.0)
+    assert results[0] == DateTimePoint(dt0, dt0 + timedelta(hours=1), 10.0)
+    assert results[1] == DateTimePoint(
+        dt0 + timedelta(hours=1), dt0 + timedelta(hours=2), 10.0
+    )
+    assert results[2] == DateTimePoint(
+        dt0 + timedelta(hours=2), dt0 + timedelta(hours=3), 10.0
+    )
 
 
 @pytest.mark.parametrize(

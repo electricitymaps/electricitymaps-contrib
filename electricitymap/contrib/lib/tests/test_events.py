@@ -1,6 +1,6 @@
 import logging
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
@@ -125,6 +125,7 @@ def test_exchange_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DER->FR"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             netFlow=-1,
             source="trust.me",
         )
@@ -262,6 +263,7 @@ def test_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             consumption=-1,
             source="trust.me",
         )
@@ -514,6 +516,7 @@ def test_negative_production_gets_corrected():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -540,6 +543,7 @@ def test_self_report_negative_value():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=mix,
             source="trust.me",
         )
@@ -606,6 +610,88 @@ def test_non_forecasted_point_with_timezone_forward():
     assert breakdown.datetime == datetime(2023, 1, 1, 5, tzinfo=ZoneInfo("Asia/Tokyo"))
 
 
+def test_end_datetime_must_be_after_datetime():
+    start = datetime(2023, 1, 1, 12, 0, tzinfo=timezone.utc)
+
+    # Strictly after start is accepted and truncated to whole minutes.
+    exchange = Exchange(
+        zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+        datetime=start,
+        end_datetime=datetime(2023, 1, 1, 13, 0, 45, tzinfo=timezone.utc),
+        netFlow=1,
+        source="trust.me",
+    )
+    assert exchange.end_datetime == datetime(2023, 1, 1, 13, 0, tzinfo=timezone.utc)
+
+    # None is allowed.
+    assert (
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            netFlow=1,
+            source="trust.me",
+        ).end_datetime
+        is None
+    )
+
+    # Equal to start is rejected (interval must have positive duration).
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=start,
+            netFlow=1,
+            source="trust.me",
+        )
+
+    # Before start is rejected.
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=datetime(2023, 1, 1, 11, 0, tzinfo=timezone.utc),
+            netFlow=1,
+            source="trust.me",
+        )
+
+    # Naive end_datetime is rejected.
+    with pytest.raises(ValueError):
+        Exchange(
+            zoneKey=ZoneKey("DK-DK1->DK-DK2"),
+            datetime=start,
+            end_datetime=datetime(2023, 1, 1, 13, 0),
+            netFlow=1,
+            source="trust.me",
+        )
+
+
+def test_aggregate_takes_earliest_known_end_datetime():
+    # Sub-zones can report at different resolutions or without an end_datetime;
+    # aggregation keeps the earliest known end instead of failing.
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+
+    def breakdown(source: str, end_datetime: datetime | None) -> ProductionBreakdown:
+        return ProductionBreakdown(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            end_datetime=end_datetime,
+            production=ProductionMix(wind=10),
+            source=source,
+        )
+
+    quarter_hourly = breakdown("a", dt + timedelta(minutes=15))
+    hourly = breakdown("b", dt + timedelta(hours=1))
+    unknown = breakdown("c", None)
+
+    assert ProductionBreakdown.aggregate(
+        [quarter_hourly, hourly]
+    ).end_datetime == dt + timedelta(minutes=15)
+    assert ProductionBreakdown.aggregate(
+        [hourly, unknown]
+    ).end_datetime == dt + timedelta(hours=1)
+    assert ProductionBreakdown.aggregate([unknown, unknown]).end_datetime is None
+
+
 def test_static_create_logs_error_with_none():
     logger = logging.Logger("test")
     with patch.object(logger, "error") as mock_error:
@@ -613,6 +699,7 @@ def test_static_create_logs_error_with_none():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=None),
             source="trust.me",
         )
@@ -626,6 +713,7 @@ def test_static_create_logs_with_nan():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=math.nan),
             source="trust.me",
         )
@@ -639,6 +727,7 @@ def test_static_create_logs_with_nan_using_numpy():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             production=ProductionMix(wind=np.nan),
             source="trust.me",
         )
@@ -693,6 +782,7 @@ def test_total_production_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE"),
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             value=-1,
             source="trust.me",
         )
@@ -1120,6 +1210,7 @@ def test_exchange_capacity_forecast_create_defaults_to_published():
         logger=logger,
         zoneKey=ZoneKey("AT->DE"),
         datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+        end_datetime=None,
         source="trust.me",
         capacityExport=1000.0,
         capacityImport=900.0,
@@ -1210,6 +1301,7 @@ def test_exchange_capacity_forecast_static_create_logs_error():
             logger=logger,
             zoneKey=ZoneKey("DE->AT"),  # unsorted
             datetime=datetime(2023, 1, 1, tzinfo=timezone.utc),
+            end_datetime=None,
             source="trust.me",
             capacityExport=1000.0,
             capacityImport=900.0,

@@ -1046,6 +1046,7 @@ def test_merge_total_production_lists():
     assert merged.to_list() == [
         {
             "datetime": dt,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 150,
             "source": "entsoe",
@@ -1053,6 +1054,7 @@ def test_merge_total_production_lists():
         },
         {
             "datetime": dt_later,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "value": 25,
             "source": "entsoe",
@@ -1093,6 +1095,7 @@ def test_merge_consumption_lists():
     assert merged.to_list() == [
         {
             "datetime": dt,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 100,
             "source": "entsoe",
@@ -1100,6 +1103,7 @@ def test_merge_consumption_lists():
         },
         {
             "datetime": dt_later,
+            "end_datetime": None,
             "zoneKey": ZoneKey("IT-SO"),
             "consumption": 30,
             "source": "entsoe",
@@ -1190,3 +1194,129 @@ def test_exchange_capacity_forecast_list_to_list_sorted_by_datetime():
     assert result[0]["sortedZoneKeys"] == ZoneKey("AT->DE")
     assert result[0]["source"] == "trust.me"
     assert result[0]["sourceType"] == EventSourceType.published
+
+
+def test_non_overlapping_list_clamps_overlapping_intervals():
+    logger = logging.Logger("test")
+    exchange_list = ExchangeList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=3),
+        netFlow=2,
+        source="trust.me",
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = exchange_list.to_list()
+    # The earlier event's end is clamped to the later event's start; nothing is
+    # dropped and a warning is emitted.
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(hours=1)
+    assert result[1]["end_datetime"] == dt + timedelta(hours=3)
+    mock_warning.assert_called_once()
+
+
+def test_non_overlapping_list_keeps_and_warns_on_duplicate_datetimes():
+    logger = logging.Logger("test")
+    production_list = ProductionBreakdownList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for _ in range(2):
+        production_list.append(
+            zoneKey=ZoneKey("DE"),
+            datetime=dt,
+            production=ProductionMix(wind=10),
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = production_list.to_list()
+    # Duplicate starts cannot be clamped: both events are kept and a warning is
+    # emitted so the parser can be fixed upstream.
+    assert len(result) == 2
+    mock_warning.assert_called_once()
+
+
+def test_non_overlapping_list_allows_adjacent_intervals():
+    logger = logging.Logger("test")
+    exchange_list = ExchangeList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=1),
+        netFlow=1,
+        source="trust.me",
+    )
+    exchange_list.append(
+        zoneKey=ZoneKey("AT->DE"),
+        datetime=dt + timedelta(hours=1),
+        end_datetime=dt + timedelta(hours=2),
+        netFlow=2,
+        source="trust.me",
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = exchange_list.to_list()
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(hours=1)
+    mock_warning.assert_not_called()
+
+
+def test_non_overlapping_list_clamps_merged_mixed_resolution_gap():
+    # An hourly source merged with a 15-minute source that has a gap: the hourly
+    # 00:00 event would span the 15-minute event starting at 00:15. The overlap
+    # is clamped instead of failing the whole fetch.
+    logger = logging.Logger("test")
+    hourly = ProductionBreakdownList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    hourly.append(
+        zoneKey=ZoneKey("BE"),
+        datetime=dt,
+        end_datetime=dt + timedelta(hours=1),
+        production=ProductionMix(wind=10),
+        source="entsoe.eu",
+    )
+    quarter_hourly = ProductionBreakdownList(logger)
+    quarter_hourly.append(
+        zoneKey=ZoneKey("BE"),
+        datetime=dt + timedelta(minutes=15),
+        end_datetime=dt + timedelta(minutes=30),
+        production=ProductionMix(wind=12),
+        source="elia.be",
+    )
+    merged = ProductionBreakdownList.update_production_breakdowns(
+        hourly, quarter_hourly, logger
+    )
+    with patch.object(logger, "warning") as mock_warning:
+        result = merged.to_list()
+    assert len(result) == 2
+    assert result[0]["end_datetime"] == dt + timedelta(minutes=15)
+    assert result[1]["end_datetime"] == dt + timedelta(minutes=30)
+    mock_warning.assert_called_once()
+
+
+def test_price_list_keeps_and_warns_on_duplicate_datetimes():
+    # PriceList represents a single series with one price per MTU. Duplicates
+    # (the ENTSO-E intraday parser collapses auction sessions upstream) are kept
+    # with a warning rather than failing the fetch.
+    logger = logging.Logger("test")
+    price_list = PriceList(logger)
+    dt = datetime(2023, 1, 1, tzinfo=timezone.utc)
+    for price in (75.0, 77.77):
+        price_list.append(
+            zoneKey=ZoneKey("ES"),
+            datetime=dt,
+            price=price,
+            currency="EUR",
+            source="trust.me",
+        )
+    with patch.object(logger, "warning") as mock_warning:
+        result = price_list.to_list()
+    assert len(result) == 2
+    mock_warning.assert_called_once()

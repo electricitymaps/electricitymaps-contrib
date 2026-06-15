@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime, timedelta, timezone
 from itertools import groupby
 from logging import Logger, getLogger
@@ -44,6 +45,18 @@ FUEL_TYPE_MAPPING_ELIA = {
 }
 
 
+_ELIA_RESOLUTION_PATTERN = re.compile(r"PT(\d+)([MH])")
+
+
+def _elia_resolution_to_timedelta(resolution_code: str | None) -> timedelta | None:
+    """Parses an Elia ISO-8601 resolution code (e.g. 'PT15M', 'PT1H')."""
+    match = _ELIA_RESOLUTION_PATTERN.fullmatch(resolution_code or "")
+    if match is None:
+        return None
+    value, unit = int(match.group(1)), match.group(2)
+    return timedelta(minutes=value) if unit == "M" else timedelta(hours=value)
+
+
 def fetch_elia(
     zone_key: ZoneKey = ZoneKey("BE"),
     session: Session | None = None,
@@ -67,6 +80,7 @@ def fetch_elia(
     sorted_results = sorted(results, key=lambda x: x.get("datetime", ""))
 
     for dt_key, events in groupby(sorted_results, key=lambda x: x.get("datetime")):
+        events = list(events)
         production_mix = ProductionMix()
         storage_mix = StorageMix()
 
@@ -87,9 +101,16 @@ def fetch_elia(
                     power,
                 )
 
+        dt = datetime.fromisoformat(dt_key).astimezone(timezone.utc)
+        # Carry Elia's native resolution as the interval end so the finer (15-min)
+        # data doesn't inherit ENTSO-E's coarser hourly end_datetime when merged,
+        # which would make a 15-min point claim to span a full hour and overlap
+        # the following intervals.
+        resolution = _elia_resolution_to_timedelta(events[0].get("resolutioncode"))
         production_breakdown_list.append(
             zoneKey=zone_key,
-            datetime=datetime.fromisoformat(dt_key).astimezone(timezone.utc),
+            datetime=dt,
+            end_datetime=dt + resolution if resolution else None,
             production=production_mix,
             storage=storage_mix,
             source=SOURCE_ELIA,
