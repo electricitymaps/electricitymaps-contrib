@@ -22,6 +22,9 @@ from zipfile import ZipFile
 from zoneinfo import ZoneInfo
 
 import pytest
+from freezegun import freeze_time
+from requests_mock import GET
+from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.JP import (
     _ARCHIVE_CACHE,
@@ -159,12 +162,12 @@ EXPECTED_FIRST_ROW = {
         1887,
         161,
         593,
-        None,
+        0,
         185,
         -1,
         -1,
         25,
-    ),  # JP-TH (solar=-3 → None: ProductionMix rejects negatives)
+    ),  # JP-TH (solar=-3 → 0: negative production is clamped to zero)
     "03": (1319, 9737, 6769, 115, 1438, 1224, 0, 448, 0, 418, 0, 2, 182),  # JP-TK
     "04": (0, 3492, 3532, 0, 436, 708, 2, 608, 0, 220, 442, 0, 122),  # JP-CB
     "05": (0, 127, 957, 0, 2, 1230, 0, 90, 0, 29, 0, 0, 140),  # JP-HR
@@ -365,8 +368,9 @@ def _assert_production(zone_num: str):
 
     prod = first["production"]
 
-    # Production modes — None means "value was negative in CSV, ProductionMix
-    # rejected it" or "cell was empty (NaN)". Both are correct behavior.
+    # Production modes — None means "cell was empty (NaN) or a missing-marker
+    # dash". Negative values are clamped to 0 (a non-negative expectation),
+    # never None.
     for mode_name, expected_val in [
         ("nuclear", nuclear),
         ("gas", gas),
@@ -410,7 +414,7 @@ def test_production_zone_01_hkd():
 
 
 def test_production_zone_02_th():
-    """JP-TH (02): 22-col realtime, negative solar (nighttime artifact)."""
+    """JP-TH (02): 22-col realtime, negative solar sentinel (nighttime) → 0."""
     _assert_production("02")
 
 
@@ -1330,3 +1334,90 @@ def test_legacy_fetch_caches_archive_across_days():
     assert session.calls == 1  # same FY2016 Q1 file, fetched once
     assert len(day_one) == 2
     assert len(day_two) == 1
+
+
+# ─── End-to-end fetch_production snapshots ───────────────────────────────────
+# Exercise the public fetch_production entry through requests_mock, serving the
+# same real (trimmed) fixture files the TSOs publish, across the three sources:
+# the live area CSV (latest-available day), the standard historical area CSV,
+# and the legacy hourly archive. JP-TH is covered in every path because its area
+# fetch always falls back to the per-day realtime file (its monthly file lags).
+
+_AREA_CSV_FIXTURES = {
+    "JP-HKD": "eria_jukyu_202604_01.csv",
+    "JP-TH": "realtime_jukyu_20260415_02.csv",
+    "JP-TK": "eria_jukyu_202604_03.csv",
+    "JP-KN": "eria_jukyu_202604_06.csv",
+    "JP-SK": "eria_jukyu_202604_08.csv",
+}
+
+_LEGACY_FILE_FIXTURES = {
+    "JP-TH": "juyo_2016_tohoku_1Q.csv",
+    "JP-HKD": "sup_dem_results_2016_1q.csv",
+    "JP-KN": "area_jyukyu_jisseki_2016.csv",
+}
+
+
+def _register_area_csv(requests_mock, zone_key: str, dt: datetime) -> None:
+    """Serve the zone's real area-CSV fixture at the URL the parser builds for dt."""
+    config = _AREA_CSV_CONFIGS[zone_key]
+    content = (MOCKS_DIR / _AREA_CSV_FIXTURES[zone_key]).read_bytes()
+    if zone_key == "JP-TH":
+        # Tohoku's monthly file publishes weeks late → 404 → per-day realtime file.
+        assert config.daily_url_builder is not None
+        requests_mock.register_uri(GET, config.url_builder(dt), status_code=404)
+        requests_mock.register_uri(GET, config.daily_url_builder(dt), content=content)
+    else:
+        requests_mock.register_uri(GET, config.url_builder(dt), content=content)
+
+
+@pytest.mark.parametrize(
+    ("zone_key", "now"),
+    [
+        ("JP-TH", datetime(2026, 4, 15, 12, tzinfo=TIMEZONE)),
+        ("JP-TK", datetime(2026, 4, 2, 12, tzinfo=TIMEZONE)),
+        ("JP-HKD", datetime(2026, 4, 2, 12, tzinfo=TIMEZONE)),
+    ],
+    ids=["JP-TH", "JP-TK", "JP-HKD"],
+)
+def test_snapshot_fetch_production_live(
+    requests_mock, session, snapshot, zone_key, now
+):
+    """Live path: target_datetime=None → 30-min area CSV, latest-available day."""
+    _register_area_csv(requests_mock, zone_key, now)
+    with freeze_time(now):
+        result = fetch_production(zone_key=zone_key, session=session)
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+@pytest.mark.parametrize(
+    ("zone_key", "target"),
+    [
+        ("JP-TH", datetime(2026, 4, 15, tzinfo=TIMEZONE)),
+        ("JP-KN", datetime(2026, 4, 1, tzinfo=TIMEZONE)),
+        ("JP-SK", datetime(2026, 4, 1, tzinfo=TIMEZONE)),
+    ],
+    ids=["JP-TH", "JP-KN", "JP-SK"],
+)
+def test_snapshot_fetch_production_standard(
+    requests_mock, session, snapshot, zone_key, target
+):
+    """Standard (historical) path: explicit target_datetime → 30-min area CSV."""
+    _register_area_csv(requests_mock, zone_key, target)
+    result = fetch_production(
+        zone_key=zone_key, session=session, target_datetime=target
+    )
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
+
+
+@pytest.mark.parametrize("zone_key", ["JP-TH", "JP-HKD", "JP-KN"])
+def test_snapshot_fetch_production_legacy(requests_mock, session, snapshot, zone_key):
+    """Legacy path: pre-2024 target_datetime → hourly TSO archive."""
+    target = datetime(2016, 4, 1, tzinfo=TIMEZONE)
+    config = _LEGACY_AREA_CONFIGS[zone_key]
+    content = (MOCKS_DIR / _LEGACY_FILE_FIXTURES[zone_key]).read_bytes()
+    requests_mock.register_uri(GET, config.url_builder(target), content=content)
+    result = fetch_production(
+        zone_key=zone_key, session=session, target_datetime=target
+    )
+    assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == result
