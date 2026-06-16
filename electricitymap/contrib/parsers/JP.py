@@ -424,31 +424,32 @@ def _append_breakdown(
 ) -> None:
     """Build mixes from ((mode, category), value) entries and append one event.
 
-    Every source labels storage with the TSO sign convention (positive =
-    generating); it is flipped here, once, to the EM convention (positive =
-    charging). Rows where every value is missing are skipped — they are
-    current-month padding or all-dash filler, and appending them would only
-    log a validation error.
+    Production is non-negative by nature, but some TSOs use a small negative
+    (e.g. -1/-2) for solar overnight, so negative production is
+    clamped to 0 rather than dropped to None. Storage keeps its sign: every
+    source labels it with the TSO sign convention (positive = generating), so
+    it is flipped here, once, to the EM convention (positive = charging). Rows
+    where every value is missing are skipped — they are current-month padding
+    or all-dash filler, and appending them would only log a validation error.
     """
-    prod: dict[str, float] = {}
-    storage: dict[str, float] = {}
+    production = ProductionMix()
+    storage = StorageMix()
     for (mode, category), value in entries:
         if value is None:
             continue
         if category == "production":
-            # Accumulate: several columns can map to the same mode
-            # (e.g. 火力(その他) and その他 both → "unknown").
-            prod[mode] = prod.get(mode, 0.0) + value
+            # Accumulate (several columns can map to one mode, e.g. 火力(その他)
+            # and その他 both → "unknown") and clamp negatives to 0.
+            production.add_value(mode, value, correct_negative_with_zero=True)
         else:
-            storage[mode] = -value
-    if not prod and not storage:
-        return
+            # Flip the TSO sign (positive = generating) to the EM convention.
+            storage.add_value(mode, -value)
     production_list.append(
         zoneKey=ZoneKey(zone_key),
         datetime=dt,
         source=source,
-        production=ProductionMix(**prod),
-        storage=StorageMix(**storage) if storage else None,
+        production=production,
+        storage=storage,
     )
 
 

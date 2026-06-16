@@ -1,0 +1,509 @@
+# serializer version: 1
+# name: test_snapshot_fetch_production_legacy[JP-HKD]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 474.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2573.0,
+        'wind': 40.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -21.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 531.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2640.0,
+        'wind': 34.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 583.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2688.0,
+        'wind': 29.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -12.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 649.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2662.0,
+        'wind': 32.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -52.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 12.0,
+        'hydro': 735.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2620.0,
+        'wind': 37.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -130.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 717.0,
+        'nuclear': 0.0,
+        'solar': 4.0,
+        'unknown': 2568.0,
+        'wind': 45.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -130.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 582.0,
+        'nuclear': 0.0,
+        'solar': 85.0,
+        'unknown': 2597.0,
+        'wind': 46.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -69.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 473.0,
+        'nuclear': 0.0,
+        'solar': 254.0,
+        'unknown': 2415.0,
+        'wind': 61.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 452.0,
+        'nuclear': 0.0,
+        'solar': 400.0,
+        'unknown': 2435.0,
+        'wind': 79.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 472.0,
+        'nuclear': 0.0,
+        'solar': 562.0,
+        'unknown': 2326.0,
+        'wind': 93.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 12.0,
+        'hydro': 441.0,
+        'nuclear': 0.0,
+        'solar': 676.0,
+        'unknown': 2237.0,
+        'wind': 88.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 441.0,
+        'nuclear': 0.0,
+        'solar': 745.0,
+        'unknown': 2197.0,
+        'wind': 87.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 400.0,
+        'nuclear': 0.0,
+        'solar': 735.0,
+        'unknown': 2091.0,
+        'wind': 102.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -4.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 447.0,
+        'nuclear': 0.0,
+        'solar': 647.0,
+        'unknown': 2069.0,
+        'wind': 108.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -56.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 507.0,
+        'nuclear': 0.0,
+        'solar': 473.0,
+        'unknown': 2203.0,
+        'wind': 119.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -10.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 552.0,
+        'nuclear': 0.0,
+        'solar': 299.0,
+        'unknown': 2306.0,
+        'wind': 128.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -1.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 604.0,
+        'nuclear': 0.0,
+        'solar': 136.0,
+        'unknown': 2499.0,
+        'wind': 128.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -27.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 687.0,
+        'nuclear': 0.0,
+        'solar': 20.0,
+        'unknown': 2508.0,
+        'wind': 135.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -46.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 756.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2573.0,
+        'wind': 136.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -163.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 750.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2509.0,
+        'wind': 144.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -197.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 13.0,
+        'hydro': 653.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2432.0,
+        'wind': 149.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -156.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 628.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2418.0,
+        'wind': 140.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -80.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 592.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2318.0,
+        'wind': 145.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -75.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 3.0,
+        'geothermal': 14.0,
+        'hydro': 553.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 2414.0,
+        'wind': 142.0,
+      }),
+      'source': 'hepco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -72.0,
+      }),
+      'zoneKey': 'JP-HKD',
+    }),
+  ])
+# ---

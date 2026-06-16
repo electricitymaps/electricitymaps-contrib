@@ -1,0 +1,509 @@
+# serializer version: 1
+# name: test_snapshot_fetch_production_legacy[JP-TH]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 41.0,
+        'geothermal': 116.0,
+        'hydro': 1812.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8072.0,
+        'wind': 46.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 40.0,
+        'geothermal': 116.0,
+        'hydro': 1831.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8299.0,
+        'wind': 50.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 115.0,
+        'hydro': 1876.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8514.0,
+        'wind': 48.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 117.0,
+        'hydro': 1882.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8677.0,
+        'wind': 47.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 112.0,
+        'hydro': 1864.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8929.0,
+        'wind': 43.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 39.0,
+        'geothermal': 116.0,
+        'hydro': 1864.0,
+        'nuclear': 0.0,
+        'solar': 4.0,
+        'unknown': 9200.0,
+        'wind': 36.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 39.0,
+        'geothermal': 114.0,
+        'hydro': 1886.0,
+        'nuclear': 0.0,
+        'solar': 193.0,
+        'unknown': 8963.0,
+        'wind': 41.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 116.0,
+        'hydro': 1796.0,
+        'nuclear': 0.0,
+        'solar': 735.0,
+        'unknown': 8105.0,
+        'wind': 50.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 1.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 44.0,
+        'geothermal': 115.0,
+        'hydro': 1795.0,
+        'nuclear': 0.0,
+        'solar': 1246.0,
+        'unknown': 7896.0,
+        'wind': 53.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 41.0,
+        'geothermal': 116.0,
+        'hydro': 1783.0,
+        'nuclear': 0.0,
+        'solar': 1525.0,
+        'unknown': 8061.0,
+        'wind': 82.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 40.0,
+        'geothermal': 99.0,
+        'hydro': 1780.0,
+        'nuclear': 0.0,
+        'solar': 1778.0,
+        'unknown': 7864.0,
+        'wind': 146.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 40.0,
+        'geothermal': 92.0,
+        'hydro': 1766.0,
+        'nuclear': 0.0,
+        'solar': 1858.0,
+        'unknown': 7731.0,
+        'wind': 208.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 45.0,
+        'geothermal': 94.0,
+        'hydro': 1730.0,
+        'nuclear': 0.0,
+        'solar': 1676.0,
+        'unknown': 7160.0,
+        'wind': 241.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 41.0,
+        'geothermal': 92.0,
+        'hydro': 1731.0,
+        'nuclear': 0.0,
+        'solar': 1257.0,
+        'unknown': 7866.0,
+        'wind': 239.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 41.0,
+        'geothermal': 91.0,
+        'hydro': 1785.0,
+        'nuclear': 0.0,
+        'solar': 897.0,
+        'unknown': 8151.0,
+        'wind': 272.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 40.0,
+        'geothermal': 92.0,
+        'hydro': 1770.0,
+        'nuclear': 0.0,
+        'solar': 586.0,
+        'unknown': 8389.0,
+        'wind': 301.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 40.0,
+        'geothermal': 90.0,
+        'hydro': 1830.0,
+        'nuclear': 0.0,
+        'solar': 233.0,
+        'unknown': 8704.0,
+        'wind': 347.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 90.0,
+        'hydro': 1978.0,
+        'nuclear': 0.0,
+        'solar': 22.0,
+        'unknown': 8789.0,
+        'wind': 377.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 39.0,
+        'geothermal': 100.0,
+        'hydro': 2017.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 9100.0,
+        'wind': 423.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 2.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 38.0,
+        'geothermal': 113.0,
+        'hydro': 1979.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8809.0,
+        'wind': 458.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': 1.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 42.0,
+        'geothermal': 116.0,
+        'hydro': 1914.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8422.0,
+        'wind': 484.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 41.0,
+        'geothermal': 115.0,
+        'hydro': 1824.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8207.0,
+        'wind': 468.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 39.0,
+        'geothermal': 115.0,
+        'hydro': 1799.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8109.0,
+        'wind': 441.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -0.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2016, 4, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
+      'end_datetime': None,
+      'production': dict({
+        'biomass': 37.0,
+        'geothermal': 111.0,
+        'hydro': 1769.0,
+        'nuclear': 0.0,
+        'solar': 0.0,
+        'unknown': 8031.0,
+        'wind': 412.0,
+      }),
+      'source': 'setsuden.nw.tohoku-epco.co.jp',
+      'sourceType': <EventSourceType.measured: 'measured'>,
+      'storage': dict({
+        'hydro': -1.0,
+      }),
+      'zoneKey': 'JP-TH',
+    }),
+  ])
+# ---
