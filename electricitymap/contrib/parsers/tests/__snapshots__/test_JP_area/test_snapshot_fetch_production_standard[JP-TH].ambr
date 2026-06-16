@@ -6,7 +6,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 593.0,
         'coal': 4120.0,
@@ -32,7 +32,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 4010.0,
@@ -58,7 +58,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 595.0,
         'coal': 3979.0,
@@ -84,7 +84,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 594.0,
         'coal': 3972.0,
@@ -110,7 +110,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 3958.0,
@@ -136,7 +136,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 594.0,
         'coal': 3973.0,
@@ -162,7 +162,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 591.0,
         'coal': 3970.0,
@@ -188,7 +188,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 3964.0,
@@ -214,7 +214,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 3934.0,
@@ -240,7 +240,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 591.0,
         'coal': 3918.0,
@@ -265,7 +265,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 3986.0,
@@ -290,7 +290,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 4044.0,
@@ -315,7 +315,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 592.0,
         'coal': 3936.0,
@@ -340,7 +340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 589.0,
         'coal': 3783.0,
@@ -365,7 +365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 588.0,
         'coal': 3519.0,
@@ -390,7 +390,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 587.0,
         'coal': 3034.0,
@@ -415,7 +415,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 585.0,
         'coal': 2489.0,
@@ -440,7 +440,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 574.0,
         'coal': 2230.0,
@@ -465,7 +465,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 569.0,
         'coal': 1925.0,
@@ -490,7 +490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 567.0,
         'coal': 1771.0,
@@ -515,7 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 566.0,
         'coal': 1631.0,
@@ -540,7 +540,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 565.0,
         'coal': 1805.0,
@@ -565,7 +565,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 566.0,
         'coal': 2014.0,
@@ -590,7 +590,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 566.0,
         'coal': 2028.0,
@@ -615,7 +615,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 569.0,
         'coal': 1887.0,
@@ -640,7 +640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 567.0,
         'coal': 1698.0,
@@ -665,7 +665,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 568.0,
         'coal': 1875.0,
@@ -690,7 +690,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 569.0,
         'coal': 1960.0,
@@ -715,7 +715,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 571.0,
         'coal': 2112.0,
@@ -740,7 +740,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 574.0,
         'coal': 2283.0,
@@ -765,7 +765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 571.0,
         'coal': 2713.0,
@@ -790,7 +790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 571.0,
         'coal': 3348.0,
@@ -815,7 +815,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 572.0,
         'coal': 3957.0,
@@ -840,7 +840,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 573.0,
         'coal': 4270.0,
@@ -865,7 +865,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 574.0,
         'coal': 4377.0,
@@ -890,7 +890,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 573.0,
         'coal': 4365.0,
@@ -915,7 +915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 575.0,
         'coal': 4450.0,
@@ -941,7 +941,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 577.0,
         'coal': 4467.0,
@@ -967,7 +967,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 577.0,
         'coal': 4312.0,
@@ -993,7 +993,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 579.0,
         'coal': 4227.0,
@@ -1019,7 +1019,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 586.0,
         'coal': 4157.0,
@@ -1045,7 +1045,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 590.0,
         'coal': 4091.0,
@@ -1071,7 +1071,7 @@
         'solar',
       ]),
       'datetime': datetime.datetime(2026, 4, 15, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2026, 4, 15, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Tokyo')),
       'production': dict({
         'biomass': 590.0,
         'coal': 4060.0,

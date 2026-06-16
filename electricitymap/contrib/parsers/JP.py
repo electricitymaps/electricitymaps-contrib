@@ -45,6 +45,14 @@ ZONE_INFO = ZoneInfo("Asia/Tokyo")
 # Some TSO sites filter the default python-requests User-Agent.
 _REQUEST_HEADERS = {"User-Agent": "Mozilla/5.0"}
 
+# Every JP feed publishes fixed-resolution intervals labelled at the START, and
+# none carry an explicit end timestamp — so the end of each interval is its
+# start plus the feed's resolution. The area CSVs are 30-min; the legacy
+# archives and ISEP are hourly. (JP-KY's raw rows are END-labelled and shifted
+# back to the start, so start + 30 min reconstructs the original end label.)
+_AREA_RESOLUTION = timedelta(minutes=30)
+_LEGACY_RESOLUTION = timedelta(hours=1)
+
 # Production data comes from three sources, tried in order by fetch_production:
 #   1. the new 30-min eria_jukyu area CSVs (full fuel breakdown incl. battery),
 #   2. the TSOs' legacy hourly archives (~FY2016+, combined thermal, no battery),
@@ -421,8 +429,13 @@ def _append_breakdown(
     dt: datetime,
     source: str,
     entries: Iterable[tuple[tuple[str, str], float | None]],
+    resolution: timedelta,
 ) -> None:
     """Build mixes from ((mode, category), value) entries and append one event.
+
+    `dt` labels the interval START; the feed carries no explicit end, so
+    `end_datetime` is derived as `dt + resolution` (30 min for area CSVs, 1 h
+    for the legacy/ISEP hourly feeds).
 
     Production is non-negative by nature, but some TSOs use a small negative
     (e.g. -1/-2) for solar overnight, so negative production is
@@ -447,6 +460,7 @@ def _append_breakdown(
     production_list.append(
         zoneKey=ZoneKey(zone_key),
         datetime=dt,
+        end_datetime=dt + resolution,
         source=source,
         production=production,
         storage=storage,
@@ -567,6 +581,7 @@ def _df_to_production_breakdown_list(
             event_datetime,
             source,
             ((target, _parse_value(row[col])) for col, target in col_targets),
+            _AREA_RESOLUTION,
         )
 
     return production_list.to_list()
@@ -754,6 +769,7 @@ def _legacy_df_to_breakdown(
                 )
                 for idx, target in config.column_map.items()
             ),
+            _LEGACY_RESOLUTION,
         )
     return production_list.to_list()
 
@@ -897,6 +913,7 @@ def _fetch_production_isep(
                 (target, _parse_value(record.get(key)))
                 for key, target in _ISEP_COLUMN_MAP.items()
             ),
+            _LEGACY_RESOLUTION,
         )
     return production_list.to_list()
 
