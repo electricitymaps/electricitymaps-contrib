@@ -5,7 +5,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 573.0738,
@@ -22,7 +22,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 587.6082,
@@ -39,7 +39,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 574.3973,
@@ -56,7 +56,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 566.6638,
@@ -73,7 +73,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 578.9818,
@@ -90,7 +90,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 580.8981,
@@ -107,7 +107,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 593.3594,
@@ -124,7 +124,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 612.0313,
@@ -141,7 +141,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 2, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 570.3022,
@@ -158,7 +158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 587.6766,
@@ -175,7 +175,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 588.6137,
@@ -192,7 +192,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 593.0833,
@@ -209,7 +209,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 593.1904,
@@ -226,7 +226,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 592.1106,
@@ -243,7 +243,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 579.6494,
@@ -260,7 +260,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 587.3361,
@@ -277,7 +277,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 559.8283,
@@ -294,7 +294,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 571.7576,
@@ -311,7 +311,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 561.3365,
@@ -328,7 +328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 550.7522,
@@ -345,7 +345,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 3, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 561.3209,
@@ -362,7 +362,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 542.5248,
@@ -379,7 +379,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 504.1431,
@@ -396,7 +396,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 517.3018,
@@ -413,7 +413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 511.6696,
@@ -430,7 +430,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 499.0947,
@@ -447,7 +447,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 503.9777,
@@ -464,7 +464,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 517.7159,
@@ -481,7 +481,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 524.0866,
@@ -498,7 +498,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 520.4663,
@@ -515,7 +515,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 515.1685,
@@ -532,7 +532,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 519.6403,
@@ -549,7 +549,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 4, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 514.5907,
@@ -566,7 +566,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 510.8975,
@@ -583,7 +583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 527.9899,
@@ -600,7 +600,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 539.1226,
@@ -617,7 +617,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 543.5105,
@@ -634,7 +634,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 553.709,
@@ -651,7 +651,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 551.3529,
@@ -668,7 +668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 556.3478,
@@ -685,7 +685,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 564.961,
@@ -702,7 +702,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 561.7285,
@@ -719,7 +719,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 556.626,
@@ -736,7 +736,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 560.1587,
@@ -753,7 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 5, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 560.3856,
@@ -770,7 +770,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 568.6401,
@@ -787,7 +787,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 584.8978,
@@ -804,7 +804,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 585.4675,
@@ -821,7 +821,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 706.9212,
@@ -838,7 +838,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 719.4389,
@@ -855,7 +855,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 721.1503,
@@ -872,7 +872,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 741.8669,
@@ -889,7 +889,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 756.3945,
@@ -906,7 +906,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 759.8902,
@@ -923,7 +923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 775.4967,
@@ -940,7 +940,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 741.3371,
@@ -957,7 +957,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 6, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 757.1215,
@@ -974,7 +974,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 767.9674,
@@ -991,7 +991,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 761.4464,
@@ -1008,7 +1008,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 825.1168,
@@ -1025,7 +1025,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 895.1109,
@@ -1042,7 +1042,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 858.1966,
@@ -1059,7 +1059,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 876.4871,
@@ -1076,7 +1076,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 881.9956,
@@ -1093,7 +1093,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 894.1626,
@@ -1110,7 +1110,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 914.4594,
@@ -1127,7 +1127,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 907.1252,
@@ -1144,7 +1144,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 990.6848,
@@ -1161,7 +1161,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 7, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 945.7675,
@@ -1178,7 +1178,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 931.7814,
@@ -1195,7 +1195,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 929.1939,
@@ -1212,7 +1212,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 924.1277,
@@ -1229,7 +1229,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 932.4789,
@@ -1246,7 +1246,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 923.0388,
@@ -1263,7 +1263,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 920.8017,
@@ -1280,7 +1280,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 919.054,
@@ -1297,7 +1297,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 907.1207,
@@ -1314,7 +1314,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 907.5899,
@@ -1331,7 +1331,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 918.8493,
@@ -1348,7 +1348,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 932.0243,
@@ -1365,7 +1365,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 8, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 917.6041,
@@ -1382,7 +1382,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 924.5262,
@@ -1399,7 +1399,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 932.314,
@@ -1416,7 +1416,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 931.4605,
@@ -1433,7 +1433,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 941.0997,
@@ -1450,7 +1450,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 947.8822,
@@ -1467,7 +1467,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 939.2075,
@@ -1484,7 +1484,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 949.9355,
@@ -1501,7 +1501,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 884.2265,
@@ -1518,7 +1518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 891.8645,
@@ -1535,7 +1535,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 882.8967,
@@ -1552,7 +1552,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 870.3859,
@@ -1569,7 +1569,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 9, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 856.6453,
@@ -1586,7 +1586,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 847.6816,
@@ -1603,7 +1603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 874.5508,
@@ -1620,7 +1620,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 862.8961,
@@ -1637,7 +1637,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 849.0583,
@@ -1654,7 +1654,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 857.5349,
@@ -1671,7 +1671,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 844.3634,
@@ -1688,7 +1688,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 843.1145,
@@ -1705,7 +1705,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 852.4896,
@@ -1722,7 +1722,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 840.3254,
@@ -1739,7 +1739,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 833.5984,
@@ -1756,7 +1756,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 850.3443,
@@ -1773,7 +1773,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 10, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 844.8123,
@@ -1790,7 +1790,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 849.1825,
@@ -1807,7 +1807,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 839.5319,
@@ -1824,7 +1824,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 771.5558,
@@ -1841,7 +1841,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 831.7594,
@@ -1858,7 +1858,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 827.9509,
@@ -1875,7 +1875,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 828.1622,
@@ -1892,7 +1892,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 859.3196,
@@ -1909,7 +1909,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 776.0268,
@@ -1926,7 +1926,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 802.5469,
@@ -1943,7 +1943,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 805.6807,
@@ -1960,7 +1960,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 791.8981,
@@ -1977,7 +1977,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 11, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 788.1094,
@@ -1994,7 +1994,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 764.1267,
@@ -2011,7 +2011,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 751.812,
@@ -2028,7 +2028,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 749.0007,
@@ -2045,7 +2045,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 741.2531,
@@ -2062,7 +2062,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 745.6858,
@@ -2079,7 +2079,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 718.6085,
@@ -2096,7 +2096,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 724.6131,
@@ -2113,7 +2113,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 731.646,
@@ -2130,7 +2130,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 726.5395,
@@ -2147,7 +2147,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 744.1984,
@@ -2164,7 +2164,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 738.6047,
@@ -2181,7 +2181,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 12, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 723.1806,
@@ -2198,7 +2198,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 743.5244,
@@ -2215,7 +2215,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 748.7076,
@@ -2232,7 +2232,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 756.9497,
@@ -2249,7 +2249,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 773.8838,
@@ -2266,7 +2266,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 784.2594,
@@ -2283,7 +2283,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 788.8639,
@@ -2300,7 +2300,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 792.1221,
@@ -2317,7 +2317,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 808.9029,
@@ -2334,7 +2334,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 808.2241,
@@ -2351,7 +2351,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 787.7032,
@@ -2368,7 +2368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 795.2204,
@@ -2385,7 +2385,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 13, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 801.0464,
@@ -2402,7 +2402,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 840.5478,
@@ -2419,7 +2419,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 781.6355,
@@ -2436,7 +2436,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 838.3601,
@@ -2453,7 +2453,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 865.8107,
@@ -2470,7 +2470,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 776.1285,
@@ -2487,7 +2487,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 825.8626,
@@ -2504,7 +2504,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 832.8771,
@@ -2521,7 +2521,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 816.4068,
@@ -2538,7 +2538,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 806.9993,
@@ -2555,7 +2555,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 805.7085,
@@ -2572,7 +2572,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 841.9373,
@@ -2589,7 +2589,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 14, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 835.5384,
@@ -2606,7 +2606,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 832.0955,
@@ -2623,7 +2623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 889.3743,
@@ -2640,7 +2640,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 804.6806,
@@ -2657,7 +2657,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 805.1941,
@@ -2674,7 +2674,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 788.524,
@@ -2691,7 +2691,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 785.2385,
@@ -2708,7 +2708,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 797.5013,
@@ -2725,7 +2725,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 885.1361,
@@ -2742,7 +2742,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 822.9566,
@@ -2759,7 +2759,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 828.9248,
@@ -2776,7 +2776,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 911.0772,
@@ -2793,7 +2793,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 15, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 961.8811,
@@ -2810,7 +2810,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 970.0207,
@@ -2827,7 +2827,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 912.281,
@@ -2844,7 +2844,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 869.1787,
@@ -2861,7 +2861,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 853.2024,
@@ -2878,7 +2878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 993.7885,
@@ -2895,7 +2895,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1061.5848,
@@ -2912,7 +2912,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1106.0673,
@@ -2929,7 +2929,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1104.4161,
@@ -2946,7 +2946,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1143.4269,
@@ -2963,7 +2963,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1163.6464,
@@ -2980,7 +2980,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1162.0745,
@@ -2997,7 +2997,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 16, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1179.3308,
@@ -3014,7 +3014,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1218.2151,
@@ -3031,7 +3031,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1218.3688,
@@ -3048,7 +3048,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1224.8855,
@@ -3065,7 +3065,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1231.0095,
@@ -3082,7 +3082,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1238.1859,
@@ -3099,7 +3099,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1235.5831,
@@ -3116,7 +3116,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1244.3626,
@@ -3133,7 +3133,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1244.9486,
@@ -3150,7 +3150,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1257.622,
@@ -3167,7 +3167,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1249.9558,
@@ -3184,7 +3184,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1303.2939,
@@ -3201,7 +3201,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 17, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1257.9364,
@@ -3218,7 +3218,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1246.687,
@@ -3235,7 +3235,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1247.5897,
@@ -3252,7 +3252,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1245.0965,
@@ -3269,7 +3269,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1247.3002,
@@ -3286,7 +3286,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1248.825,
@@ -3303,7 +3303,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1245.4473,
@@ -3320,7 +3320,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1247.0958,
@@ -3337,7 +3337,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1253.3373,
@@ -3354,7 +3354,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1251.9468,
@@ -3371,7 +3371,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1249.5613,
@@ -3388,7 +3388,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1270.9942,
@@ -3405,7 +3405,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 18, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1338.669,
@@ -3422,7 +3422,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1376.0417,
@@ -3439,7 +3439,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1355.5752,
@@ -3456,7 +3456,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1322.1861,
@@ -3473,7 +3473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1378.9152,
@@ -3490,7 +3490,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1502.0254,
@@ -3507,7 +3507,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1369.0947,
@@ -3524,7 +3524,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1436.0957,
@@ -3541,7 +3541,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1380.5914,
@@ -3558,7 +3558,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1395.9255,
@@ -3575,7 +3575,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1308.0308,
@@ -3592,7 +3592,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1276.4226,
@@ -3609,7 +3609,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 19, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1357.2719,
@@ -3626,7 +3626,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1341.288,
@@ -3643,7 +3643,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1280.2566,
@@ -3660,7 +3660,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1277.9083,
@@ -3677,7 +3677,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1244.78,
@@ -3694,7 +3694,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1245.9411,
@@ -3711,7 +3711,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1332.7025,
@@ -3728,7 +3728,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1323.8373,
@@ -3745,7 +3745,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1311.698,
@@ -3762,7 +3762,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1326.6696,
@@ -3779,7 +3779,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1260.1177,
@@ -3796,7 +3796,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1231.9424,
@@ -3813,7 +3813,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 20, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1225.9379,
@@ -3830,7 +3830,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1226.4093,
@@ -3847,7 +3847,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1225.7888,
@@ -3864,7 +3864,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1229.3434,
@@ -3881,7 +3881,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1230.1656,
@@ -3898,7 +3898,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1226.2608,
@@ -3915,7 +3915,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1217.1534,
@@ -3932,7 +3932,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1223.3559,
@@ -3949,7 +3949,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1223.3963,
@@ -3966,7 +3966,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1189.9859,
@@ -3983,7 +3983,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1189.5157,
@@ -4000,7 +4000,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1169.8826,
@@ -4017,7 +4017,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 21, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1160.3654,
@@ -4034,7 +4034,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1119.1218,
@@ -4051,7 +4051,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1119.0965,
@@ -4068,7 +4068,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1119.6043,
@@ -4085,7 +4085,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1110.7032,
@@ -4102,7 +4102,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1111.7305,
@@ -4119,7 +4119,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1117.4564,
@@ -4136,7 +4136,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1126.175,
@@ -4153,7 +4153,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1132.7765,
@@ -4170,7 +4170,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1157.8097,
@@ -4187,7 +4187,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1113.0038,
@@ -4204,7 +4204,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1122.3074,
@@ -4221,7 +4221,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 22, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1117.9252,
@@ -4238,7 +4238,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1054.8211,
@@ -4255,7 +4255,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1108.6529,
@@ -4272,7 +4272,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1114.7756,
@@ -4289,7 +4289,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1110.8883,
@@ -4306,7 +4306,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 935.3391,
@@ -4323,7 +4323,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 934.3944,
@@ -4340,7 +4340,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 990.6076,
@@ -4357,7 +4357,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 916.7098,
@@ -4374,7 +4374,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 925.6788,
@@ -4391,7 +4391,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 907.492,
@@ -4408,7 +4408,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 23, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 909.1332,
@@ -4425,7 +4425,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 23, 23, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 901.6902,
@@ -4442,7 +4442,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 888.6125,
@@ -4459,7 +4459,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 892.7397,
@@ -4476,7 +4476,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1016.9895,
@@ -4493,7 +4493,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1059.2091,
@@ -4510,7 +4510,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1044.1143,
@@ -4527,7 +4527,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1058.4882,
@@ -4544,7 +4544,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1049.6785,
@@ -4561,7 +4561,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1050.2957,
@@ -4578,7 +4578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1087.8553,
@@ -4595,7 +4595,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1099.4104,
@@ -4612,7 +4612,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 50, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1091.54,
@@ -4629,7 +4629,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 0, 55, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1082.3448,
@@ -4646,7 +4646,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1040.6272,
@@ -4663,7 +4663,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1037.9039,
@@ -4680,7 +4680,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1044.9818,
@@ -4697,7 +4697,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1044.9936,
@@ -4714,7 +4714,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1046.0738,
@@ -4731,7 +4731,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 25, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1042.1559,
@@ -4748,7 +4748,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 30, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1040.9006,
@@ -4765,7 +4765,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 35, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1041.4463,
@@ -4782,7 +4782,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 7, 24, 1, 40, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
-      'end_datetime': None,
+      'end_datetime': datetime.datetime(2025, 7, 24, 1, 45, tzinfo=datetime.timezone(datetime.timedelta(seconds=36000))),
       'production': dict({
         'gas': 0.0,
         'hydro': 1049.3453,
