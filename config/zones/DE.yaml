@@ -217,7 +217,10 @@ capacity:
       value: 100747.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 100910.0
+      value: 117946.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 124295.0
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
