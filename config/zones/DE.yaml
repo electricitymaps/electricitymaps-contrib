@@ -193,31 +193,28 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 42293.0
+      value: 42380.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
-      value: 45207.0
+      value: 45384.0
     - datetime: '2019-01-01'
       source: Fraunhofer ISE
-      value: 48864.0
+      value: 49394.0
     - datetime: '2020-01-01'
       source: Fraunhofer ISE
-      value: 54449.0
+      value: 54537.0
     - datetime: '2021-01-01'
       source: Fraunhofer ISE
-      value: 60162.0
+      value: 60242.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 67720.0
+      value: 67817.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 83052.0
+      value: 83270.0
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 99787.0
-    - datetime: '2024-11-11'
-      source: Fraunhofer ISE
-      value: 94300.0
+      value: 100747.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 100910.0
