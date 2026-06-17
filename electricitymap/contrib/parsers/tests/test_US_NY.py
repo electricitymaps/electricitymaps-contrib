@@ -11,8 +11,8 @@ from electricitymap.contrib.parsers import US_NY
 from electricitymap.contrib.types import ZoneKey
 
 
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
-    adapter.register_uri(
+def test_snapshot_fetch_consumption_forecast(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         "GET",
         "http://mis.nyiso.com/public/csv/isolf/20250219isolf.csv",
         content=Path(
@@ -29,8 +29,10 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     assert snapshot == result
 
 
-def test_snapshot_fetch_production_more_than_9_days_in_past(adapter, session, snapshot):
-    adapter.register_uri(
+def test_snapshot_fetch_production_more_than_9_days_in_past(
+    requests_mock, session, snapshot
+):
+    requests_mock.register_uri(
         "GET",
         "http://mis.nyiso.com/public/csv/rtfuelmix/20250201rtfuelmix_csv.zip",
         content=Path(

@@ -37,12 +37,18 @@ from requests import Session
 
 from electricitymap.contrib.config import ZoneKey
 from electricitymap.contrib.lib.models.event_lists import (
+    ExchangeAtcList,
     ExchangeCapacityList,
     ExchangeList,
 )
-from electricitymap.contrib.lib.models.events import EventSourceType
+from electricitymap.contrib.lib.models.events import (
+    EventSourceType,
+    ScheduledExchange,
+)
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
+from electricitymap.contrib.parsers.lib.session import mount_retry
+from electricitymap.contrib.types import AtcType, MarketAgreementType
 
 SOURCE = "jao.eu"
 REQUEST_TIMEOUT_SECONDS = 30
@@ -175,6 +181,7 @@ def _query_jao(
             "to_utc": params["ToUtc"],
         },
     )
+    mount_retry(session)
     response = session.get(url, params=params, timeout=REQUEST_TIMEOUT_SECONDS)
     if not response.ok:
         raise ParserException(
@@ -203,12 +210,13 @@ def _extract_border_capacity(
     logger: Logger,
     field_prefix: str = "border",
 ) -> ExchangeCapacityList:
-    """Turn per-border rows into an ExchangeCapacityList.
+    """Turn per-border rows into an ExchangeCapacityList (MaxBeX / MaxBflow).
 
     For a sorted zone key `"A->B"`, reads `f'{prefix}_A_B'` as capacityExport
     (A→B) and `f'{prefix}_B_A'` as capacityImport (B→A). Works for any JAO
-    dataset that uses the `border_XX_YY` shape (shadowAuctionATC,
-    maxExchanges).
+    dataset that uses the `border_XX_YY` shape and is NOT an ATC publication
+    (MaxBeX, MaxBflow). ATC datasets use `_extract_border_atc` instead so the
+    `atcType` discriminator can be attached.
     """
     zone_a, zone_b = sorted_zone_keys.split("->")
     jao_a = _em_to_jao_zone(zone_a)
@@ -228,6 +236,42 @@ def _extract_border_capacity(
             source=source,
             capacityExport=export_value,
             capacityImport=import_value,
+        )
+    return capacities
+
+
+def _extract_border_atc(
+    rows: list[dict],
+    sorted_zone_keys: ZoneKey,
+    source: str,
+    logger: Logger,
+    atc_type: AtcType,
+    field_prefix: str = "border",
+) -> ExchangeAtcList:
+    """Turn per-border ATC rows into an ExchangeAtcList.
+
+    Same `border_XX_YY` row shape as `_extract_border_capacity` but emits the
+    ATC-specific event class (carries the `atcType` discriminator).
+    """
+    zone_a, zone_b = sorted_zone_keys.split("->")
+    jao_a = _em_to_jao_zone(zone_a)
+    jao_b = _em_to_jao_zone(zone_b)
+    export_field = f"{field_prefix}_{jao_a}_{jao_b}"
+    import_field = f"{field_prefix}_{jao_b}_{jao_a}"
+
+    capacities = ExchangeAtcList(logger)
+    for row in rows:
+        export_value = row.get(export_field)
+        import_value = row.get(import_field)
+        if export_value is None and import_value is None:
+            continue
+        capacities.append(
+            zoneKey=sorted_zone_keys,
+            datetime=_parse_utc(row["dateTimeUtc"]),
+            source=source,
+            capacityExport=export_value,
+            capacityImport=import_value,
+            atcType=atc_type,
         )
     return capacities
 
@@ -272,7 +316,7 @@ def _extract_border_net_flow(
     return flows
 
 
-def _fetch_per_border_dataset(
+def _fetch_jao_rows(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
     region: JaoRegion,
@@ -280,14 +324,15 @@ def _fetch_per_border_dataset(
     session: Session | None,
     target_datetime: datetime | None,
     logger: Logger,
-) -> list[dict]:
-    """Shared body for per-border JAO capacity fetchers: sort zone keys, build
-    the window, query, extract capacities, return. Each public fetcher is then
-    a one-line wrapper that pins its region + dataset."""
+) -> tuple[ZoneKey, list[dict]]:
+    """Shared head for per-border JAO fetchers: sort zone keys, build the
+    request window, query JAO. Each public fetcher then picks its own
+    extractor depending on the output shape (capacity, ATC, netFlow).
+    """
     sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
     from_utc, to_utc = _target_window(target_datetime)
     rows = _query_jao(session or Session(), region, dataset, from_utc, to_utc, logger)
-    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
+    return sorted_zone_keys, rows
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -304,7 +349,7 @@ def fetch_shadow_auction_atc_day_ahead(
     can't produce a result; on days where coupling succeeded, the response
     for the requested pair may be empty. Hourly granularity.
     """
-    return _fetch_per_border_dataset(
+    sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
         zone_key2,
         JaoRegion.CORE,
@@ -313,6 +358,9 @@ def fetch_shadow_auction_atc_day_ahead(
         target_datetime,
         logger,
     )
+    return _extract_border_atc(
+        rows, sorted_zone_keys, SOURCE, logger, AtcType.SHADOW_AUCTION
+    ).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -326,7 +374,7 @@ def fetch_core_external_atc_day_ahead(
     """Day-ahead ATC capacity on Core's external borders (non-flow-based
     neighbors: IT, DK1, ES, BG, ...). 15-minute granularity.
     """
-    return _fetch_per_border_dataset(
+    sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
         zone_key2,
         JaoRegion.CORE,
@@ -335,6 +383,9 @@ def fetch_core_external_atc_day_ahead(
         target_datetime,
         logger,
     )
+    return _extract_border_atc(
+        rows, sorted_zone_keys, SOURCE, logger, AtcType.COORDINATED_NTC
+    ).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -350,7 +401,7 @@ def fetch_core_max_bex_day_ahead(
     Published hourly; computed by Core TSOs as the max NTC that could be
     commercially exchanged per direction given grid constraints.
     """
-    return _fetch_per_border_dataset(
+    sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
         zone_key2,
         JaoRegion.CORE,
@@ -359,6 +410,7 @@ def fetch_core_max_bex_day_ahead(
         target_datetime,
         logger,
     )
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -374,7 +426,7 @@ def fetch_nordic_max_bex_day_ahead(
     15-minute granularity. Uses Nordic bidding-zone codes (NO1..NO5, SE1..SE4,
     DK1/DK2, FI) — `EM_TO_JAO_ZONE` handles the EM→JAO translation.
     """
-    return _fetch_per_border_dataset(
+    sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
         zone_key2,
         JaoRegion.NORDIC,
@@ -383,6 +435,7 @@ def fetch_nordic_max_bex_day_ahead(
         target_datetime,
         logger,
     )
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -400,17 +453,27 @@ def fetch_core_scheduled_exchanges_day_ahead(
     FR↔ES, DK1↔DE). Emitted as signed netFlow events (Exchange shape), not
     capacity pairs, since market coupling publishes a netted schedule.
     """
-    sorted_zone_keys = ZoneKey("->".join(sorted([zone_key1, zone_key2])))
-    from_utc, to_utc = _target_window(target_datetime)
-    rows = _query_jao(
-        session or Session(),
+    sorted_zone_keys, rows = _fetch_jao_rows(
+        zone_key1,
+        zone_key2,
         JaoRegion.CORE,
         JaoDataset.SCHEDULED_EXCHANGES,
-        from_utc,
-        to_utc,
+        session,
+        target_datetime,
         logger,
     )
-    return _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger).to_list()
+    exchange_list = _extract_border_net_flow(rows, sorted_zone_keys, SOURCE, logger)
+    return [
+        ScheduledExchange(
+            zoneKey=evt.zoneKey,
+            datetime=evt.datetime,
+            source=evt.source,
+            netFlow=evt.netFlow,
+            sourceType=evt.sourceType,
+            marketAgreementType=MarketAgreementType.DAY_AHEAD,
+        ).to_dict()
+        for evt in exchange_list.events
+    ]
 
 
 @refetch_frequency(timedelta(days=JAO_MAX_FETCH_DAYS))
@@ -427,7 +490,7 @@ def fetch_nordic_max_bflow_day_ahead(
     the raw physical capability ceiling on the border; maxExchanges is what
     was offered to the market after security constraints.
     """
-    return _fetch_per_border_dataset(
+    sorted_zone_keys, rows = _fetch_jao_rows(
         zone_key1,
         zone_key2,
         JaoRegion.NORDIC,
@@ -436,6 +499,7 @@ def fetch_nordic_max_bflow_day_ahead(
         target_datetime,
         logger,
     )
+    return _extract_border_capacity(rows, sorted_zone_keys, SOURCE, logger).to_list()
 
 
 if __name__ == "__main__":
