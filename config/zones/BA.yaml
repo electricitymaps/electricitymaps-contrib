@@ -38,6 +38,12 @@ capacity:
     - datetime: '2024-01-01'
       source: entsoe.eu
       value: 29.9
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 244.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 335.0
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -54,6 +60,12 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 134.6
+    - datetime: '2025-01-01'
+      source: entsoe.eu
+      value: 308.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 320.0
 center_point:
   - 17.644617906102937
   - 44.035924649703595

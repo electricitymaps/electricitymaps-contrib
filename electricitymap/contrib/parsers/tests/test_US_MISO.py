@@ -44,10 +44,10 @@ def test_fetch_production():
     assert production[0]["production"]["unknown"] >= 256
 
 
-def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
+def test_snapshot_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     # Mock wind forecast request
     data_wind = Path(base_path_to_mock, "DataBrokerServicesgetWindForecast.asmx.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json",
         json=loads(data_wind.read_text()),
@@ -55,7 +55,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
 
     # Mock solar forecast request
     data_solar = Path(base_path_to_mock, "DataBrokerServicesgetSolarForecast.asmx.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getSolarForecast&returnType=json",
         json=loads(data_solar.read_text()),
@@ -68,10 +68,10 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
     )
 
 
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
+def test_snapshot_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Mock load forecast request
     data = Path(base_path_to_mock, "20250310_df_al.xls")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(r"https://docs\.misoenergy\.org/marketreports/\d+_df_al.xls"),
         content=data.read_bytes(),

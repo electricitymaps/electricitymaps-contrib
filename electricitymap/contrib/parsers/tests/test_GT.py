@@ -9,8 +9,8 @@ from electricitymap.contrib.parsers.GT import fetch_consumption, fetch_productio
 
 
 @freeze_time("2024-04-10 12:28:00")
-def test_fetch_production_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         response_list=[
@@ -28,8 +28,8 @@ def test_fetch_production_live(adapter, session, snapshot):
     assert snapshot == fetch_production(session=session)
 
 
-def test_fetch_production_historical(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_production_historical(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         response_list=[
@@ -52,8 +52,8 @@ def test_fetch_production_historical(adapter, session, snapshot):
 
 
 @freeze_time("2024-04-10 12:28:00")
-def test_fetch_consumption_live(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_live(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         response_list=[
@@ -71,8 +71,8 @@ def test_fetch_consumption_live(adapter, session, snapshot):
     assert snapshot == fetch_consumption(session=session)
 
 
-def test_fetch_consumption_historical(adapter, session, snapshot):
-    adapter.register_uri(
+def test_fetch_consumption_historical(requests_mock, session, snapshot):
+    requests_mock.register_uri(
         GET,
         ANY,
         response_list=[

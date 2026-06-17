@@ -15,6 +15,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 32.5
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 37.9
   coal:
     - datetime: '2017-01-01'
       source: EIA.gov
@@ -55,6 +58,9 @@ capacity:
     - datetime: '2025-05-01'
       source: EIA.gov
       value: 5.4
+    - datetime: '2026-01-01'
+      source: EIA.gov
+      value: 0.0
   solar:
     - datetime: '2017-01-01'
       source: EIA.gov

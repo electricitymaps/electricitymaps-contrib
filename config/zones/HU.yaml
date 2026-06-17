@@ -3,17 +3,20 @@ bounding_box:
     - 45.74332048476238
   - - 22.876428764287652
     - 48.56970907985509
-center_point:
-  - 19.42737645539983
-  - 47.14329197684983
-centroid:
-  - 19.229043137889025
-  - 47.26339726541773
 capacity:
   battery storage:
-    - datetime: '2024-09-01'
+    - datetime: '2023-01-01'
+      source: mavir.hu
+      value: 21.8
+    - datetime: '2024-01-01'
       source: mavir.hu
       value: 35.3
+    - datetime: '2025-01-01'
+      source: mavir.hu
+      value: 146.0
+    - datetime: '2026-05-01'
+      source: mavir.hu
+      value: 501.5
   biomass:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -32,7 +35,7 @@ capacity:
       value: 262.09000000000003
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 263.28999999999996
+      value: 363.08799999999997
     - datetime: '2024-10-01'
       source: mavir.hu
       value: 384.5
@@ -46,6 +49,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 828.9
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 638.166
   gas:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -70,10 +76,13 @@ capacity:
       value: 3151.14
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3160.86
+      value: 3166.396
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 2972.707
+      value: 2975.007
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 3014.907
   geothermal:
     - datetime: '2019-01-01'
       source: entsoe.eu
@@ -96,7 +105,7 @@ capacity:
       value: 61.19
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 61.16
+      value: 61.157
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 62.357
@@ -129,6 +138,9 @@ capacity:
     - datetime: '2022-01-01'
       source: entsoe.eu
       value: 424.8
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 438.25
   solar:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -153,20 +165,47 @@ capacity:
       value: 3300.37
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 3888.0
+      value: 4029.077
     - datetime: '2024-10-01'
       source: mavir.hu
       value: 3964.8
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 8127.16
+      value: 8281.218
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 8601.102
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
-      value: 120
+      value: 63.88
+    - datetime: '2018-01-01'
+      source: entsoe.eu
+      value: 68.32
+    - datetime: '2019-01-01'
+      source: entsoe.eu
+      value: 74.4
+    - datetime: '2020-01-01'
+      source: entsoe.eu
+      value: 73.51
+    - datetime: '2021-01-01'
+      source: entsoe.eu
+      value: 69.46
+    - datetime: '2022-01-01'
+      source: entsoe.eu
+      value: 69.6
+    - datetime: '2023-01-01'
+      source: entsoe.eu
+      value: 92.16
+    - datetime: '2024-01-01'
+      source: entsoe.eu
+      value: 106.113
     - datetime: '2025-01-01'
       source: entsoe.eu
-      value: 215
+      value: 216.483
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 586.114
   wind:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -182,10 +221,13 @@ capacity:
       value: 323.28
     - datetime: '2024-01-01'
       source: entsoe.eu
-      value: 325.08
-    - datetime: '2025-01-01'
-      source: entsoe.eu
       value: 325.075
+center_point:
+  - 19.42737645539983
+  - 47.14329197684983
+centroid:
+  - 19.229043137889025
+  - 47.26339726541773
 contributors:
   - corradio
   - nessie2013

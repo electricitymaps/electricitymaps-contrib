@@ -16,10 +16,10 @@ HOST_PARAMETER = "host=https://www.ercot.com"
 BASE_PATH_TO_MOCK = Path("electricitymap/contrib/parsers/tests/mocks/US_ERCOT")
 
 
-def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
+def test_snapshot_fetch_consumption_forecast(requests_mock, session, snapshot):
     # Mock load forecast request
     data = Path(BASE_PATH_TO_MOCK, "load_forecast_by_forecast_zone.json")
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.LOAD_FORECAST_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
@@ -32,7 +32,7 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     with open(data_zip_file, "rb") as zip_file:
         zip_content = zip_file.read()
 
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             rf"{US_PROXY}/misdownload/servlets/mirDownload\?doclookupId=\d+\&{HOST_PARAMETER}"
@@ -47,13 +47,13 @@ def test_snapshot_fetch_consumption_forecast(adapter, session, snapshot):
     )
 
 
-def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
+def test_snapshot_fetch_wind_solar_forecasts(requests_mock, session, snapshot):
     # Mock wind forecast request
     data_wind = Path(
         BASE_PATH_TO_MOCK,
         "wind_power_production_hourly_averaged_actual_and_forecasted_values_rtid.json",
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.WIND_POWER_PRODUCTION_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
@@ -66,7 +66,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
         BASE_PATH_TO_MOCK,
         "solar_power_production_hourly_averaged_actual_and_forecasted_values_rtid.json",
     )
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             rf"{US_PROXY}/misapp/servlets/IceDocListJsonWS\?reportTypeId={ReportTypeID.SOLAR_POWER_PRODUCTION_REPORTID.value}&_\d+\&{HOST_PARAMETER}"
@@ -96,7 +96,7 @@ def test_snapshot_fetch_wind_solar_forecasts(adapter, session, snapshot):
         return None  # Fail for unexpected calls
 
     # Mock the wind or solar report request
-    adapter.register_uri(
+    requests_mock.register_uri(
         GET,
         re.compile(
             rf"{US_PROXY}/misdownload/servlets/mirDownload\?doclookupId=\d+\&{HOST_PARAMETER}"

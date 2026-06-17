@@ -3,12 +3,6 @@ bounding_box:
     - 49.44123852512671
   - - 6.499864998649997
     - 50.17538401843433
-center_point:
-  - 6.107461074610768
-  - 49.80831127178052
-centroid:
-  - 6.059460594605974
-  - 49.770864604318106
 capacity:
   biomass:
     - datetime: '2017-01-01'
@@ -46,6 +40,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 68.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 59.0
   geothermal:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -57,6 +54,9 @@ capacity:
     - datetime: '2023-01-01'
       source: entsoe.eu
       value: 33.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 34.0
   hydro storage:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -97,6 +97,9 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 544.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 770.0
   unknown:
     - datetime: '2017-01-01'
       source: entsoe.eu
@@ -126,6 +129,15 @@ capacity:
     - datetime: '2025-01-01'
       source: entsoe.eu
       value: 211.0
+    - datetime: '2026-01-01'
+      source: entsoe.eu
+      value: 230.0
+center_point:
+  - 6.107461074610768
+  - 49.80831127178052
+centroid:
+  - 6.059460594605974
+  - 49.770864604318106
 contributors:
   - corradio
   - clawfire

@@ -13,20 +13,20 @@ from electricitymap.contrib.types import ZoneKey
 
 
 @pytest.fixture()
-def mock_response_as_realtime(adapter):
+def mock_response_as_realtime(requests_mock):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/KPX/realtime.html", "rb"
     ) as mock:
-        adapter.register_uri(GET, REAL_TIME_URL, content=mock.read())
+        requests_mock.register_uri(GET, REAL_TIME_URL, content=mock.read())
 
 
 @pytest.fixture()
-def mock_response_as_historical(adapter):
+def mock_response_as_historical(requests_mock):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/KPX/historical.html", "rb"
     ) as mock:
-        adapter.register_uri(POST, HISTORICAL_PRODUCTION_URL, content=mock.read())
-        adapter.register_uri(GET, HISTORICAL_PRODUCTION_URL, content=None)
+        requests_mock.register_uri(POST, HISTORICAL_PRODUCTION_URL, content=mock.read())
+        requests_mock.register_uri(GET, HISTORICAL_PRODUCTION_URL, content=None)
 
 
 def test_fetch_consumption_realtime(session, snapshot, mock_response_as_realtime):

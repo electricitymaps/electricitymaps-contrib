@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2025, 7, 22, 8, 54, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=75600))),
+      'end_datetime': None,
       'netFlow': -942.2021,
       'sortedZoneKeys': 'AR->BR-S',
       'source': 'ons.org.br',
