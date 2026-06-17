@@ -10,31 +10,34 @@ capacity:
   battery storage:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 456.0
+      value: 453.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
-      value: 729.0
+      value: 726.0
     - datetime: '2019-01-01'
       source: Fraunhofer ISE
-      value: 1017.0
+      value: 1012.0
     - datetime: '2020-01-01'
       source: Fraunhofer ISE
-      value: 1569.0
+      value: 1563.0
     - datetime: '2021-01-01'
       source: Fraunhofer ISE
-      value: 2415.0
+      value: 2419.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 4132.0
+      value: 4200.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 8232.0
+      value: 8358.0
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 12340.0
+      value: 12657.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 12852.0
+      value: 16813.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 19034.0
   biomass:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -130,9 +133,36 @@ capacity:
       source: entsoe.eu
       value: 56
   hydro:
+    - datetime: '2017-01-01'
+      source: Fraunhofer ISE
+      value: 4782.0
+    - datetime: '2018-01-01'
+      source: Fraunhofer ISE
+      value: 4837.0
+    - datetime: '2019-01-01'
+      source: Fraunhofer ISE
+      value: 4849.0
+    - datetime: '2020-01-01'
+      source: Fraunhofer ISE
+      value: 4957.0
+    - datetime: '2021-01-01'
+      source: Fraunhofer ISE
+      value: 4946.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 6186.0
+      value: 4900.0
+    - datetime: '2023-01-01'
+      source: Fraunhofer ISE
+      value: 5610.0
+    - datetime: '2024-01-01'
+      source: Fraunhofer ISE
+      value: 5546.0
+    - datetime: '2025-01-01'
+      source: Fraunhofer ISE
+      value: 5889.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 5889.0
   hydro storage:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -193,34 +223,34 @@ capacity:
   solar:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
-      value: 42293.0
+      value: 42380.0
     - datetime: '2018-01-01'
       source: Fraunhofer ISE
-      value: 45207.0
+      value: 45384.0
     - datetime: '2019-01-01'
       source: Fraunhofer ISE
-      value: 48864.0
+      value: 49394.0
     - datetime: '2020-01-01'
       source: Fraunhofer ISE
-      value: 54449.0
+      value: 54537.0
     - datetime: '2021-01-01'
       source: Fraunhofer ISE
-      value: 60162.0
+      value: 60242.0
     - datetime: '2022-01-01'
       source: Fraunhofer ISE
-      value: 67720.0
+      value: 67817.0
     - datetime: '2023-01-01'
       source: Fraunhofer ISE
-      value: 83052.0
+      value: 83270.0
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
-      value: 99787.0
-    - datetime: '2024-11-11'
-      source: Fraunhofer ISE
-      value: 94300.0
+      value: 100747.0
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
-      value: 100910.0
+      value: 117946.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 124295.0
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
