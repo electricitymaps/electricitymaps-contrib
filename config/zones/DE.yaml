@@ -68,7 +68,7 @@ capacity:
       value: 9174.0
     - datetime: '2026-01-01'
       source: Fraunhofer ISE
-      value: 8956.0
+      value: 8958.0
   coal:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -265,7 +265,7 @@ capacity:
       value: 117946.0
     - datetime: '2026-01-01'
       source: Fraunhofer ISE
-      value: 124295.0
+      value: 124341.0
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -324,7 +324,7 @@ capacity:
       value: 72979.0
     - datetime: '2026-01-01'
       source: Fraunhofer ISE
-      value: 80411.0
+      value: 80417.0
 center_point:
   - 10.407266584569143
   - 51.055795801568294
