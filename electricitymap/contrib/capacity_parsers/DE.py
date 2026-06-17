@@ -17,7 +17,7 @@ MODE_MAPPING = {
     "Other, non-renewable": "unknown",
     "Hydro": "hydro",
     "Hydro pumped storage": "hydro storage",
-    "Battery storage (Power)": "battery storage",
+    "Battery storage (power)": "battery storage",
     "Biomass": "biomass",
     "Wind onshore": "wind",
     "Wind offshore": "wind",
