@@ -66,6 +66,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 9174.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 8958.0
   coal:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -97,6 +100,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 31193.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 30144.0
   gas:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -128,6 +134,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 36664.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 35311.0
   geothermal:
     - datetime: '2023-01-01'
       source: entsoe.eu
@@ -182,6 +191,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 9870.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 9894.0
   nuclear:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -220,6 +232,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 4442.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 3811.0
   solar:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -250,7 +265,7 @@ capacity:
       value: 117946.0
     - datetime: '2026-01-01'
       source: Fraunhofer ISE
-      value: 124295.0
+      value: 124341.0
   unknown:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -273,6 +288,9 @@ capacity:
     - datetime: '2024-01-01'
       source: Fraunhofer ISE
       value: 3171.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 2291.0
   wind:
     - datetime: '2017-01-01'
       source: Fraunhofer ISE
@@ -304,6 +322,9 @@ capacity:
     - datetime: '2025-01-01'
       source: Fraunhofer ISE
       value: 72979.0
+    - datetime: '2026-01-01'
+      source: Fraunhofer ISE
+      value: 80417.0
 center_point:
   - 10.407266584569143
   - 51.055795801568294
