@@ -21,7 +21,7 @@ MODE_MAPPING = {
     "Biomass": "biomass",
     "Wind onshore": "wind",
     "Wind offshore": "wind",
-    "Solar": "solar",
+    "Solar DC": "solar",
 }
 
 SOURCE = "Fraunhofer ISE"
