@@ -3,6 +3,7 @@
   list([
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -213.5,
       'sortedZoneKeys': 'DE->FR',
@@ -11,6 +12,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -207.6,
       'sortedZoneKeys': 'DE->FR',
@@ -19,6 +21,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -206.5,
       'sortedZoneKeys': 'DE->FR',
@@ -27,6 +30,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -205.4,
       'sortedZoneKeys': 'DE->FR',
@@ -35,6 +39,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -104.1,
       'sortedZoneKeys': 'DE->FR',
@@ -43,6 +48,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -98.3,
       'sortedZoneKeys': 'DE->FR',
@@ -51,6 +57,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -107.3,
       'sortedZoneKeys': 'DE->FR',
@@ -59,6 +66,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -85.5,
       'sortedZoneKeys': 'DE->FR',
@@ -67,6 +75,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -120.8,
       'sortedZoneKeys': 'DE->FR',
@@ -75,6 +84,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -95.1,
       'sortedZoneKeys': 'DE->FR',
@@ -83,6 +93,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -92.0,
       'sortedZoneKeys': 'DE->FR',
@@ -91,6 +102,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -49.7,
       'sortedZoneKeys': 'DE->FR',
@@ -99,6 +111,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 147.0,
       'sortedZoneKeys': 'DE->FR',
@@ -107,6 +120,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 178.4,
       'sortedZoneKeys': 'DE->FR',
@@ -115,6 +129,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 193.4,
       'sortedZoneKeys': 'DE->FR',
@@ -123,6 +138,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 233.6,
       'sortedZoneKeys': 'DE->FR',
@@ -131,6 +147,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -116.1,
       'sortedZoneKeys': 'DE->FR',
@@ -139,6 +156,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -59.2,
       'sortedZoneKeys': 'DE->FR',
@@ -147,6 +165,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -137.8,
       'sortedZoneKeys': 'DE->FR',
@@ -155,6 +174,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -173.5,
       'sortedZoneKeys': 'DE->FR',
@@ -163,6 +183,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -850.6,
       'sortedZoneKeys': 'DE->FR',
@@ -171,6 +192,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -838.4,
       'sortedZoneKeys': 'DE->FR',
@@ -179,6 +201,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -784.0,
       'sortedZoneKeys': 'DE->FR',
@@ -187,6 +210,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -817.8,
       'sortedZoneKeys': 'DE->FR',
@@ -195,6 +219,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -363.6,
       'sortedZoneKeys': 'DE->FR',
@@ -203,6 +228,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -736.2,
       'sortedZoneKeys': 'DE->FR',
@@ -211,6 +237,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -801.1,
       'sortedZoneKeys': 'DE->FR',
@@ -219,6 +246,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -890.9,
       'sortedZoneKeys': 'DE->FR',
@@ -227,6 +255,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -648.3,
       'sortedZoneKeys': 'DE->FR',
@@ -235,6 +264,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -685.1,
       'sortedZoneKeys': 'DE->FR',
@@ -243,6 +273,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -704.5,
       'sortedZoneKeys': 'DE->FR',
@@ -251,6 +282,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -770.6,
       'sortedZoneKeys': 'DE->FR',
@@ -259,6 +291,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -744.3,
       'sortedZoneKeys': 'DE->FR',
@@ -267,6 +300,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -758.8,
       'sortedZoneKeys': 'DE->FR',
@@ -275,6 +309,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -793.0,
       'sortedZoneKeys': 'DE->FR',
@@ -283,6 +318,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -811.7,
       'sortedZoneKeys': 'DE->FR',
@@ -291,6 +327,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -730.0,
       'sortedZoneKeys': 'DE->FR',
@@ -299,6 +336,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -706.3,
       'sortedZoneKeys': 'DE->FR',
@@ -307,6 +345,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -647.4,
       'sortedZoneKeys': 'DE->FR',
@@ -315,6 +354,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -616.6,
       'sortedZoneKeys': 'DE->FR',
@@ -323,6 +363,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -595.3,
       'sortedZoneKeys': 'DE->FR',
@@ -331,6 +372,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -556.5,
       'sortedZoneKeys': 'DE->FR',
@@ -339,6 +381,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -563.1,
       'sortedZoneKeys': 'DE->FR',
@@ -347,6 +390,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -560.0,
       'sortedZoneKeys': 'DE->FR',
@@ -355,6 +399,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -581.1,
       'sortedZoneKeys': 'DE->FR',
@@ -363,6 +408,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -580.4,
       'sortedZoneKeys': 'DE->FR',
@@ -371,6 +417,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -578.4,
       'sortedZoneKeys': 'DE->FR',
@@ -379,6 +426,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -579.7,
       'sortedZoneKeys': 'DE->FR',
@@ -387,6 +435,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -504.3,
       'sortedZoneKeys': 'DE->FR',
@@ -395,6 +444,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -489.5,
       'sortedZoneKeys': 'DE->FR',
@@ -403,6 +453,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -505.0,
       'sortedZoneKeys': 'DE->FR',
@@ -411,6 +462,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -499.2,
       'sortedZoneKeys': 'DE->FR',
@@ -419,6 +471,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -458.3,
       'sortedZoneKeys': 'DE->FR',
@@ -427,6 +480,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -595.6,
       'sortedZoneKeys': 'DE->FR',
@@ -435,6 +489,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -621.0,
       'sortedZoneKeys': 'DE->FR',
@@ -443,6 +498,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -627.3,
       'sortedZoneKeys': 'DE->FR',
@@ -451,6 +507,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -308.1,
       'sortedZoneKeys': 'DE->FR',
@@ -459,6 +516,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -237.8,
       'sortedZoneKeys': 'DE->FR',
@@ -467,6 +525,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -185.7,
       'sortedZoneKeys': 'DE->FR',
@@ -475,6 +534,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -191.8,
       'sortedZoneKeys': 'DE->FR',
@@ -483,6 +543,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -398.8,
       'sortedZoneKeys': 'DE->FR',
@@ -491,6 +552,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -346.7,
       'sortedZoneKeys': 'DE->FR',
@@ -499,6 +561,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -416.3,
       'sortedZoneKeys': 'DE->FR',
@@ -507,6 +570,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -480.8,
       'sortedZoneKeys': 'DE->FR',
@@ -515,6 +579,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -585.9,
       'sortedZoneKeys': 'DE->FR',
@@ -523,6 +588,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -599.0,
       'sortedZoneKeys': 'DE->FR',
@@ -531,6 +597,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -626.0,
       'sortedZoneKeys': 'DE->FR',
@@ -539,6 +606,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -704.2,
       'sortedZoneKeys': 'DE->FR',
@@ -547,6 +615,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -686.7,
       'sortedZoneKeys': 'DE->FR',
@@ -555,6 +624,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -692.4,
       'sortedZoneKeys': 'DE->FR',
@@ -563,6 +633,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -697.3,
       'sortedZoneKeys': 'DE->FR',
@@ -571,6 +642,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -630.2,
       'sortedZoneKeys': 'DE->FR',
@@ -579,6 +651,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -694.3,
       'sortedZoneKeys': 'DE->FR',
@@ -587,6 +660,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -701.2,
       'sortedZoneKeys': 'DE->FR',
@@ -595,6 +669,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -690.7,
       'sortedZoneKeys': 'DE->FR',
@@ -603,6 +678,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -706.4,
       'sortedZoneKeys': 'DE->FR',
@@ -611,6 +687,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -341.7,
       'sortedZoneKeys': 'DE->FR',
@@ -619,6 +696,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -393.2,
       'sortedZoneKeys': 'DE->FR',
@@ -627,6 +705,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -442.0,
       'sortedZoneKeys': 'DE->FR',
@@ -635,6 +714,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -443.6,
       'sortedZoneKeys': 'DE->FR',
@@ -643,6 +723,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 20.9,
       'sortedZoneKeys': 'DE->FR',
@@ -651,6 +732,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -29.4,
       'sortedZoneKeys': 'DE->FR',
@@ -659,6 +741,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 1.7,
       'sortedZoneKeys': 'DE->FR',
@@ -667,6 +750,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -71.0,
       'sortedZoneKeys': 'DE->FR',
@@ -675,6 +759,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 4.9,
       'sortedZoneKeys': 'DE->FR',
@@ -683,6 +768,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 21.6,
       'sortedZoneKeys': 'DE->FR',
@@ -691,6 +777,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 37.2,
       'sortedZoneKeys': 'DE->FR',
@@ -699,6 +786,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -9.4,
       'sortedZoneKeys': 'DE->FR',
@@ -707,6 +795,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 19.3,
       'sortedZoneKeys': 'DE->FR',
@@ -715,6 +804,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 27.4,
       'sortedZoneKeys': 'DE->FR',
@@ -723,6 +813,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 43.4,
       'sortedZoneKeys': 'DE->FR',
@@ -731,6 +822,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': 39.1,
       'sortedZoneKeys': 'DE->FR',
@@ -739,6 +831,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -57.7,
       'sortedZoneKeys': 'DE->FR',
@@ -747,6 +840,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -61.9,
       'sortedZoneKeys': 'DE->FR',
@@ -755,6 +849,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -75.2,
       'sortedZoneKeys': 'DE->FR',
@@ -763,6 +858,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 20, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -77.5,
       'sortedZoneKeys': 'DE->FR',
@@ -771,6 +867,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -94.5,
       'sortedZoneKeys': 'DE->FR',
@@ -779,6 +876,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 0, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -106.4,
       'sortedZoneKeys': 'DE->FR',
@@ -787,6 +885,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 0, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -133.5,
       'sortedZoneKeys': 'DE->FR',
@@ -795,6 +894,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 0, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -135.0,
       'sortedZoneKeys': 'DE->FR',
@@ -803,6 +903,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -241.4,
       'sortedZoneKeys': 'DE->FR',
@@ -811,6 +912,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 1, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -240.8,
       'sortedZoneKeys': 'DE->FR',
@@ -819,6 +921,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 1, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -272.4,
       'sortedZoneKeys': 'DE->FR',
@@ -827,6 +930,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 1, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -276.6,
       'sortedZoneKeys': 'DE->FR',
@@ -835,6 +939,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 2, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -369.4,
       'sortedZoneKeys': 'DE->FR',
@@ -843,6 +948,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 2, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -429.1,
       'sortedZoneKeys': 'DE->FR',
@@ -851,6 +957,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 2, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -468.1,
       'sortedZoneKeys': 'DE->FR',
@@ -859,6 +966,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 2, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -460.0,
       'sortedZoneKeys': 'DE->FR',
@@ -867,6 +975,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 3, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -388.1,
       'sortedZoneKeys': 'DE->FR',
@@ -875,6 +984,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 3, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -410.0,
       'sortedZoneKeys': 'DE->FR',
@@ -883,6 +993,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 3, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -425.4,
       'sortedZoneKeys': 'DE->FR',
@@ -891,6 +1002,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 3, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -423.9,
       'sortedZoneKeys': 'DE->FR',
@@ -899,6 +1011,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 4, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -937.1,
       'sortedZoneKeys': 'DE->FR',
@@ -907,6 +1020,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 4, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -982.0,
       'sortedZoneKeys': 'DE->FR',
@@ -915,6 +1029,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 4, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -994.2,
       'sortedZoneKeys': 'DE->FR',
@@ -923,6 +1038,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 4, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -969.0,
       'sortedZoneKeys': 'DE->FR',
@@ -931,6 +1047,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 5, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -807.6,
       'sortedZoneKeys': 'DE->FR',
@@ -939,6 +1056,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 5, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -730.7,
       'sortedZoneKeys': 'DE->FR',
@@ -947,6 +1065,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 5, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -755.2,
       'sortedZoneKeys': 'DE->FR',
@@ -955,6 +1074,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 5, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -740.0,
       'sortedZoneKeys': 'DE->FR',
@@ -963,6 +1083,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 6, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -729.9,
       'sortedZoneKeys': 'DE->FR',
@@ -971,6 +1092,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 6, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -758.8,
       'sortedZoneKeys': 'DE->FR',
@@ -979,6 +1101,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 6, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -837.0,
       'sortedZoneKeys': 'DE->FR',
@@ -987,6 +1110,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 6, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -894.4,
       'sortedZoneKeys': 'DE->FR',
@@ -995,6 +1119,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 7, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -797.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1003,6 +1128,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 7, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -742.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1011,6 +1137,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 7, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -716.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1019,6 +1146,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 7, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -778.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1027,6 +1155,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 8, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -799.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1035,6 +1164,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 8, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -953.3,
       'sortedZoneKeys': 'DE->FR',
@@ -1043,6 +1173,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 8, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1019.8,
       'sortedZoneKeys': 'DE->FR',
@@ -1051,6 +1182,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 8, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1123.3,
       'sortedZoneKeys': 'DE->FR',
@@ -1059,6 +1191,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 9, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1331.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1067,6 +1200,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 9, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1386.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1075,6 +1209,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 9, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1373.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1083,6 +1218,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 9, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1393.7,
       'sortedZoneKeys': 'DE->FR',
@@ -1091,6 +1227,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 10, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -744.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1099,6 +1236,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 10, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -397.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1107,6 +1245,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 10, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -524.9,
       'sortedZoneKeys': 'DE->FR',
@@ -1115,6 +1254,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 10, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -401.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1123,6 +1263,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 11, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -292.8,
       'sortedZoneKeys': 'DE->FR',
@@ -1131,6 +1272,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 11, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -272.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1139,6 +1281,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 11, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -252.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1147,6 +1290,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 11, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -238.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1155,6 +1299,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 12, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -226.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1163,6 +1308,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 12, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -218.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1171,6 +1317,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 12, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -249.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1179,6 +1326,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 12, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -235.1,
       'sortedZoneKeys': 'DE->FR',
@@ -1187,6 +1335,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 13, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -341.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1195,6 +1344,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 13, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -439.3,
       'sortedZoneKeys': 'DE->FR',
@@ -1203,6 +1353,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -517.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1211,6 +1362,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 13, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1527.8,
       'sortedZoneKeys': 'DE->FR',
@@ -1219,6 +1371,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1689.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1227,6 +1380,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 14, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1672.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1235,6 +1389,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1804.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1243,6 +1398,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 14, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1839.7,
       'sortedZoneKeys': 'DE->FR',
@@ -1251,6 +1407,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1890.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1259,6 +1416,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 15, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1733.8,
       'sortedZoneKeys': 'DE->FR',
@@ -1267,6 +1425,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1600.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1275,6 +1434,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 15, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1527.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1283,6 +1443,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1402.8,
       'sortedZoneKeys': 'DE->FR',
@@ -1291,6 +1452,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 16, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1334.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1299,6 +1461,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 16, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1404.1,
       'sortedZoneKeys': 'DE->FR',
@@ -1307,6 +1470,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 16, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1408.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1315,6 +1479,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 17, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1113.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1323,6 +1488,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 17, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1084.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1331,6 +1497,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 17, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1135.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1339,6 +1506,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 17, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1144.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1347,6 +1515,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 18, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1091.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1355,6 +1524,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 18, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -1006.1,
       'sortedZoneKeys': 'DE->FR',
@@ -1363,6 +1533,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 18, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -953.1,
       'sortedZoneKeys': 'DE->FR',
@@ -1371,6 +1542,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 18, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -940.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1379,6 +1551,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 19, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -910.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1387,6 +1560,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 19, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -905.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1395,6 +1569,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 19, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -871.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1403,6 +1578,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 19, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -885.5,
       'sortedZoneKeys': 'DE->FR',
@@ -1411,6 +1587,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 20, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -553.3,
       'sortedZoneKeys': 'DE->FR',
@@ -1419,6 +1596,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 20, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -497.7,
       'sortedZoneKeys': 'DE->FR',
@@ -1427,6 +1605,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 20, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -487.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1435,6 +1614,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 20, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -545.7,
       'sortedZoneKeys': 'DE->FR',
@@ -1443,6 +1623,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 21, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -496.4,
       'sortedZoneKeys': 'DE->FR',
@@ -1451,6 +1632,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 21, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -526.9,
       'sortedZoneKeys': 'DE->FR',
@@ -1459,6 +1641,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 21, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -577.0,
       'sortedZoneKeys': 'DE->FR',
@@ -1467,6 +1650,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 21, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -615.7,
       'sortedZoneKeys': 'DE->FR',
@@ -1475,6 +1659,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 22, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -551.9,
       'sortedZoneKeys': 'DE->FR',
@@ -1483,6 +1668,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 22, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -561.3,
       'sortedZoneKeys': 'DE->FR',
@@ -1491,6 +1677,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 22, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -556.2,
       'sortedZoneKeys': 'DE->FR',
@@ -1499,6 +1686,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 22, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -551.9,
       'sortedZoneKeys': 'DE->FR',
@@ -1507,6 +1695,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -587.1,
       'sortedZoneKeys': 'DE->FR',
@@ -1515,6 +1704,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 23, 15, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -571.6,
       'sortedZoneKeys': 'DE->FR',
@@ -1523,6 +1713,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -612.9,
       'sortedZoneKeys': 'DE->FR',
@@ -1531,6 +1722,7 @@
     }),
     dict({
       'datetime': datetime.datetime(2026, 4, 21, 23, 45, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
       'marketAgreementType': <MarketAgreementType.DAY_AHEAD: 'DAY_AHEAD'>,
       'netFlow': -595.8,
       'sortedZoneKeys': 'DE->FR',

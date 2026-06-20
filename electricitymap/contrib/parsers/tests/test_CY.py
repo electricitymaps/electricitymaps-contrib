@@ -17,19 +17,19 @@ def target_datetime():
 
 
 @pytest.fixture(autouse=True)
-def mock_response(adapter):
+def mock_response(requests_mock):
     with open(
         "electricitymap/contrib/parsers/tests/mocks/CY/response_historical_20240318.html",
         "rb",
     ) as response:
-        adapter.register_uri(
+        requests_mock.register_uri(
             GET, HISTORICAL_SOURCE.format("18-03-2024"), content=response.read()
         )
     with open(
         "electricitymap/contrib/parsers/tests/mocks/CY/response_realtime_20240401.html",
         "rb",
     ) as response:
-        adapter.register_uri(GET, REALTIME_SOURCE, content=response.read())
+        requests_mock.register_uri(GET, REALTIME_SOURCE, content=response.read())
 
 
 def test_snapshot_historical_source(session, target_datetime, snapshot):

@@ -4,6 +4,7 @@
     dict({
       'consumption': 5449.0,
       'datetime': datetime.datetime(2025, 4, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 5525.0,
       'datetime': datetime.datetime(2025, 4, 1, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 5599.0,
       'datetime': datetime.datetime(2025, 4, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 5562.0,
       'datetime': datetime.datetime(2025, 4, 1, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 5435.0,
       'datetime': datetime.datetime(2025, 4, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 5279.0,
       'datetime': datetime.datetime(2025, 4, 1, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 5111.0,
       'datetime': datetime.datetime(2025, 4, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 4948.0,
       'datetime': datetime.datetime(2025, 4, 1, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 4790.0,
       'datetime': datetime.datetime(2025, 4, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 4654.0,
       'datetime': datetime.datetime(2025, 4, 1, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 4588.0,
       'datetime': datetime.datetime(2025, 4, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 4655.0,
       'datetime': datetime.datetime(2025, 4, 1, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 4612.0,
       'datetime': datetime.datetime(2025, 4, 2, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 4493.0,
       'datetime': datetime.datetime(2025, 4, 2, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 4369.0,
       'datetime': datetime.datetime(2025, 4, 2, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 4264.0,
       'datetime': datetime.datetime(2025, 4, 2, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 4170.0,
       'datetime': datetime.datetime(2025, 4, 2, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 4122.0,
       'datetime': datetime.datetime(2025, 4, 2, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 4092.0,
       'datetime': datetime.datetime(2025, 4, 2, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 4111.0,
       'datetime': datetime.datetime(2025, 4, 2, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 4152.0,
       'datetime': datetime.datetime(2025, 4, 2, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 4275.0,
       'datetime': datetime.datetime(2025, 4, 2, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 4432.0,
       'datetime': datetime.datetime(2025, 4, 2, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 4729.0,
       'datetime': datetime.datetime(2025, 4, 2, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 5040.0,
       'datetime': datetime.datetime(2025, 4, 2, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -179,6 +204,7 @@
     dict({
       'consumption': 5397.0,
       'datetime': datetime.datetime(2025, 4, 2, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -186,6 +212,7 @@
     dict({
       'consumption': 5567.0,
       'datetime': datetime.datetime(2025, 4, 2, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -193,6 +220,7 @@
     dict({
       'consumption': 5450.0,
       'datetime': datetime.datetime(2025, 4, 2, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -200,6 +228,7 @@
     dict({
       'consumption': 5176.0,
       'datetime': datetime.datetime(2025, 4, 2, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -207,6 +236,7 @@
     dict({
       'consumption': 4795.0,
       'datetime': datetime.datetime(2025, 4, 2, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -214,6 +244,7 @@
     dict({
       'consumption': 4373.0,
       'datetime': datetime.datetime(2025, 4, 2, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -221,6 +252,7 @@
     dict({
       'consumption': 4016.0,
       'datetime': datetime.datetime(2025, 4, 2, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -228,6 +260,7 @@
     dict({
       'consumption': 3692.0,
       'datetime': datetime.datetime(2025, 4, 2, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -235,6 +268,7 @@
     dict({
       'consumption': 3390.0,
       'datetime': datetime.datetime(2025, 4, 2, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -242,6 +276,7 @@
     dict({
       'consumption': 3121.0,
       'datetime': datetime.datetime(2025, 4, 2, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -249,6 +284,7 @@
     dict({
       'consumption': 2939.0,
       'datetime': datetime.datetime(2025, 4, 2, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -256,6 +292,7 @@
     dict({
       'consumption': 2812.0,
       'datetime': datetime.datetime(2025, 4, 2, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -263,6 +300,7 @@
     dict({
       'consumption': 2757.0,
       'datetime': datetime.datetime(2025, 4, 2, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -270,6 +308,7 @@
     dict({
       'consumption': 2777.0,
       'datetime': datetime.datetime(2025, 4, 2, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -277,6 +316,7 @@
     dict({
       'consumption': 2860.0,
       'datetime': datetime.datetime(2025, 4, 2, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -284,6 +324,7 @@
     dict({
       'consumption': 2995.0,
       'datetime': datetime.datetime(2025, 4, 2, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -291,6 +332,7 @@
     dict({
       'consumption': 3135.0,
       'datetime': datetime.datetime(2025, 4, 2, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -298,6 +340,7 @@
     dict({
       'consumption': 3359.0,
       'datetime': datetime.datetime(2025, 4, 2, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -305,6 +348,7 @@
     dict({
       'consumption': 3669.0,
       'datetime': datetime.datetime(2025, 4, 2, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -312,6 +356,7 @@
     dict({
       'consumption': 4038.0,
       'datetime': datetime.datetime(2025, 4, 2, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -319,6 +364,7 @@
     dict({
       'consumption': 4410.0,
       'datetime': datetime.datetime(2025, 4, 2, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -326,6 +372,7 @@
     dict({
       'consumption': 4813.0,
       'datetime': datetime.datetime(2025, 4, 2, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -333,6 +380,7 @@
     dict({
       'consumption': 5139.0,
       'datetime': datetime.datetime(2025, 4, 2, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -340,6 +388,7 @@
     dict({
       'consumption': 5420.0,
       'datetime': datetime.datetime(2025, 4, 2, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -347,6 +396,7 @@
     dict({
       'consumption': 5600.0,
       'datetime': datetime.datetime(2025, 4, 2, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -354,6 +404,7 @@
     dict({
       'consumption': 5653.0,
       'datetime': datetime.datetime(2025, 4, 2, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -361,6 +412,7 @@
     dict({
       'consumption': 5588.0,
       'datetime': datetime.datetime(2025, 4, 2, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -368,6 +420,7 @@
     dict({
       'consumption': 5487.0,
       'datetime': datetime.datetime(2025, 4, 2, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -375,6 +428,7 @@
     dict({
       'consumption': 5358.0,
       'datetime': datetime.datetime(2025, 4, 2, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -382,6 +436,7 @@
     dict({
       'consumption': 5182.0,
       'datetime': datetime.datetime(2025, 4, 2, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -389,6 +444,7 @@
     dict({
       'consumption': 5007.0,
       'datetime': datetime.datetime(2025, 4, 2, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -396,6 +452,7 @@
     dict({
       'consumption': 4837.0,
       'datetime': datetime.datetime(2025, 4, 2, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -403,6 +460,7 @@
     dict({
       'consumption': 4685.0,
       'datetime': datetime.datetime(2025, 4, 2, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -410,6 +468,7 @@
     dict({
       'consumption': 4609.0,
       'datetime': datetime.datetime(2025, 4, 2, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -417,6 +476,7 @@
     dict({
       'consumption': 4672.0,
       'datetime': datetime.datetime(2025, 4, 2, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -424,6 +484,7 @@
     dict({
       'consumption': 4630.0,
       'datetime': datetime.datetime(2025, 4, 3, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -431,6 +492,7 @@
     dict({
       'consumption': 4515.0,
       'datetime': datetime.datetime(2025, 4, 3, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -438,6 +500,7 @@
     dict({
       'consumption': 4392.0,
       'datetime': datetime.datetime(2025, 4, 3, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -445,6 +508,7 @@
     dict({
       'consumption': 4289.0,
       'datetime': datetime.datetime(2025, 4, 3, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -452,6 +516,7 @@
     dict({
       'consumption': 4192.0,
       'datetime': datetime.datetime(2025, 4, 3, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -459,6 +524,7 @@
     dict({
       'consumption': 4140.0,
       'datetime': datetime.datetime(2025, 4, 3, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -466,6 +532,7 @@
     dict({
       'consumption': 4110.0,
       'datetime': datetime.datetime(2025, 4, 3, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -473,6 +540,7 @@
     dict({
       'consumption': 4128.0,
       'datetime': datetime.datetime(2025, 4, 3, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -480,6 +548,7 @@
     dict({
       'consumption': 4175.0,
       'datetime': datetime.datetime(2025, 4, 3, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -487,6 +556,7 @@
     dict({
       'consumption': 4300.0,
       'datetime': datetime.datetime(2025, 4, 3, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -494,6 +564,7 @@
     dict({
       'consumption': 4460.0,
       'datetime': datetime.datetime(2025, 4, 3, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -501,6 +572,7 @@
     dict({
       'consumption': 4757.0,
       'datetime': datetime.datetime(2025, 4, 3, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -508,6 +580,7 @@
     dict({
       'consumption': 5067.0,
       'datetime': datetime.datetime(2025, 4, 3, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -515,6 +588,7 @@
     dict({
       'consumption': 5423.0,
       'datetime': datetime.datetime(2025, 4, 3, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -522,6 +596,7 @@
     dict({
       'consumption': 5611.0,
       'datetime': datetime.datetime(2025, 4, 3, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -529,6 +604,7 @@
     dict({
       'consumption': 5529.0,
       'datetime': datetime.datetime(2025, 4, 3, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -536,6 +612,7 @@
     dict({
       'consumption': 5310.0,
       'datetime': datetime.datetime(2025, 4, 3, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -543,6 +620,7 @@
     dict({
       'consumption': 5023.0,
       'datetime': datetime.datetime(2025, 4, 3, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -550,6 +628,7 @@
     dict({
       'consumption': 4684.0,
       'datetime': datetime.datetime(2025, 4, 3, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -557,6 +636,7 @@
     dict({
       'consumption': 4420.0,
       'datetime': datetime.datetime(2025, 4, 3, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -564,6 +644,7 @@
     dict({
       'consumption': 4162.0,
       'datetime': datetime.datetime(2025, 4, 3, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -571,6 +652,7 @@
     dict({
       'consumption': 3906.0,
       'datetime': datetime.datetime(2025, 4, 3, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -578,6 +660,7 @@
     dict({
       'consumption': 3740.0,
       'datetime': datetime.datetime(2025, 4, 3, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -585,6 +668,7 @@
     dict({
       'consumption': 3647.0,
       'datetime': datetime.datetime(2025, 4, 3, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -592,6 +676,7 @@
     dict({
       'consumption': 3530.0,
       'datetime': datetime.datetime(2025, 4, 3, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -599,6 +684,7 @@
     dict({
       'consumption': 3458.0,
       'datetime': datetime.datetime(2025, 4, 3, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -606,6 +692,7 @@
     dict({
       'consumption': 3460.0,
       'datetime': datetime.datetime(2025, 4, 3, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -613,6 +700,7 @@
     dict({
       'consumption': 3511.0,
       'datetime': datetime.datetime(2025, 4, 3, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -620,6 +708,7 @@
     dict({
       'consumption': 3611.0,
       'datetime': datetime.datetime(2025, 4, 3, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -627,6 +716,7 @@
     dict({
       'consumption': 3737.0,
       'datetime': datetime.datetime(2025, 4, 3, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -634,6 +724,7 @@
     dict({
       'consumption': 3910.0,
       'datetime': datetime.datetime(2025, 4, 3, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -641,6 +732,7 @@
     dict({
       'consumption': 4130.0,
       'datetime': datetime.datetime(2025, 4, 3, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -648,6 +740,7 @@
     dict({
       'consumption': 4414.0,
       'datetime': datetime.datetime(2025, 4, 3, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -655,6 +748,7 @@
     dict({
       'consumption': 4721.0,
       'datetime': datetime.datetime(2025, 4, 3, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -662,6 +756,7 @@
     dict({
       'consumption': 5037.0,
       'datetime': datetime.datetime(2025, 4, 3, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -669,6 +764,7 @@
     dict({
       'consumption': 5288.0,
       'datetime': datetime.datetime(2025, 4, 3, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -676,6 +772,7 @@
     dict({
       'consumption': 5495.0,
       'datetime': datetime.datetime(2025, 4, 3, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -683,6 +780,7 @@
     dict({
       'consumption': 5624.0,
       'datetime': datetime.datetime(2025, 4, 3, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -690,6 +788,7 @@
     dict({
       'consumption': 5663.0,
       'datetime': datetime.datetime(2025, 4, 3, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -697,6 +796,7 @@
     dict({
       'consumption': 5623.0,
       'datetime': datetime.datetime(2025, 4, 3, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -704,6 +804,7 @@
     dict({
       'consumption': 5533.0,
       'datetime': datetime.datetime(2025, 4, 3, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -711,6 +812,7 @@
     dict({
       'consumption': 5384.0,
       'datetime': datetime.datetime(2025, 4, 3, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -718,6 +820,7 @@
     dict({
       'consumption': 5224.0,
       'datetime': datetime.datetime(2025, 4, 3, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -725,6 +828,7 @@
     dict({
       'consumption': 5045.0,
       'datetime': datetime.datetime(2025, 4, 3, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -732,6 +836,7 @@
     dict({
       'consumption': 4876.0,
       'datetime': datetime.datetime(2025, 4, 3, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -739,6 +844,7 @@
     dict({
       'consumption': 4727.0,
       'datetime': datetime.datetime(2025, 4, 3, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -746,6 +852,7 @@
     dict({
       'consumption': 4643.0,
       'datetime': datetime.datetime(2025, 4, 3, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -753,6 +860,7 @@
     dict({
       'consumption': 4704.0,
       'datetime': datetime.datetime(2025, 4, 3, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -760,6 +868,7 @@
     dict({
       'consumption': 4662.0,
       'datetime': datetime.datetime(2025, 4, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -767,6 +876,7 @@
     dict({
       'consumption': 4551.0,
       'datetime': datetime.datetime(2025, 4, 4, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -774,6 +884,7 @@
     dict({
       'consumption': 4429.0,
       'datetime': datetime.datetime(2025, 4, 4, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -781,6 +892,7 @@
     dict({
       'consumption': 4338.0,
       'datetime': datetime.datetime(2025, 4, 4, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -788,6 +900,7 @@
     dict({
       'consumption': 4238.0,
       'datetime': datetime.datetime(2025, 4, 4, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -795,6 +908,7 @@
     dict({
       'consumption': 4188.0,
       'datetime': datetime.datetime(2025, 4, 4, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -802,6 +916,7 @@
     dict({
       'consumption': 4154.0,
       'datetime': datetime.datetime(2025, 4, 4, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -809,6 +924,7 @@
     dict({
       'consumption': 4166.0,
       'datetime': datetime.datetime(2025, 4, 4, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -816,6 +932,7 @@
     dict({
       'consumption': 4213.0,
       'datetime': datetime.datetime(2025, 4, 4, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -823,6 +940,7 @@
     dict({
       'consumption': 4336.0,
       'datetime': datetime.datetime(2025, 4, 4, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -830,6 +948,7 @@
     dict({
       'consumption': 4492.0,
       'datetime': datetime.datetime(2025, 4, 4, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -837,6 +956,7 @@
     dict({
       'consumption': 4764.0,
       'datetime': datetime.datetime(2025, 4, 4, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -844,6 +964,7 @@
     dict({
       'consumption': 5073.0,
       'datetime': datetime.datetime(2025, 4, 4, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -851,6 +972,7 @@
     dict({
       'consumption': 5438.0,
       'datetime': datetime.datetime(2025, 4, 4, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -858,6 +980,7 @@
     dict({
       'consumption': 5658.0,
       'datetime': datetime.datetime(2025, 4, 4, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -865,6 +988,7 @@
     dict({
       'consumption': 5637.0,
       'datetime': datetime.datetime(2025, 4, 4, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -872,6 +996,7 @@
     dict({
       'consumption': 5470.0,
       'datetime': datetime.datetime(2025, 4, 4, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -879,6 +1004,7 @@
     dict({
       'consumption': 5255.0,
       'datetime': datetime.datetime(2025, 4, 4, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -886,6 +1012,7 @@
     dict({
       'consumption': 4951.0,
       'datetime': datetime.datetime(2025, 4, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -893,6 +1020,7 @@
     dict({
       'consumption': 4642.0,
       'datetime': datetime.datetime(2025, 4, 4, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -900,6 +1028,7 @@
     dict({
       'consumption': 4395.0,
       'datetime': datetime.datetime(2025, 4, 4, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -907,6 +1036,7 @@
     dict({
       'consumption': 4239.0,
       'datetime': datetime.datetime(2025, 4, 4, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -914,6 +1044,7 @@
     dict({
       'consumption': 4040.0,
       'datetime': datetime.datetime(2025, 4, 4, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -921,6 +1052,7 @@
     dict({
       'consumption': 3912.0,
       'datetime': datetime.datetime(2025, 4, 4, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -928,6 +1060,7 @@
     dict({
       'consumption': 3775.0,
       'datetime': datetime.datetime(2025, 4, 4, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -935,6 +1068,7 @@
     dict({
       'consumption': 3667.0,
       'datetime': datetime.datetime(2025, 4, 4, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -942,6 +1076,7 @@
     dict({
       'consumption': 3612.0,
       'datetime': datetime.datetime(2025, 4, 4, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -949,6 +1084,7 @@
     dict({
       'consumption': 3577.0,
       'datetime': datetime.datetime(2025, 4, 4, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -956,6 +1092,7 @@
     dict({
       'consumption': 3606.0,
       'datetime': datetime.datetime(2025, 4, 4, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -963,6 +1100,7 @@
     dict({
       'consumption': 3692.0,
       'datetime': datetime.datetime(2025, 4, 4, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -970,6 +1108,7 @@
     dict({
       'consumption': 3843.0,
       'datetime': datetime.datetime(2025, 4, 4, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -977,6 +1116,7 @@
     dict({
       'consumption': 4051.0,
       'datetime': datetime.datetime(2025, 4, 4, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -984,6 +1124,7 @@
     dict({
       'consumption': 4348.0,
       'datetime': datetime.datetime(2025, 4, 4, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -991,6 +1132,7 @@
     dict({
       'consumption': 4655.0,
       'datetime': datetime.datetime(2025, 4, 4, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -998,6 +1140,7 @@
     dict({
       'consumption': 4973.0,
       'datetime': datetime.datetime(2025, 4, 4, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1005,6 +1148,7 @@
     dict({
       'consumption': 5222.0,
       'datetime': datetime.datetime(2025, 4, 4, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1012,6 +1156,7 @@
     dict({
       'consumption': 5432.0,
       'datetime': datetime.datetime(2025, 4, 4, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1019,6 +1164,7 @@
     dict({
       'consumption': 5582.0,
       'datetime': datetime.datetime(2025, 4, 4, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1026,6 +1172,7 @@
     dict({
       'consumption': 5623.0,
       'datetime': datetime.datetime(2025, 4, 4, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1033,6 +1180,7 @@
     dict({
       'consumption': 5579.0,
       'datetime': datetime.datetime(2025, 4, 4, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1040,6 +1188,7 @@
     dict({
       'consumption': 5486.0,
       'datetime': datetime.datetime(2025, 4, 4, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1047,6 +1196,7 @@
     dict({
       'consumption': 5325.0,
       'datetime': datetime.datetime(2025, 4, 4, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1054,6 +1204,7 @@
     dict({
       'consumption': 5195.0,
       'datetime': datetime.datetime(2025, 4, 4, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1061,6 +1212,7 @@
     dict({
       'consumption': 5044.0,
       'datetime': datetime.datetime(2025, 4, 4, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1068,6 +1220,7 @@
     dict({
       'consumption': 4899.0,
       'datetime': datetime.datetime(2025, 4, 4, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1075,6 +1228,7 @@
     dict({
       'consumption': 4781.0,
       'datetime': datetime.datetime(2025, 4, 4, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1082,6 +1236,7 @@
     dict({
       'consumption': 4710.0,
       'datetime': datetime.datetime(2025, 4, 4, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1089,6 +1244,7 @@
     dict({
       'consumption': 4768.0,
       'datetime': datetime.datetime(2025, 4, 4, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1096,6 +1252,7 @@
     dict({
       'consumption': 4715.0,
       'datetime': datetime.datetime(2025, 4, 5, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1103,6 +1260,7 @@
     dict({
       'consumption': 4601.0,
       'datetime': datetime.datetime(2025, 4, 5, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1110,6 +1268,7 @@
     dict({
       'consumption': 4468.0,
       'datetime': datetime.datetime(2025, 4, 5, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1117,6 +1276,7 @@
     dict({
       'consumption': 4356.0,
       'datetime': datetime.datetime(2025, 4, 5, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1124,6 +1284,7 @@
     dict({
       'consumption': 4244.0,
       'datetime': datetime.datetime(2025, 4, 5, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1131,6 +1292,7 @@
     dict({
       'consumption': 4172.0,
       'datetime': datetime.datetime(2025, 4, 5, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1138,6 +1300,7 @@
     dict({
       'consumption': 4120.0,
       'datetime': datetime.datetime(2025, 4, 5, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1145,6 +1308,7 @@
     dict({
       'consumption': 4105.0,
       'datetime': datetime.datetime(2025, 4, 5, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1152,6 +1316,7 @@
     dict({
       'consumption': 4118.0,
       'datetime': datetime.datetime(2025, 4, 5, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1159,6 +1324,7 @@
     dict({
       'consumption': 4185.0,
       'datetime': datetime.datetime(2025, 4, 5, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1166,6 +1332,7 @@
     dict({
       'consumption': 4261.0,
       'datetime': datetime.datetime(2025, 4, 5, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1173,6 +1340,7 @@
     dict({
       'consumption': 4391.0,
       'datetime': datetime.datetime(2025, 4, 5, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1180,6 +1348,7 @@
     dict({
       'consumption': 4541.0,
       'datetime': datetime.datetime(2025, 4, 5, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1187,6 +1356,7 @@
     dict({
       'consumption': 4746.0,
       'datetime': datetime.datetime(2025, 4, 5, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1194,6 +1364,7 @@
     dict({
       'consumption': 4829.0,
       'datetime': datetime.datetime(2025, 4, 5, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1201,6 +1372,7 @@
     dict({
       'consumption': 4757.0,
       'datetime': datetime.datetime(2025, 4, 5, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1208,6 +1380,7 @@
     dict({
       'consumption': 4605.0,
       'datetime': datetime.datetime(2025, 4, 5, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1215,6 +1388,7 @@
     dict({
       'consumption': 4496.0,
       'datetime': datetime.datetime(2025, 4, 5, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1222,6 +1396,7 @@
     dict({
       'consumption': 4324.0,
       'datetime': datetime.datetime(2025, 4, 5, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1229,6 +1404,7 @@
     dict({
       'consumption': 4144.0,
       'datetime': datetime.datetime(2025, 4, 5, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1236,6 +1412,7 @@
     dict({
       'consumption': 3965.0,
       'datetime': datetime.datetime(2025, 4, 5, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1243,6 +1420,7 @@
     dict({
       'consumption': 3874.0,
       'datetime': datetime.datetime(2025, 4, 5, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1250,6 +1428,7 @@
     dict({
       'consumption': 3777.0,
       'datetime': datetime.datetime(2025, 4, 5, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1257,6 +1436,7 @@
     dict({
       'consumption': 3661.0,
       'datetime': datetime.datetime(2025, 4, 5, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1264,6 +1444,7 @@
     dict({
       'consumption': 3539.0,
       'datetime': datetime.datetime(2025, 4, 5, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1271,6 +1452,7 @@
     dict({
       'consumption': 3433.0,
       'datetime': datetime.datetime(2025, 4, 5, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1278,6 +1460,7 @@
     dict({
       'consumption': 3361.0,
       'datetime': datetime.datetime(2025, 4, 5, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1285,6 +1468,7 @@
     dict({
       'consumption': 3301.0,
       'datetime': datetime.datetime(2025, 4, 5, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1292,6 +1476,7 @@
     dict({
       'consumption': 3293.0,
       'datetime': datetime.datetime(2025, 4, 5, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1299,6 +1484,7 @@
     dict({
       'consumption': 3391.0,
       'datetime': datetime.datetime(2025, 4, 5, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1306,6 +1492,7 @@
     dict({
       'consumption': 3528.0,
       'datetime': datetime.datetime(2025, 4, 5, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1313,6 +1500,7 @@
     dict({
       'consumption': 3742.0,
       'datetime': datetime.datetime(2025, 4, 5, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1320,6 +1508,7 @@
     dict({
       'consumption': 4039.0,
       'datetime': datetime.datetime(2025, 4, 5, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1327,6 +1516,7 @@
     dict({
       'consumption': 4352.0,
       'datetime': datetime.datetime(2025, 4, 5, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1334,6 +1524,7 @@
     dict({
       'consumption': 4674.0,
       'datetime': datetime.datetime(2025, 4, 5, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1341,6 +1532,7 @@
     dict({
       'consumption': 4952.0,
       'datetime': datetime.datetime(2025, 4, 5, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1348,6 +1540,7 @@
     dict({
       'consumption': 5166.0,
       'datetime': datetime.datetime(2025, 4, 5, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1355,6 +1548,7 @@
     dict({
       'consumption': 5325.0,
       'datetime': datetime.datetime(2025, 4, 5, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1362,6 +1556,7 @@
     dict({
       'consumption': 5356.0,
       'datetime': datetime.datetime(2025, 4, 5, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1369,6 +1564,7 @@
     dict({
       'consumption': 5312.0,
       'datetime': datetime.datetime(2025, 4, 5, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1376,6 +1572,7 @@
     dict({
       'consumption': 5221.0,
       'datetime': datetime.datetime(2025, 4, 5, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1383,6 +1580,7 @@
     dict({
       'consumption': 5086.0,
       'datetime': datetime.datetime(2025, 4, 5, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1390,6 +1588,7 @@
     dict({
       'consumption': 4985.0,
       'datetime': datetime.datetime(2025, 4, 5, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1397,6 +1596,7 @@
     dict({
       'consumption': 4860.0,
       'datetime': datetime.datetime(2025, 4, 5, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1404,6 +1604,7 @@
     dict({
       'consumption': 4746.0,
       'datetime': datetime.datetime(2025, 4, 5, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1411,6 +1612,7 @@
     dict({
       'consumption': 4669.0,
       'datetime': datetime.datetime(2025, 4, 5, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1418,6 +1620,7 @@
     dict({
       'consumption': 4622.0,
       'datetime': datetime.datetime(2025, 4, 5, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1425,6 +1628,7 @@
     dict({
       'consumption': 4712.0,
       'datetime': datetime.datetime(2025, 4, 5, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1432,6 +1636,7 @@
     dict({
       'consumption': 4710.0,
       'datetime': datetime.datetime(2025, 4, 6, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1439,6 +1644,7 @@
     dict({
       'consumption': 4659.0,
       'datetime': datetime.datetime(2025, 4, 6, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1446,6 +1652,7 @@
     dict({
       'consumption': 4548.0,
       'datetime': datetime.datetime(2025, 4, 6, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1453,6 +1660,7 @@
     dict({
       'consumption': 4444.0,
       'datetime': datetime.datetime(2025, 4, 6, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1460,6 +1668,7 @@
     dict({
       'consumption': 4299.0,
       'datetime': datetime.datetime(2025, 4, 6, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1467,6 +1676,7 @@
     dict({
       'consumption': 4193.0,
       'datetime': datetime.datetime(2025, 4, 6, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1474,6 +1684,7 @@
     dict({
       'consumption': 4113.0,
       'datetime': datetime.datetime(2025, 4, 6, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1481,6 +1692,7 @@
     dict({
       'consumption': 4057.0,
       'datetime': datetime.datetime(2025, 4, 6, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1488,6 +1700,7 @@
     dict({
       'consumption': 4017.0,
       'datetime': datetime.datetime(2025, 4, 6, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1495,6 +1708,7 @@
     dict({
       'consumption': 3986.0,
       'datetime': datetime.datetime(2025, 4, 6, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1502,6 +1716,7 @@
     dict({
       'consumption': 3962.0,
       'datetime': datetime.datetime(2025, 4, 6, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1509,6 +1724,7 @@
     dict({
       'consumption': 3951.0,
       'datetime': datetime.datetime(2025, 4, 6, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1516,6 +1732,7 @@
     dict({
       'consumption': 3959.0,
       'datetime': datetime.datetime(2025, 4, 6, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1523,6 +1740,7 @@
     dict({
       'consumption': 4046.0,
       'datetime': datetime.datetime(2025, 4, 6, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1530,6 +1748,7 @@
     dict({
       'consumption': 4112.0,
       'datetime': datetime.datetime(2025, 4, 6, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1537,6 +1756,7 @@
     dict({
       'consumption': 4154.0,
       'datetime': datetime.datetime(2025, 4, 6, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1544,6 +1764,7 @@
     dict({
       'consumption': 4122.0,
       'datetime': datetime.datetime(2025, 4, 6, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1551,6 +1772,7 @@
     dict({
       'consumption': 4056.0,
       'datetime': datetime.datetime(2025, 4, 6, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1558,6 +1780,7 @@
     dict({
       'consumption': 3889.0,
       'datetime': datetime.datetime(2025, 4, 6, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1565,6 +1788,7 @@
     dict({
       'consumption': 3650.0,
       'datetime': datetime.datetime(2025, 4, 6, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1572,6 +1796,7 @@
     dict({
       'consumption': 3398.0,
       'datetime': datetime.datetime(2025, 4, 6, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1579,6 +1804,7 @@
     dict({
       'consumption': 3206.0,
       'datetime': datetime.datetime(2025, 4, 6, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1586,6 +1812,7 @@
     dict({
       'consumption': 3032.0,
       'datetime': datetime.datetime(2025, 4, 6, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1593,6 +1820,7 @@
     dict({
       'consumption': 2935.0,
       'datetime': datetime.datetime(2025, 4, 6, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1600,6 +1828,7 @@
     dict({
       'consumption': 2834.0,
       'datetime': datetime.datetime(2025, 4, 6, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1607,6 +1836,7 @@
     dict({
       'consumption': 2788.0,
       'datetime': datetime.datetime(2025, 4, 6, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1614,6 +1844,7 @@
     dict({
       'consumption': 2757.0,
       'datetime': datetime.datetime(2025, 4, 6, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1621,6 +1852,7 @@
     dict({
       'consumption': 2800.0,
       'datetime': datetime.datetime(2025, 4, 6, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1628,6 +1860,7 @@
     dict({
       'consumption': 2868.0,
       'datetime': datetime.datetime(2025, 4, 6, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1635,6 +1868,7 @@
     dict({
       'consumption': 2971.0,
       'datetime': datetime.datetime(2025, 4, 6, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1642,6 +1876,7 @@
     dict({
       'consumption': 3142.0,
       'datetime': datetime.datetime(2025, 4, 6, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1649,6 +1884,7 @@
     dict({
       'consumption': 3365.0,
       'datetime': datetime.datetime(2025, 4, 6, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1656,6 +1892,7 @@
     dict({
       'consumption': 3652.0,
       'datetime': datetime.datetime(2025, 4, 6, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1663,6 +1900,7 @@
     dict({
       'consumption': 3986.0,
       'datetime': datetime.datetime(2025, 4, 6, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1670,6 +1908,7 @@
     dict({
       'consumption': 4402.0,
       'datetime': datetime.datetime(2025, 4, 6, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1677,6 +1916,7 @@
     dict({
       'consumption': 4845.0,
       'datetime': datetime.datetime(2025, 4, 6, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1684,6 +1924,7 @@
     dict({
       'consumption': 5244.0,
       'datetime': datetime.datetime(2025, 4, 6, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1691,6 +1932,7 @@
     dict({
       'consumption': 5498.0,
       'datetime': datetime.datetime(2025, 4, 6, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1698,6 +1940,7 @@
     dict({
       'consumption': 5585.0,
       'datetime': datetime.datetime(2025, 4, 6, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1705,6 +1948,7 @@
     dict({
       'consumption': 5522.0,
       'datetime': datetime.datetime(2025, 4, 6, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1712,6 +1956,7 @@
     dict({
       'consumption': 5419.0,
       'datetime': datetime.datetime(2025, 4, 6, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1719,6 +1964,7 @@
     dict({
       'consumption': 5297.0,
       'datetime': datetime.datetime(2025, 4, 6, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1726,6 +1972,7 @@
     dict({
       'consumption': 5175.0,
       'datetime': datetime.datetime(2025, 4, 6, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1733,6 +1980,7 @@
     dict({
       'consumption': 5059.0,
       'datetime': datetime.datetime(2025, 4, 6, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1740,6 +1988,7 @@
     dict({
       'consumption': 4931.0,
       'datetime': datetime.datetime(2025, 4, 6, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1747,6 +1996,7 @@
     dict({
       'consumption': 4802.0,
       'datetime': datetime.datetime(2025, 4, 6, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1754,6 +2004,7 @@
     dict({
       'consumption': 4700.0,
       'datetime': datetime.datetime(2025, 4, 6, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1761,6 +2012,7 @@
     dict({
       'consumption': 4721.0,
       'datetime': datetime.datetime(2025, 4, 6, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1768,6 +2020,7 @@
     dict({
       'consumption': 4659.0,
       'datetime': datetime.datetime(2025, 4, 7, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1775,6 +2028,7 @@
     dict({
       'consumption': 4546.0,
       'datetime': datetime.datetime(2025, 4, 7, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1782,6 +2036,7 @@
     dict({
       'consumption': 4411.0,
       'datetime': datetime.datetime(2025, 4, 7, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1789,6 +2044,7 @@
     dict({
       'consumption': 4296.0,
       'datetime': datetime.datetime(2025, 4, 7, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1796,6 +2052,7 @@
     dict({
       'consumption': 4174.0,
       'datetime': datetime.datetime(2025, 4, 7, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1803,6 +2060,7 @@
     dict({
       'consumption': 4085.0,
       'datetime': datetime.datetime(2025, 4, 7, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1810,6 +2068,7 @@
     dict({
       'consumption': 4029.0,
       'datetime': datetime.datetime(2025, 4, 7, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1817,6 +2076,7 @@
     dict({
       'consumption': 4007.0,
       'datetime': datetime.datetime(2025, 4, 7, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1824,6 +2084,7 @@
     dict({
       'consumption': 4003.0,
       'datetime': datetime.datetime(2025, 4, 7, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1831,6 +2092,7 @@
     dict({
       'consumption': 4053.0,
       'datetime': datetime.datetime(2025, 4, 7, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1838,6 +2100,7 @@
     dict({
       'consumption': 4125.0,
       'datetime': datetime.datetime(2025, 4, 7, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1845,6 +2108,7 @@
     dict({
       'consumption': 4275.0,
       'datetime': datetime.datetime(2025, 4, 7, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1852,6 +2116,7 @@
     dict({
       'consumption': 4467.0,
       'datetime': datetime.datetime(2025, 4, 7, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1859,6 +2124,7 @@
     dict({
       'consumption': 4772.0,
       'datetime': datetime.datetime(2025, 4, 7, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1866,6 +2132,7 @@
     dict({
       'consumption': 5043.0,
       'datetime': datetime.datetime(2025, 4, 7, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1873,6 +2140,7 @@
     dict({
       'consumption': 5244.0,
       'datetime': datetime.datetime(2025, 4, 7, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1880,6 +2148,7 @@
     dict({
       'consumption': 5326.0,
       'datetime': datetime.datetime(2025, 4, 7, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1887,6 +2156,7 @@
     dict({
       'consumption': 5304.0,
       'datetime': datetime.datetime(2025, 4, 7, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1894,6 +2164,7 @@
     dict({
       'consumption': 5179.0,
       'datetime': datetime.datetime(2025, 4, 7, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1901,6 +2172,7 @@
     dict({
       'consumption': 4981.0,
       'datetime': datetime.datetime(2025, 4, 7, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1908,6 +2180,7 @@
     dict({
       'consumption': 4750.0,
       'datetime': datetime.datetime(2025, 4, 7, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1915,6 +2188,7 @@
     dict({
       'consumption': 4612.0,
       'datetime': datetime.datetime(2025, 4, 7, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1922,6 +2196,7 @@
     dict({
       'consumption': 4556.0,
       'datetime': datetime.datetime(2025, 4, 7, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1929,6 +2204,7 @@
     dict({
       'consumption': 4487.0,
       'datetime': datetime.datetime(2025, 4, 7, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1936,6 +2212,7 @@
     dict({
       'consumption': 4396.0,
       'datetime': datetime.datetime(2025, 4, 7, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1943,6 +2220,7 @@
     dict({
       'consumption': 4333.0,
       'datetime': datetime.datetime(2025, 4, 7, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1950,6 +2228,7 @@
     dict({
       'consumption': 4299.0,
       'datetime': datetime.datetime(2025, 4, 7, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1957,6 +2236,7 @@
     dict({
       'consumption': 4288.0,
       'datetime': datetime.datetime(2025, 4, 7, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1964,6 +2244,7 @@
     dict({
       'consumption': 4307.0,
       'datetime': datetime.datetime(2025, 4, 7, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1971,6 +2252,7 @@
     dict({
       'consumption': 4388.0,
       'datetime': datetime.datetime(2025, 4, 7, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1978,6 +2260,7 @@
     dict({
       'consumption': 4498.0,
       'datetime': datetime.datetime(2025, 4, 7, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1985,6 +2268,7 @@
     dict({
       'consumption': 4657.0,
       'datetime': datetime.datetime(2025, 4, 7, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1992,6 +2276,7 @@
     dict({
       'consumption': 4862.0,
       'datetime': datetime.datetime(2025, 4, 7, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -1999,6 +2284,7 @@
     dict({
       'consumption': 5100.0,
       'datetime': datetime.datetime(2025, 4, 7, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2006,6 +2292,7 @@
     dict({
       'consumption': 5389.0,
       'datetime': datetime.datetime(2025, 4, 7, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2013,6 +2300,7 @@
     dict({
       'consumption': 5688.0,
       'datetime': datetime.datetime(2025, 4, 7, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2020,6 +2308,7 @@
     dict({
       'consumption': 5967.0,
       'datetime': datetime.datetime(2025, 4, 7, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2027,6 +2316,7 @@
     dict({
       'consumption': 6171.0,
       'datetime': datetime.datetime(2025, 4, 7, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2034,6 +2324,7 @@
     dict({
       'consumption': 6208.0,
       'datetime': datetime.datetime(2025, 4, 7, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2041,6 +2332,7 @@
     dict({
       'consumption': 6114.0,
       'datetime': datetime.datetime(2025, 4, 7, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2048,6 +2340,7 @@
     dict({
       'consumption': 5979.0,
       'datetime': datetime.datetime(2025, 4, 7, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2055,6 +2348,7 @@
     dict({
       'consumption': 5814.0,
       'datetime': datetime.datetime(2025, 4, 7, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2062,6 +2356,7 @@
     dict({
       'consumption': 5689.0,
       'datetime': datetime.datetime(2025, 4, 7, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2069,6 +2364,7 @@
     dict({
       'consumption': 5538.0,
       'datetime': datetime.datetime(2025, 4, 7, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2076,6 +2372,7 @@
     dict({
       'consumption': 5368.0,
       'datetime': datetime.datetime(2025, 4, 7, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2083,6 +2380,7 @@
     dict({
       'consumption': 5201.0,
       'datetime': datetime.datetime(2025, 4, 7, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2090,6 +2388,7 @@
     dict({
       'consumption': 5062.0,
       'datetime': datetime.datetime(2025, 4, 7, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2097,6 +2396,7 @@
     dict({
       'consumption': 5047.0,
       'datetime': datetime.datetime(2025, 4, 7, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2104,6 +2404,7 @@
     dict({
       'consumption': 4960.0,
       'datetime': datetime.datetime(2025, 4, 8, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2111,6 +2412,7 @@
     dict({
       'consumption': 4815.0,
       'datetime': datetime.datetime(2025, 4, 8, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2118,6 +2420,7 @@
     dict({
       'consumption': 4655.0,
       'datetime': datetime.datetime(2025, 4, 8, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2125,6 +2428,7 @@
     dict({
       'consumption': 4516.0,
       'datetime': datetime.datetime(2025, 4, 8, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2132,6 +2436,7 @@
     dict({
       'consumption': 4381.0,
       'datetime': datetime.datetime(2025, 4, 8, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2139,6 +2444,7 @@
     dict({
       'consumption': 4286.0,
       'datetime': datetime.datetime(2025, 4, 8, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2146,6 +2452,7 @@
     dict({
       'consumption': 4224.0,
       'datetime': datetime.datetime(2025, 4, 8, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2153,6 +2460,7 @@
     dict({
       'consumption': 4190.0,
       'datetime': datetime.datetime(2025, 4, 8, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2160,6 +2468,7 @@
     dict({
       'consumption': 4188.0,
       'datetime': datetime.datetime(2025, 4, 8, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2167,6 +2476,7 @@
     dict({
       'consumption': 4232.0,
       'datetime': datetime.datetime(2025, 4, 8, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2174,6 +2484,7 @@
     dict({
       'consumption': 4309.0,
       'datetime': datetime.datetime(2025, 4, 8, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2181,6 +2492,7 @@
     dict({
       'consumption': 4439.0,
       'datetime': datetime.datetime(2025, 4, 8, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2188,6 +2500,7 @@
     dict({
       'consumption': 4636.0,
       'datetime': datetime.datetime(2025, 4, 8, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2195,6 +2508,7 @@
     dict({
       'consumption': 4942.0,
       'datetime': datetime.datetime(2025, 4, 8, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2202,6 +2516,7 @@
     dict({
       'consumption': 5201.0,
       'datetime': datetime.datetime(2025, 4, 8, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2209,6 +2524,7 @@
     dict({
       'consumption': 5363.0,
       'datetime': datetime.datetime(2025, 4, 8, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2216,6 +2532,7 @@
     dict({
       'consumption': 5383.0,
       'datetime': datetime.datetime(2025, 4, 8, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2223,6 +2540,7 @@
     dict({
       'consumption': 5297.0,
       'datetime': datetime.datetime(2025, 4, 8, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2230,6 +2548,7 @@
     dict({
       'consumption': 5080.0,
       'datetime': datetime.datetime(2025, 4, 8, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2237,6 +2556,7 @@
     dict({
       'consumption': 4823.0,
       'datetime': datetime.datetime(2025, 4, 8, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2244,6 +2564,7 @@
     dict({
       'consumption': 4526.0,
       'datetime': datetime.datetime(2025, 4, 8, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2251,6 +2572,7 @@
     dict({
       'consumption': 4261.0,
       'datetime': datetime.datetime(2025, 4, 8, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2258,6 +2580,7 @@
     dict({
       'consumption': 3990.0,
       'datetime': datetime.datetime(2025, 4, 8, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2265,6 +2588,7 @@
     dict({
       'consumption': 3865.0,
       'datetime': datetime.datetime(2025, 4, 8, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2272,6 +2596,7 @@
     dict({
       'consumption': 3734.0,
       'datetime': datetime.datetime(2025, 4, 8, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2279,6 +2604,7 @@
     dict({
       'consumption': 3657.0,
       'datetime': datetime.datetime(2025, 4, 8, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2286,6 +2612,7 @@
     dict({
       'consumption': 3608.0,
       'datetime': datetime.datetime(2025, 4, 8, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2293,6 +2620,7 @@
     dict({
       'consumption': 3589.0,
       'datetime': datetime.datetime(2025, 4, 8, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2300,6 +2628,7 @@
     dict({
       'consumption': 3616.0,
       'datetime': datetime.datetime(2025, 4, 8, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2307,6 +2636,7 @@
     dict({
       'consumption': 3739.0,
       'datetime': datetime.datetime(2025, 4, 8, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2314,6 +2644,7 @@
     dict({
       'consumption': 3879.0,
       'datetime': datetime.datetime(2025, 4, 8, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2321,6 +2652,7 @@
     dict({
       'consumption': 4061.0,
       'datetime': datetime.datetime(2025, 4, 8, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2328,6 +2660,7 @@
     dict({
       'consumption': 4329.0,
       'datetime': datetime.datetime(2025, 4, 8, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2335,6 +2668,7 @@
     dict({
       'consumption': 4629.0,
       'datetime': datetime.datetime(2025, 4, 8, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2342,6 +2676,7 @@
     dict({
       'consumption': 4995.0,
       'datetime': datetime.datetime(2025, 4, 8, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2349,6 +2684,7 @@
     dict({
       'consumption': 5378.0,
       'datetime': datetime.datetime(2025, 4, 8, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2356,6 +2692,7 @@
     dict({
       'consumption': 5751.0,
       'datetime': datetime.datetime(2025, 4, 8, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2363,6 +2700,7 @@
     dict({
       'consumption': 6025.0,
       'datetime': datetime.datetime(2025, 4, 8, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2370,6 +2708,7 @@
     dict({
       'consumption': 6113.0,
       'datetime': datetime.datetime(2025, 4, 8, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2377,6 +2716,7 @@
     dict({
       'consumption': 6052.0,
       'datetime': datetime.datetime(2025, 4, 8, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2384,6 +2724,7 @@
     dict({
       'consumption': 5937.0,
       'datetime': datetime.datetime(2025, 4, 8, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2391,6 +2732,7 @@
     dict({
       'consumption': 5781.0,
       'datetime': datetime.datetime(2025, 4, 8, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2398,6 +2740,7 @@
     dict({
       'consumption': 5653.0,
       'datetime': datetime.datetime(2025, 4, 8, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2405,6 +2748,7 @@
     dict({
       'consumption': 5505.0,
       'datetime': datetime.datetime(2025, 4, 8, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2412,6 +2756,7 @@
     dict({
       'consumption': 5340.0,
       'datetime': datetime.datetime(2025, 4, 8, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2419,6 +2764,7 @@
     dict({
       'consumption': 5175.0,
       'datetime': datetime.datetime(2025, 4, 8, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2426,6 +2772,7 @@
     dict({
       'consumption': 5041.0,
       'datetime': datetime.datetime(2025, 4, 8, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2433,6 +2780,7 @@
     dict({
       'consumption': 5028.0,
       'datetime': datetime.datetime(2025, 4, 8, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2440,6 +2788,7 @@
     dict({
       'consumption': 4940.0,
       'datetime': datetime.datetime(2025, 4, 9, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2447,6 +2796,7 @@
     dict({
       'consumption': 4799.0,
       'datetime': datetime.datetime(2025, 4, 9, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2454,6 +2804,7 @@
     dict({
       'consumption': 4642.0,
       'datetime': datetime.datetime(2025, 4, 9, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2461,6 +2812,7 @@
     dict({
       'consumption': 4503.0,
       'datetime': datetime.datetime(2025, 4, 9, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2468,6 +2820,7 @@
     dict({
       'consumption': 4370.0,
       'datetime': datetime.datetime(2025, 4, 9, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2475,6 +2828,7 @@
     dict({
       'consumption': 4274.0,
       'datetime': datetime.datetime(2025, 4, 9, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2482,6 +2836,7 @@
     dict({
       'consumption': 4211.0,
       'datetime': datetime.datetime(2025, 4, 9, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2489,6 +2844,7 @@
     dict({
       'consumption': 4177.0,
       'datetime': datetime.datetime(2025, 4, 9, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2496,6 +2852,7 @@
     dict({
       'consumption': 4168.0,
       'datetime': datetime.datetime(2025, 4, 9, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2503,6 +2860,7 @@
     dict({
       'consumption': 4204.0,
       'datetime': datetime.datetime(2025, 4, 9, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2510,6 +2868,7 @@
     dict({
       'consumption': 4278.0,
       'datetime': datetime.datetime(2025, 4, 9, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2517,6 +2876,7 @@
     dict({
       'consumption': 4414.0,
       'datetime': datetime.datetime(2025, 4, 9, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2524,6 +2884,7 @@
     dict({
       'consumption': 4606.0,
       'datetime': datetime.datetime(2025, 4, 9, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2531,6 +2892,7 @@
     dict({
       'consumption': 4913.0,
       'datetime': datetime.datetime(2025, 4, 9, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2538,6 +2900,7 @@
     dict({
       'consumption': 5167.0,
       'datetime': datetime.datetime(2025, 4, 9, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2545,6 +2908,7 @@
     dict({
       'consumption': 5315.0,
       'datetime': datetime.datetime(2025, 4, 9, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2552,6 +2916,7 @@
     dict({
       'consumption': 5331.0,
       'datetime': datetime.datetime(2025, 4, 9, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2559,6 +2924,7 @@
     dict({
       'consumption': 5244.0,
       'datetime': datetime.datetime(2025, 4, 9, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2566,6 +2932,7 @@
     dict({
       'consumption': 5029.0,
       'datetime': datetime.datetime(2025, 4, 9, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2573,6 +2940,7 @@
     dict({
       'consumption': 4734.0,
       'datetime': datetime.datetime(2025, 4, 9, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2580,6 +2948,7 @@
     dict({
       'consumption': 4415.0,
       'datetime': datetime.datetime(2025, 4, 9, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2587,6 +2956,7 @@
     dict({
       'consumption': 4154.0,
       'datetime': datetime.datetime(2025, 4, 9, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2594,6 +2964,7 @@
     dict({
       'consumption': 3875.0,
       'datetime': datetime.datetime(2025, 4, 9, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2601,6 +2972,7 @@
     dict({
       'consumption': 3720.0,
       'datetime': datetime.datetime(2025, 4, 9, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2608,6 +2980,7 @@
     dict({
       'consumption': 3600.0,
       'datetime': datetime.datetime(2025, 4, 9, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2615,6 +2988,7 @@
     dict({
       'consumption': 3545.0,
       'datetime': datetime.datetime(2025, 4, 9, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2622,6 +2996,7 @@
     dict({
       'consumption': 3527.0,
       'datetime': datetime.datetime(2025, 4, 9, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2629,6 +3004,7 @@
     dict({
       'consumption': 3570.0,
       'datetime': datetime.datetime(2025, 4, 9, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2636,6 +3012,7 @@
     dict({
       'consumption': 3615.0,
       'datetime': datetime.datetime(2025, 4, 9, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2643,6 +3020,7 @@
     dict({
       'consumption': 3708.0,
       'datetime': datetime.datetime(2025, 4, 9, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2650,6 +3028,7 @@
     dict({
       'consumption': 3846.0,
       'datetime': datetime.datetime(2025, 4, 9, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2657,6 +3036,7 @@
     dict({
       'consumption': 4035.0,
       'datetime': datetime.datetime(2025, 4, 9, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2664,6 +3044,7 @@
     dict({
       'consumption': 4296.0,
       'datetime': datetime.datetime(2025, 4, 9, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2671,6 +3052,7 @@
     dict({
       'consumption': 4588.0,
       'datetime': datetime.datetime(2025, 4, 9, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2678,6 +3060,7 @@
     dict({
       'consumption': 4956.0,
       'datetime': datetime.datetime(2025, 4, 9, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2685,6 +3068,7 @@
     dict({
       'consumption': 5333.0,
       'datetime': datetime.datetime(2025, 4, 9, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2692,6 +3076,7 @@
     dict({
       'consumption': 5686.0,
       'datetime': datetime.datetime(2025, 4, 9, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2699,6 +3084,7 @@
     dict({
       'consumption': 5922.0,
       'datetime': datetime.datetime(2025, 4, 9, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2706,6 +3092,7 @@
     dict({
       'consumption': 6002.0,
       'datetime': datetime.datetime(2025, 4, 9, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2713,6 +3100,7 @@
     dict({
       'consumption': 5947.0,
       'datetime': datetime.datetime(2025, 4, 9, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2720,6 +3108,7 @@
     dict({
       'consumption': 5831.0,
       'datetime': datetime.datetime(2025, 4, 9, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2727,6 +3116,7 @@
     dict({
       'consumption': 5677.0,
       'datetime': datetime.datetime(2025, 4, 9, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2734,6 +3124,7 @@
     dict({
       'consumption': 5552.0,
       'datetime': datetime.datetime(2025, 4, 9, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2741,6 +3132,7 @@
     dict({
       'consumption': 5417.0,
       'datetime': datetime.datetime(2025, 4, 9, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2748,6 +3140,7 @@
     dict({
       'consumption': 5269.0,
       'datetime': datetime.datetime(2025, 4, 9, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2755,6 +3148,7 @@
     dict({
       'consumption': 5111.0,
       'datetime': datetime.datetime(2025, 4, 9, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2762,6 +3156,7 @@
     dict({
       'consumption': 4986.0,
       'datetime': datetime.datetime(2025, 4, 9, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2769,6 +3164,7 @@
     dict({
       'consumption': 4997.0,
       'datetime': datetime.datetime(2025, 4, 9, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',
@@ -2776,6 +3172,7 @@
     dict({
       'consumption': 4934.0,
       'datetime': datetime.datetime(2025, 4, 10, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Australia/Melbourne')),
+      'end_datetime': None,
       'source': 'aemo.com.au',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'AU-VIC',

@@ -18,7 +18,7 @@ from electricitymap.contrib.config import (
 )
 from electricitymap.contrib.lib.models.constants import VALID_CURRENCIES
 from electricitymap.contrib.parsers.lib.config import ProductionModes, StorageModes
-from electricitymap.contrib.types import MarketAgreementType, ZoneKey
+from electricitymap.contrib.types import AtcType, MarketAgreementType, ZoneKey
 
 LOWER_DATETIME_BOUND = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
@@ -310,7 +310,8 @@ class Event(BaseModel, ABC):
     # As the validators are called in the order of the attributes, we need to make sure that the sourceType is validated before the datetime.
     sourceType: EventSourceType = EventSourceType.measured
     zoneKey: ZoneKey
-    datetime: datetime
+    datetime: dt.datetime
+    end_datetime: dt.datetime | None = None
     source: str
 
     @validator("zoneKey")
@@ -334,6 +335,28 @@ class Event(BaseModel, ABC):
                 f"Date is in the future and this is not a forecasted or published point: {v}"
             )
         return v.replace(second=0, microsecond=0)
+
+    @validator("end_datetime")
+    def _validate_end_datetime(
+        cls, v: dt.datetime | None, values: dict[str, Any]
+    ) -> dt.datetime | None:
+        # end_datetime is the (exclusive) end of the interval the event covers.
+        # It is optional, but when set it must be timezone-aware and strictly
+        # after `datetime`. It is truncated to whole minutes to match `datetime`.
+        # Unlike `datetime`, no future bound is applied: a measured event's last
+        # interval may legitimately end in the near future while in progress.
+        if v is None:
+            return v
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        v = v.replace(second=0, microsecond=0)
+        # `datetime` is validated before `end_datetime` (attribute order), so it
+        # is already present and truncated in `values` — unless it failed
+        # validation, in which case it is absent and we skip the comparison.
+        start = values.get("datetime")
+        if start is not None and v <= start:
+            raise ValueError(f"end_datetime ({v}) must be after datetime ({start})")
+        return v
 
     @staticmethod
     @abstractmethod
@@ -387,14 +410,30 @@ class AggregatableEvent(Event):
         return target_datetime[0].to_pydatetime()
 
     @staticmethod
+    def _aggregated_end_datetime(df_view: pd.DataFrame) -> datetime | None:
+        """Picks the end_datetime for an aggregate of same-start events.
+
+        Sub-zones can report at different resolutions (e.g. during the 60->15
+        minute MTU migration) or omit end_datetime entirely. Rather than failing
+        the aggregation, keep the earliest known end — the finest resolution —
+        which cannot overlap the next aggregated point. Returns None when no
+        event knows its end.
+        """
+        end_datetimes = df_view["end_datetime"].dropna().unique()
+        if len(end_datetimes) == 0:
+            return None
+        return pd.Timestamp(min(end_datetimes)).to_pydatetime()
+
+    @staticmethod
     def _aggregated_fields(
         df_view: pd.DataFrame,
-    ) -> tuple[ZoneKey, str, EventSourceType, datetime]:
+    ) -> tuple[ZoneKey, str, EventSourceType, datetime, datetime | None]:
         return (
             AggregatableEvent._unique_zone_key(df_view),
             AggregatableEvent._sources(df_view),
             AggregatableEvent._unique_source_type(df_view),
             AggregatableEvent._unique_datetime(df_view),
+            AggregatableEvent._aggregated_end_datetime(df_view),
         )
 
     @staticmethod
@@ -441,6 +480,7 @@ class Exchange(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         netFlow: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -449,6 +489,7 @@ class Exchange(Event):
             return Exchange(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 netFlow=_none_safe_round(netFlow),
                 sourceType=sourceType,
@@ -485,6 +526,7 @@ class Exchange(Event):
         return Exchange(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
+            end_datetime=new_event.end_datetime or event.end_datetime,
             source=event.source,
             netFlow=new_event.netFlow,  # Exchange values can never be none so a new valid value will always be provided.
             sourceType=event.sourceType,
@@ -493,6 +535,7 @@ class Exchange(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "sortedZoneKeys": self.zoneKey,
             "netFlow": self.netFlow,
             "source": self.source,
@@ -545,6 +588,7 @@ class TotalProduction(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         value: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -553,6 +597,7 @@ class TotalProduction(Event):
             return TotalProduction(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 value=_none_safe_round(value),
                 sourceType=sourceType,
@@ -591,6 +636,7 @@ class TotalProduction(Event):
         return TotalProduction(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
+            end_datetime=new_event.end_datetime or event.end_datetime,
             source=event.source,
             value=new_event.value,  # Production values can never be none so a new valid value will always be provided.
             sourceType=event.sourceType,
@@ -599,6 +645,7 @@ class TotalProduction(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "value": self.value,
             "source": self.source,
@@ -652,6 +699,7 @@ class ProductionBreakdown(AggregatableEvent):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         production: ProductionMix | None = None,
         storage: StorageMix | None = None,
@@ -667,6 +715,7 @@ class ProductionBreakdown(AggregatableEvent):
             return ProductionBreakdown(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 production=production,
                 storage=storage,
@@ -692,6 +741,7 @@ class ProductionBreakdown(AggregatableEvent):
                 {
                     "zoneKey": event.zoneKey,
                     "datetime": event.datetime,
+                    "end_datetime": event.end_datetime,
                     "source": event.source,
                     "sourceType": event.sourceType,
                     "data": event,
@@ -704,6 +754,7 @@ class ProductionBreakdown(AggregatableEvent):
             sources,
             source_type,
             target_datetime,
+            target_end_datetime,
         ) = ProductionBreakdown._aggregated_fields(df_view)
 
         production_mix = ProductionMix.merge(
@@ -715,6 +766,7 @@ class ProductionBreakdown(AggregatableEvent):
         return ProductionBreakdown(
             zoneKey=zoneKey,
             datetime=target_datetime,
+            end_datetime=target_end_datetime,
             source=sources,
             production=production_mix,
             storage=storage_mix,
@@ -746,6 +798,7 @@ class ProductionBreakdown(AggregatableEvent):
         return ProductionBreakdown(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
+            end_datetime=new_event.end_datetime or event.end_datetime,
             source=source,
             production=production_mix,
             storage=storage_mix,
@@ -755,6 +808,7 @@ class ProductionBreakdown(AggregatableEvent):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "production": self.production.dict(
                 exclude_unset=True, keep_corrected_negative_values=True
@@ -795,6 +849,7 @@ class TotalConsumption(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         consumption: float | None,
         sourceType: EventSourceType = EventSourceType.measured,
@@ -803,6 +858,7 @@ class TotalConsumption(Event):
             return TotalConsumption(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 consumption=_none_safe_round(consumption),
                 sourceType=sourceType,
@@ -841,6 +897,7 @@ class TotalConsumption(Event):
         return TotalConsumption(
             zoneKey=event.zoneKey,
             datetime=event.datetime,
+            end_datetime=new_event.end_datetime or event.end_datetime,
             source=event.source,
             consumption=new_event.consumption,  # Consumption values can never be none so a new valid value will always be provided.
             sourceType=event.sourceType,
@@ -849,6 +906,7 @@ class TotalConsumption(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "consumption": self.consumption,
             "source": self.source,
@@ -873,7 +931,9 @@ class Price(Event):
             raise ValueError(f"Missing timezone: {v}")
         if v < LOWER_DATETIME_BOUND:
             raise ValueError(f"Date is before 2000, this is not plausible: {v}")
-        return v
+        # Truncate to whole minutes like the base validator, so `datetime` and
+        # `end_datetime` (truncated by its own validator) stay comparable.
+        return v.replace(second=0, microsecond=0)
 
     @validator("price")
     def _validate_price(cls, v: float | None) -> float:
@@ -889,6 +949,7 @@ class Price(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         price: float | None,
         currency: str,
@@ -898,6 +959,7 @@ class Price(Event):
             return Price(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 price=price,
                 currency=currency,
@@ -916,6 +978,7 @@ class Price(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "currency": self.currency,
             "price": self.price,
@@ -941,6 +1004,7 @@ class LocationalMarginalPrice(Price):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         price: float | None,
         currency: str,
@@ -951,6 +1015,7 @@ class LocationalMarginalPrice(Price):
             return LocationalMarginalPrice(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 price=price,
                 currency=currency,
@@ -970,6 +1035,7 @@ class LocationalMarginalPrice(Price):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "zoneKey": self.zoneKey,
             "currency": self.currency,
             "price": self.price,
@@ -1085,10 +1151,173 @@ class GridAlert(Event):
         }
 
 
+class IntradayContractStatistics(Event):
+    """An event representing Nord Pool intraday contract statistics for one (area, contract) pair.
+
+    The `datetime` field (inherited from Event) mirrors `deliveryStart`.
+    """
+
+    area: str
+    apiUpdatedAt: datetime
+    currency: str
+    priceUnitRaw: str
+    deliveryStart: datetime
+    deliveryEnd: datetime
+    contractId: str
+    contractName: str
+    contractOpenTime: datetime | None = None
+    contractCloseTime: datetime | None = None
+    isLocalContract: bool
+    vwap: float | None = None
+    vwap1hBeforeClose: float | None = None
+    vwap3hBeforeClose: float | None = None
+    openPrice: float | None = None
+    closePrice: float | None = None
+    highPrice: float | None = None
+    lowPrice: float | None = None
+    openTradeTime: datetime | None = None
+    closeTradeTime: datetime | None = None
+    volume: float | None = None
+    buyVolume: float | None = None
+    sellVolume: float | None = None
+
+    @validator("datetime")
+    def _validate_datetime(cls, v: dt.datetime) -> dt.datetime:  # type: ignore[override]
+        """Override to preserve full precision and allow future delivery windows."""
+        if _is_naive(v):
+            raise ValueError(f"Missing timezone: {v}")
+        if v < LOWER_DATETIME_BOUND:
+            raise ValueError(f"Date is before 2000, this is not plausible: {v}")
+        return v
+
+    @validator("currency")
+    def _validate_currency(cls, v: str) -> str:
+        if len(v) != 3:
+            raise ValueError(f"Currency must be a 3-character ISO code, got: {v!r}")
+        return v
+
+    @validator("apiUpdatedAt", "deliveryStart", "deliveryEnd")
+    def _validate_aware(cls, v: datetime) -> datetime:
+        if _is_naive(v):
+            raise ValueError(f"Datetime must be timezone-aware: {v}")
+        return v
+
+    @validator(
+        "contractOpenTime", "contractCloseTime", "openTradeTime", "closeTradeTime"
+    )
+    def _validate_aware_optional(cls, v: datetime | None) -> datetime | None:
+        if v is not None and _is_naive(v):
+            raise ValueError(f"Datetime must be timezone-aware: {v}")
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        area: str,
+        apiUpdatedAt: datetime,
+        currency: str,
+        priceUnitRaw: str,
+        deliveryStart: datetime,
+        deliveryEnd: datetime,
+        contractId: str,
+        contractName: str,
+        contractOpenTime: datetime | None,
+        contractCloseTime: datetime | None,
+        isLocalContract: bool,
+        vwap: float | None,
+        vwap1hBeforeClose: float | None,
+        vwap3hBeforeClose: float | None,
+        openPrice: float | None,
+        closePrice: float | None,
+        highPrice: float | None,
+        lowPrice: float | None,
+        openTradeTime: datetime | None,
+        closeTradeTime: datetime | None,
+        volume: float | None,
+        buyVolume: float | None,
+        sellVolume: float | None,
+        source: str,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "IntradayContractStatistics | None":
+        try:
+            return IntradayContractStatistics(
+                zoneKey=zoneKey,
+                datetime=deliveryStart,
+                area=area,
+                apiUpdatedAt=apiUpdatedAt,
+                currency=currency,
+                priceUnitRaw=priceUnitRaw,
+                deliveryStart=deliveryStart,
+                deliveryEnd=deliveryEnd,
+                contractId=contractId,
+                contractName=contractName,
+                contractOpenTime=contractOpenTime,
+                contractCloseTime=contractCloseTime,
+                isLocalContract=isLocalContract,
+                vwap=vwap,
+                vwap1hBeforeClose=vwap1hBeforeClose,
+                vwap3hBeforeClose=vwap3hBeforeClose,
+                openPrice=openPrice,
+                closePrice=closePrice,
+                highPrice=highPrice,
+                lowPrice=lowPrice,
+                openTradeTime=openTradeTime,
+                closeTradeTime=closeTradeTime,
+                volume=volume,
+                buyVolume=buyVolume,
+                sellVolume=sellVolume,
+                source=source,
+                sourceType=sourceType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating IntradayContractStatistics event {deliveryStart}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "area": area,
+                    "contractId": contractId,
+                    "kind": "intraday contract statistics",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "zoneKey": self.zoneKey,
+            "area": self.area,
+            "apiUpdatedAt": self.apiUpdatedAt,
+            "currency": self.currency,
+            "priceUnitRaw": self.priceUnitRaw,
+            "deliveryStart": self.deliveryStart,
+            "deliveryEnd": self.deliveryEnd,
+            "contractId": self.contractId,
+            "contractName": self.contractName,
+            "contractOpenTime": self.contractOpenTime,
+            "contractCloseTime": self.contractCloseTime,
+            "isLocalContract": self.isLocalContract,
+            "vwap": self.vwap,
+            "vwap1hBeforeClose": self.vwap1hBeforeClose,
+            "vwap3hBeforeClose": self.vwap3hBeforeClose,
+            "openPrice": self.openPrice,
+            "closePrice": self.closePrice,
+            "highPrice": self.highPrice,
+            "lowPrice": self.lowPrice,
+            "openTradeTime": self.openTradeTime,
+            "closeTradeTime": self.closeTradeTime,
+            "volume": self.volume,
+            "buyVolume": self.buyVolume,
+            "sellVolume": self.sellVolume,
+            "source": self.source,
+        }
+
+
 class ExchangeCapacity(Event):
     """
-    An event representing the forecasted net transfer capacity (NTC) between
-    two zones in both directions.
+    An event representing a bilateral exchange capacity between two zones in
+    both directions. Used for NTC forecasts (ENTSOE A61), MaxBeX, MaxBflow.
+    ATC values use the dedicated `ExchangeAtc` class instead.
 
     capacityExport: Capacity for zone1→zone2 direction (may be None).
     capacityImport: Capacity for zone2→zone1 direction (may be None).
@@ -1125,6 +1354,7 @@ class ExchangeCapacity(Event):
         logger: Logger,
         zoneKey: ZoneKey,
         datetime: datetime,
+        end_datetime: datetime | None,
         source: str,
         capacityExport: float | None,
         capacityImport: float | None,
@@ -1134,6 +1364,7 @@ class ExchangeCapacity(Event):
             return ExchangeCapacity(
                 zoneKey=zoneKey,
                 datetime=datetime,
+                end_datetime=end_datetime,
                 source=source,
                 capacityExport=_none_safe_round(capacityExport),
                 capacityImport=_none_safe_round(capacityImport),
@@ -1153,9 +1384,97 @@ class ExchangeCapacity(Event):
     def to_dict(self) -> dict[str, Any]:
         return {
             "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
             "sortedZoneKeys": self.zoneKey,
             "capacityExport": self.capacityExport,
             "capacityImport": self.capacityImport,
+            "source": self.source,
+            "sourceType": self.sourceType,
+        }
+
+
+class ExchangeAtc(Event):
+    """
+    An event representing a day-ahead Available Transfer Capacity (ATC) value
+    between two zones in both directions. ATC = NTC − long-term allocations −
+    transmission reliability margin. Distinct from NTC (see `ExchangeCapacity`)
+    and from cleared schedules (see `ScheduledExchange`).
+
+    capacityExport: ATC for zone1→zone2 direction (may be None).
+    capacityImport: ATC for zone2→zone1 direction (may be None).
+    atcType: CACM capacity-calculation methodology that produced this row —
+        either shadow auction (FBMC fallback, CACM Art. 51) or Coordinated NTC.
+    """
+
+    sourceType: EventSourceType = EventSourceType.published
+    capacityExport: float | None
+    capacityImport: float | None
+    atcType: AtcType
+
+    @validator("zoneKey")
+    def _validate_zone_key(cls, v: str):
+        if "->" not in v:
+            raise ValueError(f"Not an exchange key: {v}")
+        zone_keys = v.split("->")
+        if zone_keys != sorted(zone_keys):
+            raise ValueError(f"Exchange key not sorted: {v}")
+        if v not in EXCHANGES_CONFIG:
+            raise ValueError(f"Unknown zone: {v}")
+        return v
+
+    @root_validator(pre=False)
+    def _validate_capacity_bounds(cls, values: dict[str, Any]) -> dict[str, Any]:
+        if (
+            values.get("capacityExport") is None
+            and values.get("capacityImport") is None
+        ):
+            raise ValueError(
+                "At least one of capacityExport or capacityImport must be set"
+            )
+        return values
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        capacityExport: float | None,
+        capacityImport: float | None,
+        atcType: AtcType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ExchangeAtc | None":
+        try:
+            return ExchangeAtc(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                capacityExport=_none_safe_round(capacityExport),
+                capacityImport=_none_safe_round(capacityImport),
+                sourceType=sourceType,
+                atcType=atcType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating ExchangeAtc Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "exchange atc",
+                },
+            )
+            return None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "datetime": self.datetime,
+            "end_datetime": self.end_datetime,
+            "sortedZoneKeys": self.zoneKey,
+            "capacityExport": self.capacityExport,
+            "capacityImport": self.capacityImport,
+            "atcType": self.atcType,
             "source": self.source,
             "sourceType": self.sourceType,
         }

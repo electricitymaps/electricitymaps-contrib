@@ -26,8 +26,7 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "exchangeCapacityForecastDayAhead": _EXCHANGE_FUNCTION_ARGS,
     "exchangeCapacityForecastWeekAhead": _EXCHANGE_FUNCTION_ARGS,
     "exchangeCapacityForecastMonthAhead": _EXCHANGE_FUNCTION_ARGS,
-    "shadowAuctionAtcDayAhead": _EXCHANGE_FUNCTION_ARGS,
-    "coreExternalAtcDayAhead": _EXCHANGE_FUNCTION_ARGS,
+    "atcDayAhead": _EXCHANGE_FUNCTION_ARGS,
     "maxBexDayAhead": _EXCHANGE_FUNCTION_ARGS,
     "scheduledExchangesDayAhead": _EXCHANGE_FUNCTION_ARGS,
     "scheduledExchangesTotal": _EXCHANGE_FUNCTION_ARGS,
@@ -44,6 +43,7 @@ EXPECTED_MODE_FUNCTION_ARGS = {
     "productionPerModeForecastLatest": _PARSER_FUNCTION_ARGS,
     "productionCapacity": _CAPACITY_PARSER_FUNCTION_ARGS,
     "gridAlerts": _PARSER_FUNCTION_ARGS,
+    "intradayContractStatistics": _PARSER_FUNCTION_ARGS,
 }
 _RETURN_PARSER_TYPE = [
     dict,
@@ -63,8 +63,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "exchangeCapacityForecastDayAhead": _RETURN_PARSER_TYPE,
     "exchangeCapacityForecastWeekAhead": _RETURN_PARSER_TYPE,
     "exchangeCapacityForecastMonthAhead": _RETURN_PARSER_TYPE,
-    "shadowAuctionAtcDayAhead": _RETURN_PARSER_TYPE,
-    "coreExternalAtcDayAhead": _RETURN_PARSER_TYPE,
+    "atcDayAhead": _RETURN_PARSER_TYPE,
     "maxBexDayAhead": _RETURN_PARSER_TYPE,
     "scheduledExchangesDayAhead": _RETURN_PARSER_TYPE,
     "scheduledExchangesTotal": _RETURN_PARSER_TYPE,
@@ -81,6 +80,7 @@ EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "productionPerModeForecastLatest": _RETURN_PARSER_TYPE,
     "productionCapacity": _RETURN_PARSER_TYPE,
     "gridAlerts": _RETURN_PARSER_TYPE,
+    "intradayContractStatistics": _RETURN_PARSER_TYPE,
 }
 
 

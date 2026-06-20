@@ -4,6 +4,7 @@
     dict({
       'consumption': 9950.0,
       'datetime': datetime.datetime(2025, 3, 17, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -11,6 +12,7 @@
     dict({
       'consumption': 9660.0,
       'datetime': datetime.datetime(2025, 3, 17, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -18,6 +20,7 @@
     dict({
       'consumption': 9430.0,
       'datetime': datetime.datetime(2025, 3, 17, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -25,6 +28,7 @@
     dict({
       'consumption': 9560.0,
       'datetime': datetime.datetime(2025, 3, 17, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -32,6 +36,7 @@
     dict({
       'consumption': 9720.0,
       'datetime': datetime.datetime(2025, 3, 17, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -39,6 +44,7 @@
     dict({
       'consumption': 10770.0,
       'datetime': datetime.datetime(2025, 3, 17, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -46,6 +52,7 @@
     dict({
       'consumption': 12110.0,
       'datetime': datetime.datetime(2025, 3, 17, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -53,6 +60,7 @@
     dict({
       'consumption': 13140.0,
       'datetime': datetime.datetime(2025, 3, 17, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -60,6 +68,7 @@
     dict({
       'consumption': 13460.0,
       'datetime': datetime.datetime(2025, 3, 17, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -67,6 +76,7 @@
     dict({
       'consumption': 13550.0,
       'datetime': datetime.datetime(2025, 3, 17, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -74,6 +84,7 @@
     dict({
       'consumption': 13590.0,
       'datetime': datetime.datetime(2025, 3, 17, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -81,6 +92,7 @@
     dict({
       'consumption': 13510.0,
       'datetime': datetime.datetime(2025, 3, 17, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -88,6 +100,7 @@
     dict({
       'consumption': 13450.0,
       'datetime': datetime.datetime(2025, 3, 17, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -95,6 +108,7 @@
     dict({
       'consumption': 13400.0,
       'datetime': datetime.datetime(2025, 3, 17, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -102,6 +116,7 @@
     dict({
       'consumption': 13200.0,
       'datetime': datetime.datetime(2025, 3, 17, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -109,6 +124,7 @@
     dict({
       'consumption': 12980.0,
       'datetime': datetime.datetime(2025, 3, 17, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -116,6 +132,7 @@
     dict({
       'consumption': 13290.0,
       'datetime': datetime.datetime(2025, 3, 17, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -123,6 +140,7 @@
     dict({
       'consumption': 13900.0,
       'datetime': datetime.datetime(2025, 3, 17, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -130,6 +148,7 @@
     dict({
       'consumption': 14190.0,
       'datetime': datetime.datetime(2025, 3, 17, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -137,6 +156,7 @@
     dict({
       'consumption': 14350.0,
       'datetime': datetime.datetime(2025, 3, 17, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -144,6 +164,7 @@
     dict({
       'consumption': 13830.0,
       'datetime': datetime.datetime(2025, 3, 17, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -151,6 +172,7 @@
     dict({
       'consumption': 12960.0,
       'datetime': datetime.datetime(2025, 3, 17, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -158,6 +180,7 @@
     dict({
       'consumption': 12010.0,
       'datetime': datetime.datetime(2025, 3, 17, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -165,6 +188,7 @@
     dict({
       'consumption': 11090.0,
       'datetime': datetime.datetime(2025, 3, 17, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -172,6 +196,7 @@
     dict({
       'consumption': 10680.0,
       'datetime': datetime.datetime(2025, 3, 18, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -179,6 +204,7 @@
     dict({
       'consumption': 10400.0,
       'datetime': datetime.datetime(2025, 3, 18, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -186,6 +212,7 @@
     dict({
       'consumption': 10240.0,
       'datetime': datetime.datetime(2025, 3, 18, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -193,6 +220,7 @@
     dict({
       'consumption': 10250.0,
       'datetime': datetime.datetime(2025, 3, 18, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -200,6 +228,7 @@
     dict({
       'consumption': 10630.0,
       'datetime': datetime.datetime(2025, 3, 18, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -207,6 +236,7 @@
     dict({
       'consumption': 11590.0,
       'datetime': datetime.datetime(2025, 3, 18, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -214,6 +244,7 @@
     dict({
       'consumption': 13120.0,
       'datetime': datetime.datetime(2025, 3, 18, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -221,6 +252,7 @@
     dict({
       'consumption': 13830.0,
       'datetime': datetime.datetime(2025, 3, 18, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -228,6 +260,7 @@
     dict({
       'consumption': 12860.0,
       'datetime': datetime.datetime(2025, 3, 18, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -235,6 +268,7 @@
     dict({
       'consumption': 11380.0,
       'datetime': datetime.datetime(2025, 3, 18, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -242,6 +276,7 @@
     dict({
       'consumption': 10200.0,
       'datetime': datetime.datetime(2025, 3, 18, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -249,6 +284,7 @@
     dict({
       'consumption': 9390.0,
       'datetime': datetime.datetime(2025, 3, 18, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -256,6 +292,7 @@
     dict({
       'consumption': 8880.0,
       'datetime': datetime.datetime(2025, 3, 18, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -263,6 +300,7 @@
     dict({
       'consumption': 8800.0,
       'datetime': datetime.datetime(2025, 3, 18, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -270,6 +308,7 @@
     dict({
       'consumption': 8910.0,
       'datetime': datetime.datetime(2025, 3, 18, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -277,6 +316,7 @@
     dict({
       'consumption': 9560.0,
       'datetime': datetime.datetime(2025, 3, 18, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -284,6 +324,7 @@
     dict({
       'consumption': 10640.0,
       'datetime': datetime.datetime(2025, 3, 18, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -291,6 +332,7 @@
     dict({
       'consumption': 12380.0,
       'datetime': datetime.datetime(2025, 3, 18, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -298,6 +340,7 @@
     dict({
       'consumption': 13390.0,
       'datetime': datetime.datetime(2025, 3, 18, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -305,6 +348,7 @@
     dict({
       'consumption': 14100.0,
       'datetime': datetime.datetime(2025, 3, 18, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -312,6 +356,7 @@
     dict({
       'consumption': 13710.0,
       'datetime': datetime.datetime(2025, 3, 18, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -319,6 +364,7 @@
     dict({
       'consumption': 12970.0,
       'datetime': datetime.datetime(2025, 3, 18, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -326,6 +372,7 @@
     dict({
       'consumption': 11980.0,
       'datetime': datetime.datetime(2025, 3, 18, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -333,6 +380,7 @@
     dict({
       'consumption': 11110.0,
       'datetime': datetime.datetime(2025, 3, 18, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'source': 'iso-ne.com',
       'sourceType': <EventSourceType.forecasted: 'forecasted'>,
       'zoneKey': 'US-NE-ISNE',
@@ -345,6 +393,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 661.0,
         'wind': 234.0,
@@ -359,6 +408,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 704.0,
         'wind': 147.0,
@@ -373,6 +423,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 666.0,
         'wind': 115.0,
@@ -387,6 +438,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 545.0,
         'wind': 109.0,
@@ -401,6 +453,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 447.0,
         'wind': 117.0,
@@ -415,6 +468,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 267.0,
         'wind': 116.0,
@@ -429,6 +483,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 69.0,
         'wind': 117.0,
@@ -443,6 +498,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 13.0,
         'wind': 118.0,
@@ -457,6 +513,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 1.0,
         'wind': 125.0,
@@ -471,6 +528,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 153.0,
@@ -485,6 +543,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 161.0,
@@ -499,6 +558,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 148.0,
@@ -513,6 +573,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 152.0,
@@ -527,6 +588,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 25, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 165.0,
@@ -541,6 +603,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 205.0,
@@ -555,6 +618,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 221.0,
@@ -569,6 +633,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 270.0,
@@ -583,6 +648,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 340.0,
@@ -597,6 +663,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 439.0,
@@ -611,6 +678,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 503.0,
@@ -625,6 +693,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 21.0,
         'wind': 568.0,
@@ -639,6 +708,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 173.0,
         'wind': 643.0,
@@ -653,6 +723,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 454.0,
         'wind': 655.0,
@@ -667,6 +738,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 705.0,
         'wind': 694.0,
@@ -681,6 +753,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 842.0,
         'wind': 750.0,
@@ -695,6 +768,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 879.0,
         'wind': 811.0,
@@ -709,6 +783,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 887.0,
         'wind': 895.0,
@@ -723,6 +798,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 860.0,
         'wind': 966.0,
@@ -737,6 +813,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 762.0,
         'wind': 998.0,
@@ -751,6 +828,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 520.0,
         'wind': 1009.0,
@@ -765,6 +843,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 203.0,
         'wind': 969.0,
@@ -779,6 +858,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 30.0,
         'wind': 920.0,
@@ -793,6 +873,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 1.0,
         'wind': 885.0,
@@ -807,6 +888,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 853.0,
@@ -821,6 +903,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 747.0,
@@ -835,6 +918,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 700.0,
@@ -849,6 +933,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 599.0,
@@ -863,6 +948,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 26, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 483.0,
@@ -877,6 +963,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 352.0,
@@ -891,6 +978,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 242.0,
@@ -905,6 +993,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 158.0,
@@ -919,6 +1008,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 99.0,
@@ -933,6 +1023,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 66.0,
@@ -947,6 +1038,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 80.0,
@@ -961,6 +1053,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 7.0,
         'wind': 112.0,
@@ -975,6 +1068,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 33.0,
         'wind': 147.0,
@@ -989,6 +1083,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 69.0,
         'wind': 178.0,
@@ -1003,6 +1098,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 100.0,
         'wind': 224.0,
@@ -1017,6 +1113,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 100.0,
         'wind': 275.0,
@@ -1031,6 +1128,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 134.0,
         'wind': 313.0,
@@ -1045,6 +1143,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 169.0,
         'wind': 339.0,
@@ -1059,6 +1158,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 191.0,
         'wind': 365.0,
@@ -1073,6 +1173,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 190.0,
         'wind': 360.0,
@@ -1087,6 +1188,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 146.0,
         'wind': 344.0,
@@ -1101,6 +1203,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 88.0,
         'wind': 323.0,
@@ -1115,6 +1218,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 51.0,
         'wind': 313.0,
@@ -1129,6 +1233,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 14.0,
         'wind': 325.0,
@@ -1143,6 +1248,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 328.0,
@@ -1157,6 +1263,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 358.0,
@@ -1171,6 +1278,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 385.0,
@@ -1185,6 +1293,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 400.0,
@@ -1199,6 +1308,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 27, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 434.0,
@@ -1213,6 +1323,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 470.0,
@@ -1227,6 +1338,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 509.0,
@@ -1241,6 +1353,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 511.0,
@@ -1255,6 +1368,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 519.0,
@@ -1269,6 +1383,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 522.0,
@@ -1283,6 +1398,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 507.0,
@@ -1297,6 +1413,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 495.0,
@@ -1311,6 +1428,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 486.0,
@@ -1325,6 +1443,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 59.0,
         'wind': 592.0,
@@ -1339,6 +1458,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 366.0,
         'wind': 682.0,
@@ -1353,6 +1473,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 597.0,
         'wind': 743.0,
@@ -1367,6 +1488,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 805.0,
         'wind': 869.0,
@@ -1381,6 +1503,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 860.0,
         'wind': 966.0,
@@ -1395,6 +1518,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 760.0,
         'wind': 1010.0,
@@ -1409,6 +1533,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 781.0,
         'wind': 1148.0,
@@ -1423,6 +1548,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 759.0,
         'wind': 1248.0,
@@ -1437,6 +1563,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 601.0,
         'wind': 1279.0,
@@ -1451,6 +1578,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 222.0,
         'wind': 1254.0,
@@ -1465,6 +1593,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 72.0,
         'wind': 1226.0,
@@ -1479,6 +1608,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 2.0,
         'wind': 1164.0,
@@ -1493,6 +1623,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1052.0,
@@ -1507,6 +1638,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 882.0,
@@ -1521,6 +1653,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 717.0,
@@ -1535,6 +1668,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 2, 28, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 554.0,
@@ -1549,6 +1683,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 408.0,
@@ -1563,6 +1698,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 289.0,
@@ -1577,6 +1713,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 252.0,
@@ -1591,6 +1728,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 234.0,
@@ -1605,6 +1743,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 224.0,
@@ -1619,6 +1758,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 257.0,
@@ -1633,6 +1773,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 304.0,
@@ -1647,6 +1788,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 367.0,
@@ -1661,6 +1803,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 22.0,
         'wind': 434.0,
@@ -1675,6 +1818,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 205.0,
         'wind': 516.0,
@@ -1689,6 +1833,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 304.0,
         'wind': 611.0,
@@ -1703,6 +1848,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 488.0,
         'wind': 652.0,
@@ -1717,6 +1863,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 557.0,
         'wind': 696.0,
@@ -1731,6 +1878,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 630.0,
         'wind': 734.0,
@@ -1745,6 +1893,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 586.0,
         'wind': 664.0,
@@ -1759,6 +1908,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 474.0,
         'wind': 589.0,
@@ -1773,6 +1923,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 388.0,
         'wind': 530.0,
@@ -1787,6 +1938,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 131.0,
         'wind': 612.0,
@@ -1801,6 +1953,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 31.0,
         'wind': 716.0,
@@ -1815,6 +1968,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 2.0,
         'wind': 823.0,
@@ -1829,6 +1983,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 864.0,
@@ -1843,6 +1998,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 912.0,
@@ -1857,6 +2013,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 966.0,
@@ -1871,6 +2028,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 1, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 981.0,
@@ -1885,6 +2043,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 991.0,
@@ -1899,6 +2058,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 991.0,
@@ -1913,6 +2073,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 993.0,
@@ -1927,6 +2088,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 995.0,
@@ -1941,6 +2103,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 992.0,
@@ -1955,6 +2118,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1002.0,
@@ -1969,6 +2133,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1004.0,
@@ -1983,6 +2148,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 1006.0,
@@ -1997,6 +2163,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 97.0,
         'wind': 1059.0,
@@ -2011,6 +2178,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 449.0,
         'wind': 1114.0,
@@ -2025,6 +2193,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 657.0,
         'wind': 1152.0,
@@ -2039,6 +2208,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 848.0,
         'wind': 1160.0,
@@ -2053,6 +2223,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 891.0,
         'wind': 1168.0,
@@ -2067,6 +2238,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 910.0,
         'wind': 1170.0,
@@ -2081,6 +2253,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 888.0,
         'wind': 1154.0,
@@ -2095,6 +2268,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 819.0,
         'wind': 1132.0,
@@ -2109,6 +2283,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 611.0,
         'wind': 1102.0,
@@ -2123,6 +2298,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 194.0,
         'wind': 1080.0,
@@ -2137,6 +2313,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 49.0,
         'wind': 1058.0,
@@ -2151,6 +2328,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 1.0,
         'wind': 1028.0,
@@ -2165,6 +2343,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 927.0,
@@ -2179,6 +2358,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 817.0,
@@ -2193,6 +2373,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 704.0,
@@ -2207,6 +2388,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 2, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 698.0,
@@ -2221,6 +2403,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 690.0,
@@ -2235,6 +2418,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 682.0,
@@ -2249,6 +2433,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 686.0,
@@ -2263,6 +2448,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 692.0,
@@ -2277,6 +2463,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 697.0,
@@ -2291,6 +2478,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 710.0,
@@ -2305,6 +2493,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 725.0,
@@ -2319,6 +2508,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 738.0,
@@ -2333,6 +2523,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 84.0,
         'wind': 818.0,
@@ -2347,6 +2538,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 404.0,
         'wind': 898.0,
@@ -2361,6 +2553,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 602.0,
         'wind': 962.0,
@@ -2375,6 +2568,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 791.0,
         'wind': 939.0,
@@ -2389,6 +2583,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 842.0,
         'wind': 909.0,
@@ -2403,6 +2598,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 862.0,
         'wind': 877.0,
@@ -2417,6 +2613,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 845.0,
         'wind': 836.0,
@@ -2431,6 +2628,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 785.0,
         'wind': 788.0,
@@ -2445,6 +2643,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 584.0,
         'wind': 738.0,
@@ -2459,6 +2658,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 180.0,
         'wind': 676.0,
@@ -2473,6 +2673,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 46.0,
         'wind': 606.0,
@@ -2487,6 +2688,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 1.0,
         'wind': 541.0,
@@ -2501,6 +2703,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 455.0,
@@ -2515,6 +2718,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 378.0,
@@ -2529,6 +2733,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 309.0,
@@ -2543,6 +2748,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 3, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 294.0,
@@ -2557,6 +2763,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 283.0,
@@ -2571,6 +2778,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 275.0,
@@ -2585,6 +2793,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 302.0,
@@ -2599,6 +2808,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 330.0,
@@ -2613,6 +2823,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 367.0,
@@ -2627,6 +2838,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 356.0,
@@ -2641,6 +2853,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 357.0,
@@ -2655,6 +2868,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 0.0,
         'wind': 356.0,
@@ -2669,6 +2883,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 213.0,
         'wind': 449.0,
@@ -2683,6 +2898,7 @@
       'correctedModes': list([
       ]),
       'datetime': datetime.datetime(2025, 3, 4, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='America/New_York')),
+      'end_datetime': None,
       'production': dict({
         'solar': 439.0,
         'wind': 525.0,
