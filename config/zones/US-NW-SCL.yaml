@@ -1,8 +1,14 @@
 bounding_box:
-  - - -122.4339658965978
+  - - -122.4370801
     - 47.46082968401358
   - - -122.23721179834855
     - 47.778030463903605
+center_point:
+  - -122.33714594917427
+  - 47.6194300739586
+centroid:
+  - -122.35330552517962
+  - 47.63206293349349
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -73,12 +79,6 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-center_point:
-  - -122.33558884747318
-  - 47.6194300739586
-centroid:
-  - -122.34031285770172
-  - 47.614746192254984
 comment: Seattle City Light
 contributors:
   - systemcatch

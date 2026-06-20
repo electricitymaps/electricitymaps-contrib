@@ -1,8 +1,14 @@
 bounding_box:
-  - - -122.727401
-    - 46.878147
-  - - -122.241233
-    - 47.318965
+  - - -122.7320363
+    - 46.917031
+  - - -122.273369
+    - 47.3288467
+center_point:
+  - -122.497754
+  - 47.156085
+centroid:
+  - -122.44171454925372
+  - 47.12096489253731
 capacity:
   battery storage:
     - datetime: '2017-01-01'
@@ -58,12 +64,6 @@ capacity:
     - datetime: '2017-01-01'
       source: EIA.gov
       value: 0.0
-center_point:
-  - -121.98710180807089
-  - 47.126620583694155
-centroid:
-  - -122.3587856604095
-  - 47.242332938203425
 comment: City Of Tacoma, Department Of Public Utilities, Light Division
 contributors:
   - systemcatch
