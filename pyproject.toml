@@ -18,10 +18,6 @@ dependencies = [
 test-parser = "test_parser:test_parser"
 test_parser = "test_parser:test_parser"
 capacity_update = "capacity_update:capacity_update"
-check = "scripts.tooling:check"
-format = "scripts.tooling:format"
-lint = "scripts.tooling:lint"
-test = "scripts.tooling:test"
 
 [tool.uv.workspace]
 members = [".", "libs/types"]
