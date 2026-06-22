@@ -25,7 +25,6 @@ Currently wired (day-ahead horizon):
 """
 
 import os
-from collections import defaultdict
 from datetime import datetime, time, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
@@ -66,7 +65,7 @@ EM_ZONE_TO_JAO_PREFIX: dict[str, list[str]] = {
 
 # EM zone key → JAO zone code used in corridor names (only where they differ).
 EM_TO_JAO_ZONE: dict[str, str] = {
-    "DK-DK1": "DK1",
+    "DK-DK1": "D1",
 }
 
 def _em_to_jao_zone(em_zone: str) -> str:
@@ -110,7 +109,7 @@ def _query_jao_auction(
     Returns the rows from json()[0]['results'], or [] when the response is
     empty (corridor has no auction data for the requested window).
     """
-    url = f"{BASE_URL}/getauctions/"
+    url = f"{BASE_URL}/getauctions"
     params = {
         "fromdate": _format_utc(from_utc),
         "todate": _format_utc(to_utc),
@@ -176,29 +175,31 @@ def _extract_atc(
     jao_a = _em_to_jao_zone(zone_a)
     jao_b = _em_to_jao_zone(zone_b)
 
-    export_by_dt: dict[datetime, float] = defaultdict(float)
-    import_by_dt: dict[datetime, float] = defaultdict(float)
+    export_by_dt: dict[datetime, float] = {}
+    import_by_dt: dict[datetime, float] = {}
 
     for prefix in prefixes:
         export_corridor = f"{prefix}{jao_a}-{jao_b}"
         export_auctions = _query_jao_auction(session, from_utc, to_utc, horizon, export_corridor, logger)
 
         for auction in _extract_auction(export_auctions):
-            dt, rows = auction
+            auction_start, rows = auction
             for row in rows:
                 hour = _extract_hour_from_product_hour(row.get("productHour"))
-                dt = dt + timedelta(hours = hour)
-                export_by_dt[dt] += row.get("atc") or 0
+                dt = auction_start + timedelta(hours=hour)
+                atc = row.get("offeredCapacity")
+                export_by_dt[dt] = export_by_dt.get(dt, 0) + atc
 
         import_corridor = f"{prefix}{jao_b}-{jao_a}"
         import_auctions = _query_jao_auction(session, from_utc, to_utc, horizon, import_corridor, logger)
 
         for auction in _extract_auction(import_auctions):
-            dt, rows = auction
+            auction_start, rows = auction
             for row in rows:
                 hour = _extract_hour_from_product_hour(row.get("productHour"))
-                dt = dt + timedelta(hours = hour)
-                import_by_dt[dt] += row.get("atc") or 0
+                dt = auction_start + timedelta(hours=hour)
+                atc = row.get("offeredCapacity")
+                import_by_dt[dt] = import_by_dt.get(dt, 0) + atc
 
 
     capacities = ExchangeAtcList(logger)
@@ -248,4 +249,4 @@ def fetch_auction_atc_day_ahead(
 if __name__ == "__main__":
     from pprint import pprint
 
-    pprint(fetch_auction_atc_day_ahead(ZoneKey("DK-DK1"), ZoneKey("GB")))
+    pprint(fetch_auction_atc_day_ahead(ZoneKey("FR"), ZoneKey("GB")))
