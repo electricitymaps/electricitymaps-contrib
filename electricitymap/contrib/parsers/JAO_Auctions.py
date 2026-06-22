@@ -24,7 +24,6 @@ Currently wired (day-ahead horizon):
 - fetch_auction_atc_day_ahead  →  summed ATC across corridors for a border
 """
 
-import os
 from datetime import datetime, time, timedelta, timezone
 from enum import Enum
 from logging import Logger, getLogger
