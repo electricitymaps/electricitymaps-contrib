@@ -35,13 +35,14 @@ from electricitymap.contrib.lib.models.event_lists import ExchangeAtcList
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.parsers.lib.session import mount_retry
+from electricitymap.contrib.parsers.lib.utils import get_token
 from electricitymap.contrib.types import AtcType
 
 SOURCE = "jao.eu"
 REQUEST_TIMEOUT_SECONDS = 30
 JAO_MAX_FETCH_DAYS = 2
 
-#AUTH_API_KEY = ???
+AUTH_API_KEY = get_token("JAO_AUCTION_API_KEY")
 
 BASE_URL = "https://api.jao.eu/OWSMP"
 
@@ -67,17 +68,22 @@ EM_TO_JAO_ZONE: dict[str, str] = {
     "DK-DK1": "D1",
 }
 
+
 def _em_to_jao_zone(em_zone: str) -> str:
     return EM_TO_JAO_ZONE.get(em_zone, em_zone)
+
 
 def _em_zone_to_jao_prefix(em_exchange_zone: str) -> str:
     return EM_ZONE_TO_JAO_PREFIX.get(em_exchange_zone, [""])
 
+
 def _format_utc(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%d-%H:%M:%S")
 
+
 def _parse_JAO_datetime(value: str) -> datetime:
     return datetime.fromisoformat(value)
+
 
 def _target_window(
     target_datetime: datetime | None,
@@ -116,7 +122,14 @@ def _query_jao_auction(
         "horizon": horizon.value,
         "corridor": corridor,
     }
-    logger.debug("Querying JAO Auction", extra={"corridor": corridor, "from_utc": params["fromdate"], "to_utc": params["todate"]})
+    logger.debug(
+        "Querying JAO Auction",
+        extra={
+            "corridor": corridor,
+            "from_utc": params["fromdate"],
+            "to_utc": params["todate"],
+        },
+    )
     mount_retry(session)
     response = session.get(
         url,
@@ -134,22 +147,25 @@ def _query_jao_auction(
         return []
     return payload or []
 
+
 def _extract_auction(
-        payload: list,
-) -> list[(datetime,list)]:
-    """ Extract all individual auctions from the JAO auction API response"""
+    payload: list,
+) -> list[(datetime, list)]:
+    """Extract all individual auctions from the JAO auction API response"""
     auction_list = []
     for auction in payload:
-        dt = _parse_JAO_datetime(auction.get('marketPeriodStart'))
-        rows = auction.get('results')
-        auction_list.append([dt,rows])
+        dt = _parse_JAO_datetime(auction.get("marketPeriodStart"))
+        rows = auction.get("results")
+        auction_list.append([dt, rows])
     return auction_list
 
+
 def _extract_hour_from_product_hour(
-        productHour: str,
+    productHour: str,
 ) -> int:
-    """ Extract the hour from the productHour"""
+    """Extract the hour from the productHour"""
     return int(productHour[:2])
+
 
 def _extract_atc(
     sorted_zone_keys: ZoneKey,
@@ -179,7 +195,9 @@ def _extract_atc(
 
     for prefix in prefixes:
         export_corridor = f"{prefix}{jao_a}-{jao_b}"
-        export_auctions = _query_jao_auction(session, from_utc, to_utc, horizon, export_corridor, logger)
+        export_auctions = _query_jao_auction(
+            session, from_utc, to_utc, horizon, export_corridor, logger
+        )
 
         for auction in _extract_auction(export_auctions):
             auction_start, rows = auction
@@ -190,7 +208,9 @@ def _extract_atc(
                 export_by_dt[dt] = export_by_dt.get(dt, 0) + atc
 
         import_corridor = f"{prefix}{jao_b}-{jao_a}"
-        import_auctions = _query_jao_auction(session, from_utc, to_utc, horizon, import_corridor, logger)
+        import_auctions = _query_jao_auction(
+            session, from_utc, to_utc, horizon, import_corridor, logger
+        )
 
         for auction in _extract_auction(import_auctions):
             auction_start, rows = auction
@@ -200,7 +220,6 @@ def _extract_atc(
                 atc = row.get("offeredCapacity")
                 import_by_dt[dt] = import_by_dt.get(dt, 0) + atc
 
-
     capacities = ExchangeAtcList(logger)
     for dt in sorted(set(export_by_dt) | set(import_by_dt)):
         export_val = export_by_dt.get(dt)
@@ -209,7 +228,7 @@ def _extract_atc(
             continue
         capacities.append(
             zoneKey=sorted_zone_keys,
-            datetime= dt,
+            datetime=dt,
             source=source,
             capacityExport=export_val,
             capacityImport=import_val,
