@@ -1,0 +1,62 @@
+# serializer version: 1
+# name: test_fetch_production[FR-COR]
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 13, 9, 0, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.6,
+        'gas': 11.2,
+        'hydro': 37.8,
+        'oil': 57,
+        'solar': 109,
+        'wind': 9.5,
+      }),
+      'source': 'opendata-corse.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0,
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 13, 9, 15, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.6,
+        'gas': 9.3,
+        'hydro': 59.7,
+        'oil': 50.3,
+        'solar': 91.4,
+        'wind': 9.3,
+      }),
+      'source': 'opendata-corse.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0,
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2026, 5, 13, 9, 30, tzinfo=datetime.timezone.utc),
+      'production': dict({
+        'biomass': 0.6,
+        'gas': 4.9,
+        'hydro': 61.1,
+        'oil': 50.7,
+        'solar': 93.4,
+        'wind': 7.5,
+      }),
+      'source': 'opendata-corse.edf.fr',
+      'sourceType': <EventSourceType.estimated: 'estimated'>,
+      'storage': dict({
+        'battery': 0,
+      }),
+      'zoneKey': 'FR-COR',
+    }),
+  ])
+# ---
