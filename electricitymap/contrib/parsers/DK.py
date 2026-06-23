@@ -40,6 +40,11 @@ FORECAST_URL = "https://api.energidataservice.dk/dataset/Forecasts_5Min"
 
 SOURCE = "energidataservice.dk"
 
+# Both datasets are sampled every 5 minutes, as encoded in their `Minutes5UTC`
+# timestamp column. The API exposes no explicit interval end, so reconstruct it
+# from this schema-implied resolution: end = start + RESOLUTION.
+RESOLUTION = timedelta(minutes=5)
+
 
 def fetch_data(
     zone_key: ZoneKey,
@@ -133,11 +138,13 @@ def fetch_exchange(
         for datapoint in data["records"]:
             if datapoint["PriceArea"] != price_area:
                 continue
+            dt = datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
+                tzinfo=timezone.utc
+            )
             all_exchange_data.append(
                 zoneKey=sorted_keys,
-                datetime=datetime.fromisoformat(datapoint["Minutes5UTC"]).replace(
-                    tzinfo=timezone.utc
-                ),
+                datetime=dt,
+                end_datetime=dt + RESOLUTION,
                 netFlow=flow(sorted_keys, datapoint),
                 source=SOURCE,
             )
@@ -169,6 +176,7 @@ def fetch_wind_solar_forecasts(
             zoneKey=zone_key,
             production=productionMix,
             datetime=date_time,
+            end_datetime=date_time + RESOLUTION,
             source=SOURCE,
             sourceType=EventSourceType.forecasted,
         )
