@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
+from re import fullmatch
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -106,6 +107,26 @@ IGNORED_FUEL_TECH_KEYS = {
 
 SOURCE = "opennem.org.au"
 
+# Every OpenElectricity series carries an explicit resolution in its `interval`
+# field (dataset-level for the v4 API, inside the `history` block for the legacy
+# stats endpoint). The API exposes no explicit interval end, so reconstruct it as
+# end = start + interval.
+_INTERVAL_UNIT_TO_KWARG = {"m": "minutes", "h": "hours", "d": "days", "w": "weeks"}
+
+
+def _interval_to_timedelta(interval: str) -> timedelta:
+    """Convert an OpenElectricity interval string (e.g. '5m', '1h', '1d') to a timedelta.
+
+    Months, quarters, seasons and years have no fixed length and are not
+    supported; power, price and flow data is always reported at a fixed
+    sub-daily resolution (typically '5m').
+    """
+    match = fullmatch(r"(\d+)([mhdw])", interval)
+    if match is None:
+        raise NotImplementedError(f"Unsupported OPENNEM interval: {interval!r}")
+    value, unit = int(match.group(1)), match.group(2)
+    return timedelta(**{_INTERVAL_UNIT_TO_KWARG[unit]: value})
+
 
 # TODO: after full v4 migration: deprecate this in favor of fetch_network_datasets
 def fetch_datasets(
@@ -162,6 +183,9 @@ def process_production_datasets(
     for dataset in datasets:
         if dataset.get("metric") != "power":
             continue
+
+        interval = dataset.get("interval")
+        resolution = _interval_to_timedelta(interval) if interval else None
 
         for result in dataset.get("results", []):
             columns = result.get("columns", {})
@@ -235,6 +259,7 @@ def process_production_datasets(
                     production_breakdown_list.append(
                         zoneKey=zone_key,
                         datetime=dt,
+                        end_datetime=dt + resolution if resolution else None,
                         production=production,
                         source=SOURCE,
                     )
@@ -255,6 +280,7 @@ def process_production_datasets(
                     production_breakdown_list.append(
                         zoneKey=zone_key,
                         datetime=dt,
+                        end_datetime=dt + resolution if resolution else None,
                         storage=storage,
                         source=SOURCE,
                     )
@@ -281,6 +307,7 @@ def process_production_datasets(
                 corrected_breakdown.append(
                     zoneKey=zoneKey,
                     datetime=dt,
+                    end_datetime=event.end_datetime,
                     production=production,
                     storage=storage,
                     source=source,
@@ -383,8 +410,14 @@ def fetch_exchange(
         )
 
     events = ExchangeList(logger=logger)
-    for dt, netflow in datetimes_and_netflows:
-        events.append(datetime=dt, netFlow=netflow, zoneKey=exchange_key, source=SOURCE)
+    for dt, end_dt, netflow in datetimes_and_netflows:
+        events.append(
+            datetime=dt,
+            end_datetime=end_dt,
+            netFlow=netflow,
+            zoneKey=exchange_key,
+            source=SOURCE,
+        )
     return events.to_list()
 
 
@@ -394,7 +427,7 @@ def _fetch_regular_exchange(
     session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[tuple[datetime, float]]:
+) -> list[tuple[datetime, datetime, float]]:
     """
     Calculate netflows for zones that have a single exchange.
     """
@@ -421,6 +454,7 @@ def _fetch_regular_exchange(
     if (
         exports["start"] != imports["start"]
         or exports["last"] != imports["last"]
+        or exports["interval"] != imports["interval"]
         or len(exports["data"]) != len(imports["data"])
     ):
         raise ParserException(
@@ -431,8 +465,13 @@ def _fetch_regular_exchange(
 
     # assume data is sorted from start to end
     start = datetime.fromisoformat(exports["start"])
+    resolution = _interval_to_timedelta(exports["interval"])
     datetimes_and_netflows = [
-        (start + timedelta(minutes=5 * i), (exp - imp) * direction)
+        (
+            start + resolution * i,
+            start + resolution * (i + 1),
+            (exp - imp) * direction,
+        )
         for i, (exp, imp) in enumerate(
             zip(exports["data"], imports["data"], strict=True)
         )
@@ -445,7 +484,7 @@ def _fetch_au_nsw_au_vic_exchange(
     session: Session,
     target_datetime: datetime | None = None,
     logger: Logger = getLogger(__name__),
-) -> list[tuple[datetime, float]]:
+) -> list[tuple[datetime, datetime, float]]:
     """
     Calculate AU-NSW->AU-VIC netflow from exports and imports of AU-NSW and AU-QLD.
 
@@ -517,7 +556,7 @@ def _fetch_au_nsw_au_vic_exchange(
             zone_key=qld_zk,
         )
 
-    # all must have same start, end, and number of data points
+    # all must have same start, end, interval, and number of data points
     if not (
         nsw_exports["start"]
         == nsw_imports["start"]
@@ -527,6 +566,10 @@ def _fetch_au_nsw_au_vic_exchange(
         == nsw_imports["last"]
         == qld_exports["last"]
         == qld_imports["last"]
+        and nsw_exports["interval"]
+        == nsw_imports["interval"]
+        == qld_exports["interval"]
+        == qld_imports["interval"]
         and len(nsw_exports["data"])
         == len(nsw_imports["data"])
         == len(qld_exports["data"])
@@ -540,8 +583,13 @@ def _fetch_au_nsw_au_vic_exchange(
 
     # assume data is sorted from start to end
     start = datetime.fromisoformat(nsw_exports["start"])
+    resolution = _interval_to_timedelta(nsw_exports["interval"])
     datetimes_and_netflows = [
-        (start + timedelta(minutes=5 * i), (nsw_exp - nsw_imp + qld_exp - qld_imp))
+        (
+            start + resolution * i,
+            start + resolution * (i + 1),
+            (nsw_exp - nsw_imp + qld_exp - qld_imp),
+        )
         for i, (nsw_exp, nsw_imp, qld_exp, qld_imp) in enumerate(
             zip(
                 nsw_exports["data"],
@@ -640,11 +688,15 @@ def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
     for dataset in datasets:
         if dataset["metric"] != "price":
             continue
+        interval = dataset.get("interval")
+        resolution = _interval_to_timedelta(interval) if interval else None
         for result in dataset["results"]:
             for ts, price in result["data"]:
+                dt = datetime.fromisoformat(ts)
                 price_list.append(
                     zoneKey=zone_key,
-                    datetime=datetime.fromisoformat(ts),
+                    datetime=dt,
+                    end_datetime=dt + resolution if resolution else None,
                     currency="AUD",
                     price=price,
                     source=SOURCE,
