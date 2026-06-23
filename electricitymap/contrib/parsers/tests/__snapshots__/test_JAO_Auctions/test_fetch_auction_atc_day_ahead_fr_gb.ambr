@@ -1,0 +1,45 @@
+# serializer version: 1
+# name: test_fetch_auction_atc_day_ahead_fr_gb
+  list([
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1200.0,
+      'capacityImport': 1400.0,
+      'datetime': datetime.datetime(2026, 6, 1, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'sortedZoneKeys': 'FR->GB',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1400.0,
+      'capacityImport': 1200.0,
+      'datetime': datetime.datetime(2026, 6, 1, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'sortedZoneKeys': 'FR->GB',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1290.0,
+      'capacityImport': 1500.0,
+      'datetime': datetime.datetime(2026, 6, 2, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'sortedZoneKeys': 'FR->GB',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+    dict({
+      'atcType': <AtcType.COORDINATED_NTC: 'COORDINATED_NTC'>,
+      'capacityExport': 1500.0,
+      'capacityImport': 1290.0,
+      'datetime': datetime.datetime(2026, 6, 2, 1, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'sortedZoneKeys': 'FR->GB',
+      'source': 'jao.eu',
+      'sourceType': <EventSourceType.published: 'published'>,
+    }),
+  ])
+# ---
