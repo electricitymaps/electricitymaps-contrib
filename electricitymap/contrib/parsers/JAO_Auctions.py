@@ -42,8 +42,6 @@ SOURCE = "jao.eu"
 REQUEST_TIMEOUT_SECONDS = 30
 JAO_MAX_FETCH_DAYS = 2
 
-AUTH_API_KEY = get_token("JAO_AUCTION_API_KEY")
-
 BASE_URL = "https://api.jao.eu/OWSMP"
 
 
@@ -133,7 +131,7 @@ def _query_jao_auction(
     mount_retry(session)
     response = session.get(
         url,
-        headers={"AUTH_API_KEY": AUTH_API_KEY},
+        headers={"AUTH_API_KEY": get_token("JAO_AUCTION_API_KEY")},
         params=params,
         timeout=REQUEST_TIMEOUT_SECONDS,
     )
