@@ -13,9 +13,7 @@ from electricitymap.contrib.parsers.JAO_Auctions import fetch_auction_atc_day_ah
 os.environ["JAO_AUCTION_API_KEY"] = "dummy"
 
 BASE_MOCK_PATH = Path("electricitymap/contrib/parsers/tests/mocks/JAO_Auctions")
-ATC_DAY_AHEAD_AUCTION_URL_REGEX = re.compile(
-    r"https://api.jao.eu/OWSMP/getauctions"
-)
+ATC_DAY_AHEAD_AUCTION_URL_REGEX = re.compile(r"https://api.jao.eu/OWSMP/getauctions")
 TARGET_DATETIME = datetime.fromisoformat("2026-06-01T00:00:00+00:00")
 
 
