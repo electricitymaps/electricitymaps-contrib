@@ -227,6 +227,7 @@ def _extract_atc(
         capacities.append(
             zoneKey=sorted_zone_keys,
             datetime=dt,
+            end_datetime = dt+timedelta(hours = 1),
             source=source,
             capacityExport=export_val,
             capacityImport=import_val,

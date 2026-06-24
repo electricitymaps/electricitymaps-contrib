@@ -111,7 +111,7 @@ def test_fetch_auction_atc_day_ahead_em_to_jao_zone_remap(requests_mock, session
     assert result == [
         {
             "datetime": datetime(2026, 6, 1, 0, 0, tzinfo=timezone.utc),
-            "end_datetime": None,
+            "end_datetime": datetime(2026, 6, 1, 1, 0, tzinfo=timezone.utc),
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": 2500.0,
             "capacityImport": 2200.0,
@@ -153,7 +153,7 @@ def test_fetch_auction_atc_day_ahead_one_sided_export(requests_mock, session):
     assert result == [
         {
             "datetime": datetime(2026, 6, 1, 0, 0, tzinfo=timezone.utc),
-            "end_datetime": None,
+            "end_datetime": datetime(2026, 6, 1, 1, 0, tzinfo=timezone.utc),
             "sortedZoneKeys": "CH->DE",
             "capacityExport": 3620.0,
             "capacityImport": None,
@@ -196,7 +196,7 @@ def test_fetch_auction_atc_day_ahead_import_only_and_zone_key_ordering(
     assert result == [
         {
             "datetime": datetime(2026, 6, 1, 0, 0, tzinfo=timezone.utc),
-            "end_datetime": None,
+            "end_datetime": datetime(2026, 6, 1, 1, 0, tzinfo=timezone.utc),
             "sortedZoneKeys": "DK-DK1->GB",
             "capacityExport": None,
             "capacityImport": 1800.0,
