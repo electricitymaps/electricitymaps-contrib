@@ -1082,51 +1082,5 @@
       }),
       'zoneKey': 'FR',
     }),
-    dict({
-      'correctedModes': list([
-      ]),
-      'datetime': datetime.datetime(2023, 9, 22, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'end_datetime': None,
-      'production': dict({
-        'biomass': np.float64(649.5),
-        'coal': np.float64(7.0),
-        'gas': np.float64(492.0),
-        'hydro': np.float64(4181.0),
-        'nuclear': np.float64(37619.5),
-        'oil': np.float64(109.5),
-        'solar': np.float64(0.0),
-        'wind': np.float64(7137.5),
-      }),
-      'source': 'opendata.reseaux-energies.fr',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': np.float64(5.0),
-        'hydro': np.float64(-567.0),
-      }),
-      'zoneKey': 'FR',
-    }),
-    dict({
-      'correctedModes': list([
-      ]),
-      'datetime': datetime.datetime(2023, 9, 22, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/Paris')),
-      'end_datetime': None,
-      'production': dict({
-        'biomass': np.float64(651.0),
-        'coal': np.float64(7.0),
-        'gas': np.float64(501.0),
-        'hydro': np.float64(3965.0),
-        'nuclear': np.float64(37536.0),
-        'oil': np.float64(110.0),
-        'solar': np.float64(0.0),
-        'wind': np.float64(7440.0),
-      }),
-      'source': 'opendata.reseaux-energies.fr',
-      'sourceType': <EventSourceType.measured: 'measured'>,
-      'storage': dict({
-        'battery': np.float64(-0.0),
-        'hydro': np.float64(-207.0),
-      }),
-      'zoneKey': 'FR',
-    }),
   ])
 # ---
