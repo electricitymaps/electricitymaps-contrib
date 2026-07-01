@@ -1,10 +1,11 @@
 import json
 import os
 import urllib.parse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import pytest
+from freezegun import freeze_time
 from requests_mock import GET
 
 from electricitymap.contrib.parsers.FR import API_ENDPOINT, fetch_production
@@ -58,23 +59,26 @@ def _make_query_aware_callback(records: list[dict]):
     return callback
 
 
+# Pin "now" to the end of the mock window (Paris 2023-09-22 02:00 == 00:00 UTC) so
+# the default no-`target_datetime` path produces a requested window of
+# [2023-09-21 02:00, 2023-09-22 02:00] that fully contains the mock data. Without
+# this the window-edge trim (relative to the real clock) would drop every 2023
+# bucket and leave an empty result.
+@freeze_time("2023-09-22 00:00:00")
 def test_production(requests_mock, session, snapshot):
     os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
-    with open(MOCK_RESPONSE_PATH, "rb") as mock_file:
+    with open(
+        "electricitymap/contrib/parsers/tests/mocks/FR/response.json", "rb"
+    ) as mock_file:
         requests_mock.register_uri(
             GET,
             API_ENDPOINT,
             content=mock_file.read(),
         )
 
-    # The mock spans Paris 2023-09-21T02:00 -> 2023-09-22T02:00 (1/4h granularity).
-    # This target maps to a Paris window of [2023-09-21 01:00, 2023-09-22 01:00],
-    # which sits inside the mock range so every kept 30-min bucket is averaged from
-    # both of its quarter-hour points (no partial single-point bucket at the edges).
     assert snapshot == fetch_production(
         zone_key=ZoneKey("FR"),
         session=session,
-        target_datetime=datetime(2023, 9, 21, 23, 0, tzinfo=timezone.utc),
     )
 
 
@@ -135,3 +139,104 @@ def test_padding_completes_boundary_bucket(requests_mock, session):
     # The padded 01:15 point fed the 01:00 bucket but must not leak an extra
     # output bucket (e.g. a 01:15 or 01:30 datapoint).
     assert all(dp["datetime"] <= boundary_dt for dp in result)
+
+
+def test_no_churn_across_shifting_window_edges(requests_mock, session):
+    """A timestamp's stored value must not depend on where the fetch edge fell.
+
+    This is the property the padding exists to guarantee. A 30-min bucket is the
+    mean of its two quarter-hour points (T and T+15); if the fetch window edge
+    lands *between* them, the bucket is averaged from one point on one refetch
+    and from two on the next, so its stored value flips back and forth (churn).
+
+    We refetch the same data at five window ends that all fall in the 01:00
+    bucket's half-hour but at different sub-30-min offsets (:00, :07, :15, :22,
+    :29 past 01:00 Paris == 23:00Z + those minutes). With a query-aware mock, an
+    edge only pulls in 01:15 if the parser actually requested it — so without the
+    padding the 01:00 bucket would be single-point for the :00 edge and two-point
+    for the later ones. Every timestamp shared across refetches must be identical.
+    """
+    os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
+    records = _load_records()
+    requests_mock.register_uri(
+        GET,
+        API_ENDPOINT,
+        json=_make_query_aware_callback(records),
+    )
+
+    # UTC = Paris - 2h (CEST), so Paris 2023-09-22 01:00 == 2023-09-21 23:00Z.
+    edges = [
+        datetime(2023, 9, 21, 23, minute, tzinfo=timezone.utc)
+        for minute in (0, 7, 15, 22, 29)
+    ]
+    per_edge = [
+        {
+            dp["datetime"]: dp
+            for dp in fetch_production(
+                zone_key=ZoneKey("FR"), session=session, target_datetime=edge
+            )
+        }
+        for edge in edges
+    ]
+
+    # The 01:00 boundary bucket is retained by all five edges (01:00 <= end < 01:30)
+    # and is the one whose composition the moving edge would otherwise change.
+    boundary_dt = datetime(2023, 9, 22, 1, 0, tzinfo=TZ)
+    assert all(boundary_dt in by_dt for by_dt in per_edge)
+
+    # Every timestamp present in more than one refetch must carry an identical
+    # datapoint regardless of the window edge — i.e. no churn.
+    for ts in set().union(*per_edge):
+        seen = [by_dt[ts] for by_dt in per_edge if ts in by_dt]
+        assert all(dp == seen[0] for dp in seen), f"churn at {ts}: {seen}"
+
+
+def test_window_advances_in_15min_steps_without_churn(requests_mock, session, snapshot):
+    """Stepping the window end by 15 min must only *append* — never rewrite.
+
+    15-min steps are the strict test: ends landing on :15/:45 fall *inside* an
+    incomplete 30-min boundary bucket, exactly where churn would strike (the 30-min
+    step skips those positions). We snapshot the 01:00 window as a full base, then
+    snapshot each 15-min-advanced window as a ``diff`` against it. Keyed by
+    datetime, the recorded diffs read as a clean, reviewable progression:
+
+    * +15 (01:15) -> *empty* diff: advancing into the middle of the 01:00 bucket
+      changes nothing — the padding already gave it the two-point mean (906).
+    * +30 (01:30) -> single addition (+01:30): the bucket completed, one new point.
+    * +45 (01:45) -> same diff as 01:30: another mid-bucket no-op.
+    * +60 (02:00) -> adds +02:00.
+
+    The base pins every bucket's value; the diffs pin the *relationship* between
+    windows. A padding regression turns an empty mid-bucket diff into a
+    *modification* of an already-emitted bucket (e.g. 01:00 flipping 906 -> 1100),
+    visible in the .ambr git diff and failing this test until regenerated.
+
+    Regenerate with ``pytest --snapshot-update`` after an intentional mock change;
+    a correct parser keeps every mid-bucket diff empty and every step append-only.
+    """
+    os.environ["RESEAUX_ENERGIES_TOKEN"] = "test_token"
+    records = _load_records()
+    requests_mock.register_uri(
+        GET,
+        API_ENDPOINT,
+        json=_make_query_aware_callback(records),
+    )
+
+    # Paris 01:00 == 23:00Z (CEST = UTC+2); each step advances the window end 15 min.
+    base_end = datetime(2023, 9, 21, 23, 0, tzinfo=timezone.utc)
+
+    def fetch_by_dt(step_minutes: int) -> dict:
+        return {
+            dp["datetime"]: dp
+            for dp in fetch_production(
+                zone_key=ZoneKey("FR"),
+                session=session,
+                target_datetime=base_end + timedelta(minutes=step_minutes),
+            )
+        }
+
+    assert fetch_by_dt(0) == snapshot(name="end_0100")
+    assert fetch_by_dt(15) == snapshot(name="end_0115", diff="end_0100")
+    assert fetch_by_dt(30) == snapshot(name="end_0130", diff="end_0100")
+    assert fetch_by_dt(45) == snapshot(name="end_0145", diff="end_0100")
+    assert fetch_by_dt(60) == snapshot(name="end_0200", diff="end_0100")
