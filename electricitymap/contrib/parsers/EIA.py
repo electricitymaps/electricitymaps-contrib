@@ -123,8 +123,8 @@ REGIONS = {
     "US-NW-PSEI": "PSEI",  # Puget Sound Energy
     "US-NW-SCL": "SCL",  # Seattle City Light
     "US-NW-TPWR": "TPWR",  # City Of Tacoma, Department Of Public Utilities, Light Division
-    "US-NW-WACM": "WACM",  # Western Area Power Administration - Rocky Mountain Region
-    "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West
+    # "US-NW-WACM": "WACM",  # Western Area Power Administration - Rocky Mountain Region, retired 2026-03-31, absorbed into SWPP
+    # "US-NW-WAUW": "WAUW",  # Western Area Power Administration Ugp West, retired 2026-03-31, absorbed into SWPP
     "US-NW-WWA": "WWA",  # Naturener Wind Watch, Llc, integrated with US-NW-NWMT
     "US-NY-NYIS": "NYIS",  # New York Independent System Operator
     "US-SE-AEC": "AEC",  # Powersouth Energy Cooperative, decomissioned merged with US-SE-SOCO
@@ -210,8 +210,8 @@ EXCHANGES = {
     "US-CENT-SWPP->US-MIDW-MISO": "&facets[fromba][]=SWPP&facets[toba][]=MISO",
     "US-CENT-SWPP->US-NW-PSCO": "&facets[fromba][]=SWPP&facets[toba][]=PSCO",
     "US-CENT-SWPP->US-SW-PNM": "&facets[fromba][]=SWPP&facets[toba][]=PNM",
-    "US-CENT-SWPP->US-NW-WACM": "&facets[fromba][]=SWPP&facets[toba][]=WACM",
-    "US-CENT-SWPP->US-NW-WAUW": "&facets[fromba][]=SWPP&facets[toba][]=WAUW",
+    # "US-CENT-SWPP->US-NW-WACM": "&facets[fromba][]=SWPP&facets[toba][]=WACM",  # WACM retired 2026-03-31
+    # "US-CENT-SWPP->US-NW-WAUW": "&facets[fromba][]=SWPP&facets[toba][]=WAUW",  # WAUW retired 2026-03-31
     "US-FLA-FMPP->US-FLA-FPC": "&facets[fromba][]=FMPP&facets[toba][]=FPC",
     "US-FLA-FMPP->US-FLA-FPL": "&facets[fromba][]=FMPP&facets[toba][]=FPL",
     "US-FLA-FMPP->US-FLA-JEA": "&facets[fromba][]=FMPP&facets[toba][]=JEA",
@@ -279,19 +279,19 @@ EXCHANGES = {
     "US-NW-NEVP->US-SW-WALC": "&facets[fromba][]=NEVP&facets[toba][]=WALC",
     #    "US-NW-NWMT->US-NW-WWA": "&facets[fromba][]=NWMT&facets[toba][]=WWA", intergrated directly with US-NW-NWMT
     "US-NW-NWMT->US-NW-PACE": "&facets[fromba][]=NWMT&facets[toba][]=PACE",
-    "US-NW-NWMT->US-NW-WAUW": "&facets[fromba][]=NWMT&facets[toba][]=WAUW",
+    # "US-NW-NWMT->US-NW-WAUW": "&facets[fromba][]=NWMT&facets[toba][]=WAUW",  # WAUW retired 2026-03-31
     "US-NW-PACE->US-SW-AZPS": "&facets[fromba][]=PACE&facets[toba][]=AZPS",
     "US-NW-PACE->US-NW-PACW": "&facets[fromba][]=PACE&facets[toba][]=PACW",
-    "US-NW-PACE->US-NW-WACM": "&facets[fromba][]=PACE&facets[toba][]=WACM",
+    # "US-NW-PACE->US-NW-WACM": "&facets[fromba][]=PACE&facets[toba][]=WACM",  # WACM retired 2026-03-31
     "US-NW-PACW->US-NW-PGE": "&facets[fromba][]=PACW&facets[toba][]=PGE",
     "US-NW-PSCO->US-SW-PNM": "&facets[fromba][]=PSCO&facets[toba][]=PNM",
-    "US-NW-PSCO->US-NW-WACM": "&facets[fromba][]=PSCO&facets[toba][]=WACM",
+    # "US-NW-PSCO->US-NW-WACM": "&facets[fromba][]=PSCO&facets[toba][]=WACM",  # WACM retired 2026-03-31
     "US-NW-PSEI->US-NW-TPWR": "&facets[fromba][]=PSEI&facets[toba][]=TPWR",
     "US-NW-PSEI->US-NW-SCL": "&facets[fromba][]=PSEI&facets[toba][]=SCL",
-    "US-NW-WACM->US-SW-AZPS": "&facets[fromba][]=WACM&facets[toba][]=AZPS",
-    "US-NW-WACM->US-SW-PNM": "&facets[fromba][]=WACM&facets[toba][]=PNM",
-    "US-NW-WACM->US-SW-WALC": "&facets[fromba][]=WACM&facets[toba][]=WALC",
-    "US-NW-WACM->US-NW-WAUW": "&facets[fromba][]=WACM&facets[toba][]=WAUW",
+    # "US-NW-WACM->US-SW-AZPS": "&facets[fromba][]=WACM&facets[toba][]=AZPS",  # WACM retired 2026-03-31
+    # "US-NW-WACM->US-SW-PNM": "&facets[fromba][]=WACM&facets[toba][]=PNM",  # WACM retired 2026-03-31
+    # "US-NW-WACM->US-SW-WALC": "&facets[fromba][]=WACM&facets[toba][]=WALC",  # WACM retired 2026-03-31
+    # "US-NW-WACM->US-NW-WAUW": "&facets[fromba][]=WACM&facets[toba][]=WAUW",  # WACM/WAUW retired 2026-03-31
     # "US-SE-AEC->US-SE-SOCO": "&facets[fromba][]=AEC&facets[toba][]=SOCO", Decommisioned BA
     "US-SE-SEPA->US-SE-SOCO": "&facets[fromba][]=SEPA&facets[toba][]=SOCO",
     "US-SE-SOCO->US-TEN-TVA": "&facets[fromba][]=SOCO&facets[toba][]=TVA",
