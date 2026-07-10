@@ -8,6 +8,7 @@ from requests_mock import GET
 from electricitymap.contrib.parsers.CA_ON import (
     TIMEZONE,
     fetch_consumption_forecast,
+    fetch_production,
     fetch_wind_solar_forecasts,
 )
 from electricitymap.contrib.types import ZoneKey
@@ -75,6 +76,31 @@ def test_fetch_consumption_forecast(requests_mock, session, snapshot):
     # snapshot is deterministic — without target_datetime the parser starts at
     # datetime.now() and the snapshot only matches on the day it was recorded.
     assert snapshot == fetch_consumption_forecast(
+        zone_key=ZoneKey("CA-ON"),
+        session=session,
+        target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
+    )
+
+
+def test_fetch_production(requests_mock, session, snapshot):
+    # Mock the Generator Output and Capability report. The fixture holds the
+    # three battery units IESO files under FuelType "OTHER" (which the parser
+    # moves into battery storage as discharge) plus a non-battery "OTHER" unit,
+    # which must stay out of the result entirely.
+    gen_output_capability = Path(
+        base_path_to_mock, "gen_output_capability_20250228.xml"
+    )
+    requests_mock.register_uri(
+        GET,
+        re.compile(
+            r"http://reports\.ieso\.ca/public/GenOutputCapability/PUB_GenOutputCapability_\d{8}\.xml"
+        ),
+        text=gen_output_capability.read_text(),
+    )
+
+    # Anchor to a fixed date so the parser fetches a single report and the
+    # snapshot datetime is deterministic.
+    assert snapshot == fetch_production(
         zone_key=ZoneKey("CA-ON"),
         session=session,
         target_datetime=datetime(2025, 2, 28, 12, 0, tzinfo=TIMEZONE),
