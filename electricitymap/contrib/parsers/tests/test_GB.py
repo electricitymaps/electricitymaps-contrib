@@ -106,9 +106,7 @@ def test_fetch_wind_solar_forecasts_day_ahead_live(requests_mock, session, snaps
     )
 
 
-def test_fetch_wind_forecasts_day_ahead_historical(
-    requests_mock, session, snapshot
-):
+def test_fetch_wind_forecasts_day_ahead_historical(requests_mock, session, snapshot):
     gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
     requests_mock.register_uri(
         GET,
