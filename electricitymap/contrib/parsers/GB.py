@@ -38,6 +38,11 @@ ZONE_KEY = ZoneKey("GB")
 
 NESO_API = "https://api.neso.energy/api/3/action/datastore_search_sql"
 NESO_GENERATION_DATASET_ID = "f93d1835-75bc-43e5-84ad-12472b180a98"
+# https://www.neso.energy/data-portal/day-ahead-wind-forecast
+# "Day Ahead Wind Forecast": rolling ~24h window holding only the latest published forecast.
+NESO_WIND_DAY_AHEAD_FORECAST_DATASET_ID = "b2f03146-f05d-4824-a663-3a4f36090c71"
+# "Historic Day Ahead Wind Forecasts": archive of past forecasts, lags the live dataset by about a day.
+NESO_WIND_DAY_AHEAD_FORECAST_HISTORY_DATASET_ID = "7524ec65-f782-4258-aaf8-5b926c17b966"
 
 ELEXON_BMU_UNITS = "https://data.elexon.co.uk/bmrs/api/v1/reference/bmunits/all"
 ELEXON_PN_STREAM = "https://data.elexon.co.uk/bmrs/api/v1/datasets/PN/stream"
@@ -153,6 +158,65 @@ def fetch_price(
                 )
 
     return price_list.to_list()
+
+
+@refetch_frequency(timedelta(days=1))
+def fetch_wind_solar_forecasts_day_ahead(
+    zone_key: ZoneKey = ZONE_KEY,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Requests the NESO national day-ahead wind forecast.
+
+    NESO only exposes the latest published day-ahead forecast (a rolling ~24h
+    window) in the live dataset; requests for a specific target_datetime fall
+    back to NESO's historical day-ahead forecast archive, which lags the live
+    dataset by about a day.
+    NOTE: The dataset only exposes wind forecasts, not solar. Solar forecasts are not available from NESO.
+    """
+    session = session or Session()
+
+    if target_datetime is None:
+        sql_query = f"""SELECT * FROM "{NESO_WIND_DAY_AHEAD_FORECAST_DATASET_ID}" ORDER BY "Datetime_GMT" ASC"""
+    else:
+        target_datetime = target_datetime.astimezone(timezone.utc)
+        start_datetime = target_datetime - timedelta(days=1)
+        end_datetime = target_datetime + timedelta(days=1)
+        sql_query = f"""SELECT * FROM "{NESO_WIND_DAY_AHEAD_FORECAST_HISTORY_DATASET_ID}" WHERE "Datetime_GMT" >= '{start_datetime.strftime("%Y-%m-%d")}' AND "Datetime_GMT" <= '{end_datetime.strftime("%Y-%m-%d")}' ORDER BY "Datetime_GMT" ASC"""
+
+    res: Response = session.get(NESO_API, params={"sql": sql_query})
+    if not res.ok:
+        raise ParserException(
+            PARSER,
+            f"Exception when fetching wind day-ahead forecast error code: {res.status_code}: {res.text}",
+            zone_key,
+        )
+
+    records = res.json()["result"]["records"]
+    if not records:
+        raise ParserException(
+            PARSER,
+            "No wind day-ahead forecast data found",
+            zone_key,
+        )
+
+    production_list = ProductionBreakdownList(logger=logger)
+    for row in records:
+        dt = datetime.fromisoformat(row["Datetime_GMT"]).replace(tzinfo=timezone.utc)
+
+        production_mix = ProductionMix()
+        production_mix.add_value("wind", float(row["Incentive_forecast"]))
+
+        production_list.append(
+            zoneKey=zone_key,
+            datetime=dt,
+            production=production_mix,
+            source="neso.energy",
+            sourceType=EventSourceType.forecasted,
+        )
+
+    return production_list.to_list()
 
 
 @refetch_frequency(timedelta(hours=72))
