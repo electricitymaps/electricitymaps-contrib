@@ -161,7 +161,7 @@ def fetch_price(
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_wind_solar_forecasts_day_ahead(
+def fetch_wind_forecasts_day_ahead(
     zone_key: ZoneKey = ZONE_KEY,
     session: Session | None = None,
     target_datetime: datetime | None = None,
@@ -173,7 +173,6 @@ def fetch_wind_solar_forecasts_day_ahead(
     window) in the live dataset; requests for a specific target_datetime fall
     back to NESO's historical day-ahead forecast archive, which lags the live
     dataset by about a day.
-    NOTE: The dataset only exposes wind forecasts, not solar. Solar forecasts are not available from NESO.
     """
     session = session or Session()
 

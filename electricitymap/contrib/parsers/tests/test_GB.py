@@ -17,7 +17,7 @@ from electricitymap.contrib.parsers.GB import (
     NESO_API,
     fetch_price,
     fetch_production,
-    fetch_wind_solar_forecasts_day_ahead,
+    fetch_wind_forecasts_day_ahead,
 )
 from electricitymap.contrib.types import ZoneKey
 
@@ -100,13 +100,13 @@ def test_fetch_wind_solar_forecasts_day_ahead_live(requests_mock, session, snaps
         ),
     )
 
-    assert snapshot == fetch_wind_solar_forecasts_day_ahead(
+    assert snapshot == fetch_wind_forecasts_day_ahead(
         zone_key=ZoneKey("GB"),
         session=session,
     )
 
 
-def test_fetch_wind_solar_forecasts_day_ahead_historical(
+def test_fetch_wind_forecasts_day_ahead_historical(
     requests_mock, session, snapshot
 ):
     gb_mock = resources.files("electricitymap.contrib.parsers.tests.mocks.GB")
@@ -119,7 +119,7 @@ def test_fetch_wind_solar_forecasts_day_ahead_historical(
     )
 
     historical_datetime = datetime(2022, 7, 16, 12, tzinfo=timezone.utc)
-    assert snapshot == fetch_wind_solar_forecasts_day_ahead(
+    assert snapshot == fetch_wind_forecasts_day_ahead(
         zone_key=ZoneKey("GB"),
         session=session,
         target_datetime=historical_datetime,
