@@ -228,7 +228,7 @@ has_day_ahead_price_license: false
 hide_day_ahead_price: false
 parsers:
   consumption: AX.fetch_consumption
-  price: AX.fetch_price
+  price: ENTSOE_price_overrides.fetch_price
   production: AX.fetch_production
 region: Europe
 sources:
