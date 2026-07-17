@@ -436,6 +436,8 @@ parsers:
   production: NED.fetch_production
   productionCapacity: ENTSOE.fetch_production_capacity
   productionPerModeForecast: NED.fetch_production_forecast
+  productionPerModeForecastDayAhead: ENTSOE.fetch_wind_solar_forecasts_day_ahead
+
 region: Europe
 sources:
   EU-ETS, ENTSO-E 2021:
