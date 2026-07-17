@@ -12,6 +12,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix
+from electricitymap.contrib.parsers import ENTSOE
 from electricitymap.contrib.types import ZoneKey
 
 from .lib.exceptions import ParserException
@@ -19,6 +20,10 @@ from .lib.exceptions import ParserException
 IFRAME_URL = "https://grafik.kraftnat.ax/grafer/tot_inm_24h_15.php"
 TIME_ZONE = ZoneInfo("Europe/Mariehamn")
 SOURCE = "kraftnat.ax"
+
+# Åland does not have its own ENTSOE bidding zone domain, it shares the
+# SE-SE3 domain for day-ahead price data.
+ENTSOE_PRICE_DOMAIN_OVERRIDE = ENTSOE.ENTSOE_DOMAIN_MAPPINGS["SE-SE3"]
 
 
 def fetch_data(session: Session, logger: Logger):
@@ -221,3 +226,33 @@ def fetch_exchange(
         logger=logger,
         data_type="exchange",
     )
+
+
+@ENTSOE.refetch_frequency(ENTSOE.DEFAULT_LOOKBACK_HOURS_REALTIME)
+def fetch_price(
+    zone_key: ZoneKey = ZoneKey("AX"),
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict]:
+    """Gets day-ahead price for Åland via the ENTSOE SE-SE3 bidding zone domain."""
+    if not session:
+        session = Session()
+
+    try:
+        raw_price_data = ENTSOE.query_price(
+            ENTSOE_PRICE_DOMAIN_OVERRIDE, session, target_datetime=target_datetime
+        )
+    except Exception as e:
+        raise ParserException(
+            "AX.py",
+            f"Failed to fetch price for {zone_key}",
+            zone_key,
+        ) from e
+    if raw_price_data is None:
+        raise ParserException(
+            "AX.py",
+            f"No price data found for {zone_key}",
+            zone_key,
+        )
+    return ENTSOE.parse_prices(raw_price_data, zone_key, logger).to_list()
