@@ -131,9 +131,7 @@ def test_fetch_consumption_forecast_live(requests_mock, session, snapshot):
     requests_mock.register_uri(
         GET,
         NESO_API,
-        json=json.loads(
-            gb_mock.joinpath("consumption_forecast_live.json").read_text()
-        ),
+        json=json.loads(gb_mock.joinpath("consumption_forecast_live.json").read_text()),
     )
 
     assert snapshot == fetch_consumption_forecast(
