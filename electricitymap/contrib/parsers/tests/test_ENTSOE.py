@@ -164,7 +164,7 @@ def test_fetch_prices_integrated_zone(requests_mock, session, snapshot):
         ANY,
         content=data.read_bytes(),
     )
-    assert snapshot == ENTSOE.fetch_price(ZoneKey("AX"), session)
+    assert snapshot == ENTSOE.fetch_price(ZoneKey("LU"), session)
 
 
 def test_fetch_with_negative_values(requests_mock, session, snapshot):
