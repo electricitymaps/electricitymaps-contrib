@@ -269,11 +269,9 @@ EXCHANGE_AGGREGATES: dict[str, list[list]] = {
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_MAPPINGS: dict[str, str] = {
     **ENTSOE_DOMAIN_MAPPINGS,  # Note: This has to be first so the domains are overwritten.
-    "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "IE": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
     "GB-NIR": ENTSOE_DOMAIN_MAPPINGS["IE(SEM)"],
-    "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
     "UA": ENTSOE_DOMAIN_MAPPINGS["UA-IPS"],
 }
 

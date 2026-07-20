@@ -1,4 +1,108 @@
 # serializer version: 1
+# name: test_fetch_consumption_forecast_historical
+  list([
+    dict({
+      'consumption': 20902.0,
+      'datetime': datetime.datetime(2026, 7, 17, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 20951.0,
+      'datetime': datetime.datetime(2026, 7, 17, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 22373.0,
+      'datetime': datetime.datetime(2026, 7, 17, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 23098.0,
+      'datetime': datetime.datetime(2026, 7, 17, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 24147.0,
+      'datetime': datetime.datetime(2026, 7, 17, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 24310.0,
+      'datetime': datetime.datetime(2026, 7, 17, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Europe/London')),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+  ])
+# ---
+# name: test_fetch_consumption_forecast_live
+  list([
+    dict({
+      'consumption': 20289.0,
+      'datetime': FakeDatetime(2026, 7, 31, 13, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 20099.0,
+      'datetime': FakeDatetime(2026, 7, 31, 14, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 20663.0,
+      'datetime': FakeDatetime(2026, 7, 31, 14, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 20747.0,
+      'datetime': FakeDatetime(2026, 7, 31, 15, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 21203.0,
+      'datetime': FakeDatetime(2026, 7, 31, 15, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'consumption': 22465.0,
+      'datetime': FakeDatetime(2026, 7, 31, 16, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'zoneKey': 'GB',
+    }),
+  ])
+# ---
 # name: test_fetch_price_historical
   list([
     dict({
@@ -480,6 +584,98 @@
       'storage': dict({
         'battery': -0.0,
         'hydro': -0.0,
+      }),
+      'zoneKey': 'GB',
+    }),
+  ])
+# ---
+# name: test_fetch_wind_forecasts_day_ahead_historical
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 7, 15, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 7523.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 7, 15, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 7656.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': datetime.datetime(2022, 7, 16, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 7736.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB',
+    }),
+  ])
+# ---
+# name: test_fetch_wind_solar_forecasts_day_ahead_live
+  list([
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 12, 16, 23, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 2732.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 12, 16, 23, 30, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 2796.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
+      }),
+      'zoneKey': 'GB',
+    }),
+    dict({
+      'correctedModes': list([
+      ]),
+      'datetime': FakeDatetime(2024, 12, 17, 0, 0, tzinfo=datetime.timezone.utc),
+      'end_datetime': None,
+      'production': dict({
+        'wind': 2882.0,
+      }),
+      'source': 'neso.energy',
+      'sourceType': <EventSourceType.forecasted: 'forecasted'>,
+      'storage': dict({
       }),
       'zoneKey': 'GB',
     }),
