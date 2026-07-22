@@ -9,6 +9,7 @@ from electricitymap.contrib.lib.models.event_lists import (
     ExchangeList,
     PriceList,
     ProductionBreakdownList,
+    TotalConsumptionList,
 )
 from electricitymap.contrib.lib.models.events import ProductionMix, StorageMix
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
@@ -345,6 +346,35 @@ def fetch_price(
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
+def fetch_consumption(
+    zone_key: ZoneKey,
+    session: Session | None = None,
+    target_datetime: datetime | None = None,
+    logger: Logger = getLogger(__name__),
+) -> list[dict[str, Any]]:
+    """Fetch actual regional demand (MW) from the Open Electricity v4 market API.
+
+    Open Electricity does not currently expose consumption *forecasts* on v4
+    (see opennem/opennem#500). Keep AEMO.fetch_consumption_forecast for
+    forecasted demand; this parser covers observed load only.
+    """
+    session = session or Session()
+    target_datetime = target_datetime or datetime.now(tz=timezone.utc)
+
+    network_region = ZONE_KEY_TO_REGION.get(zone_key)
+    datasets = _fetch_network_datasets(
+        zone_key=zone_key,
+        session=session,
+        dataset_type="market",
+        target_datetime=target_datetime,
+        metrics=["demand"],
+        network_region=network_region,
+    )
+
+    return _build_consumption_list(datasets, zone_key, logger).to_list()
+
+
+@refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
     zone_key1: ZoneKey,
     zone_key2: ZoneKey,
@@ -653,6 +683,35 @@ def _build_price_list(datasets, zone_key: ZoneKey, logger: Logger) -> PriceList:
     return price_list
 
 
+def _build_consumption_list(
+    datasets, zone_key: ZoneKey, logger: Logger
+) -> TotalConsumptionList:
+    now = datetime.now(tz=timezone.utc)
+    consumption_list = TotalConsumptionList(logger=logger)
+    for dataset in datasets:
+        if dataset.get("metric") != "demand":
+            continue
+        for result in dataset.get("results", []):
+            for data_point in result.get("data", []):
+                if not isinstance(data_point, list) or len(data_point) < 2:
+                    continue
+                timestamp_str, value = data_point[0], data_point[1]
+                if value is None:
+                    continue
+                dt = datetime.fromisoformat(timestamp_str)
+                if dt > now:
+                    logger.debug(f"Skipping future datetime {dt} for zone {zone_key}")
+                    continue
+                consumption_list.append(
+                    zoneKey=zone_key,
+                    datetime=dt,
+                    consumption=float(value),
+                    source=SOURCE,
+                )
+
+    return consumption_list
+
+
 if __name__ == "__main__":
     """Main method, never used by the electricityMap backend, but handy for testing."""
     # print("fetch_price(zone_key='AU-SA') ->")
@@ -663,3 +722,4 @@ if __name__ == "__main__":
     # print(fetch_production(ZoneKey("AU-SA"), target_datetime=target_datetime))
     #
     # print(fetch_exchange(ZoneKey("AU-SA"), ZoneKey("AU-VIC")))
+    # print(fetch_consumption(ZoneKey("AU-NSW")))

@@ -8,6 +8,7 @@ from requests_mock import ANY
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
 from electricitymap.contrib.parsers.OPENNEM import (
+    fetch_consumption,
     fetch_exchange,
     fetch_price,
     fetch_production,
@@ -46,6 +47,21 @@ def test_price(requests_mock, session, snapshot, zone):
     )
     assert snapshot(extension_class=SingleFileAmberSnapshotExtension) == fetch_price(
         zone, session, datetime.fromisoformat("2020-01-01")
+    )
+
+
+@pytest.mark.parametrize("zone", ["AU-NSW", "AU-WA"])
+def test_consumption(requests_mock, session, snapshot, zone):
+    mock_data = Path(base_path_to_mock, f"OPENNEM_demand_{zone}.json")
+    requests_mock.register_uri(
+        ANY,
+        ANY,
+        json=json.loads(mock_data.read_text()),
+    )
+    assert snapshot(
+        extension_class=SingleFileAmberSnapshotExtension
+    ) == fetch_consumption(
+        zone, session, datetime.fromisoformat("2026-07-22T10:00:00+00:00")
     )
 
 
