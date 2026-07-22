@@ -45,6 +45,7 @@ contributors:
   - jarek
   - corradio
   - alejandranavcas
+  - sankalpsthakur
 country: AU
 country_name: Australia
 currency: AUD
@@ -236,6 +237,7 @@ isRenewable:
     - datetime: '2022-01-01'
       value: 0.9849
 parsers:
+  consumption: OPENNEM.fetch_consumption
   consumptionForecast: AEMO.fetch_consumption_forecast
   price: OPENNEM.fetch_price
   production: OPENNEM.fetch_production
