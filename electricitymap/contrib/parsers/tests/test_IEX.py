@@ -117,3 +117,48 @@ def test_fetch_price_http_error(session, requests_mock):
     requests_mock.register_uri(GET, DAM_PROVISIONAL_URL, status_code=503)
     with pytest.raises(ParserException, match="HTTP 503"):
         fetch_price(zone_key=ZoneKey("IN"), session=session)
+
+
+def test_fetch_price_empty_response(session, requests_mock):
+    """Empty HTML body must fail loudly rather than yield zero prices."""
+    requests_mock.register_uri(GET, DAM_PROVISIONAL_URL, text="")
+    with pytest.raises(ParserException, match="Missing <h1>"):
+        fetch_price(zone_key=ZoneKey("IN"), session=session)
+
+
+def test_parse_dam_html_empty_table_raises():
+    html = (
+        "<html><body><h1>Unconstrained DAM Data for 23-07-2026</h1>"
+        "<table></table></body></html>"
+    )
+    with pytest.raises(ParserException, match="No DAM time-block rows"):
+        _parse_dam_html(html, logger=__import__("logging").getLogger())
+
+
+def test_source_has_no_space_after_comma():
+    """Multi-source strings are split on "," without trim in the app (#8779).
+
+    IEX is a single source today; lock the constant so a future multi-source
+    attribution cannot introduce ``", "`` and break zone-page hrefs.
+    """
+    assert ", " not in SOURCE
+    assert SOURCE == "iexindia.com"
+
+
+def test_fetch_price_source_tokens_have_no_leading_space(session, mock_dam_page):
+    events = fetch_price(zone_key=ZoneKey("IN"), session=session)
+    assert events
+    for token in events[0]["source"].split(","):
+        assert token == token.strip()
+        assert not token.startswith(" ")
+
+
+def test_fetch_price_target_datetime_utc_matches_kolkata_day(session, mock_dam_page):
+    """A UTC target that falls on the delivery day in Asia/Kolkata is accepted."""
+    # 2026-07-22 20:00 UTC == 2026-07-23 01:30 Asia/Kolkata
+    target = datetime(2026, 7, 22, 20, 0, tzinfo=ZoneInfo("UTC"))
+    events = fetch_price(
+        zone_key=ZoneKey("IN"), session=session, target_datetime=target
+    )
+    assert len(events) == 96
+    assert all(e["datetime"].tzinfo == TZ for e in events)
