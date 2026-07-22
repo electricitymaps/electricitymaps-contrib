@@ -14,8 +14,6 @@ Historical backfill is out of scope for this endpoint; see
 https://github.com/electricitymaps/electricitymaps-contrib/issues/8796
 """
 
-from __future__ import annotations
-
 import re
 from datetime import date, datetime, timedelta
 from logging import Logger, getLogger
