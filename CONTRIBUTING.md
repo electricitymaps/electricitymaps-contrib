@@ -55,7 +55,7 @@ Note: This requires you to have [Python 3.10][python homepage] and [uv][uv homep
 
 ### Parser information
 
-For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [electricitymap/contrib/parsers/README.md][parser readme] with specific information about the parser functions located in the [electricitymap/contrib/parser/example][parser examples folder] folder
+For more detailed information about parsers specifically you can look at the parser [README][parser readme] located at [electricitymap/contrib/parsers/README.md][parser readme] with specific information about the parser functions located in the [electricitymap/contrib/parsers/examples][parser examples folder] folder
 
 #### Example parser:
 
@@ -144,5 +144,5 @@ If there is parser changes these go on to more internal tests that includes both
 [old_license]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/LICENSE_MIT.txt
 [config zones]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones
 [config exchanges]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges
-[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/tree/master/parsers/README.md
+[parser readme]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/README.md
 [parser examples folder]: https://github.com/electricitymaps/electricitymaps-contrib/blob/master/electricitymap/contrib/parsers/examples/
