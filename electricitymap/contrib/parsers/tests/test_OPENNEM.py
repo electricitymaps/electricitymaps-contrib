@@ -1,13 +1,17 @@
 import json
+import logging
 import os
 from datetime import datetime
 from pathlib import Path
 
 import pytest
+from freezegun import freeze_time
 from requests_mock import ANY
 from syrupy.extensions.single_file import SingleFileAmberSnapshotExtension
 
+from electricitymap.contrib.lib.types import ZoneKey
 from electricitymap.contrib.parsers.OPENNEM import (
+    _build_consumption_list,
     fetch_consumption,
     fetch_exchange,
     fetch_price,
@@ -61,8 +65,36 @@ def test_consumption(requests_mock, session, snapshot, zone):
     assert snapshot(
         extension_class=SingleFileAmberSnapshotExtension
     ) == fetch_consumption(
-        zone, session, datetime.fromisoformat("2026-07-22T10:00:00+00:00")
+        zone, session, datetime.fromisoformat("2025-03-23T10:00:00+00:00")
     )
+
+
+@freeze_time("2026-07-22 10:12:00")
+def test_build_consumption_list_skips_null_future_and_malformed():
+    datasets = [
+        {
+            "metric": "demand",
+            "results": [
+                {
+                    "data": [
+                        ["2026-07-22T20:00:00+10:00", 1000.0],  # 10:00 UTC — keep
+                        ["2026-07-22T20:05:00+10:00", None],  # null — skip
+                        ["bad"],  # malformed — skip
+                        ["2026-07-22T20:15:00+10:00", 1100.0],  # 10:15 UTC — future
+                    ]
+                }
+            ],
+        },
+        {"metric": "price", "results": [{"data": [["2026-07-22T20:00:00+10:00", 50]]}]},
+    ]
+
+    events = _build_consumption_list(
+        datasets, ZoneKey("AU-NSW"), logging.getLogger("test")
+    ).to_list()
+
+    assert len(events) == 1
+    assert events[0]["consumption"] == 1000.0
+    assert events[0]["datetime"] == datetime.fromisoformat("2026-07-22T20:00:00+10:00")
 
 
 def test_au_nsw_au_qld_exchange(requests_mock, session, snapshot):

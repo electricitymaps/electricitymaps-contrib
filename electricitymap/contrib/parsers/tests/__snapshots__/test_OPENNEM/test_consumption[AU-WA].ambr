@@ -3,7 +3,7 @@
   list([
     dict({
       'consumption': 2101.5,
-      'datetime': datetime.datetime(2026, 7, 22, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'datetime': datetime.datetime(2025, 3, 23, 18, 0, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'end_datetime': None,
       'source': 'opennem.org.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -11,7 +11,7 @@
     }),
     dict({
       'consumption': 2095.2,
-      'datetime': datetime.datetime(2026, 7, 22, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'datetime': datetime.datetime(2025, 3, 23, 18, 5, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'end_datetime': None,
       'source': 'opennem.org.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -19,7 +19,7 @@
     }),
     dict({
       'consumption': 2088.7,
-      'datetime': datetime.datetime(2026, 7, 22, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'datetime': datetime.datetime(2025, 3, 23, 18, 10, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'end_datetime': None,
       'source': 'opennem.org.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -27,7 +27,7 @@
     }),
     dict({
       'consumption': 2080.1,
-      'datetime': datetime.datetime(2026, 7, 22, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'datetime': datetime.datetime(2025, 3, 23, 18, 15, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'end_datetime': None,
       'source': 'opennem.org.au',
       'sourceType': <EventSourceType.measured: 'measured'>,
@@ -35,7 +35,7 @@
     }),
     dict({
       'consumption': 2075.4,
-      'datetime': datetime.datetime(2026, 7, 22, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
+      'datetime': datetime.datetime(2025, 3, 23, 18, 20, tzinfo=datetime.timezone(datetime.timedelta(seconds=28800))),
       'end_datetime': None,
       'source': 'opennem.org.au',
       'sourceType': <EventSourceType.measured: 'measured'>,

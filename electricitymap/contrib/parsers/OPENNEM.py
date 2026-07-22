@@ -361,14 +361,12 @@ def fetch_consumption(
     session = session or Session()
     target_datetime = target_datetime or datetime.now(tz=timezone.utc)
 
-    network_region = ZONE_KEY_TO_REGION.get(zone_key)
     datasets = _fetch_network_datasets(
         zone_key=zone_key,
         session=session,
         dataset_type="market",
         target_datetime=target_datetime,
         metrics=["demand"],
-        network_region=network_region,
     )
 
     return _build_consumption_list(datasets, zone_key, logger).to_list()
