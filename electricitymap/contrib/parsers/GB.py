@@ -378,7 +378,9 @@ def fetch_production(
             datetime=period_start,
             production=production_mix,
             storage=storage_mix,
-            source="neso.energy, elexon.co.uk",
+            # No space after comma so source names stay clean when split on ","
+            # (avoids a leading-space " elexon.co.uk" / https://%20… link; #8779).
+            source="neso.energy,elexon.co.uk",
         )
 
     return production_list.to_list()
