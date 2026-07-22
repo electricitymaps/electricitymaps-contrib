@@ -5,8 +5,10 @@ from zoneinfo import ZoneInfo
 import pytest
 from requests_mock import GET
 
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.IEX import (
     DAM_PROVISIONAL_URL,
+    SOURCE,
     TZ,
     _block_bounds,
     _parse_dam_html,
@@ -77,7 +79,9 @@ def test_fetch_price_datetimes_are_kolkata(session, mock_dam_page):
     first = events[0]
     assert first["datetime"].tzinfo == TZ
     assert first["currency"] == "INR"
+    assert first["source"] == SOURCE
     assert first["source"] == "iexindia.com"
+    assert first["sourceType"] == EventSourceType.published
     assert first["zoneKey"] == "IN"
     assert first["price"] == 10000.0
     # 15-minute MTU
