@@ -7,7 +7,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 0, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -16,7 +16,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 0, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -25,7 +25,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 0, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -34,7 +34,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 1, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -43,7 +43,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 1, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -52,7 +52,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 1, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 7299.68,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -61,7 +61,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 1, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 5886.67,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -70,7 +70,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 2, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4520.21,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -79,7 +79,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 2, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4270.62,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -88,7 +88,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 2, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4000.93,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -97,7 +97,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 2, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3850.03,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -106,7 +106,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 3, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3668.16,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -115,7 +115,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 3, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3609.19,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -124,7 +124,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 3, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3499.91,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -133,7 +133,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 3, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3400.71,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -142,7 +142,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 4, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3339.22,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -151,7 +151,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 4, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3426.32,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -160,7 +160,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 4, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3409.53,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -169,7 +169,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 4, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3426.71,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -178,7 +178,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 5, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3599.15,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -187,7 +187,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 5, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3950.19,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -196,7 +196,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 5, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4152.13,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -205,7 +205,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 5, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 6759.86,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -214,7 +214,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 6, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -223,7 +223,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 6, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -232,7 +232,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 6, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -241,7 +241,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 6, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -250,7 +250,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 7, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -259,7 +259,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 7, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 7000.02,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -268,7 +268,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 7, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4727.59,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -277,7 +277,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 7, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4028.35,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -286,7 +286,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 8, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3800.77,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -295,7 +295,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 8, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3430.84,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -304,7 +304,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 8, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3337.55,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -313,7 +313,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 8, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3282.59,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -322,7 +322,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 9, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3075.54,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -331,7 +331,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 9, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3005.53,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -340,7 +340,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 9, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2999.06,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -349,7 +349,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 9, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2736.5,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -358,7 +358,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 10, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2558.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -367,7 +367,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 10, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2184.38,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -376,7 +376,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 10, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2120.55,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -385,7 +385,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 10, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1949.65,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -394,7 +394,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 11, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1901.73,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -403,7 +403,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 11, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1840.42,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -412,7 +412,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 11, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1840.28,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -421,7 +421,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 11, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1837.25,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -430,7 +430,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 12, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1810.88,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -439,7 +439,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 12, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1617.99,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -448,7 +448,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 12, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1617.56,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -457,7 +457,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 12, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1556.97,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -466,7 +466,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 13, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1556.02,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -475,7 +475,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 13, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1541.25,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -484,7 +484,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 13, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1541.49,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -493,7 +493,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 13, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1617.07,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -502,7 +502,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 14, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1659.3,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -511,7 +511,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 14, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1840.05,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -520,7 +520,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 14, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1840.63,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -529,7 +529,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 14, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1928.01,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -538,7 +538,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 15, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 1999.49,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -547,7 +547,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 15, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2120.86,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -556,7 +556,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 15, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2270.9,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -565,7 +565,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 15, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2441.47,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -574,7 +574,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 16, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2470.86,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -583,7 +583,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 16, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 2620.82,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -592,7 +592,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 16, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3000.07,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -601,7 +601,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 16, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3210.35,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -610,7 +610,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 17, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3374.92,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -619,7 +619,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 17, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3275.8,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -628,7 +628,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 17, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3250.14,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -637,7 +637,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 17, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3536.71,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -646,7 +646,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 18, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3801.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -655,7 +655,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 18, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 3950.52,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -664,7 +664,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 18, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 4575.37,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -673,7 +673,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 18, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 6250.47,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -682,7 +682,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 19, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -691,7 +691,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 19, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -700,7 +700,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 19, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -709,7 +709,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 19, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -718,7 +718,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 20, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -727,7 +727,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 20, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -736,7 +736,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 20, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -745,7 +745,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 20, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -754,7 +754,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 21, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -763,7 +763,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 21, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -772,7 +772,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 21, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -781,7 +781,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 21, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -790,7 +790,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 22, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -799,7 +799,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 22, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -808,7 +808,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 22, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -817,7 +817,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 22, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -826,7 +826,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 23, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -835,7 +835,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 23, 15, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -844,7 +844,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 23, 30, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -853,7 +853,7 @@
       'end_datetime': datetime.datetime(2026, 7, 23, 23, 45, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
     dict({
@@ -862,7 +862,7 @@
       'end_datetime': datetime.datetime(2026, 7, 24, 0, 0, tzinfo=zoneinfo.ZoneInfo(key='Asia/Kolkata')),
       'price': 10000.0,
       'source': 'iexindia.com',
-      'sourceType': <EventSourceType.measured: 'measured'>,
+      'sourceType': <EventSourceType.published: 'published'>,
       'zoneKey': 'IN',
     }),
   ])
