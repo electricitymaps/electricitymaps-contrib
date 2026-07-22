@@ -1,12 +1,17 @@
 """Indian Energy Exchange (IEX) Day-Ahead Market price parser.
 
-Source: unconstrained DAM MCP published on IEX's provisional DAM page
-https://iexrtmprice.com/view-dam-provisional-mcv-and-mcp-data/
-(linked from https://www.iexindia.com/market-data/day-ahead-market/market-snapshot)
+Data: unconstrained DAM market clearing price (MCP) from IEX's public
+provisional DAM page (15-minute blocks, ₹/MWh):
+  https://iexrtmprice.com/view-dam-provisional-mcv-and-mcp-data/
+Linked from the official IEX DAM market snapshot:
+  https://www.iexindia.com/market-data/day-ahead-market/market-snapshot
 
-The page currently exposes the latest cleared delivery day as 15-minute
-blocks (MCP in ₹/MWh). Historical backfill is not available from this
-endpoint; see https://github.com/electricitymaps/electricitymaps-contrib/issues/8796
+Attribution uses the IEX root domain ``iexindia.com`` (project convention:
+root URL of the datasource, not the provisional page host).
+
+The provisional page exposes the latest cleared delivery day only.
+Historical backfill is out of scope for this endpoint; see
+https://github.com/electricitymaps/electricitymaps-contrib/issues/8796
 """
 
 from __future__ import annotations
@@ -21,17 +26,24 @@ from bs4 import BeautifulSoup
 from requests import Response, Session
 
 from electricitymap.contrib.lib.models.event_lists import PriceList
+from electricitymap.contrib.lib.models.events import EventSourceType
 from electricitymap.contrib.parsers.lib.config import refetch_frequency
 from electricitymap.contrib.parsers.lib.exceptions import ParserException
 from electricitymap.contrib.types import ZoneKey
 
 TZ = ZoneInfo("Asia/Kolkata")
+# Root domain of the Indian Energy Exchange (see Event.source docs).
 SOURCE = "iexindia.com"
 CURRENCY = "INR"
 PARSER = "IEX.py"
 
-# Provisional unconstrained DAM MCP/MCV table (no auth).
+# Provisional unconstrained DAM MCP/MCV table (public, no auth).
+# Host is iexrtmprice.com; brand/attribution remains iexindia.com.
 DAM_PROVISIONAL_URL = "https://iexrtmprice.com/view-dam-provisional-mcv-and-mcp-data/"
+_REQUEST_HEADERS = {
+    "User-Agent": "electricitymaps-contrib/IEX-parser (+https://github.com/electricitymaps/electricitymaps-contrib)",
+    "Accept": "text/html,application/xhtml+xml",
+}
 
 # e.g. "00:00 - 00:15", "23:45 - 24:00"
 _TIME_BLOCK_RE = re.compile(
@@ -131,7 +143,9 @@ def _parse_dam_html(
 
 
 def _fetch_dam_html(session: Session) -> str:
-    response: Response = session.get(DAM_PROVISIONAL_URL, timeout=30)
+    response: Response = session.get(
+        DAM_PROVISIONAL_URL, timeout=30, headers=_REQUEST_HEADERS
+    )
     if not response.ok:
         raise ParserException(
             PARSER,
@@ -178,6 +192,8 @@ def fetch_price(
 
     price_list = PriceList(logger)
     for start, end, price in rows:
+        # Cleared day-ahead MCP for the delivery day — often >24h ahead of
+        # fetch time, so use published (ex-ante market result), not measured.
         price_list.append(
             zoneKey=zone_key,
             datetime=start,
@@ -185,6 +201,7 @@ def fetch_price(
             price=price,
             currency=CURRENCY,
             source=SOURCE,
+            sourceType=EventSourceType.published,
         )
     return price_list.to_list()
 
