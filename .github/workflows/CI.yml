@@ -84,7 +84,7 @@ jobs:
           uv sync --group dev --extra parsers
       - name: Run tests
         run: |
-          uv run test
+          uv run pytest
 
   # Config checks
   validate_config_filenames:

@@ -65,7 +65,7 @@ For an example of how a parser can look we have an example here: </br> [electric
 
 We use [ruff][ruff homepage] as a code formatter for python which is automatically checked in the CI job `Python / Formatting`.
 
-If this jobs fails and you need to manually format the code you can run `uv run format` in the top level of the repository.
+If this jobs fails and you need to manually format the code you can run `uv run ruff check . --fix` and `uv run ruff format .` in the top level of the repository.
 
 Check the [wiki page][wiki python code formatting] for more details and tips.
 
