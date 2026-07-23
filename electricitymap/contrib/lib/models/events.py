@@ -547,20 +547,96 @@ class ScheduledExchange(Exchange):
     """Exchange event tagged with a market_agreement_type discriminator
     distinguishing day-ahead-cleared (A01) and total-cleared (A05) schedules.
 
-    Both share Exchange's net-flow shape; the discriminator — mirroring
-    ENTSOE's Contract_MarketAgreement.Type vocabulary — is what keeps
-    them apart in the unified bronze table downstream. Subclassing
-    Exchange (rather than adding an optional field) keeps every other
-    Exchange parser untouched and gives the discriminator a typed,
+    Carries the two gross directional flows separately:
+      - `scheduledExport`: scheduled flow zone1 -> zone2 (the sorted-first zone
+        exporting), always >= 0.
+      - `scheduledImport`: scheduled flow zone2 -> zone1 (the sorted-first zone
+        importing), always >= 0.
+    A single signed `netFlow` (= scheduledExport - scheduledImport, positive when zone1
+    exports) is retained for backward compatibility.
+
+    Both directions are needed because some providers aggregate the native
+    15-minute MTU schedules into hourly buckets. Per MTU a commercial
+    schedule clears in only one direction, so `scheduledExport` and `scheduledImport`
+    are never both non-zero at 15-minute resolution — but an hourly bucket can
+    contain MTUs that cleared in opposite directions, leaving both gross
+    totals positive. Netting them into a single number is then lossy, so we
+    store each direction and derive `netFlow` from them.
+
+    The `marketAgreementType` discriminator — mirroring ENTSOE's
+    Contract_MarketAgreement.Type vocabulary — keeps day-ahead and total
+    schedules apart in the unified bronze table downstream. Subclassing
+    Exchange (rather than adding optional fields) keeps every other Exchange
+    parser untouched and gives the directional/discriminator fields a typed,
     Pydantic-validated home next to where the parser produces it.
     """
 
     sourceType: EventSourceType = EventSourceType.published
     marketAgreementType: MarketAgreementType
+    scheduledExport: float | None
+    scheduledImport: float | None
+
+    @validator("scheduledExport", "scheduledImport")
+    def _validate_directional_flow(cls, v: float | None):
+        if v is None:
+            raise ValueError(f"Scheduled exchange direction cannot be None: {v}")
+        if math.isnan(v):
+            raise ValueError(f"Scheduled exchange direction cannot be NaN: {v}")
+        # TODO in the future those checks should be performed in the data quality layer.
+        if abs(v) > 100000:
+            raise ValueError(
+                f"Scheduled exchange direction is implausibly high, above 100GW: {v}"
+            )
+        return v
+
+    @staticmethod
+    def create(
+        logger: Logger,
+        zoneKey: ZoneKey,
+        datetime: datetime,
+        end_datetime: datetime | None,
+        source: str,
+        scheduledExport: float | None,
+        scheduledImport: float | None,
+        marketAgreementType: MarketAgreementType,
+        sourceType: EventSourceType = EventSourceType.published,
+    ) -> "ScheduledExchange | None":
+        try:
+            scheduledExport = _none_safe_round(scheduledExport)
+            scheduledImport = _none_safe_round(scheduledImport)
+            # netFlow is derived so the two directional columns stay the single
+            # source of truth; positive when zone1 exports to zone2.
+            net_flow = (
+                None
+                if scheduledExport is None and scheduledImport is None
+                else (scheduledExport or 0) - (scheduledImport or 0)
+            )
+            return ScheduledExchange(
+                zoneKey=zoneKey,
+                datetime=datetime,
+                end_datetime=end_datetime,
+                source=source,
+                netFlow=_none_safe_round(net_flow),
+                scheduledExport=scheduledExport,
+                scheduledImport=scheduledImport,
+                sourceType=sourceType,
+                marketAgreementType=marketAgreementType,
+            )
+        except ValidationError as e:
+            logger.error(
+                f"Error(s) creating scheduled exchange Event {datetime}: {e}",
+                extra={
+                    "zoneKey": zoneKey,
+                    "datetime": datetime.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "kind": "scheduledExchange",
+                },
+            )
 
     def to_dict(self) -> dict[str, Any]:
         return {
             **super().to_dict(),
+            "scheduledExport": self.scheduledExport,
+            "scheduledImport": self.scheduledImport,
             "marketAgreementType": self.marketAgreementType,
         }
 
